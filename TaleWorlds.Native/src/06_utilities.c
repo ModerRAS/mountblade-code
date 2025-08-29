@@ -2474,10 +2474,10 @@ void HandleResourceCleanup(void)
 
 {
   uint64 returnValue;
-  int localInt2;
+  int status;
   longlong inputRegister;
   longlong baseRegister;
-  longlong localLong3;
+  longlong index;
   int localInt4;
   byte *stackParameter1;
   int stackParameter2;
@@ -2489,20 +2489,20 @@ void HandleResourceCleanup(void)
     localInt4 = 0;
     stackParameter2 = 0;
     stackParameter3 = 0xffffffc0;
-    localInt2 = AllocateSystemMemory(*(uint64 *)(baseRegister + 0x90),*(longlong *)(inputRegister + 8),
+    status = AllocateSystemMemory(*(uint64 *)(baseRegister + 0x90),*(longlong *)(inputRegister + 8),
                           &stack0x00000030);
-    if (localInt2 == 0) {
+    if (status == 0) {
       if (0 < stackParameter2) {
-        localLong3 = 0;
+        index = 0;
         do {
-          returnValue = *(uint64 *)(stackParameter1 + localLong3);
-          localInt2 = utilityAllocateMemoryBlock(returnValue);
-          if (localInt2 != 2) {
+          returnValue = *(uint64 *)(stackParameter1 + index);
+          status = utilityAllocateMemoryBlock(returnValue);
+          if (status != 2) {
                     // WARNING: Subroutine does not return
             utilityFreeMemoryBlock(returnValue,1); # 内存块释放函数
           }
           localInt4 = localInt4 + 1;
-          localLong3 = localLong3 + 8;
+          index = index + 8;
         } while (localInt4 < stackParameter2);
       }
       FreeMemoryBuffer(&stack0x00000030);
@@ -2647,7 +2647,7 @@ ulonglong calculate_memory_allocation(longlong resourceHandle,longlong memorySiz
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   int localInt4;
   uint uVar5;
   ulonglong uVar6;
@@ -2687,7 +2687,7 @@ ulonglong calculate_memory_allocation(longlong resourceHandle,longlong memorySiz
       }
       plVar8 = plocalLong10;
       plocalLong2 = plocalLong10;
-      plocalLong3 = plocalLong10;
+      pindex = plocalLong10;
       if (plVar7 != (longlong *)0x0) {
         plVar8 = plVar7 + 3;
       }
@@ -2702,7 +2702,7 @@ ulonglong calculate_memory_allocation(longlong resourceHandle,longlong memorySiz
           }
           return uVar6;
         }
-        if ((int)plVar9[5] <= (int)plocalLong3) {
+        if ((int)plVar9[5] <= (int)pindex) {
           return 0x1c;
         }
         plVar7 = plVar8 + 4;
@@ -2720,7 +2720,7 @@ ulonglong calculate_memory_allocation(longlong resourceHandle,longlong memorySiz
           plVar8 = plVar7 + 3;
         }
         plocalLong2 = plocalLong2 + 3;
-        plocalLong3 = (longlong *)(ulonglong)((int)plocalLong3 + 1);
+        pindex = (longlong *)(ulonglong)((int)pindex + 1);
       }
       return 0x1c;
     }
@@ -2737,7 +2737,7 @@ uint64 manage_resource_memory(longlong resourceHandle,longlong memorySize) # 资
 
 {
   longlong localLong1;
-  int localInt2;
+  int status;
   uint64 uVar3;
   longlong alStackX_8 [2];
   
@@ -2750,11 +2750,11 @@ uint64 manage_resource_memory(longlong resourceHandle,longlong memorySize) # 资
   if (*(int *)(alStackX_8[0] + 0x58) + *(int *)(alStackX_8[0] + 0x54) +
       *(int *)(alStackX_8[0] + 0x4c) == 1) {
     alStackX_8[0] = 0;
-    localInt2 = utilityInitializeResource(alStackX_8);
-    if (localInt2 == 0) {
-      localInt2 = utilityCreateResourceHandle(localLong1,*(uint64 *)(localLong1 + 8),*(uint64 *)(memorySize + 0x90),
+    status = utilityInitializeResource(alStackX_8);
+    if (status == 0) {
+      status = utilityCreateResourceHandle(localLong1,*(uint64 *)(localLong1 + 8),*(uint64 *)(memorySize + 0x90),
                             *(uint64 *)(memorySize + 800));
-      if (localInt2 == 0) {
+      if (status == 0) {
                     // WARNING: Subroutine does not return
         utilityCleanupResource(alStackX_8);
       }
@@ -3202,7 +3202,7 @@ uint64 validate_resource_operation(longlong resourceHandle)
 
 {
   longlong localLong1;
-  int localInt2;
+  int status;
   uint64 uVar3;
   uint32 *puVar4;
   ulonglong uVar5;
@@ -3222,9 +3222,9 @@ uint64 validate_resource_operation(longlong resourceHandle)
     if (0 < *(int *)(resourceHandle + 0x18)) {
       lVar8 = (resourceHandle + 0x20) - (longlong)puVar4;
       do {
-        localInt2 = *(int *)(lVar8 + (longlong)puVar4);
-        if (localInt2 != -1) {
-          localLong1 = *(longlong *)(uVar5 + 0x20) + (longlong)localInt2 * 0x18;
+        status = *(int *)(lVar8 + (longlong)puVar4);
+        if (status != -1) {
+          localLong1 = *(longlong *)(uVar5 + 0x20) + (longlong)status * 0x18;
           if ((localLong1 == 0) || (localLong1 = *(longlong *)(localLong1 + 8), localLong1 == 0)) {
             return 0x1c;
           }
@@ -3249,7 +3249,7 @@ uint64 get_resource_status(void)
 
 {
   longlong localLong1;
-  int localInt2;
+  int status;
   longlong inputRegister;
   uint64 uVar3;
   uint32 *puVar4;
@@ -3268,9 +3268,9 @@ uint64 get_resource_status(void)
   if (0 < *(int *)(unaff_RSI + 0x18)) {
     lVar8 = (unaff_RSI + 0x20) - (longlong)puVar4;
     do {
-      localInt2 = *(int *)(lVar8 + (longlong)puVar4);
-      if (localInt2 != -1) {
-        localLong1 = *(longlong *)(uVar5 + 0x20) + (longlong)localInt2 * 0x18;
+      status = *(int *)(lVar8 + (longlong)puVar4);
+      if (status != -1) {
+        localLong1 = *(longlong *)(uVar5 + 0x20) + (longlong)status * 0x18;
         if ((localLong1 == 0) || (localLong1 = *(longlong *)(localLong1 + 8), localLong1 == 0)) {
           return 0x1c;
         }
@@ -3313,7 +3313,7 @@ uint64 allocate_system_resources(longlong resourceHandle)
 
 {
   uint64 returnValue;
-  int *plocalInt2;
+  int *pstatus;
   uint32 *puVar3;
   uint uVar4;
   ulonglong uVar6;
@@ -3328,10 +3328,10 @@ uint64 allocate_system_resources(longlong resourceHandle)
       uVar6 = uVar5;
     }
     puVar3 = (uint32 *)(resourceHandle + 0x20 + (longlong)*(int *)(resourceHandle + 0x18) * 8);
-    plocalInt2 = (int *)(resourceHandle + 0x20);
+    pstatus = (int *)(resourceHandle + 0x20);
     if (0 < *(int *)(resourceHandle + 0x18)) {
       do {
-        if ((*plocalInt2 != g_securityTokenValue1) || (plocalInt2[1] != g_securityTokenValue2)) {
+        if ((*pstatus != g_securityTokenValue1) || (pstatus[1] != g_securityTokenValue2)) {
           lStackX_8 = 0;
           returnValue = utilityProcessResourceData(uVar6,(int *)(resourceHandle + 0x20) + (longlong)(int)uVar5 * 2,&lStackX_8)
           ;
@@ -3350,7 +3350,7 @@ uint64 allocate_system_resources(longlong resourceHandle)
         uVar4 = (int)uVar5 + 1;
         uVar5 = (ulonglong)uVar4;
         puVar3 = puVar3 + 1;
-        plocalInt2 = plocalInt2 + 2;
+        pstatus = pstatus + 2;
       } while ((int)uVar4 < *(int *)(resourceHandle + 0x18));
     }
     returnValue = 0;
@@ -3367,7 +3367,7 @@ uint64 release_system_resources(void)
 {
   longlong inputRegister;
   uint64 returnValue;
-  int *plocalInt2;
+  int *pstatus;
   longlong unaff_RBP;
   uint32 *puVar3;
   uint uVar4;
@@ -3381,10 +3381,10 @@ uint64 release_system_resources(void)
     uVar6 = uVar5;
   }
   puVar3 = (uint32 *)(unaff_RBP + 0x20 + (longlong)*(int *)(unaff_RBP + 0x18) * 8);
-  plocalInt2 = (int *)(unaff_RBP + 0x20);
+  pstatus = (int *)(unaff_RBP + 0x20);
   if (0 < *(int *)(unaff_RBP + 0x18)) {
     do {
-      if ((*plocalInt2 != g_securityTokenValue1) || (plocalInt2[1] != g_securityTokenValue2)) {
+      if ((*pstatus != g_securityTokenValue1) || (pstatus[1] != g_securityTokenValue2)) {
         lStack0000000000000050 = 0;
         returnValue = utilityProcessResourceData(uVar6,(int *)(unaff_RBP + 0x20) + (longlong)(int)uVar5 * 2,
                               &stack0x00000050);
@@ -3403,7 +3403,7 @@ uint64 release_system_resources(void)
       uVar4 = (int)uVar5 + 1;
       uVar5 = (ulonglong)uVar4;
       puVar3 = puVar3 + 1;
-      plocalInt2 = plocalInt2 + 2;
+      pstatus = pstatus + 2;
     } while ((int)uVar4 < *(int *)(unaff_RBP + 0x18));
   }
   return 0;
@@ -4113,7 +4113,7 @@ ulonglong create_directory(longlong resourceHandle,uint64 memorySize)
 {
   uint returnValue;
   ulonglong localUInt2;
-  longlong localLong3;
+  longlong index;
   uint64 uStackX_8;
   uint32 localBuffer [2];
   longlong lStack_50;
@@ -4123,11 +4123,11 @@ ulonglong create_directory(longlong resourceHandle,uint64 memorySize)
   if ((int)localUInt2 == 0) {
     localInt = *(int *)(resourceHandle + 0x18);
     if ((0 < localInt) && (*(uint *)(resourceHandle + 0x1c) < 2)) {
-      localLong3 = 0;
+      index = 0;
       if (*(uint *)(resourceHandle + 0x1c) == 0) {
         lStack_50 = *(longlong *)(resourceHandle + 0x10);
         localBuffer[0] = 1;
-        localLong3 = lStack_50;
+        index = lStack_50;
       }
       else {
         lStack_50 = *(longlong *)(resourceHandle + 0x10);
@@ -4138,8 +4138,8 @@ ulonglong create_directory(longlong resourceHandle,uint64 memorySize)
       if (returnValue == 0) {
         localUInt2 = 0;
       }
-      else if (localLong3 != 0) {
-        utilityAccessSystemMemory(*(uint64 *)(utilitySystemDataTable + 0x1a0),localLong3,&utilityMemoryDataBuffer,0xe9);
+      else if (index != 0) {
+        utilityAccessSystemMemory(*(uint64 *)(utilitySystemDataTable + 0x1a0),index,&utilityMemoryDataBuffer,0xe9);
         return localUInt2;
       }
       return localUInt2;
@@ -4253,23 +4253,23 @@ uint64 get_file_attributes(longlong resourceHandle,longlong memorySize)
 
 {
   uint64 returnValue;
-  int *plocalInt2;
+  int *pstatus;
   uint32 *puVar3;
   int localInt4;
   
   localInt4 = 0;
   puVar3 = (uint32 *)(resourceHandle + 0x18 + (longlong)*(int *)(resourceHandle + 0x10) * 8);
-  plocalInt2 = (int *)(resourceHandle + 0x18);
+  pstatus = (int *)(resourceHandle + 0x18);
   if (0 < *(int *)(resourceHandle + 0x10)) {
     do {
-      if (((*plocalInt2 != g_securityTokenValue1) || (plocalInt2[1] != g_securityTokenValue2)) &&
+      if (((*pstatus != g_securityTokenValue1) || (pstatus[1] != g_securityTokenValue2)) &&
          (returnValue = utilityParseDataStructure(memorySize + 0x60,(int *)(resourceHandle + 0x18) + (longlong)localInt4 * 2,*puVar3
                                 ,*(byte *)(resourceHandle + 0x14)), (int)returnValue != 0)) {
         return returnValue;
       }
       localInt4 = localInt4 + 1;
       puVar3 = puVar3 + 1;
-      plocalInt2 = plocalInt2 + 2;
+      pstatus = pstatus + 2;
     } while (localInt4 < *(int *)(resourceHandle + 0x10));
   }
   return 0;
@@ -4283,16 +4283,16 @@ void set_file_attributes(longlong resourceHandle,longlong memorySize)
 
 {
   longlong *plocalLong1;
-  int localInt2;
-  longlong *plocalLong3;
+  int status;
+  longlong *pindex;
   longlong *plVar4;
   longlong *plVar5;
   uint64 auStackX_18 [2];
   
   plVar5 = (longlong *)0x0;
   auStackX_18[0] = 0;
-  localInt2 = utilityInitializeResource(auStackX_18);
-  if ((localInt2 == 0) && (localInt2 = validateMemoryAccess(*(uint64 *)(memorySize + 0x90)), localInt2 == 0)) {
+  status = utilityInitializeResource(auStackX_18);
+  if ((status == 0) && (status = validateMemoryAccess(*(uint64 *)(memorySize + 0x90)), status == 0)) {
     plVar4 = (longlong *)(*(longlong *)(memorySize + 0x50) + -8);
     if (*(longlong *)(memorySize + 0x50) == 0) {
       plVar4 = plVar5;
@@ -4310,21 +4310,21 @@ void set_file_attributes(longlong resourceHandle,longlong memorySize)
       }
       plVar4 = plocalLong1;
       if (plocalLong1 != (longlong *)(memorySize + 0x50)) {
-        plocalLong3 = (longlong *)(*plocalLong1 + -8);
+        pindex = (longlong *)(*plocalLong1 + -8);
         if (*plocalLong1 == 0) {
-          plocalLong3 = plVar5;
+          pindex = plVar5;
         }
         plVar4 = plVar5;
-        if (plocalLong3 != (longlong *)0x0) {
-          plVar4 = plocalLong3 + 1;
+        if (pindex != (longlong *)0x0) {
+          plVar4 = pindex + 1;
         }
       }
-      plocalLong3 = plocalLong1 + 2;
+      pindex = plocalLong1 + 2;
       if (plocalLong1 == (longlong *)0x0) {
-        plocalLong3 = (longlong *)&g_nullDataPointer;
+        pindex = (longlong *)&g_nullDataPointer;
       }
       plocalLong1 = plVar4;
-    } while ((*plocalLong3 == 0) || (localInt2 = utilityCheckResourceAvailability(memorySize), localInt2 == 0));
+    } while ((*pindex == 0) || (status = utilityCheckResourceAvailability(memorySize), status == 0));
   }
                     // WARNING: Subroutine does not return
   utilityCleanupResource(auStackX_18);
@@ -4662,8 +4662,8 @@ void encrypt_file(longlong resourceHandle,longlong memorySize)
 
 {
   int localInt1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong lVar4;
   uint uVar5;
   longlong lStackX_8;
@@ -4674,22 +4674,22 @@ void encrypt_file(longlong resourceHandle,longlong memorySize)
      (localInt1 = utilityConfigureResourceSettings(lStackX_8,memorySize,*(uint64 *)(lStackX_18 + 8)), localInt1 != 0)) {
     return;
   }
-  localLong3 = 0;
+  index = 0;
   lVar4 = lStackX_8 + 8;
   if (lStackX_8 == 0) {
-    lVar4 = localLong3;
+    lVar4 = index;
   }
   localInt1 = validate_resource_handle(lVar4,resourceHandle + 0x18);
   if (localInt1 != 0) {
     return;
   }
   uVar5 = (int)*(uint *)(lStackX_18 + 0x2c) >> 0x1f;
-  localInt2 = (*(uint *)(lStackX_18 + 0x2c) ^ uVar5) - uVar5;
+  status = (*(uint *)(lStackX_18 + 0x2c) ^ uVar5) - uVar5;
   localInt1 = *(int *)(lStackX_18 + 0x28) + 1;
-  if (localInt2 < localInt1) {
-    localInt2 = (int)((float)localInt2 * 1.5);
-    if (localInt1 <= localInt2) {
-      localInt1 = localInt2;
+  if (status < localInt1) {
+    status = (int)((float)status * 1.5);
+    if (localInt1 <= status) {
+      localInt1 = status;
     }
     if (localInt1 < 8) {
       localInt1 = 8;
@@ -4697,11 +4697,11 @@ void encrypt_file(longlong resourceHandle,longlong memorySize)
     if (localInt1 < *(int *)(lStackX_18 + 0x28)) goto LAB_180891fc0;
     if (localInt1 != 0) {
       if ((0x3ffffffe < localInt1 * 8 - 1U) ||
-         (localLong3 = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + 0x1a0),localInt1 * 8,&utilityMemoryDataBuffer,
-                                0xf4,0,0,1), localLong3 == 0)) goto LAB_180891fc0;
+         (index = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + 0x1a0),localInt1 * 8,&utilityMemoryDataBuffer,
+                                0xf4,0,0,1), index == 0)) goto LAB_180891fc0;
       if (*(int *)(lStackX_18 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(localLong3,*(uint64 *)(lStackX_18 + 0x20),(longlong)*(int *)(lStackX_18 + 0x28) << 3);
+        memcpy(index,*(uint64 *)(lStackX_18 + 0x20),(longlong)*(int *)(lStackX_18 + 0x28) << 3);
       }
     }
     if ((0 < *(int *)(lStackX_18 + 0x2c)) && (*(longlong *)(lStackX_18 + 0x20) != 0)) {
@@ -4709,7 +4709,7 @@ void encrypt_file(longlong resourceHandle,longlong memorySize)
       utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + 0x1a0),*(longlong *)(lStackX_18 + 0x20),
                     &utilityMemoryDataBuffer,0x100,1);
     }
-    *(longlong *)(lStackX_18 + 0x20) = localLong3;
+    *(longlong *)(lStackX_18 + 0x20) = index;
     *(int *)(lStackX_18 + 0x2c) = localInt1;
   }
   *(longlong *)(*(longlong *)(lStackX_18 + 0x20) + (longlong)*(int *)(lStackX_18 + 0x28) * 8) =
@@ -4730,8 +4730,8 @@ void decrypt_file(uint64 resourceHandle,uint64 memorySize)
 
 {
   int localInt1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong lVar4;
   uint uVar5;
   longlong unaff_RBP;
@@ -4743,22 +4743,22 @@ void decrypt_file(uint64 resourceHandle,uint64 memorySize)
   if (localInt1 != 0) {
     return;
   }
-  localLong3 = 0;
+  index = 0;
   lVar4 = in_stack_00000060 + 8;
   if (in_stack_00000060 == 0) {
-    lVar4 = localLong3;
+    lVar4 = index;
   }
   localInt1 = validate_resource_handle(lVar4,unaff_RBP + 0x18);
   if (localInt1 != 0) {
     return;
   }
   uVar5 = (int)*(uint *)(in_stack_00000070 + 0x2c) >> 0x1f;
-  localInt2 = (*(uint *)(in_stack_00000070 + 0x2c) ^ uVar5) - uVar5;
+  status = (*(uint *)(in_stack_00000070 + 0x2c) ^ uVar5) - uVar5;
   localInt1 = *(int *)(in_stack_00000070 + 0x28) + 1;
-  if (localInt2 < localInt1) {
-    localInt2 = (int)((float)localInt2 * 1.5);
-    if (localInt1 <= localInt2) {
-      localInt1 = localInt2;
+  if (status < localInt1) {
+    status = (int)((float)status * 1.5);
+    if (localInt1 <= status) {
+      localInt1 = status;
     }
     if (localInt1 < 8) {
       localInt1 = 8;
@@ -4766,11 +4766,11 @@ void decrypt_file(uint64 resourceHandle,uint64 memorySize)
     if (localInt1 < *(int *)(in_stack_00000070 + 0x28)) goto LAB_180891fc0;
     if (localInt1 != 0) {
       if ((0x3ffffffe < localInt1 * 8 - 1U) ||
-         (localLong3 = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + 0x1a0),localInt1 * 8,&utilityMemoryDataBuffer,
-                                0xf4,0), localLong3 == 0)) goto LAB_180891fc0;
+         (index = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + 0x1a0),localInt1 * 8,&utilityMemoryDataBuffer,
+                                0xf4,0), index == 0)) goto LAB_180891fc0;
       if (*(int *)(in_stack_00000070 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(localLong3,*(uint64 *)(in_stack_00000070 + 0x20),
+        memcpy(index,*(uint64 *)(in_stack_00000070 + 0x20),
                (longlong)*(int *)(in_stack_00000070 + 0x28) << 3);
       }
     }
@@ -4780,7 +4780,7 @@ void decrypt_file(uint64 resourceHandle,uint64 memorySize)
       utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + 0x1a0),*(longlong *)(in_stack_00000070 + 0x20),
                     &utilityMemoryDataBuffer,0x100,1);
     }
-    *(longlong *)(in_stack_00000070 + 0x20) = localLong3;
+    *(longlong *)(in_stack_00000070 + 0x20) = index;
     *(int *)(in_stack_00000070 + 0x2c) = localInt1;
   }
   *(longlong *)
@@ -4802,31 +4802,31 @@ void utilityStartResourceService(void)
 
 {
   int localInt1;
-  int localInt2;
+  int status;
   longlong inputRegister;
-  longlong localLong3;
+  longlong index;
   longlong lVar4;
   uint uVar5;
   longlong baseRegister;
   longlong unaff_R14;
   uint64 in_stack_00000060;
   
-  localLong3 = 0;
+  index = 0;
   lVar4 = inputRegister + 8;
   if (inputRegister == 0) {
-    lVar4 = localLong3;
+    lVar4 = index;
   }
   localInt1 = validate_resource_handle(lVar4);
   if (localInt1 != 0) {
     return;
   }
   uVar5 = (int)*(uint *)(baseRegister + 0x2c) >> 0x1f;
-  localInt2 = (*(uint *)(baseRegister + 0x2c) ^ uVar5) - uVar5;
+  status = (*(uint *)(baseRegister + 0x2c) ^ uVar5) - uVar5;
   localInt1 = *(int *)(baseRegister + 0x28) + 1;
-  if (localInt2 < localInt1) {
-    localInt2 = (int)((float)localInt2 * 1.5);
-    if (localInt1 <= localInt2) {
-      localInt1 = localInt2;
+  if (status < localInt1) {
+    status = (int)((float)status * 1.5);
+    if (localInt1 <= status) {
+      localInt1 = status;
     }
     if (localInt1 < 8) {
       localInt1 = 8;
@@ -4834,12 +4834,12 @@ void utilityStartResourceService(void)
     if (localInt1 < *(int *)(baseRegister + 0x28)) goto LAB_180891fc0;
     if (localInt1 != 0) {
       if (0x3ffffffe < localInt1 * 8 - 1U) goto LAB_180891fc0;
-      localLong3 = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + 0x1a0),localInt1 * 8,&utilityMemoryDataBuffer,0xf4,0)
+      index = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + 0x1a0),localInt1 * 8,&utilityMemoryDataBuffer,0xf4,0)
       ;
-      if (localLong3 == 0) goto LAB_180891fc0;
+      if (index == 0) goto LAB_180891fc0;
       if (*(int *)(baseRegister + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(localLong3,*(uint64 *)(baseRegister + 0x20),(longlong)*(int *)(baseRegister + 0x28) << 3);
+        memcpy(index,*(uint64 *)(baseRegister + 0x20),(longlong)*(int *)(baseRegister + 0x28) << 3);
       }
     }
     if ((0 < *(int *)(baseRegister + 0x2c)) && (*(longlong *)(baseRegister + 0x20) != 0)) {
@@ -4847,7 +4847,7 @@ void utilityStartResourceService(void)
       utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + 0x1a0),*(longlong *)(baseRegister + 0x20),
                     &utilityMemoryDataBuffer,0x100,1);
     }
-    *(longlong *)(baseRegister + 0x20) = localLong3;
+    *(longlong *)(baseRegister + 0x20) = index;
     *(int *)(baseRegister + 0x2c) = localInt1;
   }
   *(uint64 *)(*(longlong *)(baseRegister + 0x20) + (longlong)*(int *)(baseRegister + 0x28) * 8) =
@@ -4871,23 +4871,23 @@ void utilityInitializeResourceComponent(int resourceHandle,int memorySize)
   int localInt1;
   longlong baseRegister;
   longlong unaff_RSI;
-  int localInt2;
+  int status;
   longlong unaff_R14;
   uint64 in_stack_00000060;
   
-  localInt2 = resourceHandle + 1;
-  if (in_EAX - memorySize < localInt2) {
+  status = resourceHandle + 1;
+  if (in_EAX - memorySize < status) {
     localInt1 = (int)((float)(in_EAX - memorySize) * 1.5);
-    if (localInt2 <= localInt1) {
-      localInt2 = localInt1;
+    if (status <= localInt1) {
+      status = localInt1;
     }
-    if (localInt2 < 8) {
-      localInt2 = 8;
+    if (status < 8) {
+      status = 8;
     }
-    if (localInt2 < resourceHandle) goto LAB_180891fc0;
-    if (localInt2 != 0) {
-      if (0x3ffffffe < localInt2 * 8 - 1U) goto LAB_180891fc0;
-      unaff_RSI = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + 0x1a0),localInt2 * 8,&utilityMemoryDataBuffer,
+    if (status < resourceHandle) goto LAB_180891fc0;
+    if (status != 0) {
+      if (0x3ffffffe < status * 8 - 1U) goto LAB_180891fc0;
+      unaff_RSI = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + 0x1a0),status * 8,&utilityMemoryDataBuffer,
                                 0xf4);
       if (unaff_RSI == 0) goto LAB_180891fc0;
       if (*(int *)(baseRegister + 0x28) != 0) {
@@ -4902,7 +4902,7 @@ void utilityInitializeResourceComponent(int resourceHandle,int memorySize)
                     &utilityMemoryDataBuffer,0x100,1);
     }
     *(longlong *)(baseRegister + 0x20) = unaff_RSI;
-    *(int *)(baseRegister + 0x2c) = localInt2;
+    *(int *)(baseRegister + 0x2c) = status;
   }
   *(uint64 *)(*(longlong *)(baseRegister + 0x20) + (longlong)*(int *)(baseRegister + 0x28) * 8) =
        in_stack_00000060;
@@ -5133,7 +5133,7 @@ uint64 utilityGetResourceInformation(longlong resourceHandle,longlong memorySize
 
 {
   longlong localLong1;
-  int localInt2;
+  int status;
   uint64 uVar3;
   data *puVar4;
   uint uVar5;
@@ -5167,8 +5167,8 @@ uint64 utilityGetResourceInformation(longlong resourceHandle,longlong memorySize
         else {
           puVar4 = *(data **)(localLong1 + 0x50);
         }
-        localInt2 = func_0x00018076b630(puVar4,resourceHandle + 0x1c);
-        if (localInt2 == 0) {
+        status = func_0x00018076b630(puVar4,resourceHandle + 0x1c);
+        if (status == 0) {
           uVar3 = validate_resource_handle(lVar7,resourceHandle + 0x18);
           if ((int)uVar3 != 0) {
             return uVar3;
@@ -5192,7 +5192,7 @@ uint64 utilityRetrieveResourceData(void)
 
 {
   longlong localLong1;
-  int localInt2;
+  int status;
   uint64 uVar3;
   data *puVar4;
   uint uVar5;
@@ -5223,8 +5223,8 @@ uint64 utilityRetrieveResourceData(void)
       else {
         puVar4 = *(data **)(localLong1 + 0x50);
       }
-      localInt2 = func_0x00018076b630(puVar4);
-      if (localInt2 == 0) {
+      status = func_0x00018076b630(puVar4);
+      if (status == 0) {
         uVar3 = validate_resource_handle(lVar7,unaff_R14 + 0x18);
         if ((int)uVar3 != 0) {
           return uVar3;
@@ -5274,42 +5274,42 @@ uint64 utilityProcessResourceTransaction(longlong resourceHandle,longlong memory
 {
   int localInt1;
   uint64 localUInt2;
-  longlong localLong3;
+  longlong index;
   longlong lStackX_8;
   
   localUInt2 = SystemMemoryFunction(*(uint32 *)(resourceHandle + 0x10),&lStackX_8);
   if ((int)localUInt2 != 0) {
     return localUInt2;
   }
-  localLong3 = lStackX_8;
+  index = lStackX_8;
   if (lStackX_8 != 0) {
-    localLong3 = lStackX_8 + -8;
+    index = lStackX_8 + -8;
   }
   localInt1 = *(int *)(resourceHandle + 0x18);
-  if ((localInt1 < 0) || (*(int *)(localLong3 + 0x28) <= localInt1)) {
+  if ((localInt1 < 0) || (*(int *)(index + 0x28) <= localInt1)) {
     return 0x1f;
   }
-  if (*(longlong *)(*(longlong *)(localLong3 + 0x20) + 0x10 + (longlong)localInt1 * 0x18) == 0) {
+  if (*(longlong *)(*(longlong *)(index + 0x20) + 0x10 + (longlong)localInt1 * 0x18) == 0) {
     return 0x1e;
   }
-  localUInt2 = validate_resource_handle(*(longlong *)(localLong3 + 0x20) + (longlong)localInt1 * 0x18,resourceHandle + 0x1c);
+  localUInt2 = validate_resource_handle(*(longlong *)(index + 0x20) + (longlong)localInt1 * 0x18,resourceHandle + 0x1c);
   if ((int)localUInt2 != 0) {
     return localUInt2;
   }
-  localLong3 = *(longlong *)(memorySize + 0x98);
-  if (*(int *)(localLong3 + 0x200) == 0) {
+  index = *(longlong *)(memorySize + 0x98);
+  if (*(int *)(index + 0x200) == 0) {
     return 0;
   }
-  if ((*(int *)(localLong3 + 0x180) != 0) || (*(int *)(localLong3 + 0x184) != 0)) {
+  if ((*(int *)(index + 0x180) != 0) || (*(int *)(index + 0x184) != 0)) {
     lStackX_8 = 0;
     utilityPrepareResourceOperation(&lStackX_8);
-    if (lStackX_8 == *(longlong *)((longlong)*(int *)(localLong3 + 0x17c) * 8 + 0x180c4f450)) {
-      localUInt2 = utilityExecuteResourceOperation(localLong3,resourceHandle);
+    if (lStackX_8 == *(longlong *)((longlong)*(int *)(index + 0x17c) * 8 + 0x180c4f450)) {
+      localUInt2 = utilityExecuteResourceOperation(index,resourceHandle);
       goto LAB_18088d83c;
     }
   }
   *(uint *)(resourceHandle + 8) = *(int *)(resourceHandle + 8) + 0xfU & 0xfffffff0;
-  localUInt2 = func_0x0001808e64d0(*(uint64 *)(localLong3 + 0x1e0));
+  localUInt2 = func_0x0001808e64d0(*(uint64 *)(index + 0x1e0));
 LAB_18088d83c:
   if ((int)localUInt2 == 0) {
     return 0;
@@ -5327,8 +5327,8 @@ void utilityExecuteResourceCommand(longlong resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   byte localBuffer [32];
   longlong lStack_48;
@@ -5336,21 +5336,21 @@ void utilityExecuteResourceCommand(longlong resourceHandle,longlong memorySize)
   ulonglong localUInt;
   
   localUInt = g_securityTokenMask ^ (ulonglong)localBuffer;
-  localInt2 = SystemMemoryFunction(*(uint32 *)(resourceHandle + 0x10),&lStack_48);
-  if (localInt2 == 0) {
+  status = SystemMemoryFunction(*(uint32 *)(resourceHandle + 0x10),&lStack_48);
+  if (status == 0) {
     if (lStack_48 != 0) {
       lStack_48 = lStack_48 + -8;
     }
     if (*(longlong *)(lStack_48 + 0x18) != 0) {
       localLong1 = *(longlong *)(lStack_48 + 0x18) + 0x30;
-      localLong3 = (**(code **)(**(longlong **)(memorySize + 800) + 0x2f0))
+      index = (**(code **)(**(longlong **)(memorySize + 800) + 0x2f0))
                         (*(longlong **)(memorySize + 800),localLong1,1);
-      if (localLong3 == 0) {
+      if (index == 0) {
                     // WARNING: Subroutine does not return
         copyMemoryData(localLong1,localBuffer);
       }
-      plVar4 = (longlong *)(localLong3 + 0x58);
-      if (((longlong *)*plVar4 != plVar4) || (*(longlong **)(localLong3 + 0x60) != plVar4)) {
+      plVar4 = (longlong *)(index + 0x58);
+      if (((longlong *)*plVar4 != plVar4) || (*(longlong **)(index + 0x60) != plVar4)) {
                     // WARNING: Subroutine does not return
         utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
       }
@@ -5815,7 +5815,7 @@ uint64 utilityAnalyzeResourcePerformance(longlong resourceHandle,longlong memory
 {
   float fVar1;
   longlong localLong2;
-  longlong localLong3;
+  longlong index;
   uint64 uVar4;
   longlong lVar5;
   float fVar6;
@@ -5845,12 +5845,12 @@ uint64 utilityAnalyzeResourcePerformance(longlong resourceHandle,longlong memory
       return uVar4;
     }
     lVar5 = *(longlong *)(lVar5 + 0x20);
-    localLong3 = *(longlong *)(lVar5 + 0x10 + (longlong)(int)auStackX_8[0] * 0x18);
-    if ((*(byte *)(localLong3 + 0x34) & 0x11) == 0) {
+    index = *(longlong *)(lVar5 + 0x10 + (longlong)(int)auStackX_8[0] * 0x18);
+    if ((*(byte *)(index + 0x34) & 0x11) == 0) {
       fVar1 = *(float *)(resourceHandle + 0x18);
-      fVar6 = *(float *)(localLong3 + 0x38);
-      if ((*(float *)(localLong3 + 0x38) <= fVar1) &&
-         (fVar6 = *(float *)(localLong3 + 0x3c), fVar1 <= *(float *)(localLong3 + 0x3c))) {
+      fVar6 = *(float *)(index + 0x38);
+      if ((*(float *)(index + 0x38) <= fVar1) &&
+         (fVar6 = *(float *)(index + 0x3c), fVar1 <= *(float *)(index + 0x3c))) {
         fVar6 = fVar1;
       }
       *(float *)(resourceHandle + 0x18) = fVar6;
@@ -5871,7 +5871,7 @@ uint64 utilityOptimizeResourcePerformance(longlong resourceHandle,longlong memor
 {
   float fVar1;
   longlong localLong2;
-  longlong localLong3;
+  longlong index;
   uint64 uVar4;
   longlong lVar5;
   longlong lVar6;
@@ -5898,15 +5898,15 @@ uint64 utilityOptimizeResourcePerformance(longlong resourceHandle,longlong memor
     }
     lVar5 = (longlong)aiStackX_8[0];
     lVar6 = *(longlong *)(lVar6 + 0x20);
-    localLong3 = *(longlong *)(lVar6 + 0x10 + lVar5 * 0x18);
-    if ((*(byte *)(localLong3 + 0x34) & 0x11) == 0) {
-      uVar4 = utilityAccessResourceAttribute(localLong3,resourceHandle + 0xa8,resourceHandle + 0x18);
+    index = *(longlong *)(lVar6 + 0x10 + lVar5 * 0x18);
+    if ((*(byte *)(index + 0x34) & 0x11) == 0) {
+      uVar4 = utilityAccessResourceAttribute(index,resourceHandle + 0xa8,resourceHandle + 0x18);
       if ((int)uVar4 != 0) {
         return uVar4;
       }
       fVar1 = *(float *)(resourceHandle + 0x18);
-      if ((*(float *)(localLong3 + 0x38) <= fVar1) &&
-         (fVar1 < *(float *)(localLong3 + 0x3c) || fVar1 == *(float *)(localLong3 + 0x3c))) {
+      if ((*(float *)(index + 0x38) <= fVar1) &&
+         (fVar1 < *(float *)(index + 0x3c) || fVar1 == *(float *)(index + 0x3c))) {
         localLong2 = *(longlong *)(localLong2 + 0x90);
         *(float *)(lVar6 + 4 + lVar5 * 0x18) = fVar1;
         *(uint64 *)(resourceHandle + 0x20) = *(uint64 *)(localLong2 + (longlong)aiStackX_8[0] * 8);
@@ -5925,8 +5925,8 @@ uint64 utilityExecuteResourceTask(longlong resourceHandle,longlong memorySize,ui
 
 {
   float fVar1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   uint64 uVar4;
   longlong lVar5;
   uint64 unaff_RDI;
@@ -5945,20 +5945,20 @@ uint64 utilityExecuteResourceTask(longlong resourceHandle,longlong memorySize,ui
   if (lStackX_8 != 0) {
     lVar5 = lStackX_8 + -8;
   }
-  localInt2 = *(int *)(resourceHandle + 0x18);
-  if ((localInt2 < 0) || (*(int *)(lVar5 + 0x28) <= localInt2)) {
+  status = *(int *)(resourceHandle + 0x18);
+  if ((status < 0) || (*(int *)(lVar5 + 0x28) <= status)) {
     return 0x1f;
   }
-  lVar5 = *(longlong *)(lVar5 + 0x20) + (longlong)localInt2 * 0x18;
-  localLong3 = *(longlong *)(lVar5 + 0x10);
-  if (localLong3 == 0) {
+  lVar5 = *(longlong *)(lVar5 + 0x20) + (longlong)status * 0x18;
+  index = *(longlong *)(lVar5 + 0x10);
+  if (index == 0) {
     return 0x1e;
   }
-  if ((*(byte *)(localLong3 + 0x34) & 0x11) == 0) {
+  if ((*(byte *)(index + 0x34) & 0x11) == 0) {
     fVar1 = *(float *)(resourceHandle + 0x20);
-    fVar6 = *(float *)(localLong3 + 0x38);
-    if ((*(float *)(localLong3 + 0x38) <= fVar1) &&
-       (fVar6 = *(float *)(localLong3 + 0x3c), fVar1 <= *(float *)(localLong3 + 0x3c))) {
+    fVar6 = *(float *)(index + 0x38);
+    if ((*(float *)(index + 0x38) <= fVar1) &&
+       (fVar6 = *(float *)(index + 0x3c), fVar1 <= *(float *)(index + 0x3c))) {
       fVar6 = fVar1;
     }
     *(float *)(resourceHandle + 0x20) = fVar6;
@@ -5995,7 +5995,7 @@ uint64 utilityFinalizeResourceTask(longlong resourceHandle,longlong memorySize)
 
 {
   int localInt1;
-  int localInt2;
+  int status;
   uint64 uVar3;
   float *pfVar4;
   longlong lVar5;
@@ -6023,16 +6023,16 @@ uint64 utilityFinalizeResourceTask(longlong resourceHandle,longlong memorySize)
     pfVar4 = pfVar7;
     returnValue0 = uVar8;
     do {
-      localInt2 = *(int *)(((resourceHandle + 0x20) - (longlong)pfVar7) + (longlong)pfVar4);
-      if (localInt2 != -1) {
+      status = *(int *)(((resourceHandle + 0x20) - (longlong)pfVar7) + (longlong)pfVar4);
+      if (status != -1) {
         fStackX_8 = *pfVar4;
         if (((uint)fStackX_8 & 0x7f800000) == 0x7f800000) {
           return 0x1d;
         }
-        if ((localInt2 < 0) || (localInt1 <= localInt2)) {
+        if ((status < 0) || (localInt1 <= status)) {
           return 0x1f;
         }
-        lVar5 = *(longlong *)(uVar6 + 0x20) + (longlong)localInt2 * 0x18;
+        lVar5 = *(longlong *)(uVar6 + 0x20) + (longlong)status * 0x18;
         if (lVar5 == 0) {
           return 0x1c;
         }
@@ -6077,7 +6077,7 @@ uint64 utilityCompleteResourceCycle(void)
 
 {
   float fVar1;
-  int localInt2;
+  int status;
   int localInt3;
   longlong inputRegister;
   float *pfVar4;
@@ -6094,7 +6094,7 @@ uint64 utilityCompleteResourceCycle(void)
   if (inputRegister == 0) {
     uVar6 = (ulonglong)in_R9D;
   }
-  localInt2 = *(int *)(uVar6 + 0x28);
+  status = *(int *)(uVar6 + 0x28);
   pfVar7 = (float *)(baseRegister + 0x20 + (longlong)*(int *)(baseRegister + 0x18) * 4);
   if (0 < *(int *)(baseRegister + 0x18)) {
     pfVar4 = pfVar7;
@@ -6106,7 +6106,7 @@ uint64 utilityCompleteResourceCycle(void)
         if (((uint)fVar1 & 0x7f800000) == 0x7f800000) {
           return 0x1d;
         }
-        if ((localInt3 < 0) || (localInt2 <= localInt3)) {
+        if ((localInt3 < 0) || (status <= localInt3)) {
           return 0x1f;
         }
         lVar5 = *(longlong *)(uVar6 + 0x20) + (longlong)localInt3 * 0x18;
@@ -6133,9 +6133,9 @@ uint64 utilityCompleteResourceCycle(void)
     if (0 < *(int *)(baseRegister + 0x18)) {
       lVar5 = (baseRegister + 0x20) - (longlong)pfVar7;
       do {
-        localInt2 = *(int *)((longlong)pfVar7 + lVar5);
-        if (localInt2 != -1) {
-          *(float *)(*(longlong *)(uVar6 + 0x20) + 4 + (longlong)localInt2 * 0x18) = *pfVar7;
+        status = *(int *)((longlong)pfVar7 + lVar5);
+        if (status != -1) {
+          *(float *)(*(longlong *)(uVar6 + 0x20) + 4 + (longlong)status * 0x18) = *pfVar7;
         }
         in_R9D = in_R9D + 1;
         pfVar7 = pfVar7 + 1;
@@ -6237,7 +6237,7 @@ uint64 utilityExecuteResourceCycleTask(longlong resourceHandle,longlong memorySi
 {
   float fVar1;
   uint64 localUInt2;
-  longlong localLong3;
+  longlong index;
   uint64 unaff_RDI;
   longlong lStackX_8;
   
@@ -6254,18 +6254,18 @@ uint64 utilityExecuteResourceCycleTask(longlong resourceHandle,longlong memorySi
     return localUInt2;
   }
   if (lStackX_8 == 0) {
-    localLong3 = 0;
+    index = 0;
   }
   else {
-    localLong3 = lStackX_8 + -8;
+    index = lStackX_8 + -8;
   }
-  *(uint32 *)(localLong3 + 0x90) = *(uint32 *)(resourceHandle + 0x18);
-  localLong3 = *(longlong *)(memorySize + 0x98);
-  if ((*(int *)(localLong3 + 0x180) != 0) || (*(int *)(localLong3 + 0x184) != 0)) {
+  *(uint32 *)(index + 0x90) = *(uint32 *)(resourceHandle + 0x18);
+  index = *(longlong *)(memorySize + 0x98);
+  if ((*(int *)(index + 0x180) != 0) || (*(int *)(index + 0x184) != 0)) {
     lStackX_8 = 0;
     utilityPrepareResourceOperation(&lStackX_8,resourceHandle,operationFlags,callbackFunction,unaff_RDI);
-    if (lStackX_8 == *(longlong *)((longlong)*(int *)(localLong3 + 0x17c) * 8 + 0x180c4f450)) {
-      localUInt2 = utilityExecuteResourceOperation(localLong3,resourceHandle);
+    if (lStackX_8 == *(longlong *)((longlong)*(int *)(index + 0x17c) * 8 + 0x180c4f450)) {
+      localUInt2 = utilityExecuteResourceOperation(index,resourceHandle);
       if ((int)localUInt2 == 0) {
         return 0;
       }
@@ -6273,7 +6273,7 @@ uint64 utilityExecuteResourceCycleTask(longlong resourceHandle,longlong memorySi
     }
   }
   *(uint *)(resourceHandle + 8) = *(int *)(resourceHandle + 8) + 0xfU & 0xfffffff0;
-  localUInt2 = func_0x0001808e64d0(*(uint64 *)(localLong3 + 0x1e0));
+  localUInt2 = func_0x0001808e64d0(*(uint64 *)(index + 0x1e0));
   if ((int)localUInt2 == 0) {
     return 0;
   }
@@ -6287,7 +6287,7 @@ uint64 utilityHandleResourceCycleResponse(longlong resourceHandle,longlong memor
 {
   float fVar1;
   uint64 localUInt2;
-  longlong localLong3;
+  longlong index;
   longlong lStackX_8;
   
   fVar1 = *(float *)(resourceHandle + 0x1c);
@@ -6322,19 +6322,19 @@ code_r0x00018089322c:
     return localUInt2;
   }
   if (lStackX_8 == 0) {
-    localLong3 = 0;
+    index = 0;
   }
   else {
-    localLong3 = lStackX_8 + -8;
+    index = lStackX_8 + -8;
   }
-  *(uint32 *)(localLong3 + 0xa4 + (longlong)*(int *)(resourceHandle + 0x18) * 4) =
+  *(uint32 *)(index + 0xa4 + (longlong)*(int *)(resourceHandle + 0x18) * 4) =
        *(uint32 *)(resourceHandle + 0x1c);
-  localLong3 = *(longlong *)(memorySize + 0x98);
-  if ((*(int *)(localLong3 + 0x180) != 0) || (*(int *)(localLong3 + 0x184) != 0)) {
+  index = *(longlong *)(memorySize + 0x98);
+  if ((*(int *)(index + 0x180) != 0) || (*(int *)(index + 0x184) != 0)) {
     lStackX_8 = 0;
     utilityPrepareResourceOperation(&lStackX_8);
-    if (lStackX_8 == *(longlong *)((longlong)*(int *)(localLong3 + 0x17c) * 8 + 0x180c4f450)) {
-      localUInt2 = utilityExecuteResourceOperation(localLong3,resourceHandle);
+    if (lStackX_8 == *(longlong *)((longlong)*(int *)(index + 0x17c) * 8 + 0x180c4f450)) {
+      localUInt2 = utilityExecuteResourceOperation(index,resourceHandle);
       if ((int)localUInt2 == 0) {
         return 0;
       }
@@ -6342,7 +6342,7 @@ code_r0x00018089322c:
     }
   }
   *(uint *)(resourceHandle + 8) = *(int *)(resourceHandle + 8) + 0xfU & 0xfffffff0;
-  localUInt2 = func_0x0001808e64d0(*(uint64 *)(localLong3 + 0x1e0));
+  localUInt2 = func_0x0001808e64d0(*(uint64 *)(index + 0x1e0));
   if ((int)localUInt2 == 0) {
     return 0;
   }
@@ -6770,26 +6770,26 @@ int accept_network_connection(longlong resourceHandle,longlong memorySize)
 
 {
   uint returnValue;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong lStackX_8;
   
   returnValue = *(uint *)(resourceHandle + 0x1c);
   if ((((returnValue != 1) || ((*(byte *)(resourceHandle + 0x10) & 0x1f) == 0)) && (0 < *(int *)(resourceHandle + 0x18))
       ) && (returnValue < 2)) {
     if (returnValue == 0) {
-      localLong3 = readSystemData(*(uint64 *)(utilitySystemDataTable + 0x1a0),*(int *)(resourceHandle + 0x18),0x20,
+      index = readSystemData(*(uint64 *)(utilitySystemDataTable + 0x1a0),*(int *)(resourceHandle + 0x18),0x20,
                             &utilityMemoryDataBuffer,0xdd,0,0);
-      if (localLong3 != 0) {
+      if (index != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(localLong3,*(uint64 *)(resourceHandle + 0x10),(longlong)*(int *)(resourceHandle + 0x18));
+        memcpy(index,*(uint64 *)(resourceHandle + 0x10),(longlong)*(int *)(resourceHandle + 0x18));
       }
-      localInt2 = 0x26;
+      status = 0x26;
     }
     else {
-      localInt2 = allocateSystemMemory(memorySize,resourceHandle + 0x24);
-      if ((localInt2 == 0) &&
-         (localInt2 = SystemMemoryFunction(*(uint32 *)(resourceHandle + 0x24),&lStackX_8), localInt2 == 0)) {
+      status = allocateSystemMemory(memorySize,resourceHandle + 0x24);
+      if ((status == 0) &&
+         (status = SystemMemoryFunction(*(uint32 *)(resourceHandle + 0x24),&lStackX_8), status == 0)) {
         if (*(int *)(lStackX_8 + 0x30) == 1) {
           *(uint32 *)(lStackX_8 + 0x30) = 2;
         }
@@ -6797,7 +6797,7 @@ int accept_network_connection(longlong resourceHandle,longlong memorySize)
         utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
       }
     }
-    return localInt2;
+    return status;
   }
   return 0x1f;
 }
@@ -6855,7 +6855,7 @@ uint64 close_network_socket(longlong resourceHandle,longlong memorySize)
 {
   float fVar1;
   uint64 localUInt2;
-  longlong localLong3;
+  longlong index;
   float fVar4;
   uint32 auStackX_18 [2];
   
@@ -6865,14 +6865,14 @@ uint64 close_network_socket(longlong resourceHandle,longlong memorySize)
   auStackX_18[0] = 0;
   localUInt2 = processResourceData(memorySize + 0x60,resourceHandle + 0x10,auStackX_18);
   if ((int)localUInt2 == 0) {
-    localLong3 = func_0x000180867680(memorySize + 0x60,auStackX_18[0]);
-    if ((*(uint *)(localLong3 + 0x34) >> 4 & 1) != 0) {
+    index = func_0x000180867680(memorySize + 0x60,auStackX_18[0]);
+    if ((*(uint *)(index + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
     fVar1 = *(float *)(resourceHandle + 0x18);
-    fVar4 = *(float *)(localLong3 + 0x38);
-    if ((*(float *)(localLong3 + 0x38) <= fVar1) &&
-       (fVar4 = *(float *)(localLong3 + 0x3c), fVar1 <= *(float *)(localLong3 + 0x3c))) {
+    fVar4 = *(float *)(index + 0x38);
+    if ((*(float *)(index + 0x38) <= fVar1) &&
+       (fVar4 = *(float *)(index + 0x3c), fVar1 <= *(float *)(index + 0x3c))) {
       fVar4 = fVar1;
     }
     *(float *)(resourceHandle + 0x18) = fVar4;
@@ -6892,7 +6892,7 @@ uint64 shutdown_network_socket(uint64 resourceHandle,uint64 memorySize)
 {
   float fVar1;
   uint64 localUInt2;
-  longlong localLong3;
+  longlong index;
   longlong baseRegister;
   longlong unaff_RSI;
   float fVar4;
@@ -6901,14 +6901,14 @@ uint64 shutdown_network_socket(uint64 resourceHandle,uint64 memorySize)
   uStack0000000000000040 = 0;
   localUInt2 = processResourceData(unaff_RSI + 0x60,memorySize,&stackLocalBuffer);
   if ((int)localUInt2 == 0) {
-    localLong3 = func_0x000180867680(unaff_RSI + 0x60,uStack0000000000000040);
-    if ((*(uint *)(localLong3 + 0x34) >> 4 & 1) != 0) {
+    index = func_0x000180867680(unaff_RSI + 0x60,uStack0000000000000040);
+    if ((*(uint *)(index + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
     fVar1 = *(float *)(baseRegister + 0x18);
-    fVar4 = *(float *)(localLong3 + 0x38);
-    if ((*(float *)(localLong3 + 0x38) <= fVar1) &&
-       (fVar4 = *(float *)(localLong3 + 0x3c), fVar1 <= *(float *)(localLong3 + 0x3c))) {
+    fVar4 = *(float *)(index + 0x38);
+    if ((*(float *)(index + 0x38) <= fVar1) &&
+       (fVar4 = *(float *)(index + 0x3c), fVar1 <= *(float *)(index + 0x3c))) {
       fVar4 = fVar1;
     }
     *(float *)(baseRegister + 0x18) = fVar4;
@@ -6930,7 +6930,7 @@ void initialize_network_stack(void)
 {
   float fVar1;
   uint32 in_EAX;
-  int localInt2;
+  int status;
   uint32 in_register_00000004;
   longlong baseRegister;
   longlong unaff_RSI;
@@ -6944,8 +6944,8 @@ void initialize_network_stack(void)
     fVar3 = fVar1;
   }
   *(float *)(baseRegister + 0x18) = fVar3;
-  localInt2 = func_0x000180867960(unaff_RSI + 0x60,in_stack_00000040,fVar3);
-  if (localInt2 == 0) {
+  status = func_0x000180867960(unaff_RSI + 0x60,in_stack_00000040,fVar3);
+  if (status == 0) {
                     // WARNING: Subroutine does not return
     utilityReleaseResourceHandle(*(uint64 *)(unaff_RSI + 0x98));
   }
@@ -6959,21 +6959,21 @@ uint64 get_network_address(longlong resourceHandle,longlong memorySize)
 {
   float fVar1;
   uint64 localUInt2;
-  longlong localLong3;
+  longlong index;
   uint32 auStackX_10 [2];
   
   auStackX_10[0] = 0;
   localUInt2 = processResourceData(memorySize + 0x60,resourceHandle + 0x10,auStackX_10);
   if ((int)localUInt2 == 0) {
-    localLong3 = func_0x000180867680(memorySize + 0x60,auStackX_10[0]);
-    if ((*(uint *)(localLong3 + 0x34) >> 4 & 1) != 0) {
+    index = func_0x000180867680(memorySize + 0x60,auStackX_10[0]);
+    if ((*(uint *)(index + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
-    localUInt2 = utilityAccessResourceAttribute(localLong3,resourceHandle + 0x1d,resourceHandle + 0x18);
+    localUInt2 = utilityAccessResourceAttribute(index,resourceHandle + 0x1d,resourceHandle + 0x18);
     if ((int)localUInt2 == 0) {
       fVar1 = *(float *)(resourceHandle + 0x18);
-      if ((fVar1 < *(float *)(localLong3 + 0x38)) ||
-         (*(float *)(localLong3 + 0x3c) <= fVar1 && fVar1 != *(float *)(localLong3 + 0x3c))) {
+      if ((fVar1 < *(float *)(index + 0x38)) ||
+         (*(float *)(index + 0x3c) <= fVar1 && fVar1 != *(float *)(index + 0x3c))) {
         localUInt2 = 0x1c;
       }
       else {
@@ -7069,7 +7069,7 @@ uint64 create_network_connection(longlong resourceHandle,longlong memorySize)
 {
   float fVar1;
   uint64 localUInt2;
-  longlong localLong3;
+  longlong index;
   uint64 *puVar4;
   float fVar5;
   uint auStackX_8 [2];
@@ -7082,14 +7082,14 @@ uint64 create_network_connection(longlong resourceHandle,longlong memorySize)
   auStackX_18[0] = 0;
   localUInt2 = handleFileOperation(memorySize,resourceHandle + 0x20,auStackX_18);
   if ((int)localUInt2 == 0) {
-    localLong3 = func_0x000180867680(memorySize + 0x60,auStackX_18[0]);
-    if ((*(uint *)(localLong3 + 0x34) >> 4 & 1) != 0) {
+    index = func_0x000180867680(memorySize + 0x60,auStackX_18[0]);
+    if ((*(uint *)(index + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
     fVar1 = *(float *)(resourceHandle + 0x10);
-    fVar5 = *(float *)(localLong3 + 0x38);
-    if ((*(float *)(localLong3 + 0x38) <= fVar1) &&
-       (fVar5 = *(float *)(localLong3 + 0x3c), fVar1 <= *(float *)(localLong3 + 0x3c))) {
+    fVar5 = *(float *)(index + 0x38);
+    if ((*(float *)(index + 0x38) <= fVar1) &&
+       (fVar5 = *(float *)(index + 0x3c), fVar1 <= *(float *)(index + 0x3c))) {
       fVar5 = fVar1;
     }
     *(float *)(resourceHandle + 0x10) = fVar5;
@@ -7190,7 +7190,7 @@ uint64 create_ssl_connection(longlong resourceHandle,longlong memorySize)
 {
   float fVar1;
   uint64 localUInt2;
-  longlong localLong3;
+  longlong index;
   uint64 *puVar4;
   byte auStackX_8 [8];
   uint32 auStackX_18 [2];
@@ -7198,15 +7198,15 @@ uint64 create_ssl_connection(longlong resourceHandle,longlong memorySize)
   auStackX_18[0] = 0;
   localUInt2 = handleFileOperation(memorySize,resourceHandle + 0x20,auStackX_18);
   if ((int)localUInt2 == 0) {
-    localLong3 = func_0x000180867680(memorySize + 0x60,auStackX_18[0]);
-    if ((*(uint *)(localLong3 + 0x34) >> 4 & 1) != 0) {
+    index = func_0x000180867680(memorySize + 0x60,auStackX_18[0]);
+    if ((*(uint *)(index + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
-    localUInt2 = utilityAccessResourceAttribute(localLong3,resourceHandle + 0xa0,resourceHandle + 0x10);
+    localUInt2 = utilityAccessResourceAttribute(index,resourceHandle + 0xa0,resourceHandle + 0x10);
     if ((int)localUInt2 == 0) {
       fVar1 = *(float *)(resourceHandle + 0x10);
-      if ((fVar1 < *(float *)(localLong3 + 0x38)) ||
-         (*(float *)(localLong3 + 0x3c) <= fVar1 && fVar1 != *(float *)(localLong3 + 0x3c))) {
+      if ((fVar1 < *(float *)(index + 0x38)) ||
+         (*(float *)(index + 0x3c) <= fVar1 && fVar1 != *(float *)(index + 0x3c))) {
         localUInt2 = 0x1c;
       }
       else {
@@ -7356,23 +7356,23 @@ int insert_database_record(longlong resourceHandle,longlong memorySize,int opera
 
 {
   int localInt1;
-  int localInt2;
+  int status;
   
   localInt1 = func_0x00018074b800(memorySize,operationFlags,*(uint32 *)(resourceHandle + 0x10));
-  localInt2 = executeSystemCommand(memorySize + localInt1,operationFlags - localInt1,&g_securityTokenBuffer);
-  localInt1 = localInt1 + localInt2;
-  localInt2 = func_0x00018074b7d0(localInt1 + memorySize,operationFlags - localInt1,*(uint32 *)(resourceHandle + 0x18));
-  localInt1 = localInt1 + localInt2;
-  localInt2 = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&g_securityTokenBuffer);
-  localInt1 = localInt1 + localInt2;
-  localInt2 = performSystemOperation(localInt1 + memorySize,operationFlags - localInt1,resourceHandle + 0x20,
+  status = executeSystemCommand(memorySize + localInt1,operationFlags - localInt1,&g_securityTokenBuffer);
+  localInt1 = localInt1 + status;
+  status = func_0x00018074b7d0(localInt1 + memorySize,operationFlags - localInt1,*(uint32 *)(resourceHandle + 0x18));
+  localInt1 = localInt1 + status;
+  status = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&g_securityTokenBuffer);
+  localInt1 = localInt1 + status;
+  status = performSystemOperation(localInt1 + memorySize,operationFlags - localInt1,resourceHandle + 0x20,
                         *(uint32 *)(resourceHandle + 0x18));
-  localInt1 = localInt1 + localInt2;
-  localInt2 = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&g_securityTokenBuffer);
-  localInt1 = localInt1 + localInt2;
-  localInt2 = allocateResourceMemory(localInt1 + memorySize,operationFlags - localInt1,
+  localInt1 = localInt1 + status;
+  status = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&g_securityTokenBuffer);
+  localInt1 = localInt1 + status;
+  status = allocateResourceMemory(localInt1 + memorySize,operationFlags - localInt1,
                         resourceHandle + 0x20 + (longlong)*(int *)(resourceHandle + 0x18) * 4);
-  return localInt2 + localInt1;
+  return status + localInt1;
 }
 
 
@@ -7381,27 +7381,27 @@ int update_database_record(longlong resourceHandle,longlong memorySize,int opera
 
 {
   int localInt1;
-  int localInt2;
+  int status;
   
   localInt1 = func_0x00018074b800(memorySize,operationFlags,*(uint32 *)(resourceHandle + 0x10));
-  localInt2 = executeSystemCommand(memorySize + localInt1,operationFlags - localInt1,&g_securityTokenBuffer);
-  localInt1 = localInt1 + localInt2;
-  localInt2 = func_0x00018074b7d0(localInt1 + memorySize,operationFlags - localInt1,*(uint32 *)(resourceHandle + 0x18));
-  localInt1 = localInt1 + localInt2;
-  localInt2 = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&g_securityTokenBuffer);
-  localInt1 = localInt1 + localInt2;
-  localInt2 = processResourceData(localInt1 + memorySize,operationFlags - localInt1,resourceHandle + 0x20,
+  status = executeSystemCommand(memorySize + localInt1,operationFlags - localInt1,&g_securityTokenBuffer);
+  localInt1 = localInt1 + status;
+  status = func_0x00018074b7d0(localInt1 + memorySize,operationFlags - localInt1,*(uint32 *)(resourceHandle + 0x18));
+  localInt1 = localInt1 + status;
+  status = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&g_securityTokenBuffer);
+  localInt1 = localInt1 + status;
+  status = processResourceData(localInt1 + memorySize,operationFlags - localInt1,resourceHandle + 0x20,
                         *(uint32 *)(resourceHandle + 0x18));
-  localInt1 = localInt1 + localInt2;
-  localInt2 = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&g_securityTokenBuffer);
-  localInt1 = localInt1 + localInt2;
-  localInt2 = allocateResourceMemory(localInt1 + memorySize,operationFlags - localInt1,
+  localInt1 = localInt1 + status;
+  status = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&g_securityTokenBuffer);
+  localInt1 = localInt1 + status;
+  status = allocateResourceMemory(localInt1 + memorySize,operationFlags - localInt1,
                         resourceHandle + 0x20 + (longlong)*(int *)(resourceHandle + 0x18) * 8);
-  localInt1 = localInt1 + localInt2;
-  localInt2 = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&g_securityTokenBuffer);
-  localInt1 = localInt1 + localInt2;
-  localInt2 = validateResourceData(localInt1 + memorySize,operationFlags - localInt1,*(byte *)(resourceHandle + 0x1c));
-  return localInt2 + localInt1;
+  localInt1 = localInt1 + status;
+  status = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&g_securityTokenBuffer);
+  localInt1 = localInt1 + status;
+  status = validateResourceData(localInt1 + memorySize,operationFlags - localInt1,*(byte *)(resourceHandle + 0x1c));
+  return status + localInt1;
 }
 
 
@@ -7410,23 +7410,23 @@ int delete_database_record(longlong resourceHandle,longlong memorySize,int opera
 
 {
   int localInt1;
-  int localInt2;
+  int status;
   
   localInt1 = func_0x00018074b7d0(memorySize,operationFlags,*(uint32 *)(resourceHandle + 0x10));
-  localInt2 = executeSystemCommand(memorySize + localInt1,operationFlags - localInt1,&g_securityTokenBuffer);
-  localInt1 = localInt1 + localInt2;
-  localInt2 = processResourceData(localInt1 + memorySize,operationFlags - localInt1,resourceHandle + 0x18,
+  status = executeSystemCommand(memorySize + localInt1,operationFlags - localInt1,&g_securityTokenBuffer);
+  localInt1 = localInt1 + status;
+  status = processResourceData(localInt1 + memorySize,operationFlags - localInt1,resourceHandle + 0x18,
                         *(uint32 *)(resourceHandle + 0x10));
-  localInt1 = localInt1 + localInt2;
-  localInt2 = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&g_securityTokenBuffer);
-  localInt1 = localInt1 + localInt2;
-  localInt2 = allocateResourceMemory(localInt1 + memorySize,operationFlags - localInt1,
+  localInt1 = localInt1 + status;
+  status = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&g_securityTokenBuffer);
+  localInt1 = localInt1 + status;
+  status = allocateResourceMemory(localInt1 + memorySize,operationFlags - localInt1,
                         resourceHandle + 0x18 + (longlong)*(int *)(resourceHandle + 0x10) * 8);
-  localInt1 = localInt1 + localInt2;
-  localInt2 = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&g_securityTokenBuffer);
-  localInt1 = localInt1 + localInt2;
-  localInt2 = validateResourceData(localInt1 + memorySize,operationFlags - localInt1,*(byte *)(resourceHandle + 0x14));
-  return localInt2 + localInt1;
+  localInt1 = localInt1 + status;
+  status = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&g_securityTokenBuffer);
+  localInt1 = localInt1 + status;
+  status = validateResourceData(localInt1 + memorySize,operationFlags - localInt1,*(byte *)(resourceHandle + 0x14));
+  return status + localInt1;
 }
 
 
@@ -7435,17 +7435,17 @@ int begin_database_transaction(longlong *resourceHandle,longlong memorySize,int 
 
 {
   int localInt1;
-  int localInt2;
+  int status;
   
   localInt1 = executeSystemCommand(memorySize,operationFlags,&unknown_180986298);
-  localInt2 = executeSystemCommand(memorySize + localInt1,operationFlags - localInt1,&g_securityTokenBuffer);
-  localInt1 = localInt1 + localInt2;
-  localInt2 = func_0x00018074b7d0(localInt1 + memorySize,operationFlags - localInt1,(int)resourceHandle[3] * 8 + 0x20);
-  localInt1 = localInt1 + localInt2;
-  localInt2 = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&g_securityTokenBuffer);
-  localInt1 = localInt1 + localInt2;
-  localInt2 = (**(code **)(*resourceHandle + 8))(resourceHandle,localInt1 + memorySize,operationFlags - localInt1);
-  return localInt2 + localInt1;
+  status = executeSystemCommand(memorySize + localInt1,operationFlags - localInt1,&g_securityTokenBuffer);
+  localInt1 = localInt1 + status;
+  status = func_0x00018074b7d0(localInt1 + memorySize,operationFlags - localInt1,(int)resourceHandle[3] * 8 + 0x20);
+  localInt1 = localInt1 + status;
+  status = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&g_securityTokenBuffer);
+  localInt1 = localInt1 + status;
+  status = (**(code **)(*resourceHandle + 8))(resourceHandle,localInt1 + memorySize,operationFlags - localInt1);
+  return status + localInt1;
 }
 
 
@@ -7454,17 +7454,17 @@ int commit_database_transaction(longlong *resourceHandle,longlong memorySize,int
 
 {
   int localInt1;
-  int localInt2;
+  int status;
   
   localInt1 = executeSystemCommand(memorySize,operationFlags,&unknown_180984010);
-  localInt2 = executeSystemCommand(memorySize + localInt1,operationFlags - localInt1,&g_securityTokenBuffer);
-  localInt1 = localInt1 + localInt2;
-  localInt2 = func_0x00018074b7d0(localInt1 + memorySize,operationFlags - localInt1,(int)resourceHandle[3] * 0xc + 0x20);
-  localInt1 = localInt1 + localInt2;
-  localInt2 = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&g_securityTokenBuffer);
-  localInt1 = localInt1 + localInt2;
-  localInt2 = (**(code **)(*resourceHandle + 8))(resourceHandle,localInt1 + memorySize,operationFlags - localInt1);
-  return localInt2 + localInt1;
+  status = executeSystemCommand(memorySize + localInt1,operationFlags - localInt1,&g_securityTokenBuffer);
+  localInt1 = localInt1 + status;
+  status = func_0x00018074b7d0(localInt1 + memorySize,operationFlags - localInt1,(int)resourceHandle[3] * 0xc + 0x20);
+  localInt1 = localInt1 + status;
+  status = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&g_securityTokenBuffer);
+  localInt1 = localInt1 + status;
+  status = (**(code **)(*resourceHandle + 8))(resourceHandle,localInt1 + memorySize,operationFlags - localInt1);
+  return status + localInt1;
 }
 
 
@@ -7473,17 +7473,17 @@ int rollback_database_transaction(longlong *resourceHandle,longlong memorySize,i
 
 {
   int localInt1;
-  int localInt2;
+  int status;
   
   localInt1 = executeSystemCommand(memorySize,operationFlags,&unknown_180982240);
-  localInt2 = executeSystemCommand(memorySize + localInt1,operationFlags - localInt1,&g_securityTokenBuffer);
-  localInt1 = localInt1 + localInt2;
-  localInt2 = func_0x00018074b7d0(localInt1 + memorySize,operationFlags - localInt1,((int)resourceHandle[2] + 2) * 0xc);
-  localInt1 = localInt1 + localInt2;
-  localInt2 = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&g_securityTokenBuffer);
-  localInt1 = localInt1 + localInt2;
-  localInt2 = (**(code **)(*resourceHandle + 8))(resourceHandle,localInt1 + memorySize,operationFlags - localInt1);
-  return localInt2 + localInt1;
+  status = executeSystemCommand(memorySize + localInt1,operationFlags - localInt1,&g_securityTokenBuffer);
+  localInt1 = localInt1 + status;
+  status = func_0x00018074b7d0(localInt1 + memorySize,operationFlags - localInt1,((int)resourceHandle[2] + 2) * 0xc);
+  localInt1 = localInt1 + status;
+  status = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&g_securityTokenBuffer);
+  localInt1 = localInt1 + status;
+  status = (**(code **)(*resourceHandle + 8))(resourceHandle,localInt1 + memorySize,operationFlags - localInt1);
+  return status + localInt1;
 }
 
 
@@ -7496,8 +7496,8 @@ void utilityExtractResourceInfo(longlong resourceHandle,uint32 *memorySize,longl
 
 {
   longlong *plocalLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   byte localBuffer [32];
   uint localUInt;
   uint localUInt;
@@ -7524,8 +7524,8 @@ void utilityExtractResourceInfo(longlong resourceHandle,uint32 *memorySize,longl
     localUInt = memorySize[1];
     localUInt = memorySize[2];
     localUInt = memorySize[3];
-    localLong3 = (**(code **)(*plocalLong1 + 0x150))(plocalLong1,&localUInt,1);
-    if (localLong3 == 0) {
+    index = (**(code **)(*plocalLong1 + 0x150))(plocalLong1,&localUInt,1);
+    if (index == 0) {
       localUInt = localUInt >> 0x18;
       localUInt = localUInt >> 0x18;
       localUInt = localUInt >> 0x10;
@@ -7539,9 +7539,9 @@ void utilityExtractResourceInfo(longlong resourceHandle,uint32 *memorySize,longl
                     // WARNING: Subroutine does not return
       initializeBufferStructure(localBuffer,0x27,&unknown_180958180,localUInt);
     }
-    if (((*(byte *)(localLong3 + 0xc4) & 1) != 0) &&
-       ((lStack_48 = *(longlong *)(localLong3 + 0x68), lStack_48 != 0 ||
-        (localInt2 = loadResourceFromHandle(resourceHandle,localLong3,&lStack_48), localInt2 == 0)))) {
+    if (((*(byte *)(index + 0xc4) & 1) != 0) &&
+       ((lStack_48 = *(longlong *)(index + 0x68), lStack_48 != 0 ||
+        (status = loadResourceFromHandle(resourceHandle,index,&lStack_48), status == 0)))) {
       *operationFlags = lStack_48;
     }
   }
@@ -7583,8 +7583,8 @@ void utilityAnalyzeResourceData(longlong resourceHandle,uint32 *memorySize,longl
 
 {
   longlong *plocalLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   byte localBuffer [32];
   uint localUInt;
   uint localUInt;
@@ -7610,8 +7610,8 @@ void utilityAnalyzeResourceData(longlong resourceHandle,uint32 *memorySize,longl
     localUInt = memorySize[1];
     localUInt = memorySize[2];
     localUInt = memorySize[3];
-    localLong3 = (**(code **)(*plocalLong1 + 0x288))(plocalLong1,&localUInt,1);
-    if (localLong3 == 0) {
+    index = (**(code **)(*plocalLong1 + 0x288))(plocalLong1,&localUInt,1);
+    if (index == 0) {
       localUInt = localUInt >> 0x18;
       localUInt = localUInt >> 0x18;
       localUInt = localUInt >> 0x10;
@@ -7625,9 +7625,9 @@ void utilityAnalyzeResourceData(longlong resourceHandle,uint32 *memorySize,longl
                     // WARNING: Subroutine does not return
       initializeBufferStructure(localBuffer,0x27,&unknown_180958180,localUInt);
     }
-    if ((**(int **)(localLong3 + 0xd0) != 0) ||
-       (localInt2 = FUN_18088c060(*(uint32 *)(resourceHandle + 0x18)), localInt2 == 0)) {
-      *operationFlags = localLong3;
+    if ((**(int **)(index + 0xd0) != 0) ||
+       (status = FUN_18088c060(*(uint32 *)(resourceHandle + 0x18)), status == 0)) {
+      *operationFlags = index;
     }
   }
                     // WARNING: Subroutine does not return
@@ -7689,8 +7689,8 @@ void utilityGenerateResourceReport(longlong resourceHandle,uint32 *memorySize,lo
 
 {
   longlong *plocalLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   byte localBuffer [32];
   uint localUInt;
   uint localUInt;
@@ -7717,8 +7717,8 @@ void utilityGenerateResourceReport(longlong resourceHandle,uint32 *memorySize,lo
     localUInt = memorySize[1];
     localUInt = memorySize[2];
     localUInt = memorySize[3];
-    localLong3 = (**(code **)(*plocalLong1 + 0x2f8))(plocalLong1,&localUInt,1);
-    if (localLong3 == 0) {
+    index = (**(code **)(*plocalLong1 + 0x2f8))(plocalLong1,&localUInt,1);
+    if (index == 0) {
       localUInt = localUInt >> 0x18;
       localUInt = localUInt >> 0x18;
       localUInt = localUInt >> 0x10;
@@ -7732,8 +7732,8 @@ void utilityGenerateResourceReport(longlong resourceHandle,uint32 *memorySize,lo
                     // WARNING: Subroutine does not return
       initializeBufferStructure(localBuffer,0x27,&unknown_180958180,localUInt);
     }
-    lStack_48 = *(longlong *)(localLong3 + 0x48);
-    if ((lStack_48 != 0) || (localInt2 = FUN_18088ca20(resourceHandle,localLong3,&lStack_48), localInt2 == 0)) {
+    lStack_48 = *(longlong *)(index + 0x48);
+    if ((lStack_48 != 0) || (status = FUN_18088ca20(resourceHandle,index,&lStack_48), status == 0)) {
       *operationFlags = lStack_48;
     }
   }
@@ -8006,21 +8006,21 @@ uint64 allocate_from_allocator(longlong resourceHandle)
 
 {
   longlong *plocalLong1;
-  int localInt2;
+  int status;
   uint64 uVar3;
   uint uVar4;
   
   FUN_18088c620();
   FUN_180840270(resourceHandle + 0xd8);
-  localInt2 = FUN_180744cc0(resourceHandle + 0x70);
-  if ((localInt2 == 0) && (localInt2 = FUN_180895130(resourceHandle + 0x80), localInt2 == 0)) {
+  status = FUN_180744cc0(resourceHandle + 0x70);
+  if ((status == 0) && (status = FUN_180895130(resourceHandle + 0x80), status == 0)) {
     *(uint32 *)(resourceHandle + 0x90) = 0xffffffff;
     *(uint32 *)(resourceHandle + 0x94) = 0;
   }
   FUN_180895130(resourceHandle + 0x80);
   FUN_180744cc0(resourceHandle + 0x70);
-  localInt2 = FUN_180744cc0(resourceHandle + 0x28);
-  if ((localInt2 == 0) && (localInt2 = free_from_allocator(resourceHandle + 0x38), localInt2 == 0)) {
+  status = FUN_180744cc0(resourceHandle + 0x28);
+  if ((status == 0) && (status = free_from_allocator(resourceHandle + 0x38), status == 0)) {
     *(uint32 *)(resourceHandle + 0x48) = 0xffffffff;
     *(uint32 *)(resourceHandle + 0x4c) = 0;
   }
@@ -8041,10 +8041,10 @@ uint64 allocate_from_allocator(longlong resourceHandle)
     uVar4 = 0;
     *(uint32 *)(resourceHandle + 0x14) = 0;
   }
-  localInt2 = *(int *)(resourceHandle + 0x10);
-  if (localInt2 < 0) {
+  status = *(int *)(resourceHandle + 0x10);
+  if (status < 0) {
                     // WARNING: Subroutine does not return
-    memset((longlong)localInt2 + *plocalLong1,0,(longlong)-localInt2);
+    memset((longlong)status + *plocalLong1,0,(longlong)-status);
   }
   *(uint32 *)(resourceHandle + 0x10) = 0;
   if ((0 < (int)((uVar4 ^ (int)uVar4 >> 0x1f) - ((int)uVar4 >> 0x1f))) &&
@@ -8142,7 +8142,7 @@ uint64 FUN_180895130(longlong *resourceHandle)
 
 
 
-uint64 FUN_180895210(longlong *resourceHandle)
+uint64 set_allocator_flags(longlong *resourceHandle)
 
 {
   int localInt1;
@@ -8552,37 +8552,37 @@ void FUN_180895bb0(longlong resourceHandle,int memorySize,uint64 *operationFlags
 
 {
   uint64 returnValue;
-  int *plocalInt2;
-  longlong localLong3;
+  int *pstatus;
+  longlong index;
   longlong lVar4;
   int iVar5;
   
   *operationFlags = 0;
   operationFlags[1] = 0;
-  plocalInt2 = (int *)(**(code **)(*(longlong *)
+  pstatus = (int *)(**(code **)(*(longlong *)
                                 ((longlong)
                                  *(int *)(*(longlong *)(resourceHandle + 0x18) + (longlong)memorySize * 0xc) +
                                 *(longlong *)(resourceHandle + 8)) + 0x50))();
-  if (plocalInt2 == (int *)0x0) {
+  if (pstatus == (int *)0x0) {
     iVar5 = 0;
   }
   else {
-    iVar5 = *plocalInt2;
+    iVar5 = *pstatus;
   }
   if (memorySize + 1 < *(int *)(resourceHandle + 0x20)) {
     lVar4 = (longlong)(memorySize + 1);
-    plocalInt2 = (int *)(*(longlong *)(resourceHandle + 0x18) + lVar4 * 0xc);
-    while (((char)plocalInt2[2] != '\x02' ||
-           (localLong3 = (longlong)*plocalInt2 + *(longlong *)(resourceHandle + 8), *(int *)(localLong3 + 0x20) != iVar5)
+    pstatus = (int *)(*(longlong *)(resourceHandle + 0x18) + lVar4 * 0xc);
+    while (((char)pstatus[2] != '\x02' ||
+           (index = (longlong)*pstatus + *(longlong *)(resourceHandle + 8), *(int *)(index + 0x20) != iVar5)
            )) {
       lVar4 = lVar4 + 1;
-      plocalInt2 = plocalInt2 + 3;
+      pstatus = pstatus + 3;
       if (*(int *)(resourceHandle + 0x20) <= lVar4) {
         return;
       }
     }
-    returnValue = *(uint64 *)(localLong3 + 0x18);
-    *operationFlags = *(uint64 *)(localLong3 + 0x10);
+    returnValue = *(uint64 *)(index + 0x18);
+    *operationFlags = *(uint64 *)(index + 0x10);
     operationFlags[1] = returnValue;
   }
   return;
@@ -8595,7 +8595,7 @@ uint64 FUN_180895c60(longlong resourceHandle,int memorySize,uint *operationFlags
 {
   uint returnValue;
   longlong localLong2;
-  longlong localLong3;
+  longlong index;
   uint64 *puVar4;
   int iVar5;
   uint32 uStackX_1c;
@@ -8609,16 +8609,16 @@ uint64 FUN_180895c60(longlong resourceHandle,int memorySize,uint *operationFlags
       {
         localLong2 = *(longlong *)(resourceHandle + 0x80);
         do {
-          localLong3 = (longlong)iVar5;
-          if (*(uint *)(localLong2 + localLong3 * 0x10) == returnValue) {
-            uStackX_1c = (uint)((ulonglong)*(uint64 *)(localLong2 + 8 + localLong3 * 0x10) >> 0x20);
+          index = (longlong)iVar5;
+          if (*(uint *)(localLong2 + index * 0x10) == returnValue) {
+            uStackX_1c = (uint)((ulonglong)*(uint64 *)(localLong2 + 8 + index * 0x10) >> 0x20);
             if (uStackX_1c != 0) {
               *operationFlags = uStackX_1c;
               return 0;
             }
             goto LAB_180895ccb;
           }
-          iVar5 = *(int *)(localLong2 + 4 + localLong3 * 0x10);
+          iVar5 = *(int *)(localLong2 + 4 + index * 0x10);
         } while (iVar5 != -1);
       }
       uStackX_1c = 0;
@@ -8723,7 +8723,7 @@ uint64 FUN_180895d30(longlong *resourceHandle,uint *memorySize,uint64 *operation
 
 {
   uint returnValue;
-  int localInt2;
+  int status;
   int localInt3;
   uint64 uVar4;
   uint64 uVar5;
@@ -8736,7 +8736,7 @@ uint64 FUN_180895d30(longlong *resourceHandle,uint *memorySize,uint64 *operation
   int localInt12;
   int *plocalInt13;
   
-  uVar4 = FUN_180895210();
+  uVar4 = set_allocator_flags();
   if ((int)uVar4 == 0) {
     if ((int)resourceHandle[1] == 0) {
       return 0x1c;
@@ -8744,24 +8744,24 @@ uint64 FUN_180895d30(longlong *resourceHandle,uint *memorySize,uint64 *operation
     returnValue = *memorySize;
     lVar8 = (longlong)(int)((int)resourceHandle[1] - 1U & returnValue);
     plocalInt13 = (int *)(*resourceHandle + lVar8 * 4);
-    localInt2 = *(int *)(*resourceHandle + lVar8 * 4);
-    if (localInt2 != -1) {
+    status = *(int *)(*resourceHandle + lVar8 * 4);
+    if (status != -1) {
       lVar8 = resourceHandle[2];
       do {
-        lVar9 = (longlong)localInt2;
+        lVar9 = (longlong)status;
         if (*(uint *)(lVar8 + lVar9 * 0x10) == returnValue) {
           *(uint64 *)(lVar8 + 8 + lVar9 * 0x10) = *operationFlags;
           return 0;
         }
-        localInt2 = *(int *)(lVar8 + 4 + lVar9 * 0x10);
+        status = *(int *)(lVar8 + 4 + lVar9 * 0x10);
         plocalInt13 = (int *)(lVar8 + 4 + lVar9 * 0x10);
-      } while (localInt2 != -1);
+      } while (status != -1);
     }
-    localInt2 = (int)resourceHandle[4];
-    if (localInt2 == -1) {
+    status = (int)resourceHandle[4];
+    if (status == -1) {
       uVar4 = *operationFlags;
-      localInt2 = (int)resourceHandle[3];
-      iVar7 = localInt2 + 1;
+      status = (int)resourceHandle[3];
+      iVar7 = status + 1;
       returnValue1 = (int)*(uint *)((longlong)resourceHandle + 0x1c) >> 0x1f;
       localInt3 = (*(uint *)((longlong)resourceHandle + 0x1c) ^ returnValue1) - returnValue1;
       if (localInt3 < iVar7) {
@@ -8787,13 +8787,13 @@ uint64 FUN_180895d30(longlong *resourceHandle,uint *memorySize,uint64 *operation
       *(int *)(resourceHandle + 3) = (int)resourceHandle[3] + 1;
     }
     else {
-      preturnValue0 = (uint *)((longlong)localInt2 * 0x10 + resourceHandle[2]);
+      preturnValue0 = (uint *)((longlong)status * 0x10 + resourceHandle[2]);
       *(uint *)(resourceHandle + 4) = preturnValue0[1];
       preturnValue0[1] = 0xffffffff;
       *preturnValue0 = *memorySize;
       *(uint64 *)(preturnValue0 + 2) = *operationFlags;
     }
-    *plocalInt13 = localInt2;
+    *plocalInt13 = status;
     *(int *)((longlong)resourceHandle + 0x24) = *(int *)((longlong)resourceHandle + 0x24) + 1;
     uVar4 = 0;
   }
@@ -8807,7 +8807,7 @@ uint64 FUN_180895d62(uint64 resourceHandle,int memorySize)
 {
   longlong localLong1;
   int in_EAX;
-  int localInt2;
+  int status;
   int localInt3;
   uint64 uVar4;
   uint64 *puVar5;
@@ -8823,24 +8823,24 @@ uint64 FUN_180895d62(uint64 resourceHandle,int memorySize)
   uint64 uStack0000000000000028;
   
   plocalInt11 = (int *)(*unaff_RDI + (longlong)in_EAX * 4);
-  localInt2 = *(int *)(*unaff_RDI + (longlong)in_EAX * 4);
-  if (localInt2 != -1) {
+  status = *(int *)(*unaff_RDI + (longlong)in_EAX * 4);
+  if (status != -1) {
     localLong1 = unaff_RDI[2];
     do {
-      lVar7 = (longlong)localInt2;
+      lVar7 = (longlong)status;
       if (*(int *)(localLong1 + lVar7 * 0x10) == memorySize) {
         *(uint64 *)(localLong1 + 8 + lVar7 * 0x10) = *unaff_R14;
         return 0;
       }
-      localInt2 = *(int *)(localLong1 + 4 + lVar7 * 0x10);
+      status = *(int *)(localLong1 + 4 + lVar7 * 0x10);
       plocalInt11 = (int *)(localLong1 + 4 + lVar7 * 0x10);
-    } while (localInt2 != -1);
+    } while (status != -1);
   }
-  localInt2 = (int)unaff_RDI[4];
-  if (localInt2 == -1) {
+  status = (int)unaff_RDI[4];
+  if (status == -1) {
     uStack0000000000000028 = *unaff_R14;
-    localInt2 = (int)unaff_RDI[3];
-    iVar6 = localInt2 + 1;
+    status = (int)unaff_RDI[3];
+    iVar6 = status + 1;
     uVar9 = (int)*(uint *)((longlong)unaff_RDI + 0x1c) >> 0x1f;
     localInt3 = (*(uint *)((longlong)unaff_RDI + 0x1c) ^ uVar9) - uVar9;
     if (localInt3 < iVar6) {
@@ -8866,13 +8866,13 @@ uint64 FUN_180895d62(uint64 resourceHandle,int memorySize)
     *(int *)(unaff_RDI + 3) = (int)unaff_RDI[3] + 1;
   }
   else {
-    puVar8 = (uint32 *)((longlong)localInt2 * 0x10 + unaff_RDI[2]);
+    puVar8 = (uint32 *)((longlong)status * 0x10 + unaff_RDI[2]);
     *(uint32 *)(unaff_RDI + 4) = puVar8[1];
     puVar8[1] = 0xffffffff;
     *puVar8 = *unaff_R15;
     *(uint64 *)(puVar8 + 2) = *unaff_R14;
   }
-  *plocalInt11 = localInt2;
+  *plocalInt11 = status;
   *(int *)((longlong)unaff_RDI + 0x24) = *(int *)((longlong)unaff_RDI + 0x24) + 1;
   return 0;
 }
@@ -9633,15 +9633,15 @@ int FUN_180896a30(longlong resourceHandle,longlong memorySize,int operationFlags
 
 {
   uint32 returnValue;
-  int localInt2;
+  int status;
   int localInt3;
   
   returnValue = *(uint32 *)(resourceHandle + 0x14);
-  localInt2 = func_0x00018074b7d0(memorySize,operationFlags,*(uint32 *)(resourceHandle + 0x10));
-  localInt3 = executeSystemCommand(memorySize + localInt2,operationFlags - localInt2,&g_securityTokenBuffer);
-  localInt2 = localInt2 + localInt3;
-  localInt3 = func_0x00018074b800(localInt2 + memorySize,operationFlags - localInt2,returnValue);
-  return localInt3 + localInt2;
+  status = func_0x00018074b7d0(memorySize,operationFlags,*(uint32 *)(resourceHandle + 0x10));
+  localInt3 = executeSystemCommand(memorySize + status,operationFlags - status,&g_securityTokenBuffer);
+  status = status + localInt3;
+  localInt3 = func_0x00018074b800(status + memorySize,operationFlags - status,returnValue);
+  return localInt3 + status;
 }
 
 
@@ -9650,15 +9650,15 @@ int FUN_180896aa0(longlong resourceHandle,longlong memorySize,int operationFlags
 
 {
   uint64 returnValue;
-  int localInt2;
+  int status;
   int localInt3;
   
   returnValue = *(uint64 *)(resourceHandle + 0x10);
-  localInt2 = executeSystemCommand(memorySize,operationFlags,&unknown_1809863f8);
-  localInt3 = executeSystemCommand(memorySize + localInt2,operationFlags - localInt2,&g_securityTokenBuffer);
-  localInt2 = localInt2 + localInt3;
-  localInt3 = func_0x00018074be80(localInt2 + memorySize,operationFlags - localInt2,returnValue);
-  return localInt3 + localInt2;
+  status = executeSystemCommand(memorySize,operationFlags,&unknown_1809863f8);
+  localInt3 = executeSystemCommand(memorySize + status,operationFlags - status,&g_securityTokenBuffer);
+  status = status + localInt3;
+  localInt3 = func_0x00018074be80(status + memorySize,operationFlags - status,returnValue);
+  return localInt3 + status;
 }
 
 
@@ -10356,19 +10356,19 @@ void FUN_180897520(longlong *resourceHandle,longlong *memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
+  int status;
   byte localBuffer [32];
   byte localBuffer [512];
   ulonglong localUInt;
   
   localUInt = g_securityTokenMask ^ (ulonglong)localBuffer;
   localLong1 = resourceHandle[4];
-  if (((char)localLong1 != '\0') || (localInt2 = FUN_1808987e0(resourceHandle,1), localInt2 == 0)) {
-    localInt2 = (**(code **)(*memorySize + 0x10))(memorySize,localBuffer,0x200);
-    func_0x00018074b7b0(localBuffer + localInt2,0x200 - localInt2,10);
-    localInt2 = (**(code **)(*resourceHandle + 8))(resourceHandle,localBuffer);
-    if ((localInt2 == 0) &&
-       (((char)localLong1 == '\0' && (localInt2 = (**(code **)(*resourceHandle + 0x18))(resourceHandle), localInt2 == 0)))) {
+  if (((char)localLong1 != '\0') || (status = FUN_1808987e0(resourceHandle,1), status == 0)) {
+    status = (**(code **)(*memorySize + 0x10))(memorySize,localBuffer,0x200);
+    func_0x00018074b7b0(localBuffer + status,0x200 - status,10);
+    status = (**(code **)(*resourceHandle + 8))(resourceHandle,localBuffer);
+    if ((status == 0) &&
+       (((char)localLong1 == '\0' && (status = (**(code **)(*resourceHandle + 0x18))(resourceHandle), status == 0)))) {
       *(byte *)(resourceHandle + 4) = 0;
     }
   }
@@ -10431,7 +10431,7 @@ void FUN_1808975e0(longlong resourceHandle,longlong memorySize)
 {
   float fVar1;
   longlong localLong2;
-  longlong localLong3;
+  longlong index;
   longlong lVar4;
   char cVar5;
   int iVar6;
@@ -10513,11 +10513,11 @@ void FUN_1808975e0(longlong resourceHandle,longlong memorySize)
         if (0 < lStack_188) {
           do {
             lVar9 = *(longlong *)(localLong2 + 0x20);
-            localLong3 = *(longlong *)(localLong14 + 0x10 + lVar9);
+            index = *(longlong *)(localLong14 + 0x10 + lVar9);
             lVar4 = *(longlong *)(localLong14 + 8 + lVar9);
-            cVar5 = func_0x000180894c50(localLong3,1);
+            cVar5 = func_0x000180894c50(index,1);
             preturnValue6 = localPtr;
-            if ((cVar5 == '\0') && (*(float *)(localLong3 + 0x4c) != *(float *)(lVar4 + 0x28))) {
+            if ((cVar5 == '\0') && (*(float *)(index + 0x4c) != *(float *)(lVar4 + 0x28))) {
               localUInt = *(uint32 *)(localLong14 + 4 + lVar9);
               localPtr = &unknown_180984038;
               localUInt = localUInt;
@@ -10525,11 +10525,11 @@ void FUN_1808975e0(longlong resourceHandle,longlong memorySize)
               lVar9 = (**(code **)*localPtr)(localPtr);
               localUInt = *(uint64 *)(*(longlong *)(lVar9 + 0x90) + lVar8 * 8);
               localUInt = 0;
-              if (*(int *)(localLong3 + 0x58) < 1) {
+              if (*(int *)(index + 0x58) < 1) {
                 preturnValue2 = &g_miscTempData3;
               }
               else {
-                preturnValue2 = *(data **)(localLong3 + 0x50);
+                preturnValue2 = *(data **)(index + 0x50);
               }
               func_0x00018076b450(localBuffer,preturnValue2,0x80);
               iVar6 = FUN_180897520(resourceHandle,&localPtr);
@@ -10676,7 +10676,7 @@ void FUN_180897644(void)
 {
   float fVar1;
   longlong localLong2;
-  longlong localLong3;
+  longlong index;
   uint64 *puVar4;
   uint32 uVar5;
   uint32 uVar6;
@@ -10753,10 +10753,10 @@ void FUN_180897644(void)
         do {
           localLong15 = *(longlong *)(unaff_R15 + 0x20);
           localLong2 = *(longlong *)(localUInt20 + 0x10 + localLong15);
-          localLong3 = *(longlong *)(localUInt20 + 8 + localLong15);
+          index = *(longlong *)(localUInt20 + 8 + localLong15);
           cVar12 = func_0x000180894c50(localLong2,1);
           plocalUInt22 = puStack0000000000000058;
-          if ((cVar12 == '\0') && (*(float *)(localLong2 + 0x4c) != *(float *)(localLong3 + 0x28))) {
+          if ((cVar12 == '\0') && (*(float *)(localLong2 + 0x4c) != *(float *)(index + 0x28))) {
             localUInt24 = *(uint32 *)(localUInt20 + 4 + localLong15);
             unaff_RBP[-4] = &unknown_180984038;
             *(uint32 *)(unaff_RBP + -2) = uStackX_20;
@@ -10938,7 +10938,7 @@ void FUN_1808976b0(void)
 {
   float fVar1;
   longlong localLong2;
-  longlong localLong3;
+  longlong index;
   uint64 *puVar4;
   uint32 uVar5;
   uint32 uVar6;
@@ -10999,10 +10999,10 @@ void FUN_1808976b0(void)
     do {
       localLong15 = *(longlong *)(unaff_R15 + 0x20);
       localLong2 = *(longlong *)(localUInt20 + 0x10 + localLong15);
-      localLong3 = *(longlong *)(localUInt20 + 8 + localLong15);
+      index = *(longlong *)(localUInt20 + 8 + localLong15);
       cVar12 = func_0x000180894c50(localLong2,1);
       unaff_R12 = in_stack_00000058;
-      if ((cVar12 == '\0') && (*(float *)(localLong2 + 0x4c) != *(float *)(localLong3 + 0x28))) {
+      if ((cVar12 == '\0') && (*(float *)(localLong2 + 0x4c) != *(float *)(index + 0x28))) {
         localUInt23 = *(uint32 *)(localUInt20 + 4 + localLong15);
         unaff_RBP[-4] = &unknown_180984038;
         *(uint32 *)(unaff_RBP + -2) = uStackX_20;
@@ -11181,7 +11181,7 @@ void FUN_180897859(float resourceHandle)
 
 {
   float fVar1;
-  int localInt2;
+  int status;
   uint uVar3;
   float fVar4;
   float *pfVar5;
@@ -11209,19 +11209,19 @@ void FUN_180897859(float resourceHandle)
     in_stack_00000038 = uStackX_20;
     stackParameter1 = unaff_R13D;
     fStack0000000000000040 = resourceHandle;
-    localInt2 = FUN_180897520(resourceHandle,&stack0x00000028);
+    status = FUN_180897520(resourceHandle,&stack0x00000028);
     resourceHandle = extraout_XMM0_Da;
-    if (localInt2 != 0) goto LAB_180897af6;
+    if (status != 0) goto LAB_180897af6;
   }
-  localInt2 = FUN_180868270(resourceHandle,&stack0x00000050,0);
-  if (localInt2 == 0) {
+  status = FUN_180868270(resourceHandle,&stack0x00000050,0);
+  if (status == 0) {
     if (in_stack_00000050 != 1.0) {
       fStack0000000000000040 = in_stack_00000050;
       in_stack_00000028 = &unknown_1809837c0;
       in_stack_00000038 = uStackX_20;
       stackParameter1 = unaff_R13D;
-      localInt2 = FUN_180897520(in_stack_00000050,&stack0x00000028);
-      if (localInt2 != 0) goto LAB_180897af6;
+      status = FUN_180897520(in_stack_00000050,&stack0x00000028);
+      if (status != 0) goto LAB_180897af6;
     }
     pfVar5 = (float *)(unaff_R15 + 0x94);
     fVar4 = unaff_R13D;
@@ -11233,8 +11233,8 @@ void FUN_180897859(float resourceHandle)
         stackParameter1 = unaff_R13D;
         fStack0000000000000040 = fVar4;
         fStack0000000000000044 = fVar1;
-        localInt2 = FUN_180897520(fVar1,&stack0x00000028);
-        if (localInt2 != 0) goto LAB_180897af6;
+        status = FUN_180897520(fVar1,&stack0x00000028);
+        if (status != 0) goto LAB_180897af6;
       }
       fVar4 = (float)((int)fVar4 + 1);
       pfVar5 = pfVar5 + 1;
@@ -11249,8 +11249,8 @@ void FUN_180897859(float resourceHandle)
         stackParameter1 = unaff_R13D;
         fStack0000000000000040 = fVar4;
         fStack0000000000000044 = fVar1;
-        localInt2 = FUN_180897520(fVar1,&stack0x00000028);
-        if (localInt2 != 0) goto LAB_180897af6;
+        status = FUN_180897520(fVar1,&stack0x00000028);
+        if (status != 0) goto LAB_180897af6;
       }
       fVar4 = (float)((int)fVar4 + 1);
       pfVar5 = pfVar5 + 1;
@@ -11262,36 +11262,36 @@ void FUN_180897859(float resourceHandle)
       in_stack_00000038 = uStackX_20;
       stackParameter1 = unaff_R13D;
       fStack0000000000000040 = (float)(uVar3 / 0x30);
-      localInt2 = FUN_180897520(extraout_XMM0_Da_00,&stack0x00000028);
+      status = FUN_180897520(extraout_XMM0_Da_00,&stack0x00000028);
       uVar6 = extraout_XMM0_Da_01;
-      if (localInt2 != 0) goto LAB_180897af6;
+      if (status != 0) goto LAB_180897af6;
     }
     if ((*(uint *)(unaff_R14 + 0x2d8) >> 1 & 1) != 0) {
       in_stack_00000028 = &unknown_180983a60;
       in_stack_00000038 = uStackX_20;
       fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
       stackParameter1 = unaff_R13D;
-      localInt2 = FUN_180897520(uVar6,&stack0x00000028);
-      if (localInt2 != 0) goto LAB_180897af6;
+      status = FUN_180897520(uVar6,&stack0x00000028);
+      if (status != 0) goto LAB_180897af6;
     }
-    localInt2 = utilityAllocateMemoryBlock();
-    if (localInt2 != 2) {
+    status = utilityAllocateMemoryBlock();
+    if (status != 2) {
       in_stack_00000028 = &unknown_180983ae8;
       in_stack_00000038 = uStackX_20;
       stackParameter1 = unaff_R13D;
-      localInt2 = FUN_180897520(extraout_XMM0_Da_02,&stack0x00000028);
-      if (localInt2 != 0) goto LAB_180897af6;
+      status = FUN_180897520(extraout_XMM0_Da_02,&stack0x00000028);
+      if (status != 0) goto LAB_180897af6;
     }
-    localInt2 = utilityAllocateMemoryBlock();
+    status = utilityAllocateMemoryBlock();
     uVar6 = extraout_XMM0_Da_03;
-    if (localInt2 == 4) {
+    if (status == 4) {
       in_stack_00000028 = &unknown_180983b68;
       in_stack_00000038 = uStackX_20;
       stackParameter1 = unaff_R13D;
       fStack0000000000000040 = unaff_R13D;
-      localInt2 = FUN_180897520(extraout_XMM0_Da_03,&stack0x00000028);
+      status = FUN_180897520(extraout_XMM0_Da_03,&stack0x00000028);
       uVar6 = extraout_XMM0_Da_04;
-      if (localInt2 != 0) goto LAB_180897af6;
+      if (status != 0) goto LAB_180897af6;
     }
     if ((*(uint *)(unaff_R14 + 0x2d8) >> 3 & 1) != 0) {
       in_stack_00000028 = &unknown_180983cf8;
@@ -11463,7 +11463,7 @@ uint64 FUN_180897d90(longlong *resourceHandle)
 {
   longlong localLong1;
   uint64 localUInt2;
-  longlong localLong3;
+  longlong index;
   uint32 uVar4;
   uint32 uVar5;
   uint32 uVar6;
@@ -11481,8 +11481,8 @@ uint64 FUN_180897d90(longlong *resourceHandle)
   localUInt2 = FUN_180897520(resourceHandle,&localPtr);
   if ((int)localUInt2 == 0) {
     localLong1 = *(longlong *)(resourceHandle[1] + 0x78);
-    localLong3 = func_0x000180879a40();
-    if (localLong3 == 0) {
+    index = func_0x000180879a40();
+    if (index == 0) {
       localUInt2 = 0x1c;
     }
     else {
@@ -11517,9 +11517,9 @@ uint64 FUN_180897d90(longlong *resourceHandle)
                                   *(uint32 *)(localLong1 + 0x11654),*(uint32 *)(localLong1 + 0x11658),
                                   *(uint32 *)(localLong1 + 0x1165c),uVar6,uVar7,uVar8,uVar4);
             if ((int)localUInt2 == 0) {
-              uVar5 = *(uint32 *)(localLong3 + 0x10);
-              localUInt2 = FUN_180897d20(resourceHandle,&unknown_1809867b0,*(uint32 *)(localLong3 + 4),
-                                    *(uint32 *)(localLong3 + 8),*(uint32 *)(localLong3 + 0xc),uVar5,
+              uVar5 = *(uint32 *)(index + 0x10);
+              localUInt2 = FUN_180897d20(resourceHandle,&unknown_1809867b0,*(uint32 *)(index + 4),
+                                    *(uint32 *)(index + 8),*(uint32 *)(index + 0xc),uVar5,
                                     uVar6,uVar7,uVar8,uVar4);
               if ((((int)localUInt2 == 0) &&
                   (localUInt2 = FUN_180897d20(resourceHandle,&unknown_180986850,*(uint32 *)(localLong1 + 0x1e0),
@@ -11901,17 +11901,17 @@ void FUN_1808986b0(longlong resourceHandle,uint64 memorySize)
 
 {
   int localInt1;
-  int localInt2;
+  int status;
   int localInt3;
   int localInt4;
   uint uVar5;
   int iVar6;
   
-  localInt2 = func_0x00018076b690(memorySize);
+  status = func_0x00018076b690(memorySize);
   localInt1 = *(int *)(resourceHandle + 0x30);
   uVar5 = (int)*(uint *)(resourceHandle + 0x34) >> 0x1f;
   localInt3 = (*(uint *)(resourceHandle + 0x34) ^ uVar5) - uVar5;
-  iVar6 = localInt1 + localInt2;
+  iVar6 = localInt1 + status;
   if (localInt3 < iVar6) {
     localInt4 = (int)((float)localInt3 * 1.5);
     localInt3 = iVar6;
@@ -11935,7 +11935,7 @@ void FUN_1808986b0(longlong resourceHandle,uint64 memorySize)
   if (iVar6 <= localInt3) {
     *(int *)(resourceHandle + 0x30) = iVar6;
                     // WARNING: Subroutine does not return
-    memcpy((longlong)localInt1 + *(longlong *)(resourceHandle + 0x28),memorySize,(longlong)localInt2);
+    memcpy((longlong)localInt1 + *(longlong *)(resourceHandle + 0x28),memorySize,(longlong)status);
   }
                     // WARNING: Subroutine does not return
   memset((longlong)localInt3 + *(longlong *)(resourceHandle + 0x28),0,(longlong)(iVar6 - localInt3));
@@ -12400,7 +12400,7 @@ uint32 FUN_180898bc0(uint64 resourceHandle,ulonglong memorySize)
 
 {
   byte returnValue;
-  int localInt2;
+  int status;
   int localInt3;
   uint uVar4;
   byte *puVar5;
@@ -12422,10 +12422,10 @@ uint32 FUN_180898bc0(uint64 resourceHandle,ulonglong memorySize)
     iVar7 = (int)unaff_RBP;
     if ((uVar4 & 0xffffff) != 0xffffff) {
       lVar8 = (ulonglong)(uVar4 & 0xffffff) + unaff_R14[4];
-      localInt2 = func_0x00018076b690(lVar8);
+      status = func_0x00018076b690(lVar8);
       if (iVar7 != 0) {
-        puVar9 = (byte *)((localInt2 + -1) + lVar8);
-        localInt10 = localInt2;
+        puVar9 = (byte *)((status + -1) + lVar8);
+        localInt10 = status;
         while (0 < localInt10) {
           localInt3 = localInt10;
           if ((int)(iVar7 - unaff_EBX) <= localInt10) {
@@ -12446,7 +12446,7 @@ uint32 FUN_180898bc0(uint64 resourceHandle,ulonglong memorySize)
           unaff_EBX = unaff_EBX & (int)(unaff_EBX - iVar7) >> 0x1f;
         }
       }
-      unaff_R15D = unaff_R15D + localInt2;
+      unaff_R15D = unaff_R15D + status;
     }
     uVar4 = (uint)*(uint3 *)((memorySize & 0xffffffff) * 3 + unaff_R14[8]);
     memorySize = (ulonglong)uVar4;
@@ -13167,11 +13167,11 @@ uint64 FUN_180899650(longlong *resourceHandle,longlong *memorySize)
 
 {
   uint64 returnValue;
-  int localInt2;
+  int status;
   int aiStackX_8 [2];
   uint auStackX_10 [2];
   
-  localInt2 = 0;
+  status = 0;
   aiStackX_8[0] = 0;
   if (*resourceHandle == 0) {
     returnValue = 0x1c;
@@ -13199,12 +13199,12 @@ LAB_1808996c5:
     if ((int)returnValue == 0) {
       if (0 < aiStackX_8[0]) {
         do {
-          returnValue = FUN_180898fc0(resourceHandle,*memorySize + (longlong)localInt2 * 0x14);
+          returnValue = FUN_180898fc0(resourceHandle,*memorySize + (longlong)status * 0x14);
           if ((int)returnValue != 0) {
             return returnValue;
           }
-          localInt2 = localInt2 + 1;
-        } while (localInt2 < aiStackX_8[0]);
+          status = status + 1;
+        } while (status < aiStackX_8[0]);
       }
       returnValue = 0;
     }
@@ -13417,7 +13417,7 @@ void FUN_180899950(longlong resourceHandle,uint32 *memorySize)
 
 {
   int localInt1;
-  int localInt2;
+  int status;
   uint uVar3;
   ulonglong uVar4;
   longlong lVar5;
@@ -13434,15 +13434,15 @@ void FUN_180899950(longlong resourceHandle,uint32 *memorySize)
     if ((localInt1 == 0) && (localInt1 = FUN_1808ac750(resourceHandle,memorySize + 4), localInt1 == 0)) {
       localInt1 = memorySize[10];
       uStackX_8 = CONCAT44(uStackX_8._4_4_,localInt1);
-      localInt2 = (**(code **)**(uint64 **)(resourceHandle + 8))
+      status = (**(code **)**(uint64 **)(resourceHandle + 8))
                         (*(uint64 **)(resourceHandle + 8),&uStackX_8,4);
       uVar6 = 0;
-      if (localInt2 == 0) {
+      if (status == 0) {
         uVar4 = uVar6;
         if (0 < localInt1) {
           do {
-            localInt2 = FUN_180899c60(resourceHandle,(longlong)(int)uVar4 * 0x6c + *(longlong *)(memorySize + 8));
-            if (localInt2 != 0) {
+            status = FUN_180899c60(resourceHandle,(longlong)(int)uVar4 * 0x6c + *(longlong *)(memorySize + 8));
+            if (status != 0) {
               return;
             }
             uVar3 = (int)uVar4 + 1;
@@ -13451,15 +13451,15 @@ void FUN_180899950(longlong resourceHandle,uint32 *memorySize)
         }
         localInt1 = memorySize[0xe];
         uStackX_8 = CONCAT44(uStackX_8._4_4_,localInt1);
-        localInt2 = (**(code **)**(uint64 **)(resourceHandle + 8))
+        status = (**(code **)**(uint64 **)(resourceHandle + 8))
                           (*(uint64 **)(resourceHandle + 8),&uStackX_8,4);
-        if (localInt2 == 0) {
+        if (status == 0) {
           uVar4 = uVar6;
           if (0 < localInt1) {
             do {
-              localInt2 = FUN_180899ef0(resourceHandle,(longlong)(int)uVar4 * 0x10 +
+              status = FUN_180899ef0(resourceHandle,(longlong)(int)uVar4 * 0x10 +
                                             *(longlong *)(memorySize + 0xc));
-              if (localInt2 != 0) {
+              if (status != 0) {
                 return;
               }
               uVar3 = (int)uVar4 + 1;
@@ -13468,17 +13468,17 @@ void FUN_180899950(longlong resourceHandle,uint32 *memorySize)
           }
           localInt1 = memorySize[0x12];
           uStackX_8 = CONCAT44(uStackX_8._4_4_,localInt1);
-          localInt2 = (**(code **)**(uint64 **)(resourceHandle + 8))
+          status = (**(code **)**(uint64 **)(resourceHandle + 8))
                             (*(uint64 **)(resourceHandle + 8),&uStackX_8,4);
-          if (localInt2 == 0) {
+          if (status == 0) {
             uVar4 = uVar6;
             if (0 < localInt1) {
               do {
                 uStackX_8 = CONCAT44(uStackX_8._4_4_,
                                      *(uint32 *)(*(longlong *)(memorySize + 0x10) + uVar4 * 4));
-                localInt2 = (**(code **)**(uint64 **)(resourceHandle + 8))
+                status = (**(code **)**(uint64 **)(resourceHandle + 8))
                                   (*(uint64 **)(resourceHandle + 8),&uStackX_8,4);
-                if (localInt2 != 0) {
+                if (status != 0) {
                   return;
                 }
                 uVar4 = uVar4 + 1;
@@ -13486,16 +13486,16 @@ void FUN_180899950(longlong resourceHandle,uint32 *memorySize)
             }
             localInt1 = memorySize[0x16];
             uStackX_8 = CONCAT44(uStackX_8._4_4_,localInt1);
-            localInt2 = (**(code **)**(uint64 **)(resourceHandle + 8))
+            status = (**(code **)**(uint64 **)(resourceHandle + 8))
                               (*(uint64 **)(resourceHandle + 8),&uStackX_8,4);
-            if (localInt2 == 0) {
+            if (status == 0) {
               uVar4 = uVar6;
               uVar8 = uVar6;
               if (0 < localInt1) {
                 do {
                   lVar5 = *(longlong *)(memorySize + 0x14) + uVar4;
-                  localInt2 = FUN_180899ef0(resourceHandle,lVar5);
-                  if (localInt2 != 0) {
+                  status = FUN_180899ef0(resourceHandle,lVar5);
+                  if (status != 0) {
                     return;
                   }
                   uVar3 = *(uint *)(lVar5 + 0x10);
@@ -13508,13 +13508,13 @@ void FUN_180899950(longlong resourceHandle,uint32 *memorySize)
                     uStackX_8 = CONCAT44(uStackX_8._4_4_,
                                          (uVar3 & 0xffffc000 | 0x4000) * 2 | uVar3 & 0x7fff);
                   }
-                  localInt2 = (**(code **)**(uint64 **)(resourceHandle + 8))
+                  status = (**(code **)**(uint64 **)(resourceHandle + 8))
                                     (*(uint64 **)(resourceHandle + 8),&uStackX_8,uVar7);
-                  if (localInt2 != 0) {
+                  if (status != 0) {
                     return;
                   }
-                  localInt2 = FUN_1808affb0(resourceHandle,lVar5 + 0x14);
-                  if (localInt2 != 0) {
+                  status = FUN_1808affb0(resourceHandle,lVar5 + 0x14);
+                  if (status != 0) {
                     return;
                   }
                   uVar8 = uVar8 + 1;
@@ -13525,22 +13525,22 @@ void FUN_180899950(longlong resourceHandle,uint32 *memorySize)
               if (localInt1 == 0) {
                 localInt1 = memorySize[0x1e];
                 uStackX_8 = CONCAT44(uStackX_8._4_4_,localInt1);
-                localInt2 = (**(code **)**(uint64 **)(resourceHandle + 8))
+                status = (**(code **)**(uint64 **)(resourceHandle + 8))
                                   (*(uint64 **)(resourceHandle + 8),&uStackX_8,4);
-                if (localInt2 == 0) {
+                if (status == 0) {
                   if (0 < localInt1) {
                     do {
                       lVar5 = *(longlong *)(memorySize + 0x1c);
                       uStackX_8._0_4_ = *(uint32 *)(lVar5 + uVar6 * 8);
-                      localInt2 = (**(code **)**(uint64 **)(resourceHandle + 8))
+                      status = (**(code **)**(uint64 **)(resourceHandle + 8))
                                         (*(uint64 **)(resourceHandle + 8),&uStackX_8,4);
-                      if (localInt2 != 0) {
+                      if (status != 0) {
                         return;
                       }
                       uStackX_8 = CONCAT44(uStackX_8._4_4_,*(uint32 *)(lVar5 + 4 + uVar6 * 8));
-                      localInt2 = (**(code **)**(uint64 **)(resourceHandle + 8))
+                      status = (**(code **)**(uint64 **)(resourceHandle + 8))
                                         (*(uint64 **)(resourceHandle + 8),&uStackX_8,4);
-                      if (localInt2 != 0) {
+                      if (status != 0) {
                         return;
                       }
                       uVar6 = uVar6 + 1;
@@ -13568,7 +13568,7 @@ void FUN_1808999c1(uint64 *resourceHandle,uint64 memorySize)
 
 {
   uint64 *preturnValue;
-  int localInt2;
+  int status;
   int localInt3;
   longlong baseRegister;
   longlong unaff_RBP;
@@ -13589,15 +13589,15 @@ void FUN_1808999c1(uint64 *resourceHandle,uint64 memorySize)
   
   localInt3 = *(int *)(unaff_R14 + 0x28);
   *(int *)(unaff_RBP + 0x20) = localInt3;
-  localInt2 = (**(code **)*resourceHandle)(resourceHandle,memorySize,4);
+  status = (**(code **)*resourceHandle)(resourceHandle,memorySize,4);
   uVar7 = 0;
-  if (localInt2 == 0) {
+  if (status == 0) {
     uVar5 = uVar7;
     uVar9 = extraout_XMM0_Da;
     if (0 < localInt3) {
       do {
-        localInt2 = FUN_180899c60(uVar9,(longlong)(int)uVar5 * 0x6c + *(longlong *)(unaff_R14 + 0x20));
-        if (localInt2 != 0) {
+        status = FUN_180899c60(uVar9,(longlong)(int)uVar5 * 0x6c + *(longlong *)(unaff_R14 + 0x20));
+        if (status != 0) {
           return;
         }
         uVar4 = (int)uVar5 + 1;
@@ -13608,15 +13608,15 @@ void FUN_1808999c1(uint64 *resourceHandle,uint64 memorySize)
     preturnValue = *(uint64 **)(baseRegister + 8);
     localInt3 = *(int *)(unaff_R14 + 0x38);
     *(int *)(unaff_RBP + 0x20) = localInt3;
-    localInt2 = (**(code **)*preturnValue)(preturnValue,unaff_RBP + 0x20,4);
-    if (localInt2 == 0) {
+    status = (**(code **)*preturnValue)(preturnValue,unaff_RBP + 0x20,4);
+    if (status == 0) {
       uVar5 = uVar7;
       uVar9 = extraout_XMM0_Da_01;
       if (0 < localInt3) {
         do {
-          localInt2 = FUN_180899ef0(uVar9,(longlong)(int)uVar5 * 0x10 + *(longlong *)(unaff_R14 + 0x30))
+          status = FUN_180899ef0(uVar9,(longlong)(int)uVar5 * 0x10 + *(longlong *)(unaff_R14 + 0x30))
           ;
-          if (localInt2 != 0) {
+          if (status != 0) {
             return;
           }
           uVar4 = (int)uVar5 + 1;
@@ -13627,16 +13627,16 @@ void FUN_1808999c1(uint64 *resourceHandle,uint64 memorySize)
       preturnValue = *(uint64 **)(baseRegister + 8);
       localInt3 = *(int *)(unaff_R14 + 0x48);
       *(int *)(unaff_RBP + 0x20) = localInt3;
-      localInt2 = (**(code **)*preturnValue)(preturnValue,unaff_RBP + 0x20,4);
-      if (localInt2 == 0) {
+      status = (**(code **)*preturnValue)(preturnValue,unaff_RBP + 0x20,4);
+      if (status == 0) {
         uVar5 = uVar7;
         if (0 < localInt3) {
           do {
             preturnValue = *(uint64 **)(baseRegister + 8);
             *(uint32 *)(unaff_RBP + 0x20) =
                  *(uint32 *)(*(longlong *)(unaff_R14 + 0x40) + uVar5 * 4);
-            localInt2 = (**(code **)*preturnValue)(preturnValue,unaff_RBP + 0x20,4);
-            if (localInt2 != 0) {
+            status = (**(code **)*preturnValue)(preturnValue,unaff_RBP + 0x20,4);
+            if (status != 0) {
               return;
             }
             uVar5 = uVar5 + 1;
@@ -13645,16 +13645,16 @@ void FUN_1808999c1(uint64 *resourceHandle,uint64 memorySize)
         preturnValue = *(uint64 **)(baseRegister + 8);
         localInt3 = *(int *)(unaff_R14 + 0x58);
         *(int *)(unaff_RBP + 0x20) = localInt3;
-        localInt2 = (**(code **)*preturnValue)(preturnValue,unaff_RBP + 0x20,4);
-        if (localInt2 == 0) {
+        status = (**(code **)*preturnValue)(preturnValue,unaff_RBP + 0x20,4);
+        if (status == 0) {
           uVar5 = uVar7;
           uVar8 = uVar7;
           uVar9 = extraout_XMM0_Da_03;
           if (0 < localInt3) {
             do {
               lVar6 = *(longlong *)(unaff_R14 + 0x50) + uVar5;
-              localInt2 = FUN_180899ef0(uVar9,lVar6);
-              if (localInt2 != 0) {
+              status = FUN_180899ef0(uVar9,lVar6);
+              if (status != 0) {
                 return;
               }
               uVar4 = *(uint *)(lVar6 + 0x10);
@@ -13667,12 +13667,12 @@ void FUN_1808999c1(uint64 *resourceHandle,uint64 memorySize)
                 uVar9 = 4;
                 *(uint *)(unaff_RBP + 0x20) = (uVar4 & 0xffffc000 | 0x4000) * 2 | uVar4 & 0x7fff;
               }
-              localInt2 = (**(code **)*preturnValue)(preturnValue,unaff_RBP + 0x20,uVar9);
-              if (localInt2 != 0) {
+              status = (**(code **)*preturnValue)(preturnValue,unaff_RBP + 0x20,uVar9);
+              if (status != 0) {
                 return;
               }
-              localInt2 = FUN_1808affb0(extraout_XMM0_Da_04,lVar6 + 0x14);
-              if (localInt2 != 0) {
+              status = FUN_1808affb0(extraout_XMM0_Da_04,lVar6 + 0x14);
+              if (status != 0) {
                 return;
               }
               uVar8 = uVar8 + 1;
@@ -13685,21 +13685,21 @@ void FUN_1808999c1(uint64 *resourceHandle,uint64 memorySize)
             preturnValue = *(uint64 **)(baseRegister + 8);
             localInt3 = *(int *)(unaff_R14 + 0x78);
             *(int *)(unaff_RBP + 0x20) = localInt3;
-            localInt2 = (**(code **)*preturnValue)(preturnValue,unaff_RBP + 0x20,4);
-            if (localInt2 == 0) {
+            status = (**(code **)*preturnValue)(preturnValue,unaff_RBP + 0x20,4);
+            if (status == 0) {
               if (0 < localInt3) {
                 do {
                   lVar6 = *(longlong *)(unaff_R14 + 0x70);
                   preturnValue = *(uint64 **)(baseRegister + 8);
                   *(uint32 *)(unaff_RBP + 0x20) = *(uint32 *)(lVar6 + uVar7 * 8);
-                  localInt2 = (**(code **)*preturnValue)(preturnValue,unaff_RBP + 0x20,4);
-                  if (localInt2 != 0) {
+                  status = (**(code **)*preturnValue)(preturnValue,unaff_RBP + 0x20,4);
+                  if (status != 0) {
                     return;
                   }
                   preturnValue = *(uint64 **)(baseRegister + 8);
                   *(uint32 *)(unaff_RBP + 0x20) = *(uint32 *)(lVar6 + 4 + uVar7 * 8);
-                  localInt2 = (**(code **)*preturnValue)(preturnValue,unaff_RBP + 0x20,4);
-                  if (localInt2 != 0) {
+                  status = (**(code **)*preturnValue)(preturnValue,unaff_RBP + 0x20,4);
+                  if (status != 0) {
                     return;
                   }
                   uVar7 = uVar7 + 1;
@@ -14103,42 +14103,42 @@ void FUN_180899fe0(longlong resourceHandle,uint32 *memorySize)
 
 {
   uint returnValue;
-  int localInt2;
+  int status;
   int localInt3;
   uint64 uVar4;
   uint64 uStackX_8;
   
   uStackX_8 = CONCAT44(uStackX_8._4_4_,*memorySize);
-  localInt2 = (**(code **)**(uint64 **)(resourceHandle + 8))(*(uint64 **)(resourceHandle + 8),&uStackX_8,4);
-  if (localInt2 == 0) {
+  status = (**(code **)**(uint64 **)(resourceHandle + 8))(*(uint64 **)(resourceHandle + 8),&uStackX_8,4);
+  if (status == 0) {
     uStackX_8 = *(uint64 *)(memorySize + 2);
-    localInt2 = (**(code **)**(uint64 **)(resourceHandle + 8))(*(uint64 **)(resourceHandle + 8),&uStackX_8,8);
-    if (localInt2 == 0) {
+    status = (**(code **)**(uint64 **)(resourceHandle + 8))(*(uint64 **)(resourceHandle + 8),&uStackX_8,8);
+    if (status == 0) {
       uStackX_8 = CONCAT71(uStackX_8._1_7_,*(byte *)(memorySize + 0x68));
-      localInt2 = (**(code **)**(uint64 **)(resourceHandle + 8))
+      status = (**(code **)**(uint64 **)(resourceHandle + 8))
                         (*(uint64 **)(resourceHandle + 8),&uStackX_8,1);
-      if (localInt2 == 0) {
-        localInt2 = 0;
+      if (status == 0) {
+        status = 0;
         if (0 < (int)memorySize[0x68]) {
           do {
-            localInt3 = FUN_180899100(resourceHandle,memorySize + (longlong)localInt2 * 0xc + 4);
+            localInt3 = FUN_180899100(resourceHandle,memorySize + (longlong)status * 0xc + 4);
             if (localInt3 != 0) {
               return;
             }
-            localInt3 = FUN_180899100(resourceHandle,memorySize + (longlong)localInt2 * 0xc + 7);
+            localInt3 = FUN_180899100(resourceHandle,memorySize + (longlong)status * 0xc + 7);
             if (localInt3 != 0) {
               return;
             }
-            localInt3 = FUN_180899100(resourceHandle,memorySize + (longlong)localInt2 * 0xc + 10);
+            localInt3 = FUN_180899100(resourceHandle,memorySize + (longlong)status * 0xc + 10);
             if (localInt3 != 0) {
               return;
             }
-            localInt3 = FUN_180899100(resourceHandle,memorySize + (longlong)localInt2 * 0xc + 0xd);
+            localInt3 = FUN_180899100(resourceHandle,memorySize + (longlong)status * 0xc + 0xd);
             if (localInt3 != 0) {
               return;
             }
-            localInt2 = localInt2 + 1;
-          } while (localInt2 < (int)memorySize[0x68]);
+            status = status + 1;
+          } while (status < (int)memorySize[0x68]);
         }
         returnValue = memorySize[100];
         if (returnValue < 0x8000) {
@@ -14149,62 +14149,62 @@ void FUN_180899fe0(longlong resourceHandle,uint32 *memorySize)
           uVar4 = 4;
           uStackX_8 = CONCAT44(uStackX_8._4_4_,(returnValue & 0xffffc000 | 0x4000) * 2 | returnValue & 0x7fff);
         }
-        localInt2 = (**(code **)**(uint64 **)(resourceHandle + 8))
+        status = (**(code **)**(uint64 **)(resourceHandle + 8))
                           (*(uint64 **)(resourceHandle + 8),&uStackX_8,uVar4);
-        if (localInt2 == 0) {
+        if (status == 0) {
           uStackX_8._0_4_ = memorySize[0x65];
-          localInt2 = (**(code **)**(uint64 **)(resourceHandle + 8))
+          status = (**(code **)**(uint64 **)(resourceHandle + 8))
                             (*(uint64 **)(resourceHandle + 8),&uStackX_8,4);
-          if (((localInt2 == 0) && (localInt2 = FUN_1808aff40(resourceHandle,memorySize + 0x66), localInt2 == 0)) &&
-             (localInt2 = FUN_1808aff40(resourceHandle,memorySize + 0x67), localInt2 == 0)) {
+          if (((status == 0) && (status = FUN_1808aff40(resourceHandle,memorySize + 0x66), status == 0)) &&
+             (status = FUN_1808aff40(resourceHandle,memorySize + 0x67), status == 0)) {
             uStackX_8._0_4_ = memorySize[0x69];
-            localInt2 = (**(code **)**(uint64 **)(resourceHandle + 8))
+            status = (**(code **)**(uint64 **)(resourceHandle + 8))
                               (*(uint64 **)(resourceHandle + 8),&uStackX_8,4);
-            if (localInt2 == 0) {
+            if (status == 0) {
               uStackX_8._0_4_ = memorySize[0x6a];
-              localInt2 = (**(code **)**(uint64 **)(resourceHandle + 8))
+              status = (**(code **)**(uint64 **)(resourceHandle + 8))
                                 (*(uint64 **)(resourceHandle + 8),&uStackX_8,4);
-              if (localInt2 == 0) {
+              if (status == 0) {
                 uStackX_8._0_4_ = memorySize[0x6b];
-                localInt2 = (**(code **)**(uint64 **)(resourceHandle + 8))
+                status = (**(code **)**(uint64 **)(resourceHandle + 8))
                                   (*(uint64 **)(resourceHandle + 8),&uStackX_8,4);
-                if (localInt2 == 0) {
+                if (status == 0) {
                   uStackX_8._0_4_ = memorySize[0x6d];
-                  localInt2 = (**(code **)**(uint64 **)(resourceHandle + 8))
+                  status = (**(code **)**(uint64 **)(resourceHandle + 8))
                                     (*(uint64 **)(resourceHandle + 8),&uStackX_8,4);
-                  if (localInt2 == 0) {
+                  if (status == 0) {
                     uStackX_8._0_4_ = memorySize[0x6e];
-                    localInt2 = (**(code **)**(uint64 **)(resourceHandle + 8))
+                    status = (**(code **)**(uint64 **)(resourceHandle + 8))
                                       (*(uint64 **)(resourceHandle + 8),&uStackX_8,4);
-                    if (localInt2 == 0) {
+                    if (status == 0) {
                       uStackX_8._0_4_ = memorySize[0x6c];
-                      localInt2 = (**(code **)**(uint64 **)(resourceHandle + 8))
+                      status = (**(code **)**(uint64 **)(resourceHandle + 8))
                                         (*(uint64 **)(resourceHandle + 8),&uStackX_8,4);
-                      if (localInt2 == 0) {
+                      if (status == 0) {
                         uStackX_8 = CONCAT44(uStackX_8._4_4_,memorySize[0x6f]);
-                        localInt2 = (**(code **)**(uint64 **)(resourceHandle + 8))
+                        status = (**(code **)**(uint64 **)(resourceHandle + 8))
                                           (*(uint64 **)(resourceHandle + 8),&uStackX_8,4);
-                        if (localInt2 == 0) {
+                        if (status == 0) {
                           uStackX_8 = *(uint64 *)(memorySize + 0x70);
-                          localInt2 = (**(code **)**(uint64 **)(resourceHandle + 8))
+                          status = (**(code **)**(uint64 **)(resourceHandle + 8))
                                             (*(uint64 **)(resourceHandle + 8),&uStackX_8,8);
-                          if (localInt2 == 0) {
+                          if (status == 0) {
                             uStackX_8 = *(uint64 *)(memorySize + 0x72);
-                            localInt2 = (**(code **)**(uint64 **)(resourceHandle + 8))
+                            status = (**(code **)**(uint64 **)(resourceHandle + 8))
                                               (*(uint64 **)(resourceHandle + 8),&uStackX_8,8);
-                            if (localInt2 == 0) {
+                            if (status == 0) {
                               uStackX_8 = *(uint64 *)(memorySize + 0x74);
-                              localInt2 = (**(code **)**(uint64 **)(resourceHandle + 8))
+                              status = (**(code **)**(uint64 **)(resourceHandle + 8))
                                                 (*(uint64 **)(resourceHandle + 8),&uStackX_8,8);
-                              if (localInt2 == 0) {
+                              if (status == 0) {
                                 uStackX_8._0_4_ = memorySize[0x77];
-                                localInt2 = (**(code **)**(uint64 **)(resourceHandle + 8))
+                                status = (**(code **)**(uint64 **)(resourceHandle + 8))
                                                   (*(uint64 **)(resourceHandle + 8),&uStackX_8,4);
-                                if (localInt2 == 0) {
+                                if (status == 0) {
                                   uStackX_8._0_4_ = memorySize[0x76];
-                                  localInt2 = (**(code **)**(uint64 **)(resourceHandle + 8))
+                                  status = (**(code **)**(uint64 **)(resourceHandle + 8))
                                                     (*(uint64 **)(resourceHandle + 8),&uStackX_8,4);
-                                  if (localInt2 == 0) {
+                                  if (status == 0) {
                                     uStackX_8 = CONCAT44(uStackX_8._4_4_,memorySize[0x78]);
                                     (**(code **)**(uint64 **)(resourceHandle + 8))
                                               (*(uint64 **)(resourceHandle + 8),&uStackX_8,4);
@@ -14377,7 +14377,7 @@ uint64 FUN_18089a370(longlong resourceHandle,longlong memorySize)
 
 {
   short sVar1;
-  int localInt2;
+  int status;
   ushort uVar3;
   uint64 uVar4;
   ushort uVar5;
@@ -14441,15 +14441,15 @@ uint64 FUN_18089a370(longlong resourceHandle,longlong memorySize)
             ) && (((uVar5 & 8) == 0 ||
                   (uVar4 = FUN_180899d90(resourceHandle,memorySize + 0x150), (int)uVar4 == 0)))) {
           if ((uVar5 & 0x10) != 0) {
-            localInt2 = *(int *)(memorySize + 0x260);
-            alocalInt[0] = localInt2;
+            status = *(int *)(memorySize + 0x260);
+            alocalInt[0] = status;
             uVar4 = (**(code **)**(uint64 **)(resourceHandle + 8))
                               (*(uint64 **)(resourceHandle + 8),alocalInt,4);
             if ((int)uVar4 != 0) {
               return uVar4;
             }
             lVar8 = lVar7;
-            if (0 < localInt2) {
+            if (0 < status) {
               do {
                 lVar6 = *(longlong *)(memorySize + 600) + lVar7;
                 sVar1 = *(short *)(lVar6 + 0x114);
@@ -14469,7 +14469,7 @@ uint64 FUN_18089a370(longlong resourceHandle,longlong memorySize)
                 }
                 lVar8 = lVar8 + 1;
                 lVar7 = lVar7 + 0x118;
-              } while (lVar8 < localInt2);
+              } while (lVar8 < status);
             }
           }
           if ((((((uVar5 & 0x20) == 0) ||
@@ -14497,7 +14497,7 @@ uint64 FUN_18089a51d(void)
 
 {
   short sVar1;
-  int localInt2;
+  int status;
   uint64 uVar3;
   longlong baseRegister;
   ulonglong unaff_RSI;
@@ -14507,14 +14507,14 @@ uint64 FUN_18089a51d(void)
   longlong lVar4;
   
   if ((unaff_RSI & 0x10) != 0) {
-    localInt2 = *(int *)(unaff_RDI + 0x260);
+    status = *(int *)(unaff_RDI + 0x260);
     uVar3 = (**(code **)**(uint64 **)(baseRegister + 8))
-                      (*(uint64 **)(baseRegister + 8),&stack0x00000020,4,in_R9,localInt2);
+                      (*(uint64 **)(baseRegister + 8),&stack0x00000020,4,in_R9,status);
     if ((int)uVar3 != 0) {
       return uVar3;
     }
     lVar4 = unaff_R14;
-    if (0 < localInt2) {
+    if (0 < status) {
       do {
         sVar1 = *(short *)(*(longlong *)(unaff_RDI + 600) + unaff_R14 + 0x114);
         uVar3 = FUN_180899ef0();
@@ -14531,7 +14531,7 @@ uint64 FUN_18089a51d(void)
         }
         lVar4 = lVar4 + 1;
         unaff_R14 = unaff_R14 + 0x118;
-      } while (lVar4 < localInt2);
+      } while (lVar4 < status);
     }
   }
   if ((((((unaff_RSI & 0x20) == 0) || (uVar3 = FUN_1808ac8a0(), (int)uVar3 == 0)) &&
@@ -14642,7 +14642,7 @@ void FUN_18089a750(longlong resourceHandle,uint *memorySize)
 
 {
   uint returnValue;
-  int localInt2;
+  int status;
   uint64 uVar3;
   uint32 uStackX_10;
   
@@ -14655,9 +14655,9 @@ void FUN_18089a750(longlong resourceHandle,uint *memorySize)
     uStackX_10 = (returnValue & 0xffffc000 | 0x4000) * 2 | returnValue & 0x7fff;
     uVar3 = 4;
   }
-  localInt2 = (**(code **)**(uint64 **)(resourceHandle + 8))
+  status = (**(code **)**(uint64 **)(resourceHandle + 8))
                     (*(uint64 **)(resourceHandle + 8),&uStackX_10,uVar3);
-  if (localInt2 == 0) {
+  if (status == 0) {
     FUN_1808aff40(resourceHandle,memorySize + 1);
   }
   return;
@@ -15982,7 +15982,7 @@ void FUN_18089b5fc(void)
 
 {
   longlong *plocalLong1;
-  int localInt2;
+  int status;
   longlong *baseRegister;
   longlong unaff_RDI;
   char stackParameter1;
@@ -15992,24 +15992,24 @@ void FUN_18089b5fc(void)
   plocalLong1 = (longlong *)*baseRegister;
   uStack0000000000000038 = _uStack0000000000000040;
   if (*plocalLong1 == 0) {
-    localInt2 = 0x1c;
+    status = 0x1c;
   }
   else {
     if (plocalLong1[2] != 0) {
       uStack0000000000000040 = 0;
-      localInt2 = func_0x00018076a7d0(*plocalLong1,&stackLocalBuffer);
-      if (localInt2 != 0) {
+      status = func_0x00018076a7d0(*plocalLong1,&stackLocalBuffer);
+      if (status != 0) {
         return;
       }
       if ((ulonglong)plocalLong1[2] < (ulonglong)uStack0000000000000040 + 1) {
-        localInt2 = 0x11;
+        status = 0x11;
         goto LAB_1808a2e6d;
       }
     }
-    localInt2 = FUN_180769ed0(*plocalLong1,&stack0x00000030,1,1,0);
+    status = FUN_180769ed0(*plocalLong1,&stack0x00000030,1,1,0);
   }
 LAB_1808a2e6d:
-  if (localInt2 == 0) {
+  if (status == 0) {
     *(bool *)(unaff_RDI + 0x7c) = stackParameter1 != '\0';
   }
   return;
@@ -16039,7 +16039,7 @@ uint64 FUN_18089b630(longlong resourceHandle,uint64 *memorySize)
 
 {
   uint64 returnValue;
-  int localInt2;
+  int status;
   uint uVar3;
   uint uVar4;
   uint auStackX_18 [2];
@@ -16060,7 +16060,7 @@ uint64 FUN_18089b630(longlong resourceHandle,uint64 *memorySize)
       auStackX_20[0] = 0;
       returnValue = FUN_1808afe30(*memorySize,auStackX_20);
       if ((int)returnValue == 0) {
-        localInt2 = 0;
+        status = 0;
         auStackX_18[0] = 0;
         uVar3 = auStackX_20[0] & 1;
         uVar4 = auStackX_20[0] >> 1;
@@ -16070,7 +16070,7 @@ uint64 FUN_18089b630(longlong resourceHandle,uint64 *memorySize)
             if ((int)returnValue != 0) {
               return returnValue;
             }
-            returnValue = FUN_1808a7f40(memorySize,resourceHandle + 0xe8,localInt2,resourceHandle);
+            returnValue = FUN_1808a7f40(memorySize,resourceHandle + 0xe8,status,resourceHandle);
             if ((int)returnValue != 0) {
               return returnValue;
             }
@@ -16078,9 +16078,9 @@ uint64 FUN_18089b630(longlong resourceHandle,uint64 *memorySize)
             if ((int)returnValue != 0) {
               return returnValue;
             }
-            localInt2 = localInt2 + 1;
+            status = status + 1;
             auStackX_18[0] = auStackX_18[0] & -uVar3;
-          } while (localInt2 < (int)uVar4);
+          } while (status < (int)uVar4);
         }
                     // WARNING: Subroutine does not return
         FUN_1808ddf80(memorySize,localBuffer);
@@ -16098,7 +16098,7 @@ void FUN_18089b6df(void)
 
 {
   int localInt1;
-  int localInt2;
+  int status;
   uint uVar3;
   uint uStack00000000000000a8;
   
@@ -16111,16 +16111,16 @@ void FUN_18089b6df(void)
   uVar3 = uStack00000000000000a8 >> 1;
   if (uVar3 != 0) {
     do {
-      localInt2 = FUN_1808dde10();
-      if (localInt2 != 0) {
+      status = FUN_1808dde10();
+      if (status != 0) {
         return;
       }
-      localInt2 = FUN_1808a7f40();
-      if (localInt2 != 0) {
+      status = FUN_1808a7f40();
+      if (status != 0) {
         return;
       }
-      localInt2 = FUN_1808de0e0();
-      if (localInt2 != 0) {
+      status = FUN_1808de0e0();
+      if (status != 0) {
         return;
       }
       localInt1 = localInt1 + 1;
@@ -16947,7 +16947,7 @@ void FUN_18089be10(longlong resourceHandle,uint64 *memorySize,int operationFlags
 
 {
   uint returnValue;
-  int localInt2;
+  int status;
   int localInt3;
   uint uVar4;
   uint uVar5;
@@ -16960,27 +16960,27 @@ void FUN_18089be10(longlong resourceHandle,uint64 *memorySize,int operationFlags
   if (auStackX_20[0] != 0) {
     return;
   }
-  localInt2 = FUN_1808afe30(*memorySize,auStackX_20);
+  status = FUN_1808afe30(*memorySize,auStackX_20);
   returnValue = auStackX_20[0];
-  if (localInt2 != 0) {
+  if (status != 0) {
     return;
   }
   uVar7 = auStackX_20[0] & 1;
   uVar4 = (int)*(uint *)(resourceHandle + 0x1c) >> 0x1f;
   uVar5 = auStackX_20[0] >> 1;
   if (((int)((*(uint *)(resourceHandle + 0x1c) ^ uVar4) - uVar4) < (int)uVar5) &&
-     (localInt2 = FUN_180748010(resourceHandle + 0x10,uVar5), localInt2 != 0)) {
+     (status = FUN_180748010(resourceHandle + 0x10,uVar5), status != 0)) {
     return;
   }
-  localInt2 = *(int *)(resourceHandle + 0x18);
-  if (localInt2 < (int)uVar5) {
+  status = *(int *)(resourceHandle + 0x18);
+  if (status < (int)uVar5) {
                     // WARNING: Subroutine does not return
-    memset((longlong)localInt2 * 0x10 + *(longlong *)(resourceHandle + 0x10),0,
-           (longlong)(int)(uVar5 - localInt2) << 4);
+    memset((longlong)status * 0x10 + *(longlong *)(resourceHandle + 0x10),0,
+           (longlong)(int)(uVar5 - status) << 4);
   }
   *(uint *)(resourceHandle + 0x18) = uVar5;
   auStackX_8[0] = 0;
-  localInt2 = 0;
+  status = 0;
   if (returnValue >> 1 != 0) {
     do {
       localInt3 = FUN_1808dde10(memorySize,auStackX_8[0]);
@@ -16988,7 +16988,7 @@ void FUN_18089be10(longlong resourceHandle,uint64 *memorySize,int operationFlags
         return;
       }
       if (*(int *)(memorySize[1] + 0x18) == 0) {
-        localInt3 = FUN_180899090(*memorySize,(longlong)localInt2 * 0x10 + *(longlong *)(resourceHandle + 0x10));
+        localInt3 = FUN_180899090(*memorySize,(longlong)status * 0x10 + *(longlong *)(resourceHandle + 0x10));
       }
       else {
         localInt3 = 0x1c;
@@ -17000,52 +17000,52 @@ void FUN_18089be10(longlong resourceHandle,uint64 *memorySize,int operationFlags
       if (localInt3 != 0) {
         return;
       }
-      localInt2 = localInt2 + 1;
+      status = status + 1;
       auStackX_8[0] = auStackX_8[0] & -uVar7;
-    } while (localInt2 < (int)uVar5);
+    } while (status < (int)uVar5);
   }
   auStackX_8[0] = 0;
-  localInt2 = FUN_1808afe30(*memorySize,auStackX_8);
+  status = FUN_1808afe30(*memorySize,auStackX_8);
   returnValue = auStackX_8[0];
-  if (localInt2 != 0) {
+  if (status != 0) {
     return;
   }
   lVar6 = (longlong)(int)auStackX_8[0];
   uVar4 = (int)*(uint *)(resourceHandle + 0x2c) >> 0x1f;
   if (((int)((*(uint *)(resourceHandle + 0x2c) ^ uVar4) - uVar4) < (int)auStackX_8[0]) &&
-     (localInt2 = FUN_180849030(resourceHandle + 0x20,auStackX_8[0]), localInt2 != 0)) {
+     (status = FUN_180849030(resourceHandle + 0x20,auStackX_8[0]), status != 0)) {
     return;
   }
-  localInt2 = *(int *)(resourceHandle + 0x28);
-  if (localInt2 < (int)returnValue) {
+  status = *(int *)(resourceHandle + 0x28);
+  if (status < (int)returnValue) {
                     // WARNING: Subroutine does not return
-    memset((longlong)localInt2 + *(longlong *)(resourceHandle + 0x20),0,(longlong)(int)(returnValue - localInt2));
+    memset((longlong)status + *(longlong *)(resourceHandle + 0x20),0,(longlong)(int)(returnValue - status));
   }
   *(uint *)(resourceHandle + 0x28) = returnValue;
   if (returnValue != 0) {
     if (*(int *)(memorySize[1] + 0x18) == 0) {
-      localInt2 = FUN_1808aed00(*memorySize,*(uint64 *)(resourceHandle + 0x20),lVar6);
-      if (localInt2 == 0) goto LAB_18089bfc7;
+      status = FUN_1808aed00(*memorySize,*(uint64 *)(resourceHandle + 0x20),lVar6);
+      if (status == 0) goto LAB_18089bfc7;
     }
     else {
-      localInt2 = 0x1c;
+      status = 0x1c;
     }
-    if (localInt2 != 0) {
+    if (status != 0) {
       return;
     }
   }
 LAB_18089bfc7:
   if (operationFlags == 0) {
-    localInt2 = FUN_1808a84c0(resourceHandle,memorySize);
+    status = FUN_1808a84c0(resourceHandle,memorySize);
   }
   else {
-    localInt2 = FUN_1808ad600(memorySize,resourceHandle + 0x30);
-    if (localInt2 != 0) {
+    status = FUN_1808ad600(memorySize,resourceHandle + 0x30);
+    if (status != 0) {
       return;
     }
-    localInt2 = FUN_1808ad600(memorySize,resourceHandle + 0x40);
+    status = FUN_1808ad600(memorySize,resourceHandle + 0x40);
   }
-  if (localInt2 == 0) {
+  if (status == 0) {
     func_0x000180069ee0(resourceHandle);
   }
   return;
@@ -17060,7 +17060,7 @@ void FUN_18089be41(void)
 {
   uint in_EAX;
   int localInt1;
-  int localInt2;
+  int status;
   uint uVar3;
   uint64 *baseRegister;
   uint uVar4;
@@ -17092,21 +17092,21 @@ void FUN_18089be41(void)
   localInt1 = 0;
   if (uStack0000000000000068 >> 1 != 0) {
     do {
-      localInt2 = FUN_1808dde10();
-      if (localInt2 != 0) {
+      status = FUN_1808dde10();
+      if (status != 0) {
         return;
       }
       if (*(int *)(baseRegister[1] + 0x18) == 0) {
-        localInt2 = FUN_180899090(*baseRegister,(longlong)localInt1 * 0x10 + *(longlong *)(unaff_R15 + 0x10));
+        status = FUN_180899090(*baseRegister,(longlong)localInt1 * 0x10 + *(longlong *)(unaff_R15 + 0x10));
       }
       else {
-        localInt2 = 0x1c;
+        status = 0x1c;
       }
-      if (localInt2 != 0) {
+      if (status != 0) {
         return;
       }
-      localInt2 = FUN_1808de0e0();
-      if (localInt2 != 0) {
+      status = FUN_1808de0e0();
+      if (status != 0) {
         return;
       }
       localInt1 = localInt1 + 1;
@@ -17114,21 +17114,21 @@ void FUN_18089be41(void)
     } while (localInt1 < (int)uVar4);
   }
   in_stack_00000050 = 0;
-  localInt2 = FUN_1808afe30(*baseRegister,&stack0x00000050);
+  status = FUN_1808afe30(*baseRegister,&stack0x00000050);
   localInt1 = in_stack_00000050;
-  if (localInt2 != 0) {
+  if (status != 0) {
     return;
   }
   lVar5 = (longlong)(int)in_stack_00000050;
   uVar3 = (int)*(uint *)(unaff_R15 + 0x2c) >> 0x1f;
   if (((int)((*(uint *)(unaff_R15 + 0x2c) ^ uVar3) - uVar3) < (int)in_stack_00000050) &&
-     (localInt2 = FUN_180849030(unaff_R15 + 0x20,in_stack_00000050), localInt2 != 0)) {
+     (status = FUN_180849030(unaff_R15 + 0x20,in_stack_00000050), status != 0)) {
     return;
   }
-  localInt2 = *(int *)(unaff_R15 + 0x28);
-  if (localInt2 < localInt1) {
+  status = *(int *)(unaff_R15 + 0x28);
+  if (status < localInt1) {
                     // WARNING: Subroutine does not return
-    memset((longlong)localInt2 + *(longlong *)(unaff_R15 + 0x20),0,(longlong)(localInt1 - localInt2));
+    memset((longlong)status + *(longlong *)(unaff_R15 + 0x20),0,(longlong)(localInt1 - status));
   }
   *(int *)(unaff_R15 + 0x28) = localInt1;
   if (localInt1 != 0) {
@@ -17176,7 +17176,7 @@ ulonglong FUN_18089c030(longlong resourceHandle,uint64 *memorySize)
 
 {
   int localInt1;
-  int localInt2;
+  int status;
   uint uVar3;
   ulonglong uVar4;
   uint uVar5;
@@ -17193,7 +17193,7 @@ ulonglong FUN_18089c030(longlong resourceHandle,uint64 *memorySize)
   }
   aiStackX_10[0] = 0;
   uVar4 = FUN_1808afe30(*memorySize,aiStackX_10);
-  localInt2 = aiStackX_10[0];
+  status = aiStackX_10[0];
   uVar3 = 0x1c;
   if ((int)uVar4 != 0) {
     return uVar4;
@@ -17205,10 +17205,10 @@ ulonglong FUN_18089c030(longlong resourceHandle,uint64 *memorySize)
     return uVar4;
   }
   localInt1 = *(int *)(resourceHandle + 0x10);
-  if (localInt1 < localInt2) {
+  if (localInt1 < status) {
     puVar6 = (uint64 *)(*(longlong *)(resourceHandle + 8) + (longlong)localInt1 * 8);
-    if (0 < localInt2 - localInt1) {
-      uVar4 = (ulonglong)(uint)(localInt2 - localInt1);
+    if (0 < status - localInt1) {
+      uVar4 = (ulonglong)(uint)(status - localInt1);
       do {
         if (puVar6 != (uint64 *)0x0) {
           *puVar6 = 0;
@@ -17218,8 +17218,8 @@ ulonglong FUN_18089c030(longlong resourceHandle,uint64 *memorySize)
       } while (uVar4 != 0);
     }
   }
-  *(int *)(resourceHandle + 0x10) = localInt2;
-  if (localInt2 != 0) {
+  *(int *)(resourceHandle + 0x10) = status;
+  if (status != 0) {
     if (*(int *)(memorySize[1] + 0x18) == 0) {
       uVar4 = FUN_1808aed00(*memorySize,*(uint64 *)(resourceHandle + 8),lVar7 << 3);
       if ((int)uVar4 == 0) goto LAB_18089c131;
@@ -23103,22 +23103,22 @@ void FUN_18089ee87(void)
 
 {
   uint64 returnValue;
-  int localInt2;
+  int status;
   uint64 *baseRegister;
   longlong unaff_RDI;
   
   returnValue = *baseRegister;
-  localInt2 = FUN_1808aed00(returnValue,unaff_RDI + 0xdc,4);
-  if (localInt2 == 0) {
-    localInt2 = FUN_1808aed00(returnValue,unaff_RDI + 0xe0,2);
-    if (localInt2 == 0) {
-      localInt2 = FUN_1808aed00(returnValue,unaff_RDI + 0xe2,2);
-      if (localInt2 == 0) {
-        localInt2 = FUN_1808aed00(returnValue,unaff_RDI + 0xe4,8);
+  status = FUN_1808aed00(returnValue,unaff_RDI + 0xdc,4);
+  if (status == 0) {
+    status = FUN_1808aed00(returnValue,unaff_RDI + 0xe0,2);
+    if (status == 0) {
+      status = FUN_1808aed00(returnValue,unaff_RDI + 0xe2,2);
+      if (status == 0) {
+        status = FUN_1808aed00(returnValue,unaff_RDI + 0xe4,8);
       }
     }
   }
-  if (localInt2 == 0) {
+  if (status == 0) {
                     // WARNING: Subroutine does not return
     FUN_1808ddf80();
   }
@@ -23501,7 +23501,7 @@ void FUN_18089f31e(void)
 {
   int in_EAX;
   int localInt1;
-  int localInt2;
+  int status;
   longlong *baseRegister;
   int unaff_EBP;
   longlong unaff_RSI;
@@ -23532,8 +23532,8 @@ void FUN_18089f31e(void)
     }
     localInt1 = 0;
     do {
-      localInt2 = FUN_1808acf30();
-      if (localInt2 != 0) {
+      status = FUN_1808acf30();
+      if (status != 0) {
         return;
       }
       localInt1 = localInt1 + 1;
@@ -24380,7 +24380,7 @@ void Unwind_180901f60(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x2b8);
@@ -24389,12 +24389,12 @@ void Unwind_180901f60(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -24416,7 +24416,7 @@ void Unwind_180901f70(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x2b8);
@@ -24425,12 +24425,12 @@ void Unwind_180901f70(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -24469,7 +24469,7 @@ void Unwind_180901fa0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x20) + 0x218);
@@ -24478,12 +24478,12 @@ void Unwind_180901fa0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -24505,7 +24505,7 @@ void Unwind_180901fc0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x40) + 0x218);
@@ -24514,12 +24514,12 @@ void Unwind_180901fc0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -25016,7 +25016,7 @@ void Unwind_1809023f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x48);
@@ -25025,12 +25025,12 @@ void Unwind_1809023f0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -25258,7 +25258,7 @@ void Unwind_180902510(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x120);
@@ -25267,12 +25267,12 @@ void Unwind_180902510(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -25511,7 +25511,7 @@ void Unwind_180902600(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x70) + 0xc0);
@@ -25520,12 +25520,12 @@ void Unwind_180902600(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -25587,12 +25587,12 @@ void Unwind_180902650(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x70) + 0x50);
   localLong1 = *(longlong *)(*(longlong *)(memorySize + 0x70) + 0x58);
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x48) {
-    FUN_180058c20(localLong3);
+  for (index = *plocalLong2; index != localLong1; index = index + 0x48) {
+    FUN_180058c20(index);
   }
   if (*plocalLong2 == 0) {
     return;
@@ -25608,12 +25608,12 @@ void Unwind_180902660(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = *(longlong **)(memorySize + 0x78);
   localLong1 = plocalLong2[1];
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x48) {
-    FUN_180058c20(localLong3);
+  for (index = *plocalLong2; index != localLong1; index = index + 0x48) {
+    FUN_180058c20(index);
   }
   if (*plocalLong2 == 0) {
     return;
@@ -25629,16 +25629,16 @@ void Unwind_180902670(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x70) + 0x50);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x70) + 0x58);
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 3) {
-    if ((longlong *)plocalLong3[1] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)plocalLong3[1] + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 3) {
+    if ((longlong *)pindex[1] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)pindex[1] + 0x38))();
     }
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -25655,16 +25655,16 @@ void Unwind_180902680(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = *(longlong **)(memorySize + 0x78);
   plocalLong1 = (longlong *)plocalLong2[1];
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 3) {
-    if ((longlong *)plocalLong3[1] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)plocalLong3[1] + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 3) {
+    if ((longlong *)pindex[1] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)pindex[1] + 0x38))();
     }
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -25681,25 +25681,25 @@ void Unwind_180902690(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x70) + 0x10);
   localLong1 = *(longlong *)(*(longlong *)(memorySize + 0x70) + 0x18);
-  localLong3 = *plocalLong2;
+  index = *plocalLong2;
   while( true ) {
-    if (localLong3 == localLong1) {
+    if (index == localLong1) {
       if (*plocalLong2 == 0) {
         return;
       }
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    if (*(longlong **)(localLong3 + 0x40) != (longlong *)0x0) {
-      (**(code **)(**(longlong **)(localLong3 + 0x40) + 0x38))();
+    if (*(longlong **)(index + 0x40) != (longlong *)0x0) {
+      (**(code **)(**(longlong **)(index + 0x40) + 0x38))();
     }
-    if (*(longlong *)(localLong3 + 0x20) != 0) break;
-    FUN_180057830(localLong3);
-    localLong3 = localLong3 + 0x48;
+    if (*(longlong *)(index + 0x20) != 0) break;
+    FUN_180057830(index);
+    index = index + 0x48;
   }
                     // WARNING: Subroutine does not return
   HandleCriticalError();
@@ -25712,25 +25712,25 @@ void Unwind_1809026a0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = *(longlong **)(memorySize + 0x78);
   localLong1 = plocalLong2[1];
-  localLong3 = *plocalLong2;
+  index = *plocalLong2;
   while( true ) {
-    if (localLong3 == localLong1) {
+    if (index == localLong1) {
       if (*plocalLong2 == 0) {
         return;
       }
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    if (*(longlong **)(localLong3 + 0x40) != (longlong *)0x0) {
-      (**(code **)(**(longlong **)(localLong3 + 0x40) + 0x38))();
+    if (*(longlong **)(index + 0x40) != (longlong *)0x0) {
+      (**(code **)(**(longlong **)(index + 0x40) + 0x38))();
     }
-    if (*(longlong *)(localLong3 + 0x20) != 0) break;
-    FUN_180057830(localLong3);
-    localLong3 = localLong3 + 0x48;
+    if (*(longlong *)(index + 0x20) != 0) break;
+    FUN_180057830(index);
+    index = index + 0x48;
   }
                     // WARNING: Subroutine does not return
   HandleCriticalError();
@@ -26098,7 +26098,7 @@ void Unwind_180902880(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x70) + 0x18);
@@ -26107,12 +26107,12 @@ void Unwind_180902880(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -26145,7 +26145,7 @@ void Unwind_1809028a0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x70) + 0x98);
@@ -26154,12 +26154,12 @@ void Unwind_1809028a0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -26220,7 +26220,7 @@ void Unwind_1809028f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x70) + 0x68);
@@ -26229,12 +26229,12 @@ void Unwind_1809028f0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -26256,7 +26256,7 @@ void Unwind_180902900(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x70) + 0x88);
@@ -26265,12 +26265,12 @@ void Unwind_180902900(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -26433,12 +26433,12 @@ void Unwind_180902970(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x70) + 0x70);
   localLong1 = *(longlong *)(*(longlong *)(memorySize + 0x70) + 0x78);
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x18) {
-    FUN_18004bf50(localLong3);
+  for (index = *plocalLong2; index != localLong1; index = index + 0x18) {
+    FUN_18004bf50(index);
   }
   if (*plocalLong2 == 0) {
     return;
@@ -26591,12 +26591,12 @@ void Unwind_180902a60(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = *(longlong **)(memorySize + 0x78);
   localLong1 = plocalLong2[1];
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x18) {
-    FUN_18004bf50(localLong3);
+  for (index = *plocalLong2; index != localLong1; index = index + 0x18) {
+    FUN_18004bf50(index);
   }
   if (*plocalLong2 == 0) {
     return;
@@ -26612,13 +26612,13 @@ void Unwind_180902a70(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong localLong2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   ulonglong uVar5;
   
-  localLong3 = *(longlong *)(memorySize + 0x70);
-  uVar4 = *(ulonglong *)(localLong3 + 0x10);
-  localLong1 = *(longlong *)(localLong3 + 8);
+  index = *(longlong *)(memorySize + 0x70);
+  uVar4 = *(ulonglong *)(index + 0x10);
+  localLong1 = *(longlong *)(index + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -26633,10 +26633,10 @@ void Unwind_180902a70(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(localLong3 + 0x10);
+    uVar4 = *(ulonglong *)(index + 0x10);
   }
-  *(uint64 *)(localLong3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(localLong3 + 8) != 0)) {
+  *(uint64 *)(index + 0x18) = 0;
+  if ((1 < uVar4) && (*(longlong *)(index + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -26650,13 +26650,13 @@ void Unwind_180902a80(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong localLong2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   ulonglong uVar5;
   
-  localLong3 = *(longlong *)(memorySize + 0x78);
-  uVar4 = *(ulonglong *)(localLong3 + 0x10);
-  localLong1 = *(longlong *)(localLong3 + 8);
+  index = *(longlong *)(memorySize + 0x78);
+  uVar4 = *(ulonglong *)(index + 0x10);
+  localLong1 = *(longlong *)(index + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -26671,10 +26671,10 @@ void Unwind_180902a80(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(localLong3 + 0x10);
+    uVar4 = *(ulonglong *)(index + 0x10);
   }
-  *(uint64 *)(localLong3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(localLong3 + 8) != 0)) {
+  *(uint64 *)(index + 0x18) = 0;
+  if ((1 < uVar4) && (*(longlong *)(index + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -26688,13 +26688,13 @@ void Unwind_180902a90(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong localLong2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   ulonglong uVar5;
   
-  localLong3 = *(longlong *)(memorySize + 0x78);
-  uVar4 = *(ulonglong *)(localLong3 + 0x10);
-  localLong1 = *(longlong *)(localLong3 + 8);
+  index = *(longlong *)(memorySize + 0x78);
+  uVar4 = *(ulonglong *)(index + 0x10);
+  localLong1 = *(longlong *)(index + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -26709,10 +26709,10 @@ void Unwind_180902a90(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(localLong3 + 0x10);
+    uVar4 = *(ulonglong *)(index + 0x10);
   }
-  *(uint64 *)(localLong3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(localLong3 + 8) != 0)) {
+  *(uint64 *)(index + 0x18) = 0;
+  if ((1 < uVar4) && (*(longlong *)(index + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -26736,7 +26736,7 @@ void Unwind_180902ab0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x70) + 0x30);
@@ -26745,12 +26745,12 @@ void Unwind_180902ab0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -26826,12 +26826,12 @@ void Unwind_180902b30(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = *(longlong **)(memorySize + 0x40);
   localLong1 = plocalLong2[1];
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x48) {
-    FUN_180058c20(localLong3);
+  for (index = *plocalLong2; index != localLong1; index = index + 0x48) {
+    FUN_180058c20(index);
   }
   if (*plocalLong2 == 0) {
     return;
@@ -26867,13 +26867,13 @@ void Unwind_180902b60(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong localLong2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   ulonglong uVar5;
   
-  localLong3 = *(longlong *)(memorySize + 0x40);
-  uVar4 = *(ulonglong *)(localLong3 + 0x10);
-  localLong1 = *(longlong *)(localLong3 + 8);
+  index = *(longlong *)(memorySize + 0x40);
+  uVar4 = *(ulonglong *)(index + 0x10);
+  localLong1 = *(longlong *)(index + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -26888,10 +26888,10 @@ void Unwind_180902b60(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(localLong3 + 0x10);
+    uVar4 = *(ulonglong *)(index + 0x10);
   }
-  *(uint64 *)(localLong3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(localLong3 + 8) != 0)) {
+  *(uint64 *)(index + 0x18) = 0;
+  if ((1 < uVar4) && (*(longlong *)(index + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -26905,13 +26905,13 @@ void Unwind_180902b70(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong localLong2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   ulonglong uVar5;
   
-  localLong3 = *(longlong *)(memorySize + 0x40);
-  uVar4 = *(ulonglong *)(localLong3 + 0x10);
-  localLong1 = *(longlong *)(localLong3 + 8);
+  index = *(longlong *)(memorySize + 0x40);
+  uVar4 = *(ulonglong *)(index + 0x10);
+  localLong1 = *(longlong *)(index + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -26926,10 +26926,10 @@ void Unwind_180902b70(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(localLong3 + 0x10);
+    uVar4 = *(ulonglong *)(index + 0x10);
   }
-  *(uint64 *)(localLong3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(localLong3 + 8) != 0)) {
+  *(uint64 *)(index + 0x18) = 0;
+  if ((1 < uVar4) && (*(longlong *)(index + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -27000,7 +27000,7 @@ void Unwind_180902bb0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x80) + 0x48);
@@ -27009,12 +27009,12 @@ void Unwind_180902bb0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -27083,7 +27083,7 @@ void Unwind_180902bf0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x90) + 0x48);
@@ -27092,12 +27092,12 @@ void Unwind_180902bf0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -27119,7 +27119,7 @@ void Unwind_180902c00(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x98);
@@ -27128,12 +27128,12 @@ void Unwind_180902c00(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -27155,7 +27155,7 @@ void Unwind_180902c10(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x98);
@@ -27164,12 +27164,12 @@ void Unwind_180902c10(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -27200,7 +27200,7 @@ void Unwind_180902c30(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x28);
@@ -27209,12 +27209,12 @@ void Unwind_180902c30(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -27236,7 +27236,7 @@ void Unwind_180902c40(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x28);
@@ -27245,12 +27245,12 @@ void Unwind_180902c40(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -27402,7 +27402,7 @@ void Unwind_180902cd0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x20);
@@ -27411,12 +27411,12 @@ void Unwind_180902cd0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -27438,7 +27438,7 @@ void Unwind_180902ce0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x20);
@@ -27447,12 +27447,12 @@ void Unwind_180902ce0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -27474,13 +27474,13 @@ void Unwind_180902cf0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = *(longlong **)(memorySize + 0x20);
   plocalLong1 = (longlong *)plocalLong2[1];
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -27658,13 +27658,13 @@ void Unwind_180902e10(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x40) + 0x1868);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x40) + 0x1870);
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -27681,13 +27681,13 @@ void Unwind_180902e30(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = *(longlong **)(memorySize + 0x48);
   plocalLong1 = (longlong *)plocalLong2[1];
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -27723,7 +27723,7 @@ void Unwind_180902e50(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x50) + 0x48);
@@ -27732,12 +27732,12 @@ void Unwind_180902e50(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -27759,7 +27759,7 @@ void Unwind_180902e60(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x58);
@@ -27768,12 +27768,12 @@ void Unwind_180902e60(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -27795,7 +27795,7 @@ void Unwind_180902e70(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x58);
@@ -27804,12 +27804,12 @@ void Unwind_180902e70(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -27893,7 +27893,7 @@ void Unwind_180902eb0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong *puVar4;
   uint64 *puVar5;
   ulonglong uVar6;
@@ -27907,12 +27907,12 @@ void Unwind_180902eb0(uint64 resourceHandle,longlong memorySize)
   if (plocalUInt2 != (uint64 *)0x0) {
     uVar6 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
     if (uVar6 != 0) {
-      localLong3 = uVar6 + 0x80 + ((longlong)plocalUInt2 - uVar6 >> 0x10) * 0x50;
-      localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-      if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-        *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-        *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-        plocalInt1 = (int *)(localLong3 + 0x18);
+      index = uVar6 + 0x80 + ((longlong)plocalUInt2 - uVar6 >> 0x10) * 0x50;
+      index = index - (ulonglong)*(uint *)(index + 4);
+      if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+        *plocalUInt2 = *(uint64 *)(index + 0x20);
+        *(uint64 **)(index + 0x20) = plocalUInt2;
+        plocalInt1 = (int *)(index + 0x18);
         *plocalInt1 = *plocalInt1 + -1;
         if (*plocalInt1 == 0) {
           FUN_18064d630();
@@ -28054,7 +28054,7 @@ void Unwind_180902f60(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x40) + 0x8c8);
@@ -28063,12 +28063,12 @@ void Unwind_180902f60(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -28425,7 +28425,7 @@ void Unwind_180903130(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x80) + 0x20);
@@ -28434,12 +28434,12 @@ void Unwind_180903130(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -28461,7 +28461,7 @@ void Unwind_180903140(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x88);
@@ -28470,12 +28470,12 @@ void Unwind_180903140(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -28520,7 +28520,7 @@ void Unwind_180903160(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x80) + 0x20);
@@ -28529,12 +28529,12 @@ void Unwind_180903160(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -28598,7 +28598,7 @@ void Unwind_180903190(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x48) + 0x20);
@@ -28607,12 +28607,12 @@ void Unwind_180903190(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -28634,12 +28634,12 @@ void Unwind_1809031a0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x40) + 0x28);
   localLong1 = *(longlong *)(*(longlong *)(memorySize + 0x40) + 0x30);
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x548) {
-    FUN_1800594b0(localLong3);
+  for (index = *plocalLong2; index != localLong1; index = index + 0x548) {
+    FUN_1800594b0(index);
   }
   if (*plocalLong2 == 0) {
     return;
@@ -28655,12 +28655,12 @@ void Unwind_1809031b0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = *(longlong **)(memorySize + 0x48);
   localLong1 = plocalLong2[1];
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x548) {
-    FUN_1800594b0(localLong3);
+  for (index = *plocalLong2; index != localLong1; index = index + 0x548) {
+    FUN_1800594b0(index);
   }
   if (*plocalLong2 == 0) {
     return;
@@ -28710,7 +28710,7 @@ void Unwind_1809031f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x40) + 0x20);
@@ -28719,12 +28719,12 @@ void Unwind_1809031f0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -28746,7 +28746,7 @@ void Unwind_180903200(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x48);
@@ -28755,12 +28755,12 @@ void Unwind_180903200(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -28782,12 +28782,12 @@ void Unwind_180903210(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = *(longlong **)(memorySize + 0x40);
   localLong1 = plocalLong2[1];
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x548) {
-    FUN_1800594b0(localLong3);
+  for (index = *plocalLong2; index != localLong1; index = index + 0x548) {
+    FUN_1800594b0(index);
   }
   if (*plocalLong2 == 0) {
     return;
@@ -28917,7 +28917,7 @@ void Unwind_180903310(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x40) + 0x20);
@@ -28926,12 +28926,12 @@ void Unwind_180903310(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -29083,12 +29083,12 @@ void Unwind_180903440(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = *(longlong **)(memorySize + 0x40);
   localLong1 = plocalLong2[1];
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x50) {
-    FUN_1800596a0(localLong3);
+  for (index = *plocalLong2; index != localLong1; index = index + 0x50) {
+    FUN_1800596a0(index);
   }
   if (*plocalLong2 == 0) {
     return;
@@ -29192,7 +29192,7 @@ void Unwind_1809034b0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x40) + 0x18);
@@ -29201,12 +29201,12 @@ void Unwind_1809034b0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -29228,7 +29228,7 @@ void Unwind_1809034c0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x60) + 0x18);
@@ -29237,12 +29237,12 @@ void Unwind_1809034c0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -29264,7 +29264,7 @@ void Unwind_1809034d0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x60) + 0x18);
@@ -29273,12 +29273,12 @@ void Unwind_1809034d0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -29300,7 +29300,7 @@ void Unwind_1809034e0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x60);
@@ -29309,12 +29309,12 @@ void Unwind_1809034e0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -29336,21 +29336,21 @@ void Unwind_1809034f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
-  localLong3 = *(longlong *)(memorySize + 0x40);
+  index = *(longlong *)(memorySize + 0x40);
   FUN_18005a050();
-  if ((1 < *(ulonglong *)(localLong3 + 0x10)) &&
-     (plocalUInt2 = *(uint64 **)(localLong3 + 8), plocalUInt2 != (uint64 *)0x0)) {
+  if ((1 < *(ulonglong *)(index + 0x10)) &&
+     (plocalUInt2 = *(uint64 **)(index + 8), plocalUInt2 != (uint64 *)0x0)) {
     uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
     if (uVar4 != 0) {
-      localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-      localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-        *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-        *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-        plocalInt1 = (int *)(localLong3 + 0x18);
+      index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+      index = index - (ulonglong)*(uint *)(index + 4);
+      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+        *plocalUInt2 = *(uint64 *)(index + 0x20);
+        *(uint64 **)(index + 0x20) = plocalUInt2;
+        plocalInt1 = (int *)(index + 0x18);
         *plocalInt1 = *plocalInt1 + -1;
         if (*plocalInt1 == 0) {
           FUN_18064d630();
@@ -29374,21 +29374,21 @@ void Unwind_180903500(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
-  localLong3 = *(longlong *)(memorySize + 0x40);
+  index = *(longlong *)(memorySize + 0x40);
   FUN_18005a050();
-  if ((1 < *(ulonglong *)(localLong3 + 0x10)) &&
-     (plocalUInt2 = *(uint64 **)(localLong3 + 8), plocalUInt2 != (uint64 *)0x0)) {
+  if ((1 < *(ulonglong *)(index + 0x10)) &&
+     (plocalUInt2 = *(uint64 **)(index + 8), plocalUInt2 != (uint64 *)0x0)) {
     uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
     if (uVar4 != 0) {
-      localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-      localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-        *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-        *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-        plocalInt1 = (int *)(localLong3 + 0x18);
+      index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+      index = index - (ulonglong)*(uint *)(index + 4);
+      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+        *plocalUInt2 = *(uint64 *)(index + 0x20);
+        *(uint64 **)(index + 0x20) = plocalUInt2;
+        plocalInt1 = (int *)(index + 0x18);
         *plocalInt1 = *plocalInt1 + -1;
         if (*plocalInt1 == 0) {
           FUN_18064d630();
@@ -29475,7 +29475,7 @@ void Unwind_180903520(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x70) + 0x300);
@@ -29484,12 +29484,12 @@ void Unwind_180903520(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -29525,21 +29525,21 @@ void Unwind_180903560(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
-  localLong3 = *(longlong *)(memorySize + 0x70);
+  index = *(longlong *)(memorySize + 0x70);
   FUN_18005a050();
-  if ((1 < *(ulonglong *)(localLong3 + 0x340)) &&
-     (plocalUInt2 = *(uint64 **)(localLong3 + 0x338), plocalUInt2 != (uint64 *)0x0)) {
+  if ((1 < *(ulonglong *)(index + 0x340)) &&
+     (plocalUInt2 = *(uint64 **)(index + 0x338), plocalUInt2 != (uint64 *)0x0)) {
     uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
     if (uVar4 != 0) {
-      localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-      localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-        *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-        *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-        plocalInt1 = (int *)(localLong3 + 0x18);
+      index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+      index = index - (ulonglong)*(uint *)(index + 4);
+      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+        *plocalUInt2 = *(uint64 *)(index + 0x20);
+        *(uint64 **)(index + 0x20) = plocalUInt2;
+        plocalInt1 = (int *)(index + 0x18);
         *plocalInt1 = *plocalInt1 + -1;
         if (*plocalInt1 == 0) {
           FUN_18064d630();
@@ -29651,21 +29651,21 @@ void Unwind_1809035e0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
-  localLong3 = *(longlong *)(memorySize + 0x80);
+  index = *(longlong *)(memorySize + 0x80);
   FUN_18005a050();
-  if ((1 < *(ulonglong *)(localLong3 + 0x10)) &&
-     (plocalUInt2 = *(uint64 **)(localLong3 + 8), plocalUInt2 != (uint64 *)0x0)) {
+  if ((1 < *(ulonglong *)(index + 0x10)) &&
+     (plocalUInt2 = *(uint64 **)(index + 8), plocalUInt2 != (uint64 *)0x0)) {
     uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
     if (uVar4 != 0) {
-      localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-      localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-        *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-        *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-        plocalInt1 = (int *)(localLong3 + 0x18);
+      index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+      index = index - (ulonglong)*(uint *)(index + 4);
+      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+        *plocalUInt2 = *(uint64 *)(index + 0x20);
+        *(uint64 **)(index + 0x20) = plocalUInt2;
+        plocalInt1 = (int *)(index + 0x18);
         *plocalInt1 = *plocalInt1 + -1;
         if (*plocalInt1 == 0) {
           FUN_18064d630();
@@ -29689,21 +29689,21 @@ void Unwind_1809035f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
-  localLong3 = *(longlong *)(memorySize + 0x80);
+  index = *(longlong *)(memorySize + 0x80);
   FUN_18005a050();
-  if ((1 < *(ulonglong *)(localLong3 + 0x10)) &&
-     (plocalUInt2 = *(uint64 **)(localLong3 + 8), plocalUInt2 != (uint64 *)0x0)) {
+  if ((1 < *(ulonglong *)(index + 0x10)) &&
+     (plocalUInt2 = *(uint64 **)(index + 8), plocalUInt2 != (uint64 *)0x0)) {
     uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
     if (uVar4 != 0) {
-      localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-      localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-        *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-        *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-        plocalInt1 = (int *)(localLong3 + 0x18);
+      index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+      index = index - (ulonglong)*(uint *)(index + 4);
+      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+        *plocalUInt2 = *(uint64 *)(index + 0x20);
+        *(uint64 **)(index + 0x20) = plocalUInt2;
+        plocalInt1 = (int *)(index + 0x18);
         *plocalInt1 = *plocalInt1 + -1;
         if (*plocalInt1 == 0) {
           FUN_18064d630();
@@ -34505,7 +34505,7 @@ void Unwind_180904630(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x50) + 0x10400);
@@ -34514,12 +34514,12 @@ void Unwind_180904630(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -35067,7 +35067,7 @@ void Unwind_180904920(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x40) + 0x28);
@@ -35076,12 +35076,12 @@ void Unwind_180904920(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -35103,7 +35103,7 @@ void Unwind_180904930(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x40) + 0x48);
@@ -35112,12 +35112,12 @@ void Unwind_180904930(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -35361,7 +35361,7 @@ void Unwind_1809049d0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x70) + 8);
@@ -35370,12 +35370,12 @@ void Unwind_1809049d0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -35397,7 +35397,7 @@ void Unwind_1809049e0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x70) + 0x28);
@@ -35406,12 +35406,12 @@ void Unwind_1809049e0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -35433,7 +35433,7 @@ void Unwind_1809049f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x70) + 0x48);
@@ -35442,12 +35442,12 @@ void Unwind_1809049f0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -35682,7 +35682,7 @@ void Unwind_180904a80(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x70);
@@ -35691,12 +35691,12 @@ void Unwind_180904a80(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -35718,7 +35718,7 @@ void Unwind_180904a90(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x70);
@@ -35727,12 +35727,12 @@ void Unwind_180904a90(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -35911,7 +35911,7 @@ void Catch_180904b90(uint64 resourceHandle,longlong memorySize)
 {
   ulonglong returnValue;
   longlong localLong2;
-  longlong localLong3;
+  longlong index;
   longlong lVar4;
   ulonglong uVar5;
   ulonglong uVar6;
@@ -35920,7 +35920,7 @@ void Catch_180904b90(uint64 resourceHandle,longlong memorySize)
   
   returnValue = *(ulonglong *)(memorySize + 0x20);
   localLong2 = *(longlong *)(memorySize + 0xa0);
-  localLong3 = *(longlong *)(localLong2 + 0x40);
+  index = *(longlong *)(localLong2 + 0x40);
   *(uint64 *)(localLong2 + 0x70) = *(uint64 *)(memorySize + 0x30);
   *(uint64 *)(localLong2 + 0x60) = *(uint64 *)(memorySize + 0xb8);
   lVar7 = *(longlong *)(memorySize + 0x28);
@@ -35948,7 +35948,7 @@ void Catch_180904b90(uint64 resourceHandle,longlong memorySize)
       } while (uVar6 != uVar8);
       *(ulonglong *)(memorySize + 0x20) = uVar6;
     }
-    if (lVar7 == localLong3) break;
+    if (lVar7 == index) break;
     lVar7 = *(longlong *)(lVar7 + 0x100);
     uVar5 = uVar6;
   }
@@ -35963,7 +35963,7 @@ void Catch_180904c60(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong localLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   ulonglong uVar4;
   ulonglong uVar5;
   longlong lVar6;
@@ -36005,14 +36005,14 @@ void Catch_180904c60(uint64 resourceHandle,longlong memorySize)
   if (localLong2 != 0) {
     while( true ) {
       *(ulonglong *)(memorySize + 0x20) = uVar8 + 0x20;
-      plocalLong3 = *(longlong **)(localLong1 + 0x60);
+      pindex = *(longlong **)(localLong1 + 0x60);
       *(uint64 *)
        (*(longlong *)
-         (plocalLong3[3] +
-         (((uVar8 + 0x20 & 0xffffffffffffffe0) - **(longlong **)(plocalLong3[3] + plocalLong3[1] * 8) >> 5) +
-          plocalLong3[1] & *plocalLong3 - 1U) * 8) + 8) = 0;
-      plocalLong3 = *(longlong **)(localLong1 + 0x60);
-      plocalLong3[1] = plocalLong3[1] - 1U & *plocalLong3 - 1U;
+         (pindex[3] +
+         (((uVar8 + 0x20 & 0xffffffffffffffe0) - **(longlong **)(pindex[3] + pindex[1] * 8) >> 5) +
+          pindex[1] & *pindex - 1U) * 8) + 8) = 0;
+      pindex = *(longlong **)(localLong1 + 0x60);
+      pindex[1] = pindex[1] - 1U & *pindex - 1U;
       lVar9 = *(longlong *)(lVar9 + 0x100);
       if (lVar9 == 0) break;
       uVar8 = *(ulonglong *)(memorySize + 0x20);
@@ -36258,7 +36258,7 @@ void Unwind_180904e70(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xc0);
@@ -36267,12 +36267,12 @@ void Unwind_180904e70(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -36372,7 +36372,7 @@ void Unwind_180904f30(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x90);
@@ -36381,12 +36381,12 @@ void Unwind_180904f30(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -36500,7 +36500,7 @@ void Unwind_180904fb0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x20);
@@ -36509,12 +36509,12 @@ void Unwind_180904fb0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -36660,7 +36660,7 @@ void Unwind_180905030(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x40);
@@ -36669,12 +36669,12 @@ void Unwind_180905030(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -36717,7 +36717,7 @@ void Unwind_180905050(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x98);
@@ -36726,12 +36726,12 @@ void Unwind_180905050(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -37074,7 +37074,7 @@ void Unwind_180905200(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x148);
@@ -37083,12 +37083,12 @@ void Unwind_180905200(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -37131,7 +37131,7 @@ void Unwind_180905220(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x208);
@@ -37140,12 +37140,12 @@ void Unwind_180905220(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -37206,7 +37206,7 @@ void Unwind_180905260(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x108);
@@ -37215,12 +37215,12 @@ void Unwind_180905260(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -37263,7 +37263,7 @@ void Unwind_180905280(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x228);
@@ -37272,12 +37272,12 @@ void Unwind_180905280(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -37406,7 +37406,7 @@ void Unwind_180905380(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x20);
@@ -37415,12 +37415,12 @@ void Unwind_180905380(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -37773,7 +37773,7 @@ void Unwind_180905540(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x50) + 0x213438);
@@ -37782,12 +37782,12 @@ void Unwind_180905540(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -37836,7 +37836,7 @@ void Unwind_1809055b0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x30);
@@ -37845,12 +37845,12 @@ void Unwind_1809055b0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -37872,7 +37872,7 @@ void Unwind_1809055c0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x30);
@@ -37881,12 +37881,12 @@ void Unwind_1809055c0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -38158,7 +38158,7 @@ void Unwind_1809057b0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   longlong *plVar4;
   uint64 *puVar5;
   int iVar6;
@@ -38223,9 +38223,9 @@ LAB_1801571ef:
   }
   plocalLong1 = puVar5 + 6;
   FUN_18015b450(plocalLong1);
-  plocalLong3 = puVar5 + 0x2d;
+  pindex = puVar5 + 0x2d;
   plVar4 = (longlong *)puVar5[0x2e];
-  plVar8 = (longlong *)*plocalLong3;
+  plVar8 = (longlong *)*pindex;
   if (plVar8 != plVar4) {
     do {
       if ((longlong *)*plVar8 != (longlong *)0x0) {
@@ -38233,7 +38233,7 @@ LAB_1801571ef:
       }
       plVar8 = plVar8 + 1;
     } while (plVar8 != plVar4);
-    plVar8 = (longlong *)*plocalLong3;
+    plVar8 = (longlong *)*pindex;
   }
   puVar5[0x2e] = plVar8;
   iVar6 = _Mtx_unlock(plocalLong2);
@@ -38249,8 +38249,8 @@ LAB_1801571ef:
   if ((longlong *)puVar5[0x3d] != (longlong *)0x0) {
     (**(code **)(*(longlong *)puVar5[0x3d] + 0x38))();
   }
-  plStackX_10 = plocalLong3;
-  FUN_180057830(plocalLong3);
+  plStackX_10 = pindex;
+  FUN_180057830(pindex);
   plStackX_10 = puVar5 + 0x28;
   FUN_180048980();
   plStackX_10 = puVar5 + 0x24;
@@ -38464,7 +38464,7 @@ void Unwind_180905880(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x2e8);
@@ -38473,12 +38473,12 @@ void Unwind_180905880(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -38500,19 +38500,19 @@ void Unwind_180905890(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = *(longlong **)(memorySize + 0x2e0);
   localLong1 = plocalLong2[1];
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x28) {
-    *(uint64 *)(localLong3 + 8) = &threadLocalStorageData;
-    if (*(longlong *)(localLong3 + 0x10) != 0) {
+  for (index = *plocalLong2; index != localLong1; index = index + 0x28) {
+    *(uint64 *)(index + 8) = &threadLocalStorageData;
+    if (*(longlong *)(index + 0x10) != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    *(uint64 *)(localLong3 + 0x10) = 0;
-    *(uint32 *)(localLong3 + 0x20) = 0;
-    *(uint64 *)(localLong3 + 8) = &threadLocalStorageCleanup;
+    *(uint64 *)(index + 0x10) = 0;
+    *(uint32 *)(index + 0x20) = 0;
+    *(uint64 *)(index + 8) = &threadLocalStorageCleanup;
   }
   if (*plocalLong2 != 0) {
                     // WARNING: Subroutine does not return
@@ -38574,19 +38574,19 @@ void Unwind_1809058c0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = *(longlong **)(memorySize + 0x2e8);
   localLong1 = plocalLong2[1];
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x28) {
-    *(uint64 *)(localLong3 + 8) = &threadLocalStorageData;
-    if (*(longlong *)(localLong3 + 0x10) != 0) {
+  for (index = *plocalLong2; index != localLong1; index = index + 0x28) {
+    *(uint64 *)(index + 8) = &threadLocalStorageData;
+    if (*(longlong *)(index + 0x10) != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    *(uint64 *)(localLong3 + 0x10) = 0;
-    *(uint32 *)(localLong3 + 0x20) = 0;
-    *(uint64 *)(localLong3 + 8) = &threadLocalStorageCleanup;
+    *(uint64 *)(index + 0x10) = 0;
+    *(uint32 *)(index + 0x20) = 0;
+    *(uint64 *)(index + 8) = &threadLocalStorageCleanup;
   }
   if (*plocalLong2 != 0) {
                     // WARNING: Subroutine does not return
@@ -38755,7 +38755,7 @@ void Unwind_180905950(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   longlong *plVar4;
   uint64 *puVar5;
   int iVar6;
@@ -38820,9 +38820,9 @@ LAB_1801571ef:
   }
   plocalLong1 = puVar5 + 6;
   FUN_18015b450(plocalLong1);
-  plocalLong3 = puVar5 + 0x2d;
+  pindex = puVar5 + 0x2d;
   plVar4 = (longlong *)puVar5[0x2e];
-  plVar8 = (longlong *)*plocalLong3;
+  plVar8 = (longlong *)*pindex;
   if (plVar8 != plVar4) {
     do {
       if ((longlong *)*plVar8 != (longlong *)0x0) {
@@ -38830,7 +38830,7 @@ LAB_1801571ef:
       }
       plVar8 = plVar8 + 1;
     } while (plVar8 != plVar4);
-    plVar8 = (longlong *)*plocalLong3;
+    plVar8 = (longlong *)*pindex;
   }
   puVar5[0x2e] = plVar8;
   iVar6 = _Mtx_unlock(plocalLong2);
@@ -38846,8 +38846,8 @@ LAB_1801571ef:
   if ((longlong *)puVar5[0x3d] != (longlong *)0x0) {
     (**(code **)(*(longlong *)puVar5[0x3d] + 0x38))();
   }
-  plStackX_10 = plocalLong3;
-  FUN_180057830(plocalLong3);
+  plStackX_10 = pindex;
+  FUN_180057830(pindex);
   plStackX_10 = puVar5 + 0x28;
   FUN_180048980();
   plStackX_10 = puVar5 + 0x24;
@@ -39287,13 +39287,13 @@ void Unwind_180905b70(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   ulonglong uVar5;
   
-  localLong3 = *(longlong *)(memorySize + 0x58);
-  uVar4 = *(ulonglong *)(localLong3 + 0x340);
-  localLong1 = *(longlong *)(localLong3 + 0x338);
+  index = *(longlong *)(memorySize + 0x58);
+  uVar4 = *(ulonglong *)(index + 0x340);
+  localLong1 = *(longlong *)(index + 0x338);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -39306,10 +39306,10 @@ void Unwind_180905b70(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(localLong3 + 0x340);
+    uVar4 = *(ulonglong *)(index + 0x340);
   }
-  *(uint64 *)(localLong3 + 0x348) = 0;
-  if ((1 < uVar4) && (*(longlong *)(localLong3 + 0x338) != 0)) {
+  *(uint64 *)(index + 0x348) = 0;
+  if ((1 < uVar4) && (*(longlong *)(index + 0x338) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -39429,13 +39429,13 @@ void Unwind_180905c10(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   ulonglong uVar5;
   
-  localLong3 = *(longlong *)(memorySize + 0x38);
-  uVar4 = *(ulonglong *)(localLong3 + 0x10);
-  localLong1 = *(longlong *)(localLong3 + 8);
+  index = *(longlong *)(memorySize + 0x38);
+  uVar4 = *(ulonglong *)(index + 0x10);
+  localLong1 = *(longlong *)(index + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -39448,10 +39448,10 @@ void Unwind_180905c10(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(localLong3 + 0x10);
+    uVar4 = *(ulonglong *)(index + 0x10);
   }
-  *(uint64 *)(localLong3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(localLong3 + 8) != 0)) {
+  *(uint64 *)(index + 0x18) = 0;
+  if ((1 < uVar4) && (*(longlong *)(index + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -39465,13 +39465,13 @@ void Unwind_180905c20(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   ulonglong uVar5;
   
-  localLong3 = *(longlong *)(memorySize + 0x38);
-  uVar4 = *(ulonglong *)(localLong3 + 0x10);
-  localLong1 = *(longlong *)(localLong3 + 8);
+  index = *(longlong *)(memorySize + 0x38);
+  uVar4 = *(ulonglong *)(index + 0x10);
+  localLong1 = *(longlong *)(index + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -39484,10 +39484,10 @@ void Unwind_180905c20(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(localLong3 + 0x10);
+    uVar4 = *(ulonglong *)(index + 0x10);
   }
-  *(uint64 *)(localLong3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(localLong3 + 8) != 0)) {
+  *(uint64 *)(index + 0x18) = 0;
+  if ((1 < uVar4) && (*(longlong *)(index + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -39501,13 +39501,13 @@ void Unwind_180905c30(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   ulonglong uVar5;
   
-  localLong3 = *(longlong *)(memorySize + 0x40);
-  uVar4 = *(ulonglong *)(localLong3 + 0x10);
-  localLong1 = *(longlong *)(localLong3 + 8);
+  index = *(longlong *)(memorySize + 0x40);
+  uVar4 = *(ulonglong *)(index + 0x10);
+  localLong1 = *(longlong *)(index + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -39520,10 +39520,10 @@ void Unwind_180905c30(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(localLong3 + 0x10);
+    uVar4 = *(ulonglong *)(index + 0x10);
   }
-  *(uint64 *)(localLong3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(localLong3 + 8) != 0)) {
+  *(uint64 *)(index + 0x18) = 0;
+  if ((1 < uVar4) && (*(longlong *)(index + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -39537,13 +39537,13 @@ void Unwind_180905c40(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   ulonglong uVar5;
   
-  localLong3 = *(longlong *)(memorySize + 0x40);
-  uVar4 = *(ulonglong *)(localLong3 + 0x10);
-  localLong1 = *(longlong *)(localLong3 + 8);
+  index = *(longlong *)(memorySize + 0x40);
+  uVar4 = *(ulonglong *)(index + 0x10);
+  localLong1 = *(longlong *)(index + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -39556,10 +39556,10 @@ void Unwind_180905c40(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(localLong3 + 0x10);
+    uVar4 = *(ulonglong *)(index + 0x10);
   }
-  *(uint64 *)(localLong3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(localLong3 + 8) != 0)) {
+  *(uint64 *)(index + 0x18) = 0;
+  if ((1 < uVar4) && (*(longlong *)(index + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -39637,13 +39637,13 @@ void Unwind_180905c60(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   ulonglong uVar5;
   
-  localLong3 = *(longlong *)(memorySize + 0x40);
-  uVar4 = *(ulonglong *)(localLong3 + 0x340);
-  localLong1 = *(longlong *)(localLong3 + 0x338);
+  index = *(longlong *)(memorySize + 0x40);
+  uVar4 = *(ulonglong *)(index + 0x340);
+  localLong1 = *(longlong *)(index + 0x338);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -39656,10 +39656,10 @@ void Unwind_180905c60(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(localLong3 + 0x340);
+    uVar4 = *(ulonglong *)(index + 0x340);
   }
-  *(uint64 *)(localLong3 + 0x348) = 0;
-  if ((1 < uVar4) && (*(longlong *)(localLong3 + 0x338) != 0)) {
+  *(uint64 *)(index + 0x348) = 0;
+  if ((1 < uVar4) && (*(longlong *)(index + 0x338) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -39673,13 +39673,13 @@ void Unwind_180905c80(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   ulonglong uVar5;
   
-  localLong3 = *(longlong *)(memorySize + 0x48);
-  uVar4 = *(ulonglong *)(localLong3 + 0x10);
-  localLong1 = *(longlong *)(localLong3 + 8);
+  index = *(longlong *)(memorySize + 0x48);
+  uVar4 = *(ulonglong *)(index + 0x10);
+  localLong1 = *(longlong *)(index + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -39692,10 +39692,10 @@ void Unwind_180905c80(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(localLong3 + 0x10);
+    uVar4 = *(ulonglong *)(index + 0x10);
   }
-  *(uint64 *)(localLong3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(localLong3 + 8) != 0)) {
+  *(uint64 *)(index + 0x18) = 0;
+  if ((1 < uVar4) && (*(longlong *)(index + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -39709,13 +39709,13 @@ void Unwind_180905c90(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   ulonglong uVar5;
   
-  localLong3 = *(longlong *)(memorySize + 0x48);
-  uVar4 = *(ulonglong *)(localLong3 + 0x10);
-  localLong1 = *(longlong *)(localLong3 + 8);
+  index = *(longlong *)(memorySize + 0x48);
+  uVar4 = *(ulonglong *)(index + 0x10);
+  localLong1 = *(longlong *)(index + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -39728,10 +39728,10 @@ void Unwind_180905c90(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(localLong3 + 0x10);
+    uVar4 = *(ulonglong *)(index + 0x10);
   }
-  *(uint64 *)(localLong3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(localLong3 + 8) != 0)) {
+  *(uint64 *)(index + 0x18) = 0;
+  if ((1 < uVar4) && (*(longlong *)(index + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -39990,8 +39990,8 @@ void Unwind_180905e40(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong *plocalLong1;
-  int *plocalInt2;
-  longlong *plocalLong3;
+  int *pstatus;
+  longlong *pindex;
   int localInt4;
   longlong lVar5;
   longlong lVar6;
@@ -39999,21 +39999,21 @@ void Unwind_180905e40(uint64 resourceHandle,longlong memorySize)
   longlong lVar8;
   bool bVar9;
   
-  plocalLong3 = (longlong *)(memorySize + 0x28);
-  FUN_180069530((ulonglong)(*(uint *)(memorySize + 0x30) & 0x1f) * 0x1a8 + *plocalLong3);
+  pindex = (longlong *)(memorySize + 0x28);
+  FUN_180069530((ulonglong)(*(uint *)(memorySize + 0x30) & 0x1f) * 0x1a8 + *pindex);
   LOCK();
-  plocalLong1 = (longlong *)(*plocalLong3 + 0x3508);
+  plocalLong1 = (longlong *)(*pindex + 0x3508);
   lVar5 = *plocalLong1;
   *plocalLong1 = *plocalLong1 + 1;
   UNLOCK();
   if (lVar5 == 0x1f) {
     *(uint64 *)(*(longlong *)(memorySize + 0x38) + 8) = 0;
-    lVar5 = *plocalLong3;
+    lVar5 = *pindex;
     lVar6 = *(longlong *)(memorySize + 0x40);
     LOCK();
-    plocalInt2 = (int *)(lVar5 + 0x3530);
-    localInt4 = *plocalInt2;
-    *plocalInt2 = *plocalInt2 + -0x80000000;
+    pstatus = (int *)(lVar5 + 0x3530);
+    localInt4 = *pstatus;
+    *pstatus = *pstatus + -0x80000000;
     UNLOCK();
     if (localInt4 == 0) {
       lVar8 = *(longlong *)(lVar6 + 0x28);
@@ -40033,9 +40033,9 @@ void Unwind_180905e40(uint64 resourceHandle,longlong memorySize)
           return;
         }
         LOCK();
-        plocalInt2 = (int *)(lVar5 + 0x3530);
-        localInt4 = *plocalInt2;
-        *plocalInt2 = *plocalInt2 + 0x7fffffff;
+        pstatus = (int *)(lVar5 + 0x3530);
+        localInt4 = *pstatus;
+        *pstatus = *pstatus + 0x7fffffff;
         UNLOCK();
         lVar8 = lVar7;
       } while (localInt4 == 1);
@@ -40157,12 +40157,12 @@ void Unwind_180905ec0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x50) + 0x3c8);
   localLong1 = *(longlong *)(*(longlong *)(memorySize + 0x50) + 0x3d0);
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x1a8) {
-    FUN_180069530(localLong3);
+  for (index = *plocalLong2; index != localLong1; index = index + 0x1a8) {
+    FUN_180069530(index);
   }
   if (*plocalLong2 == 0) {
     return;
@@ -40178,12 +40178,12 @@ void Unwind_180905ee0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = *(longlong **)(memorySize + 0x60);
   localLong1 = plocalLong2[1];
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x1a8) {
-    FUN_180069530(localLong3);
+  for (index = *plocalLong2; index != localLong1; index = index + 0x1a8) {
+    FUN_180069530(index);
   }
   if (*plocalLong2 == 0) {
     return;
@@ -40366,12 +40366,12 @@ void Unwind_180905f80(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = *(longlong **)(memorySize + 0x40);
   localLong1 = plocalLong2[1];
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x1a8) {
-    FUN_180069530(localLong3);
+  for (index = *plocalLong2; index != localLong1; index = index + 0x1a8) {
+    FUN_180069530(index);
   }
   if (*plocalLong2 == 0) {
     return;
@@ -40468,12 +40468,12 @@ void Unwind_180905fc0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x70) + 0x3c8);
   localLong1 = *(longlong *)(*(longlong *)(memorySize + 0x70) + 0x3d0);
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x1a8) {
-    FUN_180069530(localLong3);
+  for (index = *plocalLong2; index != localLong1; index = index + 0x1a8) {
+    FUN_180069530(index);
   }
   if (*plocalLong2 == 0) {
     return;
@@ -40595,12 +40595,12 @@ void Unwind_180906060(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = *(longlong **)(memorySize + 0x78);
   localLong1 = plocalLong2[1];
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x1a8) {
-    FUN_180069530(localLong3);
+  for (index = *plocalLong2; index != localLong1; index = index + 0x1a8) {
+    FUN_180069530(index);
   }
   if (*plocalLong2 == 0) {
     return;
@@ -40794,7 +40794,7 @@ void Unwind_180906160(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0xa8) + 0x1d8);
@@ -40803,12 +40803,12 @@ void Unwind_180906160(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -40830,7 +40830,7 @@ void Unwind_180906180(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0xb0);
@@ -40839,12 +40839,12 @@ void Unwind_180906180(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -40866,7 +40866,7 @@ void Unwind_180906190(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0xb0);
@@ -40875,12 +40875,12 @@ void Unwind_180906190(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -40958,7 +40958,7 @@ void Unwind_1809061f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x40) + 0x1d8);
@@ -40967,12 +40967,12 @@ void Unwind_1809061f0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -41204,7 +41204,7 @@ void Unwind_180906470(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xe0);
@@ -41213,12 +41213,12 @@ void Unwind_180906470(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -41354,37 +41354,37 @@ void Unwind_1809064c0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = *(longlong **)(memorySize + 0x20);
   plocalLong1 = (longlong *)plocalLong2[1];
-  plocalLong3 = (longlong *)*plocalLong2;
+  pindex = (longlong *)*plocalLong2;
   while( true ) {
-    if (plocalLong3 == plocalLong1) {
+    if (pindex == plocalLong1) {
       if (*plocalLong2 != 0) {
                     // WARNING: Subroutine does not return
         HandleCriticalError();
       }
       return;
     }
-    if (*(longlong *)((longlong)plocalLong3 + 0x12) != 0) {
+    if (*(longlong *)((longlong)pindex + 0x12) != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    *(uint64 *)((longlong)plocalLong3 + 0x12) = 0;
-    if (*(longlong *)((longlong)plocalLong3 + 0x1a) != 0) break;
-    *(uint64 *)((longlong)plocalLong3 + 0x1a) = 0;
-    if (*plocalLong3 != 0) {
+    *(uint64 *)((longlong)pindex + 0x12) = 0;
+    if (*(longlong *)((longlong)pindex + 0x1a) != 0) break;
+    *(uint64 *)((longlong)pindex + 0x1a) = 0;
+    if (*pindex != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    *plocalLong3 = 0;
-    if (plocalLong3[1] != 0) {
+    *pindex = 0;
+    if (pindex[1] != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    plocalLong3[1] = 0;
-    plocalLong3 = (longlong *)((longlong)plocalLong3 + 0x24);
+    pindex[1] = 0;
+    pindex = (longlong *)((longlong)pindex + 0x24);
   }
                     // WARNING: Subroutine does not return
   HandleCriticalError();
@@ -41397,37 +41397,37 @@ void Unwind_1809064d0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x40) + 0x20);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x40) + 0x28);
-  plocalLong3 = (longlong *)*plocalLong2;
+  pindex = (longlong *)*plocalLong2;
   while( true ) {
-    if (plocalLong3 == plocalLong1) {
+    if (pindex == plocalLong1) {
       if (*plocalLong2 != 0) {
                     // WARNING: Subroutine does not return
         HandleCriticalError();
       }
       return;
     }
-    if (*(longlong *)((longlong)plocalLong3 + 0x12) != 0) {
+    if (*(longlong *)((longlong)pindex + 0x12) != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    *(uint64 *)((longlong)plocalLong3 + 0x12) = 0;
-    if (*(longlong *)((longlong)plocalLong3 + 0x1a) != 0) break;
-    *(uint64 *)((longlong)plocalLong3 + 0x1a) = 0;
-    if (*plocalLong3 != 0) {
+    *(uint64 *)((longlong)pindex + 0x12) = 0;
+    if (*(longlong *)((longlong)pindex + 0x1a) != 0) break;
+    *(uint64 *)((longlong)pindex + 0x1a) = 0;
+    if (*pindex != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    *plocalLong3 = 0;
-    if (plocalLong3[1] != 0) {
+    *pindex = 0;
+    if (pindex[1] != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    plocalLong3[1] = 0;
-    plocalLong3 = (longlong *)((longlong)plocalLong3 + 0x24);
+    pindex[1] = 0;
+    pindex = (longlong *)((longlong)pindex + 0x24);
   }
                     // WARNING: Subroutine does not return
   HandleCriticalError();
@@ -41482,37 +41482,37 @@ void Unwind_180906500(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = *(longlong **)(memorySize + 0x48);
   plocalLong1 = (longlong *)plocalLong2[1];
-  plocalLong3 = (longlong *)*plocalLong2;
+  pindex = (longlong *)*plocalLong2;
   while( true ) {
-    if (plocalLong3 == plocalLong1) {
+    if (pindex == plocalLong1) {
       if (*plocalLong2 != 0) {
                     // WARNING: Subroutine does not return
         HandleCriticalError();
       }
       return;
     }
-    if (*(longlong *)((longlong)plocalLong3 + 0x12) != 0) {
+    if (*(longlong *)((longlong)pindex + 0x12) != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    *(uint64 *)((longlong)plocalLong3 + 0x12) = 0;
-    if (*(longlong *)((longlong)plocalLong3 + 0x1a) != 0) break;
-    *(uint64 *)((longlong)plocalLong3 + 0x1a) = 0;
-    if (*plocalLong3 != 0) {
+    *(uint64 *)((longlong)pindex + 0x12) = 0;
+    if (*(longlong *)((longlong)pindex + 0x1a) != 0) break;
+    *(uint64 *)((longlong)pindex + 0x1a) = 0;
+    if (*pindex != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    *plocalLong3 = 0;
-    if (plocalLong3[1] != 0) {
+    *pindex = 0;
+    if (pindex[1] != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    plocalLong3[1] = 0;
-    plocalLong3 = (longlong *)((longlong)plocalLong3 + 0x24);
+    pindex[1] = 0;
+    pindex = (longlong *)((longlong)pindex + 0x24);
   }
                     // WARNING: Subroutine does not return
   HandleCriticalError();
@@ -41525,37 +41525,37 @@ void Unwind_180906510(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = *(longlong **)(memorySize + 0x40);
   plocalLong1 = (longlong *)plocalLong2[1];
-  plocalLong3 = (longlong *)*plocalLong2;
+  pindex = (longlong *)*plocalLong2;
   while( true ) {
-    if (plocalLong3 == plocalLong1) {
+    if (pindex == plocalLong1) {
       if (*plocalLong2 != 0) {
                     // WARNING: Subroutine does not return
         HandleCriticalError();
       }
       return;
     }
-    if (*(longlong *)((longlong)plocalLong3 + 0x12) != 0) {
+    if (*(longlong *)((longlong)pindex + 0x12) != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    *(uint64 *)((longlong)plocalLong3 + 0x12) = 0;
-    if (*(longlong *)((longlong)plocalLong3 + 0x1a) != 0) break;
-    *(uint64 *)((longlong)plocalLong3 + 0x1a) = 0;
-    if (*plocalLong3 != 0) {
+    *(uint64 *)((longlong)pindex + 0x12) = 0;
+    if (*(longlong *)((longlong)pindex + 0x1a) != 0) break;
+    *(uint64 *)((longlong)pindex + 0x1a) = 0;
+    if (*pindex != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    *plocalLong3 = 0;
-    if (plocalLong3[1] != 0) {
+    *pindex = 0;
+    if (pindex[1] != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    plocalLong3[1] = 0;
-    plocalLong3 = (longlong *)((longlong)plocalLong3 + 0x24);
+    pindex[1] = 0;
+    pindex = (longlong *)((longlong)pindex + 0x24);
   }
                     // WARNING: Subroutine does not return
   HandleCriticalError();
@@ -42571,7 +42571,7 @@ void Unwind_180906b50(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x88);
@@ -42580,12 +42580,12 @@ void Unwind_180906b50(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -42696,7 +42696,7 @@ void Unwind_180906bb0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x58);
@@ -42705,12 +42705,12 @@ void Unwind_180906bb0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -42732,7 +42732,7 @@ void Unwind_180906bc0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x58);
@@ -42741,12 +42741,12 @@ void Unwind_180906bc0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -42849,7 +42849,7 @@ void Unwind_180906c50(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x118);
@@ -42858,12 +42858,12 @@ void Unwind_180906c50(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -42927,7 +42927,7 @@ void Unwind_180906c80(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xa8);
@@ -42936,12 +42936,12 @@ void Unwind_180906c80(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -42963,7 +42963,7 @@ void Unwind_180906c90(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x30);
@@ -42972,12 +42972,12 @@ void Unwind_180906c90(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -42999,7 +42999,7 @@ void Unwind_180906ca0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x88);
@@ -43008,12 +43008,12 @@ void Unwind_180906ca0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -43056,7 +43056,7 @@ void Unwind_180906cc0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x118);
@@ -43065,12 +43065,12 @@ void Unwind_180906cc0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -43092,7 +43092,7 @@ void Unwind_180906cd0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x118);
@@ -43101,12 +43101,12 @@ void Unwind_180906cd0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -43149,7 +43149,7 @@ void Unwind_180906cf0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xf8);
@@ -43158,12 +43158,12 @@ void Unwind_180906cf0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -43185,7 +43185,7 @@ void Unwind_180906d00(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x260);
@@ -43194,12 +43194,12 @@ void Unwind_180906d00(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -43221,7 +43221,7 @@ void Unwind_180906d10(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x260);
@@ -43230,12 +43230,12 @@ void Unwind_180906d10(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -43278,7 +43278,7 @@ void Unwind_180906d30(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xd8);
@@ -43287,12 +43287,12 @@ void Unwind_180906d30(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -43314,7 +43314,7 @@ void Unwind_180906d40(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xa8);
@@ -43323,12 +43323,12 @@ void Unwind_180906d40(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -43350,7 +43350,7 @@ void Unwind_180906d50(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xa8);
@@ -43359,12 +43359,12 @@ void Unwind_180906d50(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -43386,7 +43386,7 @@ void Unwind_180906d60(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x30);
@@ -43395,12 +43395,12 @@ void Unwind_180906d60(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -43422,7 +43422,7 @@ void Unwind_180906d70(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x30);
@@ -43431,12 +43431,12 @@ void Unwind_180906d70(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -43458,7 +43458,7 @@ void Unwind_180906d80(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x88);
@@ -43467,12 +43467,12 @@ void Unwind_180906d80(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -43494,7 +43494,7 @@ void Unwind_180906d90(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x268);
@@ -43503,12 +43503,12 @@ void Unwind_180906d90(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -43530,7 +43530,7 @@ void Unwind_180906da0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x268);
@@ -43539,12 +43539,12 @@ void Unwind_180906da0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -43587,7 +43587,7 @@ void Unwind_180906dc0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x30);
@@ -43596,12 +43596,12 @@ void Unwind_180906dc0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -44621,7 +44621,7 @@ void Unwind_180907350(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x40);
@@ -44630,12 +44630,12 @@ void Unwind_180907350(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -44657,7 +44657,7 @@ void Unwind_180907360(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x48);
@@ -44666,12 +44666,12 @@ void Unwind_180907360(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -44693,7 +44693,7 @@ void Unwind_180907370(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x48);
@@ -44702,12 +44702,12 @@ void Unwind_180907370(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -44910,7 +44910,7 @@ void Unwind_1809074d0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x50);
@@ -44919,12 +44919,12 @@ void Unwind_1809074d0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -44946,7 +44946,7 @@ void Unwind_1809074e0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x50);
@@ -44955,12 +44955,12 @@ void Unwind_1809074e0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -44982,7 +44982,7 @@ void Unwind_1809074f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x40);
@@ -44991,12 +44991,12 @@ void Unwind_1809074f0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -45364,17 +45364,17 @@ void Unwind_180907710(uint64 resourceHandle,longlong memorySize)
 {
   uint64 *preturnValue;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x50);
   *plocalUInt2 = &unknown_180a14bb8;
   preturnValue = (uint64 *)plocalUInt2[0x11];
   if (preturnValue != (uint64 *)0x0) {
-    localLong3 = __RTCastToVoid(preturnValue);
+    index = __RTCastToVoid(preturnValue);
     (**(code **)*preturnValue)(preturnValue,0);
-    if (localLong3 != 0) {
+    if (index != 0) {
                     // WARNING: Subroutine does not return
-      HandleCriticalError(localLong3);
+      HandleCriticalError(index);
     }
   }
   plocalUInt2[0x11] = 0;
@@ -45416,17 +45416,17 @@ void Unwind_180907740(uint64 resourceHandle,longlong memorySize)
 {
   uint64 *preturnValue;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x40);
   *plocalUInt2 = &unknown_180a14bb8;
   preturnValue = (uint64 *)plocalUInt2[0x11];
   if (preturnValue != (uint64 *)0x0) {
-    localLong3 = __RTCastToVoid(preturnValue);
+    index = __RTCastToVoid(preturnValue);
     (**(code **)*preturnValue)(preturnValue,0);
-    if (localLong3 != 0) {
+    if (index != 0) {
                     // WARNING: Subroutine does not return
-      HandleCriticalError(localLong3);
+      HandleCriticalError(index);
     }
   }
   plocalUInt2[0x11] = 0;
@@ -45567,12 +45567,12 @@ void Unwind_180907800(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x20) + 8);
   localLong1 = *(longlong *)(*(longlong *)(memorySize + 0x20) + 0x10);
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x60) {
-    FUN_180089640(localLong3);
+  for (index = *plocalLong2; index != localLong1; index = index + 0x60) {
+    FUN_180089640(index);
   }
   if (*plocalLong2 == 0) {
     return;
@@ -45665,7 +45665,7 @@ void Unwind_180907880(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x20) + 0x110);
@@ -45674,12 +45674,12 @@ void Unwind_180907880(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -45701,12 +45701,12 @@ void Unwind_1809078a0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = *(longlong **)(memorySize + 0x28);
   localLong1 = plocalLong2[1];
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x60) {
-    FUN_180089640(localLong3);
+  for (index = *plocalLong2; index != localLong1; index = index + 0x60) {
+    FUN_180089640(index);
   }
   if (*plocalLong2 == 0) {
     return;
@@ -45817,12 +45817,12 @@ void Unwind_180907920(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = *(longlong **)(memorySize + 0x40);
   localLong1 = plocalLong2[1];
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x60) {
-    FUN_180089640(localLong3);
+  for (index = *plocalLong2; index != localLong1; index = index + 0x60) {
+    FUN_180089640(index);
   }
   if (*plocalLong2 == 0) {
     return;
@@ -45991,26 +45991,26 @@ void Unwind_1809079d0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
-  localLong3 = *(longlong *)(memorySize + 0x80);
-  *(data **)(localLong3 + 0xd8) = &threadLocalStorageCleanup;
-  if (*(longlong *)(localLong3 + 0xa8) != 0) {
+  index = *(longlong *)(memorySize + 0x80);
+  *(data **)(index + 0xd8) = &threadLocalStorageCleanup;
+  if (*(longlong *)(index + 0xa8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  FUN_1800ba100(localLong3 + 0x78);
-  if ((1 < *(ulonglong *)(localLong3 + 0x88)) &&
-     (plocalUInt2 = *(uint64 **)(localLong3 + 0x80), plocalUInt2 != (uint64 *)0x0)) {
+  FUN_1800ba100(index + 0x78);
+  if ((1 < *(ulonglong *)(index + 0x88)) &&
+     (plocalUInt2 = *(uint64 **)(index + 0x80), plocalUInt2 != (uint64 *)0x0)) {
     uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
     if (uVar4 != 0) {
-      localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-      localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-        *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-        *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-        plocalInt1 = (int *)(localLong3 + 0x18);
+      index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+      index = index - (ulonglong)*(uint *)(index + 4);
+      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+        *plocalUInt2 = *(uint64 *)(index + 0x20);
+        *(uint64 **)(index + 0x20) = plocalUInt2;
+        plocalInt1 = (int *)(index + 0x18);
         *plocalInt1 = *plocalInt1 + -1;
         if (*plocalInt1 == 0) {
           FUN_18064d630();
@@ -46034,7 +46034,7 @@ void Unwind_1809079e0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x80) + 0x180);
@@ -46043,12 +46043,12 @@ void Unwind_1809079e0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -46088,7 +46088,7 @@ void Unwind_180907a10(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x130);
@@ -46097,12 +46097,12 @@ void Unwind_180907a10(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -46167,7 +46167,7 @@ void Unwind_180907a50(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x130);
@@ -46176,12 +46176,12 @@ void Unwind_180907a50(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -46203,7 +46203,7 @@ void Unwind_180907a60(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x130);
@@ -46212,12 +46212,12 @@ void Unwind_180907a60(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -46502,7 +46502,7 @@ void Unwind_180907c20(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x230);
@@ -46511,12 +46511,12 @@ void Unwind_180907c20(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -46582,7 +46582,7 @@ void Unwind_180907c70(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x230);
@@ -46591,12 +46591,12 @@ void Unwind_180907c70(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -46618,7 +46618,7 @@ void Unwind_180907c80(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x230);
@@ -46627,12 +46627,12 @@ void Unwind_180907c80(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -46799,7 +46799,7 @@ void Unwind_180907d30(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x168);
@@ -46808,12 +46808,12 @@ void Unwind_180907d30(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -46982,7 +46982,7 @@ void Unwind_180907e90(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x28);
@@ -46991,12 +46991,12 @@ void Unwind_180907e90(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -47018,7 +47018,7 @@ void Unwind_180907ea0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x38);
@@ -47027,12 +47027,12 @@ void Unwind_180907ea0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -47054,7 +47054,7 @@ void Unwind_180907eb0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x60);
@@ -47063,12 +47063,12 @@ void Unwind_180907eb0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -47090,7 +47090,7 @@ void Unwind_180907ec0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x38);
@@ -47099,12 +47099,12 @@ void Unwind_180907ec0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -47126,7 +47126,7 @@ void Unwind_180907ed0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x38);
@@ -47135,12 +47135,12 @@ void Unwind_180907ed0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -47353,7 +47353,7 @@ void Unwind_180908000(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x48);
@@ -47362,12 +47362,12 @@ void Unwind_180908000(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -47421,7 +47421,7 @@ void Unwind_180908030(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x48);
@@ -47430,12 +47430,12 @@ void Unwind_180908030(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -48194,7 +48194,7 @@ void Unwind_180908650(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x50) + 0x10);
@@ -48203,12 +48203,12 @@ void Unwind_180908650(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -48345,13 +48345,13 @@ void Unwind_180908730(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x50) + 0x1868);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x50) + 0x1870);
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -48386,13 +48386,13 @@ void Unwind_180908770(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = *(longlong **)(memorySize + 0x60);
   plocalLong1 = (longlong *)plocalLong2[1];
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -48449,7 +48449,7 @@ void Unwind_1809087c0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xa0);
@@ -48458,12 +48458,12 @@ void Unwind_1809087c0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -48559,7 +48559,7 @@ void Unwind_180908830(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xa0);
@@ -48568,12 +48568,12 @@ void Unwind_180908830(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -48595,7 +48595,7 @@ void Unwind_180908840(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xa0);
@@ -48604,12 +48604,12 @@ void Unwind_180908840(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -48663,7 +48663,7 @@ void Unwind_180908870(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x160);
@@ -48672,12 +48672,12 @@ void Unwind_180908870(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -48975,7 +48975,7 @@ void Unwind_180908a20(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x1a0);
@@ -48984,12 +48984,12 @@ void Unwind_180908a20(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -49011,7 +49011,7 @@ void Unwind_180908a30(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x160);
@@ -49020,12 +49020,12 @@ void Unwind_180908a30(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -49047,7 +49047,7 @@ void Unwind_180908a40(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x120);
@@ -49056,12 +49056,12 @@ void Unwind_180908a40(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -49083,7 +49083,7 @@ void Unwind_180908a50(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x1a0);
@@ -49092,12 +49092,12 @@ void Unwind_180908a50(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -49119,7 +49119,7 @@ void Unwind_180908a60(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x1a0);
@@ -49128,12 +49128,12 @@ void Unwind_180908a60(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -49155,7 +49155,7 @@ void Unwind_180908a70(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x160);
@@ -49164,12 +49164,12 @@ void Unwind_180908a70(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -49191,7 +49191,7 @@ void Unwind_180908a80(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x120);
@@ -49200,12 +49200,12 @@ void Unwind_180908a80(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -49227,7 +49227,7 @@ void Unwind_180908a90(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x68);
@@ -49236,12 +49236,12 @@ void Unwind_180908a90(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -49272,7 +49272,7 @@ void Unwind_180908ab0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x60) + 0x48);
@@ -49281,12 +49281,12 @@ void Unwind_180908ab0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -49308,7 +49308,7 @@ void Unwind_180908ac0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x68);
@@ -49317,12 +49317,12 @@ void Unwind_180908ac0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -49344,7 +49344,7 @@ void Unwind_180908ad0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x68);
@@ -49353,12 +49353,12 @@ void Unwind_180908ad0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -49417,7 +49417,7 @@ void Unwind_180908b10(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x30) + 0x48);
@@ -49426,12 +49426,12 @@ void Unwind_180908b10(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -49920,7 +49920,7 @@ void Unwind_180908dd0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x108) + 0x48);
@@ -49929,12 +49929,12 @@ void Unwind_180908dd0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -49965,7 +49965,7 @@ void Unwind_180908df0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0xa0);
@@ -49974,12 +49974,12 @@ void Unwind_180908df0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -50001,7 +50001,7 @@ void Unwind_180908e00(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0xa0);
@@ -50010,12 +50010,12 @@ void Unwind_180908e00(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -50065,7 +50065,7 @@ void Unwind_180908e50(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x60) + 0x20);
@@ -50074,12 +50074,12 @@ void Unwind_180908e50(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -50101,7 +50101,7 @@ void Unwind_180908e60(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x68);
@@ -50110,12 +50110,12 @@ void Unwind_180908e60(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -50137,7 +50137,7 @@ void Unwind_180908e70(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x68);
@@ -50146,12 +50146,12 @@ void Unwind_180908e70(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -50316,20 +50316,20 @@ void Unwind_180908f30(uint64 resourceHandle,longlong memorySize)
 {
   uint64 returnValue;
   longlong localLong2;
-  longlong localLong3;
+  longlong index;
   uint64 *puVar4;
   
-  localLong3 = *(longlong *)(memorySize + 0x40);
-  puVar4 = (uint64 *)(localLong3 + -0xa0);
+  index = *(longlong *)(memorySize + 0x40);
+  puVar4 = (uint64 *)(index + -0xa0);
   *puVar4 = &uiWidgetTree;
-  if ((*(longlong *)(localLong3 + -0x20) != 0) && (**(longlong **)(localLong3 + -0x88) == localLong3 + -0x30)) {
-    returnValue = *(uint64 *)(localLong3 + -0x10);
-    localLong2 = *(longlong *)(localLong3 + -0x18);
-    **(longlong **)(localLong3 + -0x88) = localLong2;
-    **(longlong **)(localLong3 + -0x68) = localLong2;
-    **(int **)(localLong3 + -0x50) = (int)returnValue - (int)localLong2;
+  if ((*(longlong *)(index + -0x20) != 0) && (**(longlong **)(index + -0x88) == index + -0x30)) {
+    returnValue = *(uint64 *)(index + -0x10);
+    localLong2 = *(longlong *)(index + -0x18);
+    **(longlong **)(index + -0x88) = localLong2;
+    **(longlong **)(index + -0x68) = localLong2;
+    **(int **)(index + -0x50) = (int)returnValue - (int)localLong2;
   }
-  if (*(char *)(localLong3 + -0x24) != '\0') {
+  if (*(char *)(index + -0x24) != '\0') {
     FUN_1800a19c0(puVar4);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
@@ -50448,13 +50448,13 @@ void Unwind_180909010(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
+  int status;
   
   localLong1 = memorySize + 0x128;
   *(data **)((longlong)*(int *)(*(longlong *)(memorySize + 0x80) + 4) + -0xa8 + localLong1) =
        &inputMappingTable;
-  localInt2 = *(int *)(*(longlong *)(memorySize + 0x80) + 4);
-  *(int *)((longlong)localInt2 + -0xac + localLong1) = localInt2 + -0xa8;
+  status = *(int *)(*(longlong *)(memorySize + 0x80) + 4);
+  *(int *)((longlong)status + -0xac + localLong1) = status + -0xa8;
   FUN_18009fb60(memorySize + 0x88);
   __1__basic_ostream_DU__char_traits_D_std___std__UEAA_XZ(memorySize + 0x90);
                     // WARNING: Could not recover jumptable at 0x00018009fc52. Too many branches
@@ -50521,7 +50521,7 @@ void Unwind_180909090(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x20) + 0x48);
@@ -50530,12 +50530,12 @@ void Unwind_180909090(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -50612,7 +50612,7 @@ void Unwind_1809090b0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x60) + 0x121c0);
@@ -50621,12 +50621,12 @@ void Unwind_1809090b0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -50844,7 +50844,7 @@ void Unwind_180909290(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong *puVar4;
   ulonglong uVar5;
   ulonglong uVar6;
@@ -50858,12 +50858,12 @@ void Unwind_180909290(uint64 resourceHandle,longlong memorySize)
   if (plocalUInt2 != (uint64 *)0x0) {
     uVar6 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
     if (uVar6 != 0) {
-      localLong3 = uVar6 + 0x80 + ((longlong)plocalUInt2 - uVar6 >> 0x10) * 0x50;
-      localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-      if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-        *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-        *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-        plocalInt1 = (int *)(localLong3 + 0x18);
+      index = uVar6 + 0x80 + ((longlong)plocalUInt2 - uVar6 >> 0x10) * 0x50;
+      index = index - (ulonglong)*(uint *)(index + 4);
+      if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+        *plocalUInt2 = *(uint64 *)(index + 0x20);
+        *(uint64 **)(index + 0x20) = plocalUInt2;
+        plocalInt1 = (int *)(index + 0x18);
         *plocalInt1 = *plocalInt1 + -1;
         if (*plocalInt1 == 0) {
           FUN_18064d630();
@@ -51243,16 +51243,16 @@ void Unwind_1809093c0(uint64 resourceHandle,longlong memorySize,uint64 operation
 {
   longlong *plocalLong1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   longlong lVar4;
   longlong lVar5;
   ulonglong uVar6;
   
-  localLong3 = *(longlong *)(memorySize + 0x90);
+  index = *(longlong *)(memorySize + 0x90);
   uVar6 = 0;
-  plocalLong1 = (longlong *)(localLong3 + 0x8090);
+  plocalLong1 = (longlong *)(index + 0x8090);
   lVar4 = *plocalLong1;
-  if (*(longlong *)(localLong3 + 0x8098) - lVar4 >> 3 != 0) {
+  if (*(longlong *)(index + 0x8098) - lVar4 >> 3 != 0) {
     do {
       plocalUInt2 = *(uint64 **)(uVar6 * 8 + lVar4);
       if (plocalUInt2 != (uint64 *)0x0) {
@@ -51283,30 +51283,30 @@ void Unwind_1809093c0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(uint64 *)(uVar6 * 8 + *plocalLong1) = 0;
       uVar6 = (ulonglong)((int)uVar6 + 1);
       lVar4 = *plocalLong1;
-    } while (uVar6 < (ulonglong)(*(longlong *)(localLong3 + 0x8098) - lVar4 >> 3));
+    } while (uVar6 < (ulonglong)(*(longlong *)(index + 0x8098) - lVar4 >> 3));
   }
-  *(longlong *)(localLong3 + 0x8098) = lVar4;
-  plocalUInt2 = *(uint64 **)(localLong3 + 0x8218);
+  *(longlong *)(index + 0x8098) = lVar4;
+  plocalUInt2 = *(uint64 **)(index + 0x8218);
   if (plocalUInt2 != (uint64 *)0x0) {
-    FUN_1800f74f0(localLong3 + 0x8208,*plocalUInt2);
+    FUN_1800f74f0(index + 0x8208,*plocalUInt2);
     plocalUInt2[4] = &threadLocalStorageCleanup;
                     // WARNING: Subroutine does not return
     HandleCriticalError(plocalUInt2);
   }
-  FUN_180058370(localLong3 + 0x81d8,*(uint64 *)(localLong3 + 0x81e8),operationFlags,callbackFunction,0xfffffffffffffffe);
-  FUN_180058370(localLong3 + 0x81a8,*(uint64 *)(localLong3 + 0x81b8));
-  FUN_180058370(localLong3 + 0x8178,*(uint64 *)(localLong3 + 0x8188));
-  FUN_1808fc8a8(localLong3 + 0x80d8,0x20,5,FUN_180046860);
+  FUN_180058370(index + 0x81d8,*(uint64 *)(index + 0x81e8),operationFlags,callbackFunction,0xfffffffffffffffe);
+  FUN_180058370(index + 0x81a8,*(uint64 *)(index + 0x81b8));
+  FUN_180058370(index + 0x8178,*(uint64 *)(index + 0x8188));
+  FUN_1808fc8a8(index + 0x80d8,0x20,5,FUN_180046860);
   if (*plocalLong1 != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  FUN_1808fc8a8(localLong3 + 0x7fe8,0x20,5,FUN_180046860);
-  lVar4 = *(longlong *)(localLong3 + 0x7fd0);
-  for (lVar5 = *(longlong *)(localLong3 + 0x7fc8); lVar5 != lVar4; lVar5 = lVar5 + 0x40) {
+  FUN_1808fc8a8(index + 0x7fe8,0x20,5,FUN_180046860);
+  lVar4 = *(longlong *)(index + 0x7fd0);
+  for (lVar5 = *(longlong *)(index + 0x7fc8); lVar5 != lVar4; lVar5 = lVar5 + 0x40) {
     FUN_180152b00(lVar5);
   }
-  if (*(longlong *)(localLong3 + 0x7fc8) != 0) {
+  if (*(longlong *)(index + 0x7fc8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -51490,12 +51490,12 @@ void Unwind_1809094c0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = *(longlong **)(memorySize + 0x40);
   localLong1 = plocalLong2[1];
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x78) {
-    FUN_1800adb30(localLong3);
+  for (index = *plocalLong2; index != localLong1; index = index + 0x78) {
+    FUN_1800adb30(index);
   }
   if (*plocalLong2 == 0) {
     return;
@@ -51825,7 +51825,7 @@ void Unwind_180909660(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xd8);
@@ -51834,12 +51834,12 @@ void Unwind_180909660(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -51861,7 +51861,7 @@ void Unwind_180909670(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xd8);
@@ -51870,12 +51870,12 @@ void Unwind_180909670(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -51897,7 +51897,7 @@ void Unwind_180909680(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0xb8) + 8);
@@ -51906,12 +51906,12 @@ void Unwind_180909680(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -51933,7 +51933,7 @@ void Unwind_180909690(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0xb8);
@@ -51942,12 +51942,12 @@ void Unwind_180909690(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -51969,7 +51969,7 @@ void Unwind_1809096a0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0xb8);
@@ -51978,12 +51978,12 @@ void Unwind_1809096a0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -52086,16 +52086,16 @@ void Unwind_1809096c0(uint64 resourceHandle,longlong memorySize,uint64 operation
 {
   longlong *plocalLong1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   longlong lVar4;
   longlong lVar5;
   ulonglong uVar6;
   
-  localLong3 = *(longlong *)(memorySize + 0x40);
+  index = *(longlong *)(memorySize + 0x40);
   uVar6 = 0;
-  plocalLong1 = (longlong *)(localLong3 + 0x8090);
+  plocalLong1 = (longlong *)(index + 0x8090);
   lVar4 = *plocalLong1;
-  if (*(longlong *)(localLong3 + 0x8098) - lVar4 >> 3 != 0) {
+  if (*(longlong *)(index + 0x8098) - lVar4 >> 3 != 0) {
     do {
       plocalUInt2 = *(uint64 **)(uVar6 * 8 + lVar4);
       if (plocalUInt2 != (uint64 *)0x0) {
@@ -52126,30 +52126,30 @@ void Unwind_1809096c0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(uint64 *)(uVar6 * 8 + *plocalLong1) = 0;
       uVar6 = (ulonglong)((int)uVar6 + 1);
       lVar4 = *plocalLong1;
-    } while (uVar6 < (ulonglong)(*(longlong *)(localLong3 + 0x8098) - lVar4 >> 3));
+    } while (uVar6 < (ulonglong)(*(longlong *)(index + 0x8098) - lVar4 >> 3));
   }
-  *(longlong *)(localLong3 + 0x8098) = lVar4;
-  plocalUInt2 = *(uint64 **)(localLong3 + 0x8218);
+  *(longlong *)(index + 0x8098) = lVar4;
+  plocalUInt2 = *(uint64 **)(index + 0x8218);
   if (plocalUInt2 != (uint64 *)0x0) {
-    FUN_1800f74f0(localLong3 + 0x8208,*plocalUInt2);
+    FUN_1800f74f0(index + 0x8208,*plocalUInt2);
     plocalUInt2[4] = &threadLocalStorageCleanup;
                     // WARNING: Subroutine does not return
     HandleCriticalError(plocalUInt2);
   }
-  FUN_180058370(localLong3 + 0x81d8,*(uint64 *)(localLong3 + 0x81e8),operationFlags,callbackFunction,0xfffffffffffffffe);
-  FUN_180058370(localLong3 + 0x81a8,*(uint64 *)(localLong3 + 0x81b8));
-  FUN_180058370(localLong3 + 0x8178,*(uint64 *)(localLong3 + 0x8188));
-  FUN_1808fc8a8(localLong3 + 0x80d8,0x20,5,FUN_180046860);
+  FUN_180058370(index + 0x81d8,*(uint64 *)(index + 0x81e8),operationFlags,callbackFunction,0xfffffffffffffffe);
+  FUN_180058370(index + 0x81a8,*(uint64 *)(index + 0x81b8));
+  FUN_180058370(index + 0x8178,*(uint64 *)(index + 0x8188));
+  FUN_1808fc8a8(index + 0x80d8,0x20,5,FUN_180046860);
   if (*plocalLong1 != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  FUN_1808fc8a8(localLong3 + 0x7fe8,0x20,5,FUN_180046860);
-  lVar4 = *(longlong *)(localLong3 + 0x7fd0);
-  for (lVar5 = *(longlong *)(localLong3 + 0x7fc8); lVar5 != lVar4; lVar5 = lVar5 + 0x40) {
+  FUN_1808fc8a8(index + 0x7fe8,0x20,5,FUN_180046860);
+  lVar4 = *(longlong *)(index + 0x7fd0);
+  for (lVar5 = *(longlong *)(index + 0x7fc8); lVar5 != lVar4; lVar5 = lVar5 + 0x40) {
     FUN_180152b00(lVar5);
   }
-  if (*(longlong *)(localLong3 + 0x7fc8) != 0) {
+  if (*(longlong *)(index + 0x7fc8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -52429,7 +52429,7 @@ void Unwind_180909860(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x40) + 0x68);
@@ -52438,12 +52438,12 @@ void Unwind_180909860(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -52636,7 +52636,7 @@ void Unwind_180909a00(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x38);
@@ -52645,12 +52645,12 @@ void Unwind_180909a00(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -52704,7 +52704,7 @@ void Unwind_180909a40(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x38);
@@ -52713,12 +52713,12 @@ void Unwind_180909a40(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -52740,7 +52740,7 @@ void Unwind_180909a50(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x38);
@@ -52749,12 +52749,12 @@ void Unwind_180909a50(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -53002,7 +53002,7 @@ void Unwind_180909c20(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x30) + 8);
@@ -53011,12 +53011,12 @@ void Unwind_180909c20(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -53039,11 +53039,11 @@ void Unwind_180909c30(uint64 resourceHandle,longlong memorySize)
 
 {
   int localInt1;
-  int localInt2;
+  int status;
   
   localInt1 = *(int *)(**(longlong **)(_DAT_180c82868 + 8) + 0x48);
-  localInt2 = _Thrd_id();
-  if (localInt2 != localInt1) {
+  status = _Thrd_id();
+  if (status != localInt1) {
     _DAT_180c9105c = *(uint32 *)(memorySize + 0x90);
   }
   return;
@@ -53154,13 +53154,13 @@ void Unwind_180909d00(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x40) + 0x580);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x40) + 0x588);
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -53186,13 +53186,13 @@ void Unwind_180909d60(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x40) + 0x6c0);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x40) + 0x6c8);
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -53209,13 +53209,13 @@ void Unwind_180909d80(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x40) + 0x6e0);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x40) + 0x6e8);
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -53232,13 +53232,13 @@ void Unwind_180909da0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x40) + 0x700);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x40) + 0x708);
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -53255,13 +53255,13 @@ void Unwind_180909dc0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x40) + 0x720);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x40) + 0x728);
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -53396,26 +53396,26 @@ void Unwind_180909f60(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
-  localLong3 = *(longlong *)(memorySize + 0x40);
+  index = *(longlong *)(memorySize + 0x40);
   FUN_1802ab380();
   _Mtx_destroy_in_situ();
-  if (*(longlong *)(localLong3 + 0xae0) != 0) {
+  if (*(longlong *)(index + 0xae0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  plocalUInt2 = *(uint64 **)(localLong3 + 0xac0);
+  plocalUInt2 = *(uint64 **)(index + 0xac0);
   if (plocalUInt2 != (uint64 *)0x0) {
     uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
     if (uVar4 != 0) {
-      localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-      localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-        *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-        *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-        plocalInt1 = (int *)(localLong3 + 0x18);
+      index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+      index = index - (ulonglong)*(uint *)(index + 4);
+      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+        *plocalUInt2 = *(uint64 *)(index + 0x20);
+        *(uint64 **)(index + 0x20) = plocalUInt2;
+        plocalInt1 = (int *)(index + 0x18);
         *plocalInt1 = *plocalInt1 + -1;
         if (*plocalInt1 == 0) {
           FUN_18064d630();
@@ -53502,13 +53502,13 @@ void Unwind_18090a060(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x40) + 0xd00);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x40) + 0xd08);
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -53719,13 +53719,13 @@ void Unwind_18090a1f0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x60) + 0x580);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x60) + 0x588);
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -53751,13 +53751,13 @@ void Unwind_18090a250(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x60) + 0x6c0);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x60) + 0x6c8);
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -53774,13 +53774,13 @@ void Unwind_18090a270(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x60) + 0x6e0);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x60) + 0x6e8);
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -53797,13 +53797,13 @@ void Unwind_18090a290(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x60) + 0x700);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x60) + 0x708);
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -53820,13 +53820,13 @@ void Unwind_18090a2b0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x60) + 0x720);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x60) + 0x728);
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -53961,26 +53961,26 @@ void Unwind_18090a450(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
-  localLong3 = *(longlong *)(memorySize + 0x60);
+  index = *(longlong *)(memorySize + 0x60);
   FUN_1802ab380();
   _Mtx_destroy_in_situ();
-  if (*(longlong *)(localLong3 + 0xae0) != 0) {
+  if (*(longlong *)(index + 0xae0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  plocalUInt2 = *(uint64 **)(localLong3 + 0xac0);
+  plocalUInt2 = *(uint64 **)(index + 0xac0);
   if (plocalUInt2 != (uint64 *)0x0) {
     uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
     if (uVar4 != 0) {
-      localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-      localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-        *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-        *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-        plocalInt1 = (int *)(localLong3 + 0x18);
+      index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+      index = index - (ulonglong)*(uint *)(index + 4);
+      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+        *plocalUInt2 = *(uint64 *)(index + 0x20);
+        *(uint64 **)(index + 0x20) = plocalUInt2;
+        plocalInt1 = (int *)(index + 0x18);
         *plocalInt1 = *plocalInt1 + -1;
         if (*plocalInt1 == 0) {
           FUN_18064d630();
@@ -54067,13 +54067,13 @@ void Unwind_18090a550(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x60) + 0xd00);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x60) + 0xd08);
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -54090,13 +54090,13 @@ void Unwind_18090a570(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = *(longlong **)(memorySize + 0x68);
   plocalLong1 = (longlong *)plocalLong2[1];
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -54167,7 +54167,7 @@ void Unwind_18090a5c0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x68);
@@ -54176,12 +54176,12 @@ void Unwind_18090a5c0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -54203,7 +54203,7 @@ void Unwind_18090a5d0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x68) + 0x20);
@@ -54212,12 +54212,12 @@ void Unwind_18090a5d0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -54411,7 +54411,7 @@ void Unwind_18090a780(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x40);
@@ -54420,12 +54420,12 @@ void Unwind_18090a780(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -54461,7 +54461,7 @@ void Unwind_18090a7a0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x40);
@@ -54470,12 +54470,12 @@ void Unwind_18090a7a0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -54640,7 +54640,7 @@ void Unwind_18090a880(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x50) + 8);
@@ -54649,12 +54649,12 @@ void Unwind_18090a880(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -54676,7 +54676,7 @@ void Unwind_18090a890(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x60) + 8);
@@ -54685,12 +54685,12 @@ void Unwind_18090a890(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -54712,13 +54712,13 @@ void Unwind_18090a8a0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x58) + 0x28);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x58) + 0x30);
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -54735,13 +54735,13 @@ void Unwind_18090a8b0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x60) + 8);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x60) + 0x10);
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -54758,13 +54758,13 @@ void Unwind_18090a8c0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x70) + 8);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x70) + 0x10);
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -54781,13 +54781,13 @@ void Unwind_18090a8d0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = *(longlong **)(memorySize + 0x88);
   plocalLong1 = (longlong *)plocalLong2[1];
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -54832,13 +54832,13 @@ void Unwind_18090a900(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = *(longlong **)(memorySize + 0x50);
   plocalLong1 = (longlong *)plocalLong2[1];
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -54877,13 +54877,13 @@ void Unwind_18090a920(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x40) + 8);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x40) + 0x10);
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -54900,21 +54900,21 @@ void Unwind_18090a930(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
-  localLong3 = *(longlong *)(memorySize + 0x40);
+  index = *(longlong *)(memorySize + 0x40);
   FUN_1800ba100();
-  if ((1 < *(ulonglong *)(localLong3 + 0x10)) &&
-     (plocalUInt2 = *(uint64 **)(localLong3 + 8), plocalUInt2 != (uint64 *)0x0)) {
+  if ((1 < *(ulonglong *)(index + 0x10)) &&
+     (plocalUInt2 = *(uint64 **)(index + 8), plocalUInt2 != (uint64 *)0x0)) {
     uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
     if (uVar4 != 0) {
-      localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-      localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-        *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-        *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-        plocalInt1 = (int *)(localLong3 + 0x18);
+      index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+      index = index - (ulonglong)*(uint *)(index + 4);
+      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+        *plocalUInt2 = *(uint64 *)(index + 0x20);
+        *(uint64 **)(index + 0x20) = plocalUInt2;
+        plocalInt1 = (int *)(index + 0x18);
         *plocalInt1 = *plocalInt1 + -1;
         if (*plocalInt1 == 0) {
           FUN_18064d630();
@@ -54938,21 +54938,21 @@ void Unwind_18090a940(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
-  localLong3 = *(longlong *)(memorySize + 0x40);
+  index = *(longlong *)(memorySize + 0x40);
   FUN_1800ba100();
-  if ((1 < *(ulonglong *)(localLong3 + 0x10)) &&
-     (plocalUInt2 = *(uint64 **)(localLong3 + 8), plocalUInt2 != (uint64 *)0x0)) {
+  if ((1 < *(ulonglong *)(index + 0x10)) &&
+     (plocalUInt2 = *(uint64 **)(index + 8), plocalUInt2 != (uint64 *)0x0)) {
     uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
     if (uVar4 != 0) {
-      localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-      localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-        *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-        *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-        plocalInt1 = (int *)(localLong3 + 0x18);
+      index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+      index = index - (ulonglong)*(uint *)(index + 4);
+      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+        *plocalUInt2 = *(uint64 *)(index + 0x20);
+        *(uint64 **)(index + 0x20) = plocalUInt2;
+        plocalInt1 = (int *)(index + 0x18);
         *plocalInt1 = *plocalInt1 + -1;
         if (*plocalInt1 == 0) {
           FUN_18064d630();
@@ -54976,21 +54976,21 @@ void Unwind_18090a950(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
-  localLong3 = *(longlong *)(memorySize + 0x40);
+  index = *(longlong *)(memorySize + 0x40);
   FUN_1800ba100();
-  if ((1 < *(ulonglong *)(localLong3 + 0x10)) &&
-     (plocalUInt2 = *(uint64 **)(localLong3 + 8), plocalUInt2 != (uint64 *)0x0)) {
+  if ((1 < *(ulonglong *)(index + 0x10)) &&
+     (plocalUInt2 = *(uint64 **)(index + 8), plocalUInt2 != (uint64 *)0x0)) {
     uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
     if (uVar4 != 0) {
-      localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-      localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-        *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-        *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-        plocalInt1 = (int *)(localLong3 + 0x18);
+      index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+      index = index - (ulonglong)*(uint *)(index + 4);
+      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+        *plocalUInt2 = *(uint64 *)(index + 0x20);
+        *(uint64 **)(index + 0x20) = plocalUInt2;
+        plocalInt1 = (int *)(index + 0x18);
         *plocalInt1 = *plocalInt1 + -1;
         if (*plocalInt1 == 0) {
           FUN_18064d630();
@@ -55014,21 +55014,21 @@ void Unwind_18090a960(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
-  localLong3 = *(longlong *)(memorySize + 0x50);
+  index = *(longlong *)(memorySize + 0x50);
   FUN_1800ba100();
-  if ((1 < *(ulonglong *)(localLong3 + 0x10)) &&
-     (plocalUInt2 = *(uint64 **)(localLong3 + 8), plocalUInt2 != (uint64 *)0x0)) {
+  if ((1 < *(ulonglong *)(index + 0x10)) &&
+     (plocalUInt2 = *(uint64 **)(index + 8), plocalUInt2 != (uint64 *)0x0)) {
     uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
     if (uVar4 != 0) {
-      localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-      localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-        *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-        *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-        plocalInt1 = (int *)(localLong3 + 0x18);
+      index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+      index = index - (ulonglong)*(uint *)(index + 4);
+      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+        *plocalUInt2 = *(uint64 *)(index + 0x20);
+        *(uint64 **)(index + 0x20) = plocalUInt2;
+        plocalInt1 = (int *)(index + 0x18);
         *plocalInt1 = *plocalInt1 + -1;
         if (*plocalInt1 == 0) {
           FUN_18064d630();
@@ -55052,21 +55052,21 @@ void Unwind_18090a970(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
-  localLong3 = *(longlong *)(memorySize + 0x50);
+  index = *(longlong *)(memorySize + 0x50);
   FUN_1800ba100();
-  if ((1 < *(ulonglong *)(localLong3 + 0x10)) &&
-     (plocalUInt2 = *(uint64 **)(localLong3 + 8), plocalUInt2 != (uint64 *)0x0)) {
+  if ((1 < *(ulonglong *)(index + 0x10)) &&
+     (plocalUInt2 = *(uint64 **)(index + 8), plocalUInt2 != (uint64 *)0x0)) {
     uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
     if (uVar4 != 0) {
-      localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-      localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-        *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-        *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-        plocalInt1 = (int *)(localLong3 + 0x18);
+      index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+      index = index - (ulonglong)*(uint *)(index + 4);
+      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+        *plocalUInt2 = *(uint64 *)(index + 0x20);
+        *(uint64 **)(index + 0x20) = plocalUInt2;
+        plocalInt1 = (int *)(index + 0x18);
         *plocalInt1 = *plocalInt1 + -1;
         if (*plocalInt1 == 0) {
           FUN_18064d630();
@@ -55726,13 +55726,13 @@ void Unwind_18090af70(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong localLong2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   ulonglong uVar5;
   
-  localLong3 = *(longlong *)(memorySize + 0x50);
-  uVar4 = *(ulonglong *)(localLong3 + 0x2b0);
-  localLong1 = *(longlong *)(localLong3 + 0x2a8);
+  index = *(longlong *)(memorySize + 0x50);
+  uVar4 = *(ulonglong *)(index + 0x2b0);
+  localLong1 = *(longlong *)(index + 0x2a8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -55747,10 +55747,10 @@ void Unwind_18090af70(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(localLong3 + 0x2b0);
+    uVar4 = *(ulonglong *)(index + 0x2b0);
   }
-  *(uint64 *)(localLong3 + 0x2b8) = 0;
-  if ((1 < uVar4) && (*(longlong *)(localLong3 + 0x2a8) != 0)) {
+  *(uint64 *)(index + 0x2b8) = 0;
+  if ((1 < uVar4) && (*(longlong *)(index + 0x2a8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -56333,13 +56333,13 @@ void Unwind_18090b4b0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong localLong2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   ulonglong uVar5;
   
-  localLong3 = *(longlong *)(memorySize + 0x58);
-  uVar4 = *(ulonglong *)(localLong3 + 0x10);
-  localLong1 = *(longlong *)(localLong3 + 8);
+  index = *(longlong *)(memorySize + 0x58);
+  uVar4 = *(ulonglong *)(index + 0x10);
+  localLong1 = *(longlong *)(index + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -56354,10 +56354,10 @@ void Unwind_18090b4b0(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(localLong3 + 0x10);
+    uVar4 = *(ulonglong *)(index + 0x10);
   }
-  *(uint64 *)(localLong3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(localLong3 + 8) != 0)) {
+  *(uint64 *)(index + 0x18) = 0;
+  if ((1 < uVar4) && (*(longlong *)(index + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -56371,13 +56371,13 @@ void Unwind_18090b4c0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong localLong2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   ulonglong uVar5;
   
-  localLong3 = *(longlong *)(memorySize + 0x58);
-  uVar4 = *(ulonglong *)(localLong3 + 0x10);
-  localLong1 = *(longlong *)(localLong3 + 8);
+  index = *(longlong *)(memorySize + 0x58);
+  uVar4 = *(ulonglong *)(index + 0x10);
+  localLong1 = *(longlong *)(index + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -56392,10 +56392,10 @@ void Unwind_18090b4c0(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(localLong3 + 0x10);
+    uVar4 = *(ulonglong *)(index + 0x10);
   }
-  *(uint64 *)(localLong3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(localLong3 + 8) != 0)) {
+  *(uint64 *)(index + 0x18) = 0;
+  if ((1 < uVar4) && (*(longlong *)(index + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -56427,13 +56427,13 @@ void Unwind_18090b4f0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong localLong2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   ulonglong uVar5;
   
-  localLong3 = *(longlong *)(memorySize + 0x40);
-  uVar4 = *(ulonglong *)(localLong3 + 0x10);
-  localLong1 = *(longlong *)(localLong3 + 8);
+  index = *(longlong *)(memorySize + 0x40);
+  uVar4 = *(ulonglong *)(index + 0x10);
+  localLong1 = *(longlong *)(index + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -56448,10 +56448,10 @@ void Unwind_18090b4f0(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(localLong3 + 0x10);
+    uVar4 = *(ulonglong *)(index + 0x10);
   }
-  *(uint64 *)(localLong3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(localLong3 + 8) != 0)) {
+  *(uint64 *)(index + 0x18) = 0;
+  if ((1 < uVar4) && (*(longlong *)(index + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -56465,13 +56465,13 @@ void Unwind_18090b500(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong localLong2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   ulonglong uVar5;
   
-  localLong3 = *(longlong *)(memorySize + 0x40);
-  uVar4 = *(ulonglong *)(localLong3 + 0x10);
-  localLong1 = *(longlong *)(localLong3 + 8);
+  index = *(longlong *)(memorySize + 0x40);
+  uVar4 = *(ulonglong *)(index + 0x10);
+  localLong1 = *(longlong *)(index + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -56486,10 +56486,10 @@ void Unwind_18090b500(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(localLong3 + 0x10);
+    uVar4 = *(ulonglong *)(index + 0x10);
   }
-  *(uint64 *)(localLong3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(localLong3 + 8) != 0)) {
+  *(uint64 *)(index + 0x18) = 0;
+  if ((1 < uVar4) && (*(longlong *)(index + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -56768,13 +56768,13 @@ void Unwind_18090b7d0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong localLong2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   ulonglong uVar5;
   
-  localLong3 = *(longlong *)(memorySize + 0x40);
-  uVar4 = *(ulonglong *)(localLong3 + 0x2b0);
-  localLong1 = *(longlong *)(localLong3 + 0x2a8);
+  index = *(longlong *)(memorySize + 0x40);
+  uVar4 = *(ulonglong *)(index + 0x2b0);
+  localLong1 = *(longlong *)(index + 0x2a8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -56789,10 +56789,10 @@ void Unwind_18090b7d0(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(localLong3 + 0x2b0);
+    uVar4 = *(ulonglong *)(index + 0x2b0);
   }
-  *(uint64 *)(localLong3 + 0x2b8) = 0;
-  if ((1 < uVar4) && (*(longlong *)(localLong3 + 0x2a8) != 0)) {
+  *(uint64 *)(index + 0x2b8) = 0;
+  if ((1 < uVar4) && (*(longlong *)(index + 0x2a8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -57375,13 +57375,13 @@ void Unwind_18090bd10(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong localLong2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   ulonglong uVar5;
   
-  localLong3 = *(longlong *)(memorySize + 0x48);
-  uVar4 = *(ulonglong *)(localLong3 + 0x10);
-  localLong1 = *(longlong *)(localLong3 + 8);
+  index = *(longlong *)(memorySize + 0x48);
+  uVar4 = *(ulonglong *)(index + 0x10);
+  localLong1 = *(longlong *)(index + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -57396,10 +57396,10 @@ void Unwind_18090bd10(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(localLong3 + 0x10);
+    uVar4 = *(ulonglong *)(index + 0x10);
   }
-  *(uint64 *)(localLong3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(localLong3 + 8) != 0)) {
+  *(uint64 *)(index + 0x18) = 0;
+  if ((1 < uVar4) && (*(longlong *)(index + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -57413,13 +57413,13 @@ void Unwind_18090bd20(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong localLong2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   ulonglong uVar5;
   
-  localLong3 = *(longlong *)(memorySize + 0x48);
-  uVar4 = *(ulonglong *)(localLong3 + 0x10);
-  localLong1 = *(longlong *)(localLong3 + 8);
+  index = *(longlong *)(memorySize + 0x48);
+  uVar4 = *(ulonglong *)(index + 0x10);
+  localLong1 = *(longlong *)(index + 8);
   uVar5 = 0;
   if (uVar4 != 0) {
     do {
@@ -57434,10 +57434,10 @@ void Unwind_18090bd20(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(localLong3 + 0x10);
+    uVar4 = *(ulonglong *)(index + 0x10);
   }
-  *(uint64 *)(localLong3 + 0x18) = 0;
-  if ((1 < uVar4) && (*(longlong *)(localLong3 + 8) != 0)) {
+  *(uint64 *)(index + 0x18) = 0;
+  if ((1 < uVar4) && (*(longlong *)(index + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -57843,13 +57843,13 @@ void Unwind_18090bfe0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x20) + 0x80);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x20) + 0x88);
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -57917,13 +57917,13 @@ void Unwind_18090c060(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = *(longlong **)(memorySize + 0x28);
   plocalLong1 = (longlong *)plocalLong2[1];
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -58085,7 +58085,7 @@ void Unwind_18090c140(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x50);
@@ -58094,12 +58094,12 @@ void Unwind_18090c140(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -58230,7 +58230,7 @@ void Unwind_18090c1c0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x20) + 8);
@@ -58239,12 +58239,12 @@ void Unwind_18090c1c0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -58265,13 +58265,13 @@ void Unwind_18090c1d0(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
+  int status;
   
   localLong1 = memorySize + 0x138;
   *(data **)((longlong)*(int *)(*(longlong *)(memorySize + 0x80) + 4) + -0xb8 + localLong1) =
        &unknown_180a03ad8;
-  localInt2 = *(int *)(*(longlong *)(memorySize + 0x80) + 4);
-  *(int *)((longlong)localInt2 + -0xbc + localLong1) = localInt2 + -0xb8;
+  status = *(int *)(*(longlong *)(memorySize + 0x80) + 4);
+  *(int *)((longlong)status + -0xbc + localLong1) = status + -0xb8;
   FUN_18009fb60(memorySize + 0x98);
   __1__basic_iostream_DU__char_traits_D_std___std__UEAA_XZ(memorySize + 0xa0);
                     // WARNING: Could not recover jumptable at 0x0001800c3c62. Too many branches
@@ -58298,20 +58298,20 @@ void Unwind_18090c200(uint64 resourceHandle,longlong memorySize)
 {
   uint64 returnValue;
   longlong localLong2;
-  longlong localLong3;
+  longlong index;
   uint64 *puVar4;
   
-  localLong3 = *(longlong *)(memorySize + 0x70);
-  puVar4 = (uint64 *)(localLong3 + -0xa0);
+  index = *(longlong *)(memorySize + 0x70);
+  puVar4 = (uint64 *)(index + -0xa0);
   *puVar4 = &uiWidgetTree;
-  if ((*(longlong *)(localLong3 + -0x20) != 0) && (**(longlong **)(localLong3 + -0x88) == localLong3 + -0x30)) {
-    returnValue = *(uint64 *)(localLong3 + -0x10);
-    localLong2 = *(longlong *)(localLong3 + -0x18);
-    **(longlong **)(localLong3 + -0x88) = localLong2;
-    **(longlong **)(localLong3 + -0x68) = localLong2;
-    **(int **)(localLong3 + -0x50) = (int)returnValue - (int)localLong2;
+  if ((*(longlong *)(index + -0x20) != 0) && (**(longlong **)(index + -0x88) == index + -0x30)) {
+    returnValue = *(uint64 *)(index + -0x10);
+    localLong2 = *(longlong *)(index + -0x18);
+    **(longlong **)(index + -0x88) = localLong2;
+    **(longlong **)(index + -0x68) = localLong2;
+    **(int **)(index + -0x50) = (int)returnValue - (int)localLong2;
   }
-  if (*(char *)(localLong3 + -0x24) != '\0') {
+  if (*(char *)(index + -0x24) != '\0') {
     FUN_1800a19c0(puVar4);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
@@ -58338,20 +58338,20 @@ void Unwind_18090c240(uint64 resourceHandle,longlong memorySize)
 {
   uint64 returnValue;
   longlong localLong2;
-  longlong localLong3;
+  longlong index;
   uint64 *puVar4;
   
-  localLong3 = *(longlong *)(memorySize + 0x40);
-  puVar4 = (uint64 *)(localLong3 + -0xa0);
+  index = *(longlong *)(memorySize + 0x40);
+  puVar4 = (uint64 *)(index + -0xa0);
   *puVar4 = &uiWidgetTree;
-  if ((*(longlong *)(localLong3 + -0x20) != 0) && (**(longlong **)(localLong3 + -0x88) == localLong3 + -0x30)) {
-    returnValue = *(uint64 *)(localLong3 + -0x10);
-    localLong2 = *(longlong *)(localLong3 + -0x18);
-    **(longlong **)(localLong3 + -0x88) = localLong2;
-    **(longlong **)(localLong3 + -0x68) = localLong2;
-    **(int **)(localLong3 + -0x50) = (int)returnValue - (int)localLong2;
+  if ((*(longlong *)(index + -0x20) != 0) && (**(longlong **)(index + -0x88) == index + -0x30)) {
+    returnValue = *(uint64 *)(index + -0x10);
+    localLong2 = *(longlong *)(index + -0x18);
+    **(longlong **)(index + -0x88) = localLong2;
+    **(longlong **)(index + -0x68) = localLong2;
+    **(int **)(index + -0x50) = (int)returnValue - (int)localLong2;
   }
-  if (*(char *)(localLong3 + -0x24) != '\0') {
+  if (*(char *)(index + -0x24) != '\0') {
     FUN_1800a19c0(puVar4);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
@@ -58385,7 +58385,7 @@ void Unwind_18090c280(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xe8);
@@ -58394,12 +58394,12 @@ void Unwind_18090c280(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -58457,7 +58457,7 @@ void Unwind_18090c2d0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xe8);
@@ -58466,12 +58466,12 @@ void Unwind_18090c2d0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -58493,7 +58493,7 @@ void Unwind_18090c2e0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xe8);
@@ -58502,12 +58502,12 @@ void Unwind_18090c2e0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -58598,20 +58598,20 @@ void Unwind_18090c380(uint64 resourceHandle,longlong memorySize)
 {
   uint64 returnValue;
   longlong localLong2;
-  longlong localLong3;
+  longlong index;
   uint64 *puVar4;
   
-  localLong3 = *(longlong *)(memorySize + 0x40);
-  puVar4 = (uint64 *)(localLong3 + 0x18);
+  index = *(longlong *)(memorySize + 0x40);
+  puVar4 = (uint64 *)(index + 0x18);
   *puVar4 = &uiWidgetTree;
-  if ((*(longlong *)(localLong3 + 0x98) != 0) && (**(longlong **)(localLong3 + 0x30) == localLong3 + 0x88)) {
-    returnValue = *(uint64 *)(localLong3 + 0xa8);
-    localLong2 = *(longlong *)(localLong3 + 0xa0);
-    **(longlong **)(localLong3 + 0x30) = localLong2;
-    **(longlong **)(localLong3 + 0x50) = localLong2;
-    **(int **)(localLong3 + 0x68) = (int)returnValue - (int)localLong2;
+  if ((*(longlong *)(index + 0x98) != 0) && (**(longlong **)(index + 0x30) == index + 0x88)) {
+    returnValue = *(uint64 *)(index + 0xa8);
+    localLong2 = *(longlong *)(index + 0xa0);
+    **(longlong **)(index + 0x30) = localLong2;
+    **(longlong **)(index + 0x50) = localLong2;
+    **(int **)(index + 0x68) = (int)returnValue - (int)localLong2;
   }
-  if (*(char *)(localLong3 + 0x94) != '\0') {
+  if (*(char *)(index + 0x94) != '\0') {
     FUN_1800a19c0(puVar4);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
@@ -58641,7 +58641,7 @@ void Unwind_18090c3b0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x70) + 0x1d8);
@@ -58650,12 +58650,12 @@ void Unwind_18090c3b0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -58700,7 +58700,7 @@ void Unwind_18090c400(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x70) + 0x2d0);
@@ -58709,12 +58709,12 @@ void Unwind_18090c400(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -58812,8 +58812,8 @@ void Unwind_18090c490(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -58828,19 +58828,19 @@ void Unwind_18090c490(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -58998,7 +58998,7 @@ void Unwind_18090c530(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xb8);
@@ -59007,12 +59007,12 @@ void Unwind_18090c530(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -59035,8 +59035,8 @@ void Unwind_18090c540(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -59051,19 +59051,19 @@ void Unwind_18090c540(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -59081,8 +59081,8 @@ void Unwind_18090c550(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -59097,19 +59097,19 @@ void Unwind_18090c550(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -59157,8 +59157,8 @@ void Unwind_18090c590(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -59173,19 +59173,19 @@ void Unwind_18090c590(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -59224,8 +59224,8 @@ void Unwind_18090c5c0(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -59240,19 +59240,19 @@ void Unwind_18090c5c0(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -59270,8 +59270,8 @@ void Unwind_18090c5d0(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -59286,19 +59286,19 @@ void Unwind_18090c5d0(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -59328,8 +59328,8 @@ void Unwind_18090c5f0(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -59344,19 +59344,19 @@ void Unwind_18090c5f0(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -59374,8 +59374,8 @@ void Unwind_18090c600(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -59390,19 +59390,19 @@ void Unwind_18090c600(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -59419,7 +59419,7 @@ void Unwind_18090c610(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xb8);
@@ -59428,12 +59428,12 @@ void Unwind_18090c610(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -59455,7 +59455,7 @@ void Unwind_18090c620(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xb8);
@@ -59464,12 +59464,12 @@ void Unwind_18090c620(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -60063,8 +60063,8 @@ void Unwind_18090ca20(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -60079,19 +60079,19 @@ void Unwind_18090ca20(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -60121,8 +60121,8 @@ void Unwind_18090ca40(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -60137,19 +60137,19 @@ void Unwind_18090ca40(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -60191,8 +60191,8 @@ void Unwind_18090ca70(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -60207,19 +60207,19 @@ void Unwind_18090ca70(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -60258,8 +60258,8 @@ void Unwind_18090caa0(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -60274,19 +60274,19 @@ void Unwind_18090caa0(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -60325,8 +60325,8 @@ void Unwind_18090cad0(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -60341,19 +60341,19 @@ void Unwind_18090cad0(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -60392,8 +60392,8 @@ void Unwind_18090cb00(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -60408,19 +60408,19 @@ void Unwind_18090cb00(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -60447,8 +60447,8 @@ void Unwind_18090cb20(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -60463,19 +60463,19 @@ void Unwind_18090cb20(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -60502,8 +60502,8 @@ void Unwind_18090cb40(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -60518,19 +60518,19 @@ void Unwind_18090cb40(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -60560,8 +60560,8 @@ void Unwind_18090cb60(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -60576,19 +60576,19 @@ void Unwind_18090cb60(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -60615,8 +60615,8 @@ void Unwind_18090cb80(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -60631,19 +60631,19 @@ void Unwind_18090cb80(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -60706,8 +60706,8 @@ void Unwind_18090cbd0(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -60722,19 +60722,19 @@ void Unwind_18090cbd0(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -60773,8 +60773,8 @@ void Unwind_18090cc00(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -60789,19 +60789,19 @@ void Unwind_18090cc00(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -60939,8 +60939,8 @@ void Unwind_18090cce0(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -60955,19 +60955,19 @@ void Unwind_18090cce0(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -61580,7 +61580,7 @@ void Unwind_18090d000(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xb0);
@@ -61589,12 +61589,12 @@ void Unwind_18090d000(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -61616,7 +61616,7 @@ void Unwind_18090d010(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xd0);
@@ -61625,12 +61625,12 @@ void Unwind_18090d010(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -61652,7 +61652,7 @@ void Unwind_18090d020(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xf0);
@@ -61661,12 +61661,12 @@ void Unwind_18090d020(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -61688,7 +61688,7 @@ void Unwind_18090d030(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x110);
@@ -61697,12 +61697,12 @@ void Unwind_18090d030(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -61724,7 +61724,7 @@ void Unwind_18090d040(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x150);
@@ -61733,12 +61733,12 @@ void Unwind_18090d040(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -61760,7 +61760,7 @@ void Unwind_18090d050(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x170);
@@ -61769,12 +61769,12 @@ void Unwind_18090d050(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -61796,7 +61796,7 @@ void Unwind_18090d060(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 400);
@@ -61805,12 +61805,12 @@ void Unwind_18090d060(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -61832,7 +61832,7 @@ void Unwind_18090d070(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x1b0);
@@ -61841,12 +61841,12 @@ void Unwind_18090d070(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -61868,7 +61868,7 @@ void Unwind_18090d080(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x1d0);
@@ -61877,12 +61877,12 @@ void Unwind_18090d080(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -61904,7 +61904,7 @@ void Unwind_18090d090(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x1f0);
@@ -61913,12 +61913,12 @@ void Unwind_18090d090(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -61940,7 +61940,7 @@ void Unwind_18090d0a0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x210);
@@ -61949,12 +61949,12 @@ void Unwind_18090d0a0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -61976,7 +61976,7 @@ void Unwind_18090d0b0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x250);
@@ -61985,12 +61985,12 @@ void Unwind_18090d0b0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62012,7 +62012,7 @@ void Unwind_18090d0c0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x390);
@@ -62021,12 +62021,12 @@ void Unwind_18090d0c0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62048,7 +62048,7 @@ void Unwind_18090d0d0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x3b0);
@@ -62057,12 +62057,12 @@ void Unwind_18090d0d0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62084,7 +62084,7 @@ void Unwind_18090d0e0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x490);
@@ -62093,12 +62093,12 @@ void Unwind_18090d0e0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62120,7 +62120,7 @@ void Unwind_18090d0f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x2f0);
@@ -62129,12 +62129,12 @@ void Unwind_18090d0f0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62156,7 +62156,7 @@ void Unwind_18090d100(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x310);
@@ -62165,12 +62165,12 @@ void Unwind_18090d100(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62192,7 +62192,7 @@ void Unwind_18090d110(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x330);
@@ -62201,12 +62201,12 @@ void Unwind_18090d110(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62228,7 +62228,7 @@ void Unwind_18090d120(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x350);
@@ -62237,12 +62237,12 @@ void Unwind_18090d120(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62264,7 +62264,7 @@ void Unwind_18090d130(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x470);
@@ -62273,12 +62273,12 @@ void Unwind_18090d130(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62300,7 +62300,7 @@ void Unwind_18090d140(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x370);
@@ -62309,12 +62309,12 @@ void Unwind_18090d140(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62336,7 +62336,7 @@ void Unwind_18090d150(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x270);
@@ -62345,12 +62345,12 @@ void Unwind_18090d150(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62372,7 +62372,7 @@ void Unwind_18090d160(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x290);
@@ -62381,12 +62381,12 @@ void Unwind_18090d160(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62408,7 +62408,7 @@ void Unwind_18090d170(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x2b0);
@@ -62417,12 +62417,12 @@ void Unwind_18090d170(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62444,7 +62444,7 @@ void Unwind_18090d180(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x2d0);
@@ -62453,12 +62453,12 @@ void Unwind_18090d180(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62491,7 +62491,7 @@ void Unwind_18090d1a0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xb0);
@@ -62500,12 +62500,12 @@ void Unwind_18090d1a0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62527,7 +62527,7 @@ void Unwind_18090d1b0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xb0);
@@ -62536,12 +62536,12 @@ void Unwind_18090d1b0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62563,7 +62563,7 @@ void Unwind_18090d1c0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xd0);
@@ -62572,12 +62572,12 @@ void Unwind_18090d1c0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62599,7 +62599,7 @@ void Unwind_18090d1d0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xd0);
@@ -62608,12 +62608,12 @@ void Unwind_18090d1d0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62635,7 +62635,7 @@ void Unwind_18090d1e0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xf0);
@@ -62644,12 +62644,12 @@ void Unwind_18090d1e0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62671,7 +62671,7 @@ void Unwind_18090d1f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xf0);
@@ -62680,12 +62680,12 @@ void Unwind_18090d1f0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62707,7 +62707,7 @@ void Unwind_18090d200(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x110);
@@ -62716,12 +62716,12 @@ void Unwind_18090d200(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62743,7 +62743,7 @@ void Unwind_18090d210(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x110);
@@ -62752,12 +62752,12 @@ void Unwind_18090d210(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62779,7 +62779,7 @@ void Unwind_18090d220(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x150);
@@ -62788,12 +62788,12 @@ void Unwind_18090d220(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62815,7 +62815,7 @@ void Unwind_18090d230(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x150);
@@ -62824,12 +62824,12 @@ void Unwind_18090d230(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62851,7 +62851,7 @@ void Unwind_18090d240(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x170);
@@ -62860,12 +62860,12 @@ void Unwind_18090d240(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62887,7 +62887,7 @@ void Unwind_18090d250(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x170);
@@ -62896,12 +62896,12 @@ void Unwind_18090d250(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62923,7 +62923,7 @@ void Unwind_18090d260(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 400);
@@ -62932,12 +62932,12 @@ void Unwind_18090d260(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62959,7 +62959,7 @@ void Unwind_18090d270(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 400);
@@ -62968,12 +62968,12 @@ void Unwind_18090d270(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62995,7 +62995,7 @@ void Unwind_18090d280(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x1b0);
@@ -63004,12 +63004,12 @@ void Unwind_18090d280(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63031,7 +63031,7 @@ void Unwind_18090d290(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x1b0);
@@ -63040,12 +63040,12 @@ void Unwind_18090d290(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63067,7 +63067,7 @@ void Unwind_18090d2a0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x1d0);
@@ -63076,12 +63076,12 @@ void Unwind_18090d2a0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63103,7 +63103,7 @@ void Unwind_18090d2b0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x1d0);
@@ -63112,12 +63112,12 @@ void Unwind_18090d2b0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63139,7 +63139,7 @@ void Unwind_18090d2c0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x1f0);
@@ -63148,12 +63148,12 @@ void Unwind_18090d2c0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63175,7 +63175,7 @@ void Unwind_18090d2d0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x1f0);
@@ -63184,12 +63184,12 @@ void Unwind_18090d2d0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63211,7 +63211,7 @@ void Unwind_18090d2e0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x210);
@@ -63220,12 +63220,12 @@ void Unwind_18090d2e0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63247,7 +63247,7 @@ void Unwind_18090d2f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x210);
@@ -63256,12 +63256,12 @@ void Unwind_18090d2f0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63283,7 +63283,7 @@ void Unwind_18090d300(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x250);
@@ -63292,12 +63292,12 @@ void Unwind_18090d300(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63319,7 +63319,7 @@ void Unwind_18090d310(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x250);
@@ -63328,12 +63328,12 @@ void Unwind_18090d310(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63411,7 +63411,7 @@ void Unwind_18090d360(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x390);
@@ -63420,12 +63420,12 @@ void Unwind_18090d360(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63447,7 +63447,7 @@ void Unwind_18090d370(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x390);
@@ -63456,12 +63456,12 @@ void Unwind_18090d370(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63483,7 +63483,7 @@ void Unwind_18090d380(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x3b0);
@@ -63492,12 +63492,12 @@ void Unwind_18090d380(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63519,7 +63519,7 @@ void Unwind_18090d390(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x3b0);
@@ -63528,12 +63528,12 @@ void Unwind_18090d390(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63555,7 +63555,7 @@ void Unwind_18090d3a0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x490);
@@ -63564,12 +63564,12 @@ void Unwind_18090d3a0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63591,7 +63591,7 @@ void Unwind_18090d3b0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x490);
@@ -63600,12 +63600,12 @@ void Unwind_18090d3b0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63627,7 +63627,7 @@ void Unwind_18090d3c0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x2f0);
@@ -63636,12 +63636,12 @@ void Unwind_18090d3c0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63663,7 +63663,7 @@ void Unwind_18090d3d0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x2f0);
@@ -63672,12 +63672,12 @@ void Unwind_18090d3d0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63699,7 +63699,7 @@ void Unwind_18090d3e0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x310);
@@ -63708,12 +63708,12 @@ void Unwind_18090d3e0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63735,7 +63735,7 @@ void Unwind_18090d3f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x310);
@@ -63744,12 +63744,12 @@ void Unwind_18090d3f0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63771,7 +63771,7 @@ void Unwind_18090d400(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x330);
@@ -63780,12 +63780,12 @@ void Unwind_18090d400(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63807,7 +63807,7 @@ void Unwind_18090d410(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x330);
@@ -63816,12 +63816,12 @@ void Unwind_18090d410(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63843,7 +63843,7 @@ void Unwind_18090d420(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x350);
@@ -63852,12 +63852,12 @@ void Unwind_18090d420(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63879,7 +63879,7 @@ void Unwind_18090d430(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x350);
@@ -63888,12 +63888,12 @@ void Unwind_18090d430(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63915,7 +63915,7 @@ void Unwind_18090d440(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x470);
@@ -63924,12 +63924,12 @@ void Unwind_18090d440(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63951,7 +63951,7 @@ void Unwind_18090d450(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x470);
@@ -63960,12 +63960,12 @@ void Unwind_18090d450(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63987,7 +63987,7 @@ void Unwind_18090d460(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x370);
@@ -63996,12 +63996,12 @@ void Unwind_18090d460(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -64023,7 +64023,7 @@ void Unwind_18090d470(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x370);
@@ -64032,12 +64032,12 @@ void Unwind_18090d470(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -64059,7 +64059,7 @@ void Unwind_18090d480(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x270);
@@ -64068,12 +64068,12 @@ void Unwind_18090d480(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -64095,7 +64095,7 @@ void Unwind_18090d490(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x270);
@@ -64104,12 +64104,12 @@ void Unwind_18090d490(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -64131,7 +64131,7 @@ void Unwind_18090d4a0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x290);
@@ -64140,12 +64140,12 @@ void Unwind_18090d4a0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -64167,7 +64167,7 @@ void Unwind_18090d4b0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x290);
@@ -64176,12 +64176,12 @@ void Unwind_18090d4b0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -64203,7 +64203,7 @@ void Unwind_18090d4c0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x2b0);
@@ -64212,12 +64212,12 @@ void Unwind_18090d4c0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -64239,7 +64239,7 @@ void Unwind_18090d4d0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x2b0);
@@ -64248,12 +64248,12 @@ void Unwind_18090d4d0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -64275,7 +64275,7 @@ void Unwind_18090d4e0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x2d0);
@@ -64284,12 +64284,12 @@ void Unwind_18090d4e0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -64311,7 +64311,7 @@ void Unwind_18090d4f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x2d0);
@@ -64320,12 +64320,12 @@ void Unwind_18090d4f0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -64613,13 +64613,13 @@ void Unwind_18090d650(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x40) + 0x40);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x40) + 0x48);
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -64790,36 +64790,36 @@ void Unwind_18090d7e0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
-  localLong3 = *(longlong *)(memorySize + 0x40);
-  if (*(longlong **)(localLong3 + 0x14d0) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(localLong3 + 0x14d0) + 0x38))();
+  index = *(longlong *)(memorySize + 0x40);
+  if (*(longlong **)(index + 0x14d0) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(index + 0x14d0) + 0x38))();
   }
-  if (*(longlong **)(localLong3 + 0x14c8) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(localLong3 + 0x14c8) + 0x38))();
+  if (*(longlong **)(index + 0x14c8) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(index + 0x14c8) + 0x38))();
   }
-  if (*(longlong **)(localLong3 + 0x14c0) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(localLong3 + 0x14c0) + 0x38))();
+  if (*(longlong **)(index + 0x14c0) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(index + 0x14c0) + 0x38))();
   }
   FUN_180080df0();
-  if (*(longlong *)(localLong3 + 0x1480) != 0) {
+  if (*(longlong *)(index + 0x1480) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  plocalUInt2 = *(uint64 **)(localLong3 + 0x1460);
+  plocalUInt2 = *(uint64 **)(index + 0x1460);
   if (plocalUInt2 == (uint64 *)0x0) {
     return;
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -65328,7 +65328,7 @@ void Unwind_18090de40(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0xe0) + 0x20);
@@ -65337,12 +65337,12 @@ void Unwind_18090de40(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -65364,13 +65364,13 @@ void Unwind_18090de50(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0xe0) + 0x40);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0xe0) + 0x48);
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -65564,36 +65564,36 @@ void Unwind_18090e000(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
-  localLong3 = *(longlong *)(memorySize + 0xe0);
-  if (*(longlong **)(localLong3 + 0x14d0) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(localLong3 + 0x14d0) + 0x38))();
+  index = *(longlong *)(memorySize + 0xe0);
+  if (*(longlong **)(index + 0x14d0) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(index + 0x14d0) + 0x38))();
   }
-  if (*(longlong **)(localLong3 + 0x14c8) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(localLong3 + 0x14c8) + 0x38))();
+  if (*(longlong **)(index + 0x14c8) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(index + 0x14c8) + 0x38))();
   }
-  if (*(longlong **)(localLong3 + 0x14c0) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(localLong3 + 0x14c0) + 0x38))();
+  if (*(longlong **)(index + 0x14c0) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(index + 0x14c0) + 0x38))();
   }
   FUN_180080df0();
-  if (*(longlong *)(localLong3 + 0x1480) != 0) {
+  if (*(longlong *)(index + 0x1480) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  plocalUInt2 = *(uint64 **)(localLong3 + 0x1460);
+  plocalUInt2 = *(uint64 **)(index + 0x1460);
   if (plocalUInt2 == (uint64 *)0x0) {
     return;
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -65890,7 +65890,7 @@ void Unwind_18090e3c0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0xe8);
@@ -65899,12 +65899,12 @@ void Unwind_18090e3c0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -65926,7 +65926,7 @@ void Unwind_18090e3d0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0xe8);
@@ -65935,12 +65935,12 @@ void Unwind_18090e3d0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -65962,13 +65962,13 @@ void Unwind_18090e3e0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = *(longlong **)(memorySize + 0xe8);
   plocalLong1 = (longlong *)plocalLong2[1];
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -66212,8 +66212,8 @@ void Unwind_18090e760(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -66228,19 +66228,19 @@ void Unwind_18090e760(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -66270,8 +66270,8 @@ void Unwind_18090e7a0(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -66286,19 +66286,19 @@ void Unwind_18090e7a0(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -66316,8 +66316,8 @@ void Unwind_18090e7b0(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -66332,19 +66332,19 @@ void Unwind_18090e7b0(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -66362,8 +66362,8 @@ void Unwind_18090e7c0(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -66378,19 +66378,19 @@ void Unwind_18090e7c0(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -66408,8 +66408,8 @@ void Unwind_18090e7d0(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -66424,19 +66424,19 @@ void Unwind_18090e7d0(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -66454,8 +66454,8 @@ void Unwind_18090e7e0(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -66470,19 +66470,19 @@ void Unwind_18090e7e0(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -66500,8 +66500,8 @@ void Unwind_18090e7f0(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -66516,19 +66516,19 @@ void Unwind_18090e7f0(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -66546,8 +66546,8 @@ void Unwind_18090e800(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -66562,19 +66562,19 @@ void Unwind_18090e800(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -66604,8 +66604,8 @@ void Unwind_18090e820(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -66620,19 +66620,19 @@ void Unwind_18090e820(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -66662,8 +66662,8 @@ void Unwind_18090e840(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -66678,19 +66678,19 @@ void Unwind_18090e840(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -66720,8 +66720,8 @@ void Unwind_18090e860(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -66736,19 +66736,19 @@ void Unwind_18090e860(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -67159,8 +67159,8 @@ void Unwind_18090eb00(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong *plVar4;
   longlong lVar5;
   
@@ -67175,19 +67175,19 @@ void Unwind_18090eb00(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = localLong1;
       }
-      localLong3 = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      localLong1 = *(longlong *)(localLong3 + 200 + lVar5 + 0x7f20);
-      localInt2 = (int)(*(longlong *)(localLong3 + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
-      if (-1 < localInt2) {
-        lVar5 = (longlong)localInt2;
+      index = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
+      localLong1 = *(longlong *)(index + 200 + lVar5 + 0x7f20);
+      status = (int)(*(longlong *)(index + 0xd0 + lVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      if (-1 < status) {
+        lVar5 = (longlong)status;
         do {
           if (*(char *)(*(longlong *)(localLong1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (localInt2 != -1) {
-              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)localInt2 * 8));
+            if (status != -1) {
+              FUN_1802c24b0(*(uint64 *)(localLong1 + (longlong)status * 8));
             }
             break;
           }
-          localInt2 = localInt2 + -1;
+          status = status + -1;
           lVar5 = lVar5 + -1;
         } while (-1 < lVar5);
       }
@@ -67924,7 +67924,7 @@ void Unwind_18090eeb0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x88) + 8);
@@ -67933,12 +67933,12 @@ void Unwind_18090eeb0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -67969,7 +67969,7 @@ void Unwind_18090eee0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x88) + 0x2d0);
@@ -67978,12 +67978,12 @@ void Unwind_18090eee0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -68019,7 +68019,7 @@ void Unwind_18090ef20(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x48) + 0x1d8);
@@ -68028,12 +68028,12 @@ void Unwind_18090ef20(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -68069,7 +68069,7 @@ void Unwind_18090ef50(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x10);
@@ -68078,12 +68078,12 @@ void Unwind_18090ef50(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -68105,7 +68105,7 @@ void Unwind_18090ef60(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x10);
@@ -68114,12 +68114,12 @@ void Unwind_18090ef60(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -68189,25 +68189,25 @@ void Unwind_18090efe0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   longlong lVar4;
   longlong *plVar5;
   
   localLong1 = *(longlong *)(memorySize + 0x70);
   plocalLong2 = (longlong *)(localLong1 + 0x300);
-  localLong3 = *(longlong *)(localLong1 + 0x310);
+  index = *(longlong *)(localLong1 + 0x310);
   lVar4 = *(longlong *)(localLong1 + 800);
   plVar5 = *(longlong **)(localLong1 + 0x328);
-  if (localLong3 != *(longlong *)(localLong1 + 0x330)) {
+  if (index != *(longlong *)(localLong1 + 0x330)) {
     do {
-      FUN_1800edd10(localLong3);
-      localLong3 = localLong3 + 0x78;
-      if (localLong3 == lVar4) {
+      FUN_1800edd10(index);
+      index = index + 0x78;
+      if (index == lVar4) {
         plVar5 = plVar5 + 1;
-        localLong3 = *plVar5;
-        lVar4 = localLong3 + 0x1e0;
+        index = *plVar5;
+        lVar4 = index + 0x1e0;
       }
-    } while (localLong3 != *(longlong *)(localLong1 + 0x330));
+    } while (index != *(longlong *)(localLong1 + 0x330));
   }
   if (*plocalLong2 != 0) {
     plVar5 = *(longlong **)(localLong1 + 0x328);
@@ -68235,22 +68235,22 @@ void Unwind_18090f000(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x70) + 0x358);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x70) + 0x360);
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 4) {
-    if ((longlong *)plocalLong3[3] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)plocalLong3[3] + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 4) {
+    if ((longlong *)pindex[3] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)pindex[3] + 0x38))();
     }
-    if ((longlong *)plocalLong3[2] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)plocalLong3[2] + 0x38))();
+    if ((longlong *)pindex[2] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)pindex[2] + 0x38))();
     }
-    if ((longlong *)plocalLong3[1] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)plocalLong3[1] + 0x38))();
+    if ((longlong *)pindex[1] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)pindex[1] + 0x38))();
     }
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -68287,30 +68287,30 @@ void Unwind_18090f040(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong localLong2;
-  longlong localLong3;
+  longlong index;
   longlong *plVar4;
   
   plocalLong1 = *(longlong **)(memorySize + 0x78);
   localLong2 = plocalLong1[2];
-  localLong3 = plocalLong1[4];
+  index = plocalLong1[4];
   plVar4 = (longlong *)plocalLong1[5];
   if (localLong2 != plocalLong1[6]) {
     do {
       FUN_1800edd10(localLong2);
       localLong2 = localLong2 + 0x78;
-      if (localLong2 == localLong3) {
+      if (localLong2 == index) {
         plVar4 = plVar4 + 1;
         localLong2 = *plVar4;
-        localLong3 = localLong2 + 0x1e0;
+        index = localLong2 + 0x1e0;
       }
     } while (localLong2 != plocalLong1[6]);
   }
   if (*plocalLong1 != 0) {
     plVar4 = (longlong *)plocalLong1[5];
     while (plVar4 < (longlong *)(plocalLong1[9] + 8)) {
-      localLong3 = *plVar4;
+      index = *plVar4;
       plVar4 = plVar4 + 1;
-      if (localLong3 != 0) {
+      if (index != 0) {
                     // WARNING: Subroutine does not return
         HandleCriticalError();
       }
@@ -68331,21 +68331,21 @@ void Unwind_18090f050(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong localLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong1 = *(longlong **)(memorySize + 0x78);
   localLong2 = *plocalLong1;
   if (localLong2 != 0) {
-    plocalLong3 = (longlong *)plocalLong1[5];
-    if (plocalLong3 < (longlong *)(plocalLong1[9] + 8)) {
+    pindex = (longlong *)plocalLong1[5];
+    if (pindex < (longlong *)(plocalLong1[9] + 8)) {
       do {
-        localLong2 = *plocalLong3;
-        plocalLong3 = plocalLong3 + 1;
+        localLong2 = *pindex;
+        pindex = pindex + 1;
         if (localLong2 != 0) {
                     // WARNING: Subroutine does not return
           HandleCriticalError();
         }
-      } while (plocalLong3 < (longlong *)(plocalLong1[9] + 8));
+      } while (pindex < (longlong *)(plocalLong1[9] + 8));
       localLong2 = *plocalLong1;
     }
     if (localLong2 != 0) {
@@ -68364,22 +68364,22 @@ void Unwind_18090f060(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = *(longlong **)(memorySize + 0x78);
   plocalLong1 = (longlong *)plocalLong2[1];
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 4) {
-    if ((longlong *)plocalLong3[3] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)plocalLong3[3] + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 4) {
+    if ((longlong *)pindex[3] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)pindex[3] + 0x38))();
     }
-    if ((longlong *)plocalLong3[2] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)plocalLong3[2] + 0x38))();
+    if ((longlong *)pindex[2] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)pindex[2] + 0x38))();
     }
-    if ((longlong *)plocalLong3[1] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)plocalLong3[1] + 0x38))();
+    if ((longlong *)pindex[1] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)pindex[1] + 0x38))();
     }
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -68450,30 +68450,30 @@ void Unwind_18090f0c0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong localLong2;
-  longlong localLong3;
+  longlong index;
   longlong *plVar4;
   
   plocalLong1 = *(longlong **)(memorySize + 0x40);
   localLong2 = plocalLong1[2];
-  localLong3 = plocalLong1[4];
+  index = plocalLong1[4];
   plVar4 = (longlong *)plocalLong1[5];
   if (localLong2 != plocalLong1[6]) {
     do {
       FUN_1800edd10(localLong2);
       localLong2 = localLong2 + 0x78;
-      if (localLong2 == localLong3) {
+      if (localLong2 == index) {
         plVar4 = plVar4 + 1;
         localLong2 = *plVar4;
-        localLong3 = localLong2 + 0x1e0;
+        index = localLong2 + 0x1e0;
       }
     } while (localLong2 != plocalLong1[6]);
   }
   if (*plocalLong1 != 0) {
     plVar4 = (longlong *)plocalLong1[5];
     while (plVar4 < (longlong *)(plocalLong1[9] + 8)) {
-      localLong3 = *plVar4;
+      index = *plVar4;
       plVar4 = plVar4 + 1;
-      if (localLong3 != 0) {
+      if (index != 0) {
                     // WARNING: Subroutine does not return
         HandleCriticalError();
       }
@@ -68494,22 +68494,22 @@ void Unwind_18090f0d0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = *(longlong **)(memorySize + 0x40);
   plocalLong1 = (longlong *)plocalLong2[1];
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 4) {
-    if ((longlong *)plocalLong3[3] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)plocalLong3[3] + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 4) {
+    if ((longlong *)pindex[3] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)pindex[3] + 0x38))();
     }
-    if ((longlong *)plocalLong3[2] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)plocalLong3[2] + 0x38))();
+    if ((longlong *)pindex[2] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)pindex[2] + 0x38))();
     }
-    if ((longlong *)plocalLong3[1] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)plocalLong3[1] + 0x38))();
+    if ((longlong *)pindex[1] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)pindex[1] + 0x38))();
     }
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -68560,21 +68560,21 @@ void Unwind_18090f110(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong localLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong1 = *(longlong **)(memorySize + 0x40);
   localLong2 = *plocalLong1;
   if (localLong2 != 0) {
-    plocalLong3 = (longlong *)plocalLong1[5];
-    if (plocalLong3 < (longlong *)(plocalLong1[9] + 8)) {
+    pindex = (longlong *)plocalLong1[5];
+    if (pindex < (longlong *)(plocalLong1[9] + 8)) {
       do {
-        localLong2 = *plocalLong3;
-        plocalLong3 = plocalLong3 + 1;
+        localLong2 = *pindex;
+        pindex = pindex + 1;
         if (localLong2 != 0) {
                     // WARNING: Subroutine does not return
           HandleCriticalError();
         }
-      } while (plocalLong3 < (longlong *)(plocalLong1[9] + 8));
+      } while (pindex < (longlong *)(plocalLong1[9] + 8));
       localLong2 = *plocalLong1;
     }
     if (localLong2 != 0) {
@@ -68739,7 +68739,7 @@ void Unwind_18090f1b0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x20) + 0x130);
@@ -68748,12 +68748,12 @@ void Unwind_18090f1b0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -68775,7 +68775,7 @@ void Unwind_18090f1d0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x20) + 0x150);
@@ -68784,12 +68784,12 @@ void Unwind_18090f1d0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -68833,7 +68833,7 @@ void Unwind_18090f210(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x60) + 0xc0);
@@ -68842,12 +68842,12 @@ void Unwind_18090f210(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -68869,7 +68869,7 @@ void Unwind_18090f230(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x60) + 0xe0);
@@ -68878,12 +68878,12 @@ void Unwind_18090f230(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -68905,7 +68905,7 @@ void Unwind_18090f250(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x60) + 0x100);
@@ -68914,12 +68914,12 @@ void Unwind_18090f250(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -68941,7 +68941,7 @@ void Unwind_18090f270(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x60) + 0x120);
@@ -68950,12 +68950,12 @@ void Unwind_18090f270(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -68977,7 +68977,7 @@ void Unwind_18090f290(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x60) + 0x140);
@@ -68986,12 +68986,12 @@ void Unwind_18090f290(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -69013,7 +69013,7 @@ void Unwind_18090f2b0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x60) + 0x160);
@@ -69022,12 +69022,12 @@ void Unwind_18090f2b0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -69049,11 +69049,11 @@ void Unwind_18090f2d0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x60) + 0x180);
   localLong1 = *(longlong *)(*(longlong *)(memorySize + 0x60) + 0x188);
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x30) {
+  for (index = *plocalLong2; index != localLong1; index = index + 0x30) {
     FUN_1800f89b0();
   }
   if (*plocalLong2 == 0) {
@@ -69070,7 +69070,7 @@ void Unwind_18090f2f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x60) + 0x1a0);
@@ -69079,12 +69079,12 @@ void Unwind_18090f2f0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -69115,13 +69115,13 @@ void Unwind_18090f330(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x60) + 0x210);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x60) + 0x218);
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -69138,13 +69138,13 @@ void Unwind_18090f350(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x60) + 0x230);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x60) + 0x238);
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -69518,11 +69518,11 @@ void Unwind_18090f690(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = *(longlong **)(memorySize + 0x68);
   localLong1 = plocalLong2[1];
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x30) {
+  for (index = *plocalLong2; index != localLong1; index = index + 0x30) {
     FUN_1800f89b0();
   }
   if (*plocalLong2 == 0) {
@@ -69712,11 +69712,11 @@ void Unwind_18090f7e0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = *(longlong **)(memorySize + 0x40);
   localLong1 = plocalLong2[1];
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x30) {
+  for (index = *plocalLong2; index != localLong1; index = index + 0x30) {
     FUN_1800f89b0();
   }
   if (*plocalLong2 == 0) {
@@ -70658,12 +70658,12 @@ void Unwind_18090fe50(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x70) + 8);
   localLong1 = *(longlong *)(*(longlong *)(memorySize + 0x70) + 0x10);
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x128) {
-    FUN_1800f8930(localLong3);
+  for (index = *plocalLong2; index != localLong1; index = index + 0x128) {
+    FUN_1800f8930(index);
   }
   if (*plocalLong2 == 0) {
     return;
@@ -70679,12 +70679,12 @@ void Unwind_18090fe60(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = *(longlong **)(memorySize + 0x80);
   localLong1 = plocalLong2[1];
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x128) {
-    FUN_1800f8930(localLong3);
+  for (index = *plocalLong2; index != localLong1; index = index + 0x128) {
+    FUN_1800f8930(index);
   }
   if (*plocalLong2 == 0) {
     return;
@@ -70785,12 +70785,12 @@ void Unwind_18090ff10(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x100) + 0x18);
   localLong1 = *(longlong *)(*(longlong *)(memorySize + 0x100) + 0x20);
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x128) {
-    FUN_1800f8930(localLong3);
+  for (index = *plocalLong2; index != localLong1; index = index + 0x128) {
+    FUN_1800f8930(index);
   }
   if (*plocalLong2 == 0) {
     return;
@@ -70847,12 +70847,12 @@ void Unwind_18090ff80(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = *(longlong **)(memorySize + 0x158);
   localLong1 = plocalLong2[1];
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x128) {
-    FUN_1800f8930(localLong3);
+  for (index = *plocalLong2; index != localLong1; index = index + 0x128) {
+    FUN_1800f8930(index);
   }
   if (*plocalLong2 == 0) {
     return;
@@ -70868,7 +70868,7 @@ void Unwind_18090ff90(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x158);
@@ -70877,12 +70877,12 @@ void Unwind_18090ff90(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -70925,12 +70925,12 @@ void Unwind_18090ffe0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x58) + 8);
   localLong1 = *(longlong *)(*(longlong *)(memorySize + 0x58) + 0x10);
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x128) {
-    FUN_1800f8930(localLong3);
+  for (index = *plocalLong2; index != localLong1; index = index + 0x128) {
+    FUN_1800f8930(index);
   }
   if (*plocalLong2 == 0) {
     return;
@@ -70946,12 +70946,12 @@ void Unwind_18090fff0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = *(longlong **)(memorySize + 0x60);
   localLong1 = plocalLong2[1];
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x128) {
-    FUN_1800f8930(localLong3);
+  for (index = *plocalLong2; index != localLong1; index = index + 0x128) {
+    FUN_1800f8930(index);
   }
   if (*plocalLong2 == 0) {
     return;
@@ -70981,12 +70981,12 @@ void Unwind_180910010(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x60) + 8);
   localLong1 = *(longlong *)(*(longlong *)(memorySize + 0x60) + 0x10);
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x128) {
-    FUN_1800f8930(localLong3);
+  for (index = *plocalLong2; index != localLong1; index = index + 0x128) {
+    FUN_1800f8930(index);
   }
   if (*plocalLong2 == 0) {
     return;
@@ -71002,12 +71002,12 @@ void Unwind_180910020(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = *(longlong **)(memorySize + 0x68);
   localLong1 = plocalLong2[1];
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x128) {
-    FUN_1800f8930(localLong3);
+  for (index = *plocalLong2; index != localLong1; index = index + 0x128) {
+    FUN_1800f8930(index);
   }
   if (*plocalLong2 == 0) {
     return;
@@ -71023,13 +71023,13 @@ void Unwind_180910030(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong localLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong1 = (longlong *)(*(longlong *)(memorySize + 0x68) + 0x28);
   localLong2 = *(longlong *)(*(longlong *)(memorySize + 0x68) + 0x30);
-  for (localLong3 = *plocalLong1; localLong3 != localLong2; localLong3 = localLong3 + 0x18) {
-    if (*(longlong **)(localLong3 + 8) != (longlong *)0x0) {
-      (**(code **)(**(longlong **)(localLong3 + 8) + 0x38))();
+  for (index = *plocalLong1; index != localLong2; index = index + 0x18) {
+    if (*(longlong **)(index + 8) != (longlong *)0x0) {
+      (**(code **)(**(longlong **)(index + 8) + 0x38))();
     }
   }
   if (*plocalLong1 == 0) {
@@ -71046,13 +71046,13 @@ void Unwind_180910040(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x70) + 8);
   localLong1 = *(longlong *)(*(longlong *)(memorySize + 0x70) + 0x10);
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x18) {
-    if (*(longlong **)(localLong3 + 8) != (longlong *)0x0) {
-      (**(code **)(**(longlong **)(localLong3 + 8) + 0x38))();
+  for (index = *plocalLong2; index != localLong1; index = index + 0x18) {
+    if (*(longlong **)(index + 8) != (longlong *)0x0) {
+      (**(code **)(**(longlong **)(index + 8) + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -71069,13 +71069,13 @@ void Unwind_180910050(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = *(longlong **)(memorySize + 0x78);
   localLong1 = plocalLong2[1];
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x18) {
-    if (*(longlong **)(localLong3 + 8) != (longlong *)0x0) {
-      (**(code **)(**(longlong **)(localLong3 + 8) + 0x38))();
+  for (index = *plocalLong2; index != localLong1; index = index + 0x18) {
+    if (*(longlong **)(index + 8) != (longlong *)0x0) {
+      (**(code **)(**(longlong **)(index + 8) + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -71238,13 +71238,13 @@ void Unwind_1809100d0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x40) + 8);
   localLong1 = *(longlong *)(*(longlong *)(memorySize + 0x40) + 0x10);
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x18) {
-    if (*(longlong **)(localLong3 + 8) != (longlong *)0x0) {
-      (**(code **)(**(longlong **)(localLong3 + 8) + 0x38))();
+  for (index = *plocalLong2; index != localLong1; index = index + 0x18) {
+    if (*(longlong **)(index + 8) != (longlong *)0x0) {
+      (**(code **)(**(longlong **)(index + 8) + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -71261,13 +71261,13 @@ void Unwind_1809100e0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = *(longlong **)(memorySize + 0x48);
   localLong1 = plocalLong2[1];
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x18) {
-    if (*(longlong **)(localLong3 + 8) != (longlong *)0x0) {
-      (**(code **)(**(longlong **)(localLong3 + 8) + 0x38))();
+  for (index = *plocalLong2; index != localLong1; index = index + 0x18) {
+    if (*(longlong **)(index + 8) != (longlong *)0x0) {
+      (**(code **)(**(longlong **)(index + 8) + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -71334,13 +71334,13 @@ void Unwind_180910100(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = *(longlong **)(memorySize + 0x40);
   localLong1 = plocalLong2[1];
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x18) {
-    if (*(longlong **)(localLong3 + 8) != (longlong *)0x0) {
-      (**(code **)(**(longlong **)(localLong3 + 8) + 0x38))();
+  for (index = *plocalLong2; index != localLong1; index = index + 0x18) {
+    if (*(longlong **)(index + 8) != (longlong *)0x0) {
+      (**(code **)(**(longlong **)(index + 8) + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -71395,12 +71395,12 @@ void Unwind_180910150(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *plocalLong2;
-  longlong localLong3;
+  longlong index;
   
   plocalLong2 = *(longlong **)(memorySize + 0x40);
   localLong1 = plocalLong2[1];
-  for (localLong3 = *plocalLong2; localLong3 != localLong1; localLong3 = localLong3 + 0x128) {
-    FUN_1800f8930(localLong3);
+  for (index = *plocalLong2; index != localLong1; index = index + 0x128) {
+    FUN_1800f8930(index);
   }
   if (*plocalLong2 == 0) {
     return;
@@ -71736,7 +71736,7 @@ void Unwind_180910320(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x150);
@@ -71745,12 +71745,12 @@ void Unwind_180910320(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -71793,7 +71793,7 @@ void Unwind_180910340(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xa8);
@@ -71802,12 +71802,12 @@ void Unwind_180910340(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -71829,7 +71829,7 @@ void Unwind_180910350(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x150);
@@ -71838,12 +71838,12 @@ void Unwind_180910350(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -71904,7 +71904,7 @@ void Unwind_1809103c0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x48) + 8);
@@ -71913,12 +71913,12 @@ void Unwind_1809103c0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -72020,17 +72020,17 @@ void Unwind_180910450(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   
-  localLong3 = *(longlong *)(memorySize + 0x60);
-  localLong1 = localLong3 + 0x1d8;
-  *(data **)((longlong)*(int *)(*(longlong *)(localLong3 + 0x128) + 4) + -0xb0 + localLong1) =
+  index = *(longlong *)(memorySize + 0x60);
+  localLong1 = index + 0x1d8;
+  *(data **)((longlong)*(int *)(*(longlong *)(index + 0x128) + 4) + -0xb0 + localLong1) =
        &unknown_180a05168;
-  localInt2 = *(int *)(*(longlong *)(localLong3 + 0x128) + 4);
-  *(int *)((longlong)localInt2 + -0xb4 + localLong1) = localInt2 + -0xb0;
-  FUN_18009fb60(localLong3 + 0x138);
-  __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(localLong3 + 0x140);
+  status = *(int *)(*(longlong *)(index + 0x128) + 4);
+  *(int *)((longlong)status + -0xb4 + localLong1) = status + -0xb0;
+  FUN_18009fb60(index + 0x138);
+  __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(index + 0x140);
                     // WARNING: Could not recover jumptable at 0x0001800fd4a2. Too many branches
                     // WARNING: Treating indirect jump as call
   __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(localLong1);
@@ -72086,13 +72086,13 @@ void Unwind_1809104d0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x60) + 0x268);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x60) + 0x270);
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -72109,7 +72109,7 @@ void Unwind_1809104f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x60) + 0x338);
@@ -72118,12 +72118,12 @@ void Unwind_1809104f0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -72145,7 +72145,7 @@ void Unwind_180910510(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x60) + 0x358);
@@ -72154,12 +72154,12 @@ void Unwind_180910510(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -72204,20 +72204,20 @@ void Unwind_180910580(uint64 resourceHandle,longlong memorySize)
 {
   uint64 returnValue;
   longlong localLong2;
-  longlong localLong3;
+  longlong index;
   uint64 *puVar4;
   
-  localLong3 = *(longlong *)(memorySize + 0x68);
-  puVar4 = (uint64 *)(localLong3 + 0x10);
+  index = *(longlong *)(memorySize + 0x68);
+  puVar4 = (uint64 *)(index + 0x10);
   *puVar4 = &uiWidgetTree;
-  if ((*(longlong *)(localLong3 + 0x90) != 0) && (**(longlong **)(localLong3 + 0x28) == localLong3 + 0x80)) {
-    returnValue = *(uint64 *)(localLong3 + 0xa0);
-    localLong2 = *(longlong *)(localLong3 + 0x98);
-    **(longlong **)(localLong3 + 0x28) = localLong2;
-    **(longlong **)(localLong3 + 0x48) = localLong2;
-    **(int **)(localLong3 + 0x60) = (int)returnValue - (int)localLong2;
+  if ((*(longlong *)(index + 0x90) != 0) && (**(longlong **)(index + 0x28) == index + 0x80)) {
+    returnValue = *(uint64 *)(index + 0xa0);
+    localLong2 = *(longlong *)(index + 0x98);
+    **(longlong **)(index + 0x28) = localLong2;
+    **(longlong **)(index + 0x48) = localLong2;
+    **(int **)(index + 0x60) = (int)returnValue - (int)localLong2;
   }
-  if (*(char *)(localLong3 + 0x8c) != '\0') {
+  if (*(char *)(index + 0x8c) != '\0') {
     FUN_1800a19c0(puVar4);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
@@ -72241,17 +72241,17 @@ void Unwind_1809105a0(uint64 resourceHandle,longlong memorySize)
 
 {
   longlong localLong1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   
-  localLong3 = *(longlong *)(memorySize + 0x40);
-  localLong1 = localLong3 + 0x1d8;
-  *(data **)((longlong)*(int *)(*(longlong *)(localLong3 + 0x128) + 4) + -0xb0 + localLong1) =
+  index = *(longlong *)(memorySize + 0x40);
+  localLong1 = index + 0x1d8;
+  *(data **)((longlong)*(int *)(*(longlong *)(index + 0x128) + 4) + -0xb0 + localLong1) =
        &unknown_180a05168;
-  localInt2 = *(int *)(*(longlong *)(localLong3 + 0x128) + 4);
-  *(int *)((longlong)localInt2 + -0xb4 + localLong1) = localInt2 + -0xb0;
-  FUN_18009fb60(localLong3 + 0x138);
-  __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(localLong3 + 0x140);
+  status = *(int *)(*(longlong *)(index + 0x128) + 4);
+  *(int *)((longlong)status + -0xb4 + localLong1) = status + -0xb0;
+  FUN_18009fb60(index + 0x138);
+  __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(index + 0x140);
                     // WARNING: Could not recover jumptable at 0x0001800fd4a2. Too many branches
                     // WARNING: Treating indirect jump as call
   __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(localLong1);
@@ -72307,13 +72307,13 @@ void Unwind_180910620(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *plocalLong2;
-  longlong *plocalLong3;
+  longlong *pindex;
   
   plocalLong2 = (longlong *)(*(longlong *)(memorySize + 0x40) + 0x268);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x40) + 0x270);
-  for (plocalLong3 = (longlong *)*plocalLong2; plocalLong3 != plocalLong1; plocalLong3 = plocalLong3 + 1) {
-    if ((longlong *)*plocalLong3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plocalLong3 + 0x38))();
+  for (pindex = (longlong *)*plocalLong2; pindex != plocalLong1; pindex = pindex + 1) {
+    if ((longlong *)*pindex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*pindex + 0x38))();
     }
   }
   if (*plocalLong2 == 0) {
@@ -72330,7 +72330,7 @@ void Unwind_180910640(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x40) + 0x338);
@@ -72339,12 +72339,12 @@ void Unwind_180910640(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -72366,7 +72366,7 @@ void Unwind_180910660(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x40) + 0x358);
@@ -72375,12 +72375,12 @@ void Unwind_180910660(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -72413,20 +72413,20 @@ void Unwind_1809106a0(uint64 resourceHandle,longlong memorySize)
 {
   uint64 returnValue;
   longlong localLong2;
-  longlong localLong3;
+  longlong index;
   uint64 *puVar4;
   
-  localLong3 = *(longlong *)(memorySize + 0x40);
-  puVar4 = (uint64 *)(localLong3 + -0xa0);
+  index = *(longlong *)(memorySize + 0x40);
+  puVar4 = (uint64 *)(index + -0xa0);
   *puVar4 = &uiWidgetTree;
-  if ((*(longlong *)(localLong3 + -0x20) != 0) && (**(longlong **)(localLong3 + -0x88) == localLong3 + -0x30)) {
-    returnValue = *(uint64 *)(localLong3 + -0x10);
-    localLong2 = *(longlong *)(localLong3 + -0x18);
-    **(longlong **)(localLong3 + -0x88) = localLong2;
-    **(longlong **)(localLong3 + -0x68) = localLong2;
-    **(int **)(localLong3 + -0x50) = (int)returnValue - (int)localLong2;
+  if ((*(longlong *)(index + -0x20) != 0) && (**(longlong **)(index + -0x88) == index + -0x30)) {
+    returnValue = *(uint64 *)(index + -0x10);
+    localLong2 = *(longlong *)(index + -0x18);
+    **(longlong **)(index + -0x88) = localLong2;
+    **(longlong **)(index + -0x68) = localLong2;
+    **(int **)(index + -0x50) = (int)returnValue - (int)localLong2;
   }
-  if (*(char *)(localLong3 + -0x24) != '\0') {
+  if (*(char *)(index + -0x24) != '\0') {
     FUN_1800a19c0(puVar4);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
@@ -72464,7 +72464,7 @@ void Unwind_1809106e0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x78);
@@ -72473,12 +72473,12 @@ void Unwind_1809106e0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -72524,7 +72524,7 @@ void Unwind_180910750(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x78);
@@ -72533,12 +72533,12 @@ void Unwind_180910750(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -72582,7 +72582,7 @@ void Unwind_180910770(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x30);
@@ -72591,12 +72591,12 @@ void Unwind_180910770(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -72618,7 +72618,7 @@ void Unwind_180910780(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x30);
@@ -72627,12 +72627,12 @@ void Unwind_180910780(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -72654,7 +72654,7 @@ void Unwind_180910790(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x58) + 8);
@@ -72663,12 +72663,12 @@ void Unwind_180910790(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -76808,7 +76808,7 @@ void Unwind_1809118c0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x20);
@@ -76817,12 +76817,12 @@ void Unwind_1809118c0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -76874,7 +76874,7 @@ void Unwind_1809118f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x70);
@@ -76883,12 +76883,12 @@ void Unwind_1809118f0(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -77015,7 +77015,7 @@ void Unwind_180911950(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x20);
@@ -77024,12 +77024,12 @@ void Unwind_180911950(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -77684,8 +77684,8 @@ void Unwind_180911de0(uint64 resourceHandle,longlong memorySize,uint64 operation
 
 {
   int *plocalInt1;
-  int localInt2;
-  longlong localLong3;
+  int status;
+  longlong index;
   longlong lVar4;
   ulonglong uVar5;
   uint uVar6;
@@ -77697,41 +77697,41 @@ void Unwind_180911de0(uint64 resourceHandle,longlong memorySize,uint64 operation
   uVar7 = uVar5;
   if (0 < *plocalInt1) {
     do {
-      localInt2 = *(int *)(*(longlong *)(lVar4 + 0x1e78) + 8 + uVar5);
-      if ((localInt2 != -1) &&
-         (localLong3 = *(longlong *)((longlong)localInt2 * 0x60 + *(longlong *)(lVar4 + 0x1e68) + 8),
-         localLong3 != 0)) {
+      status = *(int *)(*(longlong *)(lVar4 + 0x1e78) + 8 + uVar5);
+      if ((status != -1) &&
+         (index = *(longlong *)((longlong)status * 0x60 + *(longlong *)(lVar4 + 0x1e68) + 8),
+         index != 0)) {
         if (g_systemGlobalCounter1 != 0) {
           *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
         }
                     // WARNING: Subroutine does not return
-        FUN_180059ba0(localLong3,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+        FUN_180059ba0(index,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
       }
       uVar6 = (int)uVar7 + 1;
       uVar5 = uVar5 + 0x10;
       uVar7 = (ulonglong)uVar6;
     } while ((int)uVar6 < *plocalInt1);
   }
-  localLong3 = *(longlong *)(lVar4 + 0x1e78);
-  if (localLong3 != 0) {
+  index = *(longlong *)(lVar4 + 0x1e78);
+  if (index != 0) {
     plocalInt1[0] = 0;
     plocalInt1[1] = 0;
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong3,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(index,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
-  localLong3 = *(longlong *)(lVar4 + 0x1e68);
-  if (localLong3 == 0) {
+  index = *(longlong *)(lVar4 + 0x1e68);
+  if (index == 0) {
     *(uint32 *)(lVar4 + 0x1e80) = 0;
-    localLong3 = *(longlong *)(lVar4 + 0x1e78);
-    if (localLong3 != 0) {
+    index = *(longlong *)(lVar4 + 0x1e78);
+    if (index != 0) {
       if (g_systemGlobalCounter1 != 0) {
         *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
       }
                     // WARNING: Subroutine does not return
-      FUN_180059ba0(localLong3,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+      FUN_180059ba0(index,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
     }
     lVar4 = *(longlong *)(lVar4 + 0x1e68);
     if (lVar4 == 0) {
@@ -77748,7 +77748,7 @@ void Unwind_180911de0(uint64 resourceHandle,longlong memorySize,uint64 operation
     *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
   }
                     // WARNING: Subroutine does not return
-  FUN_180059ba0(localLong3,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+  FUN_180059ba0(index,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
 }
 
 
@@ -79942,7 +79942,7 @@ void Unwind_180912930(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x80) + 0x360);
@@ -79951,12 +79951,12 @@ void Unwind_180912930(uint64 resourceHandle,longlong memorySize)
   }
   uVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)plocalUInt2 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -80039,12 +80039,12 @@ void checkResourceState(uint64 resourceHandle,longlong memorySize)
 
 {
   char cVar1;
-  int localInt2;
+  int status;
   
   FUN_1808fc5ac();
   cVar1 = *(char *)(memorySize + 0x38);
-  localInt2 = func_0x0001808fd8d4();
-  if ((localInt2 != 0) && (cVar1 == '\0')) {
+  status = func_0x0001808fd8d4();
+  if ((status != 0) && (cVar1 == '\0')) {
     LOCK();
     _DAT_180c821d0 = 0;
     UNLOCK();
@@ -80582,7 +80582,7 @@ void systemInitializeExtensions(void)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong localLong3;
+  longlong index;
   ulonglong uVar4;
   
   plocalUInt2 = _DAT_180d493f8;
@@ -80591,12 +80591,12 @@ void systemInitializeExtensions(void)
   }
   uVar4 = (ulonglong)_DAT_180d493f8 & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    localLong3 = uVar4 + 0x80 + ((longlong)_DAT_180d493f8 - uVar4 >> 0x10) * 0x50;
-    localLong3 = localLong3 - (ulonglong)*(uint *)(localLong3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(localLong3 + 0xe) == '\0')) {
-      *_DAT_180d493f8 = *(uint64 *)(localLong3 + 0x20);
-      *(uint64 **)(localLong3 + 0x20) = plocalUInt2;
-      plocalInt1 = (int *)(localLong3 + 0x18);
+    index = uVar4 + 0x80 + ((longlong)_DAT_180d493f8 - uVar4 >> 0x10) * 0x50;
+    index = index - (ulonglong)*(uint *)(index + 4);
+    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
+      *_DAT_180d493f8 = *(uint64 *)(index + 0x20);
+      *(uint64 **)(index + 0x20) = plocalUInt2;
+      plocalInt1 = (int *)(index + 0x18);
       *plocalInt1 = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -81746,7 +81746,7 @@ void resourceCreateBackup(void)
 
 {
   longlong *plocalLong1;
-  int *plocalInt2;
+  int *pstatus;
   int localInt3;
   longlong lVar4;
   longlong *plVar5;
@@ -81761,9 +81761,9 @@ void resourceCreateBackup(void)
     if ((int)lVar4 == 1) {
       (**(code **)*plVar5)(plVar5);
       LOCK();
-      plocalInt2 = (int *)((longlong)plVar5 + 0xc);
-      localInt3 = *plocalInt2;
-      *plocalInt2 = *plocalInt2 + -1;
+      pstatus = (int *)((longlong)plVar5 + 0xc);
+      localInt3 = *pstatus;
+      *pstatus = *pstatus + -1;
       UNLOCK();
       if (localInt3 == 1) {
         (**(code **)(*plVar5 + 8))(plVar5);
@@ -81781,7 +81781,7 @@ void resourceRestoreBackup(void)
 
 {
   longlong *plocalLong1;
-  int *plocalInt2;
+  int *pstatus;
   int localInt3;
   longlong lVar4;
   longlong *baseRegister;
@@ -81794,9 +81794,9 @@ void resourceRestoreBackup(void)
   if ((int)lVar4 == 1) {
     (**(code **)*baseRegister)();
     LOCK();
-    plocalInt2 = (int *)((longlong)baseRegister + 0xc);
-    localInt3 = *plocalInt2;
-    *plocalInt2 = *plocalInt2 + -1;
+    pstatus = (int *)((longlong)baseRegister + 0xc);
+    localInt3 = *pstatus;
+    *pstatus = *pstatus + -1;
     UNLOCK();
     if (localInt3 == 1) {
       (**(code **)(*baseRegister + 8))();
@@ -81825,7 +81825,7 @@ void resourceOptimizeStorage(void)
 
 {
   longlong *plocalLong1;
-  int *plocalInt2;
+  int *pstatus;
   int localInt3;
   longlong lVar4;
   longlong *plVar5;
@@ -81840,9 +81840,9 @@ void resourceOptimizeStorage(void)
     if ((int)lVar4 == 1) {
       (**(code **)*plVar5)(plVar5);
       LOCK();
-      plocalInt2 = (int *)((longlong)plVar5 + 0xc);
-      localInt3 = *plocalInt2;
-      *plocalInt2 = *plocalInt2 + -1;
+      pstatus = (int *)((longlong)plVar5 + 0xc);
+      localInt3 = *pstatus;
+      *pstatus = *pstatus + -1;
       UNLOCK();
       if (localInt3 == 1) {
         (**(code **)(*plVar5 + 8))(plVar5);
@@ -81860,7 +81860,7 @@ void resourceDefragmentMemory(void)
 
 {
   longlong *plocalLong1;
-  int *plocalInt2;
+  int *pstatus;
   int localInt3;
   longlong lVar4;
   longlong *baseRegister;
@@ -81873,9 +81873,9 @@ void resourceDefragmentMemory(void)
   if ((int)lVar4 == 1) {
     (**(code **)*baseRegister)();
     LOCK();
-    plocalInt2 = (int *)((longlong)baseRegister + 0xc);
-    localInt3 = *plocalInt2;
-    *plocalInt2 = *plocalInt2 + -1;
+    pstatus = (int *)((longlong)baseRegister + 0xc);
+    localInt3 = *pstatus;
+    *pstatus = *pstatus + -1;
     UNLOCK();
     if (localInt3 == 1) {
       (**(code **)(*baseRegister + 8))();
@@ -81904,7 +81904,7 @@ void resourceUpdateReferences(void)
 
 {
   longlong *plocalLong1;
-  int *plocalInt2;
+  int *pstatus;
   int localInt3;
   longlong lVar4;
   longlong *plVar5;
@@ -81919,9 +81919,9 @@ void resourceUpdateReferences(void)
     if ((int)lVar4 == 1) {
       (**(code **)*plVar5)(plVar5);
       LOCK();
-      plocalInt2 = (int *)((longlong)plVar5 + 0xc);
-      localInt3 = *plocalInt2;
-      *plocalInt2 = *plocalInt2 + -1;
+      pstatus = (int *)((longlong)plVar5 + 0xc);
+      localInt3 = *pstatus;
+      *pstatus = *pstatus + -1;
       UNLOCK();
       if (localInt3 == 1) {
         (**(code **)(*plVar5 + 8))(plVar5);
@@ -81939,7 +81939,7 @@ void resourceValidateIntegrity(void)
 
 {
   longlong *plocalLong1;
-  int *plocalInt2;
+  int *pstatus;
   int localInt3;
   longlong lVar4;
   longlong *baseRegister;
@@ -81952,9 +81952,9 @@ void resourceValidateIntegrity(void)
   if ((int)lVar4 == 1) {
     (**(code **)*baseRegister)();
     LOCK();
-    plocalInt2 = (int *)((longlong)baseRegister + 0xc);
-    localInt3 = *plocalInt2;
-    *plocalInt2 = *plocalInt2 + -1;
+    pstatus = (int *)((longlong)baseRegister + 0xc);
+    localInt3 = *pstatus;
+    *pstatus = *pstatus + -1;
     UNLOCK();
     if (localInt3 == 1) {
       (**(code **)(*baseRegister + 8))();
