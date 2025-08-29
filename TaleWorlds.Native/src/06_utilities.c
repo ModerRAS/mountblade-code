@@ -97,18 +97,18 @@ byte DAT_180c91238;
 // 函数: data InitializeSemaphore;
 // 信号量初始化函数1809416d0
 data InitializeSemaphore;
-byte DAT_180c912d8;
+byte g_semaphoreInitFlag;
 
 // 函数: data CleanupThreadSynchronization;
 data CleanupThreadSynchronization;
 data DAT_1809fe0d0;
 data unknown_1809fd0d8;
 
-// 函数: data FUN_1809417a0;
-data FUN_1809417a0;
+// 函数: data CloseSystemHandle;
+data CloseSystemHandle;
 
-// 函数: data FUN_1809417c0;
-data FUN_1809417c0;
+// 函数: data DestroyMutex;
+data DestroyMutex;
 data DAT_180c9190c;
 data unknown_1809fcc28;
 data unknown_1809ffa30;
@@ -2469,6 +2469,7 @@ void ProcessMemoryAllocation(longlong resourceHandle,longlong memorySize)
 
 
 // 函数: void HandleResourceCleanup(void)
+// 资源清理处理函数 - 释放和清理系统资源
 void HandleResourceCleanup(void)
 
 {
