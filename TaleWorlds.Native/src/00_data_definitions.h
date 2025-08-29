@@ -5580,7 +5580,7 @@ system_allocator_008(unsigned long long handle,long long *flags,unsigned long lo
   flags = flags[1] - *flags >> 2;
   if ((int)flags != 0) {
     long_var_ = 0;
-    flags = flags & 0xffffffff;
+    flags = flags & UINT32_MAX;
     do {
       ptr_var_ = (uint *)*mutex_attr;
       init_result = *flags;
@@ -5715,7 +5715,7 @@ unsigned char allocate_with_mutex(unsigned long long handle,unsigned long long f
   long long *in_stack_00000060;
   char in_stack_00000070;
   long_var_ = 0;
-  uint_var_ = in_RAX & 0xffffffff;
+  uint_var_ = in_RAX & UINT32_MAX;
   do {
     uint_var_ = 0;
     if (unaff_EDI != 0) {
@@ -5965,7 +5965,7 @@ system_finalizer_007(unsigned long long handle,unsigned long long flags,unsigned
   } while (long_var_ != 0);
   data_180c95bf0 = 0;
   _Mtx_init_in_situ(0x180c95d70,2,mutex_attr,mutex_type,uint_var_);
-  global_data_ = 0xffffffff;
+  global_data_ = UINT32_MAX;
   global_data_ = 0;
   global_data_ = 0;
   global_data_ = 0xffdc;
@@ -10565,9 +10565,9 @@ label_:
             }
             in_RAX = (int *)CONCAT71((int7)((ulong long)in_RAX >> 8),cVar10 + cVar14);
 LAB_180768028_1:
-            piVar2 = (int *)(((ulong long)in_RAX & 0xffffffffffffff20) - 0x75);
+            piVar2 = (int *)(((ulong long)in_RAX & UINT32_MAXffffff20) - 0x75);
             *piVar2 = *piVar2 + (int)handle;
-            *(int *)(((ulong long)in_RAX & 0xffffffffffffff20) - 0x17ffffff) = (int)pflags3;
+            *(int *)(((ulong long)in_RAX & UINT32_MAXffffff20) - 0x17ffffff) = (int)pflags3;
             halt_baddata();
           }
         }
