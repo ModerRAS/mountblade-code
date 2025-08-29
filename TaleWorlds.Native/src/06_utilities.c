@@ -377,47 +377,47 @@ data g_systemModuleNetworkFlags12;
 data g_initializeSystemModule1;
 data g_systemModuleNetworkPointer13;
 data networkSendBuffer;
-data g_bufferModuleData4;
-data g_bufferModuleData5;
-data g_bufferModuleData6;
-data g_bufferModuleData7;
+data g_bufferModuleConfig4;
+data g_bufferModuleConfig5;
+data g_bufferModuleConfig6;
+data g_bufferModuleConfig7;
 
 // 函数: data g_initializeSystemModule2;
 data g_initializeSystemModule2;
 data networkReceiveBuffer;
 data g_systemModuleNetworkContext14;
 data g_systemModuleData15;
-data g_systemModuleData16;
-data g_systemModuleData17;
+data g_systemModuleNetworkContext16;
+data g_systemModuleNetworkContext17;
 
 // 函数: data g_initializeSystemModule3;
 data g_initializeSystemModule3;
 data networkPacketSize;
-data g_threadSyncModuleData2;
-data g_threadSyncModuleData3;
-data g_threadSyncModuleData4;
-data g_threadSyncModuleData5;
-data g_eventModuleData9;
+data g_threadSyncModuleConfig2;
+data g_threadSyncModuleConfig3;
+data g_threadSyncModuleConfig4;
+data g_threadSyncModuleConfig5;
+data g_eventModuleConfig9;
 data g_eventModuleData10;
-data g_systemModuleData18;
-data g_memoryModuleData1;
-data g_fileModuleData4;
-data g_fileModuleData5;
-data g_fileModuleData6;
-data g_fileModuleData7;
-data g_systemModuleData19;
-data g_renderModuleData1;
+data g_systemModuleEventPointer18;
+data g_memoryModuleConfig1;
+data g_fileModuleConfig4;
+data g_fileModuleConfig5;
+data g_fileModuleConfig6;
+data g_fileModuleConfig7;
+data g_systemModuleMemoryPointer19;
+data g_renderModuleConfig1;
 data g_systemModuleData20;
-data g_renderModuleData2;
-data g_systemConfigModuleData6;
-data g_systemConfigModuleData7;
+data g_renderModuleConfig2;
+data g_systemConfigModuleConfig6;
+data g_systemConfigModuleConfig7;
 data g_systemConfigModuleData8;
-data g_systemConfigModuleData9;
-data g_renderModuleData14;
-data g_renderModuleData15;
-data g_renderModuleData16;
-data g_renderModuleData17;
-data g_deviceConfigModuleData1;
+data g_systemConfigModuleConfig9;
+data g_renderModuleConfig14;
+data g_renderModuleConfig15;
+data g_renderModuleConfig16;
+data g_renderModuleConfig17;
+data g_deviceConfigModuleConfig1;
 data g_deviceConfigModuleData2;
 data deviceConfigData3;
 data deviceConfigData4;
@@ -979,34 +979,34 @@ data renderDepthBuffer4;
 // 函数: data renderStencilInitialize;
 data renderStencilInitialize;
 data computeBarrierFlag;
-data renderStencilBuffer1;  /* 原: DAT_180bfa0b0 */
-data renderStencilBuffer2;  /* 原: DAT_180bfa0b8 */
-data renderStencilBuffer3;  /* 原: DAT_180bfa0c0 */
-data renderStencilBuffer4;  /* 原: DAT_180bfa0c8 */
+data renderStencilBuffer1;  /* 原: renderSystemVara0b0 */
+data renderStencilBuffer2;  /* 原: renderSystemVara0b8 */
+data renderStencilBuffer3;  /* 原: renderSystemVara0c0 */
+data renderStencilBuffer4;  /* 原: renderSystemVara0c8 */
 
 // 函数: data renderViewportInitialize;
 data renderViewportInitialize;
 data geometryInputAssembler;
-data renderViewportBuffer1;  /* 原: DAT_180bfa110 */
-data renderViewportBuffer2;  /* 原: DAT_180bfa118 */
-data renderViewportBuffer3;  /* 原: DAT_180bfa120 */
-data renderViewportBuffer4;  /* 原: DAT_180bfa128 */
+data renderViewportBuffer1;  /* 原: renderSystemVara110 */
+data renderViewportBuffer2;  /* 原: renderSystemVara118 */
+data renderViewportBuffer3;  /* 原: renderSystemVara120 */
+data renderViewportBuffer4;  /* 原: renderSystemVara128 */
 data geometryTessellator;
 
 // 函数: data renderScissorInitialize;
 data renderScissorInitialize;
-data renderScissorBuffer1;  /* 原: DAT_180bfa170 */
-data renderScissorBuffer2;  /* 原: DAT_180bfa178 */
-data renderScissorBuffer3;  /* 原: DAT_180bfa180 */
-data renderScissorBuffer4;  /* 原: DAT_180bfa188 */
+data renderScissorBuffer1;  /* 原: renderSystemVara170 */
+data renderScissorBuffer2;  /* 原: renderSystemVara178 */
+data renderScissorBuffer3;  /* 原: renderSystemVara180 */
+data renderScissorBuffer4;  /* 原: renderSystemVara188 */
 data geometryPrimitiveType;
 
 // 函数: data renderClearInitialize;
 data renderClearInitialize;
-data renderClearBuffer1;  /* 原: DAT_180bfa1d0 */
-data renderClearBuffer2;  /* 原: DAT_180bfa1d8 */
-data renderClearBuffer3;  /* 原: DAT_180bfa1e0 */
-data renderClearBuffer4;  /* 原: DAT_180bfa1e8 */
+data renderClearBuffer1;  /* 原: renderSystemVara1d0 */
+data renderClearBuffer2;  /* 原: renderSystemVara1d8 */
+data renderClearBuffer3;  /* 原: renderSystemVara1e0 */
+data renderClearBuffer4;  /* 原: renderSystemVara1e8 */
 data renderDrawFlushCommand;  /* 原: renderDepthBuffer1; */
 
 // 函数: data renderDrawInitialize;
@@ -1047,30 +1047,30 @@ data particleBuffer1;
 data particleBuffer2;
 data particleBuffer3;
 data particleBuffer4;
-data particleEmissionRate;  /* 原: DAT_180bfa3e8 */
-data particleSpawnPosition;  /* 原: DAT_180bfa3f0 */
-data particleSpawnDirection;  /* 原: DAT_180bfa3f8 */
-data particleSpawnColor;  /* 原: DAT_180bfa400 */
-data particleSizeRange;  /* 原: DAT_180bfa480 */
-data particleLifeRange;  /* 原: DAT_180bfa488 */
-data particleSpeedRange;  /* 原: DAT_180bfa490 */
-data particleRotationRange;  /* 原: DAT_180bfa498 */
-data particleGravity;  /* 原: DAT_180bfa518 */
-data particleWindEffect;  /* 原: DAT_180bfa520 */
-data particleTurbulence;  /* 原: DAT_180bfa528 */
-data particleCollisionData;  /* 原: DAT_180bfa530 */
-data particleTextureData;  /* 原: DAT_180bfa5b0 */
-data particleShaderData;  /* 原: DAT_180bfa5b8 */
-data particleBlendMode;  /* 原: DAT_180bfa5c0 */
-data particleDepthTest;  /* 原: DAT_180bfa5c8 */
-data particleSortMode;  /* 原: DAT_180bfa648 */
-data particleCullingData;  /* 原: DAT_180bfa650 */
-data particleLodData;  /* 原: DAT_180bfa658 */
-data particleBatchData;  /* 原: DAT_180bfa660 */
-data postProcessExposure;  /* 原: DAT_180bfa6e0 */
-data postProcessContrast;  /* 原: DAT_180bfa6e8 */
-data postProcessSaturation;  /* 原: DAT_180bfa6f0 */
-data postProcessBrightness;  /* 原: DAT_180bfa6f8 */
+data particleEmissionRate;  /* 原: renderSystemVara3e8 */
+data particleSpawnPosition;  /* 原: renderSystemVara3f0 */
+data particleSpawnDirection;  /* 原: renderSystemVara3f8 */
+data particleSpawnColor;  /* 原: renderSystemVara400 */
+data particleSizeRange;  /* 原: renderSystemVara480 */
+data particleLifeRange;  /* 原: renderSystemVara488 */
+data particleSpeedRange;  /* 原: renderSystemVara490 */
+data particleRotationRange;  /* 原: renderSystemVara498 */
+data particleGravity;  /* 原: renderSystemVara518 */
+data particleWindEffect;  /* 原: renderSystemVara520 */
+data particleTurbulence;  /* 原: renderSystemVara528 */
+data particleCollisionData;  /* 原: renderSystemVara530 */
+data particleTextureData;  /* 原: renderSystemVara5b0 */
+data particleShaderData;  /* 原: renderSystemVara5b8 */
+data particleBlendMode;  /* 原: renderSystemVara5c0 */
+data particleDepthTest;  /* 原: renderSystemVara5c8 */
+data particleSortMode;  /* 原: renderSystemVara648 */
+data particleCullingData;  /* 原: renderSystemVara650 */
+data particleLodData;  /* 原: renderSystemVara658 */
+data particleBatchData;  /* 原: renderSystemVara660 */
+data postProcessExposure;  /* 原: renderSystemVara6e0 */
+data postProcessContrast;  /* 原: renderSystemVara6e8 */
+data postProcessSaturation;  /* 原: renderSystemVara6f0 */
+data postProcessBrightness;  /* 原: renderSystemVara6f8 */
 data particleSimulationData;
 data particleRenderData;
 data particleLifetimeData;
@@ -1079,30 +1079,30 @@ data postProcessChain;
 data postProcessSettings;
 data postProcessBuffer;
 data postProcessUniforms;
-data postProcessBloom;  /* 原: DAT_180bfa780 */
-data postProcessVignette;  /* 原: DAT_180bfa788 */
-data postProcessDepthOfField;  /* 原: DAT_180bfa790 */
-data postProcessMotionBlur;  /* 原: DAT_180bfa798 */
-data postProcessAmbientOcclusion;  /* 原: DAT_180bfa818 */
-data postProcessScreenReflection;  /* 原: DAT_180bfa820 */
-data postProcessAntiAliasing;  /* 原: DAT_180bfa828 */
-data postProcessColorGrading;  /* 原: DAT_180bfa830 */
-data postProcessLensFlare;  /* 原: DAT_180bfa8b0 */
-data postProcessLensDistortion;  /* 原: DAT_180bfa8b8 */
-data postProcessChromaticAberration;  /* 原: DAT_180bfa8c0 */
-data postProcessFilmGrain;  /* 原: DAT_180bfa8c8 */
-data postProcessSharpen;  /* 原: DAT_180bfa948 */
-data postProcessBlur;  /* 原: DAT_180bfa950 */
-data postProcessNoise;  /* 原: DAT_180bfa958 */
-data postProcessGamma;  /* 原: DAT_180bfa960 */
-data renderTargetWidth;  /* 原: DAT_180bfa9e0 */
-data renderTargetHeight;  /* 原: DAT_180bfa9e8 */
-data renderTargetFormat;  /* 原: DAT_180bfa9f0 */
-data renderTargetSamples;  /* 原: DAT_180bfa9f8 */
-data renderTargetDepthBuffer;  /* 原: DAT_180bfaa78 */
-data renderTargetStencilBuffer;  /* 原: DAT_180bfaa80 */
-data renderTargetColorBuffer;  /* 原: DAT_180bfaa88 */
-data renderTargetMipMaps;  /* 原: DAT_180bfaa90 */
+data postProcessBloom;  /* 原: renderSystemVara780 */
+data postProcessVignette;  /* 原: renderSystemVara788 */
+data postProcessDepthOfField;  /* 原: renderSystemVara790 */
+data postProcessMotionBlur;  /* 原: renderSystemVara798 */
+data postProcessAmbientOcclusion;  /* 原: renderSystemVara818 */
+data postProcessScreenReflection;  /* 原: renderSystemVara820 */
+data postProcessAntiAliasing;  /* 原: renderSystemVara828 */
+data postProcessColorGrading;  /* 原: renderSystemVara830 */
+data postProcessLensFlare;  /* 原: renderSystemVara8b0 */
+data postProcessLensDistortion;  /* 原: renderSystemVara8b8 */
+data postProcessChromaticAberration;  /* 原: renderSystemVara8c0 */
+data postProcessFilmGrain;  /* 原: renderSystemVara8c8 */
+data postProcessSharpen;  /* 原: renderSystemVara948 */
+data postProcessBlur;  /* 原: renderSystemVara950 */
+data postProcessNoise;  /* 原: renderSystemVara958 */
+data postProcessGamma;  /* 原: renderSystemVara960 */
+data renderTargetWidth;  /* 原: renderSystemVara9e0 */
+data renderTargetHeight;  /* 原: renderSystemVara9e8 */
+data renderTargetFormat;  /* 原: renderSystemVara9f0 */
+data renderTargetSamples;  /* 原: renderSystemVara9f8 */
+data renderTargetDepthBuffer;  /* 原: renderSystemVaraa78 */
+data renderTargetStencilBuffer;  /* 原: renderSystemVaraa80 */
+data renderTargetColorBuffer;  /* 原: renderSystemVaraa88 */
+data renderTargetMipMaps;  /* 原: renderSystemVaraa90 */
 data memoryAllocatorStatusFlag;
 data lightingShadowMap;
 data lightingProbeData;
@@ -1110,30 +1110,30 @@ data lightingIBLData;
 data lightingCascadeData;
 data shadowMapAtlas;
 data shadowCascadeData;
-data shadowMapResolution;  /* 原: DAT_180bfab10 */
-data shadowMapFilter;  /* 原: DAT_180bfab18 */
-data shadowMapBias;  /* 原: DAT_180bfab20 */
-data shadowMapSlopeBias;  /* 原: DAT_180bfab28 */
-data shadowMapDepthBounds;  /* 原: DAT_180bfaba8 */
-data shadowMapCascadeCount;  /* 原: DAT_180bfabb0 */
-data shadowMapCascadeSplit;  /* 原: DAT_180bfabb8 */
-data shadowMapCascadeMatrix;  /* 原: DAT_180bfabc0 */
-data lightingAmbientColor;  /* 原: DAT_180bfac40 */
-data lightingDiffuseColor;  /* 原: DAT_180bfac48 */
-data lightingSpecularColor;  /* 原: DAT_180bfac50 */
-data lightingEmissiveColor;  /* 原: DAT_180bfac58 */
-data lightingShininess;  /* 原: DAT_180bfacd8 */
-data lightingRoughness;  /* 原: DAT_180bface0 */
-data lightingMetalness;  /* 原: DAT_180bface8 */
-data lightingAO;  /* 原: DAT_180bfacf0 */
-data lightingNormalMap;  /* 原: DAT_180bfad70 */
-data lightingHeightMap;  /* 原: DAT_180bfad78 */
+data shadowMapResolution;  /* 原: renderSystemVarab10 */
+data shadowMapFilter;  /* 原: renderSystemVarab18 */
+data shadowMapBias;  /* 原: renderSystemVarab20 */
+data shadowMapSlopeBias;  /* 原: renderSystemVarab28 */
+data shadowMapDepthBounds;  /* 原: renderSystemVaraba8 */
+data shadowMapCascadeCount;  /* 原: renderSystemVarabb0 */
+data shadowMapCascadeSplit;  /* 原: renderSystemVarabb8 */
+data shadowMapCascadeMatrix;  /* 原: renderSystemVarabc0 */
+data lightingAmbientColor;  /* 原: renderSystemVarac40 */
+data lightingDiffuseColor;  /* 原: renderSystemVarac48 */
+data lightingSpecularColor;  /* 原: renderSystemVarac50 */
+data lightingEmissiveColor;  /* 原: renderSystemVarac58 */
+data lightingShininess;  /* 原: renderSystemVaracd8 */
+data lightingRoughness;  /* 原: renderSystemVarace0 */
+data lightingMetalness;  /* 原: renderSystemVarace8 */
+data lightingAO;  /* 原: renderSystemVaracf0 */
+data lightingNormalMap;  /* 原: renderSystemVarad70 */
+data lightingHeightMap;  /* 原: renderSystemVarad78 */
 data lightingRoughnessMap;  /* 原: DAT_180bfad80 */
 data lightingMetalnessMap;  /* 原: DAT_180bfad88 */
 data lightingAOMap;  /* 原: DAT_180bfae08 */
 data lightingEmissiveMap;  /* 原: DAT_180bfae10 */
 data lightingEnvironmentMap;  /* 原: DAT_180bfae18 */
-data lightingIrradianceMap;  /* 原: DAT_180bfae20 */
+data lightingIrradianceMap;  /* 原: renderSystemVarae20 */
 data threadSynchronizationFlag;
 data shadowBiasData;
 data shadowProjectionMatrix;
@@ -1209,9 +1209,9 @@ data renderLODData;
 data resourceCacheStrategy;  /* 原: systemCallVar5; */
 data renderVertexShaderData;  /* 原: aiSystemVar1; */
 data resourceCacheCompression;  /* 原: aiSystemVar2; */
-data aiSystemVar3;  /* 原: DAT_180a2c338 */
-data aiSystemVar4;  /* 原: DAT_180a2c510 */
-data sceneManagerVar1;  /* 原: DAT_180a2c510 */
+data aiSystemVar3;  /* 原: aiSystemVarc338 */
+data aiSystemVar4;  /* 原: aiSystemVarc510 */
+data sceneManagerVar1;  /* 原: aiSystemVarc510 */
 data resourceCacheBuffer1;
 data resourceCacheBuffer2;
 data resourceCacheBuffer3;
@@ -1263,7 +1263,7 @@ data eventHandlerDataVar798;  /* 原: DAT_180c96798 */
 
 // 函数: data resourceBatchOperation;
 data resourceBatchOperation;
-data eventHandlerDataVar7a0;;
+data eventHandlerDataVar7a0;  /* 原: DAT_180c967a0 */
 data eventHandlerDataVar7a8;;
 data DAT_180c967b0;
 data DAT_180c967b8;
@@ -1289,8 +1289,8 @@ data CleanupThreadResources;
 data DAT_180c96800;
 data DAT_180c96808;
 data DAT_180c0c6c0;
-data DAT_180be14a0;
-data DAT_180be1324;
+data bufferSystemVar14a0;
+data bufferSystemVar1324;
 data semaphoreInitState;
 data semaphoreControlFlag;
 data DAT_180c0c6d0;
@@ -1302,25 +1302,25 @@ data DAT_180c2bca0;
 data DAT_180c31148;
 data mutexInitializationFlag;
 data bufferManagerState;
-data DAT_180c4ea58;
+data systemVarea58;
 data DAT_180c4ea60;
 data bufferPoolAddress;
 data bufferPoolSize;
-byte DAT_180c82841;
-byte DAT_180c82840;
-data DAT_180c82864;
-data DAT_180c91048;
-data DAT_180c8ed18;
-data DAT_180c86948;
-data DAT_180c86870;
-data DAT_180c82868;
+byte systemVar2841;
+byte systemVar2840;
+data systemVar2864;
+data eventSystemVar1048;
+data systemVared18;
+data systemVar6948;
+data systemVar6870;
+data systemVar2868;
 data bufferControlData1;
 data bufferControlData2;
 data bufferControlData3;
 data threadSyncObject;
 data threadContextData;
 data threadSystemData;
-data DAT_180c86928;
+data systemVar6928;
 data g_systemStatusFlag1;
 data g_systemStatusFlag2;
 data g_systemStatusFlag3;
@@ -1328,18 +1328,18 @@ data fileMetadataTable;
 data fileDirectoryTree;
 data g_systemStatusFlag4;
 data fileAccessTable;
-data DAT_180c8ed10;
+data systemVared10;
 data networkConnectionPool;
 data networkPacketQueue;
-data DAT_180c8ed08;
-data DAT_180c8ed68;
-data DAT_180c8ed00;
-data DAT_180c8ed50;
-char DAT_180bf0102;
-data DAT_180c8ed58;
-data DAT_180c8ed48;
-data DAT_180c8ed40;
-data DAT_180c86940;
+data systemVared08;
+data systemVared68;
+data systemVared00;
+data systemVared50;
+char renderSystemVar0102;
+data systemVared58;
+data systemVared48;
+data systemVared40;
+data systemVar6940;
 data threadManagerState;
 data threadControlFlag1;
 data threadControlFlag2;
@@ -1348,23 +1348,23 @@ data threadControlFlag4;
 data threadControlFlag5;
 data DAT_180c82854;
 data allocatorState;
-char DAT_180c82860;
+char systemVar2860;
 data allocatorControlFlag;
-data DAT_180c86920;
+data systemVar6920;
 void *ExceptionList;
 data databaseSchemaData;
 data allocatorMemoryPool;
-data DAT_180c86960;
+data systemVar6960;
 data allocatorChunk1;
 data allocatorChunk2;
 data allocatorChunk3;
-data DAT_180c8ed60;
+data systemVared60;
 data encryptionKeyData;
 data encryptionAlgorithm;
 data allocatorHeapBase;
 data allocatorHeapSize;
 data allocatorHeapFlags;
-data DAT_1809fc7ec;
+data systemVarc7ec;
 data allocatorChunk4;
 
 // 函数: data systemInitializeCore;
@@ -1374,7 +1374,7 @@ data DAT_180d49168;
 data DAT_180d49170;
 data DAT_180d49178;
 data eventQueueState;
-data DAT_180a001d0;
+data systemVar01d0;
 data compressionBuffer;
 data compressionLevel;
 data compressionAlgorithm;
@@ -1392,7 +1392,7 @@ data serializationObjectPool;
 data serializationReferenceTable;
 data uiLayoutData;
 data uiStyleData;
-data DAT_180a01440;
+data systemVar1440;
 data DAT_180d48d38;
 data uiWidgetTree;
 data eventHandlerTable;
@@ -1538,7 +1538,7 @@ data unknown_180a18618;
 data unknown_180a18630;
 data unknown_180a18860;
 data unknown_180a18888;
-data DAT_180a06b58;
+data systemVar6b58;
 data unknown_180a18870;
 data unknown_180a18898;
 data unknown_180a06b98;
@@ -1612,10 +1612,10 @@ data DAT_180d48df0;
 data DAT_180d48df8;
 data DAT_180d48e00;
 data DAT_180d48e08;
-data DAT_180c918d8;
+data eventSystemVar18d8;
 data DAT_180d48e10;
 data DAT_180d48e18;
-data DAT_180c918c0;
+data eventSystemVar18c0;
 data entityManager;
 data componentManager;
 data systemManager;
@@ -1634,7 +1634,7 @@ data physicsWorldData;
 
 // 函数: data resourceVerifyHash;
 data resourceVerifyHash;
-data DAT_180c91038;
+data eventSystemVar1038;
 data physicsSceneData;
 data physicsBodyData;
 data physicsColliderData;
@@ -1680,7 +1680,7 @@ data fileCacheState;
 uint32 softBodyVertices;
 uint32 softBodyIndices;
 data softBodyConstraints;
-data DAT_180c8ecd4;
+data systemVarecd4;
 data networkManagerState;
 data softBodyDamping;
 data softBodyBuffer1;
@@ -1693,7 +1693,7 @@ data resourceCacheFlush;
 
 // 函数: data resourceBatchProcess;
 data resourceBatchProcess;
-data DAT_180a2de40;
+data aiSystemVarde40;
 byte DAT_180d49e30;
 data fluidSimulationData;
 data fluidParticleData;
@@ -1985,8 +1985,8 @@ data unknown_18053f010;
 data unknown_18053f040;
 data unknown_18053f080;
 data unknown_18053f090;
-byte DAT_180c91d14;
-data DAT_180c91d18;
+byte eventSystemVar1d14;
+data eventSystemVar1d18;
 data unknown_180a33ca8;
 data unknown_18053eee0;
 data unknown_18053efd0;
@@ -2392,13 +2392,13 @@ data unknown_180a3ade8;
 data unknown_180a3ae00;
 data unknown_180a3ae18;
 data unknown_180a2eac0;
-data DAT_180c92510;
-char DAT_180c8aa68;
+data eventSystemVar2510;
+char systemVaraa68;
 data unknown_180a3e5e8;
 
 // 函数: data resourceExecuteMaintenance;
 data resourceExecuteMaintenance;
-byte DAT_180bf66d8;
+byte renderSystemVar66d8;
 data DAT_180c96858;
 data resourceMaintenanceBuffer1;
 data resourceMaintenanceBuffer2;
@@ -2406,7 +2406,7 @@ data resourceMaintenanceBuffer3;
 data resourceMaintenanceBuffer4;
 data resourceMaintenanceBuffer5;
 data bufferDataTable3;
-char DAT_180c8efc8;
+char systemVarefc8;
 data unknown_18064ffc0;
 data unknown_180a3c8c8;
 data unknown_180a3c908;
@@ -27707,7 +27707,7 @@ void Unwind_180902d50(uint64 resourceHandle,longlong memorySize)
   buffer = *(longlong *)(memorySize + 0x40);
   uVar3 = 0xfffffffffffffffe;
   *(longlong *)(buffer + 0x15d8) =
-       *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(buffer + 0x15e0) * 8) + -100000;
+       *(longlong *)(&systemVared30 + (longlong)*(int *)(buffer + 0x15e0) * 8) + -100000;
   FUN_180090b80((longlong *)(buffer + 0x8b0));
   *(uint32 *)(buffer + 0x15e8) = 0;
   plocalLong1 = *(longlong **)(buffer + 0x15d0);
@@ -38337,7 +38337,7 @@ void Unwind_1809057b0(uint64 resourceHandle,longlong memorySize)
       }
       FUN_18066c220(puVar5 + 10,&plStackX_10,(ulonglong)*(uint *)(puVar5 + 8),
                     *(uint32 *)(puVar5 + 9),1);
-      piVar7 = (int *)FUN_18062b420(_DAT_180c8ed18,RESOURCE_OFFSET_HANDLE,*(byte *)((longlong)puVar5 + 0x5c));
+      piVar7 = (int *)FUN_18062b420(_systemVared18,RESOURCE_OFFSET_HANDLE,*(byte *)((longlong)puVar5 + 0x5c));
       *piVar7 = iVar6;
       piVar7[2] = 0;
       piVar7[3] = 0;
@@ -38934,7 +38934,7 @@ void Unwind_180905950(uint64 resourceHandle,longlong memorySize)
       }
       FUN_18066c220(puVar5 + 10,&plStackX_10,(ulonglong)*(uint *)(puVar5 + 8),
                     *(uint32 *)(puVar5 + 9),1);
-      piVar7 = (int *)FUN_18062b420(_DAT_180c8ed18,RESOURCE_OFFSET_HANDLE,*(byte *)((longlong)puVar5 + 0x5c));
+      piVar7 = (int *)FUN_18062b420(_systemVared18,RESOURCE_OFFSET_HANDLE,*(byte *)((longlong)puVar5 + 0x5c));
       *piVar7 = iVar6;
       piVar7[2] = 0;
       piVar7[3] = 0;
@@ -48394,7 +48394,7 @@ void Unwind_180908670(uint64 resourceHandle,longlong memorySize)
   buffer = *(longlong *)(memorySize + LIST_OFFSET_HEAD);
   uVar3 = 0xfffffffffffffffe;
   *(longlong *)(buffer + 0x15d8) =
-       *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(buffer + 0x15e0) * 8) + -100000;
+       *(longlong *)(&systemVared30 + (longlong)*(int *)(buffer + 0x15e0) * 8) + -100000;
   FUN_180090b80((longlong *)(buffer + 0x8b0));
   *(uint32 *)(buffer + 0x15e8) = 0;
   plocalLong1 = *(longlong **)(buffer + 0x15d0);
@@ -53182,10 +53182,10 @@ void Unwind_180909c30(uint64 resourceHandle,longlong memorySize)
   int status;
   int status;
   
-  status = *(int *)(**(longlong **)(_DAT_180c82868 + 8) + BUFFER_OFFSET_DATA);
+  status = *(int *)(**(longlong **)(_systemVar2868 + 8) + BUFFER_OFFSET_DATA);
   status = _Thrd_id();
   if (status != localInt1) {
-    _DAT_180c9105c = *(uint32 *)(memorySize + MEMORY_SIZE_OFFSET);
+    _eventSystemVar105c = *(uint32 *)(memorySize + MEMORY_SIZE_OFFSET);
   }
   return;
 }
@@ -58940,8 +58940,8 @@ void Unwind_18090c470(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c480(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + POINTER_OFFSET_DATA))();
+  _systemVar695c = _systemVar695c + -1;
+  (**(code **)(*_systemVar6968 + POINTER_OFFSET_DATA))();
   return;
 }
 
@@ -58959,8 +58959,8 @@ void Unwind_18090c490(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + 0x150)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -59182,8 +59182,8 @@ void Unwind_18090c540(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + 0x180)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -59228,8 +59228,8 @@ void Unwind_18090c550(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + MEMORY_OFFSET_BUFFER)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -59276,8 +59276,8 @@ void Unwind_18090c560(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c570(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + POINTER_OFFSET_DATA))();
+  _systemVar695c = _systemVar695c + -1;
+  (**(code **)(*_systemVar6968 + POINTER_OFFSET_DATA))();
   return;
 }
 
@@ -59304,8 +59304,8 @@ void Unwind_18090c590(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + 0x1e0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -59352,8 +59352,8 @@ void Unwind_18090c5a0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c5b0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + POINTER_OFFSET_DATA))();
+  _systemVar695c = _systemVar695c + -1;
+  (**(code **)(*_systemVar6968 + POINTER_OFFSET_DATA))();
   return;
 }
 
@@ -59371,8 +59371,8 @@ void Unwind_18090c5c0(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + 0x120)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -59417,8 +59417,8 @@ void Unwind_18090c5d0(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + 0x2a0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -59456,8 +59456,8 @@ void Unwind_18090c5d0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090c5e0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + POINTER_OFFSET_DATA))();
+  _systemVar695c = _systemVar695c + -1;
+  (**(code **)(*_systemVar6968 + POINTER_OFFSET_DATA))();
   return;
 }
 
@@ -59475,8 +59475,8 @@ void Unwind_18090c5f0(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + 0x300)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -59521,8 +59521,8 @@ void Unwind_18090c600(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + 0x360)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -60179,8 +60179,8 @@ void Unwind_18090c9d0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090ca00(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + POINTER_OFFSET_DATA))();
+  _systemVar695c = _systemVar695c + -1;
+  (**(code **)(*_systemVar6968 + POINTER_OFFSET_DATA))();
   return;
 }
 
@@ -60191,8 +60191,8 @@ void Unwind_18090ca00(void)
 void Unwind_18090ca10(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + POINTER_OFFSET_DATA))();
+  _systemVar695c = _systemVar695c + -1;
+  (**(code **)(*_systemVar6968 + POINTER_OFFSET_DATA))();
   return;
 }
 
@@ -60210,8 +60210,8 @@ void Unwind_18090ca20(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + STRUCT_OFFSET_1)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -60249,8 +60249,8 @@ void Unwind_18090ca20(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090ca30(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + POINTER_OFFSET_DATA))();
+  _systemVar695c = _systemVar695c + -1;
+  (**(code **)(*_systemVar6968 + POINTER_OFFSET_DATA))();
   return;
 }
 
@@ -60268,8 +60268,8 @@ void Unwind_18090ca40(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + 0x130)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -60307,8 +60307,8 @@ void Unwind_18090ca40(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090ca50(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + POINTER_OFFSET_DATA))();
+  _systemVar695c = _systemVar695c + -1;
+  (**(code **)(*_systemVar6968 + POINTER_OFFSET_DATA))();
   return;
 }
 
@@ -60319,8 +60319,8 @@ void Unwind_18090ca50(void)
 void Unwind_18090ca60(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + POINTER_OFFSET_DATA))();
+  _systemVar695c = _systemVar695c + -1;
+  (**(code **)(*_systemVar6968 + POINTER_OFFSET_DATA))();
   return;
 }
 
@@ -60338,8 +60338,8 @@ void Unwind_18090ca70(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + 400)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -60386,8 +60386,8 @@ void Unwind_18090ca80(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090ca90(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + POINTER_OFFSET_DATA))();
+  _systemVar695c = _systemVar695c + -1;
+  (**(code **)(*_systemVar6968 + POINTER_OFFSET_DATA))();
   return;
 }
 
@@ -60405,8 +60405,8 @@ void Unwind_18090caa0(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + 0x1f0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -60453,8 +60453,8 @@ void Unwind_18090cab0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090cac0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + POINTER_OFFSET_DATA))();
+  _systemVar695c = _systemVar695c + -1;
+  (**(code **)(*_systemVar6968 + POINTER_OFFSET_DATA))();
   return;
 }
 
@@ -60472,8 +60472,8 @@ void Unwind_18090cad0(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + 0x250)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -60520,8 +60520,8 @@ void Unwind_18090cae0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090caf0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + POINTER_OFFSET_DATA))();
+  _systemVar695c = _systemVar695c + -1;
+  (**(code **)(*_systemVar6968 + POINTER_OFFSET_DATA))();
   return;
 }
 
@@ -60539,8 +60539,8 @@ void Unwind_18090cb00(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + 0x2b0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -60594,8 +60594,8 @@ void Unwind_18090cb20(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + 0x310)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -60649,8 +60649,8 @@ void Unwind_18090cb40(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + 0x4f0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -60688,8 +60688,8 @@ void Unwind_18090cb40(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090cb50(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + POINTER_OFFSET_DATA))();
+  _systemVar695c = _systemVar695c + -1;
+  (**(code **)(*_systemVar6968 + POINTER_OFFSET_DATA))();
   return;
 }
 
@@ -60707,8 +60707,8 @@ void Unwind_18090cb60(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + 0x370)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -60762,8 +60762,8 @@ void Unwind_18090cb80(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + 0x3d0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -60801,8 +60801,8 @@ void Unwind_18090cb80(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090cb90(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + POINTER_OFFSET_DATA))();
+  _systemVar695c = _systemVar695c + -1;
+  (**(code **)(*_systemVar6968 + POINTER_OFFSET_DATA))();
   return;
 }
 
@@ -60822,8 +60822,8 @@ void Unwind_18090cba0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090cbb0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + POINTER_OFFSET_DATA))();
+  _systemVar695c = _systemVar695c + -1;
+  (**(code **)(*_systemVar6968 + POINTER_OFFSET_DATA))();
   return;
 }
 
@@ -60834,8 +60834,8 @@ void Unwind_18090cbb0(void)
 void Unwind_18090cbc0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + POINTER_OFFSET_DATA))();
+  _systemVar695c = _systemVar695c + -1;
+  (**(code **)(*_systemVar6968 + POINTER_OFFSET_DATA))();
   return;
 }
 
@@ -60853,8 +60853,8 @@ void Unwind_18090cbd0(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + 0x430)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -60901,8 +60901,8 @@ void Unwind_18090cbe0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090cbf0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + POINTER_OFFSET_DATA))();
+  _systemVar695c = _systemVar695c + -1;
+  (**(code **)(*_systemVar6968 + POINTER_OFFSET_DATA))();
   return;
 }
 
@@ -60920,8 +60920,8 @@ void Unwind_18090cc00(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + 0x490)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -61067,8 +61067,8 @@ void Unwind_18090ccc0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090ccd0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + POINTER_OFFSET_DATA))();
+  _systemVar695c = _systemVar695c + -1;
+  (**(code **)(*_systemVar6968 + POINTER_OFFSET_DATA))();
   return;
 }
 
@@ -61086,8 +61086,8 @@ void Unwind_18090cce0(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + LIST_OFFSET_HEAD)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -66359,8 +66359,8 @@ void Unwind_18090e760(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + 0x70)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -66417,8 +66417,8 @@ void Unwind_18090e7a0(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + SYSTEM_TABLE_OFFSET)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -66463,8 +66463,8 @@ void Unwind_18090e7b0(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + 0xa0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -66509,8 +66509,8 @@ void Unwind_18090e7c0(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + RESOURCE_HANDLE_OFFSET0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -66555,8 +66555,8 @@ void Unwind_18090e7d0(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + DATA_OFFSET_START)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -66601,8 +66601,8 @@ void Unwind_18090e7e0(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + MEMORY_SIZE_OFFSET)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -66647,8 +66647,8 @@ void Unwind_18090e7f0(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + 0xf0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -66693,8 +66693,8 @@ void Unwind_18090e800(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + 0x1b0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -66732,8 +66732,8 @@ void Unwind_18090e800(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090e810(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + POINTER_OFFSET_DATA))();
+  _systemVar695c = _systemVar695c + -1;
+  (**(code **)(*_systemVar6968 + POINTER_OFFSET_DATA))();
   return;
 }
 
@@ -66751,8 +66751,8 @@ void Unwind_18090e820(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + 0x210)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -66790,8 +66790,8 @@ void Unwind_18090e820(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090e830(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + POINTER_OFFSET_DATA))();
+  _systemVar695c = _systemVar695c + -1;
+  (**(code **)(*_systemVar6968 + POINTER_OFFSET_DATA))();
   return;
 }
 
@@ -66809,8 +66809,8 @@ void Unwind_18090e840(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + 0x270)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -66848,8 +66848,8 @@ void Unwind_18090e840(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090e850(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + POINTER_OFFSET_DATA))();
+  _systemVar695c = _systemVar695c + -1;
+  (**(code **)(*_systemVar6968 + POINTER_OFFSET_DATA))();
   return;
 }
 
@@ -66867,8 +66867,8 @@ void Unwind_18090e860(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + 0x2d0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -66906,8 +66906,8 @@ void Unwind_18090e860(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090e870(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + POINTER_OFFSET_DATA))();
+  _systemVar695c = _systemVar695c + -1;
+  (**(code **)(*_systemVar6968 + POINTER_OFFSET_DATA))();
   return;
 }
 
@@ -67173,8 +67173,8 @@ void Unwind_18090e9a0(uint64 resourceHandle,longlong memorySize)
 void Unwind_18090e9b0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + POINTER_OFFSET_DATA))();
+  _systemVar695c = _systemVar695c + -1;
+  (**(code **)(*_systemVar6968 + POINTER_OFFSET_DATA))();
   return;
 }
 
@@ -67306,8 +67306,8 @@ void Unwind_18090eb00(uint64 resourceHandle,longlong memorySize)
   longlong lVar5;
   
   if (0 < *(int *)(memorySize + 0x140)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(_systemVar6938 + 0x1cd8);
+    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * POINTER_OFFSET_DATA);
       localLong1 = *plVar4;
@@ -77360,7 +77360,7 @@ void Unwind_180911b00(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77380,7 +77380,7 @@ void Unwind_180911b10(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77400,7 +77400,7 @@ void Unwind_180911b20(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77420,7 +77420,7 @@ void Unwind_180911b30(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77440,7 +77440,7 @@ void Unwind_180911b40(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77460,7 +77460,7 @@ void Unwind_180911b50(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77480,7 +77480,7 @@ void Unwind_180911b70(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77544,7 +77544,7 @@ void Unwind_180911c30(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77564,7 +77564,7 @@ void Unwind_180911c40(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   localLong1 = *(longlong *)(*(longlong *)(memorySize + 0x70) + 0x1608);
   if (localLong1 != 0) {
@@ -77572,7 +77572,7 @@ void Unwind_180911c40(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77592,7 +77592,7 @@ void Unwind_180911c60(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77612,7 +77612,7 @@ void Unwind_180911c80(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77632,7 +77632,7 @@ void Unwind_180911ca0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77652,7 +77652,7 @@ void Unwind_180911cc0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77672,7 +77672,7 @@ void Unwind_180911ce0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77692,7 +77692,7 @@ void Unwind_180911d00(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77712,7 +77712,7 @@ void Unwind_180911d20(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77732,7 +77732,7 @@ void Unwind_180911d40(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77752,7 +77752,7 @@ void Unwind_180911d60(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77772,7 +77772,7 @@ void Unwind_180911d80(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77792,7 +77792,7 @@ void Unwind_180911da0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77812,7 +77812,7 @@ void Unwind_180911dc0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77846,7 +77846,7 @@ void Unwind_180911de0(uint64 resourceHandle,longlong memorySize,uint64 operation
           *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
         }
                     // WARNING: Subroutine does not return
-        FUN_180059ba0(index,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+        FUN_180059ba0(index,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
       }
       uVar6 = (int)uVar7 + 1;
       uVar5 = uVar5 + RESOURCE_HANDLE_OFFSET;
@@ -77861,7 +77861,7 @@ void Unwind_180911de0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(index,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(index,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   index = *(longlong *)(lVar4 + 0x1e68);
   if (index == 0) {
@@ -77872,7 +77872,7 @@ void Unwind_180911de0(uint64 resourceHandle,longlong memorySize,uint64 operation
         *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
       }
                     // WARNING: Subroutine does not return
-      FUN_180059ba0(index,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+      FUN_180059ba0(index,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
     }
     lVar4 = *(longlong *)(lVar4 + 0x1e68);
     if (lVar4 == 0) {
@@ -77882,14 +77882,14 @@ void Unwind_180911de0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(lVar4,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(lVar4,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   *(uint64 *)(lVar4 + 0x1e60) = 0;
   if (g_systemGlobalCounter1 != 0) {
     *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
   }
                     // WARNING: Subroutine does not return
-  FUN_180059ba0(index,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+  FUN_180059ba0(index,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
 }
 
 
@@ -77907,7 +77907,7 @@ void Unwind_180911e00(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77927,7 +77927,7 @@ void Unwind_180911e20(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77949,7 +77949,7 @@ void Unwind_180911e40(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   localLong1 = *(longlong *)(buffer + 0x1ec8);
   if (localLong1 != 0) {
@@ -77957,7 +77957,7 @@ void Unwind_180911e40(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   localLong1 = *(longlong *)(buffer + 0x1eb8);
   if (localLong1 != 0) {
@@ -77965,7 +77965,7 @@ void Unwind_180911e40(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77990,7 +77990,7 @@ void Unwind_180911e60(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,uVar3);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,uVar3);
   }
   localLong1 = *(longlong *)(buffer + 0x2d58);
   if (localLong1 != 0) {
@@ -77998,7 +77998,7 @@ void Unwind_180911e60(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,uVar3);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,uVar3);
   }
   localLong1 = *(longlong *)(buffer + 0x2d48);
   if (localLong1 != 0) {
@@ -78006,7 +78006,7 @@ void Unwind_180911e60(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,uVar3);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,uVar3);
   }
   return;
 }
@@ -78026,7 +78026,7 @@ void Unwind_180911e80(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78046,7 +78046,7 @@ void Unwind_180911ea0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78066,7 +78066,7 @@ void Unwind_180911ec0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78086,7 +78086,7 @@ void Unwind_180911ee0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78106,7 +78106,7 @@ void Unwind_180911f00(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78136,7 +78136,7 @@ void Unwind_180911f50(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78156,7 +78156,7 @@ void Unwind_180911f70(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78176,7 +78176,7 @@ void Unwind_180911f90(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78196,7 +78196,7 @@ void Unwind_180911fa0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78216,7 +78216,7 @@ void Unwind_180911fb0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78236,7 +78236,7 @@ void Unwind_180911fc0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78256,7 +78256,7 @@ void Unwind_180911fd0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78276,7 +78276,7 @@ void Unwind_180911fe0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78296,7 +78296,7 @@ void Unwind_180911ff0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78316,7 +78316,7 @@ void Unwind_180912000(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78336,7 +78336,7 @@ void Unwind_180912010(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78356,7 +78356,7 @@ void Unwind_180912020(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78376,7 +78376,7 @@ void Unwind_180912040(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78396,7 +78396,7 @@ void Unwind_180912060(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78416,7 +78416,7 @@ void Unwind_180912080(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78436,7 +78436,7 @@ void Unwind_180912090(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78456,7 +78456,7 @@ void Unwind_1809120a0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78476,7 +78476,7 @@ void Unwind_1809120b0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78496,7 +78496,7 @@ void Unwind_1809120d0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78516,7 +78516,7 @@ void Unwind_1809120f0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78536,7 +78536,7 @@ void Unwind_180912110(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78556,7 +78556,7 @@ void Unwind_180912130(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78576,7 +78576,7 @@ void Unwind_180912150(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78596,7 +78596,7 @@ void Unwind_180912170(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78618,7 +78618,7 @@ void Unwind_180912180(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   localLong1 = *(longlong *)(buffer + 0x1e0);
   if (localLong1 != 0) {
@@ -78626,7 +78626,7 @@ void Unwind_180912180(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   localLong1 = *(longlong *)(buffer + 0x1d0);
   if (localLong1 != 0) {
@@ -78634,7 +78634,7 @@ void Unwind_180912180(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   localLong1 = *(longlong *)(buffer + 0x1c0);
   if (localLong1 != 0) {
@@ -78642,7 +78642,7 @@ void Unwind_180912180(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   localLong1 = *(longlong *)(buffer + 400);
   if (localLong1 != 0) {
@@ -78650,7 +78650,7 @@ void Unwind_180912180(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78670,7 +78670,7 @@ void Unwind_1809121a0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78690,7 +78690,7 @@ void Unwind_1809121c0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78710,7 +78710,7 @@ void Unwind_1809121e0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78735,7 +78735,7 @@ void Unwind_180912200(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,uVar3);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,uVar3);
   }
   localLong1 = *(longlong *)(buffer + 0x378);
   if (localLong1 != 0) {
@@ -78743,7 +78743,7 @@ void Unwind_180912200(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,uVar3);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,uVar3);
   }
   localLong1 = *(longlong *)(buffer + MEMORY_OFFSET_ACCESS);
   if (localLong1 != 0) {
@@ -78751,7 +78751,7 @@ void Unwind_180912200(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,uVar3);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,uVar3);
   }
   localLong1 = *(longlong *)(buffer + 0x358);
   if (localLong1 != 0) {
@@ -78759,7 +78759,7 @@ void Unwind_180912200(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,uVar3);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,uVar3);
   }
   localLong1 = *(longlong *)(buffer + 0x318);
   if (localLong1 != 0) {
@@ -78767,7 +78767,7 @@ void Unwind_180912200(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,uVar3);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,uVar3);
   }
   localLong1 = *(longlong *)(buffer + 0x308);
   if (localLong1 != 0) {
@@ -78775,7 +78775,7 @@ void Unwind_180912200(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,uVar3);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,uVar3);
   }
   localLong1 = *(longlong *)(buffer + 0x2f8);
   if (localLong1 != 0) {
@@ -78783,7 +78783,7 @@ void Unwind_180912200(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,uVar3);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,uVar3);
   }
   return;
 }
@@ -78803,7 +78803,7 @@ void Unwind_180912220(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78823,7 +78823,7 @@ void Unwind_180912240(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78843,7 +78843,7 @@ void Unwind_180912260(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78863,7 +78863,7 @@ void Unwind_180912280(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78885,7 +78885,7 @@ void Unwind_1809122a0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   localLong1 = *(longlong *)(buffer + 0x1e0);
   if (localLong1 != 0) {
@@ -78893,7 +78893,7 @@ void Unwind_1809122a0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   localLong1 = *(longlong *)(buffer + 0x1d0);
   if (localLong1 != 0) {
@@ -78901,7 +78901,7 @@ void Unwind_1809122a0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   localLong1 = *(longlong *)(buffer + 0x1c0);
   if (localLong1 != 0) {
@@ -78909,7 +78909,7 @@ void Unwind_1809122a0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   localLong1 = *(longlong *)(buffer + 400);
   if (localLong1 != 0) {
@@ -78917,7 +78917,7 @@ void Unwind_1809122a0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78937,7 +78937,7 @@ void Unwind_1809122c0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78957,7 +78957,7 @@ void Unwind_1809122e0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78977,7 +78977,7 @@ void Unwind_180912300(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79002,7 +79002,7 @@ void Unwind_180912320(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,uVar3);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,uVar3);
   }
   localLong1 = *(longlong *)(buffer + 0x378);
   if (localLong1 != 0) {
@@ -79010,7 +79010,7 @@ void Unwind_180912320(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,uVar3);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,uVar3);
   }
   localLong1 = *(longlong *)(buffer + MEMORY_OFFSET_ACCESS);
   if (localLong1 != 0) {
@@ -79018,7 +79018,7 @@ void Unwind_180912320(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,uVar3);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,uVar3);
   }
   localLong1 = *(longlong *)(buffer + 0x358);
   if (localLong1 != 0) {
@@ -79026,7 +79026,7 @@ void Unwind_180912320(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,uVar3);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,uVar3);
   }
   localLong1 = *(longlong *)(buffer + 0x318);
   if (localLong1 != 0) {
@@ -79034,7 +79034,7 @@ void Unwind_180912320(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,uVar3);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,uVar3);
   }
   localLong1 = *(longlong *)(buffer + 0x308);
   if (localLong1 != 0) {
@@ -79042,7 +79042,7 @@ void Unwind_180912320(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,uVar3);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,uVar3);
   }
   localLong1 = *(longlong *)(buffer + 0x2f8);
   if (localLong1 != 0) {
@@ -79050,7 +79050,7 @@ void Unwind_180912320(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,uVar3);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,uVar3);
   }
   return;
 }
@@ -79070,7 +79070,7 @@ void Unwind_180912340(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79090,7 +79090,7 @@ void Unwind_180912350(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79110,7 +79110,7 @@ void Unwind_180912360(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79160,7 +79160,7 @@ void Unwind_180912400(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79180,7 +79180,7 @@ void Unwind_180912410(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79200,7 +79200,7 @@ void Unwind_180912420(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79220,7 +79220,7 @@ void Unwind_180912430(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79240,7 +79240,7 @@ void Unwind_180912440(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79260,7 +79260,7 @@ void Unwind_180912450(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79280,7 +79280,7 @@ void Unwind_180912460(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79320,7 +79320,7 @@ void Unwind_1809124d0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79340,7 +79340,7 @@ void Unwind_1809124e0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79367,7 +79367,7 @@ void Unwind_1809124f0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,localUInt2);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,localUInt2);
   }
   return;
 }
@@ -79387,7 +79387,7 @@ void Unwind_180912500(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79407,7 +79407,7 @@ void Unwind_180912510(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79427,7 +79427,7 @@ void Unwind_180912520(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79447,7 +79447,7 @@ void Unwind_180912530(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79467,7 +79467,7 @@ void Unwind_180912540(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79497,7 +79497,7 @@ void Unwind_180912580(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79518,7 +79518,7 @@ void Unwind_180912590(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   localLong1 = *(longlong *)(memorySize + BUFFER_OFFSET_DATA);
   if (localLong1 != 0) {
@@ -79527,7 +79527,7 @@ void Unwind_180912590(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   *(uint32 *)(memorySize + DATA_OFFSET_START) = 0;
   localLong1 = *(longlong *)(memorySize + SYSTEM_OFFSET_STATUS1);
@@ -79536,7 +79536,7 @@ void Unwind_180912590(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   localLong1 = *(longlong *)(memorySize + BUFFER_OFFSET_DATA);
   if (localLong1 != 0) {
@@ -79544,7 +79544,7 @@ void Unwind_180912590(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79564,7 +79564,7 @@ void Unwind_1809125a0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79584,7 +79584,7 @@ void Unwind_1809125b0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79604,7 +79604,7 @@ void Unwind_1809125c0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79654,7 +79654,7 @@ void Unwind_180912660(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79684,7 +79684,7 @@ void Unwind_1809126a0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79743,7 +79743,7 @@ void Unwind_180912770(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79769,7 +79769,7 @@ void Unwind_180912780(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,localUInt2);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,localUInt2);
   }
   return;
 }
@@ -79795,7 +79795,7 @@ void Unwind_180912790(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,localUInt2);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,localUInt2);
   }
   return;
 }
@@ -79821,7 +79821,7 @@ void Unwind_1809127a0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,localUInt2);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,localUInt2);
   }
   return;
 }
@@ -79847,7 +79847,7 @@ void Unwind_1809127b0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,localUInt2);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,localUInt2);
   }
   return;
 }
@@ -79874,7 +79874,7 @@ void Unwind_1809127c0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,localUInt2);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,localUInt2);
   }
   return;
 }
@@ -79921,7 +79921,7 @@ void Unwind_1809127e0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79941,7 +79941,7 @@ void Unwind_1809127f0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79961,7 +79961,7 @@ void Unwind_180912800(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(localLong1,_DAT_180c8a9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -80294,17 +80294,17 @@ void InitializeResourcePool(void)
   longlong localLong1;
   longlong buffer;
   
-  _DAT_180bf52c0 = &threadLocalStorageData;
-  if (_DAT_180bf52c8 != 0) {
+  _renderSystemVar52c0 = &threadLocalStorageData;
+  if (_renderSystemVar52c8 != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  _DAT_180bf52c8 = 0;
-  _DAT_180bf52d8 = 0;
-  _DAT_180bf52c0 = &threadLocalStorageCleanup;
-  if (_DAT_180bf5288 == 0) {
+  _renderSystemVar52c8 = 0;
+  _renderSystemVar52d8 = 0;
+  _renderSystemVar52c0 = &threadLocalStorageCleanup;
+  if (_renderSystemVar5288 == 0) {
     FUN_180048980();
-    localLong1 = _DAT_180bf5250;
+    localLong1 = _renderSystemVar5250;
     for (buffer = _allocatorChunk3; buffer != localLong1; buffer = buffer + RESOURCE_HANDLE_OFFSET0) {
       FUN_180046b10(buffer);
     }
@@ -80327,7 +80327,7 @@ void InitializeResourcePool(void)
 void InitializeMemoryPool(void)
 
 {
-  _DAT_180bf5320 = &threadLocalStorageCleanup;
+  _renderSystemVar5320 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80794,7 +80794,7 @@ void g_initializeSystemModule1(void)
 void g_initializeSystemModule2(void)
 
 {
-  _g_bufferModuleData4 = &threadLocalStorageCleanup;
+  _g_bufferModuleConfig4 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80820,16 +80820,16 @@ void g_initializeSystemModule3(void)
 void resourceManagerReset(void)
 
 {
-  if (DAT_180c91d50 != '\0') {
+  if (eventSystemVar1d50 != '\0') {
     FUN_18005a050();
-    if ((1 < _DAT_180c91d30) && (_DAT_180c91d28 != 0)) {
+    if ((1 < _eventSystemVar1d30) && (_eventSystemVar1d28 != 0)) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    if (_DAT_180c91d18 != (longlong *)0x0) {
-      (**(code **)(*_DAT_180c91d18 + STRUCT_OFFSET_SIZE))();
+    if (_eventSystemVar1d18 != (longlong *)0x0) {
+      (**(code **)(*_eventSystemVar1d18 + STRUCT_OFFSET_SIZE))();
     }
-    if (_DAT_180c91cf0 != 0) {
+    if (_eventSystemVar1cf0 != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
@@ -80939,20 +80939,20 @@ void resourceManagerMonitor(void)
   longlong localLong1;
   ulonglong localUInt2;
   
-  if (_DAT_180c91f18 != 0) {
-    localUInt2 = _DAT_180c91f28 - _DAT_180c91f18 & 0xfffffffffffffff8;
-    localLong1 = _DAT_180c91f18;
+  if (_eventSystemVar1f18 != 0) {
+    localUInt2 = _eventSystemVar1f28 - _eventSystemVar1f18 & 0xfffffffffffffff8;
+    localLong1 = _eventSystemVar1f18;
     if (0xfff < localUInt2) {
-      localLong1 = *(longlong *)(_DAT_180c91f18 + -8);
+      localLong1 = *(longlong *)(_eventSystemVar1f18 + -8);
       localUInt2 = localUInt2 + 0x27;
-      if (ERROR_CODE_FAILED < (_DAT_180c91f18 - localLong1) - 8U) {
+      if (ERROR_CODE_FAILED < (_eventSystemVar1f18 - localLong1) - 8U) {
                     // WARNING: Subroutine does not return
         _invalid_parameter_noinfo_noreturn();
       }
     }
     free(localLong1,localUInt2);
-    _DAT_180c91f28 = 0;
-    _DAT_180c91f18 = 0;
+    _eventSystemVar1f28 = 0;
+    _eventSystemVar1f18 = 0;
     uRam0000000180c91f20 = 0;
   }
   return;
@@ -81487,7 +81487,7 @@ void renderStencilInitialize(void)
 void renderViewportInitialize(void)
 
 {
-  _DAT_180bfa0b0 = &threadLocalStorageCleanup;
+  _renderSystemVara0b0 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81500,7 +81500,7 @@ void renderViewportInitialize(void)
 void renderScissorInitialize(void)
 
 {
-  _DAT_180bfa110 = &threadLocalStorageCleanup;
+  _renderSystemVara110 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81513,7 +81513,7 @@ void renderScissorInitialize(void)
 void renderClearInitialize(void)
 
 {
-  _DAT_180bfa170 = &threadLocalStorageCleanup;
+  _renderSystemVara170 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81526,7 +81526,7 @@ void renderClearInitialize(void)
 void renderDrawInitialize(void)
 
 {
-  _DAT_180bfa1d0 = &threadLocalStorageCleanup;
+  _renderSystemVara1d0 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81569,16 +81569,16 @@ void updateRenderState(uint64 resourceHandle,uint64 memorySize,uint64 operationF
   uint64 *plocalUInt2;
   uint64 uVar3;
   
-  preturnValue = _DAT_180bfa2f0;
+  preturnValue = _renderSystemVara2f0;
   uVar3 = 0xfffffffffffffffe;
-  plocalUInt2 = _DAT_180bfa2e8;
-  if (_DAT_180bfa2e8 != _DAT_180bfa2f0) {
+  plocalUInt2 = _renderSystemVara2e8;
+  if (_renderSystemVara2e8 != _renderSystemVara2f0) {
     do {
       (**(code **)*plocalUInt2)(plocalUInt2,0,operationFlags,callbackFunction,uVar3);
       plocalUInt2 = plocalUInt2 + 0xb;
     } while (plocalUInt2 != preturnValue);
   }
-  if (_DAT_180bfa2e8 == (uint64 *)0x0) {
+  if (_renderSystemVara2e8 == (uint64 *)0x0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -81598,16 +81598,16 @@ void resourceReleaseHandle(uint64 resourceHandle,uint64 memorySize,uint64 operat
   uint64 *plocalUInt2;
   uint64 uVar3;
   
-  preturnValue = _DAT_180bfa310;
+  preturnValue = _renderSystemVara310;
   uVar3 = 0xfffffffffffffffe;
-  plocalUInt2 = _DAT_180bfa308;
-  if (_DAT_180bfa308 != _DAT_180bfa310) {
+  plocalUInt2 = _renderSystemVara308;
+  if (_renderSystemVara308 != _renderSystemVara310) {
     do {
       (**(code **)*plocalUInt2)(plocalUInt2,0,operationFlags,callbackFunction,uVar3);
       plocalUInt2 = plocalUInt2 + 0xb;
     } while (plocalUInt2 != preturnValue);
   }
-  if (_DAT_180bfa308 == (uint64 *)0x0) {
+  if (_renderSystemVara308 == (uint64 *)0x0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -81627,16 +81627,16 @@ void resourceAllocateMemory(uint64 resourceHandle,uint64 memorySize,uint64 opera
   uint64 *plocalUInt2;
   uint64 uVar3;
   
-  preturnValue = _DAT_180bfa330;
+  preturnValue = _renderSystemVara330;
   uVar3 = 0xfffffffffffffffe;
-  plocalUInt2 = _DAT_180bfa328;
-  if (_DAT_180bfa328 != _DAT_180bfa330) {
+  plocalUInt2 = _renderSystemVara328;
+  if (_renderSystemVara328 != _renderSystemVara330) {
     do {
       (**(code **)*plocalUInt2)(plocalUInt2,0,operationFlags,callbackFunction,uVar3);
       plocalUInt2 = plocalUInt2 + 0xb;
     } while (plocalUInt2 != preturnValue);
   }
-  if (_DAT_180bfa328 == (uint64 *)0x0) {
+  if (_renderSystemVara328 == (uint64 *)0x0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -81892,10 +81892,10 @@ void resourceCreateBackup(void)
   longlong lVar4;
   longlong *plVar5;
   
-  plVar5 = _DAT_180c92478;
-  if (_DAT_180c92478 != (longlong *)0x0) {
+  plVar5 = _eventSystemVar2478;
+  if (_eventSystemVar2478 != (longlong *)0x0) {
     LOCK();
-    plocalLong1 = _DAT_180c92478 + 1;
+    plocalLong1 = _eventSystemVar2478 + 1;
     lVar4 = *plocalLong1;
     *(int *)plocalLong1 = (int)*plocalLong1 + -1;
     UNLOCK();
@@ -81971,10 +81971,10 @@ void resourceOptimizeStorage(void)
   longlong lVar4;
   longlong *plVar5;
   
-  plVar5 = _DAT_180c92498;
-  if (_DAT_180c92498 != (longlong *)0x0) {
+  plVar5 = _eventSystemVar2498;
+  if (_eventSystemVar2498 != (longlong *)0x0) {
     LOCK();
-    plocalLong1 = _DAT_180c92498 + 1;
+    plocalLong1 = _eventSystemVar2498 + 1;
     lVar4 = *plocalLong1;
     *(int *)plocalLong1 = (int)*plocalLong1 + -1;
     UNLOCK();
@@ -82050,10 +82050,10 @@ void resourceUpdateReferences(void)
   longlong lVar4;
   longlong *plVar5;
   
-  plVar5 = _DAT_180c92488;
-  if (_DAT_180c92488 != (longlong *)0x0) {
+  plVar5 = _eventSystemVar2488;
+  if (_eventSystemVar2488 != (longlong *)0x0) {
     LOCK();
-    plocalLong1 = _DAT_180c92488 + 1;
+    plocalLong1 = _eventSystemVar2488 + 1;
     lVar4 = *plocalLong1;
     *(int *)plocalLong1 = (int)*plocalLong1 + -1;
     UNLOCK();
@@ -82126,20 +82126,20 @@ void resourceMigrateFormat(void)
   longlong localLong1;
   longlong buffer;
   
-  if (0xf < _DAT_180bfc188) {
+  if (0xf < _renderSystemVarc188) {
     localLong1 = CONCAT71(uRam0000000180bfc171,DAT_180bfc170);
     buffer = localLong1;
-    if (0xfff < _DAT_180bfc188 + 1) {
+    if (0xfff < _renderSystemVarc188 + 1) {
       buffer = *(longlong *)(localLong1 + -8);
       if (ERROR_CODE_FAILED < (localLong1 - buffer) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(localLong1 - buffer,_DAT_180bfc188 + BYTE_OFFSET_2);
+        _invalid_parameter_noinfo_noreturn(localLong1 - buffer,_renderSystemVarc188 + BYTE_OFFSET_2);
       }
     }
     free(buffer);
   }
-  _DAT_180bfc180 = 0;
-  _DAT_180bfc188 = 0xf;
+  _renderSystemVarc180 = 0;
+  _renderSystemVarc188 = 0xf;
 
 // 函数: void resourceCachePrefetch(void)
 void resourceCachePrefetch(void)
@@ -82267,7 +82267,7 @@ void resourceBatchProcess(uint64 resourceHandle,uint64 memorySize,uint64 operati
 void resourceScheduleTask(void)
 
 {
-  if (DAT_180c95ef0 != '\0') {
+  if (eventSystemVar5ef0 != '\0') {
     FUN_1804a6ec0();
 
 // 函数: void resourceCancelTask(void)
@@ -82369,17 +82369,17 @@ void resourceSetLimit(void)
 {
   longlong *plocalLong1;
   
-  plocalLong1 = _DAT_180c95f18;
-  if (DAT_180c95f28 != '\0') {
-    _DAT_180c95f20 = 0xffffffff;
-    _DAT_180c95f18 = (longlong *)0x0;
+  plocalLong1 = _eventSystemVar5f18;
+  if (eventSystemVar5f28 != '\0') {
+    _eventSystemVar5f20 = 0xffffffff;
+    _eventSystemVar5f18 = (longlong *)0x0;
     if (plocalLong1 != (longlong *)0x0) {
       (**(code **)(*plocalLong1 + STRUCT_OFFSET_SIZE))();
     }
-    if (_DAT_180c95f18 != (longlong *)0x0) {
-      (**(code **)(*_DAT_180c95f18 + STRUCT_OFFSET_SIZE))();
+    if (_eventSystemVar5f18 != (longlong *)0x0) {
+      (**(code **)(*_eventSystemVar5f18 + STRUCT_OFFSET_SIZE))();
     }
-    if (_DAT_180c95ef8 != 0) {
+    if (_eventSystemVar5ef8 != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
@@ -82405,7 +82405,7 @@ void resourceResetLimit(void)
 void resourceMonitorActivity(void)
 
 {
-  _DAT_180bf64f8 = &threadLocalStorageCleanup;
+  _renderSystemVar64f8 = &threadLocalStorageCleanup;
   return;
 }
 
