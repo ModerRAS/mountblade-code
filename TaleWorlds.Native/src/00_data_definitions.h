@@ -13,14 +13,14 @@ int initialize_system_configuration(void)
   maximum_allowed_system_value = 0x7fffffffffffffff;
   system_status_code = 0;
   int initialization_result = initialize_system(system_init_func_1809414f0);
-  return (result != 0) - 1;
+  return (initialization_result != 0) - 1;
 }
 // 初始化核心数据结构
 int initialize_core_data_structure(void)
 {
   long long initialization_result;
   void* primary_data_pointer = &g_unknown_data_buffer;
-  void* secondary_data_pointer = &g_core_data_value;
+  void* core_data_value_pointer = &g_core_data_value;
   int data_structure_offset = 0;
   g_core_data_value = 0;
   initialization_result = initialize_system(core_system_init_func_180941590);
