@@ -5342,7 +5342,7 @@ void FUN_180847c60(longlong socketHandle,longlong *dataBuffer,byte *bufferCapaci
   byte bVar7;
   uint8_t auStack_98 [32];
   undefined *puStack_78;
-  undefined2 uStack_70;
+  uint16_t uStack_70;
   longlong *plStack_68;
   uint8_t auStack_60 [40];
   ulonglong uStack_38;
@@ -6229,7 +6229,7 @@ void FUN_180848e50(char *socketHandle,uint64_t *dataBuffer)
   char *pcVar1;
   char cVar2;
   uint8_t bufferCapacity;
-  undefined2 uVar4;
+  uint16_t uVar4;
   int errorCode;
   char *pcVar6;
   uint8_t *puVar7;
@@ -6292,7 +6292,7 @@ FUN_180848ff1:
       uVar4 = func_0x00018076b320(auStack_56);
       uStack_94 = CONCAT22(uStack_94._2_2_,uVar4);
       uVar4 = func_0x00018076b320(auStack_51);
-      uStack_94 = CONCAT22(uVar4,(undefined2)uStack_94);
+      uStack_94 = CONCAT22(uVar4,uint16_t)uStack_94);
       uVar4 = func_0x00018076b320(auStack_4c);
       puVar8 = (uint8_t *)((longlong)&uStack_8c + 3);
       uStack_90 = CONCAT31(CONCAT21(uStack_90._2_2_,(char)uVar4),(char)((ushort)uVar4 >> 8));
@@ -6330,7 +6330,7 @@ void FUN_180848e82(void)
   uint32_t bufferCapacity;
   uint32_t uVar4;
   uint8_t uVar5;
-  undefined2 uVar6;
+  uint16_t uVar6;
   int iVar7;
   uint32_t uVar8;
   char *pcVar9;
@@ -6375,9 +6375,9 @@ FUN_180848ff1:
     uVar8 = func_0x00018076b320();
     *(uint32_t *)(unaff_RBP + -0x39) = uVar8;
     uVar6 = func_0x00018076b320(unaff_RBP + 9);
-    *(undefined2 *)(unaff_RBP + -0x35) = uVar6;
+    *(uint16_t *)(unaff_RBP + -0x35) = uVar6;
     uVar6 = func_0x00018076b320(unaff_RBP + 0xe);
-    *(undefined2 *)(unaff_RBP + -0x33) = uVar6;
+    *(uint16_t *)(unaff_RBP + -0x33) = uVar6;
     uVar6 = func_0x00018076b320(unaff_RBP + 0x13);
     *(char *)(unaff_RBP + -0x30) = (char)uVar6;
     connectionBuffer1 = (uint8_t *)(unaff_RBP + -0x2a);
@@ -6416,7 +6416,7 @@ void FUN_180848f4e(void)
   uint32_t uVar1;
   uint32_t packetLength;
   uint8_t bufferCapacity;
-  undefined2 uVar4;
+  uint16_t uVar4;
   uint32_t uVar5;
   int iVar6;
   longlong unaff_RBP;
@@ -6429,9 +6429,9 @@ void FUN_180848f4e(void)
   uVar5 = func_0x00018076b320();
   *(uint32_t *)(unaff_RBP + -0x39) = uVar5;
   uVar4 = func_0x00018076b320(unaff_RBP + 9);
-  *(undefined2 *)(unaff_RBP + -0x35) = uVar4;
+  *(uint16_t *)(unaff_RBP + -0x35) = uVar4;
   uVar4 = func_0x00018076b320(unaff_RBP + 0xe);
-  *(undefined2 *)(unaff_RBP + -0x33) = uVar4;
+  *(uint16_t *)(unaff_RBP + -0x33) = uVar4;
   uVar4 = func_0x00018076b320(unaff_RBP + 0x13);
   *(char *)(unaff_RBP + -0x30) = (char)uVar4;
   puVar8 = (uint8_t *)(unaff_RBP + -0x2a);
@@ -8037,8 +8037,8 @@ void FUN_18084b240(uint32_t *socketHandle,uint64_t dataBuffer)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_18076b390(dataBuffer,0x27,&UNK_180958180,*socketHandle,*(undefined2 *)(socketHandle + 1),
-                *(undefined2 *)((longlong)socketHandle + 6),*(uint8_t *)(socketHandle + 2),
+  FUN_18076b390(dataBuffer,0x27,&UNK_180958180,*socketHandle,*(uint16_t *)(socketHandle + 1),
+                *(uint16_t *)((longlong)socketHandle + 6),*(uint8_t *)(socketHandle + 2),
                 *(uint8_t *)((longlong)socketHandle + 9),*(uint8_t *)((longlong)socketHandle + 10),
                 *(uint8_t *)((longlong)socketHandle + 0xb),*(uint8_t *)(socketHandle + 3),
                 *(uint8_t *)((longlong)socketHandle + 0xd),*(uint8_t *)((longlong)socketHandle + 0xe),
@@ -8534,7 +8534,7 @@ void FUN_18084bc0e(uint64_t socketHandle,longlong dataBuffer)
                        (*(longlong **)(unaff_RDI + 0x10),pbufferCapacity,1);
     if (plVar2 == (longlong *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18076b390(&stack0x00000070,0x27,&UNK_180958180,*pbufferCapacity,*(undefined2 *)(pbufferCapacity + 1));
+      FUN_18076b390(&stack0x00000070,0x27,&UNK_180958180,*pbufferCapacity,*(uint16_t *)(pbufferCapacity + 1));
     }
     statusCode = (**(code **)(*plVar2 + 0x28))(plVar2);
     if (statusCode != 0) break;
@@ -8700,7 +8700,7 @@ void thunk_FUN_180848e50(char *socketHandle,uint64_t *dataBuffer)
   char *pcVar1;
   char cVar2;
   uint8_t bufferCapacity;
-  undefined2 uVar4;
+  uint16_t uVar4;
   int errorCode;
   char *pcVar6;
   uint8_t *puVar7;
@@ -8763,7 +8763,7 @@ FUN_180848ff1:
       uVar4 = func_0x00018076b320(auStack_56);
       uStack_94 = CONCAT22(uStack_94._2_2_,uVar4);
       uVar4 = func_0x00018076b320(auStack_51);
-      uStack_94 = CONCAT22(uVar4,(undefined2)uStack_94);
+      uStack_94 = CONCAT22(uVar4,uint16_t)uStack_94);
       uVar4 = func_0x00018076b320(auStack_4c);
       puVar8 = (uint8_t *)((longlong)&uStack_8c + 3);
       uStack_90 = CONCAT31(CONCAT21(uStack_90._2_2_,(char)uVar4),(char)((ushort)uVar4 >> 8));
@@ -8812,7 +8812,7 @@ uint64_t * FUN_18084c050(uint64_t *socketHandle,uint64_t dataBuffer,byte bufferC
   *socketHandle = &UNK_180984a70;
   socketHandle[9] = &UNK_180984aa0;
   socketHandle[0xd] = 0;
-  *(undefined2 *)((longlong)socketHandle + 0x74) = 0;
+  *(uint16_t *)((longlong)socketHandle + 0x74) = 0;
   *(uint32_t *)(socketHandle + 0xe) = 0x3f800000;
   socketHandle[0xf] = 0xffffffffffffffff;
   socketHandle[0x10] = 0;
@@ -13121,7 +13121,7 @@ void FUN_18084edf0(longlong socketHandle)
   uint64_t uStack_40;
   uint64_t uStack_38;
   uint32_t uStack_30;
-  undefined2 uStack_2c;
+  uint16_t uStack_2c;
   uint8_t uStack_2a;
   ulonglong uStack_28;
   
@@ -21510,7 +21510,7 @@ void FUN_180854fc3(void)
     if (lVar2 == 0) {
                     // WARNING: Subroutine does not return
       FUN_18076b390(&stack0x00000098,0x27,&UNK_180958180,(int)unaff_R12[4],
-                    *(undefined2 *)((longlong)unaff_R12 + 0x24));
+                    *(uint16_t *)((longlong)unaff_R12 + 0x24));
     }
     bufferCapacity = FUN_1808c6120(lVar2,uVar1);
     if (unaff_RBP != 0) {
@@ -37587,7 +37587,7 @@ void FUN_1808629e9(longlong *socketHandle)
   longlong *responseBuffer;
   longlong unaff_R15;
   uint32_t uStack0000000000000070;
-  undefined2 uStack0000000000000074;
+  uint16_t uStack0000000000000074;
   uint8_t in_stack_00000078;
   ulonglong in_stack_000000a8;
   
@@ -37640,7 +37640,7 @@ void FUN_1808629f1(longlong *socketHandle)
   longlong *responseBuffer;
   longlong unaff_R15;
   uint32_t uStack0000000000000070;
-  undefined2 uStack0000000000000074;
+  uint16_t uStack0000000000000074;
   uint8_t in_stack_00000078;
   ulonglong in_stack_000000a8;
   
@@ -41992,7 +41992,7 @@ uint64_t FUN_180865c20(longlong socketHandle,longlong dataBuffer,uint64_t buffer
     uVar4 = func_0x000180867200(*(uint32_t *)(socketHandle + 0x3c));
     puVar6[4] = uVar4;
     *puVar6 = 0x39;
-    *(undefined2 *)(puVar6 + 2) = 0x106;
+    *(uint16_t *)(puVar6 + 2) = 0x106;
     *(uint8_t *)((longlong)puVar6 + 10) = 3;
     puVar6[3] = bufferCapacity;
     *(uint32_t *)((longlong)puVar6 + 0x15) = 0x20214;
@@ -42161,7 +42161,7 @@ uint64_t FUN_180865f90(longlong socketHandle,longlong dataBuffer)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_180865fc0(longlong socketHandle,undefined2 dataBuffer,uint64_t bufferCapacity,char timeoutValue)
+uint64_t FUN_180865fc0(longlong socketHandle,uint16_t dataBuffer,uint64_t bufferCapacity,char timeoutValue)
 
 {
   char cVar1;
@@ -42215,7 +42215,7 @@ uint64_t FUN_180865fc0(longlong socketHandle,undefined2 dataBuffer,uint64_t buff
   packetLength = func_0x000180242600();
   bufferCapacity = *(uint32_t *)(socketHandle + 0x3c);
   *puVar6 = 0x39;
-  *(undefined2 *)(puVar6 + 2) = 0x106;
+  *(uint16_t *)(puVar6 + 2) = 0x106;
   *(uint8_t *)((longlong)puVar6 + 10) = 3;
   puVar6[3] = packetLength;
   bufferCapacity = func_0x000180867200(bufferCapacity);
@@ -42636,7 +42636,7 @@ uint64_t FUN_180866ba0(longlong socketHandle,uint64_t dataBuffer)
     return 0x26;
   }
   *ppacketLength = 0x39;
-  *(undefined2 *)(ppacketLength + 2) = 0x106;
+  *(uint16_t *)(ppacketLength + 2) = 0x106;
   *(uint8_t *)((longlong)ppacketLength + 10) = 3;
   *(uint64_t *)(ppacketLength + 3) = 0;
   *(uint32_t *)((longlong)ppacketLength + 0x15) = 0x20214;
@@ -43241,7 +43241,7 @@ uint64_t FUN_1808673a0(longlong socketHandle)
       else {
         ppacketLength = *(undefined **)(socketHandle + 0x88);
       }
-      FUN_180865fc0(socketHandle,*(undefined2 *)(socketHandle + 0x80),ppacketLength,1);
+      FUN_180865fc0(socketHandle,*(uint16_t *)(socketHandle + 0x80),ppacketLength,1);
       *(int *)(socketHandle + 0x78) = aiStackX_8[0];
     }
   }
@@ -43717,7 +43717,7 @@ uint64_t FUN_180867bc0(uint64_t *socketHandle)
   *(uint32_t *)(connectionBuffer + 0x11) = 0xffffffff;
   *(uint32_t *)((longlong)connectionBuffer + 0x8c) = 0x3f800000;
   *(uint32_t *)(connectionBuffer + 0x12) = 0x3f800000;
-  *(undefined2 *)((longlong)connectionBuffer + 0xbc) = 0;
+  *(uint16_t *)((longlong)connectionBuffer + 0xbc) = 0;
   connectionBuffer[7] = 0;
   connectionBuffer[8] = 0;
   connectionBuffer[9] = 0;
@@ -61580,7 +61580,7 @@ void FUN_1808775bf(longlong *socketHandle,uint64_t dataBuffer,uint64_t bufferCap
       lVar2 = (**(code **)(*timeoutValue + 0x140))(timeoutValue,puVar7,1);
       if (lVar2 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18076b390(&stack0x00000098,0x27,&UNK_180958180,*puVar7,*(undefined2 *)(puVar7 + 1));
+        FUN_18076b390(&stack0x00000098,0x27,&UNK_180958180,*puVar7,*(uint16_t *)(puVar7 + 1));
       }
       uVar4 = (int)*(uint *)((longlong)unaff_R15 + 0xc) >> 0x1f;
       iVar3 = (int)unaff_R15[1] + 1;
@@ -62376,7 +62376,7 @@ void FUN_1808782c0(longlong socketHandle,uint64_t dataBuffer,longlong *bufferCap
       if (lVar7 == 0) {
                     // WARNING: Subroutine does not return
         FUN_18076b390(unaff_RBP + -9,0x27,&UNK_180958180,*(uint32_t *)connectionBuffer,
-                      *(undefined2 *)(lVar2 + 100));
+                      *(uint16_t *)(lVar2 + 100));
       }
       if (*(int *)(lVar7 + 0x60) != 0x1f) goto LAB_180878734;
       *(uint32_t *)(unaff_RBP + -0x49) = 0;
@@ -63344,7 +63344,7 @@ void FUN_1808789b7(float socketHandle)
                     // WARNING: Subroutine does not return
                       FUN_18076b390(unaff_RBP + -0x39,0x27,&UNK_180958180,
                                     *(uint32_t *)(unaff_RBP + -0x79),
-                                    *(undefined2 *)(unaff_RBP + -0x75));
+                                    *(uint16_t *)(unaff_RBP + -0x75));
                     }
                     FUN_1808b06c0(lVar12 + 200,*(longlong *)(unaff_RBP + -0x51) + 0x38,connectionBuffer9[4],
                                   connectionBuffer9[5],*(uint8_t *)(connectionBuffer9 + 6));
@@ -63607,7 +63607,7 @@ LAB_180878d26:
                     // WARNING: Subroutine does not return
                   FUN_18076b390(unaff_RBP + -0x39,0x27,&UNK_180958180,
                                 *(uint32_t *)(unaff_RBP + -0x79),
-                                *(undefined2 *)(unaff_RBP + -0x75));
+                                *(uint16_t *)(unaff_RBP + -0x75));
                 }
                 FUN_1808b06c0(lVar12 + 200,*(longlong *)(unaff_RBP + -0x51) + 0x38,connectionBuffer9[4],
                               connectionBuffer9[5],*(uint8_t *)(connectionBuffer9 + 6));
@@ -95359,7 +95359,7 @@ uint64_t FUN_1808968a0(longlong socketHandle)
     piVar3[4] = 0;
     piVar3[5] = 0;
     *piVar3 = iVar5 + 0x19;
-    *(undefined2 *)(piVar3 + 2) = 0x508;
+    *(uint16_t *)(piVar3 + 2) = 0x508;
     *(uint8_t *)((longlong)piVar3 + 10) = 3;
     piVar3[3] = 1;
     lVar2 = *(longlong *)(*(longlong *)(socketHandle + 8) + 0x90);
@@ -98337,29 +98337,29 @@ uint64_t FUN_180898d60(longlong *socketHandle,int dataBuffer)
 {
   int statusCode;
   longlong lVar2;
-  undefined2 *pbufferCapacity;
+  uint16_t *pbufferCapacity;
   longlong lVar4;
-  undefined2 *puVar5;
+  uint16_t *puVar5;
   
   if (dataBuffer < (int)socketHandle[1]) {
     return 0x1c;
   }
-  pbufferCapacity = (undefined2 *)0x0;
+  pbufferCapacity = (uint16_t *)0x0;
   if (dataBuffer != 0) {
     if (dataBuffer * 3 - 1U < 0x3fffffff) {
-      pbufferCapacity = (undefined2 *)
+      pbufferCapacity = (uint16_t *)
                FUN_180741e10(*(uint64_t *)(g_networkModule + 0x1a0),dataBuffer * 3,&g_errorBuffer,0xf4
                              ,0,0,1);
-      if (pbufferCapacity != (undefined2 *)0x0) {
+      if (pbufferCapacity != (uint16_t *)0x0) {
         statusCode = (int)socketHandle[1];
         lVar4 = (longlong)statusCode;
         if ((statusCode != 0) && (lVar2 = *socketHandle, 0 < statusCode)) {
           puVar5 = pbufferCapacity;
           do {
-            *puVar5 = *(undefined2 *)((lVar2 - (longlong)pbufferCapacity) + (longlong)puVar5);
+            *puVar5 = *(uint16_t *)((lVar2 - (longlong)pbufferCapacity) + (longlong)puVar5);
             *(uint8_t *)(puVar5 + 1) =
                  *(uint8_t *)((lVar2 - (longlong)pbufferCapacity) + 2 + (longlong)puVar5);
-            puVar5 = (undefined2 *)((longlong)puVar5 + 3);
+            puVar5 = (uint16_t *)((longlong)puVar5 + 3);
             lVar4 = lVar4 + -1;
           } while (lVar4 != 0);
         }
@@ -98387,13 +98387,13 @@ uint64_t FUN_180898d84(uint64_t socketHandle,int dataBuffer)
 {
   int statusCode;
   longlong lVar2;
-  undefined2 *pbufferCapacity;
+  uint16_t *pbufferCapacity;
   longlong lVar4;
-  undefined2 *puVar5;
+  uint16_t *puVar5;
   longlong *unaff_RBX;
   int packetId;
   
-  pbufferCapacity = (undefined2 *)0x0;
+  pbufferCapacity = (uint16_t *)0x0;
   if (unaff_EDI == 0) {
 LAB_180898e0b:
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
@@ -98405,19 +98405,19 @@ LAB_180898e0b:
     return 0;
   }
   if (dataBuffer * 3 - 1U < 0x3fffffff) {
-    pbufferCapacity = (undefined2 *)
+    pbufferCapacity = (uint16_t *)
              FUN_180741e10(*(uint64_t *)(g_networkModule + 0x1a0),dataBuffer * 3,&g_errorBuffer,0xf4,0
                           );
-    if (pbufferCapacity != (undefined2 *)0x0) {
+    if (pbufferCapacity != (uint16_t *)0x0) {
       statusCode = (int)unaff_RBX[1];
       lVar4 = (longlong)statusCode;
       if ((statusCode != 0) && (lVar2 = *unaff_RBX, 0 < statusCode)) {
         puVar5 = pbufferCapacity;
         do {
-          *puVar5 = *(undefined2 *)((lVar2 - (longlong)pbufferCapacity) + (longlong)puVar5);
+          *puVar5 = *(uint16_t *)((lVar2 - (longlong)pbufferCapacity) + (longlong)puVar5);
           *(uint8_t *)(puVar5 + 1) =
                *(uint8_t *)((lVar2 - (longlong)pbufferCapacity) + 2 + (longlong)puVar5);
-          puVar5 = (undefined2 *)((longlong)puVar5 + 3);
+          puVar5 = (uint16_t *)((longlong)puVar5 + 3);
           lVar4 = lVar4 + -1;
         } while (lVar4 != 0);
       }
@@ -99680,7 +99680,7 @@ uint64_t FUN_180899d90(longlong socketHandle,longlong dataBuffer)
   float *pfVar2;
   int statusCode;
   float fVar4;
-  undefined2 auStackX_8 [4];
+  uint16_t auStackX_8 [4];
   
   auStackX_8[0] = CONCAT11(auStackX_8[0]._1_1_,*(uint8_t *)(dataBuffer + 0x104));
   uVar1 = (**(code **)**(uint64_t **)(socketHandle + 8))(*(uint64_t **)(socketHandle + 8),auStackX_8,1);
@@ -99698,7 +99698,7 @@ uint64_t FUN_180899d90(longlong socketHandle,longlong dataBuffer)
         else {
           fVar4 = 0.0;
         }
-        auStackX_8[0] = (undefined2)(int)(fVar4 * 65535.0);
+        auStackX_8[0] = uint16_t)(int)(fVar4 * 65535.0);
         uVar1 = (**(code **)**(uint64_t **)(socketHandle + 8))
                           (*(uint64_t **)(socketHandle + 8),auStackX_8,2);
         if ((int)uVar1 != 0) {
@@ -99713,7 +99713,7 @@ uint64_t FUN_180899d90(longlong socketHandle,longlong dataBuffer)
         else {
           fVar4 = 0.0;
         }
-        auStackX_8[0] = (undefined2)(int)(fVar4 * 65535.0);
+        auStackX_8[0] = uint16_t)(int)(fVar4 * 65535.0);
         uVar1 = (**(code **)**(uint64_t **)(socketHandle + 8))
                           (*(uint64_t **)(socketHandle + 8),auStackX_8,2);
         if ((int)uVar1 != 0) {
@@ -99739,7 +99739,7 @@ uint64_t FUN_180899dc7(void)
   longlong unaff_RSI;
   int statusCode;
   float fVar4;
-  undefined2 uStack0000000000000070;
+  uint16_t uStack0000000000000070;
   
   iVar3 = 0;
   if (0 < *(short *)(unaff_RSI + 0x104)) {
@@ -99754,7 +99754,7 @@ uint64_t FUN_180899dc7(void)
       else {
         fVar4 = 0.0;
       }
-      uStack0000000000000070 = (undefined2)(int)(fVar4 * 65535.0);
+      uStack0000000000000070 = uint16_t)(int)(fVar4 * 65535.0);
       uVar1 = (**(code **)**(uint64_t **)(unaff_RBP + 8))
                         (*(uint64_t **)(unaff_RBP + 8),&stack0x00000070,2);
       if ((int)uVar1 != 0) {
@@ -99769,7 +99769,7 @@ uint64_t FUN_180899dc7(void)
       else {
         fVar4 = 0.0;
       }
-      uStack0000000000000070 = (undefined2)(int)(fVar4 * 65535.0);
+      uStack0000000000000070 = uint16_t)(int)(fVar4 * 65535.0);
       uVar1 = (**(code **)**(uint64_t **)(unaff_RBP + 8))
                         (*(uint64_t **)(unaff_RBP + 8),&stack0x00000070,2);
       if ((int)uVar1 != 0) {
@@ -99805,10 +99805,10 @@ void FUN_180899ef0(longlong socketHandle,uint32_t *dataBuffer)
   auStackX_8[0] = *dataBuffer;
   statusCode = (**(code **)**(uint64_t **)(socketHandle + 8))(*(uint64_t **)(socketHandle + 8),auStackX_8,4);
   if (statusCode == 0) {
-    auStackX_8[0]._0_2_ = *(undefined2 *)(dataBuffer + 1);
+    auStackX_8[0]._0_2_ = *(uint16_t *)(dataBuffer + 1);
     statusCode = (**(code **)**(uint64_t **)(socketHandle + 8))(*(uint64_t **)(socketHandle + 8),auStackX_8,2);
     if (statusCode == 0) {
-      auStackX_8[0] = CONCAT22(auStackX_8[0]._2_2_,*(undefined2 *)((longlong)dataBuffer + 6));
+      auStackX_8[0] = CONCAT22(auStackX_8[0]._2_2_,*(uint16_t *)((longlong)dataBuffer + 6));
       statusCode = (**(code **)**(uint64_t **)(socketHandle + 8))
                         (*(uint64_t **)(socketHandle + 8),auStackX_8,2);
       if (statusCode == 0) {
@@ -109443,8 +109443,8 @@ ulonglong FUN_18089f970(longlong socketHandle,longlong *dataBuffer)
   uint packetLength;
   uint32_t *pbufferCapacity;
   ulonglong uVar4;
-  undefined2 auStackX_18 [4];
-  undefined2 auStackX_20 [4];
+  uint16_t auStackX_18 [4];
+  uint16_t auStackX_20 [4];
   uint32_t auStack_58 [2];
   uint32_t uStack_50;
   uint32_t uStack_4c;
@@ -109479,7 +109479,7 @@ ulonglong FUN_18089f970(longlong socketHandle,longlong *dataBuffer)
           packetLength = (**(code **)**(uint64_t **)(lVar1 + 8))
                             (*(uint64_t **)(lVar1 + 8),auStack_58,4);
           if (packetLength == 0) {
-            auStackX_18[0] = (undefined2)uStack_4c;
+            auStackX_18[0] = uint16_t)uStack_4c;
             packetLength = (**(code **)**(uint64_t **)(lVar1 + 8))
                               (*(uint64_t **)(lVar1 + 8),auStackX_18,2);
             if (packetLength == 0) {
@@ -109529,10 +109529,10 @@ ulonglong FUN_18089f9b3(void)
   longlong *unaff_RDI;
   uint32_t in_stack_00000030;
   uint32_t uStack0000000000000038;
-  undefined2 uStack000000000000003c;
-  undefined2 uStack000000000000003e;
-  undefined2 in_stack_000000a0;
-  undefined2 in_stack_000000a8;
+  uint16_t uStack000000000000003c;
+  uint16_t uStack000000000000003e;
+  uint16_t in_stack_000000a0;
+  uint16_t in_stack_000000a8;
   
   if (*(uint *)(networkContextPtr + 0x18) != connectionState) {
     return 0x1c;
@@ -109602,10 +109602,10 @@ ulonglong FUN_18089f9f6(void)
   longlong *unaff_RDI;
   uint32_t in_stack_00000030;
   uint32_t uStack0000000000000038;
-  undefined2 uStack000000000000003c;
-  undefined2 uStack000000000000003e;
-  undefined2 in_stack_000000a0;
-  undefined2 in_stack_000000a8;
+  uint16_t uStack000000000000003c;
+  uint16_t uStack000000000000003e;
+  uint16_t in_stack_000000a0;
+  uint16_t in_stack_000000a8;
   
   packetLength = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x20);
   bufferCapacity = (ulonglong)packetLength;
@@ -109664,8 +109664,8 @@ ulonglong FUN_18089fa3c(void)
   longlong unaff_RBP;
   longlong *unaff_RDI;
   uint64_t in_stack_00000038;
-  undefined2 in_stack_000000a0;
-  undefined2 in_stack_000000a8;
+  uint16_t in_stack_000000a0;
+  uint16_t in_stack_000000a8;
   
   lVar1 = *unaff_RDI;
   packetLength = (**(code **)**(uint64_t **)(lVar1 + 8))();

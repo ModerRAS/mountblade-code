@@ -6629,8 +6629,8 @@ void utilityTrackResourceCycle(longlong resourceHandle,longlong memorySize)
 
 
 
-// 函数: void FUN_180893700(longlong resourceHandle,longlong memorySize)
-void FUN_180893700(longlong resourceHandle,longlong memorySize)
+// 函数: void create_network_socket(longlong resourceHandle,longlong memorySize)
+void create_network_socket(longlong resourceHandle,longlong memorySize)
 
 {
   int localInt1;
@@ -6652,7 +6652,7 @@ void FUN_180893700(longlong resourceHandle,longlong memorySize)
 // WARNING: Removing unreachable block (ram,0x000180893865)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180893760(longlong resourceHandle,longlong memorySize)
+int bind_network_socket(longlong resourceHandle,longlong memorySize)
 
 {
   int localInt1;
