@@ -1617,30 +1617,30 @@ LAB_1800451ca:
   *(unsigned int *)(thread_data_ptr + 0x1a) = 0;
   *thread_stack_pptr_18 = (long long *)&g_threadString2;
   thread_data_ptr[0x1b] = 0;
-  plVar6[0x19] = 0;
-  *(unsigned int *)(plVar6 + 0x1a) = 0;
-  (*(code *)(*pplStackX_18)[2])(pplStackX_18,handle);
-  plVar6[0x1c] = flags;
-  plStack_48 = plVar6;
-  (**(code **)(*plVar6 + 0x28))(plVar6);
-  lVar7 = _data_180c82868;
-  pplStackX_18 = &plStackX_10;
-  plStackX_10 = plVar6;
-  (**(code **)(*plVar6 + 0x28))(plVar6);
-  register_event_callback(lVar7,&plStackX_10);
+  thread_data_ptr[0x19] = 0;
+  *(unsigned int *)(thread_data_ptr + 0x1a) = 0;
+  (*(code *)(*thread_stack_pptr_18)[2])(thread_stack_pptr_18,handle);
+  thread_data_ptr[0x1c] = flags;
+  thread_stack_ptr_48 = thread_data_ptr;
+  (**(code **)(*thread_data_ptr + 0x28))(thread_data_ptr);
+  system_data_ptr = _data_180c82868;
+  thread_stack_pptr_18 = &thread_stack_ptr_10;
+  thread_stack_ptr_10 = thread_data_ptr;
+  (**(code **)(*thread_data_ptr + 0x28))(thread_data_ptr);
+  register_event_callback(system_data_ptr,&thread_stack_ptr_10);
   while( true ) {
-    if ((undefined *)*plVar6 == &g_threadString3) {
-      cVar16 = (char)plVar6[2] != '\0';
+    if ((undefined *)*thread_data_ptr == &g_threadString3) {
+      cVar16 = (char)thread_data_ptr[2] != '\0';
     }
     else {
-      cVar16 = (**(code **)((undefined *)*plVar6 + 0x68))(plVar6);
+      cVar16 = (**(code **)((undefined *)*thread_data_ptr + 0x68))(thread_data_ptr);
     }
     if (cVar16 != '\0') break;
     Sleep(1);
   }
-  (**(code **)(*plVar6 + 0x38))(plVar6);
-  puStack_98 = &g_threadString2;
-  if (lStack_90 == 0) {
+  (**(code **)(*thread_data_ptr + 0x38))(thread_data_ptr);
+  thread_stack_ptr_98 = &g_threadString2;
+  if (thread_stack_var_90 == 0) {
     return;
   }
   handle_system_error();
@@ -1678,40 +1678,40 @@ void WotsMainNativeCoreCLR(unsigned long long handle)
     data_180c82852 = iVar8 != 0xb7;
   }
   system_data_manager_001(_data_180c86928,0,0xd,&g_systemDataString1,data_180c82852);
-  if (puStack_28 == (undefined *)0x0) {
+  if (thread_stack_ptr_28 == (undefined *)0x0) {
     return;
   }
   handle_system_error();
 }
     data_180c82870 = 0;
   }
-  uStack_68 = 0;
-  uStack_60 = 0;
-  uStack_58 = 0;
-  uStack_50 = 3;
-  create_thread_context(&puStack_48,handle);
-  FUN_180652400(&uStack_68,&puStack_48);
-  puStack_48 = &g_threadString2;
-  if (lStack_40 != 0) {
+  thread_stack_var_68 = 0;
+  thread_stack_var_60 = 0;
+  thread_stack_var_58 = 0;
+  thread_stack_var_50 = 3;
+  create_thread_context(&thread_stack_ptr_48,handle);
+  FUN_180652400(&thread_stack_var_68,&thread_stack_ptr_48);
+  thread_stack_ptr_48 = &g_threadString2;
+  if (thread_stack_var_40 != 0) {
     handle_system_error();
   }
-  lStack_40 = 0;
-  uStack_30 = 0;
-  puStack_48 = &g_threadString4;
-  uStack_88 = 0;
-  uStack_80 = 0;
-  uStack_78 = 0;
-  uStack_70 = 3;
-  FUN_180652b60(&uStack_88,&uStack_68);
-  FUN_180653220(&uStack_88,auStack_a8);
-  if (0x1fff < uStack_98) {
-    uStack_98 = 0x1fff;
+  thread_stack_var_40 = 0;
+  thread_stack_var_30 = 0;
+  thread_stack_ptr_48 = &g_threadString4;
+  thread_stack_var_88 = 0;
+  thread_stack_var_80 = 0;
+  thread_stack_var_78 = 0;
+  thread_stack_var_70 = 3;
+  FUN_180652b60(&thread_stack_var_88,&thread_stack_var_68);
+  FUN_180653220(&thread_stack_var_88,thread_stack_array_a8);
+  if (0x1fff < thread_stack_var_98) {
+    thread_stack_var_98 = 0x1fff;
   }
-  puVar1 = &data_18098bc73;
-  if (puStack_a0 != (undefined *)0x0) {
-    puVar1 = puStack_a0;
+  thread_name_ptr = &data_18098bc73;
+  if (thread_stack_ptr_a0 != (undefined *)0x0) {
+    thread_name_ptr = thread_stack_ptr_a0;
   }
-  memcpy(&data_180c82870,puVar1,(long long)(int)uStack_98);
+  memcpy(&data_180c82870,thread_name_ptr,(long long)(int)thread_stack_var_98);
 }
     data_180c84870 = 0;
     return;
