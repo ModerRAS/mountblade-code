@@ -203,27 +203,27 @@ int initialize_resource_manager_5(void)
 }
 int initialize_resource_manager_6(void)
 {
-  long long init_result;
-  undefined8 str_len_param;
-  void* resource_pointer = &g_resource_data_buffer;
-  void* resource_buffer_pointer = &resource_buffer_6;
+  long long initialization_result;
+  undefined8 string_length_parameter;
+  void* resource_data_buffer_pointer = &g_resource_data_buffer;
+  void* resource_buffer_value_pointer = &resource_buffer_6;
   resource_buffer_6 = 0;
   resource_type_6 = 4;
-  strcpy_s(&resource_buffer_6,0x10,&string_source_007,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_018);
-  return (init_result != 0) - 1;
+  strcpy_s(&resource_buffer_6,0x10,&string_source_007,string_length_parameter,0xfffffffffffffffe);
+  initialization_result = execute_function(callback_function_018);
+  return (initialization_result != 0) - 1;
 }
 int initialize_resource_manager_7(void)
 {
-  long long init_result;
-  undefined8 str_len_param;
-  void* resource_pointer = &g_resource_data_buffer;
-  void* data_pointer = &data_180bf6698;
+  long long initialization_result;
+  undefined8 string_length_parameter;
+  void* resource_data_buffer_pointer = &g_resource_data_buffer;
+  void* system_data_pointer = &data_180bf6698;
   data_180bf6698 = 0;
   int resource_type = 5;
-  strcpy_s(&g_system_name_buffer,0x10,&g_system_name_string,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_018);
-  return (init_result != 0) - 1;
+  strcpy_s(&g_system_name_buffer,0x10,&g_system_name_string,string_length_parameter,0xfffffffffffffffe);
+  initialization_result = execute_function(callback_function_018);
+  return (initialization_result != 0) - 1;
 }
 // 初始化资源管理器8
 int initialize_resource_manager_8(void)

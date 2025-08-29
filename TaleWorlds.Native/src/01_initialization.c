@@ -2135,9 +2135,9 @@ void initialize_system_phase7(void)
   previous_node[10] = pcStackX_18;
   return;
 }
-// void FUN_18002dde0(void)
+// void initialize_system_phase8(void)
 
-void FUN_18002dde0(void)
+void initialize_system_phase8(void)
 
 {
   char is_initialized;
@@ -2182,9 +2182,9 @@ void FUN_18002dde0(void)
   previous_node[10] = pcStackX_18;
   return;
 }
-// void FUN_18002dee0(void)
+// void initialize_system_phase9(void)
 
-void FUN_18002dee0(void)
+void initialize_system_phase9(void)
 
 {
   char is_initialized;
@@ -2229,9 +2229,9 @@ void FUN_18002dee0(void)
   previous_node[10] = pcStackX_18;
   return;
 }
-// void FUN_18002dfe0(void)
+// void initialize_system_phase10(void)
 
-void FUN_18002dfe0(void)
+void initialize_system_phase10(void)
 
 {
   char is_initialized;
@@ -2276,9 +2276,9 @@ void FUN_18002dfe0(void)
   previous_node[10] = pcStackX_18;
   return;
 }
-// void FUN_18002e0e0(void)
+// void initialize_graphics_phase1(void)
 
-void FUN_18002e0e0(void)
+void initialize_graphics_phase1(void)
 
 {
   char is_initialized;
@@ -2323,9 +2323,9 @@ void FUN_18002e0e0(void)
   previous_node[10] = init_flag;
   return;
 }
-// void FUN_18002e1e0(void)
+// void initialize_graphics_phase2(void)
 
-void FUN_18002e1e0(void)
+void initialize_graphics_phase2(void)
 
 {
   char is_initialized;
@@ -2370,9 +2370,9 @@ void FUN_18002e1e0(void)
   previous_node[10] = pcStackX_18;
   return;
 }
-// void FUN_18002e2e0(void)
+// void initialize_graphics_phase3(void)
 
-void FUN_18002e2e0(void)
+void initialize_graphics_phase3(void)
 
 {
   char is_initialized;
