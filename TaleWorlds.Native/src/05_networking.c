@@ -200,21 +200,21 @@ void NetworkInitializeConnection(void)
 
 {
   byte *connectionBuffer;
-  int resultCode;
+  int operationResult;
   longlong networkContextPtr;
-  int socketIdentifier;
+  int socketId;
   uint32_t registerVar;
   int connectionState;
   ulonglong *responseBuffer;
   longlong stackContext;
   
-  connectionBuffer = (uint8_t *)(CONCAT44(unaff_0000001c,socketIdentifier) + 0x28);
+  connectionBuffer = (uint8_t *)(CONCAT44(unaff_0000001c,socketId) + 0x28);
   if (*(int *)(*(longlong *)(networkContextPtr + 0x98) + 0x200) == connectionState) {
     *connectionBuffer = 0;
-    *(uint *)(CONCAT44(unaff_0000001c,socketIdentifier) + 8) = ((int)connectionBuffer - socketIdentifier) + 4U & 0xfffffffc;
-    resultCode = NetworkValidateSocket(*(uint64_t *)(stackContext + 0x98));
-    if (resultCode == 0) {
-      *responseBuffer = (ulonglong)*(uint *)(CONCAT44(unaff_0000001c,socketIdentifier) + 0x20);
+    *(uint *)(CONCAT44(unaff_0000001c,socketId) + 8) = ((int)connectionBuffer - socketId) + 4U & 0xfffffffc;
+    operationResult = NetworkValidateSocket(*(uint64_t *)(stackContext + 0x98));
+    if (operationResult == 0) {
+      *responseBuffer = (ulonglong)*(uint *)(CONCAT44(unaff_0000001c,socketId) + 0x20);
     }
                     // WARNING: Subroutine does not return
     NetworkErrorExit(&stackContext);
@@ -532,7 +532,7 @@ void NetworkSendData(uint32_t socketHandle,int dataBuffer,longlong bufferCapacit
     if ((((*(int *)(lVar3 + 0x38) != 0) || (*(int *)(lVar3 + 0x3c) != 0)) ||
         ((*(int *)(lVar3 + 0x40) != 0 || (*(int *)(lVar3 + 0x44) != 0)))) &&
        (lVar3 = FUN_18083fb90(plVar1), lVar3 != 0)) {
-      FUN_180847550(lVar3,bufferCapacity,1);
+      NetworkExecuteErrorRecovery(lVar3,bufferCapacity,1);
     }
   }
                     // WARNING: Subroutine does not return
@@ -571,7 +571,7 @@ void NetworkSendDataChunk(uint64_t socketHandle,uint64_t dataBuffer,uint8_t buff
       if ((((*(int *)(lVar3 + 0x38) != 0) || (*(int *)(lVar3 + 0x3c) != 0)) ||
           ((*(int *)(lVar3 + 0x40) != 0 || (*(int *)(lVar3 + 0x44) != 0)))) &&
          (lVar3 = FUN_18083fb90(plVar1), lVar3 != 0)) {
-        FUN_180847550(lVar3);
+        NetworkExecuteErrorRecovery(lVar3);
       }
     }
   }
@@ -612,7 +612,7 @@ void NetworkSendDataBuffer(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bu
       if ((((*(int *)(lVar3 + 0x38) != 0) || (*(int *)(lVar3 + 0x3c) != 0)) ||
           ((*(int *)(lVar3 + 0x40) != 0 || (*(int *)(lVar3 + 0x44) != 0)))) &&
          (lVar3 = FUN_18083fb90(plVar1), lVar3 != 0)) {
-        FUN_180847550(lVar3);
+        NetworkExecuteErrorRecovery(lVar3);
       }
     }
   }
@@ -2674,8 +2674,8 @@ int NetworkReceiveDataWithFlags19(longlong socketHandle,longlong dataBuffer,int 
 
 
 
-// 函数: void FUN_180843870(longlong socketHandle,uint64_t dataBuffer,uint32_t bufferCapacity)
-void FUN_180843870(longlong socketHandle,uint64_t dataBuffer,uint32_t bufferCapacity)
+// 函数: void NetworkProcessSocketChunk(longlong socketHandle,uint64_t dataBuffer,uint32_t bufferCapacity)
+void NetworkProcessSocketChunk(longlong socketHandle,uint64_t dataBuffer,uint32_t bufferCapacity)
 
 {
   networkProcessKeepAlive(dataBuffer,bufferCapacity,&networkOptimizationData,*(uint32_t *)(socketHandle + 0x10),
@@ -2685,7 +2685,7 @@ void FUN_180843870(longlong socketHandle,uint64_t dataBuffer,uint32_t bufferCapa
 
 
 
-int FUN_1808438a0(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int NetworkValidateSocketConnection(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t uVar1;
@@ -2714,7 +2714,7 @@ int FUN_1808438a0(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 
 
-int FUN_180843990(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int NetworkCheckSocketAvailability(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t uVar1;
@@ -2743,7 +2743,7 @@ int FUN_180843990(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 
 
-int FUN_180843a80(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int NetworkVerifySocketIntegrity(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t uVar1;
@@ -2767,8 +2767,8 @@ int FUN_180843a80(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 
 
-// 函数: void FUN_180843b40(longlong socketHandle,uint64_t dataBuffer,uint32_t bufferCapacity)
-void FUN_180843b40(longlong socketHandle,uint64_t dataBuffer,uint32_t bufferCapacity)
+// 函数: void NetworkHandleSocketData(longlong socketHandle,uint64_t dataBuffer,uint32_t bufferCapacity)
+void NetworkHandleSocketData(longlong socketHandle,uint64_t dataBuffer,uint32_t bufferCapacity)
 
 {
   networkProcessKeepAlive(dataBuffer,bufferCapacity,&networkQosData,*(uint32_t *)(socketHandle + 0x10),
@@ -2778,7 +2778,7 @@ void FUN_180843b40(longlong socketHandle,uint64_t dataBuffer,uint32_t bufferCapa
 
 
 
-int FUN_180843b70(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int NetworkProcessSocketInput(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t uVar1;
@@ -2795,7 +2795,7 @@ int FUN_180843b70(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 
 
-int FUN_180843be0(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int NetworkManageSocketOutput(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t uVar1;
@@ -2818,7 +2818,7 @@ int FUN_180843be0(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 
 
-int FUN_180843ce0(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int NetworkControlSocketFlow(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t uVar1;
@@ -2847,7 +2847,7 @@ int FUN_180843ce0(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 
 
-int FUN_180843d90(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int NetworkOptimizeSocketPerformance(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t uVar1;
@@ -2894,8 +2894,8 @@ int FUN_180843e40(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 
 
-// 函数: void FUN_180843eb0(longlong socketHandle,uint64_t dataBuffer,uint32_t bufferCapacity)
-void FUN_180843eb0(longlong socketHandle,uint64_t dataBuffer,uint32_t bufferCapacity)
+// 函数: void NetworkValidateSocketData(longlong socketHandle,uint64_t dataBuffer,uint32_t bufferCapacity)
+void NetworkValidateSocketData(longlong socketHandle,uint64_t dataBuffer,uint32_t bufferCapacity)
 
 {
   FUN_18083f7b0(dataBuffer,bufferCapacity,&UNK_1809828f8,*(uint32_t *)(socketHandle + 0x10),
@@ -3062,8 +3062,8 @@ int FUN_180844260(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 
 
-// 函数: void FUN_1808442d0(longlong socketHandle,uint64_t dataBuffer,uint32_t bufferCapacity)
-void FUN_1808442d0(longlong socketHandle,uint64_t dataBuffer,uint32_t bufferCapacity)
+// 函数: void NetworkPrepareSocketTransfer(longlong socketHandle,uint64_t dataBuffer,uint32_t bufferCapacity)
+void NetworkPrepareSocketTransfer(longlong socketHandle,uint64_t dataBuffer,uint32_t bufferCapacity)
 
 {
   FUN_18083f7b0(dataBuffer,bufferCapacity,&UNK_180982a08,*(uint32_t *)(socketHandle + 0x10),
@@ -3488,8 +3488,8 @@ int FUN_180844e90(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180844f40(ulonglong socketHandle,uint64_t *dataBuffer)
-void FUN_180844f40(ulonglong socketHandle,uint64_t *dataBuffer)
+// 函数: void NetworkInitializeConnectionPool(ulonglong socketHandle,uint64_t *dataBuffer)
+void NetworkInitializeConnectionPool(ulonglong socketHandle,uint64_t *dataBuffer)
 
 {
   uint32_t uVar1;
@@ -3558,8 +3558,8 @@ void FUN_180844f40(ulonglong socketHandle,uint64_t *dataBuffer)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180845090(uint64_t socketHandle,longlong dataBuffer)
-void FUN_180845090(uint64_t socketHandle,longlong dataBuffer)
+// 函数: void NetworkCleanupConnectionResources(uint64_t socketHandle,longlong dataBuffer)
+void NetworkCleanupConnectionResources(uint64_t socketHandle,longlong dataBuffer)
 
 {
   int statusCode;
@@ -3608,8 +3608,8 @@ LAB_18084510c:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1808451c0(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapacity)
-void FUN_1808451c0(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapacity)
+// 函数: void NetworkEstablishConnection(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapacity)
+void NetworkEstablishConnection(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapacity)
 
 {
   int statusCode;
@@ -3637,8 +3637,8 @@ void FUN_1808451c0(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapa
 
 
 
-// 函数: void FUN_180845204(void)
-void FUN_180845204(void)
+// 函数: void NetworkResetConnectionState(void)
+void NetworkResetConnectionState(void)
 
 {
   int statusCode;
@@ -3655,8 +3655,8 @@ void FUN_180845204(void)
 
 
 
-// 函数: void FUN_18084527c(void)
-void FUN_18084527c(void)
+// 函数: void NetworkValidateConnectionStatus(void)
+void NetworkValidateConnectionStatus(void)
 
 {
   ulonglong in_stack_00000130;
@@ -3670,8 +3670,8 @@ void FUN_18084527c(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1808452a0(uint64_t socketHandle,uint32_t *dataBuffer,uint64_t bufferCapacity)
-void FUN_1808452a0(uint64_t socketHandle,uint32_t *dataBuffer,uint64_t bufferCapacity)
+// 函数: void NetworkConfigureConnectionSettings(uint64_t socketHandle,uint32_t *dataBuffer,uint64_t bufferCapacity)
+void NetworkConfigureConnectionSettings(uint64_t socketHandle,uint32_t *dataBuffer,uint64_t bufferCapacity)
 
 {
   int statusCode;
@@ -3709,8 +3709,8 @@ LAB_1808453a2:
 
 
 
-// 函数: void FUN_180845324(void)
-void FUN_180845324(void)
+// 函数: void NetworkFlushConnectionBuffers(void)
+void NetworkFlushConnectionBuffers(void)
 
 {
   int statusCode;
@@ -3727,8 +3727,8 @@ void FUN_180845324(void)
 
 
 
-// 函数: void FUN_18084539c(void)
-void FUN_18084539c(void)
+// 函数: void NetworkMonitorConnectionHealth(void)
+void NetworkMonitorConnectionHealth(void)
 
 {
   ulonglong in_stack_00000140;
@@ -3743,8 +3743,8 @@ void FUN_18084539c(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1808453c0(uint64_t socketHandle,uint64_t *dataBuffer)
-void FUN_1808453c0(uint64_t socketHandle,uint64_t *dataBuffer)
+// 函数: void NetworkSetConnectionTimeout(uint64_t socketHandle,uint64_t *dataBuffer)
+void NetworkSetConnectionTimeout(uint64_t socketHandle,uint64_t *dataBuffer)
 
 {
   int statusCode;
@@ -3802,8 +3802,8 @@ LAB_18084541c:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180845520(uint64_t socketHandle,uint64_t *dataBuffer)
-void FUN_180845520(uint64_t socketHandle,uint64_t *dataBuffer)
+// 函数: void NetworkGetConnectionStatistics(uint64_t socketHandle,uint64_t *dataBuffer)
+void NetworkGetConnectionStatistics(uint64_t socketHandle,uint64_t *dataBuffer)
 
 {
   int statusCode;
@@ -3842,8 +3842,8 @@ LAB_1808455bc:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1808455f0(uint64_t socketHandle,ulonglong *dataBuffer)
-void FUN_1808455f0(uint64_t socketHandle,ulonglong *dataBuffer)
+// 函数: void NetworkTrackConnectionActivity(uint64_t socketHandle,ulonglong *dataBuffer)
+void NetworkTrackConnectionActivity(uint64_t socketHandle,ulonglong *dataBuffer)
 
 {
   int statusCode;
@@ -3902,8 +3902,8 @@ LAB_180845652:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180845c40(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapacity)
-void FUN_180845c40(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapacity)
+// 函数: void NetworkSendDataPacket(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapacity)
+void NetworkSendDataPacket(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapacity)
 
 {
   int statusCode;
@@ -3931,8 +3931,8 @@ void FUN_180845c40(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapa
 
 
 
-// 函数: void FUN_180845c84(void)
-void FUN_180845c84(void)
+// 函数: void NetworkReceiveDataPacket(void)
+void NetworkReceiveDataPacket(void)
 
 {
   int statusCode;
@@ -3949,8 +3949,8 @@ void FUN_180845c84(void)
 
 
 
-// 函数: void FUN_180845cfc(void)
-void FUN_180845cfc(void)
+// 函数: void NetworkProcessIncomingData(void)
+void NetworkProcessIncomingData(void)
 
 {
   ulonglong in_stack_00000130;
@@ -3965,8 +3965,8 @@ void FUN_180845cfc(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180845d20(uint64_t socketHandle,uint32_t *dataBuffer,ulonglong *bufferCapacity)
-void FUN_180845d20(uint64_t socketHandle,uint32_t *dataBuffer,ulonglong *bufferCapacity)
+// 函数: void NetworkHandleOutgoingData(uint64_t socketHandle,uint32_t *dataBuffer,ulonglong *bufferCapacity)
+void NetworkHandleOutgoingData(uint64_t socketHandle,uint32_t *dataBuffer,ulonglong *bufferCapacity)
 
 {
   uint32_t uVar1;
@@ -4035,8 +4035,8 @@ LAB_180845d97:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180845ef0(ulonglong socketHandle,uint *dataBuffer)
-void FUN_180845ef0(ulonglong socketHandle,uint *dataBuffer)
+// 函数: void NetworkValidateDataIntegrity(ulonglong socketHandle,uint *dataBuffer)
+void NetworkValidateDataIntegrity(ulonglong socketHandle,uint *dataBuffer)
 
 {
   int statusCode;
@@ -4091,8 +4091,8 @@ void FUN_180845ef0(ulonglong socketHandle,uint *dataBuffer)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180846050(uint32_t socketHandle,uint32_t *dataBuffer,uint32_t *bufferCapacity)
-void FUN_180846050(uint32_t socketHandle,uint32_t *dataBuffer,uint32_t *bufferCapacity)
+// 函数: void NetworkProcessDataQueue(uint32_t socketHandle,uint32_t *dataBuffer,uint32_t *bufferCapacity)
+void NetworkProcessDataQueue(uint32_t socketHandle,uint32_t *dataBuffer,uint32_t *bufferCapacity)
 
 {
   int statusCode;
@@ -4137,8 +4137,8 @@ LAB_18084610f:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180846210(uint64_t socketHandle,longlong dataBuffer,uint32_t *bufferCapacity,uint32_t *timeoutValue)
-void FUN_180846210(uint64_t socketHandle,longlong dataBuffer,uint32_t *bufferCapacity,uint32_t *timeoutValue)
+// 函数: void NetworkHandleDataTimeout(uint64_t socketHandle,longlong dataBuffer,uint32_t *bufferCapacity,uint32_t *timeoutValue)
+void NetworkHandleDataTimeout(uint64_t socketHandle,longlong dataBuffer,uint32_t *bufferCapacity,uint32_t *timeoutValue)
 
 {
   int statusCode;
@@ -4206,8 +4206,8 @@ LAB_1808462b2:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180846410(uint64_t socketHandle,uint32_t dataBuffer,uint64_t bufferCapacity)
-void FUN_180846410(uint64_t socketHandle,uint32_t dataBuffer,uint64_t bufferCapacity)
+// 函数: void NetworkSendAcknowledgment(uint64_t socketHandle,uint32_t dataBuffer,uint64_t bufferCapacity)
+void NetworkSendAcknowledgment(uint64_t socketHandle,uint32_t dataBuffer,uint64_t bufferCapacity)
 
 {
   int statusCode;
@@ -4235,8 +4235,8 @@ void FUN_180846410(uint64_t socketHandle,uint32_t dataBuffer,uint64_t bufferCapa
 
 
 
-// 函数: void FUN_180846453(void)
-void FUN_180846453(void)
+// 函数: void NetworkClearDataCache(void)
+void NetworkClearDataCache(void)
 
 {
   int statusCode;
@@ -4254,8 +4254,8 @@ void FUN_180846453(void)
 
 
 
-// 函数: void FUN_1808464cb(void)
-void FUN_1808464cb(void)
+// 函数: void NetworkRefreshDataBuffer(void)
+void NetworkRefreshDataBuffer(void)
 
 {
   ulonglong in_stack_00000130;
@@ -4269,8 +4269,8 @@ void FUN_1808464cb(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1808464f0(ulonglong socketHandle,uint32_t *dataBuffer)
-void FUN_1808464f0(ulonglong socketHandle,uint32_t *dataBuffer)
+// 函数: void NetworkUpdateDataPointers(ulonglong socketHandle,uint32_t *dataBuffer)
+void NetworkUpdateDataPointers(ulonglong socketHandle,uint32_t *dataBuffer)
 
 {
   int statusCode;
@@ -4317,8 +4317,8 @@ void FUN_1808464f0(ulonglong socketHandle,uint32_t *dataBuffer)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180846610(ulonglong socketHandle,uint8_t *dataBuffer,int bufferCapacity,uint32_t *timeoutValue)
-void FUN_180846610(ulonglong socketHandle,uint8_t *dataBuffer,int bufferCapacity,uint32_t *timeoutValue)
+// 函数: void NetworkProcessDataStream(ulonglong socketHandle,uint8_t *dataBuffer,int bufferCapacity,uint32_t *timeoutValue)
+void NetworkProcessDataStream(ulonglong socketHandle,uint8_t *dataBuffer,int bufferCapacity,uint32_t *timeoutValue)
 
 {
   int statusCode;
@@ -4384,8 +4384,8 @@ void FUN_180846610(ulonglong socketHandle,uint8_t *dataBuffer,int bufferCapacity
 
 
 
-// 函数: void FUN_180846730(void)
-void FUN_180846730(void)
+// 函数: void NetworkResetNetworkCounters(void)
+void NetworkResetNetworkCounters(void)
 
 {
   int statusCode;
@@ -4407,8 +4407,8 @@ void FUN_180846730(void)
 
 
 
-// 函数: void FUN_1808467de(void)
-void FUN_1808467de(void)
+// 函数: void NetworkUpdateNetworkMetrics(void)
+void NetworkUpdateNetworkMetrics(void)
 
 {
   ulonglong in_stack_00000160;
@@ -4422,8 +4422,8 @@ void FUN_1808467de(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180846810(ulonglong socketHandle,uint8_t *dataBuffer)
-void FUN_180846810(ulonglong socketHandle,uint8_t *dataBuffer)
+// 函数: void NetworkCollectNetworkStatistics(ulonglong socketHandle,uint8_t *dataBuffer)
+void NetworkCollectNetworkStatistics(ulonglong socketHandle,uint8_t *dataBuffer)
 
 {
   int statusCode;
@@ -4473,8 +4473,8 @@ void FUN_180846810(ulonglong socketHandle,uint8_t *dataBuffer)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180846930(uint32_t socketHandle,uint32_t *dataBuffer,uint32_t *bufferCapacity)
-void FUN_180846930(uint32_t socketHandle,uint32_t *dataBuffer,uint32_t *bufferCapacity)
+// 函数: void NetworkHandleNetworkEvents(uint32_t socketHandle,uint32_t *dataBuffer,uint32_t *bufferCapacity)
+void NetworkHandleNetworkEvents(uint32_t socketHandle,uint32_t *dataBuffer,uint32_t *bufferCapacity)
 
 {
   int statusCode;
@@ -4515,8 +4515,8 @@ LAB_1808469dd:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180846a90(ulonglong socketHandle,uint32_t *dataBuffer)
-void FUN_180846a90(ulonglong socketHandle,uint32_t *dataBuffer)
+// 函数: void NetworkProcessNetworkQueue(ulonglong socketHandle,uint32_t *dataBuffer)
+void NetworkProcessNetworkQueue(ulonglong socketHandle,uint32_t *dataBuffer)
 
 {
   int statusCode;
@@ -4568,8 +4568,8 @@ void FUN_180846a90(ulonglong socketHandle,uint32_t *dataBuffer)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180846bc0(ulonglong socketHandle,uint dataBuffer,uint32_t *bufferCapacity)
-void FUN_180846bc0(ulonglong socketHandle,uint dataBuffer,uint32_t *bufferCapacity)
+// 函数: void NetworkManageBandwidth(ulonglong socketHandle,uint dataBuffer,uint32_t *bufferCapacity)
+void NetworkManageBandwidth(ulonglong socketHandle,uint dataBuffer,uint32_t *bufferCapacity)
 
 {
   int statusCode;
@@ -4625,8 +4625,8 @@ void FUN_180846bc0(ulonglong socketHandle,uint dataBuffer,uint32_t *bufferCapaci
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180846d30(uint64_t socketHandle,uint32_t *dataBuffer)
-void FUN_180846d30(uint64_t socketHandle,uint32_t *dataBuffer)
+// 函数: void NetworkControlDataFlow(uint64_t socketHandle,uint32_t *dataBuffer)
+void NetworkControlDataFlow(uint64_t socketHandle,uint32_t *dataBuffer)
 
 {
   int statusCode;
@@ -4684,8 +4684,8 @@ LAB_180846d91:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180846e90(ulonglong socketHandle,uint *dataBuffer)
-void FUN_180846e90(ulonglong socketHandle,uint *dataBuffer)
+// 函数: void NetworkOptimizeRouting(ulonglong socketHandle,uint *dataBuffer)
+void NetworkOptimizeRouting(ulonglong socketHandle,uint *dataBuffer)
 
 {
   int statusCode;
@@ -4743,8 +4743,8 @@ void FUN_180846e90(ulonglong socketHandle,uint *dataBuffer)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180846fe0(ulonglong socketHandle,uint64_t *dataBuffer)
-void FUN_180846fe0(ulonglong socketHandle,uint64_t *dataBuffer)
+// 函数: void NetworkBalanceLoad(ulonglong socketHandle,uint64_t *dataBuffer)
+void NetworkBalanceLoad(ulonglong socketHandle,uint64_t *dataBuffer)
 
 {
   int statusCode;
@@ -4791,8 +4791,8 @@ void FUN_180846fe0(ulonglong socketHandle,uint64_t *dataBuffer)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180847110(ulonglong socketHandle,uint64_t *dataBuffer)
-void FUN_180847110(ulonglong socketHandle,uint64_t *dataBuffer)
+// 函数: void NetworkDistributeTraffic(ulonglong socketHandle,uint64_t *dataBuffer)
+void NetworkDistributeTraffic(ulonglong socketHandle,uint64_t *dataBuffer)
 
 {
   int statusCode;
@@ -4842,8 +4842,8 @@ void FUN_180847110(ulonglong socketHandle,uint64_t *dataBuffer)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180847230(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapacity)
-void FUN_180847230(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapacity)
+// 函数: void NetworkHandleTransferError(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapacity)
+void NetworkHandleTransferError(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapacity)
 
 {
   int statusCode;
@@ -4871,8 +4871,8 @@ void FUN_180847230(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapa
 
 
 
-// 函数: void FUN_180847274(void)
-void FUN_180847274(void)
+// 函数: void NetworkProcessErrorCodes(void)
+void NetworkProcessErrorCodes(void)
 
 {
   int statusCode;
@@ -4889,8 +4889,8 @@ void FUN_180847274(void)
 
 
 
-// 函数: void FUN_1808472ec(void)
-void FUN_1808472ec(void)
+// 函数: void NetworkLogErrorDetails(void)
+void NetworkLogErrorDetails(void)
 
 {
   ulonglong in_stack_00000130;
@@ -4904,8 +4904,8 @@ void FUN_1808472ec(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180847310(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapacity)
-void FUN_180847310(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapacity)
+// 函数: void NetworkReportErrorStatus(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapacity)
+void NetworkReportErrorStatus(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapacity)
 
 {
   int statusCode;
@@ -4933,8 +4933,8 @@ void FUN_180847310(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapa
 
 
 
-// 函数: void FUN_180847354(void)
-void FUN_180847354(void)
+// 函数: void NetworkRecoverFromError(void)
+void NetworkRecoverFromError(void)
 
 {
   int statusCode;
@@ -4951,8 +4951,8 @@ void FUN_180847354(void)
 
 
 
-// 函数: void FUN_1808473cc(void)
-void FUN_1808473cc(void)
+// 函数: void NetworkValidateErrorRecovery(void)
+void NetworkValidateErrorRecovery(void)
 
 {
   ulonglong in_stack_00000130;
@@ -4966,8 +4966,8 @@ void FUN_1808473cc(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1808473f0(uint32_t socketHandle,uint32_t *dataBuffer,uint32_t *bufferCapacity)
-void FUN_1808473f0(uint32_t socketHandle,uint32_t *dataBuffer,uint32_t *bufferCapacity)
+// 函数: void NetworkHandleErrorRecovery(uint32_t socketHandle,uint32_t *dataBuffer,uint32_t *bufferCapacity)
+void NetworkHandleErrorRecovery(uint32_t socketHandle,uint32_t *dataBuffer,uint32_t *bufferCapacity)
 
 {
   int statusCode;
@@ -5008,8 +5008,8 @@ LAB_18084749d:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180847550(longlong socketHandle,uint64_t *dataBuffer,uint8_t bufferCapacity)
-void FUN_180847550(longlong socketHandle,uint64_t *dataBuffer,uint8_t bufferCapacity)
+// 函数: void NetworkExecuteErrorRecovery(longlong socketHandle,uint64_t *dataBuffer,uint8_t bufferCapacity)
+void NetworkExecuteErrorRecovery(longlong socketHandle,uint64_t *dataBuffer,uint8_t bufferCapacity)
 
 {
   uint32_t uVar1;
@@ -5080,8 +5080,8 @@ void FUN_180847550(longlong socketHandle,uint64_t *dataBuffer,uint8_t bufferCapa
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180847690(uint64_t socketHandle,uint32_t dataBuffer,uint32_t bufferCapacity,uint32_t timeoutValue,
-void FUN_180847690(uint64_t socketHandle,uint32_t dataBuffer,uint32_t bufferCapacity,uint32_t timeoutValue,
+// 函数: void NetworkProcessErrorRecovery(uint64_t socketHandle,uint32_t dataBuffer,uint32_t bufferCapacity,uint32_t timeoutValue,
+void NetworkProcessErrorRecovery(uint64_t socketHandle,uint32_t dataBuffer,uint32_t bufferCapacity,uint32_t timeoutValue,
                   uint64_t param_5)
 
 {
@@ -5125,8 +5125,8 @@ LAB_1808477fa:
 
 
 
-// 函数: void FUN_180847710(void)
-void FUN_180847710(void)
+// 函数: void NetworkUpdateErrorState(void)
+void NetworkUpdateErrorState(void)
 
 {
   int statusCode;
@@ -5154,8 +5154,8 @@ void FUN_180847710(void)
 
 
 
-// 函数: void FUN_1808477f4(void)
-void FUN_1808477f4(void)
+// 函数: void NetworkValidateSecurity(void)
+void NetworkValidateSecurity(void)
 
 {
   ulonglong in_stack_00000140;
@@ -5190,8 +5190,8 @@ void* * NetworkGetThreadLocalStorage(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180847890(ulonglong socketHandle,uint8_t *dataBuffer)
-void FUN_180847890(ulonglong socketHandle,uint8_t *dataBuffer)
+// 函数: void NetworkHandleSecurity(ulonglong socketHandle,uint8_t *dataBuffer)
+void NetworkHandleSecurity(ulonglong socketHandle,uint8_t *dataBuffer)
 
 {
   int statusCode;
@@ -5228,7 +5228,7 @@ void FUN_180847890(ulonglong socketHandle,uint8_t *dataBuffer)
                     // WARNING: Subroutine does not return
     NetworkErrorExit(&uStack_138);
   }
-  FUN_1808479d0(uStack_128,*(uint64_t *)(lStack_130 + 800),dataBuffer);
+  NetworkProcessSecurity(uStack_128,*(uint64_t *)(lStack_130 + 800),dataBuffer);
                     // WARNING: Subroutine does not return
   NetworkErrorExit(&uStack_138);
 }
@@ -5238,8 +5238,8 @@ void FUN_180847890(ulonglong socketHandle,uint8_t *dataBuffer)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1808479d0(longlong socketHandle,longlong *dataBuffer,byte *bufferCapacity)
-void FUN_1808479d0(longlong socketHandle,longlong *dataBuffer,byte *bufferCapacity)
+// 函数: void NetworkProcessSecurity(longlong socketHandle,longlong *dataBuffer,byte *bufferCapacity)
+void NetworkProcessSecurity(longlong socketHandle,longlong *dataBuffer,byte *bufferCapacity)
 
 {
   char cVar1;
@@ -5329,8 +5329,8 @@ LAB_180847c35:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180847c60(longlong socketHandle,longlong *dataBuffer,byte *bufferCapacity)
-void FUN_180847c60(longlong socketHandle,longlong *dataBuffer,byte *bufferCapacity)
+// 函数: void NetworkManageSecurity(longlong socketHandle,longlong *dataBuffer,byte *bufferCapacity)
+void NetworkManageSecurity(longlong socketHandle,longlong *dataBuffer,byte *bufferCapacity)
 
 {
   uint64_t *connectionBuffer;
@@ -5404,8 +5404,8 @@ LAB_180847dc9:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180847df0(ulonglong socketHandle,uint8_t *dataBuffer)
-void FUN_180847df0(ulonglong socketHandle,uint8_t *dataBuffer)
+// 函数: void NetworkCheckSecurity(ulonglong socketHandle,uint8_t *dataBuffer)
+void NetworkCheckSecurity(ulonglong socketHandle,uint8_t *dataBuffer)
 
 {
   int statusCode;
@@ -5442,7 +5442,7 @@ void FUN_180847df0(ulonglong socketHandle,uint8_t *dataBuffer)
                     // WARNING: Subroutine does not return
     NetworkErrorExit(&uStack_138);
   }
-  FUN_180847c60(uStack_128,*(uint64_t *)(lStack_130 + 800),dataBuffer);
+  NetworkManageSecurity(uStack_128,*(uint64_t *)(lStack_130 + 800),dataBuffer);
                     // WARNING: Subroutine does not return
   NetworkErrorExit(&uStack_138);
 }
@@ -5465,8 +5465,8 @@ bool FUN_180847f30(uint64_t socketHandle)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180847f60(uint64_t socketHandle)
-void FUN_180847f60(uint64_t socketHandle)
+// 函数: void NetworkMonitorSecurity(uint64_t socketHandle)
+void NetworkMonitorSecurity(uint64_t socketHandle)
 
 {
   int statusCode;
@@ -5506,8 +5506,8 @@ LAB_180848016:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180848090(ulonglong socketHandle,longlong dataBuffer,uint32_t bufferCapacity,uint64_t *timeoutValue)
-void FUN_180848090(ulonglong socketHandle,longlong dataBuffer,uint32_t bufferCapacity,uint64_t *timeoutValue)
+// 函数: void NetworkRespondToSecurity(ulonglong socketHandle,longlong dataBuffer,uint32_t bufferCapacity,uint64_t *timeoutValue)
+void NetworkRespondToSecurity(ulonglong socketHandle,longlong dataBuffer,uint32_t bufferCapacity,uint64_t *timeoutValue)
 
 {
   uint32_t uVar1;
@@ -5574,8 +5574,8 @@ LAB_180848132:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1808482f0(uint64_t socketHandle)
-void FUN_1808482f0(uint64_t socketHandle)
+// 函数: void NetworkLogSecurity(uint64_t socketHandle)
+void NetworkLogSecurity(uint64_t socketHandle)
 
 {
   int statusCode;
@@ -5613,8 +5613,8 @@ LAB_1808483a6:
 
 
 
-// 函数: void FUN_180848440(longlong socketHandle,uint64_t dataBuffer)
-void FUN_180848440(longlong socketHandle,uint64_t dataBuffer)
+// 函数: void NetworkReportSecurity(longlong socketHandle,uint64_t dataBuffer)
+void NetworkReportSecurity(longlong socketHandle,uint64_t dataBuffer)
 
 {
   int statusCode;
@@ -5629,8 +5629,8 @@ void FUN_180848440(longlong socketHandle,uint64_t dataBuffer)
 
 
 
-// 函数: void FUN_180848480(longlong socketHandle,uint64_t dataBuffer)
-void FUN_180848480(longlong socketHandle,uint64_t dataBuffer)
+// 函数: void NetworkUpdateSecurity(longlong socketHandle,uint64_t dataBuffer)
+void NetworkUpdateSecurity(longlong socketHandle,uint64_t dataBuffer)
 
 {
   int statusCode;
@@ -5648,8 +5648,8 @@ void FUN_180848480(longlong socketHandle,uint64_t dataBuffer)
 
 
 
-// 函数: void FUN_1808484d0(longlong socketHandle,uint64_t dataBuffer)
-void FUN_1808484d0(longlong socketHandle,uint64_t dataBuffer)
+// 函数: void NetworkCleanupResources(longlong socketHandle,uint64_t dataBuffer)
+void NetworkCleanupResources(longlong socketHandle,uint64_t dataBuffer)
 
 {
   int statusCode;
@@ -5689,8 +5689,8 @@ uint64_t NetworkValidateSocketData(longlong socketHandle,uint64_t dataBuffer)
 
 
 
-// 函数: void FUN_180848590(longlong socketHandle,uint64_t dataBuffer)
-void FUN_180848590(longlong socketHandle,uint64_t dataBuffer)
+// 函数: void NetworkOptimizePerformance(longlong socketHandle,uint64_t dataBuffer)
+void NetworkOptimizePerformance(longlong socketHandle,uint64_t dataBuffer)
 
 {
   int statusCode;
@@ -5705,8 +5705,8 @@ void FUN_180848590(longlong socketHandle,uint64_t dataBuffer)
 
 
 
-// 函数: void FUN_1808485d0(longlong socketHandle,uint64_t dataBuffer)
-void FUN_1808485d0(longlong socketHandle,uint64_t dataBuffer)
+// 函数: void NetworkTuneParameters(longlong socketHandle,uint64_t dataBuffer)
+void NetworkTuneParameters(longlong socketHandle,uint64_t dataBuffer)
 
 {
   int statusCode;
@@ -5721,8 +5721,8 @@ void FUN_1808485d0(longlong socketHandle,uint64_t dataBuffer)
 
 
 
-// 函数: void FUN_180848610(longlong socketHandle,uint64_t dataBuffer)
-void FUN_180848610(longlong socketHandle,uint64_t dataBuffer)
+// 函数: void NetworkAdjustSettings(longlong socketHandle,uint64_t dataBuffer)
+void NetworkAdjustSettings(longlong socketHandle,uint64_t dataBuffer)
 
 {
   int statusCode;
@@ -5737,8 +5737,8 @@ void FUN_180848610(longlong socketHandle,uint64_t dataBuffer)
 
 
 
-// 函数: void FUN_180848650(longlong socketHandle,uint64_t dataBuffer)
-void FUN_180848650(longlong socketHandle,uint64_t dataBuffer)
+// 函数: void NetworkConfigureOptions(longlong socketHandle,uint64_t dataBuffer)
+void NetworkConfigureOptions(longlong socketHandle,uint64_t dataBuffer)
 
 {
   int statusCode;
@@ -5753,8 +5753,8 @@ void FUN_180848650(longlong socketHandle,uint64_t dataBuffer)
 
 
 
-// 函数: void FUN_180848690(longlong socketHandle,uint64_t dataBuffer)
-void FUN_180848690(longlong socketHandle,uint64_t dataBuffer)
+// 函数: void NetworkModifyBehavior(longlong socketHandle,uint64_t dataBuffer)
+void NetworkModifyBehavior(longlong socketHandle,uint64_t dataBuffer)
 
 {
   int statusCode;
@@ -5772,8 +5772,8 @@ void FUN_180848690(longlong socketHandle,uint64_t dataBuffer)
 
 
 
-// 函数: void FUN_1808486e0(longlong socketHandle,uint64_t dataBuffer)
-void FUN_1808486e0(longlong socketHandle,uint64_t dataBuffer)
+// 函数: void NetworkChangeConfiguration(longlong socketHandle,uint64_t dataBuffer)
+void NetworkChangeConfiguration(longlong socketHandle,uint64_t dataBuffer)
 
 {
   int statusCode;
@@ -5788,8 +5788,8 @@ void FUN_1808486e0(longlong socketHandle,uint64_t dataBuffer)
 
 
 
-// 函数: void FUN_180848720(longlong socketHandle,uint64_t dataBuffer)
-void FUN_180848720(longlong socketHandle,uint64_t dataBuffer)
+// 函数: void NetworkUpdateSystem(longlong socketHandle,uint64_t dataBuffer)
+void NetworkUpdateSystem(longlong socketHandle,uint64_t dataBuffer)
 
 {
   int statusCode;
@@ -5810,8 +5810,8 @@ void FUN_180848720(longlong socketHandle,uint64_t dataBuffer)
 
 
 
-// 函数: void FUN_180848780(longlong socketHandle,uint64_t dataBuffer)
-void FUN_180848780(longlong socketHandle,uint64_t dataBuffer)
+// 函数: void NetworkEnhanceSystem(longlong socketHandle,uint64_t dataBuffer)
+void NetworkEnhanceSystem(longlong socketHandle,uint64_t dataBuffer)
 
 {
   int statusCode;
@@ -5832,8 +5832,8 @@ void FUN_180848780(longlong socketHandle,uint64_t dataBuffer)
 
 
 
-// 函数: void FUN_1808487e0(longlong socketHandle,uint64_t dataBuffer)
-void FUN_1808487e0(longlong socketHandle,uint64_t dataBuffer)
+// 函数: void NetworkImproveSystem(longlong socketHandle,uint64_t dataBuffer)
+void NetworkImproveSystem(longlong socketHandle,uint64_t dataBuffer)
 
 {
   int statusCode;
@@ -8216,7 +8216,7 @@ void FUN_18084b6c0(longlong socketHandle,longlong dataBuffer)
                     // WARNING: Subroutine does not return
       FUN_18084b240(dataBuffer + 0xd8,auStack_38);
     }
-    FUN_180847c60(lVar1,*(uint64_t *)(socketHandle + 0x10),socketHandle + 8);
+    NetworkManageSecurity(lVar1,*(uint64_t *)(socketHandle + 0x10),socketHandle + 8);
   }
                     // WARNING: Subroutine does not return
   networkEncryptData(uStack_10 ^ (ulonglong)auStack_58);
@@ -8251,7 +8251,7 @@ void FUN_18084b760(longlong socketHandle,longlong dataBuffer)
     FUN_18084b240(dataBuffer + 0xd8,auStack_40);
   }
   abStack_48[0] = 0;
-  statusCode = FUN_1808479d0(lVar2,*(uint64_t *)(socketHandle + 0x10),abStack_48);
+  statusCode = NetworkProcessSecurity(lVar2,*(uint64_t *)(socketHandle + 0x10),abStack_48);
   if (statusCode == 0) {
     *(byte *)(socketHandle + 8) = *(byte *)(socketHandle + 8) | abStack_48[0];
   }
@@ -96286,7 +96286,7 @@ void FUN_1808975e0(longlong socketHandle,longlong dataBuffer)
         }
         uVar11 = *(uint64_t *)(*(longlong *)(socketHandle + 8) + 800);
         uVar10 = (**(code **)*connectionBuffer6)(connectionBuffer6);
-        iVar6 = FUN_1808479d0(uVar10,uVar11,acStack_1c4);
+        iVar6 = NetworkProcessSecurity(uVar10,uVar11,acStack_1c4);
         if (iVar6 == 0) {
           if (acStack_1c4[0] != '\0') {
             uVar11 = func_0x00018085fa80();
@@ -96528,7 +96528,7 @@ void FUN_180897644(void)
       }
       uVar17 = *(uint64_t *)(*(longlong *)(unaff_RSI + 8) + 800);
       uVar16 = (**(code **)*ppacketLength2)(ppacketLength2);
-      statusCode3 = FUN_1808479d0(uVar16,uVar17,acStackX_24);
+      statusCode3 = NetworkProcessSecurity(uVar16,uVar17,acStackX_24);
       if (statusCode3 == 0) {
         packetLength4 = extraout_XMM0_Da_00;
         if (acStackX_24[0] != '\0') {
@@ -96774,7 +96774,7 @@ void FUN_1808976b0(void)
   }
   uVar17 = *(uint64_t *)(*(longlong *)(unaff_RSI + 8) + 800);
   uVar16 = (**(code **)*unaff_R12)(unaff_R12);
-  statusCode3 = FUN_1808479d0(uVar16,uVar17,acStackX_24);
+  statusCode3 = NetworkProcessSecurity(uVar16,uVar17,acStackX_24);
   if (statusCode3 == 0) {
     packetLength3 = extraout_XMM0_Da;
     if (acStackX_24[0] != '\0') {
