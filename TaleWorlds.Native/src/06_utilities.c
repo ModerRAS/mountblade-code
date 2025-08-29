@@ -7563,8 +7563,8 @@ void initialize_thread_local_storage(void)
 
 
 
-// 函数: void FUN_18089494e(void)
-void FUN_18089494e(void)
+// 函数: void cleanup_thread_local_storage(void)
+void cleanup_thread_local_storage(void)
 
 {
   ulonglong in_stack_000000b0;
@@ -7637,8 +7637,8 @@ void utilityAnalyzeResourceData(longlong resourceHandle,uint32 *memorySize,longl
 
 
 
-// 函数: void FUN_180894a07(ulonglong resourceHandle)
-void FUN_180894a07(ulonglong resourceHandle)
+// 函数: void set_thread_local_data(ulonglong resourceHandle)
+void set_thread_local_data(ulonglong resourceHandle)
 
 {
   int localInt1;
