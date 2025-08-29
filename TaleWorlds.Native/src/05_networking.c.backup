@@ -911,7 +911,7 @@ void NetworkSendPacketWithTimeout(uint64_t socketHandle,longlong dataBuffer,long
   
   networkUintStack_30 = _g_networkXorKey ^ (ulonglong)networkStack_68;
   if (bufferCapacity != 0) {
-    resultCode = NetworkCompressData(bufferCapacity,&networkCompressedBuffer,10);
+    resultCode = FUN_18076b6f0(bufferCapacity,&networkCompressedBuffer,10);
     if (resultCode == 0) {
       resultCode = networkCompressData(socketHandle,bufferCapacity,networkStack_40);
       if (resultCode == 0) {
@@ -1018,7 +1018,7 @@ void NetworkSendToSocket(longlong socketHandle,longlong dataBuffer,int *bufferCa
   networkUintStack_28 = _g_networkXorKey ^ (ulonglong)networkStack_58;
   if (dataBuffer != 0) {
     isConnected = false;
-    resultCode = NetworkCompressData(dataBuffer,&networkCompressedBuffer,10);
+    resultCode = FUN_18076b6f0(dataBuffer,&networkCompressedBuffer,10);
     if (resultCode == 0) {
       resultCode = networkCompressData(socketHandle,dataBuffer,&networkLongStack_38);
       if (resultCode != 0) goto NETWORK_SOCKET_CLOSE_START;
@@ -1684,7 +1684,7 @@ int NetworkReceiveDataWithValidation(longlong socketHandle,longlong dataBuffer,i
   resultCode = resultCode + networkOperationResult;
   networkOperationResult = networkCopyData(resultCode + dataBuffer,bufferCapacity - resultCode,&g_networkNullTerminator);
   resultCode = resultCode + networkOperationResult;
-  networkOperationResult = NetworkDecompressData(resultCode + dataBuffer,bufferCapacity - resultCode,&networkUintStack_48);
+  networkOperationResult = FUN_18074b6f0(resultCode + dataBuffer,bufferCapacity - resultCode,&networkUintStack_48);
   resultCode = resultCode + networkOperationResult;
   networkOperationResult = networkCopyData(resultCode + dataBuffer,bufferCapacity - resultCode,&g_networkNullTerminator);
   resultCode = resultCode + networkOperationResult;
@@ -2993,7 +2993,7 @@ int networkProcessSocketOutput(longlong socketHandle,longlong dataBuffer,int buf
 
 
 
-int NetworkSendPacketBasic(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int FUN_180844050(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -3022,7 +3022,7 @@ int NetworkSendPacketBasic(longlong socketHandle,longlong dataBuffer,int bufferC
 
 
 
-int NetworkSendPacketWithHeader(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int FUN_180844100(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -3051,7 +3051,7 @@ int NetworkSendPacketWithHeader(longlong socketHandle,longlong dataBuffer,int bu
 
 
 
-int NetworkSendPacketWithChecksum(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int FUN_1808441b0(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -3080,7 +3080,7 @@ int NetworkSendPacketWithChecksum(longlong socketHandle,longlong dataBuffer,int 
 
 
 
-int NetworkSendPacketWithEncryption(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int FUN_180844260(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -3109,7 +3109,7 @@ void NetworkPrepareSocketTransfer(longlong socketHandle,uint64_t dataBuffer,uint
 
 
 
-int NetworkSendPacketWithCompression(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int FUN_180844300(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -3138,7 +3138,7 @@ int NetworkSendPacketWithCompression(longlong socketHandle,longlong dataBuffer,i
 
 
 
-int NetworkSendPacketWithPriority(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int FUN_1808443b0(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -3167,7 +3167,7 @@ int NetworkSendPacketWithPriority(longlong socketHandle,longlong dataBuffer,int 
 
 
 
-int NetworkSendPacketWithAck(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int FUN_180844460(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -3212,7 +3212,7 @@ int NetworkSendPacketWithAck(longlong socketHandle,longlong dataBuffer,int buffe
 
 
 
-int NetworkSendPacketWithRetry(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int FUN_180844570(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -3239,7 +3239,7 @@ int NetworkSendPacketWithRetry(longlong socketHandle,longlong dataBuffer,int buf
 
 
 
-int NetworkSendPacketWithTimeout(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int FUN_180844650(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -3280,7 +3280,7 @@ int NetworkSendPacketWithTimeout(longlong socketHandle,longlong dataBuffer,int b
 
 
 
-int NetworkSendPacketWithFragmentation(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int FUN_1808447d0(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint8_t networkResult;
@@ -3325,7 +3325,7 @@ int NetworkSendPacketWithFragmentation(longlong socketHandle,longlong dataBuffer
   networkOperationResult = networkOperationResult + connectionCount;
   connectionCount = networkCopyData(networkOperationResult + dataBuffer,bufferCapacity - networkOperationResult,&g_networkNullTerminator);
   networkOperationResult = networkOperationResult + connectionCount;
-  connectionCount = NetworkDecompressData(networkOperationResult + dataBuffer,bufferCapacity - networkOperationResult,&networkUintStack_48);
+  connectionCount = FUN_18074b6f0(networkOperationResult + dataBuffer,bufferCapacity - networkOperationResult,&networkUintStack_48);
   networkOperationResult = networkOperationResult + connectionCount;
   connectionCount = networkCopyData(networkOperationResult + dataBuffer,bufferCapacity - networkOperationResult,&g_networkNullTerminator);
   networkOperationResult = networkOperationResult + connectionCount;
@@ -3335,7 +3335,7 @@ int NetworkSendPacketWithFragmentation(longlong socketHandle,longlong dataBuffer
 
 
 
-int NetworkReceivePacketBasic(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int FUN_180844910(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -3358,7 +3358,7 @@ int NetworkReceivePacketBasic(longlong socketHandle,longlong dataBuffer,int buff
 
 
 
-int NetworkReceivePacketWithHeader(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int FUN_1808449c0(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -3375,7 +3375,7 @@ int NetworkReceivePacketWithHeader(longlong socketHandle,longlong dataBuffer,int
 
 
 
-int NetworkReceivePacketWithChecksum(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int FUN_180844a30(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -3404,7 +3404,7 @@ int NetworkReceivePacketWithChecksum(longlong socketHandle,longlong dataBuffer,i
 
 
 
-int NetworkReceivePacketWithEncryption(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int FUN_180844b20(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint8_t networkResult;
@@ -3431,7 +3431,7 @@ int NetworkReceivePacketWithEncryption(longlong socketHandle,longlong dataBuffer
 
 
 
-int NetworkReceivePacketWithCompression(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int FUN_180844c00(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -3458,7 +3458,7 @@ int NetworkReceivePacketWithCompression(longlong socketHandle,longlong dataBuffe
 
 
 
-int NetworkReceivePacketWithValidation(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int FUN_180844d00(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint8_t networkResult;
@@ -85973,19 +85973,19 @@ int networkFormatPacket(longlong socketHandle,int dataBuffer,longlong bufferCapa
   statusCode = memcmp(bufferCapacity,bufferCapacity,0x30);
   if (statusCode != 0) {
     statusCode = func_0x00018074b7b0(socketHandle,dataBuffer,0x7b);
-    resultCode = NetworkDecompressData(socketHandle + statusCode,dataBuffer - statusCode,bufferCapacity);
+    resultCode = FUN_18074b6f0(socketHandle + statusCode,dataBuffer - statusCode,bufferCapacity);
     statusCode = statusCode + resultCode;
     resultCode = func_0x00018074b7b0(statusCode + socketHandle,dataBuffer - statusCode,0x2c);
     statusCode = statusCode + resultCode;
-    resultCode = NetworkDecompressData(statusCode + socketHandle,dataBuffer - statusCode,bufferCapacity + 0xc);
+    resultCode = FUN_18074b6f0(statusCode + socketHandle,dataBuffer - statusCode,bufferCapacity + 0xc);
     statusCode = statusCode + resultCode;
     resultCode = func_0x00018074b7b0(statusCode + socketHandle,dataBuffer - statusCode,0x2c);
     statusCode = statusCode + resultCode;
-    resultCode = NetworkDecompressData(statusCode + socketHandle,dataBuffer - statusCode,bufferCapacity + 0x18);
+    resultCode = FUN_18074b6f0(statusCode + socketHandle,dataBuffer - statusCode,bufferCapacity + 0x18);
     statusCode = statusCode + resultCode;
     resultCode = func_0x00018074b7b0(statusCode + socketHandle,dataBuffer - statusCode,0x2c);
     statusCode = statusCode + resultCode;
-    resultCode = NetworkDecompressData(statusCode + socketHandle,dataBuffer - statusCode,bufferCapacity + 0x24);
+    resultCode = FUN_18074b6f0(statusCode + socketHandle,dataBuffer - statusCode,bufferCapacity + 0x24);
     statusCode = statusCode + resultCode;
     resultCode = func_0x00018074b7b0(statusCode + socketHandle,dataBuffer - statusCode,0x7d);
     return resultCode + statusCode;

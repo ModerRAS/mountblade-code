@@ -125,7 +125,7 @@ int initialize_network_thread_pool(void* handle, void* flags, void* mutex_attr, 
   
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(0x180c911e8, 2, mutex_attr, mutex_type, thread_pool_flags);
-  thread_pool_3_status_code = 0;
+  thread_pool_3_status_code = SYSTEM_STATUS_SUCCESS;
   initialization_result = execute_function(network_thread_pool_init_function);
   return (initialization_result != 0) - 1;
 }
@@ -137,7 +137,7 @@ int initialize_io_thread_pool(void* handle, void* flags, void* mutex_attr, int m
   
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(0x180c91288, 2, mutex_attr, mutex_type, thread_pool_flags);
-  thread_pool_4_status_code = 0;
+  thread_pool_4_status_code = SYSTEM_STATUS_SUCCESS;
   initialization_result = execute_function(io_thread_pool_init_function);
   return (initialization_result != 0) - 1;
 }
