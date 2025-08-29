@@ -195,6 +195,20 @@
 void* g_全局系统数据;
 void* g_系统配置数据;
 
+// 系统地址常量定义 - 美化后的变量名
+// 原始名称: unknown_180a1b368 - 句柄管理器地址
+void* g_句柄管理器地址_180a1b368 = (void*)0x180a1b368;
+// 原始名称: unknown_180a1b3f0 - 内存管理器地址
+void* g_内存管理器地址_180a1b3f0 = (void*)0x180a1b3f0;
+// 原始名称: unknown_180a02fc8 - UI互斥锁属性地址
+void* g_UI互斥锁属性地址_180a02fc8 = (void*)0x180a02fc8;
+// 原始名称: unknown_180a02fa0 - UI互斥锁类型地址
+void* g_UI互斥锁类型地址_180a02fa0 = (void*)0x180a02fa0;
+// 原始名称: unknown_18045f210 - 栈数据地址1
+void* g_栈数据地址_18045f210 = (void*)0x18045f210;
+// 原始名称: unknown_18045f200 - 栈数据地址2
+void* g_栈数据地址_18045f200 = (void*)0x18045f200;
+
 // 初始化系统配置
 int 初始化系统配置(void)
 {
@@ -5536,13 +5550,15 @@ long long allocate_system_buffer(unsigned long long handle,long long *flags,long
       global_data_ = system_memory_manager_002(uint_var_);
       ptr_var_ = (unsigned long long *)function_(global_data_,0xf8,8,3);
       system_memory_003(ptr_var_);
-      *ptr_var_ = &unknown_180a1b368;
+      // 原始名称: unknown_180a1b368
+      *ptr_var_ = &g_句柄管理器地址_180a1b368;
       system_memory_manager_004(ptr_var_);
       global_data_ = ptr_var_;
       global_data_ = function_();
       ptr_var_ = (unsigned long long *)function_(global_data_,0xb0,8,3);
       system_memory_003(ptr_var_);
-      *ptr_var_ = &unknown_180a1b3f0;
+      // 原始名称: unknown_180a1b3f0
+      *ptr_var_ = &g_内存管理器地址_180a1b3f0;
       global_data_ = ptr_var_;
       global_data_ = system_memory_manager_005();
       global_data_ = (*global_data_)(&data_180c918c0);
@@ -5864,7 +5880,8 @@ system_finalizer_005(unsigned long long handle,unsigned long long flags,unsigned
   undefined *stack_ptr_;
   long long stack_long_;
   char_ptr_var_ = *(code **)(*global_data_ + 0x70);
-  uint_var_ = system_ui_005(&stack_ptr_,&unknown_180a02fc8,mutex_attr,mutex_type,0,线程池默认标志);
+  // 原始名称: unknown_180a02fc8
+      uint_var_ = system_ui_005(&stack_ptr_,&g_UI互斥锁属性地址_180a02fc8,mutex_attr,mutex_type,0,线程池默认标志);
   flags = (*char_ptr_var_)(global_data_,uint_var_,mutex_attr,mutex_type,1);
   stack_ptr_ = &g_threadString2;
   if (stack_long_ != 0) {
@@ -5881,7 +5898,8 @@ system_finalizer_006(unsigned long long handle,unsigned long long flags,unsigned
   undefined *stack_ptr_;
   long long stack_long_;
   char_ptr_var_ = *(code **)(*global_data_ + 0x70);
-  uint_var_ = system_ui_005(&stack_ptr_,&unknown_180a02fa0,mutex_attr,mutex_type,0,线程池默认标志);
+  // 原始名称: unknown_180a02fa0
+      uint_var_ = system_ui_005(&stack_ptr_,&g_UI互斥锁类型地址_180a02fa0,mutex_attr,mutex_type,0,线程池默认标志);
   flags = (*char_ptr_var_)(global_data_,uint_var_,mutex_attr,mutex_type,1);
   stack_ptr_ = &g_threadString2;
   if (stack_long_ != 0) {
@@ -5922,7 +5940,8 @@ system_finalizer_007(unsigned long long handle,unsigned long long flags,unsigned
   }
   uint_var_ = function_(global_data_,0xe0,8,3,uint_var_);
   plStackX_10 = alStack_30;
-  stack_ptr_ = &unknown_18045f210;
+  // 原始名称: unknown_18045f210
+      stack_ptr_ = &g_栈数据地址_18045f210;
   stack_ptr_ = &unknown_18045f200;
   pinit_result = (long long *)function_(uint_var_,alStack_30);
   plStackX_18 = pinit_result;
