@@ -1546,20 +1546,21 @@ void InitializeNetworkNode(void)
 int InitializeEngineBaseStructures(void)
 
 {
-  longlong lVar1;
+  longlong initialization_result;
 
-  _DAT_180bf5268 = 0;
-  _DAT_memory_base = 0;
-  uRam0000000180bf5278 = 0;
-  _DAT_render_context = 3;
-  _DAT_audio_context = 0;
-  _DAT_180bf5290 = 0;
-  uRam0000000180bf5298 = 0;
-  _DAT_180bf52a0 = 3;
-  _DAT_180bf52c0 = &UNK_180a3c3e0;
-  _DAT_180bf52d8 = 0;
-  _DAT_180bf52c8 = 0;
-  _DAT_180bf52d0 = 0;
+  // 初始化引擎基础数据结构指针
+  g_engine_data_pointer = 0;
+  g_memory_base_address = 0;
+  g_reserved_memory_1 = 0;
+  g_render_context_state = 3;
+  g_audio_context_state = 0;
+  g_system_state_1 = 0;
+  g_reserved_memory_2 = 0;
+  g_system_state_2 = 3;
+  g_resource_pool_pointer = &UNK_180a3c3e0;
+  g_resource_pool_size = 0;
+  g_memory_pool_state = 0;
+  g_memory_pool_size = 0;
 // 初始化引擎状态函数
 void InitializeEngineState_18002d150(void)
 
