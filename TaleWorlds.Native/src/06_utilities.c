@@ -3899,7 +3899,7 @@ void unmount_file_system(void)
 
 
 
-uint64 FUN_180891090(longlong resourceHandle)
+uint64 open_file_handle(longlong resourceHandle)
 
 {
   uint64 localUInt1;
@@ -3921,7 +3921,7 @@ uint64 FUN_180891090(longlong resourceHandle)
 
 
 
-uint32 FUN_1808910b3(void)
+uint32 close_file_handle(void)
 
 {
   longlong in_stack_00000040;
@@ -3939,8 +3939,8 @@ uint32 FUN_1808910b3(void)
 
 
 
-// 函数: void FUN_1808910e9(void)
-void FUN_1808910e9(void)
+// 函数: void read_file_data(void)
+void read_file_data(void)
 
 {
                     // WARNING: Subroutine does not return
