@@ -335,7 +335,7 @@ data g_systemModuleStatus5;
 data g_systemModuleStatus6;
 data g_systemModuleHandle7;
 data g_systemModuleHandle8;
-data g_systemModuleData9;
+data g_systemModuleHandle9;
 data bufferManagementControl;
 data g_textureUploadBuffer;
 data bufferAllocationPointer;
