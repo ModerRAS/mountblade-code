@@ -89,7 +89,7 @@ void* InitializeSubSystemEngine;
 
 void* g_system_reserved_data;
 
-void* g_system_memory_pool_system_memory;
+void* g_system_memory_pool;
 
 uint64_t g_system_flags_system_flags;
 void* g_system_state_system_state;
