@@ -56,10 +56,10 @@ dataValue g_systemNetworkStatus;              // 系统网络状态
 
 // 函数: dataValueValue ConfigureMemorySettings;
 dataValue ConfigureMemorySettings;
-dataValue g_errorHandlerSeverity;
-dataValue g_errorHandlerCategory;
-dataValue g_errorHandlerRecovery;
-dataValue g_errorHandlerLogging;
+dataValue g_errorHandlerSeverity;             // 错误处理器严重程度
+dataValue g_errorHandlerCategory;              // 错误处理器类别
+dataValue g_errorHandlerRecovery;              // 错误处理器恢复
+dataValue g_errorHandlerLogging;               // 错误处理器日志
 
 // 函数: dataValueValue ValidateMemoryConfiguration;
 // 内存配置验证函数180941630
