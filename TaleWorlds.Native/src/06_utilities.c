@@ -7330,7 +7330,7 @@ void execute_database_query(longlong resourceHandle,longlong memorySize)
 
 
 
-uint64 FUN_180894300(longlong resourceHandle,longlong memorySize)
+uint64 fetch_database_results(longlong resourceHandle,longlong memorySize)
 
 {
   uint64 localUInt1;
@@ -9338,7 +9338,7 @@ ulonglong FUN_180896140(longlong resourceHandle)
               localUInt = *(uint32 *)(lVar5 + 0xc + localLong15 * 0x10);
               localUInt = 0;
               localUInt = 0x3f800000;
-              FUN_180894300(&localPtr,*(uint64 *)(resourceHandle + 0x58));
+              fetch_database_results(&localPtr,*(uint64 *)(resourceHandle + 0x58));
               plocalLong13 = plStack_108;
             }
           }

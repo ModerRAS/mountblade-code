@@ -93,8 +93,8 @@ int initialize_physics_system(void)
   initialization_result = execute_function(callback_function_007);
   return (initialization_result != 0) - 1;
 }
-// 初始化线程池1
-int initialize_thread_pool_1(void* handle, void* flags, void* mutex_attr, int mutex_type)
+// 初始化主线程池
+int initialize_main_thread_pool(void* handle, void* flags, void* mutex_attr, int mutex_type)
 {
   long long initialization_result;
   unsigned long long thread_pool_flags = THREAD_POOL_DEFAULT_FLAGS;
