@@ -9,7 +9,7 @@ undefined g_system_configuration_data;
 int initialize_system_configuration(void)
 {
   system_configuration_enabled = 1;
-  operation_counter_variable = 0;
+  operation_counter = 0;
   maximum_allowed_system_value = 0x7fffffffffffffff;
   system_status_code = 0;
   int result = initialize_system(system_init_func_1809414f0);
@@ -18,10 +18,10 @@ int initialize_system_configuration(void)
 // 初始化核心数据结构
 int initialize_core_data_structure(void)
 {
-  longlong initialization_result;
-  primary_data_structure_pointer = &g_unknown_data_buffer;
-  secondary_data_structure_pointer = &g_core_data_value;
-  data_structure_offset_value = 0;
+  long long initialization_result;
+  void* primary_data_pointer = &g_unknown_data_buffer;
+  void* secondary_data_pointer = &g_core_data_value;
+  int data_structure_offset = 0;
   g_core_data_value = 0;
   initialization_result = initialize_system(core_system_init_func_180941590);
   return (initialization_result != 0) - 1;
@@ -29,32 +29,32 @@ int initialize_core_data_structure(void)
 // 初始化网络缓冲区系统
 int initialize_network_buffer_system(void)
 {
-  longlong net_initialization_result;
-  network_buffer_primary_pointer = &g_network_data_buffer;
-  network_buffer_secondary_pointer = &network_buffer_current_value;
-  network_buffer_offset_value = 0;
+  long long initialization_result;
+  void* network_buffer_primary = &g_network_data_buffer;
+  void* network_buffer_secondary = &network_buffer_current_value;
+  int network_buffer_offset = 0;
   network_buffer_current_value = 0;
-  net_initialization_result = initialize_system(network_init_func_1809415b0);
-  return (net_initialization_result != 0) - 1;
+  initialization_result = initialize_system(network_init_func_1809415b0);
+  return (initialization_result != 0) - 1;
 }
 // 初始化渲染上下文系统
 int initialize_rendering_context_system(void)
 {
-  longlong render_initialization_result;
-  g_render_context_primary_ptr = &g_render_data_buffer;
-  g_render_context_secondary_ptr = &g_render_buffer_value;
-  g_render_context_offset = 0;
+  long long initialization_result;
+  void* render_context_primary = &g_render_data_buffer;
+  void* render_context_secondary = &g_render_buffer_value;
+  int render_context_offset = 0;
   g_render_buffer_value = 0;
-  render_initialization_result = initialize_system(rendering_init_func_1809415d0);
-  return (render_initialization_result != 0) - 1;
+  initialization_result = initialize_system(rendering_init_func_1809415d0);
+  return (initialization_result != 0) - 1;
 }
 // 初始化模块系统
 int initialize_module_system(void)
 {
-  longlong initialization_result;
-  g_module_primary_pointer = &g_module_unknown_data;
-  g_module_secondary_pointer = &g_module_data_value;
-  g_module_tertiary_pointer = 0;
+  long long initialization_result;
+  void* module_primary_pointer = &g_module_unknown_data;
+  void* module_secondary_pointer = &g_module_data_value;
+  void* module_tertiary_pointer = 0;
   g_module_data_value = 0;
   initialization_result = execute_function(module_init_callback_function);
   return (initialization_result != 0) - 1;
@@ -62,72 +62,72 @@ int initialize_module_system(void)
 // 初始化输入系统
 int initialize_input_system(void)
 {
-  longlong initialization_result;
-  g_input_data_pointer = &g_shared_data_buffer;
-  input_buffer_current_value_pointer = &input_buffer_current_value_value;
-  input_buffer_current_value_offset = 0;
-  input_buffer_current_value_value = 0;
+  long long initialization_result;
+  void* input_data_pointer = &g_shared_data_buffer;
+  void* input_buffer_pointer = &input_buffer_current_value;
+  int input_buffer_offset = 0;
+  input_buffer_current_value = 0;
   initialization_result = execute_function(input_system_callback_function);
   return (initialization_result != 0) - 1;
 }
 // 初始化物理系统
 int initialize_physics_system(void)
 {
-  longlong function_result_variable;
-  physics_data_pointer = &g_shared_data_buffer;
-  physics_buffer_pointer = &physics_buffer_current_value;
-  physics_offset_value = 0;
+  long long initialization_result;
+  void* physics_data_pointer = &g_shared_data_buffer;
+  void* physics_buffer_pointer = &physics_buffer_current_value;
+  int physics_offset = 0;
   physics_buffer_current_value = 0;
-  function_result_variable = execute_function(callback_function_007);
-  return (function_result_variable != 0) - 1;
+  initialization_result = execute_function(callback_function_007);
+  return (initialization_result != 0) - 1;
 }
 // 初始化线程池1
-int initialize_thread_pool_1(undefined8 handle_parameter,undefined8 flags_parameter,undefined8 mutex_attribute_parameter,undefined8 mutex_type_parameter)
+int initialize_thread_pool_1(undefined8 handle, undefined8 flags, undefined8 mutex_attr, undefined8 mutex_type)
 {
-  longlong function_result_variable;
-  undefined8 flag_variable;
-  flag_variable = 0xfffffffffffffffe;
+  long long initialization_result;
+  undefined8 flag_variable = 0xfffffffffffffffe;
+  
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(0x180c910a8,2,mutex_attribute_parameter,mutex_type_parameter,flag_variable);
+  _Mtx_init_in_situ(0x180c910a8, 2, mutex_attr, mutex_type, flag_variable);
   thread_pool_1_status_code = 0;
-  function_result_variable = execute_function(callback_function_008);
-  return (function_result_variable != 0) - 1;
+  initialization_result = execute_function(callback_function_008);
+  return (initialization_result != 0) - 1;
 }
 // 初始化线程池2
-int initialize_thread_pool_2(undefined8 handle_parameter,undefined8 flags_parameter,undefined8 mutex_attribute_parameter,undefined8 mutex_type_parameter)
+int initialize_thread_pool_2(undefined8 handle, undefined8 flags, undefined8 mutex_attr, undefined8 mutex_type)
 {
-  longlong function_result_variable;
-  undefined8 flag_variable;
-  flag_variable = 0xfffffffffffffffe;
+  long long initialization_result;
+  undefined8 flag_variable = 0xfffffffffffffffe;
+  
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(0x180c91148,2,mutex_attribute_parameter,mutex_type_parameter,flag_variable);
+  _Mtx_init_in_situ(0x180c91148, 2, mutex_attr, mutex_type, flag_variable);
   thread_pool_2_status_code = 0;
-  function_result_variable = execute_function(callback_function_009);
-  return (function_result_variable != 0) - 1;
+  initialization_result = execute_function(callback_function_009);
+  return (initialization_result != 0) - 1;
 }
 // 初始化线程池3
-int initialize_thread_pool_3(undefined8 handle_parameter,undefined8 flags_parameter,undefined8 mutex_attribute_parameter,undefined8 mutex_type_parameter)
+int initialize_thread_pool_3(undefined8 handle, undefined8 flags, undefined8 mutex_attr, undefined8 mutex_type)
 {
-  longlong function_result_variable;
-  undefined8 flag_variable;
-  flag_variable = 0xfffffffffffffffe;
+  long long initialization_result;
+  undefined8 flag_variable = 0xfffffffffffffffe;
+  
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(0x180c911e8,2,mutex_attribute_parameter,mutex_type_parameter,flag_variable);
+  _Mtx_init_in_situ(0x180c911e8, 2, mutex_attr, mutex_type, flag_variable);
   thread_pool_3_status_code = 0;
-  function_result_variable = execute_function(callback_function_010);
-  return (function_result_variable != 0) - 1;
+  initialization_result = execute_function(callback_function_010);
+  return (initialization_result != 0) - 1;
 }
 // 初始化线程池4
-int initialize_thread_pool_4(undefined8 handle_parameter,undefined8 flags_parameter,undefined8 mutex_attribute_parameter,undefined8 mutex_type_parameter)
+int initialize_thread_pool_4(undefined8 handle, undefined8 flags, undefined8 mutex_attr, undefined8 mutex_type)
 {
-  longlong function_result_variable;
-  undefined8 flag_variable;
-  flag_variable = 0xfffffffffffffffe;
+  long long initialization_result;
+  undefined8 flag_variable = 0xfffffffffffffffe;
+  
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(0x180c91288,2,mutex_attribute_parameter,mutex_type_parameter,flag_variable);
+  _Mtx_init_in_situ(0x180c91288, 2, mutex_attr, mutex_type, flag_variable);
   thread_pool_4_status_code = 0;
-  function_result_variable = execute_function(callback_function_011);
-  return (function_result_variable != 0) - 1;
+  initialization_result = execute_function(callback_function_011);
+  return (initialization_result != 0) - 1;
 }
 // 初始化资源管理器0
 int initialize_resource_manager_0(void)

@@ -1542,7 +1542,8 @@ void InitializeNetworkNode(void)
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18002cd40(void)
+// 初始化引擎基础数据结构
+int InitializeEngineBaseStructures(void)
 
 {
   longlong lVar1;
@@ -1636,9 +1637,8 @@ int FUN_18002d2e0(void)
   lVar1 = FUN_1808fc7d0(FUN_1809417a0);
   return (lVar1 != 0) - 1;
 }
-// void FUN_18002d320(void)
-
-void FUN_18002d320(void)
+// 初始化渲染系统函数
+void InitializeRenderingSystem_18002d320(void)
 
 {
   char cVar1;
@@ -1683,9 +1683,8 @@ void FUN_18002d320(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-// void FUN_18002d420(void)
-
-void FUN_18002d420(void)
+// 初始化音频系统函数
+void InitializeAudioSystem_18002d420(void)
 
 {
   char cVar1;
@@ -1741,8 +1740,8 @@ int FUN_18002d520(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   return (lVar1 != 0) - 1;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void FUN_18002d550(void)
-void FUN_18002d550(void)
+// void InitializeConfigData(void)
+void InitializeConfigData(void)
 
 {
   undefined8 in_R9;
