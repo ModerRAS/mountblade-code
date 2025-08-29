@@ -49,10 +49,10 @@ dataValue g_memoryAllocatorStatusFlag;        // 内存分配器状态标志
 
 // 函数: dataValueValue RegisterMemoryHandler;
 dataValue RegisterMemoryHandler;
-dataValue g_systemCpuStatus;
-dataValue g_systemMemoryStatus;
-dataValue g_systemIoStatus;
-dataValue g_systemNetworkStatus;
+dataValue g_systemCpuStatus;                  // 系统CPU状态
+dataValue g_systemMemoryStatus;               // 系统内存状态
+dataValue g_systemIoStatus;                   // 系统IO状态
+dataValue g_systemNetworkStatus;              // 系统网络状态
 
 // 函数: dataValueValue ConfigureMemorySettings;
 dataValue ConfigureMemorySettings;
