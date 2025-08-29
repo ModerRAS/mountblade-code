@@ -2,21 +2,21 @@
 
 // 06_utilities.c - 473 个函数
 
-// 函数: undefined FUN_1809414f0;
-undefined FUN_1809414f0;
-undefined DAT_180bf5290;
-undefined DAT_180bf52a0;
-undefined DAT_180bf52c0;
-undefined DAT_180bf52c8;
-undefined DAT_180bf52d0;
-undefined DAT_180bf52d8;
-undefined1 DAT_180bf5240;
-undefined DAT_180bf52a8;
-undefined DAT_180bf52b0;
-undefined1 DAT_180bf52e0;
+// 函数: int processBufferData(longlong bufferHandle)
+// 缓冲区数据处理函数
+undefined g_bufferDataOffset1;
+undefined g_bufferDataOffset2;
+undefined g_bufferDataSize1;
+undefined g_bufferDataSize2;
+undefined g_bufferDataFlags;
+undefined g_bufferDataChecksum;
+undefined1 g_isBufferInitialized;
+undefined g_bufferCapacity;
+undefined g_bufferMaxSize;
+undefined1 g_bufferLockFlag;
 undefined UNK_180a3c3e0;
-undefined8 UNK_180bf5278;
-undefined8 UNK_180bf5298;
+undefined8 g_bufferHandle1;
+undefined8 g_bufferHandle2;
 undefined DAT_180bf5320;
 undefined DAT_180bf5328;
 undefined DAT_180bf5330;
@@ -79983,16 +79983,16 @@ void Unwind_180912970(undefined8 param_1,longlong param_2)
 
 undefined4 UNK_180d49260;
 
-// 函数: void FUN_18094136c(undefined8 param_1,longlong param_2)
-void FUN_18094136c(undefined8 param_1,longlong param_2)
+// 函数: void reset_game_state_if_needed(undefined8 param_1,longlong param_2)
+void reset_game_state_if_needed(undefined8 param_1,longlong param_2)
 
 {
-  char cVar1;
-  int iVar2;
+  char status_flag;
+  int check_result;
   
-  cVar1 = *(char *)(param_2 + 0x40);
-  iVar2 = func_0x0001808fd8d4();
-  if ((iVar2 != 0) && (cVar1 == '\0')) {
+  status_flag = *(char *)(param_2 + 0x40);
+  check_result = func_0x0001808fd8d4();
+  if ((check_result != 0) && (status_flag == '\0')) {
     LOCK();
     _DAT_180c821d0 = 0;
     UNLOCK();
@@ -80026,8 +80026,8 @@ void FUN_180941383(undefined8 param_1,longlong param_2)
 
 
 
-// 函数: void FUN_18094139f(undefined8 *param_1,longlong param_2)
-void FUN_18094139f(undefined8 *param_1,longlong param_2)
+// 函数: void execute_game_render_function(undefined8 *param_1,longlong param_2)
+void execute_game_render_function(undefined8 *param_1,longlong param_2)
 
 {
   FUN_1808fc51c(*(undefined8 *)(param_2 + 0x60),*(undefined4 *)(param_2 + 0x68),
@@ -80037,7 +80037,7 @@ void FUN_18094139f(undefined8 *param_1,longlong param_2)
 
 
 
-bool FUN_1809413d5(undefined8 *param_1)
+bool is_game_object_invalid(undefined8 *param_1)
 
 {
   return *(int *)*param_1 == -0x3ffffffb;
