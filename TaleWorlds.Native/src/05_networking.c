@@ -3,101 +3,101 @@
 // 05_networking.c - 908 个函数
 
 // 网络初始化系统函数指针
-typedef void (*NetworkInitializeSystemFunc)(void);
-NetworkInitializeSystemFunc NetworkInitializeSystem;
-void* g_networkSessionId;
-void* g_networkClientId;
-void* g_networkBuffer;
-void* g_connectionTimeout;
-void* g_socketTimeout;
-void* g_connectionPool;
-void* g_socketTable;
-void* g_packetQueue;
-void* g_networkStatus;
-void* g_threadManager;
-void* g_networkConfig;
-void* g_serverPort;
-void* g_clientPort;
-void* g_networkState;
-void* g_connectionHandle;
-void* g_networkEndpoint;
-void* g_networkEventQueue;
-void* g_networkReceiveBuffer;
-void* g_networkSendBuffer;
-void* g_networkSocket;
-void* g_networkAddress;
-void* g_networkProtocol;
-void* g_networkSecurity;
-void* g_networkTimeout;
-void* g_packetLength;
-void* g_maxPacketSize;
-void* g_networkCompression;
+typedef void (*网络初始化系统Func)(void);
+网络初始化系统Func 网络初始化系统;
+void* g_网络会话ID;
+void* g_网络客户端ID;
+void* g_网络缓冲区;
+void* g_连接超时;
+void* g_套接字超时;
+void* g_连接池;
+void* g_套接字表;
+void* g_数据包队列;
+void* g_网络状态;
+void* g_线程管理器;
+void* g_网络配置;
+void* g_服务器端口;
+void* g_客户端端口;
+void* g_网络状态;
+void* g_连接句柄;
+void* g_网络端点;
+void* g_网络事件队列;
+void* g_网络接收缓冲区;
+void* g_网络发送缓冲区;
+void* g_网络套接字;
+void* g_网络地址;
+void* g_网络协议;
+void* g_网络安全;
+void* g_网络超时;
+void* g_数据包长度;
+void* g_最大数据包大小;
+void* g_网络压缩;
 
 // 网络连接初始化函数指针
-typedef void (*NetworkInitializeConnectionFunc)(void);
-NetworkInitializeConnectionFunc NetworkInitializeConnection;
-void* g_networkSessionData;
+typedef void (*网络初始化连接Func)(void);
+网络初始化连接Func 网络初始化连接;
+void* g_网络会话数据;
 
 // 网络监听器创建函数指针
-typedef void* (*NetworkCreateListenerFunc)(int port);
-NetworkCreateListenerFunc NetworkCreateListener;
+typedef void* (*网络创建监听器Func)(int port);
+网络创建监听器Func 网络创建监听器;
 
 // 网络连接接受函数指针
-typedef void* (*NetworkAcceptConnectionFunc)(void* listener);
-NetworkAcceptConnectionFunc NetworkAcceptConnection;
-void* g_networkListener;
+typedef void* (*网络接受连接Func)(void* listener);
+网络接受连接Func 网络接受连接;
+void* g_网络监听器;
 
 // 网络连接拒绝函数指针
-typedef void (*NetworkRejectConnectionFunc)(void* connection);
-NetworkRejectConnectionFunc NetworkRejectConnection;
+typedef void (*网络拒绝连接Func)(void* connection);
+网络拒绝连接Func 网络拒绝连接;
 
 // 网络客户端认证函数指针
-typedef int (*NetworkAuthenticateClientFunc)(void* client);
-NetworkAuthenticateClientFunc NetworkAuthenticateClient;
+typedef int (*网络认证客户端Func)(void* client);
+网络认证客户端Func 网络认证客户端;
 
 // 网络客户端验证函数指针 - 验证客户端权限和状态
-typedef int (*NetworkValidateClientFunc)(void* client);
-NetworkValidateClientFunc NetworkValidateClient;
+typedef int (*网络验证客户端Func)(void* client);
+网络验证客户端Func 网络验证客户端;
 
 // 网络服务器启动函数指针 - 启动网络服务器
-typedef int (*NetworkStartServerFunc)(int port);
-NetworkStartServerFunc NetworkStartServer;
+typedef int (*网络启动服务器Func)(int port);
+网络启动服务器Func 网络启动服务器;
 
 // 网络服务器停止函数指针 - 停止网络服务器
-typedef void (*NetworkStopServerFunc)(void);
-NetworkStopServerFunc NetworkStopServer;
+typedef void (*网络停止服务器Func)(void);
+网络停止服务器Func 网络停止服务器;
 
 // 网络数据发送函数指针 - 发送网络数据包
-typedef int (*NetworkSendDataFunc)(void* connection, void* data, size_t size);
-NetworkSendDataFunc NetworkSendData;
+typedef int (*网络发送数据Func)(void* connection, void* data, size_t size);
+网络发送数据Func 网络发送数据;
 
 // 网络数据接收函数指针 - 接收网络数据包
-typedef int (*NetworkReceiveDataFunc)(void* connection, void* buffer, size_t size);
-NetworkReceiveDataFunc NetworkReceiveData;
+typedef int (*网络接收数据Func)(void* connection, void* buffer, size_t size);
+网络接收数据Func 网络接收数据;
 
 // 网络数据包处理函数指针 - 处理接收到的数据包
-typedef void (*NetworkProcessPacketFunc)(void* packet);
-NetworkProcessPacketFunc NetworkProcessPacket;
+typedef void (*网络处理数据包Func)(void* packet);
+网络处理数据包Func 网络处理数据包;
 
 // 网络断开处理函数指针 - 处理连接断开事件
-typedef void (*NetworkHandleDisconnectFunc)(void* connection);
-NetworkHandleDisconnectFunc NetworkHandleDisconnect;
+typedef void (*网络处理断开连接Func)(void* connection);
+网络处理断开连接Func 网络处理断开连接;
 // 网络断开原因
-void* g_networkDisconnectReason;
+void* g_网络断开原因;
 // 网络错误信息
-void* g_networkError;
+void* g_网络错误;
 // 网络接收队列
-void* g_networkReceiveQueue;
+void* g_网络接收队列;
 // 网络发送队列
-void* g_networkSendQueue;
+void* g_网络发送队列;
 // 网络待处理数据
-void* g_networkPendingData;
+void* g_网络待处理数据;
 // 网络活跃连接数
-void* g_networkActiveConnections;
+void* g_网络活跃连接数;
 // 网络连接池
-void* g_networkConnectionPool;
+void* g_网络连接池;
 // 网络带宽
-void* g_networkBandwidth;
+void* g_网络带宽;
 // 网络延迟
 void* g_networkLatency;
 // 网络丢包率
@@ -111,11 +111,11 @@ void* g_networkMetrics;
 // 网络诊断信息
 void* g_networkDiagnostics;
 // 网络发送缓冲区指针
-void* g_networkSendBufferPtr;
+void* g_网络发送缓冲区Ptr;
 // 网络接收缓冲区指针
-void* g_networkReceiveBufferPtr;
+void* g_网络接收缓冲区Ptr;
 // 网络缓冲区池
-void* g_networkBufferPool;
+void* g_网络缓冲区Pool;
 // 网络内存管理器
 void* g_networkMemoryManager;
 // 网络线程锁
@@ -129,15 +129,15 @@ void* g_networkEventSignal;
 // 网络线程池
 void* g_networkThreadPool;
 // 网络缓冲区大小
-void* g_networkBufferSize;
+void* g_网络缓冲区Size;
 // 网络缓冲区对齐
-void* g_networkBufferAlignment;
+void* g_网络缓冲区Alignment;
 // 网络连接标志
 uint32_t g_networkConnectionFlags;
 // 网络连接模式
 uint32_t g_networkConnectionMode;
 // 网络协议版本
-uint32_t g_networkProtocolVersion;
+uint32_t g_网络协议Version;
 // 网络服务器信息
 void* g_networkServerInfo;
 // 网络客户端信息
@@ -180,13 +180,13 @@ void* g_networkConnectionStability;
 void* g_networkConnectionHistory;
 void* g_networkConnectionStats;
 void* g_networkConnectionMetrics;
-void* g_networkBandwidthMonitor;
+void* g_网络带宽Monitor;
 void* g_networkLatencyMonitor;
 void* g_networkPacketLossMonitor;
 void* g_networkJitterMonitor;
 void* g_networkThroughputMonitor;
-void* g_networkErrorMonitor;
-void* g_networkSecurityMonitor;
+void* g_网络错误Monitor;
+void* g_网络安全Monitor;
 void* g_networkPerformanceMonitor;
 void* g_networkDiagnosticData;
 void* g_networkDebugInfo;
@@ -197,56 +197,56 @@ void* g_networkLogSize;
 void* g_networkLogRotation;
 void* g_networkLogCompression;
 void* g_networkLogArchive;
-void* g_networkConnectionPoolData;
-void* g_networkConnectionPoolSize;
-void* g_networkConnectionPoolIndex;
-void* g_networkConnectionPoolLock;
-void* g_networkConnectionPoolStatus;
-void* g_networkConnectionPoolConfig;
-void* g_networkConnectionPoolManager;
-void* g_networkConnectionPoolAllocator;
-void* g_networkConnectionPoolDeallocator;
-void* g_networkConnectionPoolInitializer;
-void* g_networkConnectionPoolFinalizer;
-void* g_networkConnectionPoolValidator;
-void* g_networkConnectionPoolCleaner;
-void* g_networkConnectionPoolResizer;
-void* g_networkConnectionPoolIterator;
-void* g_networkConnectionPoolAccessor;
-void* g_networkConnectionPoolModifier;
-void* g_networkConnectionPoolSearcher;
-void* g_networkConnectionPoolFinder;
-void* g_networkConnectionPoolLocator;
-void* g_networkConnectionPoolIdentifier;
-void* g_networkConnectionPoolTracker;
-void* g_networkConnectionPoolMonitor;
-void* g_networkConnectionPoolObserver;
-void* g_networkConnectionPoolNotifier;
-void* g_networkConnectionPoolHandler;
-void* g_networkConnectionPoolProcessor;
-void* g_networkConnectionPoolExecutor;
-void* g_networkConnectionPoolScheduler;
-void* g_networkConnectionPoolDispatcher;
-void* g_networkConnectionPoolWorker;
-void* g_networkConnectionPoolTask;
-void* g_networkConnectionPoolJob;
-void* g_networkConnectionPoolOperation;
-void* g_networkConnectionPoolAction;
-void* g_networkConnectionPoolCommand;
-void* g_networkConnectionPoolRequest;
-void* g_networkConnectionPoolResponse;
-void* g_networkConnectionPoolMessage;
-void* g_networkConnectionPoolEvent;
-void* g_networkConnectionPoolNotification;
-void* g_networkConnectionPoolAlert;
-void* g_networkConnectionPoolWarning;
-void* g_networkConnectionPoolError;
-void* g_networkConnectionPoolException;
-void* g_networkConnectionPoolFault;
-void* g_networkConnectionPoolCritical;
+void* g_网络连接池Data;
+void* g_网络连接池Size;
+void* g_网络连接池Index;
+void* g_网络连接池Lock;
+void* g_网络连接池Status;
+void* g_网络连接池Config;
+void* g_网络连接池Manager;
+void* g_网络连接池Allocator;
+void* g_网络连接池Deallocator;
+void* g_网络连接池Initializer;
+void* g_网络连接池Finalizer;
+void* g_网络连接池Validator;
+void* g_网络连接池Cleaner;
+void* g_网络连接池Resizer;
+void* g_网络连接池Iterator;
+void* g_网络连接池Accessor;
+void* g_网络连接池Modifier;
+void* g_网络连接池Searcher;
+void* g_网络连接池Finder;
+void* g_网络连接池Locator;
+void* g_网络连接池Identifier;
+void* g_网络连接池Tracker;
+void* g_网络连接池Monitor;
+void* g_网络连接池Observer;
+void* g_网络连接池Notifier;
+void* g_网络连接池Handler;
+void* g_网络连接池Processor;
+void* g_网络连接池Executor;
+void* g_网络连接池Scheduler;
+void* g_网络连接池Dispatcher;
+void* g_网络连接池Worker;
+void* g_网络连接池Task;
+void* g_网络连接池Job;
+void* g_网络连接池Operation;
+void* g_网络连接池Action;
+void* g_网络连接池Command;
+void* g_网络连接池Request;
+void* g_网络连接池Response;
+void* g_网络连接池Message;
+void* g_网络连接池Event;
+void* g_网络连接池Notification;
+void* g_网络连接池Alert;
+void* g_网络连接池Warning;
+void* g_网络连接池Error;
+void* g_网络连接池Exception;
+void* g_网络连接池Fault;
+void* g_网络连接池Critical;
 
-// 函数: void NetworkInitializeConnection(void)
-void NetworkInitializeConnection(void)
+// 函数: void 网络初始化连接(void)
+void 网络初始化连接(void)
 
 {
   byte *connectionBuffer;
@@ -543,8 +543,8 @@ LAB_NETWORK_SEND_BUFFER_START:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void NetworkSendData(uint32_t socketHandle,int dataBuffer,longlong bufferCapacity)
-void NetworkSendData(uint32_t socketHandle,int dataBuffer,longlong bufferCapacity)
+// 函数: void 网络发送数据(uint32_t socketHandle,int dataBuffer,longlong bufferCapacity)
+void 网络发送数据(uint32_t socketHandle,int dataBuffer,longlong bufferCapacity)
 
 {
   longlong *pnetworkTimeout;
@@ -592,8 +592,8 @@ void NetworkSendData(uint32_t socketHandle,int dataBuffer,longlong bufferCapacit
 
 
 
-// 函数: void NetworkSendDataChunk(uint64_t socketHandle,uint64_t dataBuffer,uint8_t bufferCapacity,uint64_t timeoutValue,
-void NetworkSendDataChunk(uint64_t socketHandle,uint64_t dataBuffer,uint8_t bufferCapacity,uint64_t timeoutValue,
+// 函数: void 网络发送数据Chunk(uint64_t socketHandle,uint64_t dataBuffer,uint8_t bufferCapacity,uint64_t timeoutValue,
+void 网络发送数据Chunk(uint64_t socketHandle,uint64_t dataBuffer,uint8_t bufferCapacity,uint64_t timeoutValue,
                   uint64_t socketContext,uint64_t connectionHandle,longlong timeoutParam)
 
 {
@@ -632,8 +632,8 @@ void NetworkSendDataChunk(uint64_t socketHandle,uint64_t dataBuffer,uint8_t buff
 
 
 
-// 函数: void NetworkSendDataBuffer(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapacity,uint64_t timeoutValue,
-void NetworkSendDataBuffer(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapacity,uint64_t timeoutValue,
+// 函数: void 网络发送数据Buffer(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapacity,uint64_t timeoutValue,
+void 网络发送数据Buffer(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapacity,uint64_t timeoutValue,
                   uint64_t socketContext,uint64_t connectionHandle,longlong timeoutParam)
 
 {
@@ -794,8 +794,8 @@ LAB_NETWORK_TIMEOUT_HANDLER:
 
 
 
-// 函数: void NetworkSendDataWithTimeout(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapacity,uint64_t timeoutValue)
-void NetworkSendDataWithTimeout(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapacity,uint64_t timeoutValue)
+// 函数: void 网络发送数据WithTimeout(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapacity,uint64_t timeoutValue)
+void 网络发送数据WithTimeout(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapacity,uint64_t timeoutValue)
 
 {
   uint64_t *connectionBuffer;
@@ -1140,7 +1140,7 @@ LAB_NETWORK_SOCKET_CLEANUP:
 
 
 
-int NetworkSendDataImmediate(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络发送数据Immediate(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -1158,8 +1158,8 @@ int NetworkSendDataImmediate(longlong socketHandle,longlong dataBuffer,int buffe
 
 
 
-// 函数: void NetworkSendDataPacket(longlong socketHandle,uint64_t dataBuffer,uint32_t bufferCapacity)
-void NetworkSendDataPacket(longlong socketHandle,uint64_t dataBuffer,uint32_t bufferCapacity)
+// 函数: void 网络发送数据Packet(longlong socketHandle,uint64_t dataBuffer,uint32_t bufferCapacity)
+void 网络发送数据Packet(longlong socketHandle,uint64_t dataBuffer,uint32_t bufferCapacity)
 
 {
   networkSendAcknowledge(dataBuffer,bufferCapacity,*(uint32_t *)(socketHandle + 0x10),*(uint32_t *)(socketHandle + SESSION_CONFIG_SIZE),
@@ -1169,7 +1169,7 @@ void NetworkSendDataPacket(longlong socketHandle,uint64_t dataBuffer,uint32_t bu
 
 
 
-int NetworkReceiveDataChunk(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据Chunk(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -1204,7 +1204,7 @@ int NetworkReceiveDataChunk(longlong socketHandle,longlong dataBuffer,int buffer
 
 
 
-int NetworkReceiveDataBuffer(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据Buffer(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint64_t networkResult;
@@ -1221,7 +1221,7 @@ int NetworkReceiveDataBuffer(longlong socketHandle,longlong dataBuffer,int buffe
 
 
 
-int NetworkReceiveDataWithFlags(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithFlags(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint8_t networkResult;
@@ -1238,7 +1238,7 @@ int NetworkReceiveDataWithFlags(longlong socketHandle,longlong dataBuffer,int bu
 
 
 
-int NetworkReceiveDataWithTimeout(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithTimeout(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -1255,7 +1255,7 @@ int NetworkReceiveDataWithTimeout(longlong socketHandle,longlong dataBuffer,int 
 
 
 
-int NetworkReceiveDataNonBlocking(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据NonBlocking(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -1272,7 +1272,7 @@ int NetworkReceiveDataNonBlocking(longlong socketHandle,longlong dataBuffer,int 
 
 
 
-int NetworkReceiveDataWithPeek(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithPeek(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -1295,7 +1295,7 @@ int NetworkReceiveDataWithPeek(longlong socketHandle,longlong dataBuffer,int buf
 
 
 
-int NetworkReceiveDataWithUrgent(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithUrgent(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -1318,7 +1318,7 @@ int NetworkReceiveDataWithUrgent(longlong socketHandle,longlong dataBuffer,int b
 
 
 
-int NetworkReceiveDataWithTruncation(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithTruncation(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   int statusCode;
@@ -1353,7 +1353,7 @@ int NetworkReceiveDataWithTruncation(longlong socketHandle,longlong dataBuffer,i
 
 
 
-int NetworkReceiveDataSimple(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据Simple(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -1370,7 +1370,7 @@ int NetworkReceiveDataSimple(longlong socketHandle,longlong dataBuffer,int buffe
 
 
 
-int NetworkReceiveDataWithControl(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithControl(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -1399,7 +1399,7 @@ int NetworkReceiveDataWithControl(longlong socketHandle,longlong dataBuffer,int 
 
 
 
-int NetworkReceiveDataWithOptions(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithOptions(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint8_t networkResult;
@@ -1426,7 +1426,7 @@ int NetworkReceiveDataWithOptions(longlong socketHandle,longlong dataBuffer,int 
 
 
 
-int NetworkReceiveDataWithEncryption(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithEncryption(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -1453,7 +1453,7 @@ int NetworkReceiveDataWithEncryption(longlong socketHandle,longlong dataBuffer,i
 
 
 
-int NetworkReceiveDataWithCompression(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithCompression(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint8_t networkResult;
@@ -1478,7 +1478,7 @@ int NetworkReceiveDataWithCompression(longlong socketHandle,longlong dataBuffer,
 
 
 
-int NetworkReceiveDataWithChecksum(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithChecksum(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -1501,7 +1501,7 @@ int NetworkReceiveDataWithChecksum(longlong socketHandle,longlong dataBuffer,int
 
 
 
-int NetworkReceiveDataWithPriority(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithPriority(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -1526,7 +1526,7 @@ int NetworkReceiveDataWithPriority(longlong socketHandle,longlong dataBuffer,int
 
 
 
-int NetworkReceiveDataWithRetry(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithRetry(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -1543,7 +1543,7 @@ int NetworkReceiveDataWithRetry(longlong socketHandle,longlong dataBuffer,int bu
 
 
 
-int NetworkReceiveDataWithAck(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithAck(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -1560,7 +1560,7 @@ int NetworkReceiveDataWithAck(longlong socketHandle,longlong dataBuffer,int buff
 
 
 
-int NetworkReceiveDataWithQueue(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithQueue(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -1601,7 +1601,7 @@ int NetworkReceiveDataWithQueue(longlong socketHandle,longlong dataBuffer,int bu
 
 
 
-int NetworkReceiveDataWithBuffer(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithBuffer(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -1624,7 +1624,7 @@ int NetworkReceiveDataWithBuffer(longlong socketHandle,longlong dataBuffer,int b
 
 
 
-int NetworkReceiveDataWithStreaming(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithStreaming(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -1659,7 +1659,7 @@ int NetworkReceiveDataWithStreaming(longlong socketHandle,longlong dataBuffer,in
 
 
 
-int NetworkReceiveDataWithValidation(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithValidation(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint8_t networkResult;
@@ -1708,7 +1708,7 @@ int NetworkReceiveDataWithValidation(longlong socketHandle,longlong dataBuffer,i
 
 
 
-int NetworkReceiveDataWithLogging(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithLogging(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -1725,7 +1725,7 @@ int NetworkReceiveDataWithLogging(longlong socketHandle,longlong dataBuffer,int 
 
 
 
-int NetworkReceiveDataWithStats(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithStats(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -1750,7 +1750,7 @@ int NetworkReceiveDataWithStats(longlong socketHandle,longlong dataBuffer,int bu
 
 
 
-int NetworkReceiveDataWithMetrics(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithMetrics(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint8_t networkResult;
@@ -1773,7 +1773,7 @@ int NetworkReceiveDataWithMetrics(longlong socketHandle,longlong dataBuffer,int 
 
 
 
-int NetworkReceiveDataWithMonitoring(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithMonitoring(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -1796,7 +1796,7 @@ int NetworkReceiveDataWithMonitoring(longlong socketHandle,longlong dataBuffer,i
 
 
 
-int NetworkReceiveDataWithDiagnostics(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithDiagnostics(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint8_t networkResult;
@@ -2231,7 +2231,7 @@ int NetworkFormatPacketHeader(longlong socket_context,void* data_buffer,int buff
   packet_size_field = *(uint32_t *)(socket_context + 0x10);
   
   // 写入协议标识符
-  header_length = NetworkWriteString(data_buffer,buffer_size,&g_networkProtocolHeader);
+  header_length = NetworkWriteString(data_buffer,buffer_size,&g_网络协议Header);
   data_offset = header_length;
   
   // 写入空终止符
@@ -2270,7 +2270,7 @@ int NetworkFormatPacketHeaderVariant2(longlong socket_context,void* data_buffer,
   packet_size_field = *(uint32_t *)(socket_context + 0x10);
   
   // 写入协议标识符变体2
-  header_length = NetworkWriteString(data_buffer,buffer_size,&g_networkProtocolHeaderVariant2);
+  header_length = NetworkWriteString(data_buffer,buffer_size,&g_网络协议HeaderVariant2);
   data_offset = header_length;
   
   // 写入空终止符
@@ -2292,7 +2292,7 @@ int NetworkFormatPacketHeaderVariant2(longlong socket_context,void* data_buffer,
 
 
 
-int NetworkReceiveDataWithFlags3(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithFlags3(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -2321,7 +2321,7 @@ int NetworkReceiveDataWithFlags3(longlong socketHandle,longlong dataBuffer,int b
 
 
 
-int NetworkReceiveDataWithFlags4(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithFlags4(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -2350,7 +2350,7 @@ int NetworkReceiveDataWithFlags4(longlong socketHandle,longlong dataBuffer,int b
 
 
 
-int NetworkReceiveDataWithFlags5(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithFlags5(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -2373,7 +2373,7 @@ int NetworkReceiveDataWithFlags5(longlong socketHandle,longlong dataBuffer,int b
 
 
 
-int NetworkReceiveDataWithFlags6(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithFlags6(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -2390,7 +2390,7 @@ int NetworkReceiveDataWithFlags6(longlong socketHandle,longlong dataBuffer,int b
 
 
 
-int NetworkReceiveDataWithFlags7(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithFlags7(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -2407,7 +2407,7 @@ int NetworkReceiveDataWithFlags7(longlong socketHandle,longlong dataBuffer,int b
 
 
 
-int NetworkReceiveDataWithFlags8(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithFlags8(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -2424,7 +2424,7 @@ int NetworkReceiveDataWithFlags8(longlong socketHandle,longlong dataBuffer,int b
 
 
 
-int NetworkReceiveDataWithFlags9(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithFlags9(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -2447,7 +2447,7 @@ int NetworkReceiveDataWithFlags9(longlong socketHandle,longlong dataBuffer,int b
 
 
 
-int NetworkReceiveDataWithFlags10(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithFlags10(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -2470,7 +2470,7 @@ int NetworkReceiveDataWithFlags10(longlong socketHandle,longlong dataBuffer,int 
 
 
 
-int NetworkReceiveDataWithFlags11(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithFlags11(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -2487,7 +2487,7 @@ int NetworkReceiveDataWithFlags11(longlong socketHandle,longlong dataBuffer,int 
 
 
 
-int NetworkReceiveDataWithFlags12(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithFlags12(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -2504,7 +2504,7 @@ int NetworkReceiveDataWithFlags12(longlong socketHandle,longlong dataBuffer,int 
 
 
 
-int NetworkReceiveDataWithFlags13(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithFlags13(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -2545,7 +2545,7 @@ int NetworkReceiveDataWithFlags13(longlong socketHandle,longlong dataBuffer,int 
 
 
 
-int NetworkReceiveDataWithFlags14(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithFlags14(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -2568,7 +2568,7 @@ int NetworkReceiveDataWithFlags14(longlong socketHandle,longlong dataBuffer,int 
 
 
 
-int NetworkReceiveDataWithFlags15(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithFlags15(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -2603,7 +2603,7 @@ int NetworkReceiveDataWithFlags15(longlong socketHandle,longlong dataBuffer,int 
 
 
 
-int NetworkReceiveDataWithFlags16(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithFlags16(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint8_t networkResult;
@@ -2636,7 +2636,7 @@ int NetworkReceiveDataWithFlags16(longlong socketHandle,longlong dataBuffer,int 
 
 
 
-int NetworkReceiveDataWithFlags17(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithFlags17(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint32_t networkResult;
@@ -2669,7 +2669,7 @@ int NetworkReceiveDataWithFlags17(longlong socketHandle,longlong dataBuffer,int 
 
 
 
-int NetworkReceiveDataWithFlags18(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithFlags18(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint8_t networkResult;
@@ -2700,7 +2700,7 @@ int NetworkReceiveDataWithFlags18(longlong socketHandle,longlong dataBuffer,int 
 
 
 
-int NetworkReceiveDataWithFlags19(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
+int 网络接收数据WithFlags19(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
 
 {
   uint8_t networkResult;
@@ -3538,8 +3538,8 @@ int NetworkCopyPacketData(longlong socketHandle,longlong dataBuffer,int bufferCa
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void NetworkInitializeConnectionPool(ulonglong socketHandle,uint64_t *dataBuffer)
-void NetworkInitializeConnectionPool(ulonglong socketHandle,uint64_t *dataBuffer)
+// 函数: void 网络初始化连接Pool(ulonglong socketHandle,uint64_t *dataBuffer)
+void 网络初始化连接Pool(ulonglong socketHandle,uint64_t *dataBuffer)
 
 {
   uint32_t networkResult;
@@ -3671,7 +3671,7 @@ void NetworkEstablishConnection(uint64_t socketHandle,uint64_t dataBuffer,uint64
   ulonglong networkUintStack_38;
   
   networkUintStack_38 = _g_networkXorKey ^ (ulonglong)networkStack_168;
-  statusCode = NetworkInitializeSystem();
+  statusCode = 网络初始化系统();
   if ((statusCode != 0) && ((*(byte *)(g_networkModule + 0x10) & 0x80) != 0)) {
     resultCode = networkCopyData(networkStack_138,ERROR_BUFFER_SIZE,dataBuffer);
     networkOperationResult = networkCopyData(networkStack_138 + resultCode,ERROR_BUFFER_SIZE - resultCode,&g_networkNullTerminator);
@@ -3738,7 +3738,7 @@ void NetworkConfigureConnectionSettings(uint64_t socketHandle,uint32_t *dataBuff
   if ((statusCode == 0) && ((*(uint *)(networkArrayStack_148[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0)) {
     statusCode = 0x4b;
   }
-  else if ((statusCode == 0) && (statusCode = NetworkSendData(networkArrayStack_148[0],dataBuffer,bufferCapacity), statusCode == 0))
+  else if ((statusCode == 0) && (statusCode = 网络发送数据(networkArrayStack_148[0],dataBuffer,bufferCapacity), statusCode == 0))
   goto cleanup_connection;
   if (dataBuffer != (uint32_t *)ZERO_OFFSET) {
     *dataBuffer = 0;
@@ -3952,8 +3952,8 @@ handle_socket_failure:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void NetworkSendDataPacket(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapacity)
-void NetworkSendDataPacket(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapacity)
+// 函数: void 网络发送数据Packet(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapacity)
+void 网络发送数据Packet(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapacity)
 
 {
   int statusCode;
@@ -3981,8 +3981,8 @@ void NetworkSendDataPacket(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bu
 
 
 
-// 函数: void NetworkReceiveDataPacket(void)
-void NetworkReceiveDataPacket(void)
+// 函数: void 网络接收数据Packet(void)
+void 网络接收数据Packet(void)
 
 {
   int statusCode;
@@ -4269,7 +4269,7 @@ void NetworkSendAcknowledgment(uint64_t socketHandle,uint32_t dataBuffer,uint64_
   ulonglong networkUintStack_38;
   
   networkUintStack_38 = _g_networkXorKey ^ (ulonglong)networkStack_168;
-  statusCode = NetworkSendData();
+  statusCode = 网络发送数据();
   if ((statusCode != 0) && ((*(byte *)(g_networkModule + 0x10) & 0x80) != 0)) {
     resultCode = func_0x00018074b7d0(networkStack_138,ERROR_BUFFER_SIZE,dataBuffer);
     networkOperationResult = networkCopyData(networkStack_138 + resultCode,ERROR_BUFFER_SIZE - resultCode,&g_networkNullTerminator);
@@ -6841,8 +6841,8 @@ validate_network_connection:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void NetworkProcessPacketData(uint64_t socketHandle,uint64_t *dataBuffer)
-void NetworkProcessPacketData(uint64_t socketHandle,uint64_t *dataBuffer)
+// 函数: void 网络处理数据包Data(uint64_t socketHandle,uint64_t *dataBuffer)
+void 网络处理数据包Data(uint64_t socketHandle,uint64_t *dataBuffer)
 
 {
   uint32_t networkResult;
@@ -6917,8 +6917,8 @@ check_connection_status:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void NetworkProcessPacketBuffer(uint64_t socketHandle,uint64_t dataBuffer)
-void NetworkProcessPacketBuffer(uint64_t socketHandle,uint64_t dataBuffer)
+// 函数: void 网络处理数据包Buffer(uint64_t socketHandle,uint64_t dataBuffer)
+void 网络处理数据包Buffer(uint64_t socketHandle,uint64_t dataBuffer)
 
 {
   int statusCode;
@@ -6946,8 +6946,8 @@ void NetworkProcessPacketBuffer(uint64_t socketHandle,uint64_t dataBuffer)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void NetworkProcessPacketWithCapacity(uint32_t socketHandle,longlong dataBuffer,uint32_t bufferCapacity)
-void NetworkProcessPacketWithCapacity(uint32_t socketHandle,longlong dataBuffer,uint32_t bufferCapacity)
+// 函数: void 网络处理数据包WithCapacity(uint32_t socketHandle,longlong dataBuffer,uint32_t bufferCapacity)
+void 网络处理数据包WithCapacity(uint32_t socketHandle,longlong dataBuffer,uint32_t bufferCapacity)
 
 {
   longlong networkTimeout;
@@ -7430,8 +7430,8 @@ validate_data_transfer:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void NetworkSendDataWithCapacity(uint64_t socketHandle,uint32_t dataBuffer,uint32_t bufferCapacity)
-void NetworkSendDataWithCapacity(uint64_t socketHandle,uint32_t dataBuffer,uint32_t bufferCapacity)
+// 函数: void 网络发送数据WithCapacity(uint64_t socketHandle,uint32_t dataBuffer,uint32_t bufferCapacity)
+void 网络发送数据WithCapacity(uint64_t socketHandle,uint32_t dataBuffer,uint32_t bufferCapacity)
 
 {
   int statusCode;
@@ -7910,8 +7910,8 @@ uint64_t NetworkGetConnectionStatus(uint64_t socketHandle,longlong dataBuffer)
 
 
 
-// 函数: void NetworkInitializeSystem(void)
-void NetworkInitializeSystem(void)
+// 函数: void 网络初始化系统(void)
+void 网络初始化系统(void)
 
 {
   return;
@@ -7920,8 +7920,8 @@ void NetworkInitializeSystem(void)
 
 
 
-// 函数: void NetworkInitializeConnection(void)
-void NetworkInitializeConnection(void)
+// 函数: void 网络初始化连接(void)
+void 网络初始化连接(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -15254,7 +15254,7 @@ validate_timeout_value:
       CleanupNetworkContext(clientPort);
     }
   } while (statusCode1 == 0);
-LAB_180850643:
+complete_data_transfer:
   if (socketDescriptor != 0) {
                     // WARNING: Subroutine does not return
     CleanupNetworkContext(socketDescriptor);
@@ -15265,22 +15265,22 @@ joined_r0x00018085040e:
   if (statusCode1 == -1) goto handle_status_operation;
   connectionBuffer3 = (uint *)((longlong)statusCode1 * 0x10 + pnetworkAddress[2]);
   if ((int)pnetworkAddress[1] == 0) {
-LAB_18085046c:
+validate_connection_data:
     statusCode1 = ERROR_CODE_INVALID;
-    goto LAB_180850643;
+    goto complete_data_transfer;
   }
   networkResult = *connectionBuffer3;
   clientPort = (longlong)(int)((int)pnetworkAddress[1] - 1U & networkResult);
   connectionBuffer4 = (uint *)(*pnetworkAddress + clientPort * 4);
   connectionIndex = *(uint *)(*pnetworkAddress + clientPort * 4);
-  if (connectionIndex == 0xffffffff) goto LAB_18085046c;
+  if (connectionIndex == 0xffffffff) goto validate_connection_data;
   while (connectionBuffer5 = (uint *)((longlong)(int)connectionIndex * 0x10 + pnetworkAddress[2]), *connectionBuffer5 != networkResult) {
     connectionIndex = connectionBuffer5[1];
     connectionBuffer4 = connectionBuffer5 + 1;
-    if (connectionIndex == 0xffffffff) goto LAB_18085046c;
+    if (connectionIndex == 0xffffffff) goto validate_connection_data;
   }
   statusCode1 = networkAcceptConnection(long_var_9,connectionBuffer3,connectionBuffer5 + 2);
-  if (statusCode1 != 0) goto LAB_180850643;
+  if (statusCode1 != 0) goto complete_data_transfer;
   networkResult = *connectionBuffer4;
   clientPort = (longlong)(int)networkResult * 0x10 + pnetworkAddress[2];
   networkUintStack_4c = 0xffffffff;
@@ -15501,7 +15501,7 @@ validate_timeout_value:
       CleanupNetworkContext(serverPort);
     }
   } while (statusCode0 == 0);
-LAB_180850643:
+complete_data_transfer:
   if (unaff_RSI != 0) {
                     // WARNING: Subroutine does not return
     CleanupNetworkContext(unaff_RSI);
@@ -15512,22 +15512,22 @@ joined_r0x00018085040e:
   if (statusCode0 == -1) goto handle_status_operation;
   connectionBuffer2 = (uint *)((longlong)statusCode0 * 0x10 + psocketHandle[2]);
   if ((int)psocketHandle[1] == 0) {
-LAB_18085046c:
+validate_connection_data:
     statusCode0 = ERROR_CODE_INVALID;
-    goto LAB_180850643;
+    goto complete_data_transfer;
   }
   networkResult = *connectionBuffer2;
   serverPort = (longlong)(int)((int)psocketHandle[1] - 1U & networkResult);
   connectionBuffer3 = (uint *)(*psocketHandle + serverPort * 4);
   dataPointer = *(uint *)(*psocketHandle + serverPort * 4);
-  if (dataPointer == 0xffffffff) goto LAB_18085046c;
+  if (dataPointer == 0xffffffff) goto validate_connection_data;
   while (connectionBuffer4 = (uint *)((longlong)(int)dataPointer * 0x10 + psocketHandle[2]), *connectionBuffer4 != networkResult) {
     dataPointer = connectionBuffer4[1];
     connectionBuffer3 = connectionBuffer4 + 1;
-    if (dataPointer == 0xffffffff) goto LAB_18085046c;
+    if (dataPointer == 0xffffffff) goto validate_connection_data;
   }
   statusCode0 = networkAcceptConnection(clientPort,connectionBuffer2,connectionBuffer4 + 2);
-  if (statusCode0 != 0) goto LAB_180850643;
+  if (statusCode0 != 0) goto complete_data_transfer;
   networkResult = *connectionBuffer3;
   serverPort = (longlong)(int)networkResult * 0x10 + psocketHandle[2];
   uStack000000000000004c = 0xffffffff;
@@ -15746,7 +15746,7 @@ validate_buffer_capacity:
       CleanupNetworkContext(clientPort);
     }
   } while (statusCode1 == 0);
-LAB_180850b23:
+finalize_connection_session:
   if (socketDescriptor != 0) {
                     // WARNING: Subroutine does not return
     CleanupNetworkContext(socketDescriptor);
@@ -15759,7 +15759,7 @@ joined_r0x0001808508ee:
   if ((int)pnetworkAddress[1] == 0) {
 LAB_18085094c:
     statusCode1 = ERROR_CODE_INVALID;
-    goto LAB_180850b23;
+    goto finalize_connection_session;
   }
   networkResult = *connectionBuffer3;
   clientPort = (longlong)(int)((int)pnetworkAddress[1] - 1U & networkResult);
@@ -15772,7 +15772,7 @@ LAB_18085094c:
     if (connectionIndex == 0xffffffff) goto LAB_18085094c;
   }
   statusCode1 = networkAcceptConnection(long_var_9,connectionBuffer3,connectionBuffer5 + 2);
-  if (statusCode1 != 0) goto LAB_180850b23;
+  if (statusCode1 != 0) goto finalize_connection_session;
   networkResult = *connectionBuffer4;
   clientPort = (longlong)(int)networkResult * 0x10 + pnetworkAddress[2];
   networkUintStack_4c = 0xffffffff;
@@ -15993,7 +15993,7 @@ validate_buffer_capacity:
       CleanupNetworkContext(serverPort);
     }
   } while (statusCode0 == 0);
-LAB_180850b23:
+finalize_connection_session:
   if (unaff_RSI != 0) {
                     // WARNING: Subroutine does not return
     CleanupNetworkContext(unaff_RSI);
@@ -16006,7 +16006,7 @@ joined_r0x0001808508ee:
   if ((int)psocketHandle[1] == 0) {
 LAB_18085094c:
     statusCode0 = ERROR_CODE_INVALID;
-    goto LAB_180850b23;
+    goto finalize_connection_session;
   }
   networkResult = *connectionBuffer2;
   serverPort = (longlong)(int)((int)psocketHandle[1] - 1U & networkResult);
@@ -16019,7 +16019,7 @@ LAB_18085094c:
     if (dataPointer == 0xffffffff) goto LAB_18085094c;
   }
   statusCode0 = networkAcceptConnection(clientPort,connectionBuffer2,connectionBuffer4 + 2);
-  if (statusCode0 != 0) goto LAB_180850b23;
+  if (statusCode0 != 0) goto finalize_connection_session;
   networkResult = *connectionBuffer3;
   serverPort = (longlong)(int)networkResult * 0x10 + psocketHandle[2];
   uStack000000000000004c = 0xffffffff;
@@ -20262,7 +20262,7 @@ uint64_t FUN_180854200(longlong socketHandle)
     *presultCode = *presultCode + -1;
     if (*presultCode == 0) {
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),dataBuffer,&g_networkBuffer,0x76,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),dataBuffer,&g_网络缓冲区,0x76,1);
     }
   }
   if (1 < networkOperationResult - 4U) {
@@ -20428,7 +20428,7 @@ LAB_1808545a3:
     *pstatusCode = *pstatusCode + -1;
     if (*pstatusCode == 0) {
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkLongStack_a8,&g_networkBuffer,0x76,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkLongStack_a8,&g_网络缓冲区,0x76,1);
     }
   }
   return connectionCount;
@@ -20589,7 +20589,7 @@ LAB_1808545a3:
     *pstatusCode = *pstatusCode + -1;
     if (*pstatusCode == 0) {
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout4,&g_networkBuffer,0x76,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout4,&g_网络缓冲区,0x76,1);
     }
   }
   return socketIndex;
@@ -20609,7 +20609,7 @@ uint32_t FUN_1808545c4(uint64_t socketHandle,longlong dataBuffer)
   *pstatusCode = *pstatusCode + -1;
   if (*pstatusCode == 0) {
                     // WARNING: Subroutine does not return
-    NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),dataBuffer,&g_networkBuffer,0x76,1);
+    NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),dataBuffer,&g_网络缓冲区,0x76,1);
   }
   return unaff_EDI;
 }
@@ -20702,7 +20702,7 @@ LAB_1808547bc:
     *presultCode = *presultCode + -1;
     if (*presultCode == 0) {
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),socketHandle,&g_networkBuffer,0x76,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),socketHandle,&g_网络缓冲区,0x76,1);
     }
   }
   return bufferSize;
@@ -20794,7 +20794,7 @@ LAB_1808547bc:
     *pstatusCode = *pstatusCode + -1;
     if (*pstatusCode == 0) {
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),dataBuffer,&g_networkBuffer,0x76,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),dataBuffer,&g_网络缓冲区,0x76,1);
     }
   }
   return socketStatus;
@@ -20886,7 +20886,7 @@ LAB_180854920:
     *presultCode = *presultCode + -1;
     if (*presultCode == 0) {
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkLongStack_38,&g_networkBuffer,0x76,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkLongStack_38,&g_网络缓冲区,0x76,1);
     }
   }
 LAB_180854958:
@@ -20895,7 +20895,7 @@ LAB_180854958:
     *presultCode = *presultCode + -1;
     if (*presultCode == 0) {
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkAddress,&g_networkBuffer,0x76,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkAddress,&g_网络缓冲区,0x76,1);
     }
   }
   return networkOperationResult;
@@ -20973,7 +20973,7 @@ LAB_180854920:
     *presultCode = *presultCode + -1;
     if (*presultCode == 0) {
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkParam,&g_networkBuffer,0x76,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkParam,&g_网络缓冲区,0x76,1);
     }
   }
 LAB_180854958:
@@ -20982,7 +20982,7 @@ LAB_180854958:
     *presultCode = *presultCode + -1;
     if (*presultCode == 0) {
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkAddress,&g_networkBuffer,0x76,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkAddress,&g_网络缓冲区,0x76,1);
     }
   }
   return networkOperationResult;
@@ -21710,7 +21710,7 @@ int FUN_1808552c0(longlong socketHandle)
     *presultCode = *presultCode + -1;
     if (*presultCode == 0) {
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),socketHandle,&g_networkBuffer,0x76,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),socketHandle,&g_网络缓冲区,0x76,1);
     }
   }
   return connectionCount;
@@ -21766,7 +21766,7 @@ int FUN_1808552ca(longlong socketHandle)
     *pstatusCode = *pstatusCode + -1;
     if (*pstatusCode == 0) {
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),dataBuffer,&g_networkBuffer,0x76,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),dataBuffer,&g_网络缓冲区,0x76,1);
     }
   }
   return networkOperationResult;
@@ -22300,7 +22300,7 @@ void FUN_1808556a0(longlong *socketHandle)
       *pstatusCode = *pstatusCode + -1;
       if (*pstatusCode == 0) {
                     // WARNING: Subroutine does not return
-        NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),connectionInfo,&g_networkBuffer,0x76,1);
+        NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),connectionInfo,&g_网络缓冲区,0x76,1);
       }
     }
     *(longlong *)psocketDescriptor[1] = *psocketDescriptor;
@@ -22340,7 +22340,7 @@ void FUN_1808556b9(void)
     *pstatusCode = *pstatusCode + -1;
     if (*pstatusCode == 0) {
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),socketDescriptor,&g_networkBuffer,0x76,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),socketDescriptor,&g_网络缓冲区,0x76,1);
     }
   }
   *(longlong *)unaff_RDI[1] = *unaff_RDI;
@@ -22540,7 +22540,7 @@ uint64_t FUN_1808559c0(uint64_t *socketHandle)
         *pstatusCode = *pstatusCode + -1;
         if (*pstatusCode == 0) {
                     // WARNING: Subroutine does not return
-          NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkLongStack_18,&g_networkBuffer,0x76,1);
+          NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkLongStack_18,&g_网络缓冲区,0x76,1);
         }
       }
       return 0;
@@ -23296,7 +23296,7 @@ uint64_t FUN_1808560c0(longlong socketHandle)
       *presultCode = *presultCode + -1;
       if (*presultCode == 0) {
                     // WARNING: Subroutine does not return
-        NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),connectionInfo,&g_networkBuffer,0x76,1);
+        NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),connectionInfo,&g_网络缓冲区,0x76,1);
       }
     }
     connectionInfo = *(longlong *)(socketHandle + 0x140);
@@ -23317,7 +23317,7 @@ uint64_t FUN_1808560c0(longlong socketHandle)
       *presultCode = *presultCode + -1;
       if (*presultCode == 0) {
                     // WARNING: Subroutine does not return
-        NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkAddress,&g_networkBuffer,0x76,1);
+        NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkAddress,&g_网络缓冲区,0x76,1);
       }
     }
     if (*(int *)(connectionInfo + SOCKET_RESPONSE_OFFSET) == *(int *)(networkAddress + SOCKET_BUFFER_OFFSET)) {
@@ -23363,7 +23363,7 @@ uint64_t FUN_1808561bc(void)
     *presultCode = *presultCode + -1;
     if (*presultCode == 0) {
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),socketHandle,&g_networkBuffer,0x76,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),socketHandle,&g_网络缓冲区,0x76,1);
     }
   }
   if (*(int *)(dataBuffer + SOCKET_RESPONSE_OFFSET) != *(int *)(socketHandle + SOCKET_BUFFER_OFFSET)) {
@@ -24178,7 +24178,7 @@ uint64_t FUN_180856d20(longlong socketHandle,uint64_t *dataBuffer,uint64_t buffe
     *presultCode = *presultCode + -1;
     if (*presultCode == 0) {
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkLongStack_18,&g_networkBuffer,0x76,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkLongStack_18,&g_网络缓冲区,0x76,1);
     }
   }
   return 0;
@@ -24304,7 +24304,7 @@ LAB_180856fce:
             if (*presultCode2 == 0) {
               networkUintStack_b8 = CONCAT71(networkUintStack_b8._1_7_,1);
                     // WARNING: Subroutine does not return
-              NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),serverPort,&g_networkBuffer,0x76);
+              NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),serverPort,&g_网络缓冲区,0x76);
             }
           }
           if (((psocketDescriptor1 == pnetworkTimeout8) ||
@@ -25415,14 +25415,14 @@ void* * FUN_180857df0(void)
 
 {
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-              0x48) < _g_connectionTimeout) {
-    GetNetworkTimeout(&g_connectionTimeout);
-    if (_g_connectionTimeout == -1) {
-      _g_socketTimeout = 0xffffffff;
-      SetNetworkTimeout(&g_connectionTimeout);
+              0x48) < _g_连接超时) {
+    GetNetworkTimeout(&g_连接超时);
+    if (_g_连接超时 == -1) {
+      _g_套接字超时 = 0xffffffff;
+      SetNetworkTimeout(&g_连接超时);
     }
   }
-  return &g_socketTimeout;
+  return &g_套接字超时;
 }
 
 
@@ -25583,7 +25583,7 @@ LAB_180857f82:
     *pstatusCode = *pstatusCode + -1;
     if (*pstatusCode == 0) {
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout5,&g_networkBuffer,0x76,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout5,&g_网络缓冲区,0x76,1);
     }
   }
   if (((longlong *)*psocketDescriptor4 == psocketDescriptor4) && (*(longlong **)(socketHandle + 0x78) == psocketDescriptor4)) {
@@ -25599,7 +25599,7 @@ LAB_180857f82:
     *pstatusCode = *pstatusCode + -1;
     if (*pstatusCode == 0) {
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout5,&g_networkBuffer,0x76,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout5,&g_网络缓冲区,0x76,1);
     }
   }
   if (errorCode == 3) {
@@ -25828,7 +25828,7 @@ LAB_180859163:
           *(int *)psocketDescriptor1 = (int)*psocketDescriptor1 + -1;
           if ((int)*psocketDescriptor1 == 0) {
                     // WARNING: Subroutine does not return
-            NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),psocketDescriptor4,&g_networkBuffer,0x76,1);
+            NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),psocketDescriptor4,&g_网络缓冲区,0x76,1);
           }
           return networkResult8;
         }
@@ -25846,7 +25846,7 @@ LAB_180859163:
       *(int *)psocketDescriptor1 = (int)*psocketDescriptor1 + -1;
       if ((int)*psocketDescriptor1 == 0) {
                     // WARNING: Subroutine does not return
-        NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),psocketDescriptor4,&g_networkBuffer,0x76,1);
+        NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),psocketDescriptor4,&g_网络缓冲区,0x76,1);
       }
 LAB_180858c20:
       psocketDescriptor4 = (longlong *)(socketHandle + 0x70);
@@ -26023,7 +26023,7 @@ LAB_180858c20:
             *(int *)psocketDescriptor1 = (int)*psocketDescriptor1 + -1;
             if ((int)*psocketDescriptor1 == 0) {
                     // WARNING: Subroutine does not return
-              NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),psocketDescriptor4,&g_networkBuffer,0x76,1);
+              NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),psocketDescriptor4,&g_网络缓冲区,0x76,1);
             }
           }
         }
@@ -26032,7 +26032,7 @@ LAB_180858c20:
           *(int *)psocketDescriptor4 = (int)*psocketDescriptor4 + -1;
           if ((int)*psocketDescriptor4 == 0) {
                     // WARNING: Subroutine does not return
-            NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),pnetworkLongStack_148,&g_networkBuffer,0x76,1)
+            NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),pnetworkLongStack_148,&g_网络缓冲区,0x76,1)
             ;
           }
         }
@@ -26142,7 +26142,7 @@ joined_r0x0001808591a3:
             return ERROR_CODE_INVALID;
           }
                     // WARNING: Subroutine does not return
-          NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),psocketDescriptor4,&g_networkBuffer,0x76,1);
+          NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),psocketDescriptor4,&g_网络缓冲区,0x76,1);
         }
         *(uint8_t *)(socketHandle + 0x13c) = 0;
         networkUintStack_114 = 2;
@@ -26162,7 +26162,7 @@ joined_r0x0001808591a3:
             *(int *)psocketDescriptor1 = (int)*psocketDescriptor1 + -1;
             if ((int)*psocketDescriptor1 == 0) {
                     // WARNING: Subroutine does not return
-              NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),psocketDescriptor4,&g_networkBuffer,0x76,1);
+              NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),psocketDescriptor4,&g_网络缓冲区,0x76,1);
             }
           }
         }
@@ -26173,7 +26173,7 @@ LAB_180858e04:
             *(int *)psocketDescriptor1 = (int)*psocketDescriptor1 + -1;
             if ((int)*psocketDescriptor1 == 0) {
                     // WARNING: Subroutine does not return
-              NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),psocketDescriptor4,&g_networkBuffer,0x76,1);
+              NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),psocketDescriptor4,&g_网络缓冲区,0x76,1);
             }
           }
           if (socketStatus != 0) {
@@ -26293,7 +26293,7 @@ LAB_180858e04:
         *(int *)psocketDescriptor1 = (int)*psocketDescriptor1 + -1;
         if ((int)*psocketDescriptor1 == 0) {
                     // WARNING: Subroutine does not return
-          NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),psocketDescriptor4,&g_networkBuffer,0x76,1);
+          NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),psocketDescriptor4,&g_网络缓冲区,0x76,1);
         }
       }
       psocketDescriptor4 = pnetworkLongStack_b8;
@@ -26380,7 +26380,7 @@ uint64_t FUN_1808592c0(longlong socketHandle,longlong dataBuffer,uint64_t buffer
     *presultCode = *presultCode + -1;
     if (*presultCode == 0) {
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),serverPort,&g_networkBuffer,0x76,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),serverPort,&g_网络缓冲区,0x76,1);
     }
   }
   statusCode1 = -1;
@@ -26469,7 +26469,7 @@ uint64_t FUN_1808592ca(longlong socketHandle,longlong dataBuffer,uint64_t buffer
     *presultCode = *presultCode + -1;
     if (*presultCode == 0) {
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),serverPort,&g_networkBuffer,0x76,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),serverPort,&g_网络缓冲区,0x76,1);
     }
   }
   statusCode1 = -1;
@@ -27434,7 +27434,7 @@ LAB_18085a4c4:
     *pstatusCode = *pstatusCode + -1;
     if (*pstatusCode == 0) {
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkLongStack_b8,&g_networkBuffer,0x76,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkLongStack_b8,&g_网络缓冲区,0x76,1);
     }
     return processResult;
   }
@@ -27444,7 +27444,7 @@ LAB_18085a4fd:
     *pstatusCode = *pstatusCode + -1;
     if (*pstatusCode == 0) {
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkLongStack_b8,&g_networkBuffer,0x76,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkLongStack_b8,&g_网络缓冲区,0x76,1);
     }
   }
   return 0;
@@ -27651,7 +27651,7 @@ LAB_18085a91b:
     *pstatusCode = *pstatusCode + -1;
     if (*pstatusCode == 0) {
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkLongStack_b8,&g_networkBuffer,0x76,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkLongStack_b8,&g_网络缓冲区,0x76,1);
     }
   }
   return processResult;
@@ -27852,7 +27852,7 @@ LAB_18085a91b:
     *pstatusCode = *pstatusCode + -1;
     if (*pstatusCode == 0) {
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout7,&g_networkBuffer,0x76,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout7,&g_网络缓冲区,0x76,1);
     }
   }
   return socketIndex;
@@ -27872,7 +27872,7 @@ uint32_t FUN_18085a934(uint64_t socketHandle,longlong dataBuffer)
   *pstatusCode = *pstatusCode + -1;
   if (*pstatusCode == 0) {
                     // WARNING: Subroutine does not return
-    NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),dataBuffer,&g_networkBuffer,0x76,1);
+    NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),dataBuffer,&g_网络缓冲区,0x76,1);
   }
   return connectionState;
 }
@@ -27952,7 +27952,7 @@ uint64_t FUN_18085a980(longlong socketHandle)
     *pstatusCode = *pstatusCode + -1;
     if (*pstatusCode == 0) {
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkLongStack_18,&g_networkBuffer,0x76,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkLongStack_18,&g_网络缓冲区,0x76,1);
     }
   }
   connectionCount = GetConnectionTimeout(socketHandle + 0xb8);
@@ -28225,7 +28225,7 @@ LAB_180857f18:
     *pstatusCode = *pstatusCode + -1;
     if (*pstatusCode == 0) {
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout4,&g_networkBuffer,0x76,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout4,&g_网络缓冲区,0x76,1);
     }
   }
   if (((longlong *)*pnetworkTimeout7 == pnetworkTimeout7) && (*(longlong **)(socketHandle + 0x78) == pnetworkTimeout7)) {
@@ -28241,7 +28241,7 @@ LAB_180857f18:
     *pstatusCode = *pstatusCode + -1;
     if (*pstatusCode == 0) {
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout4,&g_networkBuffer,0x76,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout4,&g_网络缓冲区,0x76,1);
     }
   }
   if (int_var_9 == 3) {
@@ -28472,7 +28472,7 @@ LAB_180859163:
           *(int *)ppacketLength = (int)*ppacketLength + -1;
           if ((int)*ppacketLength == 0) {
                     // WARNING: Subroutine does not return
-            NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),connectionBuffer1,&g_networkBuffer,0x76,1);
+            NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),connectionBuffer1,&g_网络缓冲区,0x76,1);
           }
           return networkResult9;
         }
@@ -28490,7 +28490,7 @@ LAB_180859163:
       *(int *)ppacketLength = (int)*ppacketLength + -1;
       if ((int)*ppacketLength == 0) {
                     // WARNING: Subroutine does not return
-        NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),connectionBuffer1,&g_networkBuffer,0x76,1);
+        NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),connectionBuffer1,&g_网络缓冲区,0x76,1);
       }
 LAB_180858c20:
       pnetworkTimeout7 = (longlong *)(socketHandle + 0x70);
@@ -28671,7 +28671,7 @@ LAB_180858c20:
             *(int *)ppacketLength = (int)*ppacketLength + -1;
             if ((int)*ppacketLength == 0) {
                     // WARNING: Subroutine does not return
-              NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),connectionBuffer1,&g_networkBuffer,0x76,1);
+              NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),connectionBuffer1,&g_网络缓冲区,0x76,1);
             }
           }
         }
@@ -28680,7 +28680,7 @@ LAB_180858c20:
           *(int *)connectionBuffer1 = (int)*connectionBuffer1 + -1;
           if ((int)*connectionBuffer1 == 0) {
                     // WARNING: Subroutine does not return
-            NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkPtrStack_148,&g_networkBuffer,0x76,1)
+            NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkPtrStack_148,&g_网络缓冲区,0x76,1)
             ;
           }
         }
@@ -28787,7 +28787,7 @@ joined_r0x0001808591a3:
             return ERROR_CODE_INVALID;
           }
                     // WARNING: Subroutine does not return
-          NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),connectionBuffer1,&g_networkBuffer,0x76,1);
+          NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),connectionBuffer1,&g_网络缓冲区,0x76,1);
         }
         *(uint8_t *)(socketHandle + 0x13c) = 0;
         networkUintStack_114 = 2;
@@ -28807,7 +28807,7 @@ joined_r0x0001808591a3:
             *(int *)ppacketLength = (int)*ppacketLength + -1;
             if ((int)*ppacketLength == 0) {
                     // WARNING: Subroutine does not return
-              NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),connectionBuffer1,&g_networkBuffer,0x76,1);
+              NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),connectionBuffer1,&g_网络缓冲区,0x76,1);
             }
           }
         }
@@ -28818,7 +28818,7 @@ LAB_180858e04:
             *(int *)ppacketLength = (int)*ppacketLength + -1;
             if ((int)*ppacketLength == 0) {
                     // WARNING: Subroutine does not return
-              NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),connectionBuffer1,&g_networkBuffer,0x76,1);
+              NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),connectionBuffer1,&g_网络缓冲区,0x76,1);
             }
           }
           if (packetLength7 != 0) {
@@ -28941,7 +28941,7 @@ LAB_180858e04:
         *(int *)ppacketLength = (int)*ppacketLength + -1;
         if ((int)*ppacketLength == 0) {
                     // WARNING: Subroutine does not return
-          NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),connectionBuffer1,&g_networkBuffer,0x76,1);
+          NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),connectionBuffer1,&g_网络缓冲区,0x76,1);
         }
       }
       pnetworkTimeout7 = pnetworkLongStack_b8;
@@ -29418,7 +29418,7 @@ LAB_18085b8b5:
   *presultCode = *presultCode + -1;
   if (*presultCode == 0) {
                     // WARNING: Subroutine does not return
-    NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout5,&g_networkBuffer,0x76,1);
+    NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout5,&g_网络缓冲区,0x76,1);
   }
   return int_var_9;
 }
@@ -29570,7 +29570,7 @@ LAB_18085b8b5:
     return dataLength;
   }
                     // WARNING: Subroutine does not return
-  NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout3,&g_networkBuffer,0x76,1);
+  NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout3,&g_网络缓冲区,0x76,1);
 }
 
 
@@ -29639,7 +29639,7 @@ longlong * FUN_18085b920(longlong socketHandle,longlong *dataBuffer)
     *presultCode = *presultCode + -1;
     if (*presultCode == 0) {
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),clientPort,&g_networkBuffer,0x76,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),clientPort,&g_网络缓冲区,0x76,1);
     }
   }
   return dataBuffer;
@@ -29704,7 +29704,7 @@ longlong * FUN_18085ba10(longlong socketHandle,longlong *dataBuffer)
     *presultCode = *presultCode + -1;
     if (*presultCode == 0) {
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),long_var_9,&g_networkBuffer,0x76,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),long_var_9,&g_网络缓冲区,0x76,1);
     }
   }
   return dataBuffer;
@@ -29823,7 +29823,7 @@ FUN_18085bc30(longlong socketHandle,uint dataBuffer,char bufferCapacity,char tim
         *piVar9 = *piVar9 + -1;
         if (*piVar9 == 0) {
                     // WARNING: Subroutine does not return
-          NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout4,&g_networkBuffer,0x76,1);
+          NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout4,&g_网络缓冲区,0x76,1);
         }
       }
       if (networkParam == (uint64_t *)ZERO_OFFSET) {
@@ -29869,7 +29869,7 @@ FUN_18085bc30(longlong socketHandle,uint dataBuffer,char bufferCapacity,char tim
           *piVar9 = *piVar9 + -1;
           if (*piVar9 == 0) {
                     // WARNING: Subroutine does not return
-            NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout4,&g_networkBuffer,0x76,1);
+            NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout4,&g_网络缓冲区,0x76,1);
           }
         }
         return ERROR_CODE_INVALID;
@@ -29882,7 +29882,7 @@ FUN_18085bc30(longlong socketHandle,uint dataBuffer,char bufferCapacity,char tim
         *piVar9 = *piVar9 + -1;
         if (*piVar9 == 0) {
                     // WARNING: Subroutine does not return
-          NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout4,&g_networkBuffer,0x76,1);
+          NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout4,&g_网络缓冲区,0x76,1);
         }
       }
     }
@@ -29914,7 +29914,7 @@ FUN_18085bc30(longlong socketHandle,uint dataBuffer,char bufferCapacity,char tim
           *piVar9 = *piVar9 + -1;
           if (*piVar9 == 0) {
                     // WARNING: Subroutine does not return
-            NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout4,&g_networkBuffer,0x76,1);
+            NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout4,&g_网络缓冲区,0x76,1);
           }
         }
         *(longlong *)psocketDescriptor[1] = *psocketDescriptor;
@@ -30010,7 +30010,7 @@ FUN_18085bc30(longlong socketHandle,uint dataBuffer,char bufferCapacity,char tim
         *piVar9 = *piVar9 + -1;
         if (*piVar9 == 0) {
                     // WARNING: Subroutine does not return
-          NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout4,&g_networkBuffer,0x76,1);
+          NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout4,&g_网络缓冲区,0x76,1);
         }
       }
       if (networkParam == (uint64_t *)ZERO_OFFSET) {
@@ -30057,7 +30057,7 @@ FUN_18085bc30(longlong socketHandle,uint dataBuffer,char bufferCapacity,char tim
       *piVar9 = *piVar9 + -1;
       if (*piVar9 == 0) {
                     // WARNING: Subroutine does not return
-        NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout4,&g_networkBuffer,0x76,1);
+        NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout4,&g_网络缓冲区,0x76,1);
       }
     }
     timeoutValue = FUN_180854810(socketHandle,networkResult8,dataBuffer,networkParam);
@@ -30171,7 +30171,7 @@ void FUN_18085c230(longlong socketHandle,ulonglong dataBuffer)
         *pstatusCode = *pstatusCode + -1;
         if (*pstatusCode == 0) {
                     // WARNING: Subroutine does not return
-          NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkLongStack_28,&g_networkBuffer,0x76,1);
+          NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkLongStack_28,&g_网络缓冲区,0x76,1);
         }
       }
     }
@@ -30194,7 +30194,7 @@ void FUN_18085c230(longlong socketHandle,ulonglong dataBuffer)
         *pstatusCode = *pstatusCode + -1;
         if (*pstatusCode == 0) {
                     // WARNING: Subroutine does not return
-          NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkLongStack_28,&g_networkBuffer,0x76,1);
+          NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkLongStack_28,&g_网络缓冲区,0x76,1);
         }
       }
       FUN_180855e40(socketHandle,socketHandle + CONNECTION_BUFFER_OFFSET);
@@ -30224,7 +30224,7 @@ FUN_18085c4b0(longlong socketHandle,longlong dataBuffer,uint32_t bufferCapacity,
     socketDescriptor = func_0x00018084d0b0(*(uint64_t *)(socketHandle + 0x110),dataBuffer + SOCKET_RESPONSE_OFFSET);
     if (socketDescriptor != 0) {
       pconnectionInfo = (longlong *)
-               ExecuteNetworkOperation(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),SESSION_CONFIG_SIZE,&g_connectionPool,0x3ce,0,0,1
+               ExecuteNetworkOperation(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),SESSION_CONFIG_SIZE,&g_连接池,0x3ce,0,0,1
                             );
       if (pconnectionInfo == (longlong *)ZERO_OFFSET) {
         return 0x26;
@@ -30411,7 +30411,7 @@ longlong * FUN_18085c8a0(longlong socketHandle,longlong *dataBuffer)
     *presultCode = *presultCode + -1;
     if (*presultCode == 0) {
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),clientPort,&g_networkBuffer,0x76,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),clientPort,&g_网络缓冲区,0x76,1);
     }
   }
   return dataBuffer;
@@ -30489,7 +30489,7 @@ void FUN_18085ca30(longlong socketHandle,ulonglong dataBuffer)
       if (*presultCode == 0) {
         networkLongStack_98 = CONCAT71(networkLongStack_98._1_7_,1);
                     // WARNING: Subroutine does not return
-        NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout4,&g_networkBuffer,0x76);
+        NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout4,&g_网络缓冲区,0x76);
       }
     }
     if (1 < errorCode - 4U) goto LAB_18085d424;
@@ -30514,7 +30514,7 @@ void FUN_18085ca30(longlong socketHandle,ulonglong dataBuffer)
       if (*presultCode == 0) {
         networkLongStack_98 = CONCAT71(networkLongStack_98._1_7_,1);
                     // WARNING: Subroutine does not return
-        NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout4,&g_networkBuffer,0x76);
+        NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout4,&g_网络缓冲区,0x76);
       }
     }
     if (errorCode != 0) goto LAB_18085d424;
@@ -30555,7 +30555,7 @@ void FUN_18085ca30(longlong socketHandle,ulonglong dataBuffer)
       if (*presultCode == 0) {
         networkLongStack_98 = CONCAT71(networkLongStack_98._1_7_,1);
                     // WARNING: Subroutine does not return
-        NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout4,&g_networkBuffer,0x76);
+        NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout4,&g_网络缓冲区,0x76);
       }
     }
     if ((pppsocketStatusPointer == pppconnectionBuffer8) ||
@@ -30690,7 +30690,7 @@ LAB_18085ceec:
         if (*presultCode == 0) {
           networkLongStack_98 = CONCAT71(networkLongStack_98._1_7_,1);
                     // WARNING: Subroutine does not return
-          NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout4,&g_networkBuffer,0x76);
+          NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout4,&g_网络缓冲区,0x76);
         }
       }
       networkLongStack_98 = CONCAT71(networkLongStack_98._1_7_,1);
@@ -30717,7 +30717,7 @@ LAB_18085ceec:
       if (*presultCode == 0) {
         networkLongStack_98 = CONCAT71(networkLongStack_98._1_7_,1);
                     // WARNING: Subroutine does not return
-        NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout4,&g_networkBuffer,0x76);
+        NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout4,&g_网络缓冲区,0x76);
       }
     }
     connectionBuffer2 = (uint *)AllocateReceiveBuffer();
@@ -31001,7 +31001,7 @@ uint64_t FUN_18085d650(longlong socketHandle,uint8_t *dataBuffer)
       uStackX_8 = *(uint *)(dataBuffer + SOCKET_BUFFER_OFFSET);
       if (*presultCode == 0) {
                     // WARNING: Subroutine does not return
-        NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),dataBuffer,&g_networkBuffer,0x76,1);
+        NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),dataBuffer,&g_网络缓冲区,0x76,1);
       }
     }
     else {
@@ -31087,8 +31087,8 @@ FUN_18085d860(uint64_t *socketHandle,uint64_t dataBuffer,uint64_t bufferCapacity
   socketHandle[2] = 0;
   socketHandle[3] = 0;
   socketHandle[4] = 0;
-  *socketHandle = &g_socketTable;
-  socketHandle[1] = &g_packetQueue;
+  *socketHandle = &g_套接字表;
+  socketHandle[1] = &g_数据包队列;
   socketHandle[0x10] = 0;
   socketHandle[0x11] = dataBuffer;
   socketHandle[0x16] = networkParam;
@@ -31359,8 +31359,8 @@ void FUN_18085dff0(uint64_t *socketHandle)
   
   pnetworkTimeout = socketHandle + 0x94;
   long_ptr_9 = (longlong *)ZERO_OFFSET;
-  *socketHandle = &g_socketTable;
-  socketHandle[1] = &g_packetQueue;
+  *socketHandle = &g_套接字表;
+  socketHandle[1] = &g_数据包队列;
   psocketHandle = (longlong *)(*pnetworkTimeout + -0x70);
   if (*pnetworkTimeout == 0) {
     psocketHandle = long_ptr_9;
@@ -31403,7 +31403,7 @@ void FUN_18085dff0(uint64_t *socketHandle)
     psocketHandle[1] = (longlong)psocketHandle;
     *psocketHandle = (longlong)psocketHandle;
                     // WARNING: Subroutine does not return
-    NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),psocketHandle,&g_networkStatus,0x40e,1);
+    NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),psocketHandle,&g_网络状态,0x40e,1);
   }
   long_ptr_9 = (longlong *)socketHandle[0x9a];
   if ((long_ptr_9 < (longlong *)socketHandle[0x9a]) ||
@@ -31461,7 +31461,7 @@ void FUN_18085dff0(uint64_t *socketHandle)
     }
     (**(code **)(*long_ptr_9 + CONNECTION_BUFFER_OFFSET))(long_ptr_9,0);
                     // WARNING: Subroutine does not return
-    NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),long_ptr_9,&g_networkStatus,0x418,1);
+    NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),long_ptr_9,&g_网络状态,0x418,1);
   }
   socketDescriptor = *long_ptr_9;
   timeoutValue = *(uint *)(socketDescriptor + SESSION_STRUCT_SIZE);
@@ -31498,7 +31498,7 @@ void FUN_18085dff0(uint64_t *socketHandle)
   }
 LAB_18085e1d5:
                     // WARNING: Subroutine does not return
-  NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),socketDescriptor,&g_networkStatus,0x413,1);
+  NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),socketDescriptor,&g_网络状态,0x413,1);
 }
 
 
@@ -31522,8 +31522,8 @@ void FUN_18085e003(uint64_t *socketHandle)
   uint32_t *ptr_var_9;
   
   pclientPort = (longlong *)ZERO_OFFSET;
-  *socketHandle = &g_socketTable;
-  socketHandle[1] = &g_packetQueue;
+  *socketHandle = &g_套接字表;
+  socketHandle[1] = &g_数据包队列;
   pdataBuffer = (longlong *)(*unaff_RBP + -0x70);
   if (*unaff_RBP == 0) {
     pdataBuffer = pclientPort;
@@ -31566,7 +31566,7 @@ void FUN_18085e003(uint64_t *socketHandle)
     pdataBuffer[1] = (longlong)pdataBuffer;
     *pdataBuffer = (longlong)pdataBuffer;
                     // WARNING: Subroutine does not return
-    NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),pdataBuffer,&g_networkStatus,0x40e,1);
+    NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),pdataBuffer,&g_网络状态,0x40e,1);
   }
   pclientPort = (longlong *)socketHandle[0x9a];
   if ((pclientPort < (longlong *)socketHandle[0x9a]) ||
@@ -31624,7 +31624,7 @@ void FUN_18085e003(uint64_t *socketHandle)
     }
     (**(code **)(*pclientPort + CONNECTION_BUFFER_OFFSET))(pclientPort,0);
                     // WARNING: Subroutine does not return
-    NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),pclientPort,&g_networkStatus,0x418,1);
+    NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),pclientPort,&g_网络状态,0x418,1);
   }
   networkTimeout = *pclientPort;
   bufferSize = *(uint *)(networkTimeout + SESSION_STRUCT_SIZE);
@@ -31661,7 +31661,7 @@ void FUN_18085e003(uint64_t *socketHandle)
   }
 LAB_18085e1d5:
                     // WARNING: Subroutine does not return
-  NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout,&g_networkStatus,0x413,1);
+  NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout,&g_网络状态,0x413,1);
 }
 
 
@@ -31740,7 +31740,7 @@ void FUN_18085e112(void)
     }
     (**(code **)(*psocketDescriptor + CONNECTION_BUFFER_OFFSET))(psocketDescriptor,0);
                     // WARNING: Subroutine does not return
-    NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),psocketDescriptor,&g_networkStatus,0x418,1);
+    NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),psocketDescriptor,&g_网络状态,0x418,1);
   }
   networkTimeout = *responseBuffer;
   socketStatus = *(uint *)(networkTimeout + SESSION_STRUCT_SIZE);
@@ -31778,7 +31778,7 @@ void FUN_18085e112(void)
   }
 LAB_18085e1d5:
                     // WARNING: Subroutine does not return
-  NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout,&g_networkStatus,0x413,1);
+  NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),networkTimeout,&g_网络状态,0x413,1);
 }
 
 
@@ -31910,7 +31910,7 @@ void FUN_18085e4a0(longlong socketHandle)
         *pstatusCode = *pstatusCode + -1;
         if (*pstatusCode == 0) {
                     // WARNING: Subroutine does not return
-          NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),clientPort,&g_networkBuffer,0x76,1);
+          NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),clientPort,&g_网络缓冲区,0x76,1);
         }
       }
       *(longlong *)pserverPort[1] = *pserverPort;
@@ -31932,7 +31932,7 @@ void FUN_18085e4a0(longlong socketHandle)
     *pstatusCode = *pstatusCode + -1;
     if (*pstatusCode == 0) {
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),clientPort,&g_networkBuffer,0x76,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),clientPort,&g_网络缓冲区,0x76,1);
     }
   }
   clientPort = *(longlong *)(socketHandle + 0x38);
@@ -31941,7 +31941,7 @@ void FUN_18085e4a0(longlong socketHandle)
     *pstatusCode = *pstatusCode + -1;
     if (*pstatusCode == 0) {
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),clientPort,&g_networkBuffer,0x76,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),clientPort,&g_网络缓冲区,0x76,1);
     }
   }
   return;
@@ -34128,7 +34128,7 @@ void FUN_180860480(longlong socketHandle,uint64_t dataBuffer,uint64_t *bufferCap
     networkUintStack_70 = 0;
     networkUintStack_78 = 0;
     psocketDescriptor = (longlong *)
-             ExecuteNetworkOperation(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),0x30,&g_networkStatus,0x705);
+             ExecuteNetworkOperation(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),0x30,&g_网络状态,0x705);
     if (psocketDescriptor == (longlong *)ZERO_OFFSET) goto LAB_1808605b0;
     *psocketDescriptor = (longlong)psocketDescriptor;
     psocketDescriptor[1] = (longlong)psocketDescriptor;
@@ -34472,7 +34472,7 @@ LAB_180860af6:
                       psocketDescriptor1[1] = (longlong)psocketDescriptor1;
                       *psocketDescriptor1 = (longlong)psocketDescriptor1;
                     // WARNING: Subroutine does not return
-                      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),psocketDescriptor1,&g_networkStatus,
+                      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),psocketDescriptor1,&g_网络状态,
                                     0xa2c);
                     }
                     goto FUN_1808616bc;
@@ -34909,7 +34909,7 @@ joined_r0x000180861496:
                         psocketDescriptor1[1] = (longlong)psocketDescriptor1;
                         *psocketDescriptor1 = (longlong)psocketDescriptor1;
                     // WARNING: Subroutine does not return
-                        NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),psocketDescriptor1,&g_networkStatus
+                        NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),psocketDescriptor1,&g_网络状态
                                       ,0xadc);
                       }
                       goto FUN_1808616bc;
@@ -35159,7 +35159,7 @@ LAB_180860af6:
                     psocketDescriptor0[1] = (longlong)psocketDescriptor0;
                     *psocketDescriptor0 = (longlong)psocketDescriptor0;
                     // WARNING: Subroutine does not return
-                    NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),psocketDescriptor0,&g_networkStatus,
+                    NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),psocketDescriptor0,&g_网络状态,
                                   0xa2c,1);
                   }
                   goto LAB_180861693;
@@ -35589,7 +35589,7 @@ joined_r0x000180861496:
                       psocketDescriptor0[1] = (longlong)psocketDescriptor0;
                       *psocketDescriptor0 = (longlong)psocketDescriptor0;
                     // WARNING: Subroutine does not return
-                      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),psocketDescriptor0,&g_networkStatus,
+                      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),psocketDescriptor0,&g_网络状态,
                                     0xadc,1);
                     }
                     goto LAB_180861693;
@@ -35735,7 +35735,7 @@ LAB_18086154d:
     pnetworkTimeout0[1] = (longlong)pnetworkTimeout0;
     *pnetworkTimeout0 = (longlong)pnetworkTimeout0;
                     // WARNING: Subroutine does not return
-    NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),pnetworkTimeout0,&g_networkStatus,0xadc,1);
+    NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),pnetworkTimeout0,&g_网络状态,0xadc,1);
   }
 LAB_180861693:
                     // WARNING: Subroutine does not return
@@ -37059,7 +37059,7 @@ void FUN_180862080(longlong socketHandle,longlong *dataBuffer,uint64_t bufferCap
   networkUintStack_148 = 0;
   pnetworkTimeout0 = (longlong *)ZERO_OFFSET;
   pserverPort = (longlong *)
-           ExecuteNetworkOperation(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),0x30,&g_networkStatus,0x705);
+           ExecuteNetworkOperation(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),0x30,&g_网络状态,0x705);
   if (pserverPort == (longlong *)ZERO_OFFSET) goto FUN_18086247a;
   *pserverPort = (longlong)pserverPort;
   pserverPort[1] = (longlong)pserverPort;
@@ -37094,7 +37094,7 @@ LAB_180862261:
         (**(code **)(*(longlong *)pserverPort[2] + 0x30))((longlong *)pserverPort[2],&networkLongStack_d0);
         statusCode2 = FUN_1808caa20(socketHandle + 0x378 + (ulonglong)(~(packetLength >> 1) & 1) * 0x80,&networkLongStack_d0);
         if (statusCode2 == 0) {
-          FUN_18085d7f0(pserverPort,&g_networkStatus,0x7a5);
+          FUN_18085d7f0(pserverPort,&g_网络状态,0x7a5);
         }
         goto FUN_18086247a;
       }
@@ -37610,7 +37610,7 @@ void FUN_1808629a0(longlong socketHandle,uint64_t dataBuffer,char bufferCapacity
         pconnectionInfo[1] = (longlong)pconnectionInfo;
         *pconnectionInfo = (longlong)pconnectionInfo;
                     // WARNING: Subroutine does not return
-        NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),pconnectionInfo,&g_networkStatus,0x8a4);
+        NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),pconnectionInfo,&g_网络状态,0x8a4);
       }
     }
     else if (bufferCapacity != '\0') {
@@ -38089,7 +38089,7 @@ ulonglong FUN_180862e00(longlong socketHandle,byte dataBuffer)
               FUN_1808559c0(socketHandle + 200);
               (**(code **)(*(longlong *)(socketHandle + 8) + CONNECTION_BUFFER_OFFSET))(socketHandle + 8,0);
                     // WARNING: Subroutine does not return
-              NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),socketHandle,&g_threadManager,0x4c4,1);
+              NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),socketHandle,&g_线程管理器,0x4c4,1);
             }
           }
         }
@@ -38402,7 +38402,7 @@ LAB_18086350f:
   *(uint *)(socketHandle + 0x2d8) =
        (-(uint)(abStackX_8[0] != 0) & 0x1000 | *(uint *)(socketHandle + 0x2d8)) & ~networkResult2;
   long_var_9 = *(longlong *)(*(longlong *)(*(longlong *)(socketHandle + 0x88) + 0xd0) + 0x30);
-  if (long_var_9 == _g_networkConfig) {
+  if (long_var_9 == _g_网络配置) {
 LAB_180863615:
     if (*(longlong *)(socketHandle + 0x2d0) == 0) goto LAB_180863724;
     auStackX_10[0] = 0;
@@ -38570,7 +38570,7 @@ LAB_18086350f:
   *(uint *)(socketHandle + 0x2d8) =
        (-(uint)(stack_param != 0) & 0x1000 | *(uint *)(socketHandle + 0x2d8)) & ~bufferSize;
   long_var_9 = *(longlong *)(*(longlong *)(*(longlong *)(socketHandle + 0x88) + 0xd0) + 0x30);
-  if (long_var_9 == _g_networkConfig) {
+  if (long_var_9 == _g_网络配置) {
 LAB_180863615:
     if (((*(longlong *)(socketHandle + 0x2d0) == 0) ||
         (stack_param = networkResult5,
@@ -59480,15 +59480,15 @@ uint64_t networkAllocateBuffer(longlong *socketHandle)
             NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),socketStatusPointer,&UNK_18095b500,0xc6,1);
           }
           serverPort = FUN_1808719a0(serverPort,lStackX_8,connectionInfo,psocketHandle,socketStatusPointer);
-          networkResult = _g_packetLength;
+          networkResult = _g_数据包长度;
           while( true ) {
-            _g_packetLength = networkResult + 1 & 0x80000007;
-            if ((int)_g_packetLength < 0) {
-              _g_packetLength = (_g_packetLength - 1 | 0xfffffff8) + 1;
+            _g_数据包长度 = networkResult + 1 & 0x80000007;
+            if ((int)_g_数据包长度 < 0) {
+              _g_数据包长度 = (_g_数据包长度 - 1 | 0xfffffff8) + 1;
             }
             if (*(longlong *)((longlong)(int)networkResult * 8 + 0x180c4eab0) == 0) break;
             errorCode = errorCode + 1;
-            networkResult = _g_packetLength;
+            networkResult = _g_数据包长度;
             if (7 < errorCode) {
               FUN_180873460(serverPort);
                     // WARNING: Subroutine does not return
@@ -59568,15 +59568,15 @@ uint64_t FUN_180875538(void)
             NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),socketStatusPointer,&UNK_18095b500,0xc6,1);
           }
           serverPort = FUN_1808719a0(serverPort,lStack0000000000000070,connectionInfo,psocketHandle,socketStatusPointer);
-          networkResult = _g_packetLength;
+          networkResult = _g_数据包长度;
           while( true ) {
-            _g_packetLength = networkResult + 1 & 0x80000007;
-            if ((int)_g_packetLength < 0) {
-              _g_packetLength = (_g_packetLength - 1 | 0xfffffff8) + 1;
+            _g_数据包长度 = networkResult + 1 & 0x80000007;
+            if ((int)_g_数据包长度 < 0) {
+              _g_数据包长度 = (_g_数据包长度 - 1 | 0xfffffff8) + 1;
             }
             if (*(longlong *)((longlong)(int)networkResult * 8 + 0x180c4eab0) == 0) break;
             errorCode = errorCode + 1;
-            networkResult = _g_packetLength;
+            networkResult = _g_数据包长度;
             if (7 < errorCode) {
               FUN_180873460(serverPort);
                     // WARNING: Subroutine does not return
@@ -59666,16 +59666,16 @@ ulonglong FUN_180875569(longlong socketHandle,uint64_t dataBuffer,uint64_t buffe
         }
         socketDescriptor = FUN_1808719a0(connectionInfo,stackContext,socketDescriptor,pdataBuffer,pconnectionIndex);
         bufferSize = unaff_RDI & 0xffffffff;
-        networkResult = _g_packetLength;
+        networkResult = _g_数据包长度;
         while( true ) {
-          _g_packetLength = networkResult + 1 & 0x80000007;
-          if ((int)_g_packetLength < 0) {
-            _g_packetLength = (_g_packetLength - 1 | 0xfffffff8) + 1;
+          _g_数据包长度 = networkResult + 1 & 0x80000007;
+          if ((int)_g_数据包长度 < 0) {
+            _g_数据包长度 = (_g_数据包长度 - 1 | 0xfffffff8) + 1;
           }
           if (*(ulonglong *)((longlong)(int)networkResult * 8 + 0x180c4eab0) == unaff_RDI) break;
           socketStatus = (int)bufferSize + 1;
           bufferSize = (ulonglong)socketStatus;
-          networkResult = _g_packetLength;
+          networkResult = _g_数据包长度;
           if (7 < (int)socketStatus) {
             FUN_180873460(socketDescriptor);
                     // WARNING: Subroutine does not return
@@ -61467,13 +61467,13 @@ LAB_1808770de:
   }
   if (socketStatus < 0x4a) {
     for (errorCode = 0; (-1 < errorCode && (errorCode < *(int *)(socketHandle + 0x38))); errorCode = errorCode + 1) {
-      networkOperationResult = NetworkCreateListener(*(uint64_t *)(*(longlong *)(socketHandle + 0x30) + (longlong)errorCode * 8),
+      networkOperationResult = 网络创建监听器(*(uint64_t *)(*(longlong *)(socketHandle + 0x30) + (longlong)errorCode * 8),
                             dataBuffer);
       if (networkOperationResult != 0) goto LAB_18087752c;
     }
-    errorCode = FUN_180868de0(NetworkCreateListener,socketHandle,dataBuffer);
-    if (((errorCode != 0) || (errorCode = FUN_180868fc0(NetworkCreateListener,socketHandle,dataBuffer), errorCode != 0)) ||
-       (errorCode = FUN_180868ea0(NetworkCreateListener,socketHandle,dataBuffer), errorCode != 0)) goto LAB_18087752c;
+    errorCode = FUN_180868de0(网络创建监听器,socketHandle,dataBuffer);
+    if (((errorCode != 0) || (errorCode = FUN_180868fc0(网络创建监听器,socketHandle,dataBuffer), errorCode != 0)) ||
+       (errorCode = FUN_180868ea0(网络创建监听器,socketHandle,dataBuffer), errorCode != 0)) goto LAB_18087752c;
   }
   if (((*(uint *)(socketHandle + 0x218) < 0x4c) && (networkLongStack_e8 != 0)) &&
      (errorCode = *(int *)(networkLongStack_e8 + 0x50), errorCode != 0)) {
@@ -61679,8 +61679,8 @@ void FUN_180877798(void)
 
 
 
-// 函数: void NetworkAcceptConnection(longlong socketHandle,uint64_t dataBuffer)
-void NetworkAcceptConnection(longlong socketHandle,uint64_t dataBuffer)
+// 函数: void 网络接受连接(longlong socketHandle,uint64_t dataBuffer)
+void 网络接受连接(longlong socketHandle,uint64_t dataBuffer)
 
 {
   int statusCode;
@@ -61697,8 +61697,8 @@ void NetworkAcceptConnection(longlong socketHandle,uint64_t dataBuffer)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void NetworkRejectConnection(longlong socketHandle,longlong *dataBuffer)
-void NetworkRejectConnection(longlong socketHandle,longlong *dataBuffer)
+// 函数: void 网络拒绝连接(longlong socketHandle,longlong *dataBuffer)
+void 网络拒绝连接(longlong socketHandle,longlong *dataBuffer)
 
 {
   longlong *pnetworkTimeout;
@@ -61972,8 +61972,8 @@ LAB_180877dfe:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void NetworkAuthenticateClient(longlong socketHandle,longlong *dataBuffer)
-void NetworkAuthenticateClient(longlong socketHandle,longlong *dataBuffer)
+// 函数: void 网络认证客户端(longlong socketHandle,longlong *dataBuffer)
+void 网络认证客户端(longlong socketHandle,longlong *dataBuffer)
 
 {
   int statusCode;
@@ -62039,8 +62039,8 @@ void NetworkAuthenticateClient(longlong socketHandle,longlong *dataBuffer)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void NetworkValidateClient(longlong socketHandle,longlong *dataBuffer)
-void NetworkValidateClient(longlong socketHandle,longlong *dataBuffer)
+// 函数: void 网络验证客户端(longlong socketHandle,longlong *dataBuffer)
+void 网络验证客户端(longlong socketHandle,longlong *dataBuffer)
 
 {
   longlong *pnetworkTimeout;
@@ -62972,7 +62972,7 @@ LAB_1808788de:
       }
     }
     networkResult0 = 0;
-    if ((((0x54 < networkResult8) || (errorCode = FUN_180868f00(NetworkValidateClient,socketHandle,networkParam), errorCode == 0)) &&
+    if ((((0x54 < networkResult8) || (errorCode = FUN_180868f00(网络验证客户端,socketHandle,networkParam), errorCode == 0)) &&
         ((0x55 < networkResult8 || (errorCode = FUN_180877970(socketHandle,networkParam), errorCode == 0)))) &&
        ((0x56 < networkResult8 || (errorCode = FUN_180868f00(FUN_180876d70,socketHandle,networkParam), errorCode == 0)))) {
       networkResult2 = networkResult0;
@@ -63002,10 +63002,10 @@ LAB_1808788de:
         }
       }
       if ((0x5a < networkResult8) ||
-         ((((errorCode = FUN_180868e40(NetworkAcceptConnection,socketHandle,networkParam), errorCode == 0 &&
-            (errorCode = FUN_180868de0(NetworkAcceptConnection,socketHandle,networkParam), errorCode == 0)) &&
-           (errorCode = FUN_180868fc0(NetworkAcceptConnection,socketHandle,networkParam), errorCode == 0)) &&
-          (errorCode = FUN_180868ea0(NetworkAcceptConnection,socketHandle,networkParam), errorCode == 0)))) {
+         ((((errorCode = FUN_180868e40(网络接受连接,socketHandle,networkParam), errorCode == 0 &&
+            (errorCode = FUN_180868de0(网络接受连接,socketHandle,networkParam), errorCode == 0)) &&
+           (errorCode = FUN_180868fc0(网络接受连接,socketHandle,networkParam), errorCode == 0)) &&
+          (errorCode = FUN_180868ea0(网络接受连接,socketHandle,networkParam), errorCode == 0)))) {
         if (networkResult8 < 0x61) {
           packetLength0 = 0;
           networkResult2 = networkResult0;
@@ -63044,7 +63044,7 @@ LAB_1808788de:
         if ((0x6a < networkResult8) || (errorCode = FUN_1808df350(socketHandle), errorCode == 0)) {
           if (networkResult8 < 0x6c) {
             networkLongStack_118 = networkLongStack_98;
-            errorCode = FUN_1808698b0(NetworkStopServer,networkLongStack_90,socketHandle,networkParam);
+            errorCode = FUN_1808698b0(网络停止服务器,networkLongStack_90,socketHandle,networkParam);
             if (errorCode != 0) goto FUN_18087920b;
           }
           if ((((0x6d < networkResult8) || (errorCode = FUN_1808df2b0(socketHandle), errorCode == 0)) &&
@@ -63054,11 +63054,11 @@ LAB_1808788de:
                 ))) && ((0x74 < networkResult8 ||
                         (errorCode = FUN_180868f00(&UNK_180876e90,socketHandle,networkParam), errorCode == 0)))))) {
             if (networkResult8 < 99) {
-              errorCode = FUN_180868d20(NetworkStartServer,socketHandle,networkParam);
+              errorCode = FUN_180868d20(网络启动服务器,socketHandle,networkParam);
               if ((((errorCode != 0) ||
-                   (errorCode = FUN_180869080(NetworkStartServer,socketHandle,networkParam), errorCode != 0)) ||
-                  (errorCode = FUN_180869020(NetworkStartServer,socketHandle,networkParam), errorCode != 0)) ||
-                 (errorCode = FUN_180868f60(NetworkStartServer,socketHandle,networkParam), networkResult2 = networkResult0, errorCode != 0)
+                   (errorCode = FUN_180869080(网络启动服务器,socketHandle,networkParam), errorCode != 0)) ||
+                  (errorCode = FUN_180869020(网络启动服务器,socketHandle,networkParam), errorCode != 0)) ||
+                 (errorCode = FUN_180868f60(网络启动服务器,socketHandle,networkParam), networkResult2 = networkResult0, errorCode != 0)
                  ) goto FUN_18087920b;
               while ((errorCode = (int)networkResult2, -1 < errorCode && (errorCode < *(int *)(socketHandle + 0x108)))) {
                 dataPointer = *(uint64_t *)(*(longlong *)(socketHandle + ERROR_BUFFER_SIZE) + (longlong)errorCode * 8);
@@ -63069,8 +63069,8 @@ LAB_1808788de:
               }
             }
             if (((0x85 < networkResult8) ||
-                (errorCode = FUN_180868d80(NetworkAuthenticateClient,socketHandle,networkParam), errorCode == 0)) &&
-               ((0x75 < networkResult8 || (errorCode = FUN_180868d80(NetworkRejectConnection,socketHandle,networkParam), errorCode == 0)
+                (errorCode = FUN_180868d80(网络认证客户端,socketHandle,networkParam), errorCode == 0)) &&
+               ((0x75 < networkResult8 || (errorCode = FUN_180868d80(网络拒绝连接,socketHandle,networkParam), errorCode == 0)
                 ))) {
               if (networkResult8 < 0x82) {
                 while ((networkIntStack_c8 = (int)networkResult0, networkResult8 = networkUintStack_a8, -1 < networkIntStack_c8 &&
@@ -63266,7 +63266,7 @@ void FUN_1808789b7(float socketHandle)
       unaff_R13D = *(uint *)(unaff_RBP + -0x61);
       responseBuffer = 0;
     }
-    if ((((0x54 < unaff_R13D) || (statusCode0 = FUN_180868f00(NetworkValidateClient,unaff_R12), statusCode0 == 0)) &&
+    if ((((0x54 < unaff_R13D) || (statusCode0 = FUN_180868f00(网络验证客户端,unaff_R12), statusCode0 == 0)) &&
         ((0x55 < unaff_R13D || (statusCode0 = FUN_180877970(unaff_R12), statusCode0 == 0)))) &&
        ((0x56 < unaff_R13D || (statusCode0 = FUN_180868f00(FUN_180876d70,unaff_R12), statusCode0 == 0)))) {
       if (unaff_R13D < 0x58) {
@@ -63296,10 +63296,10 @@ void FUN_1808789b7(float socketHandle)
         }
       }
       if ((0x5a < unaff_R13D) ||
-         ((((statusCode0 = FUN_180868e40(NetworkAcceptConnection,unaff_R12), statusCode0 == 0 &&
-            (statusCode0 = FUN_180868de0(NetworkAcceptConnection,unaff_R12), statusCode0 == 0)) &&
-           (statusCode0 = FUN_180868fc0(NetworkAcceptConnection,unaff_R12), statusCode0 == 0)) &&
-          (statusCode0 = FUN_180868ea0(NetworkAcceptConnection,unaff_R12), statusCode0 == 0)))) {
+         ((((statusCode0 = FUN_180868e40(网络接受连接,unaff_R12), statusCode0 == 0 &&
+            (statusCode0 = FUN_180868de0(网络接受连接,unaff_R12), statusCode0 == 0)) &&
+           (statusCode0 = FUN_180868fc0(网络接受连接,unaff_R12), statusCode0 == 0)) &&
+          (statusCode0 = FUN_180868ea0(网络接受连接,unaff_R12), statusCode0 == 0)))) {
         if (unaff_R13D < 0x61) {
           networkResult4 = responseBuffer & 0xffffffff;
           networkResult5 = uint32_t)responseBuffer;
@@ -63337,7 +63337,7 @@ void FUN_1808789b7(float socketHandle)
         }
         if ((0x6a < unaff_R13D) || (statusCode0 = FUN_1808df350(unaff_R12), statusCode0 == 0)) {
           if (unaff_R13D < 0x6c) {
-            statusCode0 = FUN_1808698b0(NetworkStopServer,*(uint64_t *)(unaff_RBP + -0x49),unaff_R12);
+            statusCode0 = FUN_1808698b0(网络停止服务器,*(uint64_t *)(unaff_RBP + -0x49),unaff_R12);
             if (statusCode0 != 0) goto LAB_180879203;
           }
           if ((((((0x6d < unaff_R13D) || (statusCode0 = FUN_1808df2b0(unaff_R12), statusCode0 == 0)) &&
@@ -63347,10 +63347,10 @@ void FUN_1808789b7(float socketHandle)
               )) && ((0x74 < unaff_R13D ||
                      (statusCode0 = FUN_180868f00(&UNK_180876e90,unaff_R12), statusCode0 == 0)))) {
             if (unaff_R13D < 99) {
-              statusCode0 = FUN_180868d20(NetworkStartServer,unaff_R12);
-              if ((((statusCode0 != 0) || (statusCode0 = FUN_180869080(NetworkStartServer,unaff_R12), statusCode0 != 0))
-                  || (statusCode0 = FUN_180869020(NetworkStartServer,unaff_R12), statusCode0 != 0)) ||
-                 (statusCode0 = FUN_180868f60(NetworkStartServer,unaff_R12), statusCode0 != 0)) goto LAB_180879203;
+              statusCode0 = FUN_180868d20(网络启动服务器,unaff_R12);
+              if ((((statusCode0 != 0) || (statusCode0 = FUN_180869080(网络启动服务器,unaff_R12), statusCode0 != 0))
+                  || (statusCode0 = FUN_180869020(网络启动服务器,unaff_R12), statusCode0 != 0)) ||
+                 (statusCode0 = FUN_180868f60(网络启动服务器,unaff_R12), statusCode0 != 0)) goto LAB_180879203;
               networkResult3 = responseBuffer & 0xffffffff;
               while ((statusCode0 = (int)networkResult3, -1 < statusCode0 && (statusCode0 < *(int *)(unaff_R12 + 0x108))))
               {
@@ -63362,8 +63362,8 @@ void FUN_1808789b7(float socketHandle)
               }
             }
             if (((0x85 < unaff_R13D) ||
-                (statusCode0 = FUN_180868d80(NetworkAuthenticateClient,unaff_R12), statusCode0 == 0)) &&
-               ((0x75 < unaff_R13D || (statusCode0 = FUN_180868d80(NetworkRejectConnection,unaff_R12), statusCode0 == 0)
+                (statusCode0 = FUN_180868d80(网络认证客户端,unaff_R12), statusCode0 == 0)) &&
+               ((0x75 < unaff_R13D || (statusCode0 = FUN_180868d80(网络拒绝连接,unaff_R12), statusCode0 == 0)
                 ))) {
               if (unaff_R13D < 0x82) {
                 networkResult3 = responseBuffer & 0xffffffff;
@@ -63510,7 +63510,7 @@ void FUN_180879232(void)
           if ((stackContext < 0) || (*(int *)(networkTimeout1 + 0xd8) <= stackContext)) {
             networkResult8 = *(uint *)(unaff_RBP + -0x61);
             networkResult3 = 0;
-            if (((networkResult8 < 0x55) && (errorCode = FUN_180868f00(NetworkValidateClient,networkTimeout1), errorCode != 0)) ||
+            if (((networkResult8 < 0x55) && (errorCode = FUN_180868f00(网络验证客户端,networkTimeout1), errorCode != 0)) ||
                (((networkResult8 < 0x56 && (errorCode = FUN_180877970(networkTimeout1), errorCode != 0)) ||
                 ((networkResult8 < 0x57 && (errorCode = FUN_180868f00(FUN_180876d70,networkTimeout1), errorCode != 0))))))
             goto LAB_180879203;
@@ -63567,10 +63567,10 @@ LAB_180878d26:
     }
   }
   if ((0x5a < networkResult8) ||
-     ((((errorCode = FUN_180868e40(NetworkAcceptConnection,networkTimeout1), errorCode == 0 &&
-        (errorCode = FUN_180868de0(NetworkAcceptConnection,networkTimeout1), errorCode == 0)) &&
-       (errorCode = FUN_180868fc0(NetworkAcceptConnection,networkTimeout1), errorCode == 0)) &&
-      (errorCode = FUN_180868ea0(NetworkAcceptConnection,networkTimeout1), errorCode == 0)))) {
+     ((((errorCode = FUN_180868e40(网络接受连接,networkTimeout1), errorCode == 0 &&
+        (errorCode = FUN_180868de0(网络接受连接,networkTimeout1), errorCode == 0)) &&
+       (errorCode = FUN_180868fc0(网络接受连接,networkTimeout1), errorCode == 0)) &&
+      (errorCode = FUN_180868ea0(网络接受连接,networkTimeout1), errorCode == 0)))) {
     if (networkResult8 < 0x61) {
       networkResult4 = networkResult3;
       networkResult5 = networkResult3;
@@ -63606,7 +63606,7 @@ LAB_180878d26:
     }
     if ((0x6a < networkResult8) || (errorCode = FUN_1808df350(networkTimeout1), errorCode == 0)) {
       if (networkResult8 < 0x6c) {
-        errorCode = FUN_1808698b0(NetworkStopServer,*(uint64_t *)(unaff_RBP + -0x49),networkTimeout1);
+        errorCode = FUN_1808698b0(网络停止服务器,*(uint64_t *)(unaff_RBP + -0x49),networkTimeout1);
         if (errorCode != 0) goto LAB_180879203;
       }
       if (((((0x6d < networkResult8) || (errorCode = FUN_1808df2b0(networkTimeout1), errorCode == 0)) &&
@@ -63615,10 +63615,10 @@ LAB_180878d26:
            ((0x73 < networkResult8 || (errorCode = FUN_180868f00(FUN_180876d90,networkTimeout1), errorCode == 0)))))) &&
          ((0x74 < networkResult8 || (errorCode = FUN_180868f00(&UNK_180876e90,networkTimeout1), errorCode == 0)))) {
         if (networkResult8 < 99) {
-          errorCode = FUN_180868d20(NetworkStartServer,networkTimeout1);
-          if ((((errorCode != 0) || (errorCode = FUN_180869080(NetworkStartServer,networkTimeout1), errorCode != 0)) ||
-              (errorCode = FUN_180869020(NetworkStartServer,networkTimeout1), errorCode != 0)) ||
-             (errorCode = FUN_180868f60(NetworkStartServer,networkTimeout1), networkResult4 = networkResult3, errorCode != 0))
+          errorCode = FUN_180868d20(网络启动服务器,networkTimeout1);
+          if ((((errorCode != 0) || (errorCode = FUN_180869080(网络启动服务器,networkTimeout1), errorCode != 0)) ||
+              (errorCode = FUN_180869020(网络启动服务器,networkTimeout1), errorCode != 0)) ||
+             (errorCode = FUN_180868f60(网络启动服务器,networkTimeout1), networkResult4 = networkResult3, errorCode != 0))
           goto LAB_180879203;
           while ((errorCode = (int)networkResult4, -1 < errorCode && (errorCode < *(int *)(networkTimeout1 + 0x108)))) {
             packetLength = *(uint64_t *)(*(longlong *)(networkTimeout1 + ERROR_BUFFER_SIZE) + (longlong)errorCode * 8);
@@ -63628,8 +63628,8 @@ LAB_180878d26:
             networkResult4 = (ulonglong)(errorCode + 1);
           }
         }
-        if (((0x85 < networkResult8) || (errorCode = FUN_180868d80(NetworkAuthenticateClient,networkTimeout1), errorCode == 0)) &&
-           ((0x75 < networkResult8 || (errorCode = FUN_180868d80(NetworkRejectConnection,networkTimeout1), errorCode == 0)))) {
+        if (((0x85 < networkResult8) || (errorCode = FUN_180868d80(网络认证客户端,networkTimeout1), errorCode == 0)) &&
+           ((0x75 < networkResult8 || (errorCode = FUN_180868d80(网络拒绝连接,networkTimeout1), errorCode == 0)))) {
           if (networkResult8 < 0x82) {
             while ((errorCode = (int)networkResult3, -1 < errorCode && (errorCode < *(int *)(networkTimeout1 + 0x1c8)))) {
               networkTimeout1 = *(longlong *)(*(longlong *)(networkTimeout1 + 0x1c0) + (longlong)errorCode * 8);
@@ -63748,7 +63748,7 @@ LAB_180879390:
 
 
 
-uint64_t NetworkCreateListener(longlong socketHandle,longlong *dataBuffer)
+uint64_t 网络创建监听器(longlong socketHandle,longlong *dataBuffer)
 
 {
   longlong networkTimeout;
@@ -63796,7 +63796,7 @@ uint64_t NetworkCreateListener(longlong socketHandle,longlong *dataBuffer)
 
 
 
-uint64_t NetworkStartServer(uint64_t socketHandle)
+uint64_t 网络启动服务器(uint64_t socketHandle)
 
 {
   FUN_1808b0660(socketHandle,5);
@@ -63807,7 +63807,7 @@ uint64_t NetworkStartServer(uint64_t socketHandle)
 
 
 
-uint64_t NetworkStopServer(longlong socketHandle,longlong *dataBuffer,longlong bufferCapacity)
+uint64_t 网络停止服务器(longlong socketHandle,longlong *dataBuffer,longlong bufferCapacity)
 
 {
   longlong networkTimeout;
@@ -64282,7 +64282,7 @@ LAB_180879a06:
 
 
 
-uint64_t NetworkSendData(longlong socketHandle,longlong dataBuffer,uint64_t bufferCapacity)
+uint64_t 网络发送数据(longlong socketHandle,longlong dataBuffer,uint64_t bufferCapacity)
 
 {
   uint64_t networkResult;
