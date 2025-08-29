@@ -634,30 +634,30 @@ void NetworkSendDataChunk(uint64_t socketHandle,uint64_t dataBuffer,uint8_t buff
 
 // 函数: void NetworkSendDataBuffer(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapacity,uint64_t timeoutValue,
 void NetworkSendDataBuffer(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bufferCapacity,uint64_t timeoutValue,
-                  uint64_t networkParam,uint64_t networkParam,longlong networkParam)
+                  uint64_t socketContext,uint64_t connectionHandle,longlong timeoutParam)
 
 {
   longlong *pnetworkTimeout;
   int resultCode;
   longlong connectionInfo;
-  uint32_t unaff_EBP;
-  longlong unaff_RSI;
-  longlong dataBuffer;
-  longlong in_XMM0_Qb;
+  uint32_t socketId;
+  longlong dataIndex;
+  longlong sendData;
+  longlong xmm0Value;
   
-  networkParam = 0;
-  networkParam = in_XMM0_Qb;
+  socketContext = 0;
+  connectionHandle = xmm0Value;
   resultCode = networkInitializeSocket();
-  if (((resultCode == 0) && (resultCode = networkInitializeConnection(&stack_buffer,networkParam), resultCode == 0)) &&
-     (resultCode = networkValidateSocket(unaff_EBP,&networkParam), resultCode == 0)) {
-    networkParam = *(longlong *)(networkParam + 8);
-    if ((-1 < (int)unaff_RSI) && ((int)unaff_RSI < *(int *)(networkParam + 0x88))) {
-      dataBuffer = unaff_RSI * 0x10 + *(longlong *)(networkParam + 0x80);
-      pnetworkTimeout = *(longlong **)(networkParam + 800);
-      connectionInfo = (**(code **)(*pnetworkTimeout + 0x270))(pnetworkTimeout,dataBuffer,1,timeoutValue,socketHandle);
+  if (((resultCode == 0) && (resultCode = networkInitializeConnection(&stack_buffer,socketContext), resultCode == 0)) &&
+     (resultCode = networkValidateSocket(socketId,&connectionHandle), resultCode == 0)) {
+    connectionHandle = *(longlong *)(connectionHandle + 8);
+    if ((-1 < (int)dataIndex) && ((int)dataIndex < *(int *)(connectionHandle + 0x88))) {
+      sendData = dataIndex * 0x10 + *(longlong *)(connectionHandle + 0x80);
+      pnetworkTimeout = *(longlong **)(connectionHandle + 800);
+      connectionInfo = (**(code **)(*pnetworkTimeout + 0x270))(pnetworkTimeout,sendData,1,timeoutValue,socketHandle);
       if (connectionInfo == 0) {
                     // WARNING: Subroutine does not return
-        networkSendRawData(dataBuffer,&networkStackBuffer);
+        networkSendRawData(sendData,&networkStackBuffer);
       }
       if ((((*(int *)(connectionInfo + 0x38) != 0) || (*(int *)(connectionInfo + 0x3c) != 0)) ||
           ((*(int *)(connectionInfo + 0x40) != 0 || (*(int *)(connectionInfo + 0x44) != 0)))) &&
