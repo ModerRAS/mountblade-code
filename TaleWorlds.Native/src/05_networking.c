@@ -551,13 +551,13 @@ void NetworkSendData(uint32_t socketHandle,int dataBuffer,longlong bufferCapacit
   int resultCode;
   longlong connectionInfo;
   longlong dataBuffer;
-  uint8_t networkStack_88 [32];
-  uint64_t networkUintStack_68;
-  longlong networkLongStack_60;
-  longlong networkLongStack_58;
-  longlong networkLongStack_50;
-  uint8_t networkStack_48 [40];
-  ulonglong networkUintStack_20;
+  uint8_t encryptionBuffer [32];
+  uint64_t connectionHandle;
+  longlong socketContext;
+  longlong dataOffset;
+  longlong connectionInfo;
+  uint8_t sendDataBuffer [40];
+  ulonglong encryptionKey;
   
   networkUintStack_20 = _g_networkXorKey ^ (ulonglong)networkStack_88;
   if (bufferCapacity == 0) {
