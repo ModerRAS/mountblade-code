@@ -312,17 +312,17 @@ void NetworkCreateSocket(uint64_t socketHandle)
   socketStackBuffer[1] = 0;
   statusCode = func_0x00018088c590(socketHandle,socketStackBuffer);
   if ((((statusCode != 0) ||
-       (((*(uint *)(alStackX_10[0] + 0x24) >> 1 & 1) != 0 &&
-        (resultCode = networkInitializeConnection(alStackX_10 + 1), resultCode == 0)))) && (statusCode == 0)) &&
-     (statusCode = networkCreateSession(*(uint64_t *)(alStackX_10[0] + 0x98),&puStackX_20,0x18), statusCode == 0))
+       (((*(uint *)(socketStackBuffer[0] + 0x24) >> 1 & 1) != 0 &&
+        (resultCode = networkInitializeConnection(socketStackBuffer + 1), resultCode == 0)))) && (statusCode == 0)) &&
+     (statusCode = networkCreateSession(*(uint64_t *)(socketStackBuffer[0] + 0x98),&sessionConfigPtr,0x18), statusCode == 0))
   {
-    *puStackX_20 = &UNK_180982dc0;
-    *(uint32_t *)(puStackX_20 + 1) = 0x18;
-    *(int *)(puStackX_20 + 2) = (int)socketHandle;
-    NetworkValidateSocket(*(uint64_t *)(alStackX_10[0] + 0x98));
+    *sessionConfigPtr = &UNK_180982dc0;
+    *(uint32_t *)(sessionConfigPtr + 1) = 0x18;
+    *(int *)(sessionConfigPtr + 2) = (int)socketHandle;
+    NetworkValidateSocket(*(uint64_t *)(socketStackBuffer[0] + 0x98));
   }
                     // WARNING: Subroutine does not return
-  NetworkErrorExit(alStackX_10 + 1);
+  NetworkErrorExit(socketStackBuffer + 1);
 }
 
 

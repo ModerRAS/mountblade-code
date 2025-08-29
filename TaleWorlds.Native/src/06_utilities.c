@@ -7263,7 +7263,7 @@ uint64 get_ssl_certificate(void)
 
 
 
-uint64 FUN_18089406b(void)
+uint64 verify_ssl_certificate(void)
 
 {
   float fVar1;
@@ -7298,8 +7298,8 @@ uint64 FUN_18089406b(void)
 
 
 
-// 函数: void FUN_1808940e8(void)
-void FUN_1808940e8(void)
+// 函数: void initialize_database_connection(void)
+void initialize_database_connection(void)
 
 {
   return;
