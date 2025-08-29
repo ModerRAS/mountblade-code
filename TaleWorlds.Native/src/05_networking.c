@@ -106,47 +106,47 @@ undefined g_networkSyncData;
 undefined g_networkLobbyData;
 undefined g_networkMatchData;
 
-// 函数: undefined FUN_18088ea60;
-undefined FUN_18088ea60;
-undefined UNK_180986218;
-undefined UNK_180986240;
-undefined UNK_180986244;
-undefined UNK_180986248;
-undefined UNK_18098624c;
-undefined UNK_180986250;
-undefined UNK_180986268;
-undefined g_maxConnections;
-undefined g_currentConnections;
-undefined UNK_1809862d0;
-undefined UNK_180986298;
-undefined UNK_180984010;
-undefined UNK_180982240;
-undefined UNK_180983588;
-undefined UNK_1809841e0;
-undefined UNK_180984358;
-undefined UNK_1809843d0;
-undefined UNK_180986350;
-undefined UNK_180986370;
-undefined UNK_1809868b0;
-undefined UNK_1809863f8;
-undefined UNK_180986470;
-undefined UNK_180982588;
-undefined UNK_180982608;
-undefined UNK_1809830b8;
-undefined UNK_180983238;
-undefined UNK_1809839d8;
-undefined UNK_1809850f8;
-undefined UNK_180982f38;
-undefined UNK_1809834f8;
-undefined UNK_180986408;
-undefined UNK_1809864dc;
-undefined UNK_1809864e0;
-undefined UNK_180986508;
-undefined UNK_180986550;
-undefined UNK_180986590;
-undefined UNK_1809865f0;
-undefined UNK_1809866c0;
-undefined UNK_180986730;
+// 函数: undefined NetworkBroadcastMessage;
+undefined NetworkBroadcastMessage;
+undefined g_networkBroadcastBuffer;
+undefined g_networkMulticastGroup;
+undefined g_networkMulticastAddress;
+undefined g_networkMulticastPort;
+undefined g_networkMulticastTTL;
+undefined g_networkMulticastInterface;
+undefined g_networkMulticastSocket;
+undefined g_networkMaxConnections;
+undefined g_networkCurrentConnections;
+undefined g_networkConnectionLimit;
+undefined g_networkConnectionTimeout;
+undefined g_networkHeartbeatInterval;
+undefined g_networkPingInterval;
+undefined g_networkKeepAlive;
+undefined g_networkDisconnectTimeout;
+undefined g_networkReconnectDelay;
+undefined g_networkRetryCount;
+undefined g_networkConnectionQuality;
+undefined g_networkConnectionStability;
+undefined g_networkConnectionHistory;
+undefined g_networkConnectionStats;
+undefined g_networkConnectionMetrics;
+undefined g_networkBandwidthMonitor;
+undefined g_networkLatencyMonitor;
+undefined g_networkPacketLossMonitor;
+undefined g_networkJitterMonitor;
+undefined g_networkThroughputMonitor;
+undefined g_networkErrorMonitor;
+undefined g_networkSecurityMonitor;
+undefined g_networkPerformanceMonitor;
+undefined g_networkDiagnosticData;
+undefined g_networkDebugInfo;
+undefined g_networkLogLevel;
+undefined g_networkLogBuffer;
+undefined g_networkLogFile;
+undefined g_networkLogSize;
+undefined g_networkLogRotation;
+undefined g_networkLogCompression;
+undefined g_networkLogArchive;
 undefined UNK_1809867b0;
 undefined UNK_180986850;
 undefined UNK_180982378;
@@ -328,7 +328,7 @@ void NetworkCreateSocket(undefined8 socketParam)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180840270(longlong *socketParam)
+undefined8 NetworkProcessSocketData(longlong *socketParam)
 
 {
   int status;
@@ -655,7 +655,7 @@ void FUN_18084076d(void)
 
 
 
-undefined4 FUN_180840790(undefined4 socketParam,longlong dataParam,undefined8 *sizeParam)
+undefined4 NetworkGetConnectionData(undefined4 socketParam,longlong dataParam,undefined8 *sizeParam)
 
 {
   undefined8 *connectionData;
