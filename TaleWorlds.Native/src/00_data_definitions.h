@@ -6465,7 +6465,8 @@ undefined8 FUN_1804ca920(undefined8 handle_param,ulonglong flags_param)
   (*UNRECOVERED_JUMPTABLE)(_DAT_180c8f008,&DAT_180d49fe0);
   return;
 }
-int FUN_1806088e0(undefined8 handle_param,undefined8 flags_param,undefined8 mutex_attr_param,undefined8 mutex_type_param)
+// 处理配置参数验证函数
+int validate_config_parameters(undefined8 handle_param,undefined8 flags_param,undefined8 mutex_attr_param,undefined8 mutex_type_param)
 {
   int iVar1;
   longlong lVar2;
