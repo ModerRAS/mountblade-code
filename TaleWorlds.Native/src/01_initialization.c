@@ -1352,9 +1352,9 @@ void InitializeResourceNode_18002c840(void)
   puVar7[10] = uStackX_18;
   return;
 }
-// void FUN_18002c940(void)
+// void InitializeResourceNode(void)
 
-void FUN_18002c940(void)
+void InitializeResourceNode(void)
 
 {
   char cVar1;
@@ -1399,9 +1399,9 @@ void FUN_18002c940(void)
   puVar7[10] = uStackX_18;
   return;
 }
-// void FUN_18002ca40(void)
+// void InitializeRenderNode(void)
 
-void FUN_18002ca40(void)
+void InitializeRenderNode(void)
 
 {
   char cVar1;
@@ -1446,9 +1446,9 @@ void FUN_18002ca40(void)
   puVar7[10] = uStackX_18;
   return;
 }
-// void FUN_18002cb40(void)
+// void InitializeAudioNode(void)
 
-void FUN_18002cb40(void)
+void InitializeAudioNode(void)
 
 {
   char cVar1;
