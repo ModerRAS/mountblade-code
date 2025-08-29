@@ -73,11 +73,11 @@ undefined g_network_socket;
 
 undefined g_network_buffer;
 
-undefined g_network_config_network_config;
+undefined g_network_config;
 
-undefined g_network_state_network_state;
+undefined g_network_state;
 
-undefined g_network_timeout_network_timeout;
+undefined g_network_timeout;
 
 undefined g_network_connection_network_connection;
 

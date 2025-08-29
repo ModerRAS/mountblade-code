@@ -3521,7 +3521,7 @@ uint64 manage_thread_pool(longlong resourceHandle)
 
 
 
-uint32 FUN_180890b8f(void)
+uint32 get_thread_count(void)
 
 {
   longlong inputRegister;
@@ -3543,8 +3543,8 @@ uint32 FUN_180890b8f(void)
 
 
 
-// 函数: void FUN_180890bb8(void)
-void FUN_180890bb8(void)
+// 函数: void destroy_thread_pool(void)
+void destroy_thread_pool(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -3554,8 +3554,8 @@ void FUN_180890bb8(void)
 
 
 
-// 函数: void FUN_180890c06(void)
-void FUN_180890c06(void)
+// 函数: void initialize_mutex(void)
+void initialize_mutex(void)
 
 {
   return;
@@ -3563,7 +3563,7 @@ void FUN_180890c06(void)
 
 
 
-uint64 FUN_180890c10(longlong resourceHandle)
+uint64 lock_mutex(longlong resourceHandle)
 
 {
   uint64 localUInt1;
