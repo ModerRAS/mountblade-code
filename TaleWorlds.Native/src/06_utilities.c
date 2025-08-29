@@ -1250,7 +1250,7 @@ data memoryAllocatorHeap;
 data resourceOptimizePerformance;
 data resourceOptimizationVar1;
 data memoryPoolManager;
-data resourceOptimizationVar2;;
+data resourceOptimizationVar2;
 data eventHandlerState;
 
 // 函数: data resourceReportStatus;
@@ -2412,7 +2412,7 @@ data unknown_180a3c8c8;
 data unknown_180a3c908;
 data unknown_180a3d970;
 data unknown_180a3db60;
-data DAT_180bfbd80;
+data memoryAllocationBuffer;
 
 // 函数: void ProcessMemoryAllocation(longlong resourceHandle,longlong memorySize)
 // 处理内存分配函数

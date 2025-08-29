@@ -93219,7 +93219,7 @@ int FUN_180894650(longlong *socketHandle,longlong dataBuffer,int bufferCapacity)
   int statusCode;
   int resultCode;
   
-  statusCode = networkCopyData(dataBuffer,bufferCapacity,&UNK_180986298);
+  statusCode = networkCopyData(dataBuffer,bufferCapacity,&g_network_data_buffer_298);
   resultCode = networkCopyData(dataBuffer + statusCode,bufferCapacity - statusCode,&g_networkNullTerminator);
   statusCode = statusCode + resultCode;
   resultCode = func_0x00018074b7d0(statusCode + dataBuffer,bufferCapacity - statusCode,(int)socketHandle[3] * 8 + SOCKET_RESPONSE_OFFSET);
@@ -93238,7 +93238,7 @@ int FUN_180894700(longlong *socketHandle,longlong dataBuffer,int bufferCapacity)
   int statusCode;
   int resultCode;
   
-  statusCode = networkCopyData(dataBuffer,bufferCapacity,&UNK_180984010);
+  statusCode = networkCopyData(dataBuffer,bufferCapacity,&g_network_data_buffer_010);
   resultCode = networkCopyData(dataBuffer + statusCode,bufferCapacity - statusCode,&g_networkNullTerminator);
   statusCode = statusCode + resultCode;
   resultCode = func_0x00018074b7d0(statusCode + dataBuffer,bufferCapacity - statusCode,(int)socketHandle[3] * 0xc + SOCKET_RESPONSE_OFFSET);
@@ -95060,7 +95060,7 @@ ulonglong FUN_180896140(longlong socketHandle)
               do {
                 networkUintStack_e0 = *(uint32_t *)(socketHandle + 0xc + networkTimeout5 * 0x10);
                 networkUintStack_e8 = 0;
-                networkPtrStack_f0 = &UNK_180983588;
+                networkPtrStack_f0 = &g_network_data_buffer_588;
                 FUN_180892120(&networkPtrStack_f0,*(uint64_t *)(socketHandle + 0x58));
                 connectionCount = func_0x0001808c7ed0(bufferCapacity);
               } while (0 < connectionCount);
@@ -95093,17 +95093,17 @@ ulonglong FUN_180896140(longlong socketHandle)
               networkUintStack_d0 = 0;
               networkUintStack_c0 = 0x3f800000;
               FUN_180891d40(&networkPtrStack_d8,*(uint64_t *)(socketHandle + 0x58));
-              networkPtrStack_98 = &UNK_180984358;
+              networkPtrStack_98 = &g_network_data_buffer_358;
               networkUintStack_88 = *(uint32_t *)(socketHandle + 0xc + networkTimeout5 * 0x10);
               networkUintStack_90 = 0;
               networkUintStack_80 = 0;
               FUN_180891cf0(&networkPtrStack_98,*(uint64_t *)(socketHandle + 0x58));
-              networkPtrStack_b8 = &UNK_1809843d0;
+              networkPtrStack_b8 = &g_network_data_buffer_3d0;
               networkUintStack_a8 = *(uint32_t *)(socketHandle + 0xc + networkTimeout5 * 0x10);
               networkUintStack_b0 = 0;
               networkUintStack_a0 = networkUintStack_a0 & 0xffffff00;
               FUN_180891ca0(&networkPtrStack_b8,*(uint64_t *)(socketHandle + 0x58));
-              networkPtrStack_f0 = &UNK_1809841e0;
+              networkPtrStack_f0 = &g_network_data_buffer_1e0;
               networkUintStack_e0 = *(uint32_t *)(socketHandle + 0xc + networkTimeout5 * 0x10);
               networkUintStack_e8 = 0;
               FUN_180891de0(&networkPtrStack_f0,*(uint64_t *)(socketHandle + 0x58));
@@ -95328,7 +95328,7 @@ LAB_1808963ec:
 uint64_t * FUN_180896800(uint64_t *socketHandle,ulonglong dataBuffer)
 
 {
-  *socketHandle = &UNK_180986350;
+  *socketHandle = &g_network_data_buffer_350;
   if ((dataBuffer & 1) != 0) {
     free(socketHandle,CONNECTION_BUFFER_OFFSET);
   }
@@ -95340,9 +95340,9 @@ uint64_t * FUN_180896800(uint64_t *socketHandle,ulonglong dataBuffer)
 uint64_t * FUN_180896830(uint64_t *socketHandle,ulonglong dataBuffer)
 
 {
-  *socketHandle = &UNK_180986370;
+  *socketHandle = &g_network_data_buffer_370;
   FUN_180840270(socketHandle + 5);
-  *socketHandle = &UNK_180986350;
+  *socketHandle = &g_network_data_buffer_350;
   if ((dataBuffer & 1) != 0) {
     free(socketHandle,0x38);
   }
@@ -95387,7 +95387,7 @@ uint64_t FUN_1808968a0(longlong socketHandle)
       }
     }
     pnetworkOperationResult = (int *)FUN_180741e10(*(uint64_t *)(g_networkModule + 0x1a0),processResult + 0x19,
-                                  &UNK_1809868b0,0x278,0,0,1);
+                                  &g_network_data_buffer_8b0,0x278,0,0,1);
     pnetworkOperationResult[0] = 0;
     pnetworkOperationResult[1] = 0;
     pnetworkOperationResult[2] = 0;
@@ -95434,7 +95434,7 @@ int FUN_180896aa0(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
   int statusCode;
   
   networkResult = *(uint64_t *)(socketHandle + 0x10);
-  resultCode = networkCopyData(dataBuffer,bufferCapacity,&UNK_1809863f8);
+  resultCode = networkCopyData(dataBuffer,bufferCapacity,&g_network_data_buffer_3f8);
   networkOperationResult = networkCopyData(dataBuffer + resultCode,bufferCapacity - resultCode,&g_networkNullTerminator);
   resultCode = resultCode + networkOperationResult;
   networkOperationResult = func_0x00018074be80(resultCode + dataBuffer,bufferCapacity - resultCode,networkResult);
@@ -95453,7 +95453,7 @@ int FUN_180896b20(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
   
   networkResult = *(uint32_t *)(socketHandle + 0x14);
   packetLength = *(uint32_t *)(socketHandle + 0x10);
-  networkOperationResult = networkCopyData(dataBuffer,bufferCapacity,&UNK_180986470);
+  networkOperationResult = networkCopyData(dataBuffer,bufferCapacity,&g_network_data_buffer_470);
   connectionCount = networkCopyData(networkOperationResult + dataBuffer,bufferCapacity - networkOperationResult,&g_networkNullTerminator);
   networkOperationResult = networkOperationResult + connectionCount;
   connectionCount = func_0x00018074b7d0(networkOperationResult + dataBuffer,bufferCapacity - networkOperationResult,packetLength);
@@ -95602,7 +95602,7 @@ LAB_180896ce3:
         networkUintStack_288 = *(uint *)(networkTimeout + 0x14);
         networkUintStack_284 = *(uint32_t *)(networkTimeout + 0x18);
         networkUintStack_280 = *(uint32_t *)(networkTimeout + 0x1c);
-        networkPtrStack_2a8 = &UNK_1809830b8;
+        networkPtrStack_2a8 = &g_network_data_buffer_0b8;
         connectionCount = processResult + 1;
         networkUintStack_27c = networkUintStack_308;
         networkIntStack_2a0 = dataLength;
@@ -95621,7 +95621,7 @@ LAB_180896ce3:
         }
         if (*(char *)(socketDescriptor + CONNECTION_BUFFER_OFFSET) != '\0') {
           networkIntStack_2f0 = 0;
-          networkPtrStack_2f8 = &UNK_180984358;
+          networkPtrStack_2f8 = &g_network_data_buffer_358;
           networkUintStack_2e8 = CONCAT44(networkUintStack_2e8._4_4_,networkUintStack_308);
           networkUintStack_2e0 = CONCAT71(networkUintStack_2e0._1_7_,1);
           processResult = FUN_180897520(socketHandle,&networkPtrStack_2f8);
@@ -95630,7 +95630,7 @@ LAB_180896ce3:
         processResult = connectionCount;
         if (*(char *)(socketDescriptor + 0x29) != '\0') {
           networkIntStack_2f0 = 0;
-          networkPtrStack_2f8 = &UNK_1809843d0;
+          networkPtrStack_2f8 = &g_network_data_buffer_3d0;
           networkUintStack_2e8 = CONCAT44(networkUintStack_2e8._4_4_,networkUintStack_308);
           networkUintStack_2e0 = CONCAT71(networkUintStack_2e0._1_7_,1);
           dataLength = FUN_180897520(socketHandle,&networkPtrStack_2f8);
@@ -95649,7 +95649,7 @@ LAB_180896ce3:
         networkUintStack_288 = *(uint *)(networkTimeout + 0x14);
         networkUintStack_284 = *(uint32_t *)(networkTimeout + 0x18);
         networkUintStack_280 = *(uint32_t *)(networkTimeout + 0x1c);
-        networkPtrStack_2a8 = &UNK_1809830b8;
+        networkPtrStack_2a8 = &g_network_data_buffer_0b8;
         connectionCount = processResult + 1;
         networkUintStack_27c = networkUintStack_308;
         networkIntStack_2a0 = dataLength;
@@ -95668,7 +95668,7 @@ LAB_180896ce3:
         }
         if (*(char *)(socketDescriptor + CONNECTION_BUFFER_OFFSET) != '\0') {
           networkIntStack_2f0 = 0;
-          networkPtrStack_2f8 = &UNK_180984358;
+          networkPtrStack_2f8 = &g_network_data_buffer_358;
           networkUintStack_2e8 = CONCAT44(networkUintStack_2e8._4_4_,networkUintStack_308);
           networkUintStack_2e0 = CONCAT71(networkUintStack_2e0._1_7_,1);
           processResult = FUN_180897520(socketHandle,&networkPtrStack_2f8);
@@ -95677,7 +95677,7 @@ LAB_180896ce3:
         processResult = connectionCount;
         if (*(char *)(socketDescriptor + 0x29) != '\0') {
           networkIntStack_2f0 = 0;
-          networkPtrStack_2f8 = &UNK_1809843d0;
+          networkPtrStack_2f8 = &g_network_data_buffer_3d0;
           networkUintStack_2e8 = CONCAT44(networkUintStack_2e8._4_4_,networkUintStack_308);
           networkUintStack_2e0 = CONCAT71(networkUintStack_2e0._1_7_,1);
           dataLength = FUN_180897520(socketHandle,&networkPtrStack_2f8);
@@ -95696,7 +95696,7 @@ LAB_180896ce3:
         networkUintStack_288 = *(uint *)(networkTimeout + 0x14);
         networkUintStack_284 = *(uint32_t *)(networkTimeout + 0x18);
         networkUintStack_280 = *(uint32_t *)(networkTimeout + 0x1c);
-        networkPtrStack_2a8 = &UNK_1809830b8;
+        networkPtrStack_2a8 = &g_network_data_buffer_0b8;
         connectionCount = processResult + 1;
         networkUintStack_27c = networkUintStack_308;
         networkIntStack_2a0 = dataLength;
@@ -95715,7 +95715,7 @@ LAB_180896ce3:
         }
         if (*(char *)(socketDescriptor + CONNECTION_BUFFER_OFFSET) != '\0') {
           networkIntStack_2f0 = 0;
-          networkPtrStack_2f8 = &UNK_180984358;
+          networkPtrStack_2f8 = &g_network_data_buffer_358;
           networkUintStack_2e8 = CONCAT44(networkUintStack_2e8._4_4_,networkUintStack_308);
           networkUintStack_2e0 = CONCAT71(networkUintStack_2e0._1_7_,1);
           processResult = FUN_180897520(socketHandle,&networkPtrStack_2f8);
@@ -95724,7 +95724,7 @@ LAB_180896ce3:
         processResult = connectionCount;
         if (*(char *)(socketDescriptor + 0x29) != '\0') {
           networkIntStack_2f0 = 0;
-          networkPtrStack_2f8 = &UNK_1809843d0;
+          networkPtrStack_2f8 = &g_network_data_buffer_3d0;
           networkUintStack_2e8 = CONCAT44(networkUintStack_2e8._4_4_,networkUintStack_308);
           networkUintStack_2e0 = CONCAT71(networkUintStack_2e0._1_7_,1);
           dataLength = FUN_180897520(socketHandle,&networkPtrStack_2f8);
@@ -95743,7 +95743,7 @@ LAB_180896ce3:
         networkUintStack_288 = *(uint *)(networkTimeout + 0x14);
         networkUintStack_284 = *(uint32_t *)(networkTimeout + 0x18);
         networkUintStack_280 = *(uint32_t *)(networkTimeout + 0x1c);
-        networkPtrStack_2a8 = &UNK_1809830b8;
+        networkPtrStack_2a8 = &g_network_data_buffer_0b8;
         connectionCount = processResult + 1;
         networkUintStack_27c = networkUintStack_308;
         networkIntStack_2a0 = dataLength;
@@ -95762,7 +95762,7 @@ LAB_180896ce3:
         }
         if (*(char *)(socketDescriptor + CONNECTION_BUFFER_OFFSET) != '\0') {
           networkIntStack_2f0 = 0;
-          networkPtrStack_2f8 = &UNK_180984358;
+          networkPtrStack_2f8 = &g_network_data_buffer_358;
           networkUintStack_2e8 = CONCAT44(networkUintStack_2e8._4_4_,networkUintStack_308);
           networkUintStack_2e0 = CONCAT71(networkUintStack_2e0._1_7_,1);
           processResult = FUN_180897520(socketHandle,&networkPtrStack_2f8);
@@ -95771,7 +95771,7 @@ LAB_180896ce3:
         processResult = connectionCount;
         if (*(char *)(socketDescriptor + 0x29) != '\0') {
           networkIntStack_2f0 = 0;
-          networkPtrStack_2f8 = &UNK_1809843d0;
+          networkPtrStack_2f8 = &g_network_data_buffer_3d0;
           networkUintStack_2e8 = CONCAT44(networkUintStack_2e8._4_4_,networkUintStack_308);
           networkUintStack_2e0 = CONCAT71(networkUintStack_2e0._1_7_,1);
           dataLength = FUN_180897520(socketHandle,&networkPtrStack_2f8);
@@ -95871,7 +95871,7 @@ void FUN_180896e11(void)
         socketStatus = *(uint32_t *)(networkTimeout + 0x1c);
         *(uint32_t *)(unaff_RBP + -0x78) = 0;
         *(int *)(unaff_RBP + -0x68) = unaff_R12D;
-        *(undefined **)(unaff_RBP + -0x80) = &UNK_1809830b8;
+        *(undefined **)(unaff_RBP + -0x80) = &g_network_data_buffer_0b8;
         unaff_R12D = unaff_R12D + 1;
         *(uint32_t *)(unaff_RBP + -0x54) = uStackX_20;
         *(uint32_t *)(unaff_RBP + -0x70) = socketIdentifier;
@@ -95894,7 +95894,7 @@ void FUN_180896e11(void)
         }
         if (*(char *)(socketDescriptor + CONNECTION_BUFFER_OFFSET) != '\0') {
           in_stack_00000038 = 0;
-          in_stack_00000030 = &UNK_180984358;
+          in_stack_00000030 = &g_network_data_buffer_358;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           errorCode = FUN_180897520(fVar10,&stack0x00000030);
@@ -95903,7 +95903,7 @@ void FUN_180896e11(void)
         }
         if (*(char *)(socketDescriptor + 0x29) != '\0') {
           in_stack_00000038 = 0;
-          in_stack_00000030 = &UNK_1809843d0;
+          in_stack_00000030 = &g_network_data_buffer_3d0;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           errorCode = FUN_180897520(fVar10,&stack0x00000030);
@@ -95924,7 +95924,7 @@ void FUN_180896e11(void)
         socketStatus = *(uint32_t *)(networkTimeout + 0x1c);
         *(uint32_t *)(unaff_RBP + -0x78) = 0;
         *(int *)(unaff_RBP + -0x68) = unaff_R12D;
-        *(undefined **)(unaff_RBP + -0x80) = &UNK_1809830b8;
+        *(undefined **)(unaff_RBP + -0x80) = &g_network_data_buffer_0b8;
         unaff_R12D = unaff_R12D + 1;
         *(uint32_t *)(unaff_RBP + -0x54) = uStackX_20;
         *(uint32_t *)(unaff_RBP + -0x70) = socketIdentifier;
@@ -95947,7 +95947,7 @@ void FUN_180896e11(void)
         }
         if (*(char *)(socketDescriptor + CONNECTION_BUFFER_OFFSET) != '\0') {
           in_stack_00000038 = 0;
-          in_stack_00000030 = &UNK_180984358;
+          in_stack_00000030 = &g_network_data_buffer_358;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           errorCode = FUN_180897520(fVar10,&stack0x00000030);
@@ -95956,7 +95956,7 @@ void FUN_180896e11(void)
         }
         if (*(char *)(socketDescriptor + 0x29) != '\0') {
           in_stack_00000038 = 0;
-          in_stack_00000030 = &UNK_1809843d0;
+          in_stack_00000030 = &g_network_data_buffer_3d0;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           errorCode = FUN_180897520(fVar10,&stack0x00000030);
@@ -95977,7 +95977,7 @@ void FUN_180896e11(void)
         socketStatus = *(uint32_t *)(networkTimeout + 0x1c);
         *(uint32_t *)(unaff_RBP + -0x78) = 0;
         *(int *)(unaff_RBP + -0x68) = unaff_R12D;
-        *(undefined **)(unaff_RBP + -0x80) = &UNK_1809830b8;
+        *(undefined **)(unaff_RBP + -0x80) = &g_network_data_buffer_0b8;
         unaff_R12D = unaff_R12D + 1;
         *(uint32_t *)(unaff_RBP + -0x54) = uStackX_20;
         *(uint32_t *)(unaff_RBP + -0x70) = socketIdentifier;
@@ -96000,7 +96000,7 @@ void FUN_180896e11(void)
         }
         if (*(char *)(socketDescriptor + CONNECTION_BUFFER_OFFSET) != '\0') {
           in_stack_00000038 = 0;
-          in_stack_00000030 = &UNK_180984358;
+          in_stack_00000030 = &g_network_data_buffer_358;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           errorCode = FUN_180897520(fVar10,&stack0x00000030);
@@ -96009,7 +96009,7 @@ void FUN_180896e11(void)
         }
         if (*(char *)(socketDescriptor + 0x29) != '\0') {
           in_stack_00000038 = 0;
-          in_stack_00000030 = &UNK_1809843d0;
+          in_stack_00000030 = &g_network_data_buffer_3d0;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           errorCode = FUN_180897520(fVar10,&stack0x00000030);
@@ -96030,7 +96030,7 @@ void FUN_180896e11(void)
         socketStatus = *(uint32_t *)(networkTimeout + 0x1c);
         *(uint32_t *)(unaff_RBP + -0x78) = 0;
         *(int *)(unaff_RBP + -0x68) = unaff_R12D;
-        *(undefined **)(unaff_RBP + -0x80) = &UNK_1809830b8;
+        *(undefined **)(unaff_RBP + -0x80) = &g_network_data_buffer_0b8;
         unaff_R12D = unaff_R12D + 1;
         *(uint32_t *)(unaff_RBP + -0x54) = uStackX_20;
         *(uint32_t *)(unaff_RBP + -0x70) = socketIdentifier;
@@ -96053,7 +96053,7 @@ void FUN_180896e11(void)
         }
         if (*(char *)(socketDescriptor + CONNECTION_BUFFER_OFFSET) != '\0') {
           in_stack_00000038 = 0;
-          in_stack_00000030 = &UNK_180984358;
+          in_stack_00000030 = &g_network_data_buffer_358;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           errorCode = FUN_180897520(fVar10,&stack0x00000030);
@@ -96062,7 +96062,7 @@ void FUN_180896e11(void)
         }
         if (*(char *)(socketDescriptor + 0x29) != '\0') {
           in_stack_00000038 = 0;
-          in_stack_00000030 = &UNK_1809843d0;
+          in_stack_00000030 = &g_network_data_buffer_3d0;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           errorCode = FUN_180897520(fVar10,&stack0x00000030);
