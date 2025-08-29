@@ -5636,7 +5636,7 @@ void FUN_1808484d0(longlong socketParam,undefined8 dataParam)
 
 
 
-uint64_t FUN_180848530(longlong socketParam,undefined8 dataParam)
+uint64_t NetworkValidateSocketData(longlong socketParam,undefined8 dataParam)
 
 {
   undefined8 uVar1;
@@ -6459,7 +6459,7 @@ void FUN_18084900b(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_180849030(longlong *socketParam,undefined8 dataParam)
+uint64_t NetworkAllocateSocketBuffer(longlong *socketParam,undefined8 dataParam)
 
 {
   longlong lVar1;

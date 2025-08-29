@@ -155,27 +155,27 @@ int initialize_resource_manager_1(void)
 }
 int initialize_resource_manager_2(void)
 {
-  long long init_result;
-  undefined8 str_len_param;
-  void* resource_pointer = &g_resource_data_buffer;
-  void* resource_buffer_pointer = &resource_buffer_2;
+  long long initialization_result;
+  undefined8 string_length_parameter;
+  void* resource_data_buffer_pointer = &g_resource_data_buffer;
+  void* resource_buffer_value_pointer = &resource_buffer_2;
   resource_buffer_2 = 0;
   resource_type_2 = 0xf;
-  strcpy_s(&resource_buffer_2,0x10,&string_source_003,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_014);
-  return (init_result != 0) - 1;
+  strcpy_s(&resource_buffer_2,0x10,&string_source_003,string_length_parameter,0xfffffffffffffffe);
+  initialization_result = execute_function(callback_function_014);
+  return (initialization_result != 0) - 1;
 }
 int initialize_resource_manager_3(void)
 {
-  long long init_result;
-  undefined8 str_len_param;
-  void* resource_pointer = &g_resource_data_buffer;
-  void* resource_buffer_pointer = &resource_buffer_3;
+  long long initialization_result;
+  undefined8 string_length_parameter;
+  void* resource_data_buffer_pointer = &g_resource_data_buffer;
+  void* resource_buffer_value_pointer = &resource_buffer_3;
   resource_buffer_3 = 0;
   resource_type_3 = 0xf;
-  strcpy_s(&resource_buffer_3,0x10,&string_source_004,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_015);
-  return (init_result != 0) - 1;
+  strcpy_s(&resource_buffer_3,0x10,&string_source_004,string_length_parameter,0xfffffffffffffffe);
+  initialization_result = execute_function(callback_function_015);
+  return (initialization_result != 0) - 1;
 }
 int initialize_resource_manager_4(void)
 {
