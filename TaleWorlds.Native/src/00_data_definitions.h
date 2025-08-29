@@ -2,12 +2,12 @@
 #define DATA_DEFINITIONS_H
 
 // 系统常量定义
-#define 最大系统值 0x7fffffffffffffff
-#define 线程池默认标志 线程池默认标志
-#define 资源缓冲区大小 16
-#define 资源类型纹理 13
-#define 资源类型着色器 15
-#define 资源类型音频 12
+#define MAX_SYSTEM_VALUE 0x7fffffffffffffff
+#define THREAD_POOL_DEFAULT_FLAG THREAD_POOL_DEFAULT_FLAG
+#define RESOURCE_BUFFER_SIZE 16
+#define RESOURCE_TYPE_TEXTURE 13
+#define RESOURCE_TYPE_SHADER 15
+#define RESOURCE_TYPE_AUDIO 12
 
 // 新增常量定义
 #define 资源类型字体 12

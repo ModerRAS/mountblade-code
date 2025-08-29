@@ -297,16 +297,16 @@ dataValue g_配置系统数字格式;             // 配置系统数字格式
 dataValue g_配置系统货币格式;             // 配置系统货币格式
 dataValue g_配置系统度量系统;             // 配置系统度量系统
 dataValue g_配置系统键盘布局;             // 配置系统键盘布局
-dataValue configSystemMouseSettings;
-dataValue configSystemDisplaySettings;
-dataValue configSystemSoundSettings;
-dataValue configSystemNetworkSettings;
-dataValue configSystemSecuritySettings;
-dataValue configSystemPrivacySettings;
-dataValue configSystemAccessibilitySettings;
-dataValue configSystemBackupSettings;
-dataValue configSystemUpdateSettings;
-dataValue configSystemModSettings;
+dataValue g_配置系统鼠标设置;             // 配置系统鼠标设置
+dataValue g_配置系统显示设置;             // 配置系统显示设置
+dataValue g_配置系统声音设置;             // 配置系统声音设置
+dataValue g_配置系统网络设置;             // 配置系统网络设置
+dataValue g_配置系统安全设置;             // 配置系统安全设置
+dataValue g_配置系统隐私设置;             // 配置系统隐私设置
+dataValue g_配置系统无障碍设置;           // 配置系统无障碍设置
+dataValue g_配置系统备份设置;             // 配置系统备份设置
+dataValue g_配置系统更新设置;             // 配置系统更新设置
+dataValue g_配置系统Mod设置;              // 配置系统Mod设置
 dataValue configSystemCloudSettings;
 dataValue configSystemSocialSettings;
 dataValue g_systemModuleConfig1;
