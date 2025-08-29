@@ -438,15 +438,15 @@ void NetworkConnectSocket(uint64_t socketHandle,ulonglong *dataBuffer)
 
 {
   int statusCode;
-  int resultCode;
-  uint8_t networkStack_178 [32];
-  uint8_t *networkPtrStack_158;
-  longlong networkArrayStack_148 [2];
-  uint64_t *anetworkPtrStack_138 [2];
-  uint8_t networkStack_128 [256];
-  ulonglong networkUintStack_28;
+  int operationResult;
+  uint8_t tempBuffer [32];
+  uint8_t *bufferPtr;
+  longlong socketContext [2];
+  uint64_t *sessionConfig [2];
+  uint8_t sendData [256];
+  ulonglong xorKey;
   
-  networkUintStack_28 = _g_networkXorKey ^ (ulonglong)networkStack_178;
+  xorKey = _g_networkXorKey ^ (ulonglong)tempBuffer;
   if (dataBuffer == (ulonglong *)0x0) {
     if ((*(byte *)(g_networkModule + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
