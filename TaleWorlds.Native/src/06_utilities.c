@@ -6766,7 +6766,7 @@ void listen_network_socket(longlong resourceHandle,longlong memorySize)
 // WARNING: Removing unreachable block (ram,0x000180893a22)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180893930(longlong resourceHandle,longlong memorySize)
+int accept_network_connection(longlong resourceHandle,longlong memorySize)
 
 {
   uint localUInt1;
