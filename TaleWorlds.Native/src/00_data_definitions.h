@@ -4595,7 +4595,7 @@ system_handler_001:
 }
         data_180d48dac = '\x01';
         lStack_278 = CONCAT44(lStack_278._4_4_,0x4ea);
-        FUN_180060680(auStack_238,&systemFunctionData1,&systemFunctionData4,&unknown_180a17880);
+        FUN_180060680(auStack_238,&systemFunctionData1,&systemFunctionData4,&systemFunctionData5);
         OutputDebugStringA(auStack_238);
       }
       goto LAB_1802a83bc;
@@ -4616,12 +4616,12 @@ system_handler_001:
     if (*(undefined **)(handle + 8) != (undefined *)0x0) {
       puVar7 = *(undefined **)(handle + 8);
     }
-    iVar4 = fopen_s(&puStack_268,puVar7,&unknown_180a0cf4c);
+    iVar4 = fopen_s(&puStack_268,puVar7,&fileOpenModeString);
     puStack_260 = puStack_268;
     if (iVar4 != 0) {
       puStack_260 = (undefined *)0x0;
     }
-    puStack_268 = &unknown_18042d5d0;
+    puStack_268 = &fileHandleData;
     if (puStack_260 == (undefined *)0x0) goto LAB_1802a83bc;
     puVar7 = puStack_260;
     if (lVar6 != 0) {
@@ -4636,14 +4636,14 @@ LAB_1802a83bc:
 }
         data_180d48daa = '\x01';
         puStack_2d8 = (undefined *)CONCAT44(puStack_2d8._4_4_,0xc88);
-        FUN_180060680(auStack_228,&systemFunctionData1,&unknown_180a17a68,&unknown_180a17880);
+        FUN_180060680(auStack_228,&systemFunctionData1,&unknown_180a17a68,&systemFunctionData5);
         OutputDebugStringA(auStack_228);
       }
       puVar7 = &data_18098bc73;
       if (*(undefined **)(handle + 8) != (undefined *)0x0) {
         puVar7 = *(undefined **)(handle + 8);
       }
-      system_data_manager_002(_data_180c86928,&unknown_180a17960,puVar7);
+      system_data_manager_002(_data_180c86928,&systemDataManagerData,puVar7);
     }
   }
   cVar3 = handle_system_event(mutex_attr);
@@ -4652,7 +4652,7 @@ LAB_1802a83bc:
     if (*(undefined **)(handle + 8) != (undefined *)0x0) {
       puVar7 = *(undefined **)(handle + 8);
     }
-    system_thread_003(&unknown_180a17a18,puVar7);
+    system_thread_003(&systemThreadData3,puVar7);
   }
   else {
     *(unsigned long long *)(mutex_attr + 0x14) = 0;
@@ -4672,7 +4672,7 @@ LAB_1802a912b:
 }
       data_180d48dab = '\x01';
       uStack_228 = 0xac7;
-      FUN_180060680(auStack_218,&systemFunctionData1,&unknown_180a179d0,&unknown_180a17880);
+      FUN_180060680(auStack_218,&systemFunctionData1,&systemFunctionData6,&systemFunctionData5);
       OutputDebugStringA(auStack_218);
     }
   }
