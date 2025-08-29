@@ -5135,7 +5135,7 @@ void FUN_1808477f4(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void* * FUN_180847820(void)
+void* * NetworkGetThreadLocalStorage(void)
 
 {
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
