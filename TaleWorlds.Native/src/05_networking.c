@@ -508,7 +508,7 @@ LAB_NETWORK_SEND_BUFFER_END:
   if ((operationResult == 0) &&
      (statusCode = networkCreateSession(*(uint64_t *)(socketContext[0] + 0x98),sessionConfig,0x20), statusCode == 0))
   {
-    *sessionConfig[0] = &UNK_1809832b8;
+    *sessionConfig[0] = &g_network_session_config;
     *(uint32_t *)(sessionConfig[0] + 3) = 0;
     *(uint32_t *)(sessionConfig[0] + 1) = 0x20;
     *(int *)(sessionConfig[0] + 2) = (int)socketHandle;
@@ -2822,7 +2822,7 @@ int NetworkProcessSocketInput(longlong socketHandle,longlong dataBuffer,int buff
   int statusCode;
   
   networkResult = *(uint32_t *)(socketHandle + 0x10);
-  resultCode = networkCopyData(dataBuffer,bufferCapacity,&UNK_180983b50);
+  resultCode = networkCopyData(dataBuffer,bufferCapacity,&g_network_send_buffer);
   networkOperationResult = networkCopyData(dataBuffer + resultCode,bufferCapacity - resultCode,&g_networkNullTerminator);
   resultCode = resultCode + networkOperationResult;
   networkOperationResult = networkProcessBufferData(resultCode + dataBuffer,bufferCapacity - resultCode,networkResult);
@@ -2841,7 +2841,7 @@ int NetworkManageSocketOutput(longlong socketHandle,longlong dataBuffer,int buff
   
   networkResult = *(uint32_t *)(socketHandle + 0x18);
   packetLength = *(uint32_t *)(socketHandle + 0x10);
-  networkOperationResult = networkCopyData(dataBuffer,bufferCapacity,&UNK_180983bd0);
+  networkOperationResult = networkCopyData(dataBuffer,bufferCapacity,&g_network_receive_buffer);
   connectionCount = networkCopyData(networkOperationResult + dataBuffer,bufferCapacity - networkOperationResult,&g_networkNullTerminator);
   networkOperationResult = networkOperationResult + connectionCount;
   connectionCount = networkProcessBufferData(networkOperationResult + dataBuffer,bufferCapacity - networkOperationResult,packetLength);
@@ -2899,7 +2899,7 @@ int NetworkOptimizeSocketPerformance(longlong socketHandle,longlong dataBuffer,i
   networkUintStack_10 = *(uint32_t *)(socketHandle + 0x18);
   networkUintStack_c = *(uint32_t *)(socketHandle + 0x1c);
   networkResult = *(uint32_t *)(socketHandle + 0x20);
-  resultCode = networkCopyData(dataBuffer,bufferCapacity,&UNK_180981ec0);
+  resultCode = networkCopyData(dataBuffer,bufferCapacity,&g_network_data_buffer_1);
   networkOperationResult = networkCopyData(dataBuffer + resultCode,bufferCapacity - resultCode,&g_networkNullTerminator);
   resultCode = resultCode + networkOperationResult;
   networkOperationResult = networkCalculateChecksum(resultCode + dataBuffer,bufferCapacity - resultCode,&networkUintStack_18);
@@ -2980,7 +2980,7 @@ int networkProcessSocketOutput(longlong socketHandle,longlong dataBuffer,int buf
   networkUintStack_10 = *(uint32_t *)(socketHandle + 0x18);
   networkUintStack_c = *(uint32_t *)(socketHandle + 0x1c);
   networkResult = *(uint32_t *)(socketHandle + 0x20);
-  resultCode = networkCopyData(dataBuffer,bufferCapacity,&UNK_180981fc0);
+  resultCode = networkCopyData(dataBuffer,bufferCapacity,&g_network_data_buffer_2);
   networkOperationResult = networkCopyData(dataBuffer + resultCode,bufferCapacity - resultCode,&g_networkNullTerminator);
   resultCode = resultCode + networkOperationResult;
   networkOperationResult = networkCalculateChecksum(resultCode + dataBuffer,bufferCapacity - resultCode,&networkUintStack_18);
@@ -3009,7 +3009,7 @@ int FUN_180844050(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
   networkUintStack_10 = *(uint32_t *)(socketHandle + 0x18);
   networkUintStack_c = *(uint32_t *)(socketHandle + 0x1c);
   networkResult = *(uint32_t *)(socketHandle + 0x20);
-  resultCode = networkCopyData(dataBuffer,bufferCapacity,&UNK_180981dc0);
+  resultCode = networkCopyData(dataBuffer,bufferCapacity,&g_network_data_buffer_3);
   networkOperationResult = networkCopyData(dataBuffer + resultCode,bufferCapacity - resultCode,&g_networkNullTerminator);
   resultCode = resultCode + networkOperationResult;
   networkOperationResult = networkCalculateChecksum(resultCode + dataBuffer,bufferCapacity - resultCode,&networkUintStack_18);
@@ -3038,7 +3038,7 @@ int FUN_180844100(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
   networkUintStack_10 = *(uint32_t *)(socketHandle + 0x18);
   networkUintStack_c = *(uint32_t *)(socketHandle + 0x1c);
   networkResult = *(uint32_t *)(socketHandle + 0x20);
-  resultCode = networkCopyData(dataBuffer,bufferCapacity,&UNK_180981f40);
+  resultCode = networkCopyData(dataBuffer,bufferCapacity,&g_network_data_buffer_4);
   networkOperationResult = networkCopyData(dataBuffer + resultCode,bufferCapacity - resultCode,&g_networkNullTerminator);
   resultCode = resultCode + networkOperationResult;
   networkOperationResult = networkCalculateChecksum(resultCode + dataBuffer,bufferCapacity - resultCode,&networkUintStack_18);
@@ -3067,7 +3067,7 @@ int FUN_1808441b0(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
   networkUintStack_10 = *(uint32_t *)(socketHandle + 0x18);
   networkUintStack_c = *(uint32_t *)(socketHandle + 0x1c);
   networkResult = *(uint32_t *)(socketHandle + 0x20);
-  resultCode = networkCopyData(dataBuffer,bufferCapacity,&UNK_180981d40);
+  resultCode = networkCopyData(dataBuffer,bufferCapacity,&g_network_data_buffer_5);
   networkOperationResult = networkCopyData(dataBuffer + resultCode,bufferCapacity - resultCode,&g_networkNullTerminator);
   resultCode = resultCode + networkOperationResult;
   networkOperationResult = networkCalculateChecksum(resultCode + dataBuffer,bufferCapacity - resultCode,&networkUintStack_18);
@@ -3154,7 +3154,7 @@ int FUN_1808443b0(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
   networkUintStack_10 = *(uint32_t *)(socketHandle + 0x18);
   networkUintStack_c = *(uint32_t *)(socketHandle + 0x1c);
   networkResult = *(uint32_t *)(socketHandle + 0x20);
-  resultCode = networkCopyData(dataBuffer,bufferCapacity,&UNK_180981e40);
+  resultCode = networkCopyData(dataBuffer,bufferCapacity,&g_network_data_buffer_6);
   networkOperationResult = networkCopyData(dataBuffer + resultCode,bufferCapacity - resultCode,&g_networkNullTerminator);
   resultCode = resultCode + networkOperationResult;
   networkOperationResult = networkCalculateChecksum(resultCode + dataBuffer,bufferCapacity - resultCode,&networkUintStack_18);
@@ -3508,7 +3508,7 @@ int FUN_180844e90(longlong socketHandle,longlong dataBuffer,int bufferCapacity)
   
   packetLength = *(uint32_t *)(socketHandle + 0x10);
   networkResult = *(uint32_t *)(socketHandle + 0x18);
-  networkOperationResult = networkCopyData(dataBuffer,bufferCapacity,&UNK_180984530);
+  networkOperationResult = networkCopyData(dataBuffer,bufferCapacity,&g_network_packet_buffer);
   connectionCount = networkCopyData(dataBuffer + networkOperationResult,bufferCapacity - networkOperationResult,&g_networkNullTerminator);
   networkOperationResult = networkOperationResult + connectionCount;
   connectionCount = networkProcessBufferData(networkOperationResult + dataBuffer,bufferCapacity - networkOperationResult,packetLength);
@@ -3551,7 +3551,7 @@ void NetworkInitializeConnectionPool(ulonglong socketHandle,uint64_t *dataBuffer
     networkSendBuffer(networkStack_128,0x100,0);
     networkPtrStack_158 = networkStack_128;
                     // WARNING: Subroutine does not return
-    networkSendControlPacket(0x1f,0xd,socketHandle,&UNK_180984908);
+    networkSendControlPacket(0x1f,0xd,socketHandle,&g_network_control_data_1);
   }
   networkUintStack_148 = 0;
   networkUintStack_140 = 0;
@@ -3613,7 +3613,7 @@ void NetworkCleanupConnectionResources(uint64_t socketHandle,longlong dataBuffer
       networkSendBuffer(networkStack_128,0x100,0);
       networkPtrStack_148 = networkStack_128;
                     // WARNING: Subroutine does not return
-      networkSendControlPacket(0x1f,0xb,socketHandle,&UNK_1809846b0);
+      networkSendControlPacket(0x1f,0xb,socketHandle,&g_network_control_data_2);
     }
                     // WARNING: Subroutine does not return
     networkEncryptData(networkUintStack_28 ^ (ulonglong)networkStack_168);
@@ -3664,7 +3664,7 @@ void NetworkEstablishConnection(uint64_t socketHandle,uint64_t dataBuffer,uint64
     networkSendBuffer(networkStack_138 + (resultCode + networkOperationResult),0x100 - (resultCode + networkOperationResult),bufferCapacity);
     networkPtrStack_148 = networkStack_138;
                     // WARNING: Subroutine does not return
-    networkSendControlPacket(statusCode,0xb,socketHandle,&UNK_180981fc0);
+    networkSendControlPacket(statusCode,0xb,socketHandle,&g_network_data_buffer_2);
   }
                     // WARNING: Subroutine does not return
   networkEncryptData(networkUintStack_38 ^ (ulonglong)networkStack_168);
@@ -3735,7 +3735,7 @@ void NetworkConfigureConnectionSettings(uint64_t socketHandle,uint32_t *dataBuff
     networkSendBuffer(networkStack_138 + (resultCode + networkOperationResult),0x100 - (resultCode + networkOperationResult),bufferCapacity);
     networkPtrStack_158 = networkStack_138;
                     // WARNING: Subroutine does not return
-    networkSendControlPacket(statusCode,0xb,socketHandle,&UNK_180957410);
+    networkSendControlPacket(statusCode,0xb,socketHandle,&g_network_error_data);
   }
 LAB_1808453a2:
                     // WARNING: Subroutine does not return
@@ -3818,7 +3818,7 @@ LAB_180845484:
   if ((resultCode == 0) &&
      (statusCode = networkCreateSession(*(uint64_t *)(networkArrayStack_148[0] + 0x98),anetworkPtrStack_138,0x20), statusCode == 0))
   {
-    *anetworkPtrStack_138[0] = &UNK_180984260;
+    *anetworkPtrStack_138[0] = &g_network_stack_ptr_1;
     *(uint32_t *)(anetworkPtrStack_138[0] + 1) = 0x20;
     *(int *)(anetworkPtrStack_138[0] + 2) = (int)socketHandle;
     statusCode = NetworkValidateSocket(*(uint64_t *)(networkArrayStack_148[0] + 0x98),anetworkPtrStack_138[0]);
@@ -3865,7 +3865,7 @@ void NetworkGetConnectionStatistics(uint64_t socketHandle,uint64_t *dataBuffer)
     networkSendBuffer(networkStack_118,0x100,dataBuffer);
     networkPtrStack_138 = networkStack_118;
                     // WARNING: Subroutine does not return
-    networkSendControlPacket(statusCode,0xb,socketHandle,&UNK_180984648);
+    networkSendControlPacket(statusCode,0xb,socketHandle,&g_network_control_data_3);
   }
 LAB_1808455bc:
                     // WARNING: Subroutine does not return
@@ -3917,7 +3917,7 @@ LAB_1808456ba:
   if ((resultCode == 0) &&
      (statusCode = networkCreateSession(*(uint64_t *)(networkArrayStack_148[0] + 0x98),anetworkPtrStack_138,0x20), statusCode == 0))
   {
-    *anetworkPtrStack_138[0] = &UNK_180983d78;
+    *anetworkPtrStack_138[0] = &g_network_stack_ptr_2;
     *(uint32_t *)(anetworkPtrStack_138[0] + 3) = 0;
     *(uint32_t *)(anetworkPtrStack_138[0] + 1) = 0x20;
     *(int *)(anetworkPtrStack_138[0] + 2) = (int)socketHandle;
@@ -3958,7 +3958,7 @@ void NetworkSendDataPacket(uint64_t socketHandle,uint64_t dataBuffer,uint64_t bu
     networkSendBuffer(networkStack_138 + (resultCode + networkOperationResult),0x100 - (resultCode + networkOperationResult),bufferCapacity);
     networkPtrStack_148 = networkStack_138;
                     // WARNING: Subroutine does not return
-    networkSendControlPacket(statusCode,0xb,socketHandle,&UNK_180981f40);
+    networkSendControlPacket(statusCode,0xb,socketHandle,&g_network_data_buffer_4);
   }
                     // WARNING: Subroutine does not return
   networkEncryptData(networkUintStack_38 ^ (ulonglong)networkStack_168);
@@ -4028,7 +4028,7 @@ void NetworkHandleOutgoingData(uint64_t socketHandle,uint32_t *dataBuffer,ulongl
     networkSendBuffer(networkStack_138 + (connectionCount + processResult),0x100 - (connectionCount + processResult),bufferCapacity);
     networkPtrStack_168 = networkStack_138;
                     // WARNING: Subroutine does not return
-    networkSendControlPacket(0x1f,0xb,socketHandle,&UNK_180981d40);
+    networkSendControlPacket(0x1f,0xb,socketHandle,&g_network_data_buffer_5);
   }
   networkArrayStack_158[1] = 0;
   connectionCount = networkInitializeSocket(socketHandle,networkArrayStack_158);
@@ -4044,7 +4044,7 @@ LAB_180845e35:
   if ((processResult == 0) &&
      (connectionCount = networkCreateSession(*(uint64_t *)(networkArrayStack_158[0] + 0x98),anetworkPtrStack_148,0x28), connectionCount == 0))
   {
-    *anetworkPtrStack_148[0] = &UNK_180981cd8;
+    *anetworkPtrStack_148[0] = &g_network_stack_ptr_3;
     *(uint32_t *)(anetworkPtrStack_148[0] + 4) = 0;
     *(uint32_t *)(anetworkPtrStack_148[0] + 1) = 0x28;
     networkResult = dataBuffer[1];
@@ -4096,7 +4096,7 @@ void NetworkValidateDataIntegrity(ulonglong socketHandle,uint *dataBuffer)
     FUN_18074b930(networkStack_118,0x100,0);
     networkPtrStack_148 = networkStack_118;
                     // WARNING: Subroutine does not return
-    networkSendControlPacket(0x1f,0xc,socketHandle,&UNK_180984790);
+    networkSendControlPacket(0x1f,0xc,socketHandle,&g_network_control_data_4);
   }
   *dataBuffer = 0;
   networkUintStack_138 = 0;
@@ -4205,7 +4205,7 @@ void NetworkHandleDataTimeout(uint64_t socketHandle,longlong dataBuffer,uint32_t
       FUN_18074bac0(networkStack_148 + (statusCode + resultCode),0x100 - (statusCode + resultCode),timeoutValue);
       networkPtrStack_178 = networkStack_148;
                     // WARNING: Subroutine does not return
-      networkSendControlPacket(0x1f,0xb,socketHandle,&UNK_180984690);
+      networkSendControlPacket(0x1f,0xb,socketHandle,&g_network_control_data_5);
     }
                     // WARNING: Subroutine does not return
     networkEncryptData(networkUintStack_48 ^ (ulonglong)networkStack_198);
@@ -4262,7 +4262,7 @@ void NetworkSendAcknowledgment(uint64_t socketHandle,uint32_t dataBuffer,uint64_
     networkSendBuffer(networkStack_138 + (resultCode + networkOperationResult),0x100 - (resultCode + networkOperationResult),bufferCapacity);
     networkPtrStack_148 = networkStack_138;
                     // WARNING: Subroutine does not return
-    networkSendControlPacket(statusCode,0xc,socketHandle,&UNK_180984730);
+    networkSendControlPacket(statusCode,0xc,socketHandle,&g_network_control_data_6);
   }
                     // WARNING: Subroutine does not return
   networkEncryptData(networkUintStack_38 ^ (ulonglong)networkStack_168);
@@ -4328,7 +4328,7 @@ void NetworkUpdateDataPointers(ulonglong socketHandle,uint32_t *dataBuffer)
     FUN_18074b930(networkStack_118,0x100,0);
     networkPtrStack_148 = networkStack_118;
                     // WARNING: Subroutine does not return
-    networkSendControlPacket(0x1f,0xc,socketHandle,&UNK_180984700);
+    networkSendControlPacket(0x1f,0xc,socketHandle,&g_network_control_data_7);
   }
   *dataBuffer = 0;
   networkUintStack_138 = 0;
@@ -4414,7 +4414,7 @@ void NetworkProcessDataStream(ulonglong socketHandle,uint8_t *dataBuffer,int buf
   FUN_18074b930(networkStack_148 + (statusCode + resultCode),0x100 - (statusCode + resultCode),timeoutValue);
   networkPtrStack_188 = (uint32_t *)networkStack_148;
                     // WARNING: Subroutine does not return
-  networkSendControlPacket(0x1f,0xc,socketHandle,&UNK_1809846e0);
+  networkSendControlPacket(0x1f,0xc,socketHandle,&g_network_control_data_8);
 }
 
 
@@ -4481,7 +4481,7 @@ void NetworkCollectNetworkStatistics(ulonglong socketHandle,uint8_t *dataBuffer)
     FUN_18074be30(networkStack_128,0x100,0);
     networkPtrStack_158 = networkStack_128;
                     // WARNING: Subroutine does not return
-    networkSendControlPacket(0x1f,0xd,socketHandle,&UNK_180984948);
+    networkSendControlPacket(0x1f,0xd,socketHandle,&g_network_control_data_9);
   }
   *dataBuffer = 0;
   networkUintStack_148 = 0;
@@ -4575,7 +4575,7 @@ void NetworkProcessNetworkQueue(ulonglong socketHandle,uint32_t *dataBuffer)
     networkSendBuffer(networkStack_128,0x100,0);
     networkPtrStack_158 = networkStack_128;
                     // WARNING: Subroutine does not return
-    networkSendControlPacket(0x1f,0xd,socketHandle,&UNK_180984990);
+    networkSendControlPacket(0x1f,0xd,socketHandle,&g_network_control_data_10);
   }
   *dataBuffer = 2;
   networkUintStack_148 = 0;
@@ -4652,7 +4652,7 @@ void NetworkManageBandwidth(ulonglong socketHandle,uint dataBuffer,uint32_t *buf
   FUN_18074bac0(networkStack_138 + (statusCode + resultCode),0x100 - (statusCode + resultCode),bufferCapacity);
   networkPtrStack_168 = networkStack_138;
                     // WARNING: Subroutine does not return
-  networkSendControlPacket(0x1f,0xd,socketHandle,&UNK_180984928);
+  networkSendControlPacket(0x1f,0xd,socketHandle,&g_network_control_data_11);
 }
 
 
@@ -4700,7 +4700,7 @@ LAB_180846df9:
   if ((resultCode == 0) &&
      (statusCode = networkCreateSession(*(uint64_t *)(networkArrayStack_148[0] + 0x98),anetworkPtrStack_138,0x20), statusCode == 0))
   {
-    *anetworkPtrStack_138[0] = &UNK_180983618;
+    *anetworkPtrStack_138[0] = &g_network_stack_ptr_4;
     *(uint32_t *)(anetworkPtrStack_138[0] + 1) = 0x20;
     *(int *)(anetworkPtrStack_138[0] + 2) = (int)socketHandle;
     statusCode = NetworkValidateSocket(*(uint64_t *)(networkArrayStack_148[0] + 0x98),anetworkPtrStack_138[0]);
@@ -4744,7 +4744,7 @@ void NetworkOptimizeRouting(ulonglong socketHandle,uint *dataBuffer)
     FUN_18074b930(networkStack_128,0x100,0);
     networkPtrStack_158 = networkStack_128;
                     // WARNING: Subroutine does not return
-    networkSendControlPacket(0x1f,0xd,socketHandle,&UNK_180984968);
+    networkSendControlPacket(0x1f,0xd,socketHandle,&g_network_control_data_12);
   }
   packetLength = 0;
   *dataBuffer = 0;
@@ -4802,7 +4802,7 @@ void NetworkBalanceLoad(ulonglong socketHandle,uint64_t *dataBuffer)
     networkSendBuffer(networkStack_118,0x100,0);
     networkPtrStack_148 = networkStack_118;
                     // WARNING: Subroutine does not return
-    networkSendControlPacket(0x1f,0xc,socketHandle,&UNK_180984830);
+    networkSendControlPacket(0x1f,0xc,socketHandle,&g_network_control_data_13);
   }
   *dataBuffer = 0;
   networkUintStack_138 = 0;
@@ -96283,7 +96283,7 @@ void FUN_1808975e0(longlong socketHandle,longlong dataBuffer)
     socketIndex = func_0x00018088c500(*(uint64_t *)(clientPort + 0xd0),&networkUintStack_1a0);
     if (socketIndex == 0) {
       networkUintStack_170 = 0;
-      networkPtrStack_178 = &UNK_1809832b8;
+      networkPtrStack_178 = &g_network_session_config;
       networkUintStack_160 = networkUintStack_1c8;
       networkUintStack_168 = networkUintStack_1a0;
       socketIndex = FUN_180897520(socketHandle,&networkPtrStack_178);
@@ -96520,7 +96520,7 @@ void FUN_180897644(void)
   networkTimeout5 = (*(code *)*networkContextPtr)(ppacketLength2);
   statusCode3 = func_0x00018088c500(*(uint64_t *)(networkTimeout5 + 0xd0),&stack0x00000048);
   if (statusCode3 == 0) {
-    stackContext = &UNK_1809832b8;
+    stackContext = &g_network_session_config;
     *(uint32_t *)(unaff_RBP + -0xf) = uStackX_20;
     *(float *)(unaff_RBP + -0x10) = fStack0000000000000048;
     in_stack_00000078 = unaff_R13D;
