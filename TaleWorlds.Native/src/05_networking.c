@@ -305,7 +305,7 @@ void NetworkCreateSocket(uint64_t socketHandle)
 
 {
   int statusCode;
-  int resultCode;
+  int operationResult;
   longlong socketContextPtr [2];
   uint64_t *socketDataPtr;
   
@@ -313,7 +313,7 @@ void NetworkCreateSocket(uint64_t socketHandle)
   statusCode = func_0x00018088c590(socketHandle,socketStackBuffer);
   if ((((statusCode != 0) ||
        (((*(uint *)(socketStackBuffer[0] + 0x24) >> 1 & 1) != 0 &&
-        (resultCode = networkInitializeConnection(socketStackBuffer + 1), resultCode == 0)))) && (statusCode == 0)) &&
+        (operationResult = networkInitializeConnection(socketStackBuffer + 1), operationResult == 0)))) && (statusCode == 0)) &&
      (statusCode = networkCreateSession(*(uint64_t *)(socketStackBuffer[0] + 0x98),&sessionConfigPtr,0x18), statusCode == 0))
   {
     *sessionConfigPtr = &UNK_180982dc0;
