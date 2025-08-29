@@ -1100,9 +1100,9 @@ data renderTargetHeight;  /* 原: DAT_180bfa9e8 */
 data renderTargetFormat;  /* 原: DAT_180bfa9f0 */
 data renderTargetSamples;  /* 原: DAT_180bfa9f8 */
 data renderTargetDepthBuffer;  /* 原: DAT_180bfaa78 */
-data DAT_180bfaa80;
-data DAT_180bfaa88;
-data DAT_180bfaa90;
+data renderTargetStencilBuffer;  /* 原: DAT_180bfaa80 */
+data renderTargetColorBuffer;  /* 原: DAT_180bfaa88 */
+data renderTargetMipMaps;  /* 原: DAT_180bfaa90 */
 data memoryAllocatorStatusFlag;
 data lightingShadowMap;
 data lightingProbeData;
@@ -7370,7 +7370,7 @@ int insert_database_record(longlong resourceHandle,longlong memorySize,int opera
   localInt1 = localInt1 + localInt2;
   localInt2 = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&DAT_180a06434);
   localInt1 = localInt1 + localInt2;
-  localInt2 = FUN_18074bb00(localInt1 + memorySize,operationFlags - localInt1,
+  localInt2 = allocateResourceMemory(localInt1 + memorySize,operationFlags - localInt1,
                         resourceHandle + 0x20 + (longlong)*(int *)(resourceHandle + 0x18) * 4);
   return localInt2 + localInt1;
 }
@@ -7390,17 +7390,17 @@ int update_database_record(longlong resourceHandle,longlong memorySize,int opera
   localInt1 = localInt1 + localInt2;
   localInt2 = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&DAT_180a06434);
   localInt1 = localInt1 + localInt2;
-  localInt2 = FUN_18088ed70(localInt1 + memorySize,operationFlags - localInt1,resourceHandle + 0x20,
+  localInt2 = processResourceData(localInt1 + memorySize,operationFlags - localInt1,resourceHandle + 0x20,
                         *(uint32 *)(resourceHandle + 0x18));
   localInt1 = localInt1 + localInt2;
   localInt2 = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&DAT_180a06434);
   localInt1 = localInt1 + localInt2;
-  localInt2 = FUN_18074bb00(localInt1 + memorySize,operationFlags - localInt1,
+  localInt2 = allocateResourceMemory(localInt1 + memorySize,operationFlags - localInt1,
                         resourceHandle + 0x20 + (longlong)*(int *)(resourceHandle + 0x18) * 8);
   localInt1 = localInt1 + localInt2;
   localInt2 = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&DAT_180a06434);
   localInt1 = localInt1 + localInt2;
-  localInt2 = FUN_18074be90(localInt1 + memorySize,operationFlags - localInt1,*(byte *)(resourceHandle + 0x1c));
+  localInt2 = validateResourceData(localInt1 + memorySize,operationFlags - localInt1,*(byte *)(resourceHandle + 0x1c));
   return localInt2 + localInt1;
 }
 
@@ -7415,17 +7415,17 @@ int delete_database_record(longlong resourceHandle,longlong memorySize,int opera
   localInt1 = func_0x00018074b7d0(memorySize,operationFlags,*(uint32 *)(resourceHandle + 0x10));
   localInt2 = executeSystemCommand(memorySize + localInt1,operationFlags - localInt1,&DAT_180a06434);
   localInt1 = localInt1 + localInt2;
-  localInt2 = FUN_18088ed70(localInt1 + memorySize,operationFlags - localInt1,resourceHandle + 0x18,
+  localInt2 = processResourceData(localInt1 + memorySize,operationFlags - localInt1,resourceHandle + 0x18,
                         *(uint32 *)(resourceHandle + 0x10));
   localInt1 = localInt1 + localInt2;
   localInt2 = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&DAT_180a06434);
   localInt1 = localInt1 + localInt2;
-  localInt2 = FUN_18074bb00(localInt1 + memorySize,operationFlags - localInt1,
+  localInt2 = allocateResourceMemory(localInt1 + memorySize,operationFlags - localInt1,
                         resourceHandle + 0x18 + (longlong)*(int *)(resourceHandle + 0x10) * 8);
   localInt1 = localInt1 + localInt2;
   localInt2 = executeSystemCommand(localInt1 + memorySize,operationFlags - localInt1,&DAT_180a06434);
   localInt1 = localInt1 + localInt2;
-  localInt2 = FUN_18074be90(localInt1 + memorySize,operationFlags - localInt1,*(byte *)(resourceHandle + 0x14));
+  localInt2 = validateResourceData(localInt1 + memorySize,operationFlags - localInt1,*(byte *)(resourceHandle + 0x14));
   return localInt2 + localInt1;
 }
 
@@ -7537,11 +7537,11 @@ void utilityExtractResourceInfo(longlong resourceHandle,uint32 *memorySize,longl
       localUInt = localUInt & 0xff;
       localUInt = localUInt & 0xffff;
                     // WARNING: Subroutine does not return
-      FUN_18076b390(localBuffer,0x27,&unknown_180958180,localUInt);
+      initializeBufferStructure(localBuffer,0x27,&unknown_180958180,localUInt);
     }
     if (((*(byte *)(localLong3 + 0xc4) & 1) != 0) &&
        ((lStack_48 = *(longlong *)(localLong3 + 0x68), lStack_48 != 0 ||
-        (localInt2 = FUN_18088c7c0(resourceHandle,localLong3,&lStack_48), localInt2 == 0)))) {
+        (localInt2 = loadResourceFromHandle(resourceHandle,localLong3,&lStack_48), localInt2 == 0)))) {
       *operationFlags = lStack_48;
     }
   }
@@ -7557,7 +7557,7 @@ void initialize_thread_local_storage(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_18076b390();
+  initializeBufferStructure();
 }
 
 
@@ -7623,7 +7623,7 @@ void utilityAnalyzeResourceData(longlong resourceHandle,uint32 *memorySize,longl
       localUInt = localUInt & 0xff;
       localUInt = localUInt & 0xffff;
                     // WARNING: Subroutine does not return
-      FUN_18076b390(localBuffer,0x27,&unknown_180958180,localUInt);
+      initializeBufferStructure(localBuffer,0x27,&unknown_180958180,localUInt);
     }
     if ((**(int **)(localLong3 + 0xd0) != 0) ||
        (localInt2 = FUN_18088c060(*(uint32 *)(resourceHandle + 0x18)), localInt2 == 0)) {
@@ -7653,7 +7653,7 @@ void set_thread_local_data(ulonglong resourceHandle)
   localLong2 = (**(code **)(inputRegister + 0x288))();
   if (localLong2 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18076b390(&stack0x00000080,0x27,&unknown_180958180,uStack0000000000000070 & 0xffffffff,
+    initializeBufferStructure(&stack0x00000080,0x27,&unknown_180958180,uStack0000000000000070 & 0xffffffff,
                   uStack0000000000000070._4_2_);
   }
   if (**(int **)(localLong2 + 0xd0) == 0) {
@@ -7730,7 +7730,7 @@ void utilityGenerateResourceReport(longlong resourceHandle,uint32 *memorySize,lo
       localUInt = localUInt & 0xff;
       localUInt = localUInt & 0xffff;
                     // WARNING: Subroutine does not return
-      FUN_18076b390(localBuffer,0x27,&unknown_180958180,localUInt);
+      initializeBufferStructure(localBuffer,0x27,&unknown_180958180,localUInt);
     }
     lStack_48 = *(longlong *)(localLong3 + 0x48);
     if ((lStack_48 != 0) || (localInt2 = FUN_18088ca20(resourceHandle,localLong3,&lStack_48), localInt2 == 0)) {
@@ -7749,7 +7749,7 @@ void initialize_memory_pool(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_18076b390();
+  initializeBufferStructure();
 }
 
 
@@ -7841,8 +7841,8 @@ void resize_memory_pool(longlong resourceHandle,uint64 memorySize)
 
 
 
-// 函数: void FUN_180894d04(void)
-void FUN_180894d04(void)
+// 函数: void validate_memory_pool(void)
+void validate_memory_pool(void)
 
 {
   int localInt1;
@@ -7863,8 +7863,8 @@ void FUN_180894d04(void)
 
 
 
-// 函数: void FUN_180894d52(void)
-void FUN_180894d52(void)
+// 函数: void defragment_memory_pool(void)
+void defragment_memory_pool(void)
 
 {
   return;
@@ -7873,8 +7873,8 @@ void FUN_180894d52(void)
 
 
 
-// 函数: void FUN_180894d60(longlong resourceHandle,uint64 memorySize)
-void FUN_180894d60(longlong resourceHandle,uint64 memorySize)
+// 函数: void set_pool_allocator(longlong resourceHandle,uint64 memorySize)
+void set_pool_allocator(longlong resourceHandle,uint64 memorySize)
 
 {
   int localInt1;
@@ -7953,7 +7953,7 @@ LAB_180894ebf:
 // WARNING: Removing unreachable block (ram,0x000180896027)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint FUN_180894ef0(longlong *resourceHandle)
+uint get_pool_allocator(longlong *resourceHandle)
 
 {
   int localInt1;
@@ -8002,7 +8002,7 @@ uint FUN_180894ef0(longlong *resourceHandle)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64 FUN_180894fb0(longlong resourceHandle)
+uint64 allocate_from_allocator(longlong resourceHandle)
 
 {
   longlong *plocalLong1;
@@ -8026,7 +8026,7 @@ uint64 FUN_180894fb0(longlong resourceHandle)
   }
   FUN_180895070(resourceHandle + 0x38);
   FUN_180744cc0(resourceHandle + 0x28);
-  FUN_180894ef0(resourceHandle + 0x18);
+  get_pool_allocator(resourceHandle + 0x18);
   plocalLong1 = (longlong *)(resourceHandle + 8);
   uVar4 = *(uint *)(resourceHandle + 0x14);
   if ((int)((uVar4 ^ (int)uVar4 >> 0x1f) - ((int)uVar4 >> 0x1f)) < 0) {
