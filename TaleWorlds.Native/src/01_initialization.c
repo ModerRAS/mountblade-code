@@ -1671,7 +1671,7 @@ int InitializeSystemSemaphore(void)
 {
   longlong semaphore_result;
 
-  g_input_system_handle = CreateSemaphoreW(0,1,0x7fffffff,0,0xfffffffffffffffe);
+  g_input_system_handle = CreateSemaphoreW(0,1,MAX_SEMAPHORE_COUNT,0,INVALID_HANDLE_VALUE);
   semaphore_result = execute_system_init(get_semaphore_init_function);
   return (semaphore_result != 0) - 1;
 }
@@ -1774,7 +1774,7 @@ int InitializeMutex(undefined8 mutex_address,undefined8 mutex_type,undefined8 pa
 {
   longlong mutex_result;
 
-  _Mtx_init_in_situ(0x180c91910,2,param_3,param_4,0xfffffffffffffffe);
+  _Mtx_init_in_situ(MUTEX_SYSTEM_ADDR,2,param_3,param_4,INVALID_HANDLE_VALUE);
   mutex_result = execute_system_init(get_mutex_init_function);
   return (mutex_result != 0) - 1;
 }
@@ -1793,7 +1793,7 @@ void InitializeConfigData(void)
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 7;
-  strcpy_s(auStack_88,0x80,&g_init_string_1,in_R9,0xfffffffffffffffe);
+  strcpy_s(auStack_88,0x80,&g_init_string_1,in_R9,INVALID_HANDLE_VALUE);
   _g_system_semaphore_ptr = create_system_object(&thread_parameter_ptr);
   return;
 }
