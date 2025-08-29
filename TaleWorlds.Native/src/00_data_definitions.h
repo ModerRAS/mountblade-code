@@ -46,7 +46,7 @@ int initialize_network_buffer_system(void)
   void* network_buffer_value_pointer = &network_buffer_current_value;
   int network_buffer_offset = 0;
   network_buffer_current_value = 0;
-  initialization_result = initialize_system(network_init_func_1809415b0);
+  initialization_result = initialize_system(network_buffer_init_function);
   return (initialization_result != 0) - 1;
 }
 // 初始化渲染上下文系统
@@ -57,7 +57,7 @@ int initialize_rendering_context_system(void)
   void* render_buffer_value_pointer = &g_render_buffer_value;
   int render_context_offset = 0;
   g_render_buffer_value = 0;
-  initialization_result = initialize_system(rendering_init_func_1809415d0);
+  initialization_result = initialize_system(rendering_context_init_function);
   return (initialization_result != 0) - 1;
 }
 // 初始化模块系统
@@ -68,7 +68,7 @@ int initialize_module_system(void)
   void* module_value_pointer = &g_module_data_value;
   void* module_null_pointer = 0;
   g_module_data_value = 0;
-  initialization_result = execute_function(module_init_callback_function);
+  initialization_result = execute_function(module_system_init_function);
   return (initialization_result != 0) - 1;
 }
 // 初始化输入系统
@@ -79,7 +79,7 @@ int initialize_input_system(void)
   void* input_buffer_value_pointer = &input_buffer_current_value;
   int input_buffer_offset = 0;
   input_buffer_current_value = 0;
-  initialization_result = execute_function(input_system_callback_function);
+  initialization_result = execute_function(input_system_init_function);
   return (initialization_result != 0) - 1;
 }
 // 初始化物理系统
@@ -90,7 +90,7 @@ int initialize_physics_system(void)
   void* physics_buffer_value_pointer = &physics_buffer_current_value;
   int physics_offset = 0;
   physics_buffer_current_value = 0;
-  initialization_result = execute_function(callback_function_007);
+  initialization_result = execute_function(physics_system_init_function);
   return (initialization_result != 0) - 1;
 }
 // 初始化主线程池
@@ -102,7 +102,7 @@ int initialize_main_thread_pool(void* handle, void* flags, void* mutex_attr, int
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(0x180c910a8, 2, mutex_attr, mutex_type, thread_pool_flags);
   thread_pool_1_status_code = SYSTEM_STATUS_SUCCESS;
-  initialization_result = execute_function(callback_function_008);
+  initialization_result = execute_function(main_thread_pool_init_function);
   return (initialization_result != 0) - 1;
 }
 // 初始化渲染线程池
@@ -114,7 +114,7 @@ int initialize_rendering_thread_pool(undefined8 handle, undefined8 flags, undefi
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(0x180c91148, 2, mutex_attr, mutex_type, thread_pool_flags);
   thread_pool_2_status_code = SYSTEM_STATUS_SUCCESS;
-  initialization_result = execute_function(callback_function_009);
+  initialization_result = execute_function(rendering_thread_pool_init_function);
   return (initialization_result != 0) - 1;
 }
 // 初始化网络线程池
@@ -126,7 +126,7 @@ int initialize_network_thread_pool(undefined8 handle, undefined8 flags, undefine
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(0x180c911e8, 2, mutex_attr, mutex_type, thread_pool_flags);
   thread_pool_3_status_code = 0;
-  initialization_result = execute_function(callback_function_010);
+  initialization_result = execute_function(network_thread_pool_init_function);
   return (initialization_result != 0) - 1;
 }
 // 初始化IO线程池
@@ -138,7 +138,7 @@ int initialize_io_thread_pool(undefined8 handle, undefined8 flags, undefined8 mu
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(0x180c91288, 2, mutex_attr, mutex_type, thread_pool_flags);
   thread_pool_4_status_code = 0;
-  initialization_result = execute_function(callback_function_011);
+  initialization_result = execute_function(io_thread_pool_init_function);
   return (initialization_result != 0) - 1;
 }
 // 初始化基础资源管理器
@@ -6092,7 +6092,7 @@ undefined8 * FUN_1804ca350(undefined8 *handle,int flags)
   }
   system_helper_001();
 }
-undefined8 FUN_1804ca920(undefined8 handle,ulonglong flags)
+undefined8 initialize_graphics_context(undefined8 handle,ulonglong flags)
 {
   FUN_1804ca960();
   if ((flags & 1) != 0) {
@@ -6903,21 +6903,21 @@ FUN_1806090b0(undefined8 handle,undefined8 flags,undefined1 mutex_attr,undefined
   undefined1 auStack_30 [40];
   system_thread_manager_002(auStack_30,handle,mutex_attr,mutex_type,0xfffffffffffffffe);
   system_thread_manager_002(auStack_50,flags);
-  cVar1 = FUN_180629850(auStack_30,&unknown_180a389d8,1);
+  cVar1 = validate_handle_parameters(auStack_30,&unknown_180a389d8,1);
   if (cVar1 == '\0') {
-    cVar1 = FUN_180629850(auStack_30,&unknown_180a38a08,1);
+    cVar1 = validate_handle_parameters(auStack_30,&unknown_180a38a08,1);
     if (cVar1 == '\0') {
-      cVar1 = FUN_180629850(auStack_30,&unknown_180a38958,1);
+      cVar1 = validate_handle_parameters(auStack_30,&unknown_180a38958,1);
       if (cVar1 == '\0') {
-        cVar1 = FUN_180629850(auStack_30,&unknown_180a389b0,1);
+        cVar1 = validate_handle_parameters(auStack_30,&unknown_180a389b0,1);
         if (cVar1 == '\0') {
-          cVar1 = FUN_180629850(auStack_30,&unknown_180a38988,1);
+          cVar1 = validate_handle_parameters(auStack_30,&unknown_180a38988,1);
           if (cVar1 == '\0') {
-            cVar1 = FUN_180629850(auStack_30,&unknown_180a38aa8,1);
+            cVar1 = validate_handle_parameters(auStack_30,&unknown_180a38aa8,1);
             if (cVar1 == '\0') {
-              cVar1 = FUN_180629850(auStack_30,&unknown_180a38a88,1);
+              cVar1 = validate_handle_parameters(auStack_30,&unknown_180a38a88,1);
               if (cVar1 == '\0') {
-                cVar1 = FUN_180629850(auStack_30,&unknown_180a38ac0,1);
+                cVar1 = validate_handle_parameters(auStack_30,&unknown_180a38ac0,1);
                 if (cVar1 == '\0') {
                   cVar1 = func_0x0001800a1eb0(auStack_30,&unknown_180a38a48);
                   if (cVar1 == '\0') {
@@ -8017,7 +8017,7 @@ LAB_18060a103:
                   }
                 }
                 else {
-                  cVar1 = FUN_180629850(auStack_50,&unknown_180a39920,1);
+                  cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39920,1);
                   if (cVar1 == '\0') {
                     cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39988);
                     if (cVar1 != '\0') {
@@ -8146,34 +8146,34 @@ LAB_18060b7e7:
                 }
               }
               else {
-                cVar1 = FUN_180629850(auStack_50,&unknown_180a39888,1);
+                cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39888,1);
                 if (cVar1 == '\0') {
-                  cVar1 = FUN_180629850(auStack_50,&unknown_180a397f8,1);
+                  cVar1 = validate_handle_parameters(auStack_50,&unknown_180a397f8,1);
                   if (cVar1 != '\0') {
 LAB_18060a114:
                     uVar3 = 0x10;
                     goto LAB_18060bbae;
                   }
-                  cVar1 = FUN_180629850(auStack_50,&unknown_180a397e8,1);
+                  cVar1 = validate_handle_parameters(auStack_50,&unknown_180a397e8,1);
                   if (cVar1 != '\0') {
 LAB_18060b32d:
                     uVar3 = 0x20;
                     goto LAB_18060bbae;
                   }
-                  cVar1 = FUN_180629850(auStack_50,&unknown_180a39850,1);
+                  cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39850,1);
                   if (cVar1 != '\0') goto LAB_1806091a3;
-                  cVar1 = FUN_180629850(auStack_50,&unknown_180a39820,1);
+                  cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39820,1);
                   if (cVar1 != '\0') {
 LAB_18060ae57:
                     uVar3 = 0x30;
                     goto LAB_18060bbae;
                   }
-                  cVar1 = FUN_180629850(auStack_50,&unknown_180a39940,1);
+                  cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39940,1);
                   if (cVar1 != '\0') {
                     uVar3 = 0x31;
                     goto LAB_18060bbae;
                   }
-                  cVar1 = FUN_180629850(auStack_50,&unknown_180a19c8c,1);
+                  cVar1 = validate_handle_parameters(auStack_50,&unknown_180a19c8c,1);
                   if (cVar1 != '\0') {
                     uVar3 = 0x32;
                     goto LAB_18060bbae;
@@ -8182,168 +8182,168 @@ LAB_18060ae57:
               }
             }
             else {
-              cVar1 = FUN_180629850(auStack_50,&unknown_180a397d8,1);
+              cVar1 = validate_handle_parameters(auStack_50,&unknown_180a397d8,1);
               if (cVar1 == '\0') {
-                cVar1 = FUN_180629850(auStack_50,&unknown_180a397c8,1);
+                cVar1 = validate_handle_parameters(auStack_50,&unknown_180a397c8,1);
                 if (cVar1 != '\0') goto LAB_18060b9cb;
-                cVar1 = FUN_180629850(auStack_50,&unknown_180a39740,1);
+                cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39740,1);
                 if (cVar1 != '\0') goto LAB_18060ad3e;
-                cVar1 = FUN_180629850(auStack_50,&unknown_180a39728,1);
+                cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39728,1);
                 if (cVar1 != '\0') goto LAB_18060acd8;
-                cVar1 = FUN_180629850(auStack_50,&unknown_180a39768,1);
+                cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39768,1);
                 if (cVar1 != '\0') goto LAB_18060a114;
-                cVar1 = FUN_180629850(auStack_50,&unknown_180a39758,1);
+                cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39758,1);
                 if (cVar1 != '\0') goto LAB_18060a91e;
-                cVar1 = FUN_180629850(auStack_50,&unknown_180a39870,1);
+                cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39870,1);
                 if (cVar1 != '\0') goto LAB_18060ba49;
-                cVar1 = FUN_180629850(auStack_50,&unknown_180a19c8c,1);
+                cVar1 = validate_handle_parameters(auStack_50,&unknown_180a19c8c,1);
                 if (cVar1 != '\0') {
 LAB_18060b1d7:
                   uVar3 = 0x19;
                   goto LAB_18060bbae;
                 }
-                cVar1 = FUN_180629850(auStack_50,&unknown_180a39864,1);
+                cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39864,1);
                 if (cVar1 != '\0') {
                   uVar3 = 0x35;
                   goto LAB_18060bbae;
                 }
-                cVar1 = FUN_180629850(auStack_50,&unknown_180a398a8,1);
+                cVar1 = validate_handle_parameters(auStack_50,&unknown_180a398a8,1);
                 if (cVar1 != '\0') goto LAB_180609b20;
               }
             }
           }
           else {
-            cVar1 = FUN_180629850(auStack_50,&unknown_180a39568,1);
+            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39568,1);
             if (cVar1 == '\0') {
-              cVar1 = FUN_180629850(auStack_50,&unknown_180a39538,1);
+              cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39538,1);
               if (cVar1 != '\0') {
 LAB_180609cf8:
                 uVar3 = 7;
                 goto LAB_18060bbae;
               }
-              cVar1 = FUN_180629850(auStack_50,&unknown_180a396c8,1);
+              cVar1 = validate_handle_parameters(auStack_50,&unknown_180a396c8,1);
               if (cVar1 != '\0') goto LAB_18060ad3e;
-              cVar1 = FUN_180629850(auStack_50,&unknown_180a396b0,1);
+              cVar1 = validate_handle_parameters(auStack_50,&unknown_180a396b0,1);
               if (cVar1 != '\0') goto LAB_180609d2e;
-              cVar1 = FUN_180629850(auStack_50,&unknown_180a39710,1);
+              cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39710,1);
               if (cVar1 != '\0') {
 LAB_180609d4c:
                 uVar3 = 10;
                 goto LAB_18060bbae;
               }
-              cVar1 = FUN_180629850(auStack_50,&unknown_180a396f0,1);
+              cVar1 = validate_handle_parameters(auStack_50,&unknown_180a396f0,1);
               if (cVar1 != '\0') goto LAB_180609d6a;
-              cVar1 = FUN_180629850(auStack_50,&unknown_180a39640,1);
+              cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39640,1);
               if (cVar1 != '\0') goto LAB_18060acd8;
-              cVar1 = FUN_180629850(auStack_50,&unknown_180a39628,1);
+              cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39628,1);
               if (cVar1 != '\0') {
                 uVar3 = 0xd;
                 goto LAB_18060bbae;
               }
-              cVar1 = FUN_180629850(auStack_50,&unknown_180a39688,1);
+              cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39688,1);
               if (cVar1 != '\0') {
                 uVar3 = 0xe;
                 goto LAB_18060bbae;
               }
-              cVar1 = FUN_180629850(auStack_50,&unknown_180a39660,1);
+              cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39660,1);
               if (cVar1 != '\0') {
                 uVar3 = 0xf;
                 goto LAB_18060bbae;
               }
-              cVar1 = FUN_180629850(auStack_50,&unknown_180a397a8,1);
+              cVar1 = validate_handle_parameters(auStack_50,&unknown_180a397a8,1);
               if (cVar1 != '\0') goto LAB_18060a114;
-              cVar1 = FUN_180629850(auStack_50,&unknown_180a39788,1);
+              cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39788,1);
               if (cVar1 != '\0') goto LAB_1806099ea;
             }
           }
         }
         else {
-          cVar1 = FUN_180629850(auStack_50,&unknown_180a39270,1);
+          cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39270,1);
           if (cVar1 == '\0') {
-            cVar1 = FUN_180629850(auStack_50,&unknown_180a393a8,1);
+            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a393a8,1);
             if (cVar1 != '\0') goto LAB_18060ad3e;
-            cVar1 = FUN_180629850(auStack_50,&unknown_180a39390,1);
+            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39390,1);
             if (cVar1 != '\0') {
 LAB_180609d2e:
               uVar3 = 9;
               goto LAB_18060bbae;
             }
-            cVar1 = FUN_180629850(auStack_50,&unknown_180a393f0,1);
+            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a393f0,1);
             if (cVar1 != '\0') goto LAB_18060a114;
-            cVar1 = FUN_180629850(auStack_50,&unknown_180a393d0,1);
+            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a393d0,1);
             if (cVar1 != '\0') goto LAB_1806099ea;
-            cVar1 = FUN_180629850(auStack_50,&unknown_180a39348,1);
+            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39348,1);
             if (cVar1 != '\0') {
 LAB_18060965b:
               uVar3 = 0x17;
               goto LAB_18060bbae;
             }
-            cVar1 = FUN_180629850(auStack_50,&unknown_180a39328,1);
+            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39328,1);
             if (cVar1 != '\0') goto LAB_18060ba49;
-            cVar1 = FUN_180629850(auStack_50,&unknown_180a39378,1);
+            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39378,1);
             if (cVar1 != '\0') goto LAB_18060b32d;
-            cVar1 = FUN_180629850(auStack_50,&unknown_180a39360,1);
+            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39360,1);
             if (cVar1 != '\0') {
               uVar3 = 0x21;
               goto LAB_18060bbae;
             }
-            cVar1 = FUN_180629850(auStack_50,&unknown_180a394a0,1);
+            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a394a0,1);
             if (cVar1 != '\0') {
               uVar3 = 0x22;
               goto LAB_18060bbae;
             }
-            cVar1 = FUN_180629850(auStack_50,&unknown_180a39480,1);
+            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39480,1);
             if (cVar1 != '\0') {
               uVar3 = 0x23;
               goto LAB_18060bbae;
             }
-            cVar1 = FUN_180629850(auStack_50,&unknown_180a394e0,1);
+            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a394e0,1);
             if (cVar1 != '\0') goto LAB_18060b0f9;
-            cVar1 = FUN_180629850(auStack_50,&unknown_180a394b8,1);
+            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a394b8,1);
             if (cVar1 != '\0') {
               uVar3 = 0x25;
               goto LAB_18060bbae;
             }
-            cVar1 = FUN_180629850(auStack_50,&unknown_180a39428,1);
+            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39428,1);
             if (cVar1 != '\0') {
               uVar3 = 0x26;
               goto LAB_18060bbae;
             }
-            cVar1 = FUN_180629850(auStack_50,&unknown_180a39408,1);
+            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39408,1);
             if (cVar1 != '\0') {
               uVar3 = 0x27;
               goto LAB_18060bbae;
             }
-            cVar1 = FUN_180629850(auStack_50,&unknown_180a39468,1);
+            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39468,1);
             if (cVar1 != '\0') goto LAB_1806091a3;
-            cVar1 = FUN_180629850(auStack_50,&unknown_180a39450,1);
+            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39450,1);
             if (cVar1 != '\0') {
               uVar3 = 0x29;
               goto LAB_18060bbae;
             }
-            cVar1 = FUN_180629850(auStack_50,&unknown_180a395c0,1);
+            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a395c0,1);
             if (cVar1 != '\0') {
               uVar3 = 0x2a;
               goto LAB_18060bbae;
             }
-            cVar1 = FUN_180629850(auStack_50,&unknown_180a39598,1);
+            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39598,1);
             if (cVar1 != '\0') {
               uVar3 = 0x2b;
               goto LAB_18060bbae;
             }
-            cVar1 = FUN_180629850(auStack_50,&unknown_180a39600,1);
+            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39600,1);
             if (cVar1 != '\0') goto LAB_18060ae39;
-            cVar1 = FUN_180629850(auStack_50,&unknown_180a395e0,1);
+            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a395e0,1);
             if (cVar1 != '\0') {
               uVar3 = 0x2d;
               goto LAB_18060bbae;
             }
-            cVar1 = FUN_180629850(auStack_50,&unknown_180a39518,1);
+            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39518,1);
             if (cVar1 != '\0') {
               uVar3 = 0x2e;
               goto LAB_18060bbae;
             }
-            cVar1 = FUN_180629850(auStack_50,&unknown_180a39500,1);
+            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39500,1);
             if (cVar1 != '\0') {
               uVar3 = 0x2f;
               goto LAB_18060bbae;
@@ -8352,59 +8352,59 @@ LAB_18060965b:
         }
       }
       else {
-        cVar1 = FUN_180629850(auStack_50,&unknown_180a391b8,1);
+        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a391b8,1);
         if (cVar1 == '\0') {
-          cVar1 = FUN_180629850(auStack_50,&unknown_180a39188,1);
+          cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39188,1);
           if (cVar1 != '\0') {
 LAB_180609d6a:
             uVar3 = 0xb;
             goto LAB_18060bbae;
           }
-          cVar1 = FUN_180629850(auStack_50,&unknown_180a39210,1);
+          cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39210,1);
           if (cVar1 != '\0') goto LAB_18060acd8;
-          cVar1 = FUN_180629850(auStack_50,&unknown_180a391e8,1);
+          cVar1 = validate_handle_parameters(auStack_50,&unknown_180a391e8,1);
           if (cVar1 != '\0') goto LAB_18060a114;
-          cVar1 = FUN_180629850(auStack_50,&unknown_180a39128,1);
+          cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39128,1);
           if (cVar1 != '\0') {
 LAB_1806099ea:
             uVar3 = 0x11;
             goto LAB_18060bbae;
           }
-          cVar1 = FUN_180629850(auStack_50,&unknown_180a39110,1);
+          cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39110,1);
           if (cVar1 != '\0') {
             uVar3 = 0x12;
             goto LAB_18060bbae;
           }
-          cVar1 = FUN_180629850(auStack_50,&unknown_180a39170,1);
+          cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39170,1);
           if (cVar1 != '\0') {
             uVar3 = 0x13;
             goto LAB_18060bbae;
           }
-          cVar1 = FUN_180629850(auStack_50,&unknown_180a39148,1);
+          cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39148,1);
           if (cVar1 != '\0') goto LAB_18060a91e;
-          cVar1 = FUN_180629850(auStack_50,&unknown_180a392d0,1);
+          cVar1 = validate_handle_parameters(auStack_50,&unknown_180a392d0,1);
           if (cVar1 != '\0') {
             uVar3 = 0x15;
             goto LAB_18060bbae;
           }
-          cVar1 = FUN_180629850(auStack_50,&unknown_180a392b8,1);
+          cVar1 = validate_handle_parameters(auStack_50,&unknown_180a392b8,1);
           if (cVar1 != '\0') {
             uVar3 = 0x16;
             goto LAB_18060bbae;
           }
-          cVar1 = FUN_180629850(auStack_50,&unknown_180a39308,1);
+          cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39308,1);
           if (cVar1 != '\0') goto LAB_18060965b;
-          cVar1 = FUN_180629850(auStack_50,&unknown_180a392e8,1);
+          cVar1 = validate_handle_parameters(auStack_50,&unknown_180a392e8,1);
           if (cVar1 != '\0') goto LAB_18060ba49;
-          cVar1 = FUN_180629850(auStack_50,&unknown_180a39250,1);
+          cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39250,1);
           if (cVar1 != '\0') goto LAB_18060b1d7;
-          cVar1 = FUN_180629850(auStack_50,&unknown_180a39230,1);
+          cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39230,1);
           if (cVar1 != '\0') {
 LAB_18060b1f5:
             uVar3 = 0x1a;
             goto LAB_18060bbae;
           }
-          cVar1 = FUN_180629850(auStack_50,&unknown_180a39298,1);
+          cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39298,1);
           if (cVar1 != '\0') {
             uVar3 = 0x1b;
             goto LAB_18060bbae;
@@ -8413,70 +8413,70 @@ LAB_18060b1f5:
       }
     }
     else {
-      cVar1 = FUN_180629850(auStack_50,&unknown_180a38ef0,1);
+      cVar1 = validate_handle_parameters(auStack_50,&unknown_180a38ef0,1);
       if (cVar1 == '\0') {
-        cVar1 = FUN_180629850(auStack_50,&unknown_180a38fd8,1);
+        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a38fd8,1);
         if (cVar1 != '\0') goto LAB_18060b9cb;
-        cVar1 = FUN_180629850(auStack_50,&unknown_180a1029c,1);
+        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a1029c,1);
         if (cVar1 != '\0') goto LAB_18060ad3e;
-        cVar1 = FUN_180629850(auStack_50,&unknown_180a38fc0,1);
+        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a38fc0,1);
         if (cVar1 != '\0') goto LAB_18060acd8;
-        cVar1 = FUN_180629850(auStack_50,&unknown_180a39008,1);
+        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39008,1);
         if (cVar1 != '\0') goto LAB_18060a114;
-        cVar1 = FUN_180629850(auStack_50,&unknown_180a38ff0,1);
+        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a38ff0,1);
         if (cVar1 != '\0') goto LAB_18060a91e;
-        cVar1 = FUN_180629850(auStack_50,&unknown_180a38f78,1);
+        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a38f78,1);
         if (cVar1 != '\0') goto LAB_18060ba49;
-        cVar1 = FUN_180629850(auStack_50,&unknown_180a38f60,1);
+        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a38f60,1);
         if (cVar1 != '\0') goto LAB_18060ba67;
-        cVar1 = FUN_180629850(auStack_50,&unknown_180a38fa8,1);
+        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a38fa8,1);
         if (cVar1 != '\0') goto LAB_18060b32d;
-        cVar1 = FUN_180629850(auStack_50,&unknown_180a38f90,1);
+        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a38f90,1);
         if (cVar1 != '\0') goto LAB_18060b0f9;
-        cVar1 = FUN_180629850(auStack_50,&unknown_180a390b8,1);
+        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a390b8,1);
         if (cVar1 != '\0') goto LAB_1806091a3;
-        cVar1 = FUN_180629850(auStack_50,&unknown_180a39090,1);
+        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39090,1);
         if (cVar1 != '\0') goto LAB_18060ae93;
-        cVar1 = FUN_180629850(auStack_50,&unknown_180a390f0,1);
+        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a390f0,1);
         if (cVar1 != '\0') goto LAB_18060a68c;
-        cVar1 = FUN_180629850(auStack_50,&unknown_180a390d0,1);
+        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a390d0,1);
         if (cVar1 != '\0') goto LAB_18060a6aa;
-        cVar1 = FUN_180629850(auStack_50,&unknown_180a39030,1);
+        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39030,1);
         if (cVar1 != '\0') goto LAB_18060b6c7;
-        cVar1 = FUN_180629850(auStack_50,&unknown_180a34c20,1);
+        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a34c20,1);
         if (cVar1 != '\0') {
           uVar3 = 0x54;
           goto LAB_18060bbae;
         }
-        cVar1 = FUN_180629850(auStack_50,&unknown_180a39020,1);
+        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39020,1);
         if (cVar1 != '\0') goto LAB_18060b6e5;
-        cVar1 = FUN_180629850(auStack_50,&unknown_180a39078,1);
+        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39078,1);
         if (cVar1 != '\0') goto LAB_18060b703;
-        cVar1 = FUN_180629850(auStack_50,&unknown_180a39058,1);
+        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39058,1);
         if (cVar1 != '\0') goto LAB_1806093cc;
       }
     }
   }
   else {
-    cVar1 = FUN_180629850(auStack_50,&unknown_180a0ee38,1);
+    cVar1 = validate_handle_parameters(auStack_50,&unknown_180a0ee38,1);
     if (cVar1 == '\0') {
-      cVar1 = FUN_180629850(auStack_50,&unknown_180a38f50,1);
+      cVar1 = validate_handle_parameters(auStack_50,&unknown_180a38f50,1);
       if (cVar1 != '\0') {
 LAB_18060ad3e:
         uVar3 = 8;
         goto LAB_18060bbae;
       }
-      cVar1 = FUN_180629850(auStack_50,&unknown_180a38f40,1);
+      cVar1 = validate_handle_parameters(auStack_50,&unknown_180a38f40,1);
       if (cVar1 != '\0') goto LAB_18060a114;
-      cVar1 = FUN_180629850(auStack_50,&unknown_180a38ee0,1);
+      cVar1 = validate_handle_parameters(auStack_50,&unknown_180a38ee0,1);
       if (cVar1 != '\0') {
 LAB_18060ba49:
         uVar3 = 0x18;
         goto LAB_18060bbae;
       }
-      cVar1 = FUN_180629850(auStack_50,&unknown_180a38ed0,1);
+      cVar1 = validate_handle_parameters(auStack_50,&unknown_180a38ed0,1);
       if (cVar1 != '\0') goto LAB_18060b32d;
-      cVar1 = FUN_180629850(auStack_50,&unknown_180a38f00,1);
+      cVar1 = validate_handle_parameters(auStack_50,&unknown_180a38f00,1);
       if (cVar1 != '\0') {
 LAB_1806091a3:
         uVar3 = 0x28;
@@ -8522,7 +8522,7 @@ LAB_18060bbae:
   }
   return;
 }
-double FUN_180629810(void)
+double calculate_system_performance(void)
 {
   longlong init_result;
   longlong alStackX_8 [4];
@@ -8533,7 +8533,7 @@ double FUN_180629810(void)
   }
   return (double)(init_result - _data_180c8ed48) * _data_180c8ed50;
 }
-bool FUN_180629850(longlong handle,longlong flags,char mutex_attr)
+bool validate_handle_parameters(longlong handle,longlong flags,char mutex_attr)
 {
   char cVar1;
   char cVar2;
@@ -8571,7 +8571,7 @@ bool FUN_180629850(longlong handle,longlong flags,char mutex_attr)
   return true;
 }
 // 查找字符串在句柄中的位置
-int find_string_position(longlong handle)
+int find_string_index_in_array(longlong handle)
 {
   int iVar1;
   longlong lVar2;
@@ -8611,7 +8611,7 @@ LAB_18062995a:
   return iVar3;
 }
 // 处理句柄和标志位
-int process_handle_with_flags(longlong handle,longlong flags)
+int process_handle_parameters(longlong handle,longlong flags)
 {
   int iVar1;
   longlong lVar2;
@@ -8839,7 +8839,7 @@ char * FUN_18062e480(undefined4 handle,undefined8 flags,char *mutex_attr,undefin
   uStack_108 = 0;
   pcStack_70 = mutex_attr;
   uStack_68 = flags;
-  lVar8 = FUN_18062f1f0(&puStack_f8,mutex_type,handle,param_5);
+  lVar8 = process_system_configuration(&puStack_f8,mutex_type,handle,param_5);
   uStack_108 = *(undefined4 *)(lVar8 + 0x10);
   puStack_110 = *(undefined **)(lVar8 + 8);
   uStack_100 = *(ulonglong *)(lVar8 + 0x18);
@@ -9082,7 +9082,7 @@ LAB_18062e8bc:
           }
           memcpy(puVar12,puVar11,0x14);
         }
-        iVar5 = FUN_180631780(pcVar19,uStack_68);
+        iVar5 = validate_config_handle(pcVar19,uStack_68);
         uVar7 = (int)pcVar15 + iVar5;
         pcVar15 = (char *)(ulonglong)uVar7;
         uStack_d8 = CONCAT44(uStack_d8._4_4_,uVar7);
@@ -9298,7 +9298,7 @@ LAB_18062eece:
       puStack_d0 = &g_threadString2;
       system_helper_001(puVar7);
     }
-    uVar4 = FUN_180631780(pcVar11,&unknown_180a12e10);
+    uVar4 = validate_config_handle(pcVar11,&unknown_180a12e10);
     pcVar14 = (char *)(ulonglong)uVar4;
   }
   *mutex_attr = &g_threadString2;
@@ -9317,7 +9317,7 @@ LAB_18062eece:
   *param_7 = &g_threadString4;
   return pcVar14;
 }
-longlong FUN_18062f1f0(longlong handle,longlong flags,undefined4 mutex_attr,longlong mutex_type)
+longlong process_system_configuration(longlong handle,longlong flags,undefined4 mutex_attr,longlong mutex_type)
 {
   char cVar1;
   char cVar2;
@@ -9563,7 +9563,7 @@ LAB_18062f4a5:
   }
   system_helper_001();
 }
-int FUN_180631780(undefined8 handle,char *flags)
+int validate_config_handle(undefined8 handle,char *flags)
 {
   char *pcVar1;
   char cVar2;
@@ -9618,7 +9618,7 @@ LAB_18063182e:
     }
   } while( true );
 }
-int FUN_1806317a0(undefined8 handle,undefined8 flags,undefined8 *mutex_attr)
+int process_config_with_mutex(undefined8 handle,undefined8 flags,undefined8 *mutex_attr)
 {
   char *pcVar1;
   char cVar2;
@@ -9668,7 +9668,7 @@ LAB_18063182e:
     }
   } while( true );
 }
-int FUN_18063182a(undefined8 handle,undefined8 flags,undefined8 *mutex_attr)
+int validate_mutex_attributes(undefined8 handle,undefined8 flags,undefined8 *mutex_attr)
 {
   char *pcVar1;
   char cVar2;
@@ -9720,12 +9720,12 @@ LAB_18063182e:
     }
   } while( true );
 }
-undefined4 FUN_180631845(void)
+undefined4 get_system_status_code(void)
 {
   undefined4 in_R11D;
   return in_R11D;
 }
-longlong FUN_180631850(undefined8 handle,undefined8 flags,longlong mutex_attr)
+longlong initialize_system_resources(undefined8 handle,undefined8 flags,longlong mutex_attr)
 {
   longlong init_result;
   longlong lVar2;
@@ -9765,7 +9765,7 @@ longlong FUN_180631850(undefined8 handle,undefined8 flags,longlong mutex_attr)
   }
   return lVar4;
 }
-longlong FUN_180631960(undefined8 handle,undefined8 flags,longlong mutex_attr)
+longlong allocate_thread_resources(undefined8 handle,undefined8 flags,longlong mutex_attr)
 {
   longlong init_result;
   longlong lVar2;
@@ -9803,7 +9803,7 @@ longlong FUN_180631960(undefined8 handle,undefined8 flags,longlong mutex_attr)
   }
   return lVar4;
 }
-longlong FUN_180631a80(undefined8 handle,undefined8 flags,longlong mutex_attr,undefined8 mutex_type)
+longlong initialize_thread_pool_resources(undefined8 handle,undefined8 flags,longlong mutex_attr,undefined8 mutex_type)
 {
   longlong init_result;
   longlong lVar2;
@@ -9841,7 +9841,7 @@ longlong FUN_180631a80(undefined8 handle,undefined8 flags,longlong mutex_attr,un
   }
   return lVar4;
 }
-longlong FUN_180631b90(undefined8 handle,undefined8 flags,longlong mutex_attr)
+longlong validate_thread_configuration(undefined8 handle,undefined8 flags,longlong mutex_attr)
 {
   int iVar1;
   longlong lVar2;
@@ -9886,7 +9886,7 @@ longlong FUN_180631b90(undefined8 handle,undefined8 flags,longlong mutex_attr)
   }
   return lVar5;
 }
-longlong FUN_180631cc0(undefined8 handle,undefined8 flags,longlong mutex_attr)
+longlong process_thread_initialization(undefined8 handle,undefined8 flags,longlong mutex_attr)
 {
   longlong init_result;
   longlong lVar2;
@@ -9926,7 +9926,7 @@ longlong FUN_180631cc0(undefined8 handle,undefined8 flags,longlong mutex_attr)
   }
   return lVar4;
 }
-longlong FUN_180631de0(undefined8 handle,undefined8 flags,longlong mutex_attr)
+longlong initialize_thread_synchronization(undefined8 handle,undefined8 flags,longlong mutex_attr)
 {
   longlong *pinit_result;
   longlong lVar2;
@@ -9966,7 +9966,7 @@ longlong FUN_180631de0(undefined8 handle,undefined8 flags,longlong mutex_attr)
   }
   return lVar2;
 }
-longlong FUN_180631f30(undefined8 handle,undefined8 flags,longlong mutex_attr)
+longlong setup_thread_communication(undefined8 handle,undefined8 flags,longlong mutex_attr)
 {
   longlong *pinit_result;
   longlong lVar2;
@@ -10010,7 +10010,7 @@ longlong FUN_180631f30(undefined8 handle,undefined8 flags,longlong mutex_attr)
   }
   return lVar2;
 }
-longlong FUN_180632100(undefined8 handle,undefined8 flags,undefined8 *mutex_attr)
+longlong create_thread_with_attributes(undefined8 handle,undefined8 flags,undefined8 *mutex_attr)
 {
   undefined8 uVar1;
   longlong lVar2;
@@ -10031,7 +10031,7 @@ longlong FUN_180632100(undefined8 handle,undefined8 flags,undefined8 *mutex_attr
   }
   return 0;
 }
-undefined8 FUN_18063211a(undefined8 handle)
+undefined8 get_thread_handle(undefined8 handle)
 {
   undefined8 uVar1;
   undefined8 *pflags;

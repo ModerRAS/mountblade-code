@@ -5674,58 +5674,58 @@ void FUN_180034950(void)
   previous_node[10] = init_flag;
   return;
 }
-// void FUN_180034a50(void)
+// void InitializeMathLookupTables(void)
 
-void FUN_180034a50(void)
+void InitializeMathLookupTables(void)
 
 {
-  ulonglong uVar1;
-  float *pfVar2;
+  ulonglong arrayIndex;
+  float *tablePointer;
   int compare_result;
-  ulonglong uVar4;
-  uint uVar5;
-  ulonglong uVar6;
-  int iVar7;
-  float *pfVar8;
-  float fVar9;
+  ulonglong tableSize;
+  uint nextIndex;
+  ulonglong loopCounter;
+  int maxIterations;
+  float *dataPointer;
+  float calculatedValue;
 
-  pfVar8 = (float *)0x180c8aa70;
-  uVar6 = 0;
-  iVar7 = -3;
-  uVar4 = uVar6;
+  dataPointer = (float *)0x180c8aa70;
+  loopCounter = 0;
+  maxIterations = -3;
+  tableSize = loopCounter;
   do {
-    if (0 < (longlong)uVar4) {
+    if (0 < (longlong)tableSize) {
       compare_result = -3;
-      uVar1 = uVar6;
-      pfVar2 = pfVar8;
+      arrayIndex = loopCounter;
+      tablePointer = dataPointer;
       do {
-        fVar9 = 0.0;
-        if (-1 < (longlong)uVar1) {
-          if ((longlong)uVar1 < 3) {
-            fVar9 = 0.75;
+        calculatedValue = 0.0;
+        if (-1 < (longlong)arrayIndex) {
+          if ((longlong)arrayIndex < 3) {
+            calculatedValue = 0.75;
           }
           else {
-            fVar9 = 1.0 - (float)compare_result / (float)iVar7;
-            fVar9 = SQRT(fVar9) * fVar9;
+            calculatedValue = 1.0 - (float)compare_result / (float)maxIterations;
+            calculatedValue = SQRT(calculatedValue) * calculatedValue;
           }
         }
-        *pfVar2 = fVar9;
+        *tablePointer = calculatedValue;
         compare_result = compare_result + 1;
-        pfVar2 = pfVar2 + 1;
-        uVar1 = uVar1 + 1;
-      } while ((longlong)uVar1 < (longlong)uVar4);
+        tablePointer = tablePointer + 1;
+        arrayIndex = arrayIndex + 1;
+      } while ((longlong)arrayIndex < (longlong)tableSize);
     }
-    iVar7 = iVar7 + 1;
-    uVar4 = uVar4 + 1;
-    pfVar8 = pfVar8 + 0x40;
-  } while ((longlong)pfVar8 < 0x180c8ea71);
-  pfVar8 = (float *)0x180c8eb70;
+    maxIterations = maxIterations + 1;
+    tableSize = tableSize + 1;
+    dataPointer = dataPointer + 0x40;
+  } while ((longlong)dataPointer < 0x180c8ea71);
+  dataPointer = (float *)0x180c8eb70;
   do {
-    uVar5 = (int)uVar6 + 1;
-    *pfVar8 = 1.0 / SQRT((float)uVar6) + 1.0 / SQRT((float)uVar6);
-    pfVar8 = pfVar8 + 1;
-    uVar6 = (ulonglong)uVar5;
-  } while (uVar5 < 0x40);
+    nextIndex = (int)loopCounter + 1;
+    *dataPointer = 1.0 / SQRT((float)loopCounter) + 1.0 / SQRT((float)loopCounter);
+    dataPointer = dataPointer + 1;
+    loopCounter = (ulonglong)nextIndex;
+  } while (nextIndex < 0x40);
   return;
 }
 // void FUN_180034b40(void)
