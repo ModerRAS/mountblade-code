@@ -277,7 +277,7 @@ int initialize_savegame_string_buffer(void)
   return (initialization_result != 0) - 1;
 }
 // 初始化互斥锁1
-int initialize_mutex_1(void* handle, void* flags, void* mutex_attr, int mutex_type)
+int initialize_main_mutex(void* handle, void* flags, void* mutex_attr, int mutex_type)
 {
   long long initialization_result;
   _Mtx_init_in_situ(0x180c91970, 0x102, mutex_attr, mutex_type, 0xfffffffffffffffe);
@@ -450,7 +450,7 @@ int initialize_data_buffer_system(void)
   init_result = execute_function(&g_systemInitFunction1);
   return (init_result != 0) - 1;
 }
-int initialize_module_005(void)
+int initialize_audio_module(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -462,7 +462,7 @@ int initialize_module_005(void)
   init_result = execute_function(callback_function_023);
   return (init_result != 0) - 1;
 }
-int initialize_module_006(void)
+int initialize_video_module(void)
 {
   longlong init_result;
   undefined8 str_len_param;
