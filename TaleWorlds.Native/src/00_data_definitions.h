@@ -149,7 +149,7 @@ int initialize_base_resource_manager(void)
   g_resource_string_1 = 0;
   g_resource_id_1 = 6;
   strcpy_s(&g_resource_string_1,0x10,&string_source_001,string_length_parameter,0xfffffffffffffffe);
-  initialization_result = execute_function(callback_function_012);
+  initialization_result = execute_function(base_resource_manager_init_function);
   return (initialization_result != 0) - 1;
 }
 // 初始化纹理资源管理器
@@ -162,7 +162,7 @@ int initialize_texture_resource_manager(void)
   resource_buffer_1 = 0;
   resource_type_1 = RESOURCE_TYPE_TEXTURE;
   strcpy_s(&resource_buffer_1, RESOURCE_BUFFER_SIZE, &string_source_002, string_length_parameter, 0xfffffffffffffffe);
-  initialization_result = execute_function(callback_function_013);
+  initialization_result = execute_function(texture_resource_manager_init_function);
   return (initialization_result != 0) - 1;
 }
 int initialize_shader_resource_manager_1(void)
@@ -174,7 +174,7 @@ int initialize_shader_resource_manager_1(void)
   resource_buffer_2 = 0;
   resource_type_2 = RESOURCE_TYPE_SHADER;
   strcpy_s(&resource_buffer_2, RESOURCE_BUFFER_SIZE, &string_source_003, string_length_parameter, 0xfffffffffffffffe);
-  initialization_result = execute_function(callback_function_014);
+  initialization_result = execute_function(shader_resource_manager_1_init_function);
   return (initialization_result != 0) - 1;
 }
 int initialize_shader_resource_manager_2(void)
@@ -186,7 +186,7 @@ int initialize_shader_resource_manager_2(void)
   resource_buffer_3 = 0;
   resource_type_3 = RESOURCE_TYPE_SHADER;
   strcpy_s(&resource_buffer_3, RESOURCE_BUFFER_SIZE, &string_source_004, string_length_parameter, 0xfffffffffffffffe);
-  initialization_result = execute_function(callback_function_015);
+  initialization_result = execute_function(shader_resource_manager_2_init_function);
   return (initialization_result != 0) - 1;
 }
 int initialize_audio_resource_manager(void)

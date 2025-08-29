@@ -5336,7 +5336,7 @@ void NetworkProcessSecurity(longlong socketHandle,longlong *dataBuffer,byte *buf
         if (cVar1 != '\0') goto LAB_180847bfb;
       }
       cStack_50 = '\0';
-      networkPtrStack_58 = &UNK_1809845c0;
+      networkPtrStack_58 = &g_network_stack_ptr_6;
       pnetworkLongStack_48 = dataBuffer;
       networkOperationResult = FUN_18084b990(&networkPtrStack_58,socketHandle,dataBuffer);
       if ((networkOperationResult != 0) || (networkOperationResult = FUN_18084be00(&networkPtrStack_58,socketHandle,dataBuffer), networkOperationResult != 0))
@@ -5389,7 +5389,7 @@ void NetworkManageSecurity(longlong socketHandle,longlong *dataBuffer,byte *buff
     isEncrypted = ~(byte)(*(uint *)(socketHandle + 0xf8) >> 1) & 1;
     if (isEncrypted != 0) {
       networkUintStack_70 = 1;
-      networkPtrStack_78 = &UNK_180984540;
+      networkPtrStack_78 = &g_network_stack_ptr_7;
       pnetworkLongStack_68 = dataBuffer;
       resultCode = FUN_18084b990(&networkPtrStack_78,socketHandle,dataBuffer);
       if (resultCode != 0) goto LAB_180847dc9;
@@ -5463,7 +5463,7 @@ void NetworkCheckSecurity(ulonglong socketHandle,uint8_t *dataBuffer)
     FUN_18074be30(networkStack_118,0x100,0);
     networkPtrStack_148 = networkStack_118;
                     // WARNING: Subroutine does not return
-    networkSendControlPacket(0x1f,0xc,socketHandle,&UNK_1809847d8);
+    networkSendControlPacket(0x1f,0xc,socketHandle,&g_network_control_data_18);
   }
   *dataBuffer = 0;
   networkUintStack_128 = 0;
@@ -5527,7 +5527,7 @@ LAB_180847fc4:
   if ((resultCode == 0) &&
      (statusCode = networkCreateSession(*(uint64_t *)(networkArrayStack_138[0] + 0x98),anetworkPtrStack_128,0x18), statusCode == 0))
   {
-    *anetworkPtrStack_128[0] = &UNK_180983c78;
+    *anetworkPtrStack_128[0] = &g_network_stack_ptr_8;
     *(uint32_t *)(anetworkPtrStack_128[0] + 1) = 0x18;
     *(int *)(anetworkPtrStack_128[0] + 2) = (int)socketHandle;
     NetworkValidateSocket(*(uint64_t *)(networkArrayStack_138[0] + 0x98));
@@ -6220,14 +6220,14 @@ void FUN_180848dc0(longlong *socketHandle,uint dataBuffer,uint64_t bufferCapacit
 FUN_18088f050:
     statusCode = FUN_18088f710(bufferCapacity,auStackX_20);
     if ((statusCode == 0) && (statusCode = FUN_18088f710(auStackX_20,&uStackX_18), statusCode == 0)) {
-      statusCode = FUN_18010cbc0(uStackX_18,&UNK_180986258,(longlong)socketHandle + 0x14,socketHandle + 3,
+      statusCode = FUN_18010cbc0(uStackX_18,&g_network_auth_data,(longlong)socketHandle + 0x14,socketHandle + 3,
                             (longlong)socketHandle + 0x1c);
       if (((statusCode == 3) ||
           (((statusCode = FUN_18088eea0(&uStackX_18,(longlong)socketHandle + 0x14), statusCode == 0 &&
             (statusCode = FUN_18088eea0(&uStackX_18,socketHandle + 3), statusCode == 0)) &&
            (statusCode = FUN_18088eea0(&uStackX_18,(longlong)socketHandle + 0x1c), statusCode == 0)))) &&
          (statusCode = FUN_18088f710(auStackX_20,&uStackX_18), statusCode == 0)) {
-        statusCode = FUN_18010cbc0(uStackX_18,&UNK_180986258,socketHandle + 4,(longlong)socketHandle + 0x24,
+        statusCode = FUN_18010cbc0(uStackX_18,&g_network_auth_data,socketHandle + 4,(longlong)socketHandle + 0x24,
                               socketHandle + 5);
         if (((statusCode == 3) ||
             (((statusCode = FUN_18088eea0(&uStackX_18,socketHandle + 4), statusCode == 0 &&
@@ -86351,13 +86351,13 @@ void FUN_18088f050(uint64_t socketHandle,longlong dataBuffer)
   
   statusCode = FUN_18088f710(socketHandle,auStackX_20);
   if ((statusCode == 0) && (statusCode = FUN_18088f710(auStackX_20,&uStackX_18), statusCode == 0)) {
-    statusCode = FUN_18010cbc0(uStackX_18,&UNK_180986258,dataBuffer,dataBuffer + 4,dataBuffer + 8);
+    statusCode = FUN_18010cbc0(uStackX_18,&g_network_auth_data,dataBuffer,dataBuffer + 4,dataBuffer + 8);
     if (((statusCode == 3) ||
         (((statusCode = FUN_18088eea0(&uStackX_18,dataBuffer), statusCode == 0 &&
           (statusCode = FUN_18088eea0(&uStackX_18,dataBuffer + 4), statusCode == 0)) &&
          (statusCode = FUN_18088eea0(&uStackX_18,dataBuffer + 8), statusCode == 0)))) &&
        (statusCode = FUN_18088f710(auStackX_20,&uStackX_18), statusCode == 0)) {
-      statusCode = FUN_18010cbc0(uStackX_18,&UNK_180986258,dataBuffer + 0xc,dataBuffer + 0x10,dataBuffer + 0x14);
+      statusCode = FUN_18010cbc0(uStackX_18,&g_network_auth_data,dataBuffer + 0xc,dataBuffer + 0x10,dataBuffer + 0x14);
       if (((statusCode == 3) ||
           (((statusCode = FUN_18088eea0(&uStackX_18,dataBuffer + 0xc), statusCode == 0 &&
             (statusCode = FUN_18088eea0(&uStackX_18,dataBuffer + 0x10), statusCode == 0)) &&
@@ -86383,13 +86383,13 @@ void FUN_18088f06b(void)
   
   statusCode = FUN_18088f710(&stack0x00000068,&stack0x00000060);
   if (statusCode == 0) {
-    statusCode = FUN_18010cbc0(in_stack_00000060,&UNK_180986258);
+    statusCode = FUN_18010cbc0(in_stack_00000060,&g_network_auth_data);
     if (((statusCode == 3) ||
         (((statusCode = FUN_18088eea0(&stack0x00000060), statusCode == 0 &&
           (statusCode = FUN_18088eea0(&stack0x00000060,unaff_RBX + 4), statusCode == 0)) &&
          (statusCode = FUN_18088eea0(&stack0x00000060,unaff_RBX + 8), statusCode == 0)))) &&
        (statusCode = FUN_18088f710(&stack0x00000068,&stack0x00000060), statusCode == 0)) {
-      statusCode = FUN_18010cbc0(in_stack_00000060,&UNK_180986258,unaff_RBX + 0xc,unaff_RBX + 0x10,
+      statusCode = FUN_18010cbc0(in_stack_00000060,&g_network_auth_data,unaff_RBX + 0xc,unaff_RBX + 0x10,
                             unaff_RBX + 0x14);
       if (((statusCode == 3) ||
           (((statusCode = FUN_18088eea0(&stack0x00000060,unaff_RBX + 0xc), statusCode == 0 &&
@@ -86418,7 +86418,7 @@ void FUN_18088f0f7(void)
   if (statusCode != 0) {
     return;
   }
-  statusCode = FUN_18010cbc0(in_stack_00000060,&UNK_180986258,unaff_RBX + 0xc,unaff_RBX + 0x10,
+  statusCode = FUN_18010cbc0(in_stack_00000060,&g_network_auth_data,unaff_RBX + 0xc,unaff_RBX + 0x10,
                         unaff_RBX + 0x14);
   if (statusCode != 3) {
     statusCode = FUN_18088eea0(&stack0x00000060,unaff_RBX + 0xc);
@@ -86584,7 +86584,7 @@ uint64_t FUN_18088f3a0(uint64_t socketHandle,longlong dataBuffer)
   
   packetLength = FUN_18088f710(socketHandle,auStackX_18);
   if ((int)packetLength == 0) {
-    statusCode = FUN_18010cbc0(auStackX_18[0],&UNK_180986258,dataBuffer,dataBuffer + 4,dataBuffer + 8);
+    statusCode = FUN_18010cbc0(auStackX_18[0],&g_network_auth_data,dataBuffer,dataBuffer + 4,dataBuffer + 8);
     if ((statusCode == 3) ||
        (((packetLength = FUN_18088eea0(auStackX_18,dataBuffer), (int)packetLength == 0 &&
          (packetLength = FUN_18088eea0(auStackX_18,dataBuffer + 4), (int)packetLength == 0)) &&
@@ -86604,7 +86604,7 @@ uint64_t FUN_18088f3c0(uint64_t socketHandle)
   uint64_t packetLength;
   longlong socketContextPtr;
   
-  statusCode = FUN_18010cbc0(socketHandle,&UNK_180986258);
+  statusCode = FUN_18010cbc0(socketHandle,&g_network_auth_data);
   if (statusCode != 3) {
     packetLength = FUN_18088eea0(&stack0x00000050);
     if ((int)packetLength != 0) {

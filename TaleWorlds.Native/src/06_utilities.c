@@ -115,8 +115,8 @@ data g_mutexDestroyCallback;
 data g_mutexDestroyTemp;
 data g_mutexDestroyWork;
 
-// 函数: data initializeDataStructure1;          # 数据结构初始化函数
-data initializeDataStructure1;          # 数据结构初始化函数
+// 函数: data initializeMemoryFreeSystem;          # 内存释放系统初始化函数
+data initializeMemoryFreeSystem;
 data g_memoryFreeBlockSize;
 data g_memoryFreeBlockCount;
 data g_memoryFreeListHead;
@@ -125,8 +125,8 @@ data g_memoryFreeAlignment;
 data g_memoryFreeFlags;
 data g_memoryFreeReserved;
 
-// 函数: data initializeDataStructure2;
-data initializeDataStructure2;
+// 函数: data initializeChunkAllocator;          # 块分配器初始化函数
+data initializeChunkAllocator;
 data g_chunkAllocationHeader;
 data g_chunkAllocationPointer;
 data g_chunkAllocationSize;
@@ -150,8 +150,8 @@ data g_chunkSizeMax;
 data g_chunkSizeStep;
 data g_chunkSizeCount;
 
-// 函数: data initializeDataStructure5;
-data initializeDataStructure5;
+// 函数: data initializeAISystem;          # AI系统初始化函数
+data initializeAISystem;
 data aiSystemPointer;
 data aiSystemHandle;
 data aiBehaviorTree;
@@ -159,8 +159,8 @@ data aiNavigationMesh;
 data aiPathfindingData;
 data sceneManagerPointer;
 
-// 函数: data initializeDataStructure6;
-data initializeDataStructure6;
+// 函数: data initializeSceneManager;          # 场景管理器初始化函数
+data initializeSceneManager;
 data sceneManagerHandle;
 data sceneObjectPool;
 data sceneLightingData;
