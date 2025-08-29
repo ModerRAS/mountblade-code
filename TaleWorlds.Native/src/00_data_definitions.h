@@ -198,7 +198,7 @@ int initialize_audio_resource_manager(void)
   resource_buffer_4 = 0;
   resource_type_4 = 0xd;
   strcpy_s(&resource_buffer_4,0x10,&string_source_005,string_length_parameter,0xfffffffffffffffe);
-  initialization_result = execute_function(callback_function_016);
+  initialization_result = execute_function(audio_resource_manager_init_function);
   return (initialization_result != 0) - 1;
 }
 int initialize_font_resource_manager(void)
@@ -210,7 +210,7 @@ int initialize_font_resource_manager(void)
   resource_buffer_5 = 0;
   resource_type_5 = RESOURCE_TYPE_AUDIO;
   strcpy_s(&resource_buffer_5, RESOURCE_BUFFER_SIZE, &string_source_006, string_length_parameter, 0xfffffffffffffffe);
-  initialization_result = execute_function(callback_function_017);
+  initialization_result = execute_function(font_resource_manager_init_function);
   return (initialization_result != 0) - 1;
 }
 int initialize_model_resource_manager(void)
@@ -10134,7 +10134,7 @@ LAB_18064ff6c:
   data_180bf66d8 = 1;
   return;
 }
-undefined4 FUN_18064ff90(int handle)
+undefined4 validate_resource_handle(int handle)
 {
   if (*(int *)(&data_180bfbd84 + (longlong)handle * 0x18) == 0) {
     FUN_180650490(&data_180bfbd80 + (longlong)handle * 0x18);
@@ -10157,7 +10157,7 @@ undefined4 FUN_18064ff90(int handle)
   data_180c8f020 = 0;
   return;
 }
-undefined8 FUN_180653580(undefined8 handle)
+undefined8 initialize_system_context(undefined8 handle)
 {
   undefined8 uVar1;
   longlong lVar2;
@@ -10168,7 +10168,7 @@ undefined8 FUN_180653580(undefined8 handle)
   UNLOCK();
   return uVar1;
 }
-undefined8 FUN_1806535c0(undefined8 handle,undefined8 flags)
+undefined8 setup_context_with_flags(undefined8 handle,undefined8 flags)
 {
   longlong init_result;
   undefined8 flags;
@@ -10183,7 +10183,7 @@ undefined8 FUN_1806535c0(undefined8 handle,undefined8 flags)
   UNLOCK();
   return flags;
 }
-longlong FUN_180653630(longlong *handle)
+longlong process_context_handle(longlong *handle)
 {
   int *piVar1;
   longlong lVar2;
@@ -10413,7 +10413,7 @@ LAB_18076802d:
   }
   return 0;
 }
-undefined8 FUN_1807c1ec0(int handle)
+undefined8 allocate_resource_memory(int handle)
 {
   byte bVar1;
   int iVar2;
@@ -10920,7 +10920,7 @@ FUN_1807c3d8b:
   }
   return &data_180c4f4a0;
 }
-undefined8 FUN_1808c7260(undefined8 *handle,longlong flags,char mutex_attr,char mutex_type)
+undefined8 initialize_system_mutex(undefined8 *handle,longlong flags,char mutex_attr,char mutex_type)
 {
   int iVar1;
   uint flags;
@@ -11066,7 +11066,7 @@ FUN_1808c7400(longlong handle,longlong flags,longlong *mutex_attr,longlong *mute
   }
   return 0;
 }
-undefined8 FUN_1808ee6c8(void)
+undefined8 get_system_global_state(void)
 {
   char cVar1;
   int iVar2;
@@ -11090,11 +11090,11 @@ undefined8 FUN_1808ee6c8(void)
   data_180c4f818 = 1;
   return 0;
 }
-undefined8 FUN_1808ee714(void)
+undefined8 get_system_configuration(void)
 {
   return 0x809200ff;
 }
-undefined4 FUN_1808ee740(int handle,int flags,int mutex_attr)
+undefined4 validate_system_parameters(int handle,int flags,int mutex_attr)
 {
   int iVar1;
   undefined4 flags;
@@ -11121,7 +11121,7 @@ undefined4 FUN_1808ee740(int handle,int flags,int mutex_attr)
   func_0x0001808f6ce0();
   return auStack_18[0];
 }
-undefined8 FUN_1808ee7d0(undefined4 handle,uint *flags)
+undefined8 initialize_parameter_block(undefined4 handle,uint *flags)
 {
   longlong init_result;
   uint flags;
@@ -11152,7 +11152,7 @@ undefined8 FUN_1808ee7d0(undefined4 handle,uint *flags)
   FUN_1808ee390(flags);
   iVar6 = func_0x0001808f0760(handle,&lStackX_20);
   if (iVar6 == 0) {
-    FUN_1808f6f40(handle,abStackX_18);
+    initialize_timer_context(handle,abStackX_18);
     if (*(longlong *)(lStackX_20 + 0x160) != 0) {
       cVar4 = func_0x0001808f2030();
       uVar7 = *(uint *)(*(longlong *)(lStackX_20 + 0x160) + 0xc);
@@ -11218,7 +11218,7 @@ undefined8 FUN_1808ee7d0(undefined4 handle,uint *flags)
   func_0x0001808f6ce0();
   return 0;
 }
-int FUN_1808eea10(undefined4 handle,byte *flags)
+int process_parameter_validation(undefined4 handle,byte *flags)
 {
   char cVar1;
   int iVar2;
@@ -11260,7 +11260,7 @@ int FUN_1808eea10(undefined4 handle,byte *flags)
   func_0x0001808f6ce0();
   return -0x7f6dff01;
 }
-int FUN_1808eea88(void)
+int check_system_readiness(void)
 {
   char cVar1;
   int iVar2;
@@ -11289,7 +11289,7 @@ int FUN_1808eea88(void)
   func_0x0001808f6ce0();
   return -0x7f6dff01;
 }
-int FUN_1808eeadc(void)
+int validate_system_state(void)
 {
   int iVar1;
   undefined1 *unaff_RBX;
@@ -11309,7 +11309,7 @@ int FUN_1808eeadc(void)
   func_0x0001808f6ce0();
   return -0x7f6dff01;
 }
-undefined8 FUN_1808eeb3d(void)
+undefined8 get_system_status_info(void)
 {
   func_0x0001808f6ce0();
   return 0x809200ff;
@@ -11338,13 +11338,13 @@ undefined8 FUN_1808eeb3d(void)
   func_0x0001808f0b40(piVar2 + -4);
   return 0;
 }
-longlong FUN_1808f07b0(void)
+longlong initialize_system_timer(void)
 {
   uint uVar1;
   uVar1 = timeGetTime();
   return (ulonglong)uVar1 * 1000;
 }
-uint FUN_1808f07d0(longlong handle,int flags,int mutex_attr,char mutex_type)
+uint setup_timer_with_attributes(longlong handle,int flags,int mutex_attr,char mutex_type)
 {
   ulonglong uVar1;
   byte bVar2;
@@ -11397,7 +11397,7 @@ uint FUN_1808f07d0(longlong handle,int flags,int mutex_attr,char mutex_type)
   data_180c69e20 = 1;
   return;
 }
-undefined4 FUN_1808f6da0(byte handle,byte *flags,int mutex_attr)
+undefined4 validate_timer_parameters(byte handle,byte *flags,int mutex_attr)
 {
   uint *puVar1;
   byte bVar2;
@@ -11436,7 +11436,7 @@ float * FUN_1808f6e00(float *handle,float *flags,float *mutex_attr)
   flags[2] = (fVar6 * fVar8 + fVar7 * fVar2 + fVar5 * fVar4) - fVar3 * fVar1;
   return flags;
 }
-undefined8 FUN_1808f6f40(undefined8 handle,undefined4 *flags)
+undefined8 initialize_timer_context(undefined8 handle,undefined4 *flags)
 {
   longlong init_result;
   init_result = func_0x0001808f0dd0(handle,0);
@@ -11585,7 +11585,7 @@ LAB_1808fbebe:
   data_180c6a14d = data_180c6a14c == '\0';
   return true;
 }
-bool FUN_1808fbc0e(void)
+bool check_system_availability(void)
 {
   short sVar1;
   longlong lVar2;
@@ -11700,7 +11700,7 @@ LAB_1808fbebe:
   data_180c6a14d = data_180c6a14c == (char)unaff_R12;
   return true;
 }
-bool FUN_1808fbd52(void)
+bool validate_system_resources(void)
 {
   short sVar1;
   longlong lVar2;
@@ -11803,7 +11803,7 @@ LAB_1808fbebe:
   }
   return 0;
 }
-undefined8 FUN_1808fc60c(uint handle)
+undefined8 allocate_system_buffer(uint handle)
 {
   code *pcVar1;
   byte bVar2;
@@ -11836,7 +11836,7 @@ undefined8 FUN_1808fc60c(uint handle)
   }
   return 1;
 }
-ulonglong FUN_1808fc6e4(longlong handle)
+ulonglong process_buffer_allocation(longlong handle)
 {
   ulonglong uVar1;
   uint7 flags;
