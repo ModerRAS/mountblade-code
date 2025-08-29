@@ -876,7 +876,7 @@ data renderCommandBuffer;
 // 函数: data renderTargetInitialize;
 data renderTargetInitialize;
 data gameStateData1;
-data DAT_180bf9bd8;
+data gameStateData2;
 data DAT_180bf9be0;
 data DAT_180bf9be8;
 data renderDrawCallData;

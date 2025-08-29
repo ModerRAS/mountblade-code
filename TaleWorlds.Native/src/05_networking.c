@@ -4850,7 +4850,7 @@ void NetworkDistributeTraffic(ulonglong socketHandle,uint64_t *dataBuffer)
     networkSendBuffer(networkStack_128,0x100,0);
     networkPtrStack_158 = networkStack_128;
                     // WARNING: Subroutine does not return
-    networkSendControlPacket(0x1f,0xd,socketHandle,&UNK_1809849d0);
+    networkSendControlPacket(0x1f,0xd,socketHandle,&g_network_control_data_14);
   }
   *dataBuffer = 0;
   networkUintStack_148 = 0;
@@ -4898,7 +4898,7 @@ void NetworkHandleTransferError(uint64_t socketHandle,uint64_t dataBuffer,uint64
     networkSendBuffer(networkStack_138 + (resultCode + networkOperationResult),0x100 - (resultCode + networkOperationResult),bufferCapacity);
     networkPtrStack_148 = networkStack_138;
                     // WARNING: Subroutine does not return
-    networkSendControlPacket(statusCode,0xc,socketHandle,&UNK_180984768);
+    networkSendControlPacket(statusCode,0xc,socketHandle,&g_network_control_data_15);
   }
                     // WARNING: Subroutine does not return
   networkEncryptData(networkUintStack_38 ^ (ulonglong)networkStack_168);
@@ -5151,7 +5151,7 @@ void NetworkProcessErrorRecovery(uint64_t socketHandle,uint32_t dataBuffer,uint3
     networkSendBuffer(networkStack_148 + (resultCode + networkOperationResult),0x100 - (resultCode + networkOperationResult),networkParam);
     networkPtrStack_168 = networkStack_148;
                     // WARNING: Subroutine does not return
-    networkSendControlPacket(statusCode,0xb,socketHandle,&UNK_180984630);
+    networkSendControlPacket(statusCode,0xb,socketHandle,&g_network_control_data_16);
   }
 LAB_1808477fa:
                     // WARNING: Subroutine does not return
@@ -5249,7 +5249,7 @@ void NetworkHandleSecurity(ulonglong socketHandle,uint8_t *dataBuffer)
     FUN_18074be30(networkStack_118,0x100,0);
     networkPtrStack_148 = networkStack_118;
                     // WARNING: Subroutine does not return
-    networkSendControlPacket(0x1f,0xc,socketHandle,&UNK_1809847f8);
+    networkSendControlPacket(0x1f,0xc,socketHandle,&g_network_control_data_17);
   }
   *dataBuffer = 0;
   networkUintStack_128 = 0;
@@ -5302,7 +5302,7 @@ void NetworkProcessSecurity(longlong socketHandle,longlong *dataBuffer,byte *buf
       networkSendRawData(socketHandle + 0x50,&networkPtrStack_58);
     }
     cStack_60 = '\0';
-    networkPtrStack_68 = &UNK_1809845a0;
+    networkPtrStack_68 = &g_network_stack_ptr_5;
     networkOperationResult = FUN_18084b5a0(&networkPtrStack_68,dataBuffer + 0x80,dataBuffer);
     if ((networkOperationResult != 0) || (networkOperationResult = FUN_18084b5a0(&networkPtrStack_68,dataBuffer + 0x90,dataBuffer), networkOperationResult != 0))
     goto LAB_180847c35;
