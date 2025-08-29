@@ -1154,10 +1154,10 @@ data resourceReflectionBuffer4;
 data resourceDecompressData;
 data resourceDecompressBuffer1;
 data resourceDecompressBuffer2;
-data DAT_180c92050;
-data DAT_180c92058;
-data DAT_180c92060;
-data DAT_180c92068;
+data resourceDecompressAlgorithm;  /* 原: DAT_180c92050 */
+data resourceDecompressLevel;  /* 原: DAT_180c92058 */
+data resourceDecompressChecksum;  /* 原: DAT_180c92060 */
+data resourceDecompressMetadata;  /* 原: DAT_180c92068 */
 
 // 函数: data resourceEncryptData;
 data resourceEncryptData;
@@ -1185,16 +1185,16 @@ data renderBatchData;
 
 // 函数: data resourceVerifySignature;
 data resourceVerifySignature;
-data DAT_180c9246c;
+data resourceVerifyAlgorithm;  /* 原: DAT_180c9246c */
 data renderInstanceData;
 
 // 函数: data resourceCreateBackup;
 data resourceCreateBackup;
-data DAT_180c92490;
+data resourceBackupTimestamp;  /* 原: DAT_180c92490 */
 
 // 函数: data resourceOptimizeStorage;
 data resourceOptimizeStorage;
-data DAT_180c92480;
+data resourceOptimizationFlags;  /* 原: DAT_180c92480 */
 
 // 函数: data resourceUpdateReferences;
 data resourceUpdateReferences;
