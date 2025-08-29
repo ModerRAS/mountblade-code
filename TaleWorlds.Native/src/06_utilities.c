@@ -1346,7 +1346,7 @@ data threadControlFlag2;
 data threadControlFlag3;
 data threadControlFlag4;
 data threadControlFlag5;
-data DAT_180c82854;
+data configSystemVar854;;
 data allocatorState;
 char systemVar2860;
 data allocatorControlFlag;
@@ -12824,9 +12824,9 @@ uint64 ResizeResourceBuffer(uint64 *resourceHandle,longlong memorySize)
     return BYTE_OFFSET_FLAG;
   }
   returnValue = *resourceHandle;
-  localUInt2 = FUN_1808995c0(returnValue);
+  localUInt2 = rateUtilityEffectiveness(returnValue);
   if ((int)localUInt2 == 0) {
-    localUInt2 = FUN_1808995c0(returnValue,memorySize + 4);
+    localUInt2 = rateUtilityEffectiveness(returnValue,memorySize + 4);
   }
   return localUInt2;
 }
@@ -12972,9 +12972,9 @@ uint64 ValidateResourceBufferConfig(uint64 *resourceHandle,longlong memorySize)
       if ((int)localUInt2 == 0) {
         localUInt2 = FUN_1808aed00(returnValue,memorySize + 8,8);
         if ((int)localUInt2 == 0) {
-          localUInt2 = FUN_1808995c0(returnValue,memorySize + RESOURCE_HANDLE_OFFSET);
+          localUInt2 = rateUtilityEffectiveness(returnValue,memorySize + RESOURCE_HANDLE_OFFSET);
           if ((int)localUInt2 == 0) {
-            localUInt2 = FUN_1808995c0(returnValue,memorySize + 0x14);
+            localUInt2 = rateUtilityEffectiveness(returnValue,memorySize + 0x14);
           }
         }
       }
@@ -12985,7 +12985,7 @@ uint64 ValidateResourceBufferConfig(uint64 *resourceHandle,longlong memorySize)
 
 
 
-uint64 FUN_180899220(longlong *resourceHandle,uint *memorySize)
+uint64 examineUtilityBehavior(longlong *resourceHandle,uint *memorySize)
 
 {
   uint64 returnValue;
@@ -13026,7 +13026,7 @@ LAB_1808992a5:
 
 
 
-uint64 FUN_18089923e(longlong *resourceHandle)
+uint64 reviewUtilityResults(longlong *resourceHandle)
 
 {
   uint64 returnValue;
@@ -13066,8 +13066,8 @@ LAB_1808992a5:
 
 
 
-// 函数: void FUN_1808992c4(void)
-void FUN_1808992c4(void)
+// 函数: void utilityWaitTarget(void)
+void utilityWaitTarget(void)
 
 {
   FUN_1808aed00();
@@ -13076,7 +13076,7 @@ void FUN_1808992c4(void)
 
 
 
-uint64 FUN_1808992f0(longlong *resourceHandle,uint32 *memorySize)
+uint64 evaluateUtilityPerformance(longlong *resourceHandle,uint32 *memorySize)
 
 {
   longlong localLong1;
@@ -13102,7 +13102,7 @@ uint64 FUN_1808992f0(longlong *resourceHandle,uint32 *memorySize)
 
 
 
-uint64 FUN_180899360(uint64 *resourceHandle,longlong memorySize)
+uint64 assessUtilityQuality(uint64 *resourceHandle,longlong memorySize)
 
 {
   uint64 returnValue;
@@ -13127,7 +13127,7 @@ uint64 FUN_180899360(uint64 *resourceHandle,longlong memorySize)
 
 
 
-uint64 FUN_1808993e0(uint64 *resourceHandle,longlong *memorySize)
+uint64 judgeUtilityEfficiency(uint64 *resourceHandle,longlong *memorySize)
 
 {
   uint64 returnValue;
@@ -13176,7 +13176,7 @@ LAB_180899456:
       default:
         goto LAB_180899546;
       case RESOURCE_HANDLE_OFFSET:
-        returnValue = FUN_1808995c0(memorySize,puVar3 + 1);
+        returnValue = rateUtilityEffectiveness(memorySize,puVar3 + 1);
         if ((int)returnValue != 0) {
           return returnValue;
         }
@@ -13192,11 +13192,11 @@ LAB_180899456:
         aiStackX_8[0] = aiStackX_8[0] + -0x14;
         break;
       case POINTER_OFFSET_DATA:
-        returnValue = FUN_1808995c0(memorySize,puVar3 + 1);
+        returnValue = rateUtilityEffectiveness(memorySize,puVar3 + 1);
         if ((int)returnValue != 0) {
           return returnValue;
         }
-        returnValue = FUN_1808995c0(memorySize,puVar3 + 2);
+        returnValue = rateUtilityEffectiveness(memorySize,puVar3 + 2);
         if ((int)returnValue != 0) {
           return returnValue;
         }
@@ -13217,8 +13217,8 @@ LAB_180899546:
 
 
 
-// 函数: void FUN_1808995c0(longlong *resourceHandle,uint32 *memorySize)
-void FUN_1808995c0(longlong *resourceHandle,uint32 *memorySize)
+// 函数: void rateUtilityEffectiveness(longlong *resourceHandle,uint32 *memorySize)
+void rateUtilityEffectiveness(longlong *resourceHandle,uint32 *memorySize)
 
 {
   int status;
@@ -13354,8 +13354,8 @@ void FUN_180899799(void)
 
 
 
-// 函数: void FUN_1808997b0(uint64 resourceHandle,longlong memorySize)
-void FUN_1808997b0(uint64 resourceHandle,longlong memorySize)
+// 函数: void scoreUtilityReliability(uint64 resourceHandle,longlong memorySize)
+void scoreUtilityReliability(uint64 resourceHandle,longlong memorySize)
 
 {
   int status;
@@ -13450,8 +13450,8 @@ uint64 FUN_180899816(void)
 
 
 
-// 函数: void FUN_180899891(void)
-void FUN_180899891(void)
+// 函数: void gradeUtilityStability(void)
+void gradeUtilityStability(void)
 
 {
   return;
@@ -13478,7 +13478,7 @@ uint64 FUN_1808998a0(longlong resourceHandle,longlong *memorySize)
       lVar5 = lVar4;
       do {
         buffer = *memorySize;
-        uVar3 = FUN_180899ef0(resourceHandle,buffer + lVar5);
+        uVar3 = discoverUtilityComponents(resourceHandle,buffer + lVar5);
         if ((int)uVar3 != 0) {
           return uVar3;
         }
@@ -13500,8 +13500,8 @@ uint64 FUN_1808998a0(longlong resourceHandle,longlong *memorySize)
 
 
 
-// 函数: void FUN_180899950(longlong resourceHandle,uint32 *memorySize)
-void FUN_180899950(longlong resourceHandle,uint32 *memorySize)
+// 函数: void rankUtilityCapability(longlong resourceHandle,uint32 *memorySize)
+void rankUtilityCapability(longlong resourceHandle,uint32 *memorySize)
 
 {
   int status;
@@ -13529,7 +13529,7 @@ void FUN_180899950(longlong resourceHandle,uint32 *memorySize)
         uVar4 = uVar6;
         if (0 < localInt1) {
           do {
-            status = FUN_180899c60(resourceHandle,(longlong)(int)uVar4 * 0x6c + *(longlong *)(memorySize + 8));
+            status = searchUtilityItems(resourceHandle,(longlong)(int)uVar4 * 0x6c + *(longlong *)(memorySize + 8));
             if (status != 0) {
               return;
             }
@@ -13545,7 +13545,7 @@ void FUN_180899950(longlong resourceHandle,uint32 *memorySize)
           uVar4 = uVar6;
           if (0 < localInt1) {
             do {
-              status = FUN_180899ef0(resourceHandle,(longlong)(int)uVar4 * RESOURCE_HANDLE_OFFSET +
+              status = discoverUtilityComponents(resourceHandle,(longlong)(int)uVar4 * RESOURCE_HANDLE_OFFSET +
                                             *(longlong *)(memorySize + 0xc));
               if (status != 0) {
                 return;
@@ -13582,7 +13582,7 @@ void FUN_180899950(longlong resourceHandle,uint32 *memorySize)
               if (0 < localInt1) {
                 do {
                   lVar5 = *(longlong *)(memorySize + 0x14) + uVar4;
-                  status = FUN_180899ef0(resourceHandle,lVar5);
+                  status = discoverUtilityComponents(resourceHandle,lVar5);
                   if (status != 0) {
                     return;
                   }
@@ -13651,8 +13651,8 @@ void FUN_180899950(longlong resourceHandle,uint32 *memorySize)
 
 
 
-// 函数: void FUN_1808999c1(uint64 *resourceHandle,uint64 memorySize)
-void FUN_1808999c1(uint64 *resourceHandle,uint64 memorySize)
+// 函数: void sortUtilityFeatures(uint64 *resourceHandle,uint64 memorySize)
+void sortUtilityFeatures(uint64 *resourceHandle,uint64 memorySize)
 
 {
   uint64 *preturnValue;
@@ -13684,7 +13684,7 @@ void FUN_1808999c1(uint64 *resourceHandle,uint64 memorySize)
     uVar9 = extraout_XMM0_Da;
     if (0 < length) {
       do {
-        status = FUN_180899c60(uVar9,(longlong)(int)uVar5 * 0x6c + *(longlong *)(unaff_R14 + POINTER_OFFSET_DATA));
+        status = searchUtilityItems(uVar9,(longlong)(int)uVar5 * 0x6c + *(longlong *)(unaff_R14 + POINTER_OFFSET_DATA));
         if (status != 0) {
           return;
         }
@@ -13702,7 +13702,7 @@ void FUN_1808999c1(uint64 *resourceHandle,uint64 memorySize)
       uVar9 = extraout_XMM0_Da_01;
       if (0 < length) {
         do {
-          status = FUN_180899ef0(uVar9,(longlong)(int)uVar5 * RESOURCE_HANDLE_OFFSET + *(longlong *)(unaff_R14 + FIELD_OFFSET_1))
+          status = discoverUtilityComponents(uVar9,(longlong)(int)uVar5 * RESOURCE_HANDLE_OFFSET + *(longlong *)(unaff_R14 + FIELD_OFFSET_1))
           ;
           if (status != 0) {
             return;
@@ -13741,7 +13741,7 @@ void FUN_1808999c1(uint64 *resourceHandle,uint64 memorySize)
           if (0 < length) {
             do {
               lVar6 = *(longlong *)(unaff_R14 + LIST_OFFSET_HEAD) + uVar5;
-              status = FUN_180899ef0(uVar9,lVar6);
+              status = discoverUtilityComponents(uVar9,lVar6);
               if (status != 0) {
                 return;
               }
@@ -13808,8 +13808,8 @@ void FUN_1808999c1(uint64 *resourceHandle,uint64 memorySize)
 
 
 
-// 函数: void FUN_180899ae6(uint64 *resourceHandle)
-void FUN_180899ae6(uint64 *resourceHandle)
+// 函数: void filterUtilityOptions(uint64 *resourceHandle)
+void filterUtilityOptions(uint64 *resourceHandle)
 
 {
   uint returnValue;
@@ -13837,7 +13837,7 @@ void FUN_180899ae6(uint64 *resourceHandle)
     if (0 < (int)unaff_RSI) {
       do {
         lVar5 = *(longlong *)(unaff_R14 + LIST_OFFSET_HEAD) + lVar6;
-        length = FUN_180899ef0(uVar8,lVar5);
+        length = discoverUtilityComponents(uVar8,lVar5);
         if (length != 0) {
           return;
         }
@@ -13901,8 +13901,8 @@ void FUN_180899ae6(uint64 *resourceHandle)
 
 
 
-// 函数: void FUN_180899c45(void)
-void FUN_180899c45(void)
+// 函数: void utilityContinueTarget(void)
+void utilityContinueTarget(void)
 
 {
   return;
@@ -13911,8 +13911,8 @@ void FUN_180899c45(void)
 
 
 
-// 函数: void FUN_180899c54(void)
-void FUN_180899c54(void)
+// 函数: void utilityProceedTarget(void)
+void utilityProceedTarget(void)
 
 {
   return;
@@ -13921,8 +13921,8 @@ void FUN_180899c54(void)
 
 
 
-// 函数: void FUN_180899c60(longlong resourceHandle,uint32 *memorySize)
-void FUN_180899c60(longlong resourceHandle,uint32 *memorySize)
+// 函数: void searchUtilityItems(longlong resourceHandle,uint32 *memorySize)
+void searchUtilityItems(longlong resourceHandle,uint32 *memorySize)
 
 {
   int status;
@@ -13944,7 +13944,7 @@ void FUN_180899c60(longlong resourceHandle,uint32 *memorySize)
       if (status != 0) {
         return;
       }
-      status = FUN_180899ef0(resourceHandle,memorySize + 0x13);
+      status = discoverUtilityComponents(resourceHandle,memorySize + 0x13);
       if (status != 0) {
         return;
       }
@@ -13952,7 +13952,7 @@ void FUN_180899c60(longlong resourceHandle,uint32 *memorySize)
     if (((memorySize[1] & 0x800) == 0) ||
        ((status = FUN_1808b0010(resourceHandle,memorySize + RESOURCE_OFFSET_HANDLE), localInt1 == 0 &&
         (status = FUN_1808b0010(resourceHandle,memorySize + 0x17), localInt1 == 0)))) {
-      FUN_18089a750(resourceHandle,memorySize + 0x19);
+      organizeUtilityGroups(resourceHandle,memorySize + 0x19);
     }
   }
   return;
@@ -13961,8 +13961,8 @@ void FUN_180899c60(longlong resourceHandle,uint32 *memorySize)
 
 
 
-// 函数: void FUN_180899c96(void)
-void FUN_180899c96(void)
+// 函数: void utilityAdvanceTarget(void)
+void utilityAdvanceTarget(void)
 
 {
   int status;
@@ -13985,7 +13985,7 @@ void FUN_180899c96(void)
         if (status != 0) {
           return;
         }
-        status = FUN_180899ef0();
+        status = discoverUtilityComponents();
         if (status != 0) {
           return;
         }
@@ -14000,7 +14000,7 @@ void FUN_180899c96(void)
           return;
         }
       }
-      FUN_18089a750();
+      organizeUtilityGroups();
     }
   }
   return;
@@ -14009,8 +14009,8 @@ void FUN_180899c96(void)
 
 
 
-// 函数: void FUN_180899d7f(void)
-void FUN_180899d7f(void)
+// 函数: void findUtilityMatches(void)
+void findUtilityMatches(void)
 
 {
   return;
@@ -14130,8 +14130,8 @@ uint64 FUN_180899dc7(void)
 
 
 
-// 函数: void FUN_180899ed5(void)
-void FUN_180899ed5(void)
+// 函数: void locateUtilityElements(void)
+void locateUtilityElements(void)
 
 {
   return;
@@ -14140,8 +14140,8 @@ void FUN_180899ed5(void)
 
 
 
-// 函数: void FUN_180899ef0(longlong resourceHandle,uint32 *memorySize)
-void FUN_180899ef0(longlong resourceHandle,uint32 *memorySize)
+// 函数: void discoverUtilityComponents(longlong resourceHandle,uint32 *memorySize)
+void discoverUtilityComponents(longlong resourceHandle,uint32 *memorySize)
 
 {
   int status;
@@ -14167,8 +14167,8 @@ void FUN_180899ef0(longlong resourceHandle,uint32 *memorySize)
 
 
 
-// 函数: void FUN_180899f80(longlong resourceHandle,uint32 *memorySize)
-void FUN_180899f80(longlong resourceHandle,uint32 *memorySize)
+// 函数: void identifyUtilityParts(longlong resourceHandle,uint32 *memorySize)
+void identifyUtilityParts(longlong resourceHandle,uint32 *memorySize)
 
 {
   int status;
@@ -14186,8 +14186,8 @@ void FUN_180899f80(longlong resourceHandle,uint32 *memorySize)
 
 
 
-// 函数: void FUN_180899fe0(longlong resourceHandle,uint32 *memorySize)
-void FUN_180899fe0(longlong resourceHandle,uint32 *memorySize)
+// 函数: void recognizeUtilityPieces(longlong resourceHandle,uint32 *memorySize)
+void recognizeUtilityPieces(longlong resourceHandle,uint32 *memorySize)
 
 {
   uint returnValue;
@@ -14319,8 +14319,8 @@ void FUN_180899fe0(longlong resourceHandle,uint32 *memorySize)
 
 
 
-// 函数: void FUN_18089a059(uint32 resourceHandle)
-void FUN_18089a059(uint32 resourceHandle)
+// 函数: void classifyUtilityTypes(uint32 resourceHandle)
+void classifyUtilityTypes(uint32 resourceHandle)
 
 {
   uint returnValue;
@@ -14505,7 +14505,7 @@ uint64 FUN_18089a370(longlong resourceHandle,longlong memorySize)
      (*(int *)(memorySize + 0x44) != 0)) {
     uVar5 = uVar5 | RESOURCE_HANDLE_OFFSET0;
   }
-  uVar4 = FUN_180899ef0(resourceHandle);
+  uVar4 = discoverUtilityComponents(resourceHandle);
   if ((int)uVar4 == 0) {
     alocalInt[0] = *(int *)(memorySize + POINTER_OFFSET_DATA);
     uVar4 = (**(code **)**(uint64 **)(resourceHandle + 8))(*(uint64 **)(resourceHandle + 8),alocalInt,4);
@@ -14541,7 +14541,7 @@ uint64 FUN_18089a370(longlong resourceHandle,longlong memorySize)
               do {
                 lVar6 = *(longlong *)(memorySize + 600) + lVar7;
                 sVar1 = *(short *)(lVar6 + 0x114);
-                uVar4 = FUN_180899ef0(resourceHandle,lVar6);
+                uVar4 = discoverUtilityComponents(resourceHandle,lVar6);
                 if ((int)uVar4 != 0) {
                   return uVar4;
                 }
@@ -14565,7 +14565,7 @@ uint64 FUN_18089a370(longlong resourceHandle,longlong memorySize)
                (((uVar5 & 0x40) == 0 ||
                 ((uVar4 = FUN_1808affb0(resourceHandle,memorySize + FIELD_OFFSET_2), (int)uVar4 == 0 &&
                  (uVar4 = FUN_1808affb0(resourceHandle,memorySize + STRUCT_OFFSET_SIZE), (int)uVar4 == 0)))))) &&
-              ((-1 < (char)uVar5 || (uVar4 = FUN_180899ef0(resourceHandle,memorySize + RESOURCE_HANDLE_OFFSET), (int)uVar4 == 0)
+              ((-1 < (char)uVar5 || (uVar4 = discoverUtilityComponents(resourceHandle,memorySize + RESOURCE_HANDLE_OFFSET), (int)uVar4 == 0)
                ))) && (((uVar5 & RESOURCE_HANDLE_OFFSET0) == 0 ||
                        (((uVar4 = FUN_1808aff40(resourceHandle,memorySize + 0x3c), (int)uVar4 == 0 &&
                          (uVar4 = FUN_1808aff40(resourceHandle,memorySize + 0x40), (int)uVar4 == 0)) &&
@@ -14605,7 +14605,7 @@ uint64 FUN_18089a51d(void)
     if (0 < status) {
       do {
         sVar1 = *(short *)(*(longlong *)(unaff_RDI + 600) + unaff_R14 + 0x114);
-        uVar3 = FUN_180899ef0();
+        uVar3 = discoverUtilityComponents();
         if ((int)uVar3 != 0) {
           return uVar3;
         }
@@ -14625,7 +14625,7 @@ uint64 FUN_18089a51d(void)
   if ((((((unaff_RSI & POINTER_OFFSET_DATA) == 0) || (uVar3 = FUN_1808ac8a0(), (int)uVar3 == 0)) &&
        (((unaff_RSI & 0x40) == 0 ||
         ((uVar3 = FUN_1808affb0(), (int)uVar3 == 0 && (uVar3 = FUN_1808affb0(), (int)uVar3 == 0)))))
-       ) && ((-1 < (char)unaff_RSI || (uVar3 = FUN_180899ef0(), (int)uVar3 == 0)))) &&
+       ) && ((-1 < (char)unaff_RSI || (uVar3 = discoverUtilityComponents(), (int)uVar3 == 0)))) &&
      (((unaff_RSI & RESOURCE_HANDLE_OFFSET0) == 0 ||
       (((uVar3 = FUN_1808aff40(), (int)uVar3 == 0 && (uVar3 = FUN_1808aff40(), (int)uVar3 == 0)) &&
        (uVar3 = FUN_1808aff40(), (int)uVar3 == 0)))))) {
@@ -14637,8 +14637,8 @@ uint64 FUN_18089a51d(void)
 
 
 
-// 函数: void FUN_18089a685(void)
-void FUN_18089a685(void)
+// 函数: void utilityWalkTarget(void)
+void utilityWalkTarget(void)
 
 {
   return;
@@ -14715,8 +14715,8 @@ uint64 FUN_18089a6e8(uint64 *resourceHandle,uint64 memorySize)
 
 
 
-// 函数: void FUN_18089a73c(void)
-void FUN_18089a73c(void)
+// 函数: void utilityRunTarget(void)
+void utilityRunTarget(void)
 
 {
   return;
@@ -14725,8 +14725,8 @@ void FUN_18089a73c(void)
 
 
 
-// 函数: void FUN_18089a750(longlong resourceHandle,uint *memorySize)
-void FUN_18089a750(longlong resourceHandle,uint *memorySize)
+// 函数: void organizeUtilityGroups(longlong resourceHandle,uint *memorySize)
+void organizeUtilityGroups(longlong resourceHandle,uint *memorySize)
 
 {
   uint returnValue;
@@ -14852,7 +14852,7 @@ ulonglong FUN_18089a880(longlong resourceHandle,uint64 *memorySize)
 >>>>>>> Stashed changes
         break;
       case 0x11:
-        returnValue = FUN_180899ef0(resourceHandle,puVar5 + 1);
+        returnValue = discoverUtilityComponents(resourceHandle,puVar5 + 1);
         if ((int)returnValue != 0) {
           return returnValue;
         }
@@ -14955,7 +14955,7 @@ ulonglong FUN_18089a8b4(void)
 >>>>>>> Stashed changes
         break;
       case 0x11:
-        returnValue = FUN_180899ef0(extraout_XMM0_Da,unaff_RDI + 1);
+        returnValue = discoverUtilityComponents(extraout_XMM0_Da,unaff_RDI + 1);
         if ((int)returnValue != 0) {
           return returnValue;
         }
@@ -15000,8 +15000,8 @@ ulonglong FUN_18089a8b4(void)
 
 
 
-// 函数: void FUN_18089a9d5(void)
-void FUN_18089a9d5(void)
+// 函数: void arrangeUtilitySets(void)
+void arrangeUtilitySets(void)
 
 {
   return;
@@ -15018,8 +15018,8 @@ uint64 FUN_18089a9dd(void)
 
 
 
-// 函数: void FUN_18089a9f0(longlong resourceHandle,int *memorySize)
-void FUN_18089a9f0(longlong resourceHandle,int *memorySize)
+// 函数: void orderUtilityLists(longlong resourceHandle,int *memorySize)
+void orderUtilityLists(longlong resourceHandle,int *memorySize)
 
 {
   char *pcVar1;
@@ -15065,58 +15065,58 @@ uint64 FUN_18089aa40(longlong resourceHandle,uint64 *memorySize)
   if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  returnValue = FUN_1808995c0(*memorySize,resourceHandle + LIST_OFFSET_HEAD);
+  returnValue = rateUtilityEffectiveness(*memorySize,resourceHandle + LIST_OFFSET_HEAD);
   if ((int)returnValue == 0) {
     if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
       return BYTE_OFFSET_FLAG;
     }
-    returnValue = FUN_1808995c0(*memorySize,resourceHandle + SYSTEM_OFFSET_STATUS2);
+    returnValue = rateUtilityEffectiveness(*memorySize,resourceHandle + SYSTEM_OFFSET_STATUS2);
     if ((int)returnValue == 0) {
       if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
         return BYTE_OFFSET_FLAG;
       }
-      returnValue = FUN_1808995c0(*memorySize,resourceHandle + SYSTEM_OFFSET_STATUS1);
+      returnValue = rateUtilityEffectiveness(*memorySize,resourceHandle + SYSTEM_OFFSET_STATUS1);
       if ((int)returnValue == 0) {
         if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
           return BYTE_OFFSET_FLAG;
         }
-        returnValue = FUN_1808995c0(*memorySize,resourceHandle + DATA_OFFSET_START);
+        returnValue = rateUtilityEffectiveness(*memorySize,resourceHandle + DATA_OFFSET_START);
         if ((int)returnValue == 0) {
           if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
             return BYTE_OFFSET_FLAG;
           }
-          returnValue = FUN_1808995c0(*memorySize,resourceHandle + 100);
+          returnValue = rateUtilityEffectiveness(*memorySize,resourceHandle + 100);
           if ((int)returnValue == 0) {
             if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
               return BYTE_OFFSET_FLAG;
             }
-            returnValue = FUN_1808995c0(*memorySize,resourceHandle + 0x68);
+            returnValue = rateUtilityEffectiveness(*memorySize,resourceHandle + 0x68);
             if ((int)returnValue == 0) {
               if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
                 return BYTE_OFFSET_FLAG;
               }
-              returnValue = FUN_1808995c0(*memorySize,resourceHandle + 0x6c);
+              returnValue = rateUtilityEffectiveness(*memorySize,resourceHandle + 0x6c);
               if ((int)returnValue == 0) {
                 if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
                   return BYTE_OFFSET_FLAG;
                 }
-                returnValue = FUN_1808995c0(*memorySize,resourceHandle + 0x70);
+                returnValue = rateUtilityEffectiveness(*memorySize,resourceHandle + 0x70);
                 if ((int)returnValue == 0) {
                   if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
                     return BYTE_OFFSET_FLAG;
                   }
-                  returnValue = FUN_1808995c0(*memorySize,resourceHandle + 0x74);
+                  returnValue = rateUtilityEffectiveness(*memorySize,resourceHandle + 0x74);
                   if ((int)returnValue == 0) {
                     if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
                       return BYTE_OFFSET_FLAG;
                     }
-                    returnValue = FUN_1808995c0(*memorySize,resourceHandle + HANDLE_OFFSET_DATA);
+                    returnValue = rateUtilityEffectiveness(*memorySize,resourceHandle + HANDLE_OFFSET_DATA);
                     if ((int)returnValue == 0) {
                       if (*(uint *)(memorySize + 8) < 0x74) {
                         returnValue = 0;
                       }
                       else if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-                        returnValue = FUN_1808995c0(*memorySize,resourceHandle + 0x5c);
+                        returnValue = rateUtilityEffectiveness(*memorySize,resourceHandle + 0x5c);
                       }
                       else {
                         returnValue = BYTE_OFFSET_FLAG;
@@ -15215,8 +15215,8 @@ uint64 FUN_18089ac64(void)
 
 
 
-// 函数: void FUN_18089ac96(void)
-void FUN_18089ac96(void)
+// 函数: void sequenceUtilityItems(void)
+void sequenceUtilityItems(void)
 
 {
   int status;
@@ -15315,8 +15315,8 @@ void FUN_18089ae2d(void)
 
 
 
-// 函数: void FUN_18089ae35(void)
-void FUN_18089ae35(void)
+// 函数: void utilityBoundTarget(void)
+void utilityBoundTarget(void)
 
 {
   return;
@@ -15325,8 +15325,8 @@ void FUN_18089ae35(void)
 
 
 
-// 函数: void FUN_18089ae3d(void)
-void FUN_18089ae3d(void)
+// 函数: void utilitySpringTarget(void)
+void utilitySpringTarget(void)
 
 {
   return;
@@ -15578,8 +15578,8 @@ int FUN_18089b21d(void)
 
 
 
-// 函数: void FUN_18089b26e(void)
-void FUN_18089b26e(void)
+// 函数: void formatUtilityContent(void)
+void formatUtilityContent(void)
 
 {
   return;
@@ -15776,8 +15776,8 @@ void FUN_18089b3d4(void)
 
 
 
-// 函数: void FUN_18089b3e6(void)
-void FUN_18089b3e6(void)
+// 函数: void designUtilityInterface(void)
+void designUtilityInterface(void)
 
 {
   return;
@@ -15786,8 +15786,8 @@ void FUN_18089b3e6(void)
 
 
 
-// 函数: void FUN_18089b400(longlong resourceHandle,uint64 memorySize)
-void FUN_18089b400(longlong resourceHandle,uint64 memorySize)
+// 函数: void buildUtilityComponent(longlong resourceHandle,uint64 memorySize)
+void buildUtilityComponent(longlong resourceHandle,uint64 memorySize)
 
 {
   int status;
@@ -15818,14 +15818,14 @@ uint64 FUN_18089b460(longlong resourceHandle,longlong *memorySize)
     if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
       return BYTE_OFFSET_FLAG;
     }
-    localUInt2 = FUN_1808995c0(*memorySize,resourceHandle + LIST_OFFSET_HEAD);
+    localUInt2 = rateUtilityEffectiveness(*memorySize,resourceHandle + LIST_OFFSET_HEAD);
     if ((int)localUInt2 != 0) {
       return localUInt2;
     }
     if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
       return BYTE_OFFSET_FLAG;
     }
-    localUInt2 = FUN_1808995c0(*memorySize,resourceHandle + SYSTEM_OFFSET_STATUS2);
+    localUInt2 = rateUtilityEffectiveness(*memorySize,resourceHandle + SYSTEM_OFFSET_STATUS2);
     if ((int)localUInt2 != 0) {
       return localUInt2;
     }
@@ -15834,7 +15834,7 @@ uint64 FUN_18089b460(longlong resourceHandle,longlong *memorySize)
     if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
       return BYTE_OFFSET_FLAG;
     }
-    localUInt2 = FUN_1808995c0(*memorySize,resourceHandle + HANDLE_OFFSET_DATA);
+    localUInt2 = rateUtilityEffectiveness(*memorySize,resourceHandle + HANDLE_OFFSET_DATA);
     if ((int)localUInt2 != 0) {
       return localUInt2;
     }
@@ -15842,14 +15842,14 @@ uint64 FUN_18089b460(longlong resourceHandle,longlong *memorySize)
   if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  localUInt2 = FUN_1808995c0(*memorySize,resourceHandle + SYSTEM_OFFSET_STATUS1);
+  localUInt2 = rateUtilityEffectiveness(*memorySize,resourceHandle + SYSTEM_OFFSET_STATUS1);
   if ((int)localUInt2 != 0) {
     return localUInt2;
   }
   if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  localUInt2 = FUN_1808995c0(*memorySize,resourceHandle + 0x5c);
+  localUInt2 = rateUtilityEffectiveness(*memorySize,resourceHandle + 0x5c);
   if ((int)localUInt2 != 0) {
     return localUInt2;
   }
@@ -15872,14 +15872,14 @@ uint64 FUN_18089b460(longlong resourceHandle,longlong *memorySize)
     if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
       return BYTE_OFFSET_FLAG;
     }
-    localUInt2 = FUN_1808995c0(*memorySize,resourceHandle + 0x70);
+    localUInt2 = rateUtilityEffectiveness(*memorySize,resourceHandle + 0x70);
     if ((int)localUInt2 != 0) {
       return localUInt2;
     }
     if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
       return BYTE_OFFSET_FLAG;
     }
-    localUInt2 = FUN_1808995c0(*memorySize,resourceHandle + 0x74);
+    localUInt2 = rateUtilityEffectiveness(*memorySize,resourceHandle + 0x74);
     if ((int)localUInt2 != 0) {
       return localUInt2;
     }
@@ -15949,14 +15949,14 @@ uint64 FUN_18089b52a(void)
     if (*(int *)(inputRegister + RESOURCE_OFFSET_HANDLE) != 0) {
       return BYTE_OFFSET_FLAG;
     }
-    uVar3 = FUN_1808995c0(*baseRegister,unaff_RDI + 0x70);
+    uVar3 = rateUtilityEffectiveness(*baseRegister,unaff_RDI + 0x70);
     if ((int)uVar3 != 0) {
       return uVar3;
     }
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
       return BYTE_OFFSET_FLAG;
     }
-    uVar3 = FUN_1808995c0(*baseRegister,unaff_RDI + 0x74);
+    uVar3 = rateUtilityEffectiveness(*baseRegister,unaff_RDI + 0x74);
     if ((int)uVar3 != 0) {
       return uVar3;
     }
@@ -16048,8 +16048,8 @@ LAB_1808a2e6d:
 
 
 
-// 函数: void FUN_18089b599(void)
-void FUN_18089b599(void)
+// 函数: void constructUtilitySystem(void)
+void constructUtilitySystem(void)
 
 {
   return;
@@ -16072,14 +16072,14 @@ uint64 FUN_18089b5a9(int resourceHandle)
   if (resourceHandle != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  localUInt2 = FUN_1808995c0(*baseRegister,unaff_RDI + 0x70);
+  localUInt2 = rateUtilityEffectiveness(*baseRegister,unaff_RDI + 0x70);
   if ((int)localUInt2 != 0) {
     return localUInt2;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  localUInt2 = FUN_1808995c0(*baseRegister,unaff_RDI + 0x74);
+  localUInt2 = rateUtilityEffectiveness(*baseRegister,unaff_RDI + 0x74);
   if ((int)localUInt2 != 0) {
     return localUInt2;
   }
@@ -16167,8 +16167,8 @@ uint64 FUN_18089b617(void)
 
 
 
-// 函数: void FUN_18089b61e(void)
-void FUN_18089b61e(void)
+// 函数: void integrateUtilityModules(void)
+void integrateUtilityModules(void)
 
 {
   return;
@@ -16196,7 +16196,7 @@ uint64 FUN_18089b630(longlong resourceHandle,uint64 *memorySize)
     if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
       return BYTE_OFFSET_FLAG;
     }
-    returnValue = FUN_1808995c0(*memorySize,resourceHandle + SYSTEM_OFFSET_FLAGS);
+    returnValue = rateUtilityEffectiveness(*memorySize,resourceHandle + SYSTEM_OFFSET_FLAGS);
     if ((int)returnValue == 0) {
       auStackX_20[0] = 0;
       returnValue = FUN_1808afe30(*memorySize,auStackX_20);
@@ -16234,8 +16234,8 @@ uint64 FUN_18089b630(longlong resourceHandle,uint64 *memorySize)
 
 
 
-// 函数: void FUN_18089b6df(void)
-void FUN_18089b6df(void)
+// 函数: void combineUtilityFeatures(void)
+void combineUtilityFeatures(void)
 
 {
   int status;
@@ -16274,8 +16274,8 @@ void FUN_18089b6df(void)
 
 
 
-// 函数: void FUN_18089b7c7(void)
-void FUN_18089b7c7(void)
+// 函数: void mergeUtilityFunctions(void)
+void mergeUtilityFunctions(void)
 
 {
   return;
@@ -16309,14 +16309,14 @@ ulonglong FUN_18089b7d0(longlong resourceHandle,longlong *memorySize)
   if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  uVar3 = FUN_1808995c0(*memorySize,resourceHandle + MEMORY_SIZE_OFFSET);
+  uVar3 = rateUtilityEffectiveness(*memorySize,resourceHandle + MEMORY_SIZE_OFFSET);
   if (uVar3 != 0) {
     return (ulonglong)uVar3;
   }
   if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  uVar3 = FUN_1808995c0(*memorySize,resourceHandle + 0xa4);
+  uVar3 = rateUtilityEffectiveness(*memorySize,resourceHandle + 0xa4);
   if (uVar3 != 0) {
     return (ulonglong)uVar3;
   }
@@ -16372,21 +16372,21 @@ LAB_18089b91c:
   }
   uVar6 = uVar8;
   if ((((*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) == 0) &&
-       (uVar6 = FUN_1808995c0(*memorySize,resourceHandle + 0x94), (int)uVar6 == 0)) &&
+       (uVar6 = rateUtilityEffectiveness(*memorySize,resourceHandle + 0x94), (int)uVar6 == 0)) &&
       (uVar6 = uVar8, *(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
-     ((uVar6 = FUN_1808995c0(*memorySize,resourceHandle + 0x98), (int)uVar6 == 0 &&
+     ((uVar6 = rateUtilityEffectiveness(*memorySize,resourceHandle + 0x98), (int)uVar6 == 0 &&
       (uVar6 = uVar8, *(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) == 0)))) {
     buffer = *memorySize;
-    uVar6 = FUN_1808995c0(buffer,resourceHandle + BUFFER_OFFSET_TEMP);
+    uVar6 = rateUtilityEffectiveness(buffer,resourceHandle + BUFFER_OFFSET_TEMP);
     if (((((int)uVar6 == 0) &&
-         ((uVar6 = FUN_1808995c0(buffer,resourceHandle + 0x84), (int)uVar6 == 0 &&
-          (uVar6 = FUN_180899220(memorySize,resourceHandle + 0x88), (int)uVar6 == 0)))) &&
+         ((uVar6 = rateUtilityEffectiveness(buffer,resourceHandle + 0x84), (int)uVar6 == 0 &&
+          (uVar6 = examineUtilityBehavior(memorySize,resourceHandle + 0x88), (int)uVar6 == 0)))) &&
         (uVar6 = uVar8, *(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
        ((((uVar6 = ConfigureResourceBuffer(*memorySize,resourceHandle + 0x70), (int)uVar6 == 0 &&
           (uVar6 = uVar8, *(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
-         (uVar6 = FUN_1808995c0(*memorySize,resourceHandle + 0xa8), (int)uVar6 == 0)) &&
+         (uVar6 = rateUtilityEffectiveness(*memorySize,resourceHandle + 0xa8), (int)uVar6 == 0)) &&
         (((uVar6 = uVar8, *(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
-          (uVar6 = FUN_1808995c0(*memorySize,resourceHandle + 0x9c), (int)uVar6 == 0)) &&
+          (uVar6 = rateUtilityEffectiveness(*memorySize,resourceHandle + 0x9c), (int)uVar6 == 0)) &&
          ((uVar6 = uVar8, *(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
           ((uVar6 = FUN_1808aed00(*memorySize,resourceHandle + 0xb4,4), (int)uVar6 == 0 &&
            (uVar6 = FUN_18089d490(resourceHandle + FIELD_OFFSET_1,memorySize), (int)uVar6 == 0)))))))))) {
@@ -16413,7 +16413,7 @@ LAB_18089b91c:
           uVar6 = uVar5;
           if (0x47 < *(uint *)(memorySize + 8)) {
             if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-              uVar6 = FUN_1808995c0(*memorySize,resourceHandle + 0xa0);
+              uVar6 = rateUtilityEffectiveness(*memorySize,resourceHandle + 0xa0);
             }
             else {
               uVar6 = BYTE_OFFSET_FLAG;
@@ -16423,7 +16423,7 @@ LAB_18089b91c:
             uVar6 = uVar5;
             if (ERROR_CODE_4 < *(uint *)(memorySize + 8)) {
               if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-                uVar3 = FUN_1808995c0(*memorySize,resourceHandle + 0xac);
+                uVar3 = rateUtilityEffectiveness(*memorySize,resourceHandle + 0xac);
                 uVar6 = (ulonglong)uVar3;
               }
               else {
@@ -16438,7 +16438,7 @@ LAB_18089bbcc:
               }
               uVar6 = uVar8;
               if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-                uVar3 = FUN_1808993e0(resourceHandle + 200,*memorySize);
+                uVar3 = judgeUtilityEfficiency(resourceHandle + 200,*memorySize);
                 uVar6 = (ulonglong)uVar3;
                 if (uVar3 == 0) goto LAB_18089bbcc;
               }
@@ -16473,14 +16473,14 @@ ulonglong FUN_18089b813(void)
   if (*(int *)(inputRegister + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  uVar3 = FUN_1808995c0(*baseRegister,unaff_RSI + MEMORY_SIZE_OFFSET);
+  uVar3 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + MEMORY_SIZE_OFFSET);
   if (uVar3 != 0) {
     return (ulonglong)uVar3;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  uVar3 = FUN_1808995c0(*baseRegister,unaff_RSI + 0xa4);
+  uVar3 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xa4);
   if (uVar3 != 0) {
     return (ulonglong)uVar3;
   }
@@ -16536,21 +16536,21 @@ LAB_18089b91c:
   }
   uVar5 = uVar8;
   if ((((*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) &&
-       (uVar5 = FUN_1808995c0(*baseRegister,unaff_RSI + 0x94), (int)uVar5 == 0)) &&
+       (uVar5 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0x94), (int)uVar5 == 0)) &&
       (uVar5 = uVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
-     ((uVar5 = FUN_1808995c0(*baseRegister,unaff_RSI + 0x98), (int)uVar5 == 0 &&
+     ((uVar5 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0x98), (int)uVar5 == 0 &&
       (uVar5 = uVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)))) {
     buffer = *baseRegister;
-    uVar5 = FUN_1808995c0(buffer,unaff_RSI + BUFFER_OFFSET_TEMP);
+    uVar5 = rateUtilityEffectiveness(buffer,unaff_RSI + BUFFER_OFFSET_TEMP);
     if (((((int)uVar5 == 0) &&
-         ((uVar5 = FUN_1808995c0(buffer,unaff_RSI + 0x84), (int)uVar5 == 0 &&
-          (uVar5 = FUN_180899220(), (int)uVar5 == 0)))) &&
+         ((uVar5 = rateUtilityEffectiveness(buffer,unaff_RSI + 0x84), (int)uVar5 == 0 &&
+          (uVar5 = examineUtilityBehavior(), (int)uVar5 == 0)))) &&
         (uVar5 = uVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
        ((((uVar5 = ConfigureResourceBuffer(*baseRegister,unaff_RSI + 0x70), (int)uVar5 == 0 &&
           (uVar5 = uVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
-         (uVar5 = FUN_1808995c0(*baseRegister,unaff_RSI + 0xa8), (int)uVar5 == 0)) &&
+         (uVar5 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xa8), (int)uVar5 == 0)) &&
         (((uVar5 = uVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
-          (uVar5 = FUN_1808995c0(*baseRegister,unaff_RSI + 0x9c), (int)uVar5 == 0)) &&
+          (uVar5 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0x9c), (int)uVar5 == 0)) &&
          ((uVar5 = uVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
           ((uVar5 = FUN_1808aed00(*baseRegister,unaff_RSI + 0xb4,4), (int)uVar5 == 0 &&
            (uVar5 = FUN_18089d490(unaff_RSI + FIELD_OFFSET_1), (int)uVar5 == 0)))))))))) {
@@ -16577,7 +16577,7 @@ LAB_18089b91c:
           uVar5 = uVar7;
           if (0x47 < *(uint *)(baseRegister + 8)) {
             if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-              uVar5 = FUN_1808995c0(*baseRegister,unaff_RSI + 0xa0);
+              uVar5 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xa0);
             }
             else {
               uVar5 = BYTE_OFFSET_FLAG;
@@ -16586,7 +16586,7 @@ LAB_18089b91c:
           if ((int)uVar5 == 0) {
             if (ERROR_CODE_4 < *(uint *)(baseRegister + 8)) {
               if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-                uVar3 = FUN_1808995c0(*baseRegister,unaff_RSI + 0xac);
+                uVar3 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xac);
                 uVar7 = (ulonglong)uVar3;
               }
               else {
@@ -16602,7 +16602,7 @@ LAB_18089bbcc:
               }
               uVar5 = uVar8;
               if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-                uVar3 = FUN_1808993e0(unaff_RSI + 200,*baseRegister);
+                uVar3 = judgeUtilityEfficiency(unaff_RSI + 200,*baseRegister);
                 uVar5 = (ulonglong)uVar3;
                 if (uVar3 == 0) goto LAB_18089bbcc;
               }
@@ -16682,21 +16682,21 @@ LAB_18089b91c:
   }
   uVar5 = uVar8;
   if ((((*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) &&
-       (uVar5 = FUN_1808995c0(*baseRegister,unaff_RSI + 0x94), (int)uVar5 == 0)) &&
+       (uVar5 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0x94), (int)uVar5 == 0)) &&
       (uVar5 = uVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
-     ((uVar5 = FUN_1808995c0(*baseRegister,unaff_RSI + 0x98), (int)uVar5 == 0 &&
+     ((uVar5 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0x98), (int)uVar5 == 0 &&
       (uVar5 = uVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)))) {
     buffer = *baseRegister;
-    uVar5 = FUN_1808995c0(buffer,unaff_RSI + BUFFER_OFFSET_TEMP);
+    uVar5 = rateUtilityEffectiveness(buffer,unaff_RSI + BUFFER_OFFSET_TEMP);
     if (((((int)uVar5 == 0) &&
-         ((uVar5 = FUN_1808995c0(buffer,unaff_RSI + 0x84), (int)uVar5 == 0 &&
-          (uVar5 = FUN_180899220(), (int)uVar5 == 0)))) &&
+         ((uVar5 = rateUtilityEffectiveness(buffer,unaff_RSI + 0x84), (int)uVar5 == 0 &&
+          (uVar5 = examineUtilityBehavior(), (int)uVar5 == 0)))) &&
         (uVar5 = uVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
        ((((uVar5 = ConfigureResourceBuffer(*baseRegister,unaff_RSI + 0x70), (int)uVar5 == 0 &&
           (uVar5 = uVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
-         (uVar5 = FUN_1808995c0(*baseRegister,unaff_RSI + 0xa8), (int)uVar5 == 0)) &&
+         (uVar5 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xa8), (int)uVar5 == 0)) &&
         (((uVar5 = uVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
-          (uVar5 = FUN_1808995c0(*baseRegister,unaff_RSI + 0x9c), (int)uVar5 == 0)) &&
+          (uVar5 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0x9c), (int)uVar5 == 0)) &&
          ((uVar5 = uVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
           ((uVar5 = FUN_1808aed00(*baseRegister,unaff_RSI + 0xb4,4), (int)uVar5 == 0 &&
            (uVar5 = FUN_18089d490(unaff_RSI + FIELD_OFFSET_1), (int)uVar5 == 0)))))))))) {
@@ -16723,7 +16723,7 @@ LAB_18089b91c:
           uVar5 = uVar7;
           if (0x47 < *(uint *)(baseRegister + 8)) {
             if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-              uVar5 = FUN_1808995c0(*baseRegister,unaff_RSI + 0xa0);
+              uVar5 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xa0);
             }
             else {
               uVar5 = BYTE_OFFSET_FLAG;
@@ -16732,7 +16732,7 @@ LAB_18089b91c:
           if ((int)uVar5 == 0) {
             if (ERROR_CODE_4 < *(uint *)(baseRegister + 8)) {
               if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-                uVar3 = FUN_1808995c0(*baseRegister,unaff_RSI + 0xac);
+                uVar3 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xac);
                 uVar7 = (ulonglong)uVar3;
               }
               else {
@@ -16748,7 +16748,7 @@ LAB_18089bbcc:
               }
               uVar5 = uVar8;
               if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-                uVar3 = FUN_1808993e0(unaff_RSI + 200,*baseRegister);
+                uVar3 = judgeUtilityEfficiency(unaff_RSI + 200,*baseRegister);
                 uVar5 = (ulonglong)uVar3;
                 if (uVar3 == 0) goto LAB_18089bbcc;
               }
@@ -16824,21 +16824,21 @@ LAB_18089b91c:
   }
   uVar5 = uVar8;
   if ((((*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) &&
-       (uVar5 = FUN_1808995c0(*baseRegister,unaff_RSI + 0x94), (int)uVar5 == 0)) &&
+       (uVar5 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0x94), (int)uVar5 == 0)) &&
       (uVar5 = uVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
-     ((uVar5 = FUN_1808995c0(*baseRegister,unaff_RSI + 0x98), (int)uVar5 == 0 &&
+     ((uVar5 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0x98), (int)uVar5 == 0 &&
       (uVar5 = uVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)))) {
     buffer = *baseRegister;
-    uVar5 = FUN_1808995c0(buffer,unaff_RSI + BUFFER_OFFSET_TEMP);
+    uVar5 = rateUtilityEffectiveness(buffer,unaff_RSI + BUFFER_OFFSET_TEMP);
     if (((((int)uVar5 == 0) &&
-         ((uVar5 = FUN_1808995c0(buffer,unaff_RSI + 0x84), (int)uVar5 == 0 &&
-          (uVar5 = FUN_180899220(), (int)uVar5 == 0)))) &&
+         ((uVar5 = rateUtilityEffectiveness(buffer,unaff_RSI + 0x84), (int)uVar5 == 0 &&
+          (uVar5 = examineUtilityBehavior(), (int)uVar5 == 0)))) &&
         (uVar5 = uVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
        ((((uVar5 = ConfigureResourceBuffer(*baseRegister,unaff_RSI + 0x70), (int)uVar5 == 0 &&
           (uVar5 = uVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
-         (uVar5 = FUN_1808995c0(*baseRegister,unaff_RSI + 0xa8), (int)uVar5 == 0)) &&
+         (uVar5 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xa8), (int)uVar5 == 0)) &&
         (((uVar5 = uVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
-          (uVar5 = FUN_1808995c0(*baseRegister,unaff_RSI + 0x9c), (int)uVar5 == 0)) &&
+          (uVar5 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0x9c), (int)uVar5 == 0)) &&
          ((uVar5 = uVar8, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0 &&
           ((uVar5 = FUN_1808aed00(*baseRegister,unaff_RSI + 0xb4,4), (int)uVar5 == 0 &&
            (uVar5 = FUN_18089d490(unaff_RSI + FIELD_OFFSET_1), (int)uVar5 == 0)))))))))) {
@@ -16865,7 +16865,7 @@ LAB_18089b91c:
           uVar5 = uVar7;
           if (0x47 < *(uint *)(baseRegister + 8)) {
             if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-              uVar5 = FUN_1808995c0(*baseRegister,unaff_RSI + 0xa0);
+              uVar5 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xa0);
             }
             else {
               uVar5 = BYTE_OFFSET_FLAG;
@@ -16874,7 +16874,7 @@ LAB_18089b91c:
           if ((int)uVar5 == 0) {
             if (ERROR_CODE_4 < *(uint *)(baseRegister + 8)) {
               if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-                uVar4 = FUN_1808995c0(*baseRegister,unaff_RSI + 0xac);
+                uVar4 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xac);
                 uVar7 = (ulonglong)uVar4;
               }
               else {
@@ -16890,7 +16890,7 @@ LAB_18089bbcc:
               }
               uVar5 = uVar8;
               if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-                uVar4 = FUN_1808993e0(unaff_RSI + 200,*baseRegister);
+                uVar4 = judgeUtilityEfficiency(unaff_RSI + 200,*baseRegister);
                 uVar5 = (ulonglong)uVar4;
                 if (uVar4 == 0) goto LAB_18089bbcc;
               }
@@ -16906,8 +16906,8 @@ LAB_18089bbcc:
 
 
 
-// 函数: void FUN_18089bbff(void)
-void FUN_18089bbff(void)
+// 函数: void uniteUtilityOperations(void)
+void uniteUtilityOperations(void)
 
 {
   return;
@@ -16916,8 +16916,8 @@ void FUN_18089bbff(void)
 
 
 
-// 函数: void FUN_18089bc10(longlong resourceHandle,uint64 *memorySize)
-void FUN_18089bc10(longlong resourceHandle,uint64 *memorySize)
+// 函数: void joinUtilityProcesses(longlong resourceHandle,uint64 *memorySize)
+void joinUtilityProcesses(longlong resourceHandle,uint64 *memorySize)
 
 {
   longlong localLong1;
@@ -16952,11 +16952,11 @@ void FUN_18089bc10(longlong resourceHandle,uint64 *memorySize)
             if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
               localUInt2 = *memorySize;
               localLong1 = *(longlong *)(resourceHandle + POINTER_OFFSET_DATA) + (longlong)counter * 8;
-              iVar5 = FUN_1808995c0(localUInt2,localLong1);
+              iVar5 = rateUtilityEffectiveness(localUInt2,localLong1);
               if (iVar5 != 0) {
                 return;
               }
-              iVar5 = FUN_1808995c0(localUInt2,localLong1 + 4);
+              iVar5 = rateUtilityEffectiveness(localUInt2,localLong1 + 4);
             }
             else {
               iVar5 = BYTE_OFFSET_FLAG;
@@ -16983,8 +16983,8 @@ void FUN_18089bc10(longlong resourceHandle,uint64 *memorySize)
 
 
 
-// 函数: void FUN_18089bc5a(void)
-void FUN_18089bc5a(void)
+// 函数: void utilityTripTarget(void)
+void utilityTripTarget(void)
 
 {
   longlong localLong1;
@@ -17014,11 +17014,11 @@ void FUN_18089bc5a(void)
           if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
             localUInt2 = *unaff_RDI;
             localLong1 = *(longlong *)(baseRegister + POINTER_OFFSET_DATA) + (longlong)counter * 8;
-            iVar5 = FUN_1808995c0(localUInt2,localLong1);
+            iVar5 = rateUtilityEffectiveness(localUInt2,localLong1);
             if (iVar5 != 0) {
               return;
             }
-            iVar5 = FUN_1808995c0(localUInt2,localLong1 + 4);
+            iVar5 = rateUtilityEffectiveness(localUInt2,localLong1 + 4);
           }
           else {
             iVar5 = BYTE_OFFSET_FLAG;
@@ -17043,8 +17043,8 @@ void FUN_18089bc5a(void)
 
 
 
-// 函数: void FUN_18089bd61(void)
-void FUN_18089bd61(void)
+// 函数: void connectUtilityServices(void)
+void connectUtilityServices(void)
 
 {
   return;
@@ -17062,12 +17062,12 @@ uint64 FUN_18089bd70(longlong resourceHandle,uint64 *memorySize)
     if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
       return BYTE_OFFSET_FLAG;
     }
-    returnValue = FUN_1808995c0(*memorySize,resourceHandle + FIELD_OFFSET_1);
+    returnValue = rateUtilityEffectiveness(*memorySize,resourceHandle + FIELD_OFFSET_1);
     if ((int)returnValue == 0) {
       if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
         return BYTE_OFFSET_FLAG;
       }
-      returnValue = FUN_1808995c0(*memorySize,resourceHandle + FIELD_OFFSET_2);
+      returnValue = rateUtilityEffectiveness(*memorySize,resourceHandle + FIELD_OFFSET_2);
       if (((int)returnValue == 0) && (returnValue = FUN_1808de0e0(memorySize,0), (int)returnValue == 0)) {
         if ((0x6b < *(uint *)(memorySize + 8)) &&
            (returnValue = FUN_1808a6150(memorySize,resourceHandle + STRUCT_OFFSET_SIZE,0), (int)returnValue != 0)) {
@@ -17083,8 +17083,8 @@ uint64 FUN_18089bd70(longlong resourceHandle,uint64 *memorySize)
 
 
 
-// 函数: void FUN_18089be10(longlong resourceHandle,uint64 *memorySize,int operationFlags)
-void FUN_18089be10(longlong resourceHandle,uint64 *memorySize,int operationFlags)
+// 函数: void linkUtilityResources(longlong resourceHandle,uint64 *memorySize,int operationFlags)
+void linkUtilityResources(longlong resourceHandle,uint64 *memorySize,int operationFlags)
 
 {
   uint returnValue;
@@ -17304,8 +17304,8 @@ LAB_18089bfc7:
 
 
 
-// 函数: void FUN_18089c019(void)
-void FUN_18089c019(void)
+// 函数: void interfaceUtilitySystems(void)
+void interfaceUtilitySystems(void)
 
 {
   return;
@@ -18345,8 +18345,8 @@ LAB_18089c300:
 
 
 
-// 函数: void FUN_18089c606(void)
-void FUN_18089c606(void)
+// 函数: void communicateUtilityInfo(void)
+void communicateUtilityInfo(void)
 
 {
   return;
@@ -18539,35 +18539,35 @@ LAB_18089c878:
   if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  uVar3 = FUN_1808995c0(*memorySize,resourceHandle + STRUCT_OFFSET_SIZE);
+  uVar3 = rateUtilityEffectiveness(*memorySize,resourceHandle + STRUCT_OFFSET_SIZE);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
   if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  uVar3 = FUN_1808995c0(*memorySize,resourceHandle + 0x3c);
+  uVar3 = rateUtilityEffectiveness(*memorySize,resourceHandle + 0x3c);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
   if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  uVar3 = FUN_1808995c0(*memorySize,resourceHandle + ERROR_CODE_2);
+  uVar3 = rateUtilityEffectiveness(*memorySize,resourceHandle + ERROR_CODE_2);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
   if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  uVar3 = FUN_1808995c0(*memorySize,resourceHandle + 0x40);
+  uVar3 = rateUtilityEffectiveness(*memorySize,resourceHandle + 0x40);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
   if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  uVar3 = FUN_1808995c0(*memorySize,resourceHandle + 0x44);
+  uVar3 = rateUtilityEffectiveness(*memorySize,resourceHandle + 0x44);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
@@ -18621,7 +18621,7 @@ LAB_18089c9ee:
   uVar3 = uVar6;
   if (0x51 < *(uint *)(memorySize + 8)) {
     if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-      uVar3 = FUN_1808995c0(*memorySize,resourceHandle + BUFFER_OFFSET_DATA);
+      uVar3 = rateUtilityEffectiveness(*memorySize,resourceHandle + BUFFER_OFFSET_DATA);
     }
     else {
       uVar3 = BYTE_OFFSET_FLAG;
@@ -18891,35 +18891,35 @@ LAB_18089c878:
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  uVar4 = FUN_1808995c0(*baseRegister,unaff_R13 + STRUCT_OFFSET_SIZE);
+  uVar4 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + STRUCT_OFFSET_SIZE);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  uVar4 = FUN_1808995c0(*baseRegister,unaff_R13 + 0x3c);
+  uVar4 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + 0x3c);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  uVar4 = FUN_1808995c0(*baseRegister,unaff_R13 + ERROR_CODE_2);
+  uVar4 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + ERROR_CODE_2);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  uVar4 = FUN_1808995c0(*baseRegister,unaff_R13 + 0x40);
+  uVar4 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + 0x40);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  uVar4 = FUN_1808995c0(*baseRegister,unaff_R13 + 0x44);
+  uVar4 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + 0x44);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
@@ -18976,7 +18976,7 @@ LAB_18089c9a8:
   uVar4 = uVar7;
   if (0x51 < *(uint *)(baseRegister + 8)) {
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-      uVar4 = FUN_1808995c0(*baseRegister,unaff_R13 + BUFFER_OFFSET_DATA);
+      uVar4 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + BUFFER_OFFSET_DATA);
       fVar9 = extraout_XMM0_Da_03;
     }
     else {
@@ -19136,35 +19136,35 @@ ulonglong FUN_18089c86d(void)
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  uVar5 = FUN_1808995c0(*baseRegister,unaff_R13 + STRUCT_OFFSET_SIZE);
+  uVar5 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + STRUCT_OFFSET_SIZE);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  uVar5 = FUN_1808995c0(*baseRegister,unaff_R13 + 0x3c);
+  uVar5 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + 0x3c);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  uVar5 = FUN_1808995c0(*baseRegister,unaff_R13 + ERROR_CODE_2);
+  uVar5 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + ERROR_CODE_2);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  uVar5 = FUN_1808995c0(*baseRegister,unaff_R13 + 0x40);
+  uVar5 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + 0x40);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  uVar5 = FUN_1808995c0(*baseRegister,unaff_R13 + 0x44);
+  uVar5 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + 0x44);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
@@ -19225,7 +19225,7 @@ LAB_18089c9a8:
     uVar5 = unaff_RDI & 0xffffffff;
   }
   else if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-    uVar5 = FUN_1808995c0(*baseRegister,unaff_R13 + BUFFER_OFFSET_DATA);
+    uVar5 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + BUFFER_OFFSET_DATA);
     fVar12 = extraout_XMM0_Da_03;
   }
   else {
@@ -19386,35 +19386,35 @@ ulonglong FUN_18089c872(void)
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  uVar5 = FUN_1808995c0(*baseRegister,unaff_R13 + STRUCT_OFFSET_SIZE);
+  uVar5 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + STRUCT_OFFSET_SIZE);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  uVar5 = FUN_1808995c0(*baseRegister,unaff_R13 + 0x3c);
+  uVar5 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + 0x3c);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  uVar5 = FUN_1808995c0(*baseRegister,unaff_R13 + ERROR_CODE_2);
+  uVar5 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + ERROR_CODE_2);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  uVar5 = FUN_1808995c0(*baseRegister,unaff_R13 + 0x40);
+  uVar5 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + 0x40);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  uVar5 = FUN_1808995c0(*baseRegister,unaff_R13 + 0x44);
+  uVar5 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + 0x44);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
@@ -19475,7 +19475,7 @@ LAB_18089c9a8:
     uVar5 = unaff_RDI & 0xffffffff;
   }
   else if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-    uVar5 = FUN_1808995c0(*baseRegister,unaff_R13 + BUFFER_OFFSET_DATA);
+    uVar5 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + BUFFER_OFFSET_DATA);
     fVar12 = extraout_XMM0_Da_03;
   }
   else {
@@ -19678,7 +19678,7 @@ LAB_18089c9a8:
     uVar6 = unaff_RDI & 0xffffffff;
   }
   else if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == iVar9) {
-    uVar6 = FUN_1808995c0(*baseRegister,unaff_R13 + BUFFER_OFFSET_DATA);
+    uVar6 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + BUFFER_OFFSET_DATA);
     resourceHandle = extraout_XMM0_Da_02;
   }
   else {
@@ -19797,8 +19797,8 @@ LAB_18089cbf6:
 
 
 
-// 函数: void FUN_18089cc29(void)
-void FUN_18089cc29(void)
+// 函数: void distributeUtilityLoad(void)
+void distributeUtilityLoad(void)
 
 {
   return;
@@ -19807,8 +19807,8 @@ void FUN_18089cc29(void)
 
 
 
-// 函数: void FUN_18089cc31(void)
-void FUN_18089cc31(void)
+// 函数: void balanceUtilityWork(void)
+void balanceUtilityWork(void)
 
 {
   return;
@@ -19817,8 +19817,8 @@ void FUN_18089cc31(void)
 
 
 
-// 函数: void FUN_18089cc41(void)
-void FUN_18089cc41(void)
+// 函数: void scheduleUtilityTasks(void)
+void scheduleUtilityTasks(void)
 
 {
   return;
@@ -19996,8 +19996,8 @@ uint64 FUN_18089ce16(void)
 
 
 
-// 函数: void FUN_18089ce25(void)
-void FUN_18089ce25(void)
+// 函数: void prioritizeUtilityActions(void)
+void prioritizeUtilityActions(void)
 
 {
   return;
@@ -20297,8 +20297,8 @@ LAB_18089d07f:
 
 
 
-// 函数: void FUN_18089d091(void)
-void FUN_18089d091(void)
+// 函数: void optimizeUtilityFlow(void)
+void optimizeUtilityFlow(void)
 
 {
   return;
@@ -20317,8 +20317,8 @@ void FUN_18089d0a3(void)
 
 
 
-// 函数: void FUN_18089d0b0(longlong resourceHandle,uint64 memorySize)
-void FUN_18089d0b0(longlong resourceHandle,uint64 memorySize)
+// 函数: void minimizeUtilityCost(longlong resourceHandle,uint64 memorySize)
+void minimizeUtilityCost(longlong resourceHandle,uint64 memorySize)
 
 {
   int status;
@@ -20474,8 +20474,8 @@ ulonglong FUN_18089d193(void)
 
 
 
-// 函数: void FUN_18089d208(void)
-void FUN_18089d208(void)
+// 函数: void reduceUtilityWaste(void)
+void reduceUtilityWaste(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -20485,8 +20485,8 @@ void FUN_18089d208(void)
 
 
 
-// 函数: void FUN_18089d23a(void)
-void FUN_18089d23a(void)
+// 函数: void eliminateUtilityErrors(void)
+void eliminateUtilityErrors(void)
 
 {
   return;
@@ -20698,8 +20698,8 @@ LAB_18089d435:
 
 
 
-// 函数: void FUN_18089d47a(void)
-void FUN_18089d47a(void)
+// 函数: void preventUtilityFailures(void)
+void preventUtilityFailures(void)
 
 {
   return;
@@ -20742,8 +20742,8 @@ uint64 FUN_18089d490(longlong resourceHandle,uint64 *memorySize)
 
 
 
-// 函数: void FUN_18089d520(longlong resourceHandle,uint64 *memorySize)
-void FUN_18089d520(longlong resourceHandle,uint64 *memorySize)
+// 函数: void avoidUtilityRisks(longlong resourceHandle,uint64 *memorySize)
+void avoidUtilityRisks(longlong resourceHandle,uint64 *memorySize)
 
 {
   int status;
@@ -20861,8 +20861,8 @@ void FUN_18089d557(uint32 resourceHandle)
 
 
 
-// 函数: void FUN_18089dcd6(void)
-void FUN_18089dcd6(void)
+// 函数: void protectUtilityAssets(void)
+void protectUtilityAssets(void)
 
 {
   return;
@@ -20908,9 +20908,9 @@ ulonglong FUN_18089dcf0(longlong resourceHandle,uint64 *memorySize)
             uVar3 = uVar4;
             if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
               returnValue = *memorySize;
-              uVar3 = FUN_1808995c0(returnValue,auStackX_18);
+              uVar3 = rateUtilityEffectiveness(returnValue,auStackX_18);
               if ((int)uVar3 == 0) {
-                uVar3 = FUN_1808995c0(returnValue,auStackX_1c);
+                uVar3 = rateUtilityEffectiveness(returnValue,auStackX_1c);
               }
             }
           }
@@ -20934,13 +20934,13 @@ ulonglong FUN_18089dcf0(longlong resourceHandle,uint64 *memorySize)
               else {
                 uVar3 = uVar4;
                 if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-                  localUInt2 = FUN_1808995c0(*memorySize,resourceHandle + 0xfc);
+                  localUInt2 = rateUtilityEffectiveness(*memorySize,resourceHandle + 0xfc);
                   uVar3 = (ulonglong)localUInt2;
                 }
               }
               if (((int)uVar3 == 0) &&
                  ((*(uint *)(memorySize + 8) < 0x85 ||
-                  (uVar3 = FUN_180899220(memorySize,resourceHandle + RESOURCE_HANDLE_OFFSET8), (int)uVar3 == 0)))) {
+                  (uVar3 = examineUtilityBehavior(memorySize,resourceHandle + RESOURCE_HANDLE_OFFSET8), (int)uVar3 == 0)))) {
                     // WARNING: Subroutine does not return
                 FUN_1808ddf80(memorySize,localBuffer);
               }
@@ -20989,9 +20989,9 @@ ulonglong FUN_18089dd54(void)
             uVar3 = uVar4;
             if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
               returnValue = *baseRegister;
-              uVar3 = FUN_1808995c0(returnValue,&stack0x00000090);
+              uVar3 = rateUtilityEffectiveness(returnValue,&stack0x00000090);
               if ((int)uVar3 == 0) {
-                uVar3 = FUN_1808995c0(returnValue,&stack0x00000094);
+                uVar3 = rateUtilityEffectiveness(returnValue,&stack0x00000094);
               }
             }
           }
@@ -21015,12 +21015,12 @@ ulonglong FUN_18089dd54(void)
               else {
                 uVar3 = uVar4;
                 if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-                  localUInt2 = FUN_1808995c0(*baseRegister,unaff_RSI + 0xfc);
+                  localUInt2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xfc);
                   uVar3 = (ulonglong)localUInt2;
                 }
               }
               if (((int)uVar3 == 0) &&
-                 ((*(uint *)(baseRegister + 8) < 0x85 || (uVar3 = FUN_180899220(), (int)uVar3 == 0))))
+                 ((*(uint *)(baseRegister + 8) < 0x85 || (uVar3 = examineUtilityBehavior(), (int)uVar3 == 0))))
               {
                     // WARNING: Subroutine does not return
                 FUN_1808ddf80();
@@ -21069,9 +21069,9 @@ ulonglong FUN_18089dd78(void)
           uVar3 = uVar4;
           if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
             returnValue = *baseRegister;
-            uVar3 = FUN_1808995c0(returnValue,&stack0x00000090);
+            uVar3 = rateUtilityEffectiveness(returnValue,&stack0x00000090);
             if ((int)uVar3 == 0) {
-              uVar3 = FUN_1808995c0(returnValue,&stack0x00000094);
+              uVar3 = rateUtilityEffectiveness(returnValue,&stack0x00000094);
             }
           }
         }
@@ -21095,12 +21095,12 @@ ulonglong FUN_18089dd78(void)
             else {
               uVar3 = uVar4;
               if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-                localUInt2 = FUN_1808995c0(*baseRegister,unaff_RSI + 0xfc);
+                localUInt2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xfc);
                 uVar3 = (ulonglong)localUInt2;
               }
             }
             if (((int)uVar3 == 0) &&
-               ((*(uint *)(baseRegister + 8) < 0x85 || (uVar3 = FUN_180899220(), (int)uVar3 == 0)))) {
+               ((*(uint *)(baseRegister + 8) < 0x85 || (uVar3 = examineUtilityBehavior(), (int)uVar3 == 0)))) {
                     // WARNING: Subroutine does not return
               FUN_1808ddf80();
             }
@@ -21142,9 +21142,9 @@ ulonglong FUN_18089dda2(void)
           uVar3 = uVar4;
           if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
             returnValue = *baseRegister;
-            uVar3 = FUN_1808995c0(returnValue,&stack0x00000090);
+            uVar3 = rateUtilityEffectiveness(returnValue,&stack0x00000090);
             if ((int)uVar3 == 0) {
-              uVar3 = FUN_1808995c0(returnValue,&stack0x00000094);
+              uVar3 = rateUtilityEffectiveness(returnValue,&stack0x00000094);
             }
           }
         }
@@ -21168,12 +21168,12 @@ ulonglong FUN_18089dda2(void)
             else {
               uVar3 = uVar4;
               if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-                localUInt2 = FUN_1808995c0(*baseRegister,unaff_RSI + 0xfc);
+                localUInt2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xfc);
                 uVar3 = (ulonglong)localUInt2;
               }
             }
             if (((int)uVar3 == 0) &&
-               ((*(uint *)(baseRegister + 8) < 0x85 || (uVar3 = FUN_180899220(), (int)uVar3 == 0)))) {
+               ((*(uint *)(baseRegister + 8) < 0x85 || (uVar3 = examineUtilityBehavior(), (int)uVar3 == 0)))) {
                     // WARNING: Subroutine does not return
               FUN_1808ddf80();
             }
@@ -21200,9 +21200,9 @@ ulonglong FUN_18089de39(void)
   uint unaff_EDI;
   
   returnValue = *baseRegister;
-  localUInt2 = FUN_1808995c0(returnValue,&stack0x00000090);
+  localUInt2 = rateUtilityEffectiveness(returnValue,&stack0x00000090);
   if ((int)localUInt2 == 0) {
-    localUInt2 = FUN_1808995c0(returnValue,&stack0x00000094);
+    localUInt2 = rateUtilityEffectiveness(returnValue,&stack0x00000094);
   }
   if ((int)localUInt2 == 0) {
     if (*(uint *)(baseRegister + 8) < 0x39) {
@@ -21219,10 +21219,10 @@ ulonglong FUN_18089de39(void)
         unaff_EDI = 0;
       }
       else if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-        unaff_EDI = FUN_1808995c0(*baseRegister,unaff_RSI + 0xfc);
+        unaff_EDI = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xfc);
       }
       if (unaff_EDI == 0) {
-        if ((0x84 < *(uint *)(baseRegister + 8)) && (localUInt2 = FUN_180899220(), (int)localUInt2 != 0)) {
+        if ((0x84 < *(uint *)(baseRegister + 8)) && (localUInt2 = examineUtilityBehavior(), (int)localUInt2 != 0)) {
           return localUInt2;
         }
                     // WARNING: Subroutine does not return
@@ -21258,10 +21258,10 @@ ulonglong FUN_18089de72(void)
       unaff_EDI = 0;
     }
     else if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-      unaff_EDI = FUN_1808995c0(*baseRegister,unaff_RSI + 0xfc);
+      unaff_EDI = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0xfc);
     }
     if (unaff_EDI == 0) {
-      if ((*(uint *)(baseRegister + 8) < 0x85) || (returnValue = FUN_180899220(), (int)returnValue == 0)) {
+      if ((*(uint *)(baseRegister + 8) < 0x85) || (returnValue = examineUtilityBehavior(), (int)returnValue == 0)) {
                     // WARNING: Subroutine does not return
         FUN_1808ddf80();
       }
@@ -21276,8 +21276,8 @@ ulonglong FUN_18089de72(void)
 
 
 
-// 函数: void FUN_18089df30(void)
-void FUN_18089df30(void)
+// 函数: void secureUtilitySystems(void)
+void secureUtilitySystems(void)
 
 {
   return;
@@ -21312,7 +21312,7 @@ uint64 FUN_18089df40(longlong resourceHandle,uint64 *memorySize)
       if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
         return BYTE_OFFSET_FLAG;
       }
-      localUInt2 = FUN_1808995c0(*memorySize,resourceHandle + BUFFER_OFFSET_DATA);
+      localUInt2 = rateUtilityEffectiveness(*memorySize,resourceHandle + BUFFER_OFFSET_DATA);
       if ((int)localUInt2 == 0) {
         if (*(uint *)(memorySize + 8) < 0x3d) {
           localUInt2 = 0;
@@ -21357,7 +21357,7 @@ uint64 FUN_18089dfc1(void)
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
       return BYTE_OFFSET_FLAG;
     }
-    localUInt2 = FUN_1808995c0(*baseRegister,unaff_RDI + BUFFER_OFFSET_DATA);
+    localUInt2 = rateUtilityEffectiveness(*baseRegister,unaff_RDI + BUFFER_OFFSET_DATA);
     if ((int)localUInt2 == 0) {
       if (*(uint *)(baseRegister + 8) < 0x3d) {
         localUInt2 = 0;
@@ -21402,7 +21402,7 @@ uint64 FUN_18089dfe4(void)
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
       return BYTE_OFFSET_FLAG;
     }
-    localUInt2 = FUN_1808995c0(*baseRegister,unaff_RDI + BUFFER_OFFSET_DATA);
+    localUInt2 = rateUtilityEffectiveness(*baseRegister,unaff_RDI + BUFFER_OFFSET_DATA);
     if ((int)localUInt2 == 0) {
       if (*(uint *)(baseRegister + 8) < 0x3d) {
         localUInt2 = 0;
@@ -21434,7 +21434,7 @@ uint64 FUN_18089e043(void)
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  returnValue = FUN_1808995c0(*baseRegister,unaff_RDI + BUFFER_OFFSET_DATA);
+  returnValue = rateUtilityEffectiveness(*baseRegister,unaff_RDI + BUFFER_OFFSET_DATA);
   if ((int)returnValue == 0) {
     if (*(uint *)(baseRegister + 8) < 0x3d) {
       returnValue = 0;
@@ -21495,7 +21495,7 @@ uint64 FUN_18089e0d0(longlong resourceHandle,uint64 *memorySize)
         returnValue = 0;
       }
       else if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-        returnValue = FUN_1808995c0(*memorySize,resourceHandle + 0x68);
+        returnValue = rateUtilityEffectiveness(*memorySize,resourceHandle + 0x68);
       }
       else {
         returnValue = BYTE_OFFSET_FLAG;
@@ -21614,7 +21614,7 @@ LAB_18089e447:
     if ((int)localUInt2 == 0) {
       localUInt2 = uVar7;
       if ((0x32 < *(uint *)(memorySize + 8)) && (localUInt2 = BYTE_OFFSET_FLAG, *(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) == 0)) {
-        uVar3 = FUN_1808995c0(*memorySize,resourceHandle + 0x40);
+        uVar3 = rateUtilityEffectiveness(*memorySize,resourceHandle + 0x40);
         localUInt2 = (ulonglong)uVar3;
       }
       if ((int)localUInt2 == 0) {
@@ -21718,7 +21718,7 @@ LAB_18089e447:
     if ((int)localUInt2 == 0) {
       localUInt2 = uVar7;
       if ((0x32 < *(uint *)(baseRegister + 8)) && (localUInt2 = BYTE_OFFSET_FLAG, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) {
-        uVar4 = FUN_1808995c0(*baseRegister,unaff_RSI + 0x40);
+        uVar4 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0x40);
         localUInt2 = (ulonglong)uVar4;
       }
       if ((int)localUInt2 == 0) {
@@ -21818,7 +21818,7 @@ LAB_18089e447:
     if ((int)localUInt2 == 0) {
       localUInt2 = uVar7;
       if ((0x32 < *(uint *)(baseRegister + 8)) && (localUInt2 = BYTE_OFFSET_FLAG, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) {
-        uVar4 = FUN_1808995c0(*baseRegister,unaff_RSI + 0x40);
+        uVar4 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0x40);
         localUInt2 = (ulonglong)uVar4;
       }
       if ((int)localUInt2 == 0) {
@@ -21914,7 +21914,7 @@ LAB_18089e447:
     if ((int)localUInt2 == 0) {
       localUInt2 = uVar7;
       if ((0x32 < *(uint *)(baseRegister + 8)) && (localUInt2 = BYTE_OFFSET_FLAG, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) {
-        uVar4 = FUN_1808995c0(*baseRegister,unaff_RSI + 0x40);
+        uVar4 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + 0x40);
         localUInt2 = (ulonglong)uVar4;
       }
       if ((int)localUInt2 == 0) {
@@ -22317,14 +22317,14 @@ ulonglong FUN_18089e820(longlong resourceHandle,longlong *memorySize)
   if ((int)uVar4 != 0) {
     return uVar4;
   }
-  uVar4 = FUN_180899220(memorySize,resourceHandle + LIST_OFFSET_HEAD);
+  uVar4 = examineUtilityBehavior(memorySize,resourceHandle + LIST_OFFSET_HEAD);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
   if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  uVar3 = FUN_1808995c0(*memorySize,resourceHandle + SYSTEM_OFFSET_STATUS1);
+  uVar3 = rateUtilityEffectiveness(*memorySize,resourceHandle + SYSTEM_OFFSET_STATUS1);
   if (uVar3 != 0) {
     return (ulonglong)uVar3;
   }
@@ -22612,14 +22612,14 @@ ulonglong FUN_18089e87d(void)
   if ((int)uVar4 != 0) {
     return uVar4;
   }
-  uVar4 = FUN_180899220();
+  uVar4 = examineUtilityBehavior();
   if ((int)uVar4 != 0) {
     return uVar4;
   }
   if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  uVar3 = FUN_1808995c0(*unaff_RDI,unaff_R15 + SYSTEM_OFFSET_STATUS1);
+  uVar3 = rateUtilityEffectiveness(*unaff_RDI,unaff_R15 + SYSTEM_OFFSET_STATUS1);
   if (uVar3 != 0) {
     return (ulonglong)uVar3;
   }
@@ -23350,7 +23350,7 @@ uint64 FUN_18089f0b0(longlong resourceHandle,longlong *memorySize)
   if (((int)returnValue == 0) &&
      (returnValue = FUN_1808ddd30(memorySize,localBuffer,0,0x42464542,0), (int)returnValue == 0)) {
     if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-      returnValue = FUN_180899ef0(*memorySize,resourceHandle + RESOURCE_HANDLE_OFFSET);
+      returnValue = discoverUtilityComponents(*memorySize,resourceHandle + RESOURCE_HANDLE_OFFSET);
       if (((int)returnValue == 0) &&
          ((0x5a < *(uint *)(memorySize + 8) ||
           (returnValue = FUN_1808afd90(memorySize,resourceHandle + 0x44), (int)returnValue == 0)))) {
@@ -23499,7 +23499,7 @@ uint64 FUN_18089f112(void)
   uint32 in_stack_000000b0;
   
   if (*(int *)(inputRegister + RESOURCE_OFFSET_HANDLE) == 0) {
-    returnValue = FUN_180899ef0(*baseRegister,unaff_RSI + RESOURCE_HANDLE_OFFSET);
+    returnValue = discoverUtilityComponents(*baseRegister,unaff_RSI + RESOURCE_HANDLE_OFFSET);
     if (((int)returnValue == 0) &&
        ((0x5a < *(uint *)(baseRegister + 8) || (returnValue = FUN_1808afd90(), (int)returnValue == 0)))) {
       if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
@@ -23737,7 +23737,7 @@ ulonglong FUN_18089f530(longlong resourceHandle,uint64 *memorySize,uint32 operat
   if (((int)localUInt2 == 0) && (localUInt2 = FUN_1808ddd30(memorySize,localBuffer,0,callbackFunction,0), (int)localUInt2 == 0))
   {
     if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-      returnValue = FUN_180899ef0(*memorySize,resourceHandle + RESOURCE_HANDLE_OFFSET);
+      returnValue = discoverUtilityComponents(*memorySize,resourceHandle + RESOURCE_HANDLE_OFFSET);
       localUInt2 = (ulonglong)returnValue;
       if ((returnValue == 0) &&
          ((param_5 == '\0' || (localUInt2 = FUN_1808a1870(resourceHandle + BUFFER_OFFSET_DATA,memorySize), (int)localUInt2 == 0)))) {
@@ -23766,7 +23766,7 @@ ulonglong FUN_18089f571(void)
   localUInt2 = FUN_1808ddd30();
   if ((int)localUInt2 == 0) {
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-      returnValue = FUN_180899ef0(*baseRegister,unaff_RBP + RESOURCE_HANDLE_OFFSET);
+      returnValue = discoverUtilityComponents(*baseRegister,unaff_RBP + RESOURCE_HANDLE_OFFSET);
       localUInt2 = (ulonglong)returnValue;
       if ((returnValue == 0) &&
          ((in_stack_000000d0 == '\0' || (localUInt2 = FUN_1808a1870(unaff_RBP + BUFFER_OFFSET_DATA), (int)localUInt2 == 0)))
@@ -23808,7 +23808,7 @@ uint64 FUN_18089f830(longlong resourceHandle,longlong *memorySize)
     if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
       return BYTE_OFFSET_FLAG;
     }
-    returnValue = FUN_180899ef0(*memorySize,resourceHandle + RESOURCE_HANDLE_OFFSET);
+    returnValue = discoverUtilityComponents(*memorySize,resourceHandle + RESOURCE_HANDLE_OFFSET);
     if ((int)returnValue == 0) {
       if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
         return BYTE_OFFSET_FLAG;
@@ -23820,7 +23820,7 @@ uint64 FUN_18089f830(longlong resourceHandle,longlong *memorySize)
         if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
           return BYTE_OFFSET_FLAG;
         }
-        returnValue = FUN_180899ef0(*memorySize,resourceHandle + 0xdc);
+        returnValue = discoverUtilityComponents(*memorySize,resourceHandle + 0xdc);
         if (((int)returnValue == 0) &&
            (returnValue = FUN_1808a7c40(memorySize,resourceHandle + 0xec,BUFFER_OFFSET_TEMP), (int)returnValue == 0)) {
                     // WARNING: Subroutine does not return
@@ -23860,13 +23860,13 @@ ulonglong FUN_18089f970(longlong resourceHandle,longlong *memorySize)
     return uVar4;
   }
   if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-    localUInt2 = FUN_180899ef0(*memorySize,resourceHandle + RESOURCE_HANDLE_OFFSET);
+    localUInt2 = discoverUtilityComponents(*memorySize,resourceHandle + RESOURCE_HANDLE_OFFSET);
     uVar4 = (ulonglong)localUInt2;
     if (localUInt2 == 0) {
       if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
         return BYTE_OFFSET_FLAG;
       }
-      localUInt2 = FUN_180899ef0(*memorySize,resourceHandle + POINTER_OFFSET_DATA);
+      localUInt2 = discoverUtilityComponents(*memorySize,resourceHandle + POINTER_OFFSET_DATA);
       uVar4 = (ulonglong)localUInt2;
       if (localUInt2 == 0) {
         uVar4 = BYTE_OFFSET_FLAG;
@@ -23895,7 +23895,7 @@ ulonglong FUN_18089f970(longlong resourceHandle,longlong *memorySize)
           return (ulonglong)localUInt2;
         }
         if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-          localUInt2 = FUN_180899ef0(*memorySize,resourceHandle + FIELD_OFFSET_1);
+          localUInt2 = discoverUtilityComponents(*memorySize,resourceHandle + FIELD_OFFSET_1);
           uVar4 = (ulonglong)localUInt2;
           if (localUInt2 == 0) {
             uVar4 = GetResourceCapacity(memorySize,resourceHandle + 0x40);
@@ -23935,13 +23935,13 @@ ulonglong FUN_18089f9b3(void)
   if (*(uint *)(inputRegister + RESOURCE_OFFSET_HANDLE) != unaff_ESI) {
     return BYTE_OFFSET_FLAG;
   }
-  localUInt2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + RESOURCE_HANDLE_OFFSET);
+  localUInt2 = discoverUtilityComponents(*unaff_RDI,unaff_RBP + RESOURCE_HANDLE_OFFSET);
   uVar3 = (ulonglong)localUInt2;
   if (localUInt2 == 0) {
     if (*(uint *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) != unaff_ESI) {
       return BYTE_OFFSET_FLAG;
     }
-    localUInt2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + POINTER_OFFSET_DATA);
+    localUInt2 = discoverUtilityComponents(*unaff_RDI,unaff_RBP + POINTER_OFFSET_DATA);
     uVar3 = (ulonglong)localUInt2;
     if (localUInt2 == 0) {
       uVar3 = BYTE_OFFSET_FLAG;
@@ -23971,7 +23971,7 @@ ulonglong FUN_18089f9b3(void)
         return (ulonglong)localUInt2;
       }
       if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-        localUInt2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + FIELD_OFFSET_1);
+        localUInt2 = discoverUtilityComponents(*unaff_RDI,unaff_RBP + FIELD_OFFSET_1);
         uVar3 = (ulonglong)localUInt2;
         if (localUInt2 == 0) {
           uVar3 = GetResourceCapacity();
@@ -24005,7 +24005,7 @@ ulonglong FUN_18089f9f6(void)
   uint16_t in_stack_000000a0;
   uint16_t in_stack_000000a8;
   
-  localUInt2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + POINTER_OFFSET_DATA);
+  localUInt2 = discoverUtilityComponents(*unaff_RDI,unaff_RBP + POINTER_OFFSET_DATA);
   uVar3 = (ulonglong)localUInt2;
   if (localUInt2 == 0) {
     uVar3 = BYTE_OFFSET_FLAG;
@@ -24035,7 +24035,7 @@ ulonglong FUN_18089f9f6(void)
       return (ulonglong)localUInt2;
     }
     if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-      localUInt2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + FIELD_OFFSET_1);
+      localUInt2 = discoverUtilityComponents(*unaff_RDI,unaff_RBP + FIELD_OFFSET_1);
       uVar3 = (ulonglong)localUInt2;
       if (localUInt2 == 0) {
         uVar3 = GetResourceCapacity();
@@ -24085,7 +24085,7 @@ ulonglong FUN_18089fa3c(void)
     return (ulonglong)localUInt2;
   }
   if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-    localUInt2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + FIELD_OFFSET_1);
+    localUInt2 = discoverUtilityComponents(*unaff_RDI,unaff_RBP + FIELD_OFFSET_1);
     baseRegister = (ulonglong)localUInt2;
     if (localUInt2 == 0) {
       uVar3 = GetResourceCapacity();
@@ -24115,7 +24115,7 @@ ulonglong FUN_18089fac2(void)
     return (ulonglong)unaff_ESI;
   }
   if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-    returnValue = FUN_180899ef0(*unaff_RDI,unaff_RBP + FIELD_OFFSET_1);
+    returnValue = discoverUtilityComponents(*unaff_RDI,unaff_RBP + FIELD_OFFSET_1);
     baseRegister = (ulonglong)returnValue;
     if (returnValue == 0) {
       localUInt2 = GetResourceCapacity();
@@ -24141,7 +24141,7 @@ ulonglong FUN_18089fad8(void)
   uint64 *unaff_RDI;
   
   if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-    returnValue = FUN_180899ef0(*unaff_RDI,unaff_RBP + FIELD_OFFSET_1);
+    returnValue = discoverUtilityComponents(*unaff_RDI,unaff_RBP + FIELD_OFFSET_1);
     baseRegister = (ulonglong)returnValue;
     if (returnValue == 0) {
       localUInt2 = GetResourceCapacity();
@@ -24216,12 +24216,12 @@ uint64 FUN_18089fba0(longlong resourceHandle,uint64 *memorySize)
     if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
       return BYTE_OFFSET_FLAG;
     }
-    returnValue = FUN_180899ef0(*memorySize,resourceHandle + RESOURCE_HANDLE_OFFSET);
+    returnValue = discoverUtilityComponents(*memorySize,resourceHandle + RESOURCE_HANDLE_OFFSET);
     if ((int)returnValue == 0) {
       if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
         return BYTE_OFFSET_FLAG;
       }
-      returnValue = FUN_180899ef0(*memorySize,resourceHandle + POINTER_OFFSET_DATA);
+      returnValue = discoverUtilityComponents(*memorySize,resourceHandle + POINTER_OFFSET_DATA);
       if (((int)returnValue == 0) && (returnValue = FUN_1808a4fb0(memorySize,resourceHandle + FIELD_OFFSET_1,1,0), (int)returnValue == 0))
       {
                     // WARNING: Subroutine does not return
@@ -24247,12 +24247,12 @@ uint64 FUN_18089fc50(longlong resourceHandle,uint64 *memorySize)
     if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
       return BYTE_OFFSET_FLAG;
     }
-    returnValue = FUN_180899ef0(*memorySize,resourceHandle + RESOURCE_HANDLE_OFFSET);
+    returnValue = discoverUtilityComponents(*memorySize,resourceHandle + RESOURCE_HANDLE_OFFSET);
     if ((int)returnValue == 0) {
       if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
         return BYTE_OFFSET_FLAG;
       }
-      returnValue = FUN_180899ef0(*memorySize,resourceHandle + 0xd8);
+      returnValue = discoverUtilityComponents(*memorySize,resourceHandle + 0xd8);
       if ((int)returnValue == 0) {
                     // WARNING: Subroutine does not return
         FUN_1808de000(memorySize,localBuffer);
@@ -24321,7 +24321,7 @@ uint64 FUN_18089fd30(longlong resourceHandle,longlong *memorySize)
       if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
         return BYTE_OFFSET_FLAG;
       }
-      returnValue = FUN_180899ef0(*memorySize,resourceHandle + DATA_OFFSET_START);
+      returnValue = discoverUtilityComponents(*memorySize,resourceHandle + DATA_OFFSET_START);
       if ((int)returnValue != 0) {
         return returnValue;
       }
@@ -24357,12 +24357,12 @@ uint64 FUN_18089fed0(longlong resourceHandle,uint64 *memorySize)
     if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
       return BYTE_OFFSET_FLAG;
     }
-    returnValue = FUN_180899ef0(*memorySize,resourceHandle + RESOURCE_HANDLE_OFFSET);
+    returnValue = discoverUtilityComponents(*memorySize,resourceHandle + RESOURCE_HANDLE_OFFSET);
     if ((int)returnValue == 0) {
       if (*(int *)(memorySize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
         return BYTE_OFFSET_FLAG;
       }
-      returnValue = FUN_180899ef0(*memorySize,resourceHandle + 0xd8);
+      returnValue = discoverUtilityComponents(*memorySize,resourceHandle + 0xd8);
       if ((((int)returnValue == 0) && (returnValue = CheckResourceCapacity(memorySize,resourceHandle + SYSTEM_OFFSET_FLAGS), (int)returnValue == 0)) &&
          (returnValue = FUN_1808a6e50(memorySize,resourceHandle + 0xe8,1,resourceHandle), (int)returnValue == 0)) {
                     // WARNING: Subroutine does not return
