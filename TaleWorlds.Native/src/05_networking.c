@@ -32,42 +32,42 @@ void* g_packetLength;
 void* g_maxPacketSize;
 void* g_networkCompression;
 
-// 函数: void* NetworkInitializeConnection;
+// 网络连接初始化函数指针
 void* NetworkInitializeConnection;
 void* g_networkSessionData;
 
-// 函数: void* NetworkCreateListener;
+// 网络监听器创建函数指针
 void* NetworkCreateListener;
 
-// 函数: void* NetworkAcceptConnection;
+// 网络连接接受函数指针
 void* NetworkAcceptConnection;
 void* g_networkListener;
 
-// 函数: void* NetworkRejectConnection;
+// 网络连接拒绝函数指针
 void* NetworkRejectConnection;
 
-// 函数: void* NetworkAuthenticateClient;
+// 网络客户端认证函数指针
 void* NetworkAuthenticateClient;
 
-// 网络客户端验证函数 - 验证客户端权限和状态
+// 网络客户端验证函数指针 - 验证客户端权限和状态
 void* NetworkValidateClient;
 
-// 网络服务器启动函数 - 启动网络服务器
+// 网络服务器启动函数指针 - 启动网络服务器
 void* NetworkStartServer;
 
-// 网络服务器停止函数 - 停止网络服务器
+// 网络服务器停止函数指针 - 停止网络服务器
 void* NetworkStopServer;
 
-// 网络数据发送函数 - 发送网络数据包
+// 网络数据发送函数指针 - 发送网络数据包
 void* NetworkSendData;
 
-// 网络数据接收函数 - 接收网络数据包
+// 网络数据接收函数指针 - 接收网络数据包
 void* NetworkReceiveData;
 
-// 网络数据包处理函数 - 处理接收到的数据包
+// 网络数据包处理函数指针 - 处理接收到的数据包
 void* NetworkProcessPacket;
 
-// 网络断开处理函数 - 处理连接断开事件
+// 网络断开处理函数指针 - 处理连接断开事件
 void* NetworkHandleDisconnect;
 void* g_networkDisconnectReason;
 void* g_networkError;
