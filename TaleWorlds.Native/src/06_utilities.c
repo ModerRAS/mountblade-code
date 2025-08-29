@@ -2887,7 +2887,7 @@ uint64 allocate_resource_memory(longlong resourceHandle)
 
 
 
-uint64 FUN_1808905ae(void)
+uint64 get_system_status(void)
 
 {
   longlong inputRegister;
