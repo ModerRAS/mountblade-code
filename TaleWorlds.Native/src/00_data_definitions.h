@@ -238,7 +238,7 @@ int initialize_animation_resource_manager(void)
   return (initialization_result != 0) - 1;
 }
 // 初始化资源管理器8
-int initialize_resource_manager_8(void)
+int initialize_particle_resource_manager(void)
 {
   long long initialization_result;
   size_t string_length_parameter;
@@ -251,7 +251,7 @@ int initialize_resource_manager_8(void)
   return (initialization_result != 0) - 1;
 }
 // 初始化字符串缓冲区1
-int initialize_string_buffer_1(void)
+int initialize_config_string_buffer(void)
 {
   long long initialization_result;
   size_t string_length_parameter;
@@ -264,7 +264,7 @@ int initialize_string_buffer_1(void)
   return (initialization_result != 0) - 1;
 }
 // 初始化字符串缓冲区2
-int initialize_string_buffer_2(void)
+int initialize_savegame_string_buffer(void)
 {
   long long initialization_result;
   size_t string_length_parameter;
