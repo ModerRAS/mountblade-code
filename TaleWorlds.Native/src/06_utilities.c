@@ -1141,7 +1141,7 @@ data shadowProjectionMatrix;
 // 函数: data resourceLoadFromDisk;
 data resourceLoadFromDisk;
 data resourceTextureCache;  /* 原: DAT_180bfc150 */
-byte DAT_180bfc140;
+byte g_resourceInitFlag;
 data resourceRefCount;  /* 原: DAT_180bfc160 */
 data resourceMemoryUsage;  /* 原: DAT_180bfc168 */
 uint64 reflectionCubeMap;
@@ -1273,7 +1273,7 @@ data threadLocalStorageCleanup;
 
 // 函数: data InitializeThreadLocalStorage;
 data InitializeThreadLocalStorage;
-data _tls_index;
+data _tls_arrayIndex;
 void *tlsPointer;
 data eventSystemVar67d4;
 data memoryDebugInfo;
@@ -2477,7 +2477,7 @@ void HandleResourceCleanup(void)
   int status;
   longlong inputRegister;
   longlong baseRegister;
-  longlong index;
+  longlong arrayIndex;
   int counter;
   byte *stackParameter1;
   int stackParameter2;
@@ -2493,16 +2493,16 @@ void HandleResourceCleanup(void)
                           &stack0x00000030);
     if (status == 0) {
       if (0 < stackParameter2) {
-        index = 0;
+        arrayIndex = 0;
         do {
-          returnValue = *(uint64 *)(stackParameter1 + index);
+          returnValue = *(uint64 *)(stackParameter1 + arrayIndex);
           status = utilityAllocateMemoryBlock(returnValue);
           if (status != 2) {
                     // WARNING: Subroutine does not return
             utilityFreeMemoryBlock(returnValue,1); # 内存块释放函数
           }
           counter = counter + 1;
-          index = index + 8;
+          arrayIndex = arrayIndex + 8;
         } while (counter < stackParameter2);
       }
       FreeMemoryBuffer(&stack0x00000030);
@@ -2549,7 +2549,7 @@ void memory_pool_initializer(void)          // 内存池初始化函数
 
 
 
-uint64 validate_resource_handle(longlong resourceHandle)    // 资源句柄验证函数
+uint64 validate_resource_resourceHandle(longlong resourceHandle)    // 资源句柄验证函数
 
 {
   longlong localLong1;
@@ -2567,7 +2567,7 @@ uint64 validate_resource_handle(longlong resourceHandle)    // 资源句柄验�
   ulonglong unsignedVar8;
   int integerVar9;
   ulonglong returnValue0;
-  longlong *pointer;
+  longlong *dataPointer;
   longlong in_stack_00000008;
   char acStackX_18 [16];
   
@@ -2594,11 +2594,11 @@ uint64 validate_resource_handle(longlong resourceHandle)    // 资源句柄验�
     }
     if ((char)unsignedVar4 == (char)unsignedVar5) {
       if (acStackX_18[0] == (char)unsignedVar5) {
-        pointer = (longlong *)(localLong1 + RESOURCE_OFFSET_POINTER);
+        dataPointer = (longlong *)(localLong1 + RESOURCE_OFFSET_POINTER);
         unsignedVar8 = 0;
         integerVar7 = *(int *)(localLong1 + RESOURCE_OFFSET_INDEX);
         if (0 < integerVar7) {
-          plVar6 = (longlong *)*pointer;
+          plVar6 = (longlong *)*dataPointer;
           returnValue0 = unsignedVar8;
           do {
             if (*plVar6 == buffer) {
@@ -2625,13 +2625,13 @@ uint64 validate_resource_handle(longlong resourceHandle)    // 资源句柄验�
           else if (integerVar9 < integerVar7) {
             integerVar9 = integerVar7;
           }
-          integerVar7 = utilityHandleMemoryOperation(pointer,integerVar9);
+          integerVar7 = utilityHandleMemoryOperation(dataPointer,integerVar9);
           if (integerVar7 != 0) {
             return 0;
           }
         }
 <<<<<<< Updated upstream
-        *(longlong *)(*pointer + (longlong)*(int *)(localLong1 + RESOURCE_OFFSET_INDEX) * 8) = localLong2;
+        *(longlong *)(*dataPointer + (longlong)*(int *)(localLong1 + RESOURCE_OFFSET_INDEX) * 8) = localLong2;
 =======
         *(longlong *)(*plocalLong11 + (longlong)*(int *)(localLong1 + RESOURCE_OFFSET_INDEX) * 8) = buffer;
 >>>>>>> Stashed changes
@@ -2656,7 +2656,7 @@ ulonglong calculate_memory_allocation(longlong resourceHandle,longlong memorySiz
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   int counter;
   uint unsignedVar5;
   ulonglong unsignedVar6;
@@ -2696,7 +2696,7 @@ ulonglong calculate_memory_allocation(longlong resourceHandle,longlong memorySiz
       }
       plVar8 = plocalLong10;
       pbuffer = plocalLong10;
-      pindex = plocalLong10;
+      parrayIndex = plocalLong10;
       if (plVar7 != (longlong *)0x0) {
         plVar8 = plVar7 + 3;
       }
@@ -2711,7 +2711,7 @@ ulonglong calculate_memory_allocation(longlong resourceHandle,longlong memorySiz
           }
           return unsignedVar6;
         }
-        if ((int)plVar9[5] <= (int)pindex) {
+        if ((int)plVar9[5] <= (int)parrayIndex) {
           return BYTE_OFFSET_FLAG;
         }
         plVar7 = plVar8 + 4;
@@ -2729,7 +2729,7 @@ ulonglong calculate_memory_allocation(longlong resourceHandle,longlong memorySiz
           plVar8 = plVar7 + 3;
         }
         pbuffer = pbuffer + 3;
-        pindex = (longlong *)(ulonglong)((int)pindex + 1);
+        parrayIndex = (longlong *)(ulonglong)((int)parrayIndex + 1);
       }
       return BYTE_OFFSET_FLAG;
     }
@@ -2844,7 +2844,7 @@ uint64 validate_memory_size(longlong resourceHandle,uint64 memorySize) # 内存�
 
 
 
-uint64 query_resource_handle(longlong resourceHandle) # 资源句柄查询函数
+uint64 query_resource_resourceHandle(longlong resourceHandle) # 资源句柄查询函数
 
 {
   longlong localLong1;
@@ -3073,7 +3073,7 @@ void emptyReturnFunction(void)
 
 
 
-uint64 handle_resource_operation(longlong resourceHandle)
+uint64 resourceHandle_resource_operation(longlong resourceHandle)
 
 {
   uint64 returnValue;
@@ -3109,7 +3109,7 @@ uint64 handle_resource_operation(longlong resourceHandle)
 
 
 
-uint64 manage_resource_handle(longlong resourceHandle)
+uint64 manage_resource_resourceHandle(longlong resourceHandle)
 
 {
   uint64 returnValue;
@@ -3159,7 +3159,7 @@ uint64 execute_resource_command(longlong resourceHandle)
   uint64 *puVar5;
   int integerVar6;
   float floatVar7;
-  byte auVar8 [16];
+  byte arrayVar8 [16];
   longlong lStackX_8;
   
   unsignedVar4 = SystemMemoryFunction(*(uint32 *)(resourceHandle + BYTE_OFFSET_FLAG),&lStackX_8);
@@ -3184,10 +3184,10 @@ uint64 execute_resource_command(longlong resourceHandle)
       if ((localUInt2 & 1) == 0) {
         if ((((unsignedVar3 >> 3 & 1) != 0) && (integerVar6 = (int)floatVar7, integerVar6 != -0x80000000)) &&
            ((float)integerVar6 != floatVar7)) {
-          auVar8._4_4_ = floatVar7;
-          auVar8._0_4_ = floatVar7;
-          auVar8._8_8_ = 0;
-          unsignedVar3 = movmskps(localUInt2,auVar8);
+          arrayVar8._4_4_ = floatVar7;
+          arrayVar8._0_4_ = floatVar7;
+          arrayVar8._8_8_ = 0;
+          unsignedVar3 = movmskps(localUInt2,arrayVar8);
           floatVar7 = (float)(int)(integerVar6 - (unsignedVar3 & 1));
         }
         floatVar7 = (float)calculate_resource_size(*(longlong *)(localLong1 + RESOURCE_OFFSET_HANDLE),floatVar7);
@@ -3396,7 +3396,7 @@ uint64 release_system_resources(void)
       if ((*pstatus != g_securityTokenValue1) || (pstatus[1] != g_securityTokenValue2)) {
         lStack0000000000000050 = 0;
         returnValue = utilityProcessResourceData(unsignedVar6,(int *)(unaff_RBP + POINTER_OFFSET_DATA) + (longlong)(int)unsignedVar5 * 2,
-                              &stack0x00000050);
+                              &stackBuffer50stackBuffer50);
         if ((int)returnValue != 0) {
           return returnValue;
         }
@@ -3908,7 +3908,7 @@ void unmount_file_system(void)
 
 
 
-uint64 open_file_handle(longlong resourceHandle)
+uint64 open_file_resourceHandle(longlong resourceHandle)
 
 {
   uint64 returnValue;
@@ -3930,7 +3930,7 @@ uint64 open_file_handle(longlong resourceHandle)
 
 
 
-uint32 close_file_handle(void)
+uint32 close_file_resourceHandle(void)
 
 {
   longlong in_stack_00000040;
@@ -3985,7 +3985,7 @@ void seek_file_position(longlong resourceHandle,uint64 memorySize)
 
 {
   int status;
-  uint64 auStackX_8 [4];
+  uint64 arrayUnsignedStackX8 [4];
   uint32 localBuffer [2];
   uint64 localUInt;
   uint32 localUInt;
@@ -3993,9 +3993,9 @@ void seek_file_position(longlong resourceHandle,uint64 memorySize)
   localUInt = *(uint64 *)(resourceHandle + RESOURCE_HANDLE_OFFSET);
   localUInt = *(uint32 *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
   localBuffer[0] = 2;
-  status = allocate_memory_resource(memorySize,localBuffer,*(uint32 *)(resourceHandle + BYTE_OFFSET_FLAG),auStackX_8);
+  status = allocate_memory_resource(memorySize,localBuffer,*(uint32 *)(resourceHandle + BYTE_OFFSET_FLAG),arrayUnsignedStackX8);
   if (status == 0) {
-    utilityExecuteMemoryOperation(memorySize,auStackX_8[0]);
+    utilityExecuteMemoryOperation(memorySize,arrayUnsignedStackX8[0]);
   }
   return;
 }
@@ -4016,7 +4016,7 @@ uint64 get_file_position(longlong resourceHandle)
   uint64 *puVar5;
   int integerVar6;
   float floatVar7;
-  byte auVar8 [16];
+  byte arrayVar8 [16];
   longlong lStackX_8;
   
   unsignedVar4 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),&lStackX_8);
@@ -4041,10 +4041,10 @@ uint64 get_file_position(longlong resourceHandle)
       if ((localUInt2 & 1) == 0) {
         if ((((unsignedVar3 >> 3 & 1) != 0) && (integerVar6 = (int)floatVar7, integerVar6 != -0x80000000)) &&
            ((float)integerVar6 != floatVar7)) {
-          auVar8._4_4_ = floatVar7;
-          auVar8._0_4_ = floatVar7;
-          auVar8._8_8_ = 0;
-          unsignedVar3 = movmskps(localUInt2,auVar8);
+          arrayVar8._4_4_ = floatVar7;
+          arrayVar8._0_4_ = floatVar7;
+          arrayVar8._8_8_ = 0;
+          unsignedVar3 = movmskps(localUInt2,arrayVar8);
           floatVar7 = (float)(int)(integerVar6 - (unsignedVar3 & 1));
         }
         floatVar7 = (float)calculate_resource_size(*(longlong *)(localLong1 + RESOURCE_OFFSET_HANDLE),floatVar7);
@@ -4071,14 +4071,14 @@ int get_file_size(longlong resourceHandle)
 {
   int status;
   longlong buffer;
-  byte auStackX_8 [8];
+  byte arrayUnsignedStackX8 [8];
   byte localBuffer [72];
   
   buffer = 0;
   if (0 < *(int *)(resourceHandle + POINTER_OFFSET_DATA)) {
     buffer = *(longlong *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
   }
-  status = SystemMemoryFunction(*(uint32 *)(resourceHandle + ERROR_CODE_2),auStackX_8);
+  status = SystemMemoryFunction(*(uint32 *)(resourceHandle + ERROR_CODE_2),arrayUnsignedStackX8);
   if (status == 0) {
     status = *(int *)(resourceHandle + RESOURCE_HANDLE_OFFSET);
     if (STRUCT_OFFSET_SIZE < *(int *)(resourceHandle + RESOURCE_HANDLE_OFFSET)) {
@@ -4122,7 +4122,7 @@ ulonglong create_directory(longlong resourceHandle,uint64 memorySize)
 {
   uint returnValue;
   ulonglong localUInt2;
-  longlong index;
+  longlong arrayIndex;
   uint64 uStackX_8;
   uint32 localBuffer [2];
   longlong lStack_50;
@@ -4132,11 +4132,11 @@ ulonglong create_directory(longlong resourceHandle,uint64 memorySize)
   if ((int)localUInt2 == 0) {
     localInt = *(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
     if ((0 < localInt) && (*(uint *)(resourceHandle + BYTE_OFFSET_FLAG) < 2)) {
-      index = 0;
+      arrayIndex = 0;
       if (*(uint *)(resourceHandle + BYTE_OFFSET_FLAG) == 0) {
         lStack_50 = *(longlong *)(resourceHandle + RESOURCE_HANDLE_OFFSET);
         localBuffer[0] = 1;
-        index = lStack_50;
+        arrayIndex = lStack_50;
       }
       else {
         lStack_50 = *(longlong *)(resourceHandle + RESOURCE_HANDLE_OFFSET);
@@ -4147,8 +4147,8 @@ ulonglong create_directory(longlong resourceHandle,uint64 memorySize)
       if (returnValue == 0) {
         localUInt2 = 0;
       }
-      else if (index != 0) {
-        utilityAccessSystemMemory(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),index,&utilityMemoryDataBuffer,MEMORY_ACCESS_FLAG);
+      else if (arrayIndex != 0) {
+        utilityAccessSystemMemory(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),arrayIndex,&utilityMemoryDataBuffer,MEMORY_ACCESS_FLAG);
         return localUInt2;
       }
       return localUInt2;
@@ -4293,7 +4293,7 @@ void set_file_attributes(longlong resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   int status;
-  longlong *pindex;
+  longlong *parrayIndex;
   longlong *plVar4;
   longlong *plVar5;
   uint64 auStackX_18 [2];
@@ -4319,21 +4319,21 @@ void set_file_attributes(longlong resourceHandle,longlong memorySize)
       }
       plVar4 = plocalLong1;
       if (plocalLong1 != (longlong *)(memorySize + LIST_OFFSET_HEAD)) {
-        pindex = (longlong *)(*plocalLong1 + -8);
+        parrayIndex = (longlong *)(*plocalLong1 + -8);
         if (*plocalLong1 == 0) {
-          pindex = plVar5;
+          parrayIndex = plVar5;
         }
         plVar4 = plVar5;
-        if (pindex != (longlong *)0x0) {
-          plVar4 = pindex + 1;
+        if (parrayIndex != (longlong *)0x0) {
+          plVar4 = parrayIndex + 1;
         }
       }
-      pindex = plocalLong1 + 2;
+      parrayIndex = plocalLong1 + 2;
       if (plocalLong1 == (longlong *)0x0) {
-        pindex = (longlong *)&g_nullDataPointer;
+        parrayIndex = (longlong *)&g_nullDataPointer;
       }
       plocalLong1 = plVar4;
-    } while ((*pindex == 0) || (status = utilityCheckResourceAvailability(memorySize), status == 0));
+    } while ((*parrayIndex == 0) || (status = utilityCheckResourceAvailability(memorySize), status == 0));
   }
                     // WARNING: Subroutine does not return
   utilityCleanupResource(auStackX_18);
@@ -4371,7 +4371,7 @@ void set_file_permissions(longlong resourceHandle,longlong memorySize)
   if (*(int *)(resourceHandle + FIELD_OFFSET_4) == 0) {
     status = utilityExtractResourceInfo(memorySize,resourceHandle + BYTE_OFFSET_FLAG,&uStackX_8);
     if (status == 0) {
-      status = validate_resource_handle(uStackX_8,resourceHandle + FIELD_OFFSET_4);
+      status = validate_resource_resourceHandle(uStackX_8,resourceHandle + FIELD_OFFSET_4);
       if (status == 0) goto LAB_1808918d2;
     }
     return;
@@ -4396,7 +4396,7 @@ void get_file_owner(longlong resourceHandle,longlong memorySize)
     if (status != 0) {
       return;
     }
-    status = validate_resource_handle(*(uint64 *)(lStackX_8 + STRUCT_OFFSET_1),resourceHandle + FIELD_OFFSET_4);
+    status = validate_resource_resourceHandle(*(uint64 *)(lStackX_8 + STRUCT_OFFSET_1),resourceHandle + FIELD_OFFSET_4);
     if (status != 0) {
       return;
     }
@@ -4457,7 +4457,7 @@ void set_file_timestamp(longlong resourceHandle,longlong memorySize)
   if (*(int *)(resourceHandle + FIELD_OFFSET_4) == 0) {
     status = utilityGenerateResourceReport(memorySize,resourceHandle + BYTE_OFFSET_FLAG,&uStackX_8);
     if (status == 0) {
-      status = validate_resource_handle(uStackX_8,resourceHandle + FIELD_OFFSET_4);
+      status = validate_resource_resourceHandle(uStackX_8,resourceHandle + FIELD_OFFSET_4);
       if (status == 0) goto LAB_180891a52;
     }
     return;
@@ -4672,7 +4672,7 @@ void encrypt_file(longlong resourceHandle,longlong memorySize)
 {
   int status;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong longVar4;
   uint unsignedVar5;
   longlong lStackX_8;
@@ -4683,12 +4683,12 @@ void encrypt_file(longlong resourceHandle,longlong memorySize)
      (status = utilityConfigureResourceSettings(lStackX_8,memorySize,*(uint64 *)(lStackX_18 + 8)), localInt1 != 0)) {
     return;
   }
-  index = 0;
+  arrayIndex = 0;
   longVar4 = lStackX_8 + 8;
   if (lStackX_8 == 0) {
-    longVar4 = index;
+    longVar4 = arrayIndex;
   }
-  status = validate_resource_handle(longVar4,resourceHandle + RESOURCE_OFFSET_HANDLE);
+  status = validate_resource_resourceHandle(longVar4,resourceHandle + RESOURCE_OFFSET_HANDLE);
   if (status != 0) {
     return;
   }
@@ -4706,11 +4706,11 @@ void encrypt_file(longlong resourceHandle,longlong memorySize)
     if (localInt1 < *(int *)(lStackX_18 + BYTE_OFFSET_2)) goto LAB_180891fc0;
     if (status != 0) {
       if ((MAX_SIZE_MASK < localInt1 * 8 - 1U) ||
-         (index = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),localInt1 * 8,&utilityMemoryDataBuffer,
-                                MEMORY_ACCESS_FLAG_2,0,0,1), index == 0)) goto LAB_180891fc0;
+         (arrayIndex = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),localInt1 * 8,&utilityMemoryDataBuffer,
+                                MEMORY_ACCESS_FLAG_2,0,0,1), arrayIndex == 0)) goto LAB_180891fc0;
       if (*(int *)(lStackX_18 + BYTE_OFFSET_2) != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(index,*(uint64 *)(lStackX_18 + POINTER_OFFSET_DATA),(longlong)*(int *)(lStackX_18 + BYTE_OFFSET_2) << 3);
+        memcpy(arrayIndex,*(uint64 *)(lStackX_18 + POINTER_OFFSET_DATA),(longlong)*(int *)(lStackX_18 + BYTE_OFFSET_2) << 3);
       }
     }
     if ((0 < *(int *)(lStackX_18 + FIELD_OFFSET_4)) && (*(longlong *)(lStackX_18 + POINTER_OFFSET_DATA) != 0)) {
@@ -4718,7 +4718,7 @@ void encrypt_file(longlong resourceHandle,longlong memorySize)
       utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),*(longlong *)(lStackX_18 + POINTER_OFFSET_DATA),
                     &utilityMemoryDataBuffer,RESOURCE_HANDLE_OFFSET0,1);
     }
-    *(longlong *)(lStackX_18 + POINTER_OFFSET_DATA) = index;
+    *(longlong *)(lStackX_18 + POINTER_OFFSET_DATA) = arrayIndex;
     *(int *)(lStackX_18 + FIELD_OFFSET_4) = localInt1;
   }
   *(longlong *)(*(longlong *)(lStackX_18 + POINTER_OFFSET_DATA) + (longlong)*(int *)(lStackX_18 + BYTE_OFFSET_2) * 8) =
@@ -4740,7 +4740,7 @@ void decrypt_file(uint64 resourceHandle,uint64 memorySize)
 {
   int status;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong longVar4;
   uint unsignedVar5;
   longlong unaff_RBP;
@@ -4752,12 +4752,12 @@ void decrypt_file(uint64 resourceHandle,uint64 memorySize)
   if (status != 0) {
     return;
   }
-  index = 0;
+  arrayIndex = 0;
   longVar4 = in_stack_00000060 + 8;
   if (in_stack_00000060 == 0) {
-    longVar4 = index;
+    longVar4 = arrayIndex;
   }
-  status = validate_resource_handle(longVar4,unaff_RBP + RESOURCE_OFFSET_HANDLE);
+  status = validate_resource_resourceHandle(longVar4,unaff_RBP + RESOURCE_OFFSET_HANDLE);
   if (status != 0) {
     return;
   }
@@ -4775,11 +4775,11 @@ void decrypt_file(uint64 resourceHandle,uint64 memorySize)
     if (localInt1 < *(int *)(in_stack_00000070 + BYTE_OFFSET_2)) goto LAB_180891fc0;
     if (status != 0) {
       if ((MAX_SIZE_MASK < localInt1 * 8 - 1U) ||
-         (index = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),localInt1 * 8,&utilityMemoryDataBuffer,
-                                MEMORY_ACCESS_FLAG_2,0), index == 0)) goto LAB_180891fc0;
+         (arrayIndex = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),localInt1 * 8,&utilityMemoryDataBuffer,
+                                MEMORY_ACCESS_FLAG_2,0), arrayIndex == 0)) goto LAB_180891fc0;
       if (*(int *)(in_stack_00000070 + BYTE_OFFSET_2) != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(index,*(uint64 *)(in_stack_00000070 + POINTER_OFFSET_DATA),
+        memcpy(arrayIndex,*(uint64 *)(in_stack_00000070 + POINTER_OFFSET_DATA),
                (longlong)*(int *)(in_stack_00000070 + BYTE_OFFSET_2) << 3);
       }
     }
@@ -4789,7 +4789,7 @@ void decrypt_file(uint64 resourceHandle,uint64 memorySize)
       utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),*(longlong *)(in_stack_00000070 + POINTER_OFFSET_DATA),
                     &utilityMemoryDataBuffer,RESOURCE_HANDLE_OFFSET0,1);
     }
-    *(longlong *)(in_stack_00000070 + POINTER_OFFSET_DATA) = index;
+    *(longlong *)(in_stack_00000070 + POINTER_OFFSET_DATA) = arrayIndex;
     *(int *)(in_stack_00000070 + FIELD_OFFSET_4) = localInt1;
   }
   *(longlong *)
@@ -4813,19 +4813,19 @@ void utilityStartResourceService(void)
   int status;
   int status;
   longlong inputRegister;
-  longlong index;
+  longlong arrayIndex;
   longlong longVar4;
   uint unsignedVar5;
   longlong baseRegister;
   longlong unaff_R14;
   uint64 in_stack_00000060;
   
-  index = 0;
+  arrayIndex = 0;
   longVar4 = inputRegister + 8;
   if (inputRegister == 0) {
-    longVar4 = index;
+    longVar4 = arrayIndex;
   }
-  status = validate_resource_handle(longVar4);
+  status = validate_resource_resourceHandle(longVar4);
   if (status != 0) {
     return;
   }
@@ -4843,12 +4843,12 @@ void utilityStartResourceService(void)
     if (localInt1 < *(int *)(baseRegister + BYTE_OFFSET_2)) goto LAB_180891fc0;
     if (status != 0) {
       if (MAX_SIZE_MASK < localInt1 * 8 - 1U) goto LAB_180891fc0;
-      index = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),localInt1 * 8,&utilityMemoryDataBuffer,MEMORY_ACCESS_FLAG_2,0)
+      arrayIndex = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),localInt1 * 8,&utilityMemoryDataBuffer,MEMORY_ACCESS_FLAG_2,0)
       ;
-      if (index == 0) goto LAB_180891fc0;
+      if (arrayIndex == 0) goto LAB_180891fc0;
       if (*(int *)(baseRegister + BYTE_OFFSET_2) != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(index,*(uint64 *)(baseRegister + POINTER_OFFSET_DATA),(longlong)*(int *)(baseRegister + BYTE_OFFSET_2) << 3);
+        memcpy(arrayIndex,*(uint64 *)(baseRegister + POINTER_OFFSET_DATA),(longlong)*(int *)(baseRegister + BYTE_OFFSET_2) << 3);
       }
     }
     if ((0 < *(int *)(baseRegister + FIELD_OFFSET_4)) && (*(longlong *)(baseRegister + POINTER_OFFSET_DATA) != 0)) {
@@ -4856,7 +4856,7 @@ void utilityStartResourceService(void)
       utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),*(longlong *)(baseRegister + POINTER_OFFSET_DATA),
                     &utilityMemoryDataBuffer,RESOURCE_HANDLE_OFFSET0,1);
     }
-    *(longlong *)(baseRegister + POINTER_OFFSET_DATA) = index;
+    *(longlong *)(baseRegister + POINTER_OFFSET_DATA) = arrayIndex;
     *(int *)(baseRegister + FIELD_OFFSET_4) = localInt1;
   }
   *(uint64 *)(*(longlong *)(baseRegister + POINTER_OFFSET_DATA) + (longlong)*(int *)(baseRegister + BYTE_OFFSET_2) * 8) =
@@ -5057,9 +5057,9 @@ void utilityControlResourceAccess(longlong resourceHandle,longlong memorySize)
 
 {
   int status;
-  byte auStackX_8 [8];
+  byte arrayUnsignedStackX8 [8];
   
-  status = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),auStackX_8);
+  status = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),arrayUnsignedStackX8);
   if (status == 0) {
                     // WARNING: Subroutine does not return
     utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
@@ -5127,7 +5127,7 @@ uint64 utilityCheckResourceAvailability(longlong resourceHandle,longlong memoryS
     if (*(longlong *)(lStackX_8 + RESOURCE_OFFSET_HANDLE) == 0) {
       return 0x1e;
     }
-    returnValue = validate_resource_handle(*(uint64 *)(*(longlong *)(lStackX_8 + RESOURCE_OFFSET_HANDLE) + STRUCT_OFFSET_1),
+    returnValue = validate_resource_resourceHandle(*(uint64 *)(*(longlong *)(lStackX_8 + RESOURCE_OFFSET_HANDLE) + STRUCT_OFFSET_1),
                                 resourceHandle + RESOURCE_OFFSET_HANDLE);
     if ((int)returnValue == 0) {
       returnValue = utilityAcquireResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
@@ -5178,7 +5178,7 @@ uint64 utilityGetResourceInformation(longlong resourceHandle,longlong memorySize
         }
         status = func_0x00018076b630(puVar4,resourceHandle + BYTE_OFFSET_FLAG);
         if (status == 0) {
-          unsignedVar3 = validate_resource_handle(longVar7,resourceHandle + RESOURCE_OFFSET_HANDLE);
+          unsignedVar3 = validate_resource_resourceHandle(longVar7,resourceHandle + RESOURCE_OFFSET_HANDLE);
           if ((int)unsignedVar3 != 0) {
             return unsignedVar3;
           }
@@ -5234,7 +5234,7 @@ uint64 utilityRetrieveResourceData(void)
       }
       status = func_0x00018076b630(puVar4);
       if (status == 0) {
-        unsignedVar3 = validate_resource_handle(longVar7,unaff_R14 + RESOURCE_OFFSET_HANDLE);
+        unsignedVar3 = validate_resource_resourceHandle(longVar7,unaff_R14 + RESOURCE_OFFSET_HANDLE);
         if ((int)unsignedVar3 != 0) {
           return unsignedVar3;
         }
@@ -5269,7 +5269,7 @@ void utilityUpdateResourceState(void)
   int status;
   longlong unaff_R13;
   
-  status = validate_resource_handle();
+  status = validate_resource_resourceHandle();
   if (status == 0) {
     utilityAcquireResourceHandle(*(uint64 *)(unaff_R13 + 0x98));
   }
@@ -5283,42 +5283,42 @@ uint64 utilityProcessResourceTransaction(longlong resourceHandle,longlong memory
 {
   int status;
   uint64 localUInt2;
-  longlong index;
+  longlong arrayIndex;
   longlong lStackX_8;
   
   localUInt2 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),&lStackX_8);
   if ((int)localUInt2 != 0) {
     return localUInt2;
   }
-  index = lStackX_8;
+  arrayIndex = lStackX_8;
   if (lStackX_8 != 0) {
-    index = lStackX_8 + -8;
+    arrayIndex = lStackX_8 + -8;
   }
   status = *(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
-  if ((localInt1 < 0) || (*(int *)(index + BYTE_OFFSET_2) <= localInt1)) {
+  if ((localInt1 < 0) || (*(int *)(arrayIndex + BYTE_OFFSET_2) <= localInt1)) {
     return ERROR_CODE_FAILED;
   }
-  if (*(longlong *)(*(longlong *)(index + POINTER_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET + (longlong)localInt1 * RESOURCE_OFFSET_HANDLE) == 0) {
+  if (*(longlong *)(*(longlong *)(arrayIndex + POINTER_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET + (longlong)localInt1 * RESOURCE_OFFSET_HANDLE) == 0) {
     return 0x1e;
   }
-  localUInt2 = validate_resource_handle(*(longlong *)(index + POINTER_OFFSET_DATA) + (longlong)localInt1 * RESOURCE_OFFSET_HANDLE,resourceHandle + BYTE_OFFSET_FLAG);
+  localUInt2 = validate_resource_resourceHandle(*(longlong *)(arrayIndex + POINTER_OFFSET_DATA) + (longlong)localInt1 * RESOURCE_OFFSET_HANDLE,resourceHandle + BYTE_OFFSET_FLAG);
   if ((int)localUInt2 != 0) {
     return localUInt2;
   }
-  index = *(longlong *)(memorySize + 0x98);
-  if (*(int *)(index + 0x200) == 0) {
+  arrayIndex = *(longlong *)(memorySize + 0x98);
+  if (*(int *)(arrayIndex + 0x200) == 0) {
     return 0;
   }
-  if ((*(int *)(index + 0x180) != 0) || (*(int *)(index + 0x184) != 0)) {
+  if ((*(int *)(arrayIndex + 0x180) != 0) || (*(int *)(arrayIndex + 0x184) != 0)) {
     lStackX_8 = 0;
     utilityPrepareResourceOperation(&lStackX_8);
-    if (lStackX_8 == *(longlong *)((longlong)*(int *)(index + 0x17c) * 8 + 0x180c4f450)) {
-      localUInt2 = utilityExecuteResourceOperation(index,resourceHandle);
+    if (lStackX_8 == *(longlong *)((longlong)*(int *)(arrayIndex + 0x17c) * 8 + 0x180c4f450)) {
+      localUInt2 = utilityExecuteResourceOperation(arrayIndex,resourceHandle);
       goto LAB_18088d83c;
     }
   }
   *(uint *)(resourceHandle + 8) = *(int *)(resourceHandle + 8) + 0xfU & 0xfffffff0;
-  localUInt2 = func_0x0001808e64d0(*(uint64 *)(index + 0x1e0));
+  localUInt2 = func_0x0001808e64d0(*(uint64 *)(arrayIndex + 0x1e0));
 LAB_18088d83c:
   if ((int)localUInt2 == 0) {
     return 0;
@@ -5337,7 +5337,7 @@ void utilityExecuteResourceCommand(longlong resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   byte localBuffer [32];
   longlong lStack_48;
@@ -5352,14 +5352,14 @@ void utilityExecuteResourceCommand(longlong resourceHandle,longlong memorySize)
     }
     if (*(longlong *)(lStack_48 + RESOURCE_OFFSET_HANDLE) != 0) {
       localLong1 = *(longlong *)(lStack_48 + RESOURCE_OFFSET_HANDLE) + FIELD_OFFSET_1;
-      index = (**(code **)(**(longlong **)(memorySize + 800) + 0x2f0))
+      arrayIndex = (**(code **)(**(longlong **)(memorySize + 800) + 0x2f0))
                         (*(longlong **)(memorySize + 800),localLong1,1);
-      if (index == 0) {
+      if (arrayIndex == 0) {
                     // WARNING: Subroutine does not return
         copyMemoryData(localLong1,localBuffer);
       }
-      plVar4 = (longlong *)(index + SYSTEM_OFFSET_STATUS1);
-      if (((longlong *)*plVar4 != plVar4) || (*(longlong **)(index + DATA_OFFSET_START) != plVar4)) {
+      plVar4 = (longlong *)(arrayIndex + SYSTEM_OFFSET_STATUS1);
+      if (((longlong *)*plVar4 != plVar4) || (*(longlong **)(arrayIndex + DATA_OFFSET_START) != plVar4)) {
                     // WARNING: Subroutine does not return
         utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
       }
@@ -5824,15 +5824,15 @@ uint64 utilityAnalyzeResourcePerformance(longlong resourceHandle,longlong memory
 {
   float floatVar1;
   longlong buffer;
-  longlong index;
+  longlong arrayIndex;
   uint64 unsignedVar4;
   longlong longVar5;
   float floatVar6;
-  uint auStackX_8 [2];
+  uint arrayUnsignedStackX8 [2];
   longlong lStackX_18;
   
-  auStackX_8[0] = *(uint *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
-  if ((auStackX_8[0] & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
+  arrayUnsignedStackX8[0] = *(uint *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
+  if ((arrayUnsignedStackX8[0] & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
     return ERROR_CODE_5;
   }
   if (resourceHandle + BYTE_OFFSET_2 != 0) {
@@ -5848,24 +5848,24 @@ uint64 utilityAnalyzeResourcePerformance(longlong resourceHandle,longlong memory
     if (buffer == 0) {
       return 0x1e;
     }
-    auStackX_8[0] = 0;
-    unsignedVar4 = utilityCalculateResourceMetrics(memorySize,longVar5,resourceHandle + BYTE_OFFSET_2,auStackX_8);
+    arrayUnsignedStackX8[0] = 0;
+    unsignedVar4 = utilityCalculateResourceMetrics(memorySize,longVar5,resourceHandle + BYTE_OFFSET_2,arrayUnsignedStackX8);
     if ((int)unsignedVar4 != 0) {
       return unsignedVar4;
     }
     longVar5 = *(longlong *)(longVar5 + POINTER_OFFSET_DATA);
-    index = *(longlong *)(longVar5 + RESOURCE_HANDLE_OFFSET + (longlong)(int)auStackX_8[0] * RESOURCE_OFFSET_HANDLE);
-    if ((*(byte *)(index + FIELD_OFFSET_2) & 0x11) == 0) {
+    arrayIndex = *(longlong *)(longVar5 + RESOURCE_HANDLE_OFFSET + (longlong)(int)arrayUnsignedStackX8[0] * RESOURCE_OFFSET_HANDLE);
+    if ((*(byte *)(arrayIndex + FIELD_OFFSET_2) & 0x11) == 0) {
       floatVar1 = *(float *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
-      floatVar6 = *(float *)(index + STRUCT_OFFSET_SIZE);
-      if ((*(float *)(index + STRUCT_OFFSET_SIZE) <= floatVar1) &&
-         (floatVar6 = *(float *)(index + 0x3c), floatVar1 <= *(float *)(index + 0x3c))) {
+      floatVar6 = *(float *)(arrayIndex + STRUCT_OFFSET_SIZE);
+      if ((*(float *)(arrayIndex + STRUCT_OFFSET_SIZE) <= floatVar1) &&
+         (floatVar6 = *(float *)(arrayIndex + 0x3c), floatVar1 <= *(float *)(arrayIndex + 0x3c))) {
         floatVar6 = floatVar1;
       }
       *(float *)(resourceHandle + RESOURCE_OFFSET_HANDLE) = floatVar6;
       buffer = *(longlong *)(buffer + MEMORY_SIZE_OFFSET);
-      *(float *)(longVar5 + 4 + (longlong)(int)auStackX_8[0] * RESOURCE_OFFSET_HANDLE) = floatVar6;
-      *(uint64 *)(resourceHandle + POINTER_OFFSET_DATA) = *(uint64 *)(buffer + (longlong)(int)auStackX_8[0] * 8);
+      *(float *)(longVar5 + 4 + (longlong)(int)arrayUnsignedStackX8[0] * RESOURCE_OFFSET_HANDLE) = floatVar6;
+      *(uint64 *)(resourceHandle + POINTER_OFFSET_DATA) = *(uint64 *)(buffer + (longlong)(int)arrayUnsignedStackX8[0] * 8);
                     // WARNING: Subroutine does not return
       utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
     }
@@ -5880,7 +5880,7 @@ uint64 utilityOptimizeResourcePerformance(longlong resourceHandle,longlong memor
 {
   float floatVar1;
   longlong buffer;
-  longlong index;
+  longlong arrayIndex;
   uint64 unsignedVar4;
   longlong longVar5;
   longlong longVar6;
@@ -5907,15 +5907,15 @@ uint64 utilityOptimizeResourcePerformance(longlong resourceHandle,longlong memor
     }
     longVar5 = (longlong)aiStackX_8[0];
     longVar6 = *(longlong *)(longVar6 + POINTER_OFFSET_DATA);
-    index = *(longlong *)(longVar6 + RESOURCE_HANDLE_OFFSET + longVar5 * RESOURCE_OFFSET_HANDLE);
-    if ((*(byte *)(index + FIELD_OFFSET_2) & 0x11) == 0) {
-      unsignedVar4 = utilityAccessResourceAttribute(index,resourceHandle + 0xa8,resourceHandle + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = *(longlong *)(longVar6 + RESOURCE_HANDLE_OFFSET + longVar5 * RESOURCE_OFFSET_HANDLE);
+    if ((*(byte *)(arrayIndex + FIELD_OFFSET_2) & 0x11) == 0) {
+      unsignedVar4 = utilityAccessResourceAttribute(arrayIndex,resourceHandle + 0xa8,resourceHandle + RESOURCE_OFFSET_HANDLE);
       if ((int)unsignedVar4 != 0) {
         return unsignedVar4;
       }
       floatVar1 = *(float *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
-      if ((*(float *)(index + STRUCT_OFFSET_SIZE) <= floatVar1) &&
-         (floatVar1 < *(float *)(index + 0x3c) || floatVar1 == *(float *)(index + 0x3c))) {
+      if ((*(float *)(arrayIndex + STRUCT_OFFSET_SIZE) <= floatVar1) &&
+         (floatVar1 < *(float *)(arrayIndex + 0x3c) || floatVar1 == *(float *)(arrayIndex + 0x3c))) {
         buffer = *(longlong *)(buffer + MEMORY_SIZE_OFFSET);
         *(float *)(longVar6 + 4 + longVar5 * RESOURCE_OFFSET_HANDLE) = floatVar1;
         *(uint64 *)(resourceHandle + POINTER_OFFSET_DATA) = *(uint64 *)(buffer + (longlong)aiStackX_8[0] * 8);
@@ -5935,7 +5935,7 @@ uint64 utilityExecuteResourceTask(longlong resourceHandle,longlong memorySize,ui
 {
   float floatVar1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   uint64 unsignedVar4;
   longlong longVar5;
   uint64 unaff_RDI;
@@ -5959,20 +5959,20 @@ uint64 utilityExecuteResourceTask(longlong resourceHandle,longlong memorySize,ui
     return ERROR_CODE_FAILED;
   }
   longVar5 = *(longlong *)(longVar5 + POINTER_OFFSET_DATA) + (longlong)status * RESOURCE_OFFSET_HANDLE;
-  index = *(longlong *)(longVar5 + RESOURCE_HANDLE_OFFSET);
-  if (index == 0) {
+  arrayIndex = *(longlong *)(longVar5 + RESOURCE_HANDLE_OFFSET);
+  if (arrayIndex == 0) {
     return 0x1e;
   }
-  if ((*(byte *)(index + FIELD_OFFSET_2) & 0x11) == 0) {
+  if ((*(byte *)(arrayIndex + FIELD_OFFSET_2) & 0x11) == 0) {
     floatVar1 = *(float *)(resourceHandle + POINTER_OFFSET_DATA);
-    floatVar6 = *(float *)(index + STRUCT_OFFSET_SIZE);
-    if ((*(float *)(index + STRUCT_OFFSET_SIZE) <= floatVar1) &&
-       (floatVar6 = *(float *)(index + 0x3c), floatVar1 <= *(float *)(index + 0x3c))) {
+    floatVar6 = *(float *)(arrayIndex + STRUCT_OFFSET_SIZE);
+    if ((*(float *)(arrayIndex + STRUCT_OFFSET_SIZE) <= floatVar1) &&
+       (floatVar6 = *(float *)(arrayIndex + 0x3c), floatVar1 <= *(float *)(arrayIndex + 0x3c))) {
       floatVar6 = floatVar1;
     }
     *(float *)(resourceHandle + POINTER_OFFSET_DATA) = floatVar6;
     *(float *)(longVar5 + 4) = floatVar6;
-    unsignedVar4 = validate_resource_handle(longVar5,resourceHandle + BYTE_OFFSET_FLAG);
+    unsignedVar4 = validate_resource_resourceHandle(longVar5,resourceHandle + BYTE_OFFSET_FLAG);
     if ((int)unsignedVar4 != 0) {
       return unsignedVar4;
     }
@@ -6006,13 +6006,13 @@ uint64 utilityFinalizeResourceTask(longlong resourceHandle,longlong memorySize)
   int status;
   int status;
   uint64 unsignedVar3;
-  float *pfVar4;
+  float *pfloatValue4;
   longlong longVar5;
   ulonglong unsignedVar6;
-  float *pfVar7;
+  float *pfloatValue7;
   ulonglong unsignedVar8;
   uint unsignedVar9;
-  float fVar11;
+  float floatVar11;
   float fStackX_8;
   uint32 uStackX_c;
   ulonglong returnValue0;
@@ -6027,14 +6027,14 @@ uint64 utilityFinalizeResourceTask(longlong resourceHandle,longlong memorySize)
     unsignedVar6 = unsignedVar8;
   }
   status = *(int *)(unsignedVar6 + BYTE_OFFSET_2);
-  pfVar7 = (float *)(resourceHandle + POINTER_OFFSET_DATA + (longlong)*(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE) * 4);
+  pfloatValue7 = (float *)(resourceHandle + POINTER_OFFSET_DATA + (longlong)*(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE) * 4);
   if (0 < *(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE)) {
-    pfVar4 = pfVar7;
+    pfloatValue4 = pfloatValue7;
     returnValue0 = unsignedVar8;
     do {
-      status = *(int *)(((resourceHandle + POINTER_OFFSET_DATA) - (longlong)pfVar7) + (longlong)pfVar4);
+      status = *(int *)(((resourceHandle + POINTER_OFFSET_DATA) - (longlong)pfloatValue7) + (longlong)pfloatValue4);
       if (status != -1) {
-        fStackX_8 = *pfVar4;
+        fStackX_8 = *pfloatValue4;
         if (((uint)fStackX_8 & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
           return ERROR_CODE_5;
         }
@@ -6052,27 +6052,27 @@ uint64 utilityFinalizeResourceTask(longlong resourceHandle,longlong memorySize)
         if (*(int *)(longVar5 + FIELD_OFFSET_1) != 0) {
           return ERROR_CODE_FAILED;
         }
-        fVar11 = *(float *)(longVar5 + STRUCT_OFFSET_SIZE);
+        floatVar11 = *(float *)(longVar5 + STRUCT_OFFSET_SIZE);
         if ((*(float *)(longVar5 + STRUCT_OFFSET_SIZE) <= fStackX_8) &&
-           (fVar11 = *(float *)(longVar5 + 0x3c), fStackX_8 <= *(float *)(longVar5 + 0x3c))) {
-          fVar11 = fStackX_8;
+           (floatVar11 = *(float *)(longVar5 + 0x3c), fStackX_8 <= *(float *)(longVar5 + 0x3c))) {
+          floatVar11 = fStackX_8;
         }
-        *pfVar4 = fVar11;
+        *pfloatValue4 = floatVar11;
       }
       unsignedVar9 = (int)returnValue0 + 1;
       returnValue0 = (ulonglong)unsignedVar9;
-      pfVar4 = pfVar4 + 1;
+      pfloatValue4 = pfloatValue4 + 1;
     } while ((int)unsignedVar9 < *(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE));
     if (0 < *(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE)) {
-      longVar5 = (resourceHandle + POINTER_OFFSET_DATA) - (longlong)pfVar7;
+      longVar5 = (resourceHandle + POINTER_OFFSET_DATA) - (longlong)pfloatValue7;
       do {
-        status = *(int *)((longlong)pfVar7 + longVar5);
+        status = *(int *)((longlong)pfloatValue7 + longVar5);
         if (status != -1) {
-          *(float *)(*(longlong *)(unsignedVar6 + POINTER_OFFSET_DATA) + 4 + (longlong)localInt1 * RESOURCE_OFFSET_HANDLE) = *pfVar7;
+          *(float *)(*(longlong *)(unsignedVar6 + POINTER_OFFSET_DATA) + 4 + (longlong)localInt1 * RESOURCE_OFFSET_HANDLE) = *pfloatValue7;
         }
         unsignedVar9 = (int)unsignedVar8 + 1;
         unsignedVar8 = (ulonglong)unsignedVar9;
-        pfVar7 = pfVar7 + 1;
+        pfloatValue7 = pfloatValue7 + 1;
       } while ((int)unsignedVar9 < *(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE));
     }
   }
@@ -6089,11 +6089,11 @@ uint64 utilityCompleteResourceCycle(void)
   int status;
   int length;
   longlong inputRegister;
-  float *pfVar4;
+  float *pfloatValue4;
   longlong baseRegister;
   longlong longVar5;
   ulonglong unsignedVar6;
-  float *pfVar7;
+  float *pfloatValue7;
   uint in_R9D;
   uint unsignedVar8;
   longlong unaff_R15;
@@ -6104,14 +6104,14 @@ uint64 utilityCompleteResourceCycle(void)
     unsignedVar6 = (ulonglong)in_R9D;
   }
   status = *(int *)(unsignedVar6 + BYTE_OFFSET_2);
-  pfVar7 = (float *)(baseRegister + POINTER_OFFSET_DATA + (longlong)*(int *)(baseRegister + RESOURCE_OFFSET_HANDLE) * 4);
+  pfloatValue7 = (float *)(baseRegister + POINTER_OFFSET_DATA + (longlong)*(int *)(baseRegister + RESOURCE_OFFSET_HANDLE) * 4);
   if (0 < *(int *)(baseRegister + RESOURCE_OFFSET_HANDLE)) {
-    pfVar4 = pfVar7;
+    pfloatValue4 = pfloatValue7;
     unsignedVar8 = in_R9D;
     do {
-      length = *(int *)(((baseRegister + POINTER_OFFSET_DATA) - (longlong)pfVar7) + (longlong)pfVar4);
+      length = *(int *)(((baseRegister + POINTER_OFFSET_DATA) - (longlong)pfloatValue7) + (longlong)pfloatValue4);
       if (length != -1) {
-        floatVar1 = *pfVar4;
+        floatVar1 = *pfloatValue4;
         if (((uint)floatVar1 & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
           return ERROR_CODE_5;
         }
@@ -6134,20 +6134,20 @@ uint64 utilityCompleteResourceCycle(void)
            (floatVar9 = *(float *)(longVar5 + 0x3c), floatVar1 <= *(float *)(longVar5 + 0x3c))) {
           floatVar9 = floatVar1;
         }
-        *pfVar4 = floatVar9;
+        *pfloatValue4 = floatVar9;
       }
       unsignedVar8 = unsignedVar8 + 1;
-      pfVar4 = pfVar4 + 1;
+      pfloatValue4 = pfloatValue4 + 1;
     } while ((int)unsignedVar8 < *(int *)(baseRegister + RESOURCE_OFFSET_HANDLE));
     if (0 < *(int *)(baseRegister + RESOURCE_OFFSET_HANDLE)) {
-      longVar5 = (baseRegister + POINTER_OFFSET_DATA) - (longlong)pfVar7;
+      longVar5 = (baseRegister + POINTER_OFFSET_DATA) - (longlong)pfloatValue7;
       do {
-        status = *(int *)((longlong)pfVar7 + longVar5);
+        status = *(int *)((longlong)pfloatValue7 + longVar5);
         if (status != -1) {
-          *(float *)(*(longlong *)(unsignedVar6 + POINTER_OFFSET_DATA) + 4 + (longlong)status * RESOURCE_OFFSET_HANDLE) = *pfVar7;
+          *(float *)(*(longlong *)(unsignedVar6 + POINTER_OFFSET_DATA) + 4 + (longlong)status * RESOURCE_OFFSET_HANDLE) = *pfloatValue7;
         }
         in_R9D = in_R9D + 1;
-        pfVar7 = pfVar7 + 1;
+        pfloatValue7 = pfloatValue7 + 1;
       } while ((int)in_R9D < *(int *)(baseRegister + RESOURCE_OFFSET_HANDLE));
     }
   }
@@ -6246,7 +6246,7 @@ uint64 utilityExecuteResourceCycleTask(longlong resourceHandle,longlong memorySi
 {
   float floatVar1;
   uint64 localUInt2;
-  longlong index;
+  longlong arrayIndex;
   uint64 unaff_RDI;
   longlong lStackX_8;
   
@@ -6263,18 +6263,18 @@ uint64 utilityExecuteResourceCycleTask(longlong resourceHandle,longlong memorySi
     return localUInt2;
   }
   if (lStackX_8 == 0) {
-    index = 0;
+    arrayIndex = 0;
   }
   else {
-    index = lStackX_8 + -8;
+    arrayIndex = lStackX_8 + -8;
   }
-  *(uint32 *)(index + MEMORY_SIZE_OFFSET) = *(uint32 *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
-  index = *(longlong *)(memorySize + 0x98);
-  if ((*(int *)(index + 0x180) != 0) || (*(int *)(index + 0x184) != 0)) {
+  *(uint32 *)(arrayIndex + MEMORY_SIZE_OFFSET) = *(uint32 *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
+  arrayIndex = *(longlong *)(memorySize + 0x98);
+  if ((*(int *)(arrayIndex + 0x180) != 0) || (*(int *)(arrayIndex + 0x184) != 0)) {
     lStackX_8 = 0;
     utilityPrepareResourceOperation(&lStackX_8,resourceHandle,operationFlags,callbackFunction,unaff_RDI);
-    if (lStackX_8 == *(longlong *)((longlong)*(int *)(index + 0x17c) * 8 + 0x180c4f450)) {
-      localUInt2 = utilityExecuteResourceOperation(index,resourceHandle);
+    if (lStackX_8 == *(longlong *)((longlong)*(int *)(arrayIndex + 0x17c) * 8 + 0x180c4f450)) {
+      localUInt2 = utilityExecuteResourceOperation(arrayIndex,resourceHandle);
       if ((int)localUInt2 == 0) {
         return 0;
       }
@@ -6282,7 +6282,7 @@ uint64 utilityExecuteResourceCycleTask(longlong resourceHandle,longlong memorySi
     }
   }
   *(uint *)(resourceHandle + 8) = *(int *)(resourceHandle + 8) + 0xfU & 0xfffffff0;
-  localUInt2 = func_0x0001808e64d0(*(uint64 *)(index + 0x1e0));
+  localUInt2 = func_0x0001808e64d0(*(uint64 *)(arrayIndex + 0x1e0));
   if ((int)localUInt2 == 0) {
     return 0;
   }
@@ -6296,7 +6296,7 @@ uint64 utilityHandleResourceCycleResponse(longlong resourceHandle,longlong memor
 {
   float floatVar1;
   uint64 localUInt2;
-  longlong index;
+  longlong arrayIndex;
   longlong lStackX_8;
   
   floatVar1 = *(float *)(resourceHandle + BYTE_OFFSET_FLAG);
@@ -6331,19 +6331,19 @@ code_r0x00018089322c:
     return localUInt2;
   }
   if (lStackX_8 == 0) {
-    index = 0;
+    arrayIndex = 0;
   }
   else {
-    index = lStackX_8 + -8;
+    arrayIndex = lStackX_8 + -8;
   }
-  *(uint32 *)(index + 0xa4 + (longlong)*(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE) * 4) =
+  *(uint32 *)(arrayIndex + 0xa4 + (longlong)*(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE) * 4) =
        *(uint32 *)(resourceHandle + BYTE_OFFSET_FLAG);
-  index = *(longlong *)(memorySize + 0x98);
-  if ((*(int *)(index + 0x180) != 0) || (*(int *)(index + 0x184) != 0)) {
+  arrayIndex = *(longlong *)(memorySize + 0x98);
+  if ((*(int *)(arrayIndex + 0x180) != 0) || (*(int *)(arrayIndex + 0x184) != 0)) {
     lStackX_8 = 0;
     utilityPrepareResourceOperation(&lStackX_8);
-    if (lStackX_8 == *(longlong *)((longlong)*(int *)(index + 0x17c) * 8 + 0x180c4f450)) {
-      localUInt2 = utilityExecuteResourceOperation(index,resourceHandle);
+    if (lStackX_8 == *(longlong *)((longlong)*(int *)(arrayIndex + 0x17c) * 8 + 0x180c4f450)) {
+      localUInt2 = utilityExecuteResourceOperation(arrayIndex,resourceHandle);
       if ((int)localUInt2 == 0) {
         return 0;
       }
@@ -6351,7 +6351,7 @@ code_r0x00018089322c:
     }
   }
   *(uint *)(resourceHandle + 8) = *(int *)(resourceHandle + 8) + 0xfU & 0xfffffff0;
-  localUInt2 = func_0x0001808e64d0(*(uint64 *)(index + 0x1e0));
+  localUInt2 = func_0x0001808e64d0(*(uint64 *)(arrayIndex + 0x1e0));
   if ((int)localUInt2 == 0) {
     return 0;
   }
@@ -6542,7 +6542,7 @@ uint64 utilityMonitorResourceCycle(longlong resourceHandle,longlong memorySize)
     localUInt2 = 0x4a;
   }
   else {
-    localUInt2 = validate_resource_handle(*(longlong *)(localLong1 + 0x2e8),resourceHandle + POINTER_OFFSET_DATA);
+    localUInt2 = validate_resource_resourceHandle(*(longlong *)(localLong1 + 0x2e8),resourceHandle + POINTER_OFFSET_DATA);
     if ((int)localUInt2 == 0) {
       localUInt2 = utilityAcquireResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
       return localUInt2;
@@ -6572,7 +6572,7 @@ uint64 utilityReportResourceCycle(longlong resourceHandle,longlong memorySize)
   if ((localLong1 == 0) || (*(longlong *)(localLong1 + 0x2e8) == 0)) {
     return 0x4a;
   }
-  localUInt2 = validate_resource_handle(*(longlong *)(localLong1 + 0x2e8),resourceHandle + POINTER_OFFSET_DATA);
+  localUInt2 = validate_resource_resourceHandle(*(longlong *)(localLong1 + 0x2e8),resourceHandle + POINTER_OFFSET_DATA);
   if ((int)localUInt2 != 0) {
     return localUInt2;
   }
@@ -6606,7 +6606,7 @@ void utilityLogResourceCycle(longlong resourceHandle,longlong memorySize)
   
   status = utilityExtractResourceInfo(memorySize,resourceHandle + RESOURCE_HANDLE_OFFSET,&uStackX_8);
   if (status == 0) {
-    status = validate_resource_handle(uStackX_8,resourceHandle + POINTER_OFFSET_DATA);
+    status = validate_resource_resourceHandle(uStackX_8,resourceHandle + POINTER_OFFSET_DATA);
     if (status == 0) {
                     // WARNING: Subroutine does not return
       utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
@@ -6627,7 +6627,7 @@ void utilityTrackResourceCycle(longlong resourceHandle,longlong memorySize)
   
   status = utilityAnalyzeResourceData(memorySize,resourceHandle + RESOURCE_HANDLE_OFFSET,&lStackX_8);
   if (status == 0) {
-    status = validate_resource_handle(*(uint64 *)(lStackX_8 + STRUCT_OFFSET_1),resourceHandle + POINTER_OFFSET_DATA);
+    status = validate_resource_resourceHandle(*(uint64 *)(lStackX_8 + STRUCT_OFFSET_1),resourceHandle + POINTER_OFFSET_DATA);
     if (status == 0) {
       utilityAcquireResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
     }
@@ -6647,7 +6647,7 @@ void create_network_socket(longlong resourceHandle,longlong memorySize)
   
   status = utilityGenerateResourceReport(memorySize,resourceHandle + RESOURCE_HANDLE_OFFSET,&uStackX_8);
   if (status == 0) {
-    status = validate_resource_handle(uStackX_8,resourceHandle + POINTER_OFFSET_DATA);
+    status = validate_resource_resourceHandle(uStackX_8,resourceHandle + POINTER_OFFSET_DATA);
     if (status == 0) {
                     // WARNING: Subroutine does not return
       utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
@@ -6780,18 +6780,18 @@ int accept_network_connection(longlong resourceHandle,longlong memorySize)
 {
   uint returnValue;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong lStackX_8;
   
   returnValue = *(uint *)(resourceHandle + BYTE_OFFSET_FLAG);
   if ((((returnValue != 1) || ((*(byte *)(resourceHandle + RESOURCE_HANDLE_OFFSET) & ERROR_CODE_FAILED) == 0)) && (0 < *(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE))
       ) && (returnValue < 2)) {
     if (returnValue == 0) {
-      index = readSystemData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),*(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE),POINTER_OFFSET_DATA,
+      arrayIndex = readSystemData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),*(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE),POINTER_OFFSET_DATA,
                             &utilityMemoryDataBuffer,0xdd,0,0);
-      if (index != 0) {
+      if (arrayIndex != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(index,*(uint64 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),(longlong)*(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE));
+        memcpy(arrayIndex,*(uint64 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),(longlong)*(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE));
       }
       status = 0x26;
     }
@@ -6864,7 +6864,7 @@ uint64 close_network_socket(longlong resourceHandle,longlong memorySize)
 {
   float floatVar1;
   uint64 localUInt2;
-  longlong index;
+  longlong arrayIndex;
   float floatVar4;
   uint32 auStackX_18 [2];
   
@@ -6874,14 +6874,14 @@ uint64 close_network_socket(longlong resourceHandle,longlong memorySize)
   auStackX_18[0] = 0;
   localUInt2 = processResourceData(memorySize + DATA_OFFSET_START,resourceHandle + RESOURCE_HANDLE_OFFSET,auStackX_18);
   if ((int)localUInt2 == 0) {
-    index = func_0x000180867680(memorySize + DATA_OFFSET_START,auStackX_18[0]);
-    if ((*(uint *)(index + FIELD_OFFSET_2) >> 4 & 1) != 0) {
+    arrayIndex = func_0x000180867680(memorySize + DATA_OFFSET_START,auStackX_18[0]);
+    if ((*(uint *)(arrayIndex + FIELD_OFFSET_2) >> 4 & 1) != 0) {
       return ERROR_CODE_FAILED;
     }
     floatVar1 = *(float *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
-    floatVar4 = *(float *)(index + STRUCT_OFFSET_SIZE);
-    if ((*(float *)(index + STRUCT_OFFSET_SIZE) <= floatVar1) &&
-       (floatVar4 = *(float *)(index + 0x3c), floatVar1 <= *(float *)(index + 0x3c))) {
+    floatVar4 = *(float *)(arrayIndex + STRUCT_OFFSET_SIZE);
+    if ((*(float *)(arrayIndex + STRUCT_OFFSET_SIZE) <= floatVar1) &&
+       (floatVar4 = *(float *)(arrayIndex + 0x3c), floatVar1 <= *(float *)(arrayIndex + 0x3c))) {
       floatVar4 = floatVar1;
     }
     *(float *)(resourceHandle + RESOURCE_OFFSET_HANDLE) = floatVar4;
@@ -6901,7 +6901,7 @@ uint64 shutdown_network_socket(uint64 resourceHandle,uint64 memorySize)
 {
   float floatVar1;
   uint64 localUInt2;
-  longlong index;
+  longlong arrayIndex;
   longlong baseRegister;
   longlong unaff_RSI;
   float floatVar4;
@@ -6910,14 +6910,14 @@ uint64 shutdown_network_socket(uint64 resourceHandle,uint64 memorySize)
   uStack0000000000000040 = 0;
   localUInt2 = processResourceData(unaff_RSI + DATA_OFFSET_START,memorySize,&stackLocalBuffer);
   if ((int)localUInt2 == 0) {
-    index = func_0x000180867680(unaff_RSI + DATA_OFFSET_START,uStack0000000000000040);
-    if ((*(uint *)(index + FIELD_OFFSET_2) >> 4 & 1) != 0) {
+    arrayIndex = func_0x000180867680(unaff_RSI + DATA_OFFSET_START,uStack0000000000000040);
+    if ((*(uint *)(arrayIndex + FIELD_OFFSET_2) >> 4 & 1) != 0) {
       return ERROR_CODE_FAILED;
     }
     floatVar1 = *(float *)(baseRegister + RESOURCE_OFFSET_HANDLE);
-    floatVar4 = *(float *)(index + STRUCT_OFFSET_SIZE);
-    if ((*(float *)(index + STRUCT_OFFSET_SIZE) <= floatVar1) &&
-       (floatVar4 = *(float *)(index + 0x3c), floatVar1 <= *(float *)(index + 0x3c))) {
+    floatVar4 = *(float *)(arrayIndex + STRUCT_OFFSET_SIZE);
+    if ((*(float *)(arrayIndex + STRUCT_OFFSET_SIZE) <= floatVar1) &&
+       (floatVar4 = *(float *)(arrayIndex + 0x3c), floatVar1 <= *(float *)(arrayIndex + 0x3c))) {
       floatVar4 = floatVar1;
     }
     *(float *)(baseRegister + RESOURCE_OFFSET_HANDLE) = floatVar4;
@@ -6968,21 +6968,21 @@ uint64 get_network_address(longlong resourceHandle,longlong memorySize)
 {
   float floatVar1;
   uint64 localUInt2;
-  longlong index;
+  longlong arrayIndex;
   uint32 auStackX_10 [2];
   
   auStackX_10[0] = 0;
   localUInt2 = processResourceData(memorySize + DATA_OFFSET_START,resourceHandle + RESOURCE_HANDLE_OFFSET,auStackX_10);
   if ((int)localUInt2 == 0) {
-    index = func_0x000180867680(memorySize + DATA_OFFSET_START,auStackX_10[0]);
-    if ((*(uint *)(index + FIELD_OFFSET_2) >> 4 & 1) != 0) {
+    arrayIndex = func_0x000180867680(memorySize + DATA_OFFSET_START,auStackX_10[0]);
+    if ((*(uint *)(arrayIndex + FIELD_OFFSET_2) >> 4 & 1) != 0) {
       return ERROR_CODE_FAILED;
     }
-    localUInt2 = utilityAccessResourceAttribute(index,resourceHandle + ERROR_CODE_5,resourceHandle + RESOURCE_OFFSET_HANDLE);
+    localUInt2 = utilityAccessResourceAttribute(arrayIndex,resourceHandle + ERROR_CODE_5,resourceHandle + RESOURCE_OFFSET_HANDLE);
     if ((int)localUInt2 == 0) {
       floatVar1 = *(float *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
-      if ((floatVar1 < *(float *)(index + STRUCT_OFFSET_SIZE)) ||
-         (*(float *)(index + 0x3c) <= floatVar1 && floatVar1 != *(float *)(index + 0x3c))) {
+      if ((floatVar1 < *(float *)(arrayIndex + STRUCT_OFFSET_SIZE)) ||
+         (*(float *)(arrayIndex + 0x3c) <= floatVar1 && floatVar1 != *(float *)(arrayIndex + 0x3c))) {
         localUInt2 = BYTE_OFFSET_FLAG;
       }
       else {
@@ -7078,33 +7078,33 @@ uint64 create_network_connection(longlong resourceHandle,longlong memorySize)
 {
   float floatVar1;
   uint64 localUInt2;
-  longlong index;
+  longlong arrayIndex;
   uint64 *puVar4;
   float floatVar5;
-  uint auStackX_8 [2];
+  uint arrayUnsignedStackX8 [2];
   uint32 auStackX_18 [2];
   
-  auStackX_8[0] = *(uint *)(resourceHandle + RESOURCE_HANDLE_OFFSET);
-  if ((auStackX_8[0] & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
+  arrayUnsignedStackX8[0] = *(uint *)(resourceHandle + RESOURCE_HANDLE_OFFSET);
+  if ((arrayUnsignedStackX8[0] & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
     return ERROR_CODE_5;
   }
   auStackX_18[0] = 0;
-  localUInt2 = handleFileOperation(memorySize,resourceHandle + POINTER_OFFSET_DATA,auStackX_18);
+  localUInt2 = resourceHandleFileOperation(memorySize,resourceHandle + POINTER_OFFSET_DATA,auStackX_18);
   if ((int)localUInt2 == 0) {
-    index = func_0x000180867680(memorySize + DATA_OFFSET_START,auStackX_18[0]);
-    if ((*(uint *)(index + FIELD_OFFSET_2) >> 4 & 1) != 0) {
+    arrayIndex = func_0x000180867680(memorySize + DATA_OFFSET_START,auStackX_18[0]);
+    if ((*(uint *)(arrayIndex + FIELD_OFFSET_2) >> 4 & 1) != 0) {
       return ERROR_CODE_FAILED;
     }
     floatVar1 = *(float *)(resourceHandle + RESOURCE_HANDLE_OFFSET);
-    floatVar5 = *(float *)(index + STRUCT_OFFSET_SIZE);
-    if ((*(float *)(index + STRUCT_OFFSET_SIZE) <= floatVar1) &&
-       (floatVar5 = *(float *)(index + 0x3c), floatVar1 <= *(float *)(index + 0x3c))) {
+    floatVar5 = *(float *)(arrayIndex + STRUCT_OFFSET_SIZE);
+    if ((*(float *)(arrayIndex + STRUCT_OFFSET_SIZE) <= floatVar1) &&
+       (floatVar5 = *(float *)(arrayIndex + 0x3c), floatVar1 <= *(float *)(arrayIndex + 0x3c))) {
       floatVar5 = floatVar1;
     }
     *(float *)(resourceHandle + RESOURCE_HANDLE_OFFSET) = floatVar5;
     localUInt2 = func_0x000180867960(memorySize + DATA_OFFSET_START,auStackX_18[0],floatVar5);
     if ((int)localUInt2 == 0) {
-      puVar4 = (uint64 *)func_0x000180867660(memorySize + DATA_OFFSET_START,auStackX_8,auStackX_18[0]);
+      puVar4 = (uint64 *)func_0x000180867660(memorySize + DATA_OFFSET_START,arrayUnsignedStackX8,auStackX_18[0]);
       *(uint64 *)(resourceHandle + RESOURCE_OFFSET_HANDLE) = *puVar4;
                     // WARNING: Subroutine does not return
       utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
@@ -7199,29 +7199,29 @@ uint64 create_ssl_connection(longlong resourceHandle,longlong memorySize)
 {
   float floatVar1;
   uint64 localUInt2;
-  longlong index;
+  longlong arrayIndex;
   uint64 *puVar4;
-  byte auStackX_8 [8];
+  byte arrayUnsignedStackX8 [8];
   uint32 auStackX_18 [2];
   
   auStackX_18[0] = 0;
-  localUInt2 = handleFileOperation(memorySize,resourceHandle + POINTER_OFFSET_DATA,auStackX_18);
+  localUInt2 = resourceHandleFileOperation(memorySize,resourceHandle + POINTER_OFFSET_DATA,auStackX_18);
   if ((int)localUInt2 == 0) {
-    index = func_0x000180867680(memorySize + DATA_OFFSET_START,auStackX_18[0]);
-    if ((*(uint *)(index + FIELD_OFFSET_2) >> 4 & 1) != 0) {
+    arrayIndex = func_0x000180867680(memorySize + DATA_OFFSET_START,auStackX_18[0]);
+    if ((*(uint *)(arrayIndex + FIELD_OFFSET_2) >> 4 & 1) != 0) {
       return ERROR_CODE_FAILED;
     }
-    localUInt2 = utilityAccessResourceAttribute(index,resourceHandle + 0xa0,resourceHandle + RESOURCE_HANDLE_OFFSET);
+    localUInt2 = utilityAccessResourceAttribute(arrayIndex,resourceHandle + 0xa0,resourceHandle + RESOURCE_HANDLE_OFFSET);
     if ((int)localUInt2 == 0) {
       floatVar1 = *(float *)(resourceHandle + RESOURCE_HANDLE_OFFSET);
-      if ((floatVar1 < *(float *)(index + STRUCT_OFFSET_SIZE)) ||
-         (*(float *)(index + 0x3c) <= floatVar1 && floatVar1 != *(float *)(index + 0x3c))) {
+      if ((floatVar1 < *(float *)(arrayIndex + STRUCT_OFFSET_SIZE)) ||
+         (*(float *)(arrayIndex + 0x3c) <= floatVar1 && floatVar1 != *(float *)(arrayIndex + 0x3c))) {
         localUInt2 = BYTE_OFFSET_FLAG;
       }
       else {
         localUInt2 = func_0x000180867960(memorySize + DATA_OFFSET_START,auStackX_18[0]);
         if ((int)localUInt2 == 0) {
-          puVar4 = (uint64 *)func_0x000180867660(memorySize + DATA_OFFSET_START,auStackX_8,auStackX_18[0]);
+          puVar4 = (uint64 *)func_0x000180867660(memorySize + DATA_OFFSET_START,arrayUnsignedStackX8,auStackX_18[0]);
           *(uint64 *)(resourceHandle + RESOURCE_OFFSET_HANDLE) = *puVar4;
                     // WARNING: Subroutine does not return
           utilityReleaseResourceHandle(*(uint64 *)(memorySize + 0x98),resourceHandle);
@@ -7506,7 +7506,7 @@ void utilityExtractResourceInfo(longlong resourceHandle,uint32 *memorySize,longl
 {
   longlong *plocalLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   byte localBuffer [32];
   uint localUInt;
   uint localUInt;
@@ -7533,8 +7533,8 @@ void utilityExtractResourceInfo(longlong resourceHandle,uint32 *memorySize,longl
     localUInt = memorySize[1];
     localUInt = memorySize[2];
     localUInt = memorySize[3];
-    index = (**(code **)(*plocalLong1 + 0x150))(plocalLong1,&localUInt,1);
-    if (index == 0) {
+    arrayIndex = (**(code **)(*plocalLong1 + 0x150))(plocalLong1,&localUInt,1);
+    if (arrayIndex == 0) {
       localUInt = localUInt >> RESOURCE_OFFSET_HANDLE;
       localUInt = localUInt >> RESOURCE_OFFSET_HANDLE;
       localUInt = localUInt >> RESOURCE_HANDLE_OFFSET;
@@ -7548,9 +7548,9 @@ void utilityExtractResourceInfo(longlong resourceHandle,uint32 *memorySize,longl
                     // WARNING: Subroutine does not return
       initializeBufferStructure(localBuffer,0x27,&unknown_180958180,localUInt);
     }
-    if (((*(byte *)(index + 0xc4) & 1) != 0) &&
-       ((lStack_48 = *(longlong *)(index + 0x68), lStack_48 != 0 ||
-        (status = loadResourceFromHandle(resourceHandle,index,&lStack_48), status == 0)))) {
+    if (((*(byte *)(arrayIndex + 0xc4) & 1) != 0) &&
+       ((lStack_48 = *(longlong *)(arrayIndex + 0x68), lStack_48 != 0 ||
+        (status = loadResourceFromHandle(resourceHandle,arrayIndex,&lStack_48), status == 0)))) {
       *operationFlags = lStack_48;
     }
   }
@@ -7593,7 +7593,7 @@ void utilityAnalyzeResourceData(longlong resourceHandle,uint32 *memorySize,longl
 {
   longlong *plocalLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   byte localBuffer [32];
   uint localUInt;
   uint localUInt;
@@ -7619,8 +7619,8 @@ void utilityAnalyzeResourceData(longlong resourceHandle,uint32 *memorySize,longl
     localUInt = memorySize[1];
     localUInt = memorySize[2];
     localUInt = memorySize[3];
-    index = (**(code **)(*plocalLong1 + 0x288))(plocalLong1,&localUInt,1);
-    if (index == 0) {
+    arrayIndex = (**(code **)(*plocalLong1 + 0x288))(plocalLong1,&localUInt,1);
+    if (arrayIndex == 0) {
       localUInt = localUInt >> RESOURCE_OFFSET_HANDLE;
       localUInt = localUInt >> RESOURCE_OFFSET_HANDLE;
       localUInt = localUInt >> RESOURCE_HANDLE_OFFSET;
@@ -7634,9 +7634,9 @@ void utilityAnalyzeResourceData(longlong resourceHandle,uint32 *memorySize,longl
                     // WARNING: Subroutine does not return
       initializeBufferStructure(localBuffer,0x27,&unknown_180958180,localUInt);
     }
-    if ((**(int **)(index + STRUCT_OFFSET_1) != 0) ||
-       (status = validate_resource_handle(*(uint32 *)(resourceHandle + RESOURCE_OFFSET_HANDLE)), status == 0)) {
-      *operationFlags = index;
+    if ((**(int **)(arrayIndex + STRUCT_OFFSET_1) != 0) ||
+       (status = validate_resource_resourceHandle(*(uint32 *)(resourceHandle + RESOURCE_OFFSET_HANDLE)), status == 0)) {
+      *operationFlags = arrayIndex;
     }
   }
                     // WARNING: Subroutine does not return
@@ -7666,7 +7666,7 @@ void set_thread_local_data(ulonglong resourceHandle)
                   uStack0000000000000070._4_2_);
   }
   if (**(int **)(buffer + STRUCT_OFFSET_1) == 0) {
-    status = validate_resource_handle(*(uint32 *)(unaff_RDI + RESOURCE_OFFSET_HANDLE));
+    status = validate_resource_resourceHandle(*(uint32 *)(unaff_RDI + RESOURCE_OFFSET_HANDLE));
     if (status != 0) goto LAB_180894aca;
   }
   *unaff_RSI = buffer;
@@ -7699,7 +7699,7 @@ void utilityGenerateResourceReport(longlong resourceHandle,uint32 *memorySize,lo
 {
   longlong *plocalLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   byte localBuffer [32];
   uint localUInt;
   uint localUInt;
@@ -7726,8 +7726,8 @@ void utilityGenerateResourceReport(longlong resourceHandle,uint32 *memorySize,lo
     localUInt = memorySize[1];
     localUInt = memorySize[2];
     localUInt = memorySize[3];
-    index = (**(code **)(*plocalLong1 + 0x2f8))(plocalLong1,&localUInt,1);
-    if (index == 0) {
+    arrayIndex = (**(code **)(*plocalLong1 + 0x2f8))(plocalLong1,&localUInt,1);
+    if (arrayIndex == 0) {
       localUInt = localUInt >> RESOURCE_OFFSET_HANDLE;
       localUInt = localUInt >> RESOURCE_OFFSET_HANDLE;
       localUInt = localUInt >> RESOURCE_HANDLE_OFFSET;
@@ -7741,8 +7741,8 @@ void utilityGenerateResourceReport(longlong resourceHandle,uint32 *memorySize,lo
                     // WARNING: Subroutine does not return
       initializeBufferStructure(localBuffer,0x27,&unknown_180958180,localUInt);
     }
-    lStack_48 = *(longlong *)(index + BUFFER_OFFSET_DATA);
-    if ((lStack_48 != 0) || (status = allocate_resource_memory(resourceHandle,index,&lStack_48), status == 0)) {
+    lStack_48 = *(longlong *)(arrayIndex + BUFFER_OFFSET_DATA);
+    if ((lStack_48 != 0) || (status = allocate_resource_memory(resourceHandle,arrayIndex,&lStack_48), status == 0)) {
       *operationFlags = lStack_48;
     }
   }
@@ -8143,7 +8143,7 @@ uint64 configure_system_parameters(longlong *resourceHandle)
   }
   *(uint32 *)(resourceHandle + 1) = 0;
   if ((0 < (int)((unsignedVar5 ^ (int)unsignedVar5 >> ERROR_CODE_FAILED) - ((int)unsignedVar5 >> ERROR_CODE_FAILED))) &&
-     (unsignedVar3 = handle_system_event(resourceHandle,0), (int)unsignedVar3 != 0)) {
+     (unsignedVar3 = resourceHandle_system_event(resourceHandle,0), (int)unsignedVar3 != 0)) {
     return unsignedVar3;
   }
   return 0;
@@ -8180,7 +8180,7 @@ uint64 set_allocator_flags(longlong *resourceHandle)
     }
     unsignedVar6 = (int)*(uint *)((longlong)resourceHandle + BYTE_OFFSET_FLAG) >> ERROR_CODE_FAILED;
     if (((int)((*(uint *)((longlong)resourceHandle + BYTE_OFFSET_FLAG) ^ unsignedVar6) - unsignedVar6) < integerVar8) &&
-       (unsignedVar3 = handle_system_event(resourceHandle + 2,integerVar8), (int)unsignedVar3 != 0)) {
+       (unsignedVar3 = resourceHandle_system_event(resourceHandle + 2,integerVar8), (int)unsignedVar3 != 0)) {
       return unsignedVar3;
     }
     unsignedVar3 = process_system_callback(resourceHandle,integerVar8);
@@ -8249,7 +8249,7 @@ uint64 initialize_debug_system(void)
     }
     unsignedVar5 = (int)*(uint *)((longlong)baseRegister + BYTE_OFFSET_FLAG) >> ERROR_CODE_FAILED;
     if (((int)((*(uint *)((longlong)baseRegister + BYTE_OFFSET_FLAG) ^ unsignedVar5) - unsignedVar5) < integerVar7) &&
-       (localUInt2 = handle_system_event(baseRegister + 2,integerVar7), (int)localUInt2 != 0)) {
+       (localUInt2 = resourceHandle_system_event(baseRegister + 2,integerVar7), (int)localUInt2 != 0)) {
       return localUInt2;
     }
     localUInt2 = process_system_callback();
@@ -8316,8 +8316,8 @@ void log_debug_message(longlong resourceHandle,byte *memorySize,int *operationFl
   longlong longVar7;
   int integerVar8;
   longlong longVar9;
-  float fVar10;
-  float fVar11;
+  float floatVar10;
+  float floatVar11;
   byte localBuffer [68];
   uint32 localUInt;
   int *plocalInt;
@@ -8342,29 +8342,29 @@ void log_debug_message(longlong resourceHandle,byte *memorySize,int *operationFl
         *(int *)(resourceHandle + 0xac) = counter + 1;
         goto ExecuteSecurityValidation;
       }
-      fVar10 = *(float *)(longVar9 + RESOURCE_OFFSET_HANDLE);
-      fVar11 = fVar10;
+      floatVar10 = *(float *)(longVar9 + RESOURCE_OFFSET_HANDLE);
+      floatVar11 = floatVar10;
       if (integerVar8 != -1) {
-        fVar11 = *(float *)(resourceHandle + 0xb4);
+        floatVar11 = *(float *)(resourceHandle + 0xb4);
         integerVar8 = -1;
         *(uint32 *)(resourceHandle + 0xb0) = 0xffffffff;
         *(uint32 *)(resourceHandle + 0xb4) = 0xbf800000;
       }
-      *(float *)(resourceHandle + 0xa8) = fVar10;
+      *(float *)(resourceHandle + 0xa8) = floatVar10;
       longVar7 = 0;
-      fVar10 = (float)*(uint *)(resourceHandle + 0x68) * fVar10;
-      if ((9.223372e+18 <= fVar10) && (fVar10 = fVar10 - 9.223372e+18, fVar10 < 9.223372e+18)) {
+      floatVar10 = (float)*(uint *)(resourceHandle + 0x68) * floatVar10;
+      if ((9.223372e+18 <= floatVar10) && (floatVar10 = floatVar10 - 9.223372e+18, floatVar10 < 9.223372e+18)) {
         longVar7 = -0x8000000000000000;
       }
       buffer = *(longlong *)(resourceHandle + 0xa0);
       longVar6 = *(longlong *)(resourceHandle + 0x98);
       if (longVar6 == 0) {
-        fVar11 = (float)*(uint *)(resourceHandle + 0x68) * fVar11;
+        floatVar11 = (float)*(uint *)(resourceHandle + 0x68) * floatVar11;
         longVar6 = 0;
-        if ((9.223372e+18 <= fVar11) && (fVar11 = fVar11 - 9.223372e+18, fVar11 < 9.223372e+18)) {
+        if ((9.223372e+18 <= floatVar11) && (floatVar11 = floatVar11 - 9.223372e+18, floatVar11 < 9.223372e+18)) {
           longVar6 = -0x8000000000000000;
         }
-        longVar6 = buffer - ((longlong)fVar11 + longVar6);
+        longVar6 = buffer - ((longlong)floatVar11 + longVar6);
         *(longlong *)(resourceHandle + 0x98) = longVar6;
       }
       boolVar1 = *(byte *)(resourceHandle + 0x6c);
@@ -8375,7 +8375,7 @@ void log_debug_message(longlong resourceHandle,byte *memorySize,int *operationFl
                           );
         if (counter != 0) goto ExecuteSecurityValidation;
       }
-      if (((((boolVar1 & 2) != 0 || (longlong)fVar10 + longVar7 < buffer - longVar6) &&
+      if (((((boolVar1 & 2) != 0 || (longlong)floatVar10 + longVar7 < buffer - longVar6) &&
            (counter = *plocalInt, *plocalInt = counter + 1, counter < 10)) &&
           ((*(uint *)(resourceHandle + 0x6c) >> RESOURCE_OFFSET_HANDLE & 1) == 0)) &&
          (((*(uint *)(resourceHandle + 0x6c) >> 0x19 & 1) != 0 && (integerVar8 == *(int *)(resourceHandle + 0xb0))))) {
@@ -8446,7 +8446,7 @@ void initialize_memory_manager(longlong resourceHandle,uint64 memorySize,int *op
   byte *unaff_R13;
   longlong longVar8;
   float floatVar9;
-  float fVar10;
+  float floatVar10;
   uint64 in_stack_00000040;
   int *in_stack_00000048;
   
@@ -8461,9 +8461,9 @@ void initialize_memory_manager(longlong resourceHandle,uint64 memorySize,int *op
       goto LAB_180895b69;
     }
     floatVar9 = *(float *)(longVar8 + RESOURCE_OFFSET_HANDLE);
-    fVar10 = floatVar9;
+    floatVar10 = floatVar9;
     if (counter != -1) {
-      fVar10 = *(float *)(resourceHandle + 0xb4);
+      floatVar10 = *(float *)(resourceHandle + 0xb4);
       counter = -1;
       *(uint32 *)(resourceHandle + 0xb0) = 0xffffffff;
       *(uint32 *)(resourceHandle + 0xb4) = 0xbf800000;
@@ -8477,12 +8477,12 @@ void initialize_memory_manager(longlong resourceHandle,uint64 memorySize,int *op
     localLong1 = *(longlong *)(resourceHandle + 0xa0);
     longVar7 = *(longlong *)(resourceHandle + 0x98);
     if (longVar7 == 0) {
-      fVar10 = (float)*(uint *)(resourceHandle + 0x68) * fVar10;
+      floatVar10 = (float)*(uint *)(resourceHandle + 0x68) * floatVar10;
       longVar7 = 0;
-      if ((9.223372e+18 <= fVar10) && (fVar10 = fVar10 - 9.223372e+18, fVar10 < 9.223372e+18)) {
+      if ((9.223372e+18 <= floatVar10) && (floatVar10 = floatVar10 - 9.223372e+18, floatVar10 < 9.223372e+18)) {
         longVar7 = -0x8000000000000000;
       }
-      longVar7 = localLong1 - ((longlong)fVar10 + longVar7);
+      longVar7 = localLong1 - ((longlong)floatVar10 + longVar7);
       *(longlong *)(unaff_RDI + 0x98) = longVar7;
     }
     charVar2 = (longlong)floatVar9 + longVar5 < localLong1 - longVar7;
@@ -8562,7 +8562,7 @@ void setup_memory_allocator(longlong resourceHandle,int memorySize,uint64 *opera
 {
   uint64 returnValue;
   int *pstatus;
-  longlong index;
+  longlong arrayIndex;
   longlong longVar4;
   int integerVar5;
   
@@ -8582,7 +8582,7 @@ void setup_memory_allocator(longlong resourceHandle,int memorySize,uint64 *opera
     longVar4 = (longlong)(memorySize + 1);
     pstatus = (int *)(*(longlong *)(resourceHandle + RESOURCE_OFFSET_HANDLE) + longVar4 * 0xc);
     while (((char)pstatus[2] != '\x02' ||
-           (index = (longlong)*pstatus + *(longlong *)(resourceHandle + 8), *(int *)(index + POINTER_OFFSET_DATA) != integerVar5)
+           (arrayIndex = (longlong)*pstatus + *(longlong *)(resourceHandle + 8), *(int *)(arrayIndex + POINTER_OFFSET_DATA) != integerVar5)
            )) {
       longVar4 = longVar4 + 1;
       pstatus = pstatus + 3;
@@ -8590,8 +8590,8 @@ void setup_memory_allocator(longlong resourceHandle,int memorySize,uint64 *opera
         return;
       }
     }
-    returnValue = *(uint64 *)(index + RESOURCE_OFFSET_HANDLE);
-    *operationFlags = *(uint64 *)(index + RESOURCE_HANDLE_OFFSET);
+    returnValue = *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
+    *operationFlags = *(uint64 *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
     operationFlags[1] = returnValue;
   }
   return;
@@ -8604,7 +8604,7 @@ uint64 perform_system_operation(longlong resourceHandle,int memorySize,uint *ope
 {
   uint returnValue;
   longlong buffer;
-  longlong index;
+  longlong arrayIndex;
   uint64 *puVar4;
   int integerVar5;
   uint32 uStackX_1c;
@@ -8618,16 +8618,16 @@ uint64 perform_system_operation(longlong resourceHandle,int memorySize,uint *ope
       {
         buffer = *(longlong *)(resourceHandle + BUFFER_OFFSET_TEMP);
         do {
-          index = (longlong)integerVar5;
-          if (*(uint *)(buffer + index * RESOURCE_HANDLE_OFFSET) == returnValue) {
-            uStackX_1c = (uint)((ulonglong)*(uint64 *)(buffer + 8 + index * RESOURCE_HANDLE_OFFSET) >> POINTER_OFFSET_DATA);
+          arrayIndex = (longlong)integerVar5;
+          if (*(uint *)(buffer + arrayIndex * RESOURCE_HANDLE_OFFSET) == returnValue) {
+            uStackX_1c = (uint)((ulonglong)*(uint64 *)(buffer + 8 + arrayIndex * RESOURCE_HANDLE_OFFSET) >> POINTER_OFFSET_DATA);
             if (uStackX_1c != 0) {
               *operationFlags = uStackX_1c;
               return 0;
             }
             goto LAB_180895ccb;
           }
-          integerVar5 = *(int *)(buffer + 4 + index * RESOURCE_HANDLE_OFFSET);
+          integerVar5 = *(int *)(buffer + 4 + arrayIndex * RESOURCE_HANDLE_OFFSET);
         } while (integerVar5 != -1);
       }
       uStackX_1c = 0;
@@ -8785,7 +8785,7 @@ uint64 SetupResourceParameters(longlong *resourceHandle,uint *memorySize,uint64 
         else if (localInt12 < integerVar7) {
           localInt12 = integerVar7;
         }
-        unsignedVar5 = handle_system_event(resourceHandle + 2,localInt12);
+        unsignedVar5 = resourceHandle_system_event(resourceHandle + 2,localInt12);
         if ((int)unsignedVar5 != 0) {
           return unsignedVar5;
         }
@@ -8864,7 +8864,7 @@ uint64 allocate_memory_block(uint64 resourceHandle,int memorySize)
       else if (localInt10 < integerVar6) {
         localInt10 = integerVar6;
       }
-      unsignedVar4 = handle_system_event(unaff_RDI + 2,localInt10);
+      unsignedVar4 = resourceHandle_system_event(unaff_RDI + 2,localInt10);
       if ((int)unsignedVar4 != 0) {
         return unsignedVar4;
       }
@@ -8924,7 +8924,7 @@ uint64 allocate_memory_chunk(uint64 resourceHandle,uint32 memorySize)
       else if (integerVar7 < counter) {
         integerVar7 = counter;
       }
-      localUInt2 = handle_system_event(unaff_RDI + RESOURCE_HANDLE_OFFSET,integerVar7);
+      localUInt2 = resourceHandle_system_event(unaff_RDI + RESOURCE_HANDLE_OFFSET,integerVar7);
       if ((int)localUInt2 != 0) {
         return localUInt2;
       }
@@ -9227,7 +9227,7 @@ ulonglong validate_memory_address(longlong resourceHandle)
   int localInt14;
   longlong localLong15;
   int localInt16;
-  bool bVar17;
+  bool boolVar17;
   int aiStackX_8 [2];
   uint auStackX_10 [2];
   uint64 uStackX_18;
@@ -9433,9 +9433,9 @@ ulonglong validate_memory_address(longlong resourceHandle)
         } while ((aiStackX_8[0] != -1) &&
                 (aiStackX_8[0] = *(int *)(plocalLong13[2] + 4 + localLong15 * RESOURCE_HANDLE_OFFSET), aiStackX_8[0] != -1));
         integerVar7 = localInt11 + 1;
-        bVar17 = localInt11 != -1;
+        boolVar17 = localInt11 != -1;
         localInt11 = 0;
-        if (bVar17) {
+        if (boolVar17) {
           localInt11 = integerVar7;
         }
         if (localInt11 != (int)plocalLong13[1]) {
@@ -9693,7 +9693,7 @@ int execute_memory_command(longlong resourceHandle,longlong memorySize,int opera
 
 
 
-int handle_memory_event(longlong resourceHandle,longlong memorySize,int operationFlags)
+int resourceHandle_memory_event(longlong resourceHandle,longlong memorySize,int operationFlags)
 
 {
   uint32 returnValue;
@@ -9859,7 +9859,7 @@ LAB_180896ce3:
       if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (buffer != 0)) {
 >>>>>>> Stashed changes
         localUInt = 0;
-        integerVar7 = validate_resource_handle(buffer,&localUInt);
+        integerVar7 = validate_resource_resourceHandle(buffer,&localUInt);
         if (integerVar7 != 0) goto HandleResourceError;
         localUInt = *(uint32 *)(localLong1 + RESOURCE_HANDLE_OFFSET);
         localUInt = *(uint *)(localLong1 + 0x14);
@@ -9913,7 +9913,7 @@ LAB_180896ce3:
       if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (buffer != 0)) {
 >>>>>>> Stashed changes
         localUInt = 0;
-        integerVar7 = validate_resource_handle(buffer,&localUInt);
+        integerVar7 = validate_resource_resourceHandle(buffer,&localUInt);
         if (integerVar7 != 0) goto HandleResourceError;
         localUInt = *(uint32 *)(localLong1 + RESOURCE_HANDLE_OFFSET);
         localUInt = *(uint *)(localLong1 + 0x14);
@@ -9967,7 +9967,7 @@ LAB_180896ce3:
       if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (buffer != 0)) {
 >>>>>>> Stashed changes
         localUInt = 0;
-        integerVar7 = validate_resource_handle(buffer,&localUInt);
+        integerVar7 = validate_resource_resourceHandle(buffer,&localUInt);
         if (integerVar7 != 0) goto HandleResourceError;
         localUInt = *(uint32 *)(localLong1 + RESOURCE_HANDLE_OFFSET);
         localUInt = *(uint *)(localLong1 + 0x14);
@@ -10021,7 +10021,7 @@ LAB_180896ce3:
       if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (buffer != 0)) {
 >>>>>>> Stashed changes
         localUInt = 0;
-        integerVar7 = validate_resource_handle(buffer,&localUInt);
+        integerVar7 = validate_resource_resourceHandle(buffer,&localUInt);
         if (integerVar7 != 0) goto HandleResourceError;
         localUInt = *(uint32 *)(localLong1 + RESOURCE_HANDLE_OFFSET);
         localUInt = *(uint *)(localLong1 + 0x14);
@@ -10078,7 +10078,7 @@ LAB_180896ce3:
       if (buffer != 0) {
 >>>>>>> Stashed changes
         localUInt = 0;
-        integerVar7 = validate_resource_handle(buffer,&localUInt);
+        integerVar7 = validate_resource_resourceHandle(buffer,&localUInt);
         if (integerVar7 != 0) break;
         localUInt = *(uint32 *)(localLong1 + RESOURCE_HANDLE_OFFSET);
         localUInt = *(uint *)(localLong1 + 0x14);
@@ -10139,7 +10139,7 @@ void ProcessResourceQueue(void)
   float extraout_XMM0_Da_04;
   float extraout_XMM0_Da_05;
   float extraout_XMM0_Da_06;
-  float fVar10;
+  float floatVar10;
   uint32 uStackX_20;
   float fStackX_24;
   data *stackParameter1;
@@ -10154,7 +10154,7 @@ void ProcessResourceQueue(void)
       buffer = *(longlong *)(localLong1 + 0x68);
       if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (buffer != 0)) {
         uStackX_20 = 0;
-        integerVar8 = validate_resource_handle(buffer,&uStackX_20);
+        integerVar8 = validate_resource_resourceHandle(buffer,&uStackX_20);
         if (integerVar8 != 0) goto LAB_1808974ec;
         unsignedVar3 = *(uint32 *)(localLong1 + RESOURCE_HANDLE_OFFSET);
         unsignedVar4 = *(uint32 *)(localLong1 + 0x14);
@@ -10173,14 +10173,14 @@ void ProcessResourceQueue(void)
         integerVar8 = ValidateResourceAccess(unsignedVar3,unaff_RBP + -BUFFER_OFFSET_TEMP);
         if ((integerVar8 != 0) || (integerVar8 = FUN_18088c970(buffer,&fStackX_24), integerVar8 != 0))
         goto LAB_1808974ec;
-        fVar10 = fStackX_24;
+        floatVar10 = fStackX_24;
         if (fStackX_24 != 1.0) {
           in_stack_00000048 = fStackX_24;
           stackParameter1 = &unknown_1809842e0;
           in_stack_00000040 = uStackX_20;
           in_stack_00000038 = integerVar8;
           integerVar8 = ValidateResourceAccess(fStackX_24,&stack0x00000030);
-          fVar10 = extraout_XMM0_Da;
+          floatVar10 = extraout_XMM0_Da;
           if (integerVar8 != 0) goto LAB_1808974ec;
         }
         if (*(char *)(buffer + BYTE_OFFSET_2) != '\0') {
@@ -10188,8 +10188,8 @@ void ProcessResourceQueue(void)
           stackParameter1 = &unknown_180984358;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          integerVar8 = ValidateResourceAccess(fVar10,&stack0x00000030);
-          fVar10 = extraout_XMM0_Da_00;
+          integerVar8 = ValidateResourceAccess(floatVar10,&stack0x00000030);
+          floatVar10 = extraout_XMM0_Da_00;
           if (integerVar8 != 0) goto LAB_1808974ec;
         }
         if (*(char *)(buffer + BYTE_OFFSET_1) != '\0') {
@@ -10197,7 +10197,7 @@ void ProcessResourceQueue(void)
           stackParameter1 = &unknown_1809843d0;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          integerVar8 = ValidateResourceAccess(fVar10,&stack0x00000030);
+          integerVar8 = ValidateResourceAccess(floatVar10,&stack0x00000030);
           if (integerVar8 != 0) goto LAB_1808974ec;
         }
       }
@@ -10207,7 +10207,7 @@ void ProcessResourceQueue(void)
       buffer = *(longlong *)(localLong1 + 0x68);
       if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (buffer != 0)) {
         uStackX_20 = 0;
-        integerVar8 = validate_resource_handle(buffer,&uStackX_20);
+        integerVar8 = validate_resource_resourceHandle(buffer,&uStackX_20);
         if (integerVar8 != 0) goto LAB_1808974ec;
         unsignedVar3 = *(uint32 *)(localLong1 + RESOURCE_HANDLE_OFFSET);
         unsignedVar4 = *(uint32 *)(localLong1 + 0x14);
@@ -10226,14 +10226,14 @@ void ProcessResourceQueue(void)
         integerVar8 = ValidateResourceAccess(unsignedVar3,unaff_RBP + -BUFFER_OFFSET_TEMP);
         if ((integerVar8 != 0) || (integerVar8 = FUN_18088c970(buffer,&fStackX_24), integerVar8 != 0))
         goto LAB_1808974ec;
-        fVar10 = fStackX_24;
+        floatVar10 = fStackX_24;
         if (fStackX_24 != 1.0) {
           in_stack_00000048 = fStackX_24;
           stackParameter1 = &unknown_1809842e0;
           in_stack_00000040 = uStackX_20;
           in_stack_00000038 = integerVar8;
           integerVar8 = ValidateResourceAccess(fStackX_24,&stack0x00000030);
-          fVar10 = extraout_XMM0_Da_01;
+          floatVar10 = extraout_XMM0_Da_01;
           if (integerVar8 != 0) goto LAB_1808974ec;
         }
         if (*(char *)(buffer + BYTE_OFFSET_2) != '\0') {
@@ -10241,8 +10241,8 @@ void ProcessResourceQueue(void)
           stackParameter1 = &unknown_180984358;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          integerVar8 = ValidateResourceAccess(fVar10,&stack0x00000030);
-          fVar10 = extraout_XMM0_Da_02;
+          integerVar8 = ValidateResourceAccess(floatVar10,&stack0x00000030);
+          floatVar10 = extraout_XMM0_Da_02;
           if (integerVar8 != 0) goto LAB_1808974ec;
         }
         if (*(char *)(buffer + BYTE_OFFSET_1) != '\0') {
@@ -10250,7 +10250,7 @@ void ProcessResourceQueue(void)
           stackParameter1 = &unknown_1809843d0;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          integerVar8 = ValidateResourceAccess(fVar10,&stack0x00000030);
+          integerVar8 = ValidateResourceAccess(floatVar10,&stack0x00000030);
           if (integerVar8 != 0) goto LAB_1808974ec;
         }
       }
@@ -10260,7 +10260,7 @@ void ProcessResourceQueue(void)
       buffer = *(longlong *)(localLong1 + 0x68);
       if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (buffer != 0)) {
         uStackX_20 = 0;
-        integerVar8 = validate_resource_handle(buffer,&uStackX_20);
+        integerVar8 = validate_resource_resourceHandle(buffer,&uStackX_20);
         if (integerVar8 != 0) goto LAB_1808974ec;
         unsignedVar3 = *(uint32 *)(localLong1 + RESOURCE_HANDLE_OFFSET);
         unsignedVar4 = *(uint32 *)(localLong1 + 0x14);
@@ -10279,14 +10279,14 @@ void ProcessResourceQueue(void)
         integerVar8 = ValidateResourceAccess(unsignedVar3,unaff_RBP + -BUFFER_OFFSET_TEMP);
         if ((integerVar8 != 0) || (integerVar8 = FUN_18088c970(buffer,&fStackX_24), integerVar8 != 0))
         goto LAB_1808974ec;
-        fVar10 = fStackX_24;
+        floatVar10 = fStackX_24;
         if (fStackX_24 != 1.0) {
           in_stack_00000048 = fStackX_24;
           stackParameter1 = &unknown_1809842e0;
           in_stack_00000040 = uStackX_20;
           in_stack_00000038 = integerVar8;
           integerVar8 = ValidateResourceAccess(fStackX_24,&stack0x00000030);
-          fVar10 = extraout_XMM0_Da_03;
+          floatVar10 = extraout_XMM0_Da_03;
           if (integerVar8 != 0) goto LAB_1808974ec;
         }
         if (*(char *)(buffer + BYTE_OFFSET_2) != '\0') {
@@ -10294,8 +10294,8 @@ void ProcessResourceQueue(void)
           stackParameter1 = &unknown_180984358;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          integerVar8 = ValidateResourceAccess(fVar10,&stack0x00000030);
-          fVar10 = extraout_XMM0_Da_04;
+          integerVar8 = ValidateResourceAccess(floatVar10,&stack0x00000030);
+          floatVar10 = extraout_XMM0_Da_04;
           if (integerVar8 != 0) goto LAB_1808974ec;
         }
         if (*(char *)(buffer + BYTE_OFFSET_1) != '\0') {
@@ -10303,7 +10303,7 @@ void ProcessResourceQueue(void)
           stackParameter1 = &unknown_1809843d0;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          integerVar8 = ValidateResourceAccess(fVar10,&stack0x00000030);
+          integerVar8 = ValidateResourceAccess(floatVar10,&stack0x00000030);
           if (integerVar8 != 0) goto LAB_1808974ec;
         }
       }
@@ -10313,7 +10313,7 @@ void ProcessResourceQueue(void)
       buffer = *(longlong *)(localLong1 + 0x68);
       if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (buffer != 0)) {
         uStackX_20 = 0;
-        integerVar8 = validate_resource_handle(buffer,&uStackX_20);
+        integerVar8 = validate_resource_resourceHandle(buffer,&uStackX_20);
         if (integerVar8 != 0) goto LAB_1808974ec;
         unsignedVar3 = *(uint32 *)(localLong1 + RESOURCE_HANDLE_OFFSET);
         unsignedVar4 = *(uint32 *)(localLong1 + 0x14);
@@ -10332,14 +10332,14 @@ void ProcessResourceQueue(void)
         integerVar8 = ValidateResourceAccess(unsignedVar3,unaff_RBP + -BUFFER_OFFSET_TEMP);
         if ((integerVar8 != 0) || (integerVar8 = FUN_18088c970(buffer,&fStackX_24), integerVar8 != 0))
         goto LAB_1808974ec;
-        fVar10 = fStackX_24;
+        floatVar10 = fStackX_24;
         if (fStackX_24 != 1.0) {
           in_stack_00000048 = fStackX_24;
           stackParameter1 = &unknown_1809842e0;
           in_stack_00000040 = uStackX_20;
           in_stack_00000038 = integerVar8;
           integerVar8 = ValidateResourceAccess(fStackX_24,&stack0x00000030);
-          fVar10 = extraout_XMM0_Da_05;
+          floatVar10 = extraout_XMM0_Da_05;
           if (integerVar8 != 0) goto LAB_1808974ec;
         }
         if (*(char *)(buffer + BYTE_OFFSET_2) != '\0') {
@@ -10347,8 +10347,8 @@ void ProcessResourceQueue(void)
           stackParameter1 = &unknown_180984358;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          integerVar8 = ValidateResourceAccess(fVar10,&stack0x00000030);
-          fVar10 = extraout_XMM0_Da_06;
+          integerVar8 = ValidateResourceAccess(floatVar10,&stack0x00000030);
+          floatVar10 = extraout_XMM0_Da_06;
           if (integerVar8 != 0) goto LAB_1808974ec;
         }
         if (*(char *)(buffer + BYTE_OFFSET_1) != '\0') {
@@ -10356,7 +10356,7 @@ void ProcessResourceQueue(void)
           stackParameter1 = &unknown_1809843d0;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          integerVar8 = ValidateResourceAccess(fVar10,&stack0x00000030);
+          integerVar8 = ValidateResourceAccess(floatVar10,&stack0x00000030);
           if (integerVar8 != 0) goto LAB_1808974ec;
         }
       }
@@ -10369,7 +10369,7 @@ void ProcessResourceQueue(void)
       buffer = *(longlong *)(localLong1 + BUFFER_OFFSET_DATA);
       if (buffer != 0) {
         uStackX_20 = 0;
-        integerVar9 = validate_resource_handle(buffer,&uStackX_20);
+        integerVar9 = validate_resource_resourceHandle(buffer,&uStackX_20);
         if (integerVar9 != 0) break;
         unsignedVar3 = *(uint32 *)(localLong1 + RESOURCE_HANDLE_OFFSET);
         unsignedVar4 = *(uint32 *)(localLong1 + 0x14);
@@ -10502,7 +10502,7 @@ void ProcessResourceOperation(longlong resourceHandle,longlong memorySize)
 {
   float floatVar1;
   longlong buffer;
-  longlong index;
+  longlong arrayIndex;
   longlong longVar4;
   char charVar5;
   int integerVar6;
@@ -10512,7 +10512,7 @@ void ProcessResourceOperation(longlong resourceHandle,longlong memorySize)
   uint64 returnValue0;
   uint64 returnValue1;
   data *preturnValue2;
-  float fVar13;
+  float floatVar13;
   longlong localLong14;
   float *pfVar15;
   uint64 *preturnValue6;
@@ -10565,13 +10565,13 @@ void ProcessResourceOperation(longlong resourceHandle,longlong memorySize)
     longVar8 = localLong14;
   }
   lStack_180 = memorySize;
-  integerVar6 = validate_resource_handle(longVar8,&localUInt);
+  integerVar6 = validate_resource_resourceHandle(longVar8,&localUInt);
   if (integerVar6 == 0) {
     preturnValue6 = (uint64 *)(memorySize + 8);
     localUInt = 0;
     localPtr = preturnValue6;
     longVar8 = (*(code *)**(uint64 **)(memorySize + 8))(preturnValue6);
-    integerVar6 = validate_resource_handle(*(uint64 *)(longVar8 + STRUCT_OFFSET_1),&localUInt);
+    integerVar6 = validate_resource_resourceHandle(*(uint64 *)(longVar8 + STRUCT_OFFSET_1),&localUInt);
     if (integerVar6 == 0) {
       localUInt = 0;
       localPtr = &unknown_1809832b8;
@@ -10584,11 +10584,11 @@ void ProcessResourceOperation(longlong resourceHandle,longlong memorySize)
         if (0 < lStack_188) {
           do {
             longVar9 = *(longlong *)(buffer + POINTER_OFFSET_DATA);
-            index = *(longlong *)(localLong14 + RESOURCE_HANDLE_OFFSET + longVar9);
+            arrayIndex = *(longlong *)(localLong14 + RESOURCE_HANDLE_OFFSET + longVar9);
             longVar4 = *(longlong *)(localLong14 + 8 + longVar9);
-            charVar5 = func_0x000180894c50(index,1);
+            charVar5 = func_0x000180894c50(arrayIndex,1);
             preturnValue6 = localPtr;
-            if ((charVar5 == '\0') && (*(float *)(index + ERROR_CODE_2) != *(float *)(longVar4 + BYTE_OFFSET_2))) {
+            if ((charVar5 == '\0') && (*(float *)(arrayIndex + ERROR_CODE_2) != *(float *)(longVar4 + BYTE_OFFSET_2))) {
               localUInt = *(uint32 *)(localLong14 + 4 + longVar9);
               localPtr = &unknown_180984038;
               localUInt = localUInt;
@@ -10596,11 +10596,11 @@ void ProcessResourceOperation(longlong resourceHandle,longlong memorySize)
               longVar9 = (**(code **)*localPtr)(localPtr);
               localUInt = *(uint64 *)(*(longlong *)(longVar9 + MEMORY_SIZE_OFFSET) + longVar8 * 8);
               localUInt = 0;
-              if (*(int *)(index + SYSTEM_OFFSET_STATUS1) < 1) {
+              if (*(int *)(arrayIndex + SYSTEM_OFFSET_STATUS1) < 1) {
                 preturnValue2 = &g_miscWorkBuffer3;
               }
               else {
-                preturnValue2 = *(data **)(index + LIST_OFFSET_HEAD);
+                preturnValue2 = *(data **)(arrayIndex + LIST_OFFSET_HEAD);
               }
               func_0x00018076b450(localBuffer,preturnValue2,BUFFER_OFFSET_TEMP);
               integerVar6 = ValidateResourceAccess(resourceHandle,&localPtr);
@@ -10656,37 +10656,37 @@ void ProcessResourceOperation(longlong resourceHandle,longlong memorySize)
                 integerVar6 = ValidateResourceAccess(resourceHandle,&localPtr);
                 if (integerVar6 != 0) goto TerminateResourceOperation;
               }
-              fVar13 = 0.0;
+              floatVar13 = 0.0;
               pfVar15 = (float *)(buffer + 0x94);
               do {
                 if (*pfVar15 != 0.0) {
                   localUInt = localUInt;
                   localUInt = 0;
                   localPtr = &unknown_1809839d8;
-                  fStack_1a8 = fVar13;
+                  fStack_1a8 = floatVar13;
                   fStack_1a4 = *pfVar15;
                   integerVar6 = ValidateResourceAccess(resourceHandle,&localPtr);
                   if (integerVar6 != 0) goto TerminateResourceOperation;
                 }
-                fVar13 = (float)((int)fVar13 + 1);
+                floatVar13 = (float)((int)floatVar13 + 1);
                 pfVar15 = pfVar15 + 1;
-              } while ((int)fVar13 < 4);
+              } while ((int)floatVar13 < 4);
               pfVar15 = (float *)&unknown_1809850f8;
-              fVar13 = 0.0;
+              floatVar13 = 0.0;
               do {
                 floatVar1 = *(float *)(buffer + -0x180985054 + (longlong)pfVar15);
                 if (floatVar1 != *pfVar15) {
                   localUInt = localUInt;
                   localUInt = 0;
                   localPtr = &unknown_180983950;
-                  fStack_1a8 = fVar13;
+                  fStack_1a8 = floatVar13;
                   fStack_1a4 = floatVar1;
                   integerVar6 = ValidateResourceAccess(resourceHandle,&localPtr);
                   if (integerVar6 != 0) goto TerminateResourceOperation;
                 }
-                fVar13 = (float)((int)fVar13 + 1);
+                floatVar13 = (float)((int)floatVar13 + 1);
                 pfVar15 = pfVar15 + 1;
-              } while ((int)fVar13 < 6);
+              } while ((int)floatVar13 < 6);
               unsignedVar7 = func_0x000180855b70(memorySize + 200);
               if ((float)(unsignedVar7 / FIELD_OFFSET_1) != 0.0) {
                 localPtr = &unknown_180983be8;
@@ -10747,7 +10747,7 @@ void ExecuteResourceCommand(void)
 {
   float floatVar1;
   longlong buffer;
-  longlong index;
+  longlong arrayIndex;
   uint64 *puVar4;
   uint32 unsignedVar5;
   uint32 unsignedVar6;
@@ -10756,7 +10756,7 @@ void ExecuteResourceCommand(void)
   uint32 unsignedVar9;
   uint32 returnValue0;
   uint32 returnValue1;
-  char cVar12;
+  char charVar12;
   int localInt13;
   uint returnValue4;
   uint64 *inputRegister;
@@ -10764,7 +10764,7 @@ void ExecuteResourceCommand(void)
   uint64 returnValue6;
   uint64 returnValue7;
   data *preturnValue8;
-  float fVar19;
+  float floatVar19;
   ulonglong localUInt20;
   float *pfVar21;
   uint64 *unaff_RBP;
@@ -10809,7 +10809,7 @@ void ExecuteResourceCommand(void)
   fStack0000000000000048 = unaff_R13D;
   puStack0000000000000058 = plocalUInt22;
   localLong15 = (*(code *)*inputRegister)(plocalUInt22);
-  localInt13 = validate_resource_handle(*(uint64 *)(localLong15 + STRUCT_OFFSET_1),&stack0x00000048);
+  localInt13 = validate_resource_resourceHandle(*(uint64 *)(localLong15 + STRUCT_OFFSET_1),&stack0x00000048);
   if (localInt13 == 0) {
     in_stack_00000070 = &unknown_1809832b8;
     *(uint32 *)(unaff_RBP + -0xf) = uStackX_20;
@@ -10824,10 +10824,10 @@ void ExecuteResourceCommand(void)
         do {
           localLong15 = *(longlong *)(unaff_R15 + POINTER_OFFSET_DATA);
           buffer = *(longlong *)(localUInt20 + RESOURCE_HANDLE_OFFSET + localLong15);
-          index = *(longlong *)(localUInt20 + 8 + localLong15);
-          cVar12 = func_0x000180894c50(buffer,1);
+          arrayIndex = *(longlong *)(localUInt20 + 8 + localLong15);
+          charVar12 = func_0x000180894c50(buffer,1);
           plocalUInt22 = puStack0000000000000058;
-          if ((cVar12 == '\0') && (*(float *)(buffer + ERROR_CODE_2) != *(float *)(index + BYTE_OFFSET_2))) {
+          if ((charVar12 == '\0') && (*(float *)(buffer + ERROR_CODE_2) != *(float *)(arrayIndex + BYTE_OFFSET_2))) {
             localUInt24 = *(uint32 *)(localUInt20 + 4 + localLong15);
             unaff_RBP[-4] = &unknown_180984038;
             *(uint32 *)(unaff_RBP + -2) = uStackX_20;
@@ -10904,7 +10904,7 @@ void ExecuteResourceCommand(void)
             fStack000000000000004c = extraout_XMM0_Da_03;
             if (localInt13 != 0) goto FinalizeResourceProcess;
           }
-          localInt13 = FUN_180868270(fStack000000000000004c,&stack0x00000050,0);
+          localInt13 = FUN_180868270(fStack000000000000004c,&stackBuffer50stackBuffer50,0);
           if (localInt13 == 0) {
             if (in_stack_00000050 != 1.0) {
               fStack0000000000000040 = in_stack_00000050;
@@ -10915,37 +10915,37 @@ void ExecuteResourceCommand(void)
               if (localInt13 != 0) goto FinalizeResourceProcess;
             }
             pfVar21 = (float *)(unaff_R15 + 0x94);
-            fVar19 = unaff_R13D;
+            floatVar19 = unaff_R13D;
             do {
               floatVar1 = *pfVar21;
               if (floatVar1 != 0.0) {
                 in_stack_00000038 = uStackX_20;
                 in_stack_00000028 = &unknown_1809839d8;
                 stackParameter1 = unaff_R13D;
-                fStack0000000000000040 = fVar19;
+                fStack0000000000000040 = floatVar19;
                 fStack0000000000000044 = floatVar1;
                 localInt13 = ValidateResourceAccess(floatVar1,&stack0x00000028);
                 if (localInt13 != 0) goto FinalizeResourceProcess;
               }
-              fVar19 = (float)((int)fVar19 + 1);
+              floatVar19 = (float)((int)floatVar19 + 1);
               pfVar21 = pfVar21 + 1;
-            } while ((int)fVar19 < 4);
+            } while ((int)floatVar19 < 4);
             pfVar21 = (float *)&unknown_1809850f8;
-            fVar19 = unaff_R13D;
+            floatVar19 = unaff_R13D;
             do {
               floatVar1 = *(float *)(unaff_R15 + -0x180985054 + (longlong)pfVar21);
               if (floatVar1 != *pfVar21) {
                 in_stack_00000038 = uStackX_20;
                 in_stack_00000028 = &unknown_180983950;
                 stackParameter1 = unaff_R13D;
-                fStack0000000000000040 = fVar19;
+                fStack0000000000000040 = floatVar19;
                 fStack0000000000000044 = floatVar1;
                 localInt13 = ValidateResourceAccess(floatVar1,&stack0x00000028);
                 if (localInt13 != 0) goto FinalizeResourceProcess;
               }
-              fVar19 = (float)((int)fVar19 + 1);
+              floatVar19 = (float)((int)floatVar19 + 1);
               pfVar21 = pfVar21 + 1;
-            } while ((int)fVar19 < 6);
+            } while ((int)floatVar19 < 6);
             returnValue4 = func_0x000180855b70(unaff_R14 + 200);
             localUInt24 = extraout_XMM0_Da_04;
             if ((float)(returnValue4 / FIELD_OFFSET_1) != 0.0) {
@@ -11009,7 +11009,7 @@ void HandleResourceCallback(void)
 {
   float floatVar1;
   longlong buffer;
-  longlong index;
+  longlong arrayIndex;
   uint64 *puVar4;
   uint32 unsignedVar5;
   uint32 unsignedVar6;
@@ -11018,7 +11018,7 @@ void HandleResourceCallback(void)
   uint32 unsignedVar9;
   uint32 returnValue0;
   uint32 returnValue1;
-  char cVar12;
+  char charVar12;
   int localInt13;
   uint returnValue4;
   longlong inputRegister;
@@ -11026,7 +11026,7 @@ void HandleResourceCallback(void)
   uint64 returnValue6;
   uint64 returnValue7;
   data *preturnValue8;
-  float fVar19;
+  float floatVar19;
   ulonglong localUInt20;
   float *pfVar21;
   uint64 *unaff_RBP;
@@ -11070,10 +11070,10 @@ void HandleResourceCallback(void)
     do {
       localLong15 = *(longlong *)(unaff_R15 + POINTER_OFFSET_DATA);
       buffer = *(longlong *)(localUInt20 + RESOURCE_HANDLE_OFFSET + localLong15);
-      index = *(longlong *)(localUInt20 + 8 + localLong15);
-      cVar12 = func_0x000180894c50(buffer,1);
+      arrayIndex = *(longlong *)(localUInt20 + 8 + localLong15);
+      charVar12 = func_0x000180894c50(buffer,1);
       unaff_R12 = in_stack_00000058;
-      if ((cVar12 == '\0') && (*(float *)(buffer + ERROR_CODE_2) != *(float *)(index + BYTE_OFFSET_2))) {
+      if ((charVar12 == '\0') && (*(float *)(buffer + ERROR_CODE_2) != *(float *)(arrayIndex + BYTE_OFFSET_2))) {
         localUInt23 = *(uint32 *)(localUInt20 + 4 + localLong15);
         unaff_RBP[-4] = &unknown_180984038;
         *(uint32 *)(unaff_RBP + -2) = uStackX_20;
@@ -11150,7 +11150,7 @@ void HandleResourceCallback(void)
         in_stack_00000048._4_4_ = extraout_XMM0_Da_02;
         if (localInt13 != 0) goto CompleteResourceOperation;
       }
-      localInt13 = FUN_180868270(in_stack_00000048._4_4_,&stack0x00000050,0);
+      localInt13 = FUN_180868270(in_stack_00000048._4_4_,&stackBuffer50stackBuffer50,0);
       if (localInt13 == 0) {
         if (in_stack_00000050 != 1.0) {
           fStack0000000000000040 = in_stack_00000050;
@@ -11161,37 +11161,37 @@ void HandleResourceCallback(void)
           if (localInt13 != 0) goto CompleteResourceOperation;
         }
         pfVar21 = (float *)(unaff_R15 + 0x94);
-        fVar19 = unaff_R13D;
+        floatVar19 = unaff_R13D;
         do {
           floatVar1 = *pfVar21;
           if (floatVar1 != 0.0) {
             in_stack_00000038 = uStackX_20;
             in_stack_00000028 = &unknown_1809839d8;
             stackParameter1 = unaff_R13D;
-            fStack0000000000000040 = fVar19;
+            fStack0000000000000040 = floatVar19;
             fStack0000000000000044 = floatVar1;
             localInt13 = ValidateResourceAccess(floatVar1,&stack0x00000028);
             if (localInt13 != 0) goto CompleteResourceOperation;
           }
-          fVar19 = (float)((int)fVar19 + 1);
+          floatVar19 = (float)((int)floatVar19 + 1);
           pfVar21 = pfVar21 + 1;
-        } while ((int)fVar19 < 4);
+        } while ((int)floatVar19 < 4);
         pfVar21 = (float *)&unknown_1809850f8;
-        fVar19 = unaff_R13D;
+        floatVar19 = unaff_R13D;
         do {
           floatVar1 = *(float *)(unaff_R15 + -0x180985054 + (longlong)pfVar21);
           if (floatVar1 != *pfVar21) {
             in_stack_00000038 = uStackX_20;
             in_stack_00000028 = &unknown_180983950;
             stackParameter1 = unaff_R13D;
-            fStack0000000000000040 = fVar19;
+            fStack0000000000000040 = floatVar19;
             fStack0000000000000044 = floatVar1;
             localInt13 = ValidateResourceAccess(floatVar1,&stack0x00000028);
             if (localInt13 != 0) goto CompleteResourceOperation;
           }
-          fVar19 = (float)((int)fVar19 + 1);
+          floatVar19 = (float)((int)floatVar19 + 1);
           pfVar21 = pfVar21 + 1;
-        } while ((int)fVar19 < 6);
+        } while ((int)floatVar19 < 6);
         returnValue4 = func_0x000180855b70(unaff_R14 + 200);
         localUInt23 = extraout_XMM0_Da_03;
         if ((float)(returnValue4 / FIELD_OFFSET_1) != 0.0) {
@@ -11255,7 +11255,7 @@ void ValidateResourceFloat(float resourceHandle)
   int status;
   uint unsignedVar3;
   float floatVar4;
-  float *pfVar5;
+  float *pfloatValue5;
   longlong unaff_RBP;
   float unaff_R13D;
   longlong unaff_R14;
@@ -11284,7 +11284,7 @@ void ValidateResourceFloat(float resourceHandle)
     resourceHandle = extraout_XMM0_Da;
     if (status != 0) goto LAB_180897af6;
   }
-  status = FUN_180868270(resourceHandle,&stack0x00000050,0);
+  status = FUN_180868270(resourceHandle,&stackBuffer50stackBuffer50,0);
   if (status == 0) {
     if (in_stack_00000050 != 1.0) {
       fStack0000000000000040 = in_stack_00000050;
@@ -11294,10 +11294,10 @@ void ValidateResourceFloat(float resourceHandle)
       status = ValidateResourceAccess(in_stack_00000050,&stack0x00000028);
       if (status != 0) goto LAB_180897af6;
     }
-    pfVar5 = (float *)(unaff_R15 + 0x94);
+    pfloatValue5 = (float *)(unaff_R15 + 0x94);
     floatVar4 = unaff_R13D;
     do {
-      floatVar1 = *pfVar5;
+      floatVar1 = *pfloatValue5;
       if (floatVar1 != 0.0) {
         in_stack_00000038 = uStackX_20;
         in_stack_00000028 = &unknown_1809839d8;
@@ -11308,13 +11308,13 @@ void ValidateResourceFloat(float resourceHandle)
         if (status != 0) goto LAB_180897af6;
       }
       floatVar4 = (float)((int)floatVar4 + 1);
-      pfVar5 = pfVar5 + 1;
+      pfloatValue5 = pfloatValue5 + 1;
     } while ((int)floatVar4 < 4);
-    pfVar5 = (float *)&unknown_1809850f8;
+    pfloatValue5 = (float *)&unknown_1809850f8;
     floatVar4 = unaff_R13D;
     do {
-      floatVar1 = *(float *)(unaff_R15 + -0x180985054 + (longlong)pfVar5);
-      if (floatVar1 != *pfVar5) {
+      floatVar1 = *(float *)(unaff_R15 + -0x180985054 + (longlong)pfloatValue5);
+      if (floatVar1 != *pfloatValue5) {
         in_stack_00000038 = uStackX_20;
         in_stack_00000028 = &unknown_180983950;
         stackParameter1 = unaff_R13D;
@@ -11324,7 +11324,7 @@ void ValidateResourceFloat(float resourceHandle)
         if (status != 0) goto LAB_180897af6;
       }
       floatVar4 = (float)((int)floatVar4 + 1);
-      pfVar5 = pfVar5 + 1;
+      pfloatValue5 = pfloatValue5 + 1;
     } while ((int)floatVar4 < 6);
     unsignedVar3 = func_0x000180855b70(unaff_R14 + 200);
     unsignedVar6 = extraout_XMM0_Da_00;
@@ -11461,7 +11461,7 @@ void CreateResourceInstance(longlong *resourceHandle,longlong memorySize,uint32 
     localLong1 = *(longlong *)(*(longlong *)(memorySize + SYSTEM_TABLE_OFFSET) + (longlong)integerVar7 * 8);
     if (**(int **)(localLong1 + STRUCT_OFFSET_1) != 0) {
       localBuffer[0] = 0;
-      length = validate_resource_handle(*(int **)(localLong1 + STRUCT_OFFSET_1),localBuffer);
+      length = validate_resource_resourceHandle(*(int **)(localLong1 + STRUCT_OFFSET_1),localBuffer);
       if (length != 0) {
 LAB_180897ce8:
                     // WARNING: Subroutine does not return
@@ -11551,7 +11551,7 @@ uint64 GetResourceInfo(longlong *resourceHandle)
 {
   longlong localLong1;
   uint64 localUInt2;
-  longlong index;
+  longlong arrayIndex;
   uint32 unsignedVar4;
   uint32 unsignedVar5;
   uint32 unsignedVar6;
@@ -11569,8 +11569,8 @@ uint64 GetResourceInfo(longlong *resourceHandle)
   localUInt2 = ValidateResourceAccess(resourceHandle,&localPtr);
   if ((int)localUInt2 == 0) {
     localLong1 = *(longlong *)(resourceHandle[1] + HANDLE_OFFSET_DATA);
-    index = func_0x000180879a40();
-    if (index == 0) {
+    arrayIndex = func_0x000180879a40();
+    if (arrayIndex == 0) {
       localUInt2 = BYTE_OFFSET_FLAG;
     }
     else {
@@ -11605,9 +11605,9 @@ uint64 GetResourceInfo(longlong *resourceHandle)
                                   *(uint32 *)(localLong1 + 0x11654),*(uint32 *)(localLong1 + 0x11658),
                                   *(uint32 *)(localLong1 + 0x1165c),unsignedVar6,unsignedVar7,unsignedVar8,unsignedVar4);
             if ((int)localUInt2 == 0) {
-              unsignedVar5 = *(uint32 *)(index + RESOURCE_HANDLE_OFFSET);
-              localUInt2 = InitializeResourceData(resourceHandle,&unknown_1809867b0,*(uint32 *)(index + 4),
-                                    *(uint32 *)(index + 8),*(uint32 *)(index + 0xc),unsignedVar5,
+              unsignedVar5 = *(uint32 *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+              localUInt2 = InitializeResourceData(resourceHandle,&unknown_1809867b0,*(uint32 *)(arrayIndex + 4),
+                                    *(uint32 *)(arrayIndex + 8),*(uint32 *)(arrayIndex + 0xc),unsignedVar5,
                                     unsignedVar6,unsignedVar7,unsignedVar8,unsignedVar4);
               if ((((int)localUInt2 == 0) &&
                   (localUInt2 = InitializeResourceData(resourceHandle,&unknown_180986850,*(uint32 *)(localLong1 + 0x1e0),
@@ -11698,9 +11698,9 @@ void ProcessResourceRequest(longlong *resourceHandle)
   longlong localLong15;
   longlong *plocalLong16;
   uint returnValue7;
-  float fVar18;
+  float floatVar18;
   longlong *plocalLong19;
-  bool bVar20;
+  bool boolVar20;
   byte localBuffer [32];
   float afStack_348 [2];
   longlong *plStack_340;
@@ -11759,7 +11759,7 @@ void ProcessResourceRequest(longlong *resourceHandle)
           localLong15 = plocalLong10[3];
           if (localLong15 != 0) {
             afStack_348[0] = 0.0;
-            integerVar6 = validate_resource_handle(plocalLong10,afStack_348);
+            integerVar6 = validate_resource_resourceHandle(plocalLong10,afStack_348);
             if ((integerVar6 != 0) || (integerVar6 = setup_memory_configuration(resourceHandle,localLong15,afStack_348[0],0), integerVar6 != 0)
                ) goto LAB_18089866f;
           }
@@ -11793,7 +11793,7 @@ void ProcessResourceRequest(longlong *resourceHandle)
           localLong15 = resourceHandle[1];
           localUInt = 0;
           localPtr = &unknown_1809823f8;
-          fVar18 = SUB84(plocalLong13,0);
+          floatVar18 = SUB84(plocalLong13,0);
           plocalLong13 = (longlong *)(localLong15 + 0xe0 + (longlong)plocalLong10);
           localLong11 = *plocalLong13;
           unsignedVar9 = plocalLong13[1];
@@ -11817,7 +11817,7 @@ void ProcessResourceRequest(longlong *resourceHandle)
           }
           localLong15 = resourceHandle[4];
           localUInt = localLong11 == 0;
-          fStack_2c8 = fVar18;
+          fStack_2c8 = floatVar18;
           if (((char)localLong15 == '\0') &&
              (integerVar6 = ValidateResourceBuffer(resourceHandle,CONCAT71((uint7)(uint3)(localUInt >> 8),1)), integerVar6 != 0
              )) goto LAB_18089866f;
@@ -11832,7 +11832,7 @@ void ProcessResourceRequest(longlong *resourceHandle)
           }
           plocalLong14 = (longlong *)((longlong)plocalLong14 + 1);
           plocalLong10 = plocalLong10 + 6;
-          plocalLong13 = (longlong *)(ulonglong)((int)fVar18 + 1);
+          plocalLong13 = (longlong *)(ulonglong)((int)floatVar18 + 1);
           plocalLong19 = (longlong *)((longlong)plocalLong19 + 0xc);
         } while ((longlong)plocalLong14 < localArray[0]);
       }
@@ -11900,7 +11900,7 @@ void ProcessResourceRequest(longlong *resourceHandle)
       afStack_348[0] = afStack_308[0];
       if (afStack_308[0] != -NAN) {
         plocalLong16 = plStack_318;
-        fVar18 = (float)localUInt;
+        floatVar18 = (float)localUInt;
         do {
           do {
             localLong15 = (longlong)(int)afStack_348[0] * POINTER_OFFSET_DATA;
@@ -11921,9 +11921,9 @@ void ProcessResourceRequest(longlong *resourceHandle)
                 } while ((integerVar6 != -1) &&
                         (integerVar6 = *(int *)(plocalLong14[2] + 4 + (longlong)integerVar6 * RESOURCE_HANDLE_OFFSET), integerVar6 != -1));
                 integerVar6 = integerVar7 + 1;
-                bVar20 = integerVar7 != -1;
+                boolVar20 = integerVar7 != -1;
                 integerVar7 = 0;
-                if (bVar20) {
+                if (boolVar20) {
                   integerVar7 = integerVar6;
                 }
                 if (integerVar7 != (int)plocalLong14[1]) {
@@ -11947,25 +11947,25 @@ LAB_1808985be:
           } while ((afStack_348[0] != -NAN) &&
                   (afStack_348[0] = *(float *)(plocalLong16[2] + RESOURCE_HANDLE_OFFSET + localLong15), afStack_348[0] != -NAN))
           ;
-          floatVar1 = (float)((int)fVar18 + 1);
-          bVar20 = fVar18 != -NAN;
-          fVar18 = 0.0;
-          if (bVar20) {
-            fVar18 = floatVar1;
+          floatVar1 = (float)((int)floatVar18 + 1);
+          boolVar20 = floatVar18 != -NAN;
+          floatVar18 = 0.0;
+          if (boolVar20) {
+            floatVar18 = floatVar1;
           }
-          if (fVar18 != *(float *)(plocalLong16 + 1)) {
-            localLong15 = (longlong)(int)fVar18;
+          if (floatVar18 != *(float *)(plocalLong16 + 1)) {
+            localLong15 = (longlong)(int)floatVar18;
             do {
               if (*(int *)(*plocalLong16 + localLong15 * 4) != -1) {
-                afStack_348[0] = *(float *)(*plocalLong16 + (longlong)(int)fVar18 * 4);
+                afStack_348[0] = *(float *)(*plocalLong16 + (longlong)(int)floatVar18 * 4);
                 goto LAB_180898629;
               }
-              fVar18 = (float)((int)fVar18 + 1);
+              floatVar18 = (float)((int)floatVar18 + 1);
               localLong15 = localLong15 + 1;
             } while (localLong15 != (int)*(float *)(plocalLong16 + 1));
           }
           afStack_348[0] = -NAN;
-          fVar18 = afStack_348[0];
+          floatVar18 = afStack_348[0];
 LAB_180898629:
         } while (afStack_348[0] != -NAN);
       }
@@ -12187,7 +12187,7 @@ binarySearchInArray(longlong arrayHandle, uint *searchKey, uint64 param3, uint32
   longlong dataArrayPtr;
   int rightBound;
   int comparisonResult;
-  uint64 result;
+  uint64 operationResult;
   uint *currentElement;
   int middleIndex;
   int leftBound;
@@ -12219,8 +12219,8 @@ binarySearchInArray(longlong arrayHandle, uint *searchKey, uint64 param3, uint32
         if (middleIndex < 0) {
           return 0x4a;
         }
-        result = retrieveArrayElementData(arrayHandle, middleIndex, 0, param3, param4, param5);
-        return result;
+        operationResult = retrieveArrayElementData(arrayHandle, middleIndex, 0, param3, param4, param5);
+        return operationResult;
       }
       rightBound = middleIndex + -1;
       if (-1 < comparisonResult) {
@@ -12786,13 +12786,13 @@ uint64 GetResourceCapacity(longlong *resourceHandle,uint32 *memorySize)
 
 {
   uint64 returnValue;
-  uint32 auStackX_8 [8];
+  uint32 arrayUnsignedStackX8 [8];
   
   if (*(int *)(resourceHandle[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  auStackX_8[0] = *memorySize;
-  returnValue = (**(code **)**(uint64 **)(*resourceHandle + 8))(*(uint64 **)(*resourceHandle + 8),auStackX_8,4);
+  arrayUnsignedStackX8[0] = *memorySize;
+  returnValue = (**(code **)**(uint64 **)(*resourceHandle + 8))(*(uint64 **)(*resourceHandle + 8),arrayUnsignedStackX8,4);
   return returnValue;
 }
 
@@ -12802,13 +12802,13 @@ uint64 CheckResourceCapacity(longlong *resourceHandle,uint32 *memorySize)
 
 {
   uint64 returnValue;
-  uint32 auStackX_8 [8];
+  uint32 arrayUnsignedStackX8 [8];
   
   if (*(int *)(resourceHandle[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  auStackX_8[0] = *memorySize;
-  returnValue = (**(code **)**(uint64 **)(*resourceHandle + 8))(*(uint64 **)(*resourceHandle + 8),auStackX_8,4);
+  arrayUnsignedStackX8[0] = *memorySize;
+  returnValue = (**(code **)**(uint64 **)(*resourceHandle + 8))(*(uint64 **)(*resourceHandle + 8),arrayUnsignedStackX8,4);
   return returnValue;
 }
 
@@ -12839,16 +12839,16 @@ uint64 OptimizeResourceBuffer(longlong *resourceHandle,uint32 *memorySize)
   longlong localLong1;
   uint64 *plocalUInt2;
   uint64 unsignedVar3;
-  uint32 auStackX_8 [2];
+  uint32 arrayUnsignedStackX8 [2];
   uint32 auStackX_18 [4];
   
   if (*(int *)(resourceHandle[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  auStackX_8[0] = *memorySize;
+  arrayUnsignedStackX8[0] = *memorySize;
   localLong1 = *resourceHandle;
   plocalUInt2 = *(uint64 **)(localLong1 + 8);
-  unsignedVar3 = (**(code **)*plocalUInt2)(plocalUInt2,auStackX_8,4);
+  unsignedVar3 = (**(code **)*plocalUInt2)(plocalUInt2,arrayUnsignedStackX8,4);
   if ((int)unsignedVar3 == 0) {
     plocalUInt2 = *(uint64 **)(localLong1 + 8);
     auStackX_18[0] = memorySize[1];
@@ -12934,12 +12934,12 @@ void FinalizeResourceBuffer(longlong resourceHandle,uint32 *memorySize)
 
 {
   int status;
-  uint32 auStackX_8 [2];
+  uint32 arrayUnsignedStackX8 [2];
   uint32 auStackX_10 [2];
   uint32 auStackX_18 [2];
   
-  auStackX_8[0] = *memorySize;
-  status = (**(code **)**(uint64 **)(resourceHandle + 8))(*(uint64 **)(resourceHandle + 8),auStackX_8,4);
+  arrayUnsignedStackX8[0] = *memorySize;
+  status = (**(code **)**(uint64 **)(resourceHandle + 8))(*(uint64 **)(resourceHandle + 8),arrayUnsignedStackX8,4);
   if (status == 0) {
     auStackX_10[0] = memorySize[1];
     status = (**(code **)**(uint64 **)(resourceHandle + 8))(*(uint64 **)(resourceHandle + 8),auStackX_10,4)
@@ -12989,7 +12989,7 @@ uint64 examineUtilityBehavior(longlong *resourceHandle,uint *memorySize)
 
 {
   uint64 returnValue;
-  uint auStackX_8 [2];
+  uint arrayUnsignedStackX8 [2];
   uint auStackX_18 [4];
   
   if (*(int *)(resourceHandle[1] + RESOURCE_OFFSET_HANDLE) != 0) {
@@ -13001,12 +13001,12 @@ uint64 examineUtilityBehavior(longlong *resourceHandle,uint *memorySize)
   }
   else {
     if (resourceHandle[2] != 0) {
-      auStackX_8[0] = 0;
-      returnValue = func_0x00018076a7d0(*resourceHandle,auStackX_8);
+      arrayUnsignedStackX8[0] = 0;
+      returnValue = func_0x00018076a7d0(*resourceHandle,arrayUnsignedStackX8);
       if ((int)returnValue != 0) {
         return returnValue;
       }
-      if ((ulonglong)resourceHandle[2] < (ulonglong)auStackX_8[0] + 4) {
+      if ((ulonglong)resourceHandle[2] < (ulonglong)arrayUnsignedStackX8[0] + 4) {
         returnValue = 0x11;
         goto LAB_1808992a5;
       }
@@ -13050,7 +13050,7 @@ uint64 reviewUtilityResults(longlong *resourceHandle)
         goto LAB_1808992a5;
       }
     }
-    returnValue = FUN_180769ed0(*resourceHandle,&stack0x00000050,1,4,0);
+    returnValue = FUN_180769ed0(*resourceHandle,&stackBuffer50stackBuffer50,1,4,0);
   }
 LAB_1808992a5:
   if ((int)returnValue == 0) {
@@ -13082,16 +13082,16 @@ uint64 evaluateUtilityPerformance(longlong *resourceHandle,uint32 *memorySize)
   longlong localLong1;
   uint64 *plocalUInt2;
   uint64 unsignedVar3;
-  uint32 auStackX_8 [2];
+  uint32 arrayUnsignedStackX8 [2];
   uint32 auStackX_18 [4];
   
   if (*(int *)(resourceHandle[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  auStackX_8[0] = *memorySize;
+  arrayUnsignedStackX8[0] = *memorySize;
   localLong1 = *resourceHandle;
   plocalUInt2 = *(uint64 **)(localLong1 + 8);
-  unsignedVar3 = (**(code **)*plocalUInt2)(plocalUInt2,auStackX_8,4);
+  unsignedVar3 = (**(code **)*plocalUInt2)(plocalUInt2,arrayUnsignedStackX8,4);
   if ((int)unsignedVar3 == 0) {
     auStackX_18[0] = memorySize[1];
     plocalUInt2 = *(uint64 **)(localLong1 + 8);
@@ -13222,7 +13222,7 @@ void rateUtilityEffectiveness(longlong *resourceHandle,uint32 *memorySize)
 
 {
   int status;
-  uint auStackX_8 [2];
+  uint arrayUnsignedStackX8 [2];
   uint32 auStackX_18 [4];
   
   if (*resourceHandle == 0) {
@@ -13230,12 +13230,12 @@ void rateUtilityEffectiveness(longlong *resourceHandle,uint32 *memorySize)
   }
   else {
     if (resourceHandle[2] != 0) {
-      auStackX_8[0] = 0;
-      status = func_0x00018076a7d0(*resourceHandle,auStackX_8);
+      arrayUnsignedStackX8[0] = 0;
+      status = func_0x00018076a7d0(*resourceHandle,arrayUnsignedStackX8);
       if (status != 0) {
         return;
       }
-      if ((ulonglong)resourceHandle[2] < (ulonglong)auStackX_8[0] + 4) {
+      if ((ulonglong)resourceHandle[2] < (ulonglong)arrayUnsignedStackX8[0] + 4) {
         status = 0x11;
         goto LAB_18089962f;
       }
@@ -13926,10 +13926,10 @@ void searchUtilityItems(longlong resourceHandle,uint32 *memorySize)
 
 {
   int status;
-  uint32 auStackX_8 [2];
+  uint32 arrayUnsignedStackX8 [2];
   
-  auStackX_8[0] = *memorySize;
-  status = (**(code **)**(uint64 **)(resourceHandle + 8))(*(uint64 **)(resourceHandle + 8),auStackX_8,4);
+  arrayUnsignedStackX8[0] = *memorySize;
+  status = (**(code **)**(uint64 **)(resourceHandle + 8))(*(uint64 **)(resourceHandle + 8),arrayUnsignedStackX8,4);
   if (((((localInt1 == 0) && (status = FUN_1808affb0(resourceHandle,memorySize + 1), localInt1 == 0)) &&
        (((*(byte *)(memorySize + 1) & POINTER_OFFSET_DATA) == 0 ||
         (status = SetupResourceBuffer(resourceHandle,memorySize + 2), localInt1 == 0)))) &&
@@ -13938,9 +13938,9 @@ void searchUtilityItems(longlong resourceHandle,uint32 *memorySize)
        (status = FUN_1808b0010(resourceHandle,memorySize + RESOURCE_HANDLE_OFFSET), localInt1 == 0)))) &&
      (status = FUN_1808b0010(resourceHandle,memorySize + 0x11), localInt1 == 0)) {
     if ((memorySize[1] & RESOURCE_HANDLE_OFFSET0) != 0) {
-      auStackX_8[0] = memorySize[0x12];
+      arrayUnsignedStackX8[0] = memorySize[0x12];
       status = (**(code **)**(uint64 **)(resourceHandle + 8))
-                        (*(uint64 **)(resourceHandle + 8),auStackX_8,4);
+                        (*(uint64 **)(resourceHandle + 8),arrayUnsignedStackX8,4);
       if (status != 0) {
         return;
       }
@@ -14022,19 +14022,19 @@ uint64 FUN_180899d90(longlong resourceHandle,longlong memorySize)
 
 {
   uint64 returnValue;
-  float *pfVar2;
+  float *pfloatValue2;
   int length;
   float floatVar4;
-  uint16_t auStackX_8 [4];
+  uint16_t arrayUnsignedStackX8 [4];
   
-  auStackX_8[0] = CONCAT11(auStackX_8[0]._1_1_,*(byte *)(memorySize + RESOURCE_HANDLE_OFFSET4));
-  returnValue = (**(code **)**(uint64 **)(resourceHandle + 8))(*(uint64 **)(resourceHandle + 8),auStackX_8,1);
+  arrayUnsignedStackX8[0] = CONCAT11(arrayUnsignedStackX8[0]._1_1_,*(byte *)(memorySize + RESOURCE_HANDLE_OFFSET4));
+  returnValue = (**(code **)**(uint64 **)(resourceHandle + 8))(*(uint64 **)(resourceHandle + 8),arrayUnsignedStackX8,1);
   if ((int)returnValue == 0) {
     length = 0;
     if (0 < *(short *)(memorySize + RESOURCE_HANDLE_OFFSET4)) {
-      pfVar2 = (float *)(memorySize + 0x84);
+      pfloatValue2 = (float *)(memorySize + 0x84);
       do {
-        floatVar4 = pfVar2[-POINTER_OFFSET_DATA] * 0.25;
+        floatVar4 = pfloatValue2[-POINTER_OFFSET_DATA] * 0.25;
         if (0.0 <= floatVar4) {
           if (1.0 <= floatVar4) {
             floatVar4 = 1.0;
@@ -14043,13 +14043,13 @@ uint64 FUN_180899d90(longlong resourceHandle,longlong memorySize)
         else {
           floatVar4 = 0.0;
         }
-        auStackX_8[0] = (data2)(int)(floatVar4 * 65535.0);
+        arrayUnsignedStackX8[0] = (data2)(int)(floatVar4 * 65535.0);
         returnValue = (**(code **)**(uint64 **)(resourceHandle + 8))
-                          (*(uint64 **)(resourceHandle + 8),auStackX_8,2);
+                          (*(uint64 **)(resourceHandle + 8),arrayUnsignedStackX8,2);
         if ((int)returnValue != 0) {
           return returnValue;
         }
-        floatVar4 = *pfVar2 * 0.25;
+        floatVar4 = *pfloatValue2 * 0.25;
         if (0.0 <= floatVar4) {
           if (1.0 <= floatVar4) {
             floatVar4 = 1.0;
@@ -14058,14 +14058,14 @@ uint64 FUN_180899d90(longlong resourceHandle,longlong memorySize)
         else {
           floatVar4 = 0.0;
         }
-        auStackX_8[0] = (data2)(int)(floatVar4 * 65535.0);
+        arrayUnsignedStackX8[0] = (data2)(int)(floatVar4 * 65535.0);
         returnValue = (**(code **)**(uint64 **)(resourceHandle + 8))
-                          (*(uint64 **)(resourceHandle + 8),auStackX_8,2);
+                          (*(uint64 **)(resourceHandle + 8),arrayUnsignedStackX8,2);
         if ((int)returnValue != 0) {
           return returnValue;
         }
         length = length + 1;
-        pfVar2 = pfVar2 + 1;
+        pfloatValue2 = pfloatValue2 + 1;
       } while (length < *(short *)(memorySize + RESOURCE_HANDLE_OFFSET4));
     }
     returnValue = 0;
@@ -14079,7 +14079,7 @@ uint64 FUN_180899dc7(void)
 
 {
   uint64 returnValue;
-  float *pfVar2;
+  float *pfloatValue2;
   longlong unaff_RBP;
   longlong unaff_RSI;
   int length;
@@ -14088,9 +14088,9 @@ uint64 FUN_180899dc7(void)
   
   length = 0;
   if (0 < *(short *)(unaff_RSI + RESOURCE_HANDLE_OFFSET4)) {
-    pfVar2 = (float *)(unaff_RSI + 0x84);
+    pfloatValue2 = (float *)(unaff_RSI + 0x84);
     do {
-      floatVar4 = pfVar2[-POINTER_OFFSET_DATA] * 0.25;
+      floatVar4 = pfloatValue2[-POINTER_OFFSET_DATA] * 0.25;
       if (0.0 <= floatVar4) {
         if (1.0 <= floatVar4) {
           floatVar4 = 1.0;
@@ -14105,7 +14105,7 @@ uint64 FUN_180899dc7(void)
       if ((int)returnValue != 0) {
         return returnValue;
       }
-      floatVar4 = *pfVar2 * 0.25;
+      floatVar4 = *pfloatValue2 * 0.25;
       if (0.0 <= floatVar4) {
         if (1.0 <= floatVar4) {
           floatVar4 = 1.0;
@@ -14121,7 +14121,7 @@ uint64 FUN_180899dc7(void)
         return returnValue;
       }
       length = length + 1;
-      pfVar2 = pfVar2 + 1;
+      pfloatValue2 = pfloatValue2 + 1;
     } while (length < *(short *)(unaff_RSI + RESOURCE_HANDLE_OFFSET4));
   }
   return 0;
@@ -14145,17 +14145,17 @@ void discoverUtilityComponents(longlong resourceHandle,uint32 *memorySize)
 
 {
   int status;
-  uint32 auStackX_8 [2];
+  uint32 arrayUnsignedStackX8 [2];
   
-  auStackX_8[0] = *memorySize;
-  status = (**(code **)**(uint64 **)(resourceHandle + 8))(*(uint64 **)(resourceHandle + 8),auStackX_8,4);
+  arrayUnsignedStackX8[0] = *memorySize;
+  status = (**(code **)**(uint64 **)(resourceHandle + 8))(*(uint64 **)(resourceHandle + 8),arrayUnsignedStackX8,4);
   if (status == 0) {
-    auStackX_8[0]._0_2_ = *(uint16_t *)(memorySize + 1);
-    status = (**(code **)**(uint64 **)(resourceHandle + 8))(*(uint64 **)(resourceHandle + 8),auStackX_8,2);
+    arrayUnsignedStackX8[0]._0_2_ = *(uint16_t *)(memorySize + 1);
+    status = (**(code **)**(uint64 **)(resourceHandle + 8))(*(uint64 **)(resourceHandle + 8),arrayUnsignedStackX8,2);
     if (status == 0) {
-      auStackX_8[0] = CONCAT22(auStackX_8[0]._2_2_,*(uint16_t *)((longlong)memorySize + 6));
+      arrayUnsignedStackX8[0] = CONCAT22(arrayUnsignedStackX8[0]._2_2_,*(uint16_t *)((longlong)memorySize + 6));
       status = (**(code **)**(uint64 **)(resourceHandle + 8))
-                        (*(uint64 **)(resourceHandle + 8),auStackX_8,2);
+                        (*(uint64 **)(resourceHandle + 8),arrayUnsignedStackX8,2);
       if (status == 0) {
         (**(code **)**(uint64 **)(resourceHandle + 8))(*(uint64 **)(resourceHandle + 8),memorySize + 2,8);
       }
@@ -14172,13 +14172,13 @@ void identifyUtilityParts(longlong resourceHandle,uint32 *memorySize)
 
 {
   int status;
-  uint32 auStackX_8 [2];
+  uint32 arrayUnsignedStackX8 [2];
   
-  auStackX_8[0] = *memorySize;
-  status = (**(code **)**(uint64 **)(resourceHandle + 8))(*(uint64 **)(resourceHandle + 8),auStackX_8,4);
+  arrayUnsignedStackX8[0] = *memorySize;
+  status = (**(code **)**(uint64 **)(resourceHandle + 8))(*(uint64 **)(resourceHandle + 8),arrayUnsignedStackX8,4);
   if (status == 0) {
-    auStackX_8[0] = memorySize[1];
-    (**(code **)**(uint64 **)(resourceHandle + 8))(*(uint64 **)(resourceHandle + 8),auStackX_8,4);
+    arrayUnsignedStackX8[0] = memorySize[1];
+    (**(code **)**(uint64 **)(resourceHandle + 8))(*(uint64 **)(resourceHandle + 8),arrayUnsignedStackX8,4);
   }
   return;
 }
@@ -17094,7 +17094,7 @@ void linkUtilityResources(longlong resourceHandle,uint64 *memorySize,int operati
   uint unsignedVar5;
   longlong longVar6;
   uint unsignedVar7;
-  uint auStackX_8 [2];
+  uint arrayUnsignedStackX8 [2];
   uint auStackX_20 [2];
   
   auStackX_20[0] = FUN_1808a5630(memorySize,resourceHandle,0);
@@ -17120,11 +17120,11 @@ void linkUtilityResources(longlong resourceHandle,uint64 *memorySize,int operati
            (longlong)(int)(unsignedVar5 - status) << 4);
   }
   *(uint *)(resourceHandle + RESOURCE_OFFSET_HANDLE) = unsignedVar5;
-  auStackX_8[0] = 0;
+  arrayUnsignedStackX8[0] = 0;
   status = 0;
   if (returnValue >> 1 != 0) {
     do {
-      length = FUN_1808dde10(memorySize,auStackX_8[0]);
+      length = FUN_1808dde10(memorySize,arrayUnsignedStackX8[0]);
       if (length != 0) {
         return;
       }
@@ -17137,24 +17137,24 @@ void linkUtilityResources(longlong resourceHandle,uint64 *memorySize,int operati
       if (length != 0) {
         return;
       }
-      length = FUN_1808de0e0(memorySize,auStackX_8);
+      length = FUN_1808de0e0(memorySize,arrayUnsignedStackX8);
       if (length != 0) {
         return;
       }
       status = status + 1;
-      auStackX_8[0] = auStackX_8[0] & -unsignedVar7;
+      arrayUnsignedStackX8[0] = arrayUnsignedStackX8[0] & -unsignedVar7;
     } while (status < (int)unsignedVar5);
   }
-  auStackX_8[0] = 0;
-  status = FUN_1808afe30(*memorySize,auStackX_8);
-  returnValue = auStackX_8[0];
+  arrayUnsignedStackX8[0] = 0;
+  status = FUN_1808afe30(*memorySize,arrayUnsignedStackX8);
+  returnValue = arrayUnsignedStackX8[0];
   if (status != 0) {
     return;
   }
-  longVar6 = (longlong)(int)auStackX_8[0];
+  longVar6 = (longlong)(int)arrayUnsignedStackX8[0];
   unsignedVar4 = (int)*(uint *)(resourceHandle + FIELD_OFFSET_4) >> ERROR_CODE_FAILED;
-  if (((int)((*(uint *)(resourceHandle + FIELD_OFFSET_4) ^ unsignedVar4) - unsignedVar4) < (int)auStackX_8[0]) &&
-     (status = process_system_request(resourceHandle + POINTER_OFFSET_DATA,auStackX_8[0]), status != 0)) {
+  if (((int)((*(uint *)(resourceHandle + FIELD_OFFSET_4) ^ unsignedVar4) - unsignedVar4) < (int)arrayUnsignedStackX8[0]) &&
+     (status = process_system_request(resourceHandle + POINTER_OFFSET_DATA,arrayUnsignedStackX8[0]), status != 0)) {
     return;
   }
   status = *(int *)(resourceHandle + BYTE_OFFSET_2);
@@ -17255,7 +17255,7 @@ void bridgeUtilityGaps(void)
     } while (localInt1 < (int)unsignedVar4);
   }
   in_stack_00000050 = 0;
-  status = FUN_1808afe30(*baseRegister,&stack0x00000050);
+  status = FUN_1808afe30(*baseRegister,&stackBuffer50stackBuffer50);
   status = in_stack_00000050;
   if (status != 0) {
     return;
@@ -17664,7 +17664,7 @@ uint64 * FUN_18089c1fb(void)
   float extraout_XMM0_Da_02;
   float extraout_XMM0_Da_03;
   float extraout_XMM0_Da_04;
-  float fVar21;
+  float floatVar21;
   
   if (*(int *)(inputRegister + RESOURCE_OFFSET_HANDLE) != 0) {
     return (uint64 *)BYTE_OFFSET_FLAG;
@@ -17713,7 +17713,7 @@ uint64 * FUN_18089c1fb(void)
   }
   if (0x81 < *(uint *)(unaff_RDI + 8)) {
     preturnValue1 = (uint64 *)FUN_1808a79f0(localUInt20,unaff_RSI + SYSTEM_OFFSET_STATUS1);
-    fVar21 = extraout_XMM0_Da_00;
+    floatVar21 = extraout_XMM0_Da_00;
     if ((int)preturnValue1 != 0) {
       return preturnValue1;
     }
@@ -17779,7 +17779,7 @@ LAB_18089c40a:
       return preturnValue3;
     }
     localInt19 = *(int *)(unaff_RBP + -0x21);
-    fVar21 = extraout_XMM0_Da_03;
+    floatVar21 = extraout_XMM0_Da_03;
     if (localInt19 == 0) {
       preturnValue3 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
     }
@@ -17790,7 +17790,7 @@ LAB_18089c40a:
         preturnValue3 = (uint64 *)(ulonglong)unsignedVar9;
         if (unsignedVar9 != 0) goto LAB_18089c40a;
         localInt19 = *(int *)(unaff_RBP + -0x21);
-        fVar21 = extraout_XMM0_Da_04;
+        floatVar21 = extraout_XMM0_Da_04;
       }
       preturnValue3 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
       for (preturnValue6 = preturnValue3; (preturnValue3 <= preturnValue6 && (preturnValue6 < preturnValue3 + (longlong)localInt19 * 3));
@@ -17804,8 +17804,8 @@ LAB_18089c40a:
         *preturnValue3 = *preturnValue6;
         preturnValue3[1] = returnValue;
         *(uint32 *)(preturnValue3 + 2) = *(uint32 *)(preturnValue6 + 2);
-        fVar21 = *(float *)((longlong)preturnValue6 + 0x14) + *(float *)(preturnValue6 + 2);
-        *(float *)((longlong)preturnValue3 + 0x14) = fVar21;
+        floatVar21 = *(float *)((longlong)preturnValue6 + 0x14) + *(float *)(preturnValue6 + 2);
+        *(float *)((longlong)preturnValue3 + 0x14) = floatVar21;
         *(byte *)(preturnValue3 + 3) = 1;
         localInt19 = *(int *)(unaff_RBP + -0x21);
         preturnValue3 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
@@ -17833,11 +17833,11 @@ LAB_18089c40a:
         localLong17 = (longlong)localInt19 * RESOURCE_OFFSET_HANDLE + 0x14 + (longlong)preturnValue3;
         do {
           pfVar14 = (float *)FUN_180847820();
-          fVar21 = *pfVar14;
+          floatVar21 = *pfVar14;
           floatVar5 = pfVar14[1];
           floatVar6 = pfVar14[2];
           floatVar7 = pfVar14[3];
-          *(float *)(localLong17 + -0x14) = fVar21;
+          *(float *)(localLong17 + -0x14) = floatVar21;
           *(float *)(localLong17 + -RESOURCE_HANDLE_OFFSET) = floatVar5;
           *(float *)(localLong17 + -0xc) = floatVar6;
           *(float *)(localLong17 + -8) = floatVar7;
@@ -17853,12 +17853,12 @@ LAB_18089c40a:
       unsignedVar9 = -unsignedVar9;
     }
     if (unsignedVar9 != 0) {
-      fVar21 = (float)FUN_1808aef40(unaff_RBP + -BYTE_OFFSET_1,0);
+      floatVar21 = (float)FUN_1808aef40(unaff_RBP + -BYTE_OFFSET_1,0);
     }
   }
   else {
     preturnValue1 = (uint64 *)FUN_1808a5780(localUInt20,unaff_RSI + BUFFER_OFFSET_DATA);
-    fVar21 = extraout_XMM0_Da_02;
+    floatVar21 = extraout_XMM0_Da_02;
     if ((int)preturnValue1 != 0) {
       return preturnValue1;
     }
@@ -17868,18 +17868,18 @@ LAB_18089c586:
       (*(ulonglong *)(unaff_RSI + BUFFER_OFFSET_DATA) <= returnValue5 &&
       (returnValue5 < (longlong)*(int *)(unaff_RSI + LIST_OFFSET_HEAD) * BYTE_OFFSET_FLAG + *(ulonglong *)(unaff_RSI + BUFFER_OFFSET_DATA)));
       returnValue5 = returnValue5 + BYTE_OFFSET_FLAG) {
-    fVar21 = (float)FUN_1807d3e20(unaff_RSI + SYSTEM_OFFSET_STATUS1);
+    floatVar21 = (float)FUN_1807d3e20(unaff_RSI + SYSTEM_OFFSET_STATUS1);
   }
 LAB_18089c300:
   if ((0x70 < *(uint *)(unaff_RDI + 8)) && (unsignedVar8 = BYTE_OFFSET_FLAG, *(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0)) {
     unsignedVar8 = FUN_1808aed00(*unaff_RDI,unaff_RSI + 0x68,4);
-    fVar21 = extraout_XMM0_Da_01;
+    floatVar21 = extraout_XMM0_Da_01;
   }
   if (unsignedVar8 != 0) {
     return (uint64 *)(ulonglong)unsignedVar8;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(fVar21,unaff_RBP + -9);
+  FUN_1808ddf80(floatVar21,unaff_RBP + -9);
 }
 
 
@@ -17918,7 +17918,7 @@ uint64 * FUN_18089c22e(void)
   float extraout_XMM0_Da_02;
   float extraout_XMM0_Da_03;
   float extraout_XMM0_Da_04;
-  float fVar21;
+  float floatVar21;
   
   preturnValue1 = (uint32 *)FUN_180847820();
   preturnValue3 = (uint64 *)0x0;
@@ -17960,7 +17960,7 @@ uint64 * FUN_18089c22e(void)
   }
   if (0x81 < *(uint *)(unaff_RDI + 8)) {
     preturnValue3 = (uint64 *)FUN_1808a79f0(localUInt20,unaff_RSI + SYSTEM_OFFSET_STATUS1);
-    fVar21 = extraout_XMM0_Da_00;
+    floatVar21 = extraout_XMM0_Da_00;
     if ((int)preturnValue3 != 0) {
       return preturnValue3;
     }
@@ -18026,7 +18026,7 @@ LAB_18089c40a:
       return preturnValue2;
     }
     localInt19 = *(int *)(unaff_RBP + -0x21);
-    fVar21 = extraout_XMM0_Da_03;
+    floatVar21 = extraout_XMM0_Da_03;
     if (localInt19 == 0) {
       preturnValue2 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
     }
@@ -18037,7 +18037,7 @@ LAB_18089c40a:
         preturnValue2 = (uint64 *)(ulonglong)unsignedVar9;
         if (unsignedVar9 != 0) goto LAB_18089c40a;
         localInt19 = *(int *)(unaff_RBP + -0x21);
-        fVar21 = extraout_XMM0_Da_04;
+        floatVar21 = extraout_XMM0_Da_04;
       }
       preturnValue2 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
       for (preturnValue6 = preturnValue2; (preturnValue2 <= preturnValue6 && (preturnValue6 < preturnValue2 + (longlong)localInt19 * 3));
@@ -18051,8 +18051,8 @@ LAB_18089c40a:
         *preturnValue2 = *preturnValue6;
         preturnValue2[1] = returnValue;
         *(uint32 *)(preturnValue2 + 2) = *(uint32 *)(preturnValue6 + 2);
-        fVar21 = *(float *)((longlong)preturnValue6 + 0x14) + *(float *)(preturnValue6 + 2);
-        *(float *)((longlong)preturnValue2 + 0x14) = fVar21;
+        floatVar21 = *(float *)((longlong)preturnValue6 + 0x14) + *(float *)(preturnValue6 + 2);
+        *(float *)((longlong)preturnValue2 + 0x14) = floatVar21;
         *(byte *)(preturnValue2 + 3) = 1;
         localInt19 = *(int *)(unaff_RBP + -0x21);
         preturnValue2 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
@@ -18080,11 +18080,11 @@ LAB_18089c40a:
         localLong17 = (longlong)localInt19 * RESOURCE_OFFSET_HANDLE + 0x14 + (longlong)preturnValue2;
         do {
           pfVar14 = (float *)FUN_180847820();
-          fVar21 = *pfVar14;
+          floatVar21 = *pfVar14;
           floatVar5 = pfVar14[1];
           floatVar6 = pfVar14[2];
           floatVar7 = pfVar14[3];
-          *(float *)(localLong17 + -0x14) = fVar21;
+          *(float *)(localLong17 + -0x14) = floatVar21;
           *(float *)(localLong17 + -RESOURCE_HANDLE_OFFSET) = floatVar5;
           *(float *)(localLong17 + -0xc) = floatVar6;
           *(float *)(localLong17 + -8) = floatVar7;
@@ -18100,12 +18100,12 @@ LAB_18089c40a:
       unsignedVar9 = -unsignedVar9;
     }
     if (unsignedVar9 != 0) {
-      fVar21 = (float)FUN_1808aef40(unaff_RBP + -BYTE_OFFSET_1,0);
+      floatVar21 = (float)FUN_1808aef40(unaff_RBP + -BYTE_OFFSET_1,0);
     }
   }
   else {
     preturnValue3 = (uint64 *)FUN_1808a5780(localUInt20,unaff_RSI + BUFFER_OFFSET_DATA);
-    fVar21 = extraout_XMM0_Da_02;
+    floatVar21 = extraout_XMM0_Da_02;
     if ((int)preturnValue3 != 0) {
       return preturnValue3;
     }
@@ -18115,18 +18115,18 @@ LAB_18089c586:
       (*(ulonglong *)(unaff_RSI + BUFFER_OFFSET_DATA) <= returnValue5 &&
       (returnValue5 < (longlong)*(int *)(unaff_RSI + LIST_OFFSET_HEAD) * BYTE_OFFSET_FLAG + *(ulonglong *)(unaff_RSI + BUFFER_OFFSET_DATA)));
       returnValue5 = returnValue5 + BYTE_OFFSET_FLAG) {
-    fVar21 = (float)FUN_1807d3e20(unaff_RSI + SYSTEM_OFFSET_STATUS1);
+    floatVar21 = (float)FUN_1807d3e20(unaff_RSI + SYSTEM_OFFSET_STATUS1);
   }
 LAB_18089c300:
   if ((0x70 < *(uint *)(unaff_RDI + 8)) && (unsignedVar8 = BYTE_OFFSET_FLAG, *(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0)) {
     unsignedVar8 = FUN_1808aed00(*unaff_RDI,unaff_RSI + 0x68,4);
-    fVar21 = extraout_XMM0_Da_01;
+    floatVar21 = extraout_XMM0_Da_01;
   }
   if (unsignedVar8 != 0) {
     return (uint64 *)(ulonglong)unsignedVar8;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(fVar21,unaff_RBP + -9);
+  FUN_1808ddf80(floatVar21,unaff_RBP + -9);
 }
 
 
@@ -18160,18 +18160,18 @@ ulonglong FUN_18089c2d8(uint64 resourceHandle)
   int localInt18;
   uint64 *unaff_R12;
   uint unaff_R15D;
-  bool bVar19;
+  bool boolVar19;
   float extraout_XMM0_Da;
   float extraout_XMM0_Da_00;
   float extraout_XMM0_Da_01;
   float extraout_XMM0_Da_02;
   float extraout_XMM0_Da_03;
-  float fVar20;
+  float floatVar20;
   
   unsignedVar8 = (uint)unaff_R12;
   if (0x81 < in_EAX) {
     returnValue1 = FUN_1808a79f0(resourceHandle,unaff_RSI + SYSTEM_OFFSET_STATUS1);
-    fVar20 = extraout_XMM0_Da;
+    floatVar20 = extraout_XMM0_Da;
     if ((int)returnValue1 != 0) {
       return returnValue1;
     }
@@ -18238,7 +18238,7 @@ LAB_18089c40a:
       return returnValue1;
     }
     localInt18 = *(int *)(unaff_RBP + -0x21);
-    fVar20 = extraout_XMM0_Da_02;
+    floatVar20 = extraout_XMM0_Da_02;
     if (localInt18 == 0) {
       preturnValue4 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
     }
@@ -18249,7 +18249,7 @@ LAB_18089c40a:
         returnValue1 = (ulonglong)unsignedVar9;
         if (unsignedVar9 != 0) goto LAB_18089c40a;
         localInt18 = *(int *)(unaff_RBP + -0x21);
-        fVar20 = extraout_XMM0_Da_03;
+        floatVar20 = extraout_XMM0_Da_03;
       }
       preturnValue4 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
       for (preturnValue5 = preturnValue4; (preturnValue4 <= preturnValue5 && (preturnValue5 < preturnValue4 + (longlong)localInt18 * 3));
@@ -18263,8 +18263,8 @@ LAB_18089c40a:
         *preturnValue4 = *preturnValue5;
         preturnValue4[1] = unsignedVar7;
         *(uint32 *)(preturnValue4 + 2) = *(uint32 *)(preturnValue5 + 2);
-        fVar20 = *(float *)((longlong)preturnValue5 + 0x14) + *(float *)(preturnValue5 + 2);
-        *(float *)((longlong)preturnValue4 + 0x14) = fVar20;
+        floatVar20 = *(float *)((longlong)preturnValue5 + 0x14) + *(float *)(preturnValue5 + 2);
+        *(float *)((longlong)preturnValue4 + 0x14) = floatVar20;
         *(byte *)(preturnValue4 + 3) = 1;
         localInt18 = *(int *)(unaff_RBP + -0x21);
         preturnValue4 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
@@ -18292,11 +18292,11 @@ LAB_18089c40a:
         localLong16 = (longlong)localInt18 * RESOURCE_OFFSET_HANDLE + 0x14 + (longlong)preturnValue4;
         do {
           pfVar13 = (float *)FUN_180847820();
-          fVar20 = *pfVar13;
+          floatVar20 = *pfVar13;
           floatVar4 = pfVar13[1];
           floatVar5 = pfVar13[2];
           floatVar6 = pfVar13[3];
-          *(float *)(localLong16 + -0x14) = fVar20;
+          *(float *)(localLong16 + -0x14) = floatVar20;
           *(float *)(localLong16 + -RESOURCE_HANDLE_OFFSET) = floatVar4;
           *(float *)(localLong16 + -0xc) = floatVar5;
           *(float *)(localLong16 + -8) = floatVar6;
@@ -18312,12 +18312,12 @@ LAB_18089c40a:
       unsignedVar9 = -unsignedVar9;
     }
     if (unsignedVar9 != 0) {
-      fVar20 = (float)FUN_1808aef40(unaff_RBP + -BYTE_OFFSET_1,0);
+      floatVar20 = (float)FUN_1808aef40(unaff_RBP + -BYTE_OFFSET_1,0);
     }
   }
   else {
     returnValue1 = FUN_1808a5780(resourceHandle,unaff_RSI + BUFFER_OFFSET_DATA);
-    fVar20 = extraout_XMM0_Da_01;
+    floatVar20 = extraout_XMM0_Da_01;
     if ((int)returnValue1 != 0) {
       return returnValue1;
     }
@@ -18327,19 +18327,19 @@ LAB_18089c586:
       (*(ulonglong *)(unaff_RSI + BUFFER_OFFSET_DATA) <= returnValue1 &&
       (returnValue1 < (longlong)*(int *)(unaff_RSI + LIST_OFFSET_HEAD) * BYTE_OFFSET_FLAG + *(ulonglong *)(unaff_RSI + BUFFER_OFFSET_DATA)));
       returnValue1 = returnValue1 + BYTE_OFFSET_FLAG) {
-    fVar20 = (float)FUN_1807d3e20(unaff_RSI + SYSTEM_OFFSET_STATUS1);
+    floatVar20 = (float)FUN_1807d3e20(unaff_RSI + SYSTEM_OFFSET_STATUS1);
   }
 LAB_18089c300:
   if ((0x70 < *(uint *)(unaff_RDI + 8)) &&
-     (bVar19 = *(uint *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == unsignedVar8, unsignedVar8 = unaff_R15D, bVar19)) {
+     (boolVar19 = *(uint *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == unsignedVar8, unsignedVar8 = unaff_R15D, boolVar19)) {
     unsignedVar8 = FUN_1808aed00(*unaff_RDI,unaff_RSI + 0x68,4);
-    fVar20 = extraout_XMM0_Da_00;
+    floatVar20 = extraout_XMM0_Da_00;
   }
   if (unsignedVar8 != 0) {
     return (ulonglong)unsignedVar8;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(fVar20,unaff_RBP + -9);
+  FUN_1808ddf80(floatVar20,unaff_RBP + -9);
 }
 
 
@@ -19115,7 +19115,7 @@ ulonglong FUN_18089c86d(void)
   float extraout_XMM0_Da_03;
   float extraout_XMM0_Da_04;
   float extraout_XMM0_Da_05;
-  float fVar12;
+  float floatVar12;
   float extraout_XMM0_Da_06;
   uint32 extraout_XMM0_Da_07;
   uint32 extraout_XMM0_Da_08;
@@ -19170,7 +19170,7 @@ ulonglong FUN_18089c86d(void)
   }
   unsignedVar3 = (data7)(unaff_RDI >> 8);
   integerVar7 = 0;
-  fVar12 = extraout_XMM0_Da;
+  floatVar12 = extraout_XMM0_Da;
   localInt11 = integerVar7;
   localInt10 = unaff_R14D;
   if (*(uint *)(baseRegister + 8) < 0x70) {
@@ -19183,12 +19183,12 @@ ulonglong FUN_18089c86d(void)
       else if (plocalLong1[2] == unaff_RDI) {
 LAB_18089c9a8:
         unsignedVar4 = FUN_180769ed0(*plocalLong1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
-        fVar12 = extraout_XMM0_Da_01;
+        floatVar12 = extraout_XMM0_Da_01;
       }
       else {
         *(uint32 *)(unaff_RBP + -0x25) = 0;
         unsignedVar4 = func_0x00018076a7d0(buffer,unaff_RBP + -0x25);
-        fVar12 = extraout_XMM0_Da_00;
+        floatVar12 = extraout_XMM0_Da_00;
         if (unsignedVar4 == 0) {
           if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)plocalLong1[2])
           goto LAB_18089c9a8;
@@ -19218,7 +19218,7 @@ LAB_18089c9a8:
     return unsignedVar5;
   }
   if ((*(uint *)(baseRegister + 8) < DATA_OFFSET_START) &&
-     (unsignedVar5 = func_0x0001808de610(), fVar12 = extraout_XMM0_Da_02, (int)unsignedVar5 != 0)) {
+     (unsignedVar5 = func_0x0001808de610(), floatVar12 = extraout_XMM0_Da_02, (int)unsignedVar5 != 0)) {
     return unsignedVar5;
   }
   if (*(uint *)(baseRegister + 8) < 0x52) {
@@ -19226,7 +19226,7 @@ LAB_18089c9a8:
   }
   else if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
     unsignedVar5 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + BUFFER_OFFSET_DATA);
-    fVar12 = extraout_XMM0_Da_03;
+    floatVar12 = extraout_XMM0_Da_03;
   }
   else {
     unsignedVar5 = BYTE_OFFSET_FLAG;
@@ -19250,12 +19250,12 @@ LAB_18089c9a8:
   else if (plocalLong1[2] == unaff_RDI) {
 LAB_18089ca9c:
     unsignedVar4 = FUN_180769ed0(*plocalLong1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
-    fVar12 = extraout_XMM0_Da_05;
+    floatVar12 = extraout_XMM0_Da_05;
   }
   else {
     *(uint32 *)(unaff_RBP + -0x25) = 0;
     unsignedVar4 = func_0x00018076a7d0(buffer,unaff_RBP + -0x25);
-    fVar12 = extraout_XMM0_Da_04;
+    floatVar12 = extraout_XMM0_Da_04;
     if (unsignedVar4 == 0) {
       if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)plocalLong1[2]) goto LAB_18089ca9c;
       unsignedVar4 = 0x11;
@@ -19282,8 +19282,8 @@ LAB_18089cad8:
     unsignedVar4 = *(uint *)(baseRegister + 8);
   }
   if ((unsignedVar4 < 0x87) && ((*(uint *)(unaff_R13 + FIELD_OFFSET_2) >> 3 & 1) != 0)) {
-    fVar12 = *(float *)(unaff_R13 + 0x3c) - 1.0;
-    *(float *)(unaff_R13 + 0x3c) = fVar12;
+    floatVar12 = *(float *)(unaff_R13 + 0x3c) - 1.0;
+    *(float *)(unaff_R13 + 0x3c) = floatVar12;
     unsignedVar4 = *(uint *)(baseRegister + 8);
   }
   if (0x8a < unsignedVar4) {
@@ -19300,10 +19300,10 @@ LAB_18089cad8:
     }
     *(uint32 *)(unaff_RBP + 0x77) = 0;
     unsignedVar5 = unaff_RDI & 0xffffffff;
-    fVar12 = extraout_XMM0_Da_06;
+    floatVar12 = extraout_XMM0_Da_06;
     if (unsignedVar4 >> 1 != 0) {
       do {
-        unsignedVar6 = FUN_1808dde10(fVar12,unaff_RDI & 0xffffffff);
+        unsignedVar6 = FUN_1808dde10(floatVar12,unaff_RDI & 0xffffffff);
         if ((int)unsignedVar6 != 0) {
           return unsignedVar6;
         }
@@ -19328,12 +19328,12 @@ LAB_18089cad8:
         unsignedVar9 = *(uint *)(unaff_RBP + 0x77) & -(unsignedVar4 & 1);
         unaff_RDI = (ulonglong)unsignedVar9;
         *(uint *)(unaff_RBP + 0x77) = unsignedVar9;
-        fVar12 = extraout_XMM0_Da_09;
+        floatVar12 = extraout_XMM0_Da_09;
       } while ((int)unsignedVar8 < (int)(unsignedVar4 >> 1));
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(fVar12,unaff_RBP + -0x21);
+  FUN_1808ddf80(floatVar12,unaff_RBP + -0x21);
 }
 
 
@@ -19365,7 +19365,7 @@ ulonglong FUN_18089c872(void)
   float extraout_XMM0_Da_03;
   float extraout_XMM0_Da_04;
   float extraout_XMM0_Da_05;
-  float fVar12;
+  float floatVar12;
   float extraout_XMM0_Da_06;
   uint32 extraout_XMM0_Da_07;
   uint32 extraout_XMM0_Da_08;
@@ -19420,7 +19420,7 @@ ulonglong FUN_18089c872(void)
   }
   unsignedVar3 = (data7)(unaff_RDI >> 8);
   integerVar7 = 0;
-  fVar12 = extraout_XMM0_Da;
+  floatVar12 = extraout_XMM0_Da;
   localInt11 = integerVar7;
   localInt10 = unaff_R14D;
   if (*(uint *)(baseRegister + 8) < 0x70) {
@@ -19433,12 +19433,12 @@ ulonglong FUN_18089c872(void)
       else if (plocalLong1[2] == unaff_RDI) {
 LAB_18089c9a8:
         unsignedVar4 = FUN_180769ed0(*plocalLong1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
-        fVar12 = extraout_XMM0_Da_01;
+        floatVar12 = extraout_XMM0_Da_01;
       }
       else {
         *(uint32 *)(unaff_RBP + -0x25) = 0;
         unsignedVar4 = func_0x00018076a7d0(buffer,unaff_RBP + -0x25);
-        fVar12 = extraout_XMM0_Da_00;
+        floatVar12 = extraout_XMM0_Da_00;
         if (unsignedVar4 == 0) {
           if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)plocalLong1[2])
           goto LAB_18089c9a8;
@@ -19468,7 +19468,7 @@ LAB_18089c9a8:
     return unsignedVar5;
   }
   if ((*(uint *)(baseRegister + 8) < DATA_OFFSET_START) &&
-     (unsignedVar5 = func_0x0001808de610(), fVar12 = extraout_XMM0_Da_02, (int)unsignedVar5 != 0)) {
+     (unsignedVar5 = func_0x0001808de610(), floatVar12 = extraout_XMM0_Da_02, (int)unsignedVar5 != 0)) {
     return unsignedVar5;
   }
   if (*(uint *)(baseRegister + 8) < 0x52) {
@@ -19476,7 +19476,7 @@ LAB_18089c9a8:
   }
   else if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
     unsignedVar5 = rateUtilityEffectiveness(*baseRegister,unaff_R13 + BUFFER_OFFSET_DATA);
-    fVar12 = extraout_XMM0_Da_03;
+    floatVar12 = extraout_XMM0_Da_03;
   }
   else {
     unsignedVar5 = BYTE_OFFSET_FLAG;
@@ -19500,12 +19500,12 @@ LAB_18089c9a8:
   else if (plocalLong1[2] == unaff_RDI) {
 LAB_18089ca9c:
     unsignedVar4 = FUN_180769ed0(*plocalLong1,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
-    fVar12 = extraout_XMM0_Da_05;
+    floatVar12 = extraout_XMM0_Da_05;
   }
   else {
     *(uint32 *)(unaff_RBP + -0x25) = 0;
     unsignedVar4 = func_0x00018076a7d0(buffer,unaff_RBP + -0x25);
-    fVar12 = extraout_XMM0_Da_04;
+    floatVar12 = extraout_XMM0_Da_04;
     if (unsignedVar4 == 0) {
       if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)plocalLong1[2]) goto LAB_18089ca9c;
       unsignedVar4 = 0x11;
@@ -19532,8 +19532,8 @@ LAB_18089cad8:
     unsignedVar4 = *(uint *)(baseRegister + 8);
   }
   if ((unsignedVar4 < 0x87) && ((*(uint *)(unaff_R13 + FIELD_OFFSET_2) >> 3 & 1) != 0)) {
-    fVar12 = *(float *)(unaff_R13 + 0x3c) - 1.0;
-    *(float *)(unaff_R13 + 0x3c) = fVar12;
+    floatVar12 = *(float *)(unaff_R13 + 0x3c) - 1.0;
+    *(float *)(unaff_R13 + 0x3c) = floatVar12;
     unsignedVar4 = *(uint *)(baseRegister + 8);
   }
   if (0x8a < unsignedVar4) {
@@ -19550,10 +19550,10 @@ LAB_18089cad8:
     }
     *(uint32 *)(unaff_RBP + 0x77) = 0;
     unsignedVar5 = unaff_RDI & 0xffffffff;
-    fVar12 = extraout_XMM0_Da_06;
+    floatVar12 = extraout_XMM0_Da_06;
     if (unsignedVar4 >> 1 != 0) {
       do {
-        unsignedVar6 = FUN_1808dde10(fVar12,unaff_RDI & 0xffffffff);
+        unsignedVar6 = FUN_1808dde10(floatVar12,unaff_RDI & 0xffffffff);
         if ((int)unsignedVar6 != 0) {
           return unsignedVar6;
         }
@@ -19578,12 +19578,12 @@ LAB_18089cad8:
         unsignedVar9 = *(uint *)(unaff_RBP + 0x77) & -(unsignedVar4 & 1);
         unaff_RDI = (ulonglong)unsignedVar9;
         *(uint *)(unaff_RBP + 0x77) = unsignedVar9;
-        fVar12 = extraout_XMM0_Da_09;
+        floatVar12 = extraout_XMM0_Da_09;
       } while ((int)unsignedVar8 < (int)(unsignedVar4 >> 1));
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(fVar12,unaff_RBP + -0x21);
+  FUN_1808ddf80(floatVar12,unaff_RBP + -0x21);
 }
 
 
@@ -19616,7 +19616,7 @@ ulonglong FUN_18089c94a(float resourceHandle)
   float extraout_XMM0_Da_03;
   float extraout_XMM0_Da_04;
   float extraout_XMM0_Da_05;
-  float fVar13;
+  float floatVar13;
   uint32 extraout_XMM0_Da_06;
   uint32 extraout_XMM0_Da_07;
   uint32 returnValue4;
@@ -19755,10 +19755,10 @@ LAB_18089cbf6:
         *(int *)(unaff_RBP + 0x77) = integerVar9;
         unsignedVar6 = unaff_RDI & 0xffffffff;
         resourceHandle = extraout_XMM0_Da_05;
-        fVar13 = extraout_XMM0_Da_05;
+        floatVar13 = extraout_XMM0_Da_05;
         if (unsignedVar4 >> 1 != 0) {
           do {
-            unsignedVar5 = FUN_1808dde10(fVar13,unaff_RDI & 0xffffffff);
+            unsignedVar5 = FUN_1808dde10(floatVar13,unaff_RDI & 0xffffffff);
             if ((int)unsignedVar5 != 0) {
               return unsignedVar5;
             }
@@ -19784,7 +19784,7 @@ LAB_18089cbf6:
             unaff_RDI = (ulonglong)returnValue0;
             *(uint *)(unaff_RBP + 0x77) = returnValue0;
             resourceHandle = extraout_XMM0_Da_08;
-            fVar13 = extraout_XMM0_Da_08;
+            floatVar13 = extraout_XMM0_Da_08;
           } while ((int)unsignedVar8 < (int)(unsignedVar4 >> 1));
         }
         goto LAB_18089cbf6;
@@ -24521,7 +24521,7 @@ void Unwind_180901f60(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x2b8);
@@ -24530,12 +24530,12 @@ void Unwind_180901f60(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -24557,7 +24557,7 @@ void Unwind_180901f70(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x2b8);
@@ -24566,12 +24566,12 @@ void Unwind_180901f70(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -24610,7 +24610,7 @@ void Unwind_180901fa0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + POINTER_OFFSET_DATA) + 0x218);
@@ -24619,12 +24619,12 @@ void Unwind_180901fa0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -24646,7 +24646,7 @@ void Unwind_180901fc0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x40) + 0x218);
@@ -24655,12 +24655,12 @@ void Unwind_180901fc0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -25157,7 +25157,7 @@ void Unwind_1809023f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + BUFFER_OFFSET_DATA);
@@ -25166,12 +25166,12 @@ void Unwind_1809023f0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -25399,7 +25399,7 @@ void Unwind_180902510(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x120);
@@ -25408,12 +25408,12 @@ void Unwind_180902510(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -25652,7 +25652,7 @@ void Unwind_180902600(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x70) + 0xc0);
@@ -25661,12 +25661,12 @@ void Unwind_180902600(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -25728,12 +25728,12 @@ void Unwind_180902650(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + 0x70) + LIST_OFFSET_HEAD);
   localLong1 = *(longlong *)(*(longlong *)(memorySize + 0x70) + SYSTEM_OFFSET_STATUS1);
-  for (index = *pbuffer; index != localLong1; index = index + BUFFER_OFFSET_DATA) {
-    FUN_180058c20(index);
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + BUFFER_OFFSET_DATA) {
+    FUN_180058c20(arrayIndex);
   }
   if (*pbuffer == 0) {
     return;
@@ -25749,12 +25749,12 @@ void Unwind_180902660(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = *(longlong **)(memorySize + HANDLE_OFFSET_DATA);
   localLong1 = pbuffer[1];
-  for (index = *pbuffer; index != localLong1; index = index + BUFFER_OFFSET_DATA) {
-    FUN_180058c20(index);
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + BUFFER_OFFSET_DATA) {
+    FUN_180058c20(arrayIndex);
   }
   if (*pbuffer == 0) {
     return;
@@ -25770,16 +25770,16 @@ void Unwind_180902670(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + 0x70) + LIST_OFFSET_HEAD);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x70) + SYSTEM_OFFSET_STATUS1);
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 3) {
-    if ((longlong *)pindex[1] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)pindex[1] + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 3) {
+    if ((longlong *)parrayIndex[1] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)parrayIndex[1] + STRUCT_OFFSET_SIZE))();
     }
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -25796,16 +25796,16 @@ void Unwind_180902680(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = *(longlong **)(memorySize + HANDLE_OFFSET_DATA);
   plocalLong1 = (longlong *)pbuffer[1];
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 3) {
-    if ((longlong *)pindex[1] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)pindex[1] + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 3) {
+    if ((longlong *)parrayIndex[1] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)parrayIndex[1] + STRUCT_OFFSET_SIZE))();
     }
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -25822,25 +25822,25 @@ void Unwind_180902690(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + 0x70) + RESOURCE_HANDLE_OFFSET);
   localLong1 = *(longlong *)(*(longlong *)(memorySize + 0x70) + RESOURCE_OFFSET_HANDLE);
-  index = *pbuffer;
+  arrayIndex = *pbuffer;
   while( true ) {
-    if (index == localLong1) {
+    if (arrayIndex == localLong1) {
       if (*pbuffer == 0) {
         return;
       }
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    if (*(longlong **)(index + 0x40) != (longlong *)0x0) {
-      (**(code **)(**(longlong **)(index + 0x40) + STRUCT_OFFSET_SIZE))();
+    if (*(longlong **)(arrayIndex + 0x40) != (longlong *)0x0) {
+      (**(code **)(**(longlong **)(arrayIndex + 0x40) + STRUCT_OFFSET_SIZE))();
     }
-    if (*(longlong *)(index + POINTER_OFFSET_DATA) != 0) break;
-    FUN_180057830(index);
-    index = index + BUFFER_OFFSET_DATA;
+    if (*(longlong *)(arrayIndex + POINTER_OFFSET_DATA) != 0) break;
+    FUN_180057830(arrayIndex);
+    arrayIndex = arrayIndex + BUFFER_OFFSET_DATA;
   }
                     // WARNING: Subroutine does not return
   HandleCriticalError();
@@ -25853,25 +25853,25 @@ void Unwind_1809026a0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = *(longlong **)(memorySize + HANDLE_OFFSET_DATA);
   localLong1 = pbuffer[1];
-  index = *pbuffer;
+  arrayIndex = *pbuffer;
   while( true ) {
-    if (index == localLong1) {
+    if (arrayIndex == localLong1) {
       if (*pbuffer == 0) {
         return;
       }
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    if (*(longlong **)(index + 0x40) != (longlong *)0x0) {
-      (**(code **)(**(longlong **)(index + 0x40) + STRUCT_OFFSET_SIZE))();
+    if (*(longlong **)(arrayIndex + 0x40) != (longlong *)0x0) {
+      (**(code **)(**(longlong **)(arrayIndex + 0x40) + STRUCT_OFFSET_SIZE))();
     }
-    if (*(longlong *)(index + POINTER_OFFSET_DATA) != 0) break;
-    FUN_180057830(index);
-    index = index + BUFFER_OFFSET_DATA;
+    if (*(longlong *)(arrayIndex + POINTER_OFFSET_DATA) != 0) break;
+    FUN_180057830(arrayIndex);
+    arrayIndex = arrayIndex + BUFFER_OFFSET_DATA;
   }
                     // WARNING: Subroutine does not return
   HandleCriticalError();
@@ -26239,7 +26239,7 @@ void Unwind_180902880(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x70) + RESOURCE_OFFSET_HANDLE);
@@ -26248,12 +26248,12 @@ void Unwind_180902880(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -26286,7 +26286,7 @@ void Unwind_1809028a0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x70) + 0x98);
@@ -26295,12 +26295,12 @@ void Unwind_1809028a0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -26361,7 +26361,7 @@ void Unwind_1809028f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x70) + 0x68);
@@ -26370,12 +26370,12 @@ void Unwind_1809028f0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -26397,7 +26397,7 @@ void Unwind_180902900(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x70) + 0x88);
@@ -26406,12 +26406,12 @@ void Unwind_180902900(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -26574,12 +26574,12 @@ void Unwind_180902970(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + 0x70) + 0x70);
   localLong1 = *(longlong *)(*(longlong *)(memorySize + 0x70) + HANDLE_OFFSET_DATA);
-  for (index = *pbuffer; index != localLong1; index = index + RESOURCE_OFFSET_HANDLE) {
-    FUN_18004bf50(index);
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + RESOURCE_OFFSET_HANDLE) {
+    FUN_18004bf50(arrayIndex);
   }
   if (*pbuffer == 0) {
     return;
@@ -26732,12 +26732,12 @@ void Unwind_180902a60(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = *(longlong **)(memorySize + HANDLE_OFFSET_DATA);
   localLong1 = pbuffer[1];
-  for (index = *pbuffer; index != localLong1; index = index + RESOURCE_OFFSET_HANDLE) {
-    FUN_18004bf50(index);
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + RESOURCE_OFFSET_HANDLE) {
+    FUN_18004bf50(arrayIndex);
   }
   if (*pbuffer == 0) {
     return;
@@ -26753,13 +26753,13 @@ void Unwind_180902a70(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong buffer;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   ulonglong unsignedVar5;
   
-  index = *(longlong *)(memorySize + 0x70);
-  unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
-  localLong1 = *(longlong *)(index + 8);
+  arrayIndex = *(longlong *)(memorySize + 0x70);
+  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  localLong1 = *(longlong *)(arrayIndex + 8);
   unsignedVar5 = 0;
   if (unsignedVar4 != 0) {
     do {
@@ -26774,10 +26774,10 @@ void Unwind_180902a70(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
       unsignedVar5 = unsignedVar5 + 1;
     } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
+    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
-  *(uint64 *)(index + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(index + 8) != 0)) {
+  *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
+  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -26791,13 +26791,13 @@ void Unwind_180902a80(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong buffer;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   ulonglong unsignedVar5;
   
-  index = *(longlong *)(memorySize + HANDLE_OFFSET_DATA);
-  unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
-  localLong1 = *(longlong *)(index + 8);
+  arrayIndex = *(longlong *)(memorySize + HANDLE_OFFSET_DATA);
+  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  localLong1 = *(longlong *)(arrayIndex + 8);
   unsignedVar5 = 0;
   if (unsignedVar4 != 0) {
     do {
@@ -26812,10 +26812,10 @@ void Unwind_180902a80(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
       unsignedVar5 = unsignedVar5 + 1;
     } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
+    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
-  *(uint64 *)(index + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(index + 8) != 0)) {
+  *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
+  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -26829,13 +26829,13 @@ void Unwind_180902a90(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong buffer;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   ulonglong unsignedVar5;
   
-  index = *(longlong *)(memorySize + HANDLE_OFFSET_DATA);
-  unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
-  localLong1 = *(longlong *)(index + 8);
+  arrayIndex = *(longlong *)(memorySize + HANDLE_OFFSET_DATA);
+  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  localLong1 = *(longlong *)(arrayIndex + 8);
   unsignedVar5 = 0;
   if (unsignedVar4 != 0) {
     do {
@@ -26850,10 +26850,10 @@ void Unwind_180902a90(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
       unsignedVar5 = unsignedVar5 + 1;
     } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
+    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
-  *(uint64 *)(index + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(index + 8) != 0)) {
+  *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
+  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -26877,7 +26877,7 @@ void Unwind_180902ab0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x70) + FIELD_OFFSET_1);
@@ -26886,12 +26886,12 @@ void Unwind_180902ab0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -26967,12 +26967,12 @@ void Unwind_180902b30(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = *(longlong **)(memorySize + 0x40);
   localLong1 = pbuffer[1];
-  for (index = *pbuffer; index != localLong1; index = index + BUFFER_OFFSET_DATA) {
-    FUN_180058c20(index);
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + BUFFER_OFFSET_DATA) {
+    FUN_180058c20(arrayIndex);
   }
   if (*pbuffer == 0) {
     return;
@@ -27008,13 +27008,13 @@ void Unwind_180902b60(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong buffer;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   ulonglong unsignedVar5;
   
-  index = *(longlong *)(memorySize + 0x40);
-  unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
-  localLong1 = *(longlong *)(index + 8);
+  arrayIndex = *(longlong *)(memorySize + 0x40);
+  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  localLong1 = *(longlong *)(arrayIndex + 8);
   unsignedVar5 = 0;
   if (unsignedVar4 != 0) {
     do {
@@ -27029,10 +27029,10 @@ void Unwind_180902b60(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
       unsignedVar5 = unsignedVar5 + 1;
     } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
+    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
-  *(uint64 *)(index + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(index + 8) != 0)) {
+  *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
+  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -27046,13 +27046,13 @@ void Unwind_180902b70(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong buffer;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   ulonglong unsignedVar5;
   
-  index = *(longlong *)(memorySize + 0x40);
-  unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
-  localLong1 = *(longlong *)(index + 8);
+  arrayIndex = *(longlong *)(memorySize + 0x40);
+  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  localLong1 = *(longlong *)(arrayIndex + 8);
   unsignedVar5 = 0;
   if (unsignedVar4 != 0) {
     do {
@@ -27067,10 +27067,10 @@ void Unwind_180902b70(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
       unsignedVar5 = unsignedVar5 + 1;
     } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
+    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
-  *(uint64 *)(index + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(index + 8) != 0)) {
+  *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
+  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -27141,7 +27141,7 @@ void Unwind_180902bb0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + BUFFER_OFFSET_TEMP) + BUFFER_OFFSET_DATA);
@@ -27150,12 +27150,12 @@ void Unwind_180902bb0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -27224,7 +27224,7 @@ void Unwind_180902bf0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + MEMORY_SIZE_OFFSET) + BUFFER_OFFSET_DATA);
@@ -27233,12 +27233,12 @@ void Unwind_180902bf0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -27260,7 +27260,7 @@ void Unwind_180902c00(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x98);
@@ -27269,12 +27269,12 @@ void Unwind_180902c00(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -27296,7 +27296,7 @@ void Unwind_180902c10(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x98);
@@ -27305,12 +27305,12 @@ void Unwind_180902c10(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -27341,7 +27341,7 @@ void Unwind_180902c30(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + BYTE_OFFSET_2);
@@ -27350,12 +27350,12 @@ void Unwind_180902c30(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -27377,7 +27377,7 @@ void Unwind_180902c40(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + BYTE_OFFSET_2);
@@ -27386,12 +27386,12 @@ void Unwind_180902c40(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -27543,7 +27543,7 @@ void Unwind_180902cd0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + POINTER_OFFSET_DATA);
@@ -27552,12 +27552,12 @@ void Unwind_180902cd0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -27579,7 +27579,7 @@ void Unwind_180902ce0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + POINTER_OFFSET_DATA);
@@ -27588,12 +27588,12 @@ void Unwind_180902ce0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -27615,13 +27615,13 @@ void Unwind_180902cf0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = *(longlong **)(memorySize + POINTER_OFFSET_DATA);
   plocalLong1 = (longlong *)pbuffer[1];
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -27799,13 +27799,13 @@ void Unwind_180902e10(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + 0x40) + 0x1868);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x40) + 0x1870);
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -27822,13 +27822,13 @@ void Unwind_180902e30(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = *(longlong **)(memorySize + BUFFER_OFFSET_DATA);
   plocalLong1 = (longlong *)pbuffer[1];
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -27864,7 +27864,7 @@ void Unwind_180902e50(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + LIST_OFFSET_HEAD) + BUFFER_OFFSET_DATA);
@@ -27873,12 +27873,12 @@ void Unwind_180902e50(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -27900,7 +27900,7 @@ void Unwind_180902e60(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + SYSTEM_OFFSET_STATUS1);
@@ -27909,12 +27909,12 @@ void Unwind_180902e60(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -27936,7 +27936,7 @@ void Unwind_180902e70(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + SYSTEM_OFFSET_STATUS1);
@@ -27945,12 +27945,12 @@ void Unwind_180902e70(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -28034,7 +28034,7 @@ void Unwind_180902eb0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong *puVar4;
   uint64 *puVar5;
   ulonglong unsignedVar6;
@@ -28048,12 +28048,12 @@ void Unwind_180902eb0(uint64 resourceHandle,longlong memorySize)
   if (plocalUInt2 != (uint64 *)0x0) {
     unsignedVar6 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
     if (unsignedVar6 != 0) {
-      index = unsignedVar6 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar6 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-      index = index - (ulonglong)*(uint *)(index + 4);
-      if ((*(void ***)(unsignedVar6 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-        *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-        *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-        pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+      arrayIndex = unsignedVar6 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar6 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+      arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+      if ((*(void ***)(unsignedVar6 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+        *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+        *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+        pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
         *pstatus = *plocalInt1 + -1;
         if (*plocalInt1 == 0) {
           FUN_18064d630();
@@ -28195,7 +28195,7 @@ void Unwind_180902f60(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x40) + 0x8c8);
@@ -28204,12 +28204,12 @@ void Unwind_180902f60(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -28566,7 +28566,7 @@ void Unwind_180903130(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + BUFFER_OFFSET_TEMP) + POINTER_OFFSET_DATA);
@@ -28575,12 +28575,12 @@ void Unwind_180903130(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -28602,7 +28602,7 @@ void Unwind_180903140(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x88);
@@ -28611,12 +28611,12 @@ void Unwind_180903140(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -28661,7 +28661,7 @@ void Unwind_180903160(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + BUFFER_OFFSET_TEMP) + POINTER_OFFSET_DATA);
@@ -28670,12 +28670,12 @@ void Unwind_180903160(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -28739,7 +28739,7 @@ void Unwind_180903190(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + BUFFER_OFFSET_DATA) + POINTER_OFFSET_DATA);
@@ -28748,12 +28748,12 @@ void Unwind_180903190(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -28775,12 +28775,12 @@ void Unwind_1809031a0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + 0x40) + BYTE_OFFSET_2);
   localLong1 = *(longlong *)(*(longlong *)(memorySize + 0x40) + FIELD_OFFSET_1);
-  for (index = *pbuffer; index != localLong1; index = index + 0x548) {
-    FUN_1800594b0(index);
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + 0x548) {
+    FUN_1800594b0(arrayIndex);
   }
   if (*pbuffer == 0) {
     return;
@@ -28796,12 +28796,12 @@ void Unwind_1809031b0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = *(longlong **)(memorySize + BUFFER_OFFSET_DATA);
   localLong1 = pbuffer[1];
-  for (index = *pbuffer; index != localLong1; index = index + 0x548) {
-    FUN_1800594b0(index);
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + 0x548) {
+    FUN_1800594b0(arrayIndex);
   }
   if (*pbuffer == 0) {
     return;
@@ -28851,7 +28851,7 @@ void Unwind_1809031f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x40) + POINTER_OFFSET_DATA);
@@ -28860,12 +28860,12 @@ void Unwind_1809031f0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -28887,7 +28887,7 @@ void Unwind_180903200(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + BUFFER_OFFSET_DATA);
@@ -28896,12 +28896,12 @@ void Unwind_180903200(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -28923,12 +28923,12 @@ void Unwind_180903210(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = *(longlong **)(memorySize + 0x40);
   localLong1 = pbuffer[1];
-  for (index = *pbuffer; index != localLong1; index = index + 0x548) {
-    FUN_1800594b0(index);
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + 0x548) {
+    FUN_1800594b0(arrayIndex);
   }
   if (*pbuffer == 0) {
     return;
@@ -29058,7 +29058,7 @@ void Unwind_180903310(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x40) + POINTER_OFFSET_DATA);
@@ -29067,12 +29067,12 @@ void Unwind_180903310(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -29224,12 +29224,12 @@ void Unwind_180903440(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = *(longlong **)(memorySize + 0x40);
   localLong1 = pbuffer[1];
-  for (index = *pbuffer; index != localLong1; index = index + LIST_OFFSET_HEAD) {
-    FUN_1800596a0(index);
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + LIST_OFFSET_HEAD) {
+    FUN_1800596a0(arrayIndex);
   }
   if (*pbuffer == 0) {
     return;
@@ -29333,7 +29333,7 @@ void Unwind_1809034b0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x40) + RESOURCE_OFFSET_HANDLE);
@@ -29342,12 +29342,12 @@ void Unwind_1809034b0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -29369,7 +29369,7 @@ void Unwind_1809034c0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + DATA_OFFSET_START) + RESOURCE_OFFSET_HANDLE);
@@ -29378,12 +29378,12 @@ void Unwind_1809034c0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -29405,7 +29405,7 @@ void Unwind_1809034d0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + DATA_OFFSET_START) + RESOURCE_OFFSET_HANDLE);
@@ -29414,12 +29414,12 @@ void Unwind_1809034d0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -29441,7 +29441,7 @@ void Unwind_1809034e0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + DATA_OFFSET_START);
@@ -29450,12 +29450,12 @@ void Unwind_1809034e0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -29477,21 +29477,21 @@ void Unwind_1809034f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
-  index = *(longlong *)(memorySize + 0x40);
+  arrayIndex = *(longlong *)(memorySize + 0x40);
   FUN_18005a050();
-  if ((1 < *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET)) &&
-     (plocalUInt2 = *(uint64 **)(index + 8), plocalUInt2 != (uint64 *)0x0)) {
+  if ((1 < *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET)) &&
+     (plocalUInt2 = *(uint64 **)(arrayIndex + 8), plocalUInt2 != (uint64 *)0x0)) {
     unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
     if (unsignedVar4 != 0) {
-      index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-      index = index - (ulonglong)*(uint *)(index + 4);
-      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-        *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-        *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-        pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+      arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+      arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+        *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+        *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+        pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
         *pstatus = *plocalInt1 + -1;
         if (*plocalInt1 == 0) {
           FUN_18064d630();
@@ -29515,21 +29515,21 @@ void Unwind_180903500(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
-  index = *(longlong *)(memorySize + 0x40);
+  arrayIndex = *(longlong *)(memorySize + 0x40);
   FUN_18005a050();
-  if ((1 < *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET)) &&
-     (plocalUInt2 = *(uint64 **)(index + 8), plocalUInt2 != (uint64 *)0x0)) {
+  if ((1 < *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET)) &&
+     (plocalUInt2 = *(uint64 **)(arrayIndex + 8), plocalUInt2 != (uint64 *)0x0)) {
     unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
     if (unsignedVar4 != 0) {
-      index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-      index = index - (ulonglong)*(uint *)(index + 4);
-      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-        *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-        *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-        pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+      arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+      arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+        *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+        *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+        pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
         *pstatus = *plocalInt1 + -1;
         if (*plocalInt1 == 0) {
           FUN_18064d630();
@@ -29616,7 +29616,7 @@ void Unwind_180903520(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x70) + 0x300);
@@ -29625,12 +29625,12 @@ void Unwind_180903520(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -29666,21 +29666,21 @@ void Unwind_180903560(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
-  index = *(longlong *)(memorySize + 0x70);
+  arrayIndex = *(longlong *)(memorySize + 0x70);
   FUN_18005a050();
-  if ((1 < *(ulonglong *)(index + 0x340)) &&
-     (plocalUInt2 = *(uint64 **)(index + 0x338), plocalUInt2 != (uint64 *)0x0)) {
+  if ((1 < *(ulonglong *)(arrayIndex + 0x340)) &&
+     (plocalUInt2 = *(uint64 **)(arrayIndex + 0x338), plocalUInt2 != (uint64 *)0x0)) {
     unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
     if (unsignedVar4 != 0) {
-      index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-      index = index - (ulonglong)*(uint *)(index + 4);
-      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-        *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-        *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-        pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+      arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+      arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+        *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+        *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+        pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
         *pstatus = *plocalInt1 + -1;
         if (*plocalInt1 == 0) {
           FUN_18064d630();
@@ -29792,21 +29792,21 @@ void Unwind_1809035e0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
-  index = *(longlong *)(memorySize + BUFFER_OFFSET_TEMP);
+  arrayIndex = *(longlong *)(memorySize + BUFFER_OFFSET_TEMP);
   FUN_18005a050();
-  if ((1 < *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET)) &&
-     (plocalUInt2 = *(uint64 **)(index + 8), plocalUInt2 != (uint64 *)0x0)) {
+  if ((1 < *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET)) &&
+     (plocalUInt2 = *(uint64 **)(arrayIndex + 8), plocalUInt2 != (uint64 *)0x0)) {
     unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
     if (unsignedVar4 != 0) {
-      index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-      index = index - (ulonglong)*(uint *)(index + 4);
-      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-        *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-        *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-        pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+      arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+      arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+        *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+        *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+        pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
         *pstatus = *plocalInt1 + -1;
         if (*plocalInt1 == 0) {
           FUN_18064d630();
@@ -29830,21 +29830,21 @@ void Unwind_1809035f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
-  index = *(longlong *)(memorySize + BUFFER_OFFSET_TEMP);
+  arrayIndex = *(longlong *)(memorySize + BUFFER_OFFSET_TEMP);
   FUN_18005a050();
-  if ((1 < *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET)) &&
-     (plocalUInt2 = *(uint64 **)(index + 8), plocalUInt2 != (uint64 *)0x0)) {
+  if ((1 < *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET)) &&
+     (plocalUInt2 = *(uint64 **)(arrayIndex + 8), plocalUInt2 != (uint64 *)0x0)) {
     unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
     if (unsignedVar4 != 0) {
-      index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-      index = index - (ulonglong)*(uint *)(index + 4);
-      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-        *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-        *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-        pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+      arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+      arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+        *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+        *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+        pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
         *pstatus = *plocalInt1 + -1;
         if (*plocalInt1 == 0) {
           FUN_18064d630();
@@ -34646,7 +34646,7 @@ void Unwind_180904630(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + LIST_OFFSET_HEAD) + RESOURCE_HANDLE_OFFSET400);
@@ -34655,12 +34655,12 @@ void Unwind_180904630(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -35208,7 +35208,7 @@ void Unwind_180904920(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x40) + BYTE_OFFSET_2);
@@ -35217,12 +35217,12 @@ void Unwind_180904920(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -35244,7 +35244,7 @@ void Unwind_180904930(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x40) + BUFFER_OFFSET_DATA);
@@ -35253,12 +35253,12 @@ void Unwind_180904930(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -35502,7 +35502,7 @@ void Unwind_1809049d0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x70) + 8);
@@ -35511,12 +35511,12 @@ void Unwind_1809049d0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -35538,7 +35538,7 @@ void Unwind_1809049e0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x70) + BYTE_OFFSET_2);
@@ -35547,12 +35547,12 @@ void Unwind_1809049e0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -35574,7 +35574,7 @@ void Unwind_1809049f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x70) + BUFFER_OFFSET_DATA);
@@ -35583,12 +35583,12 @@ void Unwind_1809049f0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -35823,7 +35823,7 @@ void Unwind_180904a80(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x70);
@@ -35832,12 +35832,12 @@ void Unwind_180904a80(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -35859,7 +35859,7 @@ void Unwind_180904a90(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x70);
@@ -35868,12 +35868,12 @@ void Unwind_180904a90(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -36052,7 +36052,7 @@ void Catch_180904b90(uint64 resourceHandle,longlong memorySize)
 {
   ulonglong returnValue;
   longlong buffer;
-  longlong index;
+  longlong arrayIndex;
   longlong longVar4;
   ulonglong unsignedVar5;
   ulonglong unsignedVar6;
@@ -36061,7 +36061,7 @@ void Catch_180904b90(uint64 resourceHandle,longlong memorySize)
   
   returnValue = *(ulonglong *)(memorySize + POINTER_OFFSET_DATA);
   buffer = *(longlong *)(memorySize + 0xa0);
-  index = *(longlong *)(buffer + 0x40);
+  arrayIndex = *(longlong *)(buffer + 0x40);
   *(uint64 *)(buffer + 0x70) = *(uint64 *)(memorySize + FIELD_OFFSET_1);
   *(uint64 *)(buffer + DATA_OFFSET_START) = *(uint64 *)(memorySize + BUFFER_SIZE_STANDARD);
   longVar7 = *(longlong *)(memorySize + BYTE_OFFSET_2);
@@ -36089,7 +36089,7 @@ void Catch_180904b90(uint64 resourceHandle,longlong memorySize)
       } while (unsignedVar6 != unsignedVar8);
       *(ulonglong *)(memorySize + POINTER_OFFSET_DATA) = unsignedVar6;
     }
-    if (longVar7 == index) break;
+    if (longVar7 == arrayIndex) break;
     longVar7 = *(longlong *)(longVar7 + RESOURCE_HANDLE_OFFSET0);
     unsignedVar5 = unsignedVar6;
   }
@@ -36104,7 +36104,7 @@ void Catch_180904c60(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong buffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   ulonglong unsignedVar4;
   ulonglong unsignedVar5;
   longlong longVar6;
@@ -36146,14 +36146,14 @@ void Catch_180904c60(uint64 resourceHandle,longlong memorySize)
   if (buffer != 0) {
     while( true ) {
       *(ulonglong *)(memorySize + POINTER_OFFSET_DATA) = unsignedVar8 + POINTER_OFFSET_DATA;
-      pindex = *(longlong **)(localLong1 + DATA_OFFSET_START);
+      parrayIndex = *(longlong **)(localLong1 + DATA_OFFSET_START);
       *(uint64 *)
        (*(longlong *)
-         (pindex[3] +
-         (((unsignedVar8 + POINTER_OFFSET_DATA & 0xffffffffffffffe0) - **(longlong **)(pindex[3] + pindex[1] * 8) >> 5) +
-          pindex[1] & *pindex - 1U) * 8) + 8) = 0;
-      pindex = *(longlong **)(localLong1 + DATA_OFFSET_START);
-      pindex[1] = pindex[1] - 1U & *pindex - 1U;
+         (parrayIndex[3] +
+         (((unsignedVar8 + POINTER_OFFSET_DATA & 0xffffffffffffffe0) - **(longlong **)(parrayIndex[3] + parrayIndex[1] * 8) >> 5) +
+          parrayIndex[1] & *parrayIndex - 1U) * 8) + 8) = 0;
+      parrayIndex = *(longlong **)(localLong1 + DATA_OFFSET_START);
+      parrayIndex[1] = parrayIndex[1] - 1U & *parrayIndex - 1U;
       longVar9 = *(longlong *)(longVar9 + RESOURCE_HANDLE_OFFSET0);
       if (longVar9 == 0) break;
       unsignedVar8 = *(ulonglong *)(memorySize + POINTER_OFFSET_DATA);
@@ -36399,7 +36399,7 @@ void Unwind_180904e70(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xc0);
@@ -36408,12 +36408,12 @@ void Unwind_180904e70(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -36513,7 +36513,7 @@ void Unwind_180904f30(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + MEMORY_SIZE_OFFSET);
@@ -36522,12 +36522,12 @@ void Unwind_180904f30(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -36641,7 +36641,7 @@ void Unwind_180904fb0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + POINTER_OFFSET_DATA);
@@ -36650,12 +36650,12 @@ void Unwind_180904fb0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -36801,7 +36801,7 @@ void Unwind_180905030(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x40);
@@ -36810,12 +36810,12 @@ void Unwind_180905030(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -36858,7 +36858,7 @@ void Unwind_180905050(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x98);
@@ -36867,12 +36867,12 @@ void Unwind_180905050(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -37215,7 +37215,7 @@ void Unwind_180905200(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x148);
@@ -37224,12 +37224,12 @@ void Unwind_180905200(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -37272,7 +37272,7 @@ void Unwind_180905220(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x208);
@@ -37281,12 +37281,12 @@ void Unwind_180905220(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -37347,7 +37347,7 @@ void Unwind_180905260(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + RESOURCE_HANDLE_OFFSET8);
@@ -37356,12 +37356,12 @@ void Unwind_180905260(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -37404,7 +37404,7 @@ void Unwind_180905280(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x228);
@@ -37413,12 +37413,12 @@ void Unwind_180905280(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -37547,7 +37547,7 @@ void Unwind_180905380(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + POINTER_OFFSET_DATA);
@@ -37556,12 +37556,12 @@ void Unwind_180905380(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -37914,7 +37914,7 @@ void Unwind_180905540(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + LIST_OFFSET_HEAD) + 0x213438);
@@ -37923,12 +37923,12 @@ void Unwind_180905540(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -37977,7 +37977,7 @@ void Unwind_1809055b0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + FIELD_OFFSET_1);
@@ -37986,12 +37986,12 @@ void Unwind_1809055b0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -38013,7 +38013,7 @@ void Unwind_1809055c0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + FIELD_OFFSET_1);
@@ -38022,12 +38022,12 @@ void Unwind_1809055c0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -38299,7 +38299,7 @@ void Unwind_1809057b0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   longlong *plVar4;
   uint64 *puVar5;
   int integerVar6;
@@ -38364,9 +38364,9 @@ LAB_1801571ef:
   }
   plocalLong1 = puVar5 + 6;
   FUN_18015b450(plocalLong1);
-  pindex = puVar5 + 0x2d;
+  parrayIndex = puVar5 + 0x2d;
   plVar4 = (longlong *)puVar5[ERROR_CODE_1];
-  plVar8 = (longlong *)*pindex;
+  plVar8 = (longlong *)*parrayIndex;
   if (plVar8 != plVar4) {
     do {
       if ((longlong *)*plVar8 != (longlong *)0x0) {
@@ -38374,7 +38374,7 @@ LAB_1801571ef:
       }
       plVar8 = plVar8 + 1;
     } while (plVar8 != plVar4);
-    plVar8 = (longlong *)*pindex;
+    plVar8 = (longlong *)*parrayIndex;
   }
   puVar5[ERROR_CODE_1] = plVar8;
   integerVar6 = _Mtx_unlock(pbuffer);
@@ -38390,8 +38390,8 @@ LAB_1801571ef:
   if ((longlong *)puVar5[0x3d] != (longlong *)0x0) {
     (**(code **)(*(longlong *)puVar5[0x3d] + STRUCT_OFFSET_SIZE))();
   }
-  plStackX_10 = pindex;
-  FUN_180057830(pindex);
+  plStackX_10 = parrayIndex;
+  FUN_180057830(parrayIndex);
   plStackX_10 = puVar5 + BYTE_OFFSET_2;
   FUN_180048980();
   plStackX_10 = puVar5 + FIELD_OFFSET_3;
@@ -38605,7 +38605,7 @@ void Unwind_180905880(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x2e8);
@@ -38614,12 +38614,12 @@ void Unwind_180905880(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -38641,19 +38641,19 @@ void Unwind_180905890(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = *(longlong **)(memorySize + 0x2e0);
   localLong1 = pbuffer[1];
-  for (index = *pbuffer; index != localLong1; index = index + BYTE_OFFSET_2) {
-    *(uint64 *)(index + 8) = &threadLocalStorageData;
-    if (*(longlong *)(index + RESOURCE_HANDLE_OFFSET) != 0) {
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + BYTE_OFFSET_2) {
+    *(uint64 *)(arrayIndex + 8) = &threadLocalStorageData;
+    if (*(longlong *)(arrayIndex + RESOURCE_HANDLE_OFFSET) != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    *(uint64 *)(index + RESOURCE_HANDLE_OFFSET) = 0;
-    *(uint32 *)(index + POINTER_OFFSET_DATA) = 0;
-    *(uint64 *)(index + 8) = &threadLocalStorageCleanup;
+    *(uint64 *)(arrayIndex + RESOURCE_HANDLE_OFFSET) = 0;
+    *(uint32 *)(arrayIndex + POINTER_OFFSET_DATA) = 0;
+    *(uint64 *)(arrayIndex + 8) = &threadLocalStorageCleanup;
   }
   if (*pbuffer != 0) {
                     // WARNING: Subroutine does not return
@@ -38715,19 +38715,19 @@ void Unwind_1809058c0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = *(longlong **)(memorySize + 0x2e8);
   localLong1 = pbuffer[1];
-  for (index = *pbuffer; index != localLong1; index = index + BYTE_OFFSET_2) {
-    *(uint64 *)(index + 8) = &threadLocalStorageData;
-    if (*(longlong *)(index + RESOURCE_HANDLE_OFFSET) != 0) {
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + BYTE_OFFSET_2) {
+    *(uint64 *)(arrayIndex + 8) = &threadLocalStorageData;
+    if (*(longlong *)(arrayIndex + RESOURCE_HANDLE_OFFSET) != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    *(uint64 *)(index + RESOURCE_HANDLE_OFFSET) = 0;
-    *(uint32 *)(index + POINTER_OFFSET_DATA) = 0;
-    *(uint64 *)(index + 8) = &threadLocalStorageCleanup;
+    *(uint64 *)(arrayIndex + RESOURCE_HANDLE_OFFSET) = 0;
+    *(uint32 *)(arrayIndex + POINTER_OFFSET_DATA) = 0;
+    *(uint64 *)(arrayIndex + 8) = &threadLocalStorageCleanup;
   }
   if (*pbuffer != 0) {
                     // WARNING: Subroutine does not return
@@ -38896,7 +38896,7 @@ void Unwind_180905950(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   longlong *plVar4;
   uint64 *puVar5;
   int integerVar6;
@@ -38961,9 +38961,9 @@ LAB_1801571ef:
   }
   plocalLong1 = puVar5 + 6;
   FUN_18015b450(plocalLong1);
-  pindex = puVar5 + 0x2d;
+  parrayIndex = puVar5 + 0x2d;
   plVar4 = (longlong *)puVar5[ERROR_CODE_1];
-  plVar8 = (longlong *)*pindex;
+  plVar8 = (longlong *)*parrayIndex;
   if (plVar8 != plVar4) {
     do {
       if ((longlong *)*plVar8 != (longlong *)0x0) {
@@ -38971,7 +38971,7 @@ LAB_1801571ef:
       }
       plVar8 = plVar8 + 1;
     } while (plVar8 != plVar4);
-    plVar8 = (longlong *)*pindex;
+    plVar8 = (longlong *)*parrayIndex;
   }
   puVar5[ERROR_CODE_1] = plVar8;
   integerVar6 = _Mtx_unlock(pbuffer);
@@ -38987,8 +38987,8 @@ LAB_1801571ef:
   if ((longlong *)puVar5[0x3d] != (longlong *)0x0) {
     (**(code **)(*(longlong *)puVar5[0x3d] + STRUCT_OFFSET_SIZE))();
   }
-  plStackX_10 = pindex;
-  FUN_180057830(pindex);
+  plStackX_10 = parrayIndex;
+  FUN_180057830(parrayIndex);
   plStackX_10 = puVar5 + BYTE_OFFSET_2;
   FUN_180048980();
   plStackX_10 = puVar5 + FIELD_OFFSET_3;
@@ -39428,13 +39428,13 @@ void Unwind_180905b70(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   ulonglong unsignedVar5;
   
-  index = *(longlong *)(memorySize + SYSTEM_OFFSET_STATUS1);
-  unsignedVar4 = *(ulonglong *)(index + 0x340);
-  localLong1 = *(longlong *)(index + 0x338);
+  arrayIndex = *(longlong *)(memorySize + SYSTEM_OFFSET_STATUS1);
+  unsignedVar4 = *(ulonglong *)(arrayIndex + 0x340);
+  localLong1 = *(longlong *)(arrayIndex + 0x338);
   unsignedVar5 = 0;
   if (unsignedVar4 != 0) {
     do {
@@ -39447,10 +39447,10 @@ void Unwind_180905b70(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
       unsignedVar5 = unsignedVar5 + 1;
     } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(index + 0x340);
+    unsignedVar4 = *(ulonglong *)(arrayIndex + 0x340);
   }
-  *(uint64 *)(index + 0x348) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(index + 0x338) != 0)) {
+  *(uint64 *)(arrayIndex + 0x348) = 0;
+  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 0x338) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -39570,13 +39570,13 @@ void Unwind_180905c10(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   ulonglong unsignedVar5;
   
-  index = *(longlong *)(memorySize + STRUCT_OFFSET_SIZE);
-  unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
-  localLong1 = *(longlong *)(index + 8);
+  arrayIndex = *(longlong *)(memorySize + STRUCT_OFFSET_SIZE);
+  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  localLong1 = *(longlong *)(arrayIndex + 8);
   unsignedVar5 = 0;
   if (unsignedVar4 != 0) {
     do {
@@ -39589,10 +39589,10 @@ void Unwind_180905c10(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
       unsignedVar5 = unsignedVar5 + 1;
     } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
+    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
-  *(uint64 *)(index + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(index + 8) != 0)) {
+  *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
+  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -39606,13 +39606,13 @@ void Unwind_180905c20(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   ulonglong unsignedVar5;
   
-  index = *(longlong *)(memorySize + STRUCT_OFFSET_SIZE);
-  unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
-  localLong1 = *(longlong *)(index + 8);
+  arrayIndex = *(longlong *)(memorySize + STRUCT_OFFSET_SIZE);
+  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  localLong1 = *(longlong *)(arrayIndex + 8);
   unsignedVar5 = 0;
   if (unsignedVar4 != 0) {
     do {
@@ -39625,10 +39625,10 @@ void Unwind_180905c20(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
       unsignedVar5 = unsignedVar5 + 1;
     } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
+    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
-  *(uint64 *)(index + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(index + 8) != 0)) {
+  *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
+  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -39642,13 +39642,13 @@ void Unwind_180905c30(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   ulonglong unsignedVar5;
   
-  index = *(longlong *)(memorySize + 0x40);
-  unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
-  localLong1 = *(longlong *)(index + 8);
+  arrayIndex = *(longlong *)(memorySize + 0x40);
+  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  localLong1 = *(longlong *)(arrayIndex + 8);
   unsignedVar5 = 0;
   if (unsignedVar4 != 0) {
     do {
@@ -39661,10 +39661,10 @@ void Unwind_180905c30(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
       unsignedVar5 = unsignedVar5 + 1;
     } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
+    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
-  *(uint64 *)(index + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(index + 8) != 0)) {
+  *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
+  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -39678,13 +39678,13 @@ void Unwind_180905c40(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   ulonglong unsignedVar5;
   
-  index = *(longlong *)(memorySize + 0x40);
-  unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
-  localLong1 = *(longlong *)(index + 8);
+  arrayIndex = *(longlong *)(memorySize + 0x40);
+  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  localLong1 = *(longlong *)(arrayIndex + 8);
   unsignedVar5 = 0;
   if (unsignedVar4 != 0) {
     do {
@@ -39697,10 +39697,10 @@ void Unwind_180905c40(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
       unsignedVar5 = unsignedVar5 + 1;
     } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
+    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
-  *(uint64 *)(index + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(index + 8) != 0)) {
+  *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
+  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -39778,13 +39778,13 @@ void Unwind_180905c60(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   ulonglong unsignedVar5;
   
-  index = *(longlong *)(memorySize + 0x40);
-  unsignedVar4 = *(ulonglong *)(index + 0x340);
-  localLong1 = *(longlong *)(index + 0x338);
+  arrayIndex = *(longlong *)(memorySize + 0x40);
+  unsignedVar4 = *(ulonglong *)(arrayIndex + 0x340);
+  localLong1 = *(longlong *)(arrayIndex + 0x338);
   unsignedVar5 = 0;
   if (unsignedVar4 != 0) {
     do {
@@ -39797,10 +39797,10 @@ void Unwind_180905c60(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
       unsignedVar5 = unsignedVar5 + 1;
     } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(index + 0x340);
+    unsignedVar4 = *(ulonglong *)(arrayIndex + 0x340);
   }
-  *(uint64 *)(index + 0x348) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(index + 0x338) != 0)) {
+  *(uint64 *)(arrayIndex + 0x348) = 0;
+  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 0x338) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -39814,13 +39814,13 @@ void Unwind_180905c80(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   ulonglong unsignedVar5;
   
-  index = *(longlong *)(memorySize + BUFFER_OFFSET_DATA);
-  unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
-  localLong1 = *(longlong *)(index + 8);
+  arrayIndex = *(longlong *)(memorySize + BUFFER_OFFSET_DATA);
+  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  localLong1 = *(longlong *)(arrayIndex + 8);
   unsignedVar5 = 0;
   if (unsignedVar4 != 0) {
     do {
@@ -39833,10 +39833,10 @@ void Unwind_180905c80(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
       unsignedVar5 = unsignedVar5 + 1;
     } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
+    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
-  *(uint64 *)(index + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(index + 8) != 0)) {
+  *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
+  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -39850,13 +39850,13 @@ void Unwind_180905c90(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   ulonglong unsignedVar5;
   
-  index = *(longlong *)(memorySize + BUFFER_OFFSET_DATA);
-  unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
-  localLong1 = *(longlong *)(index + 8);
+  arrayIndex = *(longlong *)(memorySize + BUFFER_OFFSET_DATA);
+  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  localLong1 = *(longlong *)(arrayIndex + 8);
   unsignedVar5 = 0;
   if (unsignedVar4 != 0) {
     do {
@@ -39869,10 +39869,10 @@ void Unwind_180905c90(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
       unsignedVar5 = unsignedVar5 + 1;
     } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
+    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
-  *(uint64 *)(index + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(index + 8) != 0)) {
+  *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
+  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -40132,7 +40132,7 @@ void Unwind_180905e40(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   int *pstatus;
-  longlong *pindex;
+  longlong *parrayIndex;
   int counter;
   longlong longVar5;
   longlong longVar6;
@@ -40140,16 +40140,16 @@ void Unwind_180905e40(uint64 resourceHandle,longlong memorySize)
   longlong longVar8;
   bool boolVar9;
   
-  pindex = (longlong *)(memorySize + BYTE_OFFSET_2);
-  FUN_180069530((ulonglong)(*(uint *)(memorySize + FIELD_OFFSET_1) & ERROR_CODE_FAILED) * 0x1a8 + *pindex);
+  parrayIndex = (longlong *)(memorySize + BYTE_OFFSET_2);
+  FUN_180069530((ulonglong)(*(uint *)(memorySize + FIELD_OFFSET_1) & ERROR_CODE_FAILED) * 0x1a8 + *parrayIndex);
   LOCK();
-  plocalLong1 = (longlong *)(*pindex + 0x3508);
+  plocalLong1 = (longlong *)(*parrayIndex + 0x3508);
   longVar5 = *plocalLong1;
   *plocalLong1 = *plocalLong1 + 1;
   UNLOCK();
   if (longVar5 == ERROR_CODE_FAILED) {
     *(uint64 *)(*(longlong *)(memorySize + STRUCT_OFFSET_SIZE) + 8) = 0;
-    longVar5 = *pindex;
+    longVar5 = *parrayIndex;
     longVar6 = *(longlong *)(memorySize + 0x40);
     LOCK();
     pstatus = (int *)(longVar5 + 0x3530);
@@ -40298,12 +40298,12 @@ void Unwind_180905ec0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + LIST_OFFSET_HEAD) + 0x3c8);
   localLong1 = *(longlong *)(*(longlong *)(memorySize + LIST_OFFSET_HEAD) + 0x3d0);
-  for (index = *pbuffer; index != localLong1; index = index + 0x1a8) {
-    FUN_180069530(index);
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + 0x1a8) {
+    FUN_180069530(arrayIndex);
   }
   if (*pbuffer == 0) {
     return;
@@ -40319,12 +40319,12 @@ void Unwind_180905ee0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = *(longlong **)(memorySize + DATA_OFFSET_START);
   localLong1 = pbuffer[1];
-  for (index = *pbuffer; index != localLong1; index = index + 0x1a8) {
-    FUN_180069530(index);
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + 0x1a8) {
+    FUN_180069530(arrayIndex);
   }
   if (*pbuffer == 0) {
     return;
@@ -40507,12 +40507,12 @@ void Unwind_180905f80(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = *(longlong **)(memorySize + 0x40);
   localLong1 = pbuffer[1];
-  for (index = *pbuffer; index != localLong1; index = index + 0x1a8) {
-    FUN_180069530(index);
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + 0x1a8) {
+    FUN_180069530(arrayIndex);
   }
   if (*pbuffer == 0) {
     return;
@@ -40609,12 +40609,12 @@ void Unwind_180905fc0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + 0x70) + 0x3c8);
   localLong1 = *(longlong *)(*(longlong *)(memorySize + 0x70) + 0x3d0);
-  for (index = *pbuffer; index != localLong1; index = index + 0x1a8) {
-    FUN_180069530(index);
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + 0x1a8) {
+    FUN_180069530(arrayIndex);
   }
   if (*pbuffer == 0) {
     return;
@@ -40736,12 +40736,12 @@ void Unwind_180906060(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = *(longlong **)(memorySize + HANDLE_OFFSET_DATA);
   localLong1 = pbuffer[1];
-  for (index = *pbuffer; index != localLong1; index = index + 0x1a8) {
-    FUN_180069530(index);
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + 0x1a8) {
+    FUN_180069530(arrayIndex);
   }
   if (*pbuffer == 0) {
     return;
@@ -40935,7 +40935,7 @@ void Unwind_180906160(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0xa8) + 0x1d8);
@@ -40944,12 +40944,12 @@ void Unwind_180906160(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -40971,7 +40971,7 @@ void Unwind_180906180(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0xb0);
@@ -40980,12 +40980,12 @@ void Unwind_180906180(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -41007,7 +41007,7 @@ void Unwind_180906190(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0xb0);
@@ -41016,12 +41016,12 @@ void Unwind_180906190(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -41099,7 +41099,7 @@ void Unwind_1809061f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x40) + 0x1d8);
@@ -41108,12 +41108,12 @@ void Unwind_1809061f0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -41345,7 +41345,7 @@ void Unwind_180906470(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xe0);
@@ -41354,12 +41354,12 @@ void Unwind_180906470(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -41495,37 +41495,37 @@ void Unwind_1809064c0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = *(longlong **)(memorySize + POINTER_OFFSET_DATA);
   plocalLong1 = (longlong *)pbuffer[1];
-  pindex = (longlong *)*pbuffer;
+  parrayIndex = (longlong *)*pbuffer;
   while( true ) {
-    if (pindex == plocalLong1) {
+    if (parrayIndex == plocalLong1) {
       if (*pbuffer != 0) {
                     // WARNING: Subroutine does not return
         HandleCriticalError();
       }
       return;
     }
-    if (*(longlong *)((longlong)pindex + 0x12) != 0) {
+    if (*(longlong *)((longlong)parrayIndex + 0x12) != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    *(uint64 *)((longlong)pindex + 0x12) = 0;
-    if (*(longlong *)((longlong)pindex + 0x1a) != 0) break;
-    *(uint64 *)((longlong)pindex + 0x1a) = 0;
-    if (*pindex != 0) {
+    *(uint64 *)((longlong)parrayIndex + 0x12) = 0;
+    if (*(longlong *)((longlong)parrayIndex + 0x1a) != 0) break;
+    *(uint64 *)((longlong)parrayIndex + 0x1a) = 0;
+    if (*parrayIndex != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    *pindex = 0;
-    if (pindex[1] != 0) {
+    *parrayIndex = 0;
+    if (parrayIndex[1] != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    pindex[1] = 0;
-    pindex = (longlong *)((longlong)pindex + FIELD_OFFSET_3);
+    parrayIndex[1] = 0;
+    parrayIndex = (longlong *)((longlong)parrayIndex + FIELD_OFFSET_3);
   }
                     // WARNING: Subroutine does not return
   HandleCriticalError();
@@ -41538,37 +41538,37 @@ void Unwind_1809064d0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + 0x40) + POINTER_OFFSET_DATA);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x40) + BYTE_OFFSET_2);
-  pindex = (longlong *)*pbuffer;
+  parrayIndex = (longlong *)*pbuffer;
   while( true ) {
-    if (pindex == plocalLong1) {
+    if (parrayIndex == plocalLong1) {
       if (*pbuffer != 0) {
                     // WARNING: Subroutine does not return
         HandleCriticalError();
       }
       return;
     }
-    if (*(longlong *)((longlong)pindex + 0x12) != 0) {
+    if (*(longlong *)((longlong)parrayIndex + 0x12) != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    *(uint64 *)((longlong)pindex + 0x12) = 0;
-    if (*(longlong *)((longlong)pindex + 0x1a) != 0) break;
-    *(uint64 *)((longlong)pindex + 0x1a) = 0;
-    if (*pindex != 0) {
+    *(uint64 *)((longlong)parrayIndex + 0x12) = 0;
+    if (*(longlong *)((longlong)parrayIndex + 0x1a) != 0) break;
+    *(uint64 *)((longlong)parrayIndex + 0x1a) = 0;
+    if (*parrayIndex != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    *pindex = 0;
-    if (pindex[1] != 0) {
+    *parrayIndex = 0;
+    if (parrayIndex[1] != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    pindex[1] = 0;
-    pindex = (longlong *)((longlong)pindex + FIELD_OFFSET_3);
+    parrayIndex[1] = 0;
+    parrayIndex = (longlong *)((longlong)parrayIndex + FIELD_OFFSET_3);
   }
                     // WARNING: Subroutine does not return
   HandleCriticalError();
@@ -41623,37 +41623,37 @@ void Unwind_180906500(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = *(longlong **)(memorySize + BUFFER_OFFSET_DATA);
   plocalLong1 = (longlong *)pbuffer[1];
-  pindex = (longlong *)*pbuffer;
+  parrayIndex = (longlong *)*pbuffer;
   while( true ) {
-    if (pindex == plocalLong1) {
+    if (parrayIndex == plocalLong1) {
       if (*pbuffer != 0) {
                     // WARNING: Subroutine does not return
         HandleCriticalError();
       }
       return;
     }
-    if (*(longlong *)((longlong)pindex + 0x12) != 0) {
+    if (*(longlong *)((longlong)parrayIndex + 0x12) != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    *(uint64 *)((longlong)pindex + 0x12) = 0;
-    if (*(longlong *)((longlong)pindex + 0x1a) != 0) break;
-    *(uint64 *)((longlong)pindex + 0x1a) = 0;
-    if (*pindex != 0) {
+    *(uint64 *)((longlong)parrayIndex + 0x12) = 0;
+    if (*(longlong *)((longlong)parrayIndex + 0x1a) != 0) break;
+    *(uint64 *)((longlong)parrayIndex + 0x1a) = 0;
+    if (*parrayIndex != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    *pindex = 0;
-    if (pindex[1] != 0) {
+    *parrayIndex = 0;
+    if (parrayIndex[1] != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    pindex[1] = 0;
-    pindex = (longlong *)((longlong)pindex + FIELD_OFFSET_3);
+    parrayIndex[1] = 0;
+    parrayIndex = (longlong *)((longlong)parrayIndex + FIELD_OFFSET_3);
   }
                     // WARNING: Subroutine does not return
   HandleCriticalError();
@@ -41666,37 +41666,37 @@ void Unwind_180906510(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = *(longlong **)(memorySize + 0x40);
   plocalLong1 = (longlong *)pbuffer[1];
-  pindex = (longlong *)*pbuffer;
+  parrayIndex = (longlong *)*pbuffer;
   while( true ) {
-    if (pindex == plocalLong1) {
+    if (parrayIndex == plocalLong1) {
       if (*pbuffer != 0) {
                     // WARNING: Subroutine does not return
         HandleCriticalError();
       }
       return;
     }
-    if (*(longlong *)((longlong)pindex + 0x12) != 0) {
+    if (*(longlong *)((longlong)parrayIndex + 0x12) != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    *(uint64 *)((longlong)pindex + 0x12) = 0;
-    if (*(longlong *)((longlong)pindex + 0x1a) != 0) break;
-    *(uint64 *)((longlong)pindex + 0x1a) = 0;
-    if (*pindex != 0) {
+    *(uint64 *)((longlong)parrayIndex + 0x12) = 0;
+    if (*(longlong *)((longlong)parrayIndex + 0x1a) != 0) break;
+    *(uint64 *)((longlong)parrayIndex + 0x1a) = 0;
+    if (*parrayIndex != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    *pindex = 0;
-    if (pindex[1] != 0) {
+    *parrayIndex = 0;
+    if (parrayIndex[1] != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    pindex[1] = 0;
-    pindex = (longlong *)((longlong)pindex + FIELD_OFFSET_3);
+    parrayIndex[1] = 0;
+    parrayIndex = (longlong *)((longlong)parrayIndex + FIELD_OFFSET_3);
   }
                     // WARNING: Subroutine does not return
   HandleCriticalError();
@@ -42712,7 +42712,7 @@ void Unwind_180906b50(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x88);
@@ -42721,12 +42721,12 @@ void Unwind_180906b50(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -42837,7 +42837,7 @@ void Unwind_180906bb0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + SYSTEM_OFFSET_STATUS1);
@@ -42846,12 +42846,12 @@ void Unwind_180906bb0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -42873,7 +42873,7 @@ void Unwind_180906bc0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + SYSTEM_OFFSET_STATUS1);
@@ -42882,12 +42882,12 @@ void Unwind_180906bc0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -42990,7 +42990,7 @@ void Unwind_180906c50(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x118);
@@ -42999,12 +42999,12 @@ void Unwind_180906c50(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -43068,7 +43068,7 @@ void Unwind_180906c80(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xa8);
@@ -43077,12 +43077,12 @@ void Unwind_180906c80(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -43104,7 +43104,7 @@ void Unwind_180906c90(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + FIELD_OFFSET_1);
@@ -43113,12 +43113,12 @@ void Unwind_180906c90(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -43140,7 +43140,7 @@ void Unwind_180906ca0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x88);
@@ -43149,12 +43149,12 @@ void Unwind_180906ca0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -43197,7 +43197,7 @@ void Unwind_180906cc0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x118);
@@ -43206,12 +43206,12 @@ void Unwind_180906cc0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -43233,7 +43233,7 @@ void Unwind_180906cd0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x118);
@@ -43242,12 +43242,12 @@ void Unwind_180906cd0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -43290,7 +43290,7 @@ void Unwind_180906cf0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + SYSTEM_OFFSET_FLAGS);
@@ -43299,12 +43299,12 @@ void Unwind_180906cf0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -43326,7 +43326,7 @@ void Unwind_180906d00(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x260);
@@ -43335,12 +43335,12 @@ void Unwind_180906d00(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -43362,7 +43362,7 @@ void Unwind_180906d10(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x260);
@@ -43371,12 +43371,12 @@ void Unwind_180906d10(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -43419,7 +43419,7 @@ void Unwind_180906d30(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xd8);
@@ -43428,12 +43428,12 @@ void Unwind_180906d30(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -43455,7 +43455,7 @@ void Unwind_180906d40(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xa8);
@@ -43464,12 +43464,12 @@ void Unwind_180906d40(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -43491,7 +43491,7 @@ void Unwind_180906d50(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xa8);
@@ -43500,12 +43500,12 @@ void Unwind_180906d50(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -43527,7 +43527,7 @@ void Unwind_180906d60(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + FIELD_OFFSET_1);
@@ -43536,12 +43536,12 @@ void Unwind_180906d60(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -43563,7 +43563,7 @@ void Unwind_180906d70(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + FIELD_OFFSET_1);
@@ -43572,12 +43572,12 @@ void Unwind_180906d70(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -43599,7 +43599,7 @@ void Unwind_180906d80(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x88);
@@ -43608,12 +43608,12 @@ void Unwind_180906d80(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -43635,7 +43635,7 @@ void Unwind_180906d90(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x268);
@@ -43644,12 +43644,12 @@ void Unwind_180906d90(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -43671,7 +43671,7 @@ void Unwind_180906da0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x268);
@@ -43680,12 +43680,12 @@ void Unwind_180906da0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -43728,7 +43728,7 @@ void Unwind_180906dc0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + FIELD_OFFSET_1);
@@ -43737,12 +43737,12 @@ void Unwind_180906dc0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -44762,7 +44762,7 @@ void Unwind_180907350(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x40);
@@ -44771,12 +44771,12 @@ void Unwind_180907350(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -44798,7 +44798,7 @@ void Unwind_180907360(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + BUFFER_OFFSET_DATA);
@@ -44807,12 +44807,12 @@ void Unwind_180907360(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -44834,7 +44834,7 @@ void Unwind_180907370(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + BUFFER_OFFSET_DATA);
@@ -44843,12 +44843,12 @@ void Unwind_180907370(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -45051,7 +45051,7 @@ void Unwind_1809074d0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + LIST_OFFSET_HEAD);
@@ -45060,12 +45060,12 @@ void Unwind_1809074d0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -45087,7 +45087,7 @@ void Unwind_1809074e0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + LIST_OFFSET_HEAD);
@@ -45096,12 +45096,12 @@ void Unwind_1809074e0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -45123,7 +45123,7 @@ void Unwind_1809074f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x40);
@@ -45132,12 +45132,12 @@ void Unwind_1809074f0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -45505,17 +45505,17 @@ void Unwind_180907710(uint64 resourceHandle,longlong memorySize)
 {
   uint64 *preturnValue;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   
   plocalUInt2 = *(uint64 **)(memorySize + LIST_OFFSET_HEAD);
   *plocalUInt2 = &unknown_180a14bb8;
   preturnValue = (uint64 *)plocalUInt2[0x11];
   if (preturnValue != (uint64 *)0x0) {
-    index = __RTCastToVoid(preturnValue);
+    arrayIndex = __RTCastToVoid(preturnValue);
     (**(code **)*preturnValue)(preturnValue,0);
-    if (index != 0) {
+    if (arrayIndex != 0) {
                     // WARNING: Subroutine does not return
-      HandleCriticalError(index);
+      HandleCriticalError(arrayIndex);
     }
   }
   plocalUInt2[0x11] = 0;
@@ -45557,17 +45557,17 @@ void Unwind_180907740(uint64 resourceHandle,longlong memorySize)
 {
   uint64 *preturnValue;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x40);
   *plocalUInt2 = &unknown_180a14bb8;
   preturnValue = (uint64 *)plocalUInt2[0x11];
   if (preturnValue != (uint64 *)0x0) {
-    index = __RTCastToVoid(preturnValue);
+    arrayIndex = __RTCastToVoid(preturnValue);
     (**(code **)*preturnValue)(preturnValue,0);
-    if (index != 0) {
+    if (arrayIndex != 0) {
                     // WARNING: Subroutine does not return
-      HandleCriticalError(index);
+      HandleCriticalError(arrayIndex);
     }
   }
   plocalUInt2[0x11] = 0;
@@ -45708,12 +45708,12 @@ void Unwind_180907800(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + POINTER_OFFSET_DATA) + 8);
   localLong1 = *(longlong *)(*(longlong *)(memorySize + POINTER_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET);
-  for (index = *pbuffer; index != localLong1; index = index + DATA_OFFSET_START) {
-    FUN_180089640(index);
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + DATA_OFFSET_START) {
+    FUN_180089640(arrayIndex);
   }
   if (*pbuffer == 0) {
     return;
@@ -45806,7 +45806,7 @@ void Unwind_180907880(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + POINTER_OFFSET_DATA) + 0x110);
@@ -45815,12 +45815,12 @@ void Unwind_180907880(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -45842,12 +45842,12 @@ void Unwind_1809078a0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = *(longlong **)(memorySize + BYTE_OFFSET_2);
   localLong1 = pbuffer[1];
-  for (index = *pbuffer; index != localLong1; index = index + DATA_OFFSET_START) {
-    FUN_180089640(index);
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + DATA_OFFSET_START) {
+    FUN_180089640(arrayIndex);
   }
   if (*pbuffer == 0) {
     return;
@@ -45958,12 +45958,12 @@ void Unwind_180907920(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = *(longlong **)(memorySize + 0x40);
   localLong1 = pbuffer[1];
-  for (index = *pbuffer; index != localLong1; index = index + DATA_OFFSET_START) {
-    FUN_180089640(index);
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + DATA_OFFSET_START) {
+    FUN_180089640(arrayIndex);
   }
   if (*pbuffer == 0) {
     return;
@@ -46132,26 +46132,26 @@ void Unwind_1809079d0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
-  index = *(longlong *)(memorySize + BUFFER_OFFSET_TEMP);
-  *(data **)(index + 0xd8) = &threadLocalStorageCleanup;
-  if (*(longlong *)(index + 0xa8) != 0) {
+  arrayIndex = *(longlong *)(memorySize + BUFFER_OFFSET_TEMP);
+  *(data **)(arrayIndex + 0xd8) = &threadLocalStorageCleanup;
+  if (*(longlong *)(arrayIndex + 0xa8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  FUN_1800ba100(index + HANDLE_OFFSET_DATA);
-  if ((1 < *(ulonglong *)(index + 0x88)) &&
-     (plocalUInt2 = *(uint64 **)(index + BUFFER_OFFSET_TEMP), plocalUInt2 != (uint64 *)0x0)) {
+  FUN_1800ba100(arrayIndex + HANDLE_OFFSET_DATA);
+  if ((1 < *(ulonglong *)(arrayIndex + 0x88)) &&
+     (plocalUInt2 = *(uint64 **)(arrayIndex + BUFFER_OFFSET_TEMP), plocalUInt2 != (uint64 *)0x0)) {
     unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
     if (unsignedVar4 != 0) {
-      index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-      index = index - (ulonglong)*(uint *)(index + 4);
-      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-        *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-        *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-        pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+      arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+      arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+        *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+        *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+        pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
         *pstatus = *plocalInt1 + -1;
         if (*plocalInt1 == 0) {
           FUN_18064d630();
@@ -46175,7 +46175,7 @@ void Unwind_1809079e0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + BUFFER_OFFSET_TEMP) + 0x180);
@@ -46184,12 +46184,12 @@ void Unwind_1809079e0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -46229,7 +46229,7 @@ void Unwind_180907a10(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x130);
@@ -46238,12 +46238,12 @@ void Unwind_180907a10(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -46308,7 +46308,7 @@ void Unwind_180907a50(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x130);
@@ -46317,12 +46317,12 @@ void Unwind_180907a50(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -46344,7 +46344,7 @@ void Unwind_180907a60(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x130);
@@ -46353,12 +46353,12 @@ void Unwind_180907a60(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -46643,7 +46643,7 @@ void Unwind_180907c20(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x230);
@@ -46652,12 +46652,12 @@ void Unwind_180907c20(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -46723,7 +46723,7 @@ void Unwind_180907c70(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x230);
@@ -46732,12 +46732,12 @@ void Unwind_180907c70(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -46759,7 +46759,7 @@ void Unwind_180907c80(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x230);
@@ -46768,12 +46768,12 @@ void Unwind_180907c80(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -46940,7 +46940,7 @@ void Unwind_180907d30(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x168);
@@ -46949,12 +46949,12 @@ void Unwind_180907d30(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -47123,7 +47123,7 @@ void Unwind_180907e90(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + BYTE_OFFSET_2);
@@ -47132,12 +47132,12 @@ void Unwind_180907e90(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -47159,7 +47159,7 @@ void Unwind_180907ea0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + STRUCT_OFFSET_SIZE);
@@ -47168,12 +47168,12 @@ void Unwind_180907ea0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -47195,7 +47195,7 @@ void Unwind_180907eb0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + DATA_OFFSET_START);
@@ -47204,12 +47204,12 @@ void Unwind_180907eb0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -47231,7 +47231,7 @@ void Unwind_180907ec0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + STRUCT_OFFSET_SIZE);
@@ -47240,12 +47240,12 @@ void Unwind_180907ec0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -47267,7 +47267,7 @@ void Unwind_180907ed0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + STRUCT_OFFSET_SIZE);
@@ -47276,12 +47276,12 @@ void Unwind_180907ed0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -47494,7 +47494,7 @@ void Unwind_180908000(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + BUFFER_OFFSET_DATA);
@@ -47503,12 +47503,12 @@ void Unwind_180908000(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -47562,7 +47562,7 @@ void Unwind_180908030(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + BUFFER_OFFSET_DATA);
@@ -47571,12 +47571,12 @@ void Unwind_180908030(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -48335,7 +48335,7 @@ void Unwind_180908650(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + LIST_OFFSET_HEAD) + RESOURCE_HANDLE_OFFSET);
@@ -48344,12 +48344,12 @@ void Unwind_180908650(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -48486,13 +48486,13 @@ void Unwind_180908730(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + LIST_OFFSET_HEAD) + 0x1868);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + LIST_OFFSET_HEAD) + 0x1870);
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -48527,13 +48527,13 @@ void Unwind_180908770(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = *(longlong **)(memorySize + DATA_OFFSET_START);
   plocalLong1 = (longlong *)pbuffer[1];
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -48590,7 +48590,7 @@ void Unwind_1809087c0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xa0);
@@ -48599,12 +48599,12 @@ void Unwind_1809087c0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -48700,7 +48700,7 @@ void Unwind_180908830(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xa0);
@@ -48709,12 +48709,12 @@ void Unwind_180908830(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -48736,7 +48736,7 @@ void Unwind_180908840(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xa0);
@@ -48745,12 +48745,12 @@ void Unwind_180908840(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -48804,7 +48804,7 @@ void Unwind_180908870(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x160);
@@ -48813,12 +48813,12 @@ void Unwind_180908870(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -49116,7 +49116,7 @@ void Unwind_180908a20(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + SYSTEM_TABLE_OFFSET);
@@ -49125,12 +49125,12 @@ void Unwind_180908a20(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -49152,7 +49152,7 @@ void Unwind_180908a30(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x160);
@@ -49161,12 +49161,12 @@ void Unwind_180908a30(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -49188,7 +49188,7 @@ void Unwind_180908a40(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x120);
@@ -49197,12 +49197,12 @@ void Unwind_180908a40(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -49224,7 +49224,7 @@ void Unwind_180908a50(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + SYSTEM_TABLE_OFFSET);
@@ -49233,12 +49233,12 @@ void Unwind_180908a50(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -49260,7 +49260,7 @@ void Unwind_180908a60(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + SYSTEM_TABLE_OFFSET);
@@ -49269,12 +49269,12 @@ void Unwind_180908a60(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -49296,7 +49296,7 @@ void Unwind_180908a70(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x160);
@@ -49305,12 +49305,12 @@ void Unwind_180908a70(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -49332,7 +49332,7 @@ void Unwind_180908a80(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x120);
@@ -49341,12 +49341,12 @@ void Unwind_180908a80(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -49368,7 +49368,7 @@ void Unwind_180908a90(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x68);
@@ -49377,12 +49377,12 @@ void Unwind_180908a90(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -49413,7 +49413,7 @@ void Unwind_180908ab0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + DATA_OFFSET_START) + BUFFER_OFFSET_DATA);
@@ -49422,12 +49422,12 @@ void Unwind_180908ab0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -49449,7 +49449,7 @@ void Unwind_180908ac0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x68);
@@ -49458,12 +49458,12 @@ void Unwind_180908ac0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -49485,7 +49485,7 @@ void Unwind_180908ad0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x68);
@@ -49494,12 +49494,12 @@ void Unwind_180908ad0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -49558,7 +49558,7 @@ void Unwind_180908b10(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + FIELD_OFFSET_1) + BUFFER_OFFSET_DATA);
@@ -49567,12 +49567,12 @@ void Unwind_180908b10(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -50061,7 +50061,7 @@ void Unwind_180908dd0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + RESOURCE_HANDLE_OFFSET8) + BUFFER_OFFSET_DATA);
@@ -50070,12 +50070,12 @@ void Unwind_180908dd0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -50106,7 +50106,7 @@ void Unwind_180908df0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0xa0);
@@ -50115,12 +50115,12 @@ void Unwind_180908df0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -50142,7 +50142,7 @@ void Unwind_180908e00(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0xa0);
@@ -50151,12 +50151,12 @@ void Unwind_180908e00(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -50206,7 +50206,7 @@ void Unwind_180908e50(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + DATA_OFFSET_START) + POINTER_OFFSET_DATA);
@@ -50215,12 +50215,12 @@ void Unwind_180908e50(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -50242,7 +50242,7 @@ void Unwind_180908e60(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x68);
@@ -50251,12 +50251,12 @@ void Unwind_180908e60(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -50278,7 +50278,7 @@ void Unwind_180908e70(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x68);
@@ -50287,12 +50287,12 @@ void Unwind_180908e70(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -50457,20 +50457,20 @@ void Unwind_180908f30(uint64 resourceHandle,longlong memorySize)
 {
   uint64 returnValue;
   longlong buffer;
-  longlong index;
+  longlong arrayIndex;
   uint64 *puVar4;
   
-  index = *(longlong *)(memorySize + 0x40);
-  puVar4 = (uint64 *)(index + -0xa0);
+  arrayIndex = *(longlong *)(memorySize + 0x40);
+  puVar4 = (uint64 *)(arrayIndex + -0xa0);
   *puVar4 = &uiWidgetTree;
-  if ((*(longlong *)(index + -POINTER_OFFSET_DATA) != 0) && (**(longlong **)(index + -0x88) == index + -FIELD_OFFSET_1)) {
-    returnValue = *(uint64 *)(index + -RESOURCE_HANDLE_OFFSET);
-    buffer = *(longlong *)(index + -RESOURCE_OFFSET_HANDLE);
-    **(longlong **)(index + -0x88) = buffer;
-    **(longlong **)(index + -0x68) = buffer;
-    **(int **)(index + -LIST_OFFSET_HEAD) = (int)returnValue - (int)buffer;
+  if ((*(longlong *)(arrayIndex + -POINTER_OFFSET_DATA) != 0) && (**(longlong **)(arrayIndex + -0x88) == arrayIndex + -FIELD_OFFSET_1)) {
+    returnValue = *(uint64 *)(arrayIndex + -RESOURCE_HANDLE_OFFSET);
+    buffer = *(longlong *)(arrayIndex + -RESOURCE_OFFSET_HANDLE);
+    **(longlong **)(arrayIndex + -0x88) = buffer;
+    **(longlong **)(arrayIndex + -0x68) = buffer;
+    **(int **)(arrayIndex + -LIST_OFFSET_HEAD) = (int)returnValue - (int)buffer;
   }
-  if (*(char *)(index + -FIELD_OFFSET_3) != '\0') {
+  if (*(char *)(arrayIndex + -FIELD_OFFSET_3) != '\0') {
     FUN_1800a19c0(puVar4);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
@@ -50662,7 +50662,7 @@ void Unwind_180909090(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + POINTER_OFFSET_DATA) + BUFFER_OFFSET_DATA);
@@ -50671,12 +50671,12 @@ void Unwind_180909090(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -50753,7 +50753,7 @@ void Unwind_1809090b0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + DATA_OFFSET_START) + 0x121c0);
@@ -50762,12 +50762,12 @@ void Unwind_1809090b0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -50985,7 +50985,7 @@ void Unwind_180909290(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong *puVar4;
   ulonglong unsignedVar5;
   ulonglong unsignedVar6;
@@ -50999,12 +50999,12 @@ void Unwind_180909290(uint64 resourceHandle,longlong memorySize)
   if (plocalUInt2 != (uint64 *)0x0) {
     unsignedVar6 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
     if (unsignedVar6 != 0) {
-      index = unsignedVar6 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar6 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-      index = index - (ulonglong)*(uint *)(index + 4);
-      if ((*(void ***)(unsignedVar6 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-        *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-        *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-        pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+      arrayIndex = unsignedVar6 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar6 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+      arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+      if ((*(void ***)(unsignedVar6 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+        *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+        *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+        pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
         *pstatus = *plocalInt1 + -1;
         if (*plocalInt1 == 0) {
           FUN_18064d630();
@@ -51384,16 +51384,16 @@ void Unwind_1809093c0(uint64 resourceHandle,longlong memorySize,uint64 operation
 {
   longlong *plocalLong1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   longlong longVar4;
   longlong longVar5;
   ulonglong unsignedVar6;
   
-  index = *(longlong *)(memorySize + MEMORY_SIZE_OFFSET);
+  arrayIndex = *(longlong *)(memorySize + MEMORY_SIZE_OFFSET);
   unsignedVar6 = 0;
-  plocalLong1 = (longlong *)(index + 0x8090);
+  plocalLong1 = (longlong *)(arrayIndex + 0x8090);
   longVar4 = *plocalLong1;
-  if (*(longlong *)(index + 0x8098) - longVar4 >> 3 != 0) {
+  if (*(longlong *)(arrayIndex + 0x8098) - longVar4 >> 3 != 0) {
     do {
       plocalUInt2 = *(uint64 **)(unsignedVar6 * 8 + longVar4);
       if (plocalUInt2 != (uint64 *)0x0) {
@@ -51424,30 +51424,30 @@ void Unwind_1809093c0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(uint64 *)(unsignedVar6 * 8 + *plocalLong1) = 0;
       unsignedVar6 = (ulonglong)((int)unsignedVar6 + 1);
       longVar4 = *plocalLong1;
-    } while (unsignedVar6 < (ulonglong)(*(longlong *)(index + 0x8098) - longVar4 >> 3));
+    } while (unsignedVar6 < (ulonglong)(*(longlong *)(arrayIndex + 0x8098) - longVar4 >> 3));
   }
-  *(longlong *)(index + 0x8098) = longVar4;
-  plocalUInt2 = *(uint64 **)(index + 0x8218);
+  *(longlong *)(arrayIndex + 0x8098) = longVar4;
+  plocalUInt2 = *(uint64 **)(arrayIndex + 0x8218);
   if (plocalUInt2 != (uint64 *)0x0) {
-    FUN_1800f74f0(index + 0x8208,*plocalUInt2);
+    FUN_1800f74f0(arrayIndex + 0x8208,*plocalUInt2);
     plocalUInt2[4] = &threadLocalStorageCleanup;
                     // WARNING: Subroutine does not return
     HandleCriticalError(plocalUInt2);
   }
-  FUN_180058370(index + 0x81d8,*(uint64 *)(index + 0x81e8),operationFlags,callbackFunction,0xfffffffffffffffe);
-  FUN_180058370(index + 0x81a8,*(uint64 *)(index + 0x81b8));
-  FUN_180058370(index + 0x8178,*(uint64 *)(index + 0x8188));
-  FUN_1808fc8a8(index + 0x80d8,POINTER_OFFSET_DATA,5,FUN_180046860);
+  FUN_180058370(arrayIndex + 0x81d8,*(uint64 *)(arrayIndex + 0x81e8),operationFlags,callbackFunction,0xfffffffffffffffe);
+  FUN_180058370(arrayIndex + 0x81a8,*(uint64 *)(arrayIndex + 0x81b8));
+  FUN_180058370(arrayIndex + 0x8178,*(uint64 *)(arrayIndex + 0x8188));
+  FUN_1808fc8a8(arrayIndex + 0x80d8,POINTER_OFFSET_DATA,5,FUN_180046860);
   if (*plocalLong1 != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  FUN_1808fc8a8(index + 0x7fe8,POINTER_OFFSET_DATA,5,FUN_180046860);
-  longVar4 = *(longlong *)(index + 0x7fd0);
-  for (longVar5 = *(longlong *)(index + 0x7fc8); longVar5 != longVar4; longVar5 = longVar5 + 0x40) {
+  FUN_1808fc8a8(arrayIndex + 0x7fe8,POINTER_OFFSET_DATA,5,FUN_180046860);
+  longVar4 = *(longlong *)(arrayIndex + 0x7fd0);
+  for (longVar5 = *(longlong *)(arrayIndex + 0x7fc8); longVar5 != longVar4; longVar5 = longVar5 + 0x40) {
     FUN_180152b00(longVar5);
   }
-  if (*(longlong *)(index + 0x7fc8) != 0) {
+  if (*(longlong *)(arrayIndex + 0x7fc8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -51631,12 +51631,12 @@ void Unwind_1809094c0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = *(longlong **)(memorySize + 0x40);
   localLong1 = pbuffer[1];
-  for (index = *pbuffer; index != localLong1; index = index + HANDLE_OFFSET_DATA) {
-    FUN_1800adb30(index);
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + HANDLE_OFFSET_DATA) {
+    FUN_1800adb30(arrayIndex);
   }
   if (*pbuffer == 0) {
     return;
@@ -51966,7 +51966,7 @@ void Unwind_180909660(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xd8);
@@ -51975,12 +51975,12 @@ void Unwind_180909660(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -52002,7 +52002,7 @@ void Unwind_180909670(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xd8);
@@ -52011,12 +52011,12 @@ void Unwind_180909670(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -52038,7 +52038,7 @@ void Unwind_180909680(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + BUFFER_SIZE_STANDARD) + 8);
@@ -52047,12 +52047,12 @@ void Unwind_180909680(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -52074,7 +52074,7 @@ void Unwind_180909690(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + BUFFER_SIZE_STANDARD);
@@ -52083,12 +52083,12 @@ void Unwind_180909690(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -52110,7 +52110,7 @@ void Unwind_1809096a0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + BUFFER_SIZE_STANDARD);
@@ -52119,12 +52119,12 @@ void Unwind_1809096a0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -52227,16 +52227,16 @@ void Unwind_1809096c0(uint64 resourceHandle,longlong memorySize,uint64 operation
 {
   longlong *plocalLong1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   longlong longVar4;
   longlong longVar5;
   ulonglong unsignedVar6;
   
-  index = *(longlong *)(memorySize + 0x40);
+  arrayIndex = *(longlong *)(memorySize + 0x40);
   unsignedVar6 = 0;
-  plocalLong1 = (longlong *)(index + 0x8090);
+  plocalLong1 = (longlong *)(arrayIndex + 0x8090);
   longVar4 = *plocalLong1;
-  if (*(longlong *)(index + 0x8098) - longVar4 >> 3 != 0) {
+  if (*(longlong *)(arrayIndex + 0x8098) - longVar4 >> 3 != 0) {
     do {
       plocalUInt2 = *(uint64 **)(unsignedVar6 * 8 + longVar4);
       if (plocalUInt2 != (uint64 *)0x0) {
@@ -52267,30 +52267,30 @@ void Unwind_1809096c0(uint64 resourceHandle,longlong memorySize,uint64 operation
       *(uint64 *)(unsignedVar6 * 8 + *plocalLong1) = 0;
       unsignedVar6 = (ulonglong)((int)unsignedVar6 + 1);
       longVar4 = *plocalLong1;
-    } while (unsignedVar6 < (ulonglong)(*(longlong *)(index + 0x8098) - longVar4 >> 3));
+    } while (unsignedVar6 < (ulonglong)(*(longlong *)(arrayIndex + 0x8098) - longVar4 >> 3));
   }
-  *(longlong *)(index + 0x8098) = longVar4;
-  plocalUInt2 = *(uint64 **)(index + 0x8218);
+  *(longlong *)(arrayIndex + 0x8098) = longVar4;
+  plocalUInt2 = *(uint64 **)(arrayIndex + 0x8218);
   if (plocalUInt2 != (uint64 *)0x0) {
-    FUN_1800f74f0(index + 0x8208,*plocalUInt2);
+    FUN_1800f74f0(arrayIndex + 0x8208,*plocalUInt2);
     plocalUInt2[4] = &threadLocalStorageCleanup;
                     // WARNING: Subroutine does not return
     HandleCriticalError(plocalUInt2);
   }
-  FUN_180058370(index + 0x81d8,*(uint64 *)(index + 0x81e8),operationFlags,callbackFunction,0xfffffffffffffffe);
-  FUN_180058370(index + 0x81a8,*(uint64 *)(index + 0x81b8));
-  FUN_180058370(index + 0x8178,*(uint64 *)(index + 0x8188));
-  FUN_1808fc8a8(index + 0x80d8,POINTER_OFFSET_DATA,5,FUN_180046860);
+  FUN_180058370(arrayIndex + 0x81d8,*(uint64 *)(arrayIndex + 0x81e8),operationFlags,callbackFunction,0xfffffffffffffffe);
+  FUN_180058370(arrayIndex + 0x81a8,*(uint64 *)(arrayIndex + 0x81b8));
+  FUN_180058370(arrayIndex + 0x8178,*(uint64 *)(arrayIndex + 0x8188));
+  FUN_1808fc8a8(arrayIndex + 0x80d8,POINTER_OFFSET_DATA,5,FUN_180046860);
   if (*plocalLong1 != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  FUN_1808fc8a8(index + 0x7fe8,POINTER_OFFSET_DATA,5,FUN_180046860);
-  longVar4 = *(longlong *)(index + 0x7fd0);
-  for (longVar5 = *(longlong *)(index + 0x7fc8); longVar5 != longVar4; longVar5 = longVar5 + 0x40) {
+  FUN_1808fc8a8(arrayIndex + 0x7fe8,POINTER_OFFSET_DATA,5,FUN_180046860);
+  longVar4 = *(longlong *)(arrayIndex + 0x7fd0);
+  for (longVar5 = *(longlong *)(arrayIndex + 0x7fc8); longVar5 != longVar4; longVar5 = longVar5 + 0x40) {
     FUN_180152b00(longVar5);
   }
-  if (*(longlong *)(index + 0x7fc8) != 0) {
+  if (*(longlong *)(arrayIndex + 0x7fc8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -52570,7 +52570,7 @@ void Unwind_180909860(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x40) + 0x68);
@@ -52579,12 +52579,12 @@ void Unwind_180909860(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -52777,7 +52777,7 @@ void Unwind_180909a00(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + STRUCT_OFFSET_SIZE);
@@ -52786,12 +52786,12 @@ void Unwind_180909a00(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -52845,7 +52845,7 @@ void Unwind_180909a40(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + STRUCT_OFFSET_SIZE);
@@ -52854,12 +52854,12 @@ void Unwind_180909a40(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -52881,7 +52881,7 @@ void Unwind_180909a50(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + STRUCT_OFFSET_SIZE);
@@ -52890,12 +52890,12 @@ void Unwind_180909a50(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -53143,7 +53143,7 @@ void Unwind_180909c20(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + FIELD_OFFSET_1) + 8);
@@ -53152,12 +53152,12 @@ void Unwind_180909c20(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -53295,13 +53295,13 @@ void Unwind_180909d00(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + 0x40) + 0x580);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x40) + 0x588);
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -53327,13 +53327,13 @@ void Unwind_180909d60(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + 0x40) + 0x6c0);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x40) + 0x6c8);
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -53350,13 +53350,13 @@ void Unwind_180909d80(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + 0x40) + 0x6e0);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x40) + 0x6e8);
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -53373,13 +53373,13 @@ void Unwind_180909da0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + 0x40) + 0x700);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x40) + 0x708);
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -53396,13 +53396,13 @@ void Unwind_180909dc0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + 0x40) + 0x720);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x40) + 0x728);
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -53537,26 +53537,26 @@ void Unwind_180909f60(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
-  index = *(longlong *)(memorySize + 0x40);
+  arrayIndex = *(longlong *)(memorySize + 0x40);
   FUN_1802ab380();
   _Mtx_destroy_in_situ();
-  if (*(longlong *)(index + 0xae0) != 0) {
+  if (*(longlong *)(arrayIndex + 0xae0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  plocalUInt2 = *(uint64 **)(index + 0xac0);
+  plocalUInt2 = *(uint64 **)(arrayIndex + 0xac0);
   if (plocalUInt2 != (uint64 *)0x0) {
     unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
     if (unsignedVar4 != 0) {
-      index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-      index = index - (ulonglong)*(uint *)(index + 4);
-      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-        *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-        *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-        pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+      arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+      arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+        *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+        *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+        pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
         *pstatus = *plocalInt1 + -1;
         if (*plocalInt1 == 0) {
           FUN_18064d630();
@@ -53643,13 +53643,13 @@ void Unwind_18090a060(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + 0x40) + 0xd00);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x40) + 0xd08);
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -53860,13 +53860,13 @@ void Unwind_18090a1f0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + DATA_OFFSET_START) + 0x580);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + DATA_OFFSET_START) + 0x588);
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -53892,13 +53892,13 @@ void Unwind_18090a250(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + DATA_OFFSET_START) + 0x6c0);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + DATA_OFFSET_START) + 0x6c8);
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -53915,13 +53915,13 @@ void Unwind_18090a270(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + DATA_OFFSET_START) + 0x6e0);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + DATA_OFFSET_START) + 0x6e8);
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -53938,13 +53938,13 @@ void Unwind_18090a290(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + DATA_OFFSET_START) + 0x700);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + DATA_OFFSET_START) + 0x708);
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -53961,13 +53961,13 @@ void Unwind_18090a2b0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + DATA_OFFSET_START) + 0x720);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + DATA_OFFSET_START) + 0x728);
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -54102,26 +54102,26 @@ void Unwind_18090a450(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
-  index = *(longlong *)(memorySize + DATA_OFFSET_START);
+  arrayIndex = *(longlong *)(memorySize + DATA_OFFSET_START);
   FUN_1802ab380();
   _Mtx_destroy_in_situ();
-  if (*(longlong *)(index + 0xae0) != 0) {
+  if (*(longlong *)(arrayIndex + 0xae0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  plocalUInt2 = *(uint64 **)(index + 0xac0);
+  plocalUInt2 = *(uint64 **)(arrayIndex + 0xac0);
   if (plocalUInt2 != (uint64 *)0x0) {
     unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
     if (unsignedVar4 != 0) {
-      index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-      index = index - (ulonglong)*(uint *)(index + 4);
-      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-        *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-        *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-        pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+      arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+      arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+        *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+        *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+        pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
         *pstatus = *plocalInt1 + -1;
         if (*plocalInt1 == 0) {
           FUN_18064d630();
@@ -54208,13 +54208,13 @@ void Unwind_18090a550(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + DATA_OFFSET_START) + 0xd00);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + DATA_OFFSET_START) + 0xd08);
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -54231,13 +54231,13 @@ void Unwind_18090a570(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = *(longlong **)(memorySize + 0x68);
   plocalLong1 = (longlong *)pbuffer[1];
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -54308,7 +54308,7 @@ void Unwind_18090a5c0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x68);
@@ -54317,12 +54317,12 @@ void Unwind_18090a5c0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -54344,7 +54344,7 @@ void Unwind_18090a5d0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x68) + POINTER_OFFSET_DATA);
@@ -54353,12 +54353,12 @@ void Unwind_18090a5d0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -54552,7 +54552,7 @@ void Unwind_18090a780(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x40);
@@ -54561,12 +54561,12 @@ void Unwind_18090a780(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -54602,7 +54602,7 @@ void Unwind_18090a7a0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x40);
@@ -54611,12 +54611,12 @@ void Unwind_18090a7a0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -54781,7 +54781,7 @@ void Unwind_18090a880(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + LIST_OFFSET_HEAD) + 8);
@@ -54790,12 +54790,12 @@ void Unwind_18090a880(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -54817,7 +54817,7 @@ void Unwind_18090a890(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + DATA_OFFSET_START) + 8);
@@ -54826,12 +54826,12 @@ void Unwind_18090a890(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -54853,13 +54853,13 @@ void Unwind_18090a8a0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + SYSTEM_OFFSET_STATUS1) + BYTE_OFFSET_2);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + SYSTEM_OFFSET_STATUS1) + FIELD_OFFSET_1);
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -54876,13 +54876,13 @@ void Unwind_18090a8b0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + DATA_OFFSET_START) + 8);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + DATA_OFFSET_START) + RESOURCE_HANDLE_OFFSET);
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -54899,13 +54899,13 @@ void Unwind_18090a8c0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + 0x70) + 8);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x70) + RESOURCE_HANDLE_OFFSET);
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -54922,13 +54922,13 @@ void Unwind_18090a8d0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = *(longlong **)(memorySize + 0x88);
   plocalLong1 = (longlong *)pbuffer[1];
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -54973,13 +54973,13 @@ void Unwind_18090a900(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = *(longlong **)(memorySize + LIST_OFFSET_HEAD);
   plocalLong1 = (longlong *)pbuffer[1];
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -55018,13 +55018,13 @@ void Unwind_18090a920(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + 0x40) + 8);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x40) + RESOURCE_HANDLE_OFFSET);
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -55041,21 +55041,21 @@ void Unwind_18090a930(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
-  index = *(longlong *)(memorySize + 0x40);
+  arrayIndex = *(longlong *)(memorySize + 0x40);
   FUN_1800ba100();
-  if ((1 < *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET)) &&
-     (plocalUInt2 = *(uint64 **)(index + 8), plocalUInt2 != (uint64 *)0x0)) {
+  if ((1 < *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET)) &&
+     (plocalUInt2 = *(uint64 **)(arrayIndex + 8), plocalUInt2 != (uint64 *)0x0)) {
     unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
     if (unsignedVar4 != 0) {
-      index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-      index = index - (ulonglong)*(uint *)(index + 4);
-      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-        *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-        *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-        pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+      arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+      arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+        *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+        *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+        pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
         *pstatus = *plocalInt1 + -1;
         if (*plocalInt1 == 0) {
           FUN_18064d630();
@@ -55079,21 +55079,21 @@ void Unwind_18090a940(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
-  index = *(longlong *)(memorySize + 0x40);
+  arrayIndex = *(longlong *)(memorySize + 0x40);
   FUN_1800ba100();
-  if ((1 < *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET)) &&
-     (plocalUInt2 = *(uint64 **)(index + 8), plocalUInt2 != (uint64 *)0x0)) {
+  if ((1 < *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET)) &&
+     (plocalUInt2 = *(uint64 **)(arrayIndex + 8), plocalUInt2 != (uint64 *)0x0)) {
     unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
     if (unsignedVar4 != 0) {
-      index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-      index = index - (ulonglong)*(uint *)(index + 4);
-      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-        *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-        *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-        pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+      arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+      arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+        *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+        *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+        pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
         *pstatus = *plocalInt1 + -1;
         if (*plocalInt1 == 0) {
           FUN_18064d630();
@@ -55117,21 +55117,21 @@ void Unwind_18090a950(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
-  index = *(longlong *)(memorySize + 0x40);
+  arrayIndex = *(longlong *)(memorySize + 0x40);
   FUN_1800ba100();
-  if ((1 < *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET)) &&
-     (plocalUInt2 = *(uint64 **)(index + 8), plocalUInt2 != (uint64 *)0x0)) {
+  if ((1 < *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET)) &&
+     (plocalUInt2 = *(uint64 **)(arrayIndex + 8), plocalUInt2 != (uint64 *)0x0)) {
     unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
     if (unsignedVar4 != 0) {
-      index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-      index = index - (ulonglong)*(uint *)(index + 4);
-      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-        *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-        *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-        pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+      arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+      arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+        *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+        *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+        pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
         *pstatus = *plocalInt1 + -1;
         if (*plocalInt1 == 0) {
           FUN_18064d630();
@@ -55155,21 +55155,21 @@ void Unwind_18090a960(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
-  index = *(longlong *)(memorySize + LIST_OFFSET_HEAD);
+  arrayIndex = *(longlong *)(memorySize + LIST_OFFSET_HEAD);
   FUN_1800ba100();
-  if ((1 < *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET)) &&
-     (plocalUInt2 = *(uint64 **)(index + 8), plocalUInt2 != (uint64 *)0x0)) {
+  if ((1 < *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET)) &&
+     (plocalUInt2 = *(uint64 **)(arrayIndex + 8), plocalUInt2 != (uint64 *)0x0)) {
     unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
     if (unsignedVar4 != 0) {
-      index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-      index = index - (ulonglong)*(uint *)(index + 4);
-      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-        *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-        *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-        pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+      arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+      arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+        *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+        *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+        pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
         *pstatus = *plocalInt1 + -1;
         if (*plocalInt1 == 0) {
           FUN_18064d630();
@@ -55193,21 +55193,21 @@ void Unwind_18090a970(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
-  index = *(longlong *)(memorySize + LIST_OFFSET_HEAD);
+  arrayIndex = *(longlong *)(memorySize + LIST_OFFSET_HEAD);
   FUN_1800ba100();
-  if ((1 < *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET)) &&
-     (plocalUInt2 = *(uint64 **)(index + 8), plocalUInt2 != (uint64 *)0x0)) {
+  if ((1 < *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET)) &&
+     (plocalUInt2 = *(uint64 **)(arrayIndex + 8), plocalUInt2 != (uint64 *)0x0)) {
     unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
     if (unsignedVar4 != 0) {
-      index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-      index = index - (ulonglong)*(uint *)(index + 4);
-      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-        *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-        *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-        pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+      arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+      arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+      if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+        *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+        *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+        pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
         *pstatus = *plocalInt1 + -1;
         if (*plocalInt1 == 0) {
           FUN_18064d630();
@@ -55867,13 +55867,13 @@ void Unwind_18090af70(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong buffer;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   ulonglong unsignedVar5;
   
-  index = *(longlong *)(memorySize + LIST_OFFSET_HEAD);
-  unsignedVar4 = *(ulonglong *)(index + 0x2b0);
-  localLong1 = *(longlong *)(index + 0x2a8);
+  arrayIndex = *(longlong *)(memorySize + LIST_OFFSET_HEAD);
+  unsignedVar4 = *(ulonglong *)(arrayIndex + 0x2b0);
+  localLong1 = *(longlong *)(arrayIndex + 0x2a8);
   unsignedVar5 = 0;
   if (unsignedVar4 != 0) {
     do {
@@ -55888,10 +55888,10 @@ void Unwind_18090af70(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
       unsignedVar5 = unsignedVar5 + 1;
     } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(index + 0x2b0);
+    unsignedVar4 = *(ulonglong *)(arrayIndex + 0x2b0);
   }
-  *(uint64 *)(index + 0x2b8) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(index + 0x2a8) != 0)) {
+  *(uint64 *)(arrayIndex + 0x2b8) = 0;
+  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 0x2a8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -56474,13 +56474,13 @@ void Unwind_18090b4b0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong buffer;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   ulonglong unsignedVar5;
   
-  index = *(longlong *)(memorySize + SYSTEM_OFFSET_STATUS1);
-  unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
-  localLong1 = *(longlong *)(index + 8);
+  arrayIndex = *(longlong *)(memorySize + SYSTEM_OFFSET_STATUS1);
+  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  localLong1 = *(longlong *)(arrayIndex + 8);
   unsignedVar5 = 0;
   if (unsignedVar4 != 0) {
     do {
@@ -56495,10 +56495,10 @@ void Unwind_18090b4b0(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
       unsignedVar5 = unsignedVar5 + 1;
     } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
+    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
-  *(uint64 *)(index + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(index + 8) != 0)) {
+  *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
+  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -56512,13 +56512,13 @@ void Unwind_18090b4c0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong buffer;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   ulonglong unsignedVar5;
   
-  index = *(longlong *)(memorySize + SYSTEM_OFFSET_STATUS1);
-  unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
-  localLong1 = *(longlong *)(index + 8);
+  arrayIndex = *(longlong *)(memorySize + SYSTEM_OFFSET_STATUS1);
+  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  localLong1 = *(longlong *)(arrayIndex + 8);
   unsignedVar5 = 0;
   if (unsignedVar4 != 0) {
     do {
@@ -56533,10 +56533,10 @@ void Unwind_18090b4c0(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
       unsignedVar5 = unsignedVar5 + 1;
     } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
+    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
-  *(uint64 *)(index + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(index + 8) != 0)) {
+  *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
+  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -56568,13 +56568,13 @@ void Unwind_18090b4f0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong buffer;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   ulonglong unsignedVar5;
   
-  index = *(longlong *)(memorySize + 0x40);
-  unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
-  localLong1 = *(longlong *)(index + 8);
+  arrayIndex = *(longlong *)(memorySize + 0x40);
+  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  localLong1 = *(longlong *)(arrayIndex + 8);
   unsignedVar5 = 0;
   if (unsignedVar4 != 0) {
     do {
@@ -56589,10 +56589,10 @@ void Unwind_18090b4f0(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
       unsignedVar5 = unsignedVar5 + 1;
     } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
+    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
-  *(uint64 *)(index + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(index + 8) != 0)) {
+  *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
+  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -56606,13 +56606,13 @@ void Unwind_18090b500(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong buffer;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   ulonglong unsignedVar5;
   
-  index = *(longlong *)(memorySize + 0x40);
-  unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
-  localLong1 = *(longlong *)(index + 8);
+  arrayIndex = *(longlong *)(memorySize + 0x40);
+  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  localLong1 = *(longlong *)(arrayIndex + 8);
   unsignedVar5 = 0;
   if (unsignedVar4 != 0) {
     do {
@@ -56627,10 +56627,10 @@ void Unwind_18090b500(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
       unsignedVar5 = unsignedVar5 + 1;
     } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
+    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
-  *(uint64 *)(index + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(index + 8) != 0)) {
+  *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
+  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -56909,13 +56909,13 @@ void Unwind_18090b7d0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong buffer;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   ulonglong unsignedVar5;
   
-  index = *(longlong *)(memorySize + 0x40);
-  unsignedVar4 = *(ulonglong *)(index + 0x2b0);
-  localLong1 = *(longlong *)(index + 0x2a8);
+  arrayIndex = *(longlong *)(memorySize + 0x40);
+  unsignedVar4 = *(ulonglong *)(arrayIndex + 0x2b0);
+  localLong1 = *(longlong *)(arrayIndex + 0x2a8);
   unsignedVar5 = 0;
   if (unsignedVar4 != 0) {
     do {
@@ -56930,10 +56930,10 @@ void Unwind_18090b7d0(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
       unsignedVar5 = unsignedVar5 + 1;
     } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(index + 0x2b0);
+    unsignedVar4 = *(ulonglong *)(arrayIndex + 0x2b0);
   }
-  *(uint64 *)(index + 0x2b8) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(index + 0x2a8) != 0)) {
+  *(uint64 *)(arrayIndex + 0x2b8) = 0;
+  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 0x2a8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -57516,13 +57516,13 @@ void Unwind_18090bd10(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong buffer;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   ulonglong unsignedVar5;
   
-  index = *(longlong *)(memorySize + BUFFER_OFFSET_DATA);
-  unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
-  localLong1 = *(longlong *)(index + 8);
+  arrayIndex = *(longlong *)(memorySize + BUFFER_OFFSET_DATA);
+  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  localLong1 = *(longlong *)(arrayIndex + 8);
   unsignedVar5 = 0;
   if (unsignedVar4 != 0) {
     do {
@@ -57537,10 +57537,10 @@ void Unwind_18090bd10(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
       unsignedVar5 = unsignedVar5 + 1;
     } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
+    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
-  *(uint64 *)(index + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(index + 8) != 0)) {
+  *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
+  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -57554,13 +57554,13 @@ void Unwind_18090bd20(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong buffer;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   ulonglong unsignedVar5;
   
-  index = *(longlong *)(memorySize + BUFFER_OFFSET_DATA);
-  unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
-  localLong1 = *(longlong *)(index + 8);
+  arrayIndex = *(longlong *)(memorySize + BUFFER_OFFSET_DATA);
+  unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+  localLong1 = *(longlong *)(arrayIndex + 8);
   unsignedVar5 = 0;
   if (unsignedVar4 != 0) {
     do {
@@ -57575,10 +57575,10 @@ void Unwind_18090bd20(uint64 resourceHandle,longlong memorySize)
       *(uint64 *)(localLong1 + unsignedVar5 * 8) = 0;
       unsignedVar5 = unsignedVar5 + 1;
     } while (unsignedVar5 < unsignedVar4);
-    unsignedVar4 = *(ulonglong *)(index + RESOURCE_HANDLE_OFFSET);
+    unsignedVar4 = *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   }
-  *(uint64 *)(index + RESOURCE_OFFSET_HANDLE) = 0;
-  if ((1 < unsignedVar4) && (*(longlong *)(index + 8) != 0)) {
+  *(uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE) = 0;
+  if ((1 < unsignedVar4) && (*(longlong *)(arrayIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -57984,13 +57984,13 @@ void Unwind_18090bfe0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + POINTER_OFFSET_DATA) + BUFFER_OFFSET_TEMP);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + POINTER_OFFSET_DATA) + 0x88);
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -58058,13 +58058,13 @@ void Unwind_18090c060(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = *(longlong **)(memorySize + BYTE_OFFSET_2);
   plocalLong1 = (longlong *)pbuffer[1];
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -58226,7 +58226,7 @@ void Unwind_18090c140(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + LIST_OFFSET_HEAD);
@@ -58235,12 +58235,12 @@ void Unwind_18090c140(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -58371,7 +58371,7 @@ void Unwind_18090c1c0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + POINTER_OFFSET_DATA) + 8);
@@ -58380,12 +58380,12 @@ void Unwind_18090c1c0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -58439,20 +58439,20 @@ void Unwind_18090c200(uint64 resourceHandle,longlong memorySize)
 {
   uint64 returnValue;
   longlong buffer;
-  longlong index;
+  longlong arrayIndex;
   uint64 *puVar4;
   
-  index = *(longlong *)(memorySize + 0x70);
-  puVar4 = (uint64 *)(index + -0xa0);
+  arrayIndex = *(longlong *)(memorySize + 0x70);
+  puVar4 = (uint64 *)(arrayIndex + -0xa0);
   *puVar4 = &uiWidgetTree;
-  if ((*(longlong *)(index + -POINTER_OFFSET_DATA) != 0) && (**(longlong **)(index + -0x88) == index + -FIELD_OFFSET_1)) {
-    returnValue = *(uint64 *)(index + -RESOURCE_HANDLE_OFFSET);
-    buffer = *(longlong *)(index + -RESOURCE_OFFSET_HANDLE);
-    **(longlong **)(index + -0x88) = buffer;
-    **(longlong **)(index + -0x68) = buffer;
-    **(int **)(index + -LIST_OFFSET_HEAD) = (int)returnValue - (int)buffer;
+  if ((*(longlong *)(arrayIndex + -POINTER_OFFSET_DATA) != 0) && (**(longlong **)(arrayIndex + -0x88) == arrayIndex + -FIELD_OFFSET_1)) {
+    returnValue = *(uint64 *)(arrayIndex + -RESOURCE_HANDLE_OFFSET);
+    buffer = *(longlong *)(arrayIndex + -RESOURCE_OFFSET_HANDLE);
+    **(longlong **)(arrayIndex + -0x88) = buffer;
+    **(longlong **)(arrayIndex + -0x68) = buffer;
+    **(int **)(arrayIndex + -LIST_OFFSET_HEAD) = (int)returnValue - (int)buffer;
   }
-  if (*(char *)(index + -FIELD_OFFSET_3) != '\0') {
+  if (*(char *)(arrayIndex + -FIELD_OFFSET_3) != '\0') {
     FUN_1800a19c0(puVar4);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
@@ -58479,20 +58479,20 @@ void Unwind_18090c240(uint64 resourceHandle,longlong memorySize)
 {
   uint64 returnValue;
   longlong buffer;
-  longlong index;
+  longlong arrayIndex;
   uint64 *puVar4;
   
-  index = *(longlong *)(memorySize + 0x40);
-  puVar4 = (uint64 *)(index + -0xa0);
+  arrayIndex = *(longlong *)(memorySize + 0x40);
+  puVar4 = (uint64 *)(arrayIndex + -0xa0);
   *puVar4 = &uiWidgetTree;
-  if ((*(longlong *)(index + -POINTER_OFFSET_DATA) != 0) && (**(longlong **)(index + -0x88) == index + -FIELD_OFFSET_1)) {
-    returnValue = *(uint64 *)(index + -RESOURCE_HANDLE_OFFSET);
-    buffer = *(longlong *)(index + -RESOURCE_OFFSET_HANDLE);
-    **(longlong **)(index + -0x88) = buffer;
-    **(longlong **)(index + -0x68) = buffer;
-    **(int **)(index + -LIST_OFFSET_HEAD) = (int)returnValue - (int)buffer;
+  if ((*(longlong *)(arrayIndex + -POINTER_OFFSET_DATA) != 0) && (**(longlong **)(arrayIndex + -0x88) == arrayIndex + -FIELD_OFFSET_1)) {
+    returnValue = *(uint64 *)(arrayIndex + -RESOURCE_HANDLE_OFFSET);
+    buffer = *(longlong *)(arrayIndex + -RESOURCE_OFFSET_HANDLE);
+    **(longlong **)(arrayIndex + -0x88) = buffer;
+    **(longlong **)(arrayIndex + -0x68) = buffer;
+    **(int **)(arrayIndex + -LIST_OFFSET_HEAD) = (int)returnValue - (int)buffer;
   }
-  if (*(char *)(index + -FIELD_OFFSET_3) != '\0') {
+  if (*(char *)(arrayIndex + -FIELD_OFFSET_3) != '\0') {
     FUN_1800a19c0(puVar4);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
@@ -58526,7 +58526,7 @@ void Unwind_18090c280(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xe8);
@@ -58535,12 +58535,12 @@ void Unwind_18090c280(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -58598,7 +58598,7 @@ void Unwind_18090c2d0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xe8);
@@ -58607,12 +58607,12 @@ void Unwind_18090c2d0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -58634,7 +58634,7 @@ void Unwind_18090c2e0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xe8);
@@ -58643,12 +58643,12 @@ void Unwind_18090c2e0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -58739,20 +58739,20 @@ void Unwind_18090c380(uint64 resourceHandle,longlong memorySize)
 {
   uint64 returnValue;
   longlong buffer;
-  longlong index;
+  longlong arrayIndex;
   uint64 *puVar4;
   
-  index = *(longlong *)(memorySize + 0x40);
-  puVar4 = (uint64 *)(index + RESOURCE_OFFSET_HANDLE);
+  arrayIndex = *(longlong *)(memorySize + 0x40);
+  puVar4 = (uint64 *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
   *puVar4 = &uiWidgetTree;
-  if ((*(longlong *)(index + 0x98) != 0) && (**(longlong **)(index + FIELD_OFFSET_1) == index + 0x88)) {
-    returnValue = *(uint64 *)(index + 0xa8);
-    buffer = *(longlong *)(index + 0xa0);
-    **(longlong **)(index + FIELD_OFFSET_1) = buffer;
-    **(longlong **)(index + LIST_OFFSET_HEAD) = buffer;
-    **(int **)(index + 0x68) = (int)returnValue - (int)buffer;
+  if ((*(longlong *)(arrayIndex + 0x98) != 0) && (**(longlong **)(arrayIndex + FIELD_OFFSET_1) == arrayIndex + 0x88)) {
+    returnValue = *(uint64 *)(arrayIndex + 0xa8);
+    buffer = *(longlong *)(arrayIndex + 0xa0);
+    **(longlong **)(arrayIndex + FIELD_OFFSET_1) = buffer;
+    **(longlong **)(arrayIndex + LIST_OFFSET_HEAD) = buffer;
+    **(int **)(arrayIndex + 0x68) = (int)returnValue - (int)buffer;
   }
-  if (*(char *)(index + 0x94) != '\0') {
+  if (*(char *)(arrayIndex + 0x94) != '\0') {
     FUN_1800a19c0(puVar4);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
@@ -58782,7 +58782,7 @@ void Unwind_18090c3b0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x70) + 0x1d8);
@@ -58791,12 +58791,12 @@ void Unwind_18090c3b0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -58841,7 +58841,7 @@ void Unwind_18090c400(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x70) + 0x2d0);
@@ -58850,12 +58850,12 @@ void Unwind_18090c400(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -58954,7 +58954,7 @@ void Unwind_18090c490(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -58969,9 +58969,9 @@ void Unwind_18090c490(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -59139,7 +59139,7 @@ void Unwind_18090c530(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + BUFFER_SIZE_STANDARD);
@@ -59148,12 +59148,12 @@ void Unwind_18090c530(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -59177,7 +59177,7 @@ void Unwind_18090c540(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -59192,9 +59192,9 @@ void Unwind_18090c540(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -59223,7 +59223,7 @@ void Unwind_18090c550(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -59238,9 +59238,9 @@ void Unwind_18090c550(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -59299,7 +59299,7 @@ void Unwind_18090c590(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -59314,9 +59314,9 @@ void Unwind_18090c590(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -59366,7 +59366,7 @@ void Unwind_18090c5c0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -59381,9 +59381,9 @@ void Unwind_18090c5c0(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -59412,7 +59412,7 @@ void Unwind_18090c5d0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -59427,9 +59427,9 @@ void Unwind_18090c5d0(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -59470,7 +59470,7 @@ void Unwind_18090c5f0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -59485,9 +59485,9 @@ void Unwind_18090c5f0(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -59516,7 +59516,7 @@ void Unwind_18090c600(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -59531,9 +59531,9 @@ void Unwind_18090c600(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -59560,7 +59560,7 @@ void Unwind_18090c610(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + BUFFER_SIZE_STANDARD);
@@ -59569,12 +59569,12 @@ void Unwind_18090c610(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -59596,7 +59596,7 @@ void Unwind_18090c620(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + BUFFER_SIZE_STANDARD);
@@ -59605,12 +59605,12 @@ void Unwind_18090c620(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -60205,7 +60205,7 @@ void Unwind_18090ca20(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -60220,9 +60220,9 @@ void Unwind_18090ca20(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -60263,7 +60263,7 @@ void Unwind_18090ca40(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -60278,9 +60278,9 @@ void Unwind_18090ca40(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -60333,7 +60333,7 @@ void Unwind_18090ca70(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -60348,9 +60348,9 @@ void Unwind_18090ca70(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -60400,7 +60400,7 @@ void Unwind_18090caa0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -60415,9 +60415,9 @@ void Unwind_18090caa0(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -60467,7 +60467,7 @@ void Unwind_18090cad0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -60482,9 +60482,9 @@ void Unwind_18090cad0(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -60534,7 +60534,7 @@ void Unwind_18090cb00(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -60549,9 +60549,9 @@ void Unwind_18090cb00(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -60589,7 +60589,7 @@ void Unwind_18090cb20(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -60604,9 +60604,9 @@ void Unwind_18090cb20(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -60644,7 +60644,7 @@ void Unwind_18090cb40(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -60659,9 +60659,9 @@ void Unwind_18090cb40(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -60702,7 +60702,7 @@ void Unwind_18090cb60(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -60717,9 +60717,9 @@ void Unwind_18090cb60(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -60757,7 +60757,7 @@ void Unwind_18090cb80(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -60772,9 +60772,9 @@ void Unwind_18090cb80(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -60848,7 +60848,7 @@ void Unwind_18090cbd0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -60863,9 +60863,9 @@ void Unwind_18090cbd0(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -60915,7 +60915,7 @@ void Unwind_18090cc00(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -60930,9 +60930,9 @@ void Unwind_18090cc00(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -61081,7 +61081,7 @@ void Unwind_18090cce0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -61096,9 +61096,9 @@ void Unwind_18090cce0(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -61721,7 +61721,7 @@ void Unwind_18090d000(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xb0);
@@ -61730,12 +61730,12 @@ void Unwind_18090d000(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -61757,7 +61757,7 @@ void Unwind_18090d010(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + STRUCT_OFFSET_1);
@@ -61766,12 +61766,12 @@ void Unwind_18090d010(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -61793,7 +61793,7 @@ void Unwind_18090d020(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xf0);
@@ -61802,12 +61802,12 @@ void Unwind_18090d020(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -61829,7 +61829,7 @@ void Unwind_18090d030(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x110);
@@ -61838,12 +61838,12 @@ void Unwind_18090d030(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -61865,7 +61865,7 @@ void Unwind_18090d040(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x150);
@@ -61874,12 +61874,12 @@ void Unwind_18090d040(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -61901,7 +61901,7 @@ void Unwind_18090d050(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x170);
@@ -61910,12 +61910,12 @@ void Unwind_18090d050(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -61937,7 +61937,7 @@ void Unwind_18090d060(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 400);
@@ -61946,12 +61946,12 @@ void Unwind_18090d060(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -61973,7 +61973,7 @@ void Unwind_18090d070(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x1b0);
@@ -61982,12 +61982,12 @@ void Unwind_18090d070(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62009,7 +62009,7 @@ void Unwind_18090d080(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x1d0);
@@ -62018,12 +62018,12 @@ void Unwind_18090d080(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62045,7 +62045,7 @@ void Unwind_18090d090(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x1f0);
@@ -62054,12 +62054,12 @@ void Unwind_18090d090(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62081,7 +62081,7 @@ void Unwind_18090d0a0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x210);
@@ -62090,12 +62090,12 @@ void Unwind_18090d0a0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62117,7 +62117,7 @@ void Unwind_18090d0b0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x250);
@@ -62126,12 +62126,12 @@ void Unwind_18090d0b0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62153,7 +62153,7 @@ void Unwind_18090d0c0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x390);
@@ -62162,12 +62162,12 @@ void Unwind_18090d0c0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62189,7 +62189,7 @@ void Unwind_18090d0d0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x3b0);
@@ -62198,12 +62198,12 @@ void Unwind_18090d0d0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62225,7 +62225,7 @@ void Unwind_18090d0e0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x490);
@@ -62234,12 +62234,12 @@ void Unwind_18090d0e0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62261,7 +62261,7 @@ void Unwind_18090d0f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x2f0);
@@ -62270,12 +62270,12 @@ void Unwind_18090d0f0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62297,7 +62297,7 @@ void Unwind_18090d100(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x310);
@@ -62306,12 +62306,12 @@ void Unwind_18090d100(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62333,7 +62333,7 @@ void Unwind_18090d110(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x330);
@@ -62342,12 +62342,12 @@ void Unwind_18090d110(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62369,7 +62369,7 @@ void Unwind_18090d120(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x350);
@@ -62378,12 +62378,12 @@ void Unwind_18090d120(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62405,7 +62405,7 @@ void Unwind_18090d130(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x470);
@@ -62414,12 +62414,12 @@ void Unwind_18090d130(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62441,7 +62441,7 @@ void Unwind_18090d140(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x370);
@@ -62450,12 +62450,12 @@ void Unwind_18090d140(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62477,7 +62477,7 @@ void Unwind_18090d150(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x270);
@@ -62486,12 +62486,12 @@ void Unwind_18090d150(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62513,7 +62513,7 @@ void Unwind_18090d160(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x290);
@@ -62522,12 +62522,12 @@ void Unwind_18090d160(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62549,7 +62549,7 @@ void Unwind_18090d170(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x2b0);
@@ -62558,12 +62558,12 @@ void Unwind_18090d170(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62585,7 +62585,7 @@ void Unwind_18090d180(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x2d0);
@@ -62594,12 +62594,12 @@ void Unwind_18090d180(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62632,7 +62632,7 @@ void Unwind_18090d1a0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xb0);
@@ -62641,12 +62641,12 @@ void Unwind_18090d1a0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62668,7 +62668,7 @@ void Unwind_18090d1b0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xb0);
@@ -62677,12 +62677,12 @@ void Unwind_18090d1b0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62704,7 +62704,7 @@ void Unwind_18090d1c0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + STRUCT_OFFSET_1);
@@ -62713,12 +62713,12 @@ void Unwind_18090d1c0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62740,7 +62740,7 @@ void Unwind_18090d1d0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + STRUCT_OFFSET_1);
@@ -62749,12 +62749,12 @@ void Unwind_18090d1d0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62776,7 +62776,7 @@ void Unwind_18090d1e0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xf0);
@@ -62785,12 +62785,12 @@ void Unwind_18090d1e0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62812,7 +62812,7 @@ void Unwind_18090d1f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xf0);
@@ -62821,12 +62821,12 @@ void Unwind_18090d1f0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62848,7 +62848,7 @@ void Unwind_18090d200(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x110);
@@ -62857,12 +62857,12 @@ void Unwind_18090d200(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62884,7 +62884,7 @@ void Unwind_18090d210(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x110);
@@ -62893,12 +62893,12 @@ void Unwind_18090d210(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62920,7 +62920,7 @@ void Unwind_18090d220(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x150);
@@ -62929,12 +62929,12 @@ void Unwind_18090d220(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62956,7 +62956,7 @@ void Unwind_18090d230(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x150);
@@ -62965,12 +62965,12 @@ void Unwind_18090d230(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -62992,7 +62992,7 @@ void Unwind_18090d240(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x170);
@@ -63001,12 +63001,12 @@ void Unwind_18090d240(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63028,7 +63028,7 @@ void Unwind_18090d250(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x170);
@@ -63037,12 +63037,12 @@ void Unwind_18090d250(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63064,7 +63064,7 @@ void Unwind_18090d260(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 400);
@@ -63073,12 +63073,12 @@ void Unwind_18090d260(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63100,7 +63100,7 @@ void Unwind_18090d270(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 400);
@@ -63109,12 +63109,12 @@ void Unwind_18090d270(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63136,7 +63136,7 @@ void Unwind_18090d280(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x1b0);
@@ -63145,12 +63145,12 @@ void Unwind_18090d280(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63172,7 +63172,7 @@ void Unwind_18090d290(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x1b0);
@@ -63181,12 +63181,12 @@ void Unwind_18090d290(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63208,7 +63208,7 @@ void Unwind_18090d2a0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x1d0);
@@ -63217,12 +63217,12 @@ void Unwind_18090d2a0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63244,7 +63244,7 @@ void Unwind_18090d2b0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x1d0);
@@ -63253,12 +63253,12 @@ void Unwind_18090d2b0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63280,7 +63280,7 @@ void Unwind_18090d2c0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x1f0);
@@ -63289,12 +63289,12 @@ void Unwind_18090d2c0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63316,7 +63316,7 @@ void Unwind_18090d2d0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x1f0);
@@ -63325,12 +63325,12 @@ void Unwind_18090d2d0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63352,7 +63352,7 @@ void Unwind_18090d2e0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x210);
@@ -63361,12 +63361,12 @@ void Unwind_18090d2e0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63388,7 +63388,7 @@ void Unwind_18090d2f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x210);
@@ -63397,12 +63397,12 @@ void Unwind_18090d2f0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63424,7 +63424,7 @@ void Unwind_18090d300(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x250);
@@ -63433,12 +63433,12 @@ void Unwind_18090d300(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63460,7 +63460,7 @@ void Unwind_18090d310(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x250);
@@ -63469,12 +63469,12 @@ void Unwind_18090d310(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63552,7 +63552,7 @@ void Unwind_18090d360(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x390);
@@ -63561,12 +63561,12 @@ void Unwind_18090d360(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63588,7 +63588,7 @@ void Unwind_18090d370(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x390);
@@ -63597,12 +63597,12 @@ void Unwind_18090d370(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63624,7 +63624,7 @@ void Unwind_18090d380(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x3b0);
@@ -63633,12 +63633,12 @@ void Unwind_18090d380(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63660,7 +63660,7 @@ void Unwind_18090d390(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x3b0);
@@ -63669,12 +63669,12 @@ void Unwind_18090d390(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63696,7 +63696,7 @@ void Unwind_18090d3a0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x490);
@@ -63705,12 +63705,12 @@ void Unwind_18090d3a0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63732,7 +63732,7 @@ void Unwind_18090d3b0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x490);
@@ -63741,12 +63741,12 @@ void Unwind_18090d3b0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63768,7 +63768,7 @@ void Unwind_18090d3c0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x2f0);
@@ -63777,12 +63777,12 @@ void Unwind_18090d3c0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63804,7 +63804,7 @@ void Unwind_18090d3d0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x2f0);
@@ -63813,12 +63813,12 @@ void Unwind_18090d3d0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63840,7 +63840,7 @@ void Unwind_18090d3e0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x310);
@@ -63849,12 +63849,12 @@ void Unwind_18090d3e0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63876,7 +63876,7 @@ void Unwind_18090d3f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x310);
@@ -63885,12 +63885,12 @@ void Unwind_18090d3f0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63912,7 +63912,7 @@ void Unwind_18090d400(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x330);
@@ -63921,12 +63921,12 @@ void Unwind_18090d400(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63948,7 +63948,7 @@ void Unwind_18090d410(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x330);
@@ -63957,12 +63957,12 @@ void Unwind_18090d410(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -63984,7 +63984,7 @@ void Unwind_18090d420(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x350);
@@ -63993,12 +63993,12 @@ void Unwind_18090d420(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -64020,7 +64020,7 @@ void Unwind_18090d430(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x350);
@@ -64029,12 +64029,12 @@ void Unwind_18090d430(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -64056,7 +64056,7 @@ void Unwind_18090d440(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x470);
@@ -64065,12 +64065,12 @@ void Unwind_18090d440(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -64092,7 +64092,7 @@ void Unwind_18090d450(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x470);
@@ -64101,12 +64101,12 @@ void Unwind_18090d450(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -64128,7 +64128,7 @@ void Unwind_18090d460(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x370);
@@ -64137,12 +64137,12 @@ void Unwind_18090d460(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -64164,7 +64164,7 @@ void Unwind_18090d470(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x370);
@@ -64173,12 +64173,12 @@ void Unwind_18090d470(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -64200,7 +64200,7 @@ void Unwind_18090d480(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x270);
@@ -64209,12 +64209,12 @@ void Unwind_18090d480(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -64236,7 +64236,7 @@ void Unwind_18090d490(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x270);
@@ -64245,12 +64245,12 @@ void Unwind_18090d490(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -64272,7 +64272,7 @@ void Unwind_18090d4a0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x290);
@@ -64281,12 +64281,12 @@ void Unwind_18090d4a0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -64308,7 +64308,7 @@ void Unwind_18090d4b0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x290);
@@ -64317,12 +64317,12 @@ void Unwind_18090d4b0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -64344,7 +64344,7 @@ void Unwind_18090d4c0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x2b0);
@@ -64353,12 +64353,12 @@ void Unwind_18090d4c0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -64380,7 +64380,7 @@ void Unwind_18090d4d0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x2b0);
@@ -64389,12 +64389,12 @@ void Unwind_18090d4d0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -64416,7 +64416,7 @@ void Unwind_18090d4e0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x2d0);
@@ -64425,12 +64425,12 @@ void Unwind_18090d4e0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -64452,7 +64452,7 @@ void Unwind_18090d4f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x2d0);
@@ -64461,12 +64461,12 @@ void Unwind_18090d4f0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -64754,13 +64754,13 @@ void Unwind_18090d650(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + 0x40) + 0x40);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x40) + BUFFER_OFFSET_DATA);
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -64931,36 +64931,36 @@ void Unwind_18090d7e0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
-  index = *(longlong *)(memorySize + 0x40);
-  if (*(longlong **)(index + 0x14d0) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(index + 0x14d0) + STRUCT_OFFSET_SIZE))();
+  arrayIndex = *(longlong *)(memorySize + 0x40);
+  if (*(longlong **)(arrayIndex + 0x14d0) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(arrayIndex + 0x14d0) + STRUCT_OFFSET_SIZE))();
   }
-  if (*(longlong **)(index + 0x14c8) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(index + 0x14c8) + STRUCT_OFFSET_SIZE))();
+  if (*(longlong **)(arrayIndex + 0x14c8) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(arrayIndex + 0x14c8) + STRUCT_OFFSET_SIZE))();
   }
-  if (*(longlong **)(index + 0x14c0) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(index + 0x14c0) + STRUCT_OFFSET_SIZE))();
+  if (*(longlong **)(arrayIndex + 0x14c0) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(arrayIndex + 0x14c0) + STRUCT_OFFSET_SIZE))();
   }
   FUN_180080df0();
-  if (*(longlong *)(index + 0x1480) != 0) {
+  if (*(longlong *)(arrayIndex + 0x1480) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  plocalUInt2 = *(uint64 **)(index + 0x1460);
+  plocalUInt2 = *(uint64 **)(arrayIndex + 0x1460);
   if (plocalUInt2 == (uint64 *)0x0) {
     return;
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -65469,7 +65469,7 @@ void Unwind_18090de40(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0xe0) + POINTER_OFFSET_DATA);
@@ -65478,12 +65478,12 @@ void Unwind_18090de40(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -65505,13 +65505,13 @@ void Unwind_18090de50(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + 0xe0) + 0x40);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0xe0) + BUFFER_OFFSET_DATA);
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -65705,36 +65705,36 @@ void Unwind_18090e000(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
-  index = *(longlong *)(memorySize + 0xe0);
-  if (*(longlong **)(index + 0x14d0) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(index + 0x14d0) + STRUCT_OFFSET_SIZE))();
+  arrayIndex = *(longlong *)(memorySize + 0xe0);
+  if (*(longlong **)(arrayIndex + 0x14d0) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(arrayIndex + 0x14d0) + STRUCT_OFFSET_SIZE))();
   }
-  if (*(longlong **)(index + 0x14c8) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(index + 0x14c8) + STRUCT_OFFSET_SIZE))();
+  if (*(longlong **)(arrayIndex + 0x14c8) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(arrayIndex + 0x14c8) + STRUCT_OFFSET_SIZE))();
   }
-  if (*(longlong **)(index + 0x14c0) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(index + 0x14c0) + STRUCT_OFFSET_SIZE))();
+  if (*(longlong **)(arrayIndex + 0x14c0) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(arrayIndex + 0x14c0) + STRUCT_OFFSET_SIZE))();
   }
   FUN_180080df0();
-  if (*(longlong *)(index + 0x1480) != 0) {
+  if (*(longlong *)(arrayIndex + 0x1480) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  plocalUInt2 = *(uint64 **)(index + 0x1460);
+  plocalUInt2 = *(uint64 **)(arrayIndex + 0x1460);
   if (plocalUInt2 == (uint64 *)0x0) {
     return;
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -66031,7 +66031,7 @@ void Unwind_18090e3c0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0xe8);
@@ -66040,12 +66040,12 @@ void Unwind_18090e3c0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -66067,7 +66067,7 @@ void Unwind_18090e3d0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0xe8);
@@ -66076,12 +66076,12 @@ void Unwind_18090e3d0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -66103,13 +66103,13 @@ void Unwind_18090e3e0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = *(longlong **)(memorySize + 0xe8);
   plocalLong1 = (longlong *)pbuffer[1];
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -66354,7 +66354,7 @@ void Unwind_18090e760(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -66369,9 +66369,9 @@ void Unwind_18090e760(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -66412,7 +66412,7 @@ void Unwind_18090e7a0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -66427,9 +66427,9 @@ void Unwind_18090e7a0(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -66458,7 +66458,7 @@ void Unwind_18090e7b0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -66473,9 +66473,9 @@ void Unwind_18090e7b0(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -66504,7 +66504,7 @@ void Unwind_18090e7c0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -66519,9 +66519,9 @@ void Unwind_18090e7c0(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -66550,7 +66550,7 @@ void Unwind_18090e7d0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -66565,9 +66565,9 @@ void Unwind_18090e7d0(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -66596,7 +66596,7 @@ void Unwind_18090e7e0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -66611,9 +66611,9 @@ void Unwind_18090e7e0(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -66642,7 +66642,7 @@ void Unwind_18090e7f0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -66657,9 +66657,9 @@ void Unwind_18090e7f0(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -66688,7 +66688,7 @@ void Unwind_18090e800(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -66703,9 +66703,9 @@ void Unwind_18090e800(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -66746,7 +66746,7 @@ void Unwind_18090e820(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -66761,9 +66761,9 @@ void Unwind_18090e820(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -66804,7 +66804,7 @@ void Unwind_18090e840(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -66819,9 +66819,9 @@ void Unwind_18090e840(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -66862,7 +66862,7 @@ void Unwind_18090e860(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -66877,9 +66877,9 @@ void Unwind_18090e860(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -67301,7 +67301,7 @@ void Unwind_18090eb00(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   longlong longVar5;
   
@@ -67316,9 +67316,9 @@ void Unwind_18090eb00(uint64 resourceHandle,longlong memorySize)
       if (*(longlong *)(localLong1 + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = localLong1;
       }
-      index = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
-      localLong1 = *(longlong *)(index + 200 + longVar5 + 0x7f20);
-      status = (int)(*(longlong *)(index + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
+      arrayIndex = (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA;
+      localLong1 = *(longlong *)(arrayIndex + 200 + longVar5 + 0x7f20);
+      status = (int)(*(longlong *)(arrayIndex + STRUCT_OFFSET_1 + longVar5 + 0x7f20) - localLong1 >> 3) + -1;
       if (-1 < status) {
         longVar5 = (longlong)status;
         do {
@@ -68065,7 +68065,7 @@ void Unwind_18090eeb0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x88) + 8);
@@ -68074,12 +68074,12 @@ void Unwind_18090eeb0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -68110,7 +68110,7 @@ void Unwind_18090eee0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x88) + 0x2d0);
@@ -68119,12 +68119,12 @@ void Unwind_18090eee0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -68160,7 +68160,7 @@ void Unwind_18090ef20(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + BUFFER_OFFSET_DATA) + 0x1d8);
@@ -68169,12 +68169,12 @@ void Unwind_18090ef20(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -68210,7 +68210,7 @@ void Unwind_18090ef50(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + RESOURCE_HANDLE_OFFSET);
@@ -68219,12 +68219,12 @@ void Unwind_18090ef50(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -68246,7 +68246,7 @@ void Unwind_18090ef60(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + RESOURCE_HANDLE_OFFSET);
@@ -68255,12 +68255,12 @@ void Unwind_18090ef60(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -68330,25 +68330,25 @@ void Unwind_18090efe0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   longlong longVar4;
   longlong *plVar5;
   
   localLong1 = *(longlong *)(memorySize + 0x70);
   pbuffer = (longlong *)(localLong1 + 0x300);
-  index = *(longlong *)(localLong1 + 0x310);
+  arrayIndex = *(longlong *)(localLong1 + 0x310);
   longVar4 = *(longlong *)(localLong1 + 800);
   plVar5 = *(longlong **)(localLong1 + 0x328);
-  if (index != *(longlong *)(localLong1 + 0x330)) {
+  if (arrayIndex != *(longlong *)(localLong1 + 0x330)) {
     do {
-      FUN_1800edd10(index);
-      index = index + HANDLE_OFFSET_DATA;
-      if (index == longVar4) {
+      FUN_1800edd10(arrayIndex);
+      arrayIndex = arrayIndex + HANDLE_OFFSET_DATA;
+      if (arrayIndex == longVar4) {
         plVar5 = plVar5 + 1;
-        index = *plVar5;
-        longVar4 = index + 0x1e0;
+        arrayIndex = *plVar5;
+        longVar4 = arrayIndex + 0x1e0;
       }
-    } while (index != *(longlong *)(localLong1 + 0x330));
+    } while (arrayIndex != *(longlong *)(localLong1 + 0x330));
   }
   if (*pbuffer != 0) {
     plVar5 = *(longlong **)(localLong1 + 0x328);
@@ -68376,22 +68376,22 @@ void Unwind_18090f000(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + 0x70) + 0x358);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x70) + 0x360);
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 4) {
-    if ((longlong *)pindex[3] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)pindex[3] + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 4) {
+    if ((longlong *)parrayIndex[3] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)parrayIndex[3] + STRUCT_OFFSET_SIZE))();
     }
-    if ((longlong *)pindex[2] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)pindex[2] + STRUCT_OFFSET_SIZE))();
+    if ((longlong *)parrayIndex[2] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)parrayIndex[2] + STRUCT_OFFSET_SIZE))();
     }
-    if ((longlong *)pindex[1] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)pindex[1] + STRUCT_OFFSET_SIZE))();
+    if ((longlong *)parrayIndex[1] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)parrayIndex[1] + STRUCT_OFFSET_SIZE))();
     }
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -68428,30 +68428,30 @@ void Unwind_18090f040(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong buffer;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   
   plocalLong1 = *(longlong **)(memorySize + HANDLE_OFFSET_DATA);
   buffer = plocalLong1[2];
-  index = plocalLong1[4];
+  arrayIndex = plocalLong1[4];
   plVar4 = (longlong *)plocalLong1[5];
   if (buffer != plocalLong1[6]) {
     do {
       FUN_1800edd10(buffer);
       buffer = buffer + HANDLE_OFFSET_DATA;
-      if (buffer == index) {
+      if (buffer == arrayIndex) {
         plVar4 = plVar4 + 1;
         buffer = *plVar4;
-        index = buffer + 0x1e0;
+        arrayIndex = buffer + 0x1e0;
       }
     } while (buffer != plocalLong1[6]);
   }
   if (*plocalLong1 != 0) {
     plVar4 = (longlong *)plocalLong1[5];
     while (plVar4 < (longlong *)(plocalLong1[9] + 8)) {
-      index = *plVar4;
+      arrayIndex = *plVar4;
       plVar4 = plVar4 + 1;
-      if (index != 0) {
+      if (arrayIndex != 0) {
                     // WARNING: Subroutine does not return
         HandleCriticalError();
       }
@@ -68472,21 +68472,21 @@ void Unwind_18090f050(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong buffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   plocalLong1 = *(longlong **)(memorySize + HANDLE_OFFSET_DATA);
   buffer = *plocalLong1;
   if (buffer != 0) {
-    pindex = (longlong *)plocalLong1[5];
-    if (pindex < (longlong *)(plocalLong1[9] + 8)) {
+    parrayIndex = (longlong *)plocalLong1[5];
+    if (parrayIndex < (longlong *)(plocalLong1[9] + 8)) {
       do {
-        buffer = *pindex;
-        pindex = pindex + 1;
+        buffer = *parrayIndex;
+        parrayIndex = parrayIndex + 1;
         if (buffer != 0) {
                     // WARNING: Subroutine does not return
           HandleCriticalError();
         }
-      } while (pindex < (longlong *)(plocalLong1[9] + 8));
+      } while (parrayIndex < (longlong *)(plocalLong1[9] + 8));
       buffer = *plocalLong1;
     }
     if (buffer != 0) {
@@ -68505,22 +68505,22 @@ void Unwind_18090f060(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = *(longlong **)(memorySize + HANDLE_OFFSET_DATA);
   plocalLong1 = (longlong *)pbuffer[1];
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 4) {
-    if ((longlong *)pindex[3] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)pindex[3] + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 4) {
+    if ((longlong *)parrayIndex[3] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)parrayIndex[3] + STRUCT_OFFSET_SIZE))();
     }
-    if ((longlong *)pindex[2] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)pindex[2] + STRUCT_OFFSET_SIZE))();
+    if ((longlong *)parrayIndex[2] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)parrayIndex[2] + STRUCT_OFFSET_SIZE))();
     }
-    if ((longlong *)pindex[1] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)pindex[1] + STRUCT_OFFSET_SIZE))();
+    if ((longlong *)parrayIndex[1] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)parrayIndex[1] + STRUCT_OFFSET_SIZE))();
     }
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -68591,30 +68591,30 @@ void Unwind_18090f0c0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong buffer;
-  longlong index;
+  longlong arrayIndex;
   longlong *plVar4;
   
   plocalLong1 = *(longlong **)(memorySize + 0x40);
   buffer = plocalLong1[2];
-  index = plocalLong1[4];
+  arrayIndex = plocalLong1[4];
   plVar4 = (longlong *)plocalLong1[5];
   if (buffer != plocalLong1[6]) {
     do {
       FUN_1800edd10(buffer);
       buffer = buffer + HANDLE_OFFSET_DATA;
-      if (buffer == index) {
+      if (buffer == arrayIndex) {
         plVar4 = plVar4 + 1;
         buffer = *plVar4;
-        index = buffer + 0x1e0;
+        arrayIndex = buffer + 0x1e0;
       }
     } while (buffer != plocalLong1[6]);
   }
   if (*plocalLong1 != 0) {
     plVar4 = (longlong *)plocalLong1[5];
     while (plVar4 < (longlong *)(plocalLong1[9] + 8)) {
-      index = *plVar4;
+      arrayIndex = *plVar4;
       plVar4 = plVar4 + 1;
-      if (index != 0) {
+      if (arrayIndex != 0) {
                     // WARNING: Subroutine does not return
         HandleCriticalError();
       }
@@ -68635,22 +68635,22 @@ void Unwind_18090f0d0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = *(longlong **)(memorySize + 0x40);
   plocalLong1 = (longlong *)pbuffer[1];
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 4) {
-    if ((longlong *)pindex[3] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)pindex[3] + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 4) {
+    if ((longlong *)parrayIndex[3] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)parrayIndex[3] + STRUCT_OFFSET_SIZE))();
     }
-    if ((longlong *)pindex[2] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)pindex[2] + STRUCT_OFFSET_SIZE))();
+    if ((longlong *)parrayIndex[2] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)parrayIndex[2] + STRUCT_OFFSET_SIZE))();
     }
-    if ((longlong *)pindex[1] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)pindex[1] + STRUCT_OFFSET_SIZE))();
+    if ((longlong *)parrayIndex[1] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)parrayIndex[1] + STRUCT_OFFSET_SIZE))();
     }
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -68701,21 +68701,21 @@ void Unwind_18090f110(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong buffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   plocalLong1 = *(longlong **)(memorySize + 0x40);
   buffer = *plocalLong1;
   if (buffer != 0) {
-    pindex = (longlong *)plocalLong1[5];
-    if (pindex < (longlong *)(plocalLong1[9] + 8)) {
+    parrayIndex = (longlong *)plocalLong1[5];
+    if (parrayIndex < (longlong *)(plocalLong1[9] + 8)) {
       do {
-        buffer = *pindex;
-        pindex = pindex + 1;
+        buffer = *parrayIndex;
+        parrayIndex = parrayIndex + 1;
         if (buffer != 0) {
                     // WARNING: Subroutine does not return
           HandleCriticalError();
         }
-      } while (pindex < (longlong *)(plocalLong1[9] + 8));
+      } while (parrayIndex < (longlong *)(plocalLong1[9] + 8));
       buffer = *plocalLong1;
     }
     if (buffer != 0) {
@@ -68880,7 +68880,7 @@ void Unwind_18090f1b0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + POINTER_OFFSET_DATA) + 0x130);
@@ -68889,12 +68889,12 @@ void Unwind_18090f1b0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -68916,7 +68916,7 @@ void Unwind_18090f1d0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + POINTER_OFFSET_DATA) + 0x150);
@@ -68925,12 +68925,12 @@ void Unwind_18090f1d0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -68974,7 +68974,7 @@ void Unwind_18090f210(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + DATA_OFFSET_START) + 0xc0);
@@ -68983,12 +68983,12 @@ void Unwind_18090f210(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -69010,7 +69010,7 @@ void Unwind_18090f230(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + DATA_OFFSET_START) + 0xe0);
@@ -69019,12 +69019,12 @@ void Unwind_18090f230(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -69046,7 +69046,7 @@ void Unwind_18090f250(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + DATA_OFFSET_START) + RESOURCE_HANDLE_OFFSET0);
@@ -69055,12 +69055,12 @@ void Unwind_18090f250(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -69082,7 +69082,7 @@ void Unwind_18090f270(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + DATA_OFFSET_START) + 0x120);
@@ -69091,12 +69091,12 @@ void Unwind_18090f270(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -69118,7 +69118,7 @@ void Unwind_18090f290(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + DATA_OFFSET_START) + 0x140);
@@ -69127,12 +69127,12 @@ void Unwind_18090f290(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -69154,7 +69154,7 @@ void Unwind_18090f2b0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + DATA_OFFSET_START) + 0x160);
@@ -69163,12 +69163,12 @@ void Unwind_18090f2b0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -69190,11 +69190,11 @@ void Unwind_18090f2d0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + DATA_OFFSET_START) + 0x180);
   localLong1 = *(longlong *)(*(longlong *)(memorySize + DATA_OFFSET_START) + 0x188);
-  for (index = *pbuffer; index != localLong1; index = index + FIELD_OFFSET_1) {
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + FIELD_OFFSET_1) {
     FUN_1800f89b0();
   }
   if (*pbuffer == 0) {
@@ -69211,7 +69211,7 @@ void Unwind_18090f2f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + DATA_OFFSET_START) + SYSTEM_TABLE_OFFSET);
@@ -69220,12 +69220,12 @@ void Unwind_18090f2f0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -69256,13 +69256,13 @@ void Unwind_18090f330(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + DATA_OFFSET_START) + 0x210);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + DATA_OFFSET_START) + 0x218);
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -69279,13 +69279,13 @@ void Unwind_18090f350(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + DATA_OFFSET_START) + 0x230);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + DATA_OFFSET_START) + 0x238);
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -69659,11 +69659,11 @@ void Unwind_18090f690(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = *(longlong **)(memorySize + 0x68);
   localLong1 = pbuffer[1];
-  for (index = *pbuffer; index != localLong1; index = index + FIELD_OFFSET_1) {
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + FIELD_OFFSET_1) {
     FUN_1800f89b0();
   }
   if (*pbuffer == 0) {
@@ -69853,11 +69853,11 @@ void Unwind_18090f7e0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = *(longlong **)(memorySize + 0x40);
   localLong1 = pbuffer[1];
-  for (index = *pbuffer; index != localLong1; index = index + FIELD_OFFSET_1) {
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + FIELD_OFFSET_1) {
     FUN_1800f89b0();
   }
   if (*pbuffer == 0) {
@@ -70799,12 +70799,12 @@ void Unwind_18090fe50(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + 0x70) + 8);
   localLong1 = *(longlong *)(*(longlong *)(memorySize + 0x70) + RESOURCE_HANDLE_OFFSET);
-  for (index = *pbuffer; index != localLong1; index = index + 0x128) {
-    FUN_1800f8930(index);
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + 0x128) {
+    FUN_1800f8930(arrayIndex);
   }
   if (*pbuffer == 0) {
     return;
@@ -70820,12 +70820,12 @@ void Unwind_18090fe60(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = *(longlong **)(memorySize + BUFFER_OFFSET_TEMP);
   localLong1 = pbuffer[1];
-  for (index = *pbuffer; index != localLong1; index = index + 0x128) {
-    FUN_1800f8930(index);
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + 0x128) {
+    FUN_1800f8930(arrayIndex);
   }
   if (*pbuffer == 0) {
     return;
@@ -70926,12 +70926,12 @@ void Unwind_18090ff10(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + RESOURCE_HANDLE_OFFSET0) + RESOURCE_OFFSET_HANDLE);
   localLong1 = *(longlong *)(*(longlong *)(memorySize + RESOURCE_HANDLE_OFFSET0) + POINTER_OFFSET_DATA);
-  for (index = *pbuffer; index != localLong1; index = index + 0x128) {
-    FUN_1800f8930(index);
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + 0x128) {
+    FUN_1800f8930(arrayIndex);
   }
   if (*pbuffer == 0) {
     return;
@@ -70988,12 +70988,12 @@ void Unwind_18090ff80(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = *(longlong **)(memorySize + 0x158);
   localLong1 = pbuffer[1];
-  for (index = *pbuffer; index != localLong1; index = index + 0x128) {
-    FUN_1800f8930(index);
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + 0x128) {
+    FUN_1800f8930(arrayIndex);
   }
   if (*pbuffer == 0) {
     return;
@@ -71009,7 +71009,7 @@ void Unwind_18090ff90(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x158);
@@ -71018,12 +71018,12 @@ void Unwind_18090ff90(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -71066,12 +71066,12 @@ void Unwind_18090ffe0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + SYSTEM_OFFSET_STATUS1) + 8);
   localLong1 = *(longlong *)(*(longlong *)(memorySize + SYSTEM_OFFSET_STATUS1) + RESOURCE_HANDLE_OFFSET);
-  for (index = *pbuffer; index != localLong1; index = index + 0x128) {
-    FUN_1800f8930(index);
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + 0x128) {
+    FUN_1800f8930(arrayIndex);
   }
   if (*pbuffer == 0) {
     return;
@@ -71087,12 +71087,12 @@ void Unwind_18090fff0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = *(longlong **)(memorySize + DATA_OFFSET_START);
   localLong1 = pbuffer[1];
-  for (index = *pbuffer; index != localLong1; index = index + 0x128) {
-    FUN_1800f8930(index);
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + 0x128) {
+    FUN_1800f8930(arrayIndex);
   }
   if (*pbuffer == 0) {
     return;
@@ -71122,12 +71122,12 @@ void Unwind_180910010(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + DATA_OFFSET_START) + 8);
   localLong1 = *(longlong *)(*(longlong *)(memorySize + DATA_OFFSET_START) + RESOURCE_HANDLE_OFFSET);
-  for (index = *pbuffer; index != localLong1; index = index + 0x128) {
-    FUN_1800f8930(index);
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + 0x128) {
+    FUN_1800f8930(arrayIndex);
   }
   if (*pbuffer == 0) {
     return;
@@ -71143,12 +71143,12 @@ void Unwind_180910020(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = *(longlong **)(memorySize + 0x68);
   localLong1 = pbuffer[1];
-  for (index = *pbuffer; index != localLong1; index = index + 0x128) {
-    FUN_1800f8930(index);
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + 0x128) {
+    FUN_1800f8930(arrayIndex);
   }
   if (*pbuffer == 0) {
     return;
@@ -71164,13 +71164,13 @@ void Unwind_180910030(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong buffer;
-  longlong index;
+  longlong arrayIndex;
   
   plocalLong1 = (longlong *)(*(longlong *)(memorySize + 0x68) + BYTE_OFFSET_2);
   buffer = *(longlong *)(*(longlong *)(memorySize + 0x68) + FIELD_OFFSET_1);
-  for (index = *plocalLong1; index != buffer; index = index + RESOURCE_OFFSET_HANDLE) {
-    if (*(longlong **)(index + 8) != (longlong *)0x0) {
-      (**(code **)(**(longlong **)(index + 8) + STRUCT_OFFSET_SIZE))();
+  for (arrayIndex = *plocalLong1; arrayIndex != buffer; arrayIndex = arrayIndex + RESOURCE_OFFSET_HANDLE) {
+    if (*(longlong **)(arrayIndex + 8) != (longlong *)0x0) {
+      (**(code **)(**(longlong **)(arrayIndex + 8) + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*plocalLong1 == 0) {
@@ -71187,13 +71187,13 @@ void Unwind_180910040(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + 0x70) + 8);
   localLong1 = *(longlong *)(*(longlong *)(memorySize + 0x70) + RESOURCE_HANDLE_OFFSET);
-  for (index = *pbuffer; index != localLong1; index = index + RESOURCE_OFFSET_HANDLE) {
-    if (*(longlong **)(index + 8) != (longlong *)0x0) {
-      (**(code **)(**(longlong **)(index + 8) + STRUCT_OFFSET_SIZE))();
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + RESOURCE_OFFSET_HANDLE) {
+    if (*(longlong **)(arrayIndex + 8) != (longlong *)0x0) {
+      (**(code **)(**(longlong **)(arrayIndex + 8) + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -71210,13 +71210,13 @@ void Unwind_180910050(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = *(longlong **)(memorySize + HANDLE_OFFSET_DATA);
   localLong1 = pbuffer[1];
-  for (index = *pbuffer; index != localLong1; index = index + RESOURCE_OFFSET_HANDLE) {
-    if (*(longlong **)(index + 8) != (longlong *)0x0) {
-      (**(code **)(**(longlong **)(index + 8) + STRUCT_OFFSET_SIZE))();
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + RESOURCE_OFFSET_HANDLE) {
+    if (*(longlong **)(arrayIndex + 8) != (longlong *)0x0) {
+      (**(code **)(**(longlong **)(arrayIndex + 8) + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -71379,13 +71379,13 @@ void Unwind_1809100d0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + 0x40) + 8);
   localLong1 = *(longlong *)(*(longlong *)(memorySize + 0x40) + RESOURCE_HANDLE_OFFSET);
-  for (index = *pbuffer; index != localLong1; index = index + RESOURCE_OFFSET_HANDLE) {
-    if (*(longlong **)(index + 8) != (longlong *)0x0) {
-      (**(code **)(**(longlong **)(index + 8) + STRUCT_OFFSET_SIZE))();
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + RESOURCE_OFFSET_HANDLE) {
+    if (*(longlong **)(arrayIndex + 8) != (longlong *)0x0) {
+      (**(code **)(**(longlong **)(arrayIndex + 8) + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -71402,13 +71402,13 @@ void Unwind_1809100e0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = *(longlong **)(memorySize + BUFFER_OFFSET_DATA);
   localLong1 = pbuffer[1];
-  for (index = *pbuffer; index != localLong1; index = index + RESOURCE_OFFSET_HANDLE) {
-    if (*(longlong **)(index + 8) != (longlong *)0x0) {
-      (**(code **)(**(longlong **)(index + 8) + STRUCT_OFFSET_SIZE))();
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + RESOURCE_OFFSET_HANDLE) {
+    if (*(longlong **)(arrayIndex + 8) != (longlong *)0x0) {
+      (**(code **)(**(longlong **)(arrayIndex + 8) + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -71475,13 +71475,13 @@ void Unwind_180910100(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = *(longlong **)(memorySize + 0x40);
   localLong1 = pbuffer[1];
-  for (index = *pbuffer; index != localLong1; index = index + RESOURCE_OFFSET_HANDLE) {
-    if (*(longlong **)(index + 8) != (longlong *)0x0) {
-      (**(code **)(**(longlong **)(index + 8) + STRUCT_OFFSET_SIZE))();
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + RESOURCE_OFFSET_HANDLE) {
+    if (*(longlong **)(arrayIndex + 8) != (longlong *)0x0) {
+      (**(code **)(**(longlong **)(arrayIndex + 8) + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -71536,12 +71536,12 @@ void Unwind_180910150(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   longlong *pbuffer;
-  longlong index;
+  longlong arrayIndex;
   
   pbuffer = *(longlong **)(memorySize + 0x40);
   localLong1 = pbuffer[1];
-  for (index = *pbuffer; index != localLong1; index = index + 0x128) {
-    FUN_1800f8930(index);
+  for (arrayIndex = *pbuffer; arrayIndex != localLong1; arrayIndex = arrayIndex + 0x128) {
+    FUN_1800f8930(arrayIndex);
   }
   if (*pbuffer == 0) {
     return;
@@ -71877,7 +71877,7 @@ void Unwind_180910320(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x150);
@@ -71886,12 +71886,12 @@ void Unwind_180910320(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -71934,7 +71934,7 @@ void Unwind_180910340(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0xa8);
@@ -71943,12 +71943,12 @@ void Unwind_180910340(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -71970,7 +71970,7 @@ void Unwind_180910350(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = (uint64 *)**(ulonglong **)(memorySize + 0x150);
@@ -71979,12 +71979,12 @@ void Unwind_180910350(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -72045,7 +72045,7 @@ void Unwind_1809103c0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + BUFFER_OFFSET_DATA) + 8);
@@ -72054,12 +72054,12 @@ void Unwind_1809103c0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -72162,16 +72162,16 @@ void Unwind_180910450(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   
-  index = *(longlong *)(memorySize + DATA_OFFSET_START);
-  localLong1 = index + 0x1d8;
-  *(data **)((longlong)*(int *)(*(longlong *)(index + 0x128) + 4) + -0xb0 + localLong1) =
+  arrayIndex = *(longlong *)(memorySize + DATA_OFFSET_START);
+  localLong1 = arrayIndex + 0x1d8;
+  *(data **)((longlong)*(int *)(*(longlong *)(arrayIndex + 0x128) + 4) + -0xb0 + localLong1) =
        &unknown_180a05168;
-  status = *(int *)(*(longlong *)(index + 0x128) + 4);
+  status = *(int *)(*(longlong *)(arrayIndex + 0x128) + 4);
   *(int *)((longlong)status + -0xb4 + localLong1) = status + -0xb0;
-  FUN_18009fb60(index + 0x138);
-  __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(index + 0x140);
+  FUN_18009fb60(arrayIndex + 0x138);
+  __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(arrayIndex + 0x140);
                     // WARNING: Could not recover jumptable at 0x0001800fd4a2. Too many branches
                     // WARNING: Treating indirect jump as call
   __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(localLong1);
@@ -72227,13 +72227,13 @@ void Unwind_1809104d0(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + DATA_OFFSET_START) + 0x268);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + DATA_OFFSET_START) + 0x270);
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -72250,7 +72250,7 @@ void Unwind_1809104f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + DATA_OFFSET_START) + 0x338);
@@ -72259,12 +72259,12 @@ void Unwind_1809104f0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -72286,7 +72286,7 @@ void Unwind_180910510(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + DATA_OFFSET_START) + 0x358);
@@ -72295,12 +72295,12 @@ void Unwind_180910510(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -72345,20 +72345,20 @@ void Unwind_180910580(uint64 resourceHandle,longlong memorySize)
 {
   uint64 returnValue;
   longlong buffer;
-  longlong index;
+  longlong arrayIndex;
   uint64 *puVar4;
   
-  index = *(longlong *)(memorySize + 0x68);
-  puVar4 = (uint64 *)(index + RESOURCE_HANDLE_OFFSET);
+  arrayIndex = *(longlong *)(memorySize + 0x68);
+  puVar4 = (uint64 *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
   *puVar4 = &uiWidgetTree;
-  if ((*(longlong *)(index + MEMORY_SIZE_OFFSET) != 0) && (**(longlong **)(index + BYTE_OFFSET_2) == index + BUFFER_OFFSET_TEMP)) {
-    returnValue = *(uint64 *)(index + 0xa0);
-    buffer = *(longlong *)(index + 0x98);
-    **(longlong **)(index + BYTE_OFFSET_2) = buffer;
-    **(longlong **)(index + BUFFER_OFFSET_DATA) = buffer;
-    **(int **)(index + DATA_OFFSET_START) = (int)returnValue - (int)buffer;
+  if ((*(longlong *)(arrayIndex + MEMORY_SIZE_OFFSET) != 0) && (**(longlong **)(arrayIndex + BYTE_OFFSET_2) == arrayIndex + BUFFER_OFFSET_TEMP)) {
+    returnValue = *(uint64 *)(arrayIndex + 0xa0);
+    buffer = *(longlong *)(arrayIndex + 0x98);
+    **(longlong **)(arrayIndex + BYTE_OFFSET_2) = buffer;
+    **(longlong **)(arrayIndex + BUFFER_OFFSET_DATA) = buffer;
+    **(int **)(arrayIndex + DATA_OFFSET_START) = (int)returnValue - (int)buffer;
   }
-  if (*(char *)(index + 0x8c) != '\0') {
+  if (*(char *)(arrayIndex + 0x8c) != '\0') {
     FUN_1800a19c0(puVar4);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
@@ -72383,16 +72383,16 @@ void Unwind_1809105a0(uint64 resourceHandle,longlong memorySize)
 {
   longlong localLong1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   
-  index = *(longlong *)(memorySize + 0x40);
-  localLong1 = index + 0x1d8;
-  *(data **)((longlong)*(int *)(*(longlong *)(index + 0x128) + 4) + -0xb0 + localLong1) =
+  arrayIndex = *(longlong *)(memorySize + 0x40);
+  localLong1 = arrayIndex + 0x1d8;
+  *(data **)((longlong)*(int *)(*(longlong *)(arrayIndex + 0x128) + 4) + -0xb0 + localLong1) =
        &unknown_180a05168;
-  status = *(int *)(*(longlong *)(index + 0x128) + 4);
+  status = *(int *)(*(longlong *)(arrayIndex + 0x128) + 4);
   *(int *)((longlong)status + -0xb4 + localLong1) = status + -0xb0;
-  FUN_18009fb60(index + 0x138);
-  __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(index + 0x140);
+  FUN_18009fb60(arrayIndex + 0x138);
+  __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(arrayIndex + 0x140);
                     // WARNING: Could not recover jumptable at 0x0001800fd4a2. Too many branches
                     // WARNING: Treating indirect jump as call
   __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(localLong1);
@@ -72448,13 +72448,13 @@ void Unwind_180910620(uint64 resourceHandle,longlong memorySize)
 {
   longlong *plocalLong1;
   longlong *pbuffer;
-  longlong *pindex;
+  longlong *parrayIndex;
   
   pbuffer = (longlong *)(*(longlong *)(memorySize + 0x40) + 0x268);
   plocalLong1 = *(longlong **)(*(longlong *)(memorySize + 0x40) + 0x270);
-  for (pindex = (longlong *)*pbuffer; pindex != plocalLong1; pindex = pindex + 1) {
-    if ((longlong *)*pindex != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*pindex + STRUCT_OFFSET_SIZE))();
+  for (parrayIndex = (longlong *)*pbuffer; parrayIndex != plocalLong1; parrayIndex = parrayIndex + 1) {
+    if ((longlong *)*parrayIndex != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*parrayIndex + STRUCT_OFFSET_SIZE))();
     }
   }
   if (*pbuffer == 0) {
@@ -72471,7 +72471,7 @@ void Unwind_180910640(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x40) + 0x338);
@@ -72480,12 +72480,12 @@ void Unwind_180910640(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -72507,7 +72507,7 @@ void Unwind_180910660(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + 0x40) + 0x358);
@@ -72516,12 +72516,12 @@ void Unwind_180910660(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -72554,20 +72554,20 @@ void Unwind_1809106a0(uint64 resourceHandle,longlong memorySize)
 {
   uint64 returnValue;
   longlong buffer;
-  longlong index;
+  longlong arrayIndex;
   uint64 *puVar4;
   
-  index = *(longlong *)(memorySize + 0x40);
-  puVar4 = (uint64 *)(index + -0xa0);
+  arrayIndex = *(longlong *)(memorySize + 0x40);
+  puVar4 = (uint64 *)(arrayIndex + -0xa0);
   *puVar4 = &uiWidgetTree;
-  if ((*(longlong *)(index + -POINTER_OFFSET_DATA) != 0) && (**(longlong **)(index + -0x88) == index + -FIELD_OFFSET_1)) {
-    returnValue = *(uint64 *)(index + -RESOURCE_HANDLE_OFFSET);
-    buffer = *(longlong *)(index + -RESOURCE_OFFSET_HANDLE);
-    **(longlong **)(index + -0x88) = buffer;
-    **(longlong **)(index + -0x68) = buffer;
-    **(int **)(index + -LIST_OFFSET_HEAD) = (int)returnValue - (int)buffer;
+  if ((*(longlong *)(arrayIndex + -POINTER_OFFSET_DATA) != 0) && (**(longlong **)(arrayIndex + -0x88) == arrayIndex + -FIELD_OFFSET_1)) {
+    returnValue = *(uint64 *)(arrayIndex + -RESOURCE_HANDLE_OFFSET);
+    buffer = *(longlong *)(arrayIndex + -RESOURCE_OFFSET_HANDLE);
+    **(longlong **)(arrayIndex + -0x88) = buffer;
+    **(longlong **)(arrayIndex + -0x68) = buffer;
+    **(int **)(arrayIndex + -LIST_OFFSET_HEAD) = (int)returnValue - (int)buffer;
   }
-  if (*(char *)(index + -FIELD_OFFSET_3) != '\0') {
+  if (*(char *)(arrayIndex + -FIELD_OFFSET_3) != '\0') {
     FUN_1800a19c0(puVar4);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
@@ -72605,7 +72605,7 @@ void Unwind_1809106e0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + HANDLE_OFFSET_DATA);
@@ -72614,12 +72614,12 @@ void Unwind_1809106e0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -72665,7 +72665,7 @@ void Unwind_180910750(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + HANDLE_OFFSET_DATA);
@@ -72674,12 +72674,12 @@ void Unwind_180910750(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -72723,7 +72723,7 @@ void Unwind_180910770(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + FIELD_OFFSET_1);
@@ -72732,12 +72732,12 @@ void Unwind_180910770(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -72759,7 +72759,7 @@ void Unwind_180910780(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + FIELD_OFFSET_1);
@@ -72768,12 +72768,12 @@ void Unwind_180910780(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -72795,7 +72795,7 @@ void Unwind_180910790(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + SYSTEM_OFFSET_STATUS1) + 8);
@@ -72804,12 +72804,12 @@ void Unwind_180910790(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -76949,7 +76949,7 @@ void Unwind_1809118c0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + POINTER_OFFSET_DATA);
@@ -76958,12 +76958,12 @@ void Unwind_1809118c0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -77015,7 +77015,7 @@ void Unwind_1809118f0(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + 0x70);
@@ -77024,12 +77024,12 @@ void Unwind_1809118f0(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -77156,7 +77156,7 @@ void Unwind_180911950(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(memorySize + POINTER_OFFSET_DATA);
@@ -77165,12 +77165,12 @@ void Unwind_180911950(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -77826,7 +77826,7 @@ void Unwind_180911de0(uint64 resourceHandle,longlong memorySize,uint64 operation
 {
   int *plocalInt1;
   int status;
-  longlong index;
+  longlong arrayIndex;
   longlong longVar4;
   ulonglong unsignedVar5;
   uint unsignedVar6;
@@ -77840,39 +77840,39 @@ void Unwind_180911de0(uint64 resourceHandle,longlong memorySize,uint64 operation
     do {
       status = *(int *)(*(longlong *)(longVar4 + 0x1e78) + 8 + unsignedVar5);
       if ((status != -1) &&
-         (index = *(longlong *)((longlong)status * DATA_OFFSET_START + *(longlong *)(longVar4 + 0x1e68) + 8),
-         index != 0)) {
+         (arrayIndex = *(longlong *)((longlong)status * DATA_OFFSET_START + *(longlong *)(longVar4 + 0x1e68) + 8),
+         arrayIndex != 0)) {
         if (g_systemGlobalCounter1 != 0) {
           *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
         }
                     // WARNING: Subroutine does not return
-        FUN_180059ba0(index,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+        FUN_180059ba0(arrayIndex,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
       }
       unsignedVar6 = (int)unsignedVar7 + 1;
       unsignedVar5 = unsignedVar5 + RESOURCE_HANDLE_OFFSET;
       unsignedVar7 = (ulonglong)unsignedVar6;
     } while ((int)unsignedVar6 < *plocalInt1);
   }
-  index = *(longlong *)(longVar4 + 0x1e78);
-  if (index != 0) {
+  arrayIndex = *(longlong *)(longVar4 + 0x1e78);
+  if (arrayIndex != 0) {
     plocalInt1[0] = 0;
     plocalInt1[1] = 0;
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(index,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_180059ba0(arrayIndex,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
-  index = *(longlong *)(longVar4 + 0x1e68);
-  if (index == 0) {
+  arrayIndex = *(longlong *)(longVar4 + 0x1e68);
+  if (arrayIndex == 0) {
     *(uint32 *)(longVar4 + 0x1e80) = 0;
-    index = *(longlong *)(longVar4 + 0x1e78);
-    if (index != 0) {
+    arrayIndex = *(longlong *)(longVar4 + 0x1e78);
+    if (arrayIndex != 0) {
       if (g_systemGlobalCounter1 != 0) {
         *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
       }
                     // WARNING: Subroutine does not return
-      FUN_180059ba0(index,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+      FUN_180059ba0(arrayIndex,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
     }
     longVar4 = *(longlong *)(longVar4 + 0x1e68);
     if (longVar4 == 0) {
@@ -77889,7 +77889,7 @@ void Unwind_180911de0(uint64 resourceHandle,longlong memorySize,uint64 operation
     *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
   }
                     // WARNING: Subroutine does not return
-  FUN_180059ba0(index,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+  FUN_180059ba0(arrayIndex,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
 }
 
 
@@ -80083,7 +80083,7 @@ void Unwind_180912930(uint64 resourceHandle,longlong memorySize)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = *(uint64 **)(*(longlong *)(memorySize + BUFFER_OFFSET_TEMP) + 0x360);
@@ -80092,12 +80092,12 @@ void Unwind_180912930(uint64 resourceHandle,longlong memorySize)
   }
   unsignedVar4 = (ulonglong)plocalUInt2 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *plocalUInt2 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)plocalUInt2 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *plocalUInt2 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -80158,11 +80158,11 @@ void reset_game_state_if_needed(uint64 resourceHandle,longlong memorySize)
 
 {
   char status_flag;
-  int check_result;
+  int check_operationResult;
   
   status_flag = *(char *)(memorySize + 0x40);
-  check_result = func_0x0001808fd8d4();
-  if ((check_result != 0) && (status_flag == '\0')) {
+  check_operationResult = func_0x0001808fd8d4();
+  if ((check_operationResult != 0) && (status_flag == '\0')) {
     LOCK();
     _DAT_180c821d0 = 0;
     UNLOCK();
@@ -80723,7 +80723,7 @@ void systemInitializeExtensions(void)
 {
   int *plocalInt1;
   uint64 *plocalUInt2;
-  longlong index;
+  longlong arrayIndex;
   ulonglong unsignedVar4;
   
   plocalUInt2 = _systemVar93f8;
@@ -80732,12 +80732,12 @@ void systemInitializeExtensions(void)
   }
   unsignedVar4 = (ulonglong)_systemVar93f8 & 0xffffffffffc00000;
   if (unsignedVar4 != 0) {
-    index = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)_systemVar93f8 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
-    index = index - (ulonglong)*(uint *)(index + 4);
-    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(index + 0xe) == '\0')) {
-      *_systemVar93f8 = *(uint64 *)(index + POINTER_OFFSET_DATA);
-      *(uint64 **)(index + POINTER_OFFSET_DATA) = plocalUInt2;
-      pstatus = (int *)(index + RESOURCE_OFFSET_HANDLE);
+    arrayIndex = unsignedVar4 + BUFFER_OFFSET_TEMP + ((longlong)_systemVar93f8 - unsignedVar4 >> RESOURCE_HANDLE_OFFSET) * LIST_OFFSET_HEAD;
+    arrayIndex = arrayIndex - (ulonglong)*(uint *)(arrayIndex + 4);
+    if ((*(void ***)(unsignedVar4 + 0x70) == &ExceptionList) && (*(char *)(arrayIndex + 0xe) == '\0')) {
+      *_systemVar93f8 = *(uint64 *)(arrayIndex + POINTER_OFFSET_DATA);
+      *(uint64 **)(arrayIndex + POINTER_OFFSET_DATA) = plocalUInt2;
+      pstatus = (int *)(arrayIndex + RESOURCE_OFFSET_HANDLE);
       *pstatus = *plocalInt1 + -1;
       if (*plocalInt1 == 0) {
         FUN_18064d630();
@@ -81666,22 +81666,22 @@ void resourceLoadFromDisk(void)
   longlong localLong1;
   longlong buffer;
   
-  FUN_180067070(&DAT_180bfc140);
-  if (0xf < uRam0000000180bfc138) {
-    localLong1 = CONCAT71(uRam0000000180bfc121,uRam0000000180bfc120);
+  FUN_180067070(&g_resourceInitFlag);
+  if (0xf < g_resourceBufferSize) {
+    localLong1 = CONCAT71(g_resourceBufferHigh,g_resourceBufferLow);
     buffer = localLong1;
-    if (0xfff < uRam0000000180bfc138 + 1) {
+    if (0xfff < g_resourceBufferSize + 1) {
       buffer = *(longlong *)(localLong1 + -8);
       if (ERROR_CODE_FAILED < (localLong1 - buffer) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(localLong1 - buffer,uRam0000000180bfc138 + BYTE_OFFSET_2);
+        _invalid_parameter_noinfo_noreturn(localLong1 - buffer,g_resourceBufferSize + BYTE_OFFSET_2);
       }
     }
     free(buffer);
   }
   uRam0000000180bfc130 = 0;
-  uRam0000000180bfc138 = 0xf;
-  uRam0000000180bfc120 = 0;
+  g_resourceBufferSize = 0xf;
+  g_resourceBufferLow = 0;
   return;
 }
 
@@ -81697,20 +81697,20 @@ void resourceSaveToDisk(void)
   longlong localLong1;
   longlong buffer;
   
-  if (0xf < _DAT_180bfc118) {
-    localLong1 = CONCAT71(uRam0000000180bfc101,DAT_180bfc100);
+  if (0xf < g_resourceBufferCount) {
+    localLong1 = CONCAT71(g_resourceChecksumHigh,g_resourceChecksumLow);
     buffer = localLong1;
-    if (0xfff < _DAT_180bfc118 + 1) {
+    if (0xfff < g_resourceBufferCount + 1) {
       buffer = *(longlong *)(localLong1 + -8);
       if (ERROR_CODE_FAILED < (localLong1 - buffer) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(localLong1 - buffer,_DAT_180bfc118 + BYTE_OFFSET_2);
+        _invalid_parameter_noinfo_noreturn(localLong1 - buffer,g_resourceBufferCount + BYTE_OFFSET_2);
       }
     }
     free(buffer);
   }
-  _DAT_180bfc110 = 0;
-  _DAT_180bfc118 = 0xf;
+  g_resourceStatusFlag = 0;
+  g_resourceBufferCount = 0xf;
 
 // 函数: void resourceValidateChecksum(void)
 void resourceValidateChecksum(void)
@@ -81719,21 +81719,21 @@ void resourceValidateChecksum(void)
   longlong localLong1;
   longlong buffer;
   
-  if (0xf < uRam0000000180bfc0f0) {
-    localLong1 = CONCAT71(uRam0000000180bfc0d9,uRam0000000180bfc0d8);
+  if (0xf < g_resourceCompressSize) {
+    localLong1 = CONCAT71(g_resourceCompressHigh,g_resourceCompressLow);
     buffer = localLong1;
-    if (0xfff < uRam0000000180bfc0f0 + 1) {
+    if (0xfff < g_resourceCompressSize + 1) {
       buffer = *(longlong *)(localLong1 + -8);
       if (ERROR_CODE_FAILED < (localLong1 - buffer) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(localLong1 - buffer,uRam0000000180bfc0f0 + BYTE_OFFSET_2);
+        _invalid_parameter_noinfo_noreturn(localLong1 - buffer,g_resourceCompressSize + BYTE_OFFSET_2);
       }
     }
     free(buffer);
   }
-  uRam0000000180bfc0e8 = 0;
-  uRam0000000180bfc0f0 = 0xf;
-  uRam0000000180bfc0d8 = 0;
+  g_resourceCompressFlag = 0;
+  g_resourceCompressSize = 0xf;
+  g_resourceCompressLow = 0;
   return;
 }
 
