@@ -3587,7 +3587,7 @@ uint64 lock_mutex(longlong resourceHandle)
 
 
 
-uint32 FUN_180890c33(void)
+uint32 unlock_mutex(void)
 
 {
   longlong inputRegister;
