@@ -2575,10 +2575,10 @@ uint64 validate_resource_resourceHandle(longlong resourceHandle)    // 资源句
         iterationIndex = 0;
         integerVar7 = *(int *)(localLong1 + RESOURCE_OFFSET_INDEX);
         if (0 < integerVar7) {
-          plVar6 = (longlong *)*dataValueValueValuePointer;
+          resourceArrayPointer = (longlong *)*dataValueValueValuePointer;
           functionResult0 = iterationIndex;
           do {
-            if (*plVar6 == dataValueBuffer) {
+            if (*resourceArrayPointer == dataValueBuffer) {
               if (-1 < (int)functionResult0) {
                 return 0;
               }
@@ -2586,7 +2586,7 @@ uint64 validate_resource_resourceHandle(longlong resourceHandle)    // 资源句
             }
             functionResult0 = (ulonglong)((int)functionResult0 + 1);
             iterationIndex = iterationIndex + 1;
-            plVar6 = plVar6 + 1;
+            resourceArrayPointer = resourceArrayPointer + 1;
           } while ((longlong)iterationIndex < (longlong)integerVar7);
         }
         integerVar7 = integerVar7 + 1;
