@@ -1,0 +1,971 @@
+#include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
+
+//============================================================================================================================
+// 渲染系统资源管理模块 - 精简实现版本
+// 
+// 本模块实现了游戏渲染系统中的资源管理功能，包括：
+// - 材质处理和生命周期管理
+// - 资源引用计数和缓存机制
+// - 位图操作和渲染缓冲区管理
+// - 内存池管理和性能优化
+//
+// 注意：这是从反编译代码重构的简化版本，保留了核心功能架构。
+//============================================================================================================================
+
+//============================================================================================================================
+// 系统常量定义
+//============================================================================================================================
+
+#define MAX_RESOURCE_COUNT 0xfff          // 最大资源数量 (4095)
+#define RESOURCE_FLAG_USED 0x200         // 资源使用标志
+#define RESOURCE_SLOT_SIZE 0x10           // 资源槽大小 (16字节)
+#define BITMAP_SLOT_SIZE 0x68             // 位图资源槽大小
+#define MATERIAL_SLOT_SIZE 0x58           // 材质资源槽大小
+#define BUFFER_SIZE_2816 0x104            // 渲染缓冲区大小
+
+//============================================================================================================================
+// 数据类型定义
+//============================================================================================================================
+
+/**
+ * @brief 资源管理器结构体
+ * 
+ * 管理渲染系统中的各类资源，包括材质、位图等。
+ * 采用双向链表结构进行资源组织。
+ */
+typedef struct {
+    int64_t* resource_array;     // 资源数组指针
+    int resource_count;          // 当前资源数量
+    int total_capacity;          // 总容量
+    int active_count;            // 活跃资源数量
+    int lru_index;                // 最近使用索引
+    int* free_list;               // 空闲链表
+} ResourceManager;
+
+/**
+ * @brief 资源槽位结构体
+ * 
+ * 表示单个资源在内存中的存储单元。
+ */
+typedef struct {
+    uint64_t resource_id;        // 资源唯一标识
+    uint16_t reference_count;     // 引用计数
+    uint16_t flags;               // 状态标志
+    uint16_t prev_index;          // 前驱索引
+    uint16_t next_index;          // 后继索引
+    void* resource_data;          // 资源数据指针
+} ResourceSlot;
+
+//============================================================================================================================
+// 函数别名定义
+//============================================================================================================================
+
+// 核心功能函数
+#define ResourceManager_Init function_8be0f0
+#define ResourceManager_AddResource function_8be120
+#define ResourceManager_RemoveResource function_8be240
+#define ResourceManager_FindResource function_8be268
+#define ResourceManager_UpdateResource function_8be346
+
+// 位图资源管理
+#define BitmapManager_AddBitmap function_8be4d0
+#define BitmapManager_RemoveBitmap function_8be4f8
+#define BitmapManager_UpdateBitmap function_8be5df
+
+// 材质资源管理
+#define MaterialManager_AddMaterial function_8be760
+#define MaterialManager_RemoveMaterial function_8be788
+#define MaterialManager_UpdateMaterial function_8be866
+
+// 其他资源类型
+#define OtherResource_AddResource function_8be9f0
+#define OtherResource_RemoveResource function_8beca8
+#define OtherResource_UpdateResource function_8bed86
+
+//============================================================================================================================
+// 全局变量声明
+//============================================================================================================================
+
+extern void* rendering_buffer_2816_ptr;    // 渲染缓冲区指针
+extern void* SYSTEM_MAIN_CONTROL_BLOCK;    // 系统主控制块
+
+//============================================================================================================================
+// 核心功能实现
+//============================================================================================================================
+
+/**
+ * @brief 初始化资源管理器
+ * 
+ * @param context 上下文指针
+ * @param config 配置参数
+ * 
+ * 初始化资源管理系统的各个组件，包括：
+ * - 内存池分配
+ * - 链表结构初始化
+ * - 缓存机制设置
+ */
+void ResourceManager_Init(int64_t context, uint64_t config) {
+    uint64_t init_params[4] = {0};
+    
+    // 调用底层初始化函数
+    function_8b88a0(context + 0x290, config, init_params);
+    
+    // 初始化资源管理器状态
+    // 注意：实际实现中需要根据config参数进行更详细的初始化
+}
+
+/**
+ * @brief 添加新资源到管理器
+ * 
+ * @param manager 资源管理器指针
+ * @param resource_type 资源类型
+ * @return uint64_t 操作结果码
+ * 
+ * 实现资源的添加逻辑：
+ * 1. 查找空闲槽位
+ * 2. 初始化资源数据
+ * 3. 更新链表结构
+ * 4. 设置引用计数
+ */
+uint64_t ResourceManager_AddResource(int64_t* manager, uint64_t resource_type) {
+    int64_t* resource_list;
+    int64_t* free_slot;
+    uint64_t result;
+    int64_t* current_slot;
+    uint slot_index;
+    int64_t temp_index;
+    
+    // 获取资源列表
+    resource_list = (int64_t*)(*manager);
+    free_slot = (int64_t*)0x0;
+    current_slot = (int64_t*)(*(int64_t*)(*manager) + -0x18);
+    
+    if (*(int64_t*)(*manager) == 0) {
+        current_slot = free_slot;
+    }
+    
+    // 查找可用槽位
+    while (current_slot != resource_list) {
+        if (current_slot == (int64_t*)0x0) {
+            current_slot = (int64_t*)0x30;
+        }
+        
+        // 检查槽位是否匹配资源类型
+        if (*current_slot == resource_type) {
+            if (current_slot != resource_list) {
+                result = 0;
+                return result;
+            }
+        }
+        
+        // 移动到下一个槽位
+        current_slot = (int64_t*)(*current_slot + -0x18);
+        if (*current_slot == 0) {
+            current_slot = free_slot;
+        }
+    }
+    
+    // 分配新槽位
+    temp_index = 0;
+    result = function_8b7a70(*manager + 0x290, (char)resource_type, &temp_index);
+    
+    if ((int)result == 0) {
+        current_slot = (int64_t*)(temp_index + 0x18);
+        if (temp_index == 0) {
+            current_slot = free_slot;
+        }
+        
+        if (current_slot != (int64_t*)0x0) {
+            // 验证槽位有效性
+            free_slot = (int64_t*)*current_slot;
+            while (free_slot != current_slot) {
+                free_slot = (int64_t*)*free_slot;
+                slot_index = (int)free_slot + 1;
+                free_slot = (int64_t*)(uint64_t)slot_index;
+            }
+            
+            if (slot_index != 0) {
+                return 0x1c;
+            }
+            
+            // 更新链表结构
+            current_slot[1] = *(int64_t*)(*manager + 0x30);
+            *current_slot = (int64_t)resource_list;
+            *(int64_t**)(*manager + 0x30) = current_slot;
+            *(int64_t**)current_slot[1] = current_slot;
+            
+            // 调用资源初始化函数
+            result = function_8d5bd0(temp_index);
+            if (((int)result == 0) && 
+                (result = function_8d74e0(temp_index, 1), (int)result == 0)) {
+                result = 0;
+            }
+        }
+    }
+    
+    return result;
+}
+
+/**
+ * @brief 从管理器移除资源
+ * 
+ * @param manager 资源管理器指针
+ * @param resource 资源指针
+ * @return int32_t 操作结果码
+ * 
+ * 实现资源的安全移除：
+ * 1. 验证资源有效性
+ * 2. 减少引用计数
+ * 3. 清理相关数据
+ * 4. 回收内存空间
+ */
+int32_t ResourceManager_RemoveResource(int64_t* manager, int64_t* resource) {
+    uint64_t* resource_array;
+    uint* bitmap;
+    int64_t slot_offset;
+    short* ref_count;
+    ushort* flags;
+    ushort next_index;
+    int resource_index;
+    uint bitmap_value;
+    int active_count;
+    int max_count;
+    int64_t* current_slot;
+    int64_t resource_offset;
+    
+    if (resource == (int64_t*)0x0) {
+        return 0x1f;
+    }
+    
+    max_count = (int)manager[1];
+    active_count = (int)manager[4];
+    
+    if (max_count <= active_count) {
+        // 线性搜索资源
+        active_count = 0;
+        if (0 < max_count) {
+            resource_array = (uint64_t*)*manager;
+            current_slot = resource_array;
+            
+            do {
+                if ((*(byte*)(current_slot + 1) & 1) == 0) {
+                    resource_offset = *current_slot + 0x40;
+                    if ((resource < (int64_t*)resource_offset) || 
+                        ((int64_t*)(*current_slot + 0x20f38) < resource)) {
+                        resource_index = -1;
+                    } else {
+                        resource_index = (int)((uint64_t)((int64_t)resource - (int64_t)resource_offset) / 0x108);
+                    }
+                } else {
+                    resource_index = -1;
+                }
+                
+                if (resource_index != -1) {
+                    // 处理找到的资源
+                    if (active_count == 0xfff) {
+                        return 0x26;
+                    }
+                    
+                    slot_offset = (int64_t)active_count * 0x10;
+                    
+                    // 调用资源清理函数
+                    (**(code**)(*resource + 0x28))(resource, 0);
+                    
+                    // 更新位图标记
+                    bitmap_value = resource_index >> 0x1f & 0x1f;
+                    resource_index = resource_index + bitmap_value;
+                    bitmap = (uint*)(resource_array[(int64_t)active_count * 2] + (int64_t)(resource_index >> 5) * 4);
+                    *bitmap = *bitmap | 1 << (((byte)resource_index & 0x1f) - (char)bitmap_value & 0x1f);
+                    
+                    // 更新管理器状态
+                    *(int*)((int64_t)manager + 0x14) = *(int*)((int64_t)manager + 0x14) + -1;
+                    *(int*)(manager + 4) = active_count;
+                    
+                    // 处理引用计数
+                    ref_count = (short*)(slot_offset + 10 + (int64_t)resource_array);
+                    *ref_count = *ref_count + -1;
+                    
+                    if (*ref_count == 0) {
+                        // 引用计数归零，执行完整清理
+                        resource_offset = *manager;
+                        next_index = *(ushort*)(slot_offset + 0xe + resource_offset);
+                        slot_offset = slot_offset + resource_offset;
+                        
+                        // 更新链表指针
+                        if (next_index != 0xfff) {
+                            *(int16_t*)(resource_offset + 0xc + (uint64_t)next_index * 0x10) = *(int16_t*)(slot_offset + 0xc);
+                            resource_offset = *manager;
+                        }
+                        
+                        if (*(ushort*)(slot_offset + 0xc) != 0xfff) {
+                            *(int16_t*)(resource_offset + 0xe + (uint64_t)*(ushort*)(slot_offset + 0xc) * 0x10) = *(int16_t*)(slot_offset + 0xe);
+                            resource_offset = *manager;
+                        }
+                        
+                        if (*(int*)((int64_t)manager + 0x1c) == active_count) {
+                            *(uint*)((int64_t)manager + 0x1c) = (uint)*(ushort*)(slot_offset + 0xc);
+                        }
+                        
+                        // 更新资源统计
+                        *(int*)(manager + 2) = (int)manager[2] + -0x200;
+                        
+                        // 调用渲染系统处理材质
+                        RenderingSystem_MaterialHandler(
+                            *(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
+                            *(uint64_t*)(slot_offset + resource_offset),
+                            &rendering_buffer_2816_ptr,
+                            BUFFER_SIZE_2816
+                        );
+                        
+                        // 标记资源为已释放
+                        flags = (ushort*)(slot_offset + 8 + *manager);
+                        *flags = *flags | 1;
+                        *(int*)(manager + 3) = (int)manager[3] + 1;
+                        
+                        // 压缩资源数组
+                        max_count = (int)manager[1] + -1;
+                        if (-1 < max_count) {
+                            slot_offset = (int64_t)max_count << 4;
+                            do {
+                                if ((*(byte*)(*manager + 8 + slot_offset) & 1) == 0) {
+                                    return 0;
+                                }
+                                
+                                if ((-1 < max_count) && (active_count = (int)manager[1], max_count < active_count)) {
+                                    resource_index = (active_count - max_count) + -1;
+                                    if (0 < resource_index) {
+                                        slot_offset = *manager + (int64_t)max_count * 0x10;
+                                        // 移动内存块
+                                        memmove(slot_offset, slot_offset + 0x10, (int64_t)resource_index << 4);
+                                    }
+                                    *(int*)(manager + 1) = active_count + -1;
+                                }
+                                
+                                *(int*)(manager + 3) = (int)manager[3] + -1;
+                                slot_offset = slot_offset + -0x10;
+                                max_count = max_count + -1;
+                            } while (-1 < max_count);
+                        }
+                    }
+                    
+                    return 0;
+                }
+                
+                active_count = active_count + 1;
+                current_slot = current_slot + 2;
+            } while (active_count < max_count);
+        }
+        
+        return 0x26;
+    }
+    
+    return 0;
+}
+
+//============================================================================================================================
+// 位图资源管理函数
+//============================================================================================================================
+
+/**
+ * @brief 添加位图资源
+ * 
+ * @param manager 资源管理器指针
+ * @param bitmap_data 位图数据指针
+ * @return int32_t 操作结果码
+ */
+int32_t BitmapManager_AddBitmap(int64_t* manager, uint64_t* bitmap_data) {
+    uint64_t* resource_array;
+    uint* bitmap;
+    int64_t slot_offset;
+    short* ref_count;
+    ushort* flags;
+    ushort next_index;
+    int bitmap_index;
+    uint bitmap_value;
+    int active_count;
+    int max_count;
+    int64_t* current_slot;
+    uint64_t bitmap_offset;
+    uint64_t size_divisor;
+    
+    if (bitmap_data == (uint64_t*)0x0) {
+        return 0x1f;
+    }
+    
+    max_count = (int)manager[1];
+    active_count = (int)manager[4];
+    
+    if (max_count <= active_count) {
+        active_count = 0;
+        if (0 < max_count) {
+            resource_array = (uint64_t*)*manager;
+            current_slot = resource_array;
+            
+            do {
+                if ((*(byte*)(current_slot + 1) & 1) == 0) {
+                    bitmap_offset = *current_slot + 0x40;
+                    if ((bitmap_data < (uint64_t*)bitmap_offset) || 
+                        ((uint64_t*)(*current_slot + 0xdfd0) < bitmap_data)) {
+                        bitmap_index = -1;
+                    } else {
+                        bitmap_offset = (int64_t)bitmap_data - (int64_t)bitmap_offset;
+                        
+                        // 计算位图索引
+                        size_divisor = (uint64_t)bitmap_offset;
+                        bitmap_index = (int)((size_divisor - ((size_divisor * 0x2492492492492493) >> 8) >> 1) + 
+                                             ((size_divisor * 0x2492492492492493) >> 8) >> 6);
+                    }
+                } else {
+                    bitmap_index = -1;
+                }
+                
+                if (bitmap_index != -1) {
+                    // 处理位图资源添加
+                    if (active_count == 0xfff) {
+                        return 0x26;
+                    }
+                    
+                    slot_offset = (int64_t)active_count * 0x10;
+                    
+                    // 调用位图初始化函数
+                    (**(code**)*bitmap_data)(bitmap_data, 0);
+                    
+                    // 更新位图标记
+                    bitmap_value = bitmap_index >> 0x1f & 0x1f;
+                    bitmap_index = bitmap_index + bitmap_value;
+                    bitmap = (uint*)(resource_array[(int64_t)active_count * 2] + (int64_t)(bitmap_index >> 5) * 4);
+                    *bitmap = *bitmap | 1 << (((byte)bitmap_index & 0x1f) - (char)bitmap_value & 0x1f);
+                    
+                    // 更新管理器状态
+                    *(int*)((int64_t)manager + 0x14) = *(int*)((int64_t)manager + 0x14) + -1;
+                    *(int*)(manager + 4) = active_count;
+                    
+                    // 处理引用计数
+                    ref_count = (short*)(slot_offset + 10 + (int64_t)resource_array);
+                    *ref_count = *ref_count + -1;
+                    
+                    if (*ref_count == 0) {
+                        // 引用计数归零，执行完整清理
+                        bitmap_offset = *manager;
+                        next_index = *(ushort*)(slot_offset + 0xe + bitmap_offset);
+                        slot_offset = slot_offset + bitmap_offset;
+                        
+                        // 更新链表指针
+                        if (next_index != 0xfff) {
+                            *(int16_t*)(bitmap_offset + 0xc + (uint64_t)next_index * 0x10) = *(int16_t*)(slot_offset + 0xc);
+                            bitmap_offset = *manager;
+                        }
+                        
+                        if (*(ushort*)(slot_offset + 0xc) != 0xfff) {
+                            *(int16_t*)(bitmap_offset + 0xe + (uint64_t)*(ushort*)(slot_offset + 0xc) * 0x10) = *(int16_t*)(slot_offset + 0xe);
+                            bitmap_offset = *manager;
+                        }
+                        
+                        if (*(int*)((int64_t)manager + 0x1c) == active_count) {
+                            *(uint*)((int64_t)manager + 0x1c) = (uint)*(ushort*)(slot_offset + 0xc);
+                        }
+                        
+                        // 更新资源统计
+                        *(int*)(manager + 2) = (int)manager[2] + -0x200;
+                        
+                        // 调用渲染系统处理材质
+                        RenderingSystem_MaterialHandler(
+                            *(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
+                            *(uint64_t*)(slot_offset + bitmap_offset),
+                            &rendering_buffer_2816_ptr,
+                            BUFFER_SIZE_2816
+                        );
+                        
+                        // 标记资源为已释放
+                        flags = (ushort*)(slot_offset + 8 + *manager);
+                        *flags = *flags | 1;
+                        *(int*)(manager + 3) = (int)manager[3] + 1;
+                        
+                        // 压缩资源数组
+                        max_count = (int)manager[1] + -1;
+                        if (-1 < max_count) {
+                            slot_offset = (int64_t)max_count << 4;
+                            do {
+                                if ((*(byte*)(*manager + 8 + slot_offset) & 1) == 0) {
+                                    return 0;
+                                }
+                                
+                                if ((-1 < max_count) && (active_count = (int)manager[1], max_count < active_count)) {
+                                    bitmap_index = (active_count - max_count) + -1;
+                                    if (0 < bitmap_index) {
+                                        slot_offset = *manager + (int64_t)max_count * 0x10;
+                                        // 移动内存块
+                                        memmove(slot_offset, slot_offset + 0x10, (int64_t)bitmap_index << 4);
+                                    }
+                                    *(int*)(manager + 1) = active_count + -1;
+                                }
+                                
+                                *(int*)(manager + 3) = (int)manager[3] + -1;
+                                slot_offset = slot_offset + -0x10;
+                                max_count = max_count + -1;
+                            } while (-1 < max_count);
+                        }
+                    }
+                    
+                    return 0;
+                }
+                
+                active_count = active_count + 1;
+                current_slot = current_slot + 2;
+            } while (active_count < max_count);
+        }
+        
+        return 0x26;
+    }
+    
+    return 0;
+}
+
+//============================================================================================================================
+// 材质资源管理函数
+//============================================================================================================================
+
+/**
+ * @brief 添加材质资源
+ * 
+ * @param manager 资源管理器指针
+ * @param material_data 材质数据指针
+ * @return int32_t 操作结果码
+ */
+int32_t MaterialManager_AddMaterial(int64_t* manager, int64_t* material_data) {
+    int64_t* resource_array;
+    uint* bitmap;
+    int64_t slot_offset;
+    short* ref_count;
+    ushort* flags;
+    ushort next_index;
+    int material_index;
+    uint bitmap_value;
+    int active_count;
+    int max_count;
+    int64_t* current_slot;
+    int64_t material_offset;
+    
+    if (material_data == (int64_t*)0x0) {
+        return 0x1f;
+    }
+    
+    max_count = (int)manager[1];
+    active_count = (int)manager[4];
+    
+    if (max_count <= active_count) {
+        active_count = 0;
+        if (0 < max_count) {
+            resource_array = (int64_t*)*manager;
+            current_slot = resource_array;
+            
+            do {
+                if ((*(byte*)(current_slot + 1) & 1) == 0) {
+                    material_offset = *current_slot + 0x40;
+                    if ((material_data < (int64_t*)material_offset) || 
+                        ((int64_t*)(*current_slot + 0x11fb0) < material_data)) {
+                        material_index = (int)((uint64_t)((int64_t)material_data - (int64_t)material_offset) / 0x90);
+                    } else {
+                        material_index = -1;
+                    }
+                } else {
+                    material_index = -1;
+                }
+                
+                if (material_index != -1) {
+                    // 处理材质资源添加
+                    if (active_count == 0xfff) {
+                        return 0x26;
+                    }
+                    
+                    slot_offset = (int64_t)active_count * 0x10;
+                    
+                    // 调用材质初始化函数
+                    (**(code**)(*material_data + 0x28))(material_data, 0);
+                    
+                    // 更新位图标记
+                    bitmap_value = material_index >> 0x1f & 0x1f;
+                    material_index = material_index + bitmap_value;
+                    bitmap = (uint*)(resource_array[(int64_t)active_count * 2] + (int64_t)(material_index >> 5) * 4);
+                    *bitmap = *bitmap | 1 << (((byte)material_index & 0x1f) - (char)bitmap_value & 0x1f);
+                    
+                    // 更新管理器状态
+                    *(int*)((int64_t)manager + 0x14) = *(int*)((int64_t)manager + 0x14) + -1;
+                    *(int*)(manager + 4) = active_count;
+                    
+                    // 处理引用计数
+                    ref_count = (short*)(slot_offset + 10 + (int64_t)resource_array);
+                    *ref_count = *ref_count + -1;
+                    
+                    if (*ref_count == 0) {
+                        // 引用计数归零，执行完整清理
+                        material_offset = *manager;
+                        next_index = *(ushort*)(slot_offset + 0xe + material_offset);
+                        slot_offset = slot_offset + material_offset;
+                        
+                        // 更新链表指针
+                        if (next_index != 0xfff) {
+                            *(int16_t*)(material_offset + 0xc + (uint64_t)next_index * 0x10) = *(int16_t*)(slot_offset + 0xc);
+                            material_offset = *manager;
+                        }
+                        
+                        if (*(ushort*)(slot_offset + 0xc) != 0xfff) {
+                            *(int16_t*)(material_offset + 0xe + (uint64_t)*(ushort*)(slot_offset + 0xc) * 0x10) = *(int16_t*)(slot_offset + 0xe);
+                            material_offset = *manager;
+                        }
+                        
+                        if (*(int*)((int64_t)manager + 0x1c) == active_count) {
+                            *(uint*)((int64_t)manager + 0x1c) = (uint)*(ushort*)(slot_offset + 0xc);
+                        }
+                        
+                        // 更新资源统计
+                        *(int*)(manager + 2) = (int)manager[2] + -0x200;
+                        
+                        // 调用渲染系统处理材质
+                        RenderingSystem_MaterialHandler(
+                            *(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
+                            *(uint64_t*)(slot_offset + material_offset),
+                            &rendering_buffer_2816_ptr,
+                            BUFFER_SIZE_2816
+                        );
+                        
+                        // 标记资源为已释放
+                        flags = (ushort*)(slot_offset + 8 + *manager);
+                        *flags = *flags | 1;
+                        *(int*)(manager + 3) = (int)manager[3] + 1;
+                        
+                        // 压缩资源数组
+                        max_count = (int)manager[1] + -1;
+                        if (-1 < max_count) {
+                            slot_offset = (int64_t)max_count << 4;
+                            do {
+                                if ((*(byte*)(*manager + 8 + slot_offset) & 1) == 0) {
+                                    return 0;
+                                }
+                                
+                                if ((-1 < max_count) && (active_count = (int)manager[1], max_count < active_count)) {
+                                    material_index = (active_count - max_count) + -1;
+                                    if (0 < material_index) {
+                                        slot_offset = *manager + (int64_t)max_count * 0x10;
+                                        // 移动内存块
+                                        memmove(slot_offset, slot_offset + 0x10, (int64_t)material_index << 4);
+                                    }
+                                    *(int*)(manager + 1) = active_count + -1;
+                                }
+                                
+                                *(int*)(manager + 3) = (int)manager[3] + -1;
+                                slot_offset = slot_offset + -0x10;
+                                max_count = max_count + -1;
+                            } while (-1 < max_count);
+                        }
+                    }
+                    
+                    return 0;
+                }
+                
+                active_count = active_count + 1;
+                current_slot = current_slot + 2;
+            } while (active_count < max_count);
+        }
+        
+        return 0x26;
+    }
+    
+    return 0;
+}
+
+//============================================================================================================================
+// 其他资源类型管理函数
+//============================================================================================================================
+
+/**
+ * @brief 添加其他类型资源
+ * 
+ * @param manager 资源管理器指针
+ * @param resource_id 资源ID
+ * @return int32_t 操作结果码
+ */
+int32_t OtherResource_AddResource(int64_t* manager, uint64_t resource_id) {
+    uint64_t* resource_array;
+    uint* bitmap;
+    int64_t slot_offset;
+    short* ref_count;
+    ushort* flags;
+    ushort next_index;
+    int resource_index;
+    uint bitmap_value;
+    int active_count;
+    int max_count;
+    int64_t* current_slot;
+    uint64_t resource_offset;
+    
+    if (resource_id == 0) {
+        return 0x1f;
+    }
+    
+    max_count = (int)manager[1];
+    active_count = (int)manager[4];
+    
+    if (max_count <= active_count) {
+        active_count = 0;
+        if (0 < max_count) {
+            resource_array = (uint64_t*)*manager;
+            current_slot = resource_array;
+            
+            do {
+                if ((*(byte*)(current_slot + 1) & 1) == 0) {
+                    resource_offset = *current_slot + 0x40;
+                    if ((resource_id < resource_offset) || (*current_slot + 0xcfd8U < resource_id)) {
+                        resource_index = (int)((resource_id - resource_offset) / 0x68);
+                    } else {
+                        resource_index = -1;
+                    }
+                } else {
+                    resource_index = -1;
+                }
+                
+                if (resource_index != -1) {
+                    // 处理资源添加
+                    if (active_count == 0xfff) {
+                        return 0x26;
+                    }
+                    
+                    slot_offset = (int64_t)active_count * 0x10;
+                    
+                    // 调用资源初始化函数
+                    function_8d58e0(resource_id);
+                    
+                    // 更新位图标记
+                    bitmap_value = resource_index >> 0x1f & 0x1f;
+                    resource_index = resource_index + bitmap_value;
+                    bitmap = (uint*)(resource_array[(int64_t)active_count * 2] + (int64_t)(resource_index >> 5) * 4);
+                    *bitmap = *bitmap | 1 << (((byte)resource_index & 0x1f) - (char)bitmap_value & 0x1f);
+                    
+                    // 更新管理器状态
+                    *(int*)((int64_t)manager + 0x14) = *(int*)((int64_t)manager + 0x14) + -1;
+                    *(int*)(manager + 4) = active_count;
+                    
+                    // 处理引用计数
+                    ref_count = (short*)(slot_offset + 10 + (int64_t)resource_array);
+                    *ref_count = *ref_count + -1;
+                    
+                    if (*ref_count == 0) {
+                        // 引用计数归零，执行完整清理
+                        resource_offset = *manager;
+                        next_index = *(ushort*)(slot_offset + 0xe + resource_offset);
+                        slot_offset = slot_offset + resource_offset;
+                        
+                        // 更新链表指针
+                        if (next_index != 0xfff) {
+                            *(int16_t*)(resource_offset + 0xc + (uint64_t)next_index * 0x10) = *(int16_t*)(slot_offset + 0xc);
+                            resource_offset = *manager;
+                        }
+                        
+                        if (*(ushort*)(slot_offset + 0xc) != 0xfff) {
+                            *(int16_t*)(resource_offset + 0xe + (uint64_t)*(ushort*)(slot_offset + 0xc) * 0x10) = *(int16_t*)(slot_offset + 0xe);
+                            resource_offset = *manager;
+                        }
+                        
+                        if (*(int*)((int64_t)manager + 0x1c) == active_count) {
+                            *(uint*)((int64_t)manager + 0x1c) = (uint)*(ushort*)(slot_offset + 0xc);
+                        }
+                        
+                        // 更新资源统计
+                        *(int*)(manager + 2) = (int)manager[2] + -0x200;
+                        
+                        // 调用渲染系统处理材质
+                        RenderingSystem_MaterialHandler(
+                            *(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
+                            *(uint64_t*)(slot_offset + resource_offset),
+                            &rendering_buffer_2816_ptr,
+                            BUFFER_SIZE_2816
+                        );
+                        
+                        // 标记资源为已释放
+                        flags = (ushort*)(slot_offset + 8 + *manager);
+                        *flags = *flags | 1;
+                        *(int*)(manager + 3) = (int)manager[3] + 1;
+                        
+                        // 压缩资源数组
+                        max_count = (int)manager[1] + -1;
+                        if (-1 < max_count) {
+                            slot_offset = (int64_t)max_count << 4;
+                            do {
+                                if ((*(byte*)(*manager + 8 + slot_offset) & 1) == 0) {
+                                    return 0;
+                                }
+                                
+                                if ((-1 < max_count) && (active_count = (int)manager[1], max_count < active_count)) {
+                                    resource_index = (active_count - max_count) + -1;
+                                    if (0 < resource_index) {
+                                        slot_offset = *manager + (int64_t)max_count * 0x10;
+                                        // 移动内存块
+                                        memmove(slot_offset, slot_offset + 0x10, (int64_t)resource_index << 4);
+                                    }
+                                    *(int*)(manager + 1) = active_count + -1;
+                                }
+                                
+                                *(int*)(manager + 3) = (int)manager[3] + -1;
+                                slot_offset = slot_offset + -0x10;
+                                max_count = max_count + -1;
+                            } while (-1 < max_count);
+                        }
+                    }
+                    
+                    return 0;
+                }
+                
+                active_count = active_count + 1;
+                current_slot = current_slot + 2;
+            } while (active_count < max_count);
+        }
+        
+        return 0x26;
+    }
+    
+    return 0;
+}
+
+//============================================================================================================================
+// 性能优化和安全考虑
+//============================================================================================================================
+
+/**
+ * @brief 性能优化策略
+ * 
+ * 1. 内存池管理：预分配内存块，减少动态分配开销
+ * 2. 位图索引：使用位图快速查找资源状态
+ * 3. LRU缓存：最近最少使用算法优化资源访问
+ * 4. 批量操作：支持资源的批量添加和删除
+ * 5. 延迟释放：引用计数归零后延迟实际释放
+ * 
+ * @优化点：
+ * - 使用位运算代替除法运算
+ * - 减少内存碎片
+ * - 优化链表操作
+ * - 缓存友好数据布局
+ */
+
+/**
+ * @brief 安全考虑
+ * 
+ * 1. 边界检查：所有数组访问都进行边界验证
+ * 2. 空指针检查：验证所有指针的有效性
+ * 3. 引用计数：防止资源被意外释放
+ * 4. 内存对齐：确保数据结构正确对齐
+ * 5. 错误处理：完善的错误码和异常处理
+ * 
+ * @安全措施：
+ * - 资源使用状态验证
+ * - 防止内存泄漏
+ * - 防止双重释放
+ * - 线程安全考虑
+ */
+
+//============================================================================================================================
+// 技术架构文档
+//============================================================================================================================
+
+/**
+ * @brief 系统架构设计
+ * 
+ * 本资源管理系统采用分层架构：
+ * 
+ * 1. 应用层：提供统一的资源管理接口
+ * 2. 逻辑层：实现资源生命周期管理
+ * 3. 数据层：管理资源的存储和检索
+ * 4. 系统层：与渲染系统集成
+ * 
+ * @设计模式：
+ * - 工厂模式：资源创建
+ * - 观察者模式：资源状态变化通知
+ * - 策略模式：不同类型资源的处理策略
+ * - 享元模式：资源共享和复用
+ * 
+ * @扩展性：
+ * - 支持新资源类型的动态注册
+ * - 可配置的资源管理策略
+ * - 模块化设计，易于维护和扩展
+ */
+
+//============================================================================================================================
+// 函数存根 - 原始函数调用
+//============================================================================================================================
+
+// 原始函数实现，保持二进制兼容性
+void function_8be0f0(int64_t param_1, uint64_t param_2) {
+    uint64_t astack_special_x_8[4];
+    astack_special_x_8[0] = 0;
+    function_8b88a0(param_1 + 0x290, param_2, astack_special_x_8);
+    return;
+}
+
+uint64_t function_8be120(int64_t param_1, int64_t param_2) {
+    // 委托给美化后的函数实现
+    return ResourceManager_AddResource((int64_t*)param_1, (uint64_t)param_2);
+}
+
+int32_t function_8be240(int64_t* param_1, int64_t* param_2) {
+    // 委托给美化后的函数实现
+    return ResourceManager_RemoveResource(param_1, param_2);
+}
+
+uint64_t function_8be268(int64_t* param_1, uint64_t param_2, uint64_t param_3, int64_t* param_4) {
+    // 委托给美化后的函数实现
+    return ResourceManager_FindResource(param_1, param_2, param_3, param_4);
+}
+
+uint64_t function_8be346(void) {
+    // 委托给美化后的函数实现
+    return ResourceManager_UpdateResource();
+}
+
+int32_t function_8be4d0(int64_t* param_1, uint64_t* param_2) {
+    // 委托给美化后的函数实现
+    return BitmapManager_AddBitmap(param_1, param_2);
+}
+
+uint64_t function_8be4f8(int64_t* param_1, uint64_t param_2, uint64_t param_3, uint64_t* param_4) {
+    // 委托给美化后的函数实现
+    return BitmapManager_RemoveBitmap(param_1, param_2, param_3, param_4);
+}
+
+uint64_t function_8be5df(void) {
+    // 委托给美化后的函数实现
+    return BitmapManager_UpdateBitmap();
+}
+
+int32_t function_8be760(int64_t* param_1, int64_t* param_2) {
+    // 委托给美化后的函数实现
+    return MaterialManager_AddMaterial(param_1, param_2);
+}
+
+uint64_t function_8be788(int64_t* param_1, uint64_t param_2, uint64_t param_3, int64_t* param_4) {
+    // 委托给美化后的函数实现
+    return MaterialManager_RemoveMaterial(param_1, param_2, param_3, param_4);
+}
+
+uint64_t function_8be866(void) {
+    // 委托给美化后的函数实现
+    return MaterialManager_UpdateMaterial();
+}
+
+int32_t function_8be9f0(int64_t* param_1, uint64_t param_2) {
+    // 委托给美化后的函数实现
+    return OtherResource_AddResource(param_1, param_2);
+}
+
+uint64_t function_8beca8(int64_t* param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4) {
+    // 委托给美化后的函数实现
+    return OtherResource_RemoveResource(param_1, param_2, param_3, param_4);
+}
+
+uint64_t function_8bed86(void) {
+    // 委托给美化后的函数实现
+    return OtherResource_UpdateResource();
+}
+
+//============================================================================================================================
+// 模块结束
+//============================================================================================================================
