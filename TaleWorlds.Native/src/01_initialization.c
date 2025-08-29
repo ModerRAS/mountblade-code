@@ -3,6 +3,42 @@
 // 01_initialization.c - 初始化系统代码（已美化变量名和函数名）
 // void InitializeGameDataStructure(void)
 
+// 地址常量定义
+#define AUDIO_SYSTEM_BASE_ADDR 0x180c91700
+#define INPUT_SYSTEM_BASE_ADDR 0x180c91800
+#define MUTEX_SYSTEM_ADDR 0x180c91910
+#define MAIN_MUTEX_ADDR 0x180c91970
+#define CONDITION_VARIABLE_ADDR 0x180c91240
+#define SYSTEM_CLEANUP_ADDR 0x180c911a0
+#define GRAPHICS_DATA_ADDR 0x180c8aa70
+#define GRAPHICS_DATA_END_ADDR 0x180c8ea70
+#define RENDER_DATA_ADDR 0x180c8eb70
+#define MAX_SEMAPHORE_COUNT 0x7fffffff
+#define INVALID_HANDLE_VALUE 0xfffffffffffffffe
+
+// 数据结构常量定义
+#define SYSTEM_NODE_HEADER_SIZE 8
+#define NODE_INITIALIZED_OFFSET 0
+#define SYSTEM_DATA_COMPARE_SIZE 8
+#define FLOAT_ARRAY_SIZE 0x40
+#define FLOAT_ARRAY_ELEMENT_SIZE 0x40
+
+// 模块类型常量定义
+#define MODULE_TYPE_AUDIO_INIT 0xb
+#define MODULE_TYPE_VIDEO_INIT 0x9
+#define MODULE_TYPE_INPUT_INIT 0x9
+#define MODULE_TYPE_NETWORK_INIT 0xb
+#define MODULE_TYPE_CONFIG_INIT 0xc
+#define MODULE_TYPE_FONT_INIT 0xe
+#define MODULE_TYPE_SHADER_INIT 0x1c
+#define MODULE_TYPE_PHYSICS_INIT 0x15
+#define MODULE_TYPE_UI_INIT 0x16
+#define MODULE_TYPE_SECURITY_INIT 0x1a
+#define MODULE_TYPE_AUTHENTICATION_INIT 0x13
+#define MODULE_TYPE_RESOURCE_INIT 0xd
+#define MODULE_TYPE_TEXTURE_INIT 0xb
+#define MODULE_TYPE_STRING_MANAGER_INIT 0x1c
+
 void InitializeGameDataStructure(void);
 
 void* g_game_data_structure;
@@ -1612,7 +1648,7 @@ int InitializeAudioSystem(void)
 {
   longlong init_result;
 
-  initialize_system_component(0x180c91700,SYSTEM_NODE_HEADER_SIZE,8,initialize_audio_subsystem,initialize_graphics_subsystem);
+  initialize_system_component(AUDIO_SYSTEM_BASE_ADDR,SYSTEM_NODE_HEADER_SIZE,8,initialize_audio_subsystem,initialize_graphics_subsystem);
   init_result = execute_system_init(&g_graphics_config_data);
   return (init_result != 0) - 1;
 }
@@ -1623,7 +1659,7 @@ int InitializeInputSystem(void)
 {
   longlong init_result;
 
-  initialize_system_component(0x180c91800,SYSTEM_NODE_HEADER_SIZE,8,initialize_input_subsystem,initialize_graphics_subsystem);
+  initialize_system_component(INPUT_SYSTEM_BASE_ADDR,SYSTEM_NODE_HEADER_SIZE,8,initialize_input_subsystem,initialize_graphics_subsystem);
   init_result = execute_system_init(&g_audio_config_data);
   return (init_result != 0) - 1;
 }
