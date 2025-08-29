@@ -3821,12 +3821,12 @@ void NetworkSetConnectionTimeout(uint64_t socketHandle,uint64_t *dataBuffer)
   networkArrayStack_148[1] = 0;
   statusCode = networkInitializeSocket(socketHandle,networkArrayStack_148);
   if (statusCode == 0) {
-    if ((*(uint *)(networkArrayStack_148[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto LAB_18084541c;
+    if ((*(uint *)(networkArrayStack_148[0] + SOCKET_FLAG_OFFSET) >> 1 & 1) == 0) goto handle_socket_error;
     resultCode = networkInitializeConnection(networkArrayStack_148 + 1);
-    if (resultCode == 0) goto LAB_180845484;
+    if (resultCode == 0) goto initialize_connection;
   }
   else {
-LAB_180845484:
+initialize_connection:
     resultCode = statusCode;
   }
   if ((resultCode == 0) &&
@@ -3842,7 +3842,7 @@ LAB_180845484:
       NetworkErrorExit(networkArrayStack_148 + 1);
     }
   }
-LAB_18084541c:
+handle_socket_error:
                     // WARNING: Subroutine does not return
   NetworkErrorExit(networkArrayStack_148 + 1);
 }
@@ -3872,7 +3872,7 @@ void NetworkGetConnectionStatistics(uint64_t socketHandle,uint64_t *dataBuffer)
     statusCode = networkInitializeSocket(socketHandle,networkArrayStack_128);
     if (statusCode == 0) {
       *dataBuffer = *(uint64_t *)(networkArrayStack_128[0] + 0x78);
-      goto LAB_1808455bc;
+      goto success_exit;
     }
   }
   if ((*(byte *)(g_networkModule + 0x10) & 0x80) != 0) {
@@ -3881,7 +3881,7 @@ void NetworkGetConnectionStatistics(uint64_t socketHandle,uint64_t *dataBuffer)
                     // WARNING: Subroutine does not return
     networkSendControlPacket(statusCode,0xb,socketHandle,&g_network_control_data_3);
   }
-LAB_1808455bc:
+success_exit:
                     // WARNING: Subroutine does not return
   networkEncryptData(networkUintStack_18 ^ (ulonglong)networkStack_158);
 }
