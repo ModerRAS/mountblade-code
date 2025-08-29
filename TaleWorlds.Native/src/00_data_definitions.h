@@ -4,10 +4,10 @@
 // 系统常量定义
 #define MAX_SYSTEM_VALUE 0x7fffffffffffffff
 #define THREAD_POOL_DEFAULT_FLAGS 0xfffffffffffffffe
-#define RESOURCE_BUFFER_SIZE 0x10
-#define RESOURCE_TYPE_TEXTURE 0x0d
-#define RESOURCE_TYPE_SHADER 0x0f
-#define RESOURCE_TYPE_AUDIO 0x0c
+#define RESOURCE_BUFFER_SIZE 16
+#define RESOURCE_TYPE_TEXTURE 13
+#define RESOURCE_TYPE_SHADER 15
+#define RESOURCE_TYPE_AUDIO 12
 
 // 系统状态码
 #define SYSTEM_STATUS_SUCCESS 0
@@ -106,10 +106,10 @@ int initialize_main_thread_pool(void* handle, void* flags, void* mutex_attr, int
   return (initialization_result != 0) - 1;
 }
 // 初始化渲染线程池
-int initialize_rendering_thread_pool(undefined8 handle, undefined8 flags, undefined8 mutex_attr, undefined8 mutex_type)
+int initialize_rendering_thread_pool(void* handle, void* flags, void* mutex_attr, int mutex_type)
 {
   long long initialization_result;
-  undefined8 thread_pool_flags = THREAD_POOL_DEFAULT_FLAGS;
+  unsigned long long thread_pool_flags = THREAD_POOL_DEFAULT_FLAGS;
   
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(0x180c91148, 2, mutex_attr, mutex_type, thread_pool_flags);
@@ -118,10 +118,10 @@ int initialize_rendering_thread_pool(undefined8 handle, undefined8 flags, undefi
   return (initialization_result != 0) - 1;
 }
 // 初始化网络线程池
-int initialize_network_thread_pool(undefined8 handle, undefined8 flags, undefined8 mutex_attr, undefined8 mutex_type)
+int initialize_network_thread_pool(void* handle, void* flags, void* mutex_attr, int mutex_type)
 {
   long long initialization_result;
-  undefined8 thread_pool_flags = 0xfffffffffffffffe;
+  unsigned long long thread_pool_flags = THREAD_POOL_DEFAULT_FLAGS;
   
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(0x180c911e8, 2, mutex_attr, mutex_type, thread_pool_flags);
@@ -794,7 +794,7 @@ int initialize_scripting_module(void)
   init_result = execute_function(callback_function_031);
   return (init_result != 0) - 1;
 }
-int initialize_module_013(void)
+int initialize_audio_engine(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -806,7 +806,7 @@ int initialize_module_013(void)
   init_result = execute_function(callback_function_032);
   return (init_result != 0) - 1;
 }
-int initialize_module_014(void)
+int initialize_video_subsystem(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -818,7 +818,7 @@ int initialize_module_014(void)
   init_result = execute_function(callback_function_033);
   return (init_result != 0) - 1;
 }
-int initialize_module_015(void)
+int initialize_input_handler(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -830,7 +830,7 @@ int initialize_module_015(void)
   init_result = execute_function(callback_function_034);
   return (init_result != 0) - 1;
 }
-int initialize_module_016(void)
+int initialize_network_stack(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -842,7 +842,7 @@ int initialize_module_016(void)
   init_result = execute_function(callback_function_035);
   return (init_result != 0) - 1;
 }
-int initialize_module_017(void)
+int initialize_file_system(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -854,7 +854,7 @@ int initialize_module_017(void)
   init_result = execute_function(callback_function_036);
   return (init_result != 0) - 1;
 }
-int initialize_module_018(void)
+int initialize_memory_manager(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -866,7 +866,7 @@ int initialize_module_018(void)
   init_result = execute_function(callback_function_037);
   return (init_result != 0) - 1;
 }
-int initialize_module_019(void)
+int initialize_thread_manager(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -878,7 +878,7 @@ int initialize_module_019(void)
   init_result = execute_function(callback_function_038);
   return (init_result != 0) - 1;
 }
-int initialize_module_020(void)
+int initialize_event_system(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -890,7 +890,7 @@ int initialize_module_020(void)
   init_result = execute_function(callback_function_039);
   return (init_result != 0) - 1;
 }
-int initialize_module_021(void)
+int initialize_timer_service(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -902,7 +902,7 @@ int initialize_module_021(void)
   init_result = execute_function(callback_function_040);
   return (init_result != 0) - 1;
 }
-int initialize_module_022(void)
+int initialize_logger_system(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -914,7 +914,7 @@ int initialize_module_022(void)
   init_result = execute_function(callback_function_041);
   return (init_result != 0) - 1;
 }
-int initialize_module_023(void)
+int initialize_config_system(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -926,7 +926,7 @@ int initialize_module_023(void)
   init_result = execute_function(callback_function_042);
   return (init_result != 0) - 1;
 }
-int initialize_module_024(void)
+int initialize_resource_cache(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -938,7 +938,7 @@ int initialize_module_024(void)
   init_result = execute_function(callback_function_043);
   return (init_result != 0) - 1;
 }
-int initialize_module_025(void)
+int initialize_asset_loader(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -950,7 +950,7 @@ int initialize_module_025(void)
   init_result = execute_function(callback_function_044);
   return (init_result != 0) - 1;
 }
-int initialize_module_026(void)
+int initialize_shader_system(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -962,7 +962,7 @@ int initialize_module_026(void)
   init_result = execute_function(callback_function_045);
   return (init_result != 0) - 1;
 }
-int initialize_module_027(void)
+int initialize_texture_manager(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -974,7 +974,7 @@ int initialize_module_027(void)
   init_result = execute_function(callback_function_046);
   return (init_result != 0) - 1;
 }
-int initialize_module_028(void)
+int initialize_mesh_system(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -986,7 +986,7 @@ int initialize_module_028(void)
   init_result = execute_function(callback_function_047);
   return (init_result != 0) - 1;
 }
-int initialize_module_029(void)
+int initialize_animation_system(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -998,7 +998,7 @@ int initialize_module_029(void)
   init_result = execute_function(callback_function_048);
   return (init_result != 0) - 1;
 }
-int initialize_module_030(void)
+int initialize_particle_system(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -1010,7 +1010,7 @@ int initialize_module_030(void)
   init_result = execute_function(callback_function_049);
   return (init_result != 0) - 1;
 }
-int initialize_module_031(void)
+int initialize_physics_engine(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -1022,7 +1022,7 @@ int initialize_module_031(void)
   init_result = execute_function(callback_function_050);
   return (init_result != 0) - 1;
 }
-int initialize_module_032(void)
+int initialize_collision_system(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -1034,7 +1034,7 @@ int initialize_module_032(void)
   init_result = execute_function(callback_function_051);
   return (init_result != 0) - 1;
 }
-int initialize_module_033(void)
+int initialize_ai_system(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -1046,7 +1046,7 @@ int initialize_module_033(void)
   init_result = execute_function(callback_function_052);
   return (init_result != 0) - 1;
 }
-int initialize_module_034(void)
+int initialize_navigation_system(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -1058,7 +1058,7 @@ int initialize_module_034(void)
   init_result = execute_function(callback_function_053);
   return (init_result != 0) - 1;
 }
-int initialize_module_035(void)
+int initialize_ui_framework(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -1070,7 +1070,7 @@ int initialize_module_035(void)
   init_result = execute_function(callback_function_054);
   return (init_result != 0) - 1;
 }
-int initialize_module_036(void)
+int initialize_scripting_engine(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -1082,7 +1082,7 @@ int initialize_module_036(void)
   init_result = execute_function(callback_function_055);
   return (init_result != 0) - 1;
 }
-int initialize_module_037(void)
+int initialize_database_system(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -1094,7 +1094,7 @@ int initialize_module_037(void)
   init_result = execute_function(callback_function_056);
   return (init_result != 0) - 1;
 }
-int initialize_module_038(void)
+int initialize_network_manager(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -1106,7 +1106,7 @@ int initialize_module_038(void)
   init_result = execute_function(callback_function_057);
   return (init_result != 0) - 1;
 }
-int initialize_module_039(void)
+int initialize_security_system(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -1118,7 +1118,7 @@ int initialize_module_039(void)
   init_result = execute_function(callback_function_058);
   return (init_result != 0) - 1;
 }
-int initialize_module_040(void)
+int initialize_encryption_service(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -1130,7 +1130,7 @@ int initialize_module_040(void)
   init_result = execute_function(callback_function_059);
   return (init_result != 0) - 1;
 }
-int initialize_module_041(void)
+int initialize_authentication_system(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -1142,7 +1142,7 @@ int initialize_module_041(void)
   init_result = execute_function(callback_function_060);
   return (init_result != 0) - 1;
 }
-int initialize_module_042(void)
+int initialize_permission_manager(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -1154,7 +1154,7 @@ int initialize_module_042(void)
   init_result = execute_function(callback_function_061);
   return (init_result != 0) - 1;
 }
-int initialize_module_043(void)
+int initialize_session_manager(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -1166,7 +1166,7 @@ int initialize_module_043(void)
   init_result = execute_function(callback_function_062);
   return (init_result != 0) - 1;
 }
-int initialize_module_044(void)
+int initialize_user_profile_system(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -1178,7 +1178,7 @@ int initialize_module_044(void)
   init_result = execute_function(callback_function_063);
   return (init_result != 0) - 1;
 }
-int initialize_module_045(void)
+int initialize_save_system(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -1190,7 +1190,7 @@ int initialize_module_045(void)
   init_result = execute_function(callback_function_064);
   return (init_result != 0) - 1;
 }
-int initialize_module_046(void)
+int initialize_achievement_system(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -1202,7 +1202,7 @@ int initialize_module_046(void)
   init_result = execute_function(callback_function_065);
   return (init_result != 0) - 1;
 }
-int initialize_module_047(void)
+int initialize_statistics_system(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -1214,7 +1214,7 @@ int initialize_module_047(void)
   init_result = execute_function(callback_function_066);
   return (init_result != 0) - 1;
 }
-int initialize_module_048(void)
+int initialize_analytics_service(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -1226,7 +1226,7 @@ int initialize_module_048(void)
   init_result = execute_function(callback_function_067);
   return (init_result != 0) - 1;
 }
-int initialize_module_049(void)
+int initialize_debug_system(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -1238,7 +1238,7 @@ int initialize_module_049(void)
   init_result = execute_function(callback_function_068);
   return (init_result != 0) - 1;
 }
-int initialize_module_050(void)
+int initialize_profiling_system(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -1250,7 +1250,7 @@ int initialize_module_050(void)
   init_result = execute_function(callback_function_069);
   return (init_result != 0) - 1;
 }
-int initialize_module_051(void)
+int initialize_crash_handler(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -1262,7 +1262,7 @@ int initialize_module_051(void)
   init_result = execute_function(callback_function_070);
   return (init_result != 0) - 1;
 }
-int initialize_module_052(void)
+int initialize_error_reporting(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -1274,7 +1274,7 @@ int initialize_module_052(void)
   init_result = execute_function(callback_function_071);
   return (init_result != 0) - 1;
 }
-int initialize_module_053(void)
+int initialize_update_system(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -1286,7 +1286,7 @@ int initialize_module_053(void)
   init_result = execute_function(callback_function_072);
   return (init_result != 0) - 1;
 }
-int initialize_module_054(void)
+int initialize_patch_manager(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -1298,19 +1298,19 @@ int initialize_module_054(void)
   init_result = execute_function(callback_function_073);
   return (init_result != 0) - 1;
 }
-int initialize_module_055(void)
+int initialize_diagnostics_system(void)
 {
   longlong init_result;
   init_result = execute_function(callback_function_074);
   return (init_result != 0) - 1;
 }
-int initialize_module_056(void)
+int initialize_monitoring_service(void)
 {
   longlong init_result;
   init_result = execute_function(callback_function_075);
   return (init_result != 0) - 1;
 }
-int initialize_module_057(void)
+int initialize_health_checker(void)
 {
   longlong init_result;
   init_result = execute_function(callback_function_076);
@@ -1433,7 +1433,7 @@ int initialize_thread_pool_8(void)
   init_result = execute_function(&g_systemInitFunction6);
   return (init_result != 0) - 1;
 }
-int initialize_module_058(void)
+int initialize_backup_system(void)
 {
   longlong init_result;
   _data_180bfc150 = 0;
@@ -1444,7 +1444,7 @@ int initialize_module_058(void)
   init_result = execute_function(callback_function_078);
   return (init_result != 0) - 1;
 }
-int initialize_module_059(void)
+int initialize_recovery_system(void)
 {
   longlong init_result;
   _data_180bfaee8 = 3;
@@ -1467,7 +1467,7 @@ int initialize_thread_pool_9(undefined8 handle,undefined8 flags,undefined8 mutex
   init_result = execute_function(callback_function_080);
   return (init_result != 0) - 1;
 }
-int initialize_module_060(void)
+int initialize_maintenance_service(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -1479,7 +1479,7 @@ int initialize_module_060(void)
   init_result = execute_function(callback_function_081);
   return (init_result != 0) - 1;
 }
-int initialize_module_061(void)
+int initialize_optimization_system(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -1491,7 +1491,7 @@ int initialize_module_061(void)
   init_result = execute_function(callback_function_082);
   return (init_result != 0) - 1;
 }
-int initialize_module_062(void)
+int initialize_performance_monitor(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -1509,7 +1509,7 @@ int initialize_module_062(void)
   init_result = execute_function(callback_function_084);
   return (init_result != 0) - 1;
 }
-int initialize_module_063(void)
+int initialize_load_balancer(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -1527,7 +1527,7 @@ int initialize_module_063(void)
   init_result = execute_function(callback_function_086);
   return (init_result != 0) - 1;
 }
-int initialize_module_064(void)
+int initialize_scaling_system(void)
 {
   longlong init_result;
   undefined8 str_len_param;

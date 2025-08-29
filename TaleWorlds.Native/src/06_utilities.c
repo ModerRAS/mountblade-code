@@ -30,14 +30,14 @@ data g_bufferStatusFlags;
 uint64 g_primaryBufferHandle;
 // 辅助缓冲区句柄
 uint64 g_secondaryBufferHandle;
-// 缓冲区控制数据1
-data g_bufferControlData1;
-// 缓冲区控制数据2
-data g_bufferControlData2;
-// 缓冲区控制数据3
-data g_bufferControlData3;
-// 缓冲区控制数据4
-data g_bufferControlData4;
+// 缓冲区大小配置
+data g_bufferSizeConfig;
+// 缓冲区对齐配置
+data g_bufferAlignmentConfig;
+// 缓冲区权限配置
+data g_bufferPermissionConfig;
+// 缓冲区标志配置
+data g_bufferFlagConfig;
 // 缓冲区内存指针
 data g_bufferMemoryPointer;
 
@@ -67,17 +67,17 @@ data memoryAllocatorStatusFlag;
 
 // 函数: data RegisterMemoryHandler;
 data RegisterMemoryHandler;
-data g_systemStatusFlag1;
-data g_systemStatusFlag2;
-data g_systemStatusFlag3;
-data g_systemStatusFlag4;
+data g_systemCpuStatus;
+data g_systemMemoryStatus;
+data g_systemIoStatus;
+data g_systemNetworkStatus;
 
 // 函数: data ConfigureMemorySettings;
 data ConfigureMemorySettings;
-data g_errorHandlerState1;
-data g_errorHandlerState2;
-data g_errorHandlerState3;
-data g_errorHandlerState4;
+data g_errorHandlerSeverity;
+data g_errorHandlerCategory;
+data g_errorHandlerRecovery;
+data g_errorHandlerLogging;
 
 // 函数: data ValidateMemoryConfiguration;
 // 内存配置验证函数180941630
@@ -1438,10 +1438,10 @@ data cameraStreamData;
 data cameraFormatData;
 longlong cameraFrameCounter;
 uint cameraResolutionWidth;
-double unknown_180d48d48;
-double unknown_180d48d50;
-int unknown_180d49260;
-double unknown_180d49268;
+double cameraFrameRate;
+double cameraExposureTime;
+int cameraCaptureMode;
+double cameraZoomLevel;
 data cameraBufferPool1;
 data cameraBufferPool2;
 data cameraBufferPool3;
@@ -80151,7 +80151,7 @@ void Unwind_180912970(uint64 resourceHandle,longlong memorySize)
 }
 
 
-uint32 unknown_180d49260;
+uint32 cameraCaptureMode;
 
 // 函数: void reset_game_state_if_needed(uint64 resourceHandle,longlong memorySize)
 void reset_game_state_if_needed(uint64 resourceHandle,longlong memorySize)
