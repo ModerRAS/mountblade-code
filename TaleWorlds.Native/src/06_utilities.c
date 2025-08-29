@@ -12079,59 +12079,60 @@ LAB_1808989f7:
 
 
 
+// 数组二分搜索函数 - 在排序数组中查找指定元素
 undefined8
-FUN_180898a50(longlong param_1,uint *param_2,undefined8 param_3,undefined4 param_4,
-             undefined8 param_5)
+binarySearchInArray(longlong arrayHandle, uint *searchKey, undefined8 param3, undefined4 param4,
+                   undefined8 param5)
 
 {
-  uint uVar1;
-  longlong lVar2;
-  int iVar3;
-  int iVar4;
-  undefined8 uVar5;
-  uint *puVar6;
-  int iVar7;
-  int iVar8;
-  int iVar9;
+  uint searchValue;
+  longlong dataArrayPtr;
+  int rightBound;
+  int comparisonResult;
+  undefined8 result;
+  uint *currentElement;
+  int middleIndex;
+  int leftBound;
+  int elementCount;
   
-  iVar8 = 0;
-  iVar9 = *(int *)(param_1 + 0x18) + -1;
-  if (-1 < iVar9) {
-    lVar2 = *(longlong *)(param_1 + 0x10);
-    uVar1 = *param_2;
+  leftBound = 0;
+  elementCount = *(int *)(arrayHandle + 0x18) + -1;
+  if (-1 < elementCount) {
+    dataArrayPtr = *(longlong *)(arrayHandle + 0x10);
+    searchValue = *searchKey;
     do {
-      iVar7 = iVar9 + iVar8 >> 1;
-      puVar6 = (uint *)((longlong)iVar7 * 0x10 + lVar2);
-      if (uVar1 == *puVar6) {
-        iVar4 = (uint)(ushort)param_2[1] - (uint)(ushort)puVar6[1];
-        if ((iVar4 == 0) &&
-           (iVar4 = (uint)*(ushort *)((longlong)param_2 + 6) -
-                    (uint)*(ushort *)((longlong)puVar6 + 6), iVar4 == 0)) {
-          iVar4 = memcmp(param_2 + 2,puVar6 + 2,8);
+      middleIndex = elementCount + leftBound >> 1;
+      currentElement = (uint *)((longlong)middleIndex * 0x10 + dataArrayPtr);
+      if (searchValue == *currentElement) {
+        comparisonResult = (uint)(ushort)searchKey[1] - (uint)(ushort)currentElement[1];
+        if ((comparisonResult == 0) &&
+           (comparisonResult = (uint)*(ushort *)((longlong)searchKey + 6) -
+                               (uint)*(ushort *)((longlong)currentElement + 6), comparisonResult == 0)) {
+          comparisonResult = memcmp(searchKey + 2, currentElement + 2, 8);
         }
       }
       else {
-        iVar4 = 1;
-        if (uVar1 < *puVar6) {
-          iVar4 = -1;
+        comparisonResult = 1;
+        if (searchValue < *currentElement) {
+          comparisonResult = -1;
         }
       }
-      if (iVar4 == 0) {
-        if (iVar7 < 0) {
+      if (comparisonResult == 0) {
+        if (middleIndex < 0) {
           return 0x4a;
         }
-        uVar5 = FUN_180898b40(param_1,iVar7,0,param_3,param_4,param_5);
-        return uVar5;
+        result = retrieveArrayElementData(arrayHandle, middleIndex, 0, param3, param4, param5);
+        return result;
       }
-      iVar3 = iVar7 + -1;
-      if (-1 < iVar4) {
-        iVar3 = iVar9;
+      rightBound = middleIndex + -1;
+      if (-1 < comparisonResult) {
+        rightBound = elementCount;
       }
-      iVar9 = iVar3;
-      if (-1 < iVar4) {
-        iVar8 = iVar7 + 1;
+      elementCount = rightBound;
+      if (-1 < comparisonResult) {
+        leftBound = middleIndex + 1;
       }
-    } while (iVar8 <= iVar9);
+    } while (leftBound <= elementCount);
   }
   return 0x4a;
 }
