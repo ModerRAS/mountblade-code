@@ -4438,7 +4438,7 @@ label_:
           LOCK();
           uint_var_ = *(uint *)(long_var_ + 0xd8);
           if (uint_var_ == 0) {
-            *(uint *)(long_var_ + 0xd8) = 0xffffffff;
+            *(uint *)(long_var_ + 0xd8) = UINT32_MAX;
           }
           else {
             plVar7 = (long long *)(ulong long)uint_var_;
@@ -4924,7 +4924,7 @@ unsigned long long process_system_request(unsigned long long *handle)
     byte_ptr_var_ = (byte *)*handle;
     pfVar4 = (float *)((ulong long)handle[1] >> 2);
     if (0 < (int)pfVar4) {
-      uint_var_ = (ulong long)pfVar4 & 0xffffffff;
+      uint_var_ = (ulong long)pfVar4 & UINT32_MAX;
       do {
         fVar14 = (float)byte_ptr_var_[1] * 0.007843138 - 1.0;
         fVar13 = (float)*byte_ptr_var_ * 0.007843138 - 1.0;
@@ -4949,7 +4949,7 @@ unsigned long long process_system_request(unsigned long long *handle)
     ptr_var_ = (ushort *)*handle;
     pfVar4 = (float *)((ulong long)handle[1] >> 3);
     if (0 < (int)pfVar4) {
-      uint_var_ = (ulong long)pfVar4 & 0xffffffff;
+      uint_var_ = (ulong long)pfVar4 & UINT32_MAX;
       do {
         fVar14 = (float)ptr_var_[1] * 3.0518044e-05 - 1.0;
         fVar13 = (float)*ptr_var_ * 3.0518044e-05 - 1.0;
@@ -4994,7 +4994,7 @@ unsigned long long process_system_request(unsigned long long *handle)
     pfVar7 = (float *)*handle;
     pfVar4 = (float *)(uint_var_ >> 4);
     if (0 < (int)pfVar4) {
-      uint_var_ = (ulong long)pfVar4 & 0xffffffff;
+      uint_var_ = (ulong long)pfVar4 & UINT32_MAX;
       do {
         fVar13 = (*pfVar7 + *pfVar7) - 1.0;
         fVar14 = (pfVar7[1] + pfVar7[1]) - 1.0;
