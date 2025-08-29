@@ -2716,7 +2716,7 @@ label_:
     if (int_var_ != 0) {
       __Throw_C_error_std__YAXH_Z(int_var_);
     }
-    system_cleanup_001(0x180c911a0);
+    system_cleanup_001(ADDR_CLEANUP_FUNC);
   }
   *(unsigned int *)(global_data_ + 4) = 0;
   if (*(char *)(long_var_ + 0x1ee) == '\0') {
@@ -2739,7 +2739,7 @@ label_:
       *(float *)(long_var_ + 0x220) = fVar14;
     }
     else {
-      *(unsigned int *)(long_var_ + 0x220) = 0x3d088889;
+      *(unsigned int *)(long_var_ + 0x220) = FLOAT_PI_OVER_4;
       fVar14 = 0.033333335;
     }
     system_handle_manager_004(long_var_,fVar14);
@@ -2825,7 +2825,7 @@ label_:
     if (int_var_ != 0) {
       __Throw_C_error_std__YAXH_Z(int_var_);
     }
-    system_cleanup_001(0x180c911a0);
+    system_cleanup_001(ADDR_CLEANUP_FUNC);
   }
   *(unsigned int *)(global_data_ + 4) = 0;
   if (*(char *)(handle + 0x1ee) == '\0') {
@@ -2848,7 +2848,7 @@ label_:
       *(float *)(handle + 0x220) = fVar13;
     }
     else {
-      *(unsigned int *)(handle + 0x220) = 0x3d088889;
+      *(unsigned int *)(handle + 0x220) = FLOAT_PI_OVER_4;
       fVar13 = 0.033333335;
     }
     system_handle_manager_004(handle,fVar13);
@@ -2936,7 +2936,7 @@ label_:
   } while (long_var_ != 0);
 label_:
   ptr_var_ = (unsigned long long *)global_data_[1];
-  int_var_ = _Mtx_lock(0x180c91970);
+  int_var_ = _Mtx_lock(ADDR_MAIN_MUTEX);
   if (int_var_ != 0) {
     __Throw_C_error_std__YAXH_Z(int_var_);
   }
@@ -2957,12 +2957,12 @@ label_:
     handle_system_error();
   }
   global_data_ = pinit_result4;
-  int_var_ = _Mtx_unlock(0x180c91970);
+  int_var_ = _Mtx_unlock(ADDR_MAIN_MUTEX);
   if (int_var_ != 0) {
     __Throw_C_error_std__YAXH_Z(int_var_);
   }
   pinit_result4 = (long long *)*global_data_;
-  int_var_ = _Mtx_lock(0x180c91970);
+  int_var_ = _Mtx_lock(ADDR_MAIN_MUTEX);
   if (int_var_ != 0) {
     __Throw_C_error_std__YAXH_Z(int_var_);
   }
@@ -3007,13 +3007,13 @@ label_:
     handle_system_error();
   }
   global_data_ = pinit_result;
-  int_var_ = _Mtx_unlock(0x180c91970);
+  int_var_ = _Mtx_unlock(ADDR_MAIN_MUTEX);
   if (int_var_ != 0) {
     __Throw_C_error_std__YAXH_Z(int_var_);
   }
   if (*(int *)(global_data_ + 0x161c) == 0x11) {
     ptr_var_ = (unsigned long long *)*global_data_;
-    int_var_ = _Mtx_lock(0x180c91970);
+    int_var_ = _Mtx_lock(ADDR_MAIN_MUTEX);
     if (int_var_ != 0) {
       __Throw_C_error_std__YAXH_Z(int_var_);
     }
@@ -3023,27 +3023,27 @@ label_:
     system_initializer_003(&systemConfigData1,0,0);
     system_config_001(&systemConfigData2);
     stack_var_ = 系统配置缓冲区大小000000;
-    auStack_2c8[0] = 0x3f800000;
+    auStack_2c8[0] = FLOAT_ONE;
     stack_var_ = CONFIG_PATH_BUFFER_SIZE000;
     stack_ptr_ = &systemConfigBufferPtr;
     pplStack_328 = (long long **)&stack_var_;
     system_config_002(&systemConfigData3,4,global_data_ + 0x167c,auStack_2c8);
     plStack_2f8 = (long long *)CONCAT44(plStack_2f8._4_4_,系统配置缓冲区大小000000);
-    stack_var_ = (long long *)CONCAT44(stack_var_._4_4_,0x3f800000);
+    stack_var_ = (long long *)CONCAT44(stack_var_._4_4_,FLOAT_ONE);
     stack_var_ = CONFIG_PATH_BUFFER_SIZE000;
     stack_ptr_ = &systemConfigBufferPtr;
     pplStack_328 = &plStack_2f8;
     system_config_002(&systemConfigData4,4,global_data_ + 0x1680,&stack_var_);
     system_initializer_004();
     global_data_ = pinit_result4;
-    int_var_ = _Mtx_unlock(0x180c91970);
+    int_var_ = _Mtx_unlock(ADDR_MAIN_MUTEX);
     if (int_var_ != 0) {
       __Throw_C_error_std__YAXH_Z(int_var_);
     }
   }
   if (*(int *)(global_data_ + 0x161c) == 0xc) {
     ptr_var_ = (unsigned long long *)*global_data_;
-    int_var_ = _Mtx_lock(0x180c91970);
+    int_var_ = _Mtx_lock(ADDR_MAIN_MUTEX);
     if (int_var_ != 0) {
       __Throw_C_error_std__YAXH_Z(int_var_);
     }
@@ -3052,21 +3052,21 @@ label_:
     global_data_ = (long long *)*ptr_var_;
     system_initializer_003(&systemConfigData6,0,0);
     stack_var_ = (long long *)CONCAT44(stack_var_._4_4_,系统配置缓冲区大小000000);
-    plStack_2f8 = (long long *)CONCAT44(plStack_2f8._4_4_,0x3f800000);
+    plStack_2f8 = (long long *)CONCAT44(plStack_2f8._4_4_,FLOAT_ONE);
     stack_var_ = CONFIG_PATH_BUFFER_SIZE000;
     stack_ptr_ = &systemConfigBufferPtr;
     pplStack_328 = (long long **)&stack_var_;
     system_config_002(&systemConfigData5,4,global_data_ + 0x1688,&plStack_2f8);
     system_initializer_004();
     global_data_ = pinit_result4;
-    int_var_ = _Mtx_unlock(0x180c91970);
+    int_var_ = _Mtx_unlock(ADDR_MAIN_MUTEX);
     if (int_var_ != 0) {
       __Throw_C_error_std__YAXH_Z(int_var_);
     }
   }
   if (*(int *)(global_data_ + 0x161c) == 0xd) {
     ptr_var_ = (unsigned long long *)*global_data_;
-    int_var_ = _Mtx_lock(0x180c91970);
+    int_var_ = _Mtx_lock(ADDR_MAIN_MUTEX);
     if (int_var_ != 0) {
       __Throw_C_error_std__YAXH_Z(int_var_);
     }
@@ -3075,7 +3075,7 @@ label_:
     global_data_ = (long long *)*ptr_var_;
     system_initializer_003(&systemConfigData7,0,0);
     stack_var_ = (long long *)CONCAT44(stack_var_._4_4_,系统配置缓冲区大小000000);
-    plStack_2f8 = (long long *)CONCAT44(plStack_2f8._4_4_,0x3f800000);
+    plStack_2f8 = (long long *)CONCAT44(plStack_2f8._4_4_,FLOAT_ONE);
     stack_var_ = CONFIG_PATH_BUFFER_SIZE000;
     stack_ptr_ = &systemConfigBufferPtr;
     pplStack_328 = (long long **)&stack_var_;
@@ -3085,7 +3085,7 @@ label_:
     }
     system_initializer_004();
     global_data_ = pinit_result4;
-    int_var_ = _Mtx_unlock(0x180c91970);
+    int_var_ = _Mtx_unlock(ADDR_MAIN_MUTEX);
     if (int_var_ != 0) {
       __Throw_C_error_std__YAXH_Z(int_var_);
     }
@@ -3199,7 +3199,7 @@ label_:
     init_result2 = global_data_;
     stack_var_ = 0x18;
     ptr_var_ = (unsigned long long *)*global_data_;
-    int_var_ = _Mtx_lock(0x180c91970);
+    int_var_ = _Mtx_lock(ADDR_MAIN_MUTEX);
     if (int_var_ != 0) {
       __Throw_C_error_std__YAXH_Z(int_var_);
     }
@@ -3217,7 +3217,7 @@ label_:
       *(unsigned char *)(init_result2 + 0x60) = 0;
     }
     global_data_ = pinit_result4;
-    int_var_ = _Mtx_unlock(0x180c91970);
+    int_var_ = _Mtx_unlock(ADDR_MAIN_MUTEX);
     if (int_var_ != 0) {
       __Throw_C_error_std__YAXH_Z(int_var_);
     }
@@ -3401,7 +3401,7 @@ label_:
   char_ptr_var_ = global_data_;
   if (*global_data_ != '\0') {
     ptr_var_ = (unsigned long long *)*global_data_;
-    int_var_ = _Mtx_lock(0x180c91970);
+    int_var_ = _Mtx_lock(ADDR_MAIN_MUTEX);
     if (int_var_ != 0) {
       __Throw_C_error_std__YAXH_Z(int_var_);
     }
@@ -3433,7 +3433,7 @@ label_:
     system_config_001(&systemConfigData8,dVar7 / dVar8);
     system_initializer_004();
     global_data_ = uint_var_;
-    int_var_ = _Mtx_unlock(0x180c91970);
+    int_var_ = _Mtx_unlock(ADDR_MAIN_MUTEX);
     if (int_var_ != 0) {
       __Throw_C_error_std__YAXH_Z(int_var_);
     }
@@ -3521,7 +3521,7 @@ label_:
     global_data_ = (global_data_ - 1 | 0xfffffffe) + 1;
   }
   ptr_var_ = (unsigned long long *)*global_data_;
-  int_var_ = _Mtx_lock(0x180c91970);
+  int_var_ = _Mtx_lock(ADDR_MAIN_MUTEX);
   if (int_var_ != 0) {
     __Throw_C_error_std__YAXH_Z(int_var_);
   }
@@ -3565,7 +3565,7 @@ label_:
   }
   system_initializer_002();
   global_data_ = uint_var_;
-  int_var_ = _Mtx_unlock(0x180c91970);
+  int_var_ = _Mtx_unlock(ADDR_MAIN_MUTEX);
   if (int_var_ != 0) {
     __Throw_C_error_std__YAXH_Z(int_var_);
   }
