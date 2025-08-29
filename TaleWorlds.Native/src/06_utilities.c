@@ -1007,7 +1007,7 @@ data renderClearBuffer1;  /* 原: DAT_180bfa1d0 */
 data renderClearBuffer2;  /* 原: DAT_180bfa1d8 */
 data renderClearBuffer3;  /* 原: DAT_180bfa1e0 */
 data renderClearBuffer4;  /* 原: DAT_180bfa1e8 */
-data DAT_180a22fd0;
+data renderDrawFlushCommand;  /* 原: DAT_180a22fd0 */
 
 // 函数: data renderDrawInitialize;
 data renderDrawInitialize;
@@ -1015,7 +1015,7 @@ data renderDrawBuffer1;
 data renderDrawBuffer2;
 data renderDrawBuffer3;
 data renderDrawBuffer4;
-data DAT_180a22fa8;
+data renderDrawStateCommand;  /* 原: DAT_180a22fa8 */
 
 // 函数: data renderDispatchInitialize;
 data renderDispatchInitialize;
@@ -1039,9 +1039,9 @@ data resourceAllocateMemory;
 
 // 函数: data resourceDeallocateMemory;
 data resourceDeallocateMemory;
-data DAT_180c91f6c;
+data resourceMemoryAlignment;  /* 原: DAT_180c91f6c */
 data geometryIndexCount;
-data DAT_180c91fcc;
+data resourceMemoryProtection;  /* 原: DAT_180c91fcc */
 data particleEmitterData;
 data particleBuffer1;
 data particleBuffer2;
