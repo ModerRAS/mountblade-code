@@ -15036,7 +15036,8 @@ void FUN_180043690(void)
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180043720(void)
+// 初始化线程本地存储
+undefined8 initialize_thread_local_storage(void)
 
 {
   longlong lVar1;

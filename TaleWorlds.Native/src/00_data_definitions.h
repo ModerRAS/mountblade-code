@@ -4,11 +4,14 @@
 // 全局数据定义 - 从原始文件中提取
 undefined g_global_system_data;
 undefined g_unknown_system_data;
+
+int initialize_system_configuration(void)
+{
   g_system_config_enabled = 1;
   g_operation_counter = 0;
   g_maximum_allowed_value = 0x7fffffffffffffff;
   g_system_status = 0;
-  result = initialize_system(system_init_func_1809414f0);
+  int result = initialize_system(system_init_func_1809414f0);
   return (result != 0) - 1;
 }
 int initialize_core_data_structure(void)
@@ -31,7 +34,7 @@ int initialize_network_buffer_system(void)
   net_init_result = initialize_system(network_init_func_1809415b0);
   return (net_init_result != 0) - 1;
 }
-int initialize_rendering_context_18002ced0(void)
+int initialize_rendering_context_system(void)
 {
   longlong render_init_result;
   g_render_context_ptr_180bf5208 = &g_render_data_18098bc80;
