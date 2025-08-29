@@ -2908,7 +2908,7 @@ uint64 get_system_status(void)
 
 
 
-uint64 FUN_18089062a(char resourceHandle)
+uint64 validate_character_resource(char resourceHandle)
 
 {
   if (resourceHandle != '\0') {
