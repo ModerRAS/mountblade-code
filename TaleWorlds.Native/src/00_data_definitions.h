@@ -39,30 +39,30 @@ int initialize_rendering_context_system(void)
   longlong render_init_result;
   g_render_context_primary_ptr = &g_render_data_18098bc80;
   g_render_context_secondary_ptr = &g_render_buffer_180bf5220;
-  g_render_context_offset_180bf5218 = 0;
+  g_render_context_offset = 0;
   g_render_buffer_180bf5220 = 0;
   render_init_result = initialize_system(rendering_init_func_1809415d0);
   return (render_init_result != 0) - 1;
 }
-int initialize_module_004(void)
+int initialize_module_system(void)
 {
-  longlong result_var;
-  module_pointer_010 = &unknown_data_003;
-  module_pointer_011 = &module_data_004;
-  module_pointer_012 = 0;
-  module_data_004 = 0;
-  result_var = execute_function(callback_function_005);
-  return (result_var != 0) - 1;
+  longlong initialization_result;
+  g_module_primary_pointer = &g_module_unknown_data;
+  g_module_secondary_pointer = &g_module_data_value;
+  g_module_tertiary_pointer = 0;
+  g_module_data_value = 0;
+  initialization_result = execute_function(module_init_callback_function);
+  return (initialization_result != 0) - 1;
 }
 int initialize_input_system(void)
 {
-  longlong result_var;
-  g_input_data_ptr = &g_shared_data_buffer;
-  g_input_buffer_ptr = &g_input_buffer;
-  g_input_offset = 0;
-  g_input_buffer = 0;
-  result_var = execute_function(callback_function_006);
-  return (result_var != 0) - 1;
+  longlong initialization_result;
+  g_input_data_pointer = &g_shared_data_buffer;
+  g_input_buffer_pointer = &g_input_buffer_value;
+  g_input_buffer_offset = 0;
+  g_input_buffer_value = 0;
+  initialization_result = execute_function(input_system_callback_function);
+  return (initialization_result != 0) - 1;
 }
 int initialize_physics_system(void)
 {

@@ -1,28 +1,28 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 01_initialization.c - 901 个函数
+// 01_initialization.c - 初始化系统代码（已美化变量名和函数名）
 // void InitializeGameDataStructure(void)
 
 void InitializeGameDataStructure(void)
-undefined g_game_data_structure_1809fc768;
+undefined g_game_data_structure;
 
-undefined g_unknown_game_data_18098c7a0;
+undefined g_unknown_game_data_1;
 
-undefined g_game_config_data_18098c9b8;
+undefined g_game_config_data;
 
-undefined g_unknown_game_data_18098c7b8;
+undefined g_unknown_game_data_2;
 
-undefined g_game_state_data_18098c940;
+undefined g_game_state_data;
 
-undefined g_unknown_game_data_18098c7c8;
+undefined g_unknown_game_data_3;
 
-undefined g_game_memory_data_18098c918;
+undefined g_game_memory_data;
 
-undefined g_unknown_game_data_18098c7d8;
+undefined g_unknown_game_data_4;
 
-undefined g_game_render_data_18098c968;
+undefined g_game_render_data;
 
-undefined g_unknown_game_data_18098c7f0;
+undefined g_unknown_game_data_5;
 
 undefined g_game_audio_data_18098c990;
 
@@ -15040,41 +15040,41 @@ void FUN_180043690(void)
 undefined8 initialize_thread_local_storage(void)
 
 {
-  longlong lVar1;
-  int *piVar2;
+  longlong thread_local_base;
+  int *storage_ptr;
 
-  lVar1 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
-  *(undefined8 *)(lVar1 + 0x18) = &UNK_18098bcb0;
-  *(undefined8 *)(lVar1 + 0x20) = 0;
-  *(undefined4 *)(lVar1 + 0x28) = 0;
-  *(undefined8 *)(lVar1 + 0x18) = &UNK_180a3c3e0;
-  *(undefined8 *)(lVar1 + 0x30) = 0;
-  *(undefined8 *)(lVar1 + 0x20) = 0;
-  *(undefined4 *)(lVar1 + 0x28) = 0;
-  lVar1 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
-  piVar2 = *(int **)(lVar1 + 0x50);
-  if (piVar2 == (int *)0x0) {
-    piVar2 = (int *)(lVar1 + 0x60);
+  thread_local_base = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
+  *(undefined8 *)(thread_local_base + 0x18) = &UNK_18098bcb0;
+  *(undefined8 *)(thread_local_base + 0x20) = 0;
+  *(undefined4 *)(thread_local_base + 0x28) = 0;
+  *(undefined8 *)(thread_local_base + 0x18) = &UNK_180a3c3e0;
+  *(undefined8 *)(thread_local_base + 0x30) = 0;
+  *(undefined8 *)(thread_local_base + 0x20) = 0;
+  *(undefined4 *)(thread_local_base + 0x28) = 0;
+  thread_local_base = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
+  storage_ptr = *(int **)(thread_local_base + 0x50);
+  if (storage_ptr == (int *)0x0) {
+    storage_ptr = (int *)(thread_local_base + 0x60);
   }
   else {
-    if (*piVar2 != 0x1e) goto LAB_1808fd14a;
-    piVar2 = (int *)malloc(0x100);
+    if (*storage_ptr != 0x1e) goto LAB_1808fd14a;
+    storage_ptr = (int *)malloc(0x100);
     free(0);
-    if (piVar2 == (int *)0x0) {
+    if (storage_ptr == (int *)0x0) {
       return 0xffffffff;
     }
-    *(undefined8 *)(piVar2 + 2) = *(undefined8 *)(lVar1 + 0x50);
+    *(undefined8 *)(storage_ptr + 2) = *(undefined8 *)(thread_local_base + 0x50);
   }
-  *piVar2 = 0;
-  *(int **)(lVar1 + 0x50) = piVar2;
+  *storage_ptr = 0;
+  *(int **)(thread_local_base + 0x50) = storage_ptr;
 LAB_1808fd14a:
-  *(code **)(piVar2 + (longlong)*piVar2 * 2 + 4) = FUN_1809431a0;
-  *piVar2 = *piVar2 + 1;
+  *(code **)(storage_ptr + (longlong)*storage_ptr * 2 + 4) = FUN_1809431a0;
+  *storage_ptr = *storage_ptr + 1;
   return 0;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void FUN_180043790(void)
-void FUN_180043790(void)
+// 清理线程本地存储
+void cleanup_thread_local_storage(void)
 
 {
   undefined8 in_R9;
