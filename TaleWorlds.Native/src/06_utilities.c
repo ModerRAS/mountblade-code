@@ -4535,7 +4535,7 @@ uint64 unlock_file(longlong resourceHandle,longlong memorySize)
 
 
 
-uint64 FUN_180891bd0(longlong resourceHandle,longlong memorySize)
+uint64 check_file_lock(longlong resourceHandle,longlong memorySize)
 
 {
   uint64 localUInt1;
@@ -4554,7 +4554,7 @@ uint64 FUN_180891bd0(longlong resourceHandle,longlong memorySize)
 
 
 
-uint64 FUN_180891c40(longlong resourceHandle,longlong memorySize)
+uint64 get_file_lock_info(longlong resourceHandle,longlong memorySize)
 
 {
   uint64 localUInt1;
