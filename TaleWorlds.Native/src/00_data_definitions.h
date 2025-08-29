@@ -21,7 +21,7 @@ int initialize_core_data_structure(void)
   init_result = initialize_system(system_init_func_180941590);
   return (init_result != 0) - 1;
 }
-int initialize_network_buffers_18002ce80(void)
+int initialize_network_buffer_system(void)
 {
   longlong net_init_result;
   g_net_buffer_ptr_180bf5770 = &g_net_data_18098bb30;
