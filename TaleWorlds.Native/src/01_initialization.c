@@ -1493,9 +1493,9 @@ void InitializeAudioNode(void)
   puVar7[10] = pcStackX_18;
   return;
 }
-// void FUN_18002cc40(void)
+// void InitializeNetworkNode(void)
 
-void FUN_18002cc40(void)
+void InitializeNetworkNode(void)
 
 {
   char cVar1;
@@ -1559,9 +1559,8 @@ int FUN_18002cd40(void)
   _DAT_180bf52d8 = 0;
   _DAT_180bf52c8 = 0;
   _DAT_180bf52d0 = 0;
-// void FUN_18002d150(void)
-
-void FUN_18002d150(void)
+// 初始化引擎状态函数
+void InitializeEngineState_18002d150(void)
 
 {
   char cVar1;

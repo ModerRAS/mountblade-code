@@ -115,8 +115,8 @@ data unknown_1809ffa30;
 data DAT_180a010a0;
 data unknown_180a00370;
 
-// 函数: data FUN_180941800;
-data FUN_180941800;
+// 函数: data FUN_180941800;          # 数据结构初始化函数
+data FUN_180941800;          # 数据结构初始化函数
 data DAT_180bf64e0;
 data DAT_180bf64e8;
 data unknown_1809fdc18;
@@ -2449,7 +2449,7 @@ void ProcessMemoryAllocation(longlong resourceHandle,longlong memorySize)
           operationResult = FUN_1808605e0(memoryBlockHandle);
           if (operationResult != 2) {
                     // WARNING: Subroutine does not return
-            FUN_180862e00(memoryBlockHandle,1);
+            FUN_180862e00(memoryBlockHandle,1); # 内存块释放函数
           }
           processedCount = processedCount + 1;
           iterationCounter = iterationCounter + 8;
@@ -2499,7 +2499,7 @@ void HandleResourceCleanup(void)
           localInt2 = FUN_1808605e0(localUInt1);
           if (localInt2 != 2) {
                     // WARNING: Subroutine does not return
-            FUN_180862e00(localUInt1,1);
+            FUN_180862e00(localUInt1,1); # 内存块释放函数
           }
           localInt4 = localInt4 + 1;
           localLong3 = localLong3 + 8;
@@ -2540,7 +2540,7 @@ void memory_pool_initializer(void)          // 内存池初始化函数
   
   if ((*(uint *)(baseRegister + 0x2d8) >> 7 & 1) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180862e00();
+    FUN_180862e00(); # 内存块释放函数
   }
   FreeMemoryBuffer(&stack0x00000030);
                     // WARNING: Subroutine does not return
@@ -2733,7 +2733,7 @@ ulonglong calculate_memory_allocation(longlong resourceHandle,longlong memorySiz
 
 
 
-uint64 FUN_180890450(longlong resourceHandle,longlong memorySize)
+uint64 manage_resource_memory(longlong resourceHandle,longlong memorySize) # 资源内存管理函数
 
 {
   longlong localLong1;
@@ -2767,7 +2767,7 @@ uint64 FUN_180890450(longlong resourceHandle,longlong memorySize)
 
 
 
-uint64 FUN_180890490(longlong resourceHandle)
+uint64 check_resource_status(longlong resourceHandle) # 资源状态检查函数
 
 {
   uint *plocalUInt1;
@@ -2796,7 +2796,7 @@ uint64 FUN_180890490(longlong resourceHandle)
 
 
 
-uint64 FUN_180890500(longlong resourceHandle,uint64 memorySize)
+uint64 validate_memory_size(longlong resourceHandle,uint64 memorySize) # 内存大小验证函数
 
 {
   longlong localLong1;
@@ -2835,7 +2835,7 @@ uint64 FUN_180890500(longlong resourceHandle,uint64 memorySize)
 
 
 
-uint64 FUN_180890540(longlong resourceHandle)
+uint64 FUN_180890540(longlong resourceHandle) # 资源句柄查询函数
 
 {
   longlong localLong1;
@@ -2878,7 +2878,7 @@ uint64 FUN_180890590(longlong resourceHandle)
     }
     if (*(longlong *)(lStackX_8 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-      FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1);
+      FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1); # 内存块释放函数
     }
     localUInt1 = 0;
   }
@@ -2901,7 +2901,7 @@ uint64 FUN_1808905ae(void)
   }
   if (*(longlong *)(localLong1 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180862e00(*(longlong *)(localLong1 + 0x10),1);
+    FUN_180862e00(*(longlong *)(localLong1 + 0x10),1); # 内存块释放函数
   }
   return 0;
 }
@@ -2913,7 +2913,7 @@ uint64 FUN_18089062a(char resourceHandle)
 {
   if (resourceHandle != '\0') {
                     // WARNING: Subroutine does not return
-    FUN_180862e00();
+    FUN_180862e00(); # 内存块释放函数
   }
   return 0;
 }
@@ -2950,7 +2950,7 @@ uint64 FUN_180890650(longlong resourceHandle)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1);
+  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -2971,25 +2971,25 @@ uint32 FUN_180890673(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(localLong1 + 0x10),1);
+  FUN_180862e00(*(longlong *)(localLong1 + 0x10),1); # 内存块释放函数
 }
 
 
 
 
-// 函数: void FUN_18089069c(void)
-void FUN_18089069c(void)
+// 函数: void releaseMemoryAndExit(void)
+void releaseMemoryAndExit(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  FUN_180862e00(); # 内存块释放函数
 }
 
 
 
 
-// 函数: void FUN_1808906f0(void)
-void FUN_1808906f0(void)
+// 函数: void cleanupResourceFunction(void)
+void cleanupResourceFunction(void)
 
 {
   return;
@@ -3017,7 +3017,7 @@ uint64 FUN_180890700(longlong resourceHandle)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1);
+  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3038,18 +3038,18 @@ uint32 FUN_180890723(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(localLong1 + 0x10),1);
+  FUN_180862e00(*(longlong *)(localLong1 + 0x10),1); # 内存块释放函数
 }
 
 
 
 
-// 函数: void FUN_18089074c(void)
-void FUN_18089074c(void)
+// 函数: void emergencyMemoryRelease(void)
+void emergencyMemoryRelease(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  FUN_180862e00(); # 内存块释放函数
 }
 
 
@@ -3449,7 +3449,7 @@ uint64 FUN_180890ad0(longlong resourceHandle)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1);
+  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3470,7 +3470,7 @@ uint32 FUN_180890aef(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(localLong1 + 0x10),1);
+  FUN_180862e00(*(longlong *)(localLong1 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3481,7 +3481,7 @@ void FUN_180890b18(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  FUN_180862e00(); # 内存块释放函数
 }
 
 
@@ -3516,7 +3516,7 @@ uint64 FUN_180890b70(longlong resourceHandle)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1);
+  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3537,7 +3537,7 @@ uint32 FUN_180890b8f(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(localLong1 + 0x10),1);
+  FUN_180862e00(*(longlong *)(localLong1 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3548,7 +3548,7 @@ void FUN_180890bb8(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  FUN_180862e00(); # 内存块释放函数
 }
 
 
@@ -3582,7 +3582,7 @@ uint64 FUN_180890c10(longlong resourceHandle)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(localLong2 + 0x10),1);
+  FUN_180862e00(*(longlong *)(localLong2 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3601,7 +3601,7 @@ uint32 FUN_180890c33(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(localLong1 + 0x10),1);
+  FUN_180862e00(*(longlong *)(localLong1 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3612,7 +3612,7 @@ void FUN_180890c66(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  FUN_180862e00(); # 内存块释放函数
 }
 
 
@@ -3647,7 +3647,7 @@ uint64 FUN_180890d60(longlong resourceHandle)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1);
+  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3668,7 +3668,7 @@ uint32 FUN_180890d83(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(localLong1 + 0x10),1);
+  FUN_180862e00(*(longlong *)(localLong1 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3679,7 +3679,7 @@ void FUN_180890dac(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  FUN_180862e00(); # 内存块释放函数
 }
 
 
@@ -3714,7 +3714,7 @@ uint64 FUN_180890e10(longlong resourceHandle)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1);
+  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3735,7 +3735,7 @@ uint32 FUN_180890e33(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(localLong1 + 0x10),1);
+  FUN_180862e00(*(longlong *)(localLong1 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3746,7 +3746,7 @@ void FUN_180890e5c(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  FUN_180862e00(); # 内存块释放函数
 }
 
 
@@ -3781,7 +3781,7 @@ uint64 FUN_180890ee0(longlong resourceHandle)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1);
+  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3802,7 +3802,7 @@ uint32 FUN_180890f03(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(localLong1 + 0x10),1);
+  FUN_180862e00(*(longlong *)(localLong1 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3813,7 +3813,7 @@ void FUN_180890f2c(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  FUN_180862e00(); # 内存块释放函数
 }
 
 
@@ -3845,7 +3845,7 @@ uint64 FUN_180890f90(longlong resourceHandle)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1);
+  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3862,7 +3862,7 @@ uint32 FUN_180890fae(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(in_stack_00000040 + 0x10),1);
+  FUN_180862e00(*(longlong *)(in_stack_00000040 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3873,7 +3873,7 @@ void FUN_180890fe2(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  FUN_180862e00(); # 内存块释放函数
 }
 
 
@@ -3884,7 +3884,7 @@ void FUN_180891062(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  FUN_180862e00(); # 内存块释放函数
 }
 
 
@@ -3916,7 +3916,7 @@ uint64 FUN_180891090(longlong resourceHandle)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1);
+  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3933,7 +3933,7 @@ uint32 FUN_1808910b3(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(in_stack_00000040 + 0x10),1);
+  FUN_180862e00(*(longlong *)(in_stack_00000040 + 0x10),1); # 内存块释放函数
 }
 
 
@@ -3944,7 +3944,7 @@ void FUN_1808910e9(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  FUN_180862e00(); # 内存块释放函数
 }
 
 
@@ -3955,7 +3955,7 @@ void FUN_180891185(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  FUN_180862e00(); # 内存块释放函数
 }
 
 
@@ -80247,8 +80247,8 @@ void ConfigureMemorySettings(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941630(void)
-void FUN_180941630(void)
+// 函数: void FUN_180941630(void) # 内存验证函数
+void FUN_180941630(void) # 内存验证函数
 
 {
   _DAT_180bf6080 = &unknown_18098bcb0;
@@ -80258,8 +80258,8 @@ void FUN_180941630(void)
 
 
 
-// 函数: void FUN_180941650(void)
-void FUN_180941650(void)
+// 函数: void FUN_180941650(void) # 线程同步初始化函数
+void FUN_180941650(void) # 线程同步初始化函数
 
 {
   _Mtx_destroy_in_situ();
@@ -80272,8 +80272,8 @@ void FUN_180941650(void)
 
 
 
-// 函数: void FUN_180941690(void)
-void FUN_180941690(void)
+// 函数: void FUN_180941690(void) # 事件处理初始化函数
+void FUN_180941690(void) # 事件处理初始化函数
 
 {
   _Mtx_destroy_in_situ();
@@ -80286,8 +80286,8 @@ void FUN_180941690(void)
 
 
 
-// 函数: void FUN_1809416d0(void)
-void FUN_1809416d0(void)
+// 函数: void FUN_1809416d0(void) # 信号量初始化函数
+void FUN_1809416d0(void) # 信号量初始化函数
 
 {
   _Mtx_destroy_in_situ();
@@ -80300,8 +80300,8 @@ void FUN_1809416d0(void)
 
 
 
-// 函数: void FUN_180941710(void)
-void FUN_180941710(void)
+// 函数: void FUN_180941710(void) # 内存区域初始化函数
+void FUN_180941710(void) # 内存区域初始化函数
 
 {
   _Mtx_destroy_in_situ();
@@ -80316,8 +80316,8 @@ void FUN_180941710(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809417a0(void)
-void FUN_1809417a0(void)
+// 函数: void FUN_1809417a0(void) # 缓冲区初始化函数
+void FUN_1809417a0(void) # 缓冲区初始化函数
 
 {
                     // WARNING: Could not recover jumptable at 0x0001809417b8. Too many branches
@@ -80329,8 +80329,8 @@ void FUN_1809417a0(void)
 
 
 
-// 函数: void FUN_1809417c0(void)
-void FUN_1809417c0(void)
+// 函数: void FUN_1809417c0(void) # 系统配置初始化函数
+void FUN_1809417c0(void) # 系统配置初始化函数
 
 {
                     // WARNING: Could not recover jumptable at 0x0001809417d8. Too many branches
@@ -80357,8 +80357,8 @@ void FUN_1809417e0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941800(void)
-void FUN_180941800(void)
+// 函数: void FUN_180941800(void) # 数据结构初始化函数
+void FUN_180941800(void) # 数据结构初始化函数
 
 {
   _DAT_180bf64d0 = &unknown_18098bcb0;
