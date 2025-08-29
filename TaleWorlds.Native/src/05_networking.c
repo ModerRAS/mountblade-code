@@ -478,9 +478,9 @@ LAB_NETWORK_SEND_BUFFER_END:
     *(int *)(sessionConfig[0] + 2) = (int)socketHandle;
     statusCode = NetworkValidateSocket(*(uint64_t *)(socketContext[0] + 0x98),sessionConfig[0]);
     if (statusCode == 0) {
-      *dataBuffer = (ulonglong)*(uint *)(anetworkPtrStack_138[0] + 3);
+      *dataBuffer = (ulonglong)*(uint *)(sessionConfig[0] + 3);
                     // WARNING: Subroutine does not return
-      NetworkErrorExit(networkArrayStack_148 + 1);
+      NetworkErrorExit(socketContext + 1);
     }
   }
 LAB_NETWORK_SEND_BUFFER_START:

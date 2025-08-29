@@ -474,9 +474,9 @@ data inputButtonState;
 data inputScrollDelta;
 data physicsWorldHandle;
 data physicsGravityVector;
-data physicsCollisionTempData1;
+data g_physicsTempData1;
 data physicsCollisionMatrix;
-data physicsRaycastTempData;
+data g_physicsTempData2;
 data physicsRaycastResult;
 data gameData1;
 data gameData2;
@@ -484,16 +484,16 @@ data gameData3;
 data gameData4;
 data gameData5;
 data gameData6;
-data frameBufferConfigData7;
-data frameBufferConfigData8;
-data renderPipelineConfigData1;
-data renderPipelineConfigData2;
-data renderPipelineConfigData3;
-data renderPipelineConfigData4;
-data renderPipelineStateData1;
-data renderPipelineStateData2;
-data renderPipelineStateData3;
-data renderPipelineStateData4;
+data g_frameBufferTempData7;
+data g_frameBufferTempData8;
+data g_renderPipelineTempData1;
+data g_renderPipelineTempData2;
+data g_renderPipelineTempData3;
+data g_renderPipelineTempData4;
+data g_renderPipelineTempData5;
+data g_renderPipelineTempData6;
+data g_renderPipelineTempData7;
+data g_renderPipelineTempData8;
 data g_materialRenderStateTempData1;
 data g_materialRenderStateTempData2;
 data g_materialRenderStateTempData3;
@@ -7793,8 +7793,8 @@ void free_to_pool(longlong resourceHandle,uint64 memorySize)
 
 
 
-// 函数: void cleanup_memory_pool(void)
-void cleanup_memory_pool(void)
+// 函数: void FUN_180894c94(void)
+void FUN_180894c94(void)
 
 {
   int localInt1;
