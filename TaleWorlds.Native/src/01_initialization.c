@@ -1120,8 +1120,7 @@ void InitializeDataStructure(void)
   previousNode[10] = initializationFunction;
   return;
 }
-// void InitializeSystemDataStructure(void)
-
+// 初始化系统数据结构
 void InitializeSystemDataStructure(void)
 
 {
@@ -1167,8 +1166,7 @@ void InitializeSystemDataStructure(void)
   puVar7[10] = uStackX_18;
   return;
 }
-// void InitializeListNode(void)
-
+// 初始化链表节点
 void InitializeListNode(void)
 
 {
@@ -1608,35 +1606,38 @@ void InitializeEngineState_18002d150(void)
   return;
 }
 
-int FUN_18002d260(void)
+// 初始化音频系统
+int InitializeAudioSystem(void)
 
 {
-  longlong lVar1;
+  longlong init_result;
 
   FUN_1808fc838(0x180c91700,0x20,8,FUN_audio_init,FUN_graphics_init);
-  lVar1 = FUN_1808fc7d0(&UNK_graphics_config);
-  return (lVar1 != 0) - 1;
+  init_result = FUN_1808fc7d0(&UNK_graphics_config);
+  return (init_result != 0) - 1;
 }
 
-int FUN_18002d2a0(void)
+// 初始化输入系统
+int InitializeInputSystem(void)
 
 {
-  longlong lVar1;
+  longlong init_result;
 
   FUN_1808fc838(0x180c91800,0x20,8,FUN_input_init,FUN_graphics_init);
-  lVar1 = FUN_1808fc7d0(&UNK_audio_config);
-  return (lVar1 != 0) - 1;
+  init_result = FUN_1808fc7d0(&UNK_audio_config);
+  return (init_result != 0) - 1;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18002d2e0(void)
+// 初始化系统信号量
+int InitializeSystemSemaphore(void)
 
 {
-  longlong lVar1;
+  longlong semaphore_result;
 
-  _DAT_input_system = CreateSemaphoreW(0,1,0x7fffffff,0,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_1809417a0);
-  return (lVar1 != 0) - 1;
+  g_input_system_handle = CreateSemaphoreW(0,1,0x7fffffff,0,0xfffffffffffffffe);
+  semaphore_result = FUN_1808fc7d0(FUN_1809417a0);
+  return (semaphore_result != 0) - 1;
 }
 // 初始化渲染系统函数
 void InitializeRenderingSystem_18002d320(void)
@@ -1759,9 +1760,8 @@ void InitializeConfigData(void)
   _DAT_180c9190c = FUN_180623800(&puStack_a0);
   return;
 }
-// void FUN_18002d5e0(void)
-
-void FUN_18002d5e0(void)
+// 初始化网络系统函数
+void InitializeNetworkSystem_18002d5e0(void)
 
 {
   char cVar1;

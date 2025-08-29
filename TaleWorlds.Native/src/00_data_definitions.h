@@ -132,25 +132,26 @@ int initialize_thread_pool_4(undefined8 handle, undefined8 flags, undefined8 mut
 // 初始化资源管理器0
 int initialize_resource_manager_0(void)
 {
-  longlong function_result_variable;
-  undefined8 string_length_parameter;
+  longlong init_result;
+  undefined8 str_len_param;
   g_resource_string_1 = 0;
   g_resource_id_1 = 6;
-  strcpy_s(&g_resource_string_1,0x10,&string_source_001,string_length_parameter,0xfffffffffffffffe);
-  function_result_variable = execute_function(callback_function_012);
-  return (function_result_variable != 0) - 1;
+  strcpy_s(&g_resource_string_1,0x10,&string_source_001,str_len_param,0xfffffffffffffffe);
+  init_result = execute_function(callback_function_012);
+  return (init_result != 0) - 1;
 }
+// 初始化资源管理器1
 int initialize_resource_manager_1(void)
 {
-  longlong function_result_variable;
-  undefined8 string_length_parameter;
+  longlong init_result;
+  undefined8 str_len_param;
   resource_pointer_1 = &g_resource_data_buffer;
   resource_buffer_pointer_1 = &resource_buffer_1;
   resource_buffer_1 = 0;
   resource_type_1 = 0xd;
-  strcpy_s(&resource_buffer_1,0x10,&string_source_002,string_length_parameter,0xfffffffffffffffe);
-  function_result_variable = execute_function(callback_function_013);
-  return (function_result_variable != 0) - 1;
+  strcpy_s(&resource_buffer_1,0x10,&string_source_002,str_len_param,0xfffffffffffffffe);
+  init_result = execute_function(callback_function_013);
+  return (init_result != 0) - 1;
 }
 int initialize_resource_manager_2(void)
 {
@@ -271,6 +272,11 @@ int initialize_mutex_1(undefined8 handle_parameter,undefined8 flags_parameter,un
   function_result_variable = execute_function(callback_function_022);
   return (function_result_variable != 0) - 1;
 }
+// 初始化数据缓冲区系统
+int initialize_data_buffer_system(void)
+{
+  longlong function_result_variable;
+  undefined8 string_length_parameter;
   data_180bf6768 = 0;
   _data_180bf6760 = 0x13;
   strcpy_s(&data_180bf6768,0x40,&unknown_180a0cb48,string_length_parameter,0xfffffffffffffffe);
