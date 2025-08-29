@@ -17853,7 +17853,7 @@ void FUN_180852090(uint64_t *socketHandle,uint64_t *dataBuffer)
         if (processResult != 0) {
 handle_resource_cleanup:
           ReleaseNetworkResource(&networkPtrStack_288);
-          goto LAB_180852302;
+          goto finalize_resource_management;
         }
         networkAddress = (longlong)networkIntStack_280;
         if (networkIntStack_280 != 0) {
@@ -17861,17 +17861,17 @@ handle_resource_cleanup:
           processResult = *(int *)(serverPort + 0xd0);
           if (processResult == 2) {
             pcVar21 = (code *)&UNK_180863400;
-LAB_180852282:
+process_network_allocation:
             qsort(ppacketLength,networkAddress,8,pcVar21);
           }
           else {
             if (processResult == 3) {
               pcVar21 = (code *)&UNK_1808633a0;
-              goto LAB_180852282;
+              goto process_network_allocation;
             }
             if (processResult == 4) {
               pcVar21 = FUN_1808632b0;
-              goto LAB_180852282;
+              goto process_network_allocation;
             }
           }
           networkAddress = (longlong)(statusCode8 + -1);
@@ -17887,7 +17887,7 @@ LAB_180852282:
       }
     }
     else {
-LAB_180852302:
+finalize_resource_management:
       if (processResult != 0) goto FUN_180852aaa;
     }
     processResult = AllocateNetworkMemory(socketHandle);
@@ -17924,7 +17924,7 @@ joined_r0x0001808523af:
         if (connectionBuffer2 == ptimeoutValue) {
           networkAddress = socketHandle[8];
           connectionBuffer2 = *(uint64_t **)(networkAddress + 0x38);
-          goto LAB_18085243e;
+          goto complete_network_operation;
         }
         ptr_var_9 = (uint64_t *)connectionBuffer2[2];
         if (connectionBuffer2 != ptimeoutValue) {
@@ -17964,7 +17964,7 @@ LAB_180852a22:
 FUN_180852aaa:
                     // WARNING: Subroutine does not return
   networkEncryptData(networkUintStack_50 ^ (ulonglong)networkStack_338);
-LAB_18085243e:
+complete_network_operation:
   if ((connectionBuffer2 < *(uint64_t **)(networkAddress + 0x38)) ||
      (*(uint64_t **)(networkAddress + 0x38) + (longlong)*(int *)(networkAddress + 0x40) * 2 <= connectionBuffer2))
   goto LAB_180852518;
@@ -17993,7 +17993,7 @@ LAB_1808524b7:
     goto FUN_180852aaa;
   }
   connectionBuffer2 = connectionBuffer2 + 2;
-  goto LAB_18085243e;
+  goto complete_network_operation;
 LAB_180852518:
   cVar3 = FUN_180853040(socketHandle + 0x10,socketHandle[8] + 0x80);
   if ((cVar3 == '\0') || (cVar3 = FUN_180853040(socketHandle + 0x12,socketHandle[8] + 0x90), cVar3 == '\0')) {
@@ -18274,7 +18274,7 @@ void FUN_18085219c(void)
         if (networkOperationResult != 0) {
 handle_resource_cleanup:
           ReleaseNetworkResource(unaff_RBP + -0x50);
-          goto LAB_180852302;
+          goto finalize_resource_management;
         }
         networkOperationResult = *(int *)(unaff_RBP + -0x48);
         packetLength3 = *(uint64_t *)(unaff_RBP + -0x50);
@@ -18283,17 +18283,17 @@ handle_resource_cleanup:
           statusCode7 = *(int *)(dataBuffer + 0xd0);
           if (statusCode7 == 2) {
             pcVar20 = (code *)&UNK_180863400;
-LAB_180852282:
+process_network_allocation:
             qsort(packetLength3,(longlong)networkOperationResult,8,pcVar20);
           }
           else {
             if (statusCode7 == 3) {
               pcVar20 = (code *)&UNK_1808633a0;
-              goto LAB_180852282;
+              goto process_network_allocation;
             }
             if (statusCode7 == 4) {
               pcVar20 = FUN_1808632b0;
-              goto LAB_180852282;
+              goto process_network_allocation;
             }
           }
           dataBuffer = (longlong)(networkOperationResult + -1);
@@ -18309,7 +18309,7 @@ LAB_180852282:
       }
     }
     else {
-LAB_180852302:
+finalize_resource_management:
       if (networkOperationResult != 0) goto LAB_180852a9a;
     }
     networkOperationResult = AllocateNetworkMemory();
@@ -18346,7 +18346,7 @@ joined_r0x0001808523af:
         if (connectionBuffer1 == pconnectionIndex) {
           dataBuffer = unaff_R15[8];
           connectionBuffer1 = *(uint64_t **)(dataBuffer + 0x38);
-          goto LAB_18085243e;
+          goto complete_network_operation;
         }
         pbufferSize = (uint64_t *)connectionBuffer1[2];
         if (connectionBuffer1 != pconnectionIndex) {
@@ -18371,7 +18371,7 @@ joined_r0x0001808523af:
     goto LAB_180852a9a;
   }
   goto LAB_180852a22;
-LAB_18085243e:
+complete_network_operation:
   if ((connectionBuffer1 < *(uint64_t **)(dataBuffer + 0x38)) ||
      (*(uint64_t **)(dataBuffer + 0x38) + (longlong)*(int *)(dataBuffer + 0x40) * 2 <= connectionBuffer1))
   goto LAB_180852518;
@@ -18401,7 +18401,7 @@ LAB_1808524b7:
     goto LAB_180852a9a;
   }
   connectionBuffer1 = connectionBuffer1 + 2;
-  goto LAB_18085243e;
+  goto complete_network_operation;
 LAB_180852518:
   cVar1 = FUN_180853040(unaff_R15 + 0x10,unaff_R15[8] + 0x80);
   packetLength3 = extraout_XMM0_Qa_01;
