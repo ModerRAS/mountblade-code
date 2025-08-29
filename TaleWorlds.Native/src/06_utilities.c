@@ -262,11 +262,11 @@ data configIntegrityData;
 data configVersionInfo;
 data configMetadata;
 data configAttributes;
-data DAT_180bf6bd8;
-data DAT_180bf6be0;
-data DAT_180bf6c20;
-data DAT_180bf6c28;
-data DAT_180bf6c30;
+data configProperties;
+data configParameters;
+data configOptions;
+data configPreferences;
+data configSelections;
 data DAT_180bf6c38;
 data DAT_180bf6c78;
 data DAT_180bf6c80;
@@ -352,23 +352,23 @@ data eventHandlerQueue;
 data eventProcessingState;
 data eventNotificationFlag;
 data eventCallbackPointer;
-data unknown_180a0cc68;
-data unknown_180a0cc88;
-data unknown_180a0cca0;
-data unknown_180a0ccb8;
-data unknown_180a0ccd0;
-data unknown_180a0ccf0;
-data unknown_180a0cd08;
-data unknown_180a0cd28;
-data unknown_180a0cd40;
-data unknown_180a0cd58;
-data unknown_180a0cd70;
-data unknown_180a0cd88;
-data unknown_180a0cd98;
-data unknown_180a0cdb0;
-data unknown_180a0cdc8;
-data unknown_180a0cde0;
-data unknown_180a0ce40;
+data memoryPoolAllocationSize;
+data memoryPoolFreeList;
+data memoryPoolUsedBlocks;
+data memoryPoolTotalBlocks;
+data memoryPoolBlockSize;
+data bufferReadPointer;
+data bufferWritePointer;
+data bufferSizeRemaining;
+data bufferFlushFlag;
+data bufferLockStatus;
+data fileHandleTable;
+data fileAccessMode;
+data fileCurrentPosition;
+data fileBufferSize;
+data fileOperationFlag;
+data networkConnectionStatus;
+data networkSocketHandle;
 data DAT_180bf7250;
 data DAT_180bf7258;
 data DAT_180bf7260;
@@ -376,7 +376,7 @@ data DAT_180bf7260;
 // 函数: data InitializeSystemModule1;
 data InitializeSystemModule1;
 data DAT_180bf7268;
-data unknown_180a03098;
+data networkSendBuffer;
 data DAT_180bf72b0;
 data DAT_180bf72b8;
 data DAT_180bf72c0;
@@ -384,7 +384,7 @@ data DAT_180bf72c8;
 
 // 函数: data InitializeSystemModule2;
 data InitializeSystemModule2;
-data unknown_180a03060;
+data networkReceiveBuffer;
 data DAT_180bf7310;
 data DAT_180bf7318;
 data DAT_180bf7320;
@@ -392,7 +392,7 @@ data DAT_180bf7328;
 
 // 函数: data InitializeSystemModule3;
 data InitializeSystemModule3;
-data unknown_180a030a8;
+data networkPacketSize;
 data DAT_180bf7370;
 data DAT_180bf7378;
 data DAT_180bf7380;
@@ -457,11 +457,11 @@ data DAT_180bf7c58;
 data DAT_180bf7c60;
 data DAT_180bf7c68;
 data DAT_180bf7c70;
-data unknown_180941cc0;
-data unknown_180a0fd40;
-data unknown_180a0fd50;
-data unknown_180a0fd60;
-data unknown_180a0fd70;
+data renderPipelineState;
+data renderFrameBuffer;
+data renderDepthBuffer;
+data renderStencilBuffer;
+data renderTextureAtlas;
 data unknown_180a0fd88;
 data unknown_180a0fd98;
 data unknown_180a0fda8;
@@ -2583,7 +2583,7 @@ uint64 validate_resource_handle(longlong resourceHandle)    // 资源句柄验�
     if ((int)uVar4 != 0) {
       return uVar4;
     }
-    uVar5 = func_0x000180851460(localLong2);
+    uVar5 = process_system_data(localLong2);
     if ((int)uVar5 != 0) {
       return uVar5;
     }
@@ -2677,7 +2677,7 @@ ulonglong calculate_memory_allocation(longlong resourceHandle,longlong memorySiz
         return (ulonglong)uVar5;
       }
       if (((*(uint *)(*(longlong *)(lStackX_18 + 8) + 0xf8) >> 2 & 1) == 0) &&
-         (uVar6 = func_0x000180861a30(lStackX_8), (int)uVar6 != 0)) {
+         (uVar6 = validate_system_integrity(lStackX_8), (int)uVar6 != 0)) {
         return uVar6;
       }
       plocalLong1 = (longlong *)(lStackX_8 + 0x240);
@@ -2694,7 +2694,7 @@ ulonglong calculate_memory_allocation(longlong resourceHandle,longlong memorySiz
       while( true ) {
         if (plVar8 == plocalLong1) {
           *(longlong **)(lStackX_8 + 0x80) = plVar9;
-          func_0x00018085eef0(lStackX_8,plVar9);
+          cleanup_system_resources(lStackX_8,plVar9);
           plVar9[2] = lStackX_8;
           uVar6 = FUN_18085ff30(lStackX_8);
           if ((int)uVar6 == 0) {
@@ -3181,7 +3181,7 @@ uint64 execute_resource_command(longlong resourceHandle)
           uVar3 = movmskps(localUInt2,auVar8);
           fVar7 = (float)(int)(iVar6 - (uVar3 & 1));
         }
-        fVar7 = (float)func_0x00018084dcc0(*(longlong *)(localLong1 + 0x18),fVar7);
+        fVar7 = (float)calculate_resource_size(*(longlong *)(localLong1 + 0x18),fVar7);
         if (((*(char *)(localLong1 + 0x34) == '\0') ||
             ((*(uint *)(*(longlong *)(localLong1 + 0x18) + 0x34) >> 1 & 1) == 0)) &&
            (fVar7 != *(float *)(localLong1 + 0x20))) {
@@ -3868,8 +3868,8 @@ uint32 get_system_time(void)
 
 
 
-// 函数: void FUN_180890fe2(void)
-void FUN_180890fe2(void)
+// 函数: void initialize_file_system(void)
+void initialize_file_system(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -3984,7 +3984,7 @@ void FUN_1808911b0(longlong resourceHandle,uint64 memorySize)
   localUInt = *(uint64 *)(resourceHandle + 0x10);
   localUInt = *(uint32 *)(resourceHandle + 0x18);
   localBuffer[0] = 2;
-  localInt1 = func_0x0001808757f0(memorySize,localBuffer,*(uint32 *)(resourceHandle + 0x1c),auStackX_8);
+  localInt1 = allocate_memory_resource(memorySize,localBuffer,*(uint32 *)(resourceHandle + 0x1c),auStackX_8);
   if (localInt1 == 0) {
     FUN_180875fc0(memorySize,auStackX_8[0]);
   }
@@ -4038,7 +4038,7 @@ uint64 FUN_180891210(longlong resourceHandle)
           uVar3 = movmskps(localUInt2,auVar8);
           fVar7 = (float)(int)(iVar6 - (uVar3 & 1));
         }
-        fVar7 = (float)func_0x00018084dcc0(*(longlong *)(localLong1 + 0x18),fVar7);
+        fVar7 = (float)calculate_resource_size(*(longlong *)(localLong1 + 0x18),fVar7);
         if (((*(char *)(localLong1 + 0x34) == '\0') ||
             ((*(uint *)(*(longlong *)(localLong1 + 0x18) + 0x34) >> 1 & 1) == 0)) &&
            (fVar7 != *(float *)(localLong1 + 0x20))) {
@@ -4214,16 +4214,16 @@ void FUN_1808914e0(longlong resourceHandle,longlong memorySize)
   localInt1 = FUN_18073b5f0(*(uint64 *)(memorySize + 0x78),*(uint32 *)(resourceHandle + 0x10),
                         resourceHandle + 0x14,resourceHandle + 0x20,resourceHandle + 0x2c,resourceHandle + 0x38);
   if ((localInt1 == 0) &&
-     (localInt1 = func_0x0001808d2620((longlong)*(int *)(resourceHandle + 0x10) * 0x44 +
+     (localInt1 = initialize_resource_table((longlong)*(int *)(resourceHandle + 0x10) * 0x44 +
                                   *(longlong *)(memorySize + 0x90) + 0x554,resourceHandle + 0x14), localInt1 == 0)
      ) {
     if ((*(char *)(resourceHandle + 0x50) != '\0') &&
-       (localInt1 = func_0x0001808d2660((longlong)*(int *)(resourceHandle + 0x10) * 0x44 +
+       (localInt1 = setup_resource_mapping((longlong)*(int *)(resourceHandle + 0x10) * 0x44 +
                                     *(longlong *)(memorySize + 0x90) + 0x554,resourceHandle + 0x44),
        localInt1 != 0)) {
       return;
     }
-    func_0x0001808d2830((longlong)*(int *)(resourceHandle + 0x10) * 0x44 +
+    activate_resource_handlers((longlong)*(int *)(resourceHandle + 0x10) * 0x44 +
                         *(longlong *)(memorySize + 0x90) + 0x554,*(byte *)(resourceHandle + 0x50));
   }
   return;
@@ -4240,7 +4240,7 @@ void FUN_1808915d0(longlong resourceHandle,longlong memorySize)
   
   localInt1 = FUN_18073b810(*(uint64 *)(memorySize + 0x78),*(uint32 *)(resourceHandle + 0x10));
   if (localInt1 == 0) {
-    func_0x0001808c2130(*(uint64 *)(memorySize + 0x90),*(uint32 *)(resourceHandle + 0x10));
+    register_resource_callbacks(*(uint64 *)(memorySize + 0x90),*(uint32 *)(resourceHandle + 0x10));
   }
   return;
 }
@@ -4304,7 +4304,7 @@ void FUN_1808916f0(longlong resourceHandle,longlong memorySize)
     do {
       if (plocalLong1 == (longlong *)(memorySize + 0x50)) {
         if (*(char *)(resourceHandle + 0x10) != '\0') {
-          func_0x00018088aed0(memorySize);
+          release_memory_resources(memorySize);
         }
         break;
       }
@@ -4362,7 +4362,7 @@ void FUN_180891890(longlong resourceHandle,longlong memorySize)
   if (*(int *)(resourceHandle + 0x2c) == 0) {
     localInt1 = FUN_180894860(memorySize,resourceHandle + 0x1c,&uStackX_8);
     if (localInt1 == 0) {
-      localInt1 = func_0x00018088c500(uStackX_8,resourceHandle + 0x2c);
+      localInt1 = validate_resource_handle(uStackX_8,resourceHandle + 0x2c);
       if (localInt1 == 0) goto LAB_1808918d2;
     }
     return;
@@ -4387,7 +4387,7 @@ void FUN_180891900(longlong resourceHandle,longlong memorySize)
     if (localInt1 != 0) {
       return;
     }
-    localInt1 = func_0x00018088c500(*(uint64 *)(lStackX_8 + 0xd0),resourceHandle + 0x2c);
+    localInt1 = validate_resource_handle(*(uint64 *)(lStackX_8 + 0xd0),resourceHandle + 0x2c);
     if (localInt1 != 0) {
       return;
     }
@@ -4448,7 +4448,7 @@ void FUN_180891a10(longlong resourceHandle,longlong memorySize)
   if (*(int *)(resourceHandle + 0x2c) == 0) {
     localInt1 = FUN_180894b00(memorySize,resourceHandle + 0x1c,&uStackX_8);
     if (localInt1 == 0) {
-      localInt1 = func_0x00018088c500(uStackX_8,resourceHandle + 0x2c);
+      localInt1 = validate_resource_handle(uStackX_8,resourceHandle + 0x2c);
       if (localInt1 == 0) goto LAB_180891a52;
     }
     return;
@@ -4679,7 +4679,7 @@ void FUN_180891e40(longlong resourceHandle,longlong memorySize)
   if (lStackX_8 == 0) {
     lVar4 = localLong3;
   }
-  localInt1 = func_0x00018088c500(lVar4,resourceHandle + 0x18);
+  localInt1 = validate_resource_handle(lVar4,resourceHandle + 0x18);
   if (localInt1 != 0) {
     return;
   }
@@ -4748,7 +4748,7 @@ void FUN_180891e7d(uint64 resourceHandle,uint64 memorySize)
   if (in_stack_00000060 == 0) {
     lVar4 = localLong3;
   }
-  localInt1 = func_0x00018088c500(lVar4,unaff_RBP + 0x18);
+  localInt1 = validate_resource_handle(lVar4,unaff_RBP + 0x18);
   if (localInt1 != 0) {
     return;
   }
@@ -4816,7 +4816,7 @@ void FUN_180891ea1(void)
   if (inputRegister == 0) {
     lVar4 = localLong3;
   }
-  localInt1 = func_0x00018088c500(lVar4);
+  localInt1 = validate_resource_handle(lVar4);
   if (localInt1 != 0) {
     return;
   }
@@ -4954,13 +4954,13 @@ void FUN_180891ff0(longlong resourceHandle,longlong memorySize)
   
   localInt1 = SystemMemoryFunction(*(uint32 *)(resourceHandle + 0x10),&uStackX_8);
   if (localInt1 == 0) {
-    localInt1 = func_0x0001808c8710(uStackX_8);
+    localInt1 = query_resource_status(uStackX_8);
     if (localInt1 < 1) {
-      localInt1 = func_0x0001808c8700(uStackX_8);
+      localInt1 = check_resource_availability(uStackX_8);
       *(uint *)(resourceHandle + 0x18) = (uint)(localInt1 < 1);
     }
     else {
-      localInt1 = func_0x0001808c8700(uStackX_8);
+      localInt1 = check_resource_availability(uStackX_8);
       if (localInt1 < 1) {
         *(uint32 *)(resourceHandle + 0x18) = 2;
       }
@@ -4988,13 +4988,13 @@ void FUN_180892011(void)
   longlong unaff_RSI;
   uint64 stackParameter1;
   
-  localInt1 = func_0x0001808c8710(stackParameter1);
+  localInt1 = query_resource_status(stackParameter1);
   if (localInt1 < 1) {
-    localInt1 = func_0x0001808c8700(stackParameter1);
+    localInt1 = check_resource_availability(stackParameter1);
     *(uint *)(unaff_RSI + 0x18) = (uint)(localInt1 < 1);
   }
   else {
-    localInt1 = func_0x0001808c8700(stackParameter1);
+    localInt1 = check_resource_availability(stackParameter1);
     if (localInt1 < 1) {
       *(uint32 *)(unaff_RSI + 0x18) = 2;
     }
@@ -5118,7 +5118,7 @@ uint64 FUN_1808921f0(longlong resourceHandle,longlong memorySize)
     if (*(longlong *)(lStackX_8 + 0x18) == 0) {
       return 0x1e;
     }
-    localUInt1 = func_0x00018088c500(*(uint64 *)(*(longlong *)(lStackX_8 + 0x18) + 0xd0),
+    localUInt1 = validate_resource_handle(*(uint64 *)(*(longlong *)(lStackX_8 + 0x18) + 0xd0),
                                 resourceHandle + 0x18);
     if ((int)localUInt1 == 0) {
       localUInt1 = FUN_18088d7c0(*(uint64 *)(memorySize + 0x98),resourceHandle);
@@ -5169,7 +5169,7 @@ uint64 FUN_180892270(longlong resourceHandle,longlong memorySize)
         }
         localInt2 = func_0x00018076b630(puVar4,resourceHandle + 0x1c);
         if (localInt2 == 0) {
-          uVar3 = func_0x00018088c500(lVar7,resourceHandle + 0x18);
+          uVar3 = validate_resource_handle(lVar7,resourceHandle + 0x18);
           if ((int)uVar3 != 0) {
             return uVar3;
           }
@@ -5225,7 +5225,7 @@ uint64 FUN_1808922ad(void)
       }
       localInt2 = func_0x00018076b630(puVar4);
       if (localInt2 == 0) {
-        uVar3 = func_0x00018088c500(lVar7,unaff_R14 + 0x18);
+        uVar3 = validate_resource_handle(lVar7,unaff_R14 + 0x18);
         if ((int)uVar3 != 0) {
           return uVar3;
         }
@@ -5260,7 +5260,7 @@ void FUN_18089233e(void)
   int localInt1;
   longlong unaff_R13;
   
-  localInt1 = func_0x00018088c500();
+  localInt1 = validate_resource_handle();
   if (localInt1 == 0) {
     FUN_18088d7c0(*(uint64 *)(unaff_R13 + 0x98));
   }
@@ -5292,7 +5292,7 @@ uint64 FUN_180892370(longlong resourceHandle,longlong memorySize)
   if (*(longlong *)(*(longlong *)(localLong3 + 0x20) + 0x10 + (longlong)localInt1 * 0x18) == 0) {
     return 0x1e;
   }
-  localUInt2 = func_0x00018088c500(*(longlong *)(localLong3 + 0x20) + (longlong)localInt1 * 0x18,resourceHandle + 0x1c);
+  localUInt2 = validate_resource_handle(*(longlong *)(localLong3 + 0x20) + (longlong)localInt1 * 0x18,resourceHandle + 0x1c);
   if ((int)localUInt2 != 0) {
     return localUInt2;
   }
@@ -5963,7 +5963,7 @@ uint64 FUN_180892bd0(longlong resourceHandle,longlong memorySize,uint64 operatio
     }
     *(float *)(resourceHandle + 0x20) = fVar6;
     *(float *)(lVar5 + 4) = fVar6;
-    uVar4 = func_0x00018088c500(lVar5,resourceHandle + 0x1c);
+    uVar4 = validate_resource_handle(lVar5,resourceHandle + 0x1c);
     if ((int)uVar4 != 0) {
       return uVar4;
     }
@@ -6533,7 +6533,7 @@ uint64 FUN_180893540(longlong resourceHandle,longlong memorySize)
     localUInt2 = 0x4a;
   }
   else {
-    localUInt2 = func_0x00018088c500(*(longlong *)(localLong1 + 0x2e8),resourceHandle + 0x20);
+    localUInt2 = validate_resource_handle(*(longlong *)(localLong1 + 0x2e8),resourceHandle + 0x20);
     if ((int)localUInt2 == 0) {
       localUInt2 = FUN_18088d7c0(*(uint64 *)(memorySize + 0x98),resourceHandle);
       return localUInt2;
@@ -6563,7 +6563,7 @@ uint64 FUN_1808935c0(longlong resourceHandle,longlong memorySize)
   if ((localLong1 == 0) || (*(longlong *)(localLong1 + 0x2e8) == 0)) {
     return 0x4a;
   }
-  localUInt2 = func_0x00018088c500(*(longlong *)(localLong1 + 0x2e8),resourceHandle + 0x20);
+  localUInt2 = validate_resource_handle(*(longlong *)(localLong1 + 0x2e8),resourceHandle + 0x20);
   if ((int)localUInt2 != 0) {
     return localUInt2;
   }
@@ -6597,7 +6597,7 @@ void FUN_180893640(longlong resourceHandle,longlong memorySize)
   
   localInt1 = FUN_180894860(memorySize,resourceHandle + 0x10,&uStackX_8);
   if (localInt1 == 0) {
-    localInt1 = func_0x00018088c500(uStackX_8,resourceHandle + 0x20);
+    localInt1 = validate_resource_handle(uStackX_8,resourceHandle + 0x20);
     if (localInt1 == 0) {
                     // WARNING: Subroutine does not return
       FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
@@ -6618,7 +6618,7 @@ void FUN_1808936a0(longlong resourceHandle,longlong memorySize)
   
   localInt1 = FUN_1808949c0(memorySize,resourceHandle + 0x10,&lStackX_8);
   if (localInt1 == 0) {
-    localInt1 = func_0x00018088c500(*(uint64 *)(lStackX_8 + 0xd0),resourceHandle + 0x20);
+    localInt1 = validate_resource_handle(*(uint64 *)(lStackX_8 + 0xd0),resourceHandle + 0x20);
     if (localInt1 == 0) {
       FUN_18088d7c0(*(uint64 *)(memorySize + 0x98),resourceHandle);
     }
@@ -6638,7 +6638,7 @@ void FUN_180893700(longlong resourceHandle,longlong memorySize)
   
   localInt1 = FUN_180894b00(memorySize,resourceHandle + 0x10,&uStackX_8);
   if (localInt1 == 0) {
-    localInt1 = func_0x00018088c500(uStackX_8,resourceHandle + 0x20);
+    localInt1 = validate_resource_handle(uStackX_8,resourceHandle + 0x20);
     if (localInt1 == 0) {
                     // WARNING: Subroutine does not return
       FUN_18088d720(*(uint64 *)(memorySize + 0x98),resourceHandle);
@@ -7919,7 +7919,7 @@ uint32 FUN_180894dd0(longlong resourceHandle,uint64 memorySize,uint operationFla
     if ((localUInt2 & 1) == 0) {
       uVar6 = operationFlags;
     }
-    localInt3 = func_0x0001808757f0(resourceHandle,memorySize,uVar6,&uStackX_20);
+    localInt3 = allocate_memory_resource(resourceHandle,memorySize,uVar6,&uStackX_20);
     if ((localInt3 == 0) && (plocalLong1 = (longlong *)(callbackFunction + 8), plocalLong1 != (longlong *)0x0)) {
       plVar4 = (longlong *)*plocalLong1;
       if (plVar4 != plocalLong1) {
@@ -9816,7 +9816,7 @@ LAB_180896ce3:
       localLong2 = *(longlong *)(localLong1 + 0x68);
       if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (localLong2 != 0)) {
         localUInt = 0;
-        iVar7 = func_0x00018088c500(localLong2,&localUInt);
+        iVar7 = validate_resource_handle(localLong2,&localUInt);
         if (iVar7 != 0) goto FUN_1808974f4;
         localUInt = *(uint32 *)(localLong1 + 0x10);
         localUInt = *(uint *)(localLong1 + 0x14);
@@ -9863,7 +9863,7 @@ LAB_180896ce3:
       localLong2 = *(longlong *)(localLong1 + 0x68);
       if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (localLong2 != 0)) {
         localUInt = 0;
-        iVar7 = func_0x00018088c500(localLong2,&localUInt);
+        iVar7 = validate_resource_handle(localLong2,&localUInt);
         if (iVar7 != 0) goto FUN_1808974f4;
         localUInt = *(uint32 *)(localLong1 + 0x10);
         localUInt = *(uint *)(localLong1 + 0x14);
@@ -9910,7 +9910,7 @@ LAB_180896ce3:
       localLong2 = *(longlong *)(localLong1 + 0x68);
       if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (localLong2 != 0)) {
         localUInt = 0;
-        iVar7 = func_0x00018088c500(localLong2,&localUInt);
+        iVar7 = validate_resource_handle(localLong2,&localUInt);
         if (iVar7 != 0) goto FUN_1808974f4;
         localUInt = *(uint32 *)(localLong1 + 0x10);
         localUInt = *(uint *)(localLong1 + 0x14);
@@ -9957,7 +9957,7 @@ LAB_180896ce3:
       localLong2 = *(longlong *)(localLong1 + 0x68);
       if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (localLong2 != 0)) {
         localUInt = 0;
-        iVar7 = func_0x00018088c500(localLong2,&localUInt);
+        iVar7 = validate_resource_handle(localLong2,&localUInt);
         if (iVar7 != 0) goto FUN_1808974f4;
         localUInt = *(uint32 *)(localLong1 + 0x10);
         localUInt = *(uint *)(localLong1 + 0x14);
@@ -10007,7 +10007,7 @@ LAB_180896ce3:
       localLong2 = *(longlong *)(localLong1 + 0x48);
       if (localLong2 != 0) {
         localUInt = 0;
-        iVar7 = func_0x00018088c500(localLong2,&localUInt);
+        iVar7 = validate_resource_handle(localLong2,&localUInt);
         if (iVar7 != 0) break;
         localUInt = *(uint32 *)(localLong1 + 0x10);
         localUInt = *(uint *)(localLong1 + 0x14);
@@ -10083,7 +10083,7 @@ void FUN_180896e11(void)
       localLong2 = *(longlong *)(localLong1 + 0x68);
       if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (localLong2 != 0)) {
         uStackX_20 = 0;
-        iVar8 = func_0x00018088c500(localLong2,&uStackX_20);
+        iVar8 = validate_resource_handle(localLong2,&uStackX_20);
         if (iVar8 != 0) goto LAB_1808974ec;
         uVar3 = *(uint32 *)(localLong1 + 0x10);
         uVar4 = *(uint32 *)(localLong1 + 0x14);
@@ -10136,7 +10136,7 @@ void FUN_180896e11(void)
       localLong2 = *(longlong *)(localLong1 + 0x68);
       if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (localLong2 != 0)) {
         uStackX_20 = 0;
-        iVar8 = func_0x00018088c500(localLong2,&uStackX_20);
+        iVar8 = validate_resource_handle(localLong2,&uStackX_20);
         if (iVar8 != 0) goto LAB_1808974ec;
         uVar3 = *(uint32 *)(localLong1 + 0x10);
         uVar4 = *(uint32 *)(localLong1 + 0x14);
@@ -10189,7 +10189,7 @@ void FUN_180896e11(void)
       localLong2 = *(longlong *)(localLong1 + 0x68);
       if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (localLong2 != 0)) {
         uStackX_20 = 0;
-        iVar8 = func_0x00018088c500(localLong2,&uStackX_20);
+        iVar8 = validate_resource_handle(localLong2,&uStackX_20);
         if (iVar8 != 0) goto LAB_1808974ec;
         uVar3 = *(uint32 *)(localLong1 + 0x10);
         uVar4 = *(uint32 *)(localLong1 + 0x14);
@@ -10242,7 +10242,7 @@ void FUN_180896e11(void)
       localLong2 = *(longlong *)(localLong1 + 0x68);
       if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (localLong2 != 0)) {
         uStackX_20 = 0;
-        iVar8 = func_0x00018088c500(localLong2,&uStackX_20);
+        iVar8 = validate_resource_handle(localLong2,&uStackX_20);
         if (iVar8 != 0) goto LAB_1808974ec;
         uVar3 = *(uint32 *)(localLong1 + 0x10);
         uVar4 = *(uint32 *)(localLong1 + 0x14);
@@ -10298,7 +10298,7 @@ void FUN_180896e11(void)
       localLong2 = *(longlong *)(localLong1 + 0x48);
       if (localLong2 != 0) {
         uStackX_20 = 0;
-        iVar9 = func_0x00018088c500(localLong2,&uStackX_20);
+        iVar9 = validate_resource_handle(localLong2,&uStackX_20);
         if (iVar9 != 0) break;
         uVar3 = *(uint32 *)(localLong1 + 0x10);
         uVar4 = *(uint32 *)(localLong1 + 0x14);
@@ -10494,13 +10494,13 @@ void FUN_1808975e0(longlong resourceHandle,longlong memorySize)
     lVar8 = localLong14;
   }
   lStack_180 = memorySize;
-  iVar6 = func_0x00018088c500(lVar8,&localUInt);
+  iVar6 = validate_resource_handle(lVar8,&localUInt);
   if (iVar6 == 0) {
     plocalUInt16 = (uint64 *)(memorySize + 8);
     localUInt = 0;
     localPtr = plocalUInt16;
     lVar8 = (*(code *)**(uint64 **)(memorySize + 8))(plocalUInt16);
-    iVar6 = func_0x00018088c500(*(uint64 *)(lVar8 + 0xd0),&localUInt);
+    iVar6 = validate_resource_handle(*(uint64 *)(lVar8 + 0xd0),&localUInt);
     if (iVar6 == 0) {
       localUInt = 0;
       localPtr = &unknown_1809832b8;
@@ -10738,7 +10738,7 @@ void FUN_180897644(void)
   fStack0000000000000048 = unaff_R13D;
   puStack0000000000000058 = plocalUInt22;
   localLong15 = (*(code *)*inputRegister)(plocalUInt22);
-  localInt13 = func_0x00018088c500(*(uint64 *)(localLong15 + 0xd0),&stack0x00000048);
+  localInt13 = validate_resource_handle(*(uint64 *)(localLong15 + 0xd0),&stack0x00000048);
   if (localInt13 == 0) {
     in_stack_00000070 = &unknown_1809832b8;
     *(uint32 *)(unaff_RBP + -0xf) = uStackX_20;
@@ -11385,7 +11385,7 @@ void FUN_180897b40(longlong *resourceHandle,longlong memorySize,uint32 operation
     localLong1 = *(longlong *)(*(longlong *)(memorySize + 0x1a0) + (longlong)iVar7 * 8);
     if (**(int **)(localLong1 + 0xd0) != 0) {
       localBuffer[0] = 0;
-      localInt3 = func_0x00018088c500(*(int **)(localLong1 + 0xd0),localBuffer);
+      localInt3 = validate_resource_handle(*(int **)(localLong1 + 0xd0),localBuffer);
       if (localInt3 != 0) {
 LAB_180897ce8:
                     // WARNING: Subroutine does not return
@@ -11671,7 +11671,7 @@ void FUN_180898040(longlong *resourceHandle)
           localLong15 = plocalLong10[3];
           if (localLong15 != 0) {
             afStack_348[0] = 0.0;
-            iVar6 = func_0x00018088c500(plocalLong10,afStack_348);
+            iVar6 = validate_resource_handle(plocalLong10,afStack_348);
             if ((iVar6 != 0) || (iVar6 = FUN_180896c60(resourceHandle,localLong15,afStack_348[0],0), iVar6 != 0)
                ) goto LAB_18089866f;
           }
