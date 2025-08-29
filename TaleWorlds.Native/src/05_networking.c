@@ -372,17 +372,17 @@ void NetworkBindSocket(ulonglong *socketHandle,int dataBuffer)
 
 {
   int statusCode;
-  int resultCode;
+  int operationResult;
   int statusCode;
-  uint8_t auStack_178 [32];
-  uint8_t *puStack_158;
-  int aiStack_148 [2];
-  longlong lStack_140;
-  uint auStack_138 [4];
-  uint8_t auStack_128 [256];
-  ulonglong uStack_28;
+  uint8_t tempBuffer [32];
+  uint8_t *bufferPtr;
+  int packetData [2];
+  longlong bufferHandle;
+  uint configData [4];
+  uint8_t sendData [256];
+  ulonglong xorKey;
   
-  uStack_28 = _g_networkXorKey ^ (ulonglong)auStack_178;
+  xorKey = _g_networkXorKey ^ (ulonglong)tempBuffer;
   func_0x000180741c10(&g_networkInitData);
   if (socketHandle == (ulonglong *)0x0) {
     iVar3 = 0x1f;
@@ -390,13 +390,13 @@ void NetworkBindSocket(ulonglong *socketHandle,int dataBuffer)
   else {
     *socketHandle = 0;
     if (dataBuffer - 0x20200U < 0x100) {
-      lStack_140 = 0;
-      iVar3 = networkAllocateBuffer(&lStack_140);
+      bufferHandle = 0;
+      iVar3 = networkAllocateBuffer(&bufferHandle);
       if (iVar3 == 0) {
-        aiStack_148[0] = 0;
-        iVar3 = networkSendPacket(*(uint64_t *)(lStack_140 + 0x78),aiStack_148);
+        packetData[0] = 0;
+        iVar3 = networkSendPacket(*(uint64_t *)(bufferHandle + 0x78),packetData);
         if (iVar3 == 0) {
-          if (aiStack_148[0] != 0x20214) {
+          if (packetData[0] != 0x20214) {
             networkFlushBuffer();
             goto LAB_NETWORK_SEND_CHUNK_START;
           }
