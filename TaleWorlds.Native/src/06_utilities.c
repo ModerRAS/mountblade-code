@@ -287,16 +287,16 @@ dataValue g_配置系统运行时间;
 dataValue g_配置系统版本;
 dataValue g_配置系统构建号;
 dataValue g_配置系统平台;
-dataValue configSystemArchitecture;
-dataValue configSystemLocale;
-dataValue configSystemTimezone;
-dataValue configSystemLanguage;
-dataValue configSystemDateFormat;
-dataValue configSystemTimeFormat;
-dataValue configSystemNumberFormat;
-dataValue configSystemCurrencyFormat;
-dataValue configSystemMeasurementSystem;
-dataValue configSystemKeyboardLayout;
+dataValue g_配置系统架构;                 // 配置系统架构
+dataValue g_配置系统区域设置;               // 配置系统区域设置
+dataValue g_配置系统时区;                 // 配置系统时区
+dataValue g_配置系统语言;                 // 配置系统语言
+dataValue g_配置系统日期格式;             // 配置系统日期格式
+dataValue g_配置系统时间格式;             // 配置系统时间格式
+dataValue g_配置系统数字格式;             // 配置系统数字格式
+dataValue g_配置系统货币格式;             // 配置系统货币格式
+dataValue g_配置系统度量系统;             // 配置系统度量系统
+dataValue g_配置系统键盘布局;             // 配置系统键盘布局
 dataValue configSystemMouseSettings;
 dataValue configSystemDisplaySettings;
 dataValue configSystemSoundSettings;
