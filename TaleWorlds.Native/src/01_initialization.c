@@ -2420,7 +2420,7 @@ void initialize_graphics_phase3(void)
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18002e3e0(void)
+int InitializeSystemDataPtr(void)
 
 {
   longlong lVar1;
@@ -2428,9 +2428,9 @@ int FUN_18002e3e0(void)
 
   _g_system_ptr_1 = &g_data_node_config;
   _g_system_ptr_2 = &g_system_ptr_3;
-// void FUN_18002e8e0(void)
+// void CreateSystemObjectThread1(void)
 
-void FUN_18002e8e0(void)
+void CreateSystemObjectThread1(void)
 
 {
   undefined8 in_R9;
@@ -2447,9 +2447,9 @@ void FUN_18002e8e0(void)
   _g_system_ptr_4 = create_system_object(&thread_parameter_ptr);
   return;
 }
-// void FUN_18002e970(void)
+// void InitializeDataNode(void)
 
-void FUN_18002e970(void)
+void InitializeDataNode(void)
 
 {
   char is_initialized;
@@ -2494,9 +2494,9 @@ void FUN_18002e970(void)
   previous_node[10] = pcStackX_18;
   return;
 }
-// void FUN_18002ea70(void)
+// void InitializeResourceNode(void)
 
-void FUN_18002ea70(void)
+void InitializeResourceNode(void)
 
 {
   char is_initialized;
@@ -2541,9 +2541,9 @@ void FUN_18002ea70(void)
   previous_node[10] = pcStackX_18;
   return;
 }
-// void FUN_18002eb70(void)
+// void InitializeMemoryNode(void)
 
-void FUN_18002eb70(void)
+void InitializeMemoryNode(void)
 
 {
   char is_initialized;
@@ -2588,9 +2588,9 @@ void FUN_18002eb70(void)
   previous_node[10] = init_flag;
   return;
 }
-// void FUN_18002ec70(void)
+// void InitializeThreadNode(void)
 
-void FUN_18002ec70(void)
+void InitializeThreadNode(void)
 
 {
   char is_initialized;
@@ -2635,9 +2635,9 @@ void FUN_18002ec70(void)
   previous_node[10] = pcStackX_18;
   return;
 }
-// void FUN_18002ed70(void)
+// void InitializeConfigNode(void)
 
-void FUN_18002ed70(void)
+void InitializeConfigNode(void)
 
 {
   char is_initialized;
@@ -2682,9 +2682,9 @@ void FUN_18002ed70(void)
   previous_node[10] = init_flag;
   return;
 }
-// void FUN_18002ee70(void)
+// void InitializeStateNode(void)
 
-void FUN_18002ee70(void)
+void InitializeStateNode(void)
 
 {
   char is_initialized;
@@ -2729,9 +2729,9 @@ void FUN_18002ee70(void)
   previous_node[10] = pinit_flag;
   return;
 }
-// void FUN_18002ef70(void)
+// void InitializeBufferNode(void)
 
-void FUN_18002ef70(void)
+void InitializeBufferNode(void)
 
 {
   char is_initialized;
@@ -2776,9 +2776,9 @@ void FUN_18002ef70(void)
   previous_node[10] = init_flag;
   return;
 }
-// void FUN_18002f070(void)
+// void InitializeCacheNode(void)
 
-void FUN_18002f070(void)
+void InitializeCacheNode(void)
 
 {
   char is_initialized;
@@ -2823,338 +2823,9 @@ void FUN_18002f070(void)
   previous_node[10] = pcStackX_18;
   return;
 }
-// void FUN_18002f170(void)
+// void InitializePoolNode(void)
 
-void FUN_18002f170(void)
-
-{
-  char is_initialized;
-  undefined8 *root_node;
-  int compare_result;
-  longlong *data_ptr;
-  longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_node;
-  code *pcStackX_18;
-
-  data_ptr = (longlong *)get_system_data_ptr();
-  root_node = (undefined8 *)*data_ptr;
-  is_initialized = *(char *)((longlong)root_node[1] + NODE_INITIALIZED_OFFSET);
-  pcStackX_18 = get_resource_init_function_1;
-  previous_node = root_node;
-  current_node = (undefined8 *)root_node[1];
-  while (is_initialized == '\0') {
-    compare_result = memcmp(current_node + 4,&g_data_compare_pattern_13,SYSTEM_DATA_COMPARE_SIZE);
-    if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
-      current_node = previous_node;
-    }
-    else {
-      next_node = (undefined8 *)*current_node;
-    }
-    previous_node = current_node;
-    current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + NODE_INITIALIZED_OFFSET);
-  }
-  if ((previous_node == root_node) || (compare_result = memcmp(&g_data_compare_pattern_13,previous_node + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
-    allocation_size = calculate_allocation_size(data_ptr);
-    allocate_system_memory(data_ptr,&new_node,previous_node,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
-    previous_node = new_node;
-  }
-  previous_node[6] = 0x43330a43fcdb3653;
-  previous_node[7] = 0xdcfdc333a769ec93;
-  previous_node[8] = &g_data_node_4;
-  previous_node[9] = 1;
-  previous_node[10] = pcStackX_18;
-  return;
-}
-// void FUN_18002f270(void)
-
-void FUN_18002f270(void)
-
-{
-  char is_initialized;
-  undefined8 *root_node;
-  int compare_result;
-  longlong *data_ptr;
-  longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_node;
-  code *pcStackX_18;
-
-  data_ptr = (longlong *)get_system_data_ptr();
-  root_node = (undefined8 *)*data_ptr;
-  is_initialized = *(char *)((longlong)root_node[1] + NODE_INITIALIZED_OFFSET);
-  pcStackX_18 = get_resource_init_function_2;
-  previous_node = root_node;
-  current_node = (undefined8 *)root_node[1];
-  while (is_initialized == '\0') {
-    compare_result = memcmp(current_node + 4,&g_data_compare_pattern_14,SYSTEM_DATA_COMPARE_SIZE);
-    if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
-      current_node = previous_node;
-    }
-    else {
-      next_node = (undefined8 *)*current_node;
-    }
-    previous_node = current_node;
-    current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + NODE_INITIALIZED_OFFSET);
-  }
-  if ((previous_node == root_node) || (compare_result = memcmp(&g_data_compare_pattern_14,previous_node + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
-    allocation_size = calculate_allocation_size(data_ptr);
-    allocate_system_memory(data_ptr,&new_node,previous_node,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
-    previous_node = new_node;
-  }
-  previous_node[6] = 0x431d7c8d7c475be2;
-  previous_node[7] = 0xb97f048d2153e1b0;
-  previous_node[8] = &g_data_node_5;
-  previous_node[9] = 4;
-  previous_node[10] = pcStackX_18;
-  return;
-}
-// void FUN_18002f370(void)
-
-void FUN_18002f370(void)
-
-{
-  char is_initialized;
-  undefined8 *root_node;
-  int compare_result;
-  longlong *data_ptr;
-  longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_node;
-  undefined8 init_flag;
-
-  data_ptr = (longlong *)get_system_data_ptr();
-  root_node = (undefined8 *)*data_ptr;
-  is_initialized = *(char *)((longlong)root_node[1] + NODE_INITIALIZED_OFFSET);
-  init_flag = 0;
-  previous_node = root_node;
-  current_node = (undefined8 *)root_node[1];
-  while (is_initialized == '\0') {
-    compare_result = memcmp(current_node + 4,&g_data_compare_pattern_15,SYSTEM_DATA_COMPARE_SIZE);
-    if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
-      current_node = previous_node;
-    }
-    else {
-      next_node = (undefined8 *)*current_node;
-    }
-    previous_node = current_node;
-    current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + NODE_INITIALIZED_OFFSET);
-  }
-  if ((previous_node == root_node) || (compare_result = memcmp(&g_data_compare_pattern_15,previous_node + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
-    allocation_size = calculate_allocation_size(data_ptr);
-    allocate_system_memory(data_ptr,&new_node,previous_node,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
-    previous_node = new_node;
-  }
-  previous_node[6] = 0x4b2d79e470ee4e2c;
-  previous_node[7] = 0x9c552acd3ed5548d;
-  previous_node[8] = &g_data_node_6;
-  previous_node[9] = 0;
-  previous_node[10] = init_flag;
-  return;
-}
-// void FUN_18002f470(void)
-
-void FUN_18002f470(void)
-
-{
-  char is_initialized;
-  undefined8 *root_node;
-  int compare_result;
-  longlong *data_ptr;
-  longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_node;
-  code *pcStackX_18;
-
-  data_ptr = (longlong *)get_system_data_ptr();
-  root_node = (undefined8 *)*data_ptr;
-  is_initialized = *(char *)((longlong)root_node[1] + NODE_INITIALIZED_OFFSET);
-  pcStackX_18 = get_resource_init_function_3;
-  previous_node = root_node;
-  current_node = (undefined8 *)root_node[1];
-  while (is_initialized == '\0') {
-    compare_result = memcmp(current_node + 4,&g_data_compare_pattern_16,SYSTEM_DATA_COMPARE_SIZE);
-    if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
-      current_node = previous_node;
-    }
-    else {
-      next_node = (undefined8 *)*current_node;
-    }
-    previous_node = current_node;
-    current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + NODE_INITIALIZED_OFFSET);
-  }
-  if ((previous_node == root_node) || (compare_result = memcmp(&g_data_compare_pattern_16,previous_node + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
-    allocation_size = calculate_allocation_size(data_ptr);
-    allocate_system_memory(data_ptr,&new_node,previous_node,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
-    previous_node = new_node;
-  }
-  previous_node[6] = 0x49086ba08ab981a7;
-  previous_node[7] = 0xa9191d34ad910696;
-  previous_node[8] = &g_data_node_7;
-  previous_node[9] = 0;
-  previous_node[10] = pcStackX_18;
-  return;
-}
-// void FUN_18002f570(void)
-
-void FUN_18002f570(void)
-
-{
-  char is_initialized;
-  undefined8 *root_node;
-  int compare_result;
-  longlong *data_ptr;
-  longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_node;
-  undefined8 init_flag;
-
-  data_ptr = (longlong *)get_system_data_ptr();
-  root_node = (undefined8 *)*data_ptr;
-  is_initialized = *(char *)((longlong)root_node[1] + NODE_INITIALIZED_OFFSET);
-  init_flag = 0;
-  previous_node = root_node;
-  current_node = (undefined8 *)root_node[1];
-  while (is_initialized == '\0') {
-    compare_result = memcmp(current_node + 4,&g_data_compare_pattern_17,SYSTEM_DATA_COMPARE_SIZE);
-    if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
-      current_node = previous_node;
-    }
-    else {
-      next_node = (undefined8 *)*current_node;
-    }
-    previous_node = current_node;
-    current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + NODE_INITIALIZED_OFFSET);
-  }
-  if ((previous_node == root_node) || (compare_result = memcmp(&g_data_compare_pattern_17,previous_node + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
-    allocation_size = calculate_allocation_size(data_ptr);
-    allocate_system_memory(data_ptr,&new_node,previous_node,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
-    previous_node = new_node;
-  }
-  previous_node[6] = 0x402feffe4481676e;
-  previous_node[7] = 0xd4c2151109de93a0;
-  previous_node[8] = &g_data_node_8;
-  previous_node[9] = 0;
-  previous_node[10] = init_flag;
-  return;
-}
-// void FUN_18002f670(void)
-
-void FUN_18002f670(void)
-
-{
-  char is_initialized;
-  undefined8 *root_node;
-  int compare_result;
-  longlong *data_ptr;
-  longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_node;
-  undefined *pinit_flag;
-
-  data_ptr = (longlong *)get_system_data_ptr();
-  root_node = (undefined8 *)*data_ptr;
-  is_initialized = *(char *)((longlong)root_node[1] + NODE_INITIALIZED_OFFSET);
-  pinit_flag = &g_init_flag;
-  previous_node = root_node;
-  current_node = (undefined8 *)root_node[1];
-  while (is_initialized == '\0') {
-    compare_result = memcmp(current_node + 4,&g_data_compare_pattern_18,SYSTEM_DATA_COMPARE_SIZE);
-    if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
-      current_node = previous_node;
-    }
-    else {
-      next_node = (undefined8 *)*current_node;
-    }
-    previous_node = current_node;
-    current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + NODE_INITIALIZED_OFFSET);
-  }
-  if ((previous_node == root_node) || (compare_result = memcmp(&g_data_compare_pattern_18,previous_node + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
-    allocation_size = calculate_allocation_size(data_ptr);
-    allocate_system_memory(data_ptr,&new_node,previous_node,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
-    previous_node = new_node;
-  }
-  previous_node[6] = 0x4384dcc4b6d3f417;
-  previous_node[7] = 0x92a15d52fe2679bd;
-  previous_node[8] = &g_data_node_9;
-  previous_node[9] = 0;
-  previous_node[10] = pinit_flag;
-  return;
-}
-// void FUN_18002f770(void)
-
-void FUN_18002f770(void)
-
-{
-  char is_initialized;
-  undefined8 *root_node;
-  int compare_result;
-  longlong *data_ptr;
-  longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_node;
-  undefined8 init_flag;
-
-  data_ptr = (longlong *)get_system_data_ptr();
-  root_node = (undefined8 *)*data_ptr;
-  is_initialized = *(char *)((longlong)root_node[1] + NODE_INITIALIZED_OFFSET);
-  init_flag = 0;
-  previous_node = root_node;
-  current_node = (undefined8 *)root_node[1];
-  while (is_initialized == '\0') {
-    compare_result = memcmp(current_node + 4,&g_data_compare_pattern_19,SYSTEM_DATA_COMPARE_SIZE);
-    if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
-      current_node = previous_node;
-    }
-    else {
-      next_node = (undefined8 *)*current_node;
-    }
-    previous_node = current_node;
-    current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + NODE_INITIALIZED_OFFSET);
-  }
-  if ((previous_node == root_node) || (compare_result = memcmp(&g_data_compare_pattern_19,previous_node + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
-    allocation_size = calculate_allocation_size(data_ptr);
-    allocate_system_memory(data_ptr,&new_node,previous_node,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
-    previous_node = new_node;
-  }
-  previous_node[6] = 0x4140994454d56503;
-  previous_node[7] = 0x399eced9bb5517ad;
-  previous_node[8] = &g_data_node_10;
-  previous_node[9] = 0;
-  previous_node[10] = init_flag;
-  return;
-}
-// void FUN_18002f870(void)
-
-void FUN_18002f870(void)
+void InitializePoolNode(void)
 
 {
   char is_initialized;
@@ -3199,9 +2870,9 @@ void FUN_18002f870(void)
   previous_node[10] = pcStackX_18;
   return;
 }
-// void FUN_18002f970(void)
+// void InitializeQueueNode(void)
 
-void FUN_18002f970(void)
+void InitializeQueueNode(void)
 
 {
   char is_initialized;
@@ -3246,9 +2917,9 @@ void FUN_18002f970(void)
   previous_node[10] = pcStackX_18;
   return;
 }
-// void FUN_18002fa70(void)
+// void InitializeStackNode(void)
 
-void FUN_18002fa70(void)
+void InitializeStackNode(void)
 
 {
   char is_initialized;
@@ -3293,9 +2964,9 @@ void FUN_18002fa70(void)
   previous_node[10] = init_flag;
   return;
 }
-// void FUN_18002fb70(void)
+// void InitializeListNode(void)
 
-void FUN_18002fb70(void)
+void InitializeListNode(void)
 
 {
   char is_initialized;
@@ -3340,9 +3011,9 @@ void FUN_18002fb70(void)
   previous_node[10] = pcStackX_18;
   return;
 }
-// void FUN_18002fc70(void)
+// void InitializeTreeNode(void)
 
-void FUN_18002fc70(void)
+void InitializeTreeNode(void)
 
 {
   char is_initialized;
@@ -3387,9 +3058,9 @@ void FUN_18002fc70(void)
   previous_node[10] = init_flag;
   return;
 }
-// void FUN_18002fd70(void)
+// void InitializeGraphNode(void)
 
-void FUN_18002fd70(void)
+void InitializeGraphNode(void)
 
 {
   char is_initialized;
@@ -3434,9 +3105,9 @@ void FUN_18002fd70(void)
   previous_node[10] = pinit_flag;
   return;
 }
-// void FUN_18002fe70(void)
+// void InitializeMapNode(void)
 
-void FUN_18002fe70(void)
+void InitializeMapNode(void)
 
 {
   char is_initialized;
@@ -3481,9 +3152,338 @@ void FUN_18002fe70(void)
   previous_node[10] = init_flag;
   return;
 }
-// void FUN_18002ff70(void)
+// void InitializeSetNode(void)
 
-void FUN_18002ff70(void)
+void InitializeSetNode(void)
+
+{
+  char is_initialized;
+  undefined8 *root_node;
+  int compare_result;
+  longlong *data_ptr;
+  longlong allocation_size;
+  undefined8 *current_node;
+  undefined8 *previous_node;
+  undefined8 *next_node;
+  undefined8 *new_node;
+  code *pcStackX_18;
+
+  data_ptr = (longlong *)get_system_data_ptr();
+  root_node = (undefined8 *)*data_ptr;
+  is_initialized = *(char *)((longlong)root_node[1] + NODE_INITIALIZED_OFFSET);
+  pcStackX_18 = get_resource_init_function_1;
+  previous_node = root_node;
+  current_node = (undefined8 *)root_node[1];
+  while (is_initialized == '\0') {
+    compare_result = memcmp(current_node + 4,&g_data_compare_pattern_13,SYSTEM_DATA_COMPARE_SIZE);
+    if (compare_result < 0) {
+      next_node = (undefined8 *)current_node[2];
+      current_node = previous_node;
+    }
+    else {
+      next_node = (undefined8 *)*current_node;
+    }
+    previous_node = current_node;
+    current_node = next_node;
+    is_initialized = *(char *)((longlong)next_node + NODE_INITIALIZED_OFFSET);
+  }
+  if ((previous_node == root_node) || (compare_result = memcmp(&g_data_compare_pattern_13,previous_node + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+    allocation_size = calculate_allocation_size(data_ptr);
+    allocate_system_memory(data_ptr,&new_node,previous_node,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
+    previous_node = new_node;
+  }
+  previous_node[6] = 0x43330a43fcdb3653;
+  previous_node[7] = 0xdcfdc333a769ec93;
+  previous_node[8] = &g_data_node_4;
+  previous_node[9] = 1;
+  previous_node[10] = pcStackX_18;
+  return;
+}
+// void InitializeArrayNode(void)
+
+void InitializeArrayNode(void)
+
+{
+  char is_initialized;
+  undefined8 *root_node;
+  int compare_result;
+  longlong *data_ptr;
+  longlong allocation_size;
+  undefined8 *current_node;
+  undefined8 *previous_node;
+  undefined8 *next_node;
+  undefined8 *new_node;
+  code *pcStackX_18;
+
+  data_ptr = (longlong *)get_system_data_ptr();
+  root_node = (undefined8 *)*data_ptr;
+  is_initialized = *(char *)((longlong)root_node[1] + NODE_INITIALIZED_OFFSET);
+  pcStackX_18 = get_resource_init_function_2;
+  previous_node = root_node;
+  current_node = (undefined8 *)root_node[1];
+  while (is_initialized == '\0') {
+    compare_result = memcmp(current_node + 4,&g_data_compare_pattern_14,SYSTEM_DATA_COMPARE_SIZE);
+    if (compare_result < 0) {
+      next_node = (undefined8 *)current_node[2];
+      current_node = previous_node;
+    }
+    else {
+      next_node = (undefined8 *)*current_node;
+    }
+    previous_node = current_node;
+    current_node = next_node;
+    is_initialized = *(char *)((longlong)next_node + NODE_INITIALIZED_OFFSET);
+  }
+  if ((previous_node == root_node) || (compare_result = memcmp(&g_data_compare_pattern_14,previous_node + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+    allocation_size = calculate_allocation_size(data_ptr);
+    allocate_system_memory(data_ptr,&new_node,previous_node,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
+    previous_node = new_node;
+  }
+  previous_node[6] = 0x431d7c8d7c475be2;
+  previous_node[7] = 0xb97f048d2153e1b0;
+  previous_node[8] = &g_data_node_5;
+  previous_node[9] = 4;
+  previous_node[10] = pcStackX_18;
+  return;
+}
+// void InitializeVectorNode(void)
+
+void InitializeVectorNode(void)
+
+{
+  char is_initialized;
+  undefined8 *root_node;
+  int compare_result;
+  longlong *data_ptr;
+  longlong allocation_size;
+  undefined8 *current_node;
+  undefined8 *previous_node;
+  undefined8 *next_node;
+  undefined8 *new_node;
+  undefined8 init_flag;
+
+  data_ptr = (longlong *)get_system_data_ptr();
+  root_node = (undefined8 *)*data_ptr;
+  is_initialized = *(char *)((longlong)root_node[1] + NODE_INITIALIZED_OFFSET);
+  init_flag = 0;
+  previous_node = root_node;
+  current_node = (undefined8 *)root_node[1];
+  while (is_initialized == '\0') {
+    compare_result = memcmp(current_node + 4,&g_data_compare_pattern_15,SYSTEM_DATA_COMPARE_SIZE);
+    if (compare_result < 0) {
+      next_node = (undefined8 *)current_node[2];
+      current_node = previous_node;
+    }
+    else {
+      next_node = (undefined8 *)*current_node;
+    }
+    previous_node = current_node;
+    current_node = next_node;
+    is_initialized = *(char *)((longlong)next_node + NODE_INITIALIZED_OFFSET);
+  }
+  if ((previous_node == root_node) || (compare_result = memcmp(&g_data_compare_pattern_15,previous_node + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+    allocation_size = calculate_allocation_size(data_ptr);
+    allocate_system_memory(data_ptr,&new_node,previous_node,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
+    previous_node = new_node;
+  }
+  previous_node[6] = 0x4b2d79e470ee4e2c;
+  previous_node[7] = 0x9c552acd3ed5548d;
+  previous_node[8] = &g_data_node_6;
+  previous_node[9] = 0;
+  previous_node[10] = init_flag;
+  return;
+}
+// void InitializeMatrixNode(void)
+
+void InitializeMatrixNode(void)
+
+{
+  char is_initialized;
+  undefined8 *root_node;
+  int compare_result;
+  longlong *data_ptr;
+  longlong allocation_size;
+  undefined8 *current_node;
+  undefined8 *previous_node;
+  undefined8 *next_node;
+  undefined8 *new_node;
+  code *pcStackX_18;
+
+  data_ptr = (longlong *)get_system_data_ptr();
+  root_node = (undefined8 *)*data_ptr;
+  is_initialized = *(char *)((longlong)root_node[1] + NODE_INITIALIZED_OFFSET);
+  pcStackX_18 = get_resource_init_function_3;
+  previous_node = root_node;
+  current_node = (undefined8 *)root_node[1];
+  while (is_initialized == '\0') {
+    compare_result = memcmp(current_node + 4,&g_data_compare_pattern_16,SYSTEM_DATA_COMPARE_SIZE);
+    if (compare_result < 0) {
+      next_node = (undefined8 *)current_node[2];
+      current_node = previous_node;
+    }
+    else {
+      next_node = (undefined8 *)*current_node;
+    }
+    previous_node = current_node;
+    current_node = next_node;
+    is_initialized = *(char *)((longlong)next_node + NODE_INITIALIZED_OFFSET);
+  }
+  if ((previous_node == root_node) || (compare_result = memcmp(&g_data_compare_pattern_16,previous_node + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+    allocation_size = calculate_allocation_size(data_ptr);
+    allocate_system_memory(data_ptr,&new_node,previous_node,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
+    previous_node = new_node;
+  }
+  previous_node[6] = 0x49086ba08ab981a7;
+  previous_node[7] = 0xa9191d34ad910696;
+  previous_node[8] = &g_data_node_7;
+  previous_node[9] = 0;
+  previous_node[10] = pcStackX_18;
+  return;
+}
+// void InitializeHashNode(void)
+
+void InitializeHashNode(void)
+
+{
+  char is_initialized;
+  undefined8 *root_node;
+  int compare_result;
+  longlong *data_ptr;
+  longlong allocation_size;
+  undefined8 *current_node;
+  undefined8 *previous_node;
+  undefined8 *next_node;
+  undefined8 *new_node;
+  undefined8 init_flag;
+
+  data_ptr = (longlong *)get_system_data_ptr();
+  root_node = (undefined8 *)*data_ptr;
+  is_initialized = *(char *)((longlong)root_node[1] + NODE_INITIALIZED_OFFSET);
+  init_flag = 0;
+  previous_node = root_node;
+  current_node = (undefined8 *)root_node[1];
+  while (is_initialized == '\0') {
+    compare_result = memcmp(current_node + 4,&g_data_compare_pattern_17,SYSTEM_DATA_COMPARE_SIZE);
+    if (compare_result < 0) {
+      next_node = (undefined8 *)current_node[2];
+      current_node = previous_node;
+    }
+    else {
+      next_node = (undefined8 *)*current_node;
+    }
+    previous_node = current_node;
+    current_node = next_node;
+    is_initialized = *(char *)((longlong)next_node + NODE_INITIALIZED_OFFSET);
+  }
+  if ((previous_node == root_node) || (compare_result = memcmp(&g_data_compare_pattern_17,previous_node + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+    allocation_size = calculate_allocation_size(data_ptr);
+    allocate_system_memory(data_ptr,&new_node,previous_node,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
+    previous_node = new_node;
+  }
+  previous_node[6] = 0x402feffe4481676e;
+  previous_node[7] = 0xd4c2151109de93a0;
+  previous_node[8] = &g_data_node_8;
+  previous_node[9] = 0;
+  previous_node[10] = init_flag;
+  return;
+}
+// void InitializeTableNode(void)
+
+void InitializeTableNode(void)
+
+{
+  char is_initialized;
+  undefined8 *root_node;
+  int compare_result;
+  longlong *data_ptr;
+  longlong allocation_size;
+  undefined8 *current_node;
+  undefined8 *previous_node;
+  undefined8 *next_node;
+  undefined8 *new_node;
+  undefined *pinit_flag;
+
+  data_ptr = (longlong *)get_system_data_ptr();
+  root_node = (undefined8 *)*data_ptr;
+  is_initialized = *(char *)((longlong)root_node[1] + NODE_INITIALIZED_OFFSET);
+  pinit_flag = &g_init_flag;
+  previous_node = root_node;
+  current_node = (undefined8 *)root_node[1];
+  while (is_initialized == '\0') {
+    compare_result = memcmp(current_node + 4,&g_data_compare_pattern_18,SYSTEM_DATA_COMPARE_SIZE);
+    if (compare_result < 0) {
+      next_node = (undefined8 *)current_node[2];
+      current_node = previous_node;
+    }
+    else {
+      next_node = (undefined8 *)*current_node;
+    }
+    previous_node = current_node;
+    current_node = next_node;
+    is_initialized = *(char *)((longlong)next_node + NODE_INITIALIZED_OFFSET);
+  }
+  if ((previous_node == root_node) || (compare_result = memcmp(&g_data_compare_pattern_18,previous_node + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+    allocation_size = calculate_allocation_size(data_ptr);
+    allocate_system_memory(data_ptr,&new_node,previous_node,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
+    previous_node = new_node;
+  }
+  previous_node[6] = 0x4384dcc4b6d3f417;
+  previous_node[7] = 0x92a15d52fe2679bd;
+  previous_node[8] = &g_data_node_9;
+  previous_node[9] = 0;
+  previous_node[10] = pinit_flag;
+  return;
+}
+// void InitializeRecordNode(void)
+
+void InitializeRecordNode(void)
+
+{
+  char is_initialized;
+  undefined8 *root_node;
+  int compare_result;
+  longlong *data_ptr;
+  longlong allocation_size;
+  undefined8 *current_node;
+  undefined8 *previous_node;
+  undefined8 *next_node;
+  undefined8 *new_node;
+  undefined8 init_flag;
+
+  data_ptr = (longlong *)get_system_data_ptr();
+  root_node = (undefined8 *)*data_ptr;
+  is_initialized = *(char *)((longlong)root_node[1] + NODE_INITIALIZED_OFFSET);
+  init_flag = 0;
+  previous_node = root_node;
+  current_node = (undefined8 *)root_node[1];
+  while (is_initialized == '\0') {
+    compare_result = memcmp(current_node + 4,&g_data_compare_pattern_19,SYSTEM_DATA_COMPARE_SIZE);
+    if (compare_result < 0) {
+      next_node = (undefined8 *)current_node[2];
+      current_node = previous_node;
+    }
+    else {
+      next_node = (undefined8 *)*current_node;
+    }
+    previous_node = current_node;
+    current_node = next_node;
+    is_initialized = *(char *)((longlong)next_node + NODE_INITIALIZED_OFFSET);
+  }
+  if ((previous_node == root_node) || (compare_result = memcmp(&g_data_compare_pattern_19,previous_node + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+    allocation_size = calculate_allocation_size(data_ptr);
+    allocate_system_memory(data_ptr,&new_node,previous_node,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
+    previous_node = new_node;
+  }
+  previous_node[6] = 0x4140994454d56503;
+  previous_node[7] = 0x399eced9bb5517ad;
+  previous_node[8] = &g_data_node_10;
+  previous_node[9] = 0;
+  previous_node[10] = init_flag;
+  return;
+}
+// void InitializeFieldNode(void)
+
+void InitializeFieldNode(void)
 
 {
   char is_initialized;
@@ -3528,9 +3528,9 @@ void FUN_18002ff70(void)
   previous_node[10] = init_flag;
   return;
 }
-// void FUN_180030070(void)
+// void InitializeAttributeNode(void)
 
-void FUN_180030070(void)
+void InitializeAttributeNode(void)
 
 {
   char is_initialized;
@@ -3575,9 +3575,9 @@ void FUN_180030070(void)
   previous_node[10] = pcStackX_18;
   return;
 }
-// void FUN_180030170(void)
+// void InitializePropertyNode(void)
 
-void FUN_180030170(void)
+void InitializePropertyNode(void)
 
 {
   char is_initialized;
@@ -3622,9 +3622,9 @@ void FUN_180030170(void)
   previous_node[10] = pcStackX_18;
   return;
 }
-// void FUN_180030270(void)
+// void InitializeMethodNode(void)
 
-void FUN_180030270(void)
+void InitializeMethodNode(void)
 
 {
   char is_initialized;
@@ -3669,9 +3669,9 @@ void FUN_180030270(void)
   previous_node[10] = pcStackX_18;
   return;
 }
-// void FUN_180030370(void)
+// void InitializeEventNode(void)
 
-void FUN_180030370(void)
+void InitializeEventNode(void)
 
 {
   char is_initialized;
@@ -3716,9 +3716,9 @@ void FUN_180030370(void)
   previous_node[10] = init_flag;
   return;
 }
-// void FUN_180030470(void)
+// void InitializeDelegateNode(void)
 
-void FUN_180030470(void)
+void InitializeDelegateNode(void)
 
 {
   char is_initialized;
@@ -3763,9 +3763,9 @@ void FUN_180030470(void)
   previous_node[10] = pcStackX_18;
   return;
 }
-// void FUN_180030570(void)
+// void InitializeCallbackNode(void)
 
-void FUN_180030570(void)
+void InitializeCallbackNode(void)
 
 {
   char is_initialized;
@@ -3810,9 +3810,9 @@ void FUN_180030570(void)
   previous_node[10] = init_flag;
   return;
 }
-// void FUN_180030670(void)
+// void InitializeHandlerNode(void)
 
-void FUN_180030670(void)
+void InitializeHandlerNode(void)
 
 {
   char is_initialized;
@@ -3857,9 +3857,9 @@ void FUN_180030670(void)
   previous_node[10] = pinit_flag;
   return;
 }
-// void FUN_180030770(void)
+// void InitializeListenerNode(void)
 
-void FUN_180030770(void)
+void InitializeListenerNode(void)
 
 {
   char is_initialized;
@@ -3905,8 +3905,8 @@ void FUN_180030770(void)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void FUN_180030870(void)
-void FUN_180030870(void)
+// void InitializeObserverNode(void)
+void InitializeObserverNode(void)
 
 {
   undefined8 in_R9;
@@ -3925,7 +3925,7 @@ void FUN_180030870(void)
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180030900(void)
+int InitializeThreadConfig1(void)
 
 {
   longlong lVar1;
@@ -3933,103 +3933,9 @@ int FUN_180030900(void)
 
   _g_thread_config_1 = &g_thread_config_ptr; // 原始名称: _DAT_180bf6750
   _g_thread_config_2 = &DAT_180bf6768; // 原始名称: _DAT_180bf6758
-// void FUN_180031a10(void)
+// void InitializeSystemObject1(void)
 
-void FUN_180031a10(void)
-
-{
-  char is_initialized;
-  undefined8 *root_node;
-  int compare_result;
-  longlong *data_ptr;
-  longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_node;
-  code *pcStackX_18;
-
-  data_ptr = (longlong *)get_system_data_ptr();
-  root_node = (undefined8 *)*data_ptr;
-  is_initialized = *(char *)((longlong)root_node[1] + NODE_INITIALIZED_OFFSET);
-  pcStackX_18 = get_input_init_function;
-  previous_node = root_node;
-  current_node = (undefined8 *)root_node[1];
-  while (is_initialized == '\0') {
-    compare_result = memcmp(current_node + 4,&g_data_compare_pattern_11,SYSTEM_DATA_COMPARE_SIZE);
-    if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
-      current_node = previous_node;
-    }
-    else {
-      next_node = (undefined8 *)*current_node;
-    }
-    previous_node = current_node;
-    current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + NODE_INITIALIZED_OFFSET);
-  }
-  if ((previous_node == root_node) || (compare_result = memcmp(&g_data_compare_pattern_11,previous_node + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
-    allocation_size = calculate_allocation_size(data_ptr);
-    allocate_system_memory(data_ptr,&new_node,previous_node,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
-    previous_node = new_node;
-  }
-  previous_node[6] = 0x406be72011d07d37;
-  previous_node[7] = 0x71876af946c867ab;
-  previous_node[8] = &g_data_node_2;
-  previous_node[9] = 0;
-  previous_node[10] = pcStackX_18;
-  return;
-}
-// void FUN_180031b10(void)
-
-void FUN_180031b10(void)
-
-{
-  char is_initialized;
-  undefined8 *root_node;
-  int compare_result;
-  longlong *data_ptr;
-  longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_node;
-  code *pcStackX_18;
-
-  data_ptr = (longlong *)get_system_data_ptr();
-  root_node = (undefined8 *)*data_ptr;
-  is_initialized = *(char *)((longlong)root_node[1] + NODE_INITIALIZED_OFFSET);
-  pcStackX_18 = get_network_init_function;
-  previous_node = root_node;
-  current_node = (undefined8 *)root_node[1];
-  while (is_initialized == '\0') {
-    compare_result = memcmp(current_node + 4,&g_data_compare_pattern_12,SYSTEM_DATA_COMPARE_SIZE);
-    if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
-      current_node = previous_node;
-    }
-    else {
-      next_node = (undefined8 *)*current_node;
-    }
-    previous_node = current_node;
-    current_node = next_node;
-    is_initialized = *(char *)((longlong)next_node + NODE_INITIALIZED_OFFSET);
-  }
-  if ((previous_node == root_node) || (compare_result = memcmp(&g_data_compare_pattern_12,previous_node + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
-    allocation_size = calculate_allocation_size(data_ptr);
-    allocate_system_memory(data_ptr,&new_node,previous_node,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
-    previous_node = new_node;
-  }
-  previous_node[6] = 0x40afa5469b6ac06d;
-  previous_node[7] = 0x2f4bab01d34055a5;
-  previous_node[8] = &g_data_node_3;
-  previous_node[9] = 3;
-  previous_node[10] = pcStackX_18;
-  return;
-}
-// void FUN_180031c10(void)
-
-void FUN_180031c10(void)
+void InitializeSystemObject1(void)
 
 {
   char is_initialized;
@@ -4074,9 +3980,9 @@ void FUN_180031c10(void)
   previous_node[10] = pcStackX_18;
   return;
 }
-// void FUN_180031d10(void)
+// void InitializeSystemObject2(void)
 
-void FUN_180031d10(void)
+void InitializeSystemObject2(void)
 
 {
   char is_initialized;
@@ -4121,9 +4027,103 @@ void FUN_180031d10(void)
   previous_node[10] = pcStackX_18;
   return;
 }
-// void FUN_180031e10(void)
+// void InitializeSystemObject3(void)
 
-void FUN_180031e10(void)
+void InitializeSystemObject3(void)
+
+{
+  char is_initialized;
+  undefined8 *root_node;
+  int compare_result;
+  longlong *data_ptr;
+  longlong allocation_size;
+  undefined8 *current_node;
+  undefined8 *previous_node;
+  undefined8 *next_node;
+  undefined8 *new_node;
+  code *pcStackX_18;
+
+  data_ptr = (longlong *)get_system_data_ptr();
+  root_node = (undefined8 *)*data_ptr;
+  is_initialized = *(char *)((longlong)root_node[1] + NODE_INITIALIZED_OFFSET);
+  pcStackX_18 = get_input_init_function;
+  previous_node = root_node;
+  current_node = (undefined8 *)root_node[1];
+  while (is_initialized == '\0') {
+    compare_result = memcmp(current_node + 4,&g_data_compare_pattern_11,SYSTEM_DATA_COMPARE_SIZE);
+    if (compare_result < 0) {
+      next_node = (undefined8 *)current_node[2];
+      current_node = previous_node;
+    }
+    else {
+      next_node = (undefined8 *)*current_node;
+    }
+    previous_node = current_node;
+    current_node = next_node;
+    is_initialized = *(char *)((longlong)next_node + NODE_INITIALIZED_OFFSET);
+  }
+  if ((previous_node == root_node) || (compare_result = memcmp(&g_data_compare_pattern_11,previous_node + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+    allocation_size = calculate_allocation_size(data_ptr);
+    allocate_system_memory(data_ptr,&new_node,previous_node,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
+    previous_node = new_node;
+  }
+  previous_node[6] = 0x406be72011d07d37;
+  previous_node[7] = 0x71876af946c867ab;
+  previous_node[8] = &g_data_node_2;
+  previous_node[9] = 0;
+  previous_node[10] = pcStackX_18;
+  return;
+}
+// void InitializeSystemObject4(void)
+
+void InitializeSystemObject4(void)
+
+{
+  char is_initialized;
+  undefined8 *root_node;
+  int compare_result;
+  longlong *data_ptr;
+  longlong allocation_size;
+  undefined8 *current_node;
+  undefined8 *previous_node;
+  undefined8 *next_node;
+  undefined8 *new_node;
+  code *pcStackX_18;
+
+  data_ptr = (longlong *)get_system_data_ptr();
+  root_node = (undefined8 *)*data_ptr;
+  is_initialized = *(char *)((longlong)root_node[1] + NODE_INITIALIZED_OFFSET);
+  pcStackX_18 = get_network_init_function;
+  previous_node = root_node;
+  current_node = (undefined8 *)root_node[1];
+  while (is_initialized == '\0') {
+    compare_result = memcmp(current_node + 4,&g_data_compare_pattern_12,SYSTEM_DATA_COMPARE_SIZE);
+    if (compare_result < 0) {
+      next_node = (undefined8 *)current_node[2];
+      current_node = previous_node;
+    }
+    else {
+      next_node = (undefined8 *)*current_node;
+    }
+    previous_node = current_node;
+    current_node = next_node;
+    is_initialized = *(char *)((longlong)next_node + NODE_INITIALIZED_OFFSET);
+  }
+  if ((previous_node == root_node) || (compare_result = memcmp(&g_data_compare_pattern_12,previous_node + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+    allocation_size = calculate_allocation_size(data_ptr);
+    allocate_system_memory(data_ptr,&new_node,previous_node,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
+    previous_node = new_node;
+  }
+  previous_node[6] = 0x40afa5469b6ac06d;
+  previous_node[7] = 0x2f4bab01d34055a5;
+  previous_node[8] = &g_data_node_3;
+  previous_node[9] = 3;
+  previous_node[10] = pcStackX_18;
+  return;
+}
+// void InitializeSystemObject5(void)
+
+void InitializeSystemObject5(void)
 
 {
   char is_initialized;
@@ -4168,9 +4168,9 @@ void FUN_180031e10(void)
   previous_node[10] = pcStackX_18;
   return;
 }
-// void FUN_180031f10(void)
+// void InitializeSystemObject6(void)
 
-void FUN_180031f10(void)
+void InitializeSystemObject6(void)
 
 {
   char is_initialized;
@@ -4215,9 +4215,9 @@ void FUN_180031f10(void)
   previous_node[10] = pcStackX_18;
   return;
 }
-// void FUN_180032010(void)
+// void InitializeSystemObject7(void)
 
-void FUN_180032010(void)
+void InitializeSystemObject7(void)
 
 {
   char is_initialized;
@@ -4262,9 +4262,9 @@ void FUN_180032010(void)
   previous_node[10] = init_flag;
   return;
 }
-// void FUN_180032110(void)
+// void InitializeSystemObject8(void)
 
-void FUN_180032110(void)
+void InitializeSystemObject8(void)
 
 {
   char is_initialized;
@@ -4309,9 +4309,9 @@ void FUN_180032110(void)
   previous_node[10] = pcStackX_18;
   return;
 }
-// void FUN_180032210(void)
+// void InitializeSystemObject9(void)
 
-void FUN_180032210(void)
+void InitializeSystemObject9(void)
 
 {
   char is_initialized;
@@ -4356,9 +4356,9 @@ void FUN_180032210(void)
   previous_node[10] = init_flag;
   return;
 }
-// void FUN_180032310(void)
+// void InitializeSystemObject10(void)
 
-void FUN_180032310(void)
+void InitializeSystemObject10(void)
 
 {
   char is_initialized;
@@ -4403,9 +4403,9 @@ void FUN_180032310(void)
   previous_node[10] = pinit_flag;
   return;
 }
-// void FUN_180032410(void)
+// void InitializeSystemObject11(void)
 
-void FUN_180032410(void)
+void InitializeSystemObject11(void)
 
 {
   char is_initialized;
@@ -4451,8 +4451,8 @@ void FUN_180032410(void)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void FUN_180032510(void)
-void FUN_180032510(void)
+// void InitializeSystemObject12(void)
+void InitializeSystemObject12(void)
 
 {
   undefined8 in_R9;
@@ -4469,9 +4469,9 @@ void FUN_180032510(void)
   _g_system_object_2 = create_system_object(&thread_parameter_ptr); // 原始名称: _DAT_180c91d54
   return;
 }
-// void FUN_1800325a0(void)
+// void InitializeThreadConfig2(void)
 
-void FUN_1800325a0(void)
+void InitializeThreadConfig2(void)
 
 {
   char is_initialized;
@@ -4516,9 +4516,9 @@ void FUN_1800325a0(void)
   previous_node[10] = pcStackX_18;
   return;
 }
-// void FUN_1800326a0(void)
+// void InitializeSystemObject13(void)
 
-void FUN_1800326a0(void)
+void InitializeSystemObject13(void)
 
 {
   char is_initialized;
@@ -4563,9 +4563,9 @@ void FUN_1800326a0(void)
   previous_node[10] = pcStackX_18;
   return;
 }
-// void FUN_1800327a0(void)
+// void InitializeSystemObject14(void)
 
-void FUN_1800327a0(void)
+void InitializeSystemObject14(void)
 
 {
   char is_initialized;
@@ -4610,9 +4610,9 @@ void FUN_1800327a0(void)
   previous_node[10] = init_flag;
   return;
 }
-// void FUN_1800328a0(void)
+// void InitializeSystemObject15(void)
 
-void FUN_1800328a0(void)
+void InitializeSystemObject15(void)
 
 {
   char is_initialized;
@@ -4657,9 +4657,9 @@ void FUN_1800328a0(void)
   previous_node[10] = pcStackX_18;
   return;
 }
-// void FUN_1800329a0(void)
+// void InitializeSystemObject16(void)
 
-void FUN_1800329a0(void)
+void InitializeSystemObject16(void)
 
 {
   char is_initialized;
@@ -4704,9 +4704,9 @@ void FUN_1800329a0(void)
   previous_node[10] = init_flag;
   return;
 }
-// void FUN_180032aa0(void)
+// void InitializeSystemObject17(void)
 
-void FUN_180032aa0(void)
+void InitializeSystemObject17(void)
 
 {
   char is_initialized;
@@ -4751,9 +4751,9 @@ void FUN_180032aa0(void)
   previous_node[10] = pinit_flag;
   return;
 }
-// void FUN_180032ba0(void)
+// void InitializeSystemObject18(void)
 
-void FUN_180032ba0(void)
+void InitializeSystemObject18(void)
 
 {
   char is_initialized;
@@ -4799,8 +4799,8 @@ void FUN_180032ba0(void)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void FUN_180032ca0(void)
-void FUN_180032ca0(void)
+// void InitializeSystemObject19(void)
+void InitializeSystemObject19(void)
 
 {
   undefined8 in_R9;
@@ -4819,7 +4819,7 @@ void FUN_180032ca0(void)
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180032d30(void)
+int InitializeThreadConfig3(void)
 
 {
   longlong lVar1;
@@ -4827,9 +4827,9 @@ int FUN_180032d30(void)
 
   _g_thread_config_3 = &g_thread_config_ptr; // 原始名称: _DAT_180bf7e90
   _g_thread_config_4 = &DAT_180bf7ea8; // 原始名称: _DAT_180bf7e98
-// void FUN_180033780(void)
+// void InitializeSystemObject20(void)
 
-void FUN_180033780(void)
+void InitializeSystemObject20(void)
 
 {
   undefined8 in_R9;
@@ -4847,8 +4847,8 @@ void FUN_180033780(void)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void FUN_180033810(void)
-void FUN_180033810(void)
+// void InitializeSystemObject21(void)
+void InitializeSystemObject21(void)
 
 {
   undefined8 in_R9;
@@ -4866,8 +4866,8 @@ void FUN_180033810(void)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void FUN_1800338a0(void)
-void FUN_1800338a0(void)
+// void InitializeSystemObject22(void)
+void InitializeSystemObject22(void)
 
 {
   undefined8 in_R9;
@@ -4885,8 +4885,8 @@ void FUN_1800338a0(void)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void FUN_180033930(void)
-void FUN_180033930(void)
+// void InitializeSystemObject23(void)
+void InitializeSystemObject23(void)
 
 {
   undefined8 in_R9;
@@ -4904,8 +4904,8 @@ void FUN_180033930(void)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void FUN_1800339c0(void)
-void FUN_1800339c0(void)
+// void InitializeSystemObject24(void)
+void InitializeSystemObject24(void)
 
 {
   undefined8 in_R9;
@@ -4922,9 +4922,9 @@ void FUN_1800339c0(void)
   _g_system_object_8 = create_system_object(&thread_parameter_ptr); // 原始名称: _DAT_180c91d70
   return;
 }
-// void FUN_180033a50(void)
+// void InitializeSystemObject25(void)
 
-void FUN_180033a50(void)
+void InitializeSystemObject25(void)
 
 {
   char is_initialized;
