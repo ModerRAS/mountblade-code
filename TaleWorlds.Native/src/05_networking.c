@@ -309,8 +309,8 @@ void NetworkCreateSocket(uint64_t socketHandle)
   longlong socketContextPtr [2];
   uint64_t *socketDataPtr;
   
-  alStackX_10[1] = 0;
-  statusCode = func_0x00018088c590(socketHandle,alStackX_10);
+  socketStackBuffer[1] = 0;
+  statusCode = func_0x00018088c590(socketHandle,socketStackBuffer);
   if ((((statusCode != 0) ||
        (((*(uint *)(alStackX_10[0] + 0x24) >> 1 & 1) != 0 &&
         (resultCode = networkInitializeConnection(alStackX_10 + 1), resultCode == 0)))) && (statusCode == 0)) &&
