@@ -2088,9 +2088,9 @@ void initialize_system_phase6(void)
   previous_node[10] = init_flag;
   return;
 }
-// void FUN_18002dce0(void)
+// void initialize_system_phase7(void)
 
-void FUN_18002dce0(void)
+void initialize_system_phase7(void)
 
 {
   char is_initialized;
