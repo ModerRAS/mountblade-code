@@ -11,7 +11,7 @@ data g_bufferWriteOffset;
 // 缓冲区当前大小
 data g_bufferCurrentSize;
 // 缓冲区最大允许大小
-data g_bufferMaximumAllowedSize;
+data g_bufferMaxAllowedSize;
 // 缓冲区操作标志
 data g_bufferOperationFlags;
 // 缓冲区数据校验和
@@ -21,7 +21,7 @@ byte g_isBufferInitialized;
 // 缓冲区总容量
 data g_bufferTotalCapacity;
 // 缓冲区绝对最大尺寸
-data g_bufferAbsoluteMaximumSize;
+data g_bufferAbsoluteMaxSize;
 // 缓冲区锁定标志
 byte g_bufferIsLocked;
 // 缓冲区状态标志
@@ -44,7 +44,7 @@ data g_bufferMemoryPointer;
 // 函数: data InitializeMemoryPool;
 // 系统初始化函数180941590
 data InitializeMemoryPool;
-data memoryPoolBaseAddress;
+data memoryPoolBaseAddr;
 data memoryPoolSize;
 data memoryPoolAlignment;
 data memoryPoolFlags;
@@ -55,7 +55,7 @@ data g_bufferManagerControlFlags;
 data g_bufferManagerStatus;
 data g_bufferManagerConfig;
 data g_bufferManagerHandle;
-data memoryPoolInitializationFlag;
+data memoryPoolInitFlag;
 
 // 函数: data CreateMemoryAllocator;
 data CreateMemoryAllocator;
@@ -1442,16 +1442,16 @@ double unknown_180d48d48;
 double unknown_180d48d50;
 int unknown_180d49260;
 double unknown_180d49268;
-data unknown_180a073d8;
-data unknown_180a073b8;
-data unknown_180155fc0;
-data unknown_180155fe0;
-data unknown_180156000;
-data unknown_180156020;
-data unknown_180156040;
-data unknown_180156060;
-data unknown_180156080;
-data unknown_1801560a0;
+data cameraBufferPool1;
+data cameraBufferPool2;
+data cameraBufferPool3;
+data cameraBufferPool4;
+data cameraBufferPool5;
+data cameraBufferPool6;
+data cameraBufferPool7;
+data cameraBufferPool8;
+data cameraBufferPool9;
+data cameraBufferPool10;
 data unknown_1801560c0;
 data unknown_1801560e0;
 data unknown_180156100;
@@ -80340,7 +80340,7 @@ void InitializeMemoryPool(void)
 void SetupMemoryManager(void)
 
 {
-  _memoryPoolBaseAddress = &threadLocalStorageCleanup;
+  _memoryPoolBaseAddr = &threadLocalStorageCleanup;
   return;
 }
 
