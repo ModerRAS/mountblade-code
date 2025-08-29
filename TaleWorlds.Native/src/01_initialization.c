@@ -307,16 +307,16 @@ void* g_global_memory_pool;
 
 void* g_global_ai_system;
 
-void* g_static_data_00000018;
+void* g_static_config_buffer;
 
-void* g_static_data_00000010;
+void* g_static_temp_buffer;
 
 void* g_global_physics_system;
 
 void* g_global_render_system;
 
 longlong g_global_long_00000128;
-void* g_static_data_00000000;
+void* g_static_zero_buffer;
 
 void* g_global_input_system;
 
@@ -422,40 +422,40 @@ void* g_global_stencil_buffer;
 
 void* g_global_render_target;
 
-void* g_global_data_180a00208;
+void* g_global_vertex_buffer;
 
-void* g_global_data_180a00270;
+void* g_global_index_buffer;
 
-void* g_global_data_180277350;
-// undefined g_function_18007bb70;
+void* g_global_uniform_buffer;
+// undefined g_function_create_texture;
 
-void* g_function_18007bb70;
+void* g_function_create_texture;
 
 void* g_global_temp_data_98;
 
-void* g_global_data_1802426a0;
+void* g_global_storage_buffer;
 
-void* g_global_data_180a001e8;
+void* g_global_texture_buffer;
 
-void* g_static_data_180c8aa00;
+void* g_static_render_target;
 
 void* g_global_temp_data_140;
 
-void* g_static_data_180d49158;
-// undefined g_function_18004c030;
+void* g_static_frame_buffer;
+// undefined g_function_load_shader;
 
-void* g_function_18004c030;
+void* g_function_load_shader;
 
-void* g_global_data_180a02b98;
-// undefined g_function_180056e10;
+void* g_global_shader_buffer;
+// undefined g_function_compile_shader;
 
-void* g_function_180056e10;
-// undefined g_function_180051cc0;
+void* g_function_compile_shader;
+// undefined g_function_link_program;
 
-void* g_function_180051cc0;
-// undefined g_function_180051d00;
+void* g_function_link_program;
+// undefined g_function_validate_program;
 
-void* g_function_180051d00;
+void* g_function_validate_program;
 
 void* g_global_data_1800e7f50;
 
@@ -468,9 +468,9 @@ void* g_global_data_1800e7fe0;
 void* g_global_data_1800e8020;
 
 void* g_global_data_1801b9b60;
-// undefined g_function_1800596a0;
+// undefined g_function_create_buffer;
 
-void* g_function_1800596a0;
+void* g_function_create_buffer;
 
 void* g_global_high_data_550;
 
@@ -541,12 +541,12 @@ void* g_static_data_180a069a0;
 void* g_static_data_180a069a8;
 
 void* g_global_data_18014f7f0;
-// undefined g_function_180049b30;
+// undefined g_function_allocate_memory;
 
-void* g_function_180049b30;
-// undefined g_function_18004ca00;
+void* g_function_allocate_memory;
+// undefined g_function_free_memory;
 
-void* g_function_18004ca00;
+void* g_function_free_memory;
 
 void* g_global_data_180a08fd0;
 
@@ -609,9 +609,9 @@ void* g_global_data_1800830b0;
 void* g_global_data_1800830c0;
 
 void* g_global_data_180083130;
-// undefined g_function_18004a130;
+// undefined g_function_reallocate_memory;
 
-void* g_function_18004a130;
+void* g_function_reallocate_memory;
 
 void* g_global_data_180a0c9a0;
 
@@ -626,18 +626,18 @@ void* g_global_data_180a0c7d8;
 void* g_global_data_180a0c7f0;
 
 void* g_global_data_180a0c508;
-// undefined g_function_180049cd0;
+// undefined g_function_copy_memory;
 
-void* g_function_180049cd0;
-// undefined g_function_180049970;
+void* g_function_copy_memory;
+// undefined g_function_fill_memory;
 
-void* g_function_180049970;
-// undefined g_function_1800586e0;
+void* g_function_fill_memory;
+// undefined g_function_compare_memory;
 
-void* g_function_1800586e0;
-// undefined g_function_180046480;
+void* g_function_compare_memory;
+// undefined g_function_find_memory;
 
-void* g_function_180046480;
+void* g_function_find_memory;
 
 void* g_global_data_180a13ad0;
 
@@ -682,9 +682,9 @@ void* g_global_data_180a13ca0;
 void* g_global_data_180a13cac;
 
 void* g_global_data_180239520;
-// undefined g_function_180056de0;
+// undefined g_function_lock_memory;
 
-void* g_function_180056de0;
+void* g_function_lock_memory;
 
 void* g_global_data_180a172e0;
 
@@ -910,9 +910,9 @@ void* g_static_data_180d48dc0;
 void* g_static_data_180d48dc8;
 
 void* g_static_data_180d48dd0;
-// undefined g_function_1800670d0;
+// undefined g_function_protect_memory;
 
-void* g_function_1800670d0;
+void* g_function_protect_memory;
 
 void* g_global_data_180a25980;
 
@@ -1071,9 +1071,9 @@ void* g_global_data_180a25900;
 void* g_global_data_180a25ad0;
 
 void* g_global_data_180a25a6c;
-// undefined g_function_18006b8f0;
+// undefined g_function_unlock_memory;
 
-void* g_function_18006b8f0;
+void* g_function_unlock_memory;
 // 数据结构初始化函数 - 原名：FUN_18002c340
 
 void InitializeDataStructure(void)
