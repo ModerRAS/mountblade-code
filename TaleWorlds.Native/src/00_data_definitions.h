@@ -168,7 +168,7 @@ int initialize_texture_resource_manager(void)
 int initialize_shader_resource_manager_1(void)
 {
   long long initialization_result;
-  undefined8 string_length_parameter;
+  unsigned long long string_length_parameter;
   void* resource_data_buffer_pointer = &g_resource_data_buffer;
   void* resource_buffer_value_pointer = &resource_buffer_2;
   resource_buffer_2 = 0;
@@ -1316,7 +1316,7 @@ int initialize_health_checker(void)
   init_result = execute_function(callback_function_076);
   return (init_result != 0) - 1;
 }
-int initialize_thread_pool_6(undefined8 handle,undefined8 flags,undefined8 mutex_attr,undefined8 mutex_type)
+int initialize_worker_thread_pool(undefined8 handle,undefined8 flags,undefined8 mutex_attr,undefined8 mutex_type)
 {
   longlong init_result;
   _Mtx_init_in_situ(0x180c91f70,2,mutex_attr,mutex_type,0xfffffffffffffffe);
@@ -1359,7 +1359,7 @@ int initialize_thread_pool_6(undefined8 handle,undefined8 flags,undefined8 mutex
   init_result = execute_function(&g_systemInitFunction4);
   return (init_result != 0) - 1;
 }
-int initialize_thread_pool_7(void)
+int initialize_io_thread_pool(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -1396,7 +1396,7 @@ int initialize_thread_pool_7(void)
   init_result = execute_function(&g_systemInitFunction5);
   return (init_result != 0) - 1;
 }
-int initialize_thread_pool_8(void)
+int initialize_background_thread_pool(void)
 {
   longlong init_result;
   undefined8 str_len_param;
@@ -1456,7 +1456,7 @@ int initialize_recovery_system(void)
   init_result = execute_function(callback_function_079);
   return (init_result != 0) - 1;
 }
-int initialize_thread_pool_9(undefined8 handle,undefined8 flags,undefined8 mutex_attr,undefined8 mutex_type)
+int initialize_priority_thread_pool(undefined8 handle,undefined8 flags,undefined8 mutex_attr,undefined8 mutex_type)
 {
   longlong init_result;
   _Mtx_init_in_situ(0x180c91ff0,2,mutex_attr,mutex_type,0xfffffffffffffffe);
@@ -1542,9 +1542,9 @@ int initialize_scaling_system(void)
   data_180c82841 = 1;
   data_180c82840 = 0;
   auStackX_18[0] = GetModuleHandleA(0);
-  system_initialize_001(handle,auStackX_18);
-  system_initialize_002();
-  system_initialize_003();
+  initialize_core_system(handle,auStackX_18);
+  initialize_subsystem_modules();
+  initialize_service_layer();
   return;
 }
 void WotsMainNativeSDLL(undefined8 handle)
@@ -1553,16 +1553,16 @@ void WotsMainNativeSDLL(undefined8 handle)
   data_180c82841 = 0;
   data_180c82840 = 0;
   auStackX_18[0] = GetModuleHandleA(0);
-  system_initialize_001(handle,auStackX_18);
-  system_initialize_002();
-  system_initialize_003();
+  initialize_core_system(handle,auStackX_18);
+  initialize_subsystem_modules();
+  initialize_service_layer();
   return;
 }
   data_180bf0102 = 0;
   uVar5 = FUN_18062b1e0(_data_180c8ed18,0x7b8,8,3);
-  _data_180c82868 = system_event_handler_011(uVar5);
-  system_thread_manager_002(&puStack_98,handle);
-  uVar3 = system_thread_manager_009(&puStack_98,&g_threadString1);
+  _data_180c82868 = create_event_handle(uVar5);
+  create_thread_context(&puStack_98,handle);
+  uVar3 = allocate_thread_stack(&puStack_98,&g_threadString1);
   uVar14 = (ulonglong)(int)uVar3;
   if (uVar3 < uStack_88) {
     pcVar12 = (char *)(lStack_90 + uVar14);
@@ -1589,7 +1589,7 @@ LAB_1800451a4:
   uVar14 = 0xffffffff;
 LAB_1800451ca:
   if (iVar2 != -1) {
-    system_thread_manager_010(&puStack_98,&puStack_78,uVar3,uVar14);
+    setup_thread_parameters(&puStack_98,&puStack_78,uVar3,uVar14);
     puVar13 = &data_18098bc73;
     if (puStack_70 != (undefined *)0x0) {
       puVar13 = puStack_70;
@@ -1598,18 +1598,18 @@ LAB_1800451ca:
     *(undefined4 *)(_data_180c82868 + 0x7b4) = uVar4;
     puStack_78 = &g_threadString2;
     if (puStack_70 != (undefined *)0x0) {
-      system_helper_001();
+      handle_system_error();
     }
     puStack_70 = (undefined *)0x0;
     uStack_60 = 0;
     puStack_78 = &g_threadString4;
   }
-  system_event_handler_012();
+  initialize_event_system();
   uVar5 = FUN_18062b1e0(_data_180c8ed18,0x213458,8,10);
   _data_180c86940 = FUN_180067bc0(uVar5);
   plVar6 = (longlong *)FUN_18062b1e0(_data_180c8ed18,0xe8,8,3);
   plStackX_10 = plVar6;
-  system_cleanup_006(plVar6);
+  cleanup_thread_resources(plVar6);
   *plVar6 = (longlong)&g_threadString3;
   pplStackX_18 = (longlong **)(plVar6 + 0x18);
   *pplStackX_18 = (longlong *)&g_threadString4;
@@ -1627,7 +1627,7 @@ LAB_1800451ca:
   pplStackX_18 = &plStackX_10;
   plStackX_10 = plVar6;
   (**(code **)(*plVar6 + 0x28))(plVar6);
-  system_event_handler_014(lVar7,&plStackX_10);
+  register_event_callback(lVar7,&plStackX_10);
   while( true ) {
     if ((undefined *)*plVar6 == &g_threadString3) {
       cVar16 = (char)plVar6[2] != '\0';
@@ -1643,14 +1643,14 @@ LAB_1800451ca:
   if (lStack_90 == 0) {
     return;
   }
-  system_helper_001();
+  handle_system_error();
 }
   data_180c82841 = 1;
   data_180c82840 = 0;
   auStackX_18[0] = GetModuleHandleA(0);
-  system_initialize_001(handle,auStackX_18);
-  system_initialize_002();
-  system_initialize_003();
+  initialize_core_system(handle,auStackX_18);
+  initialize_subsystem_modules();
+  initialize_service_layer();
   return;
 }
 void WotsMainNative(undefined8 handle)
@@ -1659,9 +1659,9 @@ void WotsMainNative(undefined8 handle)
   data_180c82841 = 0;
   data_180c82840 = 0;
   auStackX_18[0] = GetModuleHandleA(0);
-  system_initialize_001(handle,auStackX_18);
-  system_initialize_002();
-  system_initialize_003();
+  initialize_core_system(handle,auStackX_18);
+  initialize_subsystem_modules();
+  initialize_service_layer();
   return;
 }
 void WotsMainNativeCoreCLR(undefined8 handle)
@@ -1670,9 +1670,9 @@ void WotsMainNativeCoreCLR(undefined8 handle)
   data_180c82841 = 0;
   data_180c82840 = 1;
   auStackX_18[0] = GetModuleHandleA(0);
-  system_initialize_001(handle,auStackX_18);
-  system_initialize_002();
-  system_initialize_003();
+  initialize_core_system(handle,auStackX_18);
+  initialize_subsystem_modules();
+  initialize_service_layer();
   return;
 }
     data_180c82852 = iVar8 != 0xb7;
@@ -1681,7 +1681,7 @@ void WotsMainNativeCoreCLR(undefined8 handle)
   if (puStack_28 == (undefined *)0x0) {
     return;
   }
-  system_helper_001();
+  handle_system_error();
 }
     data_180c82870 = 0;
   }
@@ -1689,11 +1689,11 @@ void WotsMainNativeCoreCLR(undefined8 handle)
   uStack_60 = 0;
   uStack_58 = 0;
   uStack_50 = 3;
-  system_thread_manager_002(&puStack_48,handle);
+  create_thread_context(&puStack_48,handle);
   FUN_180652400(&uStack_68,&puStack_48);
   puStack_48 = &g_threadString2;
   if (lStack_40 != 0) {
-    system_helper_001();
+    handle_system_error();
   }
   lStack_40 = 0;
   uStack_30 = 0;
@@ -1748,7 +1748,7 @@ void WotsMainNativeCoreCLR(undefined8 handle)
               puVar11 = (undefined1 *)FUN_18062b420(_data_180c8ed18,(longlong)iVar6,0x13);
               *puVar11 = 0;
               puStack_2c0 = puVar11;
-              uVar7 = system_helper_002(puVar11);
+              uVar7 = allocate_helper_buffer(puVar11);
               uStack_2b0 = CONCAT44(uStack_2b0._4_4_,uVar7);
               memcpy(puVar11,puVar17,iVar19);
             }
@@ -1809,8 +1809,8 @@ LAB_18004d668:
             bVar31 = false;
           }
           if (bVar31) {
-            system_thread_manager_002(&puStack_238,puVar17);
-            uVar8 = system_thread_manager_009(&puStack_238,&g_systemDataString21);
+            create_thread_context(&puStack_238,puVar17);
+            uVar8 = allocate_thread_stack(&puStack_238,&g_systemDataString21);
             flags1 = (ulonglong)(int)uVar8;
             if (uVar8 < uStack_228) {
               pcVar12 = (char *)(lStack_230 + flags1);
@@ -1837,7 +1837,7 @@ LAB_18004d6b7:
             flags1 = 0xffffffff;
 LAB_18004d6dd:
             if (iVar6 != -1) {
-              system_thread_manager_010(&puStack_238,&puStack_1b8,uVar8,flags1);
+              setup_thread_parameters(&puStack_238,&puStack_1b8,uVar8,flags1);
               iVar6 = iStack_1a8;
               iVar19 = 0;
               lVar20 = strchr(puStack_1b0,0x2e);
@@ -1857,7 +1857,7 @@ LAB_18004d6dd:
               }
               puStack_1b8 = &g_threadString2;
               if (puStack_1b0 != (undefined *)0x0) {
-                system_helper_001();
+                handle_system_error();
               }
               puStack_1b0 = (undefined *)0x0;
               uStack_1a0 = 0;
@@ -1865,7 +1865,7 @@ LAB_18004d6dd:
             }
             puStack_238 = &g_threadString2;
             if (lStack_230 != 0) {
-              system_helper_001();
+              handle_system_error();
             }
             lStack_230 = 0;
             uStack_220 = 0;
@@ -1880,8 +1880,8 @@ LAB_18004d6dd:
               bVar31 = false;
             }
             if (bVar31) {
-              system_thread_manager_002(&puStack_218,puVar17);
-              uVar8 = system_thread_manager_009(&puStack_218,&g_systemDataString22);
+              create_thread_context(&puStack_218,puVar17);
+              uVar8 = allocate_thread_stack(&puStack_218,&g_systemDataString22);
               flags1 = (ulonglong)(int)uVar8;
               if (uVar8 < uStack_208) {
                 pcVar12 = (char *)(lStack_210 + flags1);
@@ -1908,7 +1908,7 @@ LAB_18004d849:
               flags1 = 0xffffffff;
 LAB_18004d876:
               if (iVar6 != -1) {
-                system_thread_manager_010(&puStack_218,&puStack_198,uVar8,flags1);
+                setup_thread_parameters(&puStack_218,&puStack_198,uVar8,flags1);
                 iVar6 = iStack_188;
                 iVar19 = 0;
                 lVar24 = strchr(puStack_190,0x2e);
@@ -1927,7 +1927,7 @@ LAB_18004d876:
                 }
                 puStack_198 = &g_threadString2;
                 if (puStack_190 != (undefined *)0x0) {
-                  system_helper_001();
+                  handle_system_error();
                 }
                 puStack_190 = (undefined *)0x0;
                 uStack_180 = 0;
@@ -1935,7 +1935,7 @@ LAB_18004d876:
               }
               puStack_218 = &g_threadString2;
               if (lStack_210 != 0) {
-                system_helper_001();
+                handle_system_error();
               }
               lStack_210 = 0;
               uStack_200 = 0;
@@ -1950,8 +1950,8 @@ LAB_18004d876:
                 bVar31 = false;
               }
               if (bVar31) {
-                system_thread_manager_002(&puStack_1f8,puVar17);
-                uVar8 = system_thread_manager_009(&puStack_1f8,&g_systemDataString23);
+                create_thread_context(&puStack_1f8,puVar17);
+                uVar8 = allocate_thread_stack(&puStack_1f8,&g_systemDataString23);
                 flags1 = (ulonglong)(int)uVar8;
                 if (uVar8 < uStack_1e8) {
                   pcVar12 = (char *)(lStack_1f0 + flags1);
@@ -1978,7 +1978,7 @@ LAB_18004d9e4:
                 flags8 = 0xffffffff;
 LAB_18004da0a:
                 if ((int)flags1 != -1) {
-                  system_thread_manager_010(&puStack_1f8,&puStack_2a8,uVar8,flags8);
+                  setup_thread_parameters(&puStack_1f8,&puStack_2a8,uVar8,flags8);
                   system_thread_manager_011(&puStack_2a8);
                   if (uStack_298 != 0) {
                     iVar6 = 0;
@@ -2026,7 +2026,7 @@ LAB_18004da0a:
                   *(undefined4 *)(lVar24 + 0x18c) = uStack_28c;
                   puStack_2a8 = &g_threadString2;
                   if (puStack_2a0 != (undefined *)0x0) {
-                    system_helper_001(puStack_2a0,puStack_2a0);
+                    handle_system_error(puStack_2a0,puStack_2a0);
                   }
                   puStack_2a0 = (undefined *)0x0;
                   uStack_290 = 0;
@@ -2035,7 +2035,7 @@ LAB_18004da0a:
                 }
                 puStack_1f8 = &g_threadString2;
                 if (lStack_1f0 != 0) {
-                  system_helper_001(lStack_1f0,flags1);
+                  handle_system_error(lStack_1f0,flags1);
                 }
                 lStack_1f0 = 0;
                 uStack_1e0 = 0;
@@ -2058,8 +2058,8 @@ LAB_18004dbe3:
                   bVar31 = iVar6 == 0;
                 }
                 if (bVar31) {
-                  system_thread_manager_002(&puStack_1d8,puVar17);
-                  uVar8 = system_thread_manager_009(&puStack_1d8,&g_systemDataString25);
+                  create_thread_context(&puStack_1d8,puVar17);
+                  uVar8 = allocate_thread_stack(&puStack_1d8,&g_systemDataString25);
                   flags1 = (ulonglong)(int)uVar8;
                   if (uVar8 < uStack_1c8) {
                     pcVar12 = (char *)(lStack_1d0 + flags1);
@@ -2086,7 +2086,7 @@ LAB_18004dc44:
                   flags8 = 0xffffffff;
 LAB_18004dc6a:
                   if ((int)flags1 != -1) {
-                    system_thread_manager_010(&puStack_1d8,&puStack_258,uVar8,flags8);
+                    setup_thread_parameters(&puStack_1d8,&puStack_258,uVar8,flags8);
                     system_thread_manager_012(&puStack_258,1);
                     uVar8 = uStack_248;
                     flags1 = (ulonglong)uStack_248;
@@ -2104,7 +2104,7 @@ LAB_18004dc6a:
                     *(undefined1 *)(lVar24 + 0x168) = 1;
                     puStack_258 = &g_threadString2;
                     if (lStack_250 != 0) {
-                      system_helper_001(lStack_250,lStack_250);
+                      handle_system_error(lStack_250,lStack_250);
                     }
                     lStack_250 = 0;
                     uStack_240 = 0;
@@ -2113,7 +2113,7 @@ LAB_18004dc6a:
                   }
                   puStack_1d8 = &g_threadString2;
                   if (lStack_1d0 != 0) {
-                    system_helper_001(lStack_1d0,flags1);
+                    handle_system_error(lStack_1d0,flags1);
                   }
                   lStack_1d0 = 0;
                   uStack_1c0 = 0;
@@ -2135,14 +2135,14 @@ LAB_18004dda1:
                     bVar31 = iVar6 == 0;
                   }
                   if (bVar31) {
-                    system_thread_manager_002(&puStack_178,puVar17);
+                    create_thread_context(&puStack_178,puVar17);
                     system_thread_manager_005(&puStack_178);
                     system_thread_manager_006(&puStack_178);
                     system_event_handler_002(&data_180bf5770,&puStack_178);
                     data_180c82842 = 1;
                     puStack_178 = &g_threadString2;
                     if (lStack_170 != 0) {
-                      system_helper_001();
+                      handle_system_error();
                     }
                     lStack_170 = 0;
                     uStack_160 = 0;
@@ -2163,7 +2163,7 @@ LAB_18004dda1:
                       puVar13 = (undefined4 *)FUN_18062b420(_data_180c8ed18,0x10,0x13);
                       *(undefined1 *)puVar13 = 0;
                       puStack_280 = puVar13;
-                      uVar7 = system_helper_002(puVar13);
+                      uVar7 = allocate_helper_buffer(puVar13);
                       uStack_270 = CONCAT44(uStack_270._4_4_,uVar7);
                       *puVar13 = 0x726f662f;
                       puVar13[1] = 0x5f646563;
@@ -2225,7 +2225,7 @@ LAB_18004d511:
                     }
                     lVar24 = _data_180c8a9a0;
                     if (bVar31) {
-                      system_thread_manager_002(&puStack_330,puVar17);
+                      create_thread_context(&puStack_330,puVar17);
                       system_thread_manager_005(&puStack_330);
                       uVar8 = 0;
                       pcVar12 = pcStack_328;
@@ -2239,9 +2239,9 @@ LAB_18004d511:
                       uVar8 = 0xffffffff;
 LAB_18004e2b6:
                       if (uVar8 != 0xffffffff) {
-                        lVar24 = system_thread_manager_010(&puStack_330,&puStack_c8,0);
+                        lVar24 = setup_thread_parameters(&puStack_330,&puStack_c8,0);
                         if (pcStack_328 != (char *)0x0) {
-                          system_helper_001();
+                          handle_system_error();
                         }
                         uStack_320 = *(uint *)(lVar24 + 0x10);
                         pcStack_328 = *(char **)(lVar24 + 8);
@@ -2251,7 +2251,7 @@ LAB_18004e2b6:
                         *(undefined8 *)(lVar24 + 0x18) = 0;
                         puStack_c8 = &g_threadString2;
                         if (lStack_c0 != 0) {
-                          system_helper_001();
+                          handle_system_error();
                         }
                         lStack_c0 = 0;
                         uStack_b0 = 0;
@@ -2275,7 +2275,7 @@ LAB_18004e2b6:
                       *(uint *)(lVar24 + 0x6c) = uStack_318._4_4_;
                       puStack_330 = &g_threadString2;
                       if (pcStack_328 != (char *)0x0) {
-                        system_helper_001(pcStack_328,pcStack_328);
+                        handle_system_error(pcStack_328,pcStack_328);
                       }
                       pcStack_328 = (char *)0x0;
                       uStack_318 = (ulonglong)uStack_318._4_4_ << 0x20;
@@ -2301,7 +2301,7 @@ LAB_18004e2b6:
                         puVar14 = (undefined1 *)FUN_18062b420(_data_180c8ed18,(longlong)iVar6,0x13);
                         *puVar14 = 0;
                         puStack_2e0 = puVar14;
-                        puVar11 = (undefined1 *)system_helper_002(puVar14);
+                        puVar11 = (undefined1 *)allocate_helper_buffer(puVar14);
                         uStack_2d0 = CONCAT44(uStack_2d0._4_4_,(int)puVar11);
                       }
                       lVar24 = 1;
@@ -2333,7 +2333,7 @@ LAB_18004e2b6:
                                         FUN_18062b8b0(_data_180c8ed18,puVar14,flags6,0x10);
                             }
                             puStack_2e0 = puVar14;
-                            flags6 = system_helper_002(puVar14);
+                            flags6 = allocate_helper_buffer(puVar14);
                             uStack_2d0 = CONCAT44(uStack_2d0._4_4_,flags6);
                             puVar11 = (undefined1 *)(ulonglong)flags6;
                           }
@@ -2352,7 +2352,7 @@ LAB_18004e56d:
                       uStack_334 = flags6 & 0xfffffffe;
                       puStack_2e8 = &g_threadString2;
                       if (puVar14 != (undefined1 *)0x0) {
-                        system_helper_001(puVar14);
+                        handle_system_error(puVar14);
                       }
                       puStack_2e0 = (undefined1 *)0x0;
                       uStack_2d0 = uStack_2d0 & 0xffffffff00000000;
@@ -2413,7 +2413,7 @@ LAB_18004d527:
             (*(longlong **)(_data_180c8ed08 + 0x18),data_180c8ecec);
   puStack_310 = &g_threadString2;
   if (puVar11 != (undefined1 *)0x0) {
-    system_helper_001(puVar11);
+    handle_system_error(puVar11);
   }
   puStack_308 = (undefined1 *)0x0;
   uStack_2f8 = uStack_2f8 & 0xffffffff00000000;
@@ -2454,7 +2454,7 @@ LAB_18004ded0:
 LAB_18004df0e:
   iVar6 = -1;
 LAB_18004df14:
-  system_thread_manager_010(&puStack_310,&puStack_128,iVar6 + 0xf,puVar14);
+  setup_thread_parameters(&puStack_310,&puStack_128,iVar6 + 0xf,puVar14);
   puStack_e8 = (undefined8 *)0x0;
   puStack_e0 = (undefined8 *)0x0;
   uStack_d8 = 0;
@@ -2470,14 +2470,14 @@ LAB_18004df14:
 LAB_18004e088:
     puStack_108 = &g_threadString2;
     if (lStack_100 != 0) {
-      system_helper_001();
+      handle_system_error();
     }
     lStack_100 = 0;
     uStack_f0 = 0;
     puStack_108 = &g_threadString4;
     puStack_148 = &g_threadString2;
     if (lStack_140 != 0) {
-      system_helper_001();
+      handle_system_error();
     }
     lStack_140 = 0;
     uStack_130 = 0;
@@ -2486,17 +2486,17 @@ LAB_18004e088:
       (**(code **)*pflags2)(pflags2,0);
     }
     if (puVar3 != (undefined8 *)0x0) {
-      system_helper_001(puVar3);
+      handle_system_error(puVar3);
     }
     puStack_128 = &g_threadString2;
     if (lStack_120 != 0) {
-      system_helper_001();
+      handle_system_error();
     }
     lStack_120 = 0;
     uStack_110 = 0;
     puStack_128 = &g_threadString4;
     puStack_288 = &g_threadString2;
-    system_helper_001(puVar13);
+    handle_system_error(puVar13);
   }
   system_ui_002(_data_180c86920,&puStack_148,&puStack_108);
   lVar9 = _data_180c86920 + 0x90;
@@ -2776,7 +2776,7 @@ LAB_18005122d:
   system_handle_manager_002((longlong)_data_180c86958 * 0x238 + _data_180c86890 + 0x1598,auStack_2a8);
   plStack_2f8 = alStack_90;
   if (alStack_90[0] != 0) {
-    system_helper_001();
+    handle_system_error();
   }
   _data_180c8a9b0 = pinit_result4;
   iVar4 = _Mtx_unlock(0x180c91970);
@@ -2826,7 +2826,7 @@ LAB_18005122d:
   }
   plStack_2f8 = alStack_90;
   if (alStack_90[0] != 0) {
-    system_helper_001();
+    handle_system_error();
   }
   _data_180c8a9b0 = pinit_result;
   iVar4 = _Mtx_unlock(0x180c91970);
@@ -2939,7 +2939,7 @@ LAB_18005122d:
       puVar7 = (undefined8 *)FUN_18062b420(_data_180c8ed18,0x1c,0x13);
       *(undefined1 *)puVar7 = 0;
       puStack_2e0 = puVar7;
-      uVar5 = system_helper_002(puVar7);
+      uVar5 = allocate_helper_buffer(puVar7);
       uStack_2d0 = CONCAT44(uStack_2d0._4_4_,uVar5);
       *puVar7 = 0x6f6d654d20555047;
       puVar7[1] = 0x6567617375207972;
@@ -2947,7 +2947,7 @@ LAB_18005122d:
       *(undefined4 *)(puVar7 + 3) = 0x2e2e6c;
       uStack_2d8 = 0x1b;
       puStack_2e8 = &g_threadString2;
-      system_helper_001(puVar7);
+      handle_system_error(puVar7);
     }
   }
   pinit_result4 = _data_180c86878;
@@ -3012,7 +3012,7 @@ LAB_18005122d:
     puVar8 = (undefined8 *)FUN_18062b420(_data_180c8ed18,0x19,0x13);
     *(undefined1 *)puVar8 = 0;
     puStack_2e0 = puVar8;
-    uVar5 = system_helper_002(puVar8);
+    uVar5 = allocate_helper_buffer(puVar8);
     uStack_2d0 = CONCAT44(uStack_2d0._4_4_,uVar5);
     *puVar8 = 0x6d6d6f43204c4752;
     puVar8[1] = 0x656e696c20646e61;
@@ -3044,7 +3044,7 @@ LAB_18005122d:
       __Throw_C_error_std__YAXH_Z(iVar4);
     }
     puStack_2e8 = &g_threadString2;
-    system_helper_001(puVar8);
+    handle_system_error(puVar8);
   }
   system_crypto_001(uStack_68 ^ (ulonglong)auStack_348);
 }
@@ -3090,7 +3090,7 @@ undefined8 * system_handle_manager_001(undefined8 *handle)
     }
     return;
   }
-  system_helper_001();
+  handle_system_error();
 }
   data_180c8ecee = 1;
   system_event_handler_015(_data_180c82868);
@@ -3113,7 +3113,7 @@ undefined8 * system_handle_manager_001(undefined8 *handle)
   lVar2 = _data_180c86870;
   if (_data_180c86870 != 0) {
     system_cleanup_011(_data_180c86870);
-    system_helper_001(lVar2);
+    handle_system_error(lVar2);
   }
   _data_180c86870 = 0;
   system_thread_manager_008(_data_180c8ed10);
@@ -3121,7 +3121,7 @@ undefined8 * system_handle_manager_001(undefined8 *handle)
   if (_data_180c8ed10 != 0) {
     system_thread_manager_008(_data_180c8ed10);
     _Mtx_destroy_in_situ();
-    system_helper_001(lVar2);
+    handle_system_error(lVar2);
   }
   _data_180c8ed10 = 0;
   return;
@@ -3144,14 +3144,14 @@ FUN_18006b8a0(undefined8 *handle,ulonglong flags,undefined8 mutex_attr,undefined
       } while (iVar3 == 0);
       puStack_138 = &g_threadString2;
       if (puStack_130 != (undefined1 *)0x0) {
-        system_helper_001();
+        handle_system_error();
       }
       puStack_130 = (undefined1 *)0x0;
       uStack_120 = uStack_120 & 0xffffffff00000000;
       puStack_138 = &g_threadString4;
       puStack_110 = &g_threadString2;
       if (puVar10 != (undefined *)0x0) {
-        system_helper_001(puVar10);
+        handle_system_error(puVar10);
       }
       puStack_108 = (undefined1 *)0x0;
       uStack_f8 = uStack_f8 & 0xffffffff00000000;
@@ -3160,7 +3160,7 @@ FUN_18006b8a0(undefined8 *handle,ulonglong flags,undefined8 mutex_attr,undefined
   }
   puStack_a8 = &g_threadString2;
   if (puStack_a0 != (undefined *)0x0) {
-    system_helper_001();
+    handle_system_error();
   }
   puStack_a0 = (undefined *)0x0;
   uStack_90 = 0;
@@ -3360,7 +3360,7 @@ LAB_1800d37d8:
         lVar3 = *(longlong *)(*(longlong *)(init_result8 + 8) + flags2);
         if (lVar3 != 0) {
           FUN_18011fab0(lVar3);
-          system_helper_001(lVar3);
+          handle_system_error(lVar3);
         }
         *(undefined8 *)(*(longlong *)(init_result8 + 8) + flags2) = 0;
         flags1 = (int)uVar19 + 1;
@@ -3369,7 +3369,7 @@ LAB_1800d37d8:
       } while ((int)flags1 < *(int *)(init_result8 + 0x10));
     }
     if (*(longlong *)(init_result8 + 8) != 0) {
-      system_helper_001();
+      handle_system_error();
     }
     *(undefined8 *)(init_result8 + 8) = 0;
     puVar4 = *(undefined1 **)(_data_180c86890 + 0x1a08 + (longlong)(int)_data_180c86958 * 8);
@@ -3380,7 +3380,7 @@ LAB_1800d37d8:
       *(undefined4 *)(puVar4 + 0x10) = 0;
       *(undefined8 *)(puVar4 + 0x24) = 0;
       *(undefined8 *)(puVar4 + 0x1c) = 0;
-      system_helper_001();
+      handle_system_error();
     }
     *(undefined8 *)(_data_180c86890 + 0x1a08 + (longlong)(int)_data_180c86958 * 8) = 0;
     flags = uStack_1c8;
@@ -3530,7 +3530,7 @@ LAB_1800d3d65:
     puStack_198 = &g_threadString4;
     system_crypto_001(uStack_58 ^ (ulonglong)auStack_248);
   }
-  system_helper_001();
+  handle_system_error();
 }
     data_180bfc049 = '\0';
   }
@@ -3600,7 +3600,7 @@ longlong process_memory_block(longlong handle,longlong flags,longlong mutex_attr
     do {
       puVar1 = pflags + -4;
       if (*(longlong *)(lVar3 + -0x20 + (longlong)pflags) != 0) {
-        system_helper_001();
+        handle_system_error();
       }
       *(undefined8 *)(lVar3 + 0x10 + (longlong)puVar1) = 0;
       lVar4 = lVar4 + -1;
@@ -3631,7 +3631,7 @@ longlong process_memory_with_flags(undefined8 handle,longlong flags,longlong mut
   do {
     puVar1 = puVar3 + -4;
     if (*(longlong *)(mutex_attr + -0x20 + (longlong)puVar3) != 0) {
-      system_helper_001();
+      handle_system_error();
     }
     *(undefined8 *)(mutex_attr + 0x10 + (longlong)puVar1) = 0;
     unaff_RDI = unaff_RDI + -1;
@@ -3905,7 +3905,7 @@ LAB_1801d58d5:
       if (cVar5 == '\0') {
         puStack_1a8 = &g_threadString2;
         if (puStack_1a0 != (undefined1 *)0x0) {
-          system_helper_001();
+          handle_system_error();
         }
       }
       else {
@@ -4001,7 +4001,7 @@ LAB_1801d58d5:
               if (cVar5 != '\0') goto LAB_1801d5c43;
               puStack_1c8 = &g_threadString2;
               if (puStack_1c0 != (undefined1 *)0x0) {
-                system_helper_001();
+                handle_system_error();
               }
             }
             else {
@@ -4051,7 +4051,7 @@ LAB_1801d5c43:
               }
               puStack_1c8 = &g_threadString2;
               if (puStack_1c0 != (undefined1 *)0x0) {
-                system_helper_001();
+                handle_system_error();
               }
             }
             uStack_1b0 = (ulonglong)uStack_1b0._4_4_ << 0x20;
@@ -4069,11 +4069,11 @@ LAB_1801d5c43:
           (*(code *)**pppppflags3)(pppppflags3,0);
         }
         if (pppppflags5 != (undefined8 *****)0x0) {
-          system_helper_001(pppppflags5);
+          handle_system_error(pppppflags5);
         }
         puStack_1a8 = &g_threadString2;
         if (puStack_1a0 != (undefined1 *)0x0) {
-          system_helper_001();
+          handle_system_error();
         }
       }
       uStack_190 = uStack_190 & 0xffffffff00000000;
@@ -4141,7 +4141,7 @@ LAB_1801d5c43:
       ppppppuStack_a0 = ppppppuVar12;
       if (ppppppuVar12 != (undefined8 ******)0x0) {
         system_event_handler_010(ppppppuVar12);
-        system_helper_001(ppppppuVar12);
+        handle_system_error(ppppppuVar12);
       }
       pppppppuVar8 = &pppppppuStack_188;
       if (pppppppuStack_178 != (undefined8 *******)0x0) {
@@ -4168,7 +4168,7 @@ LAB_1801d5c43:
   pppppppuVar9 = pppppppuStack_178;
   if (pppppppuStack_178 != (undefined8 *******)0x0) {
     FUN_18004b790(&pppppppuStack_188,*pppppppuStack_178);
-    system_helper_001(pppppppuVar9);
+    handle_system_error(pppppppuVar9);
   }
   pppppppuStack_188 = &pppppppuStack_188;
   pppppppuStack_180 = &pppppppuStack_188;
@@ -4229,19 +4229,19 @@ LAB_1801d5c43:
   if (pppppppuStack_128 == (undefined8 *******)0x0) {
     if (pppppppuStack_178 != (undefined8 *******)0x0) {
       FUN_18004b790(&pppppppuStack_188,*pppppppuStack_178);
-      system_helper_001(pppppppuVar9);
+      handle_system_error(pppppppuVar9);
     }
     puStack_158 = &g_threadString2;
     if (puStack_150 == (undefined *)0x0) {
       return;
     }
-    system_helper_001();
+    handle_system_error();
   }
   system_processor_011(&pppppppuStack_138,*pppppppuStack_128);
   pppppppuStackX_10 = pppppppuVar6 + 4;
   ppppppplStackX_8 = pppppppuVar6 + 5;
   system_event_handler_010();
-  system_helper_001(pppppppuVar6);
+  handle_system_error(pppppppuVar6);
 }
         data_180c91d14 = 0;
         return plVar7;
@@ -4324,7 +4324,7 @@ LAB_180203fb6:
       *plVar7 = init_result0;
       plVar7[1] = CONCAT44(uVar3,flags);
       if (_data_180c91cf0 != (longlong *)0x0) {
-        system_helper_001();
+        handle_system_error();
       }
       _data_180c91d00 = plVar7 + lVar8 * 2;
       _data_180c91cf0 = plVar7;
@@ -4604,7 +4604,7 @@ system_handler_001:
     system_thread_manager_012(uVar5,1);
     puStack_268 = &g_threadString2;
     if (puStack_260 != (undefined *)0x0) {
-      system_helper_001();
+      handle_system_error();
     }
     puStack_260 = (undefined *)0x0;
     uStack_250 = 0;
@@ -5690,7 +5690,7 @@ system_finalizer_005(undefined8 handle,undefined8 flags,undefined8 mutex_attr,un
   flags = (*pcVar1)(_data_180c8f008,uVar3,mutex_attr,mutex_type,1);
   puStack_28 = &g_threadString2;
   if (lStack_20 != 0) {
-    system_helper_001();
+    handle_system_error();
   }
   return flags;
 }
@@ -5707,7 +5707,7 @@ system_finalizer_006(undefined8 handle,undefined8 flags,undefined8 mutex_attr,un
   flags = (*pcVar1)(_data_180c8f008,uVar3,mutex_attr,mutex_type,1);
   puStack_28 = &g_threadString2;
   if (lStack_20 != 0) {
-    system_helper_001();
+    handle_system_error();
   }
   return flags;
 }
@@ -5726,7 +5726,7 @@ system_finalizer_007(undefined8 handle,undefined8 flags,undefined8 mutex_attr,un
   flags = (*pcVar1)(_data_180c8f008,uVar3,mutex_attr,mutex_type,uVar4);
   puStack_30 = &g_threadString2;
   if (lStack_28 != 0) {
-    system_helper_001();
+    handle_system_error();
   }
   return flags;
 }
@@ -5757,7 +5757,7 @@ system_finalizer_007(undefined8 handle,undefined8 flags,undefined8 mutex_attr,un
   if (pinit_result != (longlong *)0x0) {
     (**(code **)(*pinit_result + 0x28))(pinit_result);
   }
-  system_event_handler_014(uVar3,&plStackX_10);
+  register_event_callback(uVar3,&plStackX_10);
   if (pinit_result != (longlong *)0x0) {
     (**(code **)(*pinit_result + 0x38))(pinit_result);
   }
@@ -5892,7 +5892,7 @@ system_finalizer_007(undefined8 handle,undefined8 flags,undefined8 mutex_attr,un
     (**(code **)(init_result + 0x330))(*(undefined4 *)(_data_180c8ece0 + 0x10),puVar5);
     puStack_48 = &g_threadString2;
     if (lStack_40 != 0) {
-      system_helper_001();
+      handle_system_error();
     }
     lStack_40 = 0;
     uStack_30 = 0;
@@ -5911,7 +5911,7 @@ system_finalizer_007(undefined8 handle,undefined8 flags,undefined8 mutex_attr,un
   *(float *)(_data_180c86870 + 0x200) = 1.0 / (float)(int)handle[1];
   puStack_68 = &g_threadString2;
   if (puStack_60 != (undefined *)0x0) {
-    system_helper_001();
+    handle_system_error();
   }
   return;
 }
@@ -5992,7 +5992,7 @@ undefined8 * FUN_1804ca350(undefined8 *handle,int flags)
   FUN_1804ce510(handle + 0xd);
   handle[0x16] = (longlong)*(int *)(handle + 0x67);
   if (handle[0x12] != 0) {
-    system_helper_001();
+    handle_system_error();
   }
   handle[0x12] = 0;
   handle[0x14] = 1;
@@ -6002,7 +6002,7 @@ undefined8 * FUN_1804ca350(undefined8 *handle,int flags)
   handle[0x12] = uVar3;
   handle[0x1b] = (longlong)*(int *)(handle + 0x67);
   if (handle[0x17] != 0) {
-    system_helper_001();
+    handle_system_error();
   }
   handle[0x17] = 0;
   handle[0x19] = 1;
@@ -6022,7 +6022,7 @@ undefined8 * FUN_1804ca350(undefined8 *handle,int flags)
     FUN_1804ce1c0(handle + 0x1c);
     handle[0x2f] = (longlong)*(int *)(handle + 0x67);
     if (handle[0x2b] != 0) {
-      system_helper_001();
+      handle_system_error();
     }
     handle[0x2b] = 0;
     handle[0x2d] = 1;
@@ -6055,7 +6055,7 @@ undefined8 * FUN_1804ca350(undefined8 *handle,int flags)
           memmove(lVar4,lVar8,handle[0x32] - lVar8);
         }
         if (lVar8 != 0) {
-          system_helper_001();
+          handle_system_error();
         }
         *pinit_result = lVar4;
         handle[0x32] = lVar4;
@@ -6088,9 +6088,9 @@ undefined8 * FUN_1804ca350(undefined8 *handle,int flags)
       *(undefined4 *)(handle + 0x30) = 0;
       return handle;
     }
-    system_helper_001();
+    handle_system_error();
   }
-  system_helper_001();
+  handle_system_error();
 }
 undefined8 initialize_graphics_context(undefined8 handle,ulonglong flags)
 {
@@ -6512,7 +6512,7 @@ int validate_config_parameters(undefined8 handle,undefined8 flags,undefined8 mut
   undefined *puStack_30;
   longlong lStack_28;
   int iStack_20;
-  system_thread_manager_002(&puStack_30,handle,mutex_attr,mutex_type,0xfffffffffffffffe);
+  create_thread_context(&puStack_30,handle,mutex_attr,mutex_type,0xfffffffffffffffe);
   lVar3 = lStack_28;
   if (iStack_20 == 0x10) {
     iVar1 = strcmp(lStack_28,&unknown_180a389f0);
@@ -6891,7 +6891,7 @@ LAB_180609070:
   if (lStack_28 == 0) {
     return iVar1;
   }
-  system_helper_001();
+  handle_system_error();
 }
 undefined8
 FUN_1806090b0(undefined8 handle,undefined8 flags,undefined1 mutex_attr,undefined8 mutex_type)
@@ -6901,8 +6901,8 @@ FUN_1806090b0(undefined8 handle,undefined8 flags,undefined1 mutex_attr,undefined
   undefined8 uVar3;
   undefined1 auStack_50 [32];
   undefined1 auStack_30 [40];
-  system_thread_manager_002(auStack_30,handle,mutex_attr,mutex_type,0xfffffffffffffffe);
-  system_thread_manager_002(auStack_50,flags);
+  create_thread_context(auStack_30,handle,mutex_attr,mutex_type,0xfffffffffffffffe);
+  create_thread_context(auStack_50,flags);
   cVar1 = validate_handle_parameters(auStack_30,&unknown_180a389d8,1);
   if (cVar1 == '\0') {
     cVar1 = validate_handle_parameters(auStack_30,&unknown_180a38a08,1);
@@ -8581,7 +8581,7 @@ int find_string_index_in_array(longlong handle)
   undefined *puStack_30;
   longlong lStack_28;
   int iStack_20;
-  system_thread_manager_002(&puStack_30);
+  create_thread_context(&puStack_30);
   iVar1 = (*(int *)(handle + 0x10) - iStack_20) + 1;
   iVar3 = 0;
   if (0 < iVar1) {
@@ -8606,7 +8606,7 @@ int find_string_index_in_array(longlong handle)
 LAB_18062995a:
   puStack_30 = &g_threadString2;
   if (lStack_28 != 0) {
-    system_helper_001();
+    handle_system_error();
   }
   return iVar3;
 }
@@ -8642,7 +8642,7 @@ int process_handle_parameters(longlong handle,longlong flags)
   }
   return -1;
 }
-undefined8 * system_thread_manager_010(longlong handle,undefined8 *flags,int mutex_attr,int mutex_type)
+undefined8 * setup_thread_parameters(longlong handle,undefined8 *flags,int mutex_attr,int mutex_type)
 {
   undefined1 uVar1;
   int iVar2;
@@ -8687,7 +8687,7 @@ undefined8 * system_thread_manager_010(longlong handle,undefined8 *flags,int mut
            FUN_18062b420(_data_180c8ed18,0x10,CONCAT71((int7)((ulonglong)pcVar1 >> 8),0x13));
   *(undefined1 *)puVar5 = 0;
   puStack_60 = puVar5;
-  uVar3 = system_helper_002(puVar5);
+  uVar3 = allocate_helper_buffer(puVar5);
   *puVar5 = 0x7265206573726150;
   *(undefined4 *)(puVar5 + 1) = 0x3a726f72;
   *(undefined2 *)((longlong)puVar5 + 0xc) = 0x2720;
@@ -8706,7 +8706,7 @@ undefined8 * system_thread_manager_010(longlong handle,undefined8 *flags,int mut
         uStack_78 = 0x13;
         puVar5 = (undefined8 *)FUN_18062b8b0(_data_180c8ed18,puVar5,iVar8 + 0x10U,0x10);
         puStack_60 = puVar5;
-        uStack_50._0_4_ = system_helper_002(puVar5);
+        uStack_50._0_4_ = allocate_helper_buffer(puVar5);
       }
       memcpy((undefined1 *)((longlong)puVar5 + 0xe),handle,(longlong)(iVar8 + 2));
     }
@@ -8716,7 +8716,7 @@ undefined8 * system_thread_manager_010(longlong handle,undefined8 *flags,int mut
     *(undefined1 *)puVar5 = 0;
 LAB_18062e327:
     puStack_60 = puVar5;
-    uVar3 = system_helper_002(puVar5);
+    uVar3 = allocate_helper_buffer(puVar5);
   }
   else if (uVar3 < 0x19) {
     uStack_78 = 0x13;
@@ -8741,7 +8741,7 @@ LAB_18062e327:
     }
     puStack_68 = &g_threadString2;
     if (puVar5 != (undefined8 *)0x0) {
-      system_helper_001(puVar5);
+      handle_system_error(puVar5);
     }
     puStack_60 = (undefined8 *)0x0;
     uStack_50 = (ulonglong)uStack_50._4_4_ << 0x20;
@@ -8763,7 +8763,7 @@ LAB_18062e327:
       puVar5 = (undefined8 *)FUN_18062b8b0(_data_180c8ed18,puVar5,uVar4,0x10);
     }
     puStack_60 = puVar5;
-    uStack_50._0_4_ = system_helper_002(puVar5);
+    uStack_50._0_4_ = allocate_helper_buffer(puVar5);
   }
 LAB_18062e3f0:
   memcpy(puVar5 + 3,acStack_40,(longlong)((int)lVar9 + 2));
@@ -8849,7 +8849,7 @@ char * FUN_18062e480(undefined4 handle,undefined8 flags,char *mutex_attr,undefin
   puStack_f8 = &g_threadString2;
   puStack_60 = puStack_110;
   if (puStack_f0 != (undefined4 *)0x0) {
-    system_helper_001();
+    handle_system_error();
   }
   puStack_f0 = (undefined4 *)0x0;
   uStack_e0 = (char *)((ulonglong)uStack_e0._4_4_ << 0x20);
@@ -8915,7 +8915,7 @@ char * FUN_18062e480(undefined4 handle,undefined8 flags,char *mutex_attr,undefin
       FUN_180631420(puVar13,lVar21,(longlong)iVar5 * 0x20 + param_7);
       puStack_140 = &g_threadString2;
       if (puVar4 != (undefined *)0x0) {
-        system_helper_001(puVar4);
+        handle_system_error(puVar4);
       }
       puStack_138 = (undefined *)0x0;
       uStack_128 = (ulonglong)uStack_128._4_4_ << 0x20;
@@ -9006,7 +9006,7 @@ LAB_18062e8bc:
           puVar10 = (undefined4 *)FUN_18062b420(_data_180c8ed18,0x15,0x13);
           *(undefined1 *)puVar10 = 0;
           puStack_f0 = puVar10;
-          uVar6 = system_helper_002(puVar10);
+          uVar6 = allocate_helper_buffer(puVar10);
           uStack_e0 = (char *)CONCAT44(uStack_e0._4_4_,uVar6);
           *puVar10 = 0x204c4d58;
           puVar10[1] = 0x65646f6e;
@@ -9022,7 +9022,7 @@ LAB_18062e8bc:
           puVar11 = (undefined4 *)FUN_18062b420(_data_180c8ed18,0x15,0x13);
           *(undefined1 *)puVar11 = 0;
           puStack_b8 = puVar11;
-          uVar7 = system_helper_002(puVar11);
+          uVar7 = allocate_helper_buffer(puVar11);
           uVar6 = puVar10[1];
           flags = puVar10[2];
           uVar3 = puVar10[3];
@@ -9046,7 +9046,7 @@ LAB_18062e8bc:
                 puVar11 = (undefined4 *)
                           FUN_18062b8b0(_data_180c8ed18,puVar11,iVar5 + 0x16U,0x10,0x13);
                 puStack_b8 = puVar11;
-                uVar6 = system_helper_002(puVar11);
+                uVar6 = allocate_helper_buffer(puVar11);
                 uStack_a8 = CONCAT44(uStack_a8._4_4_,uVar6);
               }
               memcpy(puVar11 + 5,mutex_attr,(longlong)(iVar5 + 2));
@@ -9060,7 +9060,7 @@ LAB_18062e8bc:
           puVar10 = (undefined4 *)FUN_18062b420(_data_180c8ed18,0x16,0x13);
           *(undefined1 *)puVar10 = 0;
           puStack_90 = puVar10;
-          uVar6 = system_helper_002(puVar10);
+          uVar6 = allocate_helper_buffer(puVar10);
           uStack_80 = CONCAT44(uStack_80._4_4_,uVar6);
           *puVar10 = 0x6f632022;
           puVar10[1] = 0x20646c75;
@@ -9077,7 +9077,7 @@ LAB_18062e8bc:
             puVar12 = (undefined1 *)FUN_18062b420(_data_180c8ed18,0x15,0x13);
             *puVar12 = 0;
             puStack_138 = puVar12;
-            uVar6 = system_helper_002(puVar12);
+            uVar6 = allocate_helper_buffer(puVar12);
             uStack_128 = CONCAT44(uStack_128._4_4_,uVar6);
           }
           memcpy(puVar12,puVar11,0x14);
@@ -9096,14 +9096,14 @@ LAB_18062e8bc:
   }
   puStack_118 = &g_threadString2;
   if (puStack_60 != (undefined *)0x0) {
-    system_helper_001();
+    handle_system_error();
   }
   puStack_110 = (undefined *)0x0;
   uStack_100 = uStack_100 & 0xffffffff00000000;
   puStack_118 = &g_threadString4;
   *puStack_c8 = &g_threadString2;
   if (puStack_c8[1] != 0) {
-    system_helper_001();
+    handle_system_error();
   }
   puStack_c8[1] = 0;
   *(undefined4 *)(puStack_c8 + 3) = 0;
@@ -9157,7 +9157,7 @@ char * FUN_18062ed40(undefined8 handle,undefined8 flags,undefined8 *mutex_attr,l
   FUN_180631420(puVar10,mutex_type,param_5);
   puStack_d0 = &g_threadString2;
   if (puStack_c8 != (undefined4 *)0x0) {
-    system_helper_001();
+    handle_system_error();
   }
   puStack_c8 = (undefined4 *)0x0;
   uStack_b8 = (ulonglong)uStack_b8._4_4_ << 0x20;
@@ -9227,7 +9227,7 @@ LAB_18062eece:
       puVar7 = (undefined4 *)FUN_18062b420(_data_180c8ed18,0x15,0x13);
       *(undefined1 *)puVar7 = 0;
       puStack_88 = puVar7;
-      uVar3 = system_helper_002(puVar7);
+      uVar3 = allocate_helper_buffer(puVar7);
       uStack_78 = CONCAT44(uStack_78._4_4_,uVar3);
       *puVar7 = 0x204c4d58;
       puVar7[1] = 0x65646f6e;
@@ -9243,7 +9243,7 @@ LAB_18062eece:
       puVar8 = (undefined4 *)FUN_18062b420(_data_180c8ed18,0x15,0x13);
       *(undefined1 *)puVar8 = 0;
       puStack_a8 = puVar8;
-      uVar4 = system_helper_002(puVar8);
+      uVar4 = allocate_helper_buffer(puVar8);
       uVar3 = puVar7[1];
       uVar1 = puVar7[2];
       flags = puVar7[3];
@@ -9258,7 +9258,7 @@ LAB_18062eece:
       if (uVar4 < 0x23) {
         puVar8 = (undefined4 *)FUN_18062b8b0(_data_180c8ed18,puVar8,0x23,0x10,0x13);
         puStack_a8 = puVar8;
-        uVar3 = system_helper_002(puVar8);
+        uVar3 = allocate_helper_buffer(puVar8);
         uStack_98 = CONCAT44(uStack_98._4_4_,uVar3);
       }
       *(undefined8 *)(puVar8 + 5) = 0x65745f6c61636564;
@@ -9273,7 +9273,7 @@ LAB_18062eece:
       puVar7 = (undefined4 *)FUN_18062b420(_data_180c8ed18,0x16,0x13);
       *(undefined1 *)puVar7 = 0;
       puStack_c8 = puVar7;
-      uVar3 = system_helper_002(puVar7);
+      uVar3 = allocate_helper_buffer(puVar7);
       uStack_b8 = CONCAT44(uStack_b8._4_4_,uVar3);
       *puVar7 = 0x6f632022;
       puVar7[1] = 0x20646c75;
@@ -9290,27 +9290,27 @@ LAB_18062eece:
       system_thread_003(puVar10);
       puStack_70 = &g_threadString2;
       if (lStack_68 != 0) {
-        system_helper_001();
+        handle_system_error();
       }
       lStack_68 = 0;
       uStack_58 = 0;
       puStack_70 = &g_threadString4;
       puStack_d0 = &g_threadString2;
-      system_helper_001(puVar7);
+      handle_system_error(puVar7);
     }
     uVar4 = validate_config_handle(pcVar11,&unknown_180a12e10);
     pcVar14 = (char *)(ulonglong)uVar4;
   }
   *mutex_attr = &g_threadString2;
   if (mutex_attr[1] != 0) {
-    system_helper_001();
+    handle_system_error();
   }
   mutex_attr[1] = 0;
   *(undefined4 *)(mutex_attr + 3) = 0;
   *mutex_attr = &g_threadString4;
   *param_7 = &g_threadString2;
   if (param_7[1] != 0) {
-    system_helper_001();
+    handle_system_error();
   }
   param_7[1] = 0;
   *(undefined4 *)(param_7 + 3) = 0;
@@ -9527,7 +9527,7 @@ LAB_18062f4a5:
     }
     puStack_70 = &g_threadString2;
     if (lStack_68 != 0) {
-      system_helper_001();
+      handle_system_error();
     }
     lStack_68 = 0;
     uStack_58 = uStack_58 & 0xffffffff00000000;
@@ -9536,7 +9536,7 @@ LAB_18062f4a5:
   puVar7 = (undefined8 *)puVar7[0xb];
   puStack_50 = &g_threadString2;
   if (pcStack_48 != (char *)0x0) {
-    system_helper_001();
+    handle_system_error();
   }
   if (puVar7 == (undefined8 *)0x0) {
     return handle;
@@ -9561,7 +9561,7 @@ LAB_18062f4a5:
     puStack_3b0 = &g_threadString4;
     system_crypto_001(uStack_48 ^ (ulonglong)auStack_408);
   }
-  system_helper_001();
+  handle_system_error();
 }
 int validate_config_handle(undefined8 handle,char *flags)
 {
@@ -9743,7 +9743,7 @@ longlong initialize_system_resources(undefined8 handle,undefined8 flags,longlong
   if (*(longlong *)(init_result + 8) != 0) {
     lVar4 = *(longlong *)(init_result + 8);
   }
-  system_thread_manager_002(&puStack_30,lVar4);
+  create_thread_context(&puStack_30,lVar4);
   if (*pcStack_28 != '\0') {
     init_result = 0;
     do {
@@ -9761,7 +9761,7 @@ longlong initialize_system_resources(undefined8 handle,undefined8 flags,longlong
   FUN_18010cbc0(pcVar3,&unknown_180a3cbe0,mutex_attr,mutex_attr + 4,uVar5);
   puStack_30 = &g_threadString2;
   if (pcStack_28 != (char *)0x0) {
-    system_helper_001();
+    handle_system_error();
   }
   return lVar4;
 }
@@ -9781,7 +9781,7 @@ longlong allocate_thread_resources(undefined8 handle,undefined8 flags,longlong m
   if (*(longlong *)(init_result + 8) != 0) {
     lVar4 = *(longlong *)(init_result + 8);
   }
-  system_thread_manager_002(&puStack_30,lVar4);
+  create_thread_context(&puStack_30,lVar4);
   if (*pcStack_28 != '\0') {
     init_result = 0;
     do {
@@ -9799,7 +9799,7 @@ longlong allocate_thread_resources(undefined8 handle,undefined8 flags,longlong m
   FUN_18010cbc0(pcVar3,&unknown_180a3cc0c,mutex_attr,mutex_attr + 4,mutex_attr + 8);
   puStack_30 = &g_threadString2;
   if (pcStack_28 != (char *)0x0) {
-    system_helper_001();
+    handle_system_error();
   }
   return lVar4;
 }
@@ -9819,7 +9819,7 @@ longlong initialize_thread_pool_resources(undefined8 handle,undefined8 flags,lon
   if (*(longlong *)(init_result + 8) != 0) {
     lVar4 = *(longlong *)(init_result + 8);
   }
-  system_thread_manager_002(&puStack_30,lVar4);
+  create_thread_context(&puStack_30,lVar4);
   if (*pcStack_28 != '\0') {
     init_result = 0;
     do {
@@ -9837,7 +9837,7 @@ longlong initialize_thread_pool_resources(undefined8 handle,undefined8 flags,lon
   FUN_18010cbc0(pcVar3,&unknown_180a3cc1c,mutex_attr,mutex_attr + 4);
   puStack_30 = &g_threadString2;
   if (pcStack_28 != (char *)0x0) {
-    system_helper_001();
+    handle_system_error();
   }
   return lVar4;
 }
@@ -9860,7 +9860,7 @@ longlong validate_thread_configuration(undefined8 handle,undefined8 flags,longlo
   if (*(longlong *)(lVar2 + 8) != 0) {
     lVar5 = *(longlong *)(lVar2 + 8);
   }
-  system_thread_manager_002(&puStack_30,lVar5);
+  create_thread_context(&puStack_30,lVar5);
   if (*pcStack_28 != '\0') {
     lVar2 = 0;
     do {
@@ -9882,7 +9882,7 @@ longlong validate_thread_configuration(undefined8 handle,undefined8 flags,longlo
   }
   puStack_30 = &g_threadString2;
   if (pcStack_28 != (char *)0x0) {
-    system_helper_001();
+    handle_system_error();
   }
   return lVar5;
 }
@@ -9904,7 +9904,7 @@ longlong process_thread_initialization(undefined8 handle,undefined8 flags,longlo
   if (*(longlong *)(init_result + 8) != 0) {
     lVar4 = *(longlong *)(init_result + 8);
   }
-  system_thread_manager_002(&puStack_30,lVar4);
+  create_thread_context(&puStack_30,lVar4);
   if (*pcStack_28 != '\0') {
     init_result = 0;
     do {
@@ -9922,7 +9922,7 @@ longlong process_thread_initialization(undefined8 handle,undefined8 flags,longlo
   FUN_18010cbc0(pcVar3,&unknown_180a3c9f8,mutex_attr + 4,mutex_attr + 8,mutex_attr + 0xc,mutex_attr,uVar5);
   puStack_30 = &g_threadString2;
   if (pcStack_28 != (char *)0x0) {
-    system_helper_001();
+    handle_system_error();
   }
   return lVar4;
 }
@@ -9942,7 +9942,7 @@ longlong initialize_thread_synchronization(undefined8 handle,undefined8 flags,lo
     if (*pinit_result != 0) {
       lVar2 = *pinit_result;
     }
-    system_thread_manager_002(&puStack_30,lVar2);
+    create_thread_context(&puStack_30,lVar2);
     if (*pcStack_28 != '\0') {
       lVar5 = 0;
       do {
@@ -9961,7 +9961,7 @@ longlong initialize_thread_synchronization(undefined8 handle,undefined8 flags,lo
                   mutex_attr + 0x14,mutex_attr + 0x18,mutex_attr + 0x20,mutex_attr + 0x24,mutex_attr + 0x28);
     puStack_30 = &g_threadString2;
     if (pcStack_28 != (char *)0x0) {
-      system_helper_001();
+      handle_system_error();
     }
   }
   return lVar2;
@@ -9984,7 +9984,7 @@ longlong setup_thread_communication(undefined8 handle,undefined8 flags,longlong 
     if (*pinit_result != 0) {
       lVar2 = *pinit_result;
     }
-    system_thread_manager_002(&puStack_58,lVar2);
+    create_thread_context(&puStack_58,lVar2);
     if (*pcStack_50 != '\0') {
       lVar5 = 0;
       do {
@@ -10005,7 +10005,7 @@ longlong setup_thread_communication(undefined8 handle,undefined8 flags,longlong 
                   mutex_attr + 0x3c,lVar2,uVar6);
     puStack_58 = &g_threadString2;
     if (pcStack_50 != (char *)0x0) {
-      system_helper_001();
+      handle_system_error();
     }
   }
   return lVar2;
@@ -10162,7 +10162,7 @@ undefined8 initialize_system_context(undefined8 handle)
   undefined8 uVar1;
   longlong lVar2;
   uVar1 = FUN_18062b420(_data_180c8ed18,handle,0x19);
-  lVar2 = system_helper_002(uVar1);
+  lVar2 = allocate_helper_buffer(uVar1);
   LOCK();
   _data_180c967c8 = _data_180c967c8 + lVar2;
   UNLOCK();
@@ -10172,12 +10172,12 @@ undefined8 setup_context_with_flags(undefined8 handle,undefined8 flags)
 {
   longlong init_result;
   undefined8 flags;
-  init_result = system_helper_002();
+  init_result = allocate_helper_buffer();
   flags = FUN_18062b680(_data_180c8ed18,handle,flags,0x19);
   LOCK();
   _data_180c967c8 = _data_180c967c8 - init_result;
   UNLOCK();
-  init_result = system_helper_002(flags);
+  init_result = allocate_helper_buffer(flags);
   LOCK();
   _data_180c967c8 = _data_180c967c8 + init_result;
   UNLOCK();
@@ -10189,7 +10189,7 @@ longlong process_context_handle(longlong *handle)
   longlong lVar2;
   longlong lVar3;
   ulonglong uVar4;
-  lVar2 = system_helper_002();
+  lVar2 = allocate_helper_buffer();
   lVar3 = _data_180c967c8;
   LOCK();
   lVar2 = _data_180c967c8 - lVar2;

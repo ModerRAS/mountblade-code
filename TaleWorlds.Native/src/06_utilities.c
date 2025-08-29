@@ -891,10 +891,10 @@ data renderViewportState;
 
 // 函数: data renderCommandInitialize;
 data renderCommandInitialize;
-data DAT_180bf9c90;
-data DAT_180bf9c98;
-data DAT_180bf9ca0;
-data DAT_180bf9ca8;
+data renderCommandBuffer1;
+data renderCommandBuffer2;
+data renderCommandBuffer3;
+data renderCommandBuffer4;
 data renderScissorRect;
 
 // 函数: data renderStateInitialize;
@@ -81344,7 +81344,7 @@ void renderCommandInitialize(void)
 void renderStateInitialize(void)
 
 {
-  _DAT_180bf9c90 = &threadLocalStorageCleanup;
+  _renderCommandBuffer1 = &threadLocalStorageCleanup;
   return;
 }
 
