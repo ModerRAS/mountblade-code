@@ -17683,7 +17683,7 @@ FUN_180851e40(longlong *socketHandle,longlong *dataBuffer,longlong *bufferCapaci
       lStackX_10 = 0;
       networkTimeout0 = 0;
       if ((int)networkParam[1] < 1) {
-LAB_180851f6d:
+monitor_connection_state:
         networkTimeout0 = *plStackX_18;
         networkTimeout = socketHandle[7];
         socketDescriptor = *dataBuffer;
@@ -17718,7 +17718,7 @@ LAB_180851f6d:
           int_var_9 = int_var_9 + 1;
           networkTimeout0 = networkTimeout0 + 1;
         } while (int_var_9 < (int)networkParam[1]);
-        if (lStackX_10 == 0) goto LAB_180851f6d;
+        if (lStackX_10 == 0) goto monitor_connection_state;
       }
       connectionIndex = networkAddTransferData(socketHandle[0xf],uStackX_20,*(uint64_t *)(lStackX_10 + 0x30));
       if ((int)connectionIndex != 0) {
@@ -17851,7 +17851,7 @@ void FUN_180852090(uint64_t *socketHandle,uint64_t *dataBuffer)
         statusCode8 = networkIntStack_280;
         ppacketLength = networkPtrStack_288;
         if (processResult != 0) {
-LAB_1808522f9:
+handle_resource_cleanup:
           ReleaseNetworkResource(&networkPtrStack_288);
           goto LAB_180852302;
         }
@@ -17878,7 +17878,7 @@ LAB_180852282:
           if (-1 < statusCode8 + -1) {
             do {
               if (((*(uint *)(*(longlong *)(networkPtrStack_288 + networkAddress * 8) + 0x2d8) >> 6 & 1) != 0) &&
-                 (processResult = ManageNetworkResources(socketHandle), processResult != 0)) goto LAB_1808522f9;
+                 (processResult = ManageNetworkResources(socketHandle), processResult != 0)) goto handle_resource_cleanup;
               networkAddress = networkAddress + -1;
             } while (-1 < networkAddress);
           }
@@ -18272,7 +18272,7 @@ void FUN_18085219c(void)
         *(uint32_t *)(unaff_RBP + -0x44) = 0xffffffc0;
         networkOperationResult = FUN_1808bf350(packetLength3);
         if (networkOperationResult != 0) {
-LAB_1808522f9:
+handle_resource_cleanup:
           ReleaseNetworkResource(unaff_RBP + -0x50);
           goto LAB_180852302;
         }
@@ -18300,7 +18300,7 @@ LAB_180852282:
           if (-1 < networkOperationResult + -1) {
             do {
               if (((*(uint *)(*(longlong *)(*(longlong *)(unaff_RBP + -0x50) + dataBuffer * 8) + 0x2d8)
-                    >> 6 & 1) != 0) && (networkOperationResult = ManageNetworkResources(), networkOperationResult != 0)) goto LAB_1808522f9;
+                    >> 6 & 1) != 0) && (networkOperationResult = ManageNetworkResources(), networkOperationResult != 0)) goto handle_resource_cleanup;
               dataBuffer = dataBuffer + -1;
             } while (-1 < dataBuffer);
           }

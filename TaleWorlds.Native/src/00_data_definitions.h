@@ -1497,7 +1497,7 @@ int initialize_health_checker(void)
 int initialize_worker_thread_pool(unsigned long long handle,unsigned long long flags,unsigned long long mutex_attr,unsigned long long mutex_type)
 {
   long long init_result;
-  _Mtx_init_in_situ(0x180c91f70,2,mutex_attr,mutex_type,THREAD_POOL_DEFAULT_FLAGS);
+  _Mtx_init_in_situ(ADDR_SECOND_MUTEX,2,mutex_attr,mutex_type,THREAD_POOL_DEFAULT_FLAGS);
   init_result = execute_function(resource_manager_54_init_function);
   return (init_result != 0) - 1;
 }
@@ -1637,7 +1637,7 @@ int initialize_recovery_system(void)
 int initialize_priority_thread_pool(unsigned long long handle,unsigned long long flags,unsigned long long mutex_attr,unsigned long long mutex_type)
 {
   long long init_result;
-  _Mtx_init_in_situ(0x180c91ff0,2,mutex_attr,mutex_type,THREAD_POOL_DEFAULT_FLAGS);
+  _Mtx_init_in_situ(ADDR_THIRD_MUTEX,2,mutex_attr,mutex_type,THREAD_POOL_DEFAULT_FLAGS);
   global_data_ = &g_shared_data_buffer;
   global_data_ = &data_180c92068;
   global_data_ = 0;

@@ -59,7 +59,7 @@ dataValue 配置内存设置;
 dataValue g_errorHandlerSeverityLevel;        // 错误处理器严重程度
 dataValue g_errorHandlerCategory;              // 错误处理器类别
 dataValue g_errorHandlerRecoveryMode;         // 错误处理器恢复
-dataValue g_errorHandlerLogging;               // 错误处理器日志
+dataValue g_errorHandlerLoggingEnabled;       // 错误处理器日志
 
 // 函数: dataValueValue 验证内存配置;
 // 内存配置验证函数180941630
@@ -105,14 +105,14 @@ dataValue g_内存释放链表头;
 dataValue g_内存释放链表尾;
 dataValue g_内存释放对齐;
 dataValue g_内存释放标志;
-dataValue g_内存释放保留;
+dataValue g_内存释放保留空间;
 
 // 函数: dataValueValue 初始化块分配器;          # 块分配器初始化函数
 dataValue 初始化块分配器;
 dataValue g_块分配头部;
 dataValue g_块分配指针;
 dataValue g_块分配大小;
-dataValue g_块对齐;
+dataValue g_块内存对齐;
 dataValue g_块标志;
 dataValue g_块引用计数;
 
@@ -122,7 +122,7 @@ dataValue g_块释放链表指针;
 dataValue g_块释放大小;
 dataValue g_块释放偏移;
 dataValue g_块释放标志;
-dataValue g_块释放保留;
+dataValue g_块释放保留空间;
 
 // 函数: dataValueValue 获取内存块大小;
 dataValue 获取内存块大小;
