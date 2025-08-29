@@ -51,18 +51,18 @@ data memoryPoolFlags;
 
 // 函数: data SetupMemoryManager;
 data SetupMemoryManager;
-data g_bufferManagerControl1;
-data g_bufferManagerControl2;
-data g_bufferManagerControl3;
-data g_bufferManagerControl4;
+data g_bufferManagerControlFlags;
+data g_bufferManagerStatus;
+data g_bufferManagerConfig;
+data g_bufferManagerHandle;
 data memoryPoolInitializationFlag;
 
 // 函数: data CreateMemoryAllocator;
 data CreateMemoryAllocator;
-data g_dataStructurePointer1;
-data g_dataStructurePointer2;
-data g_dataStructurePointer3;
-data g_dataStructurePointer4;
+data g_dataStructureRoot;
+data g_dataStructureNext;
+data g_dataStructurePrev;
+data g_dataStructureParent;
 data memoryAllocatorStatusFlag;
 
 // 函数: data RegisterMemoryHandler;
@@ -82,17 +82,17 @@ data g_errorHandlerState4;
 // 函数: data ValidateMemoryConfiguration;
 // 内存配置验证函数180941630
 data ValidateMemoryConfiguration;
-byte g_threadSyncFlag1;
+byte g_threadSyncInitialized;
 
 // 函数: data InitializeThreadSynchronization;
 // 线程同步初始化函数180941650
 data InitializeThreadSynchronization;
-byte g_threadSyncFlag2;
+byte g_threadSyncActive;
 
 // 函数: data InitializeEventHandler;
 // 事件处理初始化函数180941690
 data InitializeEventHandler;
-byte g_threadSyncFlag3;
+byte g_threadSyncPending;
 
 // 函数: data InitializeSemaphore;
 // 信号量初始化函数1809416d0
@@ -109,46 +109,46 @@ data CloseSystemHandle;
 
 // 函数: data DestroyMutex;
 data DestroyMutex;
-data g_mutexDestroyData;
-data g_mutexDestroyPointer1;
-data g_mutexDestroyPointer2;
-data g_mutexDestroyTempData;
-data g_mutexDestroyWorkPointer;
+data g_mutexDestroyHandle;
+data g_mutexDestroyContext;
+data g_mutexDestroyCallback;
+data g_mutexDestroyTemp;
+data g_mutexDestroyWork;
 
 // 函数: data initializeDataStructure1;          # 数据结构初始化函数
 data initializeDataStructure1;          # 数据结构初始化函数
-data g_memoryFreeData1;
-data g_memoryFreeData2;
-data g_memoryFreePointer1;
-data g_memoryFreePointer2;
-data g_memoryFreeConfig1;
-data g_memoryFreeConfig2;
-data g_memoryFreeConfig3;
+data g_memoryFreeBlockSize;
+data g_memoryFreeBlockCount;
+data g_memoryFreeListHead;
+data g_memoryFreeListTail;
+data g_memoryFreeAlignment;
+data g_memoryFreeFlags;
+data g_memoryFreeReserved;
 
 // 函数: data initializeDataStructure2;
 data initializeDataStructure2;
-data g_chunkAllocHeader;
-data g_chunkAllocPointer;
-data g_chunkAllocData1;
-data g_chunkAllocData2;
-data g_chunkAllocData3;
-data g_chunkAllocData4;
+data g_chunkAllocationHeader;
+data g_chunkAllocationPointer;
+data g_chunkAllocationSize;
+data g_chunkAlignment;
+data g_chunkFlags;
+data g_chunkRefCount;
 
 // 函数: data FreeMemoryChunk;
 data FreeMemoryChunk;
-data g_chunkFreePointer;
-data g_chunkFreeData1;
-data g_chunkFreeData2;
-data g_chunkFreeData3;
-data g_chunkFreeData4;
+data g_chunkFreeListPointer;
+data g_chunkFreeSize;
+data g_chunkFreeOffset;
+data g_chunkFreeFlags;
+data g_chunkFreeReserved;
 
 // 函数: data GetMemoryChunkSize;
 data GetMemoryChunkSize;
-data g_chunkSizePointer;
-data g_chunkSizeData1;
-data g_chunkSizeData2;
-data g_chunkSizeData3;
-data g_chunkSizeData4;
+data g_chunkSizeTablePointer;
+data g_chunkSizeMin;
+data g_chunkSizeMax;
+data g_chunkSizeStep;
+data g_chunkSizeCount;
 
 // 函数: data initializeDataStructure5;
 data initializeDataStructure5;
@@ -337,7 +337,7 @@ data systemDataTable7;
 data systemDataTable8;
 data systemDataTable9;
 data bufferManagementControl;
-data g_miscTempData3;
+data g_miscWorkBuffer3;
 data bufferAllocationPointer;
 data systemIsInitialized;
 data systemRuntimeStatus;
@@ -549,7 +549,7 @@ data shaderUniformConfig4;
 data shaderAttributeConfig1;
 data shaderAttributeConfig2;
 data shaderAttributeConfig3;
-data g_shaderAttributeTempData4;
+data g_shaderAttributeTempFlags;
 data shaderConstantConfig1;
 data shaderConstantConfig2;
 data shaderConstantConfig3;
@@ -566,111 +566,111 @@ data renderDescriptorConfig1;
 data renderDescriptorConfig2;
 data renderDescriptorConfig3;
 data renderDescriptorConfig4;
-data g_renderCommandTempData1;
-data g_renderCommandTempData2;
-data g_renderCommandTempData3;
-data g_renderCommandTempData4;
-data g_renderStateTempData1;
-data g_renderStateTempData2;
-data g_renderStateTempData3;
-data g_renderStateTempData4;
-data g_renderQueueTempData1;
-data g_renderQueueTempData2;
-data g_renderQueueTempData3;
-data g_renderQueueTempData4;
-data g_renderBufferTempData1;
-data g_renderBufferTempData2;
-data g_renderBufferTempData3;
-data g_renderBufferTempData4;
-data g_renderSyncTempData1;
-data g_renderSyncTempData2;
-data g_renderSyncTempData3;
-data g_renderSyncTempData4;
-data g_renderMemoryTempData1;
-data g_renderMemoryTempData2;
-data g_renderMemoryTempData3;
-data g_renderMemoryTempData4;
-data g_renderResourceTempData1;
-data g_renderResourceTempData2;
-data g_renderResourceTempData3;
-data g_renderResourceTempData4;
-data g_renderTextureTempData1;
-data g_renderTextureTempData2;
-data g_renderTextureTempData3;
-data g_renderTextureTempData4;
-data g_renderSamplerTempData1;
-data g_renderSamplerTempData2;
-data g_renderSamplerTempData3;
-data g_renderSamplerTempData4;
-data g_renderBlendTempData1;
-data g_renderBlendTempData2;
-data g_renderBlendTempData3;
-data g_renderBlendTempData4;
+data g_renderCommandWorkBuffer;
+data g_renderCommandTempOffset;
+data g_renderCommandTempSize;
+data g_renderCommandTempFlags;
+data g_renderStateWorkBuffer;
+data g_renderStateTempOffset;
+data g_renderStateTempSize;
+data g_renderStateTempFlags;
+data g_renderQueueWorkBuffer;
+data g_renderQueueTempOffset;
+data g_renderQueueTempSize;
+data g_renderQueueTempFlags;
+data g_renderBufferWorkBuffer;
+data g_renderBufferTempOffset;
+data g_renderBufferTempSize;
+data g_renderBufferTempFlags;
+data g_renderSyncWorkBuffer;
+data g_renderSyncTempOffset;
+data g_renderSyncTempSize;
+data g_renderSyncTempFlags;
+data g_renderMemoryWorkBuffer;
+data g_renderMemoryTempOffset;
+data g_renderMemoryTempSize;
+data g_renderMemoryTempFlags;
+data g_renderResourceWorkBuffer;
+data g_renderResourceTempOffset;
+data g_renderResourceTempSize;
+data g_renderResourceTempFlags;
+data g_renderTextureWorkBuffer;
+data g_renderTextureTempOffset;
+data g_renderTextureTempSize;
+data g_renderTextureTempFlags;
+data g_renderSamplerWorkBuffer;
+data g_renderSamplerTempOffset;
+data g_renderSamplerTempSize;
+data g_renderSamplerTempFlags;
+data g_renderBlendWorkBuffer;
+data g_renderBlendTempOffset;
+data g_renderBlendTempSize;
+data g_renderBlendTempFlags;
 data animationSystemState;
-data g_aiTempData1;
+data g_aiNavigationWorkBuffer;
 data animationClipData;
-data g_aiTempData2;
+data g_aiNavigationTempOffset;
 data animationBlendTree;
-data g_aiTempData3;
+data g_aiNavigationTempSize;
 data animationStateMachine;
-data g_aiTempData4;
-data g_aiTempData5;
-data g_aiTempData6;
+data g_aiNavigationTempFlags;
+data g_aiBehaviorWorkBuffer;
+data g_aiBehaviorTempOffset;
 data animationPlaybackTime;
-data g_aiTempData7;
+data g_aiBehaviorTempSize;
 data aiNavigationMesh;
-data g_aiNavigationTempData1;
-data g_aiNavigationTempData2;
-data g_aiNavigationTempData3;
-data g_aiNavigationTempData4;
+data g_aiNavWorkBuffer;
+data g_aiNavTempOffset;
+data g_aiNavTempSize;
+data g_aiNavTempFlags;
 
 // 函数: data InitializeDatabaseConnection;
 data InitializeDatabaseConnection;
-data g_databaseTempData1;
-data g_databaseTempData2;
-data g_databaseTempData3;
-data g_databaseTempData4;
+data g_databaseWorkBuffer;
+data g_databaseTempOffset;
+data g_databaseTempSize;
+data g_databaseTempFlags;
 
 // 函数: data SetupDatabaseTables;
 data SetupDatabaseTables;
-data g_aiBehaviorTempData1;
-data g_aiBehaviorTempData2;
-data g_aiBehaviorTempData3;
-data g_aiBehaviorTempData4;
-data g_aiBehaviorTempData5;
+data g_aiBehaviorWorkBuffer;
+data g_aiBehaviorTempOffset;
+data g_aiBehaviorTempSize;
+data g_aiBehaviorTempFlags;
+data g_aiBehaviorReserved;
 data aiBehaviorTree;
-data g_aiDecisionTempData1;
+data g_aiDecisionWorkBuffer;
 data aiPathfindingData;
-data g_aiDecisionTempData2;
+data g_aiDecisionTempOffset;
 data aiDecisionMaking;
-data g_aiDecisionTempData3;
+data g_aiDecisionTempSize;
 data aiStateVariables;
-data g_aiDecisionTempData4;
+data g_aiDecisionTempFlags;
 data resourceLoadingQueue;
-data g_resourceTempData1;
+data g_resourceWorkBuffer;
 data resourceCacheManager;
-data g_resourceTempData2;
+data g_resourceTempOffset;
 data resourceMemoryPool;
-data g_resourceTempData3;
+data g_resourceTempSize;
 data referenceCountTable;
-data g_resourceTempData4;
+data g_resourceTempFlags;
 data resourceGarbageCollector;
-data g_resourceTempData5;
+data g_resourceReserved1;
 data sceneObjectDatabase;
-data g_resourceTempData6;
+data g_resourceReserved2;
 data sceneTransformData;
-data g_sceneTempData1;
-data g_sceneTempData2;
-data g_sceneTempData3;
-data g_sceneTempData4;
+data g_sceneWorkBuffer;
+data g_sceneTempOffset;
+data g_sceneTempSize;
+data g_sceneTempFlags;
 data sceneLightingSystem;
 
 // 函数: data CreateFileSystemHandler;
 data CreateFileSystemHandler;
-data g_fileSystemTempData1;
-data g_fileSystemTempData2;
-data g_fileSystemTempData3;
-data g_fileSystemTempData4;
+data g_fileSystemWorkBuffer;
+data g_fileSystemTempOffset;
+data g_fileSystemTempSize;
+data g_fileSystemTempFlags;
 data sceneCameraController;
 
 // 函数: data InitializeFileCache;
@@ -678,127 +678,127 @@ data InitializeFileCache;
 
 // 函数: data SetupFileWatcher;
 data SetupFileWatcher;
-data g_fileCacheTempData1;
-data g_fileCacheTempData2;
-data g_fileCacheTempData3;
-data g_fileCacheTempData4;
+data g_fileCacheWorkBuffer;
+data g_fileCacheTempOffset;
+data g_fileCacheTempSize;
+data g_fileCacheTempFlags;
 data sceneRenderQueue;
-data g_sceneRenderTempData1;
+data g_sceneRenderWorkBuffer;
 
 // 函数: data materialShaderProgramInitialize;
 data materialShaderProgramInitialize;
-data g_materialShaderTempData1;
-data g_materialShaderTempData2;
-data g_materialShaderTempData3;
+data g_materialShaderWorkBuffer;
+data g_materialShaderTempOffset;
+data g_materialShaderTempSize;
 data materialShaderProgram;
-data g_materialTextureTempData1;
-data g_materialTextureTempData2;
+data g_materialTextureWorkBuffer;
+data g_materialTextureTempOffset;
 
 // 函数: data materialTextureSamplerInitialize;
 data materialTextureSamplerInitialize;
-data g_materialTextureTempData6;
-data g_materialTextureTempData7;
+data g_materialTextureWorkBuffer3;
+data g_materialTextureTempOffset3;
 data materialTextureSampler;
-data g_materialTextureTempData3;
-data g_materialTextureTempData4;
-data g_materialTextureTempData5;
+data g_materialTextureWorkBuffer2;
+data g_materialTextureTempOffset2;
+data g_materialTextureTempSize2;
 
 // 函数: data materialPropertyBufferInitialize;
 data materialPropertyBufferInitialize;
-data g_materialPropertyTempData1;
+data g_materialPropertyWorkBuffer;
 data materialPropertyBuffer;
-data g_materialPropertyTempData2;
-data g_materialPropertyTempData3;
-data g_materialPropertyTempData4;
-data g_materialPropertyTempData5;
+data g_materialPropertyTempOffset;
+data g_materialPropertyTempSize;
+data g_materialPropertyTempFlags;
+data g_materialPropertyReserved;
 
 // 函数: data materialRenderStateInitialize;
 data materialRenderStateInitialize;
 data materialRenderState;
-data materialRenderStateConfig5;
-data materialRenderStateConfig6;
-data materialRenderStateConfig7;
-data materialRenderStateConfig8;
+data g_materialRenderStateBlendMode;
+data g_materialRenderStateDepthTest;
+data g_materialRenderStateCullMode;
+data g_materialRenderStateStencil;
 
 // 函数: data materialUniformDataInitialize;
 data materialUniformDataInitialize;
 data materialUniformData;
-data g_materialUniformTempData5;
-data g_materialUniformTempData6;
-data g_materialUniformTempData7;
-data g_materialUniformTempData8;
+data g_materialUniformWorkBuffer;
+data g_materialUniformTempOffset;
+data g_materialUniformTempSize;
+data g_materialUniformTempFlags;
 
 // 函数: data textureUploadBufferInitialize;
 data textureUploadBufferInitialize;
 data textureUploadBuffer;
-data g_textureUploadTempData5;
-data g_textureUploadTempData6;
-data g_textureUploadTempData7;
-data g_textureUploadTempData8;
+data g_textureUploadWorkBuffer;
+data g_textureUploadTempOffset;
+data g_textureUploadTempSize;
+data g_textureUploadTempFlags;
 data textureMipChainData;
 
 // 函数: data textureMipChainInitialize;
 data textureMipChainInitialize;
-data g_textureMipTempData1;
-data g_textureMipTempData2;
-data g_textureMipTempData3;
-data g_textureMipTempData4;
+data g_textureMipWorkBuffer;
+data g_textureMipTempOffset;
+data g_textureMipTempSize;
+data g_textureMipTempFlags;
 data textureCompressionFlag;
 
 // 函数: data textureCompressionInitialize;
 data textureCompressionInitialize;
-data g_textureCompressionTempData5;
-data g_textureCompressionTempData6;
-data g_textureCompressionTempData7;
-data g_textureCompressionTempData8;
+data g_textureCompressionWorkBuffer;
+data g_textureCompressionTempOffset;
+data g_textureCompressionTempSize;
+data g_textureCompressionTempFlags;
 data textureFilteringMode;
 
 // 函数: data textureFilteringInitialize;
 data textureFilteringInitialize;
-data g_textureFilterTempData5;
-data g_textureFilterTempData6;
-data g_textureFilterTempData7;
-data g_textureFilterTempData8;
+data g_textureFilterWorkBuffer;
+data g_textureFilterTempOffset;
+data g_textureFilterTempSize;
+data g_textureFilterTempFlags;
 data textureWrappingMode;
 
 // 函数: data textureWrappingInitialize;
 data textureWrappingInitialize;
-data g_textureWrapTempData5;
-data g_textureWrapTempData6;
-data g_textureWrapTempData7;
-data g_textureWrapTempData8;
-data g_miscTempData1;
+data g_textureWrapWorkBuffer;
+data g_textureWrapTempOffset;
+data g_textureWrapTempSize;
+data g_textureWrapTempFlags;
+data g_miscWorkBuffer1;
 
 // 函数: data meshVertexBufferInitialize;
 data meshVertexBufferInitialize;
-data g_meshVertexTempData5;
-data g_meshVertexTempData6;
-data g_meshVertexTempData7;
-data g_meshVertexTempData8;
+data g_meshVertexWorkBuffer;
+data g_meshVertexTempOffset;
+data g_meshVertexTempSize;
+data g_meshVertexTempFlags;
 data meshVertexBuffer;
 
 // 函数: data meshIndexBufferInitialize;
 data meshIndexBufferInitialize;
-data g_meshIndexTempData5;
-data g_meshIndexTempData6;
-data g_meshIndexTempData7;
-data g_meshIndexTempData8;
+data g_meshIndexWorkBuffer;
+data g_meshIndexTempOffset;
+data g_meshIndexTempSize;
+data g_meshIndexTempFlags;
 data meshIndexBuffer;
 
 // 函数: data meshVertexLayoutInitialize;
 data meshVertexLayoutInitialize;
-data g_meshLayoutTempData5;
-data g_meshLayoutTempData6;
-data g_meshLayoutTempData7;
-data g_meshLayoutTempData8;
+data g_meshLayoutWorkBuffer;
+data g_meshLayoutTempOffset;
+data g_meshLayoutTempSize;
+data g_meshLayoutTempFlags;
 data meshVertexLayout;
 
 // 函数: data meshBoundingBoxInitialize;
 data meshBoundingBoxInitialize;
-data g_meshBoundingBoxTempData5;
-data g_meshBoundingBoxTempData6;
-data g_meshBoundingBoxTempData7;
-data g_meshBoundingBoxTempData8;
+data g_meshBoundingBoxWorkBuffer;
+data g_meshBoundingBoxTempOffset;
+data g_meshBoundingBoxTempSize;
+data g_meshBoundingBoxTempFlags;
 data meshBoundingBox;
 
 // 函数: data meshCollisionInitialize;
@@ -806,63 +806,63 @@ data meshCollisionInitialize;
 
 // 函数: data meshDataProcess;
 data meshDataProcess;
-data g_meshCollisionTempData5;
-data g_meshCollisionTempData6;
-data g_meshCollisionTempData7;
-data g_meshCollisionTempData8;
+data g_meshCollisionWorkBuffer;
+data g_meshCollisionTempOffset;
+data g_meshCollisionTempSize;
+data g_meshCollisionTempFlags;
 data meshCollisionData;
-data g_shaderCompileTempData5;
+data g_shaderCompileWorkBuffer;
 
 // 函数: data shaderCompileInitialize;
 data shaderCompileInitialize;
-data g_shaderCompileTempData6;
-data g_shaderCompileTempData7;
-data g_shaderCompileTempData8;
+data g_shaderCompileTempOffset;
+data g_shaderCompileTempSize;
+data g_shaderCompileTempFlags;
 data shaderCompileStatus;
-data g_shaderProgramTempData5;
-data g_shaderProgramTempData6;
+data g_shaderProgramWorkBuffer;
+data g_shaderProgramTempOffset;
 
 // 函数: data shaderProgramInitialize;
 data shaderProgramInitialize;
-data g_shaderProgramTempData7;
-data g_shaderProgramTempData8;
+data g_shaderProgramTempSize;
+data g_shaderProgramTempFlags;
 data shaderProgramHandle;
-data g_shaderUniformTempData5;
-data g_shaderUniformTempData6;
-data g_shaderUniformTempData7;
+data g_shaderUniformWorkBuffer;
+data g_shaderUniformTempOffset;
+data g_shaderUniformTempSize;
 
 // 函数: data shaderUniformBufferInitialize;
 data shaderUniformBufferInitialize;
-data g_shaderUniformTempData8;
+data g_shaderUniformTempFlags;
 data shaderUniformBuffer;
-data g_shaderAttributeTempData5;
-data g_shaderAttributeTempData6;
-data g_shaderAttributeTempData7;
-data g_shaderAttributeTempData8;
+data g_shaderAttributeWorkBuffer;
+data g_shaderAttributeTempOffset;
+data g_shaderAttributeTempSize;
+data g_shaderAttributeTempFlags;
 
 // 函数: data shaderAttributeTableInitialize;
 data shaderAttributeTableInitialize;
 data shaderAttributeTable;
-data g_shaderConstantTempData5;
-data g_shaderConstantTempData6;
-data g_shaderConstantTempData7;
-data g_shaderConstantTempData8;
+data g_shaderConstantWorkBuffer;
+data g_shaderConstantTempOffset;
+data g_shaderConstantTempSize;
+data g_shaderConstantTempFlags;
 
 // 函数: data shaderConstantDataInitialize;
 data shaderConstantDataInitialize;
 data shaderConstantData;
-data g_renderPassTempData5;
-data g_renderPassTempData6;
-data g_renderPassTempData7;
-data g_renderPassTempData8;
+data g_renderPassWorkBuffer;
+data g_renderPassTempOffset;
+data g_renderPassTempSize;
+data g_renderPassTempFlags;
 
 // 函数: data renderPassDescriptorInitialize;
 data renderPassDescriptorInitialize;
-data g_miscTempData2;
-data g_renderTargetTempData5;
-data g_renderTargetTempData6;
-data g_renderTargetTempData7;
-data g_renderTargetTempData8;
+data g_miscWorkBuffer2;
+data g_renderTargetWorkBuffer;
+data g_renderTargetTempOffset;
+data g_renderTargetTempSize;
+data g_renderTargetTempFlags;
 data renderPassDescriptor;
 
 // 函数: data renderPipelineInitialize;
@@ -1437,7 +1437,7 @@ data cameraCaptureTimestamp;
 data cameraStreamData;
 data cameraFormatData;
 longlong cameraFrameCounter;
-uint unknown_180d48d44;
+uint cameraResolutionWidth;
 double unknown_180d48d48;
 double unknown_180d48d50;
 int unknown_180d49260;
@@ -5171,7 +5171,7 @@ uint64 utilityGetResourceInformation(longlong resourceHandle,longlong memorySize
           return 0x1e;
         }
         if (*(int *)(localLong1 + 0x58) < 1) {
-          puVar4 = &g_miscTempData3;
+          puVar4 = &g_miscWorkBuffer3;
         }
         else {
           puVar4 = *(data **)(localLong1 + 0x50);
@@ -5227,7 +5227,7 @@ uint64 utilityRetrieveResourceData(void)
         return 0x1e;
       }
       if (*(int *)(localLong1 + 0x58) < 1) {
-        puVar4 = &g_miscTempData3;
+        puVar4 = &g_miscWorkBuffer3;
       }
       else {
         puVar4 = *(data **)(localLong1 + 0x50);
@@ -10597,7 +10597,7 @@ void FUN_1808975e0(longlong resourceHandle,longlong memorySize)
               localUInt = *(uint64 *)(*(longlong *)(lVar9 + 0x90) + lVar8 * 8);
               localUInt = 0;
               if (*(int *)(index + 0x58) < 1) {
-                preturnValue2 = &g_miscTempData3;
+                preturnValue2 = &g_miscWorkBuffer3;
               }
               else {
                 preturnValue2 = *(data **)(index + 0x50);
@@ -10838,7 +10838,7 @@ void FUN_180897644(void)
             *unaff_RBP = *(uint64 *)(*(longlong *)(localLong15 + 0x90) + localUInt23 * 8);
             *(byte *)((longlong)unaff_RBP + -4) = 0;
             if (*(int *)(buffer + 0x58) < 1) {
-              preturnValue8 = &g_miscTempData3;
+              preturnValue8 = &g_miscWorkBuffer3;
             }
             else {
               preturnValue8 = *(data **)(buffer + 0x50);
@@ -11084,7 +11084,7 @@ void FUN_1808976b0(void)
         *unaff_RBP = *(uint64 *)(*(longlong *)(localLong15 + 0x90) + localUInt22 * 8);
         *(byte *)((longlong)unaff_RBP + -4) = 0;
         if (*(int *)(buffer + 0x58) < 1) {
-          preturnValue8 = &g_miscTempData3;
+          preturnValue8 = &g_miscWorkBuffer3;
         }
         else {
           preturnValue8 = *(data **)(buffer + 0x50);
@@ -11853,7 +11853,7 @@ void FUN_180898040(longlong *resourceHandle)
             localPtr = &unknown_180982260;
             localUInt = localUInt & 0xffffff00;
             if (*(int *)(localLong11 + 0x58) < 1) {
-              preturnValue2 = &g_miscTempData3;
+              preturnValue2 = &g_miscWorkBuffer3;
             }
             else {
               preturnValue2 = *(data **)(localLong11 + 0x50);
@@ -45620,7 +45620,7 @@ void Unwind_180907770(void)
 void Unwind_180907780(void)
 
 {
-  _g_memoryFreeConfig1 = &threadLocalStorageCleanup;
+  _g_memoryFreeAlignment = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45631,7 +45631,7 @@ void Unwind_180907780(void)
 void Unwind_180907790(void)
 
 {
-  _g_chunkAllocData1 = &threadLocalStorageCleanup;
+  _g_chunkAllocationSize = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45642,7 +45642,7 @@ void Unwind_180907790(void)
 void Unwind_1809077a0(void)
 
 {
-  _g_chunkFreeData1 = &threadLocalStorageCleanup;
+  _g_chunkFreeSize = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45653,7 +45653,7 @@ void Unwind_1809077a0(void)
 void Unwind_1809077b0(void)
 
 {
-  _g_chunkSizeData1 = &threadLocalStorageCleanup;
+  _g_chunkSizeMin = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80353,7 +80353,7 @@ void SetupMemoryManager(void)
 void CreateMemoryAllocator(void)
 
 {
-  _g_bufferManagerControl1 = &threadLocalStorageCleanup;
+  _g_bufferManagerControlFlags = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80366,7 +80366,7 @@ void CreateMemoryAllocator(void)
 void RegisterMemoryHandler(void)
 
 {
-  _g_dataStructurePointer1 = &threadLocalStorageCleanup;
+  _g_dataStructureRoot = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80515,7 +80515,7 @@ void FreeMemoryPool(void) # 数据结构初始化函数
 void AllocateMemoryChunk(void)
 
 {
-  _g_memoryFreeConfig1 = &threadLocalStorageCleanup;
+  _g_memoryFreeAlignment = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80528,7 +80528,7 @@ void AllocateMemoryChunk(void)
 void FreeMemoryChunk(void)
 
 {
-  _g_chunkAllocData1 = &threadLocalStorageCleanup;
+  _g_chunkAllocationSize = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80541,7 +80541,7 @@ void FreeMemoryChunk(void)
 void GetMemoryChunkSize(void)
 
 {
-  _g_chunkFreeData1 = &threadLocalStorageCleanup;
+  _g_chunkFreeSize = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80554,7 +80554,7 @@ void GetMemoryChunkSize(void)
 void InitializeGlobalDataPointer2(void)
 
 {
-  _g_chunkSizeData1 = &threadLocalStorageCleanup;
+  _g_chunkSizeMin = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80841,7 +80841,7 @@ void resourceManagerReset(void)
 void InitializeDatabaseConnection(void)
 
 {
-  _g_aiNavigationTempData1 = &threadLocalStorageCleanup;
+  _g_aiNavWorkBuffer = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80854,7 +80854,7 @@ void InitializeDatabaseConnection(void)
 void SetupDatabaseTables(void)
 
 {
-  _g_databaseTempData1 = &threadLocalStorageCleanup;
+  _g_databaseWorkBuffer = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80967,7 +80967,7 @@ void resourceManagerMonitor(void)
 void CreateFileSystemHandler(void)
 
 {
-  _g_sceneTempData1 = &threadLocalStorageCleanup;
+  _g_sceneWorkBuffer = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80980,7 +80980,7 @@ void CreateFileSystemHandler(void)
 void InitializeFileCache(void)
 
 {
-  _g_fileSystemTempData1 = &threadLocalStorageCleanup;
+  _g_fileSystemWorkBuffer = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80993,7 +80993,7 @@ void InitializeFileCache(void)
 void SetupFileWatcher(void)
 
 {
-  _g_fileCacheTempData1 = &threadLocalStorageCleanup;
+  _g_fileCacheWorkBuffer = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81006,7 +81006,7 @@ void SetupFileWatcher(void)
 void materialShaderProgramInitialize(void)
 
 {
-  _g_sceneRenderTempData1 = &threadLocalStorageCleanup;
+  _g_sceneRenderWorkBuffer = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81019,7 +81019,7 @@ void materialShaderProgramInitialize(void)
 void materialTextureSamplerInitialize(void)
 
 {
-  _g_materialTextureTempData1 = &threadLocalStorageCleanup;
+  _g_materialTextureWorkBuffer = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81032,7 +81032,7 @@ void materialTextureSamplerInitialize(void)
 void materialPropertyBufferInitialize(void)
 
 {
-  _g_materialTextureTempData3 = &threadLocalStorageCleanup;
+  _g_materialTextureWorkBuffer2 = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81045,7 +81045,7 @@ void materialPropertyBufferInitialize(void)
 void materialRenderStateInitialize(void)
 
 {
-  _g_materialPropertyTempData2 = &threadLocalStorageCleanup;
+  _g_materialPropertyTempOffset = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81058,7 +81058,7 @@ void materialRenderStateInitialize(void)
 void materialUniformDataInitialize(void)
 
 {
-  _materialRenderStateConfig5 = &threadLocalStorageCleanup;
+  _g_materialRenderStateBlendMode = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81071,7 +81071,7 @@ void materialUniformDataInitialize(void)
 void textureUploadBufferInitialize(void)
 
 {
-  _g_materialUniformTempData5 = &threadLocalStorageCleanup;
+  _g_materialUniformWorkBuffer = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81084,7 +81084,7 @@ void textureUploadBufferInitialize(void)
 void textureMipChainInitialize(void)
 
 {
-  _g_textureUploadTempData5 = &threadLocalStorageCleanup;
+  _g_textureUploadWorkBuffer = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81097,7 +81097,7 @@ void textureMipChainInitialize(void)
 void textureCompressionInitialize(void)
 
 {
-  _g_textureMipTempData1 = &threadLocalStorageCleanup;
+  _g_textureMipWorkBuffer = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81110,7 +81110,7 @@ void textureCompressionInitialize(void)
 void textureFilteringInitialize(void)
 
 {
-  _g_textureCompressionTempData5 = &threadLocalStorageCleanup;
+  _g_textureCompressionWorkBuffer = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81123,7 +81123,7 @@ void textureFilteringInitialize(void)
 void textureWrappingInitialize(void)
 
 {
-  _g_textureFilterTempData5 = &threadLocalStorageCleanup;
+  _g_textureFilterWorkBuffer = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81136,7 +81136,7 @@ void textureWrappingInitialize(void)
 void meshVertexBufferInitialize(void)
 
 {
-  _g_textureWrapTempData5 = &threadLocalStorageCleanup;
+  _g_textureWrapWorkBuffer = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81149,7 +81149,7 @@ void meshVertexBufferInitialize(void)
 void meshIndexBufferInitialize(void)
 
 {
-  _g_meshVertexTempData5 = &threadLocalStorageCleanup;
+  _g_meshVertexWorkBuffer = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81162,7 +81162,7 @@ void meshIndexBufferInitialize(void)
 void meshVertexLayoutInitialize(void)
 
 {
-  _g_meshIndexTempData5 = &threadLocalStorageCleanup;
+  _g_meshIndexWorkBuffer = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81175,7 +81175,7 @@ void meshVertexLayoutInitialize(void)
 void meshBoundingBoxInitialize(void)
 
 {
-  _g_meshLayoutTempData5 = &threadLocalStorageCleanup;
+  _g_meshLayoutWorkBuffer = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81188,7 +81188,7 @@ void meshBoundingBoxInitialize(void)
 void meshCollisionInitialize(void)
 
 {
-  _g_meshBoundingBoxTempData5 = &threadLocalStorageCleanup;
+  _g_meshBoundingBoxWorkBuffer = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81201,7 +81201,7 @@ void meshCollisionInitialize(void)
 void meshDataProcess(void)
 
 {
-  _g_meshCollisionTempData5 = &threadLocalStorageCleanup;
+  _g_meshCollisionWorkBuffer = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81214,7 +81214,7 @@ void meshDataProcess(void)
 void shaderCompileInitialize(void)
 
 {
-  _g_shaderCompileTempData5 = &threadLocalStorageCleanup;
+  _g_shaderCompileWorkBuffer = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81227,7 +81227,7 @@ void shaderCompileInitialize(void)
 void shaderProgramInitialize(void)
 
 {
-  _g_shaderProgramTempData5 = &threadLocalStorageCleanup;
+  _g_shaderProgramWorkBuffer = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81240,7 +81240,7 @@ void shaderProgramInitialize(void)
 void shaderUniformBufferInitialize(void)
 
 {
-  _g_shaderUniformTempData5 = &threadLocalStorageCleanup;
+  _g_shaderUniformWorkBuffer = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81253,7 +81253,7 @@ void shaderUniformBufferInitialize(void)
 void shaderAttributeTableInitialize(void)
 
 {
-  _g_shaderAttributeTempData5 = &threadLocalStorageCleanup;
+  _g_shaderAttributeWorkBuffer = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81266,7 +81266,7 @@ void shaderAttributeTableInitialize(void)
 void shaderConstantDataInitialize(void)
 
 {
-  _g_shaderConstantTempData5 = &threadLocalStorageCleanup;
+  _g_shaderConstantWorkBuffer = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81279,7 +81279,7 @@ void shaderConstantDataInitialize(void)
 void renderPassDescriptorInitialize(void)
 
 {
-  _g_renderPassTempData5 = &threadLocalStorageCleanup;
+  _g_renderPassWorkBuffer = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81292,7 +81292,7 @@ void renderPassDescriptorInitialize(void)
 void renderPipelineInitialize(void)
 
 {
-  _g_renderTargetTempData5 = &threadLocalStorageCleanup;
+  _g_renderTargetWorkBuffer = &threadLocalStorageCleanup;
   return;
 }
 
