@@ -3081,7 +3081,7 @@ label_:
     pplStack_328 = (long long **)&stack_var_;
     system_config_002(&systemConfigData5,4,global_data_ + 0x168c,&plStack_2f8);
     if (*(float *)(global_data_ + 0x168c) == 0.0) {
-      *(unsigned int *)(global_data_ + 0x168c) = 0x3f800000;
+      *(unsigned int *)(global_data_ + 0x168c) = FLOAT_ONE;
     }
     system_initializer_004();
     global_data_ = pinit_result4;
@@ -3108,7 +3108,7 @@ label_:
   }
   if (fVar17 * 8.5830686e-07 < (float)*(int *)(global_data_ + 4)) {
     *(float *)(global_data_ + STRING_BUFFER_SIZE) = fVar15 + *(float *)(global_data_ + STRING_BUFFER_SIZE);
-    fVar15 = (float)fmodf(long_var_,0x3f800000);
+    fVar15 = (float)fmodf(long_var_,FLOAT_ONE);
     if (0.5 < fVar15) {
       stack_ptr_ = &g_threadString2;
       stack_var_ = 0;
@@ -3239,7 +3239,7 @@ unsigned long long * system_handle_manager_001(unsigned long long *handle)
   }
   do {
     long_var_ = long_var_ + 1;
-    char_ptr_var_ = (char *)(long_var_ + 0x180c82871);
+    char_ptr_var_ = (char *)(long_var_ + ADDR_STRING_OFFSET);
     long_var_ = long_var_;
   } while (*char_ptr_var_ != '\0');
   if (long_var_ != 0) {
@@ -3598,7 +3598,7 @@ label_:
       (**(code **)(*_data_00000010 + STRING_BUFFER_SIZE))();
     }
     (**(code **)(_data_00000000 + CONFIG_PATH_BUFFER_SIZE))(0);
-    _data_00000008 = 0xffffffffffffffff;
+    _data_00000008 = UINT64_MAX;
   }
   else if (*(int *)(init_result6 + 8) != 0) goto label_;
   *(uint *)(global_data_ + 0x1614) =
@@ -4046,7 +4046,7 @@ system_processor_006(unsigned long long *handle,long long flags,unsigned long lo
   stack_var_ = 3;
   long_var_ = *(long long *)(*pinit_result3 + 0x890) - *(long long *)(*pinit_result3 + 0x888) >> 5;
   stack_long_ = long_var_;
-  ppppppplStackX_8 = (long long *******)((ulong long)ppppppplStackX_8 & 0xffffffff00000000);
+  ppppppplStackX_8 = (long long *******)((ulong long)ppppppplStackX_8 & INT64_MASK);
   if (0 < (int)long_var_) {
     do {
       if (int_var_ < 0) {
@@ -4072,7 +4072,7 @@ label_:
         if (stack_ptr_ != (unsigned char *)0x0) {
           *stack_ptr_ = 0;
         }
-        stack_var_ = stack_var_ & 0xffffffff;
+        stack_var_ = stack_var_ & UINT32_MAX;
       }
       int_var_ = stack_var_ + 8;
       system_thread_manager_001(&stack_ptr_,int_var_);
