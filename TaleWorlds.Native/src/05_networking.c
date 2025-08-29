@@ -400,9 +400,9 @@ void NetworkBindSocket(ulonglong *socketHandle,int dataBuffer)
             networkFlushBuffer();
             goto LAB_NETWORK_SEND_CHUNK_START;
           }
-          iVar3 = func_0x00018088c570(lStack_140,auStack_138);
+          iVar3 = func_0x00018088c570(bufferHandle,configData);
           if (iVar3 == 0) {
-            *socketHandle = (ulonglong)auStack_138[0];
+            *socketHandle = (ulonglong)configData[0];
             goto LAB_NETWORK_SEND_CHUNK_END;
           }
         }
@@ -415,10 +415,10 @@ LAB_NETWORK_SEND_CHUNK_START:
     }
   }
   if ((*(byte *)(g_networkModule + 0x10) & 0x80) != 0) {
-    statusCode = func_0x00018074bda0(auStack_128,0x100,socketHandle);
-    resultCode = networkCopyData(auStack_128 + statusCode,0x100 - statusCode,&g_networkNullTerminator);
-    func_0x00018074b800(auStack_128 + (statusCode + resultCode),0x100 - (statusCode + resultCode),dataBuffer);
-    puStack_158 = auStack_128;
+    statusCode = func_0x00018074bda0(sendData,0x100,socketHandle);
+    operationResult = networkCopyData(sendData + statusCode,0x100 - statusCode,&g_networkNullTerminator);
+    func_0x00018074b800(sendData + (statusCode + operationResult),0x100 - (statusCode + operationResult),dataBuffer);
+    bufferPtr = sendData;
                     // WARNING: Subroutine does not return
     networkSendControlPacket(iVar3,0,0,&networkControlPacketType);
   }
