@@ -32,21 +32,21 @@ void* g_packetSize;
 void* g_maxPacketSize;
 void* g_networkCompression;
 
-// 函数: undefined NetworkInitializeConnection;
+// 函数: void* NetworkInitializeConnection;
 void* NetworkInitializeConnection;
 void* g_networkSessionData;
 
-// 函数: undefined NetworkCreateListener;
+// 函数: void* NetworkCreateListener;
 void* NetworkCreateListener;
 
-// 函数: undefined NetworkAcceptConnection;
+// 函数: void* NetworkAcceptConnection;
 void* NetworkAcceptConnection;
 void* g_networkListener;
 
-// 函数: undefined NetworkRejectConnection;
+// 函数: void* NetworkRejectConnection;
 void* NetworkRejectConnection;
 
-// 函数: undefined NetworkAuthenticateClient;
+// 函数: void* NetworkAuthenticateClient;
 void* NetworkAuthenticateClient;
 
 // 网络客户端验证函数 - 验证客户端权限和状态

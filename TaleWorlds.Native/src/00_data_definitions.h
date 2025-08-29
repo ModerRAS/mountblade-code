@@ -191,15 +191,15 @@ int initialize_resource_manager_4(void)
 }
 int initialize_resource_manager_5(void)
 {
-  long long init_result;
-  undefined8 str_len_param;
-  void* resource_pointer = &g_resource_data_buffer;
-  void* resource_buffer_pointer = &resource_buffer_5;
+  long long initialization_result;
+  undefined8 string_length_parameter;
+  void* resource_data_buffer_pointer = &g_resource_data_buffer;
+  void* resource_buffer_value_pointer = &resource_buffer_5;
   resource_buffer_5 = 0;
   resource_type_5 = 0xc;
-  strcpy_s(&resource_buffer_5,0x10,&string_source_006,str_len_param,0xfffffffffffffffe);
-  init_result = execute_function(callback_function_017);
-  return (init_result != 0) - 1;
+  strcpy_s(&resource_buffer_5,0x10,&string_source_006,string_length_parameter,0xfffffffffffffffe);
+  initialization_result = execute_function(callback_function_017);
+  return (initialization_result != 0) - 1;
 }
 int initialize_resource_manager_6(void)
 {
