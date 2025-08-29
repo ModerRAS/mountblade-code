@@ -433,30 +433,30 @@ data physicsData1;
 data physicsData2;
 data physicsData3;
 data physicsData4;
-data DAT_180bf7960;
-data DAT_180bf7968;
-data DAT_180bf7970;
-data DAT_180bf7978;
-data DAT_180bf79f8;
-data DAT_180bf7a00;
-data DAT_180bf7a08;
-data DAT_180bf7a10;
-data DAT_180bf7a90;
-data DAT_180bf7a98;
-data DAT_180bf7aa0;
-data DAT_180bf7aa8;
-data DAT_180bf7b28;
-data DAT_180bf7b30;
-data DAT_180bf7b38;
-data DAT_180bf7b40;
-data DAT_180bf7bc0;
-data DAT_180bf7bc8;
-data DAT_180bf7bd0;
-data DAT_180bf7bd8;
-data DAT_180bf7c58;
-data DAT_180bf7c60;
-data DAT_180bf7c68;
-data DAT_180bf7c70;
+data resourceManagerConfig1;  /* 原: DAT_180bf7960 */;
+data resourceManagerConfig2;  /* 原: DAT_180bf7968 */;
+data resourceManagerConfig3;  /* 原: DAT_180bf7970 */;
+data resourceManagerConfig4;  /* 原: DAT_180bf7978 */;
+data sceneManagerConfig1;  /* 原: DAT_180bf79f8 */;
+data sceneManagerConfig2;  /* 原: DAT_180bf7a00 */;
+data sceneManagerConfig3;  /* 原: DAT_180bf7a08 */;
+data sceneManagerConfig4;  /* 原: DAT_180bf7a10 */;
+data materialSystemConfig1;  /* 原: DAT_180bf7a90 */;
+data materialSystemConfig2;  /* 原: DAT_180bf7a98 */;
+data materialSystemConfig3;  /* 原: DAT_180bf7aa0 */;
+data materialSystemConfig4;  /* 原: DAT_180bf7aa8 */;
+data textureSystemConfig1;  /* 原: DAT_180bf7b28 */;
+data textureSystemConfig2;  /* 原: DAT_180bf7b30 */;
+data textureSystemConfig3;  /* 原: DAT_180bf7b38 */;
+data textureSystemConfig4;  /* 原: DAT_180bf7b40 */;
+data meshSystemConfig1;  /* 原: DAT_180bf7bc0 */;
+data meshSystemConfig2;  /* 原: DAT_180bf7bc8 */;
+data meshSystemConfig3;  /* 原: DAT_180bf7bd0 */;
+data meshSystemConfig4;  /* 原: DAT_180bf7bd8 */;
+data animationData1;
+data animationData2;
+data animationData3;
+data animationData4;
 data renderPipelineState;
 data renderFrameBuffer;
 data renderDepthBuffer;
@@ -478,12 +478,12 @@ data DAT_180c91d54;
 data physicsCollisionMatrix;
 data DAT_180c91d5c;
 data physicsRaycastResult;
-data DAT_180bf7e90;
-data DAT_180bf7e98;
-data DAT_180bf7ea0;
-data DAT_180bf7ea8;
-data DAT_180bf7ee8;
-data DAT_180bf7ef0;
+data gameData1;
+data gameData2;
+data gameData3;
+data gameData4;
+data gameData5;
+data gameData6;
 data DAT_180bf7ef8;
 data DAT_180bf7f00;
 data DAT_180bf7f40;
@@ -1723,10 +1723,10 @@ data DAT_180d49f60;
 data DAT_180d49f64;
 data clothWindData;
 data clothGravityData;
-data unknown_180a30e38;
-data unknown_180a30e60;
-data unknown_180a2fca0;
-data unknown_180a2fcd8;
+data audioProcessingData;
+data audioEffectData;
+data audioFilterData;
+data audioCompressorData;
 data renderingStateFlag1;
 data renderingStateFlag2;
 data renderingStateFlag3;
@@ -1744,21 +1744,21 @@ data DAT_180c963dc;
 data DAT_180c963d8;
 data DAT_180c9644c;
 data DAT_180c96450;
-data unknown_180a30ee8;
-data unknown_180a30ef8;
-data unknown_180a30ec8;
-data unknown_180a30ed8;
-data unknown_180a30f00;
+data audioListenerData;
+data audioSourceData;
+data audioStreamData;
+data audioBufferQueue;
+data audioSampleData;
 data DAT_180d49128;
 data systemInitializationFlag;
 data resourceManagerState;
-data unknown_180a30280;
-data unknown_180a302c0;
-data unknown_180a301c8;
-data unknown_180a301f8;
-data unknown_180a30230;
-data unknown_180a30378;
-data unknown_180a303f8;
+data audioBitrateData;
+data audioDeviceConfig;
+data audioDriverData;
+data audioHardwareInfo;
+data audioLatencyData;
+data audioBufferSize;
+data audioSampleRate;
 data unknown_180a303c8;
 data unknown_180a30330;
 data unknown_180a30368;
@@ -7064,7 +7064,7 @@ void cleanup_network_stack(void)
 
 
 
-uint64 FUN_180893f00(longlong resourceHandle,longlong memorySize)
+uint64 create_network_connection(longlong resourceHandle,longlong memorySize)
 
 {
   float fVar1;
@@ -7106,7 +7106,7 @@ uint64 FUN_180893f00(longlong resourceHandle,longlong memorySize)
 
 
 
-uint64 FUN_180893f64(void)
+uint64 get_network_statistics(void)
 
 {
   float fVar1;
@@ -7142,8 +7142,8 @@ uint64 FUN_180893f64(void)
 
 
 
-// 函数: void FUN_180893f8e(void)
-void FUN_180893f8e(void)
+// 函数: void initialize_ssl_context(void)
+void initialize_ssl_context(void)
 
 {
   float fVar1;
@@ -7176,8 +7176,8 @@ void FUN_180893f8e(void)
 
 
 
-// 函数: void FUN_180893fed(void)
-void FUN_180893fed(void)
+// 函数: void cleanup_ssl_context(void)
+void cleanup_ssl_context(void)
 
 {
   return;
@@ -7185,7 +7185,7 @@ void FUN_180893fed(void)
 
 
 
-uint64 FUN_180894000(longlong resourceHandle,longlong memorySize)
+uint64 create_ssl_connection(longlong resourceHandle,longlong memorySize)
 
 {
   float fVar1;
@@ -7225,7 +7225,7 @@ uint64 FUN_180894000(longlong resourceHandle,longlong memorySize)
 
 
 
-uint64 FUN_180894037(void)
+uint64 get_ssl_certificate(void)
 
 {
   float fVar1;
