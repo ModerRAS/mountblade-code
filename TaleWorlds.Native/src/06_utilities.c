@@ -2,7 +2,7 @@
 
 // 06_utilities.c - 473 个函数
 
-// 函数: int processBufferData(longlong dataValueBufferHandle)
+// 函数: int processBufferData(longlong tempDataBufferHandle)
 // 缓冲区数据处理函数
 dataValue g_bufferReadOffset;              // 缓冲区读取偏移量
 dataValue g_bufferWriteOffset;             // 缓冲区写入偏移量  
@@ -318,9 +318,9 @@ dataValue g_systemModuleStatus6;
 dataValue g_systemModuleHandle7;
 dataValue g_systemModuleHandle8;
 dataValue g_systemModuleHandle9;
-dataValue dataValueBufferManagementControl;
+dataValue tempDataBufferManagementControl;
 dataValue g_textureUploadBuffer;
-dataValue dataValueBufferAllocationPointer;
+dataValue tempDataBufferAllocationPointer;
 dataValue systemIsInitialized;
 dataValue systemRuntimeStatus;
 dataValue systemHasError;
@@ -339,11 +339,11 @@ dataValue memoryBlockPoolFreeList;
 dataValue memoryBlockPoolUsedBlocks;
 dataValue memoryBlockPoolTotalBlocks;
 dataValue memoryBlockPoolBlockSize;
-dataValue dataValueBufferReadPointer;
-dataValue dataValueBufferWritePointer;
-dataValue dataValueBufferSizeRemaining;
-dataValue dataValueBufferFlushFlag;
-dataValue dataValueBufferLockStatus;
+dataValue tempDataBufferReadPointer;
+dataValue tempDataBufferWritePointer;
+dataValue tempDataBufferSizeRemaining;
+dataValue tempDataBufferFlushFlag;
+dataValue tempDataBufferLockStatus;
 dataValue fileHandleTable;
 dataValue fileAccessMode;
 dataValue fileCurrentPosition;
@@ -1271,8 +1271,8 @@ dataValue CleanupThreadResources;
 dataValue eventSystemVar6800;
 dataValue eventSystemVar6808;
 dataValue semaphoreWaitTimeout;  /* 原: memoryBlockSystemVar6c0; */
-dataValue dataValueBufferSystemVar14a0;
-dataValue dataValueBufferSystemVar1324;
+dataValue tempDataBufferSystemVar14a0;
+dataValue tempDataBufferSystemVar1324;
 dataValue semaphoreInitState;
 dataValue semaphoreControlFlag;
 dataValue semaphoreRecursionCount;  /* 原: memoryBlockSystemVar6d0; */
@@ -1283,11 +1283,11 @@ dataValue renderSystemVar8d0;;
 dataValue networkSystemVarca0;;
 dataValue networkSystemVar148;;
 dataValue mutexInitializationFlag;
-dataValue dataValueBufferManagerState;
+dataValue tempDataBufferManagerState;
 dataValue systemVarea58;
 dataValue audioSystemVara60;;
-dataValue dataValueBufferPoolAddress;
-dataValue dataValueBufferPoolSize;
+dataValue tempDataBufferPoolAddress;
+dataValue tempDataBufferPoolSize;
 byte systemVar2841;
 byte systemVar2840;
 dataValue systemVar2864;
@@ -1296,9 +1296,9 @@ dataValue systemVared18;
 dataValue systemVar6948;
 dataValue systemVar6870;
 dataValue systemVar2868;
-dataValue dataValueBufferControlData1;
-dataValue dataValueBufferControlData2;
-dataValue dataValueBufferControlData3;
+dataValue tempDataBufferControlData1;
+dataValue tempDataBufferControlData2;
+dataValue tempDataBufferControlData3;
 dataValue threadSyncObject;
 dataValue threadContextData;
 dataValue threadSystemData;
@@ -2387,7 +2387,7 @@ dataValue resourceMaintenanceBuffer2;
 dataValue resourceMaintenanceBuffer3;
 dataValue resourceMaintenanceBuffer4;
 dataValue resourceMaintenanceBuffer5;
-dataValue dataValueBufferDataTable3;
+dataValue tempDataBufferDataTable3;
 char systemVarefc8;
 dataValue unknown_18064ffc0;
 dataValue unknown_180a3c8c8;
@@ -2552,20 +2552,20 @@ uint64 validate_resource_resourceHandle(longlong resourceHandle)    // 资源句
   if ((int)validationResult1 != 0) {
     return validationResult1;
   }
-  dataValueBuffer = *(longlong *)(in_stack_00000008 + 8);
-  if ((dataValueBuffer == 0) || (*(longlong *)(dataValueBuffer + BUFFER_OFFSET_DATA) != in_stack_00000008)) {
+  tempDataBuffer = *(longlong *)(in_stack_00000008 + 8);
+  if ((tempDataBuffer == 0) || (*(longlong *)(tempDataBuffer + BUFFER_OFFSET_DATA) != in_stack_00000008)) {
     return BYTE_OFFSET_FLAG;
   }
-  localLong1 = *(longlong *)(dataValueBuffer + STRUCT_OFFSET_SIZE);
-  if (dataValueBuffer == 0) {
+  localLong1 = *(longlong *)(tempDataBuffer + STRUCT_OFFSET_SIZE);
+  if (tempDataBuffer == 0) {
     return ERROR_CODE_FAILED;
   }
-  if (*(int *)(dataValueBuffer + BUFFER_OFFSET_STATUS) == -1) {
-    validationResult1 = utilityProcessMemoryData(dataValueBuffer,stackCharArrayX18);
+  if (*(int *)(tempDataBuffer + BUFFER_OFFSET_STATUS) == -1) {
+    validationResult1 = utilityProcessMemoryData(tempDataBuffer,stackCharArrayX18);
     if ((int)validationResult1 != 0) {
       return validationResult1;
     }
-    validationResult2 = process_system_dataValue(dataValueBuffer);
+    validationResult2 = process_system_dataValue(tempDataBuffer);
     if ((int)validationResult2 != 0) {
       return validationResult2;
     }
@@ -2576,15 +2576,15 @@ uint64 validate_resource_resourceHandle(longlong resourceHandle)    // 资源句
         resourceCount = *(int *)(localLong1 + RESOURCE_OFFSET_INDEX);
         if (0 < resourceCount) {
           resourceArrayPointer = (longlong *)*dataValueValueValuePointer;
-          functionResult0 = iterationIndex;
+          functionResult = iterationIndex;
           do {
-            if (*resourceArrayPointer == dataValueBuffer) {
-              if (-1 < (int)functionResult0) {
+            if (*resourceArrayPointer == tempDataBuffer) {
+              if (-1 < (int)functionResult) {
                 return 0;
               }
               break;
             }
-            functionResult0 = (ulonglong)((int)functionResult0 + 1);
+            functionResult = (ulonglong)((int)functionResult + 1);
             iterationIndex = iterationIndex + 1;
             resourceArrayPointer = resourceArrayPointer + 1;
           } while ((longlong)iterationIndex < (longlong)resourceCount);
@@ -2610,13 +2610,13 @@ uint64 validate_resource_resourceHandle(longlong resourceHandle)    // 资源句
 <<<<<<< Updated upstream
         *(longlong *)(*dataValueValueValuePointer + (longlong)*(int *)(localLong1 + RESOURCE_OFFSET_INDEX) * 8) = localLong2;
 =======
-        *(longlong *)(*plocalLong11 + (longlong)*(int *)(localLong1 + RESOURCE_OFFSET_INDEX) * 8) = dataValueBuffer;
+        *(longlong *)(*plocalLong11 + (longlong)*(int *)(localLong1 + RESOURCE_OFFSET_INDEX) * 8) = tempDataBuffer;
 >>>>>>> Stashed changes
         *(int *)(localLong1 + RESOURCE_OFFSET_INDEX) = *(int *)(localLong1 + RESOURCE_OFFSET_INDEX) + 1;
         *(int *)(localLong1 + 0x4e0) = *(int *)(localLong1 + 0x4e0) + 1;
       }
       else {
-        validationResult1 = utilityAccessMemoryRegion(localLong1 + MEMORY_OFFSET_ACCESS,dataValueBuffer);
+        validationResult1 = utilityAccessMemoryRegion(localLong1 + MEMORY_OFFSET_ACCESS,tempDataBuffer);
         if ((int)validationResult1 != 0) {
           return validationResult1;
         }
@@ -2757,7 +2757,7 @@ uint64 check_resource_operationStatus(longlong resourceHandle) # 资源状态检
 
 {
   uint *pfunctionResult;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 unsignedVar3;
   longlong *plVar4;
   longlong arrayStackX8 [4];
@@ -2767,11 +2767,11 @@ uint64 check_resource_operationStatus(longlong resourceHandle) # 资源状态检
     plVar4 = *(longlong **)(arrayStackX8[0] + POINTER_OFFSET_DATA);
     while ((*(longlong **)(arrayStackX8[0] + POINTER_OFFSET_DATA) <= plVar4 &&
            (plVar4 < *(longlong **)(arrayStackX8[0] + POINTER_OFFSET_DATA) + *(int *)(arrayStackX8[0] + BYTE_OFFSET_2)))) {
-      dataValueBuffer = *plVar4;
+      tempDataBuffer = *plVar4;
       plVar4 = plVar4 + 1;
-      if ((*(longlong *)(dataValueBuffer + RESOURCE_OFFSET_HANDLE) == *(longlong *)(arrayStackX8[0] + 8)) &&
-         (dataValueBuffer = *(longlong *)(dataValueBuffer + RESOURCE_HANDLE_OFFSET), dataValueBuffer != 0)) {
-        pfunctionResult = (uint *)(dataValueBuffer + POINTER_OFFSET_CHECKSUM);
+      if ((*(longlong *)(tempDataBuffer + RESOURCE_OFFSET_HANDLE) == *(longlong *)(arrayStackX8[0] + 8)) &&
+         (tempDataBuffer = *(longlong *)(tempDataBuffer + RESOURCE_HANDLE_OFFSET), tempDataBuffer != 0)) {
+        pfunctionResult = (uint *)(tempDataBuffer + POINTER_OFFSET_CHECKSUM);
         *pfunctionResult = *pfunctionResult | 4;
       }
     }
@@ -3553,22 +3553,22 @@ uint64 lock_mutex(longlong resourceHandle)
 
 {
   uint64 functionResult;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong longStackX8;
   
   functionResult = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),&longStackX8longStackX8);
   if ((int)functionResult != 0) {
     return functionResult;
   }
-  dataValueBuffer = longStackX8 + -8;
+  tempDataBuffer = longStackX8 + -8;
   if (longStackX8 == 0) {
-    dataValueBuffer = 0;
+    tempDataBuffer = 0;
   }
-  if (*(longlong *)(dataValueBuffer + RESOURCE_HANDLE_OFFSET) == 0) {
+  if (*(longlong *)(tempDataBuffer + RESOURCE_HANDLE_OFFSET) == 0) {
     return BYTE_OFFSET_FLAG;
   }
                     // WARNING: Subroutine does not return
-  utilityFreeMemoryBlock(*(longlong *)(dataValueBuffer + RESOURCE_HANDLE_OFFSET),1); # 内存块释放函数
+  utilityFreeMemoryBlock(*(longlong *)(tempDataBuffer + RESOURCE_HANDLE_OFFSET),1); # 内存块释放函数
 }
 
 
@@ -4047,13 +4047,13 @@ int get_file_dataSize(longlong resourceHandle)
 
 {
   int operationStatus;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   byte arrayUnsignedStackX8 [8];
   byte localBuffer [72];
   
-  dataValueBuffer = 0;
+  tempDataBuffer = 0;
   if (0 < *(int *)(resourceHandle + POINTER_OFFSET_DATA)) {
-    dataValueBuffer = *(longlong *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
+    tempDataBuffer = *(longlong *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
   }
   operationStatus = SystemMemoryFunction(*(uint32 *)(resourceHandle + ERROR_CODE_2),arrayUnsignedStackX8);
   if (operationStatus == 0) {
@@ -4064,9 +4064,9 @@ int get_file_dataSize(longlong resourceHandle)
                     // WARNING: Subroutine does not return
     memcpy(localBuffer,resourceHandle + RESOURCE_HANDLE_OFFSET,(longlong)localStatus);
   }
-  if (dataValueBuffer != 0) {
+  if (tempDataBuffer != 0) {
                     // WARNING: Subroutine does not return
-    utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),dataValueBuffer,&utilitySystemDataBuffer,BUFFER_SIZE_STANDARD,1);
+    utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),tempDataBuffer,&utilitySystemDataBuffer,BUFFER_SIZE_STANDARD,1);
   }
   return operationStatus;
 }
@@ -4144,17 +4144,17 @@ int delete_file(uint32 resourceHandle)
 {
   int in_EAX;
   int operationStatus;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong unaff_RDI;
   uint32 unsignedVar3;
   longlong lStack0000000000000028;
   uint32 uStack0000000000000030;
   
-  dataValueBuffer = 0;
+  tempDataBuffer = 0;
   if (in_EAX == 0) {
     lStack0000000000000028 = *(longlong *)(unaff_RDI + RESOURCE_HANDLE_OFFSET);
     unsignedVar3 = 1;
-    dataValueBuffer = lStack0000000000000028;
+    tempDataBuffer = lStack0000000000000028;
   }
   else {
     lStack0000000000000028 = *(longlong *)(unaff_RDI + RESOURCE_HANDLE_OFFSET);
@@ -4165,8 +4165,8 @@ int delete_file(uint32 resourceHandle)
   if (operationStatus == 0) {
     operationStatus = 0;
   }
-  else if (dataValueBuffer != 0) {
-    utilityAccessSystemMemory(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),dataValueBuffer,&utilityMemoryDataBuffer,MEMORY_ACCESS_FLAG,unsignedVar3);
+  else if (tempDataBuffer != 0) {
+    utilityAccessSystemMemory(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),tempDataBuffer,&utilityMemoryDataBuffer,MEMORY_ACCESS_FLAG,unsignedVar3);
     return operationStatus;
   }
   return operationStatus;
@@ -5528,18 +5528,18 @@ void utilityCompleteResourceProcess(longlong resourceHandle,longlong memoryBlock
 
 {
   int operationStatus;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 unsignedStackX8;
   
   operationStatus = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET));
   if (operationStatus == 0) {
     if (unsignedStackX8 == 0) {
-      dataValueBuffer = 0;
+      tempDataBuffer = 0;
     }
     else {
-      dataValueBuffer = unsignedStackX8 + -8;
+      tempDataBuffer = unsignedStackX8 + -8;
     }
-    *(uint32 *)(dataValueBuffer + 0x88) = *(uint32 *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
+    *(uint32 *)(tempDataBuffer + 0x88) = *(uint32 *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
                     // WARNING: Subroutine does not return
     utilityReleaseResourceHandle(*(uint64 *)(memoryBlockSize + RESOURCE_HANDLE_OFFSET),resourceHandle);
   }
@@ -5552,7 +5552,7 @@ uint64 utilityHandleResourceResponse(longlong resourceHandle,longlong memoryBloc
 
 {
   float floatVar1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 unsignedVar3;
   float floatVar4;
   longlong longStackX8;
@@ -5576,17 +5576,17 @@ uint64 utilityHandleResourceResponse(longlong resourceHandle,longlong memoryBloc
       if (longStackX8 == 0) {
         return ERROR_CODE_INVALID;
       }
-      dataValueBuffer = *(longlong *)(longStackX8 + RESOURCE_HANDLE_OFFSET);
-      if (dataValueBuffer == 0) {
+      tempDataBuffer = *(longlong *)(longStackX8 + RESOURCE_HANDLE_OFFSET);
+      if (tempDataBuffer == 0) {
         return SUCCESS_CODE;
       }
-      if ((*(byte *)(dataValueBuffer + FIELD_OFFSET_2) & ACCESS_FLAG) != 0) {
+      if ((*(byte *)(tempDataBuffer + FIELD_OFFSET_2) & ACCESS_FLAG) != 0) {
         return ERROR_CODE_FAILED;
       }
       floatVar1 = *(float *)(resourceHandle + POINTER_OFFSET_DATA);
-      floatVar4 = *(float *)(dataValueBuffer + STRUCT_OFFSET_SIZE);
-      if ((*(float *)(dataValueBuffer + STRUCT_OFFSET_SIZE) <= floatVar1) &&
-         (floatVar4 = *(float *)(dataValueBuffer + RESOURCE_PROPERTY_OFFSET), floatVar1 <= *(float *)(dataValueBuffer + RESOURCE_PROPERTY_OFFSET))) {
+      floatVar4 = *(float *)(tempDataBuffer + STRUCT_OFFSET_SIZE);
+      if ((*(float *)(tempDataBuffer + STRUCT_OFFSET_SIZE) <= floatVar1) &&
+         (floatVar4 = *(float *)(tempDataBuffer + RESOURCE_PROPERTY_OFFSET), floatVar1 <= *(float *)(tempDataBuffer + RESOURCE_PROPERTY_OFFSET))) {
         floatVar4 = floatVar1;
       }
       *(float *)(resourceHandle + POINTER_OFFSET_DATA) = floatVar4;
@@ -5604,7 +5604,7 @@ uint64 utilityProcessResourceResult(longlong resourceHandle,longlong memoryBlock
 
 {
   float floatVar1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 unsignedVar3;
   longlong longStackX8;
   longlong alStackX_18 [2];
@@ -5623,18 +5623,18 @@ uint64 utilityProcessResourceResult(longlong resourceHandle,longlong memoryBlock
       if (longStackX8 == 0) {
         return ERROR_CODE_INVALID;
       }
-      dataValueBuffer = *(longlong *)(longStackX8 + RESOURCE_HANDLE_OFFSET);
-      if (dataValueBuffer == 0) {
+      tempDataBuffer = *(longlong *)(longStackX8 + RESOURCE_HANDLE_OFFSET);
+      if (tempDataBuffer == 0) {
         return SUCCESS_CODE;
       }
-      if ((*(byte *)(dataValueBuffer + FIELD_OFFSET_2) & ACCESS_FLAG) != 0) {
+      if ((*(byte *)(tempDataBuffer + FIELD_OFFSET_2) & ACCESS_FLAG) != 0) {
         return ERROR_CODE_FAILED;
       }
-      unsignedVar3 = utilityAccessResourceAttribute(dataValueBuffer,resourceHandle + 0x25,resourceHandle + POINTER_OFFSET_DATA);
+      unsignedVar3 = utilityAccessResourceAttribute(tempDataBuffer,resourceHandle + 0x25,resourceHandle + POINTER_OFFSET_DATA);
       if ((int)unsignedVar3 == 0) {
         floatVar1 = *(float *)(resourceHandle + POINTER_OFFSET_DATA);
-        if ((*(float *)(dataValueBuffer + STRUCT_OFFSET_SIZE) <= floatVar1) &&
-           (floatVar1 < *(float *)(dataValueBuffer + RESOURCE_PROPERTY_OFFSET) || floatVar1 == *(float *)(dataValueBuffer + RESOURCE_PROPERTY_OFFSET))) {
+        if ((*(float *)(tempDataBuffer + STRUCT_OFFSET_SIZE) <= floatVar1) &&
+           (floatVar1 < *(float *)(tempDataBuffer + RESOURCE_PROPERTY_OFFSET) || floatVar1 == *(float *)(tempDataBuffer + RESOURCE_PROPERTY_OFFSET))) {
           unsignedVar3 = *(uint64 *)(memoryBlockSize + RESOURCE_HANDLE_OFFSET);
           *(float *)(longStackX8 + 4) = floatVar1;
                     // WARNING: Subroutine does not return
@@ -5653,7 +5653,7 @@ uint64 utilityExtractResourceOutput(void)
 
 {
   float floatVar1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 unsignedVar3;
   longlong unaff_RBP;
   longlong unaff_RDI;
@@ -5662,18 +5662,18 @@ uint64 utilityExtractResourceOutput(void)
   if (in_stack_00000040 == 0) {
     return ERROR_CODE_INVALID;
   }
-  dataValueBuffer = *(longlong *)(in_stack_00000040 + RESOURCE_HANDLE_OFFSET);
-  if (dataValueBuffer == 0) {
+  tempDataBuffer = *(longlong *)(in_stack_00000040 + RESOURCE_HANDLE_OFFSET);
+  if (tempDataBuffer == 0) {
     return SUCCESS_CODE;
   }
-  if ((*(byte *)(dataValueBuffer + FIELD_OFFSET_2) & ACCESS_FLAG) != 0) {
+  if ((*(byte *)(tempDataBuffer + FIELD_OFFSET_2) & ACCESS_FLAG) != 0) {
     return ERROR_CODE_FAILED;
   }
-  unsignedVar3 = utilityAccessResourceAttribute(dataValueBuffer,unaff_RDI + 0x25,unaff_RDI + POINTER_OFFSET_DATA);
+  unsignedVar3 = utilityAccessResourceAttribute(tempDataBuffer,unaff_RDI + 0x25,unaff_RDI + POINTER_OFFSET_DATA);
   if ((int)unsignedVar3 == 0) {
     floatVar1 = *(float *)(unaff_RDI + POINTER_OFFSET_DATA);
-    if ((*(float *)(dataValueBuffer + STRUCT_OFFSET_SIZE) <= floatVar1) &&
-       (floatVar1 < *(float *)(dataValueBuffer + RESOURCE_PROPERTY_OFFSET) || floatVar1 == *(float *)(dataValueBuffer + RESOURCE_PROPERTY_OFFSET))) {
+    if ((*(float *)(tempDataBuffer + STRUCT_OFFSET_SIZE) <= floatVar1) &&
+       (floatVar1 < *(float *)(tempDataBuffer + RESOURCE_PROPERTY_OFFSET) || floatVar1 == *(float *)(tempDataBuffer + RESOURCE_PROPERTY_OFFSET))) {
       unsignedVar3 = *(uint64 *)(unaff_RBP + RESOURCE_HANDLE_OFFSET);
       *(float *)(in_stack_00000040 + 4) = floatVar1;
                     // WARNING: Subroutine does not return
@@ -5690,25 +5690,25 @@ uint64 utilityFormatResourceData(void)
 
 {
   float floatVar1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 unsignedVar3;
   longlong baseRegister;
   longlong unaff_RBP;
   longlong unaff_RDI;
   longlong in_stack_00000040;
   
-  dataValueBuffer = *(longlong *)(baseRegister + RESOURCE_HANDLE_OFFSET);
-  if (dataValueBuffer == 0) {
+  tempDataBuffer = *(longlong *)(baseRegister + RESOURCE_HANDLE_OFFSET);
+  if (tempDataBuffer == 0) {
     return SUCCESS_CODE;
   }
-  if ((*(byte *)(dataValueBuffer + FIELD_OFFSET_2) & ACCESS_FLAG) != 0) {
+  if ((*(byte *)(tempDataBuffer + FIELD_OFFSET_2) & ACCESS_FLAG) != 0) {
     return ERROR_CODE_FAILED;
   }
-  unsignedVar3 = utilityAccessResourceAttribute(dataValueBuffer,unaff_RDI + 0x25,unaff_RDI + POINTER_OFFSET_DATA);
+  unsignedVar3 = utilityAccessResourceAttribute(tempDataBuffer,unaff_RDI + 0x25,unaff_RDI + POINTER_OFFSET_DATA);
   if ((int)unsignedVar3 == 0) {
     floatVar1 = *(float *)(unaff_RDI + POINTER_OFFSET_DATA);
-    if ((*(float *)(dataValueBuffer + STRUCT_OFFSET_SIZE) <= floatVar1) &&
-       (floatVar1 < *(float *)(dataValueBuffer + RESOURCE_PROPERTY_OFFSET) || floatVar1 == *(float *)(dataValueBuffer + RESOURCE_PROPERTY_OFFSET))) {
+    if ((*(float *)(tempDataBuffer + STRUCT_OFFSET_SIZE) <= floatVar1) &&
+       (floatVar1 < *(float *)(tempDataBuffer + RESOURCE_PROPERTY_OFFSET) || floatVar1 == *(float *)(tempDataBuffer + RESOURCE_PROPERTY_OFFSET))) {
       unsignedVar3 = *(uint64 *)(unaff_RBP + RESOURCE_HANDLE_OFFSET);
       *(float *)(in_stack_00000040 + 4) = floatVar1;
                     // WARNING: Subroutine does not return
@@ -5800,7 +5800,7 @@ uint64 utilityAnalyzeResourcePerformance(longlong resourceHandle,longlong memory
 
 {
   float floatVar1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong arrayIndex;
   uint64 validationResult1;
   longlong longVar5;
@@ -5821,8 +5821,8 @@ uint64 utilityAnalyzeResourcePerformance(longlong resourceHandle,longlong memory
     if (lStackX_18 != 0) {
       longVar5 = lStackX_18 + -8;
     }
-    dataValueBuffer = *(longlong *)(longVar5 + RESOURCE_OFFSET_HANDLE);
-    if (dataValueBuffer == 0) {
+    tempDataBuffer = *(longlong *)(longVar5 + RESOURCE_OFFSET_HANDLE);
+    if (tempDataBuffer == 0) {
       return SUCCESS_CODE;
     }
     arrayUnsignedStackX8[0] = 0;
@@ -5840,9 +5840,9 @@ uint64 utilityAnalyzeResourcePerformance(longlong resourceHandle,longlong memory
         floatVar6 = floatVar1;
       }
       *(float *)(resourceHandle + RESOURCE_OFFSET_HANDLE) = floatVar6;
-      dataValueBuffer = *(longlong *)(dataValueBuffer + MEMORY_SIZE_OFFSET);
+      tempDataBuffer = *(longlong *)(tempDataBuffer + MEMORY_SIZE_OFFSET);
       *(float *)(longVar5 + 4 + (longlong)(int)arrayUnsignedStackX8[0] * RESOURCE_OFFSET_HANDLE) = floatVar6;
-      *(uint64 *)(resourceHandle + POINTER_OFFSET_DATA) = *(uint64 *)(dataValueBuffer + (longlong)(int)arrayUnsignedStackX8[0] * 8);
+      *(uint64 *)(resourceHandle + POINTER_OFFSET_DATA) = *(uint64 *)(tempDataBuffer + (longlong)(int)arrayUnsignedStackX8[0] * 8);
                     // WARNING: Subroutine does not return
       utilityReleaseResourceHandle(*(uint64 *)(memoryBlockSize + RESOURCE_HANDLE_OFFSET),resourceHandle);
     }
@@ -5856,7 +5856,7 @@ uint64 utilityOptimizeResourcePerformance(longlong resourceHandle,longlong memor
 
 {
   float floatVar1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong arrayIndex;
   uint64 validationResult1;
   longlong longVar5;
@@ -5873,8 +5873,8 @@ uint64 utilityOptimizeResourcePerformance(longlong resourceHandle,longlong memor
     if (lStackX_18 != 0) {
       longVar6 = lStackX_18 + -8;
     }
-    dataValueBuffer = *(longlong *)(longVar6 + RESOURCE_OFFSET_HANDLE);
-    if (dataValueBuffer == 0) {
+    tempDataBuffer = *(longlong *)(longVar6 + RESOURCE_OFFSET_HANDLE);
+    if (tempDataBuffer == 0) {
       return SUCCESS_CODE;
     }
     aiStackX_8[0] = 0;
@@ -5893,9 +5893,9 @@ uint64 utilityOptimizeResourcePerformance(longlong resourceHandle,longlong memor
       floatVar1 = *(float *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
       if ((*(float *)(arrayIndex + STRUCT_OFFSET_SIZE) <= floatVar1) &&
          (floatVar1 < *(float *)(arrayIndex + RESOURCE_PROPERTY_OFFSET) || floatVar1 == *(float *)(arrayIndex + RESOURCE_PROPERTY_OFFSET))) {
-        dataValueBuffer = *(longlong *)(dataValueBuffer + MEMORY_SIZE_OFFSET);
+        tempDataBuffer = *(longlong *)(tempDataBuffer + MEMORY_SIZE_OFFSET);
         *(float *)(longVar6 + 4 + longVar5 * RESOURCE_OFFSET_HANDLE) = floatVar1;
-        *(uint64 *)(resourceHandle + POINTER_OFFSET_DATA) = *(uint64 *)(dataValueBuffer + (longlong)aiStackX_8[0] * 8);
+        *(uint64 *)(resourceHandle + POINTER_OFFSET_DATA) = *(uint64 *)(tempDataBuffer + (longlong)aiStackX_8[0] * 8);
                     // WARNING: Subroutine does not return
         utilityReleaseResourceHandle(*(uint64 *)(memoryBlockSize + RESOURCE_HANDLE_OFFSET),resourceHandle);
       }
@@ -5992,7 +5992,7 @@ uint64 utilityFinalizeResourceTask(longlong resourceHandle,longlong memoryBlockS
   float floatVar11;
   float floatStackX8;
   uint32 unsignedStackXc;
-  ulonglong functionResult0;
+  ulonglong functionResult;
   
   unsignedVar3 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),&floatStackX8floatStackX8);
   if ((int)unsignedVar3 != 0) {
@@ -6007,7 +6007,7 @@ uint64 utilityFinalizeResourceTask(longlong resourceHandle,longlong memoryBlockS
   pfloatValue7 = (float *)(resourceHandle + POINTER_OFFSET_DATA + (longlong)*(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE) * 4);
   if (0 < *(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE)) {
     pfloatValue4 = pfloatValue7;
-    functionResult0 = iterationIndex;
+    functionResult = iterationIndex;
     do {
       operationStatus = *(int *)(((resourceHandle + POINTER_OFFSET_DATA) - (longlong)pfloatValue7) + (longlong)pfloatValue4);
       if (operationStatus != -1) {
@@ -6036,8 +6036,8 @@ uint64 utilityFinalizeResourceTask(longlong resourceHandle,longlong memoryBlockS
         }
         *pfloatValue4 = floatVar11;
       }
-      unsignedVar9 = (int)functionResult0 + 1;
-      functionResult0 = (ulonglong)unsignedVar9;
+      unsignedVar9 = (int)functionResult + 1;
+      functionResult = (ulonglong)unsignedVar9;
       pfloatValue4 = pfloatValue4 + 1;
     } while ((int)unsignedVar9 < *(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE));
     if (0 < *(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE)) {
@@ -6160,7 +6160,7 @@ void utilityProcessResourceCycle(longlong resourceHandle,uint64 memoryBlockSize)
 
 {
   int operationStatus;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   ulonglong unsignedVar3;
   bool boolVar4;
   longlong localArray [3];
@@ -6177,14 +6177,14 @@ void utilityProcessResourceCycle(longlong resourceHandle,uint64 memoryBlockSize)
     if (boolVar4) {
       localArray[0] = 0;
     }
-    dataValueBuffer = (longlong)*(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
-    unsignedVar3 = dataValueBuffer * 4 + ALIGNMENT_MASK;
-    lStack_40 = resourceHandle + POINTER_OFFSET_DATA + dataValueBuffer * 8;
-    if (unsignedVar3 <= (ulonglong)(dataValueBuffer * 4)) {
+    tempDataBuffer = (longlong)*(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
+    unsignedVar3 = tempDataBuffer * 4 + ALIGNMENT_MASK;
+    lStack_40 = resourceHandle + POINTER_OFFSET_DATA + tempDataBuffer * 8;
+    if (unsignedVar3 <= (ulonglong)(tempDataBuffer * 4)) {
       unsignedVar3 = 0xffffffffffffff0;
     }
                     // WARNING: Subroutine does not return
-    utilityProcessResourceData(dataValueBuffer,unsignedVar3 & 0xfffffffffffffff0);
+    utilityProcessResourceData(tempDataBuffer,unsignedVar3 & 0xfffffffffffffff0);
   }
                     // WARNING: Subroutine does not return
   ExecuteSecurityCheck(localUInt ^ (ulonglong)localArray);
@@ -6198,18 +6198,18 @@ void utilityManageResourceCycle(longlong resourceHandle,longlong memoryBlockSize
 
 {
   int operationStatus;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 unsignedStackX8;
   
   operationStatus = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET));
   if (operationStatus == 0) {
     if (unsignedStackX8 == 0) {
-      dataValueBuffer = 0;
+      tempDataBuffer = 0;
     }
     else {
-      dataValueBuffer = unsignedStackX8 + -8;
+      tempDataBuffer = unsignedStackX8 + -8;
     }
-    *(byte *)(dataValueBuffer + 0xbc) = *(byte *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
+    *(byte *)(tempDataBuffer + 0xbc) = *(byte *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
                     // WARNING: Subroutine does not return
     utilityReleaseResourceHandle(*(uint64 *)(memoryBlockSize + RESOURCE_HANDLE_OFFSET),resourceHandle);
   }
@@ -6341,7 +6341,7 @@ uint64 utilityProcessResourceCycleResult(longlong resourceHandle,longlong memory
 
 {
   uint64 functionResult;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong longStackX8;
   
   if (3 < *(uint *)(resourceHandle + RESOURCE_OFFSET_HANDLE)) {
@@ -6356,19 +6356,19 @@ uint64 utilityProcessResourceCycleResult(longlong resourceHandle,longlong memory
     return functionResult;
   }
   if (longStackX8 == 0) {
-    dataValueBuffer = 0;
+    tempDataBuffer = 0;
   }
   else {
-    dataValueBuffer = longStackX8 + -8;
+    tempDataBuffer = longStackX8 + -8;
   }
-  *(uint32 *)(dataValueBuffer + 0x94 + (longlong)*(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE) * 4) =
+  *(uint32 *)(tempDataBuffer + 0x94 + (longlong)*(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE) * 4) =
        *(uint32 *)(resourceHandle + BYTE_OFFSET_FLAG);
-  dataValueBuffer = *(longlong *)(memoryBlockSize + RESOURCE_HANDLE_OFFSET);
-  if ((*(int *)(dataValueBuffer + SYSTEM_STATUS_OFFSET1) != 0) || (*(int *)(dataValueBuffer + SYSTEM_STATUS_OFFSET2) != 0)) {
+  tempDataBuffer = *(longlong *)(memoryBlockSize + RESOURCE_HANDLE_OFFSET);
+  if ((*(int *)(tempDataBuffer + SYSTEM_STATUS_OFFSET1) != 0) || (*(int *)(tempDataBuffer + SYSTEM_STATUS_OFFSET2) != 0)) {
     longStackX8 = 0;
     utilityPrepareResourceOperation(&longStackX8longStackX8);
-    if (longStackX8 == *(longlong *)((longlong)*(int *)(dataValueBuffer + SYSTEM_INDEX_OFFSET) * 8 + 0x180c4f450)) {
-      functionResult = utilityExecuteResourceOperation(dataValueBuffer,resourceHandle);
+    if (longStackX8 == *(longlong *)((longlong)*(int *)(tempDataBuffer + SYSTEM_INDEX_OFFSET) * 8 + 0x180c4f450)) {
+      functionResult = utilityExecuteResourceOperation(tempDataBuffer,resourceHandle);
       if ((int)functionResult == 0) {
         return 0;
       }
@@ -6376,7 +6376,7 @@ uint64 utilityProcessResourceCycleResult(longlong resourceHandle,longlong memory
     }
   }
   *(uint *)(resourceHandle + 8) = *(int *)(resourceHandle + 8) + 0xfU & ALIGNMENT_VALUE;
-  functionResult = resourceExecuteFunction(*(uint64 *)(dataValueBuffer + SYSTEM_DATA_OFFSET));
+  functionResult = resourceExecuteFunction(*(uint64 *)(tempDataBuffer + SYSTEM_DATA_OFFSET));
   if ((int)functionResult == 0) {
     return 0;
   }
@@ -6389,7 +6389,7 @@ uint64 utilityValidateResourceCycle(longlong resourceHandle,longlong memoryBlock
 
 {
   uint64 functionResult;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint unsignedStackX8;
   uint32 unsignedStackXc;
   
@@ -6400,12 +6400,12 @@ uint64 utilityValidateResourceCycle(longlong resourceHandle,longlong memoryBlock
   functionResult = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),&unsignedStackX8unsignedStackX8);
   if ((int)functionResult == 0) {
     if (CONCAT44(unsignedStackXc,unsignedStackX8) == 0) {
-      dataValueBuffer = 0;
+      tempDataBuffer = 0;
     }
     else {
-      dataValueBuffer = CONCAT44(unsignedStackXc,unsignedStackX8) + -8;
+      tempDataBuffer = CONCAT44(unsignedStackXc,unsignedStackX8) + -8;
     }
-    *(uint32 *)(dataValueBuffer + 0x8c) = *(uint32 *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
+    *(uint32 *)(tempDataBuffer + 0x8c) = *(uint32 *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
                     // WARNING: Subroutine does not return
     utilityReleaseResourceHandle(*(uint64 *)(memoryBlockSize + RESOURCE_HANDLE_OFFSET),resourceHandle);
   }
@@ -6464,7 +6464,7 @@ uint64 utilityAnalyzeResourceCycle(longlong resourceHandle,longlong memoryBlockS
 
 {
   float floatVar1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 unsignedVar3;
   float floatVar4;
   uint unsignedStackX8;
@@ -6478,17 +6478,17 @@ uint64 utilityAnalyzeResourceCycle(longlong resourceHandle,longlong memoryBlockS
   if ((int)unsignedVar3 != 0) {
     return unsignedVar3;
   }
-  dataValueBuffer = *(longlong *)(CONCAT44(unsignedStackXc,unsignedStackX8) + RESOURCE_HANDLE_OFFSET);
-  if (dataValueBuffer == 0) {
+  tempDataBuffer = *(longlong *)(CONCAT44(unsignedStackXc,unsignedStackX8) + RESOURCE_HANDLE_OFFSET);
+  if (tempDataBuffer == 0) {
     return SUCCESS_CODE;
   }
-  if ((*(byte *)(dataValueBuffer + FIELD_OFFSET_2) & ACCESS_FLAG) != 0) {
+  if ((*(byte *)(tempDataBuffer + FIELD_OFFSET_2) & ACCESS_FLAG) != 0) {
     return ERROR_CODE_FAILED;
   }
   floatVar1 = *(float *)(resourceHandle + RESOURCE_DATA_OFFSET);
-  floatVar4 = *(float *)(dataValueBuffer + STRUCT_OFFSET_SIZE);
-  if ((*(float *)(dataValueBuffer + STRUCT_OFFSET_SIZE) <= floatVar1) &&
-     (floatVar4 = *(float *)(dataValueBuffer + RESOURCE_PROPERTY_OFFSET), floatVar1 <= *(float *)(dataValueBuffer + RESOURCE_PROPERTY_OFFSET))) {
+  floatVar4 = *(float *)(tempDataBuffer + STRUCT_OFFSET_SIZE);
+  if ((*(float *)(tempDataBuffer + STRUCT_OFFSET_SIZE) <= floatVar1) &&
+     (floatVar4 = *(float *)(tempDataBuffer + RESOURCE_PROPERTY_OFFSET), floatVar1 <= *(float *)(tempDataBuffer + RESOURCE_PROPERTY_OFFSET))) {
     floatVar4 = floatVar1;
   }
   *(float *)(resourceHandle + RESOURCE_DATA_OFFSET) = floatVar4;
@@ -6642,7 +6642,7 @@ int bind_network_socket(longlong resourceHandle,longlong memoryBlockSize)
 
 {
   int operationStatus;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong longStackX8;
   
   if ((((*(longlong *)(resourceHandle + BYTE_OFFSET_2) != 0) && (*(longlong *)(resourceHandle + FIELD_OFFSET_1) != 0)) &&
@@ -6662,11 +6662,11 @@ int bind_network_socket(longlong resourceHandle,longlong memoryBlockSize)
       operationStatus = ERROR_CODE_FAILED;
     }
     else {
-      dataValueBuffer = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),*(int *)(resourceHandle + POINTER_OFFSET_DATA),
+      tempDataBuffer = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),*(int *)(resourceHandle + POINTER_OFFSET_DATA),
                             &unknown_1809862d0,0x315,0,0,1);
-      if (dataValueBuffer != 0) {
+      if (tempDataBuffer != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(dataValueBuffer,*(uint64 *)(resourceHandle + RESOURCE_OFFSET_HANDLE),(longlong)*(int *)(resourceHandle + POINTER_OFFSET_DATA));
+        memcpy(tempDataBuffer,*(uint64 *)(resourceHandle + RESOURCE_OFFSET_HANDLE),(longlong)*(int *)(resourceHandle + POINTER_OFFSET_DATA));
       }
       operationStatus = 0x26;
     }
@@ -6684,7 +6684,7 @@ int connect_network_socket(longlong resourceHandle,uint64 memoryBlockSize)
 
 {
   int operationStatus;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong unaff_RDI;
   longlong unaff_R15;
   longlong in_stack_00000060;
@@ -6705,10 +6705,10 @@ int connect_network_socket(longlong resourceHandle,uint64 memoryBlockSize)
     operationStatus = ERROR_CODE_FAILED;
   }
   else {
-    dataValueBuffer = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),memoryBlockSize,&unknown_1809862d0,0x315,0);
-    if (dataValueBuffer != 0) {
+    tempDataBuffer = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),memoryBlockSize,&unknown_1809862d0,0x315,0);
+    if (tempDataBuffer != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(dataValueBuffer,*(uint64 *)(unaff_RDI + RESOURCE_OFFSET_HANDLE),(longlong)*(int *)(unaff_RDI + POINTER_OFFSET_DATA));
+      memcpy(tempDataBuffer,*(uint64 *)(unaff_RDI + RESOURCE_OFFSET_HANDLE),(longlong)*(int *)(unaff_RDI + POINTER_OFFSET_DATA));
     }
     operationStatus = 0x26;
   }
@@ -6798,16 +6798,16 @@ int send_network_dataValue(uint64 resourceHandle,uint64 memoryBlockSize)
 {
   int in_EAX;
   int operationStatus;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong unaff_RDI;
   longlong unaff_R15;
   longlong in_stack_00000060;
   
   if (in_EAX == 0) {
-    dataValueBuffer = readSystemData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),memoryBlockSize,POINTER_OFFSET_DATA,&utilityMemoryDataBuffer,0xdd);
-    if (dataValueBuffer != 0) {
+    tempDataBuffer = readSystemData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),memoryBlockSize,POINTER_OFFSET_DATA,&utilityMemoryDataBuffer,0xdd);
+    if (tempDataBuffer != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(dataValueBuffer,*(uint64 *)(unaff_RDI + RESOURCE_HANDLE_OFFSET),(longlong)*(int *)(unaff_RDI + RESOURCE_OFFSET_HANDLE));
+      memcpy(tempDataBuffer,*(uint64 *)(unaff_RDI + RESOURCE_HANDLE_OFFSET),(longlong)*(int *)(unaff_RDI + RESOURCE_OFFSET_HANDLE));
     }
     operationStatus = 0x26;
   }
@@ -6980,21 +6980,21 @@ uint64 resolve_hostname(void)
 
 {
   float floatVar1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 unsignedVar3;
   longlong unaff_RDI;
   longlong unaff_R14;
   uint32 in_stack_00000048;
   
-  dataValueBuffer = memoryAllocateFunction();
-  if ((*(uint *)(dataValueBuffer + FIELD_OFFSET_2) >> 4 & 1) != 0) {
+  tempDataBuffer = memoryAllocateFunction();
+  if ((*(uint *)(tempDataBuffer + FIELD_OFFSET_2) >> 4 & 1) != 0) {
     return ERROR_CODE_FAILED;
   }
-  unsignedVar3 = utilityAccessResourceAttribute(dataValueBuffer,unaff_RDI + ERROR_CODE_5,unaff_RDI + RESOURCE_OFFSET_HANDLE);
+  unsignedVar3 = utilityAccessResourceAttribute(tempDataBuffer,unaff_RDI + ERROR_CODE_5,unaff_RDI + RESOURCE_OFFSET_HANDLE);
   if ((int)unsignedVar3 == 0) {
     floatVar1 = *(float *)(unaff_RDI + RESOURCE_OFFSET_HANDLE);
-    if ((floatVar1 < *(float *)(dataValueBuffer + STRUCT_OFFSET_SIZE)) ||
-       (*(float *)(dataValueBuffer + RESOURCE_PROPERTY_OFFSET) <= floatVar1 && floatVar1 != *(float *)(dataValueBuffer + RESOURCE_PROPERTY_OFFSET))) {
+    if ((floatVar1 < *(float *)(tempDataBuffer + STRUCT_OFFSET_SIZE)) ||
+       (*(float *)(tempDataBuffer + RESOURCE_PROPERTY_OFFSET) <= floatVar1 && floatVar1 != *(float *)(tempDataBuffer + RESOURCE_PROPERTY_OFFSET))) {
       unsignedVar3 = BYTE_OFFSET_FLAG;
     }
     else {
@@ -7096,7 +7096,7 @@ uint64 get_network_statistics(void)
 
 {
   float floatVar1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 unsignedVar3;
   uint64 *puVar4;
   longlong baseRegister;
@@ -7104,14 +7104,14 @@ uint64 get_network_statistics(void)
   float floatVar5;
   uint32 in_stack_00000040;
   
-  dataValueBuffer = memoryAllocateFunction();
-  if ((*(uint *)(dataValueBuffer + FIELD_OFFSET_2) >> 4 & 1) != 0) {
+  tempDataBuffer = memoryAllocateFunction();
+  if ((*(uint *)(tempDataBuffer + FIELD_OFFSET_2) >> 4 & 1) != 0) {
     return ERROR_CODE_FAILED;
   }
   floatVar1 = *(float *)(baseRegister + RESOURCE_HANDLE_OFFSET);
-  floatVar5 = *(float *)(dataValueBuffer + STRUCT_OFFSET_SIZE);
-  if ((*(float *)(dataValueBuffer + STRUCT_OFFSET_SIZE) <= floatVar1) &&
-     (floatVar5 = *(float *)(dataValueBuffer + RESOURCE_PROPERTY_OFFSET), floatVar1 <= *(float *)(dataValueBuffer + RESOURCE_PROPERTY_OFFSET))) {
+  floatVar5 = *(float *)(tempDataBuffer + STRUCT_OFFSET_SIZE);
+  if ((*(float *)(tempDataBuffer + STRUCT_OFFSET_SIZE) <= floatVar1) &&
+     (floatVar5 = *(float *)(tempDataBuffer + RESOURCE_PROPERTY_OFFSET), floatVar1 <= *(float *)(tempDataBuffer + RESOURCE_PROPERTY_OFFSET))) {
     floatVar5 = floatVar1;
   }
   *(float *)(baseRegister + RESOURCE_HANDLE_OFFSET) = floatVar5;
@@ -7215,22 +7215,22 @@ uint64 get_ssl_certificate(void)
 
 {
   float floatVar1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 unsignedVar3;
   uint64 *puVar4;
   longlong unaff_RDI;
   longlong unaff_R14;
   uint32 in_stack_00000050;
   
-  dataValueBuffer = memoryAllocateFunction();
-  if ((*(uint *)(dataValueBuffer + FIELD_OFFSET_2) >> 4 & 1) != 0) {
+  tempDataBuffer = memoryAllocateFunction();
+  if ((*(uint *)(tempDataBuffer + FIELD_OFFSET_2) >> 4 & 1) != 0) {
     return ERROR_CODE_FAILED;
   }
-  unsignedVar3 = utilityAccessResourceAttribute(dataValueBuffer,unaff_RDI + 0xa0,unaff_RDI + RESOURCE_HANDLE_OFFSET);
+  unsignedVar3 = utilityAccessResourceAttribute(tempDataBuffer,unaff_RDI + 0xa0,unaff_RDI + RESOURCE_HANDLE_OFFSET);
   if ((int)unsignedVar3 == 0) {
     floatVar1 = *(float *)(unaff_RDI + RESOURCE_HANDLE_OFFSET);
-    if ((floatVar1 < *(float *)(dataValueBuffer + STRUCT_OFFSET_SIZE)) ||
-       (*(float *)(dataValueBuffer + RESOURCE_PROPERTY_OFFSET) <= floatVar1 && floatVar1 != *(float *)(dataValueBuffer + RESOURCE_PROPERTY_OFFSET))) {
+    if ((floatVar1 < *(float *)(tempDataBuffer + STRUCT_OFFSET_SIZE)) ||
+       (*(float *)(tempDataBuffer + RESOURCE_PROPERTY_OFFSET) <= floatVar1 && floatVar1 != *(float *)(tempDataBuffer + RESOURCE_PROPERTY_OFFSET))) {
       unsignedVar3 = BYTE_OFFSET_FLAG;
     }
     else {
@@ -7629,24 +7629,24 @@ void set_thread_local_dataValue(ulonglong resourceHandle)
 {
   int operationStatus;
   longlong inputRegister;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong *unaff_RSI;
   longlong unaff_RDI;
   ulonglong uStack0000000000000070;
   ulonglong in_stack_000000a8;
   
   uStack0000000000000070 = resourceHandle;
-  dataValueBuffer = (**(code **)(inputRegister + 0x288))();
-  if (dataValueBuffer == 0) {
+  tempDataBuffer = (**(code **)(inputRegister + 0x288))();
+  if (tempDataBuffer == 0) {
                     // WARNING: Subroutine does not return
     initializeBufferStructure(&stack0x00000080,0x27,&unknown_180958180,uStack0000000000000070 & INVALID_HANDLE,
                   uStack0000000000000070._4_2_);
   }
-  if (**(int **)(dataValueBuffer + STRUCT_OFFSET_1) == 0) {
+  if (**(int **)(tempDataBuffer + STRUCT_OFFSET_1) == 0) {
     operationStatus = validate_resource_resourceHandle(*(uint32 *)(unaff_RDI + RESOURCE_OFFSET_HANDLE));
     if (operationStatus != 0) goto handle_resource_error;
   }
-  *unaff_RSI = dataValueBuffer;
+  *unaff_RSI = tempDataBuffer;
 handle_resource_error:
                     // WARNING: Subroutine does not return
   ExecuteSecurityCheck(in_stack_000000a8 ^ (ulonglong)&stack0x00000000);
@@ -8132,7 +8132,7 @@ uint64 set_allocator_statusFlags(longlong *resourceHandle)
 
 {
   int operationStatus;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 unsignedVar3;
   ulonglong validationResult1;
   longlong longVar5;
@@ -8140,7 +8140,7 @@ uint64 set_allocator_statusFlags(longlong *resourceHandle)
   int *pintVar7;
   int integerVar8;
   ulonglong unsignedVar9;
-  ulonglong functionResult0;
+  ulonglong functionResult;
   
   integerVar8 = *(int *)((longlong)resourceHandle + FIELD_OFFSET_3);
   if (integerVar8 == -1) {
@@ -8172,10 +8172,10 @@ uint64 set_allocator_statusFlags(longlong *resourceHandle)
         validationResult1 = validationResult1 + 1;
       } while ((longlong)validationResult1 < (longlong)integerVar8);
     }
-    dataValueBuffer = resourceHandle[3];
+    tempDataBuffer = resourceHandle[3];
     validationResult1 = unsignedVar9;
-    functionResult0 = unsignedVar9;
-    if (0 < (int)dataValueBuffer) {
+    functionResult = unsignedVar9;
+    if (0 < (int)tempDataBuffer) {
       do {
         if ((int)resourceHandle[1] == 0) {
           return BYTE_OFFSET_FLAG;
@@ -8188,11 +8188,11 @@ uint64 set_allocator_statusFlags(longlong *resourceHandle)
           integerVar8 = *pintVar7;
         }
         *pintVar7 = (int)unsignedVar9;
-        functionResult0 = functionResult0 + 1;
+        functionResult = functionResult + 1;
         unsignedVar9 = (ulonglong)((int)unsignedVar9 + 1);
         *(uint32 *)(resourceHandle[2] + 4 + validationResult1) = INVALID_HANDLE;
         validationResult1 = validationResult1 + RESOURCE_HANDLE_OFFSET;
-      } while ((longlong)functionResult0 < (longlong)(int)dataValueBuffer);
+      } while ((longlong)functionResult < (longlong)(int)tempDataBuffer);
     }
   }
   return 0;
@@ -8285,7 +8285,7 @@ void log_debug_message(longlong resourceHandle,byte *memoryBlockBlockBlockSize,i
 
 {
   byte boolVar1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   char charVar3;
   int iterationCounter;
   uint64 validationResult2;
@@ -8333,7 +8333,7 @@ void log_debug_message(longlong resourceHandle,byte *memoryBlockBlockBlockSize,i
       if ((9.223372e+18 <= floatVar10) && (floatVar10 = floatVar10 - 9.223372e+18, floatVar10 < 9.223372e+18)) {
         longVar7 = -0x8000000000000000;
       }
-      dataValueBuffer = *(longlong *)(resourceHandle + 0xa0);
+      tempDataBuffer = *(longlong *)(resourceHandle + 0xa0);
       longVar6 = *(longlong *)(resourceHandle + RESOURCE_HANDLE_OFFSET);
       if (longVar6 == 0) {
         floatVar11 = (float)*(uint *)(resourceHandle + 0x68) * floatVar11;
@@ -8341,7 +8341,7 @@ void log_debug_message(longlong resourceHandle,byte *memoryBlockBlockBlockSize,i
         if ((9.223372e+18 <= floatVar11) && (floatVar11 = floatVar11 - 9.223372e+18, floatVar11 < 9.223372e+18)) {
           longVar6 = -0x8000000000000000;
         }
-        longVar6 = dataValueBuffer - ((longlong)floatVar11 + longVar6);
+        longVar6 = tempDataBuffer - ((longlong)floatVar11 + longVar6);
         *(longlong *)(resourceHandle + RESOURCE_HANDLE_OFFSET) = longVar6;
       }
       boolVar1 = *(byte *)(resourceHandle + 0x6c);
@@ -8352,7 +8352,7 @@ void log_debug_message(longlong resourceHandle,byte *memoryBlockBlockBlockSize,i
                           );
         if (iterationCounter != 0) goto ExecuteSecurityValidation;
       }
-      if (((((boolVar1 & 2) != 0 || (longlong)floatVar10 + longVar7 < dataValueBuffer - longVar6) &&
+      if (((((boolVar1 & 2) != 0 || (longlong)floatVar10 + longVar7 < tempDataBuffer - longVar6) &&
            (iterationCounter = *plocalInt, *plocalInt = iterationCounter + 1, iterationCounter < 10)) &&
           ((*(uint *)(resourceHandle + 0x6c) >> RESOURCE_OFFSET_HANDLE & 1) == 0)) &&
          (((*(uint *)(resourceHandle + 0x6c) >> 0x19 & 1) != 0 && (integerVar8 == *(int *)(resourceHandle + 0xb0))))) {
@@ -8580,7 +8580,7 @@ uint64 perform_system_operation(longlong resourceHandle,int memoryBlockSize,uint
 
 {
   uint functionResult;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong arrayIndex;
   uint64 *puVar4;
   int integerVar5;
@@ -8593,18 +8593,18 @@ uint64 perform_system_operation(longlong resourceHandle,int memoryBlockSize,uint
          (integerVar5 = *(int *)(*(longlong *)(resourceHandle + 0x70) +
                           (longlong)(int)(*(int *)(resourceHandle + HANDLE_OFFSET_DATA) - 1U & functionResult) * 4), integerVar5 != -1))
       {
-        dataValueBuffer = *(longlong *)(resourceHandle + BUFFER_OFFSET_TEMP);
+        tempDataBuffer = *(longlong *)(resourceHandle + BUFFER_OFFSET_TEMP);
         do {
           arrayIndex = (longlong)integerVar5;
-          if (*(uint *)(dataValueBuffer + arrayIndex * RESOURCE_HANDLE_OFFSET) == functionResult) {
-            uStackX_1c = (uint)((ulonglong)*(uint64 *)(dataValueBuffer + 8 + arrayIndex * RESOURCE_HANDLE_OFFSET) >> POINTER_OFFSET_DATA);
+          if (*(uint *)(tempDataBuffer + arrayIndex * RESOURCE_HANDLE_OFFSET) == functionResult) {
+            uStackX_1c = (uint)((ulonglong)*(uint64 *)(tempDataBuffer + 8 + arrayIndex * RESOURCE_HANDLE_OFFSET) >> POINTER_OFFSET_DATA);
             if (uStackX_1c != 0) {
               *operationFlags = uStackX_1c;
               return 0;
             }
             goto process_next_character;
           }
-          integerVar5 = *(int *)(dataValueBuffer + 4 + arrayIndex * RESOURCE_HANDLE_OFFSET);
+          integerVar5 = *(int *)(tempDataBuffer + 4 + arrayIndex * RESOURCE_HANDLE_OFFSET);
         } while (integerVar5 != -1);
       }
       uStackX_1c = 0;
@@ -8628,7 +8628,7 @@ uint64 FindCallbackFunction(longlong resourceHandle,uint64 memoryBlockSize,longl
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 *pointerVar3;
   int iterationCounter;
   int *unaff_RDI;
@@ -8641,9 +8641,9 @@ uint64 FindCallbackFunction(longlong resourceHandle,uint64 memoryBlockSize,longl
                       (longlong)(int)(*(int *)(resourceHandle + HANDLE_OFFSET_DATA) - 1U & callbackFunction) * 4), iterationCounter != -1)) {
     localLong1 = *(longlong *)(in_R10 + BUFFER_OFFSET_TEMP);
     do {
-      dataValueBuffer = (longlong)iterationCounter;
-      if (*(uint *)(localLong1 + dataValueBuffer * RESOURCE_HANDLE_OFFSET) == callbackFunction) {
-        iStack0000000000000044 = (int)((ulonglong)*(uint64 *)(localLong1 + 8 + dataValueBuffer * RESOURCE_HANDLE_OFFSET) >> POINTER_OFFSET_DATA)
+      tempDataBuffer = (longlong)iterationCounter;
+      if (*(uint *)(localLong1 + tempDataBuffer * RESOURCE_HANDLE_OFFSET) == callbackFunction) {
+        iStack0000000000000044 = (int)((ulonglong)*(uint64 *)(localLong1 + 8 + tempDataBuffer * RESOURCE_HANDLE_OFFSET) >> POINTER_OFFSET_DATA)
         ;
         if (iStack0000000000000044 != 0) {
           *unaff_RDI = iStack0000000000000044;
@@ -8651,7 +8651,7 @@ uint64 FindCallbackFunction(longlong resourceHandle,uint64 memoryBlockSize,longl
         }
         goto process_next_character;
       }
-      iterationCounter = *(int *)(localLong1 + 4 + dataValueBuffer * RESOURCE_HANDLE_OFFSET);
+      iterationCounter = *(int *)(localLong1 + 4 + tempDataBuffer * RESOURCE_HANDLE_OFFSET);
     } while (iterationCounter != -1);
   }
   iStack0000000000000044 = 0;
@@ -9001,7 +9001,7 @@ uint64 allocate_buffer_memoryBlock(longlong *resourceHandle,int memoryBlockSize)
 
 {
   int operationStatus;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 *pointerVar3;
   longlong longVar4;
   uint64 *pvalidationResult2;
@@ -9018,12 +9018,12 @@ uint64 allocate_buffer_memoryBlock(longlong *resourceHandle,int memoryBlockSize)
       if (puVar3 != (uint64 *)0x0) {
         operationStatus = (int)resourceHandle[1];
         longVar4 = (longlong)localStatus;
-        if ((localStatus != 0) && (dataValueBuffer = *resourceHandle, 0 < localStatus)) {
+        if ((localStatus != 0) && (tempDataBuffer = *resourceHandle, 0 < localStatus)) {
           pvalidationResult2 = puVar3;
           do {
-            *pvalidationResult2 = *(uint64 *)((dataValueBuffer - (longlong)puVar3) + (longlong)pvalidationResult2);
+            *pvalidationResult2 = *(uint64 *)((tempDataBuffer - (longlong)puVar3) + (longlong)pvalidationResult2);
             *(uint32 *)(pvalidationResult2 + 1) =
-                 *(uint32 *)((dataValueBuffer - (longlong)puVar3) + 8 + (longlong)pvalidationResult2);
+                 *(uint32 *)((tempDataBuffer - (longlong)puVar3) + 8 + (longlong)pvalidationResult2);
             pvalidationResult2 = (uint64 *)((longlong)pvalidationResult2 + STRUCT_MULTIPLIER);
             longVar4 = longVar4 + -1;
           } while (longVar4 != 0);
@@ -9051,7 +9051,7 @@ uint64 allocate_buffer_chunk(uint64 resourceHandle,int memoryBlockSize)
 
 {
   int operationStatus;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 *pointerVar3;
   longlong longVar4;
   uint64 *pvalidationResult2;
@@ -9076,12 +9076,12 @@ handle_character_processing:
     if (puVar3 != (uint64 *)0x0) {
       operationStatus = (int)baseRegister[1];
       longVar4 = (longlong)localStatus;
-      if ((localStatus != 0) && (dataValueBuffer = *baseRegister, 0 < localStatus)) {
+      if ((localStatus != 0) && (tempDataBuffer = *baseRegister, 0 < localStatus)) {
         pvalidationResult2 = puVar3;
         do {
-          *pvalidationResult2 = *(uint64 *)((dataValueBuffer - (longlong)puVar3) + (longlong)pvalidationResult2);
+          *pvalidationResult2 = *(uint64 *)((tempDataBuffer - (longlong)puVar3) + (longlong)pvalidationResult2);
           *(uint32 *)(pvalidationResult2 + 1) =
-               *(uint32 *)((dataValueBuffer - (longlong)puVar3) + 8 + (longlong)pvalidationResult2);
+               *(uint32 *)((tempDataBuffer - (longlong)puVar3) + 8 + (longlong)pvalidationResult2);
           pvalidationResult2 = (uint64 *)((longlong)pvalidationResult2 + STRUCT_MULTIPLIER);
           longVar4 = longVar4 + -1;
         } while (longVar4 != 0);
@@ -9197,7 +9197,7 @@ ulonglong validate_memory_address(longlong resourceHandle)
   int resourceCount;
   uint iterationIndex;
   uint unsignedVar9;
-  ulonglong functionResult0;
+  ulonglong functionResult;
   int localStatus1;
   uint32 *pfunctionResult2;
   longlong *plocalLong13;
@@ -9249,11 +9249,11 @@ ulonglong validate_memory_address(longlong resourceHandle)
     aiStackX_8[0] = alocalInt[0];
     if (alocalInt[0] != -1) {
       plocalLong13 = plStack_108;
-      functionResult0 = unsignedVar6;
+      functionResult = unsignedVar6;
       localStatus1 = (int)localUInt;
       do {
         do {
-          localStatus6 = (int)functionResult0;
+          localStatus6 = (int)functionResult;
           longVar5 = plocalLong13[2];
           localLong15 = (longlong)aiStackX_8[0];
           iterationCounter = *(int *)(longVar5 + 8 + localLong15 * RESOURCE_HANDLE_OFFSET);
@@ -9396,7 +9396,7 @@ ulonglong validate_memory_address(longlong resourceHandle)
                 validateResourceData(&localUInt,0);
                 return unsignedVar6;
               }
-              functionResult0 = (ulonglong)localUInt._4_4_;
+              functionResult = (ulonglong)localUInt._4_4_;
               localStatus4 = (int)localUInt;
             }
             unsignedStackArrayX10[0] = localStatus4 + 1;
@@ -9405,7 +9405,7 @@ ulonglong validate_memory_address(longlong resourceHandle)
             *(uint32 *)(localUInt + (longlong)localStatus4 * 4) = unsignedCounter;
             plocalLong13 = plStack_108;
           }
-          iterationCounter = (int)functionResult0;
+          iterationCounter = (int)functionResult;
           localStatus6 = (int)unsignedVar6;
         } while ((aiStackX_8[0] != -1) &&
                 (aiStackX_8[0] = *(int *)(plocalLong13[2] + 4 + localLong15 * RESOURCE_HANDLE_OFFSET), aiStackX_8[0] != -1));
@@ -9478,14 +9478,14 @@ process_validation_result:
   }
 validate_operation_result:
   unsignedVar6 = 0;
-  functionResult0 = unsignedVar6;
+  functionResult = unsignedVar6;
   if (0 < *(int *)(resourceHandle + POINTER_OFFSET_DATA)) {
     do {
-      iterationIndex = (int)functionResult0 + 1;
+      iterationIndex = (int)functionResult + 1;
       pbVar1 = (byte *)(unsignedVar6 + 0xb + *(longlong *)(resourceHandle + RESOURCE_OFFSET_HANDLE));
       *pbVar1 = *pbVar1 & 0xfe;
       unsignedVar6 = unsignedVar6 + STRUCT_MULTIPLIER;
-      functionResult0 = (ulonglong)iterationIndex;
+      functionResult = (ulonglong)iterationIndex;
     } while ((int)iterationIndex < *(int *)(resourceHandle + POINTER_OFFSET_DATA));
   }
   iterationCounter = validate_system_integrity(resourceHandle + 0x70);
@@ -9583,7 +9583,7 @@ uint64 validate_memory_system(longlong resourceHandle)
   longlong localLong2;
   int *pdataLength;
 =======
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   int *plocalIndex;
 >>>>>>> Stashed changes
   uint64 validationResult1;
@@ -9592,9 +9592,9 @@ uint64 validate_memory_system(longlong resourceHandle)
   if ((*(longlong *)(resourceHandle + 8) != 0) && (integerVar5 = *(int *)(resourceHandle + FIELD_OFFSET_1), 0 < integerVar5)) {
     localLong1 = *(longlong *)(resourceHandle + BYTE_OFFSET_2);
     if (0x40000 < integerVar5) {
-      dataValueBuffer = bufferAllocateFunction(localLong1 + 0x40000,10);
-      if (dataValueBuffer != 0) {
-        integerVar5 = ((int)dataValueBuffer - (int)localLong1) + 1;
+      tempDataBuffer = bufferAllocateFunction(localLong1 + 0x40000,10);
+      if (tempDataBuffer != 0) {
+        integerVar5 = ((int)tempDataBuffer - (int)localLong1) + 1;
       }
     }
     pdataLength = (int *)utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),integerVar5 + 0x19,
@@ -9624,8 +9624,8 @@ uint64 validate_memory_system(longlong resourceHandle)
     *(uint16_t *)(plocalIndex + 2) = 0x508;
     *(byte *)((longlong)plocalIndex + 10) = 3;
     plocalIndex[3] = 1;
-    dataValueBuffer = *(longlong *)(*(longlong *)(resourceHandle + 8) + MEMORY_SIZE_OFFSET);
-    validationResult1 = dataAccessFunction(*(uint64 *)(dataValueBuffer + 0x4d0),*(uint32 *)(dataValueBuffer + 0x774));
+    tempDataBuffer = *(longlong *)(*(longlong *)(resourceHandle + 8) + MEMORY_SIZE_OFFSET);
+    validationResult1 = dataAccessFunction(*(uint64 *)(tempDataBuffer + 0x4d0),*(uint32 *)(tempDataBuffer + 0x774));
     *(uint64 *)(plocalIndex + 4) = validationResult1;
 >>>>>>> Stashed changes
                     // WARNING: Subroutine does not return
@@ -9723,7 +9723,7 @@ void setup_memory_configuration(uint64 resourceHandle,longlong memoryBlockSize,u
   longlong localLong2;
   int dataValueLength;
 =======
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   int dataValueLength;
 >>>>>>> Stashed changes
   int iterationCounter;
@@ -9832,11 +9832,11 @@ process_resource_iteration:
      (dataValueLength = CreateResourceInstance(resourceHandle,memoryBlockSize,operationFlags), localIndex == 0)) {
     for (dataValueLength = 0; (-1 < localIndex && (localIndex < *(int *)(memoryBlockSize + BUFFER_OFFSET_DATA))); dataValueLength = localIndex + 1) {
       localLong1 = *(longlong *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + (longlong)localIndex * 8);
-      dataValueBuffer = *(longlong *)(localLong1 + 0x68);
-      if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (dataValueBuffer != 0)) {
+      tempDataBuffer = *(longlong *)(localLong1 + 0x68);
+      if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (tempDataBuffer != 0)) {
 >>>>>>> Stashed changes
         localUInt = 0;
-        resourceCount = validate_resource_resourceHandle(dataValueBuffer,&localUInt);
+        resourceCount = validate_resource_resourceHandle(tempDataBuffer,&localUInt);
         if (resourceCount != 0) goto HandleResourceError;
         localUInt = *(uint32 *)(localLong1 + RESOURCE_HANDLE_OFFSET);
         localUInt = *(uint *)(localLong1 + RESOURCE_DATA_OFFSET);
@@ -9849,7 +9849,7 @@ process_resource_iteration:
         localUInt = operationFlags;
         localInt = integerVar5;
         integerVar5 = ValidateResourceAccess(resourceHandle,&localPtr);
-        if ((integerVar5 != 0) || (integerVar5 = checkResourceAvailability(dataValueBuffer,afStack_304), integerVar5 != 0))
+        if ((integerVar5 != 0) || (integerVar5 = checkResourceAvailability(tempDataBuffer,afStack_304), integerVar5 != 0))
         goto HandleResourceError;
         if (afStack_304[0] != 1.0) {
           localUInt = CONCAT44(localUInt._4_4_,afStack_304[0]);
@@ -9859,7 +9859,7 @@ process_resource_iteration:
           integerVar5 = ValidateResourceAccess(resourceHandle,&localPtr);
           if (integerVar5 != 0) goto HandleResourceError;
         }
-        if (*(char *)(dataValueBuffer + BYTE_OFFSET_2) != '\0') {
+        if (*(char *)(tempDataBuffer + BYTE_OFFSET_2) != '\0') {
           localInt = 0;
           localPtr = &unknown_180984358;
           localUInt = CONCAT44(localUInt._4_4_,localUInt);
@@ -9868,7 +9868,7 @@ process_resource_iteration:
           if (integerVar5 != 0) goto HandleResourceError;
         }
         integerVar5 = iterationCounter;
-        if (*(char *)(dataValueBuffer + BYTE_OFFSET_1) != '\0') {
+        if (*(char *)(tempDataBuffer + BYTE_OFFSET_1) != '\0') {
           localInt = 0;
           localPtr = &unknown_1809843d0;
           localUInt = CONCAT44(localUInt._4_4_,localUInt);
@@ -9886,11 +9886,11 @@ process_resource_iteration:
 =======
     for (dataValueLength = 0; (-1 < localIndex && (localIndex < *(int *)(memoryBlockSize + SYSTEM_OFFSET_STATUS1))); dataValueLength = localIndex + 1) {
       localLong1 = *(longlong *)(*(longlong *)(memoryBlockSize + LIST_OFFSET_HEAD) + (longlong)localIndex * 8);
-      dataValueBuffer = *(longlong *)(localLong1 + 0x68);
-      if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (dataValueBuffer != 0)) {
+      tempDataBuffer = *(longlong *)(localLong1 + 0x68);
+      if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (tempDataBuffer != 0)) {
 >>>>>>> Stashed changes
         localUInt = 0;
-        resourceCount = validate_resource_resourceHandle(dataValueBuffer,&localUInt);
+        resourceCount = validate_resource_resourceHandle(tempDataBuffer,&localUInt);
         if (resourceCount != 0) goto HandleResourceError;
         localUInt = *(uint32 *)(localLong1 + RESOURCE_HANDLE_OFFSET);
         localUInt = *(uint *)(localLong1 + RESOURCE_DATA_OFFSET);
@@ -9903,7 +9903,7 @@ process_resource_iteration:
         localUInt = operationFlags;
         localInt = integerVar5;
         integerVar5 = ValidateResourceAccess(resourceHandle,&localPtr);
-        if ((integerVar5 != 0) || (integerVar5 = checkResourceAvailability(dataValueBuffer,afStack_304), integerVar5 != 0))
+        if ((integerVar5 != 0) || (integerVar5 = checkResourceAvailability(tempDataBuffer,afStack_304), integerVar5 != 0))
         goto HandleResourceError;
         if (afStack_304[0] != 1.0) {
           localUInt = CONCAT44(localUInt._4_4_,afStack_304[0]);
@@ -9913,7 +9913,7 @@ process_resource_iteration:
           integerVar5 = ValidateResourceAccess(resourceHandle,&localPtr);
           if (integerVar5 != 0) goto HandleResourceError;
         }
-        if (*(char *)(dataValueBuffer + BYTE_OFFSET_2) != '\0') {
+        if (*(char *)(tempDataBuffer + BYTE_OFFSET_2) != '\0') {
           localInt = 0;
           localPtr = &unknown_180984358;
           localUInt = CONCAT44(localUInt._4_4_,localUInt);
@@ -9922,7 +9922,7 @@ process_resource_iteration:
           if (integerVar5 != 0) goto HandleResourceError;
         }
         integerVar5 = iterationCounter;
-        if (*(char *)(dataValueBuffer + BYTE_OFFSET_1) != '\0') {
+        if (*(char *)(tempDataBuffer + BYTE_OFFSET_1) != '\0') {
           localInt = 0;
           localPtr = &unknown_1809843d0;
           localUInt = CONCAT44(localUInt._4_4_,localUInt);
@@ -9940,11 +9940,11 @@ process_resource_iteration:
 =======
     for (dataValueLength = 0; (-1 < localIndex && (localIndex < *(int *)(memoryBlockSize + 0x68))); dataValueLength = localIndex + 1) {
       localLong1 = *(longlong *)(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + (longlong)localIndex * 8);
-      dataValueBuffer = *(longlong *)(localLong1 + 0x68);
-      if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (dataValueBuffer != 0)) {
+      tempDataBuffer = *(longlong *)(localLong1 + 0x68);
+      if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (tempDataBuffer != 0)) {
 >>>>>>> Stashed changes
         localUInt = 0;
-        resourceCount = validate_resource_resourceHandle(dataValueBuffer,&localUInt);
+        resourceCount = validate_resource_resourceHandle(tempDataBuffer,&localUInt);
         if (resourceCount != 0) goto HandleResourceError;
         localUInt = *(uint32 *)(localLong1 + RESOURCE_HANDLE_OFFSET);
         localUInt = *(uint *)(localLong1 + RESOURCE_DATA_OFFSET);
@@ -9957,7 +9957,7 @@ process_resource_iteration:
         localUInt = operationFlags;
         localInt = integerVar5;
         integerVar5 = ValidateResourceAccess(resourceHandle,&localPtr);
-        if ((integerVar5 != 0) || (integerVar5 = checkResourceAvailability(dataValueBuffer,afStack_304), integerVar5 != 0))
+        if ((integerVar5 != 0) || (integerVar5 = checkResourceAvailability(tempDataBuffer,afStack_304), integerVar5 != 0))
         goto HandleResourceError;
         if (afStack_304[0] != 1.0) {
           localUInt = CONCAT44(localUInt._4_4_,afStack_304[0]);
@@ -9967,7 +9967,7 @@ process_resource_iteration:
           integerVar5 = ValidateResourceAccess(resourceHandle,&localPtr);
           if (integerVar5 != 0) goto HandleResourceError;
         }
-        if (*(char *)(dataValueBuffer + BYTE_OFFSET_2) != '\0') {
+        if (*(char *)(tempDataBuffer + BYTE_OFFSET_2) != '\0') {
           localInt = 0;
           localPtr = &unknown_180984358;
           localUInt = CONCAT44(localUInt._4_4_,localUInt);
@@ -9976,7 +9976,7 @@ process_resource_iteration:
           if (integerVar5 != 0) goto HandleResourceError;
         }
         integerVar5 = iterationCounter;
-        if (*(char *)(dataValueBuffer + BYTE_OFFSET_1) != '\0') {
+        if (*(char *)(tempDataBuffer + BYTE_OFFSET_1) != '\0') {
           localInt = 0;
           localPtr = &unknown_1809843d0;
           localUInt = CONCAT44(localUInt._4_4_,localUInt);
@@ -9994,11 +9994,11 @@ process_resource_iteration:
 =======
     for (dataValueLength = 0; (-1 < localIndex && (localIndex < *(int *)(memoryBlockSize + HANDLE_OFFSET_DATA))); dataValueLength = localIndex + 1) {
       localLong1 = *(longlong *)(*(longlong *)(memoryBlockSize + 0x70) + (longlong)localIndex * 8);
-      dataValueBuffer = *(longlong *)(localLong1 + 0x68);
-      if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (dataValueBuffer != 0)) {
+      tempDataBuffer = *(longlong *)(localLong1 + 0x68);
+      if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (tempDataBuffer != 0)) {
 >>>>>>> Stashed changes
         localUInt = 0;
-        resourceCount = validate_resource_resourceHandle(dataValueBuffer,&localUInt);
+        resourceCount = validate_resource_resourceHandle(tempDataBuffer,&localUInt);
         if (resourceCount != 0) goto HandleResourceError;
         localUInt = *(uint32 *)(localLong1 + RESOURCE_HANDLE_OFFSET);
         localUInt = *(uint *)(localLong1 + RESOURCE_DATA_OFFSET);
@@ -10011,7 +10011,7 @@ process_resource_iteration:
         localUInt = operationFlags;
         localInt = integerVar5;
         integerVar5 = ValidateResourceAccess(resourceHandle,&localPtr);
-        if ((integerVar5 != 0) || (integerVar5 = checkResourceAvailability(dataValueBuffer,afStack_304), integerVar5 != 0))
+        if ((integerVar5 != 0) || (integerVar5 = checkResourceAvailability(tempDataBuffer,afStack_304), integerVar5 != 0))
         goto HandleResourceError;
         if (afStack_304[0] != 1.0) {
           localUInt = CONCAT44(localUInt._4_4_,afStack_304[0]);
@@ -10021,7 +10021,7 @@ process_resource_iteration:
           integerVar5 = ValidateResourceAccess(resourceHandle,&localPtr);
           if (integerVar5 != 0) goto HandleResourceError;
         }
-        if (*(char *)(dataValueBuffer + BYTE_OFFSET_2) != '\0') {
+        if (*(char *)(tempDataBuffer + BYTE_OFFSET_2) != '\0') {
           localInt = 0;
           localPtr = &unknown_180984358;
           localUInt = CONCAT44(localUInt._4_4_,localUInt);
@@ -10030,7 +10030,7 @@ process_resource_iteration:
           if (integerVar5 != 0) goto HandleResourceError;
         }
         integerVar5 = iterationCounter;
-        if (*(char *)(dataValueBuffer + BYTE_OFFSET_1) != '\0') {
+        if (*(char *)(tempDataBuffer + BYTE_OFFSET_1) != '\0') {
           localInt = 0;
           localPtr = &unknown_1809843d0;
           localUInt = CONCAT44(localUInt._4_4_,localUInt);
@@ -10051,11 +10051,11 @@ process_resource_iteration:
 =======
       if ((localIndex < 0) || (*(int *)(memoryBlockSize + 200) <= localIndex)) break;
       localLong1 = *(longlong *)(*(longlong *)(memoryBlockSize + 0xc0) + (longlong)localIndex * 8);
-      dataValueBuffer = *(longlong *)(localLong1 + BUFFER_OFFSET_DATA);
-      if (dataValueBuffer != 0) {
+      tempDataBuffer = *(longlong *)(localLong1 + BUFFER_OFFSET_DATA);
+      if (tempDataBuffer != 0) {
 >>>>>>> Stashed changes
         localUInt = 0;
-        resourceCount = validate_resource_resourceHandle(dataValueBuffer,&localUInt);
+        resourceCount = validate_resource_resourceHandle(tempDataBuffer,&localUInt);
         if (resourceCount != 0) break;
         localUInt = *(uint32 *)(localLong1 + RESOURCE_HANDLE_OFFSET);
         localUInt = *(uint *)(localLong1 + RESOURCE_DATA_OFFSET);
@@ -10068,7 +10068,7 @@ process_resource_iteration:
         localUInt = operationFlags;
         localInt = integerVar5;
         integerVar5 = ValidateResourceAccess(resourceHandle,&localPtr);
-        if ((integerVar5 != 0) || (resourceCount = validateResourceAccess(dataValueBuffer,afStack_304,0), resourceCount != 0)) break;
+        if ((integerVar5 != 0) || (resourceCount = validateResourceAccess(tempDataBuffer,afStack_304,0), resourceCount != 0)) break;
         integerVar5 = iterationCounter;
         if (afStack_304[0] != 1.0) {
           localUInt = CONCAT44(localUInt._4_4_,afStack_304[0]);
@@ -10095,7 +10095,7 @@ void ProcessResourceQueue(void)
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint32 unsignedVar3;
   uint32 validationResult1;
   uint32 validationResult2;
@@ -10128,10 +10128,10 @@ void ProcessResourceQueue(void)
      (resourceCount = CreateResourceInstance(), resourceCount == 0)) {
     for (resourceCount = 0; (-1 < resourceCount && (resourceCount < *(int *)(unaff_R13 + BUFFER_OFFSET_DATA))); resourceCount = resourceCount + 1) {
       localLong1 = *(longlong *)(*(longlong *)(unaff_R13 + BUFFER_SIZE_OFFSET) + (longlong)resourceCount * 8);
-      dataValueBuffer = *(longlong *)(localLong1 + 0x68);
-      if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (dataValueBuffer != 0)) {
+      tempDataBuffer = *(longlong *)(localLong1 + 0x68);
+      if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (tempDataBuffer != 0)) {
         uStackX_20 = 0;
-        integerVar8 = validate_resource_resourceHandle(dataValueBuffer,&uStackX_20);
+        integerVar8 = validate_resource_resourceHandle(tempDataBuffer,&uStackX_20);
         if (integerVar8 != 0) goto handle_resource_iteration;
         unsignedVar3 = *(uint32 *)(localLong1 + RESOURCE_HANDLE_OFFSET);
         validationResult1 = *(uint32 *)(localLong1 + RESOURCE_DATA_OFFSET);
@@ -10148,7 +10148,7 @@ void ProcessResourceQueue(void)
         *(uint32 *)(unaff_RBP + -0x5c) = validationResult2;
         *(uint32 *)(unaff_RBP + -SYSTEM_OFFSET_STATUS1) = unsignedVar6;
         integerVar8 = ValidateResourceAccess(unsignedVar3,unaff_RBP + -BUFFER_OFFSET_TEMP);
-        if ((integerVar8 != 0) || (integerVar8 = checkResourceAvailability(dataValueBuffer,&fStackX_24), integerVar8 != 0))
+        if ((integerVar8 != 0) || (integerVar8 = checkResourceAvailability(tempDataBuffer,&fStackX_24), integerVar8 != 0))
         goto handle_resource_iteration;
         floatVar10 = fStackX_24;
         if (fStackX_24 != 1.0) {
@@ -10160,7 +10160,7 @@ void ProcessResourceQueue(void)
           floatVar10 = extraout_XMM0_Da;
           if (integerVar8 != 0) goto handle_resource_iteration;
         }
-        if (*(char *)(dataValueBuffer + BYTE_OFFSET_2) != '\0') {
+        if (*(char *)(tempDataBuffer + BYTE_OFFSET_2) != '\0') {
           in_stack_00000038 = 0;
           stackParameter1 = &unknown_180984358;
           in_stack_00000040 = uStackX_20;
@@ -10169,7 +10169,7 @@ void ProcessResourceQueue(void)
           floatVar10 = extraout_XMM0_Da_00;
           if (integerVar8 != 0) goto handle_resource_iteration;
         }
-        if (*(char *)(dataValueBuffer + BYTE_OFFSET_1) != '\0') {
+        if (*(char *)(tempDataBuffer + BYTE_OFFSET_1) != '\0') {
           in_stack_00000038 = 0;
           stackParameter1 = &unknown_1809843d0;
           in_stack_00000040 = uStackX_20;
@@ -10181,10 +10181,10 @@ void ProcessResourceQueue(void)
     }
     for (resourceCount = 0; (-1 < resourceCount && (resourceCount < *(int *)(unaff_R13 + SYSTEM_OFFSET_STATUS1))); resourceCount = resourceCount + 1) {
       localLong1 = *(longlong *)(*(longlong *)(unaff_R13 + LIST_OFFSET_HEAD) + (longlong)resourceCount * 8);
-      dataValueBuffer = *(longlong *)(localLong1 + 0x68);
-      if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (dataValueBuffer != 0)) {
+      tempDataBuffer = *(longlong *)(localLong1 + 0x68);
+      if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (tempDataBuffer != 0)) {
         uStackX_20 = 0;
-        integerVar8 = validate_resource_resourceHandle(dataValueBuffer,&uStackX_20);
+        integerVar8 = validate_resource_resourceHandle(tempDataBuffer,&uStackX_20);
         if (integerVar8 != 0) goto handle_resource_iteration;
         unsignedVar3 = *(uint32 *)(localLong1 + RESOURCE_HANDLE_OFFSET);
         validationResult1 = *(uint32 *)(localLong1 + RESOURCE_DATA_OFFSET);
@@ -10201,7 +10201,7 @@ void ProcessResourceQueue(void)
         *(uint32 *)(unaff_RBP + -0x5c) = validationResult2;
         *(uint32 *)(unaff_RBP + -SYSTEM_OFFSET_STATUS1) = unsignedVar6;
         integerVar8 = ValidateResourceAccess(unsignedVar3,unaff_RBP + -BUFFER_OFFSET_TEMP);
-        if ((integerVar8 != 0) || (integerVar8 = checkResourceAvailability(dataValueBuffer,&fStackX_24), integerVar8 != 0))
+        if ((integerVar8 != 0) || (integerVar8 = checkResourceAvailability(tempDataBuffer,&fStackX_24), integerVar8 != 0))
         goto handle_resource_iteration;
         floatVar10 = fStackX_24;
         if (fStackX_24 != 1.0) {
@@ -10213,7 +10213,7 @@ void ProcessResourceQueue(void)
           floatVar10 = extraout_XMM0_Da_01;
           if (integerVar8 != 0) goto handle_resource_iteration;
         }
-        if (*(char *)(dataValueBuffer + BYTE_OFFSET_2) != '\0') {
+        if (*(char *)(tempDataBuffer + BYTE_OFFSET_2) != '\0') {
           in_stack_00000038 = 0;
           stackParameter1 = &unknown_180984358;
           in_stack_00000040 = uStackX_20;
@@ -10222,7 +10222,7 @@ void ProcessResourceQueue(void)
           floatVar10 = extraout_XMM0_Da_02;
           if (integerVar8 != 0) goto handle_resource_iteration;
         }
-        if (*(char *)(dataValueBuffer + BYTE_OFFSET_1) != '\0') {
+        if (*(char *)(tempDataBuffer + BYTE_OFFSET_1) != '\0') {
           in_stack_00000038 = 0;
           stackParameter1 = &unknown_1809843d0;
           in_stack_00000040 = uStackX_20;
@@ -10234,10 +10234,10 @@ void ProcessResourceQueue(void)
     }
     for (resourceCount = 0; (-1 < resourceCount && (resourceCount < *(int *)(unaff_R13 + 0x68))); resourceCount = resourceCount + 1) {
       localLong1 = *(longlong *)(*(longlong *)(unaff_R13 + DATA_OFFSET_START) + (longlong)resourceCount * 8);
-      dataValueBuffer = *(longlong *)(localLong1 + 0x68);
-      if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (dataValueBuffer != 0)) {
+      tempDataBuffer = *(longlong *)(localLong1 + 0x68);
+      if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (tempDataBuffer != 0)) {
         uStackX_20 = 0;
-        integerVar8 = validate_resource_resourceHandle(dataValueBuffer,&uStackX_20);
+        integerVar8 = validate_resource_resourceHandle(tempDataBuffer,&uStackX_20);
         if (integerVar8 != 0) goto handle_resource_iteration;
         unsignedVar3 = *(uint32 *)(localLong1 + RESOURCE_HANDLE_OFFSET);
         validationResult1 = *(uint32 *)(localLong1 + RESOURCE_DATA_OFFSET);
@@ -10254,7 +10254,7 @@ void ProcessResourceQueue(void)
         *(uint32 *)(unaff_RBP + -0x5c) = validationResult2;
         *(uint32 *)(unaff_RBP + -SYSTEM_OFFSET_STATUS1) = unsignedVar6;
         integerVar8 = ValidateResourceAccess(unsignedVar3,unaff_RBP + -BUFFER_OFFSET_TEMP);
-        if ((integerVar8 != 0) || (integerVar8 = checkResourceAvailability(dataValueBuffer,&fStackX_24), integerVar8 != 0))
+        if ((integerVar8 != 0) || (integerVar8 = checkResourceAvailability(tempDataBuffer,&fStackX_24), integerVar8 != 0))
         goto handle_resource_iteration;
         floatVar10 = fStackX_24;
         if (fStackX_24 != 1.0) {
@@ -10266,7 +10266,7 @@ void ProcessResourceQueue(void)
           floatVar10 = extraout_XMM0_Da_03;
           if (integerVar8 != 0) goto handle_resource_iteration;
         }
-        if (*(char *)(dataValueBuffer + BYTE_OFFSET_2) != '\0') {
+        if (*(char *)(tempDataBuffer + BYTE_OFFSET_2) != '\0') {
           in_stack_00000038 = 0;
           stackParameter1 = &unknown_180984358;
           in_stack_00000040 = uStackX_20;
@@ -10275,7 +10275,7 @@ void ProcessResourceQueue(void)
           floatVar10 = extraout_XMM0_Da_04;
           if (integerVar8 != 0) goto handle_resource_iteration;
         }
-        if (*(char *)(dataValueBuffer + BYTE_OFFSET_1) != '\0') {
+        if (*(char *)(tempDataBuffer + BYTE_OFFSET_1) != '\0') {
           in_stack_00000038 = 0;
           stackParameter1 = &unknown_1809843d0;
           in_stack_00000040 = uStackX_20;
@@ -10287,10 +10287,10 @@ void ProcessResourceQueue(void)
     }
     for (resourceCount = 0; (-1 < resourceCount && (resourceCount < *(int *)(unaff_R13 + HANDLE_OFFSET_DATA))); resourceCount = resourceCount + 1) {
       localLong1 = *(longlong *)(*(longlong *)(unaff_R13 + 0x70) + (longlong)resourceCount * 8);
-      dataValueBuffer = *(longlong *)(localLong1 + 0x68);
-      if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (dataValueBuffer != 0)) {
+      tempDataBuffer = *(longlong *)(localLong1 + 0x68);
+      if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (tempDataBuffer != 0)) {
         uStackX_20 = 0;
-        integerVar8 = validate_resource_resourceHandle(dataValueBuffer,&uStackX_20);
+        integerVar8 = validate_resource_resourceHandle(tempDataBuffer,&uStackX_20);
         if (integerVar8 != 0) goto handle_resource_iteration;
         unsignedVar3 = *(uint32 *)(localLong1 + RESOURCE_HANDLE_OFFSET);
         validationResult1 = *(uint32 *)(localLong1 + RESOURCE_DATA_OFFSET);
@@ -10307,7 +10307,7 @@ void ProcessResourceQueue(void)
         *(uint32 *)(unaff_RBP + -0x5c) = validationResult2;
         *(uint32 *)(unaff_RBP + -SYSTEM_OFFSET_STATUS1) = unsignedVar6;
         integerVar8 = ValidateResourceAccess(unsignedVar3,unaff_RBP + -BUFFER_OFFSET_TEMP);
-        if ((integerVar8 != 0) || (integerVar8 = checkResourceAvailability(dataValueBuffer,&fStackX_24), integerVar8 != 0))
+        if ((integerVar8 != 0) || (integerVar8 = checkResourceAvailability(tempDataBuffer,&fStackX_24), integerVar8 != 0))
         goto handle_resource_iteration;
         floatVar10 = fStackX_24;
         if (fStackX_24 != 1.0) {
@@ -10319,7 +10319,7 @@ void ProcessResourceQueue(void)
           floatVar10 = extraout_XMM0_Da_05;
           if (integerVar8 != 0) goto handle_resource_iteration;
         }
-        if (*(char *)(dataValueBuffer + BYTE_OFFSET_2) != '\0') {
+        if (*(char *)(tempDataBuffer + BYTE_OFFSET_2) != '\0') {
           in_stack_00000038 = 0;
           stackParameter1 = &unknown_180984358;
           in_stack_00000040 = uStackX_20;
@@ -10328,7 +10328,7 @@ void ProcessResourceQueue(void)
           floatVar10 = extraout_XMM0_Da_06;
           if (integerVar8 != 0) goto handle_resource_iteration;
         }
-        if (*(char *)(dataValueBuffer + BYTE_OFFSET_1) != '\0') {
+        if (*(char *)(tempDataBuffer + BYTE_OFFSET_1) != '\0') {
           in_stack_00000038 = 0;
           stackParameter1 = &unknown_1809843d0;
           in_stack_00000040 = uStackX_20;
@@ -10343,10 +10343,10 @@ void ProcessResourceQueue(void)
     do {
       if ((resourceCount < 0) || (*(int *)(unaff_R13 + 200) <= resourceCount)) break;
       localLong1 = *(longlong *)(*(longlong *)(unaff_R13 + 0xc0) + (longlong)resourceCount * 8);
-      dataValueBuffer = *(longlong *)(localLong1 + BUFFER_OFFSET_DATA);
-      if (dataValueBuffer != 0) {
+      tempDataBuffer = *(longlong *)(localLong1 + BUFFER_OFFSET_DATA);
+      if (tempDataBuffer != 0) {
         uStackX_20 = 0;
-        newCapacity = validate_resource_resourceHandle(dataValueBuffer,&uStackX_20);
+        newCapacity = validate_resource_resourceHandle(tempDataBuffer,&uStackX_20);
         if (newCapacity != 0) break;
         unsignedVar3 = *(uint32 *)(localLong1 + RESOURCE_HANDLE_OFFSET);
         validationResult1 = *(uint32 *)(localLong1 + RESOURCE_DATA_OFFSET);
@@ -10363,7 +10363,7 @@ void ProcessResourceQueue(void)
         *(uint32 *)(unaff_RBP + -0x5c) = validationResult2;
         *(uint32 *)(unaff_RBP + -SYSTEM_OFFSET_STATUS1) = unsignedVar6;
         newCapacity = ValidateResourceAccess(unsignedVar3,unaff_RBP + -BUFFER_OFFSET_TEMP);
-        if ((newCapacity != 0) || (newCapacity = validateResourceAccess(dataValueBuffer,&fStackX_24,0), newCapacity != 0)) break;
+        if ((newCapacity != 0) || (newCapacity = validateResourceAccess(tempDataBuffer,&fStackX_24,0), newCapacity != 0)) break;
         if (fStackX_24 != 1.0) {
           in_stack_00000048 = fStackX_24;
           stackParameter1 = &unknown_1809844c8;
@@ -10478,7 +10478,7 @@ void ProcessResourceOperation(longlong resourceHandle,longlong memoryBlockSize)
 
 {
   float floatVar1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong arrayIndex;
   longlong longVar4;
   char charVar5;
@@ -10486,7 +10486,7 @@ void ProcessResourceOperation(longlong resourceHandle,longlong memoryBlockSize)
   uint unsignedVar7;
   longlong longVar8;
   longlong longVar9;
-  uint64 functionResult0;
+  uint64 functionResult;
   uint64 functionResult1;
   dataValueValue *pfunctionResult2;
   float floatVar13;
@@ -10534,11 +10534,11 @@ void ProcessResourceOperation(longlong resourceHandle,longlong memoryBlockSize)
   ulonglong localUInt;
   
   localUInt = g_securityTokenMask ^ (ulonglong)localBuffer;
-  dataValueBuffer = *(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP);
+  tempDataBuffer = *(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP);
   localLong14 = 0;
   localUInt = 0;
-  longVar8 = dataValueBuffer + 8;
-  if (dataValueBuffer == 0) {
+  longVar8 = tempDataBuffer + 8;
+  if (tempDataBuffer == 0) {
     longVar8 = localLong14;
   }
   lStack_180 = memoryBlockSize;
@@ -10556,11 +10556,11 @@ void ProcessResourceOperation(longlong resourceHandle,longlong memoryBlockSize)
       localUInt = localUInt;
       integerVar6 = ValidateResourceAccess(resourceHandle,&localPtr);
       if (integerVar6 == 0) {
-        lStack_188 = (longlong)*(int *)(dataValueBuffer + BYTE_OFFSET_2);
+        lStack_188 = (longlong)*(int *)(tempDataBuffer + BYTE_OFFSET_2);
         longVar8 = localLong14;
         if (0 < lStack_188) {
           do {
-            longVar9 = *(longlong *)(dataValueBuffer + POINTER_OFFSET_DATA);
+            longVar9 = *(longlong *)(tempDataBuffer + POINTER_OFFSET_DATA);
             arrayIndex = *(longlong *)(localLong14 + RESOURCE_HANDLE_OFFSET + longVar9);
             longVar4 = *(longlong *)(localLong14 + 8 + longVar9);
             charVar5 = resourceValidateFunction(arrayIndex,1);
@@ -10589,31 +10589,31 @@ void ProcessResourceOperation(longlong resourceHandle,longlong memoryBlockSize)
           } while (longVar8 < lStack_188);
         }
         functionResult1 = *(uint64 *)(*(longlong *)(resourceHandle + 8) + 800);
-        functionResult0 = (**(code **)*preturnValue6)(preturnValue6);
-        integerVar6 = executeDataOperation(functionResult0,functionResult1,stackCharArray1c4);
+        functionResult = (**(code **)*preturnValue6)(preturnValue6);
+        integerVar6 = executeDataOperation(functionResult,functionResult1,stackCharArray1c4);
         if (integerVar6 == 0) {
           if (stackCharArray1c4[0] != '\0') {
             functionResult1 = systemQueryFunction();
-            integerVar6 = memcmp(dataValueBuffer + STRUCT_OFFSET_SIZE,functionResult1,FIELD_OFFSET_1);
+            integerVar6 = memcmp(tempDataBuffer + STRUCT_OFFSET_SIZE,functionResult1,FIELD_OFFSET_1);
             if (integerVar6 != 0) {
-              localUInt = *(uint64 *)(dataValueBuffer + STRUCT_OFFSET_SIZE);
-              localUInt = *(uint64 *)(dataValueBuffer + BUFFER_SIZE_OFFSET);
-              localUInt = *(uint32 *)(dataValueBuffer + BUFFER_OFFSET_DATA);
-              localUInt = *(uint32 *)(dataValueBuffer + ERROR_CODE_2);
-              localUInt = *(uint32 *)(dataValueBuffer + LIST_OFFSET_HEAD);
-              localUInt = *(uint32 *)(dataValueBuffer + SYSTEM_OFFSET_STATUS2);
+              localUInt = *(uint64 *)(tempDataBuffer + STRUCT_OFFSET_SIZE);
+              localUInt = *(uint64 *)(tempDataBuffer + BUFFER_SIZE_OFFSET);
+              localUInt = *(uint32 *)(tempDataBuffer + BUFFER_OFFSET_DATA);
+              localUInt = *(uint32 *)(tempDataBuffer + ERROR_CODE_2);
+              localUInt = *(uint32 *)(tempDataBuffer + LIST_OFFSET_HEAD);
+              localUInt = *(uint32 *)(tempDataBuffer + SYSTEM_OFFSET_STATUS2);
               localPtr = &unknown_180983840;
               localUInt = 0;
-              localUInt = *(uint32 *)(dataValueBuffer + SYSTEM_OFFSET_STATUS1);
-              localUInt = *(uint32 *)(dataValueBuffer + 0x5c);
-              localUInt = *(uint32 *)(dataValueBuffer + DATA_OFFSET_START);
-              localUInt = *(uint32 *)(dataValueBuffer + 100);
+              localUInt = *(uint32 *)(tempDataBuffer + SYSTEM_OFFSET_STATUS1);
+              localUInt = *(uint32 *)(tempDataBuffer + 0x5c);
+              localUInt = *(uint32 *)(tempDataBuffer + DATA_OFFSET_START);
+              localUInt = *(uint32 *)(tempDataBuffer + 100);
               localUInt = localUInt;
               integerVar6 = ValidateResourceAccess(resourceHandle,&localPtr);
               if (integerVar6 != 0) goto TerminateResourceOperation;
             }
           }
-          integerVar6 = prepareDataBuffer(dataValueBuffer,&fStack_19c,0);
+          integerVar6 = prepareDataBuffer(tempDataBuffer,&fStack_19c,0);
           if (integerVar6 == 0) {
             if (fStack_19c != 1.0) {
               fStack_1a8 = fStack_19c;
@@ -10623,7 +10623,7 @@ void ProcessResourceOperation(longlong resourceHandle,longlong memoryBlockSize)
               integerVar6 = ValidateResourceAccess(resourceHandle,&localPtr);
               if (integerVar6 != 0) goto TerminateResourceOperation;
             }
-            integerVar6 = allocateDataBuffer(dataValueBuffer,afStack_198,0);
+            integerVar6 = allocateDataBuffer(tempDataBuffer,afStack_198,0);
             if (integerVar6 == 0) {
               if (afStack_198[0] != 1.0) {
                 fStack_1a8 = afStack_198[0];
@@ -10634,7 +10634,7 @@ void ProcessResourceOperation(longlong resourceHandle,longlong memoryBlockSize)
                 if (integerVar6 != 0) goto TerminateResourceOperation;
               }
               floatVar13 = 0.0;
-              pfVar15 = (float *)(dataValueBuffer + 0x94);
+              pfVar15 = (float *)(tempDataBuffer + 0x94);
               do {
                 if (*pfVar15 != 0.0) {
                   localUInt = localUInt;
@@ -10651,7 +10651,7 @@ void ProcessResourceOperation(longlong resourceHandle,longlong memoryBlockSize)
               pfVar15 = (float *)&unknown_1809850f8;
               floatVar13 = 0.0;
               do {
-                floatVar1 = *(float *)(dataValueBuffer + -0x180985054 + (longlong)pfVar15);
+                floatVar1 = *(float *)(tempDataBuffer + -0x180985054 + (longlong)pfVar15);
                 if (floatVar1 != *pfVar15) {
                   localUInt = localUInt;
                   localUInt = 0;
@@ -10723,7 +10723,7 @@ void ExecuteResourceCommand(void)
 
 {
   float floatVar1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong arrayIndex;
   uint64 *puVar4;
   uint32 validationResult2;
@@ -10731,7 +10731,7 @@ void ExecuteResourceCommand(void)
   uint32 unsignedVar7;
   uint32 iterationIndex;
   uint32 unsignedVar9;
-  uint32 functionResult0;
+  uint32 functionResult;
   uint32 functionResult1;
   char charVar12;
   int localStatus3;
@@ -10800,11 +10800,11 @@ void ExecuteResourceCommand(void)
         currentUnsignedSize = (ulonglong)(uint)unaff_R13D;
         do {
           localLong15 = *(longlong *)(unaff_R15 + POINTER_OFFSET_DATA);
-          dataValueBuffer = *(longlong *)(currentUnsignedSize + RESOURCE_HANDLE_OFFSET + localLong15);
+          tempDataBuffer = *(longlong *)(currentUnsignedSize + RESOURCE_HANDLE_OFFSET + localLong15);
           arrayIndex = *(longlong *)(currentUnsignedSize + 8 + localLong15);
-          charVar12 = resourceValidateFunction(dataValueBuffer,1);
+          charVar12 = resourceValidateFunction(tempDataBuffer,1);
           plocalUInt22 = puStack0000000000000058;
-          if ((charVar12 == '\0') && (*(float *)(dataValueBuffer + ERROR_CODE_2) != *(float *)(arrayIndex + BYTE_OFFSET_2))) {
+          if ((charVar12 == '\0') && (*(float *)(tempDataBuffer + ERROR_CODE_2) != *(float *)(arrayIndex + BYTE_OFFSET_2))) {
             unsignedCounter4 = *(uint32 *)(currentUnsignedSize + 4 + localLong15);
             unaff_RBP[-4] = &unknown_180984038;
             *(uint32 *)(unaff_RBP + -2) = uStackX_20;
@@ -10814,11 +10814,11 @@ void ExecuteResourceCommand(void)
             localLong15 = (*(code *)*puVar4)(puStack0000000000000058);
             *unaff_RBP = *(uint64 *)(*(longlong *)(localLong15 + MEMORY_SIZE_OFFSET) + unsignedCounter3 * 8);
             *(byte *)((longlong)unaff_RBP + -4) = 0;
-            if (*(int *)(dataValueBuffer + SYSTEM_OFFSET_STATUS1) < 1) {
+            if (*(int *)(tempDataBuffer + SYSTEM_OFFSET_STATUS1) < 1) {
               preturnValue8 = &g_miscWorkBuffer3;
             }
             else {
-              preturnValue8 = *(dataValueValue **)(dataValueBuffer + LIST_OFFSET_HEAD);
+              preturnValue8 = *(dataValueValue **)(tempDataBuffer + LIST_OFFSET_HEAD);
             }
             unsignedCounter4 = func_0x00018076b450(unaff_RBP + 1,preturnValue8,BUFFER_OFFSET_TEMP);
             localStatus3 = ValidateResourceAccess(unsignedCounter4,unaff_RBP + -4);
@@ -10852,7 +10852,7 @@ void ExecuteResourceCommand(void)
             *(float *)(unaff_RBP + -0xd) = unaff_R13D;
             iterationIndex = *(uint32 *)(unaff_R15 + SYSTEM_OFFSET_STATUS1);
             unsignedVar9 = *(uint32 *)(unaff_R15 + 0x5c);
-            functionResult0 = *(uint32 *)(unaff_R15 + DATA_OFFSET_START);
+            functionResult = *(uint32 *)(unaff_R15 + DATA_OFFSET_START);
             functionResult1 = *(uint32 *)(unaff_R15 + 100);
             *(uint32 *)(unaff_RBP + -STRUCT_MULTIPLIER) = uStackX_20;
             *(uint32 *)(unaff_RBP + -9) = unsignedCounter4;
@@ -10861,7 +10861,7 @@ void ExecuteResourceCommand(void)
             *(uint32 *)((longlong)unaff_RBP + -RESOURCE_PROPERTY_OFFSET) = unsignedVar7;
             *(uint32 *)(unaff_RBP + -7) = iterationIndex;
             *(uint32 *)((longlong)unaff_RBP + -FIELD_OFFSET_2) = unsignedVar9;
-            *(uint32 *)(unaff_RBP + -6) = functionResult0;
+            *(uint32 *)(unaff_RBP + -6) = functionResult;
             *(uint32 *)((longlong)unaff_RBP + -FIELD_OFFSET_4) = functionResult1;
             localStatus3 = ValidateResourceAccess(iterationIndex,unaff_RBP + -0xe);
             unsignedCounter4 = extraout_XMM0_Da_02;
@@ -10985,7 +10985,7 @@ void HandleResourceCallback(void)
 
 {
   float floatVar1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong arrayIndex;
   uint64 *puVar4;
   uint32 validationResult2;
@@ -10993,7 +10993,7 @@ void HandleResourceCallback(void)
   uint32 unsignedVar7;
   uint32 iterationIndex;
   uint32 unsignedVar9;
-  uint32 functionResult0;
+  uint32 functionResult;
   uint32 functionResult1;
   char charVar12;
   int localStatus3;
@@ -11046,11 +11046,11 @@ void HandleResourceCallback(void)
     lStack0000000000000060 = inputRegister;
     do {
       localLong15 = *(longlong *)(unaff_R15 + POINTER_OFFSET_DATA);
-      dataValueBuffer = *(longlong *)(currentUnsignedSize + RESOURCE_HANDLE_OFFSET + localLong15);
+      tempDataBuffer = *(longlong *)(currentUnsignedSize + RESOURCE_HANDLE_OFFSET + localLong15);
       arrayIndex = *(longlong *)(currentUnsignedSize + 8 + localLong15);
-      charVar12 = resourceValidateFunction(dataValueBuffer,1);
+      charVar12 = resourceValidateFunction(tempDataBuffer,1);
       unaff_R12 = in_stack_00000058;
-      if ((charVar12 == '\0') && (*(float *)(dataValueBuffer + ERROR_CODE_2) != *(float *)(arrayIndex + BYTE_OFFSET_2))) {
+      if ((charVar12 == '\0') && (*(float *)(tempDataBuffer + ERROR_CODE_2) != *(float *)(arrayIndex + BYTE_OFFSET_2))) {
         unsignedCounter3 = *(uint32 *)(currentUnsignedSize + 4 + localLong15);
         unaff_RBP[-4] = &unknown_180984038;
         *(uint32 *)(unaff_RBP + -2) = uStackX_20;
@@ -11060,11 +11060,11 @@ void HandleResourceCallback(void)
         localLong15 = (*(code *)*puVar4)(in_stack_00000058);
         *unaff_RBP = *(uint64 *)(*(longlong *)(localLong15 + MEMORY_SIZE_OFFSET) + unsignedCounter2 * 8);
         *(byte *)((longlong)unaff_RBP + -4) = 0;
-        if (*(int *)(dataValueBuffer + SYSTEM_OFFSET_STATUS1) < 1) {
+        if (*(int *)(tempDataBuffer + SYSTEM_OFFSET_STATUS1) < 1) {
           preturnValue8 = &g_miscWorkBuffer3;
         }
         else {
-          preturnValue8 = *(dataValueValue **)(dataValueBuffer + LIST_OFFSET_HEAD);
+          preturnValue8 = *(dataValueValue **)(tempDataBuffer + LIST_OFFSET_HEAD);
         }
         unsignedCounter3 = func_0x00018076b450(unaff_RBP + 1,preturnValue8,BUFFER_OFFSET_TEMP);
         localStatus3 = ValidateResourceAccess(unsignedCounter3,unaff_RBP + -4);
@@ -11098,7 +11098,7 @@ void HandleResourceCallback(void)
         *(float *)(unaff_RBP + -0xd) = unaff_R13D;
         iterationIndex = *(uint32 *)(unaff_R15 + SYSTEM_OFFSET_STATUS1);
         unsignedVar9 = *(uint32 *)(unaff_R15 + 0x5c);
-        functionResult0 = *(uint32 *)(unaff_R15 + DATA_OFFSET_START);
+        functionResult = *(uint32 *)(unaff_R15 + DATA_OFFSET_START);
         functionResult1 = *(uint32 *)(unaff_R15 + 100);
         *(uint32 *)(unaff_RBP + -STRUCT_MULTIPLIER) = uStackX_20;
         *(uint32 *)(unaff_RBP + -9) = unsignedCounter3;
@@ -11107,7 +11107,7 @@ void HandleResourceCallback(void)
         *(uint32 *)((longlong)unaff_RBP + -RESOURCE_PROPERTY_OFFSET) = unsignedVar7;
         *(uint32 *)(unaff_RBP + -7) = iterationIndex;
         *(uint32 *)((longlong)unaff_RBP + -FIELD_OFFSET_2) = unsignedVar9;
-        *(uint32 *)(unaff_RBP + -6) = functionResult0;
+        *(uint32 *)(unaff_RBP + -6) = functionResult;
         *(uint32 *)((longlong)unaff_RBP + -FIELD_OFFSET_4) = functionResult1;
         localStatus3 = ValidateResourceAccess(iterationIndex,unaff_RBP + -0xe);
         unsignedCounter3 = extraout_XMM0_Da_01;
@@ -11406,7 +11406,7 @@ void CreateResourceInstance(longlong *resourceHandle,longlong memoryBlockSize,ui
   longlong localLong2;
   int dataValueLength;
 =======
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   int dataValueLength;
 >>>>>>> Stashed changes
   int iterationCounter;
@@ -11462,7 +11462,7 @@ process_memory_validation:
       if (0 < integerVar5) {
         do {
           localUInt = 0;
-          dataValueBuffer = resourceHandle[4];
+          tempDataBuffer = resourceHandle[4];
           localPtr = &unknown_1809834f8;
           localUInt = localBuffer[0];
 <<<<<<< Updated upstream
@@ -11476,13 +11476,13 @@ process_memory_validation:
             dataValueLength = (**(code **)(*resourceHandle + RESOURCE_OFFSET_HANDLE))(resourceHandle);
             if (dataValueLength != 0) goto process_memory_validation;
 =======
-          if (((char)dataValueBuffer == '\0') && (dataValueLength = ValidateResourceBuffer(resourceHandle,1), localIndex != 0))
+          if (((char)tempDataBuffer == '\0') && (dataValueLength = ValidateResourceBuffer(resourceHandle,1), localIndex != 0))
           goto process_memory_validation;
           dataValueLength = (**(code **)(localPtr + RESOURCE_HANDLE_OFFSET))(&localPtr,localBuffer,BUFFER_SIZE_CONSTANT);
           systemWriteFunction((longlong)localBuffer + (longlong)localIndex,BUFFER_SIZE_CONSTANT - localIndex,10);
           dataValueLength = (**(code **)(*resourceHandle + 8))(resourceHandle,localBuffer);
           if (dataValueLength != 0) goto process_memory_validation;
-          if ((char)dataValueBuffer == '\0') {
+          if ((char)tempDataBuffer == '\0') {
             dataValueLength = (**(code **)(*resourceHandle + RESOURCE_OFFSET_HANDLE))(resourceHandle);
             if (dataValueLength != 0) goto process_memory_validation;
 >>>>>>> Stashed changes
@@ -12658,7 +12658,7 @@ uint64 AllocateResourceSpace(longlong *resourceHandle,int memoryBlockSize)
 
 {
   int operationStatus;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint16_t *pointerVar3;
   longlong longVar4;
   uint16_t *pvalidationResult2;
@@ -12675,12 +12675,12 @@ uint64 AllocateResourceSpace(longlong *resourceHandle,int memoryBlockSize)
       if (puVar3 != (uint16_t *)0x0) {
         operationStatus = (int)resourceHandle[1];
         longVar4 = (longlong)localStatus;
-        if ((localStatus != 0) && (dataValueBuffer = *resourceHandle, 0 < localStatus)) {
+        if ((localStatus != 0) && (tempDataBuffer = *resourceHandle, 0 < localStatus)) {
           pvalidationResult2 = puVar3;
           do {
-            *pvalidationResult2 = *(uint16_t *)((dataValueBuffer - (longlong)puVar3) + (longlong)pvalidationResult2);
+            *pvalidationResult2 = *(uint16_t *)((tempDataBuffer - (longlong)puVar3) + (longlong)pvalidationResult2);
             *(byte *)(pvalidationResult2 + 1) =
-                 *(byte *)((dataValueBuffer - (longlong)puVar3) + 2 + (longlong)pvalidationResult2);
+                 *(byte *)((tempDataBuffer - (longlong)puVar3) + 2 + (longlong)pvalidationResult2);
             pvalidationResult2 = (uint16_t *)((longlong)pvalidationResult2 + 3);
             longVar4 = longVar4 + -1;
           } while (longVar4 != 0);
@@ -12708,7 +12708,7 @@ uint64 ValidateResourceSpace(uint64 resourceHandle,int memoryBlockSize)
 
 {
   int operationStatus;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint16_t *pointerVar3;
   longlong longVar4;
   uint16_t *pvalidationResult2;
@@ -12733,12 +12733,12 @@ handle_string_processing:
     if (puVar3 != (uint16_t *)0x0) {
       operationStatus = (int)baseRegister[1];
       longVar4 = (longlong)localStatus;
-      if ((localStatus != 0) && (dataValueBuffer = *baseRegister, 0 < localStatus)) {
+      if ((localStatus != 0) && (tempDataBuffer = *baseRegister, 0 < localStatus)) {
         pvalidationResult2 = puVar3;
         do {
-          *pvalidationResult2 = *(uint16_t *)((dataValueBuffer - (longlong)puVar3) + (longlong)pvalidationResult2);
+          *pvalidationResult2 = *(uint16_t *)((tempDataBuffer - (longlong)puVar3) + (longlong)pvalidationResult2);
           *(byte *)(pvalidationResult2 + 1) =
-               *(byte *)((dataValueBuffer - (longlong)puVar3) + 2 + (longlong)pvalidationResult2);
+               *(byte *)((tempDataBuffer - (longlong)puVar3) + 2 + (longlong)pvalidationResult2);
           pvalidationResult2 = (uint16_t *)((longlong)pvalidationResult2 + 3);
           longVar4 = longVar4 + -1;
         } while (longVar4 != 0);
@@ -13108,7 +13108,7 @@ uint64 judgeUtilityEfficiency(uint64 *resourceHandle,longlong *memoryBlockBlockB
 
 {
   uint64 functionResult;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint *pointerVar3;
   int aiStackX_8 [2];
   uint unsignedStackArrayX10 [2];
@@ -13147,7 +13147,7 @@ validate_data_operation:
       case 3:
       case 0x12:
       case FIELD_OFFSET_1:
-        dataValueBuffer = 4;
+        tempDataBuffer = 4;
         aiStackX_8[0] = aiStackX_8[0] + -4;
         break;
       default:
@@ -13157,7 +13157,7 @@ validate_data_operation:
         if ((int)functionResult != 0) {
           return functionResult;
         }
-        dataValueBuffer = 8;
+        tempDataBuffer = 8;
         aiStackX_8[0] = aiStackX_8[0] + -8;
         break;
       case ACCESS_FLAG:
@@ -13165,7 +13165,7 @@ validate_data_operation:
         if ((int)functionResult != 0) {
           return functionResult;
         }
-        dataValueBuffer = RESOURCE_DATA_OFFSET;
+        tempDataBuffer = RESOURCE_DATA_OFFSET;
         aiStackX_8[0] = aiStackX_8[0] + -RESOURCE_DATA_OFFSET;
         break;
       case POINTER_OFFSET_DATA:
@@ -13177,10 +13177,10 @@ validate_data_operation:
         if ((int)functionResult != 0) {
           return functionResult;
         }
-        dataValueBuffer = STRUCT_MULTIPLIER;
+        tempDataBuffer = STRUCT_MULTIPLIER;
         aiStackX_8[0] = aiStackX_8[0] + -STRUCT_MULTIPLIER;
       }
-      pointerVar3 = (uint *)((longlong)puVar3 + dataValueBuffer);
+      pointerVar3 = (uint *)((longlong)puVar3 + tempDataBuffer);
     }
     if (aiStackX_8[0] != 0) {
 handle_data_validation:
@@ -13440,7 +13440,7 @@ uint64 FUN_1808998a0(longlong resourceHandle,longlong *memoryBlockBlockBlockSize
 
 {
   int operationStatus;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 unsignedVar3;
   longlong longVar4;
   longlong longVar5;
@@ -13454,12 +13454,12 @@ uint64 FUN_1808998a0(longlong resourceHandle,longlong *memoryBlockBlockBlockSize
       longVar4 = 0;
       longVar5 = longVar4;
       do {
-        dataValueBuffer = *memoryBlockBlockBlockSize;
-        unsignedVar3 = discoverUtilityComponents(resourceHandle,dataValueBuffer + longVar5);
+        tempDataBuffer = *memoryBlockBlockBlockSize;
+        unsignedVar3 = discoverUtilityComponents(resourceHandle,tempDataBuffer + longVar5);
         if ((int)unsignedVar3 != 0) {
           return unsignedVar3;
         }
-        aiStackX_8[0] = *(int *)(dataValueBuffer + longVar5 + RESOURCE_HANDLE_OFFSET);
+        aiStackX_8[0] = *(int *)(tempDataBuffer + longVar5 + RESOURCE_HANDLE_OFFSET);
         unsignedVar3 = (**(code **)**(uint64 **)(resourceHandle + 8))
                           (*(uint64 **)(resourceHandle + 8),aiStackX_8,4);
         if ((int)unsignedVar3 != 0) {
@@ -14773,7 +14773,7 @@ ulonglong FUN_18089a880(longlong resourceHandle,uint64 *memoryBlockBlockBlockSiz
   longlong localLong2;
   int dataValueLength;
 =======
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   int dataValueLength;
 >>>>>>> Stashed changes
   int iterationCounter;
@@ -14807,7 +14807,7 @@ ulonglong FUN_18089a880(longlong resourceHandle,uint64 *memoryBlockBlockBlockSiz
         localLong2 = 4;
         dataValueLength = -4;
 =======
-        dataValueBuffer = 4;
+        tempDataBuffer = 4;
         dataValueLength = -4;
 >>>>>>> Stashed changes
         break;
@@ -14824,7 +14824,7 @@ ulonglong FUN_18089a880(longlong resourceHandle,uint64 *memoryBlockBlockBlockSiz
         localLong2 = 8;
         dataValueLength = -8;
 =======
-        dataValueBuffer = 8;
+        tempDataBuffer = 8;
         dataValueLength = -8;
 >>>>>>> Stashed changes
         break;
@@ -14837,7 +14837,7 @@ ulonglong FUN_18089a880(longlong resourceHandle,uint64 *memoryBlockBlockBlockSiz
         localLong2 = RESOURCE_DATA_OFFSET;
         dataValueLength = -RESOURCE_DATA_OFFSET;
 =======
-        dataValueBuffer = RESOURCE_DATA_OFFSET;
+        tempDataBuffer = RESOURCE_DATA_OFFSET;
         dataValueLength = -RESOURCE_DATA_OFFSET;
 >>>>>>> Stashed changes
         break;
@@ -14858,11 +14858,11 @@ ulonglong FUN_18089a880(longlong resourceHandle,uint64 *memoryBlockBlockBlockSiz
         localLong2 = STRUCT_MULTIPLIER;
         dataValueLength = -STRUCT_MULTIPLIER;
 =======
-        dataValueBuffer = STRUCT_MULTIPLIER;
+        tempDataBuffer = STRUCT_MULTIPLIER;
         dataValueLength = -STRUCT_MULTIPLIER;
 >>>>>>> Stashed changes
       }
-      pvalidationResult2 = (uint *)((longlong)pvalidationResult2 + dataValueBuffer);
+      pvalidationResult2 = (uint *)((longlong)pvalidationResult2 + tempDataBuffer);
     }
     functionResult = (ulonglong)(-(uint)(iterationCounter != 0) & BYTE_OFFSET_FLAG);
   }
@@ -14879,7 +14879,7 @@ ulonglong FUN_18089a8b4(void)
   longlong localLong2;
   int dataValueLength;
 =======
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   int dataValueLength;
 >>>>>>> Stashed changes
   int unaff_EBX;
@@ -14910,7 +14910,7 @@ ulonglong FUN_18089a8b4(void)
         localLong2 = 4;
         dataValueLength = -4;
 =======
-        dataValueBuffer = 4;
+        tempDataBuffer = 4;
         dataValueLength = -4;
 >>>>>>> Stashed changes
         break;
@@ -14927,7 +14927,7 @@ ulonglong FUN_18089a8b4(void)
         localLong2 = 8;
         dataValueLength = -8;
 =======
-        dataValueBuffer = 8;
+        tempDataBuffer = 8;
         dataValueLength = -8;
 >>>>>>> Stashed changes
         break;
@@ -14940,7 +14940,7 @@ ulonglong FUN_18089a8b4(void)
         localLong2 = RESOURCE_DATA_OFFSET;
         dataValueLength = -RESOURCE_DATA_OFFSET;
 =======
-        dataValueBuffer = RESOURCE_DATA_OFFSET;
+        tempDataBuffer = RESOURCE_DATA_OFFSET;
         dataValueLength = -RESOURCE_DATA_OFFSET;
 >>>>>>> Stashed changes
         break;
@@ -14963,11 +14963,11 @@ ulonglong FUN_18089a8b4(void)
       unaff_EBX = unaff_EBX + dataValueLength;
       unaff_RDI = (uint *)((longlong)unaff_RDI + localLong2);
 =======
-        dataValueBuffer = STRUCT_MULTIPLIER;
+        tempDataBuffer = STRUCT_MULTIPLIER;
         dataValueLength = -STRUCT_MULTIPLIER;
       }
       unaff_EBX = unaff_EBX + localIndex;
-      unaff_RDI = (uint *)((longlong)unaff_RDI + dataValueBuffer);
+      unaff_RDI = (uint *)((longlong)unaff_RDI + tempDataBuffer);
 >>>>>>> Stashed changes
     } while (0 < unaff_EBX);
   }
@@ -16264,7 +16264,7 @@ ulonglong FUN_18089b7d0(longlong resourceHandle,longlong *memoryBlockBlockBlockS
 
 {
   longlong *plocalLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint unsignedVar3;
   uint validationResult1;
   ulonglong validationResult2;
@@ -16353,10 +16353,10 @@ LAB_18089b91c:
       (unsignedVar6 = iterationIndex, *(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
      ((unsignedVar6 = rateUtilityEffectiveness(*memoryBlockBlockBlockSize,resourceHandle + RESOURCE_HANDLE_OFFSET), (int)unsignedVar6 == 0 &&
       (unsignedVar6 = iterationIndex, *(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0)))) {
-    dataValueBuffer = *memoryBlockBlockBlockSize;
-    unsignedVar6 = rateUtilityEffectiveness(dataValueBuffer,resourceHandle + BUFFER_OFFSET_TEMP);
+    tempDataBuffer = *memoryBlockBlockBlockSize;
+    unsignedVar6 = rateUtilityEffectiveness(tempDataBuffer,resourceHandle + BUFFER_OFFSET_TEMP);
     if (((((int)unsignedVar6 == 0) &&
-         ((unsignedVar6 = rateUtilityEffectiveness(dataValueBuffer,resourceHandle + 0x84), (int)unsignedVar6 == 0 &&
+         ((unsignedVar6 = rateUtilityEffectiveness(tempDataBuffer,resourceHandle + 0x84), (int)unsignedVar6 == 0 &&
           (unsignedVar6 = examineUtilityBehavior(memoryBlockSize,resourceHandle + 0x88), (int)unsignedVar6 == 0)))) &&
         (unsignedVar6 = iterationIndex, *(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
        ((((unsignedVar6 = ConfigureResourceBuffer(*memoryBlockBlockBlockSize,resourceHandle + 0x70), (int)unsignedVar6 == 0 &&
@@ -16434,7 +16434,7 @@ ulonglong FUN_18089b813(void)
 
 {
   longlong *plocalLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint unsignedVar3;
   uint validationResult1;
   longlong inputRegister;
@@ -16517,10 +16517,10 @@ LAB_18089b91c:
       (validationResult2 = iterationIndex, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
      ((validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + RESOURCE_HANDLE_OFFSET), (int)validationResult2 == 0 &&
       (validationResult2 = iterationIndex, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)))) {
-    dataValueBuffer = *baseRegister;
-    validationResult2 = rateUtilityEffectiveness(dataValueBuffer,unaff_RSI + BUFFER_OFFSET_TEMP);
+    tempDataBuffer = *baseRegister;
+    validationResult2 = rateUtilityEffectiveness(tempDataBuffer,unaff_RSI + BUFFER_OFFSET_TEMP);
     if (((((int)validationResult2 == 0) &&
-         ((validationResult2 = rateUtilityEffectiveness(dataValueBuffer,unaff_RSI + 0x84), (int)validationResult2 == 0 &&
+         ((validationResult2 = rateUtilityEffectiveness(tempDataBuffer,unaff_RSI + 0x84), (int)validationResult2 == 0 &&
           (validationResult2 = examineUtilityBehavior(), (int)validationResult2 == 0)))) &&
         (validationResult2 = iterationIndex, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
        ((((validationResult2 = ConfigureResourceBuffer(*baseRegister,unaff_RSI + 0x70), (int)validationResult2 == 0 &&
@@ -16598,7 +16598,7 @@ ulonglong FUN_18089b86d(void)
 
 {
   longlong *plocalLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint unsignedVar3;
   uint validationResult1;
   ulonglong validationResult2;
@@ -16663,10 +16663,10 @@ LAB_18089b91c:
       (validationResult2 = iterationIndex, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
      ((validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + RESOURCE_HANDLE_OFFSET), (int)validationResult2 == 0 &&
       (validationResult2 = iterationIndex, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)))) {
-    dataValueBuffer = *baseRegister;
-    validationResult2 = rateUtilityEffectiveness(dataValueBuffer,unaff_RSI + BUFFER_OFFSET_TEMP);
+    tempDataBuffer = *baseRegister;
+    validationResult2 = rateUtilityEffectiveness(tempDataBuffer,unaff_RSI + BUFFER_OFFSET_TEMP);
     if (((((int)validationResult2 == 0) &&
-         ((validationResult2 = rateUtilityEffectiveness(dataValueBuffer,unaff_RSI + 0x84), (int)validationResult2 == 0 &&
+         ((validationResult2 = rateUtilityEffectiveness(tempDataBuffer,unaff_RSI + 0x84), (int)validationResult2 == 0 &&
           (validationResult2 = examineUtilityBehavior(), (int)validationResult2 == 0)))) &&
         (validationResult2 = iterationIndex, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
        ((((validationResult2 = ConfigureResourceBuffer(*baseRegister,unaff_RSI + 0x70), (int)validationResult2 == 0 &&
@@ -16744,7 +16744,7 @@ ulonglong FUN_18089b896(void)
 
 {
   longlong *plocalLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint unsignedVar3;
   uint validationResult1;
   ulonglong validationResult2;
@@ -16805,10 +16805,10 @@ LAB_18089b91c:
       (validationResult2 = iterationIndex, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
      ((validationResult2 = rateUtilityEffectiveness(*baseRegister,unaff_RSI + RESOURCE_HANDLE_OFFSET), (int)validationResult2 == 0 &&
       (validationResult2 = iterationIndex, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)))) {
-    dataValueBuffer = *baseRegister;
-    validationResult2 = rateUtilityEffectiveness(dataValueBuffer,unaff_RSI + BUFFER_OFFSET_TEMP);
+    tempDataBuffer = *baseRegister;
+    validationResult2 = rateUtilityEffectiveness(tempDataBuffer,unaff_RSI + BUFFER_OFFSET_TEMP);
     if (((((int)validationResult2 == 0) &&
-         ((validationResult2 = rateUtilityEffectiveness(dataValueBuffer,unaff_RSI + 0x84), (int)validationResult2 == 0 &&
+         ((validationResult2 = rateUtilityEffectiveness(tempDataBuffer,unaff_RSI + 0x84), (int)validationResult2 == 0 &&
           (validationResult2 = examineUtilityBehavior(), (int)validationResult2 == 0)))) &&
         (validationResult2 = iterationIndex, *(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0)) &&
        ((((validationResult2 = ConfigureResourceBuffer(*baseRegister,unaff_RSI + 0x70), (int)validationResult2 == 0 &&
@@ -17620,7 +17620,7 @@ uint64 * FUN_18089c1fb(void)
   float floatVar7;
   uint iterationIndex;
   uint unsignedVar9;
-  uint functionResult0;
+  uint functionResult;
   longlong inputRegister;
   uint64 *pfunctionResult1;
   uint32 *pfunctionResult2;
@@ -17704,12 +17704,12 @@ uint64 * FUN_18089c1fb(void)
     if (unsignedVar9 != 0) {
 LAB_18089c40a:
       unsignedVar9 = *(uint *)(unaff_RBP + -ERROR_CODE_5);
-      functionResult0 = unsignedVar9;
+      functionResult = unsignedVar9;
       if ((int)unsignedVar9 < 0) {
-        functionResult0 = -unsignedVar9;
+        functionResult = -unsignedVar9;
       }
       localStatus9 = *(int *)(unaff_RBP + -0x21);
-      if ((int)functionResult0 < 0) {
+      if ((int)functionResult < 0) {
         if (0 < localStatus9) {
           return pfunctionResult3;
         }
@@ -17789,11 +17789,11 @@ LAB_18089c40a:
       }
     }
     unsignedVar9 = *(uint *)(unaff_RBP + -ERROR_CODE_5);
-    functionResult0 = unsignedVar9;
+    functionResult = unsignedVar9;
     if ((int)unsignedVar9 < 0) {
-      functionResult0 = -unsignedVar9;
+      functionResult = -unsignedVar9;
     }
-    if ((int)functionResult0 < 0) {
+    if ((int)functionResult < 0) {
       if (0 < localStatus9) goto LAB_18089c586;
       if ((0 < (int)unsignedVar9) && (pfunctionResult3 != (uint64 *)0x0)) {
                     // WARNING: Subroutine does not return
@@ -17875,7 +17875,7 @@ uint64 * FUN_18089c22e(void)
   float floatVar7;
   uint iterationIndex;
   uint unsignedVar9;
-  uint functionResult0;
+  uint functionResult;
   uint32 *pfunctionResult1;
   uint64 *pfunctionResult2;
   uint64 *pfunctionResult3;
@@ -17951,12 +17951,12 @@ uint64 * FUN_18089c22e(void)
     if (unsignedVar9 != 0) {
 LAB_18089c40a:
       unsignedVar9 = *(uint *)(unaff_RBP + -ERROR_CODE_5);
-      functionResult0 = unsignedVar9;
+      functionResult = unsignedVar9;
       if ((int)unsignedVar9 < 0) {
-        functionResult0 = -unsignedVar9;
+        functionResult = -unsignedVar9;
       }
       localStatus9 = *(int *)(unaff_RBP + -0x21);
-      if ((int)functionResult0 < 0) {
+      if ((int)functionResult < 0) {
         if (0 < localStatus9) {
           return pfunctionResult2;
         }
@@ -18036,11 +18036,11 @@ LAB_18089c40a:
       }
     }
     unsignedVar9 = *(uint *)(unaff_RBP + -ERROR_CODE_5);
-    functionResult0 = unsignedVar9;
+    functionResult = unsignedVar9;
     if ((int)unsignedVar9 < 0) {
-      functionResult0 = -unsignedVar9;
+      functionResult = -unsignedVar9;
     }
-    if ((int)functionResult0 < 0) {
+    if ((int)functionResult < 0) {
       if (0 < localStatus9) goto LAB_18089c586;
       if ((0 < (int)unsignedVar9) && (pfunctionResult2 != (uint64 *)0x0)) {
                     // WARNING: Subroutine does not return
@@ -18123,7 +18123,7 @@ ulonglong FUN_18089c2d8(uint64 resourceHandle)
   uint in_EAX;
   uint iterationIndex;
   uint unsignedVar9;
-  uint functionResult0;
+  uint functionResult;
   ulonglong functionResult1;
   uint32 *pfunctionResult2;
   float *pfVar13;
@@ -18162,12 +18162,12 @@ ulonglong FUN_18089c2d8(uint64 resourceHandle)
     if (unsignedVar9 != 0) {
 LAB_18089c40a:
       unsignedVar9 = *(uint *)(unaff_RBP + -ERROR_CODE_5);
-      functionResult0 = unsignedVar9;
+      functionResult = unsignedVar9;
       if ((int)unsignedVar9 < 0) {
-        functionResult0 = -unsignedVar9;
+        functionResult = -unsignedVar9;
       }
       localStatus8 = *(int *)(unaff_RBP + -0x21);
-      if ((int)functionResult0 < 0) {
+      if ((int)functionResult < 0) {
         if (0 < localStatus8) {
           return functionResult1;
         }
@@ -18248,11 +18248,11 @@ LAB_18089c40a:
       }
     }
     unsignedVar9 = *(uint *)(unaff_RBP + -ERROR_CODE_5);
-    functionResult0 = unsignedVar9;
+    functionResult = unsignedVar9;
     if ((int)unsignedVar9 < 0) {
-      functionResult0 = -unsignedVar9;
+      functionResult = -unsignedVar9;
     }
-    if ((int)functionResult0 < 0) {
+    if ((int)functionResult < 0) {
       if (0 < localStatus8) goto LAB_18089c586;
       if ((0 < (int)unsignedVar9) && (pfunctionResult4 != (uint64 *)0x0)) {
                     // WARNING: Subroutine does not return
@@ -18707,7 +18707,7 @@ ulonglong FUN_18089c69d(void)
 
 {
   longlong *plocalLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   int in_EAX;
   uint unsignedVar3;
   ulonglong validationResult1;
@@ -18729,7 +18729,7 @@ ulonglong FUN_18089c69d(void)
   float extraout_XMM0_Da_06;
   uint32 extraout_XMM0_Da_07;
   uint32 extraout_XMM0_Da_08;
-  uint32 functionResult0;
+  uint32 functionResult;
   float extraout_XMM0_Da_09;
   ulonglong unsignedVar7;
   
@@ -18755,8 +18755,8 @@ ulonglong FUN_18089c69d(void)
       goto LAB_18089c78f;
     }
     plocalLong1 = (longlong *)*baseRegister;
-    dataValueBuffer = *plocalLong1;
-    if (dataValueBuffer == 0) {
+    tempDataBuffer = *plocalLong1;
+    if (tempDataBuffer == 0) {
       iterationIndex = BYTE_OFFSET_FLAG;
     }
     else if (plocalLong1[2] == 0) {
@@ -18765,7 +18765,7 @@ LAB_18089c743:
     }
     else {
       *(uint32 *)(unaff_RBP + 0x7f) = 0;
-      iterationIndex = dataProcessFunction(dataValueBuffer,unaff_RBP + 0x7f);
+      iterationIndex = dataProcessFunction(tempDataBuffer,unaff_RBP + 0x7f);
       if (iterationIndex == 0) {
         if ((ulonglong)*(uint *)(unaff_RBP + 0x7f) + 1 <= (ulonglong)plocalLong1[2]) goto LAB_18089c743;
         iterationIndex = ACCESS_FLAG;
@@ -18796,14 +18796,14 @@ LAB_18089c78f:
     return BYTE_OFFSET_FLAG;
   }
   plocalLong1 = (longlong *)*baseRegister;
-  dataValueBuffer = *plocalLong1;
-  if (dataValueBuffer == 0) {
+  tempDataBuffer = *plocalLong1;
+  if (tempDataBuffer == 0) {
     validationResult1 = BYTE_OFFSET_FLAG;
   }
   else {
     if (plocalLong1[2] != 0) {
       *(uint32 *)(unaff_RBP + 0x77) = 0;
-      validationResult1 = dataProcessFunction(dataValueBuffer,unaff_RBP + 0x77);
+      validationResult1 = dataProcessFunction(tempDataBuffer,unaff_RBP + 0x77);
       if ((int)validationResult1 != 0) {
         return validationResult1;
       }
@@ -18907,8 +18907,8 @@ LAB_18089c878:
   if (*(uint *)(baseRegister + 8) < 0x70) {
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
       plocalLong1 = (longlong *)*baseRegister;
-      dataValueBuffer = *plocalLong1;
-      if (dataValueBuffer == 0) {
+      tempDataBuffer = *plocalLong1;
+      if (tempDataBuffer == 0) {
         unsignedVar3 = BYTE_OFFSET_FLAG;
       }
       else if (plocalLong1[2] == 0) {
@@ -18918,7 +18918,7 @@ LAB_18089c9a8:
       }
       else {
         *(uint32 *)(unaff_RBP + -0x25) = 0;
-        unsignedVar3 = dataProcessFunction(dataValueBuffer,unaff_RBP + -0x25);
+        unsignedVar3 = dataProcessFunction(tempDataBuffer,unaff_RBP + -0x25);
         floatVar9 = extraout_XMM0_Da_00;
         if (unsignedVar3 == 0) {
           if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)plocalLong1[2])
@@ -18970,8 +18970,8 @@ LAB_18089c9a8:
     goto LAB_18089cad8;
   }
   plocalLong1 = (longlong *)*baseRegister;
-  dataValueBuffer = *plocalLong1;
-  if (dataValueBuffer == 0) {
+  tempDataBuffer = *plocalLong1;
+  if (tempDataBuffer == 0) {
     unsignedVar3 = BYTE_OFFSET_FLAG;
   }
   else if (plocalLong1[2] == 0) {
@@ -18981,7 +18981,7 @@ LAB_18089ca9c:
   }
   else {
     *(uint32 *)(unaff_RBP + -0x25) = 0;
-    unsignedVar3 = dataProcessFunction(dataValueBuffer,unaff_RBP + -0x25);
+    unsignedVar3 = dataProcessFunction(tempDataBuffer,unaff_RBP + -0x25);
     floatVar9 = extraout_XMM0_Da_04;
     if (unsignedVar3 == 0) {
       if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)plocalLong1[2]) goto LAB_18089ca9c;
@@ -19015,9 +19015,9 @@ LAB_18089cad8:
     unsignedVar3 = *(uint *)(baseRegister + 8);
   }
   if (0x8a < unsignedVar3) {
-    dataValueBuffer = *baseRegister;
+    tempDataBuffer = *baseRegister;
     *(uint32 *)(unaff_RBP + 0x7f) = 0;
-    validationResult1 = getResourceSize(dataValueBuffer,unaff_RBP + 0x7f);
+    validationResult1 = getResourceSize(tempDataBuffer,unaff_RBP + 0x7f);
     if ((int)validationResult1 != 0) {
       return validationResult1;
     }
@@ -19038,16 +19038,16 @@ LAB_18089cad8:
         if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
           validationResult1 = FUN_1808a2740(*baseRegister,
                                 (longlong)(int)unsignedVar7 * RESOURCE_HANDLE_OFFSET + *(longlong *)(unaff_R13 + DATA_OFFSET_START));
-          functionResult0 = extraout_XMM0_Da_08;
+          functionResult = extraout_XMM0_Da_08;
         }
         else {
           validationResult1 = BYTE_OFFSET_FLAG;
-          functionResult0 = extraout_XMM0_Da_07;
+          functionResult = extraout_XMM0_Da_07;
         }
         if ((int)validationResult1 != 0) {
           return validationResult1;
         }
-        validationResult1 = FUN_1808de0e0(functionResult0,unaff_RBP + 0x77);
+        validationResult1 = FUN_1808de0e0(functionResult,unaff_RBP + 0x77);
         if ((int)validationResult1 != 0) {
           return validationResult1;
         }
@@ -19070,7 +19070,7 @@ ulonglong FUN_18089c86d(void)
 
 {
   longlong *plocalLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64_t unsignedVar3;
   uint validationResult1;
   ulonglong validationResult2;
@@ -19153,8 +19153,8 @@ ulonglong FUN_18089c86d(void)
   if (*(uint *)(baseRegister + 8) < 0x70) {
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
       plocalLong1 = (longlong *)*baseRegister;
-      dataValueBuffer = *plocalLong1;
-      if (dataValueBuffer == 0) {
+      tempDataBuffer = *plocalLong1;
+      if (tempDataBuffer == 0) {
         validationResult1 = BYTE_OFFSET_FLAG;
       }
       else if (plocalLong1[2] == unaff_RDI) {
@@ -19164,7 +19164,7 @@ LAB_18089c9a8:
       }
       else {
         *(uint32 *)(unaff_RBP + -0x25) = 0;
-        validationResult1 = dataProcessFunction(dataValueBuffer,unaff_RBP + -0x25);
+        validationResult1 = dataProcessFunction(tempDataBuffer,unaff_RBP + -0x25);
         floatVar12 = extraout_XMM0_Da_00;
         if (validationResult1 == 0) {
           if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)plocalLong1[2])
@@ -19220,8 +19220,8 @@ LAB_18089c9a8:
     goto LAB_18089cad8;
   }
   plocalLong1 = (longlong *)*baseRegister;
-  dataValueBuffer = *plocalLong1;
-  if (dataValueBuffer == 0) {
+  tempDataBuffer = *plocalLong1;
+  if (tempDataBuffer == 0) {
     validationResult1 = BYTE_OFFSET_FLAG;
   }
   else if (plocalLong1[2] == unaff_RDI) {
@@ -19231,7 +19231,7 @@ LAB_18089ca9c:
   }
   else {
     *(uint32 *)(unaff_RBP + -0x25) = 0;
-    validationResult1 = dataProcessFunction(dataValueBuffer,unaff_RBP + -0x25);
+    validationResult1 = dataProcessFunction(tempDataBuffer,unaff_RBP + -0x25);
     floatVar12 = extraout_XMM0_Da_04;
     if (validationResult1 == 0) {
       if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)plocalLong1[2]) goto LAB_18089ca9c;
@@ -19264,9 +19264,9 @@ LAB_18089cad8:
     validationResult1 = *(uint *)(baseRegister + 8);
   }
   if (0x8a < validationResult1) {
-    dataValueBuffer = *baseRegister;
+    tempDataBuffer = *baseRegister;
     *(uint32 *)(unaff_RBP + 0x7f) = 0;
-    validationResult2 = getResourceSize(dataValueBuffer,unaff_RBP + 0x7f);
+    validationResult2 = getResourceSize(tempDataBuffer,unaff_RBP + 0x7f);
     if ((int)validationResult2 != 0) {
       return validationResult2;
     }
@@ -19319,7 +19319,7 @@ ulonglong FUN_18089c872(void)
 
 {
   longlong *plocalLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64_t unsignedVar3;
   uint validationResult1;
   ulonglong validationResult2;
@@ -19403,8 +19403,8 @@ ulonglong FUN_18089c872(void)
   if (*(uint *)(baseRegister + 8) < 0x70) {
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
       plocalLong1 = (longlong *)*baseRegister;
-      dataValueBuffer = *plocalLong1;
-      if (dataValueBuffer == 0) {
+      tempDataBuffer = *plocalLong1;
+      if (tempDataBuffer == 0) {
         validationResult1 = BYTE_OFFSET_FLAG;
       }
       else if (plocalLong1[2] == unaff_RDI) {
@@ -19414,7 +19414,7 @@ LAB_18089c9a8:
       }
       else {
         *(uint32 *)(unaff_RBP + -0x25) = 0;
-        validationResult1 = dataProcessFunction(dataValueBuffer,unaff_RBP + -0x25);
+        validationResult1 = dataProcessFunction(tempDataBuffer,unaff_RBP + -0x25);
         floatVar12 = extraout_XMM0_Da_00;
         if (validationResult1 == 0) {
           if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)plocalLong1[2])
@@ -19470,8 +19470,8 @@ LAB_18089c9a8:
     goto LAB_18089cad8;
   }
   plocalLong1 = (longlong *)*baseRegister;
-  dataValueBuffer = *plocalLong1;
-  if (dataValueBuffer == 0) {
+  tempDataBuffer = *plocalLong1;
+  if (tempDataBuffer == 0) {
     validationResult1 = BYTE_OFFSET_FLAG;
   }
   else if (plocalLong1[2] == unaff_RDI) {
@@ -19481,7 +19481,7 @@ LAB_18089ca9c:
   }
   else {
     *(uint32 *)(unaff_RBP + -0x25) = 0;
-    validationResult1 = dataProcessFunction(dataValueBuffer,unaff_RBP + -0x25);
+    validationResult1 = dataProcessFunction(tempDataBuffer,unaff_RBP + -0x25);
     floatVar12 = extraout_XMM0_Da_04;
     if (validationResult1 == 0) {
       if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)plocalLong1[2]) goto LAB_18089ca9c;
@@ -19514,9 +19514,9 @@ LAB_18089cad8:
     validationResult1 = *(uint *)(baseRegister + 8);
   }
   if (0x8a < validationResult1) {
-    dataValueBuffer = *baseRegister;
+    tempDataBuffer = *baseRegister;
     *(uint32 *)(unaff_RBP + 0x7f) = 0;
-    validationResult2 = getResourceSize(dataValueBuffer,unaff_RBP + 0x7f);
+    validationResult2 = getResourceSize(tempDataBuffer,unaff_RBP + 0x7f);
     if ((int)validationResult2 != 0) {
       return validationResult2;
     }
@@ -19569,7 +19569,7 @@ ulonglong FUN_18089c94a(float resourceHandle)
 
 {
   longlong *plocalLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64_t unsignedVar3;
   uint validationResult1;
   ulonglong validationResult2;
@@ -19579,7 +19579,7 @@ ulonglong FUN_18089c94a(float resourceHandle)
   longlong unaff_RBP;
   uint iterationIndex;
   int newCapacity;
-  uint functionResult0;
+  uint functionResult;
   ulonglong unaff_RDI;
   int localStatus1;
   longlong unaff_R13;
@@ -19606,8 +19606,8 @@ ulonglong FUN_18089c94a(float resourceHandle)
   if (in_CF) {
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == newCapacity) {
       plocalLong1 = (longlong *)*baseRegister;
-      dataValueBuffer = *plocalLong1;
-      if (dataValueBuffer == 0) {
+      tempDataBuffer = *plocalLong1;
+      if (tempDataBuffer == 0) {
         validationResult1 = BYTE_OFFSET_FLAG;
       }
       else if (plocalLong1[2] == unaff_RDI) {
@@ -19617,7 +19617,7 @@ LAB_18089c9a8:
       }
       else {
         *(int *)(unaff_RBP + -0x25) = newCapacity;
-        validationResult1 = dataProcessFunction(dataValueBuffer,unaff_RBP + -0x25);
+        validationResult1 = dataProcessFunction(tempDataBuffer,unaff_RBP + -0x25);
         resourceHandle = extraout_XMM0_Da;
         if (validationResult1 == 0) {
           if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)plocalLong1[2])
@@ -19668,8 +19668,8 @@ LAB_18089c9a8:
   if ((int)baseRegister[8] - 0x52U < SUCCESS_CODE) {
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == newCapacity) {
       plocalLong1 = (longlong *)*baseRegister;
-      dataValueBuffer = *plocalLong1;
-      if (dataValueBuffer == 0) {
+      tempDataBuffer = *plocalLong1;
+      if (tempDataBuffer == 0) {
         validationResult1 = BYTE_OFFSET_FLAG;
       }
       else if (plocalLong1[2] == unaff_RDI) {
@@ -19679,7 +19679,7 @@ LAB_18089ca9c:
       }
       else {
         *(int *)(unaff_RBP + -0x25) = newCapacity;
-        validationResult1 = dataProcessFunction(dataValueBuffer,unaff_RBP + -0x25);
+        validationResult1 = dataProcessFunction(tempDataBuffer,unaff_RBP + -0x25);
         resourceHandle = extraout_XMM0_Da_03;
         if (validationResult1 == 0) {
           if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)plocalLong1[2])
@@ -19722,9 +19722,9 @@ LAB_18089cbf6:
                     // WARNING: Subroutine does not return
       freeResourceBuffer(resourceHandle,unaff_RBP + -0x21);
     }
-    dataValueBuffer = *baseRegister;
+    tempDataBuffer = *baseRegister;
     *(int *)(unaff_RBP + 0x7f) = newCapacity;
-    unsignedVar6 = getResourceSize(dataValueBuffer,unaff_RBP + 0x7f);
+    unsignedVar6 = getResourceSize(tempDataBuffer,unaff_RBP + 0x7f);
     if ((int)unsignedVar6 == 0) {
       validationResult1 = *(uint *)(unaff_RBP + 0x7f);
       unsignedVar6 = FUN_1808af8b0(unaff_R13 + DATA_OFFSET_START,validationResult1 >> 1);
@@ -19757,9 +19757,9 @@ LAB_18089cbf6:
             }
             iterationIndex = (int)unsignedVar6 + 1;
             unsignedVar6 = (ulonglong)iterationIndex;
-            functionResult0 = *(uint *)(unaff_RBP + 0x77) & -(validationResult1 & 1);
-            unaff_RDI = (ulonglong)functionResult0;
-            *(uint *)(unaff_RBP + 0x77) = functionResult0;
+            functionResult = *(uint *)(unaff_RBP + 0x77) & -(validationResult1 & 1);
+            unaff_RDI = (ulonglong)functionResult;
+            *(uint *)(unaff_RBP + 0x77) = functionResult;
             resourceHandle = extraout_XMM0_Da_08;
             floatVar13 = extraout_XMM0_Da_08;
           } while ((int)iterationIndex < (int)(validationResult1 >> 1));
@@ -20475,7 +20475,7 @@ uint64 FUN_18089d250(uint64 resourceHandle,longlong *memoryBlockBlockBlockSize)
 
 {
   longlong *plocalLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 unsignedVar3;
   int aiStackX_18 [2];
   uint unsignedStackArrayX20 [2];
@@ -20529,7 +20529,7 @@ LAB_18089d378:
   if ((int)unsignedVar3 == 0) {
     lStack_60 = 0;
     unsignedVar3 = FUN_1808b0490(resourceHandle,localBuffer[0],&lStack_60);
-    dataValueBuffer = lStack_60;
+    tempDataBuffer = lStack_60;
     if ((int)unsignedVar3 != 0) {
       return unsignedVar3;
     }
@@ -20539,21 +20539,21 @@ LAB_18089d378:
         return unsignedVar3;
       }
       if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-        unsignedVar3 = writeResourceData(*memoryBlockBlockBlockSize,dataValueBuffer + ERROR_CODE_INVALID,2);
+        unsignedVar3 = writeResourceData(*memoryBlockBlockBlockSize,tempDataBuffer + ERROR_CODE_INVALID,2);
         if ((int)unsignedVar3 != 0) {
           return unsignedVar3;
         }
-        unsignedVar3 = assessUtilityQuality(memoryBlockSize,dataValueBuffer + FIELD_OFFSET_1);
+        unsignedVar3 = assessUtilityQuality(memoryBlockSize,tempDataBuffer + FIELD_OFFSET_1);
         if ((int)unsignedVar3 != 0) {
           return unsignedVar3;
         }
-        unsignedVar3 = FUN_1808a79f0(memoryBlockSize,dataValueBuffer + POINTER_OFFSET_DATA);
+        unsignedVar3 = FUN_1808a79f0(memoryBlockSize,tempDataBuffer + POINTER_OFFSET_DATA);
         if ((int)unsignedVar3 != 0) {
           return unsignedVar3;
         }
-        unsignedVar3 = initializeResourceAllocator(memoryBlockSize,dataValueBuffer + RESOURCE_HANDLE_OFFSET,0);
+        unsignedVar3 = initializeResourceAllocator(memoryBlockSize,tempDataBuffer + RESOURCE_HANDLE_OFFSET,0);
         if ((int)unsignedVar3 == 0) {
-          *(uint32 *)(dataValueBuffer + RESOURCE_CONFIG_OFFSET) = INVALID_HANDLE;
+          *(uint32 *)(tempDataBuffer + RESOURCE_CONFIG_OFFSET) = INVALID_HANDLE;
           goto LAB_18089d435;
         }
       }
@@ -20579,7 +20579,7 @@ uint64 FUN_18089d281(void)
 
 {
   longlong *plocalLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 unsignedVar3;
   longlong *baseRegister;
   uint32 stackParameter1;
@@ -20628,7 +20628,7 @@ LAB_18089d378:
   if ((int)unsignedVar3 == 0) {
     in_stack_00000038 = 0;
     unsignedVar3 = FUN_1808b0490();
-    dataValueBuffer = in_stack_00000038;
+    tempDataBuffer = in_stack_00000038;
     if ((int)unsignedVar3 != 0) {
       return unsignedVar3;
     }
@@ -20638,7 +20638,7 @@ LAB_18089d378:
         return unsignedVar3;
       }
       if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-        unsignedVar3 = writeResourceData(*baseRegister,dataValueBuffer + ERROR_CODE_INVALID,2);
+        unsignedVar3 = writeResourceData(*baseRegister,tempDataBuffer + ERROR_CODE_INVALID,2);
         if ((int)unsignedVar3 != 0) {
           return unsignedVar3;
         }
@@ -20652,7 +20652,7 @@ LAB_18089d378:
         }
         unsignedVar3 = initializeResourceAllocator();
         if ((int)unsignedVar3 == 0) {
-          *(uint32 *)(dataValueBuffer + RESOURCE_CONFIG_OFFSET) = INVALID_HANDLE;
+          *(uint32 *)(tempDataBuffer + RESOURCE_CONFIG_OFFSET) = INVALID_HANDLE;
           goto LAB_18089d435;
         }
       }
@@ -22841,7 +22841,7 @@ ulonglong FUN_18089e9af(uint64 resourceHandle,uint64 memoryBlockSize,ulonglong o
 
 {
   longlong *plocalLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint in_EAX;
   uint unsignedVar3;
   ulonglong validationResult1;
@@ -22860,8 +22860,8 @@ ulonglong FUN_18089e9af(uint64 resourceHandle,uint64 memoryBlockSize,ulonglong o
     return BYTE_OFFSET_FLAG;
   }
   plocalLong1 = (longlong *)*unaff_RDI;
-  dataValueBuffer = *plocalLong1;
-  if (dataValueBuffer == 0) {
+  tempDataBuffer = *plocalLong1;
+  if (tempDataBuffer == 0) {
     validationResult1 = BYTE_OFFSET_FLAG;
   }
   else {
@@ -22871,7 +22871,7 @@ LAB_18089ea0f:
     }
     else {
       *(int *)(unaff_RBP + 0x77) = (int)operationFlags;
-      validationResult1 = dataProcessFunction(dataValueBuffer,unaff_RBP + 0x77);
+      validationResult1 = dataProcessFunction(tempDataBuffer,unaff_RBP + 0x77);
       if ((int)validationResult1 == 0) {
         operationFlags = 0;
         if ((ulonglong)plocalLong1[2] < (ulonglong)*(uint *)(unaff_RBP + 0x77) + 4) {
@@ -22896,8 +22896,8 @@ LAB_18089ea2c:
   }
   else if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
     plocalLong1 = (longlong *)*unaff_RDI;
-    dataValueBuffer = *plocalLong1;
-    if (dataValueBuffer == 0) {
+    tempDataBuffer = *plocalLong1;
+    if (tempDataBuffer == 0) {
       unsignedVar3 = BYTE_OFFSET_FLAG;
 LAB_18089eaae:
       boolVar7 = unsignedVar3 == 0;
@@ -22913,7 +22913,7 @@ LAB_18089ea93:
         goto LAB_18089eaae;
       }
       *(int *)(unaff_RBP + -0x45) = (int)operationFlags;
-      unsignedVar3 = dataProcessFunction(dataValueBuffer,unaff_RBP + -0x45);
+      unsignedVar3 = dataProcessFunction(tempDataBuffer,unaff_RBP + -0x45);
       boolVar7 = unsignedVar3 == 0;
       if (boolVar7) {
         if ((ulonglong)plocalLong1[2] < (ulonglong)*(uint *)(unaff_RBP + -0x45) + 1) {
@@ -22940,8 +22940,8 @@ LAB_18089ea93:
   }
   else if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
     plocalLong1 = (longlong *)*unaff_RDI;
-    dataValueBuffer = *plocalLong1;
-    if (dataValueBuffer == 0) {
+    tempDataBuffer = *plocalLong1;
+    if (tempDataBuffer == 0) {
       unsignedVar3 = BYTE_OFFSET_FLAG;
     }
     else {
@@ -22951,7 +22951,7 @@ LAB_18089eb22:
       }
       else {
         *(int *)(unaff_RBP + -0x45) = (int)operationFlags;
-        unsignedVar3 = dataProcessFunction(dataValueBuffer,unaff_RBP + -0x45);
+        unsignedVar3 = dataProcessFunction(tempDataBuffer,unaff_RBP + -0x45);
         if (unsignedVar3 == 0) {
           operationFlags = 0;
           if ((ulonglong)plocalLong1[2] < (ulonglong)*(uint *)(unaff_RBP + -0x45) + 1) {
@@ -22983,8 +22983,8 @@ LAB_18089eb3c:
   }
   else if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
     plocalLong1 = (longlong *)*unaff_RDI;
-    dataValueBuffer = *plocalLong1;
-    if (dataValueBuffer == 0) {
+    tempDataBuffer = *plocalLong1;
+    if (tempDataBuffer == 0) {
       unsignedVar3 = BYTE_OFFSET_FLAG;
     }
     else {
@@ -22994,7 +22994,7 @@ LAB_18089ebaa:
       }
       else {
         *(int *)(unaff_RBP + -0x45) = (int)operationFlags;
-        unsignedVar3 = dataProcessFunction(dataValueBuffer,unaff_RBP + -0x45);
+        unsignedVar3 = dataProcessFunction(tempDataBuffer,unaff_RBP + -0x45);
         if (unsignedVar3 == 0) {
           operationFlags = 0;
           if ((ulonglong)plocalLong1[2] < (ulonglong)*(uint *)(unaff_RBP + -0x45) + 1) {
@@ -23026,8 +23026,8 @@ LAB_18089ebc4:
   }
   else if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
     plocalLong1 = (longlong *)*unaff_RDI;
-    dataValueBuffer = *plocalLong1;
-    if (dataValueBuffer == 0) {
+    tempDataBuffer = *plocalLong1;
+    if (tempDataBuffer == 0) {
       unsignedVar3 = BYTE_OFFSET_FLAG;
     }
     else {
@@ -23037,7 +23037,7 @@ LAB_18089ec32:
       }
       else {
         *(int *)(unaff_RBP + -0x45) = (int)operationFlags;
-        unsignedVar3 = dataProcessFunction(dataValueBuffer,unaff_RBP + -0x45);
+        unsignedVar3 = dataProcessFunction(tempDataBuffer,unaff_RBP + -0x45);
         if (unsignedVar3 == 0) {
           operationFlags = 0;
           if ((ulonglong)plocalLong1[2] < (ulonglong)*(uint *)(unaff_RBP + -0x45) + 1) {
@@ -23069,8 +23069,8 @@ LAB_18089ec4c:
   }
   else if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
     plocalLong1 = (longlong *)*unaff_RDI;
-    dataValueBuffer = *plocalLong1;
-    if (dataValueBuffer == 0) {
+    tempDataBuffer = *plocalLong1;
+    if (tempDataBuffer == 0) {
       unsignedVar3 = BYTE_OFFSET_FLAG;
     }
     else {
@@ -23080,7 +23080,7 @@ LAB_18089ecba:
       }
       else {
         *(int *)(unaff_RBP + -0x45) = (int)operationFlags;
-        unsignedVar3 = dataProcessFunction(dataValueBuffer,unaff_RBP + -0x45);
+        unsignedVar3 = dataProcessFunction(tempDataBuffer,unaff_RBP + -0x45);
         if (unsignedVar3 == 0) {
           operationFlags = 0;
           if ((ulonglong)plocalLong1[2] < (ulonglong)*(uint *)(unaff_RBP + -0x45) + 1) {
@@ -24432,7 +24432,7 @@ void Unwind_180901f10(uint64 resourceHandle,longlong memoryBlockSize)
   uint64 *pfunctionResult;
   
   pfunctionResult = *(uint64 **)(memoryBlockSize + BUFFER_OFFSET_DATA);
-  *pfunctionResult = &dataValuedataValueBufferdataBufferControlData2;
+  *pfunctionResult = &dataValuetempDataBufferdataBufferControlData2;
   *pfunctionResult = &threadContextData;
   *pfunctionResult = &threadSyncObject;
   return;
@@ -25605,12 +25605,12 @@ void Unwind_1809025e0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong *plocalLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   
   plocalLong1 = (longlong *)(*(longlong *)(memoryBlockSize + 0x70) + 0xa0);
-  for (dataValueBuffer = *plocalLong1; dataValueBuffer != *(longlong *)(*(longlong *)(memoryBlockSize + 0x70) + 0xa8);
-      dataValueBuffer = dataValueBuffer + BYTE_OFFSET_2) {
-    if (*(longlong *)(dataValueBuffer + 8) != 0) {
+  for (tempDataBuffer = *plocalLong1; tempDataBuffer != *(longlong *)(*(longlong *)(memoryBlockSize + 0x70) + 0xa8);
+      tempDataBuffer = tempDataBuffer + BYTE_OFFSET_2) {
+    if (*(longlong *)(tempDataBuffer + 8) != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
@@ -25682,11 +25682,11 @@ void Unwind_180902640(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong *plocalLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   
   plocalLong1 = *(longlong **)(memoryBlockSize + HANDLE_OFFSET_DATA);
-  for (dataValueBuffer = *plocalLong1; dataValueBuffer != plocalLong1[1]; dataValueBuffer = dataValueBuffer + BYTE_OFFSET_2) {
-    if (*(longlong *)(dataValueBuffer + 8) != 0) {
+  for (tempDataBuffer = *plocalLong1; tempDataBuffer != plocalLong1[1]; tempDataBuffer = tempDataBuffer + BYTE_OFFSET_2) {
+    if (*(longlong *)(tempDataBuffer + 8) != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
@@ -26440,7 +26440,7 @@ void Unwind_180902950(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   int *plocalStatus;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 *pointerVar3;
   longlong longVar4;
   longlong longVar5;
@@ -26453,10 +26453,10 @@ void Unwind_180902950(uint64 resourceHandle,longlong memoryBlockSize)
   unsignedVar6 = 0;
   if (unsignedVar7 != 0) {
     do {
-      dataValueBuffer = *(longlong *)(longVar5 + unsignedVar6 * 8);
-      if (dataValueBuffer != 0) {
+      tempDataBuffer = *(longlong *)(longVar5 + unsignedVar6 * 8);
+      if (tempDataBuffer != 0) {
                     // WARNING: Subroutine does not return
-        HandleCriticalError(dataValueBuffer);
+        HandleCriticalError(tempDataBuffer);
       }
       *(uint64 *)(longVar5 + unsignedVar6 * 8) = 0;
       unsignedVar6 = unsignedVar6 + 1;
@@ -26495,7 +26495,7 @@ void Unwind_180902960(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   int *plocalStatus;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 *pointerVar3;
   longlong longVar4;
   longlong longVar5;
@@ -26508,10 +26508,10 @@ void Unwind_180902960(uint64 resourceHandle,longlong memoryBlockSize)
   unsignedVar6 = 0;
   if (unsignedVar7 != 0) {
     do {
-      dataValueBuffer = *(longlong *)(longVar5 + unsignedVar6 * 8);
-      if (dataValueBuffer != 0) {
+      tempDataBuffer = *(longlong *)(longVar5 + unsignedVar6 * 8);
+      if (tempDataBuffer != 0) {
                     // WARNING: Subroutine does not return
-        HandleCriticalError(dataValueBuffer);
+        HandleCriticalError(tempDataBuffer);
       }
       *(uint64 *)(longVar5 + unsignedVar6 * 8) = 0;
       unsignedVar6 = unsignedVar6 + 1;
@@ -26598,7 +26598,7 @@ void Unwind_180902a40(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   int *plocalStatus;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 *pointerVar3;
   longlong longVar4;
   longlong longVar5;
@@ -26611,10 +26611,10 @@ void Unwind_180902a40(uint64 resourceHandle,longlong memoryBlockSize)
   unsignedVar6 = 0;
   if (unsignedVar7 != 0) {
     do {
-      dataValueBuffer = *(longlong *)(longVar5 + unsignedVar6 * 8);
-      if (dataValueBuffer != 0) {
+      tempDataBuffer = *(longlong *)(longVar5 + unsignedVar6 * 8);
+      if (tempDataBuffer != 0) {
                     // WARNING: Subroutine does not return
-        HandleCriticalError(dataValueBuffer);
+        HandleCriticalError(tempDataBuffer);
       }
       *(uint64 *)(longVar5 + unsignedVar6 * 8) = 0;
       unsignedVar6 = unsignedVar6 + 1;
@@ -26653,7 +26653,7 @@ void Unwind_180902a50(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   int *plocalStatus;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 *pointerVar3;
   longlong longVar4;
   longlong longVar5;
@@ -26666,10 +26666,10 @@ void Unwind_180902a50(uint64 resourceHandle,longlong memoryBlockSize)
   unsignedVar6 = 0;
   if (unsignedVar7 != 0) {
     do {
-      dataValueBuffer = *(longlong *)(longVar5 + unsignedVar6 * 8);
-      if (dataValueBuffer != 0) {
+      tempDataBuffer = *(longlong *)(longVar5 + unsignedVar6 * 8);
+      if (tempDataBuffer != 0) {
                     // WARNING: Subroutine does not return
-        HandleCriticalError(dataValueBuffer);
+        HandleCriticalError(tempDataBuffer);
       }
       *(uint64 *)(longVar5 + unsignedVar6 * 8) = 0;
       unsignedVar6 = unsignedVar6 + 1;
@@ -26729,7 +26729,7 @@ void Unwind_180902a70(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong arrayIndex;
   ulonglong validationResult1;
   ulonglong validationResult2;
@@ -26740,13 +26740,13 @@ void Unwind_180902a70(uint64 resourceHandle,longlong memoryBlockSize)
   validationResult2 = 0;
   if (validationResult1 != 0) {
     do {
-      dataValueBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
-      if (dataValueBuffer != 0) {
-        if (*(longlong **)(dataValueBuffer + RESOURCE_HANDLE_OFFSET) != (longlong *)0x0) {
-          (**(code **)(**(longlong **)(dataValueBuffer + RESOURCE_HANDLE_OFFSET) + STRUCT_OFFSET_SIZE))();
+      tempDataBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
+      if (tempDataBuffer != 0) {
+        if (*(longlong **)(tempDataBuffer + RESOURCE_HANDLE_OFFSET) != (longlong *)0x0) {
+          (**(code **)(**(longlong **)(tempDataBuffer + RESOURCE_HANDLE_OFFSET) + STRUCT_OFFSET_SIZE))();
         }
                     // WARNING: Subroutine does not return
-        HandleCriticalError(dataValueBuffer);
+        HandleCriticalError(tempDataBuffer);
       }
       *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
       validationResult2 = validationResult2 + 1;
@@ -26767,7 +26767,7 @@ void Unwind_180902a80(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong arrayIndex;
   ulonglong validationResult1;
   ulonglong validationResult2;
@@ -26778,13 +26778,13 @@ void Unwind_180902a80(uint64 resourceHandle,longlong memoryBlockSize)
   validationResult2 = 0;
   if (validationResult1 != 0) {
     do {
-      dataValueBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
-      if (dataValueBuffer != 0) {
-        if (*(longlong **)(dataValueBuffer + RESOURCE_HANDLE_OFFSET) != (longlong *)0x0) {
-          (**(code **)(**(longlong **)(dataValueBuffer + RESOURCE_HANDLE_OFFSET) + STRUCT_OFFSET_SIZE))();
+      tempDataBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
+      if (tempDataBuffer != 0) {
+        if (*(longlong **)(tempDataBuffer + RESOURCE_HANDLE_OFFSET) != (longlong *)0x0) {
+          (**(code **)(**(longlong **)(tempDataBuffer + RESOURCE_HANDLE_OFFSET) + STRUCT_OFFSET_SIZE))();
         }
                     // WARNING: Subroutine does not return
-        HandleCriticalError(dataValueBuffer);
+        HandleCriticalError(tempDataBuffer);
       }
       *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
       validationResult2 = validationResult2 + 1;
@@ -26805,7 +26805,7 @@ void Unwind_180902a90(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong arrayIndex;
   ulonglong validationResult1;
   ulonglong validationResult2;
@@ -26816,13 +26816,13 @@ void Unwind_180902a90(uint64 resourceHandle,longlong memoryBlockSize)
   validationResult2 = 0;
   if (validationResult1 != 0) {
     do {
-      dataValueBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
-      if (dataValueBuffer != 0) {
-        if (*(longlong **)(dataValueBuffer + RESOURCE_HANDLE_OFFSET) != (longlong *)0x0) {
-          (**(code **)(**(longlong **)(dataValueBuffer + RESOURCE_HANDLE_OFFSET) + STRUCT_OFFSET_SIZE))();
+      tempDataBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
+      if (tempDataBuffer != 0) {
+        if (*(longlong **)(tempDataBuffer + RESOURCE_HANDLE_OFFSET) != (longlong *)0x0) {
+          (**(code **)(**(longlong **)(tempDataBuffer + RESOURCE_HANDLE_OFFSET) + STRUCT_OFFSET_SIZE))();
         }
                     // WARNING: Subroutine does not return
-        HandleCriticalError(dataValueBuffer);
+        HandleCriticalError(tempDataBuffer);
       }
       *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
       validationResult2 = validationResult2 + 1;
@@ -26984,7 +26984,7 @@ void Unwind_180902b60(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong arrayIndex;
   ulonglong validationResult1;
   ulonglong validationResult2;
@@ -26995,13 +26995,13 @@ void Unwind_180902b60(uint64 resourceHandle,longlong memoryBlockSize)
   validationResult2 = 0;
   if (validationResult1 != 0) {
     do {
-      dataValueBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
-      if (dataValueBuffer != 0) {
-        if (*(longlong **)(dataValueBuffer + RESOURCE_HANDLE_OFFSET) != (longlong *)0x0) {
-          (**(code **)(**(longlong **)(dataValueBuffer + RESOURCE_HANDLE_OFFSET) + STRUCT_OFFSET_SIZE))();
+      tempDataBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
+      if (tempDataBuffer != 0) {
+        if (*(longlong **)(tempDataBuffer + RESOURCE_HANDLE_OFFSET) != (longlong *)0x0) {
+          (**(code **)(**(longlong **)(tempDataBuffer + RESOURCE_HANDLE_OFFSET) + STRUCT_OFFSET_SIZE))();
         }
                     // WARNING: Subroutine does not return
-        HandleCriticalError(dataValueBuffer);
+        HandleCriticalError(tempDataBuffer);
       }
       *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
       validationResult2 = validationResult2 + 1;
@@ -27022,7 +27022,7 @@ void Unwind_180902b70(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong arrayIndex;
   ulonglong validationResult1;
   ulonglong validationResult2;
@@ -27033,13 +27033,13 @@ void Unwind_180902b70(uint64 resourceHandle,longlong memoryBlockSize)
   validationResult2 = 0;
   if (validationResult1 != 0) {
     do {
-      dataValueBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
-      if (dataValueBuffer != 0) {
-        if (*(longlong **)(dataValueBuffer + RESOURCE_HANDLE_OFFSET) != (longlong *)0x0) {
-          (**(code **)(**(longlong **)(dataValueBuffer + RESOURCE_HANDLE_OFFSET) + STRUCT_OFFSET_SIZE))();
+      tempDataBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
+      if (tempDataBuffer != 0) {
+        if (*(longlong **)(tempDataBuffer + RESOURCE_HANDLE_OFFSET) != (longlong *)0x0) {
+          (**(code **)(**(longlong **)(tempDataBuffer + RESOURCE_HANDLE_OFFSET) + STRUCT_OFFSET_SIZE))();
         }
                     // WARNING: Subroutine does not return
-        HandleCriticalError(dataValueBuffer);
+        HandleCriticalError(tempDataBuffer);
       }
       *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
       validationResult2 = validationResult2 + 1;
@@ -27394,7 +27394,7 @@ void Unwind_180902c50(uint64 resourceHandle,longlong memoryBlockSize)
   *pfunctionResult = &unknown_1809fcb90;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(pfunctionResult + 4);
-  *pfunctionResult = &dataValuedataValueBufferdataBufferControlData2;
+  *pfunctionResult = &dataValuetempDataBufferdataBufferControlData2;
   *pfunctionResult = &threadContextData;
   *pfunctionResult = &threadSyncObject;
   return;
@@ -27678,26 +27678,26 @@ void Unwind_180902d50(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong *plocalLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 unsignedVar3;
   
-  dataValueBuffer = *(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET);
+  tempDataBuffer = *(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET);
   unsignedVar3 = 0xfffffffffffffffe;
-  *(longlong *)(dataValueBuffer + 0x15d8) =
-       *(longlong *)(&systemVared30 + (longlong)*(int *)(dataValueBuffer + 0x15e0) * 8) + -100000;
-  FUN_180090b80((longlong *)(dataValueBuffer + 0x8b0));
-  *(uint32 *)(dataValueBuffer + 0x15e8) = 0;
-  plocalLong1 = *(longlong **)(dataValueBuffer + 0x15d0);
-  *(uint64 *)(dataValueBuffer + 0x15d0) = 0;
+  *(longlong *)(tempDataBuffer + 0x15d8) =
+       *(longlong *)(&systemVared30 + (longlong)*(int *)(tempDataBuffer + 0x15e0) * 8) + -100000;
+  FUN_180090b80((longlong *)(tempDataBuffer + 0x8b0));
+  *(uint32 *)(tempDataBuffer + 0x15e8) = 0;
+  plocalLong1 = *(longlong **)(tempDataBuffer + 0x15d0);
+  *(uint64 *)(tempDataBuffer + 0x15d0) = 0;
   if (plocalLong1 != (longlong *)0x0) {
     (**(code **)(*plocalLong1 + STRUCT_OFFSET_SIZE))();
   }
-  if (*(longlong **)(dataValueBuffer + 0x15d0) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(dataValueBuffer + 0x15d0) + STRUCT_OFFSET_SIZE))();
+  if (*(longlong **)(tempDataBuffer + 0x15d0) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(tempDataBuffer + 0x15d0) + STRUCT_OFFSET_SIZE))();
   }
-  FUN_1808fc8a8(dataValueBuffer + 0x8e0,POINTER_OFFSET_DATA,LIST_OFFSET_HEAD,FUN_180627b90,unsignedVar3);
-  FUN_1808fc8a8(dataValueBuffer + 0x8b8,8,4,FUN_180045af0);
-  plocalLong1 = *(longlong **)(dataValueBuffer + 0x8b0);
+  FUN_1808fc8a8(tempDataBuffer + 0x8e0,POINTER_OFFSET_DATA,LIST_OFFSET_HEAD,FUN_180627b90,unsignedVar3);
+  FUN_1808fc8a8(tempDataBuffer + 0x8b8,8,4,FUN_180045af0);
+  plocalLong1 = *(longlong **)(tempDataBuffer + 0x8b0);
   if (plocalLong1 != (longlong *)0x0) {
     (**(code **)(*plocalLong1 + STRUCT_OFFSET_SIZE))();
   }
@@ -28420,14 +28420,14 @@ void Unwind_1809030b0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong *plocalLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   
-  dataValueBuffer = *(longlong *)(memoryBlockSize + SYSTEM_OFFSET_STATUS1);
-  plocalLong1 = *(longlong **)(dataValueBuffer + BUFFER_SIZE_STANDARD);
+  tempDataBuffer = *(longlong *)(memoryBlockSize + SYSTEM_OFFSET_STATUS1);
+  plocalLong1 = *(longlong **)(tempDataBuffer + BUFFER_SIZE_STANDARD);
   if (plocalLong1 != (longlong *)0x0) {
     (**(code **)(*plocalLong1 + STRUCT_OFFSET_SIZE))();
   }
-  *(dataValueValue **)(dataValueBuffer + POINTER_OFFSET_DATA) = &threadLocalStorageCleanup;
+  *(dataValueValue **)(tempDataBuffer + POINTER_OFFSET_DATA) = &threadLocalStorageCleanup;
   return;
 }
 
@@ -34702,7 +34702,7 @@ void Unwind_180904680(uint64 resourceHandle,longlong memoryBlockSize)
   uint64 *pfunctionResult;
   
   pfunctionResult = *(uint64 **)(memoryBlockSize + LIST_OFFSET_HEAD);
-  *pfunctionResult = &dataValuedataValueBufferdataBufferControlData2;
+  *pfunctionResult = &dataValuetempDataBufferdataBufferControlData2;
   *pfunctionResult = &threadContextData;
   *pfunctionResult = &threadSyncObject;
   return;
@@ -35082,7 +35082,7 @@ void Unwind_1809048a0(uint64 resourceHandle,longlong memoryBlockSize)
   uint64 *pfunctionResult;
   
   pfunctionResult = *(uint64 **)(memoryBlockSize + POINTER_OFFSET_DATA);
-  *pfunctionResult = &dataValuedataValueBufferdataBufferControlData2;
+  *pfunctionResult = &dataValuetempDataBufferdataBufferControlData2;
   *pfunctionResult = &threadContextData;
   *pfunctionResult = &threadSyncObject;
   return;
@@ -35994,15 +35994,15 @@ void Catch_180904b10(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   
   localLong1 = *(longlong *)(memoryBlockSize + DATA_OFFSET_START);
   *(uint64 *)(localLong1 + DATA_OFFSET_START) = *(uint64 *)(memoryBlockSize + 0x70);
-  dataValueBuffer = *(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA);
-  if (dataValueBuffer == 0) {
-    dataValueBuffer = *(longlong *)(localLong1 + BUFFER_SIZE_OFFSET);
+  tempDataBuffer = *(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA);
+  if (tempDataBuffer == 0) {
+    tempDataBuffer = *(longlong *)(localLong1 + BUFFER_SIZE_OFFSET);
   }
-  *(longlong *)(localLong1 + BUFFER_SIZE_OFFSET) = dataValueBuffer;
+  *(longlong *)(localLong1 + BUFFER_SIZE_OFFSET) = tempDataBuffer;
                     // WARNING: Subroutine does not return
   _CxxThrowException(0,0);
 }
@@ -36028,7 +36028,7 @@ void Catch_180904b90(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   ulonglong functionResult;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong arrayIndex;
   longlong longVar4;
   ulonglong validationResult2;
@@ -36037,16 +36037,16 @@ void Catch_180904b90(uint64 resourceHandle,longlong memoryBlockSize)
   ulonglong iterationIndex;
   
   functionResult = *(ulonglong *)(memoryBlockSize + POINTER_OFFSET_DATA);
-  dataValueBuffer = *(longlong *)(memoryBlockSize + 0xa0);
-  arrayIndex = *(longlong *)(dataValueBuffer + BUFFER_SIZE_OFFSET);
-  *(uint64 *)(dataValueBuffer + 0x70) = *(uint64 *)(memoryBlockSize + FIELD_OFFSET_1);
-  *(uint64 *)(dataValueBuffer + DATA_OFFSET_START) = *(uint64 *)(memoryBlockSize + BUFFER_SIZE_STANDARD);
+  tempDataBuffer = *(longlong *)(memoryBlockSize + 0xa0);
+  arrayIndex = *(longlong *)(tempDataBuffer + BUFFER_SIZE_OFFSET);
+  *(uint64 *)(tempDataBuffer + 0x70) = *(uint64 *)(memoryBlockSize + FIELD_OFFSET_1);
+  *(uint64 *)(tempDataBuffer + DATA_OFFSET_START) = *(uint64 *)(memoryBlockSize + BUFFER_SIZE_STANDARD);
   longVar7 = *(longlong *)(memoryBlockSize + BYTE_OFFSET_2);
   longVar4 = longVar7;
   if (longVar7 == 0) {
     longVar4 = *(longlong *)(memoryBlockSize + 0xb0);
   }
-  *(longlong *)(dataValueBuffer + BUFFER_SIZE_OFFSET) = longVar4;
+  *(longlong *)(tempDataBuffer + BUFFER_SIZE_OFFSET) = longVar4;
   validationResult2 = *(ulonglong *)(memoryBlockSize + BUFFER_SIZE_OFFSET);
   if ((validationResult2 & ERROR_CODE_FAILED) == 0) {
     longVar7 = *(longlong *)(memoryBlockSize + 0xb0);
@@ -36080,7 +36080,7 @@ void Catch_180904c60(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong *parrayIndex;
   ulonglong validationResult1;
   ulonglong validationResult2;
@@ -36093,10 +36093,10 @@ void Catch_180904c60(uint64 resourceHandle,longlong memoryBlockSize)
   localLong1 = *(longlong *)(memoryBlockSize + MEMORY_SIZE_OFFSET);
   longVar9 = *(longlong *)(localLong1 + BUFFER_SIZE_OFFSET);
   validationResult1 = *(ulonglong *)(memoryBlockSize + FIELD_OFFSET_1);
-  dataValueBuffer = *(longlong *)(memoryBlockSize + 0xa0);
+  tempDataBuffer = *(longlong *)(memoryBlockSize + 0xa0);
   longVar6 = *(longlong *)(memoryBlockSize + 0xa8);
   if ((validationResult1 & ERROR_CODE_FAILED) == 0) {
-    longVar6 = dataValueBuffer;
+    longVar6 = tempDataBuffer;
   }
   *(ulonglong *)(memoryBlockSize + POINTER_OFFSET_DATA) = validationResult1;
   while( true ) {
@@ -36119,8 +36119,8 @@ void Catch_180904c60(uint64 resourceHandle,longlong memoryBlockSize)
   }
   iterationIndex = *(longlong *)(memoryBlockSize + FIELD_OFFSET_1) - 1U & 0xffffffffffffffe0;
   *(ulonglong *)(memoryBlockSize + POINTER_OFFSET_DATA) = iterationIndex;
-  longVar9 = dataValueBuffer;
-  if (dataValueBuffer != 0) {
+  longVar9 = tempDataBuffer;
+  if (tempDataBuffer != 0) {
     while( true ) {
       *(ulonglong *)(memoryBlockSize + POINTER_OFFSET_DATA) = iterationIndex + POINTER_OFFSET_DATA;
       parrayIndex = *(longlong **)(localLong1 + DATA_OFFSET_START);
@@ -36136,7 +36136,7 @@ void Catch_180904c60(uint64 resourceHandle,longlong memoryBlockSize)
       iterationIndex = *(ulonglong *)(memoryBlockSize + POINTER_OFFSET_DATA);
     }
   }
-  func_0x000180060150(*(uint64 *)(localLong1 + LIST_OFFSET_HEAD),dataValueBuffer);
+  func_0x000180060150(*(uint64 *)(localLong1 + LIST_OFFSET_HEAD),tempDataBuffer);
   *(uint64 *)(localLong1 + BUFFER_SIZE_OFFSET) = *(uint64 *)(memoryBlockSize + 0xa8);
                     // WARNING: Subroutine does not return
   _CxxThrowException(0,0);
@@ -38288,7 +38288,7 @@ void Unwind_1809057b0(uint64 resourceHandle,longlong memoryBlockSize)
   longlong *plStackX_10;
   longlong *plStackX_18;
   longlong *plStackX_20;
-  ulonglong functionResult0;
+  ulonglong functionResult;
   
   pvalidationResult2 = *(uint64 **)(memoryBlockSize + BUFFER_SIZE_OFFSET);
   *pvalidationResult2 = &unknown_180a07cd0;
@@ -38299,12 +38299,12 @@ void Unwind_1809057b0(uint64 resourceHandle,longlong memoryBlockSize)
   if (integerVar6 != 0) {
     __Throw_C_error_std__YAXH_Z(integerVar6);
   }
-  functionResult0 = 0;
-  functionResult1 = functionResult0;
+  functionResult = 0;
+  functionResult1 = functionResult;
   if (pvalidationResult2[9] != 0) {
     do {
       functionResult2 = functionResult1 % (ulonglong)*(uint *)(pvalidationResult2 + 8);
-      integerVar6 = (int)functionResult0;
+      integerVar6 = (int)functionResult;
       for (pintVar7 = *(int **)(pvalidationResult2[7] + functionResult2 * 8); pintVar7 != (int *)0x0;
           pintVar7 = *(int **)(pintVar7 + 4)) {
         if (integerVar6 == *pintVar7) {
@@ -38335,7 +38335,7 @@ LAB_1801571ef:
         (**(code **)(*plStackX_18 + STRUCT_OFFSET_SIZE))();
       }
       unsignedVar9 = integerVar6 + 1;
-      functionResult0 = (ulonglong)unsignedVar9;
+      functionResult = (ulonglong)unsignedVar9;
       functionResult1 = (longlong)(int)unsignedVar9;
     } while ((ulonglong)(longlong)(int)unsignedVar9 < (ulonglong)pvalidationResult2[9]);
   }
@@ -38885,7 +38885,7 @@ void Unwind_180905950(uint64 resourceHandle,longlong memoryBlockSize)
   longlong *plStackX_10;
   longlong *plStackX_18;
   longlong *plStackX_20;
-  ulonglong functionResult0;
+  ulonglong functionResult;
   
   pvalidationResult2 = *(uint64 **)(memoryBlockSize + 0x2e8);
   *pvalidationResult2 = &unknown_180a07cd0;
@@ -38896,12 +38896,12 @@ void Unwind_180905950(uint64 resourceHandle,longlong memoryBlockSize)
   if (integerVar6 != 0) {
     __Throw_C_error_std__YAXH_Z(integerVar6);
   }
-  functionResult0 = 0;
-  functionResult1 = functionResult0;
+  functionResult = 0;
+  functionResult1 = functionResult;
   if (pvalidationResult2[9] != 0) {
     do {
       functionResult2 = functionResult1 % (ulonglong)*(uint *)(pvalidationResult2 + 8);
-      integerVar6 = (int)functionResult0;
+      integerVar6 = (int)functionResult;
       for (pintVar7 = *(int **)(pvalidationResult2[7] + functionResult2 * 8); pintVar7 != (int *)0x0;
           pintVar7 = *(int **)(pintVar7 + 4)) {
         if (integerVar6 == *pintVar7) {
@@ -38932,7 +38932,7 @@ LAB_1801571ef:
         (**(code **)(*plStackX_18 + STRUCT_OFFSET_SIZE))();
       }
       unsignedVar9 = integerVar6 + 1;
-      functionResult0 = (ulonglong)unsignedVar9;
+      functionResult = (ulonglong)unsignedVar9;
       functionResult1 = (longlong)(int)unsignedVar9;
     } while ((ulonglong)(longlong)(int)unsignedVar9 < (ulonglong)pvalidationResult2[9]);
   }
@@ -39272,7 +39272,7 @@ void Unwind_180905b00(uint64 resourceHandle,longlong memoryBlockSize)
   *pfunctionResult = &unknown_1809fcb90;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(pfunctionResult + 4);
-  *pfunctionResult = &dataValuedataValueBufferdataBufferControlData2;
+  *pfunctionResult = &dataValuetempDataBufferdataBufferControlData2;
   *pfunctionResult = &threadContextData;
   *pfunctionResult = &threadSyncObject;
   return;
@@ -40509,7 +40509,7 @@ void Unwind_180905f90(uint64 resourceHandle,longlong memoryBlockSize)
   *pfunctionResult = &unknown_1809fcb90;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(pfunctionResult + 4);
-  *pfunctionResult = &dataValuedataValueBufferdataBufferControlData2;
+  *pfunctionResult = &dataValuetempDataBufferdataBufferControlData2;
   *pfunctionResult = &threadContextData;
   *pfunctionResult = &threadSyncObject;
   return;
@@ -43960,14 +43960,14 @@ void Unwind_180906ee0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong *plocalLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   
-  dataValueBuffer = *(longlong *)(memoryBlockSize + 0x178);
-  plocalLong1 = *(longlong **)(dataValueBuffer + RESOURCE_OFFSET_HANDLE);
+  tempDataBuffer = *(longlong *)(memoryBlockSize + 0x178);
+  plocalLong1 = *(longlong **)(tempDataBuffer + RESOURCE_OFFSET_HANDLE);
   if (plocalLong1 != (longlong *)0x0) {
     (**(code **)(*plocalLong1 + STRUCT_OFFSET_SIZE))();
   }
-  plocalLong1 = *(longlong **)(dataValueBuffer + RESOURCE_HANDLE_OFFSET);
+  plocalLong1 = *(longlong **)(tempDataBuffer + RESOURCE_HANDLE_OFFSET);
   if (plocalLong1 != (longlong *)0x0) {
     (**(code **)(*plocalLong1 + STRUCT_OFFSET_SIZE))();
   }
@@ -44022,14 +44022,14 @@ void Unwind_180906f20(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong *plocalLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   
-  dataValueBuffer = *(longlong *)(memoryBlockSize + FIELD_OFFSET_1);
-  plocalLong1 = *(longlong **)(dataValueBuffer + RESOURCE_OFFSET_HANDLE);
+  tempDataBuffer = *(longlong *)(memoryBlockSize + FIELD_OFFSET_1);
+  plocalLong1 = *(longlong **)(tempDataBuffer + RESOURCE_OFFSET_HANDLE);
   if (plocalLong1 != (longlong *)0x0) {
     (**(code **)(*plocalLong1 + STRUCT_OFFSET_SIZE))();
   }
-  plocalLong1 = *(longlong **)(dataValueBuffer + RESOURCE_HANDLE_OFFSET);
+  plocalLong1 = *(longlong **)(tempDataBuffer + RESOURCE_HANDLE_OFFSET);
   if (plocalLong1 != (longlong *)0x0) {
     (**(code **)(*plocalLong1 + STRUCT_OFFSET_SIZE))();
   }
@@ -44150,14 +44150,14 @@ void Unwind_180907000(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong *plocalLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   
-  dataValueBuffer = *(longlong *)(memoryBlockSize + STRUCT_OFFSET_1);
-  plocalLong1 = *(longlong **)(dataValueBuffer + RESOURCE_OFFSET_HANDLE);
+  tempDataBuffer = *(longlong *)(memoryBlockSize + STRUCT_OFFSET_1);
+  plocalLong1 = *(longlong **)(tempDataBuffer + RESOURCE_OFFSET_HANDLE);
   if (plocalLong1 != (longlong *)0x0) {
     (**(code **)(*plocalLong1 + STRUCT_OFFSET_SIZE))();
   }
-  plocalLong1 = *(longlong **)(dataValueBuffer + RESOURCE_HANDLE_OFFSET);
+  plocalLong1 = *(longlong **)(tempDataBuffer + RESOURCE_HANDLE_OFFSET);
   if (plocalLong1 != (longlong *)0x0) {
     (**(code **)(*plocalLong1 + STRUCT_OFFSET_SIZE))();
   }
@@ -44192,14 +44192,14 @@ void Unwind_180907030(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong *plocalLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   
-  dataValueBuffer = *(longlong *)(memoryBlockSize + 0x160);
-  plocalLong1 = *(longlong **)(dataValueBuffer + RESOURCE_OFFSET_HANDLE);
+  tempDataBuffer = *(longlong *)(memoryBlockSize + 0x160);
+  plocalLong1 = *(longlong **)(tempDataBuffer + RESOURCE_OFFSET_HANDLE);
   if (plocalLong1 != (longlong *)0x0) {
     (**(code **)(*plocalLong1 + STRUCT_OFFSET_SIZE))();
   }
-  plocalLong1 = *(longlong **)(dataValueBuffer + RESOURCE_HANDLE_OFFSET);
+  plocalLong1 = *(longlong **)(tempDataBuffer + RESOURCE_HANDLE_OFFSET);
   if (plocalLong1 != (longlong *)0x0) {
     (**(code **)(*plocalLong1 + STRUCT_OFFSET_SIZE))();
   }
@@ -44362,14 +44362,14 @@ void Unwind_180907100(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong *plocalLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   
-  dataValueBuffer = *(longlong *)(memoryBlockSize + BYTE_OFFSET_2);
-  plocalLong1 = *(longlong **)(dataValueBuffer + RESOURCE_OFFSET_HANDLE);
+  tempDataBuffer = *(longlong *)(memoryBlockSize + BYTE_OFFSET_2);
+  plocalLong1 = *(longlong **)(tempDataBuffer + RESOURCE_OFFSET_HANDLE);
   if (plocalLong1 != (longlong *)0x0) {
     (**(code **)(*plocalLong1 + STRUCT_OFFSET_SIZE))();
   }
-  plocalLong1 = *(longlong **)(dataValueBuffer + RESOURCE_HANDLE_OFFSET);
+  plocalLong1 = *(longlong **)(tempDataBuffer + RESOURCE_HANDLE_OFFSET);
   if (plocalLong1 != (longlong *)0x0) {
     (**(code **)(*plocalLong1 + STRUCT_OFFSET_SIZE))();
   }
@@ -44396,14 +44396,14 @@ void Unwind_180907120(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong *plocalLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   
-  dataValueBuffer = *(longlong *)(memoryBlockSize + POINTER_OFFSET_DATA);
-  plocalLong1 = *(longlong **)(dataValueBuffer + RESOURCE_OFFSET_HANDLE);
+  tempDataBuffer = *(longlong *)(memoryBlockSize + POINTER_OFFSET_DATA);
+  plocalLong1 = *(longlong **)(tempDataBuffer + RESOURCE_OFFSET_HANDLE);
   if (plocalLong1 != (longlong *)0x0) {
     (**(code **)(*plocalLong1 + STRUCT_OFFSET_SIZE))();
   }
-  plocalLong1 = *(longlong **)(dataValueBuffer + RESOURCE_HANDLE_OFFSET);
+  plocalLong1 = *(longlong **)(tempDataBuffer + RESOURCE_HANDLE_OFFSET);
   if (plocalLong1 != (longlong *)0x0) {
     (**(code **)(*plocalLong1 + STRUCT_OFFSET_SIZE))();
   }
@@ -44846,14 +44846,14 @@ void Unwind_180907380(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong *plocalLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   
-  dataValueBuffer = *(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA);
-  plocalLong1 = *(longlong **)(dataValueBuffer + RESOURCE_OFFSET_HANDLE);
+  tempDataBuffer = *(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA);
+  plocalLong1 = *(longlong **)(tempDataBuffer + RESOURCE_OFFSET_HANDLE);
   if (plocalLong1 != (longlong *)0x0) {
     (**(code **)(*plocalLong1 + STRUCT_OFFSET_SIZE))();
   }
-  plocalLong1 = *(longlong **)(dataValueBuffer + RESOURCE_HANDLE_OFFSET);
+  plocalLong1 = *(longlong **)(tempDataBuffer + RESOURCE_HANDLE_OFFSET);
   if (plocalLong1 != (longlong *)0x0) {
     (**(code **)(*plocalLong1 + STRUCT_OFFSET_SIZE))();
   }
@@ -44894,14 +44894,14 @@ void Unwind_1809073b0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong *plocalLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   
-  dataValueBuffer = *(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP);
-  plocalLong1 = *(longlong **)(dataValueBuffer + RESOURCE_OFFSET_HANDLE);
+  tempDataBuffer = *(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP);
+  plocalLong1 = *(longlong **)(tempDataBuffer + RESOURCE_OFFSET_HANDLE);
   if (plocalLong1 != (longlong *)0x0) {
     (**(code **)(*plocalLong1 + STRUCT_OFFSET_SIZE))();
   }
-  plocalLong1 = *(longlong **)(dataValueBuffer + RESOURCE_HANDLE_OFFSET);
+  plocalLong1 = *(longlong **)(tempDataBuffer + RESOURCE_HANDLE_OFFSET);
   if (plocalLong1 != (longlong *)0x0) {
     (**(code **)(*plocalLong1 + STRUCT_OFFSET_SIZE))();
   }
@@ -47658,16 +47658,16 @@ void Unwind_1809080a0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 
 {
   uint64 *pfunctionResult;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 unsignedVar3;
   
-  dataValueBuffer = *(longlong *)(memoryBlockSize + 0x68);
+  tempDataBuffer = *(longlong *)(memoryBlockSize + 0x68);
   unsignedVar3 = 0xfffffffffffffffe;
   FUN_18004b730();
-  FUN_180058370(dataValueBuffer + DATA_OFFSET_START,*(uint64 *)(dataValueBuffer + 0x70),operationFlags,callbackFunction,unsignedVar3);
-  pfunctionResult = *(uint64 **)(dataValueBuffer + BUFFER_SIZE_OFFSET);
+  FUN_180058370(tempDataBuffer + DATA_OFFSET_START,*(uint64 *)(tempDataBuffer + 0x70),operationFlags,callbackFunction,unsignedVar3);
+  pfunctionResult = *(uint64 **)(tempDataBuffer + BUFFER_SIZE_OFFSET);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(dataValueBuffer + FIELD_OFFSET_1,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_18004b790(tempDataBuffer + FIELD_OFFSET_1,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -47680,16 +47680,16 @@ void Unwind_1809080b0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 
 {
   uint64 *pfunctionResult;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 unsignedVar3;
   
-  dataValueBuffer = *(longlong *)(memoryBlockSize + 0x70);
+  tempDataBuffer = *(longlong *)(memoryBlockSize + 0x70);
   unsignedVar3 = 0xfffffffffffffffe;
   FUN_18004b730();
-  FUN_180058370(dataValueBuffer + BUFFER_SIZE_OFFSET,*(uint64 *)(dataValueBuffer + LIST_OFFSET_HEAD),operationFlags,callbackFunction,unsignedVar3);
-  pfunctionResult = *(uint64 **)(dataValueBuffer + POINTER_OFFSET_DATA);
+  FUN_180058370(tempDataBuffer + BUFFER_SIZE_OFFSET,*(uint64 *)(tempDataBuffer + LIST_OFFSET_HEAD),operationFlags,callbackFunction,unsignedVar3);
+  pfunctionResult = *(uint64 **)(tempDataBuffer + POINTER_OFFSET_DATA);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(dataValueBuffer + RESOURCE_HANDLE_OFFSET,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_18004b790(tempDataBuffer + RESOURCE_HANDLE_OFFSET,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -47834,16 +47834,16 @@ void Unwind_180908160(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 
 {
   uint64 *pfunctionResult;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 unsignedVar3;
   
-  dataValueBuffer = *(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP);
+  tempDataBuffer = *(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP);
   unsignedVar3 = 0xfffffffffffffffe;
   FUN_18004b730();
-  FUN_180058370(dataValueBuffer + BUFFER_SIZE_OFFSET,*(uint64 *)(dataValueBuffer + LIST_OFFSET_HEAD),operationFlags,callbackFunction,unsignedVar3);
-  pfunctionResult = *(uint64 **)(dataValueBuffer + POINTER_OFFSET_DATA);
+  FUN_180058370(tempDataBuffer + BUFFER_SIZE_OFFSET,*(uint64 *)(tempDataBuffer + LIST_OFFSET_HEAD),operationFlags,callbackFunction,unsignedVar3);
+  pfunctionResult = *(uint64 **)(tempDataBuffer + POINTER_OFFSET_DATA);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(dataValueBuffer + RESOURCE_HANDLE_OFFSET,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_18004b790(tempDataBuffer + RESOURCE_HANDLE_OFFSET,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -47919,16 +47919,16 @@ void Unwind_1809081c0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 
 {
   uint64 *pfunctionResult;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 unsignedVar3;
   
-  dataValueBuffer = *(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET);
+  tempDataBuffer = *(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET);
   unsignedVar3 = 0xfffffffffffffffe;
   FUN_18004b730();
-  FUN_180058370(dataValueBuffer + BUFFER_SIZE_OFFSET,*(uint64 *)(dataValueBuffer + LIST_OFFSET_HEAD),operationFlags,callbackFunction,unsignedVar3);
-  pfunctionResult = *(uint64 **)(dataValueBuffer + POINTER_OFFSET_DATA);
+  FUN_180058370(tempDataBuffer + BUFFER_SIZE_OFFSET,*(uint64 *)(tempDataBuffer + LIST_OFFSET_HEAD),operationFlags,callbackFunction,unsignedVar3);
+  pfunctionResult = *(uint64 **)(tempDataBuffer + POINTER_OFFSET_DATA);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(dataValueBuffer + RESOURCE_HANDLE_OFFSET,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    FUN_18004b790(tempDataBuffer + RESOURCE_HANDLE_OFFSET,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -48365,26 +48365,26 @@ void Unwind_180908670(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong *plocalLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 unsignedVar3;
   
-  dataValueBuffer = *(longlong *)(memoryBlockSize + LIST_OFFSET_HEAD);
+  tempDataBuffer = *(longlong *)(memoryBlockSize + LIST_OFFSET_HEAD);
   unsignedVar3 = 0xfffffffffffffffe;
-  *(longlong *)(dataValueBuffer + 0x15d8) =
-       *(longlong *)(&systemVared30 + (longlong)*(int *)(dataValueBuffer + 0x15e0) * 8) + -100000;
-  FUN_180090b80((longlong *)(dataValueBuffer + 0x8b0));
-  *(uint32 *)(dataValueBuffer + 0x15e8) = 0;
-  plocalLong1 = *(longlong **)(dataValueBuffer + 0x15d0);
-  *(uint64 *)(dataValueBuffer + 0x15d0) = 0;
+  *(longlong *)(tempDataBuffer + 0x15d8) =
+       *(longlong *)(&systemVared30 + (longlong)*(int *)(tempDataBuffer + 0x15e0) * 8) + -100000;
+  FUN_180090b80((longlong *)(tempDataBuffer + 0x8b0));
+  *(uint32 *)(tempDataBuffer + 0x15e8) = 0;
+  plocalLong1 = *(longlong **)(tempDataBuffer + 0x15d0);
+  *(uint64 *)(tempDataBuffer + 0x15d0) = 0;
   if (plocalLong1 != (longlong *)0x0) {
     (**(code **)(*plocalLong1 + STRUCT_OFFSET_SIZE))();
   }
-  if (*(longlong **)(dataValueBuffer + 0x15d0) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(dataValueBuffer + 0x15d0) + STRUCT_OFFSET_SIZE))();
+  if (*(longlong **)(tempDataBuffer + 0x15d0) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(tempDataBuffer + 0x15d0) + STRUCT_OFFSET_SIZE))();
   }
-  FUN_1808fc8a8(dataValueBuffer + 0x8e0,POINTER_OFFSET_DATA,LIST_OFFSET_HEAD,FUN_180627b90,unsignedVar3);
-  FUN_1808fc8a8(dataValueBuffer + 0x8b8,8,4,FUN_180045af0);
-  plocalLong1 = *(longlong **)(dataValueBuffer + 0x8b0);
+  FUN_1808fc8a8(tempDataBuffer + 0x8e0,POINTER_OFFSET_DATA,LIST_OFFSET_HEAD,FUN_180627b90,unsignedVar3);
+  FUN_1808fc8a8(tempDataBuffer + 0x8b8,8,4,FUN_180045af0);
+  plocalLong1 = *(longlong **)(tempDataBuffer + 0x8b0);
   if (plocalLong1 != (longlong *)0x0) {
     (**(code **)(*plocalLong1 + STRUCT_OFFSET_SIZE))();
   }
@@ -48858,7 +48858,7 @@ void Unwind_1809088d0(uint64 resourceHandle,longlong memoryBlockSize)
   uint64 *pfunctionResult;
   
   pfunctionResult = *(uint64 **)(memoryBlockSize + BYTE_OFFSET_2);
-  *pfunctionResult = &dataValuedataValueBufferdataBufferControlData2;
+  *pfunctionResult = &dataValuetempDataBufferdataBufferControlData2;
   *pfunctionResult = &threadContextData;
   *pfunctionResult = &threadSyncObject;
   return;
@@ -50433,7 +50433,7 @@ void Unwind_180908f30(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   uint64 functionResult;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong arrayIndex;
   uint64 *puVar4;
   
@@ -50442,10 +50442,10 @@ void Unwind_180908f30(uint64 resourceHandle,longlong memoryBlockSize)
   *puVar4 = &uiWidgetTree;
   if ((*(longlong *)(arrayIndex + -POINTER_OFFSET_DATA) != 0) && (**(longlong **)(arrayIndex + -0x88) == arrayIndex + -FIELD_OFFSET_1)) {
     functionResult = *(uint64 *)(arrayIndex + -RESOURCE_HANDLE_OFFSET);
-    dataValueBuffer = *(longlong *)(arrayIndex + -RESOURCE_OFFSET_HANDLE);
-    **(longlong **)(arrayIndex + -0x88) = dataValueBuffer;
-    **(longlong **)(arrayIndex + -0x68) = dataValueBuffer;
-    **(int **)(arrayIndex + -LIST_OFFSET_HEAD) = (int)functionResult - (int)dataValueBuffer;
+    tempDataBuffer = *(longlong *)(arrayIndex + -RESOURCE_OFFSET_HANDLE);
+    **(longlong **)(arrayIndex + -0x88) = tempDataBuffer;
+    **(longlong **)(arrayIndex + -0x68) = tempDataBuffer;
+    **(int **)(arrayIndex + -LIST_OFFSET_HEAD) = (int)functionResult - (int)tempDataBuffer;
   }
   if (*(char *)(arrayIndex + -FIELD_OFFSET_3) != '\0') {
     FUN_1800a19c0(puVar4);
@@ -50610,7 +50610,7 @@ void Unwind_180909080(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   uint64 functionResult;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 *pointerVar3;
   
   pointerVar3 = (uint64 *)(memoryBlockSize + 0x88);
@@ -50618,10 +50618,10 @@ void Unwind_180909080(uint64 resourceHandle,longlong memoryBlockSize)
   if ((*(longlong *)(memoryBlockSize + RESOURCE_HANDLE_OFFSET8) != 0) && (**(longlong **)(memoryBlockSize + 0xa0) == memoryBlockSize + SYSTEM_OFFSET_FLAGS))
   {
     functionResult = *(uint64 *)(memoryBlockSize + 0x118);
-    dataValueBuffer = *(longlong *)(memoryBlockSize + 0x110);
-    **(longlong **)(memoryBlockSize + 0xa0) = dataValueBuffer;
-    **(longlong **)(memoryBlockSize + 0xc0) = dataValueBuffer;
-    **(int **)(memoryBlockSize + 0xd8) = (int)functionResult - (int)dataValueBuffer;
+    tempDataBuffer = *(longlong *)(memoryBlockSize + 0x110);
+    **(longlong **)(memoryBlockSize + 0xa0) = tempDataBuffer;
+    **(longlong **)(memoryBlockSize + 0xc0) = tempDataBuffer;
+    **(int **)(memoryBlockSize + 0xd8) = (int)functionResult - (int)tempDataBuffer;
   }
   if (*(char *)(memoryBlockSize + RESOURCE_HANDLE_OFFSET4) != '\0') {
     FUN_1800a19c0(puVar3);
@@ -51551,11 +51551,11 @@ void Unwind_180909480(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   
   localLong1 = *(longlong *)(memoryBlockSize + 0x148);
-  for (dataValueBuffer = *(longlong *)(memoryBlockSize + 0x140); dataValueBuffer != localLong1; dataValueBuffer = dataValueBuffer + HANDLE_OFFSET_DATA) {
-    FUN_1800adb30(dataValueBuffer);
+  for (tempDataBuffer = *(longlong *)(memoryBlockSize + 0x140); tempDataBuffer != localLong1; tempDataBuffer = tempDataBuffer + HANDLE_OFFSET_DATA) {
+    FUN_1800adb30(tempDataBuffer);
   }
   if (*(longlong *)(memoryBlockSize + 0x140) == 0) {
     return;
@@ -51588,11 +51588,11 @@ void Unwind_1809094b0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   
   localLong1 = *(longlong *)(memoryBlockSize + 0x148);
-  for (dataValueBuffer = *(longlong *)(memoryBlockSize + 0x140); dataValueBuffer != localLong1; dataValueBuffer = dataValueBuffer + HANDLE_OFFSET_DATA) {
-    FUN_1800adb30(dataValueBuffer);
+  for (tempDataBuffer = *(longlong *)(memoryBlockSize + 0x140); tempDataBuffer != localLong1; tempDataBuffer = tempDataBuffer + HANDLE_OFFSET_DATA) {
+    FUN_1800adb30(tempDataBuffer);
   }
   if (*(longlong *)(memoryBlockSize + 0x140) == 0) {
     return;
@@ -51628,11 +51628,11 @@ void Unwind_1809094d0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   
   localLong1 = *(longlong *)(memoryBlockSize + 0x1c0);
-  for (dataValueBuffer = *(longlong *)(memoryBlockSize + 0x1b8); dataValueBuffer != localLong1; dataValueBuffer = dataValueBuffer + HANDLE_OFFSET_DATA) {
-    FUN_1800adb30(dataValueBuffer);
+  for (tempDataBuffer = *(longlong *)(memoryBlockSize + 0x1b8); tempDataBuffer != localLong1; tempDataBuffer = tempDataBuffer + HANDLE_OFFSET_DATA) {
+    FUN_1800adb30(tempDataBuffer);
   }
   if (*(longlong *)(memoryBlockSize + 0x1b8) == 0) {
     return;
@@ -51923,11 +51923,11 @@ void Unwind_180909650(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   
   localLong1 = *(longlong *)(memoryBlockSize + 0x1c0);
-  for (dataValueBuffer = *(longlong *)(memoryBlockSize + 0x1b8); dataValueBuffer != localLong1; dataValueBuffer = dataValueBuffer + HANDLE_OFFSET_DATA) {
-    FUN_1800adb30(dataValueBuffer);
+  for (tempDataBuffer = *(longlong *)(memoryBlockSize + 0x1b8); tempDataBuffer != localLong1; tempDataBuffer = tempDataBuffer + HANDLE_OFFSET_DATA) {
+    FUN_1800adb30(tempDataBuffer);
   }
   if (*(longlong *)(memoryBlockSize + 0x1b8) == 0) {
     return;
@@ -53041,7 +53041,7 @@ void Unwind_180909b70(uint64 resourceHandle,longlong memoryBlockSize)
   *pfunctionResult = &unknown_1809fcb90;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(pfunctionResult + 4);
-  *pfunctionResult = &dataValuedataValueBufferdataBufferControlData2;
+  *pfunctionResult = &dataValuetempDataBufferdataBufferControlData2;
   *pfunctionResult = &threadContextData;
   *pfunctionResult = &threadSyncObject;
   return;
@@ -55843,7 +55843,7 @@ void Unwind_18090af70(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong arrayIndex;
   ulonglong validationResult1;
   ulonglong validationResult2;
@@ -55854,13 +55854,13 @@ void Unwind_18090af70(uint64 resourceHandle,longlong memoryBlockSize)
   validationResult2 = 0;
   if (validationResult1 != 0) {
     do {
-      dataValueBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
-      if (dataValueBuffer != 0) {
-        if (*(longlong **)(dataValueBuffer + 8) != (longlong *)0x0) {
-          (**(code **)(**(longlong **)(dataValueBuffer + 8) + STRUCT_OFFSET_SIZE))();
+      tempDataBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
+      if (tempDataBuffer != 0) {
+        if (*(longlong **)(tempDataBuffer + 8) != (longlong *)0x0) {
+          (**(code **)(**(longlong **)(tempDataBuffer + 8) + STRUCT_OFFSET_SIZE))();
         }
                     // WARNING: Subroutine does not return
-        HandleCriticalError(dataValueBuffer);
+        HandleCriticalError(tempDataBuffer);
       }
       *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
       validationResult2 = validationResult2 + 1;
@@ -56450,7 +56450,7 @@ void Unwind_18090b4b0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong arrayIndex;
   ulonglong validationResult1;
   ulonglong validationResult2;
@@ -56461,13 +56461,13 @@ void Unwind_18090b4b0(uint64 resourceHandle,longlong memoryBlockSize)
   validationResult2 = 0;
   if (validationResult1 != 0) {
     do {
-      dataValueBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
-      if (dataValueBuffer != 0) {
-        if (*(longlong **)(dataValueBuffer + 8) != (longlong *)0x0) {
-          (**(code **)(**(longlong **)(dataValueBuffer + 8) + STRUCT_OFFSET_SIZE))();
+      tempDataBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
+      if (tempDataBuffer != 0) {
+        if (*(longlong **)(tempDataBuffer + 8) != (longlong *)0x0) {
+          (**(code **)(**(longlong **)(tempDataBuffer + 8) + STRUCT_OFFSET_SIZE))();
         }
                     // WARNING: Subroutine does not return
-        HandleCriticalError(dataValueBuffer);
+        HandleCriticalError(tempDataBuffer);
       }
       *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
       validationResult2 = validationResult2 + 1;
@@ -56488,7 +56488,7 @@ void Unwind_18090b4c0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong arrayIndex;
   ulonglong validationResult1;
   ulonglong validationResult2;
@@ -56499,13 +56499,13 @@ void Unwind_18090b4c0(uint64 resourceHandle,longlong memoryBlockSize)
   validationResult2 = 0;
   if (validationResult1 != 0) {
     do {
-      dataValueBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
-      if (dataValueBuffer != 0) {
-        if (*(longlong **)(dataValueBuffer + 8) != (longlong *)0x0) {
-          (**(code **)(**(longlong **)(dataValueBuffer + 8) + STRUCT_OFFSET_SIZE))();
+      tempDataBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
+      if (tempDataBuffer != 0) {
+        if (*(longlong **)(tempDataBuffer + 8) != (longlong *)0x0) {
+          (**(code **)(**(longlong **)(tempDataBuffer + 8) + STRUCT_OFFSET_SIZE))();
         }
                     // WARNING: Subroutine does not return
-        HandleCriticalError(dataValueBuffer);
+        HandleCriticalError(tempDataBuffer);
       }
       *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
       validationResult2 = validationResult2 + 1;
@@ -56544,7 +56544,7 @@ void Unwind_18090b4f0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong arrayIndex;
   ulonglong validationResult1;
   ulonglong validationResult2;
@@ -56555,13 +56555,13 @@ void Unwind_18090b4f0(uint64 resourceHandle,longlong memoryBlockSize)
   validationResult2 = 0;
   if (validationResult1 != 0) {
     do {
-      dataValueBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
-      if (dataValueBuffer != 0) {
-        if (*(longlong **)(dataValueBuffer + 8) != (longlong *)0x0) {
-          (**(code **)(**(longlong **)(dataValueBuffer + 8) + STRUCT_OFFSET_SIZE))();
+      tempDataBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
+      if (tempDataBuffer != 0) {
+        if (*(longlong **)(tempDataBuffer + 8) != (longlong *)0x0) {
+          (**(code **)(**(longlong **)(tempDataBuffer + 8) + STRUCT_OFFSET_SIZE))();
         }
                     // WARNING: Subroutine does not return
-        HandleCriticalError(dataValueBuffer);
+        HandleCriticalError(tempDataBuffer);
       }
       *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
       validationResult2 = validationResult2 + 1;
@@ -56582,7 +56582,7 @@ void Unwind_18090b500(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong arrayIndex;
   ulonglong validationResult1;
   ulonglong validationResult2;
@@ -56593,13 +56593,13 @@ void Unwind_18090b500(uint64 resourceHandle,longlong memoryBlockSize)
   validationResult2 = 0;
   if (validationResult1 != 0) {
     do {
-      dataValueBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
-      if (dataValueBuffer != 0) {
-        if (*(longlong **)(dataValueBuffer + 8) != (longlong *)0x0) {
-          (**(code **)(**(longlong **)(dataValueBuffer + 8) + STRUCT_OFFSET_SIZE))();
+      tempDataBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
+      if (tempDataBuffer != 0) {
+        if (*(longlong **)(tempDataBuffer + 8) != (longlong *)0x0) {
+          (**(code **)(**(longlong **)(tempDataBuffer + 8) + STRUCT_OFFSET_SIZE))();
         }
                     // WARNING: Subroutine does not return
-        HandleCriticalError(dataValueBuffer);
+        HandleCriticalError(tempDataBuffer);
       }
       *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
       validationResult2 = validationResult2 + 1;
@@ -56885,7 +56885,7 @@ void Unwind_18090b7d0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong arrayIndex;
   ulonglong validationResult1;
   ulonglong validationResult2;
@@ -56896,13 +56896,13 @@ void Unwind_18090b7d0(uint64 resourceHandle,longlong memoryBlockSize)
   validationResult2 = 0;
   if (validationResult1 != 0) {
     do {
-      dataValueBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
-      if (dataValueBuffer != 0) {
-        if (*(longlong **)(dataValueBuffer + 8) != (longlong *)0x0) {
-          (**(code **)(**(longlong **)(dataValueBuffer + 8) + STRUCT_OFFSET_SIZE))();
+      tempDataBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
+      if (tempDataBuffer != 0) {
+        if (*(longlong **)(tempDataBuffer + 8) != (longlong *)0x0) {
+          (**(code **)(**(longlong **)(tempDataBuffer + 8) + STRUCT_OFFSET_SIZE))();
         }
                     // WARNING: Subroutine does not return
-        HandleCriticalError(dataValueBuffer);
+        HandleCriticalError(tempDataBuffer);
       }
       *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
       validationResult2 = validationResult2 + 1;
@@ -57492,7 +57492,7 @@ void Unwind_18090bd10(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong arrayIndex;
   ulonglong validationResult1;
   ulonglong validationResult2;
@@ -57503,13 +57503,13 @@ void Unwind_18090bd10(uint64 resourceHandle,longlong memoryBlockSize)
   validationResult2 = 0;
   if (validationResult1 != 0) {
     do {
-      dataValueBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
-      if (dataValueBuffer != 0) {
-        if (*(longlong **)(dataValueBuffer + 8) != (longlong *)0x0) {
-          (**(code **)(**(longlong **)(dataValueBuffer + 8) + STRUCT_OFFSET_SIZE))();
+      tempDataBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
+      if (tempDataBuffer != 0) {
+        if (*(longlong **)(tempDataBuffer + 8) != (longlong *)0x0) {
+          (**(code **)(**(longlong **)(tempDataBuffer + 8) + STRUCT_OFFSET_SIZE))();
         }
                     // WARNING: Subroutine does not return
-        HandleCriticalError(dataValueBuffer);
+        HandleCriticalError(tempDataBuffer);
       }
       *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
       validationResult2 = validationResult2 + 1;
@@ -57530,7 +57530,7 @@ void Unwind_18090bd20(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong arrayIndex;
   ulonglong validationResult1;
   ulonglong validationResult2;
@@ -57541,13 +57541,13 @@ void Unwind_18090bd20(uint64 resourceHandle,longlong memoryBlockSize)
   validationResult2 = 0;
   if (validationResult1 != 0) {
     do {
-      dataValueBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
-      if (dataValueBuffer != 0) {
-        if (*(longlong **)(dataValueBuffer + 8) != (longlong *)0x0) {
-          (**(code **)(**(longlong **)(dataValueBuffer + 8) + STRUCT_OFFSET_SIZE))();
+      tempDataBuffer = *(longlong *)(localLong1 + validationResult2 * 8);
+      if (tempDataBuffer != 0) {
+        if (*(longlong **)(tempDataBuffer + 8) != (longlong *)0x0) {
+          (**(code **)(**(longlong **)(tempDataBuffer + 8) + STRUCT_OFFSET_SIZE))();
         }
                     // WARNING: Subroutine does not return
-        HandleCriticalError(dataValueBuffer);
+        HandleCriticalError(tempDataBuffer);
       }
       *(uint64 *)(localLong1 + validationResult2 * 8) = 0;
       validationResult2 = validationResult2 + 1;
@@ -58415,7 +58415,7 @@ void Unwind_18090c200(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   uint64 functionResult;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong arrayIndex;
   uint64 *puVar4;
   
@@ -58424,10 +58424,10 @@ void Unwind_18090c200(uint64 resourceHandle,longlong memoryBlockSize)
   *puVar4 = &uiWidgetTree;
   if ((*(longlong *)(arrayIndex + -POINTER_OFFSET_DATA) != 0) && (**(longlong **)(arrayIndex + -0x88) == arrayIndex + -FIELD_OFFSET_1)) {
     functionResult = *(uint64 *)(arrayIndex + -RESOURCE_HANDLE_OFFSET);
-    dataValueBuffer = *(longlong *)(arrayIndex + -RESOURCE_OFFSET_HANDLE);
-    **(longlong **)(arrayIndex + -0x88) = dataValueBuffer;
-    **(longlong **)(arrayIndex + -0x68) = dataValueBuffer;
-    **(int **)(arrayIndex + -LIST_OFFSET_HEAD) = (int)functionResult - (int)dataValueBuffer;
+    tempDataBuffer = *(longlong *)(arrayIndex + -RESOURCE_OFFSET_HANDLE);
+    **(longlong **)(arrayIndex + -0x88) = tempDataBuffer;
+    **(longlong **)(arrayIndex + -0x68) = tempDataBuffer;
+    **(int **)(arrayIndex + -LIST_OFFSET_HEAD) = (int)functionResult - (int)tempDataBuffer;
   }
   if (*(char *)(arrayIndex + -FIELD_OFFSET_3) != '\0') {
     FUN_1800a19c0(puVar4);
@@ -58455,7 +58455,7 @@ void Unwind_18090c240(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   uint64 functionResult;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong arrayIndex;
   uint64 *puVar4;
   
@@ -58464,10 +58464,10 @@ void Unwind_18090c240(uint64 resourceHandle,longlong memoryBlockSize)
   *puVar4 = &uiWidgetTree;
   if ((*(longlong *)(arrayIndex + -POINTER_OFFSET_DATA) != 0) && (**(longlong **)(arrayIndex + -0x88) == arrayIndex + -FIELD_OFFSET_1)) {
     functionResult = *(uint64 *)(arrayIndex + -RESOURCE_HANDLE_OFFSET);
-    dataValueBuffer = *(longlong *)(arrayIndex + -RESOURCE_OFFSET_HANDLE);
-    **(longlong **)(arrayIndex + -0x88) = dataValueBuffer;
-    **(longlong **)(arrayIndex + -0x68) = dataValueBuffer;
-    **(int **)(arrayIndex + -LIST_OFFSET_HEAD) = (int)functionResult - (int)dataValueBuffer;
+    tempDataBuffer = *(longlong *)(arrayIndex + -RESOURCE_OFFSET_HANDLE);
+    **(longlong **)(arrayIndex + -0x88) = tempDataBuffer;
+    **(longlong **)(arrayIndex + -0x68) = tempDataBuffer;
+    **(int **)(arrayIndex + -LIST_OFFSET_HEAD) = (int)functionResult - (int)tempDataBuffer;
   }
   if (*(char *)(arrayIndex + -FIELD_OFFSET_3) != '\0') {
     FUN_1800a19c0(puVar4);
@@ -58715,7 +58715,7 @@ void Unwind_18090c380(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   uint64 functionResult;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong arrayIndex;
   uint64 *puVar4;
   
@@ -58724,10 +58724,10 @@ void Unwind_18090c380(uint64 resourceHandle,longlong memoryBlockSize)
   *puVar4 = &uiWidgetTree;
   if ((*(longlong *)(arrayIndex + RESOURCE_HANDLE_OFFSET) != 0) && (**(longlong **)(arrayIndex + FIELD_OFFSET_1) == arrayIndex + 0x88)) {
     functionResult = *(uint64 *)(arrayIndex + 0xa8);
-    dataValueBuffer = *(longlong *)(arrayIndex + 0xa0);
-    **(longlong **)(arrayIndex + FIELD_OFFSET_1) = dataValueBuffer;
-    **(longlong **)(arrayIndex + LIST_OFFSET_HEAD) = dataValueBuffer;
-    **(int **)(arrayIndex + 0x68) = (int)functionResult - (int)dataValueBuffer;
+    tempDataBuffer = *(longlong *)(arrayIndex + 0xa0);
+    **(longlong **)(arrayIndex + FIELD_OFFSET_1) = tempDataBuffer;
+    **(longlong **)(arrayIndex + LIST_OFFSET_HEAD) = tempDataBuffer;
+    **(int **)(arrayIndex + 0x68) = (int)functionResult - (int)tempDataBuffer;
   }
   if (*(char *)(arrayIndex + 0x94) != '\0') {
     FUN_1800a19c0(puVar4);
@@ -67855,7 +67855,7 @@ void Unwind_18090edd0(uint64 resourceHandle,longlong memoryBlockSize)
   uint64 *pfunctionResult;
   
   pfunctionResult = *(uint64 **)(memoryBlockSize + 0x88);
-  *pfunctionResult = &dataValuedataValueBufferdataBufferControlData2;
+  *pfunctionResult = &dataValuetempDataBufferdataBufferControlData2;
   *pfunctionResult = &threadContextData;
   *pfunctionResult = &threadSyncObject;
   return;
@@ -67933,7 +67933,7 @@ void Unwind_18090ee30(uint64 resourceHandle,longlong memoryBlockSize)
   uint64 *pfunctionResult;
   
   pfunctionResult = *(uint64 **)(memoryBlockSize + RESOURCE_HANDLE_OFFSET);
-  *pfunctionResult = &dataValuedataValueBufferdataBufferControlData2;
+  *pfunctionResult = &dataValuetempDataBufferdataBufferControlData2;
   *pfunctionResult = &threadContextData;
   *pfunctionResult = &threadSyncObject;
   return;
@@ -68404,24 +68404,24 @@ void Unwind_18090f040(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong *plocalLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong arrayIndex;
   longlong *plVar4;
   
   plocalLong1 = *(longlong **)(memoryBlockSize + HANDLE_OFFSET_DATA);
-  dataValueBuffer = plocalLong1[2];
+  tempDataBuffer = plocalLong1[2];
   arrayIndex = plocalLong1[4];
   plVar4 = (longlong *)plocalLong1[5];
-  if (dataValueBuffer != plocalLong1[6]) {
+  if (tempDataBuffer != plocalLong1[6]) {
     do {
-      FUN_1800edd10(dataValueBuffer);
-      dataValueBuffer = dataValueBuffer + HANDLE_OFFSET_DATA;
-      if (dataValueBuffer == arrayIndex) {
+      FUN_1800edd10(tempDataBuffer);
+      tempDataBuffer = tempDataBuffer + HANDLE_OFFSET_DATA;
+      if (tempDataBuffer == arrayIndex) {
         plVar4 = plVar4 + 1;
-        dataValueBuffer = *plVar4;
-        arrayIndex = dataValueBuffer + SYSTEM_DATA_OFFSET;
+        tempDataBuffer = *plVar4;
+        arrayIndex = tempDataBuffer + SYSTEM_DATA_OFFSET;
       }
-    } while (dataValueBuffer != plocalLong1[6]);
+    } while (tempDataBuffer != plocalLong1[6]);
   }
   if (*plocalLong1 != 0) {
     plVar4 = (longlong *)plocalLong1[5];
@@ -68448,25 +68448,25 @@ void Unwind_18090f050(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong *plocalLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong *parrayIndex;
   
   plocalLong1 = *(longlong **)(memoryBlockSize + HANDLE_OFFSET_DATA);
-  dataValueBuffer = *plocalLong1;
-  if (dataValueBuffer != 0) {
+  tempDataBuffer = *plocalLong1;
+  if (tempDataBuffer != 0) {
     parrayIndex = (longlong *)plocalLong1[5];
     if (parrayIndex < (longlong *)(plocalLong1[9] + 8)) {
       do {
-        dataValueBuffer = *parrayIndex;
+        tempDataBuffer = *parrayIndex;
         parrayIndex = parrayIndex + 1;
-        if (dataValueBuffer != 0) {
+        if (tempDataBuffer != 0) {
                     // WARNING: Subroutine does not return
           HandleCriticalError();
         }
       } while (parrayIndex < (longlong *)(plocalLong1[9] + 8));
-      dataValueBuffer = *plocalLong1;
+      tempDataBuffer = *plocalLong1;
     }
-    if (dataValueBuffer != 0) {
+    if (tempDataBuffer != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
@@ -68567,24 +68567,24 @@ void Unwind_18090f0c0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong *plocalLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong arrayIndex;
   longlong *plVar4;
   
   plocalLong1 = *(longlong **)(memoryBlockSize + BUFFER_SIZE_OFFSET);
-  dataValueBuffer = plocalLong1[2];
+  tempDataBuffer = plocalLong1[2];
   arrayIndex = plocalLong1[4];
   plVar4 = (longlong *)plocalLong1[5];
-  if (dataValueBuffer != plocalLong1[6]) {
+  if (tempDataBuffer != plocalLong1[6]) {
     do {
-      FUN_1800edd10(dataValueBuffer);
-      dataValueBuffer = dataValueBuffer + HANDLE_OFFSET_DATA;
-      if (dataValueBuffer == arrayIndex) {
+      FUN_1800edd10(tempDataBuffer);
+      tempDataBuffer = tempDataBuffer + HANDLE_OFFSET_DATA;
+      if (tempDataBuffer == arrayIndex) {
         plVar4 = plVar4 + 1;
-        dataValueBuffer = *plVar4;
-        arrayIndex = dataValueBuffer + SYSTEM_DATA_OFFSET;
+        tempDataBuffer = *plVar4;
+        arrayIndex = tempDataBuffer + SYSTEM_DATA_OFFSET;
       }
-    } while (dataValueBuffer != plocalLong1[6]);
+    } while (tempDataBuffer != plocalLong1[6]);
   }
   if (*plocalLong1 != 0) {
     plVar4 = (longlong *)plocalLong1[5];
@@ -68677,25 +68677,25 @@ void Unwind_18090f110(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong *plocalLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong *parrayIndex;
   
   plocalLong1 = *(longlong **)(memoryBlockSize + BUFFER_SIZE_OFFSET);
-  dataValueBuffer = *plocalLong1;
-  if (dataValueBuffer != 0) {
+  tempDataBuffer = *plocalLong1;
+  if (tempDataBuffer != 0) {
     parrayIndex = (longlong *)plocalLong1[5];
     if (parrayIndex < (longlong *)(plocalLong1[9] + 8)) {
       do {
-        dataValueBuffer = *parrayIndex;
+        tempDataBuffer = *parrayIndex;
         parrayIndex = parrayIndex + 1;
-        if (dataValueBuffer != 0) {
+        if (tempDataBuffer != 0) {
                     // WARNING: Subroutine does not return
           HandleCriticalError();
         }
       } while (parrayIndex < (longlong *)(plocalLong1[9] + 8));
-      dataValueBuffer = *plocalLong1;
+      tempDataBuffer = *plocalLong1;
     }
-    if (dataValueBuffer != 0) {
+    if (tempDataBuffer != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
@@ -69278,7 +69278,7 @@ void Unwind_18090f370(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint unsignedVar3;
   longlong *plVar4;
   
@@ -69290,10 +69290,10 @@ void Unwind_18090f370(uint64 resourceHandle,longlong memoryBlockSize)
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    dataValueBuffer = (longlong)(int)unsignedVar3;
+    tempDataBuffer = (longlong)(int)unsignedVar3;
     plVar4 = plVar4 + 1;
     unsignedVar3 = unsignedVar3 + 1;
-    *(uint64 *)(localLong1 + 600 + dataValueBuffer * 8) = 0;
+    *(uint64 *)(localLong1 + 600 + tempDataBuffer * 8) = 0;
   } while (unsignedVar3 < 10);
   return;
 }
@@ -70207,7 +70207,7 @@ void Unwind_18090fa20(uint64 resourceHandle,longlong memoryBlockSize)
   *pfunctionResult = &unknown_1809fcb90;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(pfunctionResult + 4);
-  *pfunctionResult = &dataValuedataValueBufferdataBufferControlData2;
+  *pfunctionResult = &dataValuetempDataBufferdataBufferControlData2;
   *pfunctionResult = &threadContextData;
   *pfunctionResult = &threadSyncObject;
   return;
@@ -71140,12 +71140,12 @@ void Unwind_180910030(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong *plocalLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong arrayIndex;
   
   plocalLong1 = (longlong *)(*(longlong *)(memoryBlockSize + 0x68) + BYTE_OFFSET_2);
-  dataValueBuffer = *(longlong *)(*(longlong *)(memoryBlockSize + 0x68) + FIELD_OFFSET_1);
-  for (arrayIndex = *plocalLong1; arrayIndex != dataValueBuffer; arrayIndex = arrayIndex + RESOURCE_OFFSET_HANDLE) {
+  tempDataBuffer = *(longlong *)(*(longlong *)(memoryBlockSize + 0x68) + FIELD_OFFSET_1);
+  for (arrayIndex = *plocalLong1; arrayIndex != tempDataBuffer; arrayIndex = arrayIndex + RESOURCE_OFFSET_HANDLE) {
     if (*(longlong **)(arrayIndex + 8) != (longlong *)0x0) {
       (**(code **)(**(longlong **)(arrayIndex + 8) + STRUCT_OFFSET_SIZE))();
     }
@@ -72086,7 +72086,7 @@ void Unwind_180910400(uint64 resourceHandle,longlong memoryBlockSize)
   uint64 *pfunctionResult;
   
   pfunctionResult = *(uint64 **)(memoryBlockSize + DATA_OFFSET_START);
-  *pfunctionResult = &dataValuedataValueBufferdataBufferControlData2;
+  *pfunctionResult = &dataValuetempDataBufferdataBufferControlData2;
   *pfunctionResult = &threadContextData;
   *pfunctionResult = &threadSyncObject;
   return;
@@ -72321,7 +72321,7 @@ void Unwind_180910580(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   uint64 functionResult;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong arrayIndex;
   uint64 *puVar4;
   
@@ -72330,10 +72330,10 @@ void Unwind_180910580(uint64 resourceHandle,longlong memoryBlockSize)
   *puVar4 = &uiWidgetTree;
   if ((*(longlong *)(arrayIndex + MEMORY_SIZE_OFFSET) != 0) && (**(longlong **)(arrayIndex + BYTE_OFFSET_2) == arrayIndex + BUFFER_OFFSET_TEMP)) {
     functionResult = *(uint64 *)(arrayIndex + 0xa0);
-    dataValueBuffer = *(longlong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
-    **(longlong **)(arrayIndex + BYTE_OFFSET_2) = dataValueBuffer;
-    **(longlong **)(arrayIndex + BUFFER_OFFSET_DATA) = dataValueBuffer;
-    **(int **)(arrayIndex + DATA_OFFSET_START) = (int)functionResult - (int)dataValueBuffer;
+    tempDataBuffer = *(longlong *)(arrayIndex + RESOURCE_HANDLE_OFFSET);
+    **(longlong **)(arrayIndex + BYTE_OFFSET_2) = tempDataBuffer;
+    **(longlong **)(arrayIndex + BUFFER_OFFSET_DATA) = tempDataBuffer;
+    **(int **)(arrayIndex + DATA_OFFSET_START) = (int)functionResult - (int)tempDataBuffer;
   }
   if (*(char *)(arrayIndex + 0x8c) != '\0') {
     FUN_1800a19c0(puVar4);
@@ -72530,7 +72530,7 @@ void Unwind_1809106a0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   uint64 functionResult;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   longlong arrayIndex;
   uint64 *puVar4;
   
@@ -72539,10 +72539,10 @@ void Unwind_1809106a0(uint64 resourceHandle,longlong memoryBlockSize)
   *puVar4 = &uiWidgetTree;
   if ((*(longlong *)(arrayIndex + -POINTER_OFFSET_DATA) != 0) && (**(longlong **)(arrayIndex + -0x88) == arrayIndex + -FIELD_OFFSET_1)) {
     functionResult = *(uint64 *)(arrayIndex + -RESOURCE_HANDLE_OFFSET);
-    dataValueBuffer = *(longlong *)(arrayIndex + -RESOURCE_OFFSET_HANDLE);
-    **(longlong **)(arrayIndex + -0x88) = dataValueBuffer;
-    **(longlong **)(arrayIndex + -0x68) = dataValueBuffer;
-    **(int **)(arrayIndex + -LIST_OFFSET_HEAD) = (int)functionResult - (int)dataValueBuffer;
+    tempDataBuffer = *(longlong *)(arrayIndex + -RESOURCE_OFFSET_HANDLE);
+    **(longlong **)(arrayIndex + -0x88) = tempDataBuffer;
+    **(longlong **)(arrayIndex + -0x68) = tempDataBuffer;
+    **(int **)(arrayIndex + -LIST_OFFSET_HEAD) = (int)functionResult - (int)tempDataBuffer;
   }
   if (*(char *)(arrayIndex + -FIELD_OFFSET_3) != '\0') {
     FUN_1800a19c0(puVar4);
@@ -72677,11 +72677,11 @@ void Unwind_180910760(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   longlong *plocalLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   
   plocalLong1 = *(longlong **)(memoryBlockSize + BUFFER_SIZE_OFFSET);
-  for (dataValueBuffer = *plocalLong1; dataValueBuffer != plocalLong1[1]; dataValueBuffer = dataValueBuffer + BYTE_OFFSET_2) {
-    if (*(longlong *)(dataValueBuffer + 8) != 0) {
+  for (tempDataBuffer = *plocalLong1; tempDataBuffer != plocalLong1[1]; tempDataBuffer = tempDataBuffer + BYTE_OFFSET_2) {
+    if (*(longlong *)(tempDataBuffer + 8) != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
@@ -77917,10 +77917,10 @@ void Unwind_180911e40(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   
-  dataValueBuffer = *(longlong *)(memoryBlockSize + 0x70);
-  localLong1 = *(longlong *)(dataValueBuffer + 0x1ed8);
+  tempDataBuffer = *(longlong *)(memoryBlockSize + 0x70);
+  localLong1 = *(longlong *)(tempDataBuffer + 0x1ed8);
   if (localLong1 != 0) {
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
@@ -77928,7 +77928,7 @@ void Unwind_180911e40(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
                     // WARNING: Subroutine does not return
     FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
-  localLong1 = *(longlong *)(dataValueBuffer + 0x1ec8);
+  localLong1 = *(longlong *)(tempDataBuffer + 0x1ec8);
   if (localLong1 != 0) {
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
@@ -77936,7 +77936,7 @@ void Unwind_180911e40(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
                     // WARNING: Subroutine does not return
     FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
-  localLong1 = *(longlong *)(dataValueBuffer + 0x1eb8);
+  localLong1 = *(longlong *)(tempDataBuffer + 0x1eb8);
   if (localLong1 != 0) {
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
@@ -77955,13 +77955,13 @@ void Unwind_180911e60(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 unsignedVar3;
   
-  dataValueBuffer = *(longlong *)(memoryBlockSize + 0x70);
+  tempDataBuffer = *(longlong *)(memoryBlockSize + 0x70);
   unsignedVar3 = 0xfffffffffffffffe;
   FUN_180296b70();
-  localLong1 = *(longlong *)(dataValueBuffer + 0x2d68);
+  localLong1 = *(longlong *)(tempDataBuffer + 0x2d68);
   if (localLong1 != 0) {
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
@@ -77969,7 +77969,7 @@ void Unwind_180911e60(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
                     // WARNING: Subroutine does not return
     FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
   }
-  localLong1 = *(longlong *)(dataValueBuffer + 0x2d58);
+  localLong1 = *(longlong *)(tempDataBuffer + 0x2d58);
   if (localLong1 != 0) {
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
@@ -77977,7 +77977,7 @@ void Unwind_180911e60(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
                     // WARNING: Subroutine does not return
     FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
   }
-  localLong1 = *(longlong *)(dataValueBuffer + 0x2d48);
+  localLong1 = *(longlong *)(tempDataBuffer + 0x2d48);
   if (localLong1 != 0) {
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
@@ -78586,10 +78586,10 @@ void Unwind_180912180(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   
-  dataValueBuffer = *(longlong *)(memoryBlockSize + 0x70);
-  localLong1 = *(longlong *)(dataValueBuffer + 0x1f0);
+  tempDataBuffer = *(longlong *)(memoryBlockSize + 0x70);
+  localLong1 = *(longlong *)(tempDataBuffer + 0x1f0);
   if (localLong1 != 0) {
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
@@ -78597,7 +78597,7 @@ void Unwind_180912180(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
                     // WARNING: Subroutine does not return
     FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
-  localLong1 = *(longlong *)(dataValueBuffer + SYSTEM_DATA_OFFSET);
+  localLong1 = *(longlong *)(tempDataBuffer + SYSTEM_DATA_OFFSET);
   if (localLong1 != 0) {
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
@@ -78605,7 +78605,7 @@ void Unwind_180912180(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
                     // WARNING: Subroutine does not return
     FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
-  localLong1 = *(longlong *)(dataValueBuffer + 0x1d0);
+  localLong1 = *(longlong *)(tempDataBuffer + 0x1d0);
   if (localLong1 != 0) {
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
@@ -78613,7 +78613,7 @@ void Unwind_180912180(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
                     // WARNING: Subroutine does not return
     FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
-  localLong1 = *(longlong *)(dataValueBuffer + 0x1c0);
+  localLong1 = *(longlong *)(tempDataBuffer + 0x1c0);
   if (localLong1 != 0) {
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
@@ -78621,7 +78621,7 @@ void Unwind_180912180(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
                     // WARNING: Subroutine does not return
     FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
-  localLong1 = *(longlong *)(dataValueBuffer + 400);
+  localLong1 = *(longlong *)(tempDataBuffer + 400);
   if (localLong1 != 0) {
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
@@ -78700,13 +78700,13 @@ void Unwind_180912200(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 unsignedVar3;
   
-  dataValueBuffer = *(longlong *)(memoryBlockSize + 0x70);
+  tempDataBuffer = *(longlong *)(memoryBlockSize + 0x70);
   unsignedVar3 = 0xfffffffffffffffe;
   FUN_180291610();
-  localLong1 = *(longlong *)(dataValueBuffer + 0x390);
+  localLong1 = *(longlong *)(tempDataBuffer + 0x390);
   if (localLong1 != 0) {
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
@@ -78714,7 +78714,7 @@ void Unwind_180912200(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
                     // WARNING: Subroutine does not return
     FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
   }
-  localLong1 = *(longlong *)(dataValueBuffer + 0x378);
+  localLong1 = *(longlong *)(tempDataBuffer + 0x378);
   if (localLong1 != 0) {
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
@@ -78722,7 +78722,7 @@ void Unwind_180912200(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
                     // WARNING: Subroutine does not return
     FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
   }
-  localLong1 = *(longlong *)(dataValueBuffer + MEMORY_OFFSET_ACCESS);
+  localLong1 = *(longlong *)(tempDataBuffer + MEMORY_OFFSET_ACCESS);
   if (localLong1 != 0) {
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
@@ -78730,7 +78730,7 @@ void Unwind_180912200(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
                     // WARNING: Subroutine does not return
     FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
   }
-  localLong1 = *(longlong *)(dataValueBuffer + 0x358);
+  localLong1 = *(longlong *)(tempDataBuffer + 0x358);
   if (localLong1 != 0) {
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
@@ -78738,7 +78738,7 @@ void Unwind_180912200(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
                     // WARNING: Subroutine does not return
     FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
   }
-  localLong1 = *(longlong *)(dataValueBuffer + 0x318);
+  localLong1 = *(longlong *)(tempDataBuffer + 0x318);
   if (localLong1 != 0) {
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
@@ -78746,7 +78746,7 @@ void Unwind_180912200(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
                     // WARNING: Subroutine does not return
     FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
   }
-  localLong1 = *(longlong *)(dataValueBuffer + 0x308);
+  localLong1 = *(longlong *)(tempDataBuffer + 0x308);
   if (localLong1 != 0) {
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
@@ -78754,7 +78754,7 @@ void Unwind_180912200(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
                     // WARNING: Subroutine does not return
     FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
   }
-  localLong1 = *(longlong *)(dataValueBuffer + 0x2f8);
+  localLong1 = *(longlong *)(tempDataBuffer + 0x2f8);
   if (localLong1 != 0) {
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
@@ -78853,10 +78853,10 @@ void Unwind_1809122a0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   
-  dataValueBuffer = *(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET);
-  localLong1 = *(longlong *)(dataValueBuffer + 0x1f0);
+  tempDataBuffer = *(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET);
+  localLong1 = *(longlong *)(tempDataBuffer + 0x1f0);
   if (localLong1 != 0) {
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
@@ -78864,7 +78864,7 @@ void Unwind_1809122a0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
                     // WARNING: Subroutine does not return
     FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
-  localLong1 = *(longlong *)(dataValueBuffer + SYSTEM_DATA_OFFSET);
+  localLong1 = *(longlong *)(tempDataBuffer + SYSTEM_DATA_OFFSET);
   if (localLong1 != 0) {
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
@@ -78872,7 +78872,7 @@ void Unwind_1809122a0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
                     // WARNING: Subroutine does not return
     FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
-  localLong1 = *(longlong *)(dataValueBuffer + 0x1d0);
+  localLong1 = *(longlong *)(tempDataBuffer + 0x1d0);
   if (localLong1 != 0) {
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
@@ -78880,7 +78880,7 @@ void Unwind_1809122a0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
                     // WARNING: Subroutine does not return
     FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
-  localLong1 = *(longlong *)(dataValueBuffer + 0x1c0);
+  localLong1 = *(longlong *)(tempDataBuffer + 0x1c0);
   if (localLong1 != 0) {
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
@@ -78888,7 +78888,7 @@ void Unwind_1809122a0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
                     // WARNING: Subroutine does not return
     FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
-  localLong1 = *(longlong *)(dataValueBuffer + 400);
+  localLong1 = *(longlong *)(tempDataBuffer + 400);
   if (localLong1 != 0) {
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
@@ -78967,13 +78967,13 @@ void Unwind_180912320(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 unsignedVar3;
   
-  dataValueBuffer = *(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET);
+  tempDataBuffer = *(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET);
   unsignedVar3 = 0xfffffffffffffffe;
   FUN_180291610();
-  localLong1 = *(longlong *)(dataValueBuffer + 0x390);
+  localLong1 = *(longlong *)(tempDataBuffer + 0x390);
   if (localLong1 != 0) {
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
@@ -78981,7 +78981,7 @@ void Unwind_180912320(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
                     // WARNING: Subroutine does not return
     FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
   }
-  localLong1 = *(longlong *)(dataValueBuffer + 0x378);
+  localLong1 = *(longlong *)(tempDataBuffer + 0x378);
   if (localLong1 != 0) {
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
@@ -78989,7 +78989,7 @@ void Unwind_180912320(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
                     // WARNING: Subroutine does not return
     FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
   }
-  localLong1 = *(longlong *)(dataValueBuffer + MEMORY_OFFSET_ACCESS);
+  localLong1 = *(longlong *)(tempDataBuffer + MEMORY_OFFSET_ACCESS);
   if (localLong1 != 0) {
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
@@ -78997,7 +78997,7 @@ void Unwind_180912320(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
                     // WARNING: Subroutine does not return
     FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
   }
-  localLong1 = *(longlong *)(dataValueBuffer + 0x358);
+  localLong1 = *(longlong *)(tempDataBuffer + 0x358);
   if (localLong1 != 0) {
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
@@ -79005,7 +79005,7 @@ void Unwind_180912320(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
                     // WARNING: Subroutine does not return
     FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
   }
-  localLong1 = *(longlong *)(dataValueBuffer + 0x318);
+  localLong1 = *(longlong *)(tempDataBuffer + 0x318);
   if (localLong1 != 0) {
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
@@ -79013,7 +79013,7 @@ void Unwind_180912320(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
                     // WARNING: Subroutine does not return
     FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
   }
-  localLong1 = *(longlong *)(dataValueBuffer + 0x308);
+  localLong1 = *(longlong *)(tempDataBuffer + 0x308);
   if (localLong1 != 0) {
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
@@ -79021,7 +79021,7 @@ void Unwind_180912320(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
                     // WARNING: Subroutine does not return
     FUN_180059ba0(localLong1,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
   }
-  localLong1 = *(longlong *)(dataValueBuffer + 0x2f8);
+  localLong1 = *(longlong *)(tempDataBuffer + 0x2f8);
   if (localLong1 != 0) {
     if (g_systemGlobalCounter1 != 0) {
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
@@ -80269,7 +80269,7 @@ void InitializeResourcePool(void)
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   
   _renderSystemVar52c0 = &threadLocalStorageData;
   if (_renderSystemVar52c8 != 0) {
@@ -80282,8 +80282,8 @@ void InitializeResourcePool(void)
   if (_renderSystemVar5288 == 0) {
     FUN_180048980();
     localLong1 = _renderSystemVar5250;
-    for (dataValueBuffer = _allocatorChunk3; dataValueBuffer != localLong1; dataValueBuffer = dataValueBuffer + RESOURCE_HANDLE_OFFSET0) {
-      FUN_180046b10(dataValueBuffer);
+    for (tempDataBuffer = _allocatorChunk3; tempDataBuffer != localLong1; tempDataBuffer = tempDataBuffer + RESOURCE_HANDLE_OFFSET0) {
+      FUN_180046b10(tempDataBuffer);
     }
     if (_allocatorChunk3 == 0) {
       return;
@@ -80434,8 +80434,8 @@ void memoryBlockRegionInitialize(void) # 内存区域初始化函数
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void dataValueBufferInitialize(void) # 缓冲区初始化函数
-void dataValueBufferInitialize(void) # 缓冲区初始化函数
+// 函数: void tempDataBufferInitialize(void) # 缓冲区初始化函数
+void tempDataBufferInitialize(void) # 缓冲区初始化函数
 
 {
                     // WARNING: Could not recover jumptable at 0x0001809417b8. Too many branches
@@ -81641,20 +81641,20 @@ void resourceLoadFromDisk(void)
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   
   FUN_180067070(&g_resourceInitFlag);
   if (ALIGNMENT_MASK < g_resourceBufferSize) {
     localLong1 = CONCAT71(g_resourceBufferHigh,g_resourceBufferLow);
-    dataValueBuffer = localLong1;
+    tempDataBuffer = localLong1;
     if (0xfff < g_resourceBufferSize + 1) {
-      dataValueBuffer = *(longlong *)(localLong1 + -8);
-      if (ERROR_CODE_FAILED < (localLong1 - dataValueBuffer) - 8U) {
+      tempDataBuffer = *(longlong *)(localLong1 + -8);
+      if (ERROR_CODE_FAILED < (localLong1 - tempDataBuffer) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(localLong1 - dataValueBuffer,g_resourceBufferSize + BYTE_OFFSET_2);
+        _invalid_parameter_noinfo_noreturn(localLong1 - tempDataBuffer,g_resourceBufferSize + BYTE_OFFSET_2);
       }
     }
-    free(dataValueBuffer);
+    free(tempDataBuffer);
   }
   uRam0000000180bfc130 = 0;
   g_resourceBufferSize = ALIGNMENT_MASK;
@@ -81672,19 +81672,19 @@ void resourceSaveToDisk(void)
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   
   if (ALIGNMENT_MASK < g_resourceBufferCount) {
     localLong1 = CONCAT71(g_resourceChecksumHigh,g_resourceChecksumLow);
-    dataValueBuffer = localLong1;
+    tempDataBuffer = localLong1;
     if (0xfff < g_resourceBufferCount + 1) {
-      dataValueBuffer = *(longlong *)(localLong1 + -8);
-      if (ERROR_CODE_FAILED < (localLong1 - dataValueBuffer) - 8U) {
+      tempDataBuffer = *(longlong *)(localLong1 + -8);
+      if (ERROR_CODE_FAILED < (localLong1 - tempDataBuffer) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(localLong1 - dataValueBuffer,g_resourceBufferCount + BYTE_OFFSET_2);
+        _invalid_parameter_noinfo_noreturn(localLong1 - tempDataBuffer,g_resourceBufferCount + BYTE_OFFSET_2);
       }
     }
-    free(dataValueBuffer);
+    free(tempDataBuffer);
   }
   g_resourceStatusFlag = 0;
   g_resourceBufferCount = ALIGNMENT_MASK;
@@ -81694,19 +81694,19 @@ void resourceValidateChecksum(void)
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   
   if (ALIGNMENT_MASK < g_resourceCompressSize) {
     localLong1 = CONCAT71(g_resourceCompressHigh,g_resourceCompressLow);
-    dataValueBuffer = localLong1;
+    tempDataBuffer = localLong1;
     if (0xfff < g_resourceCompressSize + 1) {
-      dataValueBuffer = *(longlong *)(localLong1 + -8);
-      if (ERROR_CODE_FAILED < (localLong1 - dataValueBuffer) - 8U) {
+      tempDataBuffer = *(longlong *)(localLong1 + -8);
+      if (ERROR_CODE_FAILED < (localLong1 - tempDataBuffer) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(localLong1 - dataValueBuffer,g_resourceCompressSize + BYTE_OFFSET_2);
+        _invalid_parameter_noinfo_noreturn(localLong1 - tempDataBuffer,g_resourceCompressSize + BYTE_OFFSET_2);
       }
     }
-    free(dataValueBuffer);
+    free(tempDataBuffer);
   }
   g_resourceCompressFlag = 0;
   g_resourceCompressSize = ALIGNMENT_MASK;
@@ -81722,19 +81722,19 @@ void resourceCompressData(void)
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   
   if (ALIGNMENT_MASK < uRam0000000180d499c0) {
     localLong1 = CONCAT71(uRam0000000180d499a9,uRam0000000180d499a8);
-    dataValueBuffer = localLong1;
+    tempDataBuffer = localLong1;
     if (0xfff < uRam0000000180d499c0 + 1) {
-      dataValueBuffer = *(longlong *)(localLong1 + -8);
-      if (ERROR_CODE_FAILED < (localLong1 - dataValueBuffer) - 8U) {
+      tempDataBuffer = *(longlong *)(localLong1 + -8);
+      if (ERROR_CODE_FAILED < (localLong1 - tempDataBuffer) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(localLong1 - dataValueBuffer,uRam0000000180d499c0 + BYTE_OFFSET_2);
+        _invalid_parameter_noinfo_noreturn(localLong1 - tempDataBuffer,uRam0000000180d499c0 + BYTE_OFFSET_2);
       }
     }
-    free(dataValueBuffer);
+    free(tempDataBuffer);
   }
   uRam0000000180d499b8 = 0;
   uRam0000000180d499c0 = ALIGNMENT_MASK;
@@ -82101,19 +82101,19 @@ void resourceMigrateFormat(void)
 
 {
   longlong localLong1;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   
   if (ALIGNMENT_MASK < _renderSystemVarc188) {
     localLong1 = CONCAT71(uRam0000000180bfc171,resourceBufferEnd);
-    dataValueBuffer = localLong1;
+    tempDataBuffer = localLong1;
     if (0xfff < _renderSystemVarc188 + 1) {
-      dataValueBuffer = *(longlong *)(localLong1 + -8);
-      if (ERROR_CODE_FAILED < (localLong1 - dataValueBuffer) - 8U) {
+      tempDataBuffer = *(longlong *)(localLong1 + -8);
+      if (ERROR_CODE_FAILED < (localLong1 - tempDataBuffer) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(localLong1 - dataValueBuffer,_renderSystemVarc188 + BYTE_OFFSET_2);
+        _invalid_parameter_noinfo_noreturn(localLong1 - tempDataBuffer,_renderSystemVarc188 + BYTE_OFFSET_2);
       }
     }
-    free(dataValueBuffer);
+    free(tempDataBuffer);
   }
   _renderSystemVarc180 = 0;
   _renderSystemVarc188 = ALIGNMENT_MASK;
@@ -82123,21 +82123,21 @@ void resourceCachePrefetch(void)
 
 {
   ulonglong functionResult;
-  longlong dataValueBuffer;
+  longlong tempDataBuffer;
   uint64 in_R9;
   
   if (lRam0000000180d49d68 != 0) {
     functionResult = (lRam0000000180d49d78 - lRam0000000180d49d68 >> 3) * 8;
-    dataValueBuffer = lRam0000000180d49d68;
+    tempDataBuffer = lRam0000000180d49d68;
     if (0xfff < functionResult) {
-      dataValueBuffer = *(longlong *)(lRam0000000180d49d68 + -8);
-      if (ERROR_CODE_FAILED < (lRam0000000180d49d68 - dataValueBuffer) - 8U) {
+      tempDataBuffer = *(longlong *)(lRam0000000180d49d68 + -8);
+      if (ERROR_CODE_FAILED < (lRam0000000180d49d68 - tempDataBuffer) - 8U) {
                     // WARNING: Subroutine does not return
         _invalid_parameter_noinfo_noreturn
-                  (lRam0000000180d49d68 - dataValueBuffer,functionResult + 0x27,dataValueBuffer,in_R9,0xfffffffffffffffe);
+                  (lRam0000000180d49d68 - tempDataBuffer,functionResult + 0x27,tempDataBuffer,in_R9,0xfffffffffffffffe);
       }
     }
-    free(dataValueBuffer);
+    free(tempDataBuffer);
     lRam0000000180d49d68 = 0;
     uRam0000000180d49d70 = 0;
     lRam0000000180d49d78 = 0;
