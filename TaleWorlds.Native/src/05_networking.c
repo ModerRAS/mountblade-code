@@ -559,10 +559,10 @@ void NetworkSendData(uint32_t socketHandle,int dataBuffer,longlong bufferCapacit
   uint8_t sendDataBuffer [40];
   ulonglong encryptionKey;
   
-  networkUintStack_20 = _g_networkXorKey ^ (ulonglong)networkStack_88;
+  encryptionKey = _g_networkXorKey ^ (ulonglong)encryptionBuffer;
   if (bufferCapacity == 0) {
                     // WARNING: Subroutine does not return
-    networkEncryptData(networkUintStack_20 ^ (ulonglong)networkStack_88);
+    networkEncryptData(encryptionKey ^ (ulonglong)encryptionBuffer);
   }
   networkLongStack_58 = 0;
   networkUintStack_68 = 0;
