@@ -8533,7 +8533,8 @@ bool FUN_180629850(longlong handle_param,longlong flags_param,char mutex_attr_pa
   }
   return true;
 }
-int FUN_1806298d0(longlong handle_param)
+// 查找字符串在句柄中的位置
+int find_string_position(longlong handle_param)
 {
   int iVar1;
   longlong lVar2;
@@ -8572,7 +8573,8 @@ LAB_18062995a:
   }
   return iVar3;
 }
-int FUN_1806299b0(longlong handle_param,longlong flags_param)
+// 处理句柄和标志位
+int process_handle_with_flags(longlong handle_param,longlong flags_param)
 {
   int iVar1;
   longlong lVar2;
