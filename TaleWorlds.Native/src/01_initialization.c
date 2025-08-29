@@ -1258,7 +1258,7 @@ void InitializeMemoryNode_18002c640(void)
   puVar7[10] = uStackX_18;
   return;
 }
-// 初始化缓冲区节点函数
+// 初始化缓冲区节点
 void InitializeBufferNode_18002c740(void)
 
 {
