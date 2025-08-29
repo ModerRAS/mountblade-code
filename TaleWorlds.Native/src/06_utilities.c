@@ -685,8 +685,8 @@ data g_fileCacheTempData4;
 data sceneRenderQueue;
 data g_sceneRenderTempData1;
 
-// 函数: data FUN_180941f60;
-data FUN_180941f60;
+// 函数: data materialShaderProgramInitialize;
+data materialShaderProgramInitialize;
 data g_materialShaderTempData1;
 data g_materialShaderTempData2;
 data g_materialShaderTempData3;
@@ -694,8 +694,8 @@ data materialShaderProgram;
 data g_materialTextureTempData1;
 data g_materialTextureTempData2;
 
-// 函数: data FUN_180941f80;
-data FUN_180941f80;
+// 函数: data materialTextureSamplerInitialize;
+data materialTextureSamplerInitialize;
 data DAT_180bf9340;
 data DAT_180bf9348;
 data materialTextureSampler;
@@ -7431,7 +7431,7 @@ int delete_database_record(longlong resourceHandle,longlong memorySize,int opera
 
 
 
-int FUN_180894650(longlong *resourceHandle,longlong memorySize,int operationFlags)
+int begin_database_transaction(longlong *resourceHandle,longlong memorySize,int operationFlags)
 
 {
   int localInt1;
@@ -80861,8 +80861,8 @@ void SetupFileWatcher(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941f60(void)
-void FUN_180941f60(void)
+// 函数: void materialShaderProgramInitialize(void)
+void materialShaderProgramInitialize(void)
 
 {
   _g_sceneRenderTempData1 = &threadLocalStorageCleanup;
@@ -80874,8 +80874,8 @@ void FUN_180941f60(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941f80(void)
-void FUN_180941f80(void)
+// 函数: void materialTextureSamplerInitialize(void)
+void materialTextureSamplerInitialize(void)
 
 {
   _g_materialTextureTempData1 = &threadLocalStorageCleanup;
