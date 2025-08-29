@@ -2862,7 +2862,7 @@ uint64 query_resource_handle(longlong resourceHandle) # 资源句柄查询函数
 
 
 
-uint64 FUN_180890590(longlong resourceHandle)
+uint64 allocate_resource_memory(longlong resourceHandle)
 
 {
   uint64 localUInt1;
@@ -3055,8 +3055,8 @@ void emergencyMemoryRelease(void)
 
 
 
-// 函数: void FUN_18089079f(void)
-void FUN_18089079f(void)
+// 函数: void emptyReturnFunction(void)
+void emptyReturnFunction(void)
 
 {
   return;
@@ -3290,8 +3290,8 @@ uint64 FUN_180890923(void)
 
 
 
-// 函数: void FUN_1808909b4(void)
-void FUN_1808909b4(void)
+// 函数: void initializeSystemResources(void)
+void initializeSystemResources(void)
 
 {
   return;
