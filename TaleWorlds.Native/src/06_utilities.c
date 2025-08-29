@@ -55,7 +55,7 @@ data bufferManagerControl1;
 data bufferManagerControl2;
 data bufferManagerControl3;
 data bufferManagerControl4;
-data unknown_18098bc80;
+data memoryPoolInitializationFlag;
 
 // 函数: data CreateMemoryAllocator;
 data CreateMemoryAllocator;
@@ -63,7 +63,7 @@ data dataStructurePointer1;
 data dataStructurePointer2;
 data dataStructurePointer3;
 data dataStructurePointer4;
-data unknown_1809fcc58;
+data memoryAllocatorStatusFlag;
 
 // 函数: data RegisterMemoryHandler;
 data RegisterMemoryHandler;
@@ -373,8 +373,8 @@ data DAT_180bf7250;
 data DAT_180bf7258;
 data DAT_180bf7260;
 
-// 函数: data FUN_180941b90;
-data FUN_180941b90;
+// 函数: data InitializeSystemModule1;
+data InitializeSystemModule1;
 data DAT_180bf7268;
 data unknown_180a03098;
 data DAT_180bf72b0;
@@ -382,16 +382,16 @@ data DAT_180bf72b8;
 data DAT_180bf72c0;
 data DAT_180bf72c8;
 
-// 函数: data FUN_180941bb0;
-data FUN_180941bb0;
+// 函数: data InitializeSystemModule2;
+data InitializeSystemModule2;
 data unknown_180a03060;
 data DAT_180bf7310;
 data DAT_180bf7318;
 data DAT_180bf7320;
 data DAT_180bf7328;
 
-// 函数: data FUN_180941bd0;
-data FUN_180941bd0;
+// 函数: data InitializeSystemModule3;
+data InitializeSystemModule3;
 data unknown_180a030a8;
 data DAT_180bf7370;
 data DAT_180bf7378;
@@ -624,15 +624,15 @@ data DAT_180bf90b8;
 data DAT_180bf90c0;
 data DAT_180bf90c8;
 
-// 函数: data FUN_180941d00;
-data FUN_180941d00;
+// 函数: data InitializeDatabaseConnection;
+data InitializeDatabaseConnection;
 data DAT_180bf5b88;
 data DAT_180bf5b90;
 data DAT_180bf5b98;
 data DAT_180bf5ba0;
 
-// 函数: data FUN_180941d20;
-data FUN_180941d20;
+// 函数: data SetupDatabaseTables;
+data SetupDatabaseTables;
 data DAT_180c91da8;
 data DAT_180a16c50;
 data DAT_180c91dac;
@@ -665,19 +665,19 @@ data DAT_180bf91c0;
 data DAT_180bf91c8;
 data unknown_180a22b38;
 
-// 函数: data FUN_180941f00;
-data FUN_180941f00;
+// 函数: data CreateFileSystemHandler;
+data CreateFileSystemHandler;
 data DAT_180bf9210;
 data DAT_180bf9218;
 data DAT_180bf9220;
 data DAT_180bf9228;
 data unknown_180a22b90;
 
-// 函数: data FUN_180941f20;
-data FUN_180941f20;
+// 函数: data InitializeFileCache;
+data InitializeFileCache;
 
-// 函数: data FUN_180941f40;
-data FUN_180941f40;
+// 函数: data SetupFileWatcher;
+data SetupFileWatcher;
 data DAT_180bf9270;
 data DAT_180bf9278;
 data DAT_180bf9280;
@@ -3685,8 +3685,8 @@ void destroy_semaphore(void)
 
 
 
-// 函数: void FUN_180890e03(void)
-void FUN_180890e03(void)
+// 函数: void initialize_event(void)
+void initialize_event(void)
 
 {
   return;
@@ -3694,7 +3694,7 @@ void FUN_180890e03(void)
 
 
 
-uint64 FUN_180890e10(longlong resourceHandle)
+uint64 wait_for_event(longlong resourceHandle)
 
 {
   uint64 localUInt1;
@@ -3719,7 +3719,7 @@ uint64 FUN_180890e10(longlong resourceHandle)
 
 
 
-uint32 FUN_180890e33(void)
+uint32 set_event(void)
 
 {
   longlong inputRegister;
@@ -3741,8 +3741,8 @@ uint32 FUN_180890e33(void)
 
 
 
-// 函数: void FUN_180890e5c(void)
-void FUN_180890e5c(void)
+// 函数: void reset_event(void)
+void reset_event(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -3752,8 +3752,8 @@ void FUN_180890e5c(void)
 
 
 
-// 函数: void FUN_180890ed2(void)
-void FUN_180890ed2(void)
+// 函数: void destroy_event(void)
+void destroy_event(void)
 
 {
   return;
@@ -3761,7 +3761,7 @@ void FUN_180890ed2(void)
 
 
 
-uint64 FUN_180890ee0(longlong resourceHandle)
+uint64 create_timer(longlong resourceHandle)
 
 {
   uint64 localUInt1;
@@ -3786,7 +3786,7 @@ uint64 FUN_180890ee0(longlong resourceHandle)
 
 
 
-uint32 FUN_180890f03(void)
+uint32 start_timer(void)
 
 {
   longlong inputRegister;
@@ -3808,8 +3808,8 @@ uint32 FUN_180890f03(void)
 
 
 
-// 函数: void FUN_180890f2c(void)
-void FUN_180890f2c(void)
+// 函数: void stop_timer(void)
+void stop_timer(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -80636,8 +80636,8 @@ void FUN_180941b20(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941b90(void)
-void FUN_180941b90(void)
+// 函数: void InitializeSystemModule1(void)
+void InitializeSystemModule1(void)
 
 {
   _DAT_180bf7250 = &threadLocalStorageCleanup;
@@ -80649,8 +80649,8 @@ void FUN_180941b90(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941bb0(void)
-void FUN_180941bb0(void)
+// 函数: void InitializeSystemModule2(void)
+void InitializeSystemModule2(void)
 
 {
   _DAT_180bf72b0 = &threadLocalStorageCleanup;
@@ -80662,8 +80662,8 @@ void FUN_180941bb0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941bd0(void)
-void FUN_180941bd0(void)
+// 函数: void InitializeSystemModule3(void)
+void InitializeSystemModule3(void)
 
 {
   _DAT_180bf7310 = &threadLocalStorageCleanup;
@@ -80696,8 +80696,8 @@ void FUN_180941bf0(void)
     _Cnd_destroy_in_situ();
     FUN_180059ee0(0x180c919f0);
 
-// 函数: void FUN_180941d00(void)
-void FUN_180941d00(void)
+// 函数: void InitializeDatabaseConnection(void)
+void InitializeDatabaseConnection(void)
 
 {
   _DAT_180bf90b0 = &threadLocalStorageCleanup;
@@ -80709,8 +80709,8 @@ void FUN_180941d00(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941d20(void)
-void FUN_180941d20(void)
+// 函数: void SetupDatabaseTables(void)
+void SetupDatabaseTables(void)
 
 {
   _DAT_180bf5b88 = &threadLocalStorageCleanup;
@@ -80822,8 +80822,8 @@ void FUN_180941e90(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941f00(void)
-void FUN_180941f00(void)
+// 函数: void CreateFileSystemHandler(void)
+void CreateFileSystemHandler(void)
 
 {
   _DAT_180bf91b0 = &threadLocalStorageCleanup;
@@ -80835,8 +80835,8 @@ void FUN_180941f00(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941f20(void)
-void FUN_180941f20(void)
+// 函数: void InitializeFileCache(void)
+void InitializeFileCache(void)
 
 {
   _DAT_180bf9210 = &threadLocalStorageCleanup;
@@ -80848,8 +80848,8 @@ void FUN_180941f20(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941f40(void)
-void FUN_180941f40(void)
+// 函数: void SetupFileWatcher(void)
+void SetupFileWatcher(void)
 
 {
   _DAT_180bf9270 = &threadLocalStorageCleanup;

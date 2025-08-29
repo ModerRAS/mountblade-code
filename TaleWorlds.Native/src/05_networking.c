@@ -147,36 +147,36 @@ undefined g_networkLogSize;
 undefined g_networkLogRotation;
 undefined g_networkLogCompression;
 undefined g_networkLogArchive;
-undefined UNK_1809867b0;
-undefined UNK_180986850;
-undefined UNK_180982378;
-undefined UNK_180986390;
-undefined UNK_180986488;
-undefined UNK_1809864b0;
-undefined UNK_180986940;
-undefined UNK_1809869a0;
-undefined UNK_180986e70;
-undefined UNK_180986d98;
-undefined UNK_180986dc0;
-undefined UNK_180986de8;
-undefined UNK_180986e10;
-undefined UNK_180986e38;
-undefined UNK_180986ef0;
-undefined UNK_180986af0;
-undefined UNK_180986bb8;
-undefined UNK_180986d78;
-undefined UNK_180986a10;
-undefined UNK_180986ce0;
-undefined UNK_180986ab0;
-undefined UNK_180986930;
-undefined UNK_180986ca8;
-undefined UNK_180986b00;
-undefined UNK_180986d58;
-undefined UNK_180986e60;
-undefined UNK_180986bf0;
-undefined UNK_180986d50;
-undefined UNK_180986a60;
-undefined UNK_180986c70;
+undefined g_networkConnectionPoolData;
+undefined g_networkConnectionPoolSize;
+undefined g_networkConnectionPoolIndex;
+undefined g_networkConnectionPoolLock;
+undefined g_networkConnectionPoolStatus;
+undefined g_networkConnectionPoolConfig;
+undefined g_networkConnectionPoolManager;
+undefined g_networkConnectionPoolAllocator;
+undefined g_networkConnectionPoolDeallocator;
+undefined g_networkConnectionPoolInitializer;
+undefined g_networkConnectionPoolFinalizer;
+undefined g_networkConnectionPoolValidator;
+undefined g_networkConnectionPoolCleaner;
+undefined g_networkConnectionPoolResizer;
+undefined g_networkConnectionPoolIterator;
+undefined g_networkConnectionPoolAccessor;
+undefined g_networkConnectionPoolModifier;
+undefined g_networkConnectionPoolSearcher;
+undefined g_networkConnectionPoolFinder;
+undefined g_networkConnectionPoolLocator;
+undefined g_networkConnectionPoolIdentifier;
+undefined g_networkConnectionPoolTracker;
+undefined g_networkConnectionPoolMonitor;
+undefined g_networkConnectionPoolObserver;
+undefined g_networkConnectionPoolNotifier;
+undefined g_networkConnectionPoolHandler;
+undefined g_networkConnectionPoolProcessor;
+undefined g_networkConnectionPoolExecutor;
+undefined g_networkConnectionPoolScheduler;
+undefined g_networkConnectionPoolDispatcher;
 undefined UNK_180986c30;
 undefined UNK_180986d18;
 undefined UNK_180986948;
@@ -822,7 +822,7 @@ LAB_1808408dd:
 
 
 
-undefined4 FUN_1808408ec(void)
+undefined4 NetworkClearConnection(void)
 
 {
   undefined8 *unaff_RBX;
@@ -839,8 +839,8 @@ undefined4 FUN_1808408ec(void)
 
 
 
-// 函数: void FUN_18084090e(void)
-void FUN_18084090e(void)
+// 函数: void NetworkErrorExitWrapper(void)
+void NetworkErrorExitWrapper(void)
 
 {
   undefined1 auStackX_20 [8];
@@ -854,8 +854,8 @@ void FUN_18084090e(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180840950(undefined8 socketParam,longlong dataParam,longlong sizeParam,int *timeoutParam)
-void FUN_180840950(undefined8 socketParam,longlong dataParam,longlong sizeParam,int *timeoutParam)
+// 函数: void NetworkSendPacketWithTimeout(undefined8 socketParam,longlong dataParam,longlong sizeParam,int *timeoutParam)
+void NetworkSendPacketWithTimeout(undefined8 socketParam,longlong dataParam,longlong sizeParam,int *timeoutParam)
 
 {
   longlong lVar1;
