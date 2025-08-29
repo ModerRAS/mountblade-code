@@ -2558,7 +2558,7 @@ uint64 validate_resource_handle(longlong resourceHandle)    // 资源句柄验�
   int length;
 =======
   longlong buffer;
-  int localInt3;
+  int length;
 >>>>>>> Stashed changes
   uint64 uVar4;
   uint64 uVar5;
@@ -9643,7 +9643,7 @@ uint64 FUN_1808968a0(longlong resourceHandle)
     plocalInt3[3] = 0;
     plocalInt3[4] = 0;
     plocalInt3[5] = 0;
-    *plocalInt3 = iVar5 + 0x19;
+    *plength = iVar5 + 0x19;
     *(uint16_t *)(plocalInt3 + 2) = 0x508;
     *(byte *)((longlong)plocalInt3 + 10) = 3;
     plocalInt3[3] = 1;
@@ -9747,7 +9747,7 @@ void FUN_180896c60(uint64 resourceHandle,longlong memorySize,uint operationFlags
   int length;
 =======
   longlong buffer;
-  int localInt3;
+  int length;
 >>>>>>> Stashed changes
   int counter;
   int iVar5;
@@ -9852,8 +9852,8 @@ LAB_180896ce3:
       localLong2 = *(longlong *)(localLong1 + 0x68);
       if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (localLong2 != 0)) {
 =======
-     (localInt3 = FUN_180897b40(resourceHandle,memorySize,operationFlags), localInt3 == 0)) {
-    for (localInt3 = 0; (-1 < localInt3 && (localInt3 < *(int *)(memorySize + 0x48))); localInt3 = localInt3 + 1) {
+     (length = FUN_180897b40(resourceHandle,memorySize,operationFlags), localInt3 == 0)) {
+    for (length = 0; (-1 < localInt3 && (localInt3 < *(int *)(memorySize + 0x48))); length = localInt3 + 1) {
       localLong1 = *(longlong *)(*(longlong *)(memorySize + 0x40) + (longlong)localInt3 * 8);
       buffer = *(longlong *)(localLong1 + 0x68);
       if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (buffer != 0)) {
@@ -9907,7 +9907,7 @@ LAB_180896ce3:
       localLong2 = *(longlong *)(localLong1 + 0x68);
       if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (localLong2 != 0)) {
 =======
-    for (localInt3 = 0; (-1 < localInt3 && (localInt3 < *(int *)(memorySize + 0x58))); localInt3 = localInt3 + 1) {
+    for (length = 0; (-1 < localInt3 && (localInt3 < *(int *)(memorySize + 0x58))); length = localInt3 + 1) {
       localLong1 = *(longlong *)(*(longlong *)(memorySize + 0x50) + (longlong)localInt3 * 8);
       buffer = *(longlong *)(localLong1 + 0x68);
       if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (buffer != 0)) {
@@ -9961,7 +9961,7 @@ LAB_180896ce3:
       localLong2 = *(longlong *)(localLong1 + 0x68);
       if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (localLong2 != 0)) {
 =======
-    for (localInt3 = 0; (-1 < localInt3 && (localInt3 < *(int *)(memorySize + 0x68))); localInt3 = localInt3 + 1) {
+    for (length = 0; (-1 < localInt3 && (localInt3 < *(int *)(memorySize + 0x68))); length = localInt3 + 1) {
       localLong1 = *(longlong *)(*(longlong *)(memorySize + 0x60) + (longlong)localInt3 * 8);
       buffer = *(longlong *)(localLong1 + 0x68);
       if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (buffer != 0)) {
@@ -10015,7 +10015,7 @@ LAB_180896ce3:
       localLong2 = *(longlong *)(localLong1 + 0x68);
       if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (localLong2 != 0)) {
 =======
-    for (localInt3 = 0; (-1 < localInt3 && (localInt3 < *(int *)(memorySize + 0x78))); localInt3 = localInt3 + 1) {
+    for (length = 0; (-1 < localInt3 && (localInt3 < *(int *)(memorySize + 0x78))); length = localInt3 + 1) {
       localLong1 = *(longlong *)(*(longlong *)(memorySize + 0x70) + (longlong)localInt3 * 8);
       buffer = *(longlong *)(localLong1 + 0x68);
       if (((*(byte *)(localLong1 + 0xc4) & 1) != 0) && (buffer != 0)) {
@@ -11430,7 +11430,7 @@ void FUN_180897b40(longlong *resourceHandle,longlong memorySize,uint32 operation
   int length;
 =======
   longlong buffer;
-  int localInt3;
+  int length;
 >>>>>>> Stashed changes
   int counter;
   int iVar5;
@@ -11499,15 +11499,15 @@ LAB_180897ce8:
             length = (**(code **)(*resourceHandle + 0x18))(resourceHandle);
             if (length != 0) goto LAB_180897ce8;
 =======
-          if (((char)buffer == '\0') && (localInt3 = FUN_1808987e0(resourceHandle,1), localInt3 != 0))
+          if (((char)buffer == '\0') && (length = FUN_1808987e0(resourceHandle,1), localInt3 != 0))
           goto LAB_180897ce8;
-          localInt3 = (**(code **)(localPtr + 0x10))(&localPtr,localBuffer,0x200);
+          length = (**(code **)(localPtr + 0x10))(&localPtr,localBuffer,0x200);
           func_0x00018074b7b0((longlong)localBuffer + (longlong)localInt3,0x200 - localInt3,10);
-          localInt3 = (**(code **)(*resourceHandle + 8))(resourceHandle,localBuffer);
-          if (localInt3 != 0) goto LAB_180897ce8;
+          length = (**(code **)(*resourceHandle + 8))(resourceHandle,localBuffer);
+          if (length != 0) goto LAB_180897ce8;
           if ((char)buffer == '\0') {
-            localInt3 = (**(code **)(*resourceHandle + 0x18))(resourceHandle);
-            if (localInt3 != 0) goto LAB_180897ce8;
+            length = (**(code **)(*resourceHandle + 0x18))(resourceHandle);
+            if (length != 0) goto LAB_180897ce8;
 >>>>>>> Stashed changes
             *(byte *)(resourceHandle + 4) = 0;
           }
@@ -14797,7 +14797,7 @@ ulonglong FUN_18089a880(longlong resourceHandle,uint64 *memorySize)
   int length;
 =======
   longlong buffer;
-  int localInt3;
+  int length;
 >>>>>>> Stashed changes
   int counter;
   uint *puVar5;
@@ -14831,7 +14831,7 @@ ulonglong FUN_18089a880(longlong resourceHandle,uint64 *memorySize)
         length = -4;
 =======
         buffer = 4;
-        localInt3 = -4;
+        length = -4;
 >>>>>>> Stashed changes
         break;
       default:
@@ -14848,7 +14848,7 @@ ulonglong FUN_18089a880(longlong resourceHandle,uint64 *memorySize)
         length = -8;
 =======
         buffer = 8;
-        localInt3 = -8;
+        length = -8;
 >>>>>>> Stashed changes
         break;
       case 0x11:
@@ -14861,7 +14861,7 @@ ulonglong FUN_18089a880(longlong resourceHandle,uint64 *memorySize)
         length = -0x14;
 =======
         buffer = 0x14;
-        localInt3 = -0x14;
+        length = -0x14;
 >>>>>>> Stashed changes
         break;
       case 0x20:
@@ -14882,7 +14882,7 @@ ulonglong FUN_18089a880(longlong resourceHandle,uint64 *memorySize)
         length = -0xc;
 =======
         buffer = 0xc;
-        localInt3 = -0xc;
+        length = -0xc;
 >>>>>>> Stashed changes
       }
       puVar5 = (uint *)((longlong)puVar5 + buffer);
@@ -14903,7 +14903,7 @@ ulonglong FUN_18089a8b4(void)
   int length;
 =======
   longlong buffer;
-  int localInt3;
+  int length;
 >>>>>>> Stashed changes
   int unaff_EBX;
   longlong unaff_RSI;
@@ -14934,7 +14934,7 @@ ulonglong FUN_18089a8b4(void)
         length = -4;
 =======
         buffer = 4;
-        localInt3 = -4;
+        length = -4;
 >>>>>>> Stashed changes
         break;
       default:
@@ -14951,7 +14951,7 @@ ulonglong FUN_18089a8b4(void)
         length = -8;
 =======
         buffer = 8;
-        localInt3 = -8;
+        length = -8;
 >>>>>>> Stashed changes
         break;
       case 0x11:
@@ -14964,7 +14964,7 @@ ulonglong FUN_18089a8b4(void)
         length = -0x14;
 =======
         buffer = 0x14;
-        localInt3 = -0x14;
+        length = -0x14;
 >>>>>>> Stashed changes
         break;
       case 0x20:
@@ -14987,7 +14987,7 @@ ulonglong FUN_18089a8b4(void)
       unaff_RDI = (uint *)((longlong)unaff_RDI + localLong2);
 =======
         buffer = 0xc;
-        localInt3 = -0xc;
+        length = -0xc;
       }
       unaff_EBX = unaff_EBX + localInt3;
       unaff_RDI = (uint *)((longlong)unaff_RDI + buffer);

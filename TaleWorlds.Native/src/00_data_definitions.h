@@ -24,7 +24,7 @@ int initialize_system_configuration(void)
   int operation_counter = 0;
   long long maximum_allowed_system_value = MAX_SYSTEM_VALUE;
   int system_status_code = SYSTEM_STATUS_SUCCESS;
-  int initialization_result = initialize_system(system_init_func_1809414f0);
+  int initialization_result = initialize_system(system_configuration_init_function);
   return (initialization_result != 0) - 1;
 }
 // 初始化核心数据结构
@@ -35,7 +35,7 @@ int initialize_core_data_structure(void)
   void* core_data_value_pointer = &g_core_data_value;
   int data_structure_offset = 0;
   g_core_data_value = 0;
-  initialization_result = initialize_system(core_system_init_func_180941590);
+  initialization_result = initialize_system(core_data_structure_init_function);
   return (initialization_result != 0) - 1;
 }
 // 初始化网络缓冲区系统
@@ -3168,7 +3168,7 @@ FUN_18006b8a0(undefined8 *handle,ulonglong flags,undefined8 mutex_attr,undefined
 LAB_180072d7b:
   system_crypto_001(uStack_48 ^ (ulonglong)auStack_168);
 }
-uint system_checker_001(void)
+uint validate_system_mutex_lock(void)
 {
   uint in_EAX;
   int iVar1;
@@ -3586,7 +3586,7 @@ LAB_1800d3d65:
   *(undefined4 *)(handle + 2) = 3;
   return handle;
 }
-longlong system_processor_004(longlong handle,longlong flags,longlong mutex_attr)
+longlong process_memory_block(longlong handle,longlong flags,longlong mutex_attr)
 {
   undefined8 *puVar1;
   undefined8 *pflags;
@@ -3618,7 +3618,7 @@ longlong system_processor_004(longlong handle,longlong flags,longlong mutex_attr
   }
   return mutex_attr;
 }
-longlong system_processor_005(undefined8 handle,longlong flags,longlong mutex_attr)
+longlong process_memory_with_flags(undefined8 handle,longlong flags,longlong mutex_attr)
 {
   undefined8 *puVar1;
   longlong lVar2;
@@ -4646,7 +4646,7 @@ LAB_1802a83bc:
       system_data_manager_002(_data_180c86928,&unknown_180a17960,puVar7);
     }
   }
-  cVar3 = system_handler_010(mutex_attr);
+  cVar3 = handle_system_event(mutex_attr);
   if (cVar3 == '\0') {
     puVar7 = &data_18098bc73;
     if (*(undefined **)(handle + 8) != (undefined *)0x0) {
@@ -4681,7 +4681,7 @@ LAB_1802a912b:
   }
   system_crypto_001(uStack_18 ^ (ulonglong)auStack_248);
 }
-bool system_handler_010(undefined8 *handle)
+bool handle_system_event(undefined8 *handle)
 {
   int iVar1;
   undefined8 flags;
@@ -4723,7 +4723,7 @@ bool system_handler_010(undefined8 *handle)
   }
   memcpy(flags,*handle,uVar3);
 }
-undefined8 system_handler_011(undefined8 *handle)
+undefined8 process_system_request(undefined8 *handle)
 {
   undefined1 auVar1 [16];
   int iVar2;
@@ -4889,7 +4889,7 @@ undefined8 system_handler_011(undefined8 *handle)
   }
   return CONCAT71((int7)((ulonglong)pfVar4 >> 8),1);
 }
-undefined8 system_handler_012(undefined8 *handle)
+undefined8 handle_system_callback(undefined8 *handle)
 {
   float *pfVar1;
   float *pfVar2;
@@ -5166,7 +5166,7 @@ code_r0x000180329ed1:
   bVar8 = (byte)auStackX_20[0];
   goto LAB_180329ed5;
 }
-undefined8 system_allocator_004(longlong handle,longlong *flags,undefined4 *mutex_attr,uint mutex_type)
+undefined8 allocate_system_memory(longlong handle,longlong *flags,undefined4 *mutex_attr,uint mutex_type)
 {
   longlong *pinit_result;
   byte bVar2;
@@ -5302,7 +5302,7 @@ LAB_18032b98e:
   }
   return lVar4;
 }
-longlong system_allocator_005(longlong handle,uint flags,uint mutex_attr)
+longlong allocate_with_flags(longlong handle,uint flags,uint mutex_attr)
 {
   longlong init_result;
   longlong lVar2;
@@ -5340,7 +5340,7 @@ LAB_18032bb25:
   system_memory_005(0x180d497e0);
   return 0x180d497e0;
 }
-longlong system_allocator_007(undefined8 handle,longlong *flags,longlong mutex_attr)
+longlong allocate_system_buffer(undefined8 handle,longlong *flags,longlong mutex_attr)
 {
   longlong init_result;
   uint flags;
@@ -5418,7 +5418,7 @@ system_allocator_008(undefined8 handle,longlong *flags,undefined8 *mutex_attr,un
         } while (0 < lVar5);
       }
       if ((puVar7 == (uint *)mutex_attr[1]) || (*(uint *)(init_result + lVar6) < *puVar7)) {
-        uVar4 = system_allocator_005(handle,*(undefined4 *)(init_result + lVar6),mutex_type);
+        uVar4 = allocate_with_flags(handle,*(undefined4 *)(init_result + lVar6),mutex_type);
         system_allocator_002(handle,uVar4,param_5,mutex_type,param_6);
         uVar4 = 1;
       }
@@ -5428,7 +5428,7 @@ system_allocator_008(undefined8 handle,longlong *flags,undefined8 *mutex_attr,un
   }
   return uVar4;
 }
-undefined1 system_allocator_009(void)
+undefined1 check_memory_status(void)
 {
   uint in_EAX;
   longlong init_result;
@@ -5455,7 +5455,7 @@ undefined1 system_allocator_009(void)
       } while (0 < lVar2);
     }
     if ((puVar5 == (uint *)unaff_R14[1]) || (*(uint *)(*unaff_R15 + lVar3) < *puVar5)) {
-      system_allocator_005();
+      allocate_with_flags();
       system_allocator_002();
       unaff_SIL = 1;
     }
@@ -5464,7 +5464,7 @@ undefined1 system_allocator_009(void)
   } while (uVar4 != 0);
   return unaff_SIL;
 }
-undefined1 system_allocator_010(void)
+undefined1 validate_memory_allocation(void)
 {
   undefined1 unaff_SIL;
   return unaff_SIL;
@@ -5522,7 +5522,7 @@ LAB_18032bf87:
   }
   return uVar8;
 }
-undefined1 system_allocator_012(undefined8 handle,undefined8 flags,longlong *mutex_attr)
+undefined1 allocate_with_mutex(undefined8 handle,undefined8 flags,longlong *mutex_attr)
 {
   longlong init_result;
   uint flags;
@@ -5568,7 +5568,7 @@ LAB_18032bf87:
     }
   } while( true );
 }
-undefined1 system_allocator_013(void)
+undefined1 check_allocation_complete(void)
 {
   undefined1 in_R10B;
   return in_R10B;
@@ -5614,7 +5614,7 @@ system_allocator_014(undefined8 handle,longlong *flags,undefined8 *mutex_attr,un
   }
   return uVar6;
 }
-undefined1 system_allocator_015(void)
+undefined1 validate_buffer_allocation(void)
 {
   uint in_EAX;
   longlong init_result;
@@ -5651,7 +5651,7 @@ undefined1 system_allocator_015(void)
   } while (uVar4 != 0);
   return unaff_SIL;
 }
-undefined1 system_allocator_016(void)
+undefined1 check_memory_bounds(void)
 {
   undefined1 unaff_SIL;
   return unaff_SIL;
