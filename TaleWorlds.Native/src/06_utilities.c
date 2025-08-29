@@ -23,7 +23,7 @@ data g_bufferTotalCapacity;
 // 缓冲区绝对最大尺寸
 data g_bufferAbsoluteMaximumSize;
 // 缓冲区锁定标志
-byte g_bufferLockFlag;
+byte g_bufferIsLocked;
 // 缓冲区状态标志
 data g_bufferStatusFlag;
 // 主缓冲区句柄
@@ -4634,7 +4634,7 @@ uint64 calculate_file_hash(longlong resourceHandle,longlong memorySize)
 
 
 
-uint64 FUN_180891de0(longlong resourceHandle,longlong memorySize)
+uint64 verify_file_integrity(longlong resourceHandle,longlong memorySize)
 
 {
   uint64 localUInt1;
@@ -4657,8 +4657,8 @@ uint64 FUN_180891de0(longlong resourceHandle,longlong memorySize)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180891e40(longlong resourceHandle,longlong memorySize)
-void FUN_180891e40(longlong resourceHandle,longlong memorySize)
+// 函数: void encrypt_file(longlong resourceHandle,longlong memorySize)
+void encrypt_file(longlong resourceHandle,longlong memorySize)
 
 {
   int localInt1;
@@ -4725,8 +4725,8 @@ LAB_180891fc0:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180891e7d(uint64 resourceHandle,uint64 memorySize)
-void FUN_180891e7d(uint64 resourceHandle,uint64 memorySize)
+// 函数: void decrypt_file(uint64 resourceHandle,uint64 memorySize)
+void decrypt_file(uint64 resourceHandle,uint64 memorySize)
 
 {
   int localInt1;
@@ -9326,7 +9326,7 @@ ulonglong FUN_180896140(longlong resourceHandle)
               localPtr = &unknown_1809841e0;
               localUInt = *(uint32 *)(lVar5 + 0xc + localLong15 * 0x10);
               localUInt = 0;
-              FUN_180891de0(&localPtr,*(uint64 *)(resourceHandle + 0x58));
+              verify_file_integrity(&localPtr,*(uint64 *)(resourceHandle + 0x58));
               plocalLong13 = plStack_108;
             }
           }
