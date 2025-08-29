@@ -450,33 +450,33 @@ void NetworkConnectSocket(uint64_t socketHandle,ulonglong *dataBuffer)
   if (dataBuffer == (ulonglong *)0x0) {
     if ((*(byte *)(g_networkModule + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      networkEncryptData(networkUintStack_28 ^ (ulonglong)networkStack_178);
+      networkEncryptData(xorKey ^ (ulonglong)tempBuffer);
     }
-    networkSendBuffer(networkStack_128,0x100,0);
-    networkPtrStack_158 = networkStack_128;
+    networkSendBuffer(sendData,0x100,0);
+    bufferPtr = sendData;
                     // WARNING: Subroutine does not return
     networkSendControlPacket(0x1f,0xc,socketHandle,&networkAckPacketType);
   }
   *dataBuffer = 0;
-  networkArrayStack_148[1] = 0;
-  statusCode = networkInitializeSocket(socketHandle,networkArrayStack_148);
+  socketContext[1] = 0;
+  statusCode = networkInitializeSocket(socketHandle,socketContext);
   if (statusCode == 0) {
-    if ((*(uint *)(networkArrayStack_148[0] + 0x24) >> 1 & 1) == 0) goto LAB_NETWORK_SEND_BUFFER_START;
-    resultCode = networkInitializeConnection(networkArrayStack_148 + 1);
-    if (resultCode == 0) goto LAB_NETWORK_SEND_BUFFER_END;
+    if ((*(uint *)(socketContext[0] + 0x24) >> 1 & 1) == 0) goto LAB_NETWORK_SEND_BUFFER_START;
+    operationResult = networkInitializeConnection(socketContext + 1);
+    if (operationResult == 0) goto LAB_NETWORK_SEND_BUFFER_END;
   }
   else {
 LAB_NETWORK_SEND_BUFFER_END:
-    resultCode = statusCode;
+    operationResult = statusCode;
   }
-  if ((resultCode == 0) &&
-     (statusCode = networkCreateSession(*(uint64_t *)(networkArrayStack_148[0] + 0x98),anetworkPtrStack_138,0x20), statusCode == 0))
+  if ((operationResult == 0) &&
+     (statusCode = networkCreateSession(*(uint64_t *)(socketContext[0] + 0x98),sessionConfig,0x20), statusCode == 0))
   {
-    *anetworkPtrStack_138[0] = &UNK_1809832b8;
-    *(uint32_t *)(anetworkPtrStack_138[0] + 3) = 0;
-    *(uint32_t *)(anetworkPtrStack_138[0] + 1) = 0x20;
-    *(int *)(anetworkPtrStack_138[0] + 2) = (int)socketHandle;
-    statusCode = NetworkValidateSocket(*(uint64_t *)(networkArrayStack_148[0] + 0x98),anetworkPtrStack_138[0]);
+    *sessionConfig[0] = &UNK_1809832b8;
+    *(uint32_t *)(sessionConfig[0] + 3) = 0;
+    *(uint32_t *)(sessionConfig[0] + 1) = 0x20;
+    *(int *)(sessionConfig[0] + 2) = (int)socketHandle;
+    statusCode = NetworkValidateSocket(*(uint64_t *)(socketContext[0] + 0x98),sessionConfig[0]);
     if (statusCode == 0) {
       *dataBuffer = (ulonglong)*(uint *)(anetworkPtrStack_138[0] + 3);
                     // WARNING: Subroutine does not return
