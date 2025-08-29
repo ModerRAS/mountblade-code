@@ -917,7 +917,7 @@ void NetworkSendPacketWithTimeout(uint64_t socketHandle,longlong dataBuffer,long
   undefined *socketStatusPointer;
   ulonglong bufferSize;
   ulonglong timeoutValue;
-  longlong lVar9;
+  longlong long_var_9;
   uint8_t networkStack_68 [32];
   uint64_t networkUintStack_48;
   uint8_t networkStack_40 [16];
@@ -929,13 +929,13 @@ void NetworkSendPacketWithTimeout(uint64_t socketHandle,longlong dataBuffer,long
     if (resultCode == 0) {
       resultCode = networkCompressData(socketHandle,bufferCapacity,networkStack_40);
       if (resultCode == 0) {
-        lVar9 = *(longlong *)(dataBuffer + 0x18);
+        long_var_9 = *(longlong *)(dataBuffer + 0x18);
         dataPointer = networkDecompressData(networkStack_40);
-        resultCode = *(int *)(lVar9 + NETWORK_CONTEXT_OFFSET);
+        resultCode = *(int *)(long_var_9 + NETWORK_CONTEXT_OFFSET);
         bufferSize = 0;
         if (0 < resultCode) {
           networkUintStack_48._4_4_ = (int)((ulonglong)dataPointer >> SOCKET_RESPONSE_OFFSET);
-          pprocessResult = *(int **)(lVar9 + 0x90);
+          pprocessResult = *(int **)(long_var_9 + 0x90);
           timeoutValue = bufferSize;
           do {
             networkOperationResult = (int)timeoutValue;
@@ -954,9 +954,9 @@ LAB_NETWORK_SOCKET_CHECK:
     else {
       resultCode = 0;
       if (0 < *(int *)(dataBuffer + CONNECTION_BUFFER_OFFSET)) {
-        lVar9 = 0;
+        long_var_9 = 0;
         do {
-          networkTimeout = *(longlong *)(lVar9 + 0x10 + *(longlong *)(dataBuffer + SOCKET_RESPONSE_OFFSET));
+          networkTimeout = *(longlong *)(long_var_9 + 0x10 + *(longlong *)(dataBuffer + SOCKET_RESPONSE_OFFSET));
           if (networkTimeout == 0) break;
           if (*(int *)(networkTimeout + 0x58) < 1) {
             socketStatusPointer = &g_networkEmptyString;
@@ -970,7 +970,7 @@ LAB_NETWORK_SOCKET_CHECK:
             break;
           }
           resultCode = resultCode + 1;
-          lVar9 = lVar9 + 0x18;
+          long_var_9 = long_var_9 + 0x18;
         } while (resultCode < *(int *)(dataBuffer + CONNECTION_BUFFER_OFFSET));
       }
     }
@@ -5070,7 +5070,7 @@ void NetworkExecuteErrorRecovery(longlong socketHandle,uint64_t *dataBuffer,uint
   undefined *socketStatusPointer;
   uint64_t bufferSize;
   uint timeoutValue;
-  uint uVar9;
+  uint uint_var_9;
   uint8_t networkStack_58 [32];
   uint32_t networkUintStack_38;
   uint32_t networkUintStack_34;
@@ -5107,20 +5107,20 @@ void NetworkExecuteErrorRecovery(longlong socketHandle,uint64_t *dataBuffer,uint
   cVar4 = func_0x000180894c50(socketHandle,bufferCapacity);
   timeoutValue = ((uint)(cVar4 != '\0') | *(uint *)(dataBuffer + 4)) & ~(uint)(cVar4 == '\0');
   *(uint *)(dataBuffer + 4) = timeoutValue;
-  uVar9 = 2;
+  uint_var_9 = 2;
   if (*(int *)(socketHandle + 0x30) != 0) {
-    uVar9 = 0;
+    uint_var_9 = 0;
   }
-  uVar9 = (-(uint)(*(int *)(socketHandle + 0x30) != 0) & 2 | timeoutValue) & ~uVar9;
-  *(uint *)(dataBuffer + 4) = uVar9;
+  uint_var_9 = (-(uint)(*(int *)(socketHandle + 0x30) != 0) & 2 | timeoutValue) & ~uint_var_9;
+  *(uint *)(dataBuffer + 4) = uint_var_9;
   isActive = *(byte *)(socketHandle + 0x34) & 1;
-  uVar9 = ~((isActive ^ 1) << 2) & ((uint)isActive << 2 | uVar9);
-  *(uint *)(dataBuffer + 4) = uVar9;
+  uint_var_9 = ~((isActive ^ 1) << 2) & ((uint)isActive << 2 | uint_var_9);
+  *(uint *)(dataBuffer + 4) = uint_var_9;
   isActive = (byte)(*(uint *)(socketHandle + 0x34) >> 3) & 1;
-  uVar9 = ~((isActive ^ 1) << 3) & ((uint)isActive << 3 | uVar9);
-  *(uint *)(dataBuffer + 4) = uVar9;
+  uint_var_9 = ~((isActive ^ 1) << 3) & ((uint)isActive << 3 | uint_var_9);
+  *(uint *)(dataBuffer + 4) = uint_var_9;
   isActive = (byte)(*(uint *)(socketHandle + 0x34) >> 5) & 1;
-  *(uint *)(dataBuffer + 4) = ~((isActive ^ 1) << 4) & ((uint)isActive << 4 | uVar9);
+  *(uint *)(dataBuffer + 4) = ~((isActive ^ 1) << 4) & ((uint)isActive << 4 | uint_var_9);
                     // WARNING: Subroutine does not return
   networkEncryptData(networkUintStack_28 ^ (ulonglong)networkStack_58);
 }
@@ -6284,7 +6284,7 @@ void NetworkSocketSend(char *socketHandle,uint64_t *dataBuffer)
   char *pcVar6;
   uint8_t *pbufferSize;
   uint8_t *ptimeoutValue;
-  longlong lVar9;
+  longlong long_var_9;
   byte *connectionBuffer0;
   uint8_t networkStack_b8 [32];
   uint32_t networkUintStack_98;
@@ -6317,7 +6317,7 @@ FUN_180848ff1:
       func_0x00018076b450(&networkUintStack_60,socketHandle,0x27);
       networkUintStack_57 = 0;
       network_ptr_stack_88[0] = networkStack_5f;
-      lVar9 = 0;
+      long_var_9 = 0;
       networkUintStack_52 = 0;
       network_ptr_stack_88[1] = networkStack_56;
       networkUintStack_4d = 0;
@@ -6327,7 +6327,7 @@ FUN_180848ff1:
       networkUintStack_48 = 0;
       networkStack_3d[2] = 0;
       do {
-        pcVar6 = network_ptr_stack_88[lVar9];
+        pcVar6 = network_ptr_stack_88[long_var_9];
         cVar2 = *pcVar6;
         while (cVar2 != '\0') {
           if (((9 < (byte)(cVar2 - 0x30U)) && (5 < (byte)(cVar2 + 0xbfU))) &&
@@ -6336,8 +6336,8 @@ FUN_180848ff1:
           pcVar6 = pcVar6 + 1;
           cVar2 = *pcVar1;
         }
-        lVar9 = lVar9 + 1;
-      } while (lVar9 < 5);
+        long_var_9 = long_var_9 + 1;
+      } while (long_var_9 < 5);
       networkUintStack_98 = func_0x00018076b320(networkStack_5f);
       dataPointer = func_0x00018076b320(networkStack_56);
       networkUintStack_94 = CONCAT22(networkUintStack_94._2_2_,dataPointer);
@@ -6473,7 +6473,7 @@ void networkSetupMemoryManager(void)
   uint8_t *pbufferSize;
   uint8_t *ptimeoutValue;
   uint8_t unaff_R12B;
-  longlong lVar9;
+  longlong long_var_9;
   uint32_t *unaff_R15;
   
   connectionIndex = func_0x00018076b320();
@@ -6488,10 +6488,10 @@ void networkSetupMemoryManager(void)
   *(char *)(unaff_RBP + -0x31) = (char)((ushort)dataPointer >> 8);
   pbufferSize = (uint8_t *)(unaff_RBP + 0x22);
   socketIndex = 5;
-  lVar9 = unaff_RBP + 0x22;
+  long_var_9 = unaff_RBP + 0x22;
   do {
-    bufferCapacity = func_0x00018076b320(lVar9);
-    lVar9 = lVar9 + -2;
+    bufferCapacity = func_0x00018076b320(long_var_9);
+    long_var_9 = long_var_9 + -2;
     *ptimeoutValue = bufferCapacity;
     socketIndex = socketIndex + -1;
     *pbufferSize = unaff_R12B;
@@ -8407,7 +8407,7 @@ void NetworkCleanupSocketData(longlong *socketHandle,longlong dataBuffer,longlon
   byte isSecure;
   byte isEncrypted;
   byte isAuthenticated;
-  ushort uVar9;
+  ushort uint_var_9;
   ushort networkResult0;
   uint32_t networkResult1;
   char cVar12;
@@ -8449,7 +8449,7 @@ void NetworkCleanupSocketData(longlong *socketHandle,longlong dataBuffer,longlon
         isSecure = *(byte *)((longlong)connectionBuffer8 + 10);
         isEncrypted = *(byte *)((longlong)connectionBuffer8 + 9);
         isAuthenticated = *(byte *)(connectionBuffer8 + 2);
-        uVar9 = *(ushort *)((longlong)connectionBuffer8 + 6);
+        uint_var_9 = *(ushort *)((longlong)connectionBuffer8 + 6);
         networkResult0 = *(ushort *)(connectionBuffer8 + 1);
         networkResult1 = *connectionBuffer8;
 LAB_18084bb6f:
@@ -8461,7 +8461,7 @@ LAB_18084bb6f:
         networkUintStack_88 = (uint)isSecure;
         networkUintStack_90 = (uint)isEncrypted;
         networkUintStack_a8 = (uint)networkResult0;
-        networkUintStack_a0 = (uint)uVar9;
+        networkUintStack_a0 = (uint)uint_var_9;
         networkUintStack_98 = (uint)isAuthenticated;
                     // WARNING: Subroutine does not return
         FUN_18076b390(networkStack_58,0x27,&UNK_180958180,networkResult1);
@@ -8485,7 +8485,7 @@ LAB_18084bb6f:
           isSecure = *(byte *)((longlong)connectionBuffer7 + 10);
           isEncrypted = *(byte *)((longlong)connectionBuffer7 + 9);
           isAuthenticated = *(byte *)(connectionBuffer7 + 2);
-          uVar9 = *(ushort *)((longlong)connectionBuffer7 + 6);
+          uint_var_9 = *(ushort *)((longlong)connectionBuffer7 + 6);
           networkResult0 = *(ushort *)(connectionBuffer7 + 1);
           networkResult1 = *connectionBuffer7;
           goto LAB_18084bb6f;
@@ -8755,7 +8755,7 @@ void thunk_NetworkSocketSend(char *socketHandle,uint64_t *dataBuffer)
   char *pcVar6;
   uint8_t *pbufferSize;
   uint8_t *ptimeoutValue;
-  longlong lVar9;
+  longlong long_var_9;
   byte *connectionBuffer0;
   uint8_t networkStack_b8 [32];
   uint32_t networkUintStack_98;
@@ -8788,7 +8788,7 @@ FUN_180848ff1:
       func_0x00018076b450(&networkUintStack_60,socketHandle,0x27);
       networkUintStack_57 = 0;
       network_ptr_stack_88[0] = networkStack_5f;
-      lVar9 = 0;
+      long_var_9 = 0;
       networkUintStack_52 = 0;
       network_ptr_stack_88[1] = networkStack_56;
       networkUintStack_4d = 0;
@@ -8798,7 +8798,7 @@ FUN_180848ff1:
       networkUintStack_48 = 0;
       networkStack_3d[2] = 0;
       do {
-        pcVar6 = network_ptr_stack_88[lVar9];
+        pcVar6 = network_ptr_stack_88[long_var_9];
         cVar2 = *pcVar6;
         while (cVar2 != '\0') {
           if (((9 < (byte)(cVar2 - 0x30U)) && (5 < (byte)(cVar2 + 0xbfU))) &&
@@ -8807,8 +8807,8 @@ FUN_180848ff1:
           pcVar6 = pcVar6 + 1;
           cVar2 = *pcVar1;
         }
-        lVar9 = lVar9 + 1;
-      } while (lVar9 < 5);
+        long_var_9 = long_var_9 + 1;
+      } while (long_var_9 < 5);
       networkUintStack_98 = func_0x00018076b320(networkStack_5f);
       dataPointer = func_0x00018076b320(networkStack_56);
       networkUintStack_94 = CONCAT22(networkUintStack_94._2_2_,dataPointer);
@@ -10030,7 +10030,7 @@ void FUN_18084c8cc(uint32_t socketHandle)
   uint32_t *socketStatusPointer;
   uint32_t *pbufferSize;
   uint timeoutValue;
-  longlong lVar9;
+  longlong long_var_9;
   longlong networkTimeout0;
   ulonglong networkResult1;
   longlong *unaff_RSI;
@@ -10104,21 +10104,21 @@ LAB_18084c923:
   if ((int)timeoutValue < 0) {
     networkTimeout0 = (longlong)(int)-timeoutValue;
     if ((int)timeoutValue < 0) {
-      lVar9 = unaff_R15[0xf] + 0x1c + (longlong)(int)timeoutValue * CONNECTION_BUFFER_OFFSET;
+      long_var_9 = unaff_R15[0xf] + 0x1c + (longlong)(int)timeoutValue * CONNECTION_BUFFER_OFFSET;
       do {
         pbufferSize = (uint32_t *)FUN_180847820();
         bufferCapacity = pbufferSize[1];
         dataPointer = pbufferSize[2];
         connectionIndex = pbufferSize[3];
-        *(uint32_t *)(lVar9 + -0x1c) = *pbufferSize;
-        *(uint32_t *)(lVar9 + -0x18) = bufferCapacity;
-        *(uint32_t *)(lVar9 + -0x14) = dataPointer;
-        *(uint32_t *)(lVar9 + -0x10) = connectionIndex;
-        *(longlong *)(lVar9 + -0xc) = unaff_R12;
-        *(longlong *)(lVar9 + -4) = unaff_R12;
-        *(longlong *)(lVar9 + 4) = unaff_R12;
+        *(uint32_t *)(long_var_9 + -0x1c) = *pbufferSize;
+        *(uint32_t *)(long_var_9 + -0x18) = bufferCapacity;
+        *(uint32_t *)(long_var_9 + -0x14) = dataPointer;
+        *(uint32_t *)(long_var_9 + -0x10) = connectionIndex;
+        *(longlong *)(long_var_9 + -0xc) = unaff_R12;
+        *(longlong *)(long_var_9 + -4) = unaff_R12;
+        *(longlong *)(long_var_9 + 4) = unaff_R12;
         networkTimeout0 = networkTimeout0 + -1;
-        lVar9 = lVar9 + CONNECTION_BUFFER_OFFSET;
+        long_var_9 = long_var_9 + CONNECTION_BUFFER_OFFSET;
       } while (networkTimeout0 != 0);
     }
   }
@@ -10299,7 +10299,7 @@ uint32_t FUN_18084cbf0(longlong socketHandle,uint dataBuffer,double bufferCapaci
   uint8_t *socketStatusPointer;
   uint8_t *pbufferSize;
   uint timeoutValue;
-  uint uVar9;
+  uint uint_var_9;
   int statusCode0;
   int statusCode1;
   double dVar12;
@@ -10346,13 +10346,13 @@ uint32_t FUN_18084cbf0(longlong socketHandle,uint dataBuffer,double bufferCapaci
             pbufferSize = connectionBuffer + (longlong)statusCode1 * SOCKET_RESPONSE_OFFSET;
           }
         }
-        uVar9 = timeoutValue;
+        uint_var_9 = timeoutValue;
         packetLength = 0;
         if (dataPointer < timeoutValue) {
-          uVar9 = dataPointer;
+          uint_var_9 = dataPointer;
           packetLength = timeoutValue - dataPointer;
         }
-        statusCode0 = statusCode0 + uVar9;
+        statusCode0 = statusCode0 + uint_var_9;
         bufferCapacity = (double)packetLength / dVar12;
         pconnectionIndex = socketStatusPointer;
         socketStatusPointer = pbufferSize;
@@ -10516,7 +10516,7 @@ uint * ConfigureSocketOptions(longlong socketHandle,uint *dataBuffer)
   uint socketStatus;
   uint *pbufferSize;
   uint64_t *ptimeoutValue;
-  uint uVar9;
+  uint uint_var_9;
   ulonglong networkResult0;
   longlong *pnetworkTimeout1;
   uint auStackX_8 [2];
@@ -10528,11 +10528,11 @@ uint * ConfigureSocketOptions(longlong socketHandle,uint *dataBuffer)
          (networkResult0 < *(ulonglong *)(socketHandle + 0x38) + (longlong)*(int *)(socketHandle + 0x40) * 0x18))) {
     networkResult = (ulonglong)*(uint *)(networkResult0 + 0x14) + (ulonglong)*(uint *)(networkResult0 + 0x10);
     socketStatus = *(uint *)(networkResult0 + 0x14) + *(uint *)(networkResult0 + 0x10);
-    uVar9 = 0xffffffff;
+    uint_var_9 = 0xffffffff;
     if (networkResult < 0x100000000) {
-      uVar9 = socketStatus;
+      uint_var_9 = socketStatus;
     }
-    if (uVar9 < connectionIndex) {
+    if (uint_var_9 < connectionIndex) {
       networkResult0 = networkResult0 + 0x18;
       *dataBuffer = connectionIndex;
     }
@@ -10552,11 +10552,11 @@ uint * ConfigureSocketOptions(longlong socketHandle,uint *dataBuffer)
     break;
     networkResult = (ulonglong)*(uint *)(networkResult0 + 0x14) + (ulonglong)*(uint *)(networkResult0 + 0x10);
     socketStatus = *(uint *)(networkResult0 + 0x14) + *(uint *)(networkResult0 + 0x10);
-    uVar9 = 0xffffffff;
+    uint_var_9 = 0xffffffff;
     if (networkResult < 0x100000000) {
-      uVar9 = socketStatus;
+      uint_var_9 = socketStatus;
     }
-    if (uVar9 < connectionIndex) {
+    if (uint_var_9 < connectionIndex) {
       networkResult0 = networkResult0 + 0x18;
       *dataBuffer = connectionIndex;
     }
@@ -10631,13 +10631,13 @@ LAB_18084cfd9:
       (networkResult0 < *(ulonglong *)(socketHandle + 0x78) + (longlong)*(int *)(socketHandle + 0x80) * CONNECTION_BUFFER_OFFSET));
       networkResult0 = networkResult0 + CONNECTION_BUFFER_OFFSET) {
     networkResult = (ulonglong)*(uint *)(networkResult0 + SOCKET_RESPONSE_OFFSET) + (ulonglong)*(uint *)(networkResult0 + 0x24);
-    uVar9 = *(uint *)(networkResult0 + SOCKET_RESPONSE_OFFSET) + *(uint *)(networkResult0 + 0x24);
+    uint_var_9 = *(uint *)(networkResult0 + SOCKET_RESPONSE_OFFSET) + *(uint *)(networkResult0 + 0x24);
     connectionIndex = 0xffffffff;
     if (networkResult < 0x100000000) {
-      connectionIndex = uVar9;
+      connectionIndex = uint_var_9;
     }
     socketStatus = *dataBuffer;
-    if ((*dataBuffer <= connectionIndex) && (socketStatus = uVar9, 0xffffffff < networkResult)) {
+    if ((*dataBuffer <= connectionIndex) && (socketStatus = uint_var_9, 0xffffffff < networkResult)) {
       socketStatus = 0xffffffff;
     }
     *dataBuffer = socketStatus;
@@ -10660,7 +10660,7 @@ uint * FUN_18084cde8(longlong socketHandle,uint *dataBuffer)
   uint socketStatus;
   uint *pbufferSize;
   uint64_t *ptimeoutValue;
-  uint uVar9;
+  uint uint_var_9;
   ulonglong networkResult0;
   longlong *pnetworkTimeout1;
   uint stack_param;
@@ -10672,11 +10672,11 @@ uint * FUN_18084cde8(longlong socketHandle,uint *dataBuffer)
          (networkResult0 < *(ulonglong *)(socketHandle + 0x38) + (longlong)*(int *)(socketHandle + 0x40) * 0x18))) {
     networkResult = (ulonglong)*(uint *)(networkResult0 + 0x14) + (ulonglong)*(uint *)(networkResult0 + 0x10);
     socketStatus = *(uint *)(networkResult0 + 0x14) + *(uint *)(networkResult0 + 0x10);
-    uVar9 = 0xffffffff;
+    uint_var_9 = 0xffffffff;
     if (networkResult < 0x100000000) {
-      uVar9 = socketStatus;
+      uint_var_9 = socketStatus;
     }
-    if (uVar9 < connectionIndex) {
+    if (uint_var_9 < connectionIndex) {
       networkResult0 = networkResult0 + 0x18;
       *dataBuffer = connectionIndex;
     }
@@ -10696,11 +10696,11 @@ uint * FUN_18084cde8(longlong socketHandle,uint *dataBuffer)
     break;
     networkResult = (ulonglong)*(uint *)(networkResult0 + 0x14) + (ulonglong)*(uint *)(networkResult0 + 0x10);
     socketStatus = *(uint *)(networkResult0 + 0x14) + *(uint *)(networkResult0 + 0x10);
-    uVar9 = 0xffffffff;
+    uint_var_9 = 0xffffffff;
     if (networkResult < 0x100000000) {
-      uVar9 = socketStatus;
+      uint_var_9 = socketStatus;
     }
-    if (uVar9 < connectionIndex) {
+    if (uint_var_9 < connectionIndex) {
       networkResult0 = networkResult0 + 0x18;
       *dataBuffer = connectionIndex;
     }
@@ -10775,13 +10775,13 @@ LAB_18084cfd9:
       (networkResult0 < *(ulonglong *)(socketHandle + 0x78) + (longlong)*(int *)(socketHandle + 0x80) * CONNECTION_BUFFER_OFFSET));
       networkResult0 = networkResult0 + CONNECTION_BUFFER_OFFSET) {
     networkResult = (ulonglong)*(uint *)(networkResult0 + SOCKET_RESPONSE_OFFSET) + (ulonglong)*(uint *)(networkResult0 + 0x24);
-    uVar9 = *(uint *)(networkResult0 + SOCKET_RESPONSE_OFFSET) + *(uint *)(networkResult0 + 0x24);
+    uint_var_9 = *(uint *)(networkResult0 + SOCKET_RESPONSE_OFFSET) + *(uint *)(networkResult0 + 0x24);
     connectionIndex = 0xffffffff;
     if (networkResult < 0x100000000) {
-      connectionIndex = uVar9;
+      connectionIndex = uint_var_9;
     }
     socketStatus = *dataBuffer;
-    if ((*dataBuffer <= connectionIndex) && (socketStatus = uVar9, 0xffffffff < networkResult)) {
+    if ((*dataBuffer <= connectionIndex) && (socketStatus = uint_var_9, 0xffffffff < networkResult)) {
       socketStatus = 0xffffffff;
     }
     *dataBuffer = socketStatus;
@@ -10811,7 +10811,7 @@ void FUN_18084cf13(longlong socketHandle,uint64_t *dataBuffer,uint64_t *bufferCa
   ulonglong unaff_RBP;
   longlong unaff_RSI;
   uint *unaff_RDI;
-  uint uVar9;
+  uint uint_var_9;
   longlong *pnetworkTimeout0;
   int unaff_R12D;
   uint64_t *responseBuffer;
@@ -10870,13 +10870,13 @@ LAB_18084cfd9:
           (timeoutValue < *(ulonglong *)(unaff_RSI + 0x78) + (longlong)*(int *)(unaff_RSI + 0x80) * CONNECTION_BUFFER_OFFSET));
           timeoutValue = timeoutValue + CONNECTION_BUFFER_OFFSET) {
         networkResult = (ulonglong)*(uint *)(timeoutValue + SOCKET_RESPONSE_OFFSET) + (ulonglong)*(uint *)(timeoutValue + 0x24);
-        uVar9 = *(uint *)(timeoutValue + SOCKET_RESPONSE_OFFSET) + *(uint *)(timeoutValue + 0x24);
+        uint_var_9 = *(uint *)(timeoutValue + SOCKET_RESPONSE_OFFSET) + *(uint *)(timeoutValue + 0x24);
         bufferSize = dataPointer;
         if (networkResult <= unaff_RBP) {
-          bufferSize = uVar9;
+          bufferSize = uint_var_9;
         }
         connectionIndex = *unaff_RDI;
-        if ((*unaff_RDI <= bufferSize) && (connectionIndex = uVar9, unaff_RBP < networkResult)) {
+        if ((*unaff_RDI <= bufferSize) && (connectionIndex = uint_var_9, unaff_RBP < networkResult)) {
           connectionIndex = dataPointer;
         }
         *unaff_RDI = connectionIndex;
@@ -11588,7 +11588,7 @@ uint64_t FUN_18084d620(longlong *socketHandle,int dataBuffer)
   uint32_t socketStatus;
   longlong serverPort;
   longlong clientPort;
-  uint64_t uVar9;
+  uint64_t uint_var_9;
   uint64_t *connectionBuffer0;
   longlong networkTimeout1;
   longlong networkTimeout2;
@@ -11607,7 +11607,7 @@ LAB_18084d7db:
       NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),*socketHandle,&g_errorBuffer,0x100,1);
     }
     *socketHandle = serverPort;
-    uVar9 = 0;
+    uint_var_9 = 0;
     *(int *)((longlong)socketHandle + 0xc) = dataBuffer;
   }
   else {
@@ -11625,26 +11625,26 @@ LAB_18084d7db:
             connectionBuffer0 = (uint64_t *)(serverPort + 0x30);
             do {
               ppacketLength = (uint64_t *)((longlong)connectionBuffer0 + networkTimeout3 + -0x30);
-              uVar9 = ppacketLength[1];
+              uint_var_9 = ppacketLength[1];
               connectionBuffer = connectionBuffer0 + 0x10;
               connectionBuffer0[-6] = *ppacketLength;
-              connectionBuffer0[-5] = uVar9;
+              connectionBuffer0[-5] = uint_var_9;
               connectionBuffer0[-4] = *(uint64_t *)((longlong)connectionBuffer0 + networkTimeout3 + -SOCKET_RESPONSE_OFFSET);
               *(uint32_t *)(connectionBuffer0 + -3) = *(uint32_t *)((longlong)connectionBuffer0 + networkTimeout3 + -0x18);
               *(uint32_t *)((longlong)connectionBuffer0 + -0x14) =
                    *(uint32_t *)((longlong)connectionBuffer0 + networkTimeout3 + -0x14);
               ppacketLength = (uint64_t *)((longlong)connectionBuffer0 + networkTimeout3 + -0x10);
-              uVar9 = ppacketLength[1];
+              uint_var_9 = ppacketLength[1];
               connectionBuffer0[-2] = *ppacketLength;
-              connectionBuffer0[-1] = uVar9;
+              connectionBuffer0[-1] = uint_var_9;
               *connectionBuffer0 = *(uint64_t *)(networkTimeout3 + -0x80 + (longlong)connectionBuffer);
               *(uint32_t *)(connectionBuffer0 + 1) = *(uint32_t *)(networkTimeout3 + -0x78 + (longlong)connectionBuffer);
               *(uint32_t *)((longlong)connectionBuffer0 + 0xc) =
                    *(uint32_t *)(networkTimeout3 + -0x74 + (longlong)connectionBuffer);
               ppacketLength = (uint64_t *)((longlong)connectionBuffer0 + networkTimeout3 + 0x10);
-              uVar9 = ppacketLength[1];
+              uint_var_9 = ppacketLength[1];
               connectionBuffer0[2] = *ppacketLength;
-              connectionBuffer0[3] = uVar9;
+              connectionBuffer0[3] = uint_var_9;
               connectionBuffer0[4] = *(uint64_t *)(networkTimeout3 + -0x60 + (longlong)connectionBuffer);
               *(uint32_t *)(connectionBuffer0 + 5) = *(uint32_t *)((longlong)connectionBuffer0 + networkTimeout3 + CONNECTION_BUFFER_OFFSET);
               *(uint32_t *)((longlong)connectionBuffer0 + 0x2c) =
@@ -11691,9 +11691,9 @@ LAB_18084d7db:
         goto LAB_18084d7db;
       }
     }
-    uVar9 = 0x26;
+    uint_var_9 = 0x26;
   }
-  return uVar9;
+  return uint_var_9;
 }
 
 
@@ -11711,7 +11711,7 @@ uint64_t FUN_18084d644(uint64_t socketHandle,int dataBuffer)
   uint32_t socketStatus;
   longlong serverPort;
   longlong clientPort;
-  uint64_t uVar9;
+  uint64_t uint_var_9;
   uint64_t *connectionBuffer0;
   longlong networkTimeout1;
   longlong *unaff_RBX;
@@ -11729,7 +11729,7 @@ LAB_18084d7db:
       NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),*unaff_RBX,&g_errorBuffer,0x100,1);
     }
     *unaff_RBX = serverPort;
-    uVar9 = 0;
+    uint_var_9 = 0;
     *(int *)((longlong)unaff_RBX + 0xc) = unaff_EBP;
   }
   else {
@@ -11747,26 +11747,26 @@ LAB_18084d7db:
             connectionBuffer0 = (uint64_t *)(serverPort + 0x30);
             do {
               ppacketLength = (uint64_t *)((longlong)connectionBuffer0 + networkTimeout3 + -0x30);
-              uVar9 = ppacketLength[1];
+              uint_var_9 = ppacketLength[1];
               connectionBuffer = connectionBuffer0 + 0x10;
               connectionBuffer0[-6] = *ppacketLength;
-              connectionBuffer0[-5] = uVar9;
+              connectionBuffer0[-5] = uint_var_9;
               connectionBuffer0[-4] = *(uint64_t *)((longlong)connectionBuffer0 + networkTimeout3 + -SOCKET_RESPONSE_OFFSET);
               *(uint32_t *)(connectionBuffer0 + -3) = *(uint32_t *)((longlong)connectionBuffer0 + networkTimeout3 + -0x18);
               *(uint32_t *)((longlong)connectionBuffer0 + -0x14) =
                    *(uint32_t *)((longlong)connectionBuffer0 + networkTimeout3 + -0x14);
               ppacketLength = (uint64_t *)((longlong)connectionBuffer0 + networkTimeout3 + -0x10);
-              uVar9 = ppacketLength[1];
+              uint_var_9 = ppacketLength[1];
               connectionBuffer0[-2] = *ppacketLength;
-              connectionBuffer0[-1] = uVar9;
+              connectionBuffer0[-1] = uint_var_9;
               *connectionBuffer0 = *(uint64_t *)(networkTimeout3 + -0x80 + (longlong)connectionBuffer);
               *(uint32_t *)(connectionBuffer0 + 1) = *(uint32_t *)(networkTimeout3 + -0x78 + (longlong)connectionBuffer);
               *(uint32_t *)((longlong)connectionBuffer0 + 0xc) =
                    *(uint32_t *)(networkTimeout3 + -0x74 + (longlong)connectionBuffer);
               ppacketLength = (uint64_t *)((longlong)connectionBuffer0 + networkTimeout3 + 0x10);
-              uVar9 = ppacketLength[1];
+              uint_var_9 = ppacketLength[1];
               connectionBuffer0[2] = *ppacketLength;
-              connectionBuffer0[3] = uVar9;
+              connectionBuffer0[3] = uint_var_9;
               connectionBuffer0[4] = *(uint64_t *)(networkTimeout3 + -0x60 + (longlong)connectionBuffer);
               *(uint32_t *)(connectionBuffer0 + 5) = *(uint32_t *)((longlong)connectionBuffer0 + networkTimeout3 + CONNECTION_BUFFER_OFFSET);
               *(uint32_t *)((longlong)connectionBuffer0 + 0x2c) =
@@ -11813,9 +11813,9 @@ LAB_18084d7db:
         goto LAB_18084d7db;
       }
     }
-    uVar9 = 0x26;
+    uint_var_9 = 0x26;
   }
-  return uVar9;
+  return uint_var_9;
 }
 
 
@@ -13336,7 +13336,7 @@ ulonglong FUN_18084f040(longlong *socketHandle)
   uint socketStatus;
   int dataLength;
   ulonglong timeoutValue;
-  longlong lVar9;
+  longlong long_var_9;
   ulonglong networkResult0;
   int *pstatusCode1;
   
@@ -13366,23 +13366,23 @@ LAB_18084f0bc:
     dataPointer = *(uint64_t *)((longlong)dataLength * SOCKET_RESPONSE_OFFSET + 0x18 + connectionInfo);
     connectionBuffer = (uint *)((longlong)dataLength * SOCKET_RESPONSE_OFFSET + connectionInfo);
     if ((*(int *)((longlong)socketHandle + 0x24) != 0) && (resultCode != 0)) {
-      lVar9 = (longlong)(int)((connectionBuffer[3] ^ connectionBuffer[1] ^ *connectionBuffer ^ connectionBuffer[2]) & resultCode - 1U);
-      pstatusCode1 = (int *)(*socketHandle + lVar9 * 4);
-      resultCode = *(int *)(*socketHandle + lVar9 * 4);
+      long_var_9 = (longlong)(int)((connectionBuffer[3] ^ connectionBuffer[1] ^ *connectionBuffer ^ connectionBuffer[2]) & resultCode - 1U);
+      pstatusCode1 = (int *)(*socketHandle + long_var_9 * 4);
+      resultCode = *(int *)(*socketHandle + long_var_9 * 4);
       while (resultCode != -1) {
-        lVar9 = (longlong)resultCode * SOCKET_RESPONSE_OFFSET;
-        if ((*(longlong *)(lVar9 + connectionInfo) == *(longlong *)connectionBuffer) &&
-           (*(longlong *)(lVar9 + 8 + connectionInfo) == *(longlong *)(connectionBuffer + 2))) {
+        long_var_9 = (longlong)resultCode * SOCKET_RESPONSE_OFFSET;
+        if ((*(longlong *)(long_var_9 + connectionInfo) == *(longlong *)connectionBuffer) &&
+           (*(longlong *)(long_var_9 + 8 + connectionInfo) == *(longlong *)(connectionBuffer + 2))) {
           resultCode = *pstatusCode1;
-          lVar9 = (longlong)resultCode * SOCKET_RESPONSE_OFFSET;
-          *(uint64_t *)(lVar9 + 0x18 + connectionInfo) = 0;
-          *pstatusCode1 = *(int *)(lVar9 + 0x10 + connectionInfo);
-          *(int *)(lVar9 + 0x10 + connectionInfo) = (int)socketHandle[4];
+          long_var_9 = (longlong)resultCode * SOCKET_RESPONSE_OFFSET;
+          *(uint64_t *)(long_var_9 + 0x18 + connectionInfo) = 0;
+          *pstatusCode1 = *(int *)(long_var_9 + 0x10 + connectionInfo);
+          *(int *)(long_var_9 + 0x10 + connectionInfo) = (int)socketHandle[4];
           *(int *)((longlong)socketHandle + 0x24) = *(int *)((longlong)socketHandle + 0x24) + -1;
           *(int *)(socketHandle + 4) = resultCode;
           break;
         }
-        pstatusCode1 = (int *)(connectionInfo + 0x10 + lVar9);
+        pstatusCode1 = (int *)(connectionInfo + 0x10 + long_var_9);
         resultCode = *pstatusCode1;
       }
     }
@@ -13390,9 +13390,9 @@ LAB_18084f0bc:
                     // WARNING: Subroutine does not return
     NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),dataPointer,&g_network_connection_buffer_cd0,0x62,1);
   }
-  lVar9 = socketHandle[5];
-  if (lVar9 != 0) {
-    FUN_180768360(lVar9);
+  long_var_9 = socketHandle[5];
+  if (long_var_9 != 0) {
+    FUN_180768360(long_var_9);
   }
   timeoutValue = FUN_180744cc0(socketHandle);
   if ((int)timeoutValue == 0) {
@@ -13423,9 +13423,9 @@ LAB_18084f0bc:
     }
   }
 LAB_18084f283:
-  if (lVar9 != 0) {
+  if (long_var_9 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180768400(lVar9);
+    FUN_180768400(long_var_9);
   }
   if (connectionInfo != 0) {
     if (connectionInfo == 0) {
@@ -13452,7 +13452,7 @@ ulonglong FUN_18084f04a(longlong *socketHandle)
   uint socketStatus;
   int dataLength;
   ulonglong timeoutValue;
-  longlong lVar9;
+  longlong long_var_9;
   ulonglong networkResult0;
   int *pstatusCode1;
   longlong unaff_RBP;
@@ -13486,25 +13486,25 @@ LAB_18084f0bc:
     uStack0000000000000034 = connectionBuffer[1];
     uStack000000000000003c = connectionBuffer[3];
     if ((*(int *)((longlong)socketHandle + 0x24) != 0) && (resultCode != 0)) {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)((uStack000000000000003c ^ uStack0000000000000034 ^ *connectionBuffer ^ connectionBuffer[2]) &
                    resultCode - 1U);
-      pstatusCode1 = (int *)(*socketHandle + lVar9 * 4);
-      resultCode = *(int *)(*socketHandle + lVar9 * 4);
+      pstatusCode1 = (int *)(*socketHandle + long_var_9 * 4);
+      resultCode = *(int *)(*socketHandle + long_var_9 * 4);
       while (resultCode != -1) {
-        lVar9 = (longlong)resultCode * SOCKET_RESPONSE_OFFSET;
-        if ((*(longlong *)(lVar9 + connectionInfo) == *(longlong *)connectionBuffer) &&
-           (*(longlong *)(lVar9 + 8 + connectionInfo) == *(longlong *)(connectionBuffer + 2))) {
+        long_var_9 = (longlong)resultCode * SOCKET_RESPONSE_OFFSET;
+        if ((*(longlong *)(long_var_9 + connectionInfo) == *(longlong *)connectionBuffer) &&
+           (*(longlong *)(long_var_9 + 8 + connectionInfo) == *(longlong *)(connectionBuffer + 2))) {
           resultCode = *pstatusCode1;
-          lVar9 = (longlong)resultCode * SOCKET_RESPONSE_OFFSET;
-          *(uint64_t *)(lVar9 + 0x18 + connectionInfo) = 0;
-          *pstatusCode1 = *(int *)(lVar9 + 0x10 + connectionInfo);
-          *(int *)(lVar9 + 0x10 + connectionInfo) = (int)socketHandle[4];
+          long_var_9 = (longlong)resultCode * SOCKET_RESPONSE_OFFSET;
+          *(uint64_t *)(long_var_9 + 0x18 + connectionInfo) = 0;
+          *pstatusCode1 = *(int *)(long_var_9 + 0x10 + connectionInfo);
+          *(int *)(long_var_9 + 0x10 + connectionInfo) = (int)socketHandle[4];
           *(int *)((longlong)socketHandle + 0x24) = *(int *)((longlong)socketHandle + 0x24) + -1;
           *(int *)(socketHandle + 4) = resultCode;
           break;
         }
-        pstatusCode1 = (int *)(connectionInfo + 0x10 + lVar9);
+        pstatusCode1 = (int *)(connectionInfo + 0x10 + long_var_9);
         resultCode = *pstatusCode1;
       }
     }
@@ -13601,7 +13601,7 @@ ulonglong FUN_18084f2d0(longlong *socketHandle)
   uint socketStatus;
   int dataLength;
   ulonglong timeoutValue;
-  longlong lVar9;
+  longlong long_var_9;
   ulonglong networkResult0;
   int *pstatusCode1;
   
@@ -13631,23 +13631,23 @@ LAB_18084f34c:
     dataPointer = *(uint64_t *)((longlong)dataLength * SOCKET_RESPONSE_OFFSET + 0x18 + connectionInfo);
     connectionBuffer = (uint *)((longlong)dataLength * SOCKET_RESPONSE_OFFSET + connectionInfo);
     if ((*(int *)((longlong)socketHandle + 0x24) != 0) && (resultCode != 0)) {
-      lVar9 = (longlong)(int)((connectionBuffer[3] ^ connectionBuffer[1] ^ *connectionBuffer ^ connectionBuffer[2]) & resultCode - 1U);
-      pstatusCode1 = (int *)(*socketHandle + lVar9 * 4);
-      resultCode = *(int *)(*socketHandle + lVar9 * 4);
+      long_var_9 = (longlong)(int)((connectionBuffer[3] ^ connectionBuffer[1] ^ *connectionBuffer ^ connectionBuffer[2]) & resultCode - 1U);
+      pstatusCode1 = (int *)(*socketHandle + long_var_9 * 4);
+      resultCode = *(int *)(*socketHandle + long_var_9 * 4);
       while (resultCode != -1) {
-        lVar9 = (longlong)resultCode * SOCKET_RESPONSE_OFFSET;
-        if ((*(longlong *)(lVar9 + connectionInfo) == *(longlong *)connectionBuffer) &&
-           (*(longlong *)(lVar9 + 8 + connectionInfo) == *(longlong *)(connectionBuffer + 2))) {
+        long_var_9 = (longlong)resultCode * SOCKET_RESPONSE_OFFSET;
+        if ((*(longlong *)(long_var_9 + connectionInfo) == *(longlong *)connectionBuffer) &&
+           (*(longlong *)(long_var_9 + 8 + connectionInfo) == *(longlong *)(connectionBuffer + 2))) {
           resultCode = *pstatusCode1;
-          lVar9 = (longlong)resultCode * SOCKET_RESPONSE_OFFSET;
-          *(uint64_t *)(lVar9 + 0x18 + connectionInfo) = 0;
-          *pstatusCode1 = *(int *)(lVar9 + 0x10 + connectionInfo);
-          *(int *)(lVar9 + 0x10 + connectionInfo) = (int)socketHandle[4];
+          long_var_9 = (longlong)resultCode * SOCKET_RESPONSE_OFFSET;
+          *(uint64_t *)(long_var_9 + 0x18 + connectionInfo) = 0;
+          *pstatusCode1 = *(int *)(long_var_9 + 0x10 + connectionInfo);
+          *(int *)(long_var_9 + 0x10 + connectionInfo) = (int)socketHandle[4];
           *(int *)((longlong)socketHandle + 0x24) = *(int *)((longlong)socketHandle + 0x24) + -1;
           *(int *)(socketHandle + 4) = resultCode;
           break;
         }
-        pstatusCode1 = (int *)(connectionInfo + 0x10 + lVar9);
+        pstatusCode1 = (int *)(connectionInfo + 0x10 + long_var_9);
         resultCode = *pstatusCode1;
       }
     }
@@ -13655,9 +13655,9 @@ LAB_18084f34c:
                     // WARNING: Subroutine does not return
     NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),dataPointer,&g_network_connection_buffer_cd0,0x62,1);
   }
-  lVar9 = socketHandle[5];
-  if (lVar9 != 0) {
-    FUN_180768360(lVar9);
+  long_var_9 = socketHandle[5];
+  if (long_var_9 != 0) {
+    FUN_180768360(long_var_9);
   }
   timeoutValue = FUN_180744cc0(socketHandle);
   if ((int)timeoutValue == 0) {
@@ -13688,9 +13688,9 @@ LAB_18084f34c:
     }
   }
 LAB_18084f513:
-  if (lVar9 != 0) {
+  if (long_var_9 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180768400(lVar9);
+    FUN_180768400(long_var_9);
   }
   if (connectionInfo != 0) {
     if (connectionInfo == 0) {
@@ -13717,7 +13717,7 @@ ulonglong FUN_18084f2da(longlong *socketHandle)
   uint socketStatus;
   int dataLength;
   ulonglong timeoutValue;
-  longlong lVar9;
+  longlong long_var_9;
   ulonglong networkResult0;
   int *pstatusCode1;
   longlong unaff_RBP;
@@ -13751,25 +13751,25 @@ LAB_18084f34c:
     uStack0000000000000034 = connectionBuffer[1];
     uStack000000000000003c = connectionBuffer[3];
     if ((*(int *)((longlong)socketHandle + 0x24) != 0) && (resultCode != 0)) {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)((uStack000000000000003c ^ uStack0000000000000034 ^ *connectionBuffer ^ connectionBuffer[2]) &
                    resultCode - 1U);
-      pstatusCode1 = (int *)(*socketHandle + lVar9 * 4);
-      resultCode = *(int *)(*socketHandle + lVar9 * 4);
+      pstatusCode1 = (int *)(*socketHandle + long_var_9 * 4);
+      resultCode = *(int *)(*socketHandle + long_var_9 * 4);
       while (resultCode != -1) {
-        lVar9 = (longlong)resultCode * SOCKET_RESPONSE_OFFSET;
-        if ((*(longlong *)(lVar9 + connectionInfo) == *(longlong *)connectionBuffer) &&
-           (*(longlong *)(lVar9 + 8 + connectionInfo) == *(longlong *)(connectionBuffer + 2))) {
+        long_var_9 = (longlong)resultCode * SOCKET_RESPONSE_OFFSET;
+        if ((*(longlong *)(long_var_9 + connectionInfo) == *(longlong *)connectionBuffer) &&
+           (*(longlong *)(long_var_9 + 8 + connectionInfo) == *(longlong *)(connectionBuffer + 2))) {
           resultCode = *pstatusCode1;
-          lVar9 = (longlong)resultCode * SOCKET_RESPONSE_OFFSET;
-          *(uint64_t *)(lVar9 + 0x18 + connectionInfo) = 0;
-          *pstatusCode1 = *(int *)(lVar9 + 0x10 + connectionInfo);
-          *(int *)(lVar9 + 0x10 + connectionInfo) = (int)socketHandle[4];
+          long_var_9 = (longlong)resultCode * SOCKET_RESPONSE_OFFSET;
+          *(uint64_t *)(long_var_9 + 0x18 + connectionInfo) = 0;
+          *pstatusCode1 = *(int *)(long_var_9 + 0x10 + connectionInfo);
+          *(int *)(long_var_9 + 0x10 + connectionInfo) = (int)socketHandle[4];
           *(int *)((longlong)socketHandle + 0x24) = *(int *)((longlong)socketHandle + 0x24) + -1;
           *(int *)(socketHandle + 4) = resultCode;
           break;
         }
-        pstatusCode1 = (int *)(connectionInfo + 0x10 + lVar9);
+        pstatusCode1 = (int *)(connectionInfo + 0x10 + long_var_9);
         resultCode = *pstatusCode1;
       }
     }
@@ -13866,7 +13866,7 @@ ulonglong FUN_18084f560(longlong *socketHandle)
   uint socketStatus;
   int dataLength;
   ulonglong timeoutValue;
-  longlong lVar9;
+  longlong long_var_9;
   ulonglong networkResult0;
   int *pstatusCode1;
   
@@ -13896,23 +13896,23 @@ LAB_18084f5dc:
     dataPointer = *(uint64_t *)((longlong)dataLength * SOCKET_RESPONSE_OFFSET + 0x18 + connectionInfo);
     connectionBuffer = (uint *)((longlong)dataLength * SOCKET_RESPONSE_OFFSET + connectionInfo);
     if ((*(int *)((longlong)socketHandle + 0x24) != 0) && (resultCode != 0)) {
-      lVar9 = (longlong)(int)((connectionBuffer[3] ^ connectionBuffer[1] ^ *connectionBuffer ^ connectionBuffer[2]) & resultCode - 1U);
-      pstatusCode1 = (int *)(*socketHandle + lVar9 * 4);
-      resultCode = *(int *)(*socketHandle + lVar9 * 4);
+      long_var_9 = (longlong)(int)((connectionBuffer[3] ^ connectionBuffer[1] ^ *connectionBuffer ^ connectionBuffer[2]) & resultCode - 1U);
+      pstatusCode1 = (int *)(*socketHandle + long_var_9 * 4);
+      resultCode = *(int *)(*socketHandle + long_var_9 * 4);
       while (resultCode != -1) {
-        lVar9 = (longlong)resultCode * SOCKET_RESPONSE_OFFSET;
-        if ((*(longlong *)(lVar9 + connectionInfo) == *(longlong *)connectionBuffer) &&
-           (*(longlong *)(lVar9 + 8 + connectionInfo) == *(longlong *)(connectionBuffer + 2))) {
+        long_var_9 = (longlong)resultCode * SOCKET_RESPONSE_OFFSET;
+        if ((*(longlong *)(long_var_9 + connectionInfo) == *(longlong *)connectionBuffer) &&
+           (*(longlong *)(long_var_9 + 8 + connectionInfo) == *(longlong *)(connectionBuffer + 2))) {
           resultCode = *pstatusCode1;
-          lVar9 = (longlong)resultCode * SOCKET_RESPONSE_OFFSET;
-          *(uint64_t *)(lVar9 + 0x18 + connectionInfo) = 0;
-          *pstatusCode1 = *(int *)(lVar9 + 0x10 + connectionInfo);
-          *(int *)(lVar9 + 0x10 + connectionInfo) = (int)socketHandle[4];
+          long_var_9 = (longlong)resultCode * SOCKET_RESPONSE_OFFSET;
+          *(uint64_t *)(long_var_9 + 0x18 + connectionInfo) = 0;
+          *pstatusCode1 = *(int *)(long_var_9 + 0x10 + connectionInfo);
+          *(int *)(long_var_9 + 0x10 + connectionInfo) = (int)socketHandle[4];
           *(int *)((longlong)socketHandle + 0x24) = *(int *)((longlong)socketHandle + 0x24) + -1;
           *(int *)(socketHandle + 4) = resultCode;
           break;
         }
-        pstatusCode1 = (int *)(connectionInfo + 0x10 + lVar9);
+        pstatusCode1 = (int *)(connectionInfo + 0x10 + long_var_9);
         resultCode = *pstatusCode1;
       }
     }
@@ -13920,9 +13920,9 @@ LAB_18084f5dc:
                     // WARNING: Subroutine does not return
     NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),dataPointer,&g_network_connection_buffer_cd0,0x62,1);
   }
-  lVar9 = socketHandle[5];
-  if (lVar9 != 0) {
-    FUN_180768360(lVar9);
+  long_var_9 = socketHandle[5];
+  if (long_var_9 != 0) {
+    FUN_180768360(long_var_9);
   }
   timeoutValue = FUN_180744cc0(socketHandle);
   if ((int)timeoutValue == 0) {
@@ -13953,9 +13953,9 @@ LAB_18084f5dc:
     }
   }
 LAB_18084f7a3:
-  if (lVar9 != 0) {
+  if (long_var_9 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180768400(lVar9);
+    FUN_180768400(long_var_9);
   }
   if (connectionInfo != 0) {
     if (connectionInfo == 0) {
@@ -13982,7 +13982,7 @@ ulonglong FUN_18084f56a(longlong *socketHandle)
   uint socketStatus;
   int dataLength;
   ulonglong timeoutValue;
-  longlong lVar9;
+  longlong long_var_9;
   ulonglong networkResult0;
   int *pstatusCode1;
   longlong unaff_RBP;
@@ -14016,25 +14016,25 @@ LAB_18084f5dc:
     uStack0000000000000034 = connectionBuffer[1];
     uStack000000000000003c = connectionBuffer[3];
     if ((*(int *)((longlong)socketHandle + 0x24) != 0) && (resultCode != 0)) {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)((uStack000000000000003c ^ uStack0000000000000034 ^ *connectionBuffer ^ connectionBuffer[2]) &
                    resultCode - 1U);
-      pstatusCode1 = (int *)(*socketHandle + lVar9 * 4);
-      resultCode = *(int *)(*socketHandle + lVar9 * 4);
+      pstatusCode1 = (int *)(*socketHandle + long_var_9 * 4);
+      resultCode = *(int *)(*socketHandle + long_var_9 * 4);
       while (resultCode != -1) {
-        lVar9 = (longlong)resultCode * SOCKET_RESPONSE_OFFSET;
-        if ((*(longlong *)(lVar9 + connectionInfo) == *(longlong *)connectionBuffer) &&
-           (*(longlong *)(lVar9 + 8 + connectionInfo) == *(longlong *)(connectionBuffer + 2))) {
+        long_var_9 = (longlong)resultCode * SOCKET_RESPONSE_OFFSET;
+        if ((*(longlong *)(long_var_9 + connectionInfo) == *(longlong *)connectionBuffer) &&
+           (*(longlong *)(long_var_9 + 8 + connectionInfo) == *(longlong *)(connectionBuffer + 2))) {
           resultCode = *pstatusCode1;
-          lVar9 = (longlong)resultCode * SOCKET_RESPONSE_OFFSET;
-          *(uint64_t *)(lVar9 + 0x18 + connectionInfo) = 0;
-          *pstatusCode1 = *(int *)(lVar9 + 0x10 + connectionInfo);
-          *(int *)(lVar9 + 0x10 + connectionInfo) = (int)socketHandle[4];
+          long_var_9 = (longlong)resultCode * SOCKET_RESPONSE_OFFSET;
+          *(uint64_t *)(long_var_9 + 0x18 + connectionInfo) = 0;
+          *pstatusCode1 = *(int *)(long_var_9 + 0x10 + connectionInfo);
+          *(int *)(long_var_9 + 0x10 + connectionInfo) = (int)socketHandle[4];
           *(int *)((longlong)socketHandle + 0x24) = *(int *)((longlong)socketHandle + 0x24) + -1;
           *(int *)(socketHandle + 4) = resultCode;
           break;
         }
-        pstatusCode1 = (int *)(connectionInfo + 0x10 + lVar9);
+        pstatusCode1 = (int *)(connectionInfo + 0x10 + long_var_9);
         resultCode = *pstatusCode1;
       }
     }
@@ -14131,7 +14131,7 @@ int FUN_18084f7f0(longlong *socketHandle)
   longlong *pnetworkAddress;
   int *pdataLength;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   longlong networkTimeout0;
   int statusCode1;
   int statusCode2;
@@ -14214,19 +14214,19 @@ LAB_18084f88c:
       do {
         pnetworkAddress = (longlong *)((longlong)statusCode2 * SOCKET_RESPONSE_OFFSET + socketHandle[2]);
         if ((*pnetworkAddress == connectionInfo) && (pnetworkAddress[1] == networkTimeout0)) {
-          lVar9 = pnetworkAddress[3];
+          long_var_9 = pnetworkAddress[3];
           goto LAB_18084f933;
         }
         statusCode2 = (int)pnetworkAddress[2];
       } while (statusCode2 != -1);
     }
-    lVar9 = 0;
+    long_var_9 = 0;
 LAB_18084f933:
     if (!isConnected7) {
                     // WARNING: Subroutine does not return
       FUN_180768400(clientPort);
     }
-    if (lVar9 != 0) {
+    if (long_var_9 != 0) {
       pnetworkAddress = *(longlong **)((longlong)statusCode1 * SOCKET_RESPONSE_OFFSET + 0x18 + socketHandle[8]);
       if ((int)pnetworkAddress[1] == 0) goto LAB_18084f987;
       statusCode1 = 0;
@@ -14239,9 +14239,9 @@ LAB_18084f933:
       FUN_180768360();
     }
     if ((int)socketHandle[7] != 0) {
-      lVar9 = (longlong)(int)((networkResult ^ networkUintStack_64 ^ connectionIndex ^ dataPointer) & (int)socketHandle[7] - 1U);
-      pnetworkAddress = (longlong *)(socketHandle[6] + lVar9 * 4);
-      statusCode1 = *(int *)(socketHandle[6] + lVar9 * 4);
+      long_var_9 = (longlong)(int)((networkResult ^ networkUintStack_64 ^ connectionIndex ^ dataPointer) & (int)socketHandle[7] - 1U);
+      pnetworkAddress = (longlong *)(socketHandle[6] + long_var_9 * 4);
+      statusCode1 = *(int *)(socketHandle[6] + long_var_9 * 4);
       if (statusCode1 != -1) {
         do {
           pnetworkTimeout6 = (longlong *)((longlong)statusCode1 * SOCKET_RESPONSE_OFFSET + socketHandle[8]);
@@ -14295,7 +14295,7 @@ LAB_18084faac:
     connectionBuffer4 = connectionBuffer5 + 1;
     if (connectionIndex == 0xffffffff) goto LAB_18084faac;
   }
-  statusCode1 = FUN_1807d28c0(lVar9,connectionBuffer3,connectionBuffer5 + 2);
+  statusCode1 = FUN_1807d28c0(long_var_9,connectionBuffer3,connectionBuffer5 + 2);
   if (statusCode1 != 0) goto LAB_18084fc83;
   networkResult = *connectionBuffer4;
   clientPort = (longlong)(int)networkResult * 0x10 + pnetworkAddress[2];
@@ -14366,7 +14366,7 @@ int FUN_18084f800(longlong *socketHandle)
   int *psocketIndex;
   longlong serverPort;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int statusCode0;
   int statusCode1;
   uint *connectionBuffer2;
@@ -14449,7 +14449,7 @@ LAB_18084f88c:
     bufferCapacity = uStack000000000000003c;
     dataPointer = uStack0000000000000038;
     networkResult = uStack0000000000000030;
-    lVar9 = CONCAT44(uStack000000000000003c,uStack0000000000000038);
+    long_var_9 = CONCAT44(uStack000000000000003c,uStack0000000000000038);
     socketDescriptor = CONCAT44(uStack0000000000000034,uStack0000000000000030);
     if (((*(int *)((longlong)socketHandle + 0x24) != 0) && ((int)socketHandle[1] != 0)) &&
        (statusCode1 = *(int *)(*socketHandle +
@@ -14459,7 +14459,7 @@ LAB_18084f88c:
                               (int)socketHandle[1] - 1U) * 4), statusCode1 != -1)) {
       do {
         psocketHandle = (longlong *)((longlong)statusCode1 * SOCKET_RESPONSE_OFFSET + socketHandle[2]);
-        if ((*psocketHandle == socketDescriptor) && (psocketHandle[1] == lVar9)) {
+        if ((*psocketHandle == socketDescriptor) && (psocketHandle[1] == long_var_9)) {
           clientPort = psocketHandle[3];
           goto LAB_18084f933;
         }
@@ -14492,14 +14492,14 @@ LAB_18084f933:
       if (statusCode0 != -1) {
         do {
           pnetworkTimeout5 = (longlong *)((longlong)statusCode0 * SOCKET_RESPONSE_OFFSET + socketHandle[8]);
-          if ((*pnetworkTimeout5 == socketDescriptor) && (pnetworkTimeout5[1] == lVar9)) {
+          if ((*pnetworkTimeout5 == socketDescriptor) && (pnetworkTimeout5[1] == long_var_9)) {
             statusCode0 = FUN_180852b00(socketHandle,&stack_buffer,pnetworkTimeout5 + 3);
             if (statusCode0 == 0) {
               socketDescriptor = *psocketHandle;
-              lVar9 = (longlong)(int)socketDescriptor * SOCKET_RESPONSE_OFFSET + socketHandle[8];
-              *(uint64_t *)(lVar9 + 0x18) = 0;
-              *(int *)psocketHandle = *(int *)(lVar9 + 0x10);
-              *(int *)(lVar9 + 0x10) = (int)socketHandle[10];
+              long_var_9 = (longlong)(int)socketDescriptor * SOCKET_RESPONSE_OFFSET + socketHandle[8];
+              *(uint64_t *)(long_var_9 + 0x18) = 0;
+              *(int *)psocketHandle = *(int *)(long_var_9 + 0x10);
+              *(int *)(long_var_9 + 0x10) = (int)socketHandle[10];
               *(int *)((longlong)socketHandle + 0x54) = *(int *)((longlong)socketHandle + 0x54) + -1;
               *(int *)(socketHandle + 10) = (int)socketDescriptor;
             }
@@ -14623,7 +14623,7 @@ int FUN_18084fcd0(longlong *socketHandle)
   longlong *pnetworkAddress;
   int *pdataLength;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   longlong networkTimeout0;
   int statusCode1;
   int statusCode2;
@@ -14706,19 +14706,19 @@ LAB_18084fd6c:
       do {
         pnetworkAddress = (longlong *)((longlong)statusCode2 * SOCKET_RESPONSE_OFFSET + socketHandle[2]);
         if ((*pnetworkAddress == connectionInfo) && (pnetworkAddress[1] == networkTimeout0)) {
-          lVar9 = pnetworkAddress[3];
+          long_var_9 = pnetworkAddress[3];
           goto LAB_18084fe13;
         }
         statusCode2 = (int)pnetworkAddress[2];
       } while (statusCode2 != -1);
     }
-    lVar9 = 0;
+    long_var_9 = 0;
 LAB_18084fe13:
     if (!isConnected7) {
                     // WARNING: Subroutine does not return
       FUN_180768400(clientPort);
     }
-    if (lVar9 != 0) {
+    if (long_var_9 != 0) {
       pnetworkAddress = *(longlong **)((longlong)statusCode1 * SOCKET_RESPONSE_OFFSET + 0x18 + socketHandle[8]);
       if ((int)pnetworkAddress[1] == 0) goto LAB_18084fe67;
       statusCode1 = 0;
@@ -14731,9 +14731,9 @@ LAB_18084fe13:
       FUN_180768360();
     }
     if ((int)socketHandle[7] != 0) {
-      lVar9 = (longlong)(int)((networkResult ^ networkUintStack_64 ^ connectionIndex ^ dataPointer) & (int)socketHandle[7] - 1U);
-      pnetworkAddress = (longlong *)(socketHandle[6] + lVar9 * 4);
-      statusCode1 = *(int *)(socketHandle[6] + lVar9 * 4);
+      long_var_9 = (longlong)(int)((networkResult ^ networkUintStack_64 ^ connectionIndex ^ dataPointer) & (int)socketHandle[7] - 1U);
+      pnetworkAddress = (longlong *)(socketHandle[6] + long_var_9 * 4);
+      statusCode1 = *(int *)(socketHandle[6] + long_var_9 * 4);
       if (statusCode1 != -1) {
         do {
           pnetworkTimeout6 = (longlong *)((longlong)statusCode1 * SOCKET_RESPONSE_OFFSET + socketHandle[8]);
@@ -14787,7 +14787,7 @@ LAB_18084ff8c:
     connectionBuffer4 = connectionBuffer5 + 1;
     if (connectionIndex == 0xffffffff) goto LAB_18084ff8c;
   }
-  statusCode1 = FUN_1807d28c0(lVar9,connectionBuffer3,connectionBuffer5 + 2);
+  statusCode1 = FUN_1807d28c0(long_var_9,connectionBuffer3,connectionBuffer5 + 2);
   if (statusCode1 != 0) goto LAB_180850163;
   networkResult = *connectionBuffer4;
   clientPort = (longlong)(int)networkResult * 0x10 + pnetworkAddress[2];
@@ -14858,7 +14858,7 @@ int FUN_18084fce0(longlong *socketHandle)
   int *psocketIndex;
   longlong serverPort;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int statusCode0;
   int statusCode1;
   uint *connectionBuffer2;
@@ -14941,7 +14941,7 @@ LAB_18084fd6c:
     bufferCapacity = uStack000000000000003c;
     dataPointer = uStack0000000000000038;
     networkResult = uStack0000000000000030;
-    lVar9 = CONCAT44(uStack000000000000003c,uStack0000000000000038);
+    long_var_9 = CONCAT44(uStack000000000000003c,uStack0000000000000038);
     socketDescriptor = CONCAT44(uStack0000000000000034,uStack0000000000000030);
     if (((*(int *)((longlong)socketHandle + 0x24) != 0) && ((int)socketHandle[1] != 0)) &&
        (statusCode1 = *(int *)(*socketHandle +
@@ -14951,7 +14951,7 @@ LAB_18084fd6c:
                               (int)socketHandle[1] - 1U) * 4), statusCode1 != -1)) {
       do {
         psocketHandle = (longlong *)((longlong)statusCode1 * SOCKET_RESPONSE_OFFSET + socketHandle[2]);
-        if ((*psocketHandle == socketDescriptor) && (psocketHandle[1] == lVar9)) {
+        if ((*psocketHandle == socketDescriptor) && (psocketHandle[1] == long_var_9)) {
           clientPort = psocketHandle[3];
           goto LAB_18084fe13;
         }
@@ -14984,14 +14984,14 @@ LAB_18084fe13:
       if (statusCode0 != -1) {
         do {
           pnetworkTimeout5 = (longlong *)((longlong)statusCode0 * SOCKET_RESPONSE_OFFSET + socketHandle[8]);
-          if ((*pnetworkTimeout5 == socketDescriptor) && (pnetworkTimeout5[1] == lVar9)) {
+          if ((*pnetworkTimeout5 == socketDescriptor) && (pnetworkTimeout5[1] == long_var_9)) {
             statusCode0 = FUN_180852bb0(socketHandle,&stack_buffer,pnetworkTimeout5 + 3);
             if (statusCode0 == 0) {
               socketDescriptor = *psocketHandle;
-              lVar9 = (longlong)(int)socketDescriptor * SOCKET_RESPONSE_OFFSET + socketHandle[8];
-              *(uint64_t *)(lVar9 + 0x18) = 0;
-              *(int *)psocketHandle = *(int *)(lVar9 + 0x10);
-              *(int *)(lVar9 + 0x10) = (int)socketHandle[10];
+              long_var_9 = (longlong)(int)socketDescriptor * SOCKET_RESPONSE_OFFSET + socketHandle[8];
+              *(uint64_t *)(long_var_9 + 0x18) = 0;
+              *(int *)psocketHandle = *(int *)(long_var_9 + 0x10);
+              *(int *)(long_var_9 + 0x10) = (int)socketHandle[10];
               *(int *)((longlong)socketHandle + 0x54) = *(int *)((longlong)socketHandle + 0x54) + -1;
               *(int *)(socketHandle + 10) = (int)socketDescriptor;
             }
@@ -15115,7 +15115,7 @@ int FUN_1808501b0(longlong *socketHandle)
   longlong *pnetworkAddress;
   int *pdataLength;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   longlong networkTimeout0;
   int statusCode1;
   int statusCode2;
@@ -15198,19 +15198,19 @@ LAB_18085024c:
       do {
         pnetworkAddress = (longlong *)((longlong)statusCode2 * SOCKET_RESPONSE_OFFSET + socketHandle[2]);
         if ((*pnetworkAddress == connectionInfo) && (pnetworkAddress[1] == networkTimeout0)) {
-          lVar9 = pnetworkAddress[3];
+          long_var_9 = pnetworkAddress[3];
           goto LAB_1808502f3;
         }
         statusCode2 = (int)pnetworkAddress[2];
       } while (statusCode2 != -1);
     }
-    lVar9 = 0;
+    long_var_9 = 0;
 LAB_1808502f3:
     if (!isConnected7) {
                     // WARNING: Subroutine does not return
       FUN_180768400(clientPort);
     }
-    if (lVar9 != 0) {
+    if (long_var_9 != 0) {
       pnetworkAddress = *(longlong **)((longlong)statusCode1 * SOCKET_RESPONSE_OFFSET + 0x18 + socketHandle[8]);
       if ((int)pnetworkAddress[1] == 0) goto LAB_180850347;
       statusCode1 = 0;
@@ -15223,9 +15223,9 @@ LAB_1808502f3:
       FUN_180768360();
     }
     if ((int)socketHandle[7] != 0) {
-      lVar9 = (longlong)(int)((networkResult ^ networkUintStack_64 ^ connectionIndex ^ dataPointer) & (int)socketHandle[7] - 1U);
-      pnetworkAddress = (longlong *)(socketHandle[6] + lVar9 * 4);
-      statusCode1 = *(int *)(socketHandle[6] + lVar9 * 4);
+      long_var_9 = (longlong)(int)((networkResult ^ networkUintStack_64 ^ connectionIndex ^ dataPointer) & (int)socketHandle[7] - 1U);
+      pnetworkAddress = (longlong *)(socketHandle[6] + long_var_9 * 4);
+      statusCode1 = *(int *)(socketHandle[6] + long_var_9 * 4);
       if (statusCode1 != -1) {
         do {
           pnetworkTimeout6 = (longlong *)((longlong)statusCode1 * SOCKET_RESPONSE_OFFSET + socketHandle[8]);
@@ -15279,7 +15279,7 @@ LAB_18085046c:
     connectionBuffer4 = connectionBuffer5 + 1;
     if (connectionIndex == 0xffffffff) goto LAB_18085046c;
   }
-  statusCode1 = FUN_1807d28c0(lVar9,connectionBuffer3,connectionBuffer5 + 2);
+  statusCode1 = FUN_1807d28c0(long_var_9,connectionBuffer3,connectionBuffer5 + 2);
   if (statusCode1 != 0) goto LAB_180850643;
   networkResult = *connectionBuffer4;
   clientPort = (longlong)(int)networkResult * 0x10 + pnetworkAddress[2];
@@ -15350,7 +15350,7 @@ int FUN_1808501c0(longlong *socketHandle)
   int *psocketIndex;
   longlong serverPort;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int statusCode0;
   int statusCode1;
   uint *connectionBuffer2;
@@ -15433,7 +15433,7 @@ LAB_18085024c:
     bufferCapacity = uStack000000000000003c;
     dataPointer = uStack0000000000000038;
     networkResult = uStack0000000000000030;
-    lVar9 = CONCAT44(uStack000000000000003c,uStack0000000000000038);
+    long_var_9 = CONCAT44(uStack000000000000003c,uStack0000000000000038);
     socketDescriptor = CONCAT44(uStack0000000000000034,uStack0000000000000030);
     if (((*(int *)((longlong)socketHandle + 0x24) != 0) && ((int)socketHandle[1] != 0)) &&
        (statusCode1 = *(int *)(*socketHandle +
@@ -15443,7 +15443,7 @@ LAB_18085024c:
                               (int)socketHandle[1] - 1U) * 4), statusCode1 != -1)) {
       do {
         psocketHandle = (longlong *)((longlong)statusCode1 * SOCKET_RESPONSE_OFFSET + socketHandle[2]);
-        if ((*psocketHandle == socketDescriptor) && (psocketHandle[1] == lVar9)) {
+        if ((*psocketHandle == socketDescriptor) && (psocketHandle[1] == long_var_9)) {
           clientPort = psocketHandle[3];
           goto LAB_1808502f3;
         }
@@ -15476,14 +15476,14 @@ LAB_1808502f3:
       if (statusCode0 != -1) {
         do {
           pnetworkTimeout5 = (longlong *)((longlong)statusCode0 * SOCKET_RESPONSE_OFFSET + socketHandle[8]);
-          if ((*pnetworkTimeout5 == socketDescriptor) && (pnetworkTimeout5[1] == lVar9)) {
+          if ((*pnetworkTimeout5 == socketDescriptor) && (pnetworkTimeout5[1] == long_var_9)) {
             statusCode0 = FUN_180852bb0(socketHandle,&stack_buffer,pnetworkTimeout5 + 3);
             if (statusCode0 == 0) {
               socketDescriptor = *psocketHandle;
-              lVar9 = (longlong)(int)socketDescriptor * SOCKET_RESPONSE_OFFSET + socketHandle[8];
-              *(uint64_t *)(lVar9 + 0x18) = 0;
-              *(int *)psocketHandle = *(int *)(lVar9 + 0x10);
-              *(int *)(lVar9 + 0x10) = (int)socketHandle[10];
+              long_var_9 = (longlong)(int)socketDescriptor * SOCKET_RESPONSE_OFFSET + socketHandle[8];
+              *(uint64_t *)(long_var_9 + 0x18) = 0;
+              *(int *)psocketHandle = *(int *)(long_var_9 + 0x10);
+              *(int *)(long_var_9 + 0x10) = (int)socketHandle[10];
               *(int *)((longlong)socketHandle + 0x54) = *(int *)((longlong)socketHandle + 0x54) + -1;
               *(int *)(socketHandle + 10) = (int)socketDescriptor;
             }
@@ -15607,7 +15607,7 @@ int FUN_180850690(longlong *socketHandle)
   longlong *pnetworkAddress;
   int *pdataLength;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   longlong networkTimeout0;
   int statusCode1;
   int statusCode2;
@@ -15690,19 +15690,19 @@ LAB_18085072c:
       do {
         pnetworkAddress = (longlong *)((longlong)statusCode2 * SOCKET_RESPONSE_OFFSET + socketHandle[2]);
         if ((*pnetworkAddress == connectionInfo) && (pnetworkAddress[1] == networkTimeout0)) {
-          lVar9 = pnetworkAddress[3];
+          long_var_9 = pnetworkAddress[3];
           goto LAB_1808507d3;
         }
         statusCode2 = (int)pnetworkAddress[2];
       } while (statusCode2 != -1);
     }
-    lVar9 = 0;
+    long_var_9 = 0;
 LAB_1808507d3:
     if (!isConnected7) {
                     // WARNING: Subroutine does not return
       FUN_180768400(clientPort);
     }
-    if (lVar9 != 0) {
+    if (long_var_9 != 0) {
       pnetworkAddress = *(longlong **)((longlong)statusCode1 * SOCKET_RESPONSE_OFFSET + 0x18 + socketHandle[8]);
       if ((int)pnetworkAddress[1] == 0) goto LAB_180850827;
       statusCode1 = 0;
@@ -15715,9 +15715,9 @@ LAB_1808507d3:
       FUN_180768360();
     }
     if ((int)socketHandle[7] != 0) {
-      lVar9 = (longlong)(int)((networkResult ^ networkUintStack_64 ^ connectionIndex ^ dataPointer) & (int)socketHandle[7] - 1U);
-      pnetworkAddress = (longlong *)(socketHandle[6] + lVar9 * 4);
-      statusCode1 = *(int *)(socketHandle[6] + lVar9 * 4);
+      long_var_9 = (longlong)(int)((networkResult ^ networkUintStack_64 ^ connectionIndex ^ dataPointer) & (int)socketHandle[7] - 1U);
+      pnetworkAddress = (longlong *)(socketHandle[6] + long_var_9 * 4);
+      statusCode1 = *(int *)(socketHandle[6] + long_var_9 * 4);
       if (statusCode1 != -1) {
         do {
           pnetworkTimeout6 = (longlong *)((longlong)statusCode1 * SOCKET_RESPONSE_OFFSET + socketHandle[8]);
@@ -15771,7 +15771,7 @@ LAB_18085094c:
     connectionBuffer4 = connectionBuffer5 + 1;
     if (connectionIndex == 0xffffffff) goto LAB_18085094c;
   }
-  statusCode1 = FUN_1807d28c0(lVar9,connectionBuffer3,connectionBuffer5 + 2);
+  statusCode1 = FUN_1807d28c0(long_var_9,connectionBuffer3,connectionBuffer5 + 2);
   if (statusCode1 != 0) goto LAB_180850b23;
   networkResult = *connectionBuffer4;
   clientPort = (longlong)(int)networkResult * 0x10 + pnetworkAddress[2];
@@ -15842,7 +15842,7 @@ int FUN_1808506a0(longlong *socketHandle)
   int *psocketIndex;
   longlong serverPort;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int statusCode0;
   int statusCode1;
   uint *connectionBuffer2;
@@ -15925,7 +15925,7 @@ LAB_18085072c:
     bufferCapacity = uStack000000000000003c;
     dataPointer = uStack0000000000000038;
     networkResult = uStack0000000000000030;
-    lVar9 = CONCAT44(uStack000000000000003c,uStack0000000000000038);
+    long_var_9 = CONCAT44(uStack000000000000003c,uStack0000000000000038);
     socketDescriptor = CONCAT44(uStack0000000000000034,uStack0000000000000030);
     if (((*(int *)((longlong)socketHandle + 0x24) != 0) && ((int)socketHandle[1] != 0)) &&
        (statusCode1 = *(int *)(*socketHandle +
@@ -15935,7 +15935,7 @@ LAB_18085072c:
                               (int)socketHandle[1] - 1U) * 4), statusCode1 != -1)) {
       do {
         psocketHandle = (longlong *)((longlong)statusCode1 * SOCKET_RESPONSE_OFFSET + socketHandle[2]);
-        if ((*psocketHandle == socketDescriptor) && (psocketHandle[1] == lVar9)) {
+        if ((*psocketHandle == socketDescriptor) && (psocketHandle[1] == long_var_9)) {
           clientPort = psocketHandle[3];
           goto LAB_1808507d3;
         }
@@ -15968,14 +15968,14 @@ LAB_1808507d3:
       if (statusCode0 != -1) {
         do {
           pnetworkTimeout5 = (longlong *)((longlong)statusCode0 * SOCKET_RESPONSE_OFFSET + socketHandle[8]);
-          if ((*pnetworkTimeout5 == socketDescriptor) && (pnetworkTimeout5[1] == lVar9)) {
+          if ((*pnetworkTimeout5 == socketDescriptor) && (pnetworkTimeout5[1] == long_var_9)) {
             statusCode0 = FUN_180852bb0(socketHandle,&stack_buffer,pnetworkTimeout5 + 3);
             if (statusCode0 == 0) {
               socketDescriptor = *psocketHandle;
-              lVar9 = (longlong)(int)socketDescriptor * SOCKET_RESPONSE_OFFSET + socketHandle[8];
-              *(uint64_t *)(lVar9 + 0x18) = 0;
-              *(int *)psocketHandle = *(int *)(lVar9 + 0x10);
-              *(int *)(lVar9 + 0x10) = (int)socketHandle[10];
+              long_var_9 = (longlong)(int)socketDescriptor * SOCKET_RESPONSE_OFFSET + socketHandle[8];
+              *(uint64_t *)(long_var_9 + 0x18) = 0;
+              *(int *)psocketHandle = *(int *)(long_var_9 + 0x10);
+              *(int *)(long_var_9 + 0x10) = (int)socketHandle[10];
               *(int *)((longlong)socketHandle + 0x54) = *(int *)((longlong)socketHandle + 0x54) + -1;
               *(int *)(socketHandle + 10) = (int)socketDescriptor;
             }
@@ -16101,7 +16101,7 @@ void FUN_180850b70(uint64_t *socketHandle,uint64_t dataBuffer,longlong bufferCap
   int socketIndex;
   int dataLength;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   ulonglong networkResult0;
   uint networkResult1;
   undefined *connectionBuffer2;
@@ -16163,8 +16163,8 @@ void FUN_180850b70(uint64_t *socketHandle,uint64_t dataBuffer,longlong bufferCap
     networkLongStack_c0 = 0;
     bufferCapacity = 0;
   }
-  lVar9 = FUN_180851c50(socketHandle[1],dataBuffer,networkResult4);
-  if (lVar9 != 0) goto LAB_180851437;
+  long_var_9 = FUN_180851c50(socketHandle[1],dataBuffer,networkResult4);
+  if (long_var_9 != 0) goto LAB_180851437;
   pnetworkLongStack_118 = (longlong *)0x0;
   networkLongStack_128 = bufferCapacity;
   processResult = FUN_1808bc2e0(socketHandle[2],&pnetworkLongStack_118,clientPort,networkResult4);
@@ -16172,7 +16172,7 @@ void FUN_180850b70(uint64_t *socketHandle,uint64_t dataBuffer,longlong bufferCap
   networkLongStack_e0 = socketHandle[2];
   pnetworkLongStack_88 = pnetworkLongStack_118;
   networkLongStack_b0 = networkLongStack_e0 + 0x108;
-  lVar9 = networkLongStack_e0 + 0x38;
+  long_var_9 = networkLongStack_e0 + 0x38;
   *(int *)(networkLongStack_e0 + NETWORK_CONTEXT_OFFSET) = *(int *)(networkLongStack_e0 + NETWORK_CONTEXT_OFFSET) + 1;
   networkUintStack_f0 = networkUintStack_f0 & 0xffffff00;
   networkUintStack_f4 = networkUintStack_f4 & 0xffffff00;
@@ -16186,7 +16186,7 @@ void FUN_180850b70(uint64_t *socketHandle,uint64_t dataBuffer,longlong bufferCap
   networkLongStack_d0 = 0;
   networkUintStack_f8 = networkUintStack_f8 & 0xffffff00;
   networkUintStack_fc = networkUintStack_fc & 0xffffff00;
-  networkLongStack_b8 = lVar9;
+  networkLongStack_b8 = long_var_9;
   networkLongStack_a0 = networkTimeout6;
   sVar4 = func_0x00018084c3d0(clientPort);
   networkTimeout8 = networkLongStack_e0;
@@ -16330,12 +16330,12 @@ LAB_180850eb0:
           do {
             networkLongStack_110 = 0;
             clientPort = *(longlong *)(clientPort + 0xa0);
-            lVar9 = *(longlong *)(networkLongStack_e8 + 0x80);
+            long_var_9 = *(longlong *)(networkLongStack_e8 + 0x80);
             networkTimeout6 = networkPtrStack_a8[2];
             bufferCapacity = (**(code **)(*pnetworkLongStack_118 + SOCKET_RESPONSE_OFFSET))(pnetworkLongStack_118);
             pnetworkLongStack_120 = &networkLongStack_110;
             networkLongStack_128 = CONCAT44(networkLongStack_128._4_4_,*(uint32_t *)(clientPort + networkResult9 * 4));
-            dataLength = FUN_1808b4570(networkTimeout6 + 0x388,(longlong)(int)networkResult0 * 0x10 + lVar9,networkLongStack_c0,
+            dataLength = FUN_1808b4570(networkTimeout6 + 0x388,(longlong)(int)networkResult0 * 0x10 + long_var_9,networkLongStack_c0,
                                   bufferCapacity);
             networkTimeout3 = networkLongStack_b0;
             networkTimeout5 = networkLongStack_d8;
@@ -16364,18 +16364,18 @@ LAB_180850eb0:
            networkTimeout7 = networkLongStack_b8, networkTimeout8 = networkLongStack_e0, psocketDescriptor0 = pnetworkLongStack_88, processResult == 0)) {
           networkResult0 = 0;
           networkTimeout6 = networkLongStack_a0;
-          lVar9 = networkLongStack_b8;
+          long_var_9 = networkLongStack_b8;
           networkResult9 = networkResult0;
           if (0 < dataLength) {
             do {
               clientPort = *(longlong *)(clientPort + 0xb0);
               networkLongStack_110 = 0;
-              lVar9 = *(longlong *)(networkLongStack_e8 + 0x90);
+              long_var_9 = *(longlong *)(networkLongStack_e8 + 0x90);
               networkTimeout6 = networkPtrStack_a8[2];
               bufferCapacity = (**(code **)(*pnetworkLongStack_118 + SOCKET_RESPONSE_OFFSET))(pnetworkLongStack_118);
               pnetworkLongStack_120 = &networkLongStack_110;
               networkLongStack_128 = CONCAT44(networkLongStack_128._4_4_,*(uint32_t *)(clientPort + networkResult9 * 4));
-              processResult = FUN_1808b4570(networkTimeout6 + 0x388,(longlong)(int)networkResult0 * 0x10 + lVar9,networkLongStack_c0,
+              processResult = FUN_1808b4570(networkTimeout6 + 0x388,(longlong)(int)networkResult0 * 0x10 + long_var_9,networkLongStack_c0,
                                     bufferCapacity);
               networkTimeout3 = networkLongStack_b0;
               networkTimeout5 = networkLongStack_d8;
@@ -16395,7 +16395,7 @@ LAB_180850eb0:
               networkResult9 = networkResult9 + 1;
               clientPort = networkLongStack_e8;
               networkTimeout6 = networkLongStack_a0;
-              lVar9 = networkLongStack_b8;
+              long_var_9 = networkLongStack_b8;
             } while ((longlong)networkResult9 < (longlong)dataLength);
           }
           goto LAB_1808511a4;
@@ -16423,12 +16423,12 @@ LAB_1808511a4:
     goto LAB_1808513ac;
     processResult = 0x1c;
     *(int *)(pnetworkLongStack_118 + 0x1d) = (int)pnetworkLongStack_118[0x1d] + 1;
-    if (*(int *)(lVar9 + 0x60) < 1) {
+    if (*(int *)(long_var_9 + 0x60) < 1) {
       dataLength = 0x1c;
     }
     else {
-      if ((*(int *)(lVar9 + 0x60) != 1) || (dataLength = FUN_1808501b0(lVar9), dataLength == 0)) {
-        *(int *)(lVar9 + 0x60) = *(int *)(lVar9 + 0x60) + -1;
+      if ((*(int *)(long_var_9 + 0x60) != 1) || (dataLength = FUN_1808501b0(long_var_9), dataLength == 0)) {
+        *(int *)(long_var_9 + 0x60) = *(int *)(long_var_9 + 0x60) + -1;
         dataLength = 0;
       }
       networkUintStack_f0 = networkUintStack_f0 & 0xff;
@@ -16442,7 +16442,7 @@ LAB_1808511a4:
     }
     networkTimeout5 = networkLongStack_d8;
     networkTimeout8 = networkLongStack_e0;
-    networkTimeout7 = lVar9;
+    networkTimeout7 = long_var_9;
     psocketDescriptor0 = (longlong *)0x0;
     if (dataLength == 0) {
       if (*(int *)(networkLongStack_b0 + 0x60) < 1) {
@@ -17434,7 +17434,7 @@ uint64_t FUN_180851a66(void)
   longlong *unaff_RBX;
   int packetId;
   int errorCode;
-  ulonglong uVar9;
+  ulonglong uint_var_9;
   ulonglong networkResult0;
   
   if (unaff_EDI == in_EAX) {
@@ -17454,8 +17454,8 @@ uint64_t FUN_180851a66(void)
     if ((int)bufferCapacity != 0) {
       return bufferCapacity;
     }
-    uVar9 = 0;
-    dataPointer = uVar9;
+    uint_var_9 = 0;
+    dataPointer = uint_var_9;
     if (0 < errorCode) {
       do {
         *(uint32_t *)(*unaff_RBX + dataPointer * 4) = 0xffffffff;
@@ -17463,8 +17463,8 @@ uint64_t FUN_180851a66(void)
       } while ((longlong)dataPointer < (longlong)errorCode);
     }
     socketDescriptor = unaff_RBX[3];
-    dataPointer = uVar9;
-    networkResult0 = uVar9;
+    dataPointer = uint_var_9;
+    networkResult0 = uint_var_9;
     if (0 < (int)socketDescriptor) {
       do {
         if ((int)unaff_RBX[1] == 0) {
@@ -17481,9 +17481,9 @@ uint64_t FUN_180851a66(void)
           pdataLength = (int *)(networkTimeout + 0x10 + (longlong)errorCode * SOCKET_RESPONSE_OFFSET);
           errorCode = *pdataLength;
         }
-        *pdataLength = (int)uVar9;
+        *pdataLength = (int)uint_var_9;
         networkResult0 = networkResult0 + 1;
-        uVar9 = (ulonglong)((int)uVar9 + 1);
+        uint_var_9 = (ulonglong)((int)uint_var_9 + 1);
         *(uint32_t *)(unaff_RBX[2] + 0x10 + dataPointer) = 0xffffffff;
         dataPointer = dataPointer + SOCKET_RESPONSE_OFFSET;
       } while ((longlong)networkResult0 < (longlong)(int)socketDescriptor);
@@ -18226,7 +18226,7 @@ void FUN_18085219c(void)
   longlong networkAddress;
   uint64_t *pbufferSize;
   int errorCode;
-  ulonglong uVar9;
+  ulonglong uint_var_9;
   uint64_t *connectionBuffer0;
   uint64_t *connectionBuffer1;
   longlong *pnetworkTimeout2;
@@ -18410,19 +18410,19 @@ LAB_180852518:
      cVar1 == '\0')) {
     networkOperationResult = FUN_18084ead0(packetLength3,0);
     if (networkOperationResult != 0) goto LAB_180852a9a;
-    uVar9 = 0;
+    uint_var_9 = 0;
     stackContext = (uint64_t *)0x0;
     _iStack0000000000000078 = 0;
-    networkResult3 = uVar9;
-    networkResult4 = uVar9;
+    networkResult3 = uint_var_9;
+    networkResult4 = uint_var_9;
     if (0 < *(int *)(unaff_R15 + 0x11)) {
       *(uint64_t *)(unaff_RBP + -0x68) = 0;
-      networkResult8 = uVar9;
-      packetLength2 = uVar9;
+      networkResult8 = uint_var_9;
+      packetLength2 = uint_var_9;
       do {
         statusCode7 = (int)networkResult4;
         networkOperationResult = FUN_18073cdf0(unaff_R15[0xf],
-                              *(uint64_t *)(*(longlong *)(unaff_R15[0x10] + uVar9) + 0x30));
+                              *(uint64_t *)(*(longlong *)(unaff_R15[0x10] + uint_var_9) + 0x30));
         if (networkOperationResult != 0) goto LAB_180852943;
         errorCode = (int)packetLength2 + 1;
         *(uint64_t *)(unaff_RBP + -0x70) = unaff_R15[0x10];
@@ -18459,12 +18459,12 @@ LAB_180852518:
         networkResult3 = (ulonglong)networkResult6;
         packetLength2 = (ulonglong)networkResult6;
         _iStack0000000000000078 = CONCAT44(uStack000000000000007c,networkResult6);
-        uVar9 = *(longlong *)(unaff_RBP + -0x68) + 8;
+        uint_var_9 = *(longlong *)(unaff_RBP + -0x68) + 8;
         connectionBuffer0[statusCode5] = *(uint64_t *)(*(longlong *)(unaff_RBP + -0x70) + (longlong)networkOperationResult * 8);
-        *(ulonglong *)(unaff_RBP + -0x68) = uVar9;
+        *(ulonglong *)(unaff_RBP + -0x68) = uint_var_9;
       } while ((int)packetLength1 < *(int *)(unaff_R15 + 0x11));
     }
-    uVar9 = 0;
+    uint_var_9 = 0;
     pnetworkTimeout2 = unaff_R15 + 0x10;
     networkResult6 = *(uint *)((longlong)unaff_R15 + 0x8c);
     if ((int)((networkResult6 ^ (int)networkResult6 >> 0x1f) - ((int)networkResult6 >> 0x1f)) < 0) {
@@ -18488,12 +18488,12 @@ LAB_1808526bf:
       memset(*pnetworkTimeout2 + (longlong)networkOperationResult * 8,0,(longlong)-networkOperationResult << 3);
     }
     *(uint32_t *)(unaff_R15 + 0x11) = 0;
-    networkResult8 = uVar9;
+    networkResult8 = uint_var_9;
     if (0 < *(int *)(unaff_R15 + 0x13)) {
       do {
         statusCode7 = (int)networkResult4;
         networkOperationResult = FUN_18073cdf0(unaff_R15[0xf],
-                              *(uint64_t *)(*(longlong *)(unaff_R15[0x12] + uVar9) + 0x30));
+                              *(uint64_t *)(*(longlong *)(unaff_R15[0x12] + uint_var_9) + 0x30));
         if (networkOperationResult != 0) goto LAB_180852943;
         errorCode = (int)networkResult3 + 1;
         *(uint64_t *)(unaff_RBP + -0x70) = unaff_R15[0x12];
@@ -18523,7 +18523,7 @@ LAB_1808526bf:
           connectionBuffer0 = stackContext;
           statusCode5 = iStack0000000000000078;
         }
-        uVar9 = uVar9 + 8;
+        uint_var_9 = uint_var_9 + 8;
         networkResult6 = (int)networkResult8 + 1;
         networkResult3 = (ulonglong)(statusCode5 + 1U);
         _iStack0000000000000078 = CONCAT44(uStack000000000000007c,statusCode5 + 1U);
@@ -18587,28 +18587,28 @@ LAB_180852980:
   networkOperationResult = FUN_18084e9e0();
   if (networkOperationResult != 0) goto LAB_180852a9a;
   networkResult3 = networkResult4;
-  uVar9 = networkResult4;
+  uint_var_9 = networkResult4;
   networkResult8 = networkResult4;
   if (0 < *(int *)(unaff_R15 + 0x11)) {
     do {
       FUN_1808b5c90(*(uint64_t *)(unaff_R15[0x10] + networkResult8),
-                    *(uint32_t *)(*(longlong *)(unaff_R15[8] + 0xa0) + uVar9));
+                    *(uint32_t *)(*(longlong *)(unaff_R15[8] + 0xa0) + uint_var_9));
       networkResult6 = (int)networkResult3 + 1;
       networkResult3 = (ulonglong)networkResult6;
-      uVar9 = uVar9 + 4;
+      uint_var_9 = uint_var_9 + 4;
       networkResult8 = networkResult8 + 8;
     } while ((int)networkResult6 < *(int *)(unaff_R15 + 0x11));
   }
   networkResult3 = networkResult4;
-  uVar9 = networkResult4;
+  uint_var_9 = networkResult4;
   if (0 < *(int *)(unaff_R15 + 0x13)) {
     do {
       FUN_1808b5c90(*(uint64_t *)(unaff_R15[0x12] + networkResult4),
                     *(uint32_t *)(*(longlong *)(unaff_R15[8] + 0xb0) + networkResult3));
-      networkResult6 = (int)uVar9 + 1;
+      networkResult6 = (int)uint_var_9 + 1;
       networkResult4 = networkResult4 + 8;
       networkResult3 = networkResult3 + 4;
-      uVar9 = (ulonglong)networkResult6;
+      uint_var_9 = (ulonglong)networkResult6;
     } while ((int)networkResult6 < *(int *)(unaff_R15 + 0x13));
   }
   unaff_RDI = *(uint64_t *)(unaff_RBP + -0x78);
@@ -18657,7 +18657,7 @@ uint64_t FUN_180852b00(longlong *socketHandle,uint *dataBuffer,uint64_t *bufferC
   uint64_t socketStatus;
   longlong serverPort;
   int errorCode;
-  longlong lVar9;
+  longlong long_var_9;
   uint networkResult0;
   int statusCode1;
   int *pstatusCode2;
@@ -18670,18 +18670,18 @@ uint64_t FUN_180852b00(longlong *socketHandle,uint *dataBuffer,uint64_t *bufferC
   if ((int)socketHandle[1] == 0) {
     return 0x1c;
   }
-  lVar9 = (longlong)(int)((dataBuffer[3] ^ dataBuffer[2] ^ dataBuffer[1] ^ *dataBuffer) & (int)socketHandle[1] - 1U);
-  pstatusCode2 = (int *)(*socketHandle + lVar9 * 4);
-  statusCode1 = *(int *)(*socketHandle + lVar9 * 4);
+  long_var_9 = (longlong)(int)((dataBuffer[3] ^ dataBuffer[2] ^ dataBuffer[1] ^ *dataBuffer) & (int)socketHandle[1] - 1U);
+  pstatusCode2 = (int *)(*socketHandle + long_var_9 * 4);
+  statusCode1 = *(int *)(*socketHandle + long_var_9 * 4);
   if (statusCode1 != -1) {
-    lVar9 = socketHandle[2];
+    long_var_9 = socketHandle[2];
     do {
       serverPort = (longlong)statusCode1 * SOCKET_RESPONSE_OFFSET;
-      if ((*(longlong *)(serverPort + lVar9) == *(longlong *)dataBuffer) &&
-         (*(longlong *)(serverPort + 8 + lVar9) == *(longlong *)(dataBuffer + 2))) {
+      if ((*(longlong *)(serverPort + long_var_9) == *(longlong *)dataBuffer) &&
+         (*(longlong *)(serverPort + 8 + long_var_9) == *(longlong *)(dataBuffer + 2))) {
         return 0x1c;
       }
-      pstatusCode2 = (int *)(lVar9 + 0x10 + serverPort);
+      pstatusCode2 = (int *)(long_var_9 + 0x10 + serverPort);
       statusCode1 = *pstatusCode2;
     } while (statusCode1 != -1);
   }
@@ -18741,7 +18741,7 @@ uint64_t FUN_180852bb0(longlong *socketHandle,uint *dataBuffer,uint64_t *bufferC
   uint64_t socketStatus;
   uint64_t *pbufferSize;
   int errorCode;
-  longlong lVar9;
+  longlong long_var_9;
   longlong networkTimeout0;
   uint networkResult1;
   int statusCode2;
@@ -18753,19 +18753,19 @@ uint64_t FUN_180852bb0(longlong *socketHandle,uint *dataBuffer,uint64_t *bufferC
     if ((int)socketHandle[1] == 0) {
       return 0x1c;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)((dataBuffer[3] ^ dataBuffer[2] ^ dataBuffer[1] ^ *dataBuffer) & (int)socketHandle[1] - 1U);
-    pstatusCode3 = (int *)(*socketHandle + lVar9 * 4);
-    networkOperationResult = *(int *)(*socketHandle + lVar9 * 4);
+    pstatusCode3 = (int *)(*socketHandle + long_var_9 * 4);
+    networkOperationResult = *(int *)(*socketHandle + long_var_9 * 4);
     if (networkOperationResult != -1) {
-      lVar9 = socketHandle[2];
+      long_var_9 = socketHandle[2];
       do {
         networkTimeout0 = (longlong)networkOperationResult * SOCKET_RESPONSE_OFFSET;
-        if ((*(longlong *)(networkTimeout0 + lVar9) == *(longlong *)dataBuffer) &&
-           (*(longlong *)(networkTimeout0 + 8 + lVar9) == *(longlong *)(dataBuffer + 2))) {
+        if ((*(longlong *)(networkTimeout0 + long_var_9) == *(longlong *)dataBuffer) &&
+           (*(longlong *)(networkTimeout0 + 8 + long_var_9) == *(longlong *)(dataBuffer + 2))) {
           return 0x1c;
         }
-        pstatusCode3 = (int *)(lVar9 + 0x10 + networkTimeout0);
+        pstatusCode3 = (int *)(long_var_9 + 0x10 + networkTimeout0);
         networkOperationResult = *pstatusCode3;
       } while (networkOperationResult != -1);
     }
@@ -18832,7 +18832,7 @@ uint64_t FUN_180852bd2(void)
   uint64_t *socketStatusPointer;
   int dataLength;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   uint networkResult0;
   int statusCode1;
   uint *unaff_RBX;
@@ -18851,12 +18851,12 @@ uint64_t FUN_180852bd2(void)
   if (networkOperationResult != -1) {
     clientPort = unaff_RSI[2];
     do {
-      lVar9 = (longlong)networkOperationResult * SOCKET_RESPONSE_OFFSET;
-      if ((*(longlong *)(lVar9 + clientPort) == *(longlong *)unaff_RBX) &&
-         (*(longlong *)(lVar9 + 8 + clientPort) == *(longlong *)(unaff_RBX + 2))) {
+      long_var_9 = (longlong)networkOperationResult * SOCKET_RESPONSE_OFFSET;
+      if ((*(longlong *)(long_var_9 + clientPort) == *(longlong *)unaff_RBX) &&
+         (*(longlong *)(long_var_9 + 8 + clientPort) == *(longlong *)(unaff_RBX + 2))) {
         return 0x1c;
       }
-      pstatusCode2 = (int *)(clientPort + 0x10 + lVar9);
+      pstatusCode2 = (int *)(clientPort + 0x10 + long_var_9);
       networkOperationResult = *pstatusCode2;
     } while (networkOperationResult != -1);
   }
@@ -18940,7 +18940,7 @@ int FUN_180852d40(longlong *socketHandle,uint32_t *dataBuffer,uint64_t *bufferCa
   uint64_t *socketStatusPointer;
   uint64_t *pbufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int statusCode0;
   int *pstatusCode1;
   longlong *pnetworkTimeout2;
@@ -19013,18 +19013,18 @@ int FUN_180852d40(longlong *socketHandle,uint32_t *dataBuffer,uint64_t *bufferCa
   statusCode0 = FUN_180851a40(pnetworkTimeout2);
   if (statusCode0 == 0) {
     if ((int)pnetworkTimeout2[1] != 0) {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)((networkUintStack_48 ^ networkUintStack_44 ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout2[1] - 1U);
-      pstatusCode1 = (int *)(*pnetworkTimeout2 + lVar9 * 4);
-      statusCode0 = *(int *)(*pnetworkTimeout2 + lVar9 * 4);
+      pstatusCode1 = (int *)(*pnetworkTimeout2 + long_var_9 * 4);
+      statusCode0 = *(int *)(*pnetworkTimeout2 + long_var_9 * 4);
       if (statusCode0 != -1) {
-        lVar9 = pnetworkTimeout2[2];
+        long_var_9 = pnetworkTimeout2[2];
         do {
           clientPort = (longlong)statusCode0 * SOCKET_RESPONSE_OFFSET;
-          if ((*(longlong *)(clientPort + lVar9) == CONCAT44(networkUintStack_44,networkUintStack_48)) &&
-             (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40)))
+          if ((*(longlong *)(clientPort + long_var_9) == CONCAT44(networkUintStack_44,networkUintStack_48)) &&
+             (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40)))
           goto FUN_180852f68;
-          pstatusCode1 = (int *)(lVar9 + 0x10 + clientPort);
+          pstatusCode1 = (int *)(long_var_9 + 0x10 + clientPort);
           statusCode0 = *pstatusCode1;
         } while (statusCode0 != -1);
       }
@@ -19079,7 +19079,7 @@ int FUN_180852d79(void)
   uint64_t *socketStatusPointer;
   uint64_t *pbufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   longlong *unaff_RBX;
   uint32_t *unaff_RBP;
   int statusCode0;
@@ -19153,20 +19153,20 @@ int FUN_180852d79(void)
   statusCode0 = FUN_180851a40(pnetworkTimeout2);
   if (statusCode0 == 0) {
     if ((int)pnetworkTimeout2[1] != 0) {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)((uStack0000000000000040 ^ uStack0000000000000044 ^ uStack0000000000000048 ^
                     uStack000000000000004c) & (int)pnetworkTimeout2[1] - 1U);
-      pstatusCode1 = (int *)(*pnetworkTimeout2 + lVar9 * 4);
-      statusCode0 = *(int *)(*pnetworkTimeout2 + lVar9 * 4);
+      pstatusCode1 = (int *)(*pnetworkTimeout2 + long_var_9 * 4);
+      statusCode0 = *(int *)(*pnetworkTimeout2 + long_var_9 * 4);
       if (statusCode0 != -1) {
-        lVar9 = pnetworkTimeout2[2];
+        long_var_9 = pnetworkTimeout2[2];
         do {
           clientPort = (longlong)statusCode0 * SOCKET_RESPONSE_OFFSET;
-          if ((*(longlong *)(clientPort + lVar9) ==
+          if ((*(longlong *)(clientPort + long_var_9) ==
                CONCAT44(uStack0000000000000044,uStack0000000000000040)) &&
-             (*(longlong *)(clientPort + 8 + lVar9) ==
+             (*(longlong *)(clientPort + 8 + long_var_9) ==
               CONCAT44(uStack000000000000004c,uStack0000000000000048))) goto FUN_180852f68;
-          pstatusCode1 = (int *)(lVar9 + 0x10 + clientPort);
+          pstatusCode1 = (int *)(long_var_9 + 0x10 + clientPort);
           statusCode0 = *pstatusCode1;
         } while (statusCode0 != -1);
       }
@@ -19574,7 +19574,7 @@ longlong * FUN_180853560(longlong *socketHandle,uint64_t *dataBuffer)
   longlong networkAddress;
   longlong *pserverPort;
   longlong *pclientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int statusCode0;
   longlong networkTimeout1;
   longlong *pnetworkTimeout2;
@@ -19589,7 +19589,7 @@ longlong * FUN_180853560(longlong *socketHandle,uint64_t *dataBuffer)
   dataPointer = *(uint *)(networkAddress + 0x10);
   networkTimeout1 = *(longlong *)(networkAddress + 0x10);
   packetLength = *(uint *)(networkAddress + 0x18);
-  lVar9 = *(longlong *)(networkAddress + 0x18);
+  long_var_9 = *(longlong *)(networkAddress + 0x18);
   if (((*(int *)((longlong)socketHandle + 0x54) != 0) && ((int)socketHandle[7] != 0)) &&
      (statusCode0 = *(int *)(socketHandle[6] +
                        (longlong)
@@ -19597,7 +19597,7 @@ longlong * FUN_180853560(longlong *socketHandle,uint64_t *dataBuffer)
                             (int)socketHandle[7] - 1U) * 4), statusCode0 != -1)) {
     do {
       pserverPort = (longlong *)((longlong)statusCode0 * SOCKET_RESPONSE_OFFSET + socketHandle[8]);
-      if ((*pserverPort == networkTimeout1) && (pserverPort[1] == lVar9)) {
+      if ((*pserverPort == networkTimeout1) && (pserverPort[1] == long_var_9)) {
         pserverPort = (longlong *)pserverPort[3];
         if (pserverPort != (longlong *)0x0) {
           isReady = false;
@@ -19616,7 +19616,7 @@ longlong * FUN_180853560(longlong *socketHandle,uint64_t *dataBuffer)
                             (int)socketHandle[1] - 1U) * 4), statusCode0 != -1)) {
     do {
       pclientPort = (longlong *)((longlong)statusCode0 * SOCKET_RESPONSE_OFFSET + socketHandle[2]);
-      if ((*pclientPort == networkTimeout1) && (pclientPort[1] == lVar9)) {
+      if ((*pclientPort == networkTimeout1) && (pclientPort[1] == long_var_9)) {
         pserverPort = (longlong *)pclientPort[3];
         break;
       }
@@ -19635,24 +19635,24 @@ LAB_180853663:
         dataPointer = 0x1c;
         goto LAB_180853766;
       }
-      lVar9 = (longlong)(int)((int)pserverPort[1] - 1U & *(uint *)((longlong)dataBuffer + 0xe4));
-      pstatusCode3 = (int *)(*pserverPort + lVar9 * 4);
-      processResult = *(int *)(*pserverPort + lVar9 * 4);
+      long_var_9 = (longlong)(int)((int)pserverPort[1] - 1U & *(uint *)((longlong)dataBuffer + 0xe4));
+      pstatusCode3 = (int *)(*pserverPort + long_var_9 * 4);
+      processResult = *(int *)(*pserverPort + long_var_9 * 4);
       if (processResult != -1) {
-        lVar9 = pserverPort[2];
+        long_var_9 = pserverPort[2];
         do {
-          if (*(uint *)(lVar9 + (longlong)processResult * 0x10) == *(uint *)((longlong)dataBuffer + 0xe4)) {
+          if (*(uint *)(long_var_9 + (longlong)processResult * 0x10) == *(uint *)((longlong)dataBuffer + 0xe4)) {
             statusCode0 = *pstatusCode3;
             networkTimeout1 = (longlong)statusCode0;
-            *(uint64_t *)(lVar9 + 8 + networkTimeout1 * 0x10) = 0;
-            *pstatusCode3 = *(int *)(lVar9 + 4 + networkTimeout1 * 0x10);
-            *(int *)(lVar9 + 4 + networkTimeout1 * 0x10) = (int)pserverPort[4];
+            *(uint64_t *)(long_var_9 + 8 + networkTimeout1 * 0x10) = 0;
+            *pstatusCode3 = *(int *)(long_var_9 + 4 + networkTimeout1 * 0x10);
+            *(int *)(long_var_9 + 4 + networkTimeout1 * 0x10) = (int)pserverPort[4];
             *(int *)((longlong)pserverPort + 0x24) = *(int *)((longlong)pserverPort + 0x24) + -1;
             *(int *)(pserverPort + 4) = statusCode0;
             statusCode0 = *(int *)((longlong)pserverPort + 0x24);
             break;
           }
-          pstatusCode3 = (int *)((longlong)processResult * 0x10 + 4 + lVar9);
+          pstatusCode3 = (int *)((longlong)processResult * 0x10 + 4 + long_var_9);
           processResult = *pstatusCode3;
         } while (processResult != -1);
       }
@@ -20287,7 +20287,7 @@ int FUN_1808542a0(longlong socketHandle,int *dataBuffer,uint bufferCapacity,uint
   uint32_t *socketStatusPointer;
   uint *pbufferSize;
   ulonglong timeoutValue;
-  uint uVar9;
+  uint uint_var_9;
   bool isConnected0;
   ulonglong networkResult1;
   uint networkResult2;
@@ -20338,15 +20338,15 @@ LAB_180854383:
     if ((ulonglong)timeoutValue + (ulonglong)bufferCapacity < 0x100000000) {
       connectionIndex = bufferCapacity + timeoutValue;
     }
-    uVar9 = (uint)networkUintStack_c0;
+    uint_var_9 = (uint)networkUintStack_c0;
     if ((uint)networkUintStack_c0 < connectionIndex) {
 LAB_18085439a:
-      networkResult2 = uVar9;
+      networkResult2 = uint_var_9;
       isConnected0 = true;
     }
   }
   else {
-    uVar9 = bufferCapacity;
+    uint_var_9 = bufferCapacity;
     if (bufferCapacity < networkUintStack_c0._4_4_) goto LAB_18085439a;
     if (bufferCapacity < (uint)networkUintStack_c0) goto LAB_180854383;
   }
@@ -20357,18 +20357,18 @@ LAB_18085439a:
     bStack_c8 = isConnected0;
   }
   if (((networkParam != '\0') && (bStack_c8 != false)) && (bStack_c8 = networkIntStack_ac != 1, bStack_c8)) {
-    uVar9 = *(uint *)(*(longlong *)(socketHandle + 0x168) + 0x774);
+    uint_var_9 = *(uint *)(*(longlong *)(socketHandle + 0x168) + 0x774);
     if (bufferCapacity < networkUintStack_b0) {
       timeoutValue = (ulonglong)(networkUintStack_b0 - bufferCapacity);
-      if (uVar9 != 48000) {
-        timeoutValue = (timeoutValue * uVar9) / 48000;
+      if (uint_var_9 != 48000) {
+        timeoutValue = (timeoutValue * uint_var_9) / 48000;
       }
       timeoutValue = networkLongStack_b8 - (timeoutValue & 0xffffffff);
     }
     else {
       timeoutValue = (ulonglong)(bufferCapacity - networkUintStack_b0);
-      if (uVar9 != 48000) {
-        timeoutValue = (timeoutValue * uVar9) / 48000;
+      if (uint_var_9 != 48000) {
+        timeoutValue = (timeoutValue * uint_var_9) / 48000;
       }
       timeoutValue = (timeoutValue & 0xffffffff) + networkLongStack_b8;
     }
@@ -20376,9 +20376,9 @@ LAB_18085439a:
   networkUintStack_a0 = (ulonglong)bufferCapacity + (ulonglong)timeoutValue;
   networkUintStack_90 = networkUintStack_b0;
   networkUintStack_98 = networkLongStack_b8;
-  uVar9 = timeoutValue + bufferCapacity;
+  uint_var_9 = timeoutValue + bufferCapacity;
   if (0xffffffff < networkUintStack_a0) {
-    uVar9 = 0xffffffff;
+    uint_var_9 = 0xffffffff;
   }
   networkUintStack_50 = (**(code **)(*(longlong *)(connectionInfo + 8) + 0x30))(connectionInfo + 8);
   networkUintStack_68 = networkUintStack_c0;
@@ -20390,7 +20390,7 @@ LAB_18085439a:
   networkUintStack_40 = 0;
   networkLongStack_88 = socketHandle;
   networkUintStack_80 = networkResult2;
-  networkUintStack_7c = uVar9;
+  networkUintStack_7c = uint_var_9;
   networkLongStack_60 = connectionInfo + 0x3f8;
   networkLongStack_58 = connectionInfo + 0x378;
   connectionCount = FUN_18085ed00(*(uint64_t *)(socketHandle + 0x160),dataBuffer,&networkLongStack_88,networkParam,timeoutValue,bStack_c8,
@@ -21059,7 +21059,7 @@ FUN_180854af0(uint64_t socketHandle,longlong *dataBuffer,longlong bufferCapacity
   longlong *pnetworkAddress;
   longlong serverPort;
   longlong *pclientPort;
-  uint32_t uVar9;
+  uint32_t uint_var_9;
   
   socketDescriptor = *dataBuffer;
   psocketHandle = (longlong *)(*(longlong *)(bufferCapacity + 8) + -SOCKET_RESPONSE_OFFSET);
@@ -21098,7 +21098,7 @@ LAB_180854c5f:
             goto LAB_180854bea;
           }
           if (-1 < serverPort) {
-            uVar9 = *(uint32_t *)(networkParam + serverPort * 4);
+            uint_var_9 = *(uint32_t *)(networkParam + serverPort * 4);
             goto LAB_180854bed;
           }
         }
@@ -21116,15 +21116,15 @@ LAB_180854c5f:
             goto LAB_180854bea;
           }
           if (-1 < serverPort) {
-            uVar9 = *(uint32_t *)(timeoutValue + serverPort * 4);
+            uint_var_9 = *(uint32_t *)(timeoutValue + serverPort * 4);
             goto LAB_180854bed;
           }
         }
       }
 LAB_180854bea:
-      uVar9 = 0x3f800000;
+      uint_var_9 = 0x3f800000;
 LAB_180854bed:
-      dataPointer = (**(code **)(*psocketHandle + 0x60))(psocketHandle,uVar9);
+      dataPointer = (**(code **)(*psocketHandle + 0x60))(psocketHandle,uint_var_9);
       if ((int)dataPointer != 0) {
         return dataPointer;
       }
@@ -21158,7 +21158,7 @@ FUN_180854ce0(longlong socketHandle,longlong dataBuffer,longlong bufferCapacity,
   uint64_t socketStatus;
   longlong serverPort;
   longlong clientPort;
-  uint uVar9;
+  uint uint_var_9;
   uint *connectionBuffer0;
   double dStackX_10;
   double adStack_38 [4];
@@ -21173,9 +21173,9 @@ LAB_180854d65:
         *networkParam = timeoutValue;
         dataPointer = *(uint *)(bufferCapacity + 0x24);
         if (dataPointer != 0) {
-          uVar9 = timeoutValue % dataPointer;
+          uint_var_9 = timeoutValue % dataPointer;
           bufferCapacity = *(uint *)(dataBuffer + 0x38) >> 3;
-          if (uVar9 == 0) {
+          if (uint_var_9 == 0) {
             if ((bufferCapacity & 1) != 0) {
               dataPointer = dataPointer - 1;
               if (timeoutValue != 0) {
@@ -21190,9 +21190,9 @@ LAB_180854d65:
             }
           }
           else if ((bufferCapacity & 1) != 0) {
-            uVar9 = dataPointer - uVar9;
+            uint_var_9 = dataPointer - uint_var_9;
           }
-          *networkParam = uVar9;
+          *networkParam = uint_var_9;
         }
       }
       else {
@@ -21276,7 +21276,7 @@ uint64_t FUN_180854d7d(void)
   uint64_t socketStatus;
   longlong serverPort;
   longlong clientPort;
-  uint uVar9;
+  uint uint_var_9;
   uint socketIdentifier;
   uint networkResult0;
   longlong unaff_RBP;
@@ -21293,9 +21293,9 @@ uint64_t FUN_180854d7d(void)
     *stack_param = networkResult0;
     dataPointer = *(uint *)(unaff_RBP + 0x24);
     if (dataPointer != 0) {
-      uVar9 = networkResult0 % dataPointer;
+      uint_var_9 = networkResult0 % dataPointer;
       bufferCapacity = *(uint *)(responseBuffer + 0x38) >> 3;
-      if (uVar9 == 0) {
+      if (uint_var_9 == 0) {
         if ((bufferCapacity & 1) != 0) {
           dataPointer = dataPointer - 1;
           if (networkResult0 != 0) {
@@ -21310,9 +21310,9 @@ uint64_t FUN_180854d7d(void)
         }
       }
       else if ((bufferCapacity & 1) != 0) {
-        uVar9 = dataPointer - uVar9;
+        uint_var_9 = dataPointer - uint_var_9;
       }
-      *stack_param = uVar9;
+      *stack_param = uint_var_9;
     }
   }
   else {
@@ -21807,7 +21807,7 @@ uint64_t FUN_1808553b0(longlong *socketHandle)
   uint64_t socketStatus;
   uint bufferSize;
   uint32_t *ptimeoutValue;
-  longlong lVar9;
+  longlong long_var_9;
   
   bufferSize = *(uint *)((longlong)socketHandle + 0xc);
   if ((int)((bufferSize ^ (int)bufferSize >> 0x1f) - ((int)bufferSize >> 0x1f)) < 0) {
@@ -21824,7 +21824,7 @@ uint64_t FUN_1808553b0(longlong *socketHandle)
   }
   statusCode = (int)socketHandle[1];
   if (statusCode < 0) {
-    lVar9 = (longlong)-statusCode;
+    long_var_9 = (longlong)-statusCode;
     if (statusCode < 0) {
       ptimeoutValue = (uint32_t *)((longlong)statusCode * 0x1c + 0x10 + *socketHandle);
       do {
@@ -21839,9 +21839,9 @@ uint64_t FUN_1808553b0(longlong *socketHandle)
         *ptimeoutValue = 0xffffffff;
         ptimeoutValue[1] = 0;
         ptimeoutValue[2] = 0xffffffff;
-        lVar9 = lVar9 + -1;
+        long_var_9 = long_var_9 + -1;
         ptimeoutValue = ptimeoutValue + 7;
-      } while (lVar9 != 0);
+      } while (long_var_9 != 0);
       bufferSize = *(uint *)((longlong)socketHandle + 0xc);
     }
   }
@@ -21930,20 +21930,20 @@ uint64_t FUN_1808554a0(longlong *socketHandle)
   uint64_t socketStatus;
   uint32_t *pbufferSize;
   longlong clientPort;
-  uint uVar9;
+  uint uint_var_9;
   
-  uVar9 = *(uint *)((longlong)socketHandle + 0xc);
-  if ((int)((uVar9 ^ (int)uVar9 >> 0x1f) - ((int)uVar9 >> 0x1f)) < 0) {
+  uint_var_9 = *(uint *)((longlong)socketHandle + 0xc);
+  if ((int)((uint_var_9 ^ (int)uint_var_9 >> 0x1f) - ((int)uint_var_9 >> 0x1f)) < 0) {
     if (0 < (int)socketHandle[1]) {
       return 0x1c;
     }
-    if ((0 < (int)uVar9) && (*socketHandle != 0)) {
+    if ((0 < (int)uint_var_9) && (*socketHandle != 0)) {
                     // WARNING: Subroutine does not return
       NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),*socketHandle,&g_errorBuffer,0x100,1);
     }
     *socketHandle = 0;
     *(uint32_t *)((longlong)socketHandle + 0xc) = 0;
-    uVar9 = 0;
+    uint_var_9 = 0;
   }
   statusCode = (int)socketHandle[1];
   if (statusCode < 0) {
@@ -21964,11 +21964,11 @@ uint64_t FUN_1808554a0(longlong *socketHandle)
         clientPort = clientPort + -1;
         pbufferSize = pbufferSize + 6;
       } while (clientPort != 0);
-      uVar9 = *(uint *)((longlong)socketHandle + 0xc);
+      uint_var_9 = *(uint *)((longlong)socketHandle + 0xc);
     }
   }
   *(uint32_t *)(socketHandle + 1) = 0;
-  if (((int)((uVar9 ^ (int)uVar9 >> 0x1f) - ((int)uVar9 >> 0x1f)) < 1) ||
+  if (((int)((uint_var_9 ^ (int)uint_var_9 >> 0x1f) - ((int)uint_var_9 >> 0x1f)) < 1) ||
      (socketStatus = FUN_18084d3f0(socketHandle,0), (int)socketStatus == 0)) {
     socketStatus = 0;
   }
@@ -22112,19 +22112,19 @@ uint64_t FUN_1808555a0(longlong *socketHandle)
   uint64_t socketStatus;
   uint8_t *pbufferSize;
   longlong clientPort;
-  uint uVar9;
+  uint uint_var_9;
   
-  uVar9 = *(uint *)((longlong)socketHandle + 0xc);
-  if ((int)((uVar9 ^ (int)uVar9 >> 0x1f) - ((int)uVar9 >> 0x1f)) < 0) {
+  uint_var_9 = *(uint *)((longlong)socketHandle + 0xc);
+  if ((int)((uint_var_9 ^ (int)uint_var_9 >> 0x1f) - ((int)uint_var_9 >> 0x1f)) < 0) {
     if (0 < (int)socketHandle[1]) {
       return 0x1c;
     }
-    if ((0 < (int)uVar9) && (*socketHandle != 0)) {
+    if ((0 < (int)uint_var_9) && (*socketHandle != 0)) {
                     // WARNING: Subroutine does not return
       NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),*socketHandle,&g_errorBuffer,0x100,1);
     }
     *socketHandle = 0;
-    uVar9 = 0;
+    uint_var_9 = 0;
     *(uint32_t *)((longlong)socketHandle + 0xc) = 0;
   }
   statusCode = (int)socketHandle[1];
@@ -22146,11 +22146,11 @@ uint64_t FUN_1808555a0(longlong *socketHandle)
         clientPort = clientPort + -1;
         pbufferSize = pbufferSize + 0x18;
       } while (clientPort != 0);
-      uVar9 = *(uint *)((longlong)socketHandle + 0xc);
+      uint_var_9 = *(uint *)((longlong)socketHandle + 0xc);
     }
   }
   *(uint32_t *)(socketHandle + 1) = 0;
-  if (((int)((uVar9 ^ (int)uVar9 >> 0x1f) - ((int)uVar9 >> 0x1f)) < 1) ||
+  if (((int)((uint_var_9 ^ (int)uint_var_9 >> 0x1f) - ((int)uint_var_9 >> 0x1f)) < 1) ||
      (socketStatus = FUN_1808595a0(socketHandle,0), (int)socketStatus == 0)) {
     socketStatus = 0;
   }
@@ -22663,7 +22663,7 @@ uint64_t FUN_180855ba6(void)
   longlong *unaff_RBX;
   int packetId;
   int errorCode;
-  ulonglong uVar9;
+  ulonglong uint_var_9;
   ulonglong networkResult0;
   
   if (unaff_EDI == in_EAX) {
@@ -22683,8 +22683,8 @@ uint64_t FUN_180855ba6(void)
     if ((int)dataPointer != 0) {
       return dataPointer;
     }
-    uVar9 = 0;
-    connectionIndex = uVar9;
+    uint_var_9 = 0;
+    connectionIndex = uint_var_9;
     if (0 < errorCode) {
       do {
         *(uint32_t *)(*unaff_RBX + connectionIndex * 4) = 0xffffffff;
@@ -22692,8 +22692,8 @@ uint64_t FUN_180855ba6(void)
       } while ((longlong)connectionIndex < (longlong)errorCode);
     }
     connectionInfo = unaff_RBX[3];
-    connectionIndex = uVar9;
-    networkResult0 = uVar9;
+    connectionIndex = uint_var_9;
+    networkResult0 = uint_var_9;
     if (0 < (int)connectionInfo) {
       do {
         if ((int)unaff_RBX[1] == 0) {
@@ -22711,9 +22711,9 @@ uint64_t FUN_180855ba6(void)
           pstatusCode = (int *)(socketDescriptor + networkAddress * 8);
           errorCode = *(int *)(socketDescriptor + networkAddress * 8);
         }
-        *pstatusCode = (int)uVar9;
+        *pstatusCode = (int)uint_var_9;
         networkResult0 = networkResult0 + 1;
-        uVar9 = (ulonglong)((int)uVar9 + 1);
+        uint_var_9 = (ulonglong)((int)uint_var_9 + 1);
         *(uint32_t *)(unaff_RBX[2] + 0x10 + connectionIndex) = 0xffffffff;
         connectionIndex = connectionIndex + 0x18;
       } while ((longlong)networkResult0 < (longlong)(int)connectionInfo);
@@ -22824,7 +22824,7 @@ uint64_t FUN_180855d06(void)
   longlong *unaff_RBX;
   int packetId;
   int errorCode;
-  ulonglong uVar9;
+  ulonglong uint_var_9;
   ulonglong networkResult0;
   
   if (unaff_EDI == in_EAX) {
@@ -22844,8 +22844,8 @@ uint64_t FUN_180855d06(void)
     if ((int)dataPointer != 0) {
       return dataPointer;
     }
-    uVar9 = 0;
-    connectionIndex = uVar9;
+    uint_var_9 = 0;
+    connectionIndex = uint_var_9;
     if (0 < errorCode) {
       do {
         *(uint32_t *)(*unaff_RBX + connectionIndex * 4) = 0xffffffff;
@@ -22853,8 +22853,8 @@ uint64_t FUN_180855d06(void)
       } while ((longlong)connectionIndex < (longlong)errorCode);
     }
     connectionInfo = unaff_RBX[3];
-    connectionIndex = uVar9;
-    networkResult0 = uVar9;
+    connectionIndex = uint_var_9;
+    networkResult0 = uint_var_9;
     if (0 < (int)connectionInfo) {
       do {
         if ((int)unaff_RBX[1] == 0) {
@@ -22872,9 +22872,9 @@ uint64_t FUN_180855d06(void)
           pstatusCode = (int *)(socketDescriptor + networkAddress * 8);
           errorCode = *(int *)(socketDescriptor + networkAddress * 8);
         }
-        *pstatusCode = (int)uVar9;
+        *pstatusCode = (int)uint_var_9;
         networkResult0 = networkResult0 + 1;
-        uVar9 = (ulonglong)((int)uVar9 + 1);
+        uint_var_9 = (ulonglong)((int)uint_var_9 + 1);
         *(uint32_t *)(unaff_RBX[2] + 0x10 + connectionIndex) = 0xffffffff;
         connectionIndex = connectionIndex + 0x18;
       } while ((longlong)networkResult0 < (longlong)(int)connectionInfo);
@@ -23838,7 +23838,7 @@ FUN_180856830(longlong socketHandle,uint *dataBuffer,uint32_t bufferCapacity,cha
   longlong networkAddress;
   longlong serverPort;
   longlong clientPort;
-  uint64_t uVar9;
+  uint64_t uint_var_9;
   int statusCode0;
   longlong *pnetworkTimeout1;
   uint networkResult2;
@@ -23982,12 +23982,12 @@ LAB_180856a99:
               if (((*(uint *)(pnetworkTimeout4 + 7) >> 4 & 1) == 0) ||
                  ((packetLength = *dataBuffer, networkResult2 < packetLength || (dataBuffer[1] < networkResult7)))) {
 LAB_180856b7a:
-                uVar9 = FUN_180855130(socketHandle,pnetworkTimeout4,pconnectionIndex,bufferCapacity,isConnected8,&networkUintStack_64,acStack_67,
+                uint_var_9 = FUN_180855130(socketHandle,pnetworkTimeout4,pconnectionIndex,bufferCapacity,isConnected8,&networkUintStack_64,acStack_67,
                                       &cStack_68);
-                if ((int)uVar9 != 0) {
-                  return uVar9;
+                if ((int)uint_var_9 != 0) {
+                  return uint_var_9;
                 }
-                if (cStack_68 == (char)uVar9) {
+                if (cStack_68 == (char)uint_var_9) {
                   pnetworkTimeout1 = pnetworkLongStack_60;
                   pnetworkTimeout3 = pnetworkLongStack_58;
                   if (acStack_67[0] != '\0') {
@@ -24026,13 +24026,13 @@ LAB_180856b58:
                 }
                 networkUintStack_50 = packetLength;
                 networkUintStack_4c = networkResult7;
-                uVar9 = FUN_180855130(socketHandle,pnetworkTimeout4,&networkUintStack_50,bufferCapacity,isConnected8,&networkUintStack_64,
+                uint_var_9 = FUN_180855130(socketHandle,pnetworkTimeout4,&networkUintStack_50,bufferCapacity,isConnected8,&networkUintStack_64,
                                       acStack_67,&cStack_68);
-                if ((int)uVar9 != 0) {
-                  return uVar9;
+                if ((int)uint_var_9 != 0) {
+                  return uint_var_9;
                 }
-                if (cStack_68 == (char)uVar9) {
-                  if (acStack_67[0] == (char)uVar9) goto LAB_180856b58;
+                if (cStack_68 == (char)uint_var_9) {
+                  if (acStack_67[0] == (char)uint_var_9) goto LAB_180856b58;
                   goto LAB_180856bdf;
                 }
               }
@@ -25440,7 +25440,7 @@ ulonglong FUN_180857e50(longlong socketHandle,uint *dataBuffer,int bufferCapacit
   uint socketStatus;
   uint bufferSize;
   int errorCode;
-  uint64_t uVar9;
+  uint64_t uint_var_9;
   ulonglong networkResult0;
   ulonglong *connectionBuffer1;
   ulonglong networkResult2;
@@ -25519,8 +25519,8 @@ ulonglong FUN_180857e50(longlong socketHandle,uint *dataBuffer,int bufferCapacit
     goto LAB_180857f82;
   }
   bufferSize = *dataBuffer;
-  uVar9 = (**(code **)(*(longlong *)(*(longlong *)(socketHandle + 0x160) + 8) + 0x30))();
-  networkTimeout5 = func_0x0001808b8910(uVar9);
+  uint_var_9 = (**(code **)(*(longlong *)(*(longlong *)(socketHandle + 0x160) + 8) + 0x30))();
+  networkTimeout5 = func_0x0001808b8910(uint_var_9);
   networkResult2 = (ulonglong)*(uint *)(networkTimeout5 + 0x1fc);
   if (*(uint *)(networkTimeout5 + 0x1fc) == 0xffffffff) {
     networkTimeout5 = (*(code *)**(uint64_t **)(*(longlong *)(socketHandle + 0x160) + 8))();
@@ -25775,15 +25775,15 @@ LAB_1808580a0:
         SetNetworkTimeout(&networkTimeoutThreshold;  /* 原: DAT_180c4ea98 */);
       }
       if (_networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */ < networkUintStack_158) {
-        uVar9 = 0;
+        uint_var_9 = 0;
         if ((char)networkUintStack_150 != '\0') {
-          uVar9 = networkUintStack_80;
+          uint_var_9 = networkUintStack_80;
         }
         packetLength3 = 0;
         if ((char)connectionIndex != '\0') {
           packetLength3 = networkUintStack_60;
         }
-        socketStatus = FUN_18085b580(socketHandle,networkUintStack_158,packetLength3,uVar9);
+        socketStatus = FUN_18085b580(socketHandle,networkUintStack_158,packetLength3,uint_var_9);
         networkResult8 = (ulonglong)socketStatus;
         if (socketStatus != 0) goto LAB_180859163;
         networkUintStack_15c = bufferSize - networkUintStack_158;
@@ -25921,14 +25921,14 @@ LAB_180858c20:
         isAvailable8 = *(int *)(socketHandle + 0xc) != 2;
         networkTimeout3 = (ulonglong)bufferCapacity1 << 8;
         networkIntStack_164 = 0;
-        uVar9 = CONCAT71(bufferCapacity0,1);
+        uint_var_9 = CONCAT71(bufferCapacity0,1);
         networkResult2 = FUN_18085acd0(socketHandle,&networkUintStack_f0,&networkUintStack_138,*(longlong *)(socketHandle + 0x110) + 0x48,
-                               uVar9,isAvailable8,networkTimeout3);
+                               uint_var_9,isAvailable8,networkTimeout3);
         if ((int)networkResult2 != 0) {
           return networkResult2;
         }
         stack_param = CONCAT71((int7)((ulonglong)networkTimeout3 >> 8),(char)networkResult2);
-        connectionBuffer6 = (uint *)CONCAT71((int7)((ulonglong)uVar9 >> 8),(char)networkResult2);
+        connectionBuffer6 = (uint *)CONCAT71((int7)((ulonglong)uint_var_9 >> 8),(char)networkResult2);
         networkResult2 = FUN_18085acd0(socketHandle,&networkUintStack_f0,&networkUintStack_138,*(longlong *)(socketHandle + 0x110) + 0x38,
                                connectionBuffer6,isAvailable8,stack_param);
         if ((int)networkResult2 != 0) {
@@ -26194,14 +26194,14 @@ LAB_180858e04:
     }
     isAvailable9 = *(int *)(socketHandle + 0xc) != 2;
     networkTimeout5 = (ulonglong)bufferCapacity1 << 8;
-    uVar9 = CONCAT71(bufferCapacity0,1);
+    uint_var_9 = CONCAT71(bufferCapacity0,1);
     networkResult2 = FUN_18085acd0(socketHandle,&networkUintStack_f0,&networkUintStack_138,*(longlong *)(socketHandle + 0x110) + 0x48,
-                           uVar9,isAvailable9,networkTimeout5);
+                           uint_var_9,isAvailable9,networkTimeout5);
     if ((int)networkResult2 != 0) {
       return networkResult2;
     }
     stack_param = CONCAT71((int7)((ulonglong)networkTimeout5 >> 8),(char)networkResult2);
-    stack_param = (longlong **)CONCAT71((int7)((ulonglong)uVar9 >> 8),(char)networkResult2);
+    stack_param = (longlong **)CONCAT71((int7)((ulonglong)uint_var_9 >> 8),(char)networkResult2);
     networkResult2 = FUN_18085acd0(socketHandle,&networkUintStack_f0,&networkUintStack_138,*(longlong *)(socketHandle + 0x110) + 0x38,
                            stack_param,isAvailable9,stack_param);
     if ((int)networkResult2 != 0) {
@@ -26352,7 +26352,7 @@ uint64_t FUN_1808592c0(longlong socketHandle,longlong dataBuffer,uint64_t buffer
   uint64_t socketStatus;
   longlong serverPort;
   ulonglong timeoutValue;
-  longlong lVar9;
+  longlong long_var_9;
   uint networkResult0;
   int statusCode1;
   uint auStackX_8 [2];
@@ -26360,7 +26360,7 @@ uint64_t FUN_1808592c0(longlong socketHandle,longlong dataBuffer,uint64_t buffer
   pnetworkTimeout = (longlong *)(socketHandle + 0x70);
   if (((longlong *)*pnetworkTimeout == pnetworkTimeout) && (*(longlong **)(socketHandle + 0x78) == pnetworkTimeout)) {
     serverPort = *(longlong *)(socketHandle + 0x38);
-    lVar9 = *(longlong *)(socketHandle + CONNECTION_BUFFER_OFFSET);
+    long_var_9 = *(longlong *)(socketHandle + CONNECTION_BUFFER_OFFSET);
     timeoutValue = (ulonglong)*(uint *)(socketHandle + 0x30);
     if (serverPort != 0) {
       *(int *)(serverPort + 0x10) = *(int *)(serverPort + 0x10) + 1;
@@ -26369,7 +26369,7 @@ uint64_t FUN_1808592c0(longlong socketHandle,longlong dataBuffer,uint64_t buffer
   else {
     dataBuffer = *(longlong *)(socketHandle + 0x78);
     serverPort = *(longlong *)(dataBuffer + SOCKET_RESPONSE_OFFSET);
-    lVar9 = *(longlong *)(dataBuffer + 0x10);
+    long_var_9 = *(longlong *)(dataBuffer + 0x10);
     timeoutValue = (ulonglong)*(uint *)(dataBuffer + 0x18);
     if (serverPort != 0) {
       *(int *)(serverPort + 0x10) = *(int *)(serverPort + 0x10) + 1;
@@ -26385,8 +26385,8 @@ uint64_t FUN_1808592c0(longlong socketHandle,longlong dataBuffer,uint64_t buffer
   }
   statusCode1 = -1;
   connectionIndex = 0;
-  if (0 < dataBuffer - lVar9) {
-    connectionIndex = dataBuffer - lVar9;
+  if (0 < dataBuffer - long_var_9) {
+    connectionIndex = dataBuffer - long_var_9;
   }
   if ((longlong)connectionIndex < 1) {
     connectionIndex = 0;
@@ -26413,14 +26413,14 @@ uint64_t FUN_1808592c0(longlong socketHandle,longlong dataBuffer,uint64_t buffer
       if (bufferCapacity != 48000) {
         timeoutValue = (timeoutValue * bufferCapacity) / 48000;
       }
-      *timeoutValue = (timeoutValue & 0xffffffff) + lVar9;
+      *timeoutValue = (timeoutValue & 0xffffffff) + long_var_9;
       return 0;
     }
     timeoutValue = (ulonglong)(networkResult0 - auStackX_8[0]);
     if (bufferCapacity != 48000) {
       timeoutValue = (timeoutValue * bufferCapacity) / 48000;
     }
-    *timeoutValue = lVar9 - (timeoutValue & 0xffffffff);
+    *timeoutValue = long_var_9 - (timeoutValue & 0xffffffff);
     socketStatus = 0;
   }
   return socketStatus;
@@ -26441,7 +26441,7 @@ uint64_t FUN_1808592ca(longlong socketHandle,longlong dataBuffer,uint64_t buffer
   uint64_t socketStatus;
   longlong serverPort;
   ulonglong timeoutValue;
-  longlong lVar9;
+  longlong long_var_9;
   uint networkResult0;
   int statusCode1;
   uint stack_param;
@@ -26449,7 +26449,7 @@ uint64_t FUN_1808592ca(longlong socketHandle,longlong dataBuffer,uint64_t buffer
   pnetworkTimeout = (longlong *)(socketHandle + 0x70);
   if (((longlong *)*pnetworkTimeout == pnetworkTimeout) && (*(longlong **)(socketHandle + 0x78) == pnetworkTimeout)) {
     serverPort = *(longlong *)(socketHandle + 0x38);
-    lVar9 = *(longlong *)(socketHandle + CONNECTION_BUFFER_OFFSET);
+    long_var_9 = *(longlong *)(socketHandle + CONNECTION_BUFFER_OFFSET);
     timeoutValue = (ulonglong)*(uint *)(socketHandle + 0x30);
     if (serverPort != 0) {
       *(int *)(serverPort + 0x10) = *(int *)(serverPort + 0x10) + 1;
@@ -26458,7 +26458,7 @@ uint64_t FUN_1808592ca(longlong socketHandle,longlong dataBuffer,uint64_t buffer
   else {
     dataBuffer = *(longlong *)(socketHandle + 0x78);
     serverPort = *(longlong *)(dataBuffer + SOCKET_RESPONSE_OFFSET);
-    lVar9 = *(longlong *)(dataBuffer + 0x10);
+    long_var_9 = *(longlong *)(dataBuffer + 0x10);
     timeoutValue = (ulonglong)*(uint *)(dataBuffer + 0x18);
     if (serverPort != 0) {
       *(int *)(serverPort + 0x10) = *(int *)(serverPort + 0x10) + 1;
@@ -26474,8 +26474,8 @@ uint64_t FUN_1808592ca(longlong socketHandle,longlong dataBuffer,uint64_t buffer
   }
   statusCode1 = -1;
   connectionIndex = 0;
-  if (0 < dataBuffer - lVar9) {
-    connectionIndex = dataBuffer - lVar9;
+  if (0 < dataBuffer - long_var_9) {
+    connectionIndex = dataBuffer - long_var_9;
   }
   if ((longlong)connectionIndex < 1) {
     connectionIndex = 0;
@@ -26502,14 +26502,14 @@ uint64_t FUN_1808592ca(longlong socketHandle,longlong dataBuffer,uint64_t buffer
       if (bufferCapacity != 48000) {
         timeoutValue = (timeoutValue * bufferCapacity) / 48000;
       }
-      *timeoutValue = (timeoutValue & 0xffffffff) + lVar9;
+      *timeoutValue = (timeoutValue & 0xffffffff) + long_var_9;
       return 0;
     }
     timeoutValue = (ulonglong)(networkResult0 - stack_param);
     if (bufferCapacity != 48000) {
       timeoutValue = (timeoutValue * bufferCapacity) / 48000;
     }
-    *timeoutValue = lVar9 - (timeoutValue & 0xffffffff);
+    *timeoutValue = long_var_9 - (timeoutValue & 0xffffffff);
     socketStatus = 0;
   }
   return socketStatus;
@@ -26875,7 +26875,7 @@ void FUN_1808596d0(longlong socketHandle,longlong dataBuffer)
   longlong networkAddress;
   longlong *pserverPort;
   longlong *pclientPort;
-  uint64_t uVar9;
+  uint64_t uint_var_9;
   uint32_t networkResult0;
   float fVar11;
   float fVar12;
@@ -26935,12 +26935,12 @@ void FUN_1808596d0(longlong socketHandle,longlong dataBuffer)
               fVar11 = 1.0;
             }
           }
-          uVar9 = 1;
+          uint_var_9 = 1;
         }
         else {
           bufferCapacity = connectionDataPointer[(longlong)*(int *)(networkAddress + 0x38) * 6 + -6];
           if (packetLength <= bufferCapacity) {
-            uVar9 = 1;
+            uint_var_9 = 1;
             goto LAB_180859953;
           }
           fVar11 = 0.0;
@@ -26949,9 +26949,9 @@ void FUN_1808596d0(longlong socketHandle,longlong dataBuffer)
              && (fVar11 = fVar12, 1.0 <= fVar12)) {
             fVar11 = 1.0;
           }
-          uVar9 = 2;
+          uint_var_9 = 2;
         }
-        processResult = func_0x0001808c6c40(dataBuffer,fVar11,uVar9);
+        processResult = func_0x0001808c6c40(dataBuffer,fVar11,uint_var_9);
         if (processResult != 0) goto LAB_1808597c2;
         goto LAB_18085996b;
       }
@@ -26980,9 +26980,9 @@ void FUN_1808596d0(longlong socketHandle,longlong dataBuffer)
                     // WARNING: Subroutine does not return
           FUN_18076b390(networkStack_68,0x27,&UNK_180958180,(int)pserverPort[4]);
         }
-        uVar9 = 4;
+        uint_var_9 = 4;
 LAB_180859953:
-        processResult = func_0x0001808c6c40(dataBuffer,0x3f800000,uVar9);
+        processResult = func_0x0001808c6c40(dataBuffer,0x3f800000,uint_var_9);
         if (processResult == 0) {
 LAB_18085996b:
           networkResult0 = FUN_1808c6120(networkAddress,*(uint32_t *)(socketHandle + 0x24));
@@ -28970,7 +28970,7 @@ FUN_18085acd0(longlong socketHandle,longlong *dataBuffer,uint *bufferCapacity,ul
   uint socketStatus;
   ulonglong bufferSize;
   uint timeoutValue;
-  uint uVar9;
+  uint uint_var_9;
   uint networkResult0;
   int statusCode1;
   longlong networkTimeout2;
@@ -29003,21 +29003,21 @@ FUN_18085acd0(longlong socketHandle,longlong *dataBuffer,uint *bufferCapacity,ul
     }
     timeoutValue = *(uint *)(networkResult3 + 0x10);
     dataPointer = *bufferCapacity;
-    if ((timeoutValue < dataPointer) || (uVar9 = timeoutValue, bufferCapacity[1] <= timeoutValue)) {
+    if ((timeoutValue < dataPointer) || (uint_var_9 = timeoutValue, bufferCapacity[1] <= timeoutValue)) {
       networkResult0 = _networkTimeoutCurrent;  /* 原: DAT_180c4ea94 */;
       if ((networkParam != '\0') && (timeoutValue <= dataPointer)) {
         socketStatus = 0xffffffff;
         if ((ulonglong)*(uint *)(networkResult3 + 0x14) + (ulonglong)timeoutValue < 0x100000000) {
           socketStatus = *(uint *)(networkResult3 + 0x14) + timeoutValue;
         }
-        uVar9 = dataPointer;
+        uint_var_9 = dataPointer;
         if (dataPointer < socketStatus) goto LAB_18085add0;
       }
     }
     else {
 LAB_18085add0:
       isReady = true;
-      networkResult0 = uVar9;
+      networkResult0 = uint_var_9;
     }
     if (isReady) {
       if (networkParam == '\0') {
@@ -29025,18 +29025,18 @@ LAB_18085add0:
       }
       else {
         dataPointer = *(uint *)(dataBuffer + 1);
-        uVar9 = *(uint *)(*(longlong *)(socketHandle + 0x168) + 0x774);
+        uint_var_9 = *(uint *)(*(longlong *)(socketHandle + 0x168) + 0x774);
         if (timeoutValue < dataPointer) {
           bufferSize = (ulonglong)(dataPointer - timeoutValue);
-          if (uVar9 != 48000) {
-            bufferSize = (bufferSize * uVar9) / 48000;
+          if (uint_var_9 != 48000) {
+            bufferSize = (bufferSize * uint_var_9) / 48000;
           }
           networkTimeout2 = *dataBuffer - (bufferSize & 0xffffffff);
         }
         else {
           dataPointer = timeoutValue - dataPointer;
-          if (uVar9 != 48000) {
-            dataPointer = (uint)(((ulonglong)dataPointer * (ulonglong)uVar9) / 48000);
+          if (uint_var_9 != 48000) {
+            dataPointer = (uint)(((ulonglong)dataPointer * (ulonglong)uint_var_9) / 48000);
           }
           networkTimeout2 = (ulonglong)dataPointer + *dataBuffer;
         }
@@ -29073,18 +29073,18 @@ LAB_18085add0:
     }
     if ((*bufferCapacity <= timeoutValue) && (timeoutValue < bufferCapacity[1])) {
       dataPointer = *(uint *)(dataBuffer + 1);
-      uVar9 = *(uint *)(*(longlong *)(socketHandle + 0x168) + 0x774);
+      uint_var_9 = *(uint *)(*(longlong *)(socketHandle + 0x168) + 0x774);
       if (timeoutValue < dataPointer) {
         bufferSize = (ulonglong)(dataPointer - timeoutValue);
-        if (uVar9 != 48000) {
-          bufferSize = (bufferSize * uVar9) / 48000;
+        if (uint_var_9 != 48000) {
+          bufferSize = (bufferSize * uint_var_9) / 48000;
         }
         networkTimeout2 = *dataBuffer - (bufferSize & 0xffffffff);
       }
       else {
         timeoutValue = timeoutValue - dataPointer;
-        if (uVar9 != 48000) {
-          timeoutValue = (uint)(((ulonglong)timeoutValue * (ulonglong)uVar9) / 48000);
+        if (uint_var_9 != 48000) {
+          timeoutValue = (uint)(((ulonglong)timeoutValue * (ulonglong)uint_var_9) / 48000);
         }
         networkTimeout2 = (ulonglong)timeoutValue + *dataBuffer;
       }
@@ -29169,7 +29169,7 @@ uint64_t FUN_18085b200(longlong socketHandle,uint *dataBuffer,longlong *bufferCa
   uint socketStatus;
   longlong serverPort;
   longlong clientPort;
-  ulonglong uVar9;
+  ulonglong uint_var_9;
   int statusCode0;
   longlong networkTimeout1;
   uint networkResult2;
@@ -29189,11 +29189,11 @@ uint64_t FUN_18085b200(longlong socketHandle,uint *dataBuffer,longlong *bufferCa
           networkResult = *(uint *)(bufferCapacity + 1);
           networkResult2 = *(uint *)(*(longlong *)(socketHandle + 0x168) + 0x774);
           if (socketStatus < networkResult) {
-            uVar9 = (ulonglong)(networkResult - socketStatus);
+            uint_var_9 = (ulonglong)(networkResult - socketStatus);
             if (networkResult2 != 48000) {
-              uVar9 = (uVar9 * networkResult2) / 48000;
+              uint_var_9 = (uint_var_9 * networkResult2) / 48000;
             }
-            serverPort = *bufferCapacity - (uVar9 & 0xffffffff);
+            serverPort = *bufferCapacity - (uint_var_9 & 0xffffffff);
           }
           else {
             socketStatus = socketStatus - networkResult;
@@ -29245,11 +29245,11 @@ uint64_t FUN_18085b200(longlong socketHandle,uint *dataBuffer,longlong *bufferCa
                 connectionIndex = *(uint *)(bufferCapacity + 1);
                 packetLength = *(uint *)(*(longlong *)(socketHandle + 0x168) + 0x774);
                 if (networkResult2 < connectionIndex) {
-                  uVar9 = (ulonglong)(connectionIndex - networkResult2);
+                  uint_var_9 = (ulonglong)(connectionIndex - networkResult2);
                   if (packetLength != 48000) {
-                    uVar9 = (uVar9 * packetLength) / 48000;
+                    uint_var_9 = (uint_var_9 * packetLength) / 48000;
                   }
-                  clientPort = *bufferCapacity - (uVar9 & 0xffffffff);
+                  clientPort = *bufferCapacity - (uint_var_9 & 0xffffffff);
                 }
                 else {
                   connectionIndex = networkResult2 - connectionIndex;
@@ -29439,7 +29439,7 @@ int FUN_18085b595(longlong socketHandle,uint dataBuffer,longlong bufferCapacity,
   int dataLength;
   int errorCode;
   longlong networkContextPtr;
-  ulonglong uVar9;
+  ulonglong uint_var_9;
   uint64_t unaff_RBX;
   ulonglong networkResult0;
   uint64_t unaff_RBP;
@@ -29484,12 +29484,12 @@ int FUN_18085b595(longlong socketHandle,uint dataBuffer,longlong bufferCapacity,
   networkOperationResult = *(int *)(lStack0000000000000040 + 0xa8);
   if ((*(byte *)(socketHandle + 0x128) & 2) == 0) {
     stack_param = (uint *)(socketHandle + 0x14c);
-    uVar9 = (ulonglong)(*(int *)(socketHandle + 0x148) - *stack_param);
+    uint_var_9 = (ulonglong)(*(int *)(socketHandle + 0x148) - *stack_param);
     dataPointer = *(uint *)(*(longlong *)(socketHandle + 0x168) + 0x774);
     if (dataPointer != 48000) {
-      uVar9 = (uVar9 * dataPointer) / 48000;
+      uint_var_9 = (uint_var_9 * dataPointer) / 48000;
     }
-    lStack0000000000000048 = (uVar9 & 0xffffffff) + networkTimeout1;
+    lStack0000000000000048 = (uint_var_9 & 0xffffffff) + networkTimeout1;
     iStack0000000000000050 = -1;
     if ((ulonglong)*(uint *)(networkTimeout3 + 8) + (ulonglong)*(uint *)(socketHandle + 0x154) < 0x100000000) {
       iStack0000000000000050 = *(uint *)(socketHandle + 0x154) + *(uint *)(networkTimeout3 + 8);
@@ -29505,25 +29505,25 @@ int FUN_18085b595(longlong socketHandle,uint dataBuffer,longlong bufferCapacity,
   if ((uint)(errorCode - networkOperationResult) <= dataPointer) {
     stack_param = (uint *)(socketHandle + 0x150);
     connectionIndex = *stack_param;
-    uVar9 = (ulonglong)(dataPointer - connectionIndex);
+    uint_var_9 = (ulonglong)(dataPointer - connectionIndex);
     dataPointer = *(uint *)(*(longlong *)(socketHandle + 0x168) + 0x774);
     if (dataPointer != 48000) {
-      uVar9 = (uVar9 * dataPointer) / 48000;
+      uint_var_9 = (uint_var_9 * dataPointer) / 48000;
     }
     dataPointer = *(uint *)(socketHandle + 0x158);
-    lStack0000000000000048 = (uVar9 & 0xffffffff) + networkTimeout1;
+    lStack0000000000000048 = (uint_var_9 & 0xffffffff) + networkTimeout1;
     iStack0000000000000050 = -1;
     if ((ulonglong)dataPointer + (ulonglong)*(uint *)(networkTimeout3 + 8) < 0x100000000) {
       iStack0000000000000050 = dataPointer + *(uint *)(networkTimeout3 + 8);
     }
     if (timeoutValue != 0) {
-      uVar9 = 0xffffffff;
+      uint_var_9 = 0xffffffff;
       if (dataPointer + networkResult0 < 0x100000000) {
-        uVar9 = (ulonglong)(dataPointer + dataBuffer);
+        uint_var_9 = (ulonglong)(dataPointer + dataBuffer);
       }
       errorCode = -1;
-      if (uVar9 + connectionIndex < 0x100000000) {
-        errorCode = (int)uVar9 + connectionIndex;
+      if (uint_var_9 + connectionIndex < 0x100000000) {
+        errorCode = (int)uint_var_9 + connectionIndex;
       }
       *(int *)(socketHandle + 0x15c) = errorCode;
     }
@@ -29542,15 +29542,15 @@ int FUN_18085b595(longlong socketHandle,uint dataBuffer,longlong bufferCapacity,
     iStack00000000000000a4 = dataPointer + dataBuffer;
   }
   uStack0000000000000030 = 0;
-  uVar9 = CONCAT71((int7)((ulonglong)stack_param >> 8),1);
+  uint_var_9 = CONCAT71((int7)((ulonglong)stack_param >> 8),1);
   lStack0000000000000048 = networkTimeout1;
   uStack00000000000000a0 = dataPointer;
   dataLength = FUN_18085acd0(socketHandle,&stack_buffer,&stack_buffer,lStack0000000000000040 + 0x80,
-                        uVar9);
+                        uint_var_9);
   if (dataLength == 0) {
     uStack0000000000000030 = 0;
     dataLength = FUN_18085acd0(socketHandle,&stack_buffer,&stack_buffer,networkAddress + 0x90,
-                          uVar9 & 0xffffffffffffff00);
+                          uint_var_9 & 0xffffffffffffff00);
     if (dataLength != 0) goto LAB_18085b88c;
   }
   else {
@@ -29660,7 +29660,7 @@ longlong * FUN_18085ba10(longlong socketHandle,longlong *dataBuffer)
   longlong networkAddress;
   uint32_t *pbufferSize;
   uint32_t timeoutValue;
-  longlong lVar9;
+  longlong long_var_9;
   uint32_t networkUintStack_28;
   uint32_t networkUintStack_24;
   uint32_t networkUintStack_1c;
@@ -29670,16 +29670,16 @@ longlong * FUN_18085ba10(longlong socketHandle,longlong *dataBuffer)
   if (((longlong *)*pnetworkTimeout == pnetworkTimeout) && (*(longlong **)(socketHandle + 0x78) == pnetworkTimeout)) {
     connectionIndex = *(uint64_t *)(socketHandle + CONNECTION_BUFFER_OFFSET);
     timeoutValue = *(uint32_t *)(socketHandle + 0x30);
-    lVar9 = *(longlong *)(socketHandle + 0x38);
+    long_var_9 = *(longlong *)(socketHandle + 0x38);
   }
   else {
-    lVar9 = *(longlong *)(socketHandle + 0x78);
-    connectionIndex = *(uint64_t *)(lVar9 + 0x10);
-    timeoutValue = *(uint32_t *)(lVar9 + 0x18);
-    lVar9 = *(longlong *)(lVar9 + SOCKET_RESPONSE_OFFSET);
+    long_var_9 = *(longlong *)(socketHandle + 0x78);
+    connectionIndex = *(uint64_t *)(long_var_9 + 0x10);
+    timeoutValue = *(uint32_t *)(long_var_9 + 0x18);
+    long_var_9 = *(longlong *)(long_var_9 + SOCKET_RESPONSE_OFFSET);
   }
-  if (lVar9 != 0) {
-    *(int *)(lVar9 + 0x10) = *(int *)(lVar9 + 0x10) + 1;
+  if (long_var_9 != 0) {
+    *(int *)(long_var_9 + 0x10) = *(int *)(long_var_9 + 0x10) + 1;
   }
   networkAddress = (**(code **)(*(longlong *)(*(longlong *)(socketHandle + 0x160) + 8) + 0x30))();
   pbufferSize = (uint32_t *)FUN_18084da10();
@@ -29699,12 +29699,12 @@ longlong * FUN_18085ba10(longlong socketHandle,longlong *dataBuffer)
   *(uint32_t *)((longlong)dataBuffer + 0x1c) = networkUintStack_1c;
   dataBuffer[8] = 0;
   *(uint8_t *)(dataBuffer + 9) = 0;
-  if (lVar9 != 0) {
-    presultCode = (int *)(lVar9 + 0x10);
+  if (long_var_9 != 0) {
+    presultCode = (int *)(long_var_9 + 0x10);
     *presultCode = *presultCode + -1;
     if (*presultCode == 0) {
                     // WARNING: Subroutine does not return
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),lVar9,&g_networkBuffer,0x76,1);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),long_var_9,&g_networkBuffer,0x76,1);
     }
   }
   return dataBuffer;
@@ -32081,12 +32081,12 @@ uint64_t FUN_18085ea80(longlong socketHandle,uint dataBuffer,uint64_t bufferCapa
   longlong *pnetworkAddress;
   longlong *pserverPort;
   longlong *pclientPort;
-  uint uVar9;
+  uint uint_var_9;
   longlong *pnetworkTimeout0;
   longlong lStackX_8;
   
   pnetworkTimeout0 = (longlong *)0x0;
-  uVar9 = 0;
+  uint_var_9 = 0;
   lStackX_8 = 0;
   packetLength = FUN_1808b79f0(socketHandle + 0x90,bufferCapacity,&lStackX_8);
   if ((int)packetLength != 0) {
@@ -32108,10 +32108,10 @@ uint64_t FUN_18085ea80(longlong socketHandle,uint dataBuffer,uint64_t bufferCapa
     if (pconnectionInfo != pnetworkAddress) {
       do {
         pconnectionInfo = (longlong *)*pconnectionInfo;
-        uVar9 = (int)pnetworkTimeout0 + 1;
-        pnetworkTimeout0 = (longlong *)(ulonglong)uVar9;
+        uint_var_9 = (int)pnetworkTimeout0 + 1;
+        pnetworkTimeout0 = (longlong *)(ulonglong)uint_var_9;
       } while (pconnectionInfo != pnetworkAddress);
-      if (uVar9 != 0) {
+      if (uint_var_9 != 0) {
         return 0x1c;
       }
     }
@@ -32167,10 +32167,10 @@ LAB_18085ebc2:
     }
     if (pserverPort == (longlong *)0x0) {
       for (; pdataBuffer != pnetworkAddress; pdataBuffer = (longlong *)*pdataBuffer) {
-        uVar9 = (int)pnetworkTimeout0 + 1;
-        pnetworkTimeout0 = (longlong *)(ulonglong)uVar9;
+        uint_var_9 = (int)pnetworkTimeout0 + 1;
+        pnetworkTimeout0 = (longlong *)(ulonglong)uint_var_9;
       }
-      if (dataBuffer != uVar9) {
+      if (dataBuffer != uint_var_9) {
         return 0x1f;
       }
       pconnectionInfo[1] = *(longlong *)(socketHandle + 0x248);
@@ -32212,7 +32212,7 @@ uint64_t FUN_18085eabf(void)
   ulonglong socketStatus;
   longlong *pserverPort;
   longlong *pclientPort;
-  uint uVar9;
+  uint uint_var_9;
   longlong *unaff_RBX;
   int connectionState;
   longlong unaff_RDI;
@@ -32236,10 +32236,10 @@ uint64_t FUN_18085eabf(void)
     if (pconnectionInfo != psocketHandle) {
       do {
         pconnectionInfo = (longlong *)*pconnectionInfo;
-        uVar9 = (int)unaff_RBX + 1;
-        unaff_RBX = (longlong *)(ulonglong)uVar9;
+        uint_var_9 = (int)unaff_RBX + 1;
+        unaff_RBX = (longlong *)(ulonglong)uint_var_9;
       } while (pconnectionInfo != psocketHandle);
-      if (uVar9 != 0) {
+      if (uint_var_9 != 0) {
         return 0x1c;
       }
     }
@@ -32265,10 +32265,10 @@ uint64_t FUN_18085eabf(void)
       socketStatus = (ulonglong)unaff_RBX & 0xffffffff;
       do {
         pdataBuffer = (longlong *)*pdataBuffer;
-        uVar9 = (int)socketStatus + 1;
-        socketStatus = (ulonglong)uVar9;
+        uint_var_9 = (int)socketStatus + 1;
+        socketStatus = (ulonglong)uint_var_9;
       } while (pdataBuffer != pconnectionInfo);
-      if (uVar9 != 0) {
+      if (uint_var_9 != 0) {
         return 0x1c;
       }
     }
@@ -33493,7 +33493,7 @@ uint64_t FUN_18085fc0e(void)
   int socketIndex;
   uint64_t bufferSize;
   int errorCode;
-  uint uVar9;
+  uint uint_var_9;
   int statusCode0;
   undefined *connectionBuffer1;
   uint64_t unaff_RBX;
@@ -33510,8 +33510,8 @@ uint64_t FUN_18085fc0e(void)
     pnetworkTimeout = (longlong *)(unaff_RSI + 0x4e0);
     resultCode = *(int *)(unaff_RSI + 0x4e8);
     networkOperationResult = *(int *)(*(longlong *)(unaff_RSI + 0x2c8) + 0x778);
-    uVar9 = (int)*(uint *)(unaff_RSI + 0x4ec) >> 0x1f;
-    socketIndex = (*(uint *)(unaff_RSI + 0x4ec) ^ uVar9) - uVar9;
+    uint_var_9 = (int)*(uint *)(unaff_RSI + 0x4ec) >> 0x1f;
+    socketIndex = (*(uint *)(unaff_RSI + 0x4ec) ^ uint_var_9) - uint_var_9;
     errorCode = resultCode + 1;
     if (socketIndex < errorCode) {
       statusCode0 = (int)((float)socketIndex * 1.5);
@@ -33823,7 +33823,7 @@ uint64_t thunk_FUN_180865550(longlong socketHandle)
   uint32_t socketStatus;
   uint32_t bufferSize;
   uint64_t timeoutValue;
-  longlong lVar9;
+  longlong long_var_9;
   int statusCode0;
   int statusCode1;
   undefined *connectionBuffer2;
@@ -33862,12 +33862,12 @@ uint64_t thunk_FUN_180865550(longlong socketHandle)
         networkTimeout6 = (longlong)statusCode1;
         if (0 < statusCode1) {
           networkTimeout3 = networkTimeout5 + 0x1c;
-          lVar9 = (networkTimeout5 + 0x38) - networkTimeout5;
+          long_var_9 = (networkTimeout5 + 0x38) - networkTimeout5;
           do {
             *(uint64_t *)(networkTimeout3 + -0xc) = 0;
             *(uint64_t *)(networkTimeout3 + -4) = 0;
-            *(uint64_t *)(networkTimeout3 + 0x14) = *(uint64_t *)(networkTimeout3 + lVar9 + 0x14);
-            connectionBuffer = (uint32_t *)(lVar9 + -0x1c + networkTimeout3);
+            *(uint64_t *)(networkTimeout3 + 0x14) = *(uint64_t *)(networkTimeout3 + long_var_9 + 0x14);
+            connectionBuffer = (uint32_t *)(long_var_9 + -0x1c + networkTimeout3);
             connectionIndex = connectionBuffer[1];
             socketStatus = connectionBuffer[2];
             bufferSize = connectionBuffer[3];
@@ -33875,15 +33875,15 @@ uint64_t thunk_FUN_180865550(longlong socketHandle)
             *(uint32_t *)(networkTimeout3 + -0x18) = connectionIndex;
             *(uint32_t *)(networkTimeout3 + -0x14) = socketStatus;
             *(uint32_t *)(networkTimeout3 + -0x10) = bufferSize;
-            if (*(int *)(lVar9 + -4 + networkTimeout3) < 1) {
+            if (*(int *)(long_var_9 + -4 + networkTimeout3) < 1) {
               connectionBuffer2 = &g_networkEmptyString;
             }
             else {
-              connectionBuffer2 = *(undefined **)(lVar9 + -0xc + networkTimeout3);
+              connectionBuffer2 = *(undefined **)(long_var_9 + -0xc + networkTimeout3);
             }
             FUN_18084e110(networkTimeout3 + -0xc,connectionBuffer2);
-            *(uint64_t *)(networkTimeout3 + 4) = *(uint64_t *)(lVar9 + 4 + networkTimeout3);
-            *(uint32_t *)(networkTimeout3 + 0xc) = *(uint32_t *)(lVar9 + 0xc + networkTimeout3);
+            *(uint64_t *)(networkTimeout3 + 4) = *(uint64_t *)(long_var_9 + 4 + networkTimeout3);
+            *(uint32_t *)(networkTimeout3 + 0xc) = *(uint32_t *)(long_var_9 + 0xc + networkTimeout3);
             FUN_180840270((longlong)statusCode4 * 0x38 + 0x10 + networkTimeout5 + 0x38);
             statusCode4 = statusCode4 + 1;
             networkTimeout3 = networkTimeout3 + 0x38;
@@ -34949,7 +34949,7 @@ void FUN_180860737(void)
   longlong networkAddress;
   longlong *pserverPort;
   longlong clientPort;
-  uint64_t uVar9;
+  uint64_t uint_var_9;
   uint64_t networkResult0;
   uint64_t *connectionBuffer1;
   longlong *pnetworkTimeout2;
@@ -35007,17 +35007,17 @@ LAB_1808607eb:
         if (((processResult != 0) || (processResult = FUN_1808b2f30(unaff_R12 + 8,0x1e), processResult != 0)) ||
            (processResult = FUN_1808b2f30(unaff_R12 + 8), processResult != 0)) goto LAB_180861693;
         networkTimeout4 = *(longlong *)(unaff_R12 + 0x88);
-        uVar9 = extraout_XMM0_Qa;
+        uint_var_9 = extraout_XMM0_Qa;
         for (networkResult9 = *(ulonglong *)(networkTimeout4 + 0x70);
             (*(ulonglong *)(networkTimeout4 + 0x70) <= networkResult9 &&
             (networkResult9 < (longlong)*(int *)(networkTimeout4 + 0x78) * 0x10 + *(ulonglong *)(networkTimeout4 + 0x70)));
             networkResult9 = networkResult9 + 0x10) {
           cVar3 = func_0x00018085d7b0(unaff_R13 + 0x70);
-          uVar9 = extraout_XMM0_Qa_00;
+          uint_var_9 = extraout_XMM0_Qa_00;
           if (cVar3 == '\0') {
             stack_param = (longlong *)0x0;
             processResult = FUN_1808bc010(*(uint64_t *)(unaff_R12 + 0x2c8));
-            uVar9 = extraout_XMM0_Qa_01;
+            uint_var_9 = extraout_XMM0_Qa_01;
             if (processResult != 0) goto LAB_180861693;
           }
         }
@@ -35073,7 +35073,7 @@ LAB_180860998:
             FUN_180768400(networkAddress);
           }
           if ((networkTimeout4 == 0) ||
-             (processResult = FUN_1808c19d0(*(uint64_t *)(unaff_R12 + 0x2c8)), uVar9 = extraout_XMM0_Qa_02
+             (processResult = FUN_1808c19d0(*(uint64_t *)(unaff_R12 + 0x2c8)), uint_var_9 = extraout_XMM0_Qa_02
              , processResult != 0)) goto LAB_180861693;
 LAB_1808609c2:
         }
@@ -35093,7 +35093,7 @@ LAB_1808609c2:
               } while (resultCode1 < statusCode6);
             }
             statusCode6 = FUN_1808626e0();
-            uVar9 = extraout_XMM0_Qa_03;
+            uint_var_9 = extraout_XMM0_Qa_03;
             if (statusCode6 != 0) goto LAB_180861693;
 LAB_180860a65:
             processResult = processResult + 1;
@@ -35114,8 +35114,8 @@ LAB_180860a65:
                 statusCode6 = statusCode6 + 1;
               } while (statusCode6 < *(int *)(unaff_R13 + 0x88));
             }
-            statusCode6 = FUN_18085ea80(uVar9,processResult);
-            uVar9 = extraout_XMM0_Qa_04;
+            statusCode6 = FUN_18085ea80(uint_var_9,processResult);
+            uint_var_9 = extraout_XMM0_Qa_04;
             if (statusCode6 != 0) goto LAB_180861693;
 LAB_180860af6:
             networkTimeout4 = *(longlong *)(unaff_R12 + 0x88);
@@ -35273,12 +35273,12 @@ LAB_180860c58:
                 psocketDescriptor0 = (longlong *)0x0;
               }
               stack_param = psocketDescriptor0;
-              uVar9 = (**(code **)(*(longlong *)(stackContext + 8) + 0x38))
+              uint_var_9 = (**(code **)(*(longlong *)(stackContext + 8) + 0x38))
                                 (stackContext + 8);
               networkResult0 = (**(code **)(*(longlong *)(stackContext + 8) + 0x30))
                                  (stackContext + 8);
               connectionBuffer3 = *(uint64_t **)(unaff_RBP + -0x78);
-              processResult = FUN_1808d6410(psocketDescriptor0,connectionBuffer3,networkResult0,uVar9);
+              processResult = FUN_1808d6410(psocketDescriptor0,connectionBuffer3,networkResult0,uint_var_9);
               if (processResult != 0) goto LAB_180861693;
               networkTimeout4 = psocketDescriptor0[3];
               if (networkTimeout4 != 0) {
@@ -35490,8 +35490,8 @@ LAB_180860f7b:
                        *(uint *)((longlong)stack_param + 0x1c) | 0x80;
                   if (((*(uint *)((longlong)stack_param + 0x1c) >> 5 & 1) == 0) ||
                      ((*(uint *)((longlong)stack_param + 0x1c) >> 6 & 1) != 0)) {
-                    uVar9 = FUN_18085ba10(stackContext + 200,unaff_RBP + -0x48);
-                    statusCode6 = FUN_1808c7260(uVar9,pserverPort,1);
+                    uint_var_9 = FUN_18085ba10(stackContext + 200,unaff_RBP + -0x48);
+                    statusCode6 = FUN_1808c7260(uint_var_9,pserverPort,1);
                     if (statusCode6 != 0) goto LAB_180861693;
                   }
 LAB_18086142b:
@@ -35500,9 +35500,9 @@ LAB_18086142b:
                 } while (processResult < *(int *)(networkTimeout4 + 0xa8));
               }
             }
-            uVar9 = *(uint64_t *)(unaff_RBP + -0x78);
-            processResult = FUN_180856ec0(stackContext + 200,uVar9);
-            if ((processResult == 0) && (processResult = FUN_1808d3ee0(stackContext + CONNECTION_BUFFER_OFFSET0,uVar9), processResult == 0)
+            uint_var_9 = *(uint64_t *)(unaff_RBP + -0x78);
+            processResult = FUN_180856ec0(stackContext + 200,uint_var_9);
+            if ((processResult == 0) && (processResult = FUN_1808d3ee0(stackContext + CONNECTION_BUFFER_OFFSET0,uint_var_9), processResult == 0)
                ) {
               networkTimeout4 = *(longlong *)(*(longlong *)(stackContext + 0x2b0) + 0x30);
               processResult = FUN_18085ab70(stackContext + 200);
@@ -36504,7 +36504,7 @@ uint64_t FUN_180861ce0(longlong *socketHandle,int dataBuffer)
   uint32_t socketStatus;
   longlong serverPort;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   undefined *connectionBuffer0;
   longlong networkTimeout1;
   int statusCode2;
@@ -36520,7 +36520,7 @@ uint64_t FUN_180861ce0(longlong *socketHandle,int dataBuffer)
       return 0x26;
     }
     resultCode = (int)socketHandle[1];
-    lVar9 = (longlong)resultCode;
+    long_var_9 = (longlong)resultCode;
     if (resultCode != 0) {
       statusCode2 = 0;
       connectionInfo = *socketHandle;
@@ -36551,8 +36551,8 @@ uint64_t FUN_180861ce0(longlong *socketHandle,int dataBuffer)
           FUN_180840270((longlong)statusCode2 * 0x38 + 0x10 + connectionInfo);
           statusCode2 = statusCode2 + 1;
           networkTimeout1 = networkTimeout1 + 0x38;
-          lVar9 = lVar9 + -1;
-        } while (lVar9 != 0);
+          long_var_9 = long_var_9 + -1;
+        } while (long_var_9 != 0);
       }
     }
   }
@@ -36580,7 +36580,7 @@ uint64_t FUN_180861d0b(void)
   uint32_t socketStatus;
   longlong serverPort;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   undefined *connectionBuffer0;
   longlong networkTimeout1;
   int connectionState;
@@ -36597,7 +36597,7 @@ uint64_t FUN_180861d0b(void)
       return 0x26;
     }
     resultCode = (int)unaff_RDI[1];
-    lVar9 = (longlong)resultCode;
+    long_var_9 = (longlong)resultCode;
     if (resultCode != 0) {
       statusCode2 = 0;
       connectionInfo = *unaff_RDI;
@@ -36628,10 +36628,10 @@ uint64_t FUN_180861d0b(void)
           FUN_180840270((longlong)statusCode2 * 0x38 + 0x10 + connectionInfo);
           statusCode2 = statusCode2 + 1;
           networkTimeout1 = networkTimeout1 + 0x38;
-          lVar9 = lVar9 + -1;
+          long_var_9 = long_var_9 + -1;
           unaff_RDI = stack_param;
           connectionState = stack_param;
-        } while (lVar9 != 0);
+        } while (long_var_9 != 0);
       }
     }
   }
@@ -38330,7 +38330,7 @@ int FUN_180863420(longlong socketHandle)
   int socketIndex;
   uint32_t bufferSize;
   int errorCode;
-  longlong lVar9;
+  longlong long_var_9;
   uint networkResult0;
   bool isConnected1;
   uint networkResult2;
@@ -38379,18 +38379,18 @@ LAB_1808634f7:
     if (socketIndex != 0) goto LAB_180863795;
   }
 LAB_18086350f:
-  lVar9 = *(longlong *)(socketHandle + 0x80);
-  if ((lVar9 != 0) && (networkResult4 = networkResult3, 0 < *(int *)(lVar9 + CONNECTION_BUFFER_OFFSET))) {
+  long_var_9 = *(longlong *)(socketHandle + 0x80);
+  if ((long_var_9 != 0) && (networkResult4 = networkResult3, 0 < *(int *)(long_var_9 + CONNECTION_BUFFER_OFFSET))) {
     do {
-      socketDescriptor = *(longlong *)(networkResult4 + 8 + *(longlong *)(lVar9 + SOCKET_RESPONSE_OFFSET));
+      socketDescriptor = *(longlong *)(networkResult4 + 8 + *(longlong *)(long_var_9 + SOCKET_RESPONSE_OFFSET));
       if (*(int *)(socketDescriptor + 0x30) != -1) {
-        FUN_1808d73b0(socketDescriptor,*(uint32_t *)(networkResult4 + 4 + *(longlong *)(lVar9 + SOCKET_RESPONSE_OFFSET)),0);
-        lVar9 = *(longlong *)(socketHandle + 0x80);
+        FUN_1808d73b0(socketDescriptor,*(uint32_t *)(networkResult4 + 4 + *(longlong *)(long_var_9 + SOCKET_RESPONSE_OFFSET)),0);
+        long_var_9 = *(longlong *)(socketHandle + 0x80);
       }
       networkResult2 = (int)networkResult3 + 1;
       networkResult3 = (ulonglong)networkResult2;
       networkResult4 = networkResult4 + 0x18;
-    } while ((int)networkResult2 < *(int *)(lVar9 + CONNECTION_BUFFER_OFFSET));
+    } while ((int)networkResult2 < *(int *)(long_var_9 + CONNECTION_BUFFER_OFFSET));
   }
   abStackX_8[0] = (byte)(*(uint *)(socketHandle + 0x2d8) >> 0xc) & 1;
   socketIndex = FUN_180861a70(socketHandle,abStackX_8);
@@ -38401,8 +38401,8 @@ LAB_18086350f:
   }
   *(uint *)(socketHandle + 0x2d8) =
        (-(uint)(abStackX_8[0] != 0) & 0x1000 | *(uint *)(socketHandle + 0x2d8)) & ~networkResult2;
-  lVar9 = *(longlong *)(*(longlong *)(*(longlong *)(socketHandle + 0x88) + 0xd0) + 0x30);
-  if (lVar9 == _g_networkConfig) {
+  long_var_9 = *(longlong *)(*(longlong *)(*(longlong *)(socketHandle + 0x88) + 0xd0) + 0x30);
+  if (long_var_9 == _g_networkConfig) {
 LAB_180863615:
     if (*(longlong *)(socketHandle + 0x2d0) == 0) goto LAB_180863724;
     auStackX_10[0] = 0;
@@ -38411,10 +38411,10 @@ LAB_180863615:
        (((*(longlong *)(socketHandle + 0x2b8) != 0 && (auStackX_10[0] == 0)) &&
         (cVar5 = FUN_180853d20(*(longlong *)(socketHandle + 0x2b8),socketHandle), cVar5 == '\0'))))
     goto LAB_180863724;
-    lVar9 = *(longlong *)(socketHandle + 0x2c8);
-    pstatusCode = (int *)(lVar9 + 0x54c);
+    long_var_9 = *(longlong *)(socketHandle + 0x2c8);
+    pstatusCode = (int *)(long_var_9 + 0x54c);
     *pstatusCode = *pstatusCode + 1;
-    *(uint32_t *)(socketHandle + 0x2e8) = *(uint32_t *)(lVar9 + 0x54c);
+    *(uint32_t *)(socketHandle + 0x2e8) = *(uint32_t *)(long_var_9 + 0x54c);
     *(uint64_t *)(*(longlong *)(*(longlong *)(socketHandle + 0x88) + 0xd0) + 0x30) =
          *(uint64_t *)(*(longlong *)(socketHandle + 0x2c8) + 0x4d0);
     socketIndex = FUN_1808c1410(*(uint64_t *)(socketHandle + 0x2d0),socketHandle,*(uint64_t *)(socketHandle + 0x2c8))
@@ -38438,7 +38438,7 @@ LAB_180863790:
       fVar15 = *(float *)(*(longlong *)(socketHandle + 0x88) + 0xec);
     }
     if ((ulonglong)
-        ((int)((float)*(uint *)(*(longlong *)(socketHandle + 0x2c8) + 0x774) * fVar15) + lVar9) <=
+        ((int)((float)*(uint *)(*(longlong *)(socketHandle + 0x2c8) + 0x774) * fVar15) + long_var_9) <=
         *(ulonglong *)(*(longlong *)(socketHandle + 0x2c8) + 0x4d0)) goto LAB_180863615;
 LAB_180863724:
     isValid = abStackX_8[0];
@@ -38446,11 +38446,11 @@ LAB_180863724:
     if ((socketIndex != 0) ||
        (socketIndex = FUN_18073d8a0(*(uint64_t *)(*(longlong *)(socketHandle + 0x2b0) + 0x78),isValid),
        socketIndex != 0)) goto LAB_180863790;
-    lVar9 = *(longlong *)(socketHandle + 0x80);
+    long_var_9 = *(longlong *)(socketHandle + 0x80);
     *(uint32_t *)(socketHandle + 0x2e4) = 0;
-    if (lVar9 != 0) {
+    if (long_var_9 != 0) {
       bufferSize = FUN_1808605e0(socketHandle);
-      *(uint32_t *)(lVar9 + 0x80) = bufferSize;
+      *(uint32_t *)(long_var_9 + 0x80) = bufferSize;
     }
     pbufferCapacity = *(uint64_t **)(socketHandle + 0x480);
     if ((pbufferCapacity != (uint64_t *)0x0) &&
@@ -38492,7 +38492,7 @@ ulonglong FUN_180863430(ulonglong socketHandle)
   uint bufferSize;
   uint32_t timeoutValue;
   longlong networkContextPtr;
-  longlong lVar9;
+  longlong long_var_9;
   uint networkResult0;
   bool isConnected1;
   ulonglong networkResult2;
@@ -38545,19 +38545,19 @@ LAB_1808634f7:
     if (bufferSize != 0) goto LAB_180863795;
   }
 LAB_18086350f:
-  lVar9 = *(longlong *)(socketHandle + 0x80);
-  if ((lVar9 != 0) &&
-     (networkResult2 = responseBuffer & 0xffffffff, networkResult3 = responseBuffer, (int)networkResult5 < *(int *)(lVar9 + CONNECTION_BUFFER_OFFSET))) {
+  long_var_9 = *(longlong *)(socketHandle + 0x80);
+  if ((long_var_9 != 0) &&
+     (networkResult2 = responseBuffer & 0xffffffff, networkResult3 = responseBuffer, (int)networkResult5 < *(int *)(long_var_9 + CONNECTION_BUFFER_OFFSET))) {
     do {
-      socketDescriptor = *(longlong *)(networkResult3 + 8 + *(longlong *)(lVar9 + SOCKET_RESPONSE_OFFSET));
+      socketDescriptor = *(longlong *)(networkResult3 + 8 + *(longlong *)(long_var_9 + SOCKET_RESPONSE_OFFSET));
       if (*(int *)(socketDescriptor + 0x30) != -1) {
-        FUN_1808d73b0(socketDescriptor,*(uint32_t *)(networkResult3 + 4 + *(longlong *)(lVar9 + SOCKET_RESPONSE_OFFSET)),0);
-        lVar9 = *(longlong *)(socketHandle + 0x80);
+        FUN_1808d73b0(socketDescriptor,*(uint32_t *)(networkResult3 + 4 + *(longlong *)(long_var_9 + SOCKET_RESPONSE_OFFSET)),0);
+        long_var_9 = *(longlong *)(socketHandle + 0x80);
       }
       bufferSize = (int)networkResult2 + 1;
       networkResult2 = (ulonglong)bufferSize;
       networkResult3 = networkResult3 + 0x18;
-    } while ((int)bufferSize < *(int *)(lVar9 + CONNECTION_BUFFER_OFFSET));
+    } while ((int)bufferSize < *(int *)(long_var_9 + CONNECTION_BUFFER_OFFSET));
   }
   stack_param = (byte)(*(uint *)(socketHandle + 0x2d8) >> 0xc) & 1;
   bufferSize = FUN_180861a70(socketHandle,&stack_buffer);
@@ -38569,8 +38569,8 @@ LAB_18086350f:
   }
   *(uint *)(socketHandle + 0x2d8) =
        (-(uint)(stack_param != 0) & 0x1000 | *(uint *)(socketHandle + 0x2d8)) & ~bufferSize;
-  lVar9 = *(longlong *)(*(longlong *)(*(longlong *)(socketHandle + 0x88) + 0xd0) + 0x30);
-  if (lVar9 == _g_networkConfig) {
+  long_var_9 = *(longlong *)(*(longlong *)(*(longlong *)(socketHandle + 0x88) + 0xd0) + 0x30);
+  if (long_var_9 == _g_networkConfig) {
 LAB_180863615:
     if (((*(longlong *)(socketHandle + 0x2d0) == 0) ||
         (stack_param = networkResult5,
@@ -38580,10 +38580,10 @@ LAB_180863615:
         ((stack_param == networkResult5 &&
          (cVar5 = FUN_180853d20(*(longlong *)(socketHandle + 0x2b8),socketHandle), cVar5 == '\0'))))))
     goto LAB_180863724;
-    lVar9 = *(longlong *)(socketHandle + 0x2c8);
-    pstatusCode = (int *)(lVar9 + 0x54c);
+    long_var_9 = *(longlong *)(socketHandle + 0x2c8);
+    pstatusCode = (int *)(long_var_9 + 0x54c);
     *pstatusCode = *pstatusCode + 1;
-    *(uint32_t *)(socketHandle + 0x2e8) = *(uint32_t *)(lVar9 + 0x54c);
+    *(uint32_t *)(socketHandle + 0x2e8) = *(uint32_t *)(long_var_9 + 0x54c);
     *(uint64_t *)(*(longlong *)(*(longlong *)(socketHandle + 0x88) + 0xd0) + 0x30) =
          *(uint64_t *)(*(longlong *)(socketHandle + 0x2c8) + 0x4d0);
     bufferSize = FUN_1808c1410(*(uint64_t *)(socketHandle + 0x2d0),socketHandle,*(uint64_t *)(socketHandle + 0x2c8))
@@ -38613,7 +38613,7 @@ LAB_180863790:
       fVar16 = *(float *)(*(longlong *)(socketHandle + 0x88) + 0xec);
     }
     if ((ulonglong)
-        ((int)((float)*(uint *)(*(longlong *)(socketHandle + 0x2c8) + 0x774) * fVar16) + lVar9) <=
+        ((int)((float)*(uint *)(*(longlong *)(socketHandle + 0x2c8) + 0x774) * fVar16) + long_var_9) <=
         *(ulonglong *)(*(longlong *)(socketHandle + 0x2c8) + 0x4d0)) goto LAB_180863615;
 LAB_180863724:
     isValid = stack_param;
@@ -38627,11 +38627,11 @@ LAB_18086378e:
     bufferSize = FUN_18073d8a0(*(uint64_t *)(*(longlong *)(socketHandle + 0x2b0) + 0x78),isValid);
     networkResult3 = (ulonglong)bufferSize;
     if (bufferSize != 0) goto LAB_18086378e;
-    lVar9 = *(longlong *)(socketHandle + 0x80);
+    long_var_9 = *(longlong *)(socketHandle + 0x80);
     *(uint *)(socketHandle + 0x2e4) = networkResult5;
-    if (lVar9 != 0) {
+    if (long_var_9 != 0) {
       timeoutValue = FUN_1808605e0(socketHandle);
-      *(uint32_t *)(lVar9 + 0x80) = timeoutValue;
+      *(uint32_t *)(long_var_9 + 0x80) = timeoutValue;
     }
     pbufferCapacity = *(uint64_t **)(socketHandle + 0x480);
     if (pbufferCapacity != (uint64_t *)0x0) {
@@ -39025,7 +39025,7 @@ void FUN_180863c8b(ulonglong socketHandle,int dataBuffer,uint64_t bufferCapacity
   uint32_t *networkContextPtr;
   uint64_t *pbufferSize;
   longlong clientPort;
-  ulonglong uVar9;
+  ulonglong uint_var_9;
   float *pfVar10;
   uint networkResult1;
   longlong socketContextPtr;
@@ -39090,7 +39090,7 @@ void FUN_180863c8b(ulonglong socketHandle,int dataBuffer,uint64_t bufferCapacity
     socketHandle = socketHandle + 0x44;
     clientPort = clientPort + -1;
   } while (clientPort != 0);
-  uVar9 = 0;
+  uint_var_9 = 0;
   stackContext = *(uint64_t *)(unaff_RBP + 0x144);
   stack_param = *(uint64_t *)(unaff_RBP + 0x14c);
   *(int *)(unaff_RBP + -0x60) = dataBuffer;
@@ -39110,12 +39110,12 @@ void FUN_180863c8b(ulonglong socketHandle,int dataBuffer,uint64_t bufferCapacity
   }
   else {
     fVar14 = 3.4028235e+38;
-    networkResult2 = uVar9;
+    networkResult2 = uint_var_9;
     if (3 < unaff_R15) {
       networkResult1 = 1;
       pfVar10 = (float *)(unaff_RBP + -0x5c);
       clientPort = (unaff_R15 - 4U >> 2) + 1;
-      uVar9 = (ulonglong)(uint)((int)clientPort * 4);
+      uint_var_9 = (ulonglong)(uint)((int)clientPort * 4);
       networkResult2 = clientPort * 4;
       do {
         if (((connectionState & networkResult1) != 0) &&
@@ -39147,7 +39147,7 @@ void FUN_180863c8b(ulonglong socketHandle,int dataBuffer,uint64_t bufferCapacity
       } while (clientPort != 0);
     }
     if ((longlong)networkResult2 < unaff_R15) {
-      isConnected = (byte)uVar9 & 0x1f;
+      isConnected = (byte)uint_var_9 & 0x1f;
       networkResult1 = 1 << isConnected | 1U >> SOCKET_RESPONSE_OFFSET - isConnected;
       pfVar10 = (float *)(unaff_RBP + -0x5c + networkResult2 * 0x30);
       clientPort = unaff_R15 - networkResult2;
@@ -40062,7 +40062,7 @@ void FUN_180864850(longlong socketHandle)
   longlong networkAddress;
   longlong serverPort;
   uint64_t *ptimeoutValue;
-  longlong lVar9;
+  longlong long_var_9;
   longlong networkTimeout0;
   float fVar11;
   float fVar12;
@@ -40119,8 +40119,8 @@ void FUN_180864850(longlong socketHandle)
     fStack_10c = *(float *)(socketHandle + 0x3c);
     networkUintStack_108 = *(uint32_t *)(socketHandle + 0x40);
     networkUintStack_104 = *(uint32_t *)(socketHandle + 0x44);
-    lVar9 = (longlong)*(int *)(serverPort + 0x550);
-    if (3 < lVar9) {
+    long_var_9 = (longlong)*(int *)(serverPort + 0x550);
+    if (3 < long_var_9) {
       ptimeoutValue = (uint64_t *)(serverPort + 0x560);
       fVar17 = (fStack_128 / fStack_124) * *(float *)(socketHandle + 0x300);
       do {
@@ -40256,9 +40256,9 @@ void FUN_180864850(longlong socketHandle)
         fVar19 = fVar19 + fVar20 * *pfVar1 + fVar12 * afStack_e8[dataBuffer] + fVar13 * afStack_e8[socketHandle]
                  + fVar14 * afStack_e8[networkAddress];
         networkUintStack_148 = packetLength;
-      } while (networkTimeout0 < lVar9 + -3);
+      } while (networkTimeout0 < long_var_9 + -3);
     }
-    if (networkTimeout0 < lVar9) {
+    if (networkTimeout0 < long_var_9) {
       fVar17 = (fStack_128 / fStack_124) * *(float *)(socketHandle + 0x300);
       ptimeoutValue = (uint64_t *)(serverPort + 0x560 + networkTimeout0 * 0x44);
       do {
@@ -40300,7 +40300,7 @@ void FUN_180864850(longlong socketHandle)
         networkTimeout0 = networkTimeout0 + 1;
         fVar19 = fVar19 + fVar20 * *pfVar1;
         networkUintStack_148 = packetLength;
-      } while (networkTimeout0 < lVar9);
+      } while (networkTimeout0 < long_var_9);
     }
   }
   *(float *)(socketHandle + 0x2fc) = fVar19;
@@ -40934,7 +40934,7 @@ uint64_t FUN_1808650a0(longlong socketHandle,byte dataBuffer)
   uint32_t socketStatus;
   longlong serverPort;
   uint64_t timeoutValue;
-  uint uVar9;
+  uint uint_var_9;
   longlong *pnetworkTimeout0;
   uint64_t *connectionBuffer1;
   ulonglong networkResult2;
@@ -41046,12 +41046,12 @@ uint64_t FUN_1808650a0(longlong socketHandle,byte dataBuffer)
         if (*(int *)(ppacketLength[2] + 0xd0) != 0) {
           *(uint *)((longlong)ppacketLength + 0x1c) = *(uint *)((longlong)ppacketLength + 0x1c) | SOCKET_RESPONSE_OFFSET;
           cVar5 = FUN_1808b0820(ppacketLength[2] + 200);
-          uVar9 = 0x40;
+          uint_var_9 = 0x40;
           if (cVar5 != '\0') {
-            uVar9 = 0;
+            uint_var_9 = 0;
           }
           *(uint *)((longlong)ppacketLength + 0x1c) =
-               (-(uint)(cVar5 != '\0') & 0x40 | *(uint *)((longlong)ppacketLength + 0x1c)) & ~uVar9;
+               (-(uint)(cVar5 != '\0') & 0x40 | *(uint *)((longlong)ppacketLength + 0x1c)) & ~uint_var_9;
         }
       }
       if (ppacketLength != connectionBuffer1) {
@@ -41122,7 +41122,7 @@ uint64_t FUN_180865286(void)
   uint64_t socketStatus;
   uint bufferSize;
   uint64_t *ptimeoutValue;
-  ulonglong uVar9;
+  ulonglong uint_var_9;
   longlong unaff_RDI;
   longlong unaff_R12;
   uint8_t auStackX_20 [8];
@@ -41150,10 +41150,10 @@ uint64_t FUN_180865286(void)
   }
   FUN_18085ba10(unaff_RDI + 200,auStackX_20);
   socketDescriptor = *(longlong *)(unaff_RDI + 0x88);
-  uVar9 = *(ulonglong *)(socketDescriptor + 0xa0);
+  uint_var_9 = *(ulonglong *)(socketDescriptor + 0xa0);
   while( true ) {
-    if ((uVar9 < *(ulonglong *)(socketDescriptor + 0xa0)) ||
-       ((longlong)*(int *)(socketDescriptor + 0xa8) * 0x10 + *(ulonglong *)(socketDescriptor + 0xa0) <= uVar9)) {
+    if ((uint_var_9 < *(ulonglong *)(socketDescriptor + 0xa0)) ||
+       ((longlong)*(int *)(socketDescriptor + 0xa8) * 0x10 + *(ulonglong *)(socketDescriptor + 0xa0) <= uint_var_9)) {
       socketStatus = FUN_18085aca0(unaff_RDI + 200);
       if ((int)socketStatus == 0) {
         for (ptimeoutValue = *(uint64_t **)(unaff_RDI + 0x4c0);
@@ -41189,7 +41189,7 @@ uint64_t FUN_180865286(void)
     if ((((*(uint *)(unaff_R12 + 0x1c) >> 5 & 1) == 0) ||
         ((*(uint *)(unaff_R12 + 0x1c) >> 6 & 1) != 0)) &&
        (socketStatus = FUN_1808c7260(auStackX_20,unaff_R12,1), (int)socketStatus != 0)) break;
-    uVar9 = uVar9 + 0x10;
+    uint_var_9 = uint_var_9 + 0x10;
   }
   return socketStatus;
 }
@@ -41429,7 +41429,7 @@ uint64_t FUN_180865550(longlong socketHandle,char dataBuffer)
   uint32_t socketStatus;
   uint32_t bufferSize;
   char cVar8;
-  uint64_t uVar9;
+  uint64_t uint_var_9;
   longlong networkTimeout0;
   int statusCode1;
   int statusCode2;
@@ -41445,8 +41445,8 @@ uint64_t FUN_180865550(longlong socketHandle,char dataBuffer)
   networkTimeout7 = *(longlong *)(socketHandle + 0x4e0);
   uStackX_20 = 0;
   uStackX_18 = 0;
-  uVar9 = FUN_18073a200(*(uint64_t *)(*(longlong *)(socketHandle + 0x2c8) + 0x4c0),&uStackX_18);
-  if (((int)uVar9 == 0) && (uVar9 = FUN_18073c4c0(uStackX_18,&uStackX_20,0), (int)uVar9 == 0)) {
+  uint_var_9 = FUN_18073a200(*(uint64_t *)(*(longlong *)(socketHandle + 0x2c8) + 0x4c0),&uStackX_18);
+  if (((int)uint_var_9 == 0) && (uint_var_9 = FUN_18073c4c0(uStackX_18,&uStackX_20,0), (int)uint_var_9 == 0)) {
     connectionBuffer6 = (uint64_t *)(networkTimeout7 + SOCKET_RESPONSE_OFFSET);
     while( true ) {
       connectionBuffer = connectionBuffer6 + -4;
@@ -41460,10 +41460,10 @@ uint64_t FUN_180865550(longlong socketHandle,char dataBuffer)
       else {
         pconnectionInfo = *(longlong **)(socketHandle + 0x480);
         if ((pconnectionInfo != (longlong *)0x0) &&
-           (uVar9 = (**(code **)(*pconnectionInfo + 0x10))
+           (uint_var_9 = (**(code **)(*pconnectionInfo + 0x10))
                               (pconnectionInfo,socketHandle,connectionBuffer,connectionBuffer6 + -2,*connectionBuffer6,
-                               *(uint32_t *)(connectionBuffer6 + 1)), (int)uVar9 != 0)) {
-          return uVar9;
+                               *(uint32_t *)(connectionBuffer6 + 1)), (int)uint_var_9 != 0)) {
+          return uint_var_9;
         }
         connectionCount = (int)(((longlong)connectionBuffer - *(longlong *)(socketHandle + 0x4e0)) / 0x38);
         if ((connectionCount < 0) || (*(int *)(socketHandle + 0x4e8) <= connectionCount)) {
@@ -41511,9 +41511,9 @@ uint64_t FUN_180865550(longlong socketHandle,char dataBuffer)
         *(int *)(socketHandle + 0x4e8) = statusCode1 + -1;
       }
     }
-    uVar9 = 0;
+    uint_var_9 = 0;
   }
-  return uVar9;
+  return uint_var_9;
 }
 
 
@@ -41529,7 +41529,7 @@ uint64_t FUN_1808655bb(void)
   uint32_t socketStatus;
   uint32_t bufferSize;
   char cVar8;
-  uint64_t uVar9;
+  uint64_t uint_var_9;
   longlong networkTimeout0;
   int statusCode1;
   int statusCode2;
@@ -41564,8 +41564,8 @@ uint64_t FUN_1808655bb(void)
     }
     pconnectionInfo = *(longlong **)(unaff_RDI + 0x480);
     if ((pconnectionInfo != (longlong *)0x0) &&
-       (uVar9 = (**(code **)(*pconnectionInfo + 0x10))(pconnectionInfo,unaff_RDI,connectionBuffer,connectionBuffer6 + -2,*connectionBuffer6),
-       (int)uVar9 != 0)) break;
+       (uint_var_9 = (**(code **)(*pconnectionInfo + 0x10))(pconnectionInfo,unaff_RDI,connectionBuffer,connectionBuffer6 + -2,*connectionBuffer6),
+       (int)uint_var_9 != 0)) break;
     connectionCount = (int)(((longlong)connectionBuffer - *(longlong *)(unaff_RDI + 0x4e0)) / 0x38);
     if ((connectionCount < 0) || (*(int *)(unaff_RDI + 0x4e8) <= connectionCount)) {
       return 0x1c;
@@ -41614,7 +41614,7 @@ uint64_t FUN_1808655bb(void)
     }
     *(int *)(unaff_RDI + 0x4e8) = statusCode1 + -1;
   }
-  return uVar9;
+  return uint_var_9;
 }
 
 
@@ -42222,7 +42222,7 @@ uint64_t FUN_180865fc0(longlong socketHandle,uint16_t dataBuffer,uint64_t buffer
   uint32_t *socketStatusPointer;
   uint64_t *pbufferSize;
   int errorCode;
-  uint uVar9;
+  uint uint_var_9;
   int statusCode0;
   ulonglong networkResult1;
   
@@ -42275,9 +42275,9 @@ uint64_t FUN_180865fc0(longlong socketHandle,uint16_t dataBuffer,uint64_t buffer
   connectionIndex = *(uint64_t *)(socketHandle + 0xb0);
   *(uint64_t *)((longlong)socketStatusPointer + 0x19) = *(uint64_t *)(socketHandle + 0xa8);
   *(uint64_t *)((longlong)socketStatusPointer + 0x21) = connectionIndex;
-  uVar9 = (int)*(uint *)(socketHandle + 0x34) >> 0x1f;
+  uint_var_9 = (int)*(uint *)(socketHandle + 0x34) >> 0x1f;
   errorCode = *(int *)(socketHandle + 0x30) + 1;
-  connectionCount = (*(uint *)(socketHandle + 0x34) ^ uVar9) - uVar9;
+  connectionCount = (*(uint *)(socketHandle + 0x34) ^ uint_var_9) - uint_var_9;
   if (connectionCount < errorCode) {
     statusCode0 = (int)((float)connectionCount * 1.5);
     connectionCount = errorCode;
@@ -44532,18 +44532,18 @@ void FUN_180868800(longlong socketHandle,longlong dataBuffer)
   uint timeoutValue;
   uint64_t uStackX_8;
   uint64_t uStackX_18;
-  ulonglong uVar9;
+  ulonglong uint_var_9;
   
-  uVar9 = 0;
+  uint_var_9 = 0;
   uStackX_8 = 0;
   if ((((socketHandle != 0) && (*(int *)(socketHandle + 8) != 0)) &&
       (networkOperationResult = networkInitializeSocket(*(int *)(socketHandle + 8),&uStackX_18), networkOperationResult == 0)) &&
      (networkOperationResult = networkInitializeConnection(&uStackX_8,uStackX_18), networkOperationResult == 0)) {
     networkOperationResult = *(int *)(socketHandle + CONNECTION_BUFFER_OFFSET);
-    bufferSize = uVar9;
+    bufferSize = uint_var_9;
     if (0 < networkOperationResult) {
       psocketHandle = (longlong *)(*(longlong *)(socketHandle + SOCKET_RESPONSE_OFFSET) + 8);
-      socketStatus = uVar9;
+      socketStatus = uint_var_9;
       do {
         if (*psocketHandle == dataBuffer) break;
         bufferSize = (ulonglong)((int)bufferSize + 1);
@@ -44567,10 +44567,10 @@ void FUN_180868800(longlong socketHandle,longlong dataBuffer)
           if (0 < resultCode + -1) {
             do {
               networkOperationResult = func_0x00018088c6e0(*(longlong *)(socketHandle + SOCKET_RESPONSE_OFFSET) +
-                                          (longlong)(int)uVar9 * 0x18);
+                                          (longlong)(int)uint_var_9 * 0x18);
               if (networkOperationResult != 0) break;
-              timeoutValue = (int)uVar9 + 1;
-              uVar9 = (ulonglong)timeoutValue;
+              timeoutValue = (int)uint_var_9 + 1;
+              uint_var_9 = (ulonglong)timeoutValue;
             } while ((int)timeoutValue < *(int *)(socketHandle + CONNECTION_BUFFER_OFFSET));
           }
         }
@@ -53161,7 +53161,7 @@ uint64_t FUN_18086da90(longlong *socketHandle,uint64_t *dataBuffer)
   int socketIndex;
   longlong serverPort;
   uint64_t *ptimeoutValue;
-  longlong lVar9;
+  longlong long_var_9;
   int statusCode0;
   
   statusCode0 = (int)socketHandle[1];
@@ -53177,13 +53177,13 @@ uint64_t FUN_18086da90(longlong *socketHandle,uint64_t *dataBuffer)
         break;
       }
       statusCode = (socketIndex + networkOperationResult) / 2;
-      lVar9 = (longlong)statusCode * 0x10 + serverPort;
-      resultCode = memcmp(lVar9,dataBuffer,0x10);
+      long_var_9 = (longlong)statusCode * 0x10 + serverPort;
+      resultCode = memcmp(long_var_9,dataBuffer,0x10);
       if (resultCode < 0) {
         connectionIndex = 0xffffffff;
       }
       else {
-        resultCode = memcmp(dataBuffer,lVar9,0x10);
+        resultCode = memcmp(dataBuffer,long_var_9,0x10);
         connectionIndex = (uint)(resultCode < 0);
         if (connectionIndex == 0) break;
       }
@@ -53681,7 +53681,7 @@ uint64_t FUN_18086df30(longlong socketHandle,longlong dataBuffer,uint64_t *buffe
   int socketIndex;
   longlong *pserverPort;
   uint64_t timeoutValue;
-  longlong lVar9;
+  longlong long_var_9;
   longlong *pnetworkTimeout0;
   
   pnetworkTimeout0 = (longlong *)0x0;
@@ -53709,11 +53709,11 @@ LAB_18086e05a:
                              (int)pserverPort[1] - 1U) * 4), processResult != -1)) {
       dataBuffer = pserverPort[2];
       do {
-        lVar9 = (longlong)processResult;
-        if ((*(longlong *)(dataBuffer + lVar9 * 0x18) == *(longlong *)(connectionInfo + 0x10)) &&
-           (*(longlong *)(dataBuffer + 8 + lVar9 * 0x18) == *(longlong *)(connectionInfo + 0x18)))
+        long_var_9 = (longlong)processResult;
+        if ((*(longlong *)(dataBuffer + long_var_9 * 0x18) == *(longlong *)(connectionInfo + 0x10)) &&
+           (*(longlong *)(dataBuffer + 8 + long_var_9 * 0x18) == *(longlong *)(connectionInfo + 0x18)))
         goto LAB_18086dffb;
-        processResult = *(int *)(dataBuffer + 0x10 + lVar9 * 0x18);
+        processResult = *(int *)(dataBuffer + 0x10 + long_var_9 * 0x18);
       } while (processResult != -1);
     }
     processResult = -1;
@@ -53814,7 +53814,7 @@ uint64_t FUN_18086e1f0(longlong socketHandle,longlong dataBuffer,uint64_t *buffe
   int socketIndex;
   longlong *pserverPort;
   uint64_t timeoutValue;
-  longlong lVar9;
+  longlong long_var_9;
   longlong *pnetworkTimeout0;
   
   pnetworkTimeout0 = (longlong *)0x0;
@@ -53842,11 +53842,11 @@ LAB_18086e305:
                              (int)pserverPort[1] - 1U) * 4), processResult != -1)) {
       dataBuffer = pserverPort[2];
       do {
-        lVar9 = (longlong)processResult;
-        if ((*(longlong *)(dataBuffer + lVar9 * 0x18) == *(longlong *)(connectionInfo + 0x10)) &&
-           (*(longlong *)(dataBuffer + 8 + lVar9 * 0x18) == *(longlong *)(connectionInfo + 0x18)))
+        long_var_9 = (longlong)processResult;
+        if ((*(longlong *)(dataBuffer + long_var_9 * 0x18) == *(longlong *)(connectionInfo + 0x10)) &&
+           (*(longlong *)(dataBuffer + 8 + long_var_9 * 0x18) == *(longlong *)(connectionInfo + 0x18)))
         goto LAB_18086e2ac;
-        processResult = *(int *)(dataBuffer + 0x10 + lVar9 * 0x18);
+        processResult = *(int *)(dataBuffer + 0x10 + long_var_9 * 0x18);
       } while (processResult != -1);
     }
     processResult = -1;
@@ -53947,7 +53947,7 @@ uint64_t FUN_18086e480(longlong socketHandle,longlong dataBuffer,uint64_t *buffe
   int socketIndex;
   longlong *pserverPort;
   uint64_t timeoutValue;
-  longlong lVar9;
+  longlong long_var_9;
   longlong *pnetworkTimeout0;
   
   pnetworkTimeout0 = (longlong *)0x0;
@@ -53975,11 +53975,11 @@ LAB_18086e594:
                              (int)pserverPort[1] - 1U) * 4), processResult != -1)) {
       dataBuffer = pserverPort[2];
       do {
-        lVar9 = (longlong)processResult;
-        if ((*(longlong *)(dataBuffer + lVar9 * 0x18) == *(longlong *)(connectionInfo + 0x10)) &&
-           (*(longlong *)(dataBuffer + 8 + lVar9 * 0x18) == *(longlong *)(connectionInfo + 0x18)))
+        long_var_9 = (longlong)processResult;
+        if ((*(longlong *)(dataBuffer + long_var_9 * 0x18) == *(longlong *)(connectionInfo + 0x10)) &&
+           (*(longlong *)(dataBuffer + 8 + long_var_9 * 0x18) == *(longlong *)(connectionInfo + 0x18)))
         goto LAB_18086e53b;
-        processResult = *(int *)(dataBuffer + 0x10 + lVar9 * 0x18);
+        processResult = *(int *)(dataBuffer + 0x10 + long_var_9 * 0x18);
       } while (processResult != -1);
     }
     processResult = -1;
@@ -54204,7 +54204,7 @@ uint64_t FUN_18086e9b0(longlong socketHandle,longlong dataBuffer,uint64_t *buffe
   int socketIndex;
   longlong *pserverPort;
   uint64_t timeoutValue;
-  longlong lVar9;
+  longlong long_var_9;
   longlong *pnetworkTimeout0;
   
   pnetworkTimeout0 = (longlong *)0x0;
@@ -54232,11 +54232,11 @@ LAB_18086ead7:
                              (int)pserverPort[1] - 1U) * 4), processResult != -1)) {
       dataBuffer = pserverPort[2];
       do {
-        lVar9 = (longlong)processResult;
-        if ((*(longlong *)(dataBuffer + lVar9 * 0x18) == *(longlong *)(connectionInfo + 0x10)) &&
-           (*(longlong *)(dataBuffer + 8 + lVar9 * 0x18) == *(longlong *)(connectionInfo + 0x18)))
+        long_var_9 = (longlong)processResult;
+        if ((*(longlong *)(dataBuffer + long_var_9 * 0x18) == *(longlong *)(connectionInfo + 0x10)) &&
+           (*(longlong *)(dataBuffer + 8 + long_var_9 * 0x18) == *(longlong *)(connectionInfo + 0x18)))
         goto LAB_18086ea7b;
-        processResult = *(int *)(dataBuffer + 0x10 + lVar9 * 0x18);
+        processResult = *(int *)(dataBuffer + 0x10 + long_var_9 * 0x18);
       } while (processResult != -1);
     }
     processResult = -1;
@@ -54337,7 +54337,7 @@ uint64_t FUN_18086ec60(longlong socketHandle,longlong dataBuffer,uint64_t *buffe
   int socketIndex;
   longlong *pserverPort;
   uint64_t timeoutValue;
-  longlong lVar9;
+  longlong long_var_9;
   longlong *pnetworkTimeout0;
   
   pnetworkTimeout0 = (longlong *)0x0;
@@ -54365,11 +54365,11 @@ LAB_18086ed75:
                              (int)pserverPort[1] - 1U) * 4), processResult != -1)) {
       dataBuffer = pserverPort[2];
       do {
-        lVar9 = (longlong)processResult;
-        if ((*(longlong *)(dataBuffer + lVar9 * 0x18) == *(longlong *)(connectionInfo + 0x10)) &&
-           (*(longlong *)(dataBuffer + 8 + lVar9 * 0x18) == *(longlong *)(connectionInfo + 0x18)))
+        long_var_9 = (longlong)processResult;
+        if ((*(longlong *)(dataBuffer + long_var_9 * 0x18) == *(longlong *)(connectionInfo + 0x10)) &&
+           (*(longlong *)(dataBuffer + 8 + long_var_9 * 0x18) == *(longlong *)(connectionInfo + 0x18)))
         goto LAB_18086ed1c;
-        processResult = *(int *)(dataBuffer + 0x10 + lVar9 * 0x18);
+        processResult = *(int *)(dataBuffer + 0x10 + long_var_9 * 0x18);
       } while (processResult != -1);
     }
     processResult = -1;
@@ -54470,7 +54470,7 @@ uint64_t FUN_18086eef0(longlong socketHandle,longlong dataBuffer,uint64_t *buffe
   int socketIndex;
   longlong *pserverPort;
   uint64_t timeoutValue;
-  longlong lVar9;
+  longlong long_var_9;
   longlong *pnetworkTimeout0;
   
   pnetworkTimeout0 = (longlong *)0x0;
@@ -54498,11 +54498,11 @@ LAB_18086f017:
                              (int)pserverPort[1] - 1U) * 4), processResult != -1)) {
       dataBuffer = pserverPort[2];
       do {
-        lVar9 = (longlong)processResult;
-        if ((*(longlong *)(dataBuffer + lVar9 * 0x18) == *(longlong *)(connectionInfo + 0x10)) &&
-           (*(longlong *)(dataBuffer + 8 + lVar9 * 0x18) == *(longlong *)(connectionInfo + 0x18)))
+        long_var_9 = (longlong)processResult;
+        if ((*(longlong *)(dataBuffer + long_var_9 * 0x18) == *(longlong *)(connectionInfo + 0x10)) &&
+           (*(longlong *)(dataBuffer + 8 + long_var_9 * 0x18) == *(longlong *)(connectionInfo + 0x18)))
         goto LAB_18086efbb;
-        processResult = *(int *)(dataBuffer + 0x10 + lVar9 * 0x18);
+        processResult = *(int *)(dataBuffer + 0x10 + long_var_9 * 0x18);
       } while (processResult != -1);
     }
     processResult = -1;
@@ -54603,7 +54603,7 @@ uint64_t FUN_18086f1a0(longlong socketHandle,longlong dataBuffer,uint64_t *buffe
   int socketIndex;
   longlong *pserverPort;
   uint64_t timeoutValue;
-  longlong lVar9;
+  longlong long_var_9;
   longlong *pnetworkTimeout0;
   
   pnetworkTimeout0 = (longlong *)0x0;
@@ -54631,11 +54631,11 @@ LAB_18086f2ca:
                              (int)pserverPort[1] - 1U) * 4), processResult != -1)) {
       dataBuffer = pserverPort[2];
       do {
-        lVar9 = (longlong)processResult;
-        if ((*(longlong *)(dataBuffer + lVar9 * 0x18) == *(longlong *)(connectionInfo + 0x10)) &&
-           (*(longlong *)(dataBuffer + 8 + lVar9 * 0x18) == *(longlong *)(connectionInfo + 0x18)))
+        long_var_9 = (longlong)processResult;
+        if ((*(longlong *)(dataBuffer + long_var_9 * 0x18) == *(longlong *)(connectionInfo + 0x10)) &&
+           (*(longlong *)(dataBuffer + 8 + long_var_9 * 0x18) == *(longlong *)(connectionInfo + 0x18)))
         goto LAB_18086f26b;
-        processResult = *(int *)(dataBuffer + 0x10 + lVar9 * 0x18);
+        processResult = *(int *)(dataBuffer + 0x10 + long_var_9 * 0x18);
       } while (processResult != -1);
     }
     processResult = -1;
@@ -54736,7 +54736,7 @@ uint64_t FUN_18086f460(longlong socketHandle,longlong dataBuffer,uint64_t *buffe
   uint64_t socketStatus;
   longlong *pserverPort;
   ulonglong timeoutValue;
-  ulonglong uVar9;
+  ulonglong uint_var_9;
   
   socketStatus = FUN_18086f1a0();
   if ((((((int)socketStatus == 0) && (socketStatus = FUN_18086dc50(socketHandle,dataBuffer,bufferCapacity), (int)socketStatus == 0)) &&
@@ -54744,10 +54744,10 @@ uint64_t FUN_18086f460(longlong socketHandle,longlong dataBuffer,uint64_t *buffe
       ((socketStatus = FUN_18086e480(socketHandle,dataBuffer,bufferCapacity), (int)socketStatus == 0 &&
        (socketStatus = FUN_18086e1f0(socketHandle,dataBuffer,bufferCapacity), (int)socketStatus == 0)))) &&
      (socketStatus = FUN_18086ec60(socketHandle,dataBuffer,bufferCapacity), (int)socketStatus == 0)) {
-    uVar9 = 0;
+    uint_var_9 = 0;
     do {
       while( true ) {
-        processResult = (int)uVar9;
+        processResult = (int)uint_var_9;
         if ((processResult < 0) || (resultCode = *(int *)(socketHandle + 0x68), resultCode <= processResult)) {
           socketStatus = FUN_18086e710(socketHandle,dataBuffer,bufferCapacity);
           if ((int)socketStatus != 0) {
@@ -54767,7 +54767,7 @@ uint64_t FUN_18086f460(longlong socketHandle,longlong dataBuffer,uint64_t *buffe
           timeoutValue = 0;
         }
         if ((timeoutValue != 0) && (cVar4 = func_0x000180875460(timeoutValue,connectionInfo + 0x10), cVar4 != '\0')) break;
-        uVar9 = (ulonglong)(processResult + 1);
+        uint_var_9 = (ulonglong)(processResult + 1);
       }
       processResult = (resultCode - processResult) + -1;
       if (0 < processResult) {
@@ -54798,15 +54798,15 @@ uint64_t FUN_18086f4ed(void)
   longlong *pnetworkAddress;
   uint64_t bufferSize;
   ulonglong timeoutValue;
-  ulonglong uVar9;
+  ulonglong uint_var_9;
   longlong unaff_RBP;
   longlong unaff_RDI;
   uint64_t *responseBuffer;
   
-  uVar9 = 0;
+  uint_var_9 = 0;
   while( true ) {
     while( true ) {
-      processResult = (int)uVar9;
+      processResult = (int)uint_var_9;
       if ((processResult < 0) || (resultCode = *(int *)(unaff_RDI + 0x68), resultCode <= processResult)) {
         bufferSize = FUN_18086e710();
         if ((int)bufferSize != 0) {
@@ -54826,7 +54826,7 @@ uint64_t FUN_18086f4ed(void)
         timeoutValue = 0;
       }
       if ((timeoutValue != 0) && (cVar4 = func_0x000180875460(timeoutValue,connectionInfo + 0x10), cVar4 != '\0')) break;
-      uVar9 = (ulonglong)(processResult + 1);
+      uint_var_9 = (ulonglong)(processResult + 1);
     }
     processResult = (resultCode - processResult) + -1;
     if (0 < processResult) {
@@ -58427,7 +58427,7 @@ uint64_t FUN_180874670(longlong *socketHandle)
   uint64_t socketStatus;
   uint bufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   
   bufferSize = *(uint *)((longlong)socketHandle + 0xc);
   if ((int)((bufferSize ^ (int)bufferSize >> 0x1f) - ((int)bufferSize >> 0x1f)) < 0) {
@@ -58444,7 +58444,7 @@ uint64_t FUN_180874670(longlong *socketHandle)
   }
   statusCode = (int)socketHandle[1];
   if (statusCode < 0) {
-    lVar9 = (longlong)-statusCode;
+    long_var_9 = (longlong)-statusCode;
     if (statusCode < 0) {
       clientPort = (longlong)statusCode * 0x1c + 0x14 + *socketHandle;
       do {
@@ -58458,9 +58458,9 @@ uint64_t FUN_180874670(longlong *socketHandle)
         *(uint32_t *)(clientPort + -8) = dataPointer;
         *(uint64_t *)(clientPort + -4) = 0;
         *(uint8_t *)(clientPort + 4) = 0;
-        lVar9 = lVar9 + -1;
+        long_var_9 = long_var_9 + -1;
         clientPort = clientPort + 0x1c;
-      } while (lVar9 != 0);
+      } while (long_var_9 != 0);
       bufferSize = *(uint *)((longlong)socketHandle + 0xc);
     }
   }
@@ -59444,7 +59444,7 @@ uint64_t networkAllocateBuffer(longlong *socketHandle)
   int errorCode;
   longlong lStackX_8;
   uint64_t stack_param;
-  ulonglong uVar9;
+  ulonglong uint_var_9;
   
   networkResult = (uint)((ulonglong)stack_param >> SOCKET_RESPONSE_OFFSET);
   if (socketHandle == (longlong *)0x0) {
@@ -59455,25 +59455,25 @@ uint64_t networkAllocateBuffer(longlong *socketHandle)
   packetLength = FUN_1807388c0(&lStackX_8,SOCKET_RESPONSE_OFFSET214);
   serverPort = lStackX_8;
   if ((int)packetLength == 0) {
-    uVar9 = (ulonglong)networkResult << SOCKET_RESPONSE_OFFSET;
-    connectionInfo = ExecuteNetworkOperation(*(uint64_t *)(g_networkModule + 0x1a0),0x7c8,&g_network_data_buffer_b90,0xb4,uVar9,0,
+    uint_var_9 = (ulonglong)networkResult << SOCKET_RESPONSE_OFFSET;
+    connectionInfo = ExecuteNetworkOperation(*(uint64_t *)(g_networkModule + 0x1a0),0x7c8,&g_network_data_buffer_b90,0xb4,uint_var_9,0,
                           1);
     if (connectionInfo != 0) {
       connectionInfo = func_0x0001808bad50(connectionInfo);
-      uVar9 = uVar9 & 0xffffffff00000000;
-      dataBuffer = ExecuteNetworkOperation(*(uint64_t *)(g_networkModule + 0x1a0),0xd0,&g_network_data_buffer_b90,0xbb,uVar9,0
+      uint_var_9 = uint_var_9 & 0xffffffff00000000;
+      dataBuffer = ExecuteNetworkOperation(*(uint64_t *)(g_networkModule + 0x1a0),0xd0,&g_network_data_buffer_b90,0xbb,uint_var_9,0
                             ,1);
       if (dataBuffer != 0) {
         psocketHandle = (longlong *)FUN_180865b00(dataBuffer);
-        uVar9 = uVar9 & 0xffffffff00000000;
+        uint_var_9 = uint_var_9 & 0xffffffff00000000;
         socketStatusPointer = (uint64_t *)
                  ExecuteNetworkOperation(*(uint64_t *)(g_networkModule + 0x1a0),0x10,&g_network_data_buffer_b90,0xc0,
-                               uVar9,0,1);
+                               uint_var_9,0,1);
         if (socketStatusPointer != (uint64_t *)0x0) {
           socketStatusPointer[1] = 0;
           *socketStatusPointer = &g_network_socket_status_738;
           serverPort = ExecuteNetworkOperation(*(uint64_t *)(g_networkModule + 0x1a0),0xc40,&g_network_data_buffer_b90,0xc4,
-                                uVar9 & 0xffffffff00000000,0,1);
+                                uint_var_9 & 0xffffffff00000000,0,1);
           if (serverPort == 0) {
             (**(code **)*socketStatusPointer)(socketStatusPointer,0);
                     // WARNING: Subroutine does not return
@@ -59536,7 +59536,7 @@ uint64_t FUN_180875538(void)
   int errorCode;
   longlong *unaff_R12;
   uint64_t stack_param;
-  ulonglong uVar9;
+  ulonglong uint_var_9;
   longlong lStack0000000000000070;
   
   networkResult = (uint)((ulonglong)stack_param >> SOCKET_RESPONSE_OFFSET);
@@ -59545,23 +59545,23 @@ uint64_t FUN_180875538(void)
   packetLength = FUN_1807388c0(&stack_buffer,SOCKET_RESPONSE_OFFSET214);
   serverPort = lStack0000000000000070;
   if ((int)packetLength == 0) {
-    uVar9 = (ulonglong)networkResult << SOCKET_RESPONSE_OFFSET;
-    connectionInfo = ExecuteNetworkOperation(*(uint64_t *)(g_networkModule + 0x1a0),0x7c8,&g_network_data_buffer_b90,0xb4,uVar9);
+    uint_var_9 = (ulonglong)networkResult << SOCKET_RESPONSE_OFFSET;
+    connectionInfo = ExecuteNetworkOperation(*(uint64_t *)(g_networkModule + 0x1a0),0x7c8,&g_network_data_buffer_b90,0xb4,uint_var_9);
     if (connectionInfo != 0) {
       connectionInfo = func_0x0001808bad50(connectionInfo);
-      uVar9 = uVar9 & 0xffffffff00000000;
-      dataBuffer = ExecuteNetworkOperation(*(uint64_t *)(g_networkModule + 0x1a0),0xd0,&g_network_data_buffer_b90,0xbb,uVar9);
+      uint_var_9 = uint_var_9 & 0xffffffff00000000;
+      dataBuffer = ExecuteNetworkOperation(*(uint64_t *)(g_networkModule + 0x1a0),0xd0,&g_network_data_buffer_b90,0xbb,uint_var_9);
       if (dataBuffer != 0) {
         psocketHandle = (longlong *)FUN_180865b00(dataBuffer);
-        uVar9 = uVar9 & 0xffffffff00000000;
+        uint_var_9 = uint_var_9 & 0xffffffff00000000;
         socketStatusPointer = (uint64_t *)
                  ExecuteNetworkOperation(*(uint64_t *)(g_networkModule + 0x1a0),0x10,&g_network_data_buffer_b90,0xc0,
-                               uVar9);
+                               uint_var_9);
         if (socketStatusPointer != (uint64_t *)0x0) {
           socketStatusPointer[1] = 0;
           *socketStatusPointer = &g_network_socket_status_738;
           serverPort = ExecuteNetworkOperation(*(uint64_t *)(g_networkModule + 0x1a0),0xc40,&g_network_data_buffer_b90,0xc4,
-                                uVar9 & 0xffffffff00000000);
+                                uint_var_9 & 0xffffffff00000000);
           if (serverPort == 0) {
             (**(code **)*socketStatusPointer)(socketStatusPointer,0);
                     // WARNING: Subroutine does not return
@@ -60230,7 +60230,7 @@ uint64_t FUN_180876026(void)
   longlong *unaff_RBX;
   int packetId;
   int errorCode;
-  ulonglong uVar9;
+  ulonglong uint_var_9;
   ulonglong networkResult0;
   
   if (unaff_EDI == in_EAX) {
@@ -60250,8 +60250,8 @@ uint64_t FUN_180876026(void)
     if ((int)dataPointer != 0) {
       return dataPointer;
     }
-    uVar9 = 0;
-    connectionIndex = uVar9;
+    uint_var_9 = 0;
+    connectionIndex = uint_var_9;
     if (0 < errorCode) {
       do {
         *(uint32_t *)(*unaff_RBX + connectionIndex * 4) = 0xffffffff;
@@ -60259,8 +60259,8 @@ uint64_t FUN_180876026(void)
       } while ((longlong)connectionIndex < (longlong)errorCode);
     }
     connectionInfo = unaff_RBX[3];
-    connectionIndex = uVar9;
-    networkResult0 = uVar9;
+    connectionIndex = uint_var_9;
+    networkResult0 = uint_var_9;
     if (0 < (int)connectionInfo) {
       do {
         if ((int)unaff_RBX[1] == 0) {
@@ -60278,9 +60278,9 @@ uint64_t FUN_180876026(void)
           pstatusCode = (int *)(socketDescriptor + networkAddress * 4);
           errorCode = *(int *)(socketDescriptor + networkAddress * 4);
         }
-        *pstatusCode = (int)uVar9;
+        *pstatusCode = (int)uint_var_9;
         networkResult0 = networkResult0 + 1;
-        uVar9 = (ulonglong)((int)uVar9 + 1);
+        uint_var_9 = (ulonglong)((int)uint_var_9 + 1);
         *(uint32_t *)(unaff_RBX[2] + 0x10 + connectionIndex) = 0xffffffff;
         connectionIndex = connectionIndex + 0x24;
       } while ((longlong)networkResult0 < (longlong)(int)connectionInfo);
@@ -60840,7 +60840,7 @@ void FUN_180876428(void)
   int dataLength;
   ulonglong networkContextPtr;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   longlong *pnetworkTimeout0;
   uint64_t *connectionBuffer1;
   ulonglong *unaff_RBP;
@@ -61036,12 +61036,12 @@ LAB_1808768bc:
         if (cVar4 != '\0') {
           processResult = FUN_1808c2060(packetLength,networkResult2,0);
           if (processResult != 0) goto LAB_1808769aa;
-          lVar9 = (**(code **)(*pconnectionInfo + 0x150))(pconnectionInfo,networkResult2);
-          if (lVar9 != 0) {
-            FUN_1808c5220(unaff_RBP + -0x10,lVar9);
-            stack_param = *(longlong *)(lVar9 + 0x10);
-            uStack0000000000000068 = *(uint32_t *)(lVar9 + 0x18);
-            uStack000000000000006c = *(uint32_t *)(lVar9 + 0x1c);
+          long_var_9 = (**(code **)(*pconnectionInfo + 0x150))(pconnectionInfo,networkResult2);
+          if (long_var_9 != 0) {
+            FUN_1808c5220(unaff_RBP + -0x10,long_var_9);
+            stack_param = *(longlong *)(long_var_9 + 0x10);
+            uStack0000000000000068 = *(uint32_t *)(long_var_9 + 0x18);
+            uStack000000000000006c = *(uint32_t *)(long_var_9 + 0x1c);
             stack_param = 1;
             FUN_180879610(unaff_RBP + -0xf,&stack_buffer);
           }
@@ -61074,10 +61074,10 @@ FUN_180876d54:
       } while (pnetworkTimeout0 != pconnectionInfo);
       if (processResult != 0) goto FUN_180876d54;
     }
-    lVar9 = *(longlong *)(responseBuffer + 0xaa8);
+    long_var_9 = *(longlong *)(responseBuffer + 0xaa8);
     unaff_RSI[5] = (longlong *)(responseBuffer + 0xaa8);
-    *pconnectionInfo = lVar9;
-    *(longlong **)(lVar9 + 8) = pconnectionInfo;
+    *pconnectionInfo = long_var_9;
+    *(longlong **)(long_var_9 + 8) = pconnectionInfo;
     *(longlong **)unaff_RSI[5] = pconnectionInfo;
     if (clientPort != 0) {
                     // WARNING: Subroutine does not return
@@ -61115,12 +61115,12 @@ LAB_1808769aa:
     if (cVar4 != '\x01') {
       processResult = FUN_1808c2060(packetLength,networkResult2,1);
       if (processResult != 0) break;
-      lVar9 = (**(code **)(*pconnectionInfo + 0x150))(pconnectionInfo,networkResult2,1);
-      if (lVar9 != 0) {
-        FUN_1808c5220(unaff_RBP + -0x10,lVar9);
-        stack_param = *(longlong *)(lVar9 + 0x10);
-        uStack0000000000000068 = *(uint32_t *)(lVar9 + 0x18);
-        uStack000000000000006c = *(uint32_t *)(lVar9 + 0x1c);
+      long_var_9 = (**(code **)(*pconnectionInfo + 0x150))(pconnectionInfo,networkResult2,1);
+      if (long_var_9 != 0) {
+        FUN_1808c5220(unaff_RBP + -0x10,long_var_9);
+        stack_param = *(longlong *)(long_var_9 + 0x10);
+        uStack0000000000000068 = *(uint32_t *)(long_var_9 + 0x18);
+        uStack000000000000006c = *(uint32_t *)(long_var_9 + 0x1c);
         stack_param = 1;
         FUN_180879610(unaff_RBP + -0xf,&stack_buffer,&networkStackBuffer);
       }
@@ -61143,12 +61143,12 @@ LAB_1808769aa:
     FUN_1808741f0(stack_param,&stack_buffer,&stack_buffer);
     pconnectionInfo = stack_param;
     while (stack_param = pconnectionInfo, iStack0000000000000058 != -1) {
-      lVar9 = (longlong)iStack0000000000000058;
+      long_var_9 = (longlong)iStack0000000000000058;
       stack_param = *(longlong *)(responseBuffer + 800);
-      processResult = FUN_18086f460(*(uint64_t *)(lVar9 * SOCKET_RESPONSE_OFFSET + 0x18 + pconnectionInfo[2]),responseBuffer + 0xad8,
+      processResult = FUN_18086f460(*(uint64_t *)(long_var_9 * SOCKET_RESPONSE_OFFSET + 0x18 + pconnectionInfo[2]),responseBuffer + 0xad8,
                             &stack_buffer);
       if ((processResult != 0) ||
-         (processResult = FUN_18087c9b0(*(uint64_t *)(lVar9 * SOCKET_RESPONSE_OFFSET + 0x18 + pconnectionInfo[2]),unaff_RBP + -0x10),
+         (processResult = FUN_18087c9b0(*(uint64_t *)(long_var_9 * SOCKET_RESPONSE_OFFSET + 0x18 + pconnectionInfo[2]),unaff_RBP + -0x10),
          processResult != 0)) {
         if (clientPort != 0) {
                     // WARNING: Subroutine does not return
@@ -61523,7 +61523,7 @@ void FUN_180877560(longlong *socketHandle,longlong *dataBuffer,longlong *bufferC
   int socketIndex;
   longlong serverPort;
   uint32_t *ptimeoutValue;
-  longlong lVar9;
+  longlong long_var_9;
   uint8_t networkStack_118 [32];
   uint networkUintStack_f8;
   uint networkUintStack_f0;
@@ -61551,7 +61551,7 @@ void FUN_180877560(longlong *socketHandle,longlong *dataBuffer,longlong *bufferC
   pnetworkLongStack_98 = socketHandle;
   if (((networkOperationResult <= (int)((*(uint *)((longlong)dataBuffer + 0xc) ^ connectionIndex) - connectionIndex)) ||
       (resultCode = FUN_18084c470(dataBuffer,networkOperationResult), resultCode == 0)) && (networkLongStack_88 = serverPort, 0 < networkOperationResult)) {
-    lVar9 = 0;
+    long_var_9 = 0;
     networkLongStack_a8 = 0;
     do {
       networkTimeout = networkLongStack_a8;
@@ -61591,10 +61591,10 @@ void FUN_180877560(longlong *socketHandle,longlong *dataBuffer,longlong *bufferC
         if (networkOperationResult != 0) break;
       }
       networkLongStack_a8 = networkTimeout + 0x10;
-      lVar9 = lVar9 + 1;
+      long_var_9 = long_var_9 + 1;
       *(uint32_t *)(*dataBuffer + (longlong)(int)dataBuffer[1] * 4) = *(uint32_t *)(dataBuffer + 0x44);
       *(int *)(dataBuffer + 1) = (int)dataBuffer[1] + 1;
-    } while (lVar9 < serverPort);
+    } while (long_var_9 < serverPort);
   }
                     // WARNING: Subroutine does not return
   networkEncryptData(networkUintStack_58 ^ (ulonglong)networkStack_118);
@@ -62144,7 +62144,7 @@ void FUN_1808782a0(longlong socketHandle,longlong *dataBuffer,longlong *bufferCa
   int socketIndex;
   longlong serverPort;
   uint64_t *ptimeoutValue;
-  longlong lVar9;
+  longlong long_var_9;
   longlong networkTimeout0;
   int statusCode1;
   uint networkResult2;
@@ -62212,13 +62212,13 @@ void FUN_1808782a0(longlong socketHandle,longlong *dataBuffer,longlong *bufferCa
       pstatusCode5 = anetworkIntStack_a8;
       statusCode6 = 0;
       do {
-        lVar9 = *(longlong *)(*(longlong *)(serverPort + 0x48) + (longlong)*pstatusCode5 * 8);
-        if ((lVar9 == 0) || (*(int *)(lVar9 + 0x10) != 0)) goto LAB_180878734;
+        long_var_9 = *(longlong *)(*(longlong *)(serverPort + 0x48) + (longlong)*pstatusCode5 * 8);
+        if ((long_var_9 == 0) || (*(int *)(long_var_9 + 0x10) != 0)) goto LAB_180878734;
         pbufferCapacity = (uint32_t *)*pnetworkTimeout7;
         statusCode6 = statusCode6 + 1;
         pstatusCode5 = pstatusCode5 + 1;
         pnetworkTimeout7 = pnetworkTimeout7 + 1;
-        *pbufferCapacity = *(uint32_t *)(lVar9 + 0x18);
+        *pbufferCapacity = *(uint32_t *)(long_var_9 + 0x18);
       } while (statusCode6 < 2);
       pnetworkLongStack_68 = (longlong *)*connectionBuffer;
       networkUintStack_60 = *(uint64_t *)(socketDescriptor + 0x68);
@@ -62254,9 +62254,9 @@ LAB_1808784e0:
                            (int)((int)networkUintStack_98 - 1U &
                                 (connectionBuffer4[3] ^ connectionBuffer4[2] ^ connectionBuffer4[1] ^ *connectionBuffer4)) * 4);
           while (statusCode6 != -1) {
-            lVar9 = (longlong)statusCode6;
-            if ((*(longlong *)(socketDescriptor + lVar9 * 0x24) == *(longlong *)connectionBuffer4) &&
-               (*(longlong *)(socketDescriptor + 8 + lVar9 * 0x24) == *(longlong *)(connectionBuffer4 + 2))) {
+            long_var_9 = (longlong)statusCode6;
+            if ((*(longlong *)(socketDescriptor + long_var_9 * 0x24) == *(longlong *)connectionBuffer4) &&
+               (*(longlong *)(socketDescriptor + 8 + long_var_9 * 0x24) == *(longlong *)(connectionBuffer4 + 2))) {
               if (statusCode6 != -1) {
                 statusCode6 = (int)((longlong)connectionBuffer4 - (longlong)connectionDataPointer >> 4);
                 if ((statusCode6 < 0) || (socketIndex = *(int *)(serverPort + 0x50), socketIndex <= statusCode6))
@@ -62308,7 +62308,7 @@ LAB_1808784e0:
                   *(longlong *)(serverPort + 0x58) = networkTimeout0;
                   *(int *)(serverPort + 100) = statusCode1;
                 }
-                connectionBuffer = (uint64_t *)(socketDescriptor + 0x14 + lVar9 * 0x24);
+                connectionBuffer = (uint64_t *)(socketDescriptor + 0x14 + long_var_9 * 0x24);
                 connectionIndex = connectionBuffer[1];
                 ptimeoutValue = (uint64_t *)
                          ((longlong)*(int *)(serverPort + 0x60) * 0x10 + *(longlong *)(serverPort + 0x58));
@@ -62319,7 +62319,7 @@ LAB_1808784e0:
               }
               break;
             }
-            statusCode6 = *(int *)(socketDescriptor + 0x10 + lVar9 * 0x24);
+            statusCode6 = *(int *)(socketDescriptor + 0x10 + long_var_9 * 0x24);
           }
         }
         connectionBuffer4 = connectionBuffer4 + 4;
@@ -62381,7 +62381,7 @@ void FUN_1808782c0(longlong socketHandle,uint64_t dataBuffer,longlong *bufferCap
   int socketIndex;
   longlong serverPort;
   uint64_t *ptimeoutValue;
-  longlong lVar9;
+  longlong long_var_9;
   longlong networkTimeout0;
   int statusCode1;
   uint networkResult2;
@@ -62437,13 +62437,13 @@ void FUN_1808782c0(longlong socketHandle,uint64_t dataBuffer,longlong *bufferCap
       pstatusCode5 = (int *)(unaff_RBP + -0x49);
       statusCode6 = 0;
       do {
-        lVar9 = *(longlong *)(*(longlong *)(serverPort + 0x48) + (longlong)*pstatusCode5 * 8);
-        if ((lVar9 == 0) || (*(int *)(lVar9 + 0x10) != 0)) goto LAB_180878734;
+        long_var_9 = *(longlong *)(*(longlong *)(serverPort + 0x48) + (longlong)*pstatusCode5 * 8);
+        if ((long_var_9 == 0) || (*(int *)(long_var_9 + 0x10) != 0)) goto LAB_180878734;
         pbufferCapacity = (uint32_t *)*ptimeoutValue;
         statusCode6 = statusCode6 + 1;
         pstatusCode5 = pstatusCode5 + 1;
         ptimeoutValue = ptimeoutValue + 1;
-        *pbufferCapacity = *(uint32_t *)(lVar9 + 0x18);
+        *pbufferCapacity = *(uint32_t *)(long_var_9 + 0x18);
       } while (statusCode6 < 2);
       connectionIndex = *(uint64_t *)(socketDescriptor + 0x68);
       *(uint64_t *)(unaff_RBP + -9) = *connectionBuffer;
@@ -62483,9 +62483,9 @@ LAB_1808784e0:
                            (int)(*(int *)(unaff_RBP + -0x39) - 1U &
                                 (connectionBuffer4[3] ^ connectionBuffer4[2] ^ connectionBuffer4[1] ^ *connectionBuffer4)) * 4);
           while (statusCode3 != -1) {
-            lVar9 = (longlong)statusCode3;
-            if ((*(longlong *)(socketDescriptor + lVar9 * 0x24) == *(longlong *)connectionBuffer4) &&
-               (*(longlong *)(socketDescriptor + 8 + lVar9 * 0x24) == *(longlong *)(connectionBuffer4 + 2))) {
+            long_var_9 = (longlong)statusCode3;
+            if ((*(longlong *)(socketDescriptor + long_var_9 * 0x24) == *(longlong *)connectionBuffer4) &&
+               (*(longlong *)(socketDescriptor + 8 + long_var_9 * 0x24) == *(longlong *)(connectionBuffer4 + 2))) {
               if (statusCode3 != -1) {
                 statusCode3 = (int)((longlong)connectionBuffer4 - (longlong)connectionDataPointer >> 4);
                 if ((statusCode3 < 0) || (socketIndex = *(int *)(serverPort + 0x50), socketIndex <= statusCode3))
@@ -62533,7 +62533,7 @@ LAB_1808784e0:
                   *(longlong *)(serverPort + 0x58) = networkTimeout0;
                   *(int *)(serverPort + 100) = statusCode1;
                 }
-                connectionBuffer = (uint64_t *)(socketDescriptor + 0x14 + lVar9 * 0x24);
+                connectionBuffer = (uint64_t *)(socketDescriptor + 0x14 + long_var_9 * 0x24);
                 connectionIndex = connectionBuffer[1];
                 ptimeoutValue = (uint64_t *)
                          ((longlong)*(int *)(serverPort + 0x60) * 0x10 + *(longlong *)(serverPort + 0x58));
@@ -62544,7 +62544,7 @@ LAB_1808784e0:
               }
               break;
             }
-            statusCode3 = *(int *)(socketDescriptor + 0x10 + lVar9 * 0x24);
+            statusCode3 = *(int *)(socketDescriptor + 0x10 + long_var_9 * 0x24);
           }
         }
         connectionBuffer4 = connectionBuffer4 + 4;
@@ -62632,7 +62632,7 @@ void FUN_1808787b5(longlong socketHandle,uint64_t dataBuffer,uint64_t bufferCapa
   longlong networkAddress;
   longlong serverPort;
   uint64_t *ptimeoutValue;
-  longlong lVar9;
+  longlong long_var_9;
   int statusCode0;
   uint networkResult1;
   longlong unaff_RBP;
@@ -62660,14 +62660,14 @@ LAB_180878734:
     networkEncryptData(*(ulonglong *)(unaff_RBP + 0x1f) ^ (ulonglong)&stack_buffer);
   }
 LAB_1808784c1:
-  lVar9 = timeoutValue[2];
+  long_var_9 = timeoutValue[2];
   *(longlong *)(unaff_RBP + -0x19) = (longlong)processResult * SOCKET_RESPONSE_OFFSET;
-  lVar9 = *(longlong *)((longlong)processResult * SOCKET_RESPONSE_OFFSET + 0x18 + lVar9);
-  connectionBuffer2 = *(uint **)(lVar9 + 0x48);
+  long_var_9 = *(longlong *)((longlong)processResult * SOCKET_RESPONSE_OFFSET + 0x18 + long_var_9);
+  connectionBuffer2 = *(uint **)(long_var_9 + 0x48);
 LAB_1808784e0:
   do {
-    ppacketLength = *(uint **)(lVar9 + 0x48);
-    if ((connectionBuffer2 < ppacketLength) || (ppacketLength + (longlong)*(int *)(lVar9 + 0x50) * 4 <= connectionBuffer2)) break;
+    ppacketLength = *(uint **)(long_var_9 + 0x48);
+    if ((connectionBuffer2 < ppacketLength) || (ppacketLength + (longlong)*(int *)(long_var_9 + 0x50) * 4 <= connectionBuffer2)) break;
     if (*(int *)(unaff_RBP + -0x39) != 0) {
       processResult = *(int *)(*(longlong *)(unaff_RBP + -0x41) +
                       (longlong)
@@ -62679,17 +62679,17 @@ LAB_1808784e0:
            (*(longlong *)(unaff_R15 + 8 + networkAddress * 0x24) == *(longlong *)(connectionBuffer2 + 2))) {
           if (processResult != -1) {
             processResult = (int)((longlong)connectionBuffer2 - (longlong)ppacketLength >> 4);
-            if ((processResult < 0) || (connectionCount = *(int *)(lVar9 + 0x50), connectionCount <= processResult)) goto LAB_180878734;
+            if ((processResult < 0) || (connectionCount = *(int *)(long_var_9 + 0x50), connectionCount <= processResult)) goto LAB_180878734;
             statusCode0 = (connectionCount - processResult) + -1;
             if (0 < statusCode0) {
                     // WARNING: Subroutine does not return
               memmove(ppacketLength + (longlong)processResult * 4,ppacketLength + (longlong)processResult * 4 + 4,
                       (longlong)statusCode0 << 4);
             }
-            *(int *)(lVar9 + 0x50) = connectionCount + -1;
-            networkResult1 = (int)*(uint *)(lVar9 + 100) >> 0x1f;
-            connectionCount = (*(uint *)(lVar9 + 100) ^ networkResult1) - networkResult1;
-            processResult = *(int *)(lVar9 + 0x60) + 1;
+            *(int *)(long_var_9 + 0x50) = connectionCount + -1;
+            networkResult1 = (int)*(uint *)(long_var_9 + 100) >> 0x1f;
+            connectionCount = (*(uint *)(long_var_9 + 100) ^ networkResult1) - networkResult1;
+            processResult = *(int *)(long_var_9 + 0x60) + 1;
             if (connectionCount < processResult) {
               statusCode0 = (int)((float)connectionCount * unaff_XMM6_Da);
               connectionCount = processResult;
@@ -62702,32 +62702,32 @@ LAB_1808784e0:
               else if (statusCode0 < processResult) {
                 statusCode0 = processResult;
               }
-              if (statusCode0 < *(int *)(lVar9 + 0x60)) goto LAB_180878734;
+              if (statusCode0 < *(int *)(long_var_9 + 0x60)) goto LAB_180878734;
               serverPort = 0;
               if (statusCode0 != 0) {
                 if ((0x3ffffffe < statusCode0 * 0x10 - 1U) ||
                    (serverPort = ExecuteNetworkOperation(*(uint64_t *)(g_networkModule + 0x1a0),statusCode0 * 0x10,
                                           &g_errorBuffer,0xf4,0), serverPort == 0)) goto LAB_180878734;
-                if (*(int *)(lVar9 + 0x60) != 0) {
+                if (*(int *)(long_var_9 + 0x60) != 0) {
                     // WARNING: Subroutine does not return
-                  memcpy(serverPort,*(uint64_t *)(lVar9 + 0x58),(longlong)*(int *)(lVar9 + 0x60) << 4);
+                  memcpy(serverPort,*(uint64_t *)(long_var_9 + 0x58),(longlong)*(int *)(long_var_9 + 0x60) << 4);
                 }
               }
-              if ((0 < *(int *)(lVar9 + 100)) && (*(longlong *)(lVar9 + 0x58) != 0)) {
+              if ((0 < *(int *)(long_var_9 + 100)) && (*(longlong *)(long_var_9 + 0x58) != 0)) {
                     // WARNING: Subroutine does not return
-                NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),*(longlong *)(lVar9 + 0x58),
+                NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),*(longlong *)(long_var_9 + 0x58),
                               &g_errorBuffer,0x100,1);
               }
-              *(longlong *)(lVar9 + 0x58) = serverPort;
-              *(int *)(lVar9 + 100) = statusCode0;
+              *(longlong *)(long_var_9 + 0x58) = serverPort;
+              *(int *)(long_var_9 + 100) = statusCode0;
             }
             connectionBuffer = (uint64_t *)(unaff_R15 + 0x14 + networkAddress * 0x24);
             bufferCapacity = connectionBuffer[1];
             ptimeoutValue = (uint64_t *)
-                     ((longlong)*(int *)(lVar9 + 0x60) * 0x10 + *(longlong *)(lVar9 + 0x58));
+                     ((longlong)*(int *)(long_var_9 + 0x60) * 0x10 + *(longlong *)(long_var_9 + 0x58));
             *ptimeoutValue = *connectionBuffer;
             ptimeoutValue[1] = bufferCapacity;
-            *(int *)(lVar9 + 0x60) = *(int *)(lVar9 + 0x60) + 1;
+            *(int *)(long_var_9 + 0x60) = *(int *)(long_var_9 + 0x60) + 1;
             goto LAB_1808784e0;
           }
           break;
@@ -62750,12 +62750,12 @@ LAB_1808786e5:
   }
   if (unaff_R13D != (int)timeoutValue[1]) {
     socketHandle = *timeoutValue;
-    lVar9 = (longlong)unaff_R13D;
+    long_var_9 = (longlong)unaff_R13D;
     do {
-      if (*(int *)(socketHandle + lVar9 * 4) != -1) goto code_r0x0001808787b5;
+      if (*(int *)(socketHandle + long_var_9 * 4) != -1) goto code_r0x0001808787b5;
       unaff_R13D = unaff_R13D + 1;
-      lVar9 = lVar9 + 1;
-    } while (lVar9 != (int)timeoutValue[1]);
+      long_var_9 = long_var_9 + 1;
+    } while (long_var_9 != (int)timeoutValue[1]);
   }
   processResult = -1;
   statusCode3 = processResult;
@@ -62780,7 +62780,7 @@ void FUN_1808787d0(longlong socketHandle,longlong *dataBuffer,uint64_t *bufferCa
   char cVar6;
   int dataLength;
   int errorCode;
-  longlong lVar9;
+  longlong long_var_9;
   ulonglong networkResult0;
   int *pstatusCode1;
   ulonglong networkResult2;
@@ -62890,9 +62890,9 @@ LAB_1808788de:
   if (networkResult8 < 0x46) {
     while ((errorCode = (int)networkResult2, -1 < errorCode && (errorCode < *(int *)(socketHandle + 0xf8)))) {
       connectionInfo = *(longlong *)(*(longlong *)(socketHandle + 0xf0) + (longlong)errorCode * 8);
-      lVar9 = (**(code **)(*networkParam + 0x120))(networkParam,connectionInfo + 0xdc,1);
-      if ((lVar9 != 0) && (*(int *)(lVar9 + CONNECTION_BUFFER_OFFSET) == 3)) {
-        *(uint32_t *)(lVar9 + CONNECTION_BUFFER_OFFSET) = *(uint32_t *)(connectionInfo + 0xd8);
+      long_var_9 = (**(code **)(*networkParam + 0x120))(networkParam,connectionInfo + 0xdc,1);
+      if ((long_var_9 != 0) && (*(int *)(long_var_9 + CONNECTION_BUFFER_OFFSET) == 3)) {
+        *(uint32_t *)(long_var_9 + CONNECTION_BUFFER_OFFSET) = *(uint32_t *)(connectionInfo + 0xd8);
       }
       networkResult2 = (ulonglong)(errorCode + 1);
     }
@@ -62904,9 +62904,9 @@ LAB_1808788de:
       if (((*(int *)(connectionInfo + 0x70) != 0) ||
           (((*(int *)(connectionInfo + 0x74) != 0 || (*(int *)(connectionInfo + 0x78) != 0)) ||
            (*(int *)(connectionInfo + 0x7c) != 0)))) &&
-         (((lVar9 = (**(code **)(*networkParam + 0x278))(networkParam,connectionInfo + 0x70,1), lVar9 != 0 &&
-           (0.0 < *(float *)(lVar9 + 0x38))) && (0.0 < *(float *)(connectionInfo + 0xa8))))) {
-        *(float *)(connectionInfo + 0xac) = *(float *)(lVar9 + 0x38) / *(float *)(connectionInfo + 0xa8);
+         (((long_var_9 = (**(code **)(*networkParam + 0x278))(networkParam,connectionInfo + 0x70,1), long_var_9 != 0 &&
+           (0.0 < *(float *)(long_var_9 + 0x38))) && (0.0 < *(float *)(connectionInfo + 0xa8))))) {
+        *(float *)(connectionInfo + 0xac) = *(float *)(long_var_9 + 0x38) / *(float *)(connectionInfo + 0xa8);
       }
       networkResult2 = (ulonglong)(errorCode + 1);
     }
@@ -62918,10 +62918,10 @@ LAB_1808788de:
       if ((*(int *)(connectionInfo + 0x70) != 0) ||
          (((*(int *)(connectionInfo + 0x74) != 0 || (*(int *)(connectionInfo + 0x78) != 0)) ||
           (*(int *)(connectionInfo + 0x7c) != 0)))) {
-        lVar9 = (**(code **)(*networkParam + 0x278))(networkParam,connectionInfo + 0x70,1);
-        if (((lVar9 != 0) && (0.0 < *(float *)(lVar9 + 0x38))) && (0.0 < *(float *)(connectionInfo + 0xa8)))
+        long_var_9 = (**(code **)(*networkParam + 0x278))(networkParam,connectionInfo + 0x70,1);
+        if (((long_var_9 != 0) && (0.0 < *(float *)(long_var_9 + 0x38))) && (0.0 < *(float *)(connectionInfo + 0xa8)))
         {
-          *(float *)(connectionInfo + 0xac) = *(float *)(lVar9 + 0x38) / *(float *)(connectionInfo + 0xa8);
+          *(float *)(connectionInfo + 0xac) = *(float *)(long_var_9 + 0x38) / *(float *)(connectionInfo + 0xa8);
         }
       }
       networkResult2 = (ulonglong)(errorCode + 1);
@@ -62938,9 +62938,9 @@ LAB_1808788de:
         for (networkResult0 = *(ulonglong *)(connectionInfo + 0x48);
             (networkResult2 = *(ulonglong *)(connectionInfo + 0x48), networkResult2 <= networkResult0 &&
             (networkResult0 < networkResult2 + (longlong)*(int *)(connectionInfo + 0x50) * 0x18)); networkResult0 = networkResult0 + 0x18) {
-          lVar9 = (**(code **)(*networkParam + 0x128))(networkParam,networkResult0,CONCAT71((int7)(networkResult2 >> 8),1));
-          if (lVar9 != 0) {
-            *(uint32_t *)(lVar9 + 0xb0) = 0xffffffff;
+          long_var_9 = (**(code **)(*networkParam + 0x128))(networkParam,networkResult0,CONCAT71((int7)(networkResult2 >> 8),1));
+          if (long_var_9 != 0) {
+            *(uint32_t *)(long_var_9 + 0xb0) = 0xffffffff;
           }
         }
         pnetworkTimeout = (longlong *)(connectionInfo + 0x68);
@@ -62958,10 +62958,10 @@ LAB_1808788de:
                   (networkResult2 = pnetworkTimeout6[0x10], networkResult2 <= networkResult0 &&
                   (networkResult0 < networkResult2 + (longlong)(int)pnetworkTimeout6[0x11] * 0x18)); networkResult0 = networkResult0 + 0x18)
               {
-                lVar9 = (**(code **)(*networkParam + 0x128))
+                long_var_9 = (**(code **)(*networkParam + 0x128))
                                   (networkParam,networkResult0,CONCAT71((int7)(networkResult2 >> 8),1));
-                if (lVar9 != 0) {
-                  *(uint32_t *)(lVar9 + 0xb0) = 0xffffffff;
+                if (long_var_9 != 0) {
+                  *(uint32_t *)(long_var_9 + 0xb0) = 0xffffffff;
                 }
               }
             }
@@ -64051,7 +64051,7 @@ uint64_t FUN_18087969a(void)
   uint64_t socketStatus;
   longlong serverPort;
   int errorCode;
-  uint uVar9;
+  uint uint_var_9;
   int statusCode0;
   uint64_t *unaff_RBX;
   int statusCode1;
@@ -64064,11 +64064,11 @@ uint64_t FUN_18087969a(void)
   networkTimeout2 = (longlong)statusCode1;
   if (statusCode1 == -1) {
     statusCode1 = *(int *)(unaff_RSI + 0x18);
-    uVar9 = (int)*(uint *)(unaff_RSI + 0x1c) >> 0x1f;
+    uint_var_9 = (int)*(uint *)(unaff_RSI + 0x1c) >> 0x1f;
     bufferCapacity = *unaff_RBX;
     dataPointer = unaff_RBX[1];
     packetLength = *unaff_R15;
-    processResult = (*(uint *)(unaff_RSI + 0x1c) ^ uVar9) - uVar9;
+    processResult = (*(uint *)(unaff_RSI + 0x1c) ^ uint_var_9) - uint_var_9;
     errorCode = statusCode1 + 1;
     if (processResult < errorCode) {
       statusCode0 = (int)((float)processResult * 1.5);
@@ -68977,7 +68977,7 @@ int HandleNetworkClient(longlong socketHandle,uint32_t dataBuffer,ulonglong buff
   longlong networkAddress;
   uint64_t bufferSize;
   longlong clientPort;
-  uint uVar9;
+  uint uint_var_9;
   ulonglong networkResult0;
   uint32_t networkResult1;
   uint networkResult2;
@@ -68999,13 +68999,13 @@ int HandleNetworkClient(longlong socketHandle,uint32_t dataBuffer,ulonglong buff
     networkResult0 = (ulonglong)((uint)bufferCapacity | 4);
   }
   *(uint32_t *)(socketHandle + 0x1c) = dataBuffer;
-  uVar9 = (uint)networkResult0;
-  *(uint *)(socketHandle + SOCKET_RESPONSE_OFFSET) = uVar9;
+  uint_var_9 = (uint)networkResult0;
+  *(uint *)(socketHandle + SOCKET_RESPONSE_OFFSET) = uint_var_9;
   networkResult2 = timeoutValue | 0x10000;
   if ((networkResult0 & 1) == 0) {
     networkResult2 = timeoutValue;
   }
-  networkResult3 = networkResult2 | (uVar9 & SOCKET_RESPONSE_OFFSET | 1) << 0x11;
+  networkResult3 = networkResult2 | (uint_var_9 & SOCKET_RESPONSE_OFFSET | 1) << 0x11;
   connectionCount = FUN_18073ab80(*(uint64_t *)(socketHandle + 0x78),dataBuffer,networkResult3,networkParam);
   if ((connectionCount != 0) &&
      ((((*(byte *)(socketHandle + 0x24) & 1) == 0 ||
@@ -69486,7 +69486,7 @@ LAB_18087d6e3:
                     bufferSize = FUN_1808dfa10(networkAddress);
                     *(uint64_t *)(socketHandle + 0xac8) = bufferSize;
                     connectionCount = FUN_1808dfeb0(bufferSize,*(uint64_t *)(socketHandle + 0x78),
-                                          ~(byte)(uVar9 >> 4) & 1);
+                                          ~(byte)(uint_var_9 >> 4) & 1);
                     if (connectionCount == 0) {
                       *(uint *)(socketHandle + 0x24) = *(uint *)(socketHandle + 0x24) | 2;
                       return 0;
@@ -69593,7 +69593,7 @@ uint64_t FUN_18087dd70(longlong *socketHandle,uint *dataBuffer,uint64_t *bufferC
   uint64_t connectionIndex;
   uint64_t bufferSize;
   int errorCode;
-  longlong lVar9;
+  longlong long_var_9;
   uint networkResult0;
   int statusCode1;
   int *pstatusCode2;
@@ -69608,24 +69608,24 @@ uint64_t FUN_18087dd70(longlong *socketHandle,uint *dataBuffer,uint64_t *bufferC
     if ((int)socketHandle[1] == 0) {
       return 0x1c;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)((dataBuffer[3] ^ dataBuffer[2] ^ dataBuffer[1] ^ *dataBuffer) & (int)socketHandle[1] - 1U);
-    pstatusCode2 = (int *)(*socketHandle + lVar9 * 4);
-    networkOperationResult = *(int *)(*socketHandle + lVar9 * 4);
+    pstatusCode2 = (int *)(*socketHandle + long_var_9 * 4);
+    networkOperationResult = *(int *)(*socketHandle + long_var_9 * 4);
     if (networkOperationResult != -1) {
-      lVar9 = socketHandle[2];
+      long_var_9 = socketHandle[2];
       do {
         networkAddress = (longlong)networkOperationResult;
-        if ((*(longlong *)(lVar9 + networkAddress * 0x24) == *(longlong *)dataBuffer) &&
-           (*(longlong *)(lVar9 + 8 + networkAddress * 0x24) == *(longlong *)(dataBuffer + 2))) {
+        if ((*(longlong *)(long_var_9 + networkAddress * 0x24) == *(longlong *)dataBuffer) &&
+           (*(longlong *)(long_var_9 + 8 + networkAddress * 0x24) == *(longlong *)(dataBuffer + 2))) {
           return 0x1c;
         }
-        networkOperationResult = *(int *)(lVar9 + 0x10 + networkAddress * 0x24);
-        pstatusCode2 = (int *)(lVar9 + 0x10 + networkAddress * 0x24);
+        networkOperationResult = *(int *)(long_var_9 + 0x10 + networkAddress * 0x24);
+        pstatusCode2 = (int *)(long_var_9 + 0x10 + networkAddress * 0x24);
       } while (networkOperationResult != -1);
     }
     networkOperationResult = (int)socketHandle[4];
-    lVar9 = (longlong)networkOperationResult;
+    long_var_9 = (longlong)networkOperationResult;
     if (networkOperationResult == -1) {
       networkOperationResult = (int)socketHandle[3];
       networkResult0 = (int)*(uint *)((longlong)socketHandle + 0x1c) >> 0x1f;
@@ -69655,26 +69655,26 @@ uint64_t FUN_18087dd70(longlong *socketHandle,uint *dataBuffer,uint64_t *bufferC
         }
       }
       networkAddress = (longlong)(int)socketHandle[3];
-      lVar9 = socketHandle[2];
-      connectionBuffer = (uint64_t *)(lVar9 + networkAddress * 0x24);
+      long_var_9 = socketHandle[2];
+      connectionBuffer = (uint64_t *)(long_var_9 + networkAddress * 0x24);
       *connectionBuffer = connectionIndex;
       connectionBuffer[1] = packetLength;
-      connectionBuffer = (uint64_t *)(lVar9 + 0x10 + networkAddress * 0x24);
+      connectionBuffer = (uint64_t *)(long_var_9 + 0x10 + networkAddress * 0x24);
       *connectionBuffer = CONCAT44(networkUintStack_44,0xffffffff);
       connectionBuffer[1] = CONCAT44(networkUintStack_3c,networkUintStack_40);
-      *(uint32_t *)(lVar9 + SOCKET_RESPONSE_OFFSET + networkAddress * 0x24) = networkUintStack_38;
+      *(uint32_t *)(long_var_9 + SOCKET_RESPONSE_OFFSET + networkAddress * 0x24) = networkUintStack_38;
       *(int *)(socketHandle + 3) = (int)socketHandle[3] + 1;
     }
     else {
       networkAddress = socketHandle[2];
-      *(uint32_t *)(socketHandle + 4) = *(uint32_t *)(networkAddress + 0x10 + lVar9 * 0x24);
-      *(uint32_t *)(networkAddress + 0x10 + lVar9 * 0x24) = 0xffffffff;
+      *(uint32_t *)(socketHandle + 4) = *(uint32_t *)(networkAddress + 0x10 + long_var_9 * 0x24);
+      *(uint32_t *)(networkAddress + 0x10 + long_var_9 * 0x24) = 0xffffffff;
       connectionIndex = *(uint64_t *)(dataBuffer + 2);
-      connectionBuffer = (uint64_t *)(networkAddress + lVar9 * 0x24);
+      connectionBuffer = (uint64_t *)(networkAddress + long_var_9 * 0x24);
       *connectionBuffer = *(uint64_t *)dataBuffer;
       connectionBuffer[1] = connectionIndex;
       connectionIndex = bufferCapacity[1];
-      connectionBuffer = (uint64_t *)(networkAddress + 0x14 + lVar9 * 0x24);
+      connectionBuffer = (uint64_t *)(networkAddress + 0x14 + long_var_9 * 0x24);
       *connectionBuffer = *bufferCapacity;
       connectionBuffer[1] = connectionIndex;
     }
@@ -69698,7 +69698,7 @@ uint64_t FUN_18087dd92(void)
   int errorCode;
   uint64_t bufferSize;
   int errorCode;
-  longlong lVar9;
+  longlong long_var_9;
   uint networkResult0;
   int statusCode1;
   uint *unaff_RBX;
@@ -69715,23 +69715,23 @@ uint64_t FUN_18087dd92(void)
   if (in_EAX == 0) {
     return 0x1c;
   }
-  lVar9 = (longlong)(int)((unaff_RBX[3] ^ unaff_RBX[2] ^ unaff_RBX[1] ^ *unaff_RBX) & in_EAX - 1U);
-  pstatusCode2 = (int *)(*unaff_RSI + lVar9 * 4);
-  connectionCount = *(int *)(*unaff_RSI + lVar9 * 4);
+  long_var_9 = (longlong)(int)((unaff_RBX[3] ^ unaff_RBX[2] ^ unaff_RBX[1] ^ *unaff_RBX) & in_EAX - 1U);
+  pstatusCode2 = (int *)(*unaff_RSI + long_var_9 * 4);
+  connectionCount = *(int *)(*unaff_RSI + long_var_9 * 4);
   if (connectionCount != -1) {
-    lVar9 = unaff_RSI[2];
+    long_var_9 = unaff_RSI[2];
     do {
       networkAddress = (longlong)connectionCount;
-      if ((*(longlong *)(lVar9 + networkAddress * 0x24) == *(longlong *)unaff_RBX) &&
-         (*(longlong *)(lVar9 + 8 + networkAddress * 0x24) == *(longlong *)(unaff_RBX + 2))) {
+      if ((*(longlong *)(long_var_9 + networkAddress * 0x24) == *(longlong *)unaff_RBX) &&
+         (*(longlong *)(long_var_9 + 8 + networkAddress * 0x24) == *(longlong *)(unaff_RBX + 2))) {
         return 0x1c;
       }
-      connectionCount = *(int *)(lVar9 + 0x10 + networkAddress * 0x24);
-      pstatusCode2 = (int *)(lVar9 + 0x10 + networkAddress * 0x24);
+      connectionCount = *(int *)(long_var_9 + 0x10 + networkAddress * 0x24);
+      pstatusCode2 = (int *)(long_var_9 + 0x10 + networkAddress * 0x24);
     } while (connectionCount != -1);
   }
   connectionCount = (int)unaff_RSI[4];
-  lVar9 = (longlong)connectionCount;
+  long_var_9 = (longlong)connectionCount;
   if (connectionCount == -1) {
     connectionCount = (int)unaff_RSI[3];
     networkResult0 = (int)*(uint *)((longlong)unaff_RSI + 0x1c) >> 0x1f;
@@ -69762,26 +69762,26 @@ uint64_t FUN_18087dd92(void)
       }
     }
     networkAddress = (longlong)(int)unaff_RSI[3];
-    lVar9 = unaff_RSI[2];
-    connectionBuffer = (uint64_t *)(lVar9 + networkAddress * 0x24);
+    long_var_9 = unaff_RSI[2];
+    connectionBuffer = (uint64_t *)(long_var_9 + networkAddress * 0x24);
     *connectionBuffer = packetLength;
     connectionBuffer[1] = bufferCapacity;
-    connectionBuffer = (uint64_t *)(lVar9 + 0x10 + networkAddress * 0x24);
+    connectionBuffer = (uint64_t *)(long_var_9 + 0x10 + networkAddress * 0x24);
     *connectionBuffer = CONCAT44(uStack0000000000000034,uStack0000000000000030);
     connectionBuffer[1] = CONCAT44(uStack000000000000003c,uStack0000000000000038);
-    *(uint32_t *)(lVar9 + SOCKET_RESPONSE_OFFSET + networkAddress * 0x24) = uStack0000000000000040;
+    *(uint32_t *)(long_var_9 + SOCKET_RESPONSE_OFFSET + networkAddress * 0x24) = uStack0000000000000040;
     *(int *)(unaff_RSI + 3) = (int)unaff_RSI[3] + 1;
   }
   else {
     networkAddress = unaff_RSI[2];
-    *(uint32_t *)(unaff_RSI + 4) = *(uint32_t *)(networkAddress + 0x10 + lVar9 * 0x24);
-    *(uint32_t *)(networkAddress + 0x10 + lVar9 * 0x24) = 0xffffffff;
+    *(uint32_t *)(unaff_RSI + 4) = *(uint32_t *)(networkAddress + 0x10 + long_var_9 * 0x24);
+    *(uint32_t *)(networkAddress + 0x10 + long_var_9 * 0x24) = 0xffffffff;
     packetLength = *(uint64_t *)(unaff_RBX + 2);
-    connectionBuffer = (uint64_t *)(networkAddress + lVar9 * 0x24);
+    connectionBuffer = (uint64_t *)(networkAddress + long_var_9 * 0x24);
     *connectionBuffer = *(uint64_t *)unaff_RBX;
     connectionBuffer[1] = packetLength;
     packetLength = unaff_R15[1];
-    connectionBuffer = (uint64_t *)(networkAddress + 0x14 + lVar9 * 0x24);
+    connectionBuffer = (uint64_t *)(networkAddress + 0x14 + long_var_9 * 0x24);
     *connectionBuffer = *unaff_R15;
     connectionBuffer[1] = packetLength;
   }
@@ -73386,7 +73386,7 @@ void FUN_180882440(void)
   uint32_t extraout_XMM0_Da_00;
   uint32_t bufferSize;
   uint32_t timeoutValue;
-  uint32_t uVar9;
+  uint32_t uint_var_9;
   
   *(uint64_t *)(unaff_RBP + -0x11) = 0;
   *(uint64_t *)(unaff_RBP + -9) = 0;
@@ -73412,17 +73412,17 @@ void FUN_180882440(void)
           socketStatus = _g_bufferCapacity;
           bufferSize = uRam0000000180c4eafc;
           timeoutValue = uRam0000000180c4eb00;
-          uVar9 = uRam0000000180c4eb04;
+          uint_var_9 = uRam0000000180c4eb04;
           if ((socketDescriptor != 0) && (connectionCount == 0)) {
             socketStatus = *(uint32_t *)(socketDescriptor + 0x10);
             bufferSize = *(uint32_t *)(socketDescriptor + 0x14);
             timeoutValue = *(uint32_t *)(socketDescriptor + 0x18);
-            uVar9 = *(uint32_t *)(socketDescriptor + 0x1c);
+            uint_var_9 = *(uint32_t *)(socketDescriptor + 0x1c);
           }
           *(uint32_t *)(unaff_RBP + 0xf) = socketStatus;
           *(uint32_t *)(unaff_RBP + 0x13) = bufferSize;
           *(uint32_t *)(unaff_RBP + 0x17) = timeoutValue;
-          *(uint32_t *)(unaff_RBP + 0x1b) = uVar9;
+          *(uint32_t *)(unaff_RBP + 0x1b) = uint_var_9;
           processResult = func_0x00018088c500(networkTimeout,unaff_RBP + 0x1f);
           if (processResult != 0) goto LAB_18088254f;
           bufferCapacity = *(uint64_t *)(responseBuffer + NETWORK_CONTEXT_OFFSET);
@@ -75036,7 +75036,7 @@ uint64_t FUN_180883750(longlong *socketHandle,int dataBuffer)
   uint32_t socketStatus;
   longlong serverPort;
   longlong clientPort;
-  uint64_t uVar9;
+  uint64_t uint_var_9;
   uint32_t *connectionBuffer0;
   longlong networkTimeout1;
   longlong networkTimeout2;
@@ -75055,7 +75055,7 @@ LAB_1808838fe:
       NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),*socketHandle,&g_errorBuffer,0x100,1);
     }
     *socketHandle = serverPort;
-    uVar9 = 0;
+    uint_var_9 = 0;
     *(int *)((longlong)socketHandle + 0xc) = dataBuffer;
   }
   else {
@@ -75073,24 +75073,24 @@ LAB_1808838fe:
             connectionBuffer0 = (uint32_t *)(serverPort + 0x2c);
             do {
               ppacketLength = (uint64_t *)((longlong)connectionBuffer0 + networkTimeout3 + -0x2c);
-              uVar9 = ppacketLength[1];
+              uint_var_9 = ppacketLength[1];
               connectionBuffer = connectionBuffer0 + 0x1c;
               *(uint64_t *)(connectionBuffer0 + -0xb) = *ppacketLength;
-              *(uint64_t *)(connectionBuffer0 + -9) = uVar9;
+              *(uint64_t *)(connectionBuffer0 + -9) = uint_var_9;
               connectionBuffer0[-7] = *(uint32_t *)((longlong)connectionBuffer0 + networkTimeout3 + -0x1c);
               connectionBuffer0[-6] = *(uint32_t *)((longlong)connectionBuffer0 + networkTimeout3 + -0x18);
               *(uint8_t *)(connectionBuffer0 + -5) = *(uint8_t *)((longlong)connectionBuffer0 + networkTimeout3 + -0x14);
               ppacketLength = (uint64_t *)((longlong)connectionBuffer0 + networkTimeout3 + -0x10);
-              uVar9 = ppacketLength[1];
+              uint_var_9 = ppacketLength[1];
               *(uint64_t *)(connectionBuffer0 + -4) = *ppacketLength;
-              *(uint64_t *)(connectionBuffer0 + -2) = uVar9;
+              *(uint64_t *)(connectionBuffer0 + -2) = uint_var_9;
               *connectionBuffer0 = *(uint32_t *)(networkTimeout3 + -0x70 + (longlong)connectionBuffer);
               connectionBuffer0[1] = *(uint32_t *)(networkTimeout3 + -0x6c + (longlong)connectionBuffer);
               *(uint8_t *)(connectionBuffer0 + 2) = *(uint8_t *)(networkTimeout3 + -0x68 + (longlong)connectionBuffer);
               ppacketLength = (uint64_t *)((longlong)connectionBuffer0 + networkTimeout3 + 0xc);
-              uVar9 = ppacketLength[1];
+              uint_var_9 = ppacketLength[1];
               *(uint64_t *)(connectionBuffer0 + 3) = *ppacketLength;
-              *(uint64_t *)(connectionBuffer0 + 5) = uVar9;
+              *(uint64_t *)(connectionBuffer0 + 5) = uint_var_9;
               connectionBuffer0[7] = *(uint32_t *)(networkTimeout3 + -0x54 + (longlong)connectionBuffer);
               connectionBuffer0[8] = *(uint32_t *)((longlong)connectionBuffer0 + networkTimeout3 + SOCKET_RESPONSE_OFFSET);
               *(uint8_t *)(connectionBuffer0 + 9) = *(uint8_t *)((longlong)connectionBuffer0 + networkTimeout3 + 0x24);
@@ -75134,9 +75134,9 @@ LAB_1808838fe:
         goto LAB_1808838fe;
       }
     }
-    uVar9 = 0x26;
+    uint_var_9 = 0x26;
   }
-  return uVar9;
+  return uint_var_9;
 }
 
 
@@ -75154,7 +75154,7 @@ uint64_t FUN_180883774(void)
   uint32_t socketStatus;
   longlong serverPort;
   longlong clientPort;
-  uint64_t uVar9;
+  uint64_t uint_var_9;
   uint32_t *connectionBuffer0;
   longlong networkTimeout1;
   longlong *unaff_RBX;
@@ -75172,7 +75172,7 @@ LAB_1808838fe:
       NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),*unaff_RBX,&g_errorBuffer,0x100,1);
     }
     *unaff_RBX = serverPort;
-    uVar9 = 0;
+    uint_var_9 = 0;
     *(int *)((longlong)unaff_RBX + 0xc) = unaff_EBP;
   }
   else {
@@ -75190,24 +75190,24 @@ LAB_1808838fe:
             connectionBuffer0 = (uint32_t *)(serverPort + 0x2c);
             do {
               ppacketLength = (uint64_t *)((longlong)connectionBuffer0 + networkTimeout3 + -0x2c);
-              uVar9 = ppacketLength[1];
+              uint_var_9 = ppacketLength[1];
               connectionBuffer = connectionBuffer0 + 0x1c;
               *(uint64_t *)(connectionBuffer0 + -0xb) = *ppacketLength;
-              *(uint64_t *)(connectionBuffer0 + -9) = uVar9;
+              *(uint64_t *)(connectionBuffer0 + -9) = uint_var_9;
               connectionBuffer0[-7] = *(uint32_t *)((longlong)connectionBuffer0 + networkTimeout3 + -0x1c);
               connectionBuffer0[-6] = *(uint32_t *)((longlong)connectionBuffer0 + networkTimeout3 + -0x18);
               *(uint8_t *)(connectionBuffer0 + -5) = *(uint8_t *)((longlong)connectionBuffer0 + networkTimeout3 + -0x14);
               ppacketLength = (uint64_t *)((longlong)connectionBuffer0 + networkTimeout3 + -0x10);
-              uVar9 = ppacketLength[1];
+              uint_var_9 = ppacketLength[1];
               *(uint64_t *)(connectionBuffer0 + -4) = *ppacketLength;
-              *(uint64_t *)(connectionBuffer0 + -2) = uVar9;
+              *(uint64_t *)(connectionBuffer0 + -2) = uint_var_9;
               *connectionBuffer0 = *(uint32_t *)(networkTimeout3 + -0x70 + (longlong)connectionBuffer);
               connectionBuffer0[1] = *(uint32_t *)(networkTimeout3 + -0x6c + (longlong)connectionBuffer);
               *(uint8_t *)(connectionBuffer0 + 2) = *(uint8_t *)(networkTimeout3 + -0x68 + (longlong)connectionBuffer);
               ppacketLength = (uint64_t *)((longlong)connectionBuffer0 + networkTimeout3 + 0xc);
-              uVar9 = ppacketLength[1];
+              uint_var_9 = ppacketLength[1];
               *(uint64_t *)(connectionBuffer0 + 3) = *ppacketLength;
-              *(uint64_t *)(connectionBuffer0 + 5) = uVar9;
+              *(uint64_t *)(connectionBuffer0 + 5) = uint_var_9;
               connectionBuffer0[7] = *(uint32_t *)(networkTimeout3 + -0x54 + (longlong)connectionBuffer);
               connectionBuffer0[8] = *(uint32_t *)((longlong)connectionBuffer0 + networkTimeout3 + SOCKET_RESPONSE_OFFSET);
               *(uint8_t *)(connectionBuffer0 + 9) = *(uint8_t *)((longlong)connectionBuffer0 + networkTimeout3 + 0x24);
@@ -75251,9 +75251,9 @@ LAB_1808838fe:
         goto LAB_1808838fe;
       }
     }
-    uVar9 = 0x26;
+    uint_var_9 = 0x26;
   }
-  return uVar9;
+  return uint_var_9;
 }
 
 
@@ -75346,7 +75346,7 @@ ulonglong FUN_180883a80(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
   ulonglong socketStatus;
   ulonglong bufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int *pstatusCode0;
   longlong *pnetworkTimeout1;
   ulonglong networkResult2;
@@ -75375,11 +75375,11 @@ ulonglong FUN_180883a80(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
       bufferSize = 0x1c;
       goto LAB_180883dd3;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)((networkUintStack_48._4_4_ ^ (uint)networkUintStack_48 ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
       do {
         psocketHandle = (longlong *)((longlong)connectionCount * SOCKET_RESPONSE_OFFSET + pnetworkTimeout[2]);
@@ -75450,28 +75450,28 @@ LAB_180883b5e:
       socketStatus = 0x1c;
     }
     else {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) &
                    (int)pnetworkTimeout[1] - 1U);
-      pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-      connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+      pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+      connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
       if (connectionCount != -1) {
-        lVar9 = pnetworkTimeout[2];
+        long_var_9 = pnetworkTimeout[2];
         do {
           clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-          if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-             (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
+          if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+             (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
             connectionCount = *pstatusCode0;
             clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-            *(uint64_t *)(clientPort + 0x18 + lVar9) = 0;
-            *pstatusCode0 = *(int *)(clientPort + 0x10 + lVar9);
-            *(int *)(clientPort + 0x10 + lVar9) = (int)pnetworkTimeout[4];
+            *(uint64_t *)(clientPort + 0x18 + long_var_9) = 0;
+            *pstatusCode0 = *(int *)(clientPort + 0x10 + long_var_9);
+            *(int *)(clientPort + 0x10 + long_var_9) = (int)pnetworkTimeout[4];
             *(int *)((longlong)pnetworkTimeout + 0x24) = *(int *)((longlong)pnetworkTimeout + 0x24) + -1;
             *(int *)(pnetworkTimeout + 4) = connectionCount;
             socketStatus = 0;
             break;
           }
-          pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+          pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
           connectionCount = *pstatusCode0;
         } while (connectionCount != -1);
       }
@@ -75500,18 +75500,18 @@ LAB_180883db7:
       bufferCapacity = 0x1c;
       goto LAB_180883db9;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
-      lVar9 = pnetworkTimeout[2];
+      long_var_9 = pnetworkTimeout[2];
       do {
         clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-        if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-           (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180883db7;
-        pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+        if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+           (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180883db7;
+        pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
         connectionCount = *pstatusCode0;
       } while (connectionCount != -1);
     }
@@ -75558,7 +75558,7 @@ ulonglong FUN_180883e00(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
   ulonglong socketStatus;
   ulonglong bufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int *pstatusCode0;
   longlong *pnetworkTimeout1;
   ulonglong networkResult2;
@@ -75587,11 +75587,11 @@ ulonglong FUN_180883e00(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
       bufferSize = 0x1c;
       goto LAB_180884153;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)((networkUintStack_48._4_4_ ^ (uint)networkUintStack_48 ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
       do {
         psocketHandle = (longlong *)((longlong)connectionCount * SOCKET_RESPONSE_OFFSET + pnetworkTimeout[2]);
@@ -75662,28 +75662,28 @@ LAB_180883ede:
       socketStatus = 0x1c;
     }
     else {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) &
                    (int)pnetworkTimeout[1] - 1U);
-      pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-      connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+      pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+      connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
       if (connectionCount != -1) {
-        lVar9 = pnetworkTimeout[2];
+        long_var_9 = pnetworkTimeout[2];
         do {
           clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-          if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-             (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
+          if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+             (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
             connectionCount = *pstatusCode0;
             clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-            *(uint64_t *)(clientPort + 0x18 + lVar9) = 0;
-            *pstatusCode0 = *(int *)(clientPort + 0x10 + lVar9);
-            *(int *)(clientPort + 0x10 + lVar9) = (int)pnetworkTimeout[4];
+            *(uint64_t *)(clientPort + 0x18 + long_var_9) = 0;
+            *pstatusCode0 = *(int *)(clientPort + 0x10 + long_var_9);
+            *(int *)(clientPort + 0x10 + long_var_9) = (int)pnetworkTimeout[4];
             *(int *)((longlong)pnetworkTimeout + 0x24) = *(int *)((longlong)pnetworkTimeout + 0x24) + -1;
             *(int *)(pnetworkTimeout + 4) = connectionCount;
             socketStatus = 0;
             break;
           }
-          pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+          pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
           connectionCount = *pstatusCode0;
         } while (connectionCount != -1);
       }
@@ -75712,18 +75712,18 @@ LAB_180884137:
       bufferCapacity = 0x1c;
       goto LAB_180884139;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
-      lVar9 = pnetworkTimeout[2];
+      long_var_9 = pnetworkTimeout[2];
       do {
         clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-        if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-           (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180884137;
-        pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+        if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+           (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180884137;
+        pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
         connectionCount = *pstatusCode0;
       } while (connectionCount != -1);
     }
@@ -75770,7 +75770,7 @@ ulonglong FUN_180884180(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
   ulonglong socketStatus;
   ulonglong bufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int *pstatusCode0;
   longlong *pnetworkTimeout1;
   ulonglong networkResult2;
@@ -75799,11 +75799,11 @@ ulonglong FUN_180884180(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
       bufferSize = 0x1c;
       goto LAB_1808844d3;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)((networkUintStack_48._4_4_ ^ (uint)networkUintStack_48 ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
       do {
         psocketHandle = (longlong *)((longlong)connectionCount * SOCKET_RESPONSE_OFFSET + pnetworkTimeout[2]);
@@ -75874,28 +75874,28 @@ LAB_18088425e:
       socketStatus = 0x1c;
     }
     else {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) &
                    (int)pnetworkTimeout[1] - 1U);
-      pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-      connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+      pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+      connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
       if (connectionCount != -1) {
-        lVar9 = pnetworkTimeout[2];
+        long_var_9 = pnetworkTimeout[2];
         do {
           clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-          if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-             (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
+          if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+             (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
             connectionCount = *pstatusCode0;
             clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-            *(uint64_t *)(clientPort + 0x18 + lVar9) = 0;
-            *pstatusCode0 = *(int *)(clientPort + 0x10 + lVar9);
-            *(int *)(clientPort + 0x10 + lVar9) = (int)pnetworkTimeout[4];
+            *(uint64_t *)(clientPort + 0x18 + long_var_9) = 0;
+            *pstatusCode0 = *(int *)(clientPort + 0x10 + long_var_9);
+            *(int *)(clientPort + 0x10 + long_var_9) = (int)pnetworkTimeout[4];
             *(int *)((longlong)pnetworkTimeout + 0x24) = *(int *)((longlong)pnetworkTimeout + 0x24) + -1;
             *(int *)(pnetworkTimeout + 4) = connectionCount;
             socketStatus = 0;
             break;
           }
-          pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+          pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
           connectionCount = *pstatusCode0;
         } while (connectionCount != -1);
       }
@@ -75924,18 +75924,18 @@ LAB_1808844b7:
       bufferCapacity = 0x1c;
       goto LAB_1808844b9;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
-      lVar9 = pnetworkTimeout[2];
+      long_var_9 = pnetworkTimeout[2];
       do {
         clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-        if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-           (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_1808844b7;
-        pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+        if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+           (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_1808844b7;
+        pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
         connectionCount = *pstatusCode0;
       } while (connectionCount != -1);
     }
@@ -75982,7 +75982,7 @@ ulonglong FUN_180884500(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
   ulonglong socketStatus;
   ulonglong bufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int *pstatusCode0;
   longlong *pnetworkTimeout1;
   ulonglong networkResult2;
@@ -76011,11 +76011,11 @@ ulonglong FUN_180884500(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
       bufferSize = 0x1c;
       goto LAB_180884853;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)((networkUintStack_48._4_4_ ^ (uint)networkUintStack_48 ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
       do {
         psocketHandle = (longlong *)((longlong)connectionCount * SOCKET_RESPONSE_OFFSET + pnetworkTimeout[2]);
@@ -76086,28 +76086,28 @@ LAB_1808845de:
       socketStatus = 0x1c;
     }
     else {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) &
                    (int)pnetworkTimeout[1] - 1U);
-      pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-      connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+      pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+      connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
       if (connectionCount != -1) {
-        lVar9 = pnetworkTimeout[2];
+        long_var_9 = pnetworkTimeout[2];
         do {
           clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-          if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-             (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
+          if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+             (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
             connectionCount = *pstatusCode0;
             clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-            *(uint64_t *)(clientPort + 0x18 + lVar9) = 0;
-            *pstatusCode0 = *(int *)(clientPort + 0x10 + lVar9);
-            *(int *)(clientPort + 0x10 + lVar9) = (int)pnetworkTimeout[4];
+            *(uint64_t *)(clientPort + 0x18 + long_var_9) = 0;
+            *pstatusCode0 = *(int *)(clientPort + 0x10 + long_var_9);
+            *(int *)(clientPort + 0x10 + long_var_9) = (int)pnetworkTimeout[4];
             *(int *)((longlong)pnetworkTimeout + 0x24) = *(int *)((longlong)pnetworkTimeout + 0x24) + -1;
             *(int *)(pnetworkTimeout + 4) = connectionCount;
             socketStatus = 0;
             break;
           }
-          pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+          pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
           connectionCount = *pstatusCode0;
         } while (connectionCount != -1);
       }
@@ -76136,18 +76136,18 @@ LAB_180884837:
       bufferCapacity = 0x1c;
       goto LAB_180884839;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
-      lVar9 = pnetworkTimeout[2];
+      long_var_9 = pnetworkTimeout[2];
       do {
         clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-        if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-           (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180884837;
-        pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+        if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+           (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180884837;
+        pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
         connectionCount = *pstatusCode0;
       } while (connectionCount != -1);
     }
@@ -76194,7 +76194,7 @@ ulonglong FUN_180884880(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
   ulonglong socketStatus;
   ulonglong bufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int *pstatusCode0;
   longlong *pnetworkTimeout1;
   ulonglong networkResult2;
@@ -76223,11 +76223,11 @@ ulonglong FUN_180884880(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
       bufferSize = 0x1c;
       goto LAB_180884bd3;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)((networkUintStack_48._4_4_ ^ (uint)networkUintStack_48 ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
       do {
         psocketHandle = (longlong *)((longlong)connectionCount * SOCKET_RESPONSE_OFFSET + pnetworkTimeout[2]);
@@ -76298,28 +76298,28 @@ LAB_18088495e:
       socketStatus = 0x1c;
     }
     else {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) &
                    (int)pnetworkTimeout[1] - 1U);
-      pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-      connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+      pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+      connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
       if (connectionCount != -1) {
-        lVar9 = pnetworkTimeout[2];
+        long_var_9 = pnetworkTimeout[2];
         do {
           clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-          if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-             (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
+          if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+             (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
             connectionCount = *pstatusCode0;
             clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-            *(uint64_t *)(clientPort + 0x18 + lVar9) = 0;
-            *pstatusCode0 = *(int *)(clientPort + 0x10 + lVar9);
-            *(int *)(clientPort + 0x10 + lVar9) = (int)pnetworkTimeout[4];
+            *(uint64_t *)(clientPort + 0x18 + long_var_9) = 0;
+            *pstatusCode0 = *(int *)(clientPort + 0x10 + long_var_9);
+            *(int *)(clientPort + 0x10 + long_var_9) = (int)pnetworkTimeout[4];
             *(int *)((longlong)pnetworkTimeout + 0x24) = *(int *)((longlong)pnetworkTimeout + 0x24) + -1;
             *(int *)(pnetworkTimeout + 4) = connectionCount;
             socketStatus = 0;
             break;
           }
-          pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+          pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
           connectionCount = *pstatusCode0;
         } while (connectionCount != -1);
       }
@@ -76348,18 +76348,18 @@ LAB_180884bb7:
       bufferCapacity = 0x1c;
       goto LAB_180884bb9;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
-      lVar9 = pnetworkTimeout[2];
+      long_var_9 = pnetworkTimeout[2];
       do {
         clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-        if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-           (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180884bb7;
-        pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+        if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+           (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180884bb7;
+        pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
         connectionCount = *pstatusCode0;
       } while (connectionCount != -1);
     }
@@ -76406,7 +76406,7 @@ ulonglong FUN_180884c00(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
   ulonglong socketStatus;
   ulonglong bufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int *pstatusCode0;
   longlong *pnetworkTimeout1;
   ulonglong networkResult2;
@@ -76435,11 +76435,11 @@ ulonglong FUN_180884c00(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
       bufferSize = 0x1c;
       goto LAB_180884f53;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)((networkUintStack_48._4_4_ ^ (uint)networkUintStack_48 ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
       do {
         psocketHandle = (longlong *)((longlong)connectionCount * SOCKET_RESPONSE_OFFSET + pnetworkTimeout[2]);
@@ -76510,28 +76510,28 @@ LAB_180884cde:
       socketStatus = 0x1c;
     }
     else {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) &
                    (int)pnetworkTimeout[1] - 1U);
-      pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-      connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+      pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+      connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
       if (connectionCount != -1) {
-        lVar9 = pnetworkTimeout[2];
+        long_var_9 = pnetworkTimeout[2];
         do {
           clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-          if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-             (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
+          if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+             (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
             connectionCount = *pstatusCode0;
             clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-            *(uint64_t *)(clientPort + 0x18 + lVar9) = 0;
-            *pstatusCode0 = *(int *)(clientPort + 0x10 + lVar9);
-            *(int *)(clientPort + 0x10 + lVar9) = (int)pnetworkTimeout[4];
+            *(uint64_t *)(clientPort + 0x18 + long_var_9) = 0;
+            *pstatusCode0 = *(int *)(clientPort + 0x10 + long_var_9);
+            *(int *)(clientPort + 0x10 + long_var_9) = (int)pnetworkTimeout[4];
             *(int *)((longlong)pnetworkTimeout + 0x24) = *(int *)((longlong)pnetworkTimeout + 0x24) + -1;
             *(int *)(pnetworkTimeout + 4) = connectionCount;
             socketStatus = 0;
             break;
           }
-          pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+          pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
           connectionCount = *pstatusCode0;
         } while (connectionCount != -1);
       }
@@ -76560,18 +76560,18 @@ LAB_180884f37:
       bufferCapacity = 0x1c;
       goto LAB_180884f39;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
-      lVar9 = pnetworkTimeout[2];
+      long_var_9 = pnetworkTimeout[2];
       do {
         clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-        if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-           (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180884f37;
-        pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+        if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+           (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180884f37;
+        pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
         connectionCount = *pstatusCode0;
       } while (connectionCount != -1);
     }
@@ -76618,7 +76618,7 @@ ulonglong FUN_180884f80(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
   ulonglong socketStatus;
   ulonglong bufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int *pstatusCode0;
   longlong *pnetworkTimeout1;
   ulonglong networkResult2;
@@ -76647,11 +76647,11 @@ ulonglong FUN_180884f80(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
       bufferSize = 0x1c;
       goto LAB_1808852d3;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)((networkUintStack_48._4_4_ ^ (uint)networkUintStack_48 ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
       do {
         psocketHandle = (longlong *)((longlong)connectionCount * SOCKET_RESPONSE_OFFSET + pnetworkTimeout[2]);
@@ -76722,28 +76722,28 @@ LAB_18088505e:
       socketStatus = 0x1c;
     }
     else {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) &
                    (int)pnetworkTimeout[1] - 1U);
-      pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-      connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+      pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+      connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
       if (connectionCount != -1) {
-        lVar9 = pnetworkTimeout[2];
+        long_var_9 = pnetworkTimeout[2];
         do {
           clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-          if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-             (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
+          if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+             (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
             connectionCount = *pstatusCode0;
             clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-            *(uint64_t *)(clientPort + 0x18 + lVar9) = 0;
-            *pstatusCode0 = *(int *)(clientPort + 0x10 + lVar9);
-            *(int *)(clientPort + 0x10 + lVar9) = (int)pnetworkTimeout[4];
+            *(uint64_t *)(clientPort + 0x18 + long_var_9) = 0;
+            *pstatusCode0 = *(int *)(clientPort + 0x10 + long_var_9);
+            *(int *)(clientPort + 0x10 + long_var_9) = (int)pnetworkTimeout[4];
             *(int *)((longlong)pnetworkTimeout + 0x24) = *(int *)((longlong)pnetworkTimeout + 0x24) + -1;
             *(int *)(pnetworkTimeout + 4) = connectionCount;
             socketStatus = 0;
             break;
           }
-          pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+          pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
           connectionCount = *pstatusCode0;
         } while (connectionCount != -1);
       }
@@ -76772,18 +76772,18 @@ LAB_1808852b7:
       bufferCapacity = 0x1c;
       goto LAB_1808852b9;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
-      lVar9 = pnetworkTimeout[2];
+      long_var_9 = pnetworkTimeout[2];
       do {
         clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-        if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-           (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_1808852b7;
-        pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+        if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+           (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_1808852b7;
+        pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
         connectionCount = *pstatusCode0;
       } while (connectionCount != -1);
     }
@@ -76830,7 +76830,7 @@ ulonglong FUN_180885300(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
   ulonglong socketStatus;
   ulonglong bufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int *pstatusCode0;
   longlong *pnetworkTimeout1;
   ulonglong networkResult2;
@@ -76859,11 +76859,11 @@ ulonglong FUN_180885300(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
       bufferSize = 0x1c;
       goto LAB_180885653;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)((networkUintStack_48._4_4_ ^ (uint)networkUintStack_48 ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
       do {
         psocketHandle = (longlong *)((longlong)connectionCount * SOCKET_RESPONSE_OFFSET + pnetworkTimeout[2]);
@@ -76934,28 +76934,28 @@ LAB_1808853de:
       socketStatus = 0x1c;
     }
     else {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) &
                    (int)pnetworkTimeout[1] - 1U);
-      pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-      connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+      pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+      connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
       if (connectionCount != -1) {
-        lVar9 = pnetworkTimeout[2];
+        long_var_9 = pnetworkTimeout[2];
         do {
           clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-          if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-             (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
+          if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+             (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
             connectionCount = *pstatusCode0;
             clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-            *(uint64_t *)(clientPort + 0x18 + lVar9) = 0;
-            *pstatusCode0 = *(int *)(clientPort + 0x10 + lVar9);
-            *(int *)(clientPort + 0x10 + lVar9) = (int)pnetworkTimeout[4];
+            *(uint64_t *)(clientPort + 0x18 + long_var_9) = 0;
+            *pstatusCode0 = *(int *)(clientPort + 0x10 + long_var_9);
+            *(int *)(clientPort + 0x10 + long_var_9) = (int)pnetworkTimeout[4];
             *(int *)((longlong)pnetworkTimeout + 0x24) = *(int *)((longlong)pnetworkTimeout + 0x24) + -1;
             *(int *)(pnetworkTimeout + 4) = connectionCount;
             socketStatus = 0;
             break;
           }
-          pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+          pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
           connectionCount = *pstatusCode0;
         } while (connectionCount != -1);
       }
@@ -76984,18 +76984,18 @@ LAB_180885637:
       bufferCapacity = 0x1c;
       goto LAB_180885639;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
-      lVar9 = pnetworkTimeout[2];
+      long_var_9 = pnetworkTimeout[2];
       do {
         clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-        if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-           (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180885637;
-        pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+        if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+           (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180885637;
+        pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
         connectionCount = *pstatusCode0;
       } while (connectionCount != -1);
     }
@@ -77042,7 +77042,7 @@ ulonglong FUN_180885680(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
   ulonglong socketStatus;
   ulonglong bufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int *pstatusCode0;
   longlong *pnetworkTimeout1;
   ulonglong networkResult2;
@@ -77071,11 +77071,11 @@ ulonglong FUN_180885680(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
       bufferSize = 0x1c;
       goto LAB_1808859d3;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)((networkUintStack_48._4_4_ ^ (uint)networkUintStack_48 ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
       do {
         psocketHandle = (longlong *)((longlong)connectionCount * SOCKET_RESPONSE_OFFSET + pnetworkTimeout[2]);
@@ -77146,28 +77146,28 @@ LAB_18088575e:
       socketStatus = 0x1c;
     }
     else {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) &
                    (int)pnetworkTimeout[1] - 1U);
-      pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-      connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+      pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+      connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
       if (connectionCount != -1) {
-        lVar9 = pnetworkTimeout[2];
+        long_var_9 = pnetworkTimeout[2];
         do {
           clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-          if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-             (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
+          if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+             (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
             connectionCount = *pstatusCode0;
             clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-            *(uint64_t *)(clientPort + 0x18 + lVar9) = 0;
-            *pstatusCode0 = *(int *)(clientPort + 0x10 + lVar9);
-            *(int *)(clientPort + 0x10 + lVar9) = (int)pnetworkTimeout[4];
+            *(uint64_t *)(clientPort + 0x18 + long_var_9) = 0;
+            *pstatusCode0 = *(int *)(clientPort + 0x10 + long_var_9);
+            *(int *)(clientPort + 0x10 + long_var_9) = (int)pnetworkTimeout[4];
             *(int *)((longlong)pnetworkTimeout + 0x24) = *(int *)((longlong)pnetworkTimeout + 0x24) + -1;
             *(int *)(pnetworkTimeout + 4) = connectionCount;
             socketStatus = 0;
             break;
           }
-          pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+          pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
           connectionCount = *pstatusCode0;
         } while (connectionCount != -1);
       }
@@ -77196,18 +77196,18 @@ LAB_1808859b7:
       bufferCapacity = 0x1c;
       goto LAB_1808859b9;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
-      lVar9 = pnetworkTimeout[2];
+      long_var_9 = pnetworkTimeout[2];
       do {
         clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-        if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-           (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_1808859b7;
-        pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+        if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+           (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_1808859b7;
+        pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
         connectionCount = *pstatusCode0;
       } while (connectionCount != -1);
     }
@@ -77254,7 +77254,7 @@ ulonglong FUN_180885a00(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
   ulonglong socketStatus;
   ulonglong bufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int *pstatusCode0;
   longlong *pnetworkTimeout1;
   ulonglong networkResult2;
@@ -77283,11 +77283,11 @@ ulonglong FUN_180885a00(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
       bufferSize = 0x1c;
       goto LAB_180885d53;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)((networkUintStack_48._4_4_ ^ (uint)networkUintStack_48 ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
       do {
         psocketHandle = (longlong *)((longlong)connectionCount * SOCKET_RESPONSE_OFFSET + pnetworkTimeout[2]);
@@ -77358,28 +77358,28 @@ LAB_180885ade:
       socketStatus = 0x1c;
     }
     else {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) &
                    (int)pnetworkTimeout[1] - 1U);
-      pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-      connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+      pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+      connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
       if (connectionCount != -1) {
-        lVar9 = pnetworkTimeout[2];
+        long_var_9 = pnetworkTimeout[2];
         do {
           clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-          if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-             (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
+          if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+             (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
             connectionCount = *pstatusCode0;
             clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-            *(uint64_t *)(clientPort + 0x18 + lVar9) = 0;
-            *pstatusCode0 = *(int *)(clientPort + 0x10 + lVar9);
-            *(int *)(clientPort + 0x10 + lVar9) = (int)pnetworkTimeout[4];
+            *(uint64_t *)(clientPort + 0x18 + long_var_9) = 0;
+            *pstatusCode0 = *(int *)(clientPort + 0x10 + long_var_9);
+            *(int *)(clientPort + 0x10 + long_var_9) = (int)pnetworkTimeout[4];
             *(int *)((longlong)pnetworkTimeout + 0x24) = *(int *)((longlong)pnetworkTimeout + 0x24) + -1;
             *(int *)(pnetworkTimeout + 4) = connectionCount;
             socketStatus = 0;
             break;
           }
-          pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+          pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
           connectionCount = *pstatusCode0;
         } while (connectionCount != -1);
       }
@@ -77408,18 +77408,18 @@ LAB_180885d37:
       bufferCapacity = 0x1c;
       goto LAB_180885d39;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
-      lVar9 = pnetworkTimeout[2];
+      long_var_9 = pnetworkTimeout[2];
       do {
         clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-        if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-           (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180885d37;
-        pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+        if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+           (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180885d37;
+        pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
         connectionCount = *pstatusCode0;
       } while (connectionCount != -1);
     }
@@ -77466,7 +77466,7 @@ ulonglong FUN_180885d80(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
   ulonglong socketStatus;
   ulonglong bufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int *pstatusCode0;
   longlong *pnetworkTimeout1;
   ulonglong networkResult2;
@@ -77495,11 +77495,11 @@ ulonglong FUN_180885d80(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
       bufferSize = 0x1c;
       goto LAB_1808860d3;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)((networkUintStack_48._4_4_ ^ (uint)networkUintStack_48 ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
       do {
         psocketHandle = (longlong *)((longlong)connectionCount * SOCKET_RESPONSE_OFFSET + pnetworkTimeout[2]);
@@ -77570,28 +77570,28 @@ LAB_180885e5e:
       socketStatus = 0x1c;
     }
     else {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) &
                    (int)pnetworkTimeout[1] - 1U);
-      pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-      connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+      pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+      connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
       if (connectionCount != -1) {
-        lVar9 = pnetworkTimeout[2];
+        long_var_9 = pnetworkTimeout[2];
         do {
           clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-          if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-             (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
+          if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+             (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
             connectionCount = *pstatusCode0;
             clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-            *(uint64_t *)(clientPort + 0x18 + lVar9) = 0;
-            *pstatusCode0 = *(int *)(clientPort + 0x10 + lVar9);
-            *(int *)(clientPort + 0x10 + lVar9) = (int)pnetworkTimeout[4];
+            *(uint64_t *)(clientPort + 0x18 + long_var_9) = 0;
+            *pstatusCode0 = *(int *)(clientPort + 0x10 + long_var_9);
+            *(int *)(clientPort + 0x10 + long_var_9) = (int)pnetworkTimeout[4];
             *(int *)((longlong)pnetworkTimeout + 0x24) = *(int *)((longlong)pnetworkTimeout + 0x24) + -1;
             *(int *)(pnetworkTimeout + 4) = connectionCount;
             socketStatus = 0;
             break;
           }
-          pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+          pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
           connectionCount = *pstatusCode0;
         } while (connectionCount != -1);
       }
@@ -77620,18 +77620,18 @@ LAB_1808860b7:
       bufferCapacity = 0x1c;
       goto LAB_1808860b9;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
-      lVar9 = pnetworkTimeout[2];
+      long_var_9 = pnetworkTimeout[2];
       do {
         clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-        if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-           (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_1808860b7;
-        pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+        if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+           (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_1808860b7;
+        pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
         connectionCount = *pstatusCode0;
       } while (connectionCount != -1);
     }
@@ -77678,7 +77678,7 @@ ulonglong FUN_180886100(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
   ulonglong socketStatus;
   ulonglong bufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int *pstatusCode0;
   longlong *pnetworkTimeout1;
   ulonglong networkResult2;
@@ -77707,11 +77707,11 @@ ulonglong FUN_180886100(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
       bufferSize = 0x1c;
       goto LAB_180886453;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)((networkUintStack_48._4_4_ ^ (uint)networkUintStack_48 ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
       do {
         psocketHandle = (longlong *)((longlong)connectionCount * SOCKET_RESPONSE_OFFSET + pnetworkTimeout[2]);
@@ -77782,28 +77782,28 @@ LAB_1808861de:
       socketStatus = 0x1c;
     }
     else {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) &
                    (int)pnetworkTimeout[1] - 1U);
-      pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-      connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+      pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+      connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
       if (connectionCount != -1) {
-        lVar9 = pnetworkTimeout[2];
+        long_var_9 = pnetworkTimeout[2];
         do {
           clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-          if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-             (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
+          if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+             (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
             connectionCount = *pstatusCode0;
             clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-            *(uint64_t *)(clientPort + 0x18 + lVar9) = 0;
-            *pstatusCode0 = *(int *)(clientPort + 0x10 + lVar9);
-            *(int *)(clientPort + 0x10 + lVar9) = (int)pnetworkTimeout[4];
+            *(uint64_t *)(clientPort + 0x18 + long_var_9) = 0;
+            *pstatusCode0 = *(int *)(clientPort + 0x10 + long_var_9);
+            *(int *)(clientPort + 0x10 + long_var_9) = (int)pnetworkTimeout[4];
             *(int *)((longlong)pnetworkTimeout + 0x24) = *(int *)((longlong)pnetworkTimeout + 0x24) + -1;
             *(int *)(pnetworkTimeout + 4) = connectionCount;
             socketStatus = 0;
             break;
           }
-          pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+          pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
           connectionCount = *pstatusCode0;
         } while (connectionCount != -1);
       }
@@ -77832,18 +77832,18 @@ LAB_180886437:
       bufferCapacity = 0x1c;
       goto LAB_180886439;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
-      lVar9 = pnetworkTimeout[2];
+      long_var_9 = pnetworkTimeout[2];
       do {
         clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-        if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-           (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180886437;
-        pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+        if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+           (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180886437;
+        pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
         connectionCount = *pstatusCode0;
       } while (connectionCount != -1);
     }
@@ -77890,7 +77890,7 @@ ulonglong FUN_180886480(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
   ulonglong socketStatus;
   ulonglong bufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int *pstatusCode0;
   longlong *pnetworkTimeout1;
   ulonglong networkResult2;
@@ -77919,11 +77919,11 @@ ulonglong FUN_180886480(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
       bufferSize = 0x1c;
       goto LAB_1808867d3;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)((networkUintStack_48._4_4_ ^ (uint)networkUintStack_48 ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
       do {
         psocketHandle = (longlong *)((longlong)connectionCount * SOCKET_RESPONSE_OFFSET + pnetworkTimeout[2]);
@@ -77994,28 +77994,28 @@ LAB_18088655e:
       socketStatus = 0x1c;
     }
     else {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) &
                    (int)pnetworkTimeout[1] - 1U);
-      pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-      connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+      pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+      connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
       if (connectionCount != -1) {
-        lVar9 = pnetworkTimeout[2];
+        long_var_9 = pnetworkTimeout[2];
         do {
           clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-          if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-             (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
+          if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+             (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
             connectionCount = *pstatusCode0;
             clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-            *(uint64_t *)(clientPort + 0x18 + lVar9) = 0;
-            *pstatusCode0 = *(int *)(clientPort + 0x10 + lVar9);
-            *(int *)(clientPort + 0x10 + lVar9) = (int)pnetworkTimeout[4];
+            *(uint64_t *)(clientPort + 0x18 + long_var_9) = 0;
+            *pstatusCode0 = *(int *)(clientPort + 0x10 + long_var_9);
+            *(int *)(clientPort + 0x10 + long_var_9) = (int)pnetworkTimeout[4];
             *(int *)((longlong)pnetworkTimeout + 0x24) = *(int *)((longlong)pnetworkTimeout + 0x24) + -1;
             *(int *)(pnetworkTimeout + 4) = connectionCount;
             socketStatus = 0;
             break;
           }
-          pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+          pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
           connectionCount = *pstatusCode0;
         } while (connectionCount != -1);
       }
@@ -78044,18 +78044,18 @@ LAB_1808867b7:
       bufferCapacity = 0x1c;
       goto LAB_1808867b9;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
-      lVar9 = pnetworkTimeout[2];
+      long_var_9 = pnetworkTimeout[2];
       do {
         clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-        if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-           (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_1808867b7;
-        pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+        if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+           (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_1808867b7;
+        pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
         connectionCount = *pstatusCode0;
       } while (connectionCount != -1);
     }
@@ -78102,7 +78102,7 @@ ulonglong FUN_180886800(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
   ulonglong socketStatus;
   ulonglong bufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int *pstatusCode0;
   longlong *pnetworkTimeout1;
   ulonglong networkResult2;
@@ -78131,11 +78131,11 @@ ulonglong FUN_180886800(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
       bufferSize = 0x1c;
       goto LAB_180886b53;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)((networkUintStack_48._4_4_ ^ (uint)networkUintStack_48 ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
       do {
         psocketHandle = (longlong *)((longlong)connectionCount * SOCKET_RESPONSE_OFFSET + pnetworkTimeout[2]);
@@ -78206,28 +78206,28 @@ LAB_1808868de:
       socketStatus = 0x1c;
     }
     else {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) &
                    (int)pnetworkTimeout[1] - 1U);
-      pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-      connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+      pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+      connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
       if (connectionCount != -1) {
-        lVar9 = pnetworkTimeout[2];
+        long_var_9 = pnetworkTimeout[2];
         do {
           clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-          if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-             (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
+          if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+             (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
             connectionCount = *pstatusCode0;
             clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-            *(uint64_t *)(clientPort + 0x18 + lVar9) = 0;
-            *pstatusCode0 = *(int *)(clientPort + 0x10 + lVar9);
-            *(int *)(clientPort + 0x10 + lVar9) = (int)pnetworkTimeout[4];
+            *(uint64_t *)(clientPort + 0x18 + long_var_9) = 0;
+            *pstatusCode0 = *(int *)(clientPort + 0x10 + long_var_9);
+            *(int *)(clientPort + 0x10 + long_var_9) = (int)pnetworkTimeout[4];
             *(int *)((longlong)pnetworkTimeout + 0x24) = *(int *)((longlong)pnetworkTimeout + 0x24) + -1;
             *(int *)(pnetworkTimeout + 4) = connectionCount;
             socketStatus = 0;
             break;
           }
-          pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+          pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
           connectionCount = *pstatusCode0;
         } while (connectionCount != -1);
       }
@@ -78256,18 +78256,18 @@ LAB_180886b37:
       bufferCapacity = 0x1c;
       goto LAB_180886b39;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
-      lVar9 = pnetworkTimeout[2];
+      long_var_9 = pnetworkTimeout[2];
       do {
         clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-        if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-           (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180886b37;
-        pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+        if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+           (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180886b37;
+        pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
         connectionCount = *pstatusCode0;
       } while (connectionCount != -1);
     }
@@ -78314,7 +78314,7 @@ ulonglong FUN_180886b80(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
   ulonglong socketStatus;
   ulonglong bufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int *pstatusCode0;
   longlong *pnetworkTimeout1;
   ulonglong networkResult2;
@@ -78343,11 +78343,11 @@ ulonglong FUN_180886b80(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
       bufferSize = 0x1c;
       goto LAB_180886ed3;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)((networkUintStack_48._4_4_ ^ (uint)networkUintStack_48 ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
       do {
         psocketHandle = (longlong *)((longlong)connectionCount * SOCKET_RESPONSE_OFFSET + pnetworkTimeout[2]);
@@ -78418,28 +78418,28 @@ LAB_180886c5e:
       socketStatus = 0x1c;
     }
     else {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) &
                    (int)pnetworkTimeout[1] - 1U);
-      pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-      connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+      pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+      connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
       if (connectionCount != -1) {
-        lVar9 = pnetworkTimeout[2];
+        long_var_9 = pnetworkTimeout[2];
         do {
           clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-          if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-             (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
+          if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+             (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
             connectionCount = *pstatusCode0;
             clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-            *(uint64_t *)(clientPort + 0x18 + lVar9) = 0;
-            *pstatusCode0 = *(int *)(clientPort + 0x10 + lVar9);
-            *(int *)(clientPort + 0x10 + lVar9) = (int)pnetworkTimeout[4];
+            *(uint64_t *)(clientPort + 0x18 + long_var_9) = 0;
+            *pstatusCode0 = *(int *)(clientPort + 0x10 + long_var_9);
+            *(int *)(clientPort + 0x10 + long_var_9) = (int)pnetworkTimeout[4];
             *(int *)((longlong)pnetworkTimeout + 0x24) = *(int *)((longlong)pnetworkTimeout + 0x24) + -1;
             *(int *)(pnetworkTimeout + 4) = connectionCount;
             socketStatus = 0;
             break;
           }
-          pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+          pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
           connectionCount = *pstatusCode0;
         } while (connectionCount != -1);
       }
@@ -78468,18 +78468,18 @@ LAB_180886eb7:
       bufferCapacity = 0x1c;
       goto LAB_180886eb9;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
-      lVar9 = pnetworkTimeout[2];
+      long_var_9 = pnetworkTimeout[2];
       do {
         clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-        if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-           (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180886eb7;
-        pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+        if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+           (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180886eb7;
+        pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
         connectionCount = *pstatusCode0;
       } while (connectionCount != -1);
     }
@@ -78526,7 +78526,7 @@ ulonglong FUN_180886f00(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
   ulonglong socketStatus;
   ulonglong bufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int *pstatusCode0;
   longlong *pnetworkTimeout1;
   ulonglong networkResult2;
@@ -78555,11 +78555,11 @@ ulonglong FUN_180886f00(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
       bufferSize = 0x1c;
       goto LAB_180887253;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)((networkUintStack_48._4_4_ ^ (uint)networkUintStack_48 ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
       do {
         psocketHandle = (longlong *)((longlong)connectionCount * SOCKET_RESPONSE_OFFSET + pnetworkTimeout[2]);
@@ -78630,28 +78630,28 @@ LAB_180886fde:
       socketStatus = 0x1c;
     }
     else {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) &
                    (int)pnetworkTimeout[1] - 1U);
-      pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-      connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+      pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+      connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
       if (connectionCount != -1) {
-        lVar9 = pnetworkTimeout[2];
+        long_var_9 = pnetworkTimeout[2];
         do {
           clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-          if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-             (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
+          if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+             (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
             connectionCount = *pstatusCode0;
             clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-            *(uint64_t *)(clientPort + 0x18 + lVar9) = 0;
-            *pstatusCode0 = *(int *)(clientPort + 0x10 + lVar9);
-            *(int *)(clientPort + 0x10 + lVar9) = (int)pnetworkTimeout[4];
+            *(uint64_t *)(clientPort + 0x18 + long_var_9) = 0;
+            *pstatusCode0 = *(int *)(clientPort + 0x10 + long_var_9);
+            *(int *)(clientPort + 0x10 + long_var_9) = (int)pnetworkTimeout[4];
             *(int *)((longlong)pnetworkTimeout + 0x24) = *(int *)((longlong)pnetworkTimeout + 0x24) + -1;
             *(int *)(pnetworkTimeout + 4) = connectionCount;
             socketStatus = 0;
             break;
           }
-          pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+          pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
           connectionCount = *pstatusCode0;
         } while (connectionCount != -1);
       }
@@ -78680,18 +78680,18 @@ LAB_180887237:
       bufferCapacity = 0x1c;
       goto LAB_180887239;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
-      lVar9 = pnetworkTimeout[2];
+      long_var_9 = pnetworkTimeout[2];
       do {
         clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-        if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-           (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180887237;
-        pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+        if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+           (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180887237;
+        pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
         connectionCount = *pstatusCode0;
       } while (connectionCount != -1);
     }
@@ -78738,7 +78738,7 @@ ulonglong FUN_180887280(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
   ulonglong socketStatus;
   ulonglong bufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int *pstatusCode0;
   longlong *pnetworkTimeout1;
   ulonglong networkResult2;
@@ -78767,11 +78767,11 @@ ulonglong FUN_180887280(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
       bufferSize = 0x1c;
       goto LAB_1808875d3;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)((networkUintStack_48._4_4_ ^ (uint)networkUintStack_48 ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
       do {
         psocketHandle = (longlong *)((longlong)connectionCount * SOCKET_RESPONSE_OFFSET + pnetworkTimeout[2]);
@@ -78842,28 +78842,28 @@ LAB_18088735e:
       socketStatus = 0x1c;
     }
     else {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) &
                    (int)pnetworkTimeout[1] - 1U);
-      pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-      connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+      pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+      connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
       if (connectionCount != -1) {
-        lVar9 = pnetworkTimeout[2];
+        long_var_9 = pnetworkTimeout[2];
         do {
           clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-          if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-             (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
+          if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+             (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
             connectionCount = *pstatusCode0;
             clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-            *(uint64_t *)(clientPort + 0x18 + lVar9) = 0;
-            *pstatusCode0 = *(int *)(clientPort + 0x10 + lVar9);
-            *(int *)(clientPort + 0x10 + lVar9) = (int)pnetworkTimeout[4];
+            *(uint64_t *)(clientPort + 0x18 + long_var_9) = 0;
+            *pstatusCode0 = *(int *)(clientPort + 0x10 + long_var_9);
+            *(int *)(clientPort + 0x10 + long_var_9) = (int)pnetworkTimeout[4];
             *(int *)((longlong)pnetworkTimeout + 0x24) = *(int *)((longlong)pnetworkTimeout + 0x24) + -1;
             *(int *)(pnetworkTimeout + 4) = connectionCount;
             socketStatus = 0;
             break;
           }
-          pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+          pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
           connectionCount = *pstatusCode0;
         } while (connectionCount != -1);
       }
@@ -78892,18 +78892,18 @@ LAB_1808875b7:
       bufferCapacity = 0x1c;
       goto LAB_1808875b9;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
-      lVar9 = pnetworkTimeout[2];
+      long_var_9 = pnetworkTimeout[2];
       do {
         clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-        if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-           (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_1808875b7;
-        pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+        if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+           (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_1808875b7;
+        pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
         connectionCount = *pstatusCode0;
       } while (connectionCount != -1);
     }
@@ -78950,7 +78950,7 @@ ulonglong FUN_180887600(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
   ulonglong socketStatus;
   ulonglong bufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int *pstatusCode0;
   longlong *pnetworkTimeout1;
   ulonglong networkResult2;
@@ -78979,11 +78979,11 @@ ulonglong FUN_180887600(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
       bufferSize = 0x1c;
       goto LAB_180887953;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)((networkUintStack_48._4_4_ ^ (uint)networkUintStack_48 ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
       do {
         psocketHandle = (longlong *)((longlong)connectionCount * SOCKET_RESPONSE_OFFSET + pnetworkTimeout[2]);
@@ -79054,28 +79054,28 @@ LAB_1808876de:
       socketStatus = 0x1c;
     }
     else {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) &
                    (int)pnetworkTimeout[1] - 1U);
-      pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-      connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+      pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+      connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
       if (connectionCount != -1) {
-        lVar9 = pnetworkTimeout[2];
+        long_var_9 = pnetworkTimeout[2];
         do {
           clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-          if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-             (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
+          if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+             (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
             connectionCount = *pstatusCode0;
             clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-            *(uint64_t *)(clientPort + 0x18 + lVar9) = 0;
-            *pstatusCode0 = *(int *)(clientPort + 0x10 + lVar9);
-            *(int *)(clientPort + 0x10 + lVar9) = (int)pnetworkTimeout[4];
+            *(uint64_t *)(clientPort + 0x18 + long_var_9) = 0;
+            *pstatusCode0 = *(int *)(clientPort + 0x10 + long_var_9);
+            *(int *)(clientPort + 0x10 + long_var_9) = (int)pnetworkTimeout[4];
             *(int *)((longlong)pnetworkTimeout + 0x24) = *(int *)((longlong)pnetworkTimeout + 0x24) + -1;
             *(int *)(pnetworkTimeout + 4) = connectionCount;
             socketStatus = 0;
             break;
           }
-          pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+          pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
           connectionCount = *pstatusCode0;
         } while (connectionCount != -1);
       }
@@ -79104,18 +79104,18 @@ LAB_180887937:
       bufferCapacity = 0x1c;
       goto LAB_180887939;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
-      lVar9 = pnetworkTimeout[2];
+      long_var_9 = pnetworkTimeout[2];
       do {
         clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-        if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-           (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180887937;
-        pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+        if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+           (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180887937;
+        pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
         connectionCount = *pstatusCode0;
       } while (connectionCount != -1);
     }
@@ -79162,7 +79162,7 @@ ulonglong FUN_180887980(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
   ulonglong socketStatus;
   ulonglong bufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int *pstatusCode0;
   longlong *pnetworkTimeout1;
   ulonglong networkResult2;
@@ -79191,11 +79191,11 @@ ulonglong FUN_180887980(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
       bufferSize = 0x1c;
       goto LAB_180887cd3;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)((networkUintStack_48._4_4_ ^ (uint)networkUintStack_48 ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
       do {
         psocketHandle = (longlong *)((longlong)connectionCount * SOCKET_RESPONSE_OFFSET + pnetworkTimeout[2]);
@@ -79266,28 +79266,28 @@ LAB_180887a5e:
       socketStatus = 0x1c;
     }
     else {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) &
                    (int)pnetworkTimeout[1] - 1U);
-      pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-      connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+      pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+      connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
       if (connectionCount != -1) {
-        lVar9 = pnetworkTimeout[2];
+        long_var_9 = pnetworkTimeout[2];
         do {
           clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-          if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-             (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
+          if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+             (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
             connectionCount = *pstatusCode0;
             clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-            *(uint64_t *)(clientPort + 0x18 + lVar9) = 0;
-            *pstatusCode0 = *(int *)(clientPort + 0x10 + lVar9);
-            *(int *)(clientPort + 0x10 + lVar9) = (int)pnetworkTimeout[4];
+            *(uint64_t *)(clientPort + 0x18 + long_var_9) = 0;
+            *pstatusCode0 = *(int *)(clientPort + 0x10 + long_var_9);
+            *(int *)(clientPort + 0x10 + long_var_9) = (int)pnetworkTimeout[4];
             *(int *)((longlong)pnetworkTimeout + 0x24) = *(int *)((longlong)pnetworkTimeout + 0x24) + -1;
             *(int *)(pnetworkTimeout + 4) = connectionCount;
             socketStatus = 0;
             break;
           }
-          pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+          pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
           connectionCount = *pstatusCode0;
         } while (connectionCount != -1);
       }
@@ -79316,18 +79316,18 @@ LAB_180887cb7:
       bufferCapacity = 0x1c;
       goto LAB_180887cb9;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
-      lVar9 = pnetworkTimeout[2];
+      long_var_9 = pnetworkTimeout[2];
       do {
         clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-        if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-           (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180887cb7;
-        pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+        if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+           (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180887cb7;
+        pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
         connectionCount = *pstatusCode0;
       } while (connectionCount != -1);
     }
@@ -79374,7 +79374,7 @@ ulonglong FUN_180887d00(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
   ulonglong socketStatus;
   ulonglong bufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int *pstatusCode0;
   longlong *pnetworkTimeout1;
   ulonglong networkResult2;
@@ -79403,11 +79403,11 @@ ulonglong FUN_180887d00(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
       bufferSize = 0x1c;
       goto LAB_180888053;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)((networkUintStack_48._4_4_ ^ (uint)networkUintStack_48 ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
       do {
         psocketHandle = (longlong *)((longlong)connectionCount * SOCKET_RESPONSE_OFFSET + pnetworkTimeout[2]);
@@ -79478,28 +79478,28 @@ LAB_180887dde:
       socketStatus = 0x1c;
     }
     else {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) &
                    (int)pnetworkTimeout[1] - 1U);
-      pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-      connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+      pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+      connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
       if (connectionCount != -1) {
-        lVar9 = pnetworkTimeout[2];
+        long_var_9 = pnetworkTimeout[2];
         do {
           clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-          if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-             (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
+          if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+             (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
             connectionCount = *pstatusCode0;
             clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-            *(uint64_t *)(clientPort + 0x18 + lVar9) = 0;
-            *pstatusCode0 = *(int *)(clientPort + 0x10 + lVar9);
-            *(int *)(clientPort + 0x10 + lVar9) = (int)pnetworkTimeout[4];
+            *(uint64_t *)(clientPort + 0x18 + long_var_9) = 0;
+            *pstatusCode0 = *(int *)(clientPort + 0x10 + long_var_9);
+            *(int *)(clientPort + 0x10 + long_var_9) = (int)pnetworkTimeout[4];
             *(int *)((longlong)pnetworkTimeout + 0x24) = *(int *)((longlong)pnetworkTimeout + 0x24) + -1;
             *(int *)(pnetworkTimeout + 4) = connectionCount;
             socketStatus = 0;
             break;
           }
-          pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+          pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
           connectionCount = *pstatusCode0;
         } while (connectionCount != -1);
       }
@@ -79528,18 +79528,18 @@ LAB_180888037:
       bufferCapacity = 0x1c;
       goto LAB_180888039;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
-      lVar9 = pnetworkTimeout[2];
+      long_var_9 = pnetworkTimeout[2];
       do {
         clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-        if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-           (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180888037;
-        pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+        if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+           (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180888037;
+        pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
         connectionCount = *pstatusCode0;
       } while (connectionCount != -1);
     }
@@ -79586,7 +79586,7 @@ ulonglong FUN_180888080(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
   ulonglong socketStatus;
   ulonglong bufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int *pstatusCode0;
   longlong *pnetworkTimeout1;
   ulonglong networkResult2;
@@ -79615,11 +79615,11 @@ ulonglong FUN_180888080(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
       bufferSize = 0x1c;
       goto LAB_1808883d3;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)((networkUintStack_48._4_4_ ^ (uint)networkUintStack_48 ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
       do {
         psocketHandle = (longlong *)((longlong)connectionCount * SOCKET_RESPONSE_OFFSET + pnetworkTimeout[2]);
@@ -79690,28 +79690,28 @@ LAB_18088815e:
       socketStatus = 0x1c;
     }
     else {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) &
                    (int)pnetworkTimeout[1] - 1U);
-      pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-      connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+      pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+      connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
       if (connectionCount != -1) {
-        lVar9 = pnetworkTimeout[2];
+        long_var_9 = pnetworkTimeout[2];
         do {
           clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-          if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-             (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
+          if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+             (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
             connectionCount = *pstatusCode0;
             clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-            *(uint64_t *)(clientPort + 0x18 + lVar9) = 0;
-            *pstatusCode0 = *(int *)(clientPort + 0x10 + lVar9);
-            *(int *)(clientPort + 0x10 + lVar9) = (int)pnetworkTimeout[4];
+            *(uint64_t *)(clientPort + 0x18 + long_var_9) = 0;
+            *pstatusCode0 = *(int *)(clientPort + 0x10 + long_var_9);
+            *(int *)(clientPort + 0x10 + long_var_9) = (int)pnetworkTimeout[4];
             *(int *)((longlong)pnetworkTimeout + 0x24) = *(int *)((longlong)pnetworkTimeout + 0x24) + -1;
             *(int *)(pnetworkTimeout + 4) = connectionCount;
             socketStatus = 0;
             break;
           }
-          pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+          pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
           connectionCount = *pstatusCode0;
         } while (connectionCount != -1);
       }
@@ -79740,18 +79740,18 @@ LAB_1808883b7:
       bufferCapacity = 0x1c;
       goto LAB_1808883b9;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
-      lVar9 = pnetworkTimeout[2];
+      long_var_9 = pnetworkTimeout[2];
       do {
         clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-        if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-           (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_1808883b7;
-        pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+        if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+           (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_1808883b7;
+        pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
         connectionCount = *pstatusCode0;
       } while (connectionCount != -1);
     }
@@ -79798,7 +79798,7 @@ ulonglong FUN_180888400(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
   ulonglong socketStatus;
   ulonglong bufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int *pstatusCode0;
   longlong *pnetworkTimeout1;
   ulonglong networkResult2;
@@ -79827,11 +79827,11 @@ ulonglong FUN_180888400(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
       bufferSize = 0x1c;
       goto LAB_180888753;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)((networkUintStack_48._4_4_ ^ (uint)networkUintStack_48 ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
       do {
         psocketHandle = (longlong *)((longlong)connectionCount * SOCKET_RESPONSE_OFFSET + pnetworkTimeout[2]);
@@ -79902,28 +79902,28 @@ LAB_1808884de:
       socketStatus = 0x1c;
     }
     else {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) &
                    (int)pnetworkTimeout[1] - 1U);
-      pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-      connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+      pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+      connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
       if (connectionCount != -1) {
-        lVar9 = pnetworkTimeout[2];
+        long_var_9 = pnetworkTimeout[2];
         do {
           clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-          if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-             (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
+          if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+             (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
             connectionCount = *pstatusCode0;
             clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-            *(uint64_t *)(clientPort + 0x18 + lVar9) = 0;
-            *pstatusCode0 = *(int *)(clientPort + 0x10 + lVar9);
-            *(int *)(clientPort + 0x10 + lVar9) = (int)pnetworkTimeout[4];
+            *(uint64_t *)(clientPort + 0x18 + long_var_9) = 0;
+            *pstatusCode0 = *(int *)(clientPort + 0x10 + long_var_9);
+            *(int *)(clientPort + 0x10 + long_var_9) = (int)pnetworkTimeout[4];
             *(int *)((longlong)pnetworkTimeout + 0x24) = *(int *)((longlong)pnetworkTimeout + 0x24) + -1;
             *(int *)(pnetworkTimeout + 4) = connectionCount;
             socketStatus = 0;
             break;
           }
-          pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+          pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
           connectionCount = *pstatusCode0;
         } while (connectionCount != -1);
       }
@@ -79952,18 +79952,18 @@ LAB_180888737:
       bufferCapacity = 0x1c;
       goto LAB_180888739;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
-      lVar9 = pnetworkTimeout[2];
+      long_var_9 = pnetworkTimeout[2];
       do {
         clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-        if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-           (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180888737;
-        pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+        if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+           (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180888737;
+        pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
         connectionCount = *pstatusCode0;
       } while (connectionCount != -1);
     }
@@ -80010,7 +80010,7 @@ ulonglong FUN_180888780(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
   ulonglong socketStatus;
   ulonglong bufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int *pstatusCode0;
   longlong *pnetworkTimeout1;
   ulonglong networkResult2;
@@ -80039,11 +80039,11 @@ ulonglong FUN_180888780(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
       bufferSize = 0x1c;
       goto LAB_180888ad3;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)((networkUintStack_48._4_4_ ^ (uint)networkUintStack_48 ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
       do {
         psocketHandle = (longlong *)((longlong)connectionCount * SOCKET_RESPONSE_OFFSET + pnetworkTimeout[2]);
@@ -80114,28 +80114,28 @@ LAB_18088885e:
       socketStatus = 0x1c;
     }
     else {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) &
                    (int)pnetworkTimeout[1] - 1U);
-      pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-      connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+      pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+      connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
       if (connectionCount != -1) {
-        lVar9 = pnetworkTimeout[2];
+        long_var_9 = pnetworkTimeout[2];
         do {
           clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-          if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-             (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
+          if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+             (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
             connectionCount = *pstatusCode0;
             clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-            *(uint64_t *)(clientPort + 0x18 + lVar9) = 0;
-            *pstatusCode0 = *(int *)(clientPort + 0x10 + lVar9);
-            *(int *)(clientPort + 0x10 + lVar9) = (int)pnetworkTimeout[4];
+            *(uint64_t *)(clientPort + 0x18 + long_var_9) = 0;
+            *pstatusCode0 = *(int *)(clientPort + 0x10 + long_var_9);
+            *(int *)(clientPort + 0x10 + long_var_9) = (int)pnetworkTimeout[4];
             *(int *)((longlong)pnetworkTimeout + 0x24) = *(int *)((longlong)pnetworkTimeout + 0x24) + -1;
             *(int *)(pnetworkTimeout + 4) = connectionCount;
             socketStatus = 0;
             break;
           }
-          pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+          pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
           connectionCount = *pstatusCode0;
         } while (connectionCount != -1);
       }
@@ -80164,18 +80164,18 @@ LAB_180888ab7:
       bufferCapacity = 0x1c;
       goto LAB_180888ab9;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
-      lVar9 = pnetworkTimeout[2];
+      long_var_9 = pnetworkTimeout[2];
       do {
         clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-        if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-           (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180888ab7;
-        pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+        if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+           (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180888ab7;
+        pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
         connectionCount = *pstatusCode0;
       } while (connectionCount != -1);
     }
@@ -80222,7 +80222,7 @@ ulonglong FUN_180888b00(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
   ulonglong socketStatus;
   ulonglong bufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int *pstatusCode0;
   longlong *pnetworkTimeout1;
   ulonglong networkResult2;
@@ -80251,11 +80251,11 @@ ulonglong FUN_180888b00(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
       bufferSize = 0x1c;
       goto LAB_180888e53;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)((networkUintStack_48._4_4_ ^ (uint)networkUintStack_48 ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
       do {
         psocketHandle = (longlong *)((longlong)connectionCount * SOCKET_RESPONSE_OFFSET + pnetworkTimeout[2]);
@@ -80326,28 +80326,28 @@ LAB_180888bde:
       socketStatus = 0x1c;
     }
     else {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) &
                    (int)pnetworkTimeout[1] - 1U);
-      pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-      connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+      pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+      connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
       if (connectionCount != -1) {
-        lVar9 = pnetworkTimeout[2];
+        long_var_9 = pnetworkTimeout[2];
         do {
           clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-          if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-             (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
+          if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+             (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
             connectionCount = *pstatusCode0;
             clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-            *(uint64_t *)(clientPort + 0x18 + lVar9) = 0;
-            *pstatusCode0 = *(int *)(clientPort + 0x10 + lVar9);
-            *(int *)(clientPort + 0x10 + lVar9) = (int)pnetworkTimeout[4];
+            *(uint64_t *)(clientPort + 0x18 + long_var_9) = 0;
+            *pstatusCode0 = *(int *)(clientPort + 0x10 + long_var_9);
+            *(int *)(clientPort + 0x10 + long_var_9) = (int)pnetworkTimeout[4];
             *(int *)((longlong)pnetworkTimeout + 0x24) = *(int *)((longlong)pnetworkTimeout + 0x24) + -1;
             *(int *)(pnetworkTimeout + 4) = connectionCount;
             socketStatus = 0;
             break;
           }
-          pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+          pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
           connectionCount = *pstatusCode0;
         } while (connectionCount != -1);
       }
@@ -80376,18 +80376,18 @@ LAB_180888e37:
       bufferCapacity = 0x1c;
       goto LAB_180888e39;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
-      lVar9 = pnetworkTimeout[2];
+      long_var_9 = pnetworkTimeout[2];
       do {
         clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-        if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-           (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180888e37;
-        pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+        if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+           (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180888e37;
+        pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
         connectionCount = *pstatusCode0;
       } while (connectionCount != -1);
     }
@@ -80434,7 +80434,7 @@ ulonglong FUN_180888e80(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
   ulonglong socketStatus;
   ulonglong bufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int *pstatusCode0;
   longlong *pnetworkTimeout1;
   ulonglong networkResult2;
@@ -80463,11 +80463,11 @@ ulonglong FUN_180888e80(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
       bufferSize = 0x1c;
       goto LAB_1808891d3;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)((networkUintStack_48._4_4_ ^ (uint)networkUintStack_48 ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
       do {
         psocketHandle = (longlong *)((longlong)connectionCount * SOCKET_RESPONSE_OFFSET + pnetworkTimeout[2]);
@@ -80538,28 +80538,28 @@ LAB_180888f5e:
       socketStatus = 0x1c;
     }
     else {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) &
                    (int)pnetworkTimeout[1] - 1U);
-      pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-      connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+      pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+      connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
       if (connectionCount != -1) {
-        lVar9 = pnetworkTimeout[2];
+        long_var_9 = pnetworkTimeout[2];
         do {
           clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-          if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-             (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
+          if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+             (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
             connectionCount = *pstatusCode0;
             clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-            *(uint64_t *)(clientPort + 0x18 + lVar9) = 0;
-            *pstatusCode0 = *(int *)(clientPort + 0x10 + lVar9);
-            *(int *)(clientPort + 0x10 + lVar9) = (int)pnetworkTimeout[4];
+            *(uint64_t *)(clientPort + 0x18 + long_var_9) = 0;
+            *pstatusCode0 = *(int *)(clientPort + 0x10 + long_var_9);
+            *(int *)(clientPort + 0x10 + long_var_9) = (int)pnetworkTimeout[4];
             *(int *)((longlong)pnetworkTimeout + 0x24) = *(int *)((longlong)pnetworkTimeout + 0x24) + -1;
             *(int *)(pnetworkTimeout + 4) = connectionCount;
             socketStatus = 0;
             break;
           }
-          pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+          pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
           connectionCount = *pstatusCode0;
         } while (connectionCount != -1);
       }
@@ -80588,18 +80588,18 @@ LAB_1808891b7:
       bufferCapacity = 0x1c;
       goto LAB_1808891b9;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
-      lVar9 = pnetworkTimeout[2];
+      long_var_9 = pnetworkTimeout[2];
       do {
         clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-        if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-           (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_1808891b7;
-        pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+        if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+           (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_1808891b7;
+        pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
         connectionCount = *pstatusCode0;
       } while (connectionCount != -1);
     }
@@ -80646,7 +80646,7 @@ ulonglong FUN_180889200(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
   ulonglong socketStatus;
   ulonglong bufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int *pstatusCode0;
   longlong *pnetworkTimeout1;
   ulonglong networkResult2;
@@ -80675,11 +80675,11 @@ ulonglong FUN_180889200(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
       bufferSize = 0x1c;
       goto LAB_180889553;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)((networkUintStack_48._4_4_ ^ (uint)networkUintStack_48 ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
       do {
         psocketHandle = (longlong *)((longlong)connectionCount * SOCKET_RESPONSE_OFFSET + pnetworkTimeout[2]);
@@ -80750,28 +80750,28 @@ LAB_1808892de:
       socketStatus = 0x1c;
     }
     else {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) &
                    (int)pnetworkTimeout[1] - 1U);
-      pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-      connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+      pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+      connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
       if (connectionCount != -1) {
-        lVar9 = pnetworkTimeout[2];
+        long_var_9 = pnetworkTimeout[2];
         do {
           clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-          if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-             (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
+          if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+             (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
             connectionCount = *pstatusCode0;
             clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-            *(uint64_t *)(clientPort + 0x18 + lVar9) = 0;
-            *pstatusCode0 = *(int *)(clientPort + 0x10 + lVar9);
-            *(int *)(clientPort + 0x10 + lVar9) = (int)pnetworkTimeout[4];
+            *(uint64_t *)(clientPort + 0x18 + long_var_9) = 0;
+            *pstatusCode0 = *(int *)(clientPort + 0x10 + long_var_9);
+            *(int *)(clientPort + 0x10 + long_var_9) = (int)pnetworkTimeout[4];
             *(int *)((longlong)pnetworkTimeout + 0x24) = *(int *)((longlong)pnetworkTimeout + 0x24) + -1;
             *(int *)(pnetworkTimeout + 4) = connectionCount;
             socketStatus = 0;
             break;
           }
-          pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+          pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
           connectionCount = *pstatusCode0;
         } while (connectionCount != -1);
       }
@@ -80800,18 +80800,18 @@ LAB_180889537:
       bufferCapacity = 0x1c;
       goto LAB_180889539;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
-      lVar9 = pnetworkTimeout[2];
+      long_var_9 = pnetworkTimeout[2];
       do {
         clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-        if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-           (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180889537;
-        pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+        if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+           (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180889537;
+        pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
         connectionCount = *pstatusCode0;
       } while (connectionCount != -1);
     }
@@ -80858,7 +80858,7 @@ ulonglong FUN_180889580(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
   ulonglong socketStatus;
   ulonglong bufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int *pstatusCode0;
   longlong *pnetworkTimeout1;
   ulonglong networkResult2;
@@ -80887,11 +80887,11 @@ ulonglong FUN_180889580(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
       bufferSize = 0x1c;
       goto LAB_1808898d3;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)((networkUintStack_48._4_4_ ^ (uint)networkUintStack_48 ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
       do {
         psocketHandle = (longlong *)((longlong)connectionCount * SOCKET_RESPONSE_OFFSET + pnetworkTimeout[2]);
@@ -80962,28 +80962,28 @@ LAB_18088965e:
       socketStatus = 0x1c;
     }
     else {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) &
                    (int)pnetworkTimeout[1] - 1U);
-      pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-      connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+      pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+      connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
       if (connectionCount != -1) {
-        lVar9 = pnetworkTimeout[2];
+        long_var_9 = pnetworkTimeout[2];
         do {
           clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-          if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-             (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
+          if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+             (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
             connectionCount = *pstatusCode0;
             clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-            *(uint64_t *)(clientPort + 0x18 + lVar9) = 0;
-            *pstatusCode0 = *(int *)(clientPort + 0x10 + lVar9);
-            *(int *)(clientPort + 0x10 + lVar9) = (int)pnetworkTimeout[4];
+            *(uint64_t *)(clientPort + 0x18 + long_var_9) = 0;
+            *pstatusCode0 = *(int *)(clientPort + 0x10 + long_var_9);
+            *(int *)(clientPort + 0x10 + long_var_9) = (int)pnetworkTimeout[4];
             *(int *)((longlong)pnetworkTimeout + 0x24) = *(int *)((longlong)pnetworkTimeout + 0x24) + -1;
             *(int *)(pnetworkTimeout + 4) = connectionCount;
             socketStatus = 0;
             break;
           }
-          pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+          pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
           connectionCount = *pstatusCode0;
         } while (connectionCount != -1);
       }
@@ -81012,18 +81012,18 @@ LAB_1808898b7:
       bufferCapacity = 0x1c;
       goto LAB_1808898b9;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
-      lVar9 = pnetworkTimeout[2];
+      long_var_9 = pnetworkTimeout[2];
       do {
         clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-        if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-           (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_1808898b7;
-        pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+        if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+           (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_1808898b7;
+        pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
         connectionCount = *pstatusCode0;
       } while (connectionCount != -1);
     }
@@ -81070,7 +81070,7 @@ ulonglong FUN_180889900(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
   ulonglong socketStatus;
   ulonglong bufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   int *pstatusCode0;
   longlong *pnetworkTimeout1;
   ulonglong networkResult2;
@@ -81099,11 +81099,11 @@ ulonglong FUN_180889900(longlong *socketHandle,longlong *dataBuffer,uint64_t *bu
       bufferSize = 0x1c;
       goto LAB_180889c53;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)((networkUintStack_48._4_4_ ^ (uint)networkUintStack_48 ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pnetworkTimeout1 = (longlong *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
       do {
         psocketHandle = (longlong *)((longlong)connectionCount * SOCKET_RESPONSE_OFFSET + pnetworkTimeout[2]);
@@ -81174,28 +81174,28 @@ LAB_1808899de:
       socketStatus = 0x1c;
     }
     else {
-      lVar9 = (longlong)
+      long_var_9 = (longlong)
               (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) &
                    (int)pnetworkTimeout[1] - 1U);
-      pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-      connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+      pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+      connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
       if (connectionCount != -1) {
-        lVar9 = pnetworkTimeout[2];
+        long_var_9 = pnetworkTimeout[2];
         do {
           clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-          if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-             (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
+          if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+             (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) {
             connectionCount = *pstatusCode0;
             clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-            *(uint64_t *)(clientPort + 0x18 + lVar9) = 0;
-            *pstatusCode0 = *(int *)(clientPort + 0x10 + lVar9);
-            *(int *)(clientPort + 0x10 + lVar9) = (int)pnetworkTimeout[4];
+            *(uint64_t *)(clientPort + 0x18 + long_var_9) = 0;
+            *pstatusCode0 = *(int *)(clientPort + 0x10 + long_var_9);
+            *(int *)(clientPort + 0x10 + long_var_9) = (int)pnetworkTimeout[4];
             *(int *)((longlong)pnetworkTimeout + 0x24) = *(int *)((longlong)pnetworkTimeout + 0x24) + -1;
             *(int *)(pnetworkTimeout + 4) = connectionCount;
             socketStatus = 0;
             break;
           }
-          pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+          pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
           connectionCount = *pstatusCode0;
         } while (connectionCount != -1);
       }
@@ -81224,18 +81224,18 @@ LAB_180889c37:
       bufferCapacity = 0x1c;
       goto LAB_180889c39;
     }
-    lVar9 = (longlong)
+    long_var_9 = (longlong)
             (int)(((uint)networkUintStack_48 ^ networkUintStack_48._4_4_ ^ networkUintStack_40 ^ networkUintStack_3c) & (int)pnetworkTimeout[1] - 1U)
     ;
-    pstatusCode0 = (int *)(*pnetworkTimeout + lVar9 * 4);
-    connectionCount = *(int *)(*pnetworkTimeout + lVar9 * 4);
+    pstatusCode0 = (int *)(*pnetworkTimeout + long_var_9 * 4);
+    connectionCount = *(int *)(*pnetworkTimeout + long_var_9 * 4);
     if (connectionCount != -1) {
-      lVar9 = pnetworkTimeout[2];
+      long_var_9 = pnetworkTimeout[2];
       do {
         clientPort = (longlong)connectionCount * SOCKET_RESPONSE_OFFSET;
-        if (((longlong *)*(longlong *)(clientPort + lVar9) == networkUintStack_48) &&
-           (*(longlong *)(clientPort + 8 + lVar9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180889c37;
-        pstatusCode0 = (int *)(lVar9 + 0x10 + clientPort);
+        if (((longlong *)*(longlong *)(clientPort + long_var_9) == networkUintStack_48) &&
+           (*(longlong *)(clientPort + 8 + long_var_9) == CONCAT44(networkUintStack_3c,networkUintStack_40))) goto LAB_180889c37;
+        pstatusCode0 = (int *)(long_var_9 + 0x10 + clientPort);
         connectionCount = *pstatusCode0;
       } while (connectionCount != -1);
     }
@@ -85146,7 +85146,7 @@ void FUN_18088dd60(longlong socketHandle,longlong *dataBuffer)
   uint *socketStatusPointer;
   uint bufferSize;
   int errorCode;
-  ulonglong uVar9;
+  ulonglong uint_var_9;
   ulonglong networkResult0;
   ulonglong networkResult1;
   uint8_t networkStack_178 [32];
@@ -85159,12 +85159,12 @@ void FUN_18088dd60(longlong socketHandle,longlong *dataBuffer)
   networkResult1 = 0;
   if (((*(int *)(socketHandle + CONNECTION_STATE_OFFSET) != 0) &&
       (cVar1 = (**(code **)(*dataBuffer + 0x60))(dataBuffer), cVar1 != '\0')) &&
-     (uVar9 = networkResult1, networkResult0 = networkResult1, 0 < *(int *)(socketHandle + CONNECTION_STATE_OFFSET))) {
+     (uint_var_9 = networkResult1, networkResult0 = networkResult1, 0 < *(int *)(socketHandle + CONNECTION_STATE_OFFSET))) {
     do {
       resultCode = FUN_180897520(*(uint64_t *)(networkResult0 + *(longlong *)(socketHandle + 0x1f8)),dataBuffer);
       if (resultCode != 0) goto LAB_18088de99;
-      bufferSize = (int)uVar9 + 1;
-      uVar9 = (ulonglong)bufferSize;
+      bufferSize = (int)uint_var_9 + 1;
+      uint_var_9 = (ulonglong)bufferSize;
       networkResult0 = networkResult0 + 8;
     } while ((int)bufferSize < *(int *)(socketHandle + CONNECTION_STATE_OFFSET));
   }
@@ -85177,24 +85177,24 @@ void FUN_18088dd60(longlong socketHandle,longlong *dataBuffer)
     if (networkOperationResult < 1) {
       errorCode = 0;
     }
-    uVar9 = networkResult1;
+    uint_var_9 = networkResult1;
     if (errorCode == 0xb) {
       networkOperationResult = networkConfigureBuffer(*(uint64_t *)(socketHandle + 0x158),networkStack_148);
       if (networkOperationResult == 0) {
-        uVar9 = (ulonglong)networkStack_148[0];
+        uint_var_9 = (ulonglong)networkStack_148[0];
       }
     }
     else {
       pprocessResult = (int *)(**(code **)(*dataBuffer + 0x40))(dataBuffer);
-      if (((pprocessResult != (int *)0x0) && (uVar9 = 0, *pprocessResult != 0)) &&
-         (socketStatusPointer = (uint *)(**(code **)(*dataBuffer + 0x40))(dataBuffer), uVar9 = networkResult1,
+      if (((pprocessResult != (int *)0x0) && (uint_var_9 = 0, *pprocessResult != 0)) &&
+         (socketStatusPointer = (uint *)(**(code **)(*dataBuffer + 0x40))(dataBuffer), uint_var_9 = networkResult1,
          socketStatusPointer != (uint *)0x0)) {
-        uVar9 = (ulonglong)*socketStatusPointer;
+        uint_var_9 = (ulonglong)*socketStatusPointer;
       }
     }
     networkPtrStack_158 = networkStack_138;
                     // WARNING: Subroutine does not return
-    networkSendControlPacket(resultCode,errorCode,uVar9,dataPointer);
+    networkSendControlPacket(resultCode,errorCode,uint_var_9,dataPointer);
   }
 LAB_18088de99:
                     // WARNING: Subroutine does not return
@@ -90936,7 +90936,7 @@ uint64_t FUN_180892270(longlong socketHandle,longlong dataBuffer)
   ulonglong socketStatus;
   longlong serverPort;
   ulonglong timeoutValue;
-  ulonglong uVar9;
+  ulonglong uint_var_9;
   longlong lStackX_8;
   
   if (socketHandle + 0x1c == 0) {
@@ -90949,10 +90949,10 @@ uint64_t FUN_180892270(longlong socketHandle,longlong dataBuffer)
     if (lStackX_8 != 0) {
       timeoutValue = lStackX_8 - 8;
     }
-    uVar9 = socketStatus;
+    uint_var_9 = socketStatus;
     if (0 < *(int *)(timeoutValue + CONNECTION_BUFFER_OFFSET)) {
       do {
-        serverPort = *(longlong *)(timeoutValue + SOCKET_RESPONSE_OFFSET) + uVar9;
+        serverPort = *(longlong *)(timeoutValue + SOCKET_RESPONSE_OFFSET) + uint_var_9;
         networkTimeout = *(longlong *)(serverPort + 0x10);
         if (networkTimeout == 0) {
           return 0x1e;
@@ -90974,7 +90974,7 @@ uint64_t FUN_180892270(longlong socketHandle,longlong dataBuffer)
         }
         connectionIndex = (int)socketStatus + 1;
         socketStatus = (ulonglong)connectionIndex;
-        uVar9 = uVar9 + 0x18;
+        uint_var_9 = uint_var_9 + 0x18;
       } while ((int)connectionIndex < *(int *)(timeoutValue + CONNECTION_BUFFER_OFFSET));
     }
     bufferCapacity = 0x4a;
@@ -90995,7 +90995,7 @@ uint64_t FUN_1808922ad(void)
   ulonglong socketStatus;
   longlong serverPort;
   ulonglong timeoutValue;
-  ulonglong uVar9;
+  ulonglong uint_var_9;
   longlong unaff_R13;
   longlong responseBuffer;
   longlong stack_param;
@@ -91005,10 +91005,10 @@ uint64_t FUN_1808922ad(void)
   if (stack_param != 0) {
     timeoutValue = stack_param - 8;
   }
-  uVar9 = socketStatus;
+  uint_var_9 = socketStatus;
   if (0 < *(int *)(timeoutValue + CONNECTION_BUFFER_OFFSET)) {
     do {
-      serverPort = *(longlong *)(timeoutValue + SOCKET_RESPONSE_OFFSET) + uVar9;
+      serverPort = *(longlong *)(timeoutValue + SOCKET_RESPONSE_OFFSET) + uint_var_9;
       networkTimeout = *(longlong *)(serverPort + 0x10);
       if (networkTimeout == 0) {
         return 0x1e;
@@ -91030,7 +91030,7 @@ uint64_t FUN_1808922ad(void)
       }
       connectionIndex = (int)socketStatus + 1;
       socketStatus = (ulonglong)connectionIndex;
-      uVar9 = uVar9 + 0x18;
+      uint_var_9 = uint_var_9 + 0x18;
     } while ((int)connectionIndex < *(int *)(timeoutValue + CONNECTION_BUFFER_OFFSET));
   }
   return 0x4a;
@@ -91798,7 +91798,7 @@ uint64_t FUN_180892cc0(longlong socketHandle,longlong dataBuffer)
   ulonglong socketStatus;
   float *pfVar7;
   ulonglong timeoutValue;
-  uint uVar9;
+  uint uint_var_9;
   float fVar11;
   float fStackX_8;
   uint32_t uStackX_c;
@@ -91846,10 +91846,10 @@ uint64_t FUN_180892cc0(longlong socketHandle,longlong dataBuffer)
         }
         *pfVar4 = fVar11;
       }
-      uVar9 = (int)networkResult0 + 1;
-      networkResult0 = (ulonglong)uVar9;
+      uint_var_9 = (int)networkResult0 + 1;
+      networkResult0 = (ulonglong)uint_var_9;
       pfVar4 = pfVar4 + 1;
-    } while ((int)uVar9 < *(int *)(socketHandle + 0x18));
+    } while ((int)uint_var_9 < *(int *)(socketHandle + 0x18));
     if (0 < *(int *)(socketHandle + 0x18)) {
       socketHandle = (socketHandle + SOCKET_RESPONSE_OFFSET) - (longlong)pfVar7;
       do {
@@ -91857,10 +91857,10 @@ uint64_t FUN_180892cc0(longlong socketHandle,longlong dataBuffer)
         if (statusCode != -1) {
           *(float *)(*(longlong *)(socketStatus + SOCKET_RESPONSE_OFFSET) + 4 + (longlong)statusCode * 0x18) = *pfVar7;
         }
-        uVar9 = (int)timeoutValue + 1;
-        timeoutValue = (ulonglong)uVar9;
+        uint_var_9 = (int)timeoutValue + 1;
+        timeoutValue = (ulonglong)uint_var_9;
         pfVar7 = pfVar7 + 1;
-      } while ((int)uVar9 < *(int *)(socketHandle + 0x18));
+      } while ((int)uint_var_9 < *(int *)(socketHandle + 0x18));
     }
   }
                     // WARNING: Subroutine does not return
@@ -93949,7 +93949,7 @@ uint64_t FUN_180895210(longlong *socketHandle)
   uint socketStatus;
   int *pdataLength;
   int errorCode;
-  ulonglong uVar9;
+  ulonglong uint_var_9;
   ulonglong networkResult0;
   
   errorCode = *(int *)((longlong)socketHandle + 0x24);
@@ -93974,8 +93974,8 @@ uint64_t FUN_180895210(longlong *socketHandle)
     if ((int)bufferCapacity != 0) {
       return bufferCapacity;
     }
-    uVar9 = 0;
-    dataPointer = uVar9;
+    uint_var_9 = 0;
+    dataPointer = uint_var_9;
     if (0 < errorCode) {
       do {
         *(uint32_t *)(*socketHandle + dataPointer * 4) = 0xffffffff;
@@ -93983,8 +93983,8 @@ uint64_t FUN_180895210(longlong *socketHandle)
       } while ((longlong)dataPointer < (longlong)errorCode);
     }
     socketDescriptor = socketHandle[3];
-    dataPointer = uVar9;
-    networkResult0 = uVar9;
+    dataPointer = uint_var_9;
+    networkResult0 = uint_var_9;
     if (0 < (int)socketDescriptor) {
       do {
         if ((int)socketHandle[1] == 0) {
@@ -93997,9 +93997,9 @@ uint64_t FUN_180895210(longlong *socketHandle)
           pdataLength = (int *)(socketHandle[2] + 4 + (longlong)errorCode * 0x10);
           errorCode = *pdataLength;
         }
-        *pdataLength = (int)uVar9;
+        *pdataLength = (int)uint_var_9;
         networkResult0 = networkResult0 + 1;
-        uVar9 = (ulonglong)((int)uVar9 + 1);
+        uint_var_9 = (ulonglong)((int)uint_var_9 + 1);
         *(uint32_t *)(socketHandle[2] + 4 + dataPointer) = 0xffffffff;
         dataPointer = dataPointer + 0x10;
       } while ((longlong)networkResult0 < (longlong)(int)socketDescriptor);
@@ -94024,7 +94024,7 @@ uint64_t FUN_180895236(void)
   int packetId;
   int dataLength;
   ulonglong timeoutValue;
-  ulonglong uVar9;
+  ulonglong uint_var_9;
   
   if (unaff_EDI == in_EAX) {
     dataLength = unaff_EDI * 2;
@@ -94053,7 +94053,7 @@ uint64_t FUN_180895236(void)
     }
     networkTimeout = unaff_RBX[3];
     bufferCapacity = timeoutValue;
-    uVar9 = timeoutValue;
+    uint_var_9 = timeoutValue;
     if (0 < (int)networkTimeout) {
       do {
         if ((int)unaff_RBX[1] == 0) {
@@ -94067,11 +94067,11 @@ uint64_t FUN_180895236(void)
           dataLength = *psocketIndex;
         }
         *psocketIndex = (int)timeoutValue;
-        uVar9 = uVar9 + 1;
+        uint_var_9 = uint_var_9 + 1;
         timeoutValue = (ulonglong)((int)timeoutValue + 1);
         *(uint32_t *)(unaff_RBX[2] + 4 + bufferCapacity) = 0xffffffff;
         bufferCapacity = bufferCapacity + 0x10;
-      } while ((longlong)uVar9 < (longlong)(int)networkTimeout);
+      } while ((longlong)uint_var_9 < (longlong)(int)networkTimeout);
     }
   }
   return 0;
@@ -94102,7 +94102,7 @@ void FUN_180895360(longlong socketHandle,uint8_t *dataBuffer,int *bufferCapacity
   longlong networkAddress;
   longlong serverPort;
   int errorCode;
-  longlong lVar9;
+  longlong long_var_9;
   float fVar10;
   float fVar11;
   uint8_t networkStack_738 [68];
@@ -94121,7 +94121,7 @@ void FUN_180895360(longlong socketHandle,uint8_t *dataBuffer,int *bufferCapacity
   if (connectionCount < *(int *)(socketHandle + SOCKET_RESPONSE_OFFSET)) {
     networkLongStack_6e0 = *(longlong *)(socketHandle + 0x18);
     networkLongStack_6b8 = serverPort * 3;
-    lVar9 = (longlong)*(int *)(networkLongStack_6e0 + serverPort * 0xc) + *(longlong *)(socketHandle + 8);
+    long_var_9 = (longlong)*(int *)(networkLongStack_6e0 + serverPort * 0xc) + *(longlong *)(socketHandle + 8);
     cVar3 = *(char *)(networkLongStack_6e0 + 8 + serverPort * 0xc);
     if (cVar3 == '\x01') {
       errorCode = *(int *)(socketHandle + 0xb0);
@@ -94129,7 +94129,7 @@ void FUN_180895360(longlong socketHandle,uint8_t *dataBuffer,int *bufferCapacity
         *(int *)(socketHandle + 0xac) = connectionCount + 1;
         goto FUN_180895b89;
       }
-      fVar10 = *(float *)(lVar9 + 0x18);
+      fVar10 = *(float *)(long_var_9 + 0x18);
       fVar11 = fVar10;
       if (errorCode != -1) {
         fVar11 = *(float *)(socketHandle + 0xb4);
@@ -94158,7 +94158,7 @@ void FUN_180895360(longlong socketHandle,uint8_t *dataBuffer,int *bufferCapacity
       if (*(longlong *)(socketHandle + 0xc0) != 0) {
         connectionIndex = FUN_180895ef0(socketHandle);
         connectionCount = (**(code **)(socketHandle + 0xc0))
-                          (connectionIndex,connectionCount,*(uint32_t *)(lVar9 + 0x18),*(uint64_t *)(socketHandle + 0xb8)
+                          (connectionIndex,connectionCount,*(uint32_t *)(long_var_9 + 0x18),*(uint64_t *)(socketHandle + 0xb8)
                           );
         if (connectionCount != 0) goto FUN_180895b89;
       }
@@ -94168,7 +94168,7 @@ void FUN_180895360(longlong socketHandle,uint8_t *dataBuffer,int *bufferCapacity
          (((*(uint *)(socketHandle + 0x6c) >> 0x19 & 1) != 0 && (errorCode == *(int *)(socketHandle + 0xb0))))) {
 LAB_18089555d:
                     // WARNING: Subroutine does not return
-        memcpy(networkStack_648,lVar9,(longlong)*(int *)(lVar9 + 8));
+        memcpy(networkStack_648,long_var_9,(longlong)*(int *)(long_var_9 + 8));
       }
     }
     else {
@@ -94191,7 +94191,7 @@ LAB_18089555d:
       }
       else {
         if ((cVar3 != '\x02') || ((*(byte *)(socketHandle + 0x6c) & 4) != 0)) goto LAB_18089555d;
-        networkUintStack_6f4 = *(uint32_t *)(lVar9 + SOCKET_RESPONSE_OFFSET);
+        networkUintStack_6f4 = *(uint32_t *)(long_var_9 + SOCKET_RESPONSE_OFFSET);
         connectionCount = FUN_180895c60(socketHandle,connectionCount,&networkUintStack_6f4);
         if (connectionCount != 0) goto FUN_180895b89;
         connectionCount = networkValidateSocket(networkUintStack_6f4,networkArrayStack_6b0);
@@ -94526,7 +94526,7 @@ uint64_t FUN_180895d30(longlong *socketHandle,uint *dataBuffer,uint64_t *bufferC
   uint64_t *socketStatusPointer;
   int dataLength;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   uint *connectionBuffer0;
   uint networkResult1;
   int statusCode2;
@@ -94544,13 +94544,13 @@ uint64_t FUN_180895d30(longlong *socketHandle,uint *dataBuffer,uint64_t *bufferC
     if (resultCode != -1) {
       clientPort = socketHandle[2];
       do {
-        lVar9 = (longlong)resultCode;
-        if (*(uint *)(clientPort + lVar9 * 0x10) == networkResult) {
-          *(uint64_t *)(clientPort + 8 + lVar9 * 0x10) = *bufferCapacity;
+        long_var_9 = (longlong)resultCode;
+        if (*(uint *)(clientPort + long_var_9 * 0x10) == networkResult) {
+          *(uint64_t *)(clientPort + 8 + long_var_9 * 0x10) = *bufferCapacity;
           return 0;
         }
-        resultCode = *(int *)(clientPort + 4 + lVar9 * 0x10);
-        pstatusCode3 = (int *)(clientPort + 4 + lVar9 * 0x10);
+        resultCode = *(int *)(clientPort + 4 + long_var_9 * 0x10);
+        pstatusCode3 = (int *)(clientPort + 4 + long_var_9 * 0x10);
       } while (resultCode != -1);
     }
     resultCode = (int)socketHandle[4];
@@ -94610,7 +94610,7 @@ uint64_t FUN_180895d62(uint64_t socketHandle,int dataBuffer)
   int socketIndex;
   longlong serverPort;
   uint32_t *ptimeoutValue;
-  uint uVar9;
+  uint uint_var_9;
   int statusCode0;
   int *pstatusCode1;
   longlong *unaff_RDI;
@@ -94637,8 +94637,8 @@ uint64_t FUN_180895d62(uint64_t socketHandle,int dataBuffer)
     uStack0000000000000028 = *responseBuffer;
     resultCode = (int)unaff_RDI[3];
     socketIndex = resultCode + 1;
-    uVar9 = (int)*(uint *)((longlong)unaff_RDI + 0x1c) >> 0x1f;
-    networkOperationResult = (*(uint *)((longlong)unaff_RDI + 0x1c) ^ uVar9) - uVar9;
+    uint_var_9 = (int)*(uint *)((longlong)unaff_RDI + 0x1c) >> 0x1f;
+    networkOperationResult = (*(uint *)((longlong)unaff_RDI + 0x1c) ^ uint_var_9) - uint_var_9;
     if (networkOperationResult < socketIndex) {
       statusCode0 = (int)((float)networkOperationResult * 1.5);
       networkOperationResult = socketIndex;
@@ -95004,7 +95004,7 @@ ulonglong FUN_180896140(longlong socketHandle)
   ulonglong socketStatus;
   int dataLength;
   uint timeoutValue;
-  uint uVar9;
+  uint uint_var_9;
   ulonglong networkResult0;
   int statusCode1;
   uint32_t *connectionBuffer2;
@@ -95170,7 +95170,7 @@ ulonglong FUN_180896140(longlong socketHandle)
                   timeoutValue = -networkUintStack_110._4_4_;
                 }
                 socketHandle = (longlong)(int)networkUintStack_110;
-                uVar9 = networkUintStack_110._4_4_;
+                uint_var_9 = networkUintStack_110._4_4_;
                 if ((int)timeoutValue < 0) {
                   if (0 < (int)networkUintStack_110) {
                     return socketStatus;
@@ -95182,7 +95182,7 @@ ulonglong FUN_180896140(longlong socketHandle)
                   }
                   networkUintStack_118 = 0;
                   networkUintStack_110 = 0;
-                  uVar9 = 0;
+                  uint_var_9 = 0;
                 }
                 if (connectionCount < 0) {
                   connectionBuffer2 = (uint32_t *)(networkUintStack_118 + socketHandle * 4);
@@ -95195,10 +95195,10 @@ ulonglong FUN_180896140(longlong socketHandle)
                   }
                 }
                 networkUintStack_110 = networkUintStack_110 & 0xffffffff00000000;
-                if ((int)uVar9 < 0) {
-                  uVar9 = -uVar9;
+                if ((int)uint_var_9 < 0) {
+                  uint_var_9 = -uint_var_9;
                 }
-                if (uVar9 == 0) {
+                if (uint_var_9 == 0) {
                   return socketStatus;
                 }
                 FUN_18084c470(&networkUintStack_118,0);
@@ -96231,7 +96231,7 @@ void FUN_1808975e0(longlong socketHandle,longlong dataBuffer)
   int socketIndex;
   uint bufferSize;
   longlong clientPort;
-  longlong lVar9;
+  longlong long_var_9;
   uint64_t networkResult0;
   uint64_t networkResult1;
   undefined *connectionBuffer2;
@@ -96306,18 +96306,18 @@ void FUN_1808975e0(longlong socketHandle,longlong dataBuffer)
         clientPort = networkTimeout4;
         if (0 < networkLongStack_188) {
           do {
-            lVar9 = *(longlong *)(socketDescriptor + SOCKET_RESPONSE_OFFSET);
-            connectionInfo = *(longlong *)(networkTimeout4 + 0x10 + lVar9);
-            dataBuffer = *(longlong *)(networkTimeout4 + 8 + lVar9);
+            long_var_9 = *(longlong *)(socketDescriptor + SOCKET_RESPONSE_OFFSET);
+            connectionInfo = *(longlong *)(networkTimeout4 + 0x10 + long_var_9);
+            dataBuffer = *(longlong *)(networkTimeout4 + 8 + long_var_9);
             cVar5 = func_0x000180894c50(connectionInfo,1);
             connectionBuffer6 = networkPtrStack_190;
             if ((cVar5 == '\0') && (*(float *)(connectionInfo + 0x4c) != *(float *)(dataBuffer + CONNECTION_BUFFER_OFFSET))) {
-              networkUintStack_f0 = *(uint32_t *)(networkTimeout4 + 4 + lVar9);
+              networkUintStack_f0 = *(uint32_t *)(networkTimeout4 + 4 + long_var_9);
               networkPtrStack_108 = &g_network_connection_config_038;
               networkUintStack_f8 = networkUintStack_1c8;
               networkUintStack_100 = 0;
-              lVar9 = (**(code **)*networkPtrStack_190)(networkPtrStack_190);
-              networkUintStack_e8 = *(uint64_t *)(*(longlong *)(lVar9 + 0x90) + clientPort * 8);
+              long_var_9 = (**(code **)*networkPtrStack_190)(networkPtrStack_190);
+              networkUintStack_e8 = *(uint64_t *)(*(longlong *)(long_var_9 + 0x90) + clientPort * 8);
               networkUintStack_ec = 0;
               if (*(int *)(connectionInfo + 0x58) < 1) {
                 connectionBuffer2 = &g_networkEmptyString;
@@ -96476,7 +96476,7 @@ void FUN_180897644(void)
   uint32_t socketStatus;
   uint32_t bufferSize;
   uint32_t timeoutValue;
-  uint32_t uVar9;
+  uint32_t uint_var_9;
   uint32_t networkResult0;
   uint32_t networkResult1;
   char cVar12;
@@ -96597,7 +96597,7 @@ void FUN_180897644(void)
             unaff_RBP[-10] = networkResult6;
             *(float *)(unaff_RBP + -0xd) = unaff_R13D;
             timeoutValue = *(uint32_t *)(unaff_R15 + 0x58);
-            uVar9 = *(uint32_t *)(unaff_R15 + 0x5c);
+            uint_var_9 = *(uint32_t *)(unaff_R15 + 0x5c);
             networkResult0 = *(uint32_t *)(unaff_R15 + 0x60);
             networkResult1 = *(uint32_t *)(unaff_R15 + 100);
             *(uint32_t *)(unaff_RBP + -0xc) = uStackX_20;
@@ -96606,7 +96606,7 @@ void FUN_180897644(void)
             *(uint32_t *)(unaff_RBP + -8) = socketStatus;
             *(uint32_t *)((longlong)unaff_RBP + -0x3c) = bufferSize;
             *(uint32_t *)(unaff_RBP + -7) = timeoutValue;
-            *(uint32_t *)((longlong)unaff_RBP + -0x34) = uVar9;
+            *(uint32_t *)((longlong)unaff_RBP + -0x34) = uint_var_9;
             *(uint32_t *)(unaff_RBP + -6) = networkResult0;
             *(uint32_t *)((longlong)unaff_RBP + -0x2c) = networkResult1;
             statusCode3 = FUN_180897520(timeoutValue,unaff_RBP + -0xe);
@@ -96738,7 +96738,7 @@ void FUN_1808976b0(void)
   uint32_t socketStatus;
   uint32_t bufferSize;
   uint32_t timeoutValue;
-  uint32_t uVar9;
+  uint32_t uint_var_9;
   uint32_t networkResult0;
   uint32_t networkResult1;
   char cVar12;
@@ -96843,7 +96843,7 @@ void FUN_1808976b0(void)
         unaff_RBP[-10] = networkResult6;
         *(float *)(unaff_RBP + -0xd) = unaff_R13D;
         timeoutValue = *(uint32_t *)(unaff_R15 + 0x58);
-        uVar9 = *(uint32_t *)(unaff_R15 + 0x5c);
+        uint_var_9 = *(uint32_t *)(unaff_R15 + 0x5c);
         networkResult0 = *(uint32_t *)(unaff_R15 + 0x60);
         networkResult1 = *(uint32_t *)(unaff_R15 + 100);
         *(uint32_t *)(unaff_RBP + -0xc) = uStackX_20;
@@ -96852,7 +96852,7 @@ void FUN_1808976b0(void)
         *(uint32_t *)(unaff_RBP + -8) = socketStatus;
         *(uint32_t *)((longlong)unaff_RBP + -0x3c) = bufferSize;
         *(uint32_t *)(unaff_RBP + -7) = timeoutValue;
-        *(uint32_t *)((longlong)unaff_RBP + -0x34) = uVar9;
+        *(uint32_t *)((longlong)unaff_RBP + -0x34) = uint_var_9;
         *(uint32_t *)(unaff_RBP + -6) = networkResult0;
         *(uint32_t *)((longlong)unaff_RBP + -0x2c) = networkResult1;
         statusCode3 = FUN_180897520(timeoutValue,unaff_RBP + -0xe);
@@ -97395,7 +97395,7 @@ void FUN_180898040(longlong *socketHandle)
   int socketIndex;
   int dataLength;
   int errorCode;
-  ulonglong uVar9;
+  ulonglong uint_var_9;
   longlong *pnetworkTimeout0;
   longlong networkTimeout1;
   undefined *connectionBuffer2;
@@ -97502,11 +97502,11 @@ void FUN_180898040(longlong *socketHandle)
           fVar18 = SUB84(pnetworkTimeout3,0);
           pnetworkTimeout3 = (longlong *)(networkTimeout5 + 0xe0 + (longlong)pnetworkTimeout0);
           networkTimeout1 = *pnetworkTimeout3;
-          uVar9 = pnetworkTimeout3[1];
+          uint_var_9 = pnetworkTimeout3[1];
           networkUintStack_2c4 = (uint)networkTimeout1;
           networkUintStack_2c0 = uint32_t)((ulonglong)networkTimeout1 >> SOCKET_RESPONSE_OFFSET);
-          networkUintStack_2bc = uint32_t)uVar9;
-          networkUintStack_2b8 = uint32_t)(uVar9 >> SOCKET_RESPONSE_OFFSET);
+          networkUintStack_2bc = uint32_t)uint_var_9;
+          networkUintStack_2b8 = uint32_t)(uint_var_9 >> SOCKET_RESPONSE_OFFSET);
           ppacketLength = (uint64_t *)(networkTimeout5 + 0xf0 + (longlong)pnetworkTimeout0);
           networkUintStack_2b4 = *ppacketLength;
           networkUintStack_2ac = ppacketLength[1];
@@ -97519,7 +97519,7 @@ void FUN_180898040(longlong *socketHandle)
           networkUintStack_28c = *(uint *)(networkTimeout5 + 0x268 + (longlong)pnetworkTimeout9);
           networkTimeout1 = networkTimeout1 - networkLongStack_294;
           if (networkTimeout1 == 0) {
-            networkTimeout1 = (uVar9 & 0xffffffff) - (ulonglong)networkUintStack_28c;
+            networkTimeout1 = (uint_var_9 & 0xffffffff) - (ulonglong)networkUintStack_28c;
           }
           networkTimeout5 = socketHandle[4];
           networkUintStack_288 = networkTimeout1 == 0;
@@ -97572,15 +97572,15 @@ void FUN_180898040(longlong *socketHandle)
               if (((dataLength != 0) || (dataLength = FUN_18073c4c0(networkStack_2e8[0],&networkLongStack_320,0), dataLength != 0)
                   ) || (dataLength = (**(code **)(*socketHandle + 0x10))(socketHandle), dataLength != 0))
               goto LAB_18089866f;
-              uVar9 = (ulonglong)(networkLongStack_320 * 48000) /
+              uint_var_9 = (ulonglong)(networkLongStack_320 * 48000) /
                       (ulonglong)*(uint *)((longlong)socketHandle + 0x1c);
               dataBuffer = socketHandle[2];
               pnetworkLongStack_340 = (longlong *)&g_network_data_buffer_390;
               networkUintStack_338 = networkUintStack_338 & 0xffffffff00000000;
-              socketHandle[2] = uVar9;
+              socketHandle[2] = uint_var_9;
               apnetworkLongStack_330[0] = pnetworkTimeout6;
               if (dataBuffer != 0) {
-                apnetworkLongStack_330[0] = (longlong *)(uVar9 - dataBuffer);
+                apnetworkLongStack_330[0] = (longlong *)(uint_var_9 - dataBuffer);
               }
               dataLength = FUN_180897520(socketHandle,&pnetworkLongStack_340);
               if (dataLength != 0) goto LAB_18089866f;
@@ -99378,7 +99378,7 @@ void FUN_1808999c1(uint64_t *socketHandle,uint64_t dataBuffer)
   uint32_t extraout_XMM0_Da_03;
   uint32_t extraout_XMM0_Da_04;
   uint32_t extraout_XMM0_Da_05;
-  uint32_t uVar9;
+  uint32_t uint_var_9;
   
   networkOperationResult = *(int *)(responseBuffer + CONNECTION_BUFFER_OFFSET);
   *(int *)(unaff_RBP + SOCKET_RESPONSE_OFFSET) = networkOperationResult;
@@ -99386,16 +99386,16 @@ void FUN_1808999c1(uint64_t *socketHandle,uint64_t dataBuffer)
   bufferSize = 0;
   if (resultCode == 0) {
     connectionIndex = bufferSize;
-    uVar9 = extraout_XMM0_Da;
+    uint_var_9 = extraout_XMM0_Da;
     if (0 < networkOperationResult) {
       do {
-        resultCode = FUN_180899c60(uVar9,(longlong)(int)connectionIndex * 0x6c + *(longlong *)(responseBuffer + SOCKET_RESPONSE_OFFSET));
+        resultCode = FUN_180899c60(uint_var_9,(longlong)(int)connectionIndex * 0x6c + *(longlong *)(responseBuffer + SOCKET_RESPONSE_OFFSET));
         if (resultCode != 0) {
           return;
         }
         dataPointer = (int)connectionIndex + 1;
         connectionIndex = (ulonglong)dataPointer;
-        uVar9 = extraout_XMM0_Da_00;
+        uint_var_9 = extraout_XMM0_Da_00;
       } while ((int)dataPointer < networkOperationResult);
     }
     connectionBuffer = *(uint64_t **)(unaff_RBX + 8);
@@ -99404,17 +99404,17 @@ void FUN_1808999c1(uint64_t *socketHandle,uint64_t dataBuffer)
     resultCode = (**(code **)*connectionBuffer)(connectionBuffer,unaff_RBP + SOCKET_RESPONSE_OFFSET,4);
     if (resultCode == 0) {
       connectionIndex = bufferSize;
-      uVar9 = extraout_XMM0_Da_01;
+      uint_var_9 = extraout_XMM0_Da_01;
       if (0 < networkOperationResult) {
         do {
-          resultCode = networkValidateConnectionState(uVar9,(longlong)(int)connectionIndex * 0x10 + *(longlong *)(responseBuffer + 0x30))
+          resultCode = networkValidateConnectionState(uint_var_9,(longlong)(int)connectionIndex * 0x10 + *(longlong *)(responseBuffer + 0x30))
           ;
           if (resultCode != 0) {
             return;
           }
           dataPointer = (int)connectionIndex + 1;
           connectionIndex = (ulonglong)dataPointer;
-          uVar9 = extraout_XMM0_Da_02;
+          uint_var_9 = extraout_XMM0_Da_02;
         } while ((int)dataPointer < networkOperationResult);
       }
       connectionBuffer = *(uint64_t **)(unaff_RBX + 8);
@@ -99442,11 +99442,11 @@ void FUN_1808999c1(uint64_t *socketHandle,uint64_t dataBuffer)
         if (resultCode == 0) {
           connectionIndex = bufferSize;
           timeoutValue = bufferSize;
-          uVar9 = extraout_XMM0_Da_03;
+          uint_var_9 = extraout_XMM0_Da_03;
           if (0 < networkOperationResult) {
             do {
               networkAddress = *(longlong *)(responseBuffer + 0x50) + connectionIndex;
-              resultCode = networkValidateConnectionState(uVar9,networkAddress);
+              resultCode = networkValidateConnectionState(uint_var_9,networkAddress);
               if (resultCode != 0) {
                 return;
               }
@@ -99454,13 +99454,13 @@ void FUN_1808999c1(uint64_t *socketHandle,uint64_t dataBuffer)
               connectionBuffer = *(uint64_t **)(unaff_RBX + 8);
               if (dataPointer < 0x8000) {
                 *(short *)(unaff_RBP + SOCKET_RESPONSE_OFFSET) = (short)dataPointer;
-                uVar9 = 2;
+                uint_var_9 = 2;
               }
               else {
-                uVar9 = 4;
+                uint_var_9 = 4;
                 *(uint *)(unaff_RBP + SOCKET_RESPONSE_OFFSET) = (dataPointer & 0xffffc000 | 0x4000) * 2 | dataPointer & 0x7fff;
               }
-              resultCode = (**(code **)*connectionBuffer)(connectionBuffer,unaff_RBP + SOCKET_RESPONSE_OFFSET,uVar9);
+              resultCode = (**(code **)*connectionBuffer)(connectionBuffer,unaff_RBP + SOCKET_RESPONSE_OFFSET,uint_var_9);
               if (resultCode != 0) {
                 return;
               }
@@ -99470,10 +99470,10 @@ void FUN_1808999c1(uint64_t *socketHandle,uint64_t dataBuffer)
               }
               timeoutValue = timeoutValue + 1;
               connectionIndex = connectionIndex + 0x18;
-              uVar9 = extraout_XMM0_Da_05;
+              uint_var_9 = extraout_XMM0_Da_05;
             } while ((longlong)timeoutValue < (longlong)networkOperationResult);
           }
-          networkOperationResult = FUN_1808aca30(uVar9,responseBuffer + 0x60);
+          networkOperationResult = FUN_1808aca30(uint_var_9,responseBuffer + 0x60);
           if (networkOperationResult == 0) {
             connectionBuffer = *(uint64_t **)(unaff_RBX + 8);
             networkOperationResult = *(int *)(responseBuffer + 0x78);
@@ -103058,7 +103058,7 @@ ulonglong FUN_18089c190(longlong socketHandle,uint64_t *dataBuffer)
   uint socketStatus;
   ulonglong bufferSize;
   uint32_t *ptimeoutValue;
-  uint uVar9;
+  uint uint_var_9;
   uint64_t *connectionBuffer0;
   longlong networkTimeout1;
   longlong networkTimeout2;
@@ -103142,7 +103142,7 @@ LAB_18089c40a:
         socketStatus = -networkUintStack_80._4_4_;
       }
       statusCode3 = (int)networkUintStack_80;
-      uVar9 = networkUintStack_80._4_4_;
+      uint_var_9 = networkUintStack_80._4_4_;
       if ((int)socketStatus < 0) {
         if (0 < (int)networkUintStack_80) {
           return bufferSize;
@@ -103153,7 +103153,7 @@ LAB_18089c40a:
         }
         networkPtrStack_88 = (uint64_t *)0x0;
         networkUintStack_80 = networkUintStack_80 & 0xffffffff;
-        uVar9 = connectionIndex;
+        uint_var_9 = connectionIndex;
       }
       if (statusCode3 < 0) {
         networkTimeout2 = (longlong)-statusCode3;
@@ -103172,14 +103172,14 @@ LAB_18089c40a:
             networkTimeout2 = networkTimeout2 + -1;
             networkTimeout1 = networkTimeout1 + 0x18;
           } while (networkTimeout2 != 0);
-          uVar9 = networkUintStack_80._4_4_;
+          uint_var_9 = networkUintStack_80._4_4_;
         }
       }
       networkUintStack_80 = networkUintStack_80 & 0xffffffff00000000;
-      if ((int)uVar9 < 0) {
-        uVar9 = -uVar9;
+      if ((int)uint_var_9 < 0) {
+        uint_var_9 = -uint_var_9;
       }
-      if (uVar9 == 0) {
+      if (uint_var_9 == 0) {
         return bufferSize;
       }
       FUN_1808aef40(&networkPtrStack_88,0);
@@ -103216,7 +103216,7 @@ LAB_18089c40a:
     if ((longlong)networkUintStack_80 < 0) {
       socketStatus = -networkUintStack_80._4_4_;
     }
-    uVar9 = networkUintStack_80._4_4_;
+    uint_var_9 = networkUintStack_80._4_4_;
     if ((int)socketStatus < 0) {
       if (0 < statusCode3) goto LAB_18089c586;
       if ((0 < (int)networkUintStack_80._4_4_) && (networkPtrStack_88 != (uint64_t *)0x0)) {
@@ -103225,7 +103225,7 @@ LAB_18089c40a:
       }
       networkPtrStack_88 = (uint64_t *)0x0;
       networkUintStack_80 = networkUintStack_80 & 0xffffffff;
-      uVar9 = connectionIndex;
+      uint_var_9 = connectionIndex;
     }
     if (statusCode3 < 0) {
       networkTimeout2 = (longlong)-statusCode3;
@@ -103244,14 +103244,14 @@ LAB_18089c40a:
           networkTimeout2 = networkTimeout2 + -1;
           networkTimeout1 = networkTimeout1 + 0x18;
         } while (networkTimeout2 != 0);
-        uVar9 = networkUintStack_80._4_4_;
+        uint_var_9 = networkUintStack_80._4_4_;
       }
     }
     networkUintStack_80 = networkUintStack_80 & 0xffffffff00000000;
-    if ((int)uVar9 < 0) {
-      uVar9 = -uVar9;
+    if ((int)uint_var_9 < 0) {
+      uint_var_9 = -uint_var_9;
     }
-    if (uVar9 != 0) {
+    if (uint_var_9 != 0) {
       FUN_1808aef40(&networkPtrStack_88,0);
     }
   }
@@ -103294,7 +103294,7 @@ uint64_t * FUN_18089c1fb(void)
   float fVar6;
   float fVar7;
   uint timeoutValue;
-  uint uVar9;
+  uint uint_var_9;
   uint networkResult0;
   longlong networkContextPtr;
   uint64_t *connectionBuffer1;
@@ -103327,7 +103327,7 @@ uint64_t * FUN_18089c1fb(void)
   }
   connectionBuffer2 = (uint32_t *)FUN_180847820();
   connectionBuffer1 = (uint64_t *)0x0;
-  uVar9 = *(uint *)(unaff_RDI + 8);
+  uint_var_9 = *(uint *)(unaff_RDI + 8);
   packetLength0 = *connectionBuffer2;
   packetLength = connectionBuffer2[1];
   bufferCapacity = connectionBuffer2[2];
@@ -103338,7 +103338,7 @@ uint64_t * FUN_18089c1fb(void)
   *(uint32_t *)(unaff_RBP + -0xd) = dataPointer;
   timeoutValue = 0;
   connectionBuffer3 = connectionBuffer1;
-  if (uVar9 < 0x6d) {
+  if (uint_var_9 < 0x6d) {
     if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
       networkResult = *unaff_RDI;
       connectionBuffer3 = (uint64_t *)FUN_1808aed00(networkResult,unaff_RBP + -0x19,4);
@@ -103374,28 +103374,28 @@ uint64_t * FUN_18089c1fb(void)
   if (*(uint *)(unaff_RDI + 8) < 0x6a) {
     *(uint64_t *)(unaff_RBP + -0x29) = 0;
     *(uint64_t *)(unaff_RBP + -0x21) = 0;
-    uVar9 = FUN_1808a54c0(packetLength0,unaff_RBP + -0x29,0);
-    connectionBuffer3 = (uint64_t *)(ulonglong)uVar9;
-    if (uVar9 != 0) {
+    uint_var_9 = FUN_1808a54c0(packetLength0,unaff_RBP + -0x29,0);
+    connectionBuffer3 = (uint64_t *)(ulonglong)uint_var_9;
+    if (uint_var_9 != 0) {
 LAB_18089c40a:
-      uVar9 = *(uint *)(unaff_RBP + -0x1d);
-      networkResult0 = uVar9;
-      if ((int)uVar9 < 0) {
-        networkResult0 = -uVar9;
+      uint_var_9 = *(uint *)(unaff_RBP + -0x1d);
+      networkResult0 = uint_var_9;
+      if ((int)uint_var_9 < 0) {
+        networkResult0 = -uint_var_9;
       }
       statusCode9 = *(int *)(unaff_RBP + -0x21);
       if ((int)networkResult0 < 0) {
         if (0 < statusCode9) {
           return connectionBuffer3;
         }
-        if ((0 < (int)uVar9) && (*(longlong *)(unaff_RBP + -0x29) != 0)) {
+        if ((0 < (int)uint_var_9) && (*(longlong *)(unaff_RBP + -0x29) != 0)) {
                     // WARNING: Subroutine does not return
           NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),*(longlong *)(unaff_RBP + -0x29),
                         &g_errorBuffer,0x100,1);
         }
         *(uint64_t *)(unaff_RBP + -0x29) = 0;
         *(uint32_t *)(unaff_RBP + -0x1d) = 0;
-        uVar9 = timeoutValue;
+        uint_var_9 = timeoutValue;
       }
       else {
         connectionBuffer1 = *(uint64_t **)(unaff_RBP + -0x29);
@@ -103417,14 +103417,14 @@ LAB_18089c40a:
             networkTimeout8 = networkTimeout8 + -1;
             networkTimeout7 = networkTimeout7 + 0x18;
           } while (networkTimeout8 != 0);
-          uVar9 = *(uint *)(unaff_RBP + -0x1d);
+          uint_var_9 = *(uint *)(unaff_RBP + -0x1d);
         }
       }
       *(uint32_t *)(unaff_RBP + -0x21) = 0;
-      if ((int)uVar9 < 0) {
-        uVar9 = -uVar9;
+      if ((int)uint_var_9 < 0) {
+        uint_var_9 = -uint_var_9;
       }
-      if (uVar9 == 0) {
+      if (uint_var_9 == 0) {
         return connectionBuffer3;
       }
       FUN_1808aef40(unaff_RBP + -0x29,0);
@@ -103436,11 +103436,11 @@ LAB_18089c40a:
       connectionBuffer3 = *(uint64_t **)(unaff_RBP + -0x29);
     }
     else {
-      uVar9 = (int)*(uint *)(unaff_RSI + 0x54) >> 0x1f;
-      if ((int)((*(uint *)(unaff_RSI + 0x54) ^ uVar9) - uVar9) < statusCode9) {
-        uVar9 = FUN_180883750(unaff_RSI + 0x48,statusCode9);
-        connectionBuffer3 = (uint64_t *)(ulonglong)uVar9;
-        if (uVar9 != 0) goto LAB_18089c40a;
+      uint_var_9 = (int)*(uint *)(unaff_RSI + 0x54) >> 0x1f;
+      if ((int)((*(uint *)(unaff_RSI + 0x54) ^ uint_var_9) - uint_var_9) < statusCode9) {
+        uint_var_9 = FUN_180883750(unaff_RSI + 0x48,statusCode9);
+        connectionBuffer3 = (uint64_t *)(ulonglong)uint_var_9;
+        if (uint_var_9 != 0) goto LAB_18089c40a;
         statusCode9 = *(int *)(unaff_RBP + -0x21);
         fVar21 = extraout_XMM0_Da_04;
       }
@@ -103448,9 +103448,9 @@ LAB_18089c40a:
       for (connectionBuffer6 = connectionBuffer3; (connectionBuffer3 <= connectionBuffer6 && (connectionBuffer6 < connectionBuffer3 + (longlong)statusCode9 * 3));
           connectionBuffer6 = connectionBuffer6 + 3) {
         *(uint64_t *)(unaff_RBP + 0x77) = 0;
-        uVar9 = FUN_1808aec50(unaff_RSI + 0x48,unaff_RBP + 0x77);
-        connectionBuffer3 = (uint64_t *)(ulonglong)uVar9;
-        if (uVar9 != 0) goto LAB_18089c40a;
+        uint_var_9 = FUN_1808aec50(unaff_RSI + 0x48,unaff_RBP + 0x77);
+        connectionBuffer3 = (uint64_t *)(ulonglong)uint_var_9;
+        if (uint_var_9 != 0) goto LAB_18089c40a;
         networkResult = connectionBuffer6[1];
         connectionBuffer3 = *(uint64_t **)(unaff_RBP + 0x77);
         *connectionBuffer3 = *connectionBuffer6;
@@ -103463,21 +103463,21 @@ LAB_18089c40a:
         connectionBuffer3 = *(uint64_t **)(unaff_RBP + -0x29);
       }
     }
-    uVar9 = *(uint *)(unaff_RBP + -0x1d);
-    networkResult0 = uVar9;
-    if ((int)uVar9 < 0) {
-      networkResult0 = -uVar9;
+    uint_var_9 = *(uint *)(unaff_RBP + -0x1d);
+    networkResult0 = uint_var_9;
+    if ((int)uint_var_9 < 0) {
+      networkResult0 = -uint_var_9;
     }
     if ((int)networkResult0 < 0) {
       if (0 < statusCode9) goto LAB_18089c586;
-      if ((0 < (int)uVar9) && (connectionBuffer3 != (uint64_t *)0x0)) {
+      if ((0 < (int)uint_var_9) && (connectionBuffer3 != (uint64_t *)0x0)) {
                     // WARNING: Subroutine does not return
         NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),connectionBuffer3,&g_errorBuffer,0x100,1);
       }
       *(uint64_t *)(unaff_RBP + -0x29) = 0;
       *(uint32_t *)(unaff_RBP + -0x1d) = 0;
       connectionBuffer3 = connectionBuffer1;
-      uVar9 = timeoutValue;
+      uint_var_9 = timeoutValue;
     }
     if (statusCode9 < 0) {
       networkTimeout8 = (longlong)-statusCode9;
@@ -103497,14 +103497,14 @@ LAB_18089c40a:
           networkTimeout8 = networkTimeout8 + -1;
           networkTimeout7 = networkTimeout7 + 0x18;
         } while (networkTimeout8 != 0);
-        uVar9 = *(uint *)(unaff_RBP + -0x1d);
+        uint_var_9 = *(uint *)(unaff_RBP + -0x1d);
       }
     }
     *(uint32_t *)(unaff_RBP + -0x21) = 0;
-    if ((int)uVar9 < 0) {
-      uVar9 = -uVar9;
+    if ((int)uint_var_9 < 0) {
+      uint_var_9 = -uint_var_9;
     }
-    if (uVar9 != 0) {
+    if (uint_var_9 != 0) {
       fVar21 = (float)FUN_1808aef40(unaff_RBP + -0x29,0);
     }
   }
@@ -103549,7 +103549,7 @@ uint64_t * FUN_18089c22e(void)
   float fVar6;
   float fVar7;
   uint timeoutValue;
-  uint uVar9;
+  uint uint_var_9;
   uint networkResult0;
   uint32_t *connectionBuffer1;
   uint64_t *connectionBuffer2;
@@ -103574,7 +103574,7 @@ uint64_t * FUN_18089c22e(void)
   
   connectionBuffer1 = (uint32_t *)FUN_180847820();
   connectionBuffer3 = (uint64_t *)0x0;
-  uVar9 = *(uint *)(unaff_RDI + 8);
+  uint_var_9 = *(uint *)(unaff_RDI + 8);
   packetLength0 = *connectionBuffer1;
   packetLength = connectionBuffer1[1];
   bufferCapacity = connectionBuffer1[2];
@@ -103585,7 +103585,7 @@ uint64_t * FUN_18089c22e(void)
   *(uint32_t *)(unaff_RBP + -0xd) = dataPointer;
   timeoutValue = 0;
   connectionBuffer2 = connectionBuffer3;
-  if (uVar9 < 0x6d) {
+  if (uint_var_9 < 0x6d) {
     if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
       networkResult = *unaff_RDI;
       connectionBuffer2 = (uint64_t *)FUN_1808aed00(networkResult,unaff_RBP + -0x19,4);
@@ -103621,28 +103621,28 @@ uint64_t * FUN_18089c22e(void)
   if (*(uint *)(unaff_RDI + 8) < 0x6a) {
     *(uint64_t *)(unaff_RBP + -0x29) = 0;
     *(uint64_t *)(unaff_RBP + -0x21) = 0;
-    uVar9 = FUN_1808a54c0(packetLength0,unaff_RBP + -0x29,0);
-    connectionBuffer2 = (uint64_t *)(ulonglong)uVar9;
-    if (uVar9 != 0) {
+    uint_var_9 = FUN_1808a54c0(packetLength0,unaff_RBP + -0x29,0);
+    connectionBuffer2 = (uint64_t *)(ulonglong)uint_var_9;
+    if (uint_var_9 != 0) {
 LAB_18089c40a:
-      uVar9 = *(uint *)(unaff_RBP + -0x1d);
-      networkResult0 = uVar9;
-      if ((int)uVar9 < 0) {
-        networkResult0 = -uVar9;
+      uint_var_9 = *(uint *)(unaff_RBP + -0x1d);
+      networkResult0 = uint_var_9;
+      if ((int)uint_var_9 < 0) {
+        networkResult0 = -uint_var_9;
       }
       statusCode9 = *(int *)(unaff_RBP + -0x21);
       if ((int)networkResult0 < 0) {
         if (0 < statusCode9) {
           return connectionBuffer2;
         }
-        if ((0 < (int)uVar9) && (*(longlong *)(unaff_RBP + -0x29) != 0)) {
+        if ((0 < (int)uint_var_9) && (*(longlong *)(unaff_RBP + -0x29) != 0)) {
                     // WARNING: Subroutine does not return
           NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),*(longlong *)(unaff_RBP + -0x29),
                         &g_errorBuffer,0x100,1);
         }
         *(uint64_t *)(unaff_RBP + -0x29) = 0;
         *(uint32_t *)(unaff_RBP + -0x1d) = 0;
-        uVar9 = timeoutValue;
+        uint_var_9 = timeoutValue;
       }
       else {
         connectionBuffer3 = *(uint64_t **)(unaff_RBP + -0x29);
@@ -103664,14 +103664,14 @@ LAB_18089c40a:
             networkTimeout8 = networkTimeout8 + -1;
             networkTimeout7 = networkTimeout7 + 0x18;
           } while (networkTimeout8 != 0);
-          uVar9 = *(uint *)(unaff_RBP + -0x1d);
+          uint_var_9 = *(uint *)(unaff_RBP + -0x1d);
         }
       }
       *(uint32_t *)(unaff_RBP + -0x21) = 0;
-      if ((int)uVar9 < 0) {
-        uVar9 = -uVar9;
+      if ((int)uint_var_9 < 0) {
+        uint_var_9 = -uint_var_9;
       }
-      if (uVar9 == 0) {
+      if (uint_var_9 == 0) {
         return connectionBuffer2;
       }
       FUN_1808aef40(unaff_RBP + -0x29,0);
@@ -103683,11 +103683,11 @@ LAB_18089c40a:
       connectionBuffer2 = *(uint64_t **)(unaff_RBP + -0x29);
     }
     else {
-      uVar9 = (int)*(uint *)(unaff_RSI + 0x54) >> 0x1f;
-      if ((int)((*(uint *)(unaff_RSI + 0x54) ^ uVar9) - uVar9) < statusCode9) {
-        uVar9 = FUN_180883750(unaff_RSI + 0x48,statusCode9);
-        connectionBuffer2 = (uint64_t *)(ulonglong)uVar9;
-        if (uVar9 != 0) goto LAB_18089c40a;
+      uint_var_9 = (int)*(uint *)(unaff_RSI + 0x54) >> 0x1f;
+      if ((int)((*(uint *)(unaff_RSI + 0x54) ^ uint_var_9) - uint_var_9) < statusCode9) {
+        uint_var_9 = FUN_180883750(unaff_RSI + 0x48,statusCode9);
+        connectionBuffer2 = (uint64_t *)(ulonglong)uint_var_9;
+        if (uint_var_9 != 0) goto LAB_18089c40a;
         statusCode9 = *(int *)(unaff_RBP + -0x21);
         fVar21 = extraout_XMM0_Da_04;
       }
@@ -103695,9 +103695,9 @@ LAB_18089c40a:
       for (connectionBuffer6 = connectionBuffer2; (connectionBuffer2 <= connectionBuffer6 && (connectionBuffer6 < connectionBuffer2 + (longlong)statusCode9 * 3));
           connectionBuffer6 = connectionBuffer6 + 3) {
         *(uint64_t *)(unaff_RBP + 0x77) = 0;
-        uVar9 = FUN_1808aec50(unaff_RSI + 0x48,unaff_RBP + 0x77);
-        connectionBuffer2 = (uint64_t *)(ulonglong)uVar9;
-        if (uVar9 != 0) goto LAB_18089c40a;
+        uint_var_9 = FUN_1808aec50(unaff_RSI + 0x48,unaff_RBP + 0x77);
+        connectionBuffer2 = (uint64_t *)(ulonglong)uint_var_9;
+        if (uint_var_9 != 0) goto LAB_18089c40a;
         networkResult = connectionBuffer6[1];
         connectionBuffer2 = *(uint64_t **)(unaff_RBP + 0x77);
         *connectionBuffer2 = *connectionBuffer6;
@@ -103710,21 +103710,21 @@ LAB_18089c40a:
         connectionBuffer2 = *(uint64_t **)(unaff_RBP + -0x29);
       }
     }
-    uVar9 = *(uint *)(unaff_RBP + -0x1d);
-    networkResult0 = uVar9;
-    if ((int)uVar9 < 0) {
-      networkResult0 = -uVar9;
+    uint_var_9 = *(uint *)(unaff_RBP + -0x1d);
+    networkResult0 = uint_var_9;
+    if ((int)uint_var_9 < 0) {
+      networkResult0 = -uint_var_9;
     }
     if ((int)networkResult0 < 0) {
       if (0 < statusCode9) goto LAB_18089c586;
-      if ((0 < (int)uVar9) && (connectionBuffer2 != (uint64_t *)0x0)) {
+      if ((0 < (int)uint_var_9) && (connectionBuffer2 != (uint64_t *)0x0)) {
                     // WARNING: Subroutine does not return
         NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),connectionBuffer2,&g_errorBuffer,0x100,1);
       }
       *(uint64_t *)(unaff_RBP + -0x29) = 0;
       *(uint32_t *)(unaff_RBP + -0x1d) = 0;
       connectionBuffer2 = connectionBuffer3;
-      uVar9 = timeoutValue;
+      uint_var_9 = timeoutValue;
     }
     if (statusCode9 < 0) {
       networkTimeout8 = (longlong)-statusCode9;
@@ -103744,14 +103744,14 @@ LAB_18089c40a:
           networkTimeout8 = networkTimeout8 + -1;
           networkTimeout7 = networkTimeout7 + 0x18;
         } while (networkTimeout8 != 0);
-        uVar9 = *(uint *)(unaff_RBP + -0x1d);
+        uint_var_9 = *(uint *)(unaff_RBP + -0x1d);
       }
     }
     *(uint32_t *)(unaff_RBP + -0x21) = 0;
-    if ((int)uVar9 < 0) {
-      uVar9 = -uVar9;
+    if ((int)uint_var_9 < 0) {
+      uint_var_9 = -uint_var_9;
     }
-    if (uVar9 != 0) {
+    if (uint_var_9 != 0) {
       fVar21 = (float)FUN_1808aef40(unaff_RBP + -0x29,0);
     }
   }
@@ -103797,7 +103797,7 @@ ulonglong FUN_18089c2d8(uint64_t socketHandle)
   uint64_t bufferSize;
   uint in_EAX;
   uint timeoutValue;
-  uint uVar9;
+  uint uint_var_9;
   uint networkResult0;
   ulonglong networkResult1;
   uint32_t *connectionBuffer2;
@@ -103832,21 +103832,21 @@ ulonglong FUN_18089c2d8(uint64_t socketHandle)
   if (in_EAX < 0x6a) {
     *(uint64_t **)(unaff_RBP + -0x29) = unaff_R12;
     *(uint64_t **)(unaff_RBP + -0x21) = unaff_R12;
-    uVar9 = FUN_1808a54c0(socketHandle,unaff_RBP + -0x29,0);
-    networkResult1 = (ulonglong)uVar9;
-    if (uVar9 != 0) {
+    uint_var_9 = FUN_1808a54c0(socketHandle,unaff_RBP + -0x29,0);
+    networkResult1 = (ulonglong)uint_var_9;
+    if (uint_var_9 != 0) {
 LAB_18089c40a:
-      uVar9 = *(uint *)(unaff_RBP + -0x1d);
-      networkResult0 = uVar9;
-      if ((int)uVar9 < 0) {
-        networkResult0 = -uVar9;
+      uint_var_9 = *(uint *)(unaff_RBP + -0x1d);
+      networkResult0 = uint_var_9;
+      if ((int)uint_var_9 < 0) {
+        networkResult0 = -uint_var_9;
       }
       statusCode8 = *(int *)(unaff_RBP + -0x21);
       if ((int)networkResult0 < 0) {
         if (0 < statusCode8) {
           return networkResult1;
         }
-        if ((0 < (int)uVar9) && (*(longlong *)(unaff_RBP + -0x29) != 0)) {
+        if ((0 < (int)uint_var_9) && (*(longlong *)(unaff_RBP + -0x29) != 0)) {
                     // WARNING: Subroutine does not return
           NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),*(longlong *)(unaff_RBP + -0x29),
                         &g_errorBuffer,0x100,1);
@@ -103854,7 +103854,7 @@ LAB_18089c40a:
         *(uint64_t **)(unaff_RBP + -0x29) = unaff_R12;
         *(uint *)(unaff_RBP + -0x1d) = timeoutValue;
         connectionBuffer4 = unaff_R12;
-        uVar9 = timeoutValue;
+        uint_var_9 = timeoutValue;
       }
       else {
         connectionBuffer4 = *(uint64_t **)(unaff_RBP + -0x29);
@@ -103876,14 +103876,14 @@ LAB_18089c40a:
             networkTimeout7 = networkTimeout7 + -1;
             networkTimeout6 = networkTimeout6 + 0x18;
           } while (networkTimeout7 != 0);
-          uVar9 = *(uint *)(unaff_RBP + -0x1d);
+          uint_var_9 = *(uint *)(unaff_RBP + -0x1d);
         }
       }
       *(uint *)(unaff_RBP + -0x21) = timeoutValue;
-      if ((int)uVar9 < 0) {
-        uVar9 = -uVar9;
+      if ((int)uint_var_9 < 0) {
+        uint_var_9 = -uint_var_9;
       }
-      if (uVar9 == 0) {
+      if (uint_var_9 == 0) {
         return networkResult1;
       }
       FUN_1808aef40(unaff_RBP + -0x29,0);
@@ -103895,11 +103895,11 @@ LAB_18089c40a:
       connectionBuffer4 = *(uint64_t **)(unaff_RBP + -0x29);
     }
     else {
-      uVar9 = (int)*(uint *)(unaff_RSI + 0x54) >> 0x1f;
-      if ((int)((*(uint *)(unaff_RSI + 0x54) ^ uVar9) - uVar9) < statusCode8) {
-        uVar9 = FUN_180883750(unaff_RSI + 0x48,statusCode8);
-        networkResult1 = (ulonglong)uVar9;
-        if (uVar9 != 0) goto LAB_18089c40a;
+      uint_var_9 = (int)*(uint *)(unaff_RSI + 0x54) >> 0x1f;
+      if ((int)((*(uint *)(unaff_RSI + 0x54) ^ uint_var_9) - uint_var_9) < statusCode8) {
+        uint_var_9 = FUN_180883750(unaff_RSI + 0x48,statusCode8);
+        networkResult1 = (ulonglong)uint_var_9;
+        if (uint_var_9 != 0) goto LAB_18089c40a;
         statusCode8 = *(int *)(unaff_RBP + -0x21);
         fVar20 = extraout_XMM0_Da_03;
       }
@@ -103907,9 +103907,9 @@ LAB_18089c40a:
       for (connectionBuffer5 = connectionBuffer4; (connectionBuffer4 <= connectionBuffer5 && (connectionBuffer5 < connectionBuffer4 + (longlong)statusCode8 * 3));
           connectionBuffer5 = connectionBuffer5 + 3) {
         *(uint64_t **)(unaff_RBP + 0x77) = unaff_R12;
-        uVar9 = FUN_1808aec50(unaff_RSI + 0x48,unaff_RBP + 0x77);
-        networkResult1 = (ulonglong)uVar9;
-        if (uVar9 != 0) goto LAB_18089c40a;
+        uint_var_9 = FUN_1808aec50(unaff_RSI + 0x48,unaff_RBP + 0x77);
+        networkResult1 = (ulonglong)uint_var_9;
+        if (uint_var_9 != 0) goto LAB_18089c40a;
         bufferSize = connectionBuffer5[1];
         connectionBuffer4 = *(uint64_t **)(unaff_RBP + 0x77);
         *connectionBuffer4 = *connectionBuffer5;
@@ -103922,21 +103922,21 @@ LAB_18089c40a:
         connectionBuffer4 = *(uint64_t **)(unaff_RBP + -0x29);
       }
     }
-    uVar9 = *(uint *)(unaff_RBP + -0x1d);
-    networkResult0 = uVar9;
-    if ((int)uVar9 < 0) {
-      networkResult0 = -uVar9;
+    uint_var_9 = *(uint *)(unaff_RBP + -0x1d);
+    networkResult0 = uint_var_9;
+    if ((int)uint_var_9 < 0) {
+      networkResult0 = -uint_var_9;
     }
     if ((int)networkResult0 < 0) {
       if (0 < statusCode8) goto LAB_18089c586;
-      if ((0 < (int)uVar9) && (connectionBuffer4 != (uint64_t *)0x0)) {
+      if ((0 < (int)uint_var_9) && (connectionBuffer4 != (uint64_t *)0x0)) {
                     // WARNING: Subroutine does not return
         NetworkLogMessage(*(uint64_t *)(g_networkModule + 0x1a0),connectionBuffer4,&g_errorBuffer,0x100,1);
       }
       *(uint64_t **)(unaff_RBP + -0x29) = unaff_R12;
       *(uint *)(unaff_RBP + -0x1d) = timeoutValue;
       connectionBuffer4 = unaff_R12;
-      uVar9 = timeoutValue;
+      uint_var_9 = timeoutValue;
     }
     if (statusCode8 < 0) {
       networkTimeout7 = (longlong)-statusCode8;
@@ -103956,14 +103956,14 @@ LAB_18089c40a:
           networkTimeout7 = networkTimeout7 + -1;
           networkTimeout6 = networkTimeout6 + 0x18;
         } while (networkTimeout7 != 0);
-        uVar9 = *(uint *)(unaff_RBP + -0x1d);
+        uint_var_9 = *(uint *)(unaff_RBP + -0x1d);
       }
     }
     *(uint *)(unaff_RBP + -0x21) = timeoutValue;
-    if ((int)uVar9 < 0) {
-      uVar9 = -uVar9;
+    if ((int)uint_var_9 < 0) {
+      uint_var_9 = -uint_var_9;
     }
-    if (uVar9 != 0) {
+    if (uint_var_9 != 0) {
       fVar20 = (float)FUN_1808aef40(unaff_RBP + -0x29,0);
     }
   }
@@ -104036,7 +104036,7 @@ ulonglong FUN_18089c630(longlong socketHandle,longlong *dataBuffer)
   uint connectionIndex;
   uint bufferSize;
   uint timeoutValue;
-  uint uVar9;
+  uint uint_var_9;
   uint auStackX_18 [2];
   uint auStackX_20 [2];
   uint networkUintStack_88;
@@ -104073,38 +104073,38 @@ ulonglong FUN_18089c630(longlong socketHandle,longlong *dataBuffer)
   if ((int)bufferCapacity != 0) {
     return bufferCapacity;
   }
-  uVar9 = timeoutValue;
+  uint_var_9 = timeoutValue;
   if (*(uint *)(dataBuffer + 8) < 0x70) {
     if (*(int *)(dataBuffer[1] + 0x18) != 0) {
-      uVar9 = 0x1c;
+      uint_var_9 = 0x1c;
       goto LAB_18089c78f;
     }
     pnetworkTimeout = (longlong *)*dataBuffer;
     if (*pnetworkTimeout == 0) {
-      uVar9 = 0x1c;
+      uint_var_9 = 0x1c;
     }
     else if (pnetworkTimeout[2] == 0) {
 LAB_18089c743:
-      uVar9 = FUN_180769ed0(*pnetworkTimeout,auStackX_18,1,1,0);
+      uint_var_9 = FUN_180769ed0(*pnetworkTimeout,auStackX_18,1,1,0);
     }
     else {
       auStackX_20[0] = 0;
-      uVar9 = func_0x00018076a7d0(*pnetworkTimeout,auStackX_20);
-      if (uVar9 == 0) {
+      uint_var_9 = func_0x00018076a7d0(*pnetworkTimeout,auStackX_20);
+      if (uint_var_9 == 0) {
         if ((ulonglong)auStackX_20[0] + 1 <= (ulonglong)pnetworkTimeout[2]) goto LAB_18089c743;
-        uVar9 = 0x11;
+        uint_var_9 = 0x11;
       }
     }
-    if (uVar9 == 0) {
+    if (uint_var_9 == 0) {
       auStackX_20[0] = (uint)((char)auStackX_18[0] != '\0');
       networkUintStack_88 = (uint)((char)auStackX_18[0] == '\0');
-      uVar9 = 0;
+      uint_var_9 = 0;
     }
     else {
       auStackX_20[0] = 0;
       networkUintStack_88 = 1;
-      if (uVar9 == 0) {
-        uVar9 = timeoutValue;
+      if (uint_var_9 == 0) {
+        uint_var_9 = timeoutValue;
       }
     }
   }
@@ -104113,8 +104113,8 @@ LAB_18089c78f:
     networkUintStack_88 = 1;
     auStackX_20[0] = 0;
   }
-  if (uVar9 != 0) {
-    return (ulonglong)uVar9;
+  if (uint_var_9 != 0) {
+    return (ulonglong)uint_var_9;
   }
   if (*(int *)(dataBuffer[1] + 0x18) != 0) {
     return 0x1c;
@@ -104245,9 +104245,9 @@ LAB_18089c9a8:
         packetLength = 0x11;
       }
     }
-    uVar9 = 0;
+    uint_var_9 = 0;
     if (packetLength == 0) {
-      uVar9 = (uint)((char)auStackX_18[0] != '\0');
+      uint_var_9 = (uint)((char)auStackX_18[0] != '\0');
       bufferSize = (uint)((char)auStackX_18[0] == '\0');
       bufferCapacity = 0;
     }
@@ -104262,7 +104262,7 @@ LAB_18089c9a8:
   else {
 LAB_18089c9ee:
     bufferSize = 1;
-    uVar9 = timeoutValue;
+    uint_var_9 = timeoutValue;
   }
   if ((int)bufferCapacity != 0) {
     return bufferCapacity;
@@ -104320,7 +104320,7 @@ LAB_18089ca9c:
     packetLength = *(uint *)(dataBuffer + 8);
     if (packetLength < 0x70) {
       *(uint *)(socketHandle + 0x34) =
-           (((auStackX_20[0] | *(uint *)(socketHandle + 0x34)) & ~networkUintStack_88 | uVar9 * 2) & ~(bufferSize * 2) |
+           (((auStackX_20[0] | *(uint *)(socketHandle + 0x34)) & ~networkUintStack_88 | uint_var_9 * 2) & ~(bufferSize * 2) |
            timeoutValue * 4) & ~(connectionIndex * 4);
       packetLength = *(uint *)(dataBuffer + 8);
     }
@@ -104338,8 +104338,8 @@ LAB_18089cbf6:
     connectionIndex = auStackX_20[0];
     if ((int)bufferCapacity == 0) {
       timeoutValue = auStackX_20[0] & 1;
-      uVar9 = auStackX_20[0] >> 1;
-      bufferCapacity = FUN_1808af8b0(socketHandle + 0x60,uVar9);
+      uint_var_9 = auStackX_20[0] >> 1;
+      bufferCapacity = FUN_1808af8b0(socketHandle + 0x60,uint_var_9);
       if ((int)bufferCapacity == 0) {
         auStackX_18[0] = 0;
         bufferCapacity = socketStatus;
@@ -104367,7 +104367,7 @@ LAB_18089cbf6:
             socketStatus = (ulonglong)connectionIndex;
             auStackX_18[0] = auStackX_18[0] & -timeoutValue;
             bufferCapacity = (ulonglong)auStackX_18[0];
-          } while ((int)connectionIndex < (int)uVar9);
+          } while ((int)connectionIndex < (int)uint_var_9);
         }
         goto LAB_18089cbf6;
       }
@@ -104754,7 +104754,7 @@ ulonglong FUN_18089c86d(void)
   longlong *unaff_RBX;
   longlong unaff_RBP;
   uint timeoutValue;
-  uint uVar9;
+  uint uint_var_9;
   ulonglong unaff_RDI;
   int statusCode0;
   longlong unaff_R13;
@@ -104977,9 +104977,9 @@ LAB_18089cad8:
         }
         timeoutValue = (int)connectionIndex + 1;
         connectionIndex = (ulonglong)timeoutValue;
-        uVar9 = *(uint *)(unaff_RBP + 0x77) & -(dataPointer & 1);
-        unaff_RDI = (ulonglong)uVar9;
-        *(uint *)(unaff_RBP + 0x77) = uVar9;
+        uint_var_9 = *(uint *)(unaff_RBP + 0x77) & -(dataPointer & 1);
+        unaff_RDI = (ulonglong)uint_var_9;
+        *(uint *)(unaff_RBP + 0x77) = uint_var_9;
         fVar12 = extraout_XMM0_Da_09;
       } while ((int)timeoutValue < (int)(dataPointer >> 1));
     }
@@ -105004,7 +105004,7 @@ ulonglong FUN_18089c872(void)
   longlong unaff_RBP;
   uint32_t connectionState;
   uint timeoutValue;
-  uint uVar9;
+  uint uint_var_9;
   ulonglong unaff_RDI;
   int statusCode0;
   longlong unaff_R13;
@@ -105227,9 +105227,9 @@ LAB_18089cad8:
         }
         timeoutValue = (int)connectionIndex + 1;
         connectionIndex = (ulonglong)timeoutValue;
-        uVar9 = *(uint *)(unaff_RBP + 0x77) & -(dataPointer & 1);
-        unaff_RDI = (ulonglong)uVar9;
-        *(uint *)(unaff_RBP + 0x77) = uVar9;
+        uint_var_9 = *(uint *)(unaff_RBP + 0x77) & -(dataPointer & 1);
+        unaff_RDI = (ulonglong)uint_var_9;
+        *(uint *)(unaff_RBP + 0x77) = uint_var_9;
         fVar12 = extraout_XMM0_Da_09;
       } while ((int)timeoutValue < (int)(dataPointer >> 1));
     }
@@ -107707,7 +107707,7 @@ ulonglong FUN_18089e558(void)
   int socketIndex;
   uint32_t *pbufferSize;
   ulonglong timeoutValue;
-  longlong lVar9;
+  longlong long_var_9;
   longlong unaff_RBP;
   uint32_t *connectionBuffer0;
   uint64_t *unaff_RDI;
@@ -107770,19 +107770,19 @@ LAB_18089e70b:
         pbufferSize = *(uint32_t **)(unaff_RBP + -0x29);
         for (connectionBuffer0 = pbufferSize; (pbufferSize <= connectionBuffer0 && (connectionBuffer0 < pbufferSize + socketIndex));
             connectionBuffer0 = connectionBuffer0 + 1) {
-          lVar9 = ExecuteNetworkOperation(*(uint64_t *)(g_networkModule + 0x1a0),CONNECTION_BUFFER_OFFSET,&g_network_data_buffer_e70,0xc1c,0)
+          long_var_9 = ExecuteNetworkOperation(*(uint64_t *)(g_networkModule + 0x1a0),CONNECTION_BUFFER_OFFSET,&g_network_data_buffer_e70,0xc1c,0)
           ;
-          if (lVar9 == 0) {
+          if (long_var_9 == 0) {
             timeoutValue = 0x26;
             goto LAB_18089e70b;
           }
           networkResult1 = *connectionBuffer0;
-          *(longlong *)lVar9 = lVar9;
-          *(longlong *)(lVar9 + 8) = lVar9;
-          *(uint32_t *)(lVar9 + 0x10) = networkResult1;
-          *(uint64_t *)(lVar9 + 0x18) = 0;
-          *(uint32_t *)(lVar9 + SOCKET_RESPONSE_OFFSET) = 0;
-          connectionIndex = func_0x0001808aec10(unaff_R15 + 0x58,lVar9);
+          *(longlong *)long_var_9 = long_var_9;
+          *(longlong *)(long_var_9 + 8) = long_var_9;
+          *(uint32_t *)(long_var_9 + 0x10) = networkResult1;
+          *(uint64_t *)(long_var_9 + 0x18) = 0;
+          *(uint32_t *)(long_var_9 + SOCKET_RESPONSE_OFFSET) = 0;
+          connectionIndex = func_0x0001808aec10(unaff_R15 + 0x58,long_var_9);
           timeoutValue = (ulonglong)connectionIndex;
           if (connectionIndex != 0) goto LAB_18089e70b;
           socketIndex = *(int *)(unaff_RBP + -0x21);

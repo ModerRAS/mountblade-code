@@ -2748,28 +2748,28 @@ uint64 manage_resource_memoryBlock(longlong resourceHandle,longlong memoryBlockS
   longlong localLong1;
   int status;
   uint64 unsignedVar3;
-  longlong alStackX_8 [2];
+  longlong arrayStackX8 [2];
   
-  unsignedVar3 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),alStackX_8);
-  localLong1 = alStackX_8[0];
+  unsignedVar3 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),arrayStackX8);
+  localLong1 = arrayStackX8[0];
   if ((int)unsignedVar3 != 0) {
     return unsignedVar3;
   }
-  *(int *)(alStackX_8[0] + ERROR_CODE_2) = *(int *)(alStackX_8[0] + ERROR_CODE_2) + 1;
-  if (*(int *)(alStackX_8[0] + SYSTEM_OFFSET_STATUS1) + *(int *)(alStackX_8[0] + SYSTEM_OFFSET_STATUS2) +
-      *(int *)(alStackX_8[0] + ERROR_CODE_2) == 1) {
-    alStackX_8[0] = 0;
-    status = utilityInitializeResource(alStackX_8);
+  *(int *)(arrayStackX8[0] + ERROR_CODE_2) = *(int *)(arrayStackX8[0] + ERROR_CODE_2) + 1;
+  if (*(int *)(arrayStackX8[0] + SYSTEM_OFFSET_STATUS1) + *(int *)(arrayStackX8[0] + SYSTEM_OFFSET_STATUS2) +
+      *(int *)(arrayStackX8[0] + ERROR_CODE_2) == 1) {
+    arrayStackX8[0] = 0;
+    status = utilityInitializeResource(arrayStackX8);
     if (status == 0) {
       status = utilityCreateResourceHandle(localLong1,*(uint64 *)(localLong1 + 8),*(uint64 *)(memoryBlockSize + MEMORY_SIZE_OFFSET),
                             *(uint64 *)(memoryBlockSize + 800));
       if (status == 0) {
                     // WARNING: Subroutine does not return
-        utilityCleanupResource(alStackX_8);
+        utilityCleanupResource(arrayStackX8);
       }
     }
                     // WARNING: Subroutine does not return
-    utilityCleanupResource(alStackX_8);
+    utilityCleanupResource(arrayStackX8);
   }
   return 0;
 }
@@ -2783,16 +2783,16 @@ uint64 check_resource_status(longlong resourceHandle) # 资源状态检查函数
   longlong buffer;
   uint64 unsignedVar3;
   longlong *plVar4;
-  longlong alStackX_8 [4];
+  longlong arrayStackX8 [4];
   
-  unsignedVar3 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),alStackX_8);
+  unsignedVar3 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),arrayStackX8);
   if ((int)unsignedVar3 == 0) {
-    plVar4 = *(longlong **)(alStackX_8[0] + POINTER_OFFSET_DATA);
-    while ((*(longlong **)(alStackX_8[0] + POINTER_OFFSET_DATA) <= plVar4 &&
-           (plVar4 < *(longlong **)(alStackX_8[0] + POINTER_OFFSET_DATA) + *(int *)(alStackX_8[0] + BYTE_OFFSET_2)))) {
+    plVar4 = *(longlong **)(arrayStackX8[0] + POINTER_OFFSET_DATA);
+    while ((*(longlong **)(arrayStackX8[0] + POINTER_OFFSET_DATA) <= plVar4 &&
+           (plVar4 < *(longlong **)(arrayStackX8[0] + POINTER_OFFSET_DATA) + *(int *)(arrayStackX8[0] + BYTE_OFFSET_2)))) {
       buffer = *plVar4;
       plVar4 = plVar4 + 1;
-      if ((*(longlong *)(buffer + RESOURCE_OFFSET_HANDLE) == *(longlong *)(alStackX_8[0] + 8)) &&
+      if ((*(longlong *)(buffer + RESOURCE_OFFSET_HANDLE) == *(longlong *)(arrayStackX8[0] + 8)) &&
          (buffer = *(longlong *)(buffer + RESOURCE_HANDLE_OFFSET), buffer != 0)) {
         pfunctionResult = (uint *)(buffer + POINTER_OFFSET_CHECKSUM);
         *pfunctionResult = *pfunctionResult | 4;
@@ -2811,35 +2811,35 @@ uint64 validate_memory_size(longlong resourceHandle,uint64 memoryBlockSize) # �
   longlong localLong1;
   uint64 localUInt2;
   int dataLength;
-  longlong alStackX_8 [2];
+  longlong arrayStackX8 [2];
   
-  localUInt2 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),alStackX_8);
-  localLong1 = alStackX_8[0];
+  localUInt2 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),arrayStackX8);
+  localLong1 = arrayStackX8[0];
   if ((int)localUInt2 != 0) {
     return localUInt2;
   }
-  if (*(int *)(alStackX_8[0] + ERROR_CODE_2) < 1) {
+  if (*(int *)(arrayStackX8[0] + ERROR_CODE_2) < 1) {
     return BYTE_OFFSET_FLAG;
   }
-  dataLength = *(int *)(alStackX_8[0] + ERROR_CODE_2) + -1;
-  *(int *)(alStackX_8[0] + ERROR_CODE_2) = dataLength;
-  if (*(int *)(alStackX_8[0] + SYSTEM_OFFSET_STATUS1) + *(int *)(alStackX_8[0] + SYSTEM_OFFSET_STATUS2) + dataLength != 0) {
+  dataLength = *(int *)(arrayStackX8[0] + ERROR_CODE_2) + -1;
+  *(int *)(arrayStackX8[0] + ERROR_CODE_2) = dataLength;
+  if (*(int *)(arrayStackX8[0] + SYSTEM_OFFSET_STATUS1) + *(int *)(arrayStackX8[0] + SYSTEM_OFFSET_STATUS2) + dataLength != 0) {
     return 0;
   }
-  alStackX_8[0] = 0;
-  dataLength = utilityInitializeResource(alStackX_8);
+  arrayStackX8[0] = 0;
+  dataLength = utilityInitializeResource(arrayStackX8);
   if (dataLength == 0) {
     dataLength = utilityReleaseResourceHandle(localLong1,0);
     if (dataLength == 0) {
       dataLength = utilityCheckResourceState(memoryBlockSize);
       if (dataLength == 0) {
                     // WARNING: Subroutine does not return
-        utilityCleanupResource(alStackX_8);
+        utilityCleanupResource(arrayStackX8);
       }
     }
   }
                     // WARNING: Subroutine does not return
-  utilityCleanupResource(alStackX_8);
+  utilityCleanupResource(arrayStackX8);
 }
 
 
@@ -2849,16 +2849,16 @@ uint64 query_resource_resourceHandle(longlong resourceHandle) # 资源句柄查�
 {
   longlong localLong1;
   uint64 localUInt2;
-  longlong alStackX_8 [4];
+  longlong arrayStackX8 [4];
   
-  localUInt2 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),alStackX_8);
+  localUInt2 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),arrayStackX8);
   if ((int)localUInt2 != 0) {
     return localUInt2;
   }
-  if (alStackX_8[0] != 0) {
-    alStackX_8[0] = alStackX_8[0] + -8;
+  if (arrayStackX8[0] != 0) {
+    arrayStackX8[0] = arrayStackX8[0] + -8;
   }
-  localLong1 = *(longlong *)(alStackX_8[0] + RESOURCE_HANDLE_OFFSET);
+  localLong1 = *(longlong *)(arrayStackX8[0] + RESOURCE_HANDLE_OFFSET);
   if (localLong1 != 0) {
     *(int *)(localLong1 + 500) = *(int *)(localLong1 + 500) + 1;
     if ((*(char *)(localLong1 + SYSTEM_OFFSET_INITIALIZED) != '\0') && (localUInt2 = utilityGetSystemStatus(), (int)localUInt2 != 0)) {
@@ -3077,7 +3077,7 @@ uint64 resourceHandle_resource_operation(longlong resourceHandle)
 
 {
   uint64 functionResult;
-  longlong alStackX_8 [2];
+  longlong arrayStackX8 [2];
   longlong alStackX_18 [2];
   
   functionResult = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),alStackX_18);
@@ -3088,14 +3088,14 @@ uint64 resourceHandle_resource_operation(longlong resourceHandle)
     else {
       alStackX_18[0] = alStackX_18[0] + -8;
     }
-    alStackX_8[0] = 0;
-    functionResult = utilityProcessResourceData(alStackX_18[0],resourceHandle + RESOURCE_OFFSET_HANDLE,alStackX_8);
+    arrayStackX8[0] = 0;
+    functionResult = utilityProcessResourceData(alStackX_18[0],resourceHandle + RESOURCE_OFFSET_HANDLE,arrayStackX8);
     if ((int)functionResult == 0) {
-      if (alStackX_8[0] != 0) {
-        if (*(longlong *)(alStackX_8[0] + 8) == 0) {
+      if (arrayStackX8[0] != 0) {
+        if (*(longlong *)(arrayStackX8[0] + 8) == 0) {
           return BYTE_OFFSET_FLAG;
         }
-        functionResult = utilityHandleResourceOperation(*(longlong *)(alStackX_8[0] + 8),*(uint32 *)(resourceHandle + POINTER_OFFSET_DATA),
+        functionResult = utilityHandleResourceOperation(*(longlong *)(arrayStackX8[0] + 8),*(uint32 *)(resourceHandle + POINTER_OFFSET_DATA),
                               *(byte *)(resourceHandle + FIELD_OFFSET_3));
         if ((int)functionResult != 0) {
           return functionResult;
@@ -3113,7 +3113,7 @@ uint64 manage_resource_resourceHandle(longlong resourceHandle)
 
 {
   uint64 functionResult;
-  longlong alStackX_8 [2];
+  longlong arrayStackX8 [2];
   longlong alStackX_18 [2];
   
   functionResult = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),alStackX_18);
@@ -3124,14 +3124,14 @@ uint64 manage_resource_resourceHandle(longlong resourceHandle)
     else {
       alStackX_18[0] = alStackX_18[0] + -8;
     }
-    alStackX_8[0] = 0;
-    functionResult = utilityProcessResourceData(alStackX_18[0],resourceHandle + POINTER_OFFSET_DATA,alStackX_8);
+    arrayStackX8[0] = 0;
+    functionResult = utilityProcessResourceData(alStackX_18[0],resourceHandle + POINTER_OFFSET_DATA,arrayStackX8);
     if ((int)functionResult == 0) {
-      if (alStackX_8[0] != 0) {
-        if (*(longlong *)(alStackX_8[0] + 8) == 0) {
+      if (arrayStackX8[0] != 0) {
+        if (*(longlong *)(arrayStackX8[0] + 8) == 0) {
           return BYTE_OFFSET_FLAG;
         }
-        functionResult = utilityHandleResourceOperation(*(longlong *)(alStackX_8[0] + 8),*(uint32 *)(resourceHandle + RESOURCE_OFFSET_HANDLE),
+        functionResult = utilityHandleResourceOperation(*(longlong *)(arrayStackX8[0] + 8),*(uint32 *)(resourceHandle + RESOURCE_OFFSET_HANDLE),
                               *(byte *)(resourceHandle + BYTE_OFFSET_FLAG));
         if ((int)functionResult != 0) {
           return functionResult;
@@ -4345,12 +4345,12 @@ uint64 get_file_permissions(longlong resourceHandle)
 
 {
   uint64 functionResult;
-  longlong alStackX_8 [4];
+  longlong arrayStackX8 [4];
   
-  functionResult = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),alStackX_8);
+  functionResult = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),arrayStackX8);
   if ((int)functionResult == 0) {
-    *(uint32 *)(*(longlong *)(alStackX_8[0] + RESOURCE_HANDLE_OFFSET) + LIST_OFFSET_HEAD) = *(uint32 *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
-    if ((*(longlong *)(alStackX_8[0] + 8) != 0) && (functionResult = utilityGetResourceCapability(), (int)functionResult != 0)) {
+    *(uint32 *)(*(longlong *)(arrayStackX8[0] + RESOURCE_HANDLE_OFFSET) + LIST_OFFSET_HEAD) = *(uint32 *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
+    if ((*(longlong *)(arrayStackX8[0] + 8) != 0) && (functionResult = utilityGetResourceCapability(), (int)functionResult != 0)) {
       return functionResult;
     }
     functionResult = 0;
@@ -4626,7 +4626,7 @@ uint64 calculate_file_hash(longlong resourceHandle,longlong memoryBlockSize)
 {
   uint64 functionResult;
   uint uStackX_8;
-  uint32 uStackX_c;
+  uint32 unsignedStackXc;
   
   uStackX_8 = *(uint *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
   if ((uStackX_8 & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
@@ -4634,7 +4634,7 @@ uint64 calculate_file_hash(longlong resourceHandle,longlong memoryBlockSize)
   }
   functionResult = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),&uStackX_8);
   if ((int)functionResult == 0) {
-    *(uint32 *)(CONCAT44(uStackX_c,uStackX_8) + FIELD_OFFSET_3) = *(uint32 *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
+    *(uint32 *)(CONCAT44(unsignedStackXc,uStackX_8) + FIELD_OFFSET_3) = *(uint32 *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
                     // WARNING: Subroutine does not return
     utilityReleaseResourceHandle(*(uint64 *)(memoryBlockSize + 0x98),resourceHandle);
   }
@@ -5423,9 +5423,9 @@ uint64 utilityValidateResourceTransaction(longlong resourceHandle,longlong memor
   int integerVar8;
   int integerVar9;
   longlong localLong10;
-  longlong alStackX_8 [2];
+  longlong arrayStackX8 [2];
   uint uStackX_18;
-  float fStackX_20;
+  float floatStackX20;
   
   localLong10 = 0;
   integerVar8 = 0;
@@ -5476,8 +5476,8 @@ uint64 utilityValidateResourceTransaction(longlong resourceHandle,longlong memor
   floatVar1 = *(float *)(resourceHandle + 0x44);
   integerVar8 = 0;
   uStackX_18 = *(uint *)(resourceHandle + 0x40);
-  fStackX_20 = *(float *)(resourceHandle + 0x3c);
-  alStackX_8[0] = CONCAT44(alStackX_8[0]._4_4_,floatVar1);
+  floatStackX20 = *(float *)(resourceHandle + 0x3c);
+  arrayStackX8[0] = CONCAT44(arrayStackX8[0]._4_4_,floatVar1);
   integerVar9 = integerVar8;
   if (((uint)floatVar1 & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
     integerVar9 = ERROR_CODE_5;
@@ -5486,7 +5486,7 @@ uint64 utilityValidateResourceTransaction(longlong resourceHandle,longlong memor
   if ((uStackX_18 & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
     integerVar6 = ERROR_CODE_5;
   }
-  if (((uint)fStackX_20 & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
+  if (((uint)floatStackX20 & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
     integerVar8 = ERROR_CODE_5;
   }
   if ((integerVar9 == 0 && integerVar6 == 0) && integerVar8 == 0) {
@@ -5494,15 +5494,15 @@ uint64 utilityValidateResourceTransaction(longlong resourceHandle,longlong memor
        (*(float *)(resourceHandle + STRUCT_OFFSET_SIZE) == 0.0)) {
       return ERROR_CODE_FAILED;
     }
-    if (((fStackX_20 == 0.0) && (*(float *)(resourceHandle + 0x40) == 0.0)) && (floatVar1 == 0.0)) {
+    if (((floatStackX20 == 0.0) && (*(float *)(resourceHandle + 0x40) == 0.0)) && (floatVar1 == 0.0)) {
       return ERROR_CODE_FAILED;
     }
-    unsignedVar5 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),alStackX_8);
+    unsignedVar5 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),arrayStackX8);
     if ((int)unsignedVar5 != 0) {
       return unsignedVar5;
     }
-    if (alStackX_8[0] != 0) {
-      localLong10 = alStackX_8[0] + -8;
+    if (arrayStackX8[0] != 0) {
+      localLong10 = arrayStackX8[0] + -8;
     }
     unsignedVar5 = *(uint64 *)(resourceHandle + POINTER_OFFSET_DATA);
     *(uint64 *)(localLong10 + STRUCT_OFFSET_SIZE) = *(uint64 *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
@@ -5523,9 +5523,9 @@ uint64 utilityValidateResourceTransaction(longlong resourceHandle,longlong memor
     *(uint32 *)(localLong10 + 100) = unsignedVar4;
     localLong10 = *(longlong *)(memoryBlockSize + 0x98);
     if ((*(int *)(localLong10 + 0x180) != 0) || (*(int *)(localLong10 + 0x184) != 0)) {
-      alStackX_8[0] = 0;
-      utilityPrepareResourceOperation(alStackX_8);
-      if (alStackX_8[0] == *(longlong *)((longlong)*(int *)(localLong10 + 0x17c) * 8 + 0x180c4f450)) {
+      arrayStackX8[0] = 0;
+      utilityPrepareResourceOperation(arrayStackX8);
+      if (arrayStackX8[0] == *(longlong *)((longlong)*(int *)(localLong10 + 0x17c) * 8 + 0x180c4f450)) {
         unsignedVar5 = utilityExecuteResourceOperation(localLong10,resourceHandle);
         if ((int)unsignedVar5 == 0) {
           return 0;
@@ -6014,7 +6014,7 @@ uint64 utilityFinalizeResourceTask(longlong resourceHandle,longlong memoryBlockS
   uint unsignedVar9;
   float floatVar11;
   float fStackX_8;
-  uint32 uStackX_c;
+  uint32 unsignedStackXc;
   ulonglong functionResult0;
   
   unsignedVar3 = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),&fStackX_8);
@@ -6022,8 +6022,8 @@ uint64 utilityFinalizeResourceTask(longlong resourceHandle,longlong memoryBlockS
     return unsignedVar3;
   }
   unsignedVar8 = 0;
-  unsignedVar6 = CONCAT44(uStackX_c,fStackX_8) - 8;
-  if (CONCAT44(uStackX_c,fStackX_8) == 0) {
+  unsignedVar6 = CONCAT44(unsignedStackXc,fStackX_8) - 8;
+  if (CONCAT44(unsignedStackXc,fStackX_8) == 0) {
     unsignedVar6 = unsignedVar8;
   }
   status = *(int *)(unsignedVar6 + BYTE_OFFSET_2);
@@ -6414,7 +6414,7 @@ uint64 utilityValidateResourceCycle(longlong resourceHandle,longlong memoryBlock
   uint64 functionResult;
   longlong buffer;
   uint uStackX_8;
-  uint32 uStackX_c;
+  uint32 unsignedStackXc;
   
   uStackX_8 = *(uint *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
   if ((uStackX_8 & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
@@ -6422,11 +6422,11 @@ uint64 utilityValidateResourceCycle(longlong resourceHandle,longlong memoryBlock
   }
   functionResult = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),&uStackX_8);
   if ((int)functionResult == 0) {
-    if (CONCAT44(uStackX_c,uStackX_8) == 0) {
+    if (CONCAT44(unsignedStackXc,uStackX_8) == 0) {
       buffer = 0;
     }
     else {
-      buffer = CONCAT44(uStackX_c,uStackX_8) + -8;
+      buffer = CONCAT44(unsignedStackXc,uStackX_8) + -8;
     }
     *(uint32 *)(buffer + 0x8c) = *(uint32 *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
                     // WARNING: Subroutine does not return
@@ -6491,7 +6491,7 @@ uint64 utilityAnalyzeResourceCycle(longlong resourceHandle,longlong memoryBlockS
   uint64 unsignedVar3;
   float floatVar4;
   uint uStackX_8;
-  uint32 uStackX_c;
+  uint32 unsignedStackXc;
   
   uStackX_8 = *(uint *)(resourceHandle + 0x14);
   if ((uStackX_8 & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
@@ -6501,7 +6501,7 @@ uint64 utilityAnalyzeResourceCycle(longlong resourceHandle,longlong memoryBlockS
   if ((int)unsignedVar3 != 0) {
     return unsignedVar3;
   }
-  buffer = *(longlong *)(CONCAT44(uStackX_c,uStackX_8) + RESOURCE_HANDLE_OFFSET);
+  buffer = *(longlong *)(CONCAT44(unsignedStackXc,uStackX_8) + RESOURCE_HANDLE_OFFSET);
   if (buffer == 0) {
     return 0x1e;
   }
@@ -6515,7 +6515,7 @@ uint64 utilityAnalyzeResourceCycle(longlong resourceHandle,longlong memoryBlockS
     floatVar4 = floatVar1;
   }
   *(float *)(resourceHandle + 0x14) = floatVar4;
-  *(float *)(CONCAT44(uStackX_c,uStackX_8) + 4) = floatVar4;
+  *(float *)(CONCAT44(unsignedStackXc,uStackX_8) + 4) = floatVar4;
                     // WARNING: Subroutine does not return
   utilityReleaseResourceHandle(*(uint64 *)(memoryBlockSize + 0x98),resourceHandle);
 }
@@ -7344,7 +7344,7 @@ uint64 fetch_database_results(longlong resourceHandle,longlong memoryBlockSize)
 {
   uint64 functionResult;
   uint uStackX_8;
-  uint32 uStackX_c;
+  uint32 unsignedStackXc;
   
   uStackX_8 = *(uint *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
   if ((uStackX_8 & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
@@ -7352,7 +7352,7 @@ uint64 fetch_database_results(longlong resourceHandle,longlong memoryBlockSize)
   }
   functionResult = SystemMemoryFunction(*(uint32 *)(resourceHandle + RESOURCE_HANDLE_OFFSET),&uStackX_8);
   if ((int)functionResult == 0) {
-    *(uint32 *)(CONCAT44(uStackX_c,uStackX_8) + RESOURCE_OFFSET_HANDLE) = *(uint32 *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
+    *(uint32 *)(CONCAT44(unsignedStackXc,uStackX_8) + RESOURCE_OFFSET_HANDLE) = *(uint32 *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
                     // WARNING: Subroutine does not return
     utilityReleaseResourceHandle(*(uint64 *)(memoryBlockSize + 0x98),resourceHandle);
   }
@@ -8151,7 +8151,7 @@ uint64 configure_system_parameters(longlong *resourceHandle)
 
 
 
-uint64 set_allocator_flags(longlong *resourceHandle)
+uint64 set_allocator_statusFlags(longlong *resourceHandle)
 
 {
   int status;
@@ -8745,7 +8745,7 @@ uint64 SetupResourceParameters(longlong *resourceHandle,uint *memoryBlockBlockBl
   int localStatus2;
   int *plocalInt13;
   
-  unsignedVar4 = set_allocator_flags();
+  unsignedVar4 = set_allocator_statusFlags();
   if ((int)unsignedVar4 == 0) {
     if ((int)resourceHandle[1] == 0) {
       return BYTE_OFFSET_FLAG;
@@ -9222,7 +9222,7 @@ ulonglong validate_memory_address(longlong resourceHandle)
   uint unsignedVar9;
   ulonglong functionResult0;
   int localStatus1;
-  uint32 *preturnValue2;
+  uint32 *pfunctionResult2;
   longlong *plocalLong13;
   int localStatus4;
   longlong localLong15;
@@ -9400,12 +9400,12 @@ ulonglong validate_memory_address(longlong resourceHandle)
                   unsignedVar9 = 0;
                 }
                 if (counter < 0) {
-                  preturnValue2 = (uint32 *)(localUInt + longVar5 * 4);
+                  pfunctionResult2 = (uint32 *)(localUInt + longVar5 * 4);
                   longVar5 = (longlong)-counter;
                   if (counter < 0) {
                     for (; longVar5 != 0; longVar5 = longVar5 + -1) {
-                      *preturnValue2 = 0;
-                      preturnValue2 = preturnValue2 + 1;
+                      *pfunctionResult2 = 0;
+                      pfunctionResult2 = pfunctionResult2 + 1;
                     }
                   }
                 }
@@ -9483,11 +9483,11 @@ LAB_1808962af:
     }
     if (localStatus6 < 0) {
       longVar5 = (longlong)-localStatus6;
-      preturnValue2 = (uint32 *)(unsignedVar6 + (longlong)localStatus6 * 4);
+      pfunctionResult2 = (uint32 *)(unsignedVar6 + (longlong)localStatus6 * 4);
       if (localStatus6 < 0) {
         for (; longVar5 != 0; longVar5 = longVar5 + -1) {
-          *preturnValue2 = 0;
-          preturnValue2 = preturnValue2 + 1;
+          *pfunctionResult2 = 0;
+          pfunctionResult2 = pfunctionResult2 + 1;
         }
       }
     }
@@ -10511,7 +10511,7 @@ void ProcessResourceOperation(longlong resourceHandle,longlong memoryBlockSize)
   longlong longVar9;
   uint64 functionResult0;
   uint64 functionResult1;
-  data *preturnValue2;
+  data *pfunctionResult2;
   float floatVar13;
   longlong localLong14;
   float *pfVar15;
@@ -10597,12 +10597,12 @@ void ProcessResourceOperation(longlong resourceHandle,longlong memoryBlockSize)
               localUInt = *(uint64 *)(*(longlong *)(longVar9 + MEMORY_SIZE_OFFSET) + longVar8 * 8);
               localUInt = 0;
               if (*(int *)(arrayIndex + SYSTEM_OFFSET_STATUS1) < 1) {
-                preturnValue2 = &g_miscWorkBuffer3;
+                pfunctionResult2 = &g_miscWorkBuffer3;
               }
               else {
-                preturnValue2 = *(data **)(arrayIndex + LIST_OFFSET_HEAD);
+                pfunctionResult2 = *(data **)(arrayIndex + LIST_OFFSET_HEAD);
               }
-              func_0x00018076b450(localBuffer,preturnValue2,BUFFER_OFFSET_TEMP);
+              func_0x00018076b450(localBuffer,pfunctionResult2,BUFFER_OFFSET_TEMP);
               integerVar6 = ValidateResourceAccess(resourceHandle,&localPtr);
               if (integerVar6 != 0) goto TerminateResourceOperation;
             }
@@ -11692,7 +11692,7 @@ void ProcessResourceRequest(longlong *resourceHandle)
   ulonglong unsignedVar9;
   longlong *plocalLong10;
   longlong localLong11;
-  data *preturnValue2;
+  data *pfunctionResult2;
   longlong *plocalLong13;
   longlong *plocalLong14;
   longlong localLong15;
@@ -11853,12 +11853,12 @@ void ProcessResourceRequest(longlong *resourceHandle)
             localPtr = &unknown_180982260;
             localUInt = localUInt & 0xffffff00;
             if (*(int *)(localLong11 + SYSTEM_OFFSET_STATUS1) < 1) {
-              preturnValue2 = &g_miscWorkBuffer3;
+              pfunctionResult2 = &g_miscWorkBuffer3;
             }
             else {
-              preturnValue2 = *(data **)(localLong11 + LIST_OFFSET_HEAD);
+              pfunctionResult2 = *(data **)(localLong11 + LIST_OFFSET_HEAD);
             }
-            func_0x00018076b450(&localUInt,preturnValue2,BUFFER_OFFSET_TEMP);
+            func_0x00018076b450(&localUInt,pfunctionResult2,BUFFER_OFFSET_TEMP);
             localLong11 = resourceHandle[4];
             if ((char)localLong11 == '\0') {
               *(byte *)(resourceHandle + 4) = 1;
@@ -12107,32 +12107,32 @@ uint64 ConfigureResourceSettings(longlong *resourceHandle,char *memoryBlockBlock
   uint unsignedVar8;
   char *pcVar9;
   int localStatus0;
-  uint *preturnValue1;
+  uint *pfunctionResult1;
   
-  preturnValue1 = (uint *)*resourceHandle;
-  if (((preturnValue1 != (uint *)0x0) && (resourceHandle[4] != 0)) && (resourceHandle[2] != 0)) {
+  pfunctionResult1 = (uint *)*resourceHandle;
+  if (((pfunctionResult1 != (uint *)0x0) && (resourceHandle[4] != 0)) && (resourceHandle[2] != 0)) {
     localStatus0 = 0;
     charVar5 = *memoryBlockBlockBlockSize;
     while (charVar5 != '\0') {
-      boolVar3 = *(byte *)((longlong)preturnValue1 + 7);
+      boolVar3 = *(byte *)((longlong)pfunctionResult1 + 7);
       if (boolVar3 == 0) {
         return 0x4a;
       }
       charVar5 = func_0x00018076b8a0(charVar5);
-      preturnValue1 = (uint *)(*resourceHandle + (ulonglong)(preturnValue1[1] & 0xffffff) * 8);
+      pfunctionResult1 = (uint *)(*resourceHandle + (ulonglong)(pfunctionResult1[1] & 0xffffff) * 8);
       integerVar7 = 0;
       if (boolVar3 == 0) {
         return 0x4a;
       }
-      while (*(char *)((longlong)preturnValue1 + 3) != charVar5) {
+      while (*(char *)((longlong)pfunctionResult1 + 3) != charVar5) {
         integerVar7 = integerVar7 + 1;
-        preturnValue1 = preturnValue1 + 2;
+        pfunctionResult1 = pfunctionResult1 + 2;
         if ((int)(uint)boolVar3 <= integerVar7) {
           return 0x4a;
         }
       }
       memoryBlockSize = memoryBlockSize + 1;
-      pcVar9 = (char *)(resourceHandle[4] + 1 + (ulonglong)(*preturnValue1 & 0xffffff));
+      pcVar9 = (char *)(resourceHandle[4] + 1 + (ulonglong)(*pfunctionResult1 & 0xffffff));
       charVar5 = *memoryBlockBlockBlockSize;
       while (charVar5 != '\0') {
         if (*pcVar9 == '\0') goto LAB_1808989b1;
@@ -12150,21 +12150,21 @@ uint64 ConfigureResourceSettings(longlong *resourceHandle,char *memoryBlockBlock
 LAB_1808989b1:
       charVar5 = *memoryBlockBlockBlockSize;
     }
-    boolVar3 = *(byte *)((longlong)preturnValue1 + 7);
+    boolVar3 = *(byte *)((longlong)pfunctionResult1 + 7);
     if (boolVar3 != 0) {
-      preturnValue1 = (uint *)(*resourceHandle + (ulonglong)(preturnValue1[1] & 0xffffff) * 8);
+      pfunctionResult1 = (uint *)(*resourceHandle + (ulonglong)(pfunctionResult1[1] & 0xffffff) * 8);
       if (boolVar3 != 0) {
         do {
-          if (*(char *)((longlong)preturnValue1 + 3) == '\0') goto LAB_1808989f7;
+          if (*(char *)((longlong)pfunctionResult1 + 3) == '\0') goto LAB_1808989f7;
           localStatus0 = localStatus0 + 1;
-          preturnValue1 = preturnValue1 + 2;
+          pfunctionResult1 = pfunctionResult1 + 2;
         } while (localStatus0 < (int)(uint)boolVar3);
       }
       return 0x4a;
     }
 LAB_1808989f7:
-    unsignedVar8 = preturnValue1[1] & 0xffffff;
-    if (((char)(preturnValue1[1] >> RESOURCE_OFFSET_HANDLE) == '\0') && ((int)unsignedVar8 < (int)resourceHandle[3])) {
+    unsignedVar8 = pfunctionResult1[1] & 0xffffff;
+    if (((char)(pfunctionResult1[1] >> RESOURCE_OFFSET_HANDLE) == '\0') && ((int)unsignedVar8 < (int)resourceHandle[3])) {
       plocalUInt2 = (uint64 *)(resourceHandle[2] + (ulonglong)unsignedVar8 * RESOURCE_HANDLE_OFFSET);
       unsignedVar4 = plocalUInt2[1];
       *operationFlags = *plocalUInt2;
@@ -12252,10 +12252,10 @@ ProcessResourceBatch(longlong *resourceHandle,int memoryBlockSize,uint32 *operat
   int integerVar8;
   int integerVar9;
   byte *preturnValue0;
-  byte *preturnValue1;
+  byte *pfunctionResult1;
   uint functionResult2;
   longlong localLong13;
-  byte *preturnValue4;
+  byte *pfunctionResult4;
   int localStatus5;
   uint32 functionResult6;
   int localStatus7;
@@ -12280,7 +12280,7 @@ ProcessResourceBatch(longlong *resourceHandle,int memoryBlockSize,uint32 *operat
         localLong13 = (ulonglong)(unsignedVar3 & 0xffffff) + resourceHandle[4];
         integerVar8 = func_0x00018076b690(localLong13);
         if (param_5 != 0) {
-          preturnValue4 = (byte *)((integerVar8 + -1) + localLong13);
+          pfunctionResult4 = (byte *)((integerVar8 + -1) + localLong13);
           localStatus5 = integerVar8;
           while (0 < localStatus5) {
             integerVar9 = localStatus5;
@@ -12292,8 +12292,8 @@ ProcessResourceBatch(longlong *resourceHandle,int memoryBlockSize,uint32 *operat
               preturnValue0 = callbackFunction + (int)functionResult2;
               functionResult2 = functionResult2 + integerVar9;
               do {
-                localUInt2 = *preturnValue4;
-                preturnValue4 = preturnValue4 + -1;
+                localUInt2 = *pfunctionResult4;
+                pfunctionResult4 = pfunctionResult4 + -1;
                 *preturnValue0 = localUInt2;
                 preturnValue0 = preturnValue0 + 1;
                 integerVar9 = integerVar9 + -1;
@@ -12310,41 +12310,41 @@ ProcessResourceBatch(longlong *resourceHandle,int memoryBlockSize,uint32 *operat
     if (param_5 != 0) {
       if (localStatus7 < param_5) {
         preturnValue0 = callbackFunction + localStatus7;
-        preturnValue4 = preturnValue0 + -1;
-        if (callbackFunction < preturnValue4) {
+        pfunctionResult4 = preturnValue0 + -1;
+        if (callbackFunction < pfunctionResult4) {
           do {
             localUInt2 = *callbackFunction;
-            *callbackFunction = *preturnValue4;
+            *callbackFunction = *pfunctionResult4;
             callbackFunction = callbackFunction + 1;
-            *preturnValue4 = localUInt2;
-            preturnValue4 = preturnValue4 + -1;
-          } while (callbackFunction < preturnValue4);
+            *pfunctionResult4 = localUInt2;
+            pfunctionResult4 = pfunctionResult4 + -1;
+          } while (callbackFunction < pfunctionResult4);
         }
         *preturnValue0 = 0;
         functionResult6 = 0;
       }
       else {
-        preturnValue1 = callbackFunction + (int)functionResult2;
-        preturnValue4 = preturnValue1 + -1;
+        pfunctionResult1 = callbackFunction + (int)functionResult2;
+        pfunctionResult4 = pfunctionResult1 + -1;
         preturnValue0 = callbackFunction;
-        if (callbackFunction < preturnValue4) {
+        if (callbackFunction < pfunctionResult4) {
           do {
             localUInt2 = *preturnValue0;
-            *preturnValue0 = *preturnValue4;
+            *preturnValue0 = *pfunctionResult4;
             preturnValue0 = preturnValue0 + 1;
-            *preturnValue4 = localUInt2;
-            preturnValue4 = preturnValue4 + -1;
-          } while (preturnValue0 < preturnValue4);
+            *pfunctionResult4 = localUInt2;
+            pfunctionResult4 = pfunctionResult4 + -1;
+          } while (preturnValue0 < pfunctionResult4);
         }
-        preturnValue4 = preturnValue1 + (longlong)(int)(param_5 - functionResult2) + -1;
-        if (preturnValue1 < preturnValue4) {
+        pfunctionResult4 = pfunctionResult1 + (longlong)(int)(param_5 - functionResult2) + -1;
+        if (pfunctionResult1 < pfunctionResult4) {
           do {
-            localUInt2 = *preturnValue1;
-            *preturnValue1 = *preturnValue4;
-            preturnValue1 = preturnValue1 + 1;
-            *preturnValue4 = localUInt2;
-            preturnValue4 = preturnValue4 + -1;
-          } while (preturnValue1 < preturnValue4);
+            localUInt2 = *pfunctionResult1;
+            *pfunctionResult1 = *pfunctionResult4;
+            pfunctionResult1 = pfunctionResult1 + 1;
+            *pfunctionResult4 = localUInt2;
+            pfunctionResult4 = pfunctionResult4 + -1;
+          } while (pfunctionResult1 < pfunctionResult4);
         }
         callbackFunction[(longlong)param_5 + -1] = 0;
         functionResult6 = 0x41;
@@ -12373,7 +12373,7 @@ uint32 ExecuteResourceTask(uint64 resourceHandle,int memoryBlockSize,uint32 *ope
   int integerVar8;
   int integerVar9;
   byte *preturnValue0;
-  byte *preturnValue1;
+  byte *pfunctionResult1;
   uint functionResult2;
   int localStatus3;
   longlong unaff_RBP;
@@ -12450,8 +12450,8 @@ uint32 ExecuteResourceTask(uint64 resourceHandle,int memoryBlockSize,uint32 *ope
       functionResult7 = 0;
     }
     else {
-      preturnValue1 = unaff_RSI + (int)functionResult2;
-      preturnValue5 = preturnValue1 + -1;
+      pfunctionResult1 = unaff_RSI + (int)functionResult2;
+      preturnValue5 = pfunctionResult1 + -1;
       preturnValue0 = unaff_RSI;
       if (unaff_RSI < preturnValue5) {
         do {
@@ -12462,15 +12462,15 @@ uint32 ExecuteResourceTask(uint64 resourceHandle,int memoryBlockSize,uint32 *ope
           preturnValue5 = preturnValue5 + -1;
         } while (preturnValue0 < preturnValue5);
       }
-      preturnValue5 = preturnValue1 + (longlong)(int)(localStatus3 - functionResult2) + -1;
-      if (preturnValue1 < preturnValue5) {
+      preturnValue5 = pfunctionResult1 + (longlong)(int)(localStatus3 - functionResult2) + -1;
+      if (pfunctionResult1 < preturnValue5) {
         do {
-          localUInt2 = *preturnValue1;
-          *preturnValue1 = *preturnValue5;
-          preturnValue1 = preturnValue1 + 1;
+          localUInt2 = *pfunctionResult1;
+          *pfunctionResult1 = *preturnValue5;
+          pfunctionResult1 = pfunctionResult1 + 1;
           *preturnValue5 = localUInt2;
           preturnValue5 = preturnValue5 + -1;
-        } while (preturnValue1 < preturnValue5);
+        } while (pfunctionResult1 < preturnValue5);
       }
       unaff_RSI[unaff_RBP + -1] = 0;
       functionResult7 = 0x41;
@@ -17645,9 +17645,9 @@ uint64 * FUN_18089c1fb(void)
   uint unsignedVar9;
   uint functionResult0;
   longlong inputRegister;
-  uint64 *preturnValue1;
-  uint32 *preturnValue2;
-  uint64 *preturnValue3;
+  uint64 *pfunctionResult1;
+  uint32 *pfunctionResult2;
+  uint64 *pfunctionResult3;
   float *pfVar14;
   ulonglong functionResult5;
   uint64 *preturnValue6;
@@ -17669,53 +17669,53 @@ uint64 * FUN_18089c1fb(void)
   if (*(int *)(inputRegister + RESOURCE_OFFSET_HANDLE) != 0) {
     return (uint64 *)BYTE_OFFSET_FLAG;
   }
-  preturnValue1 = (uint64 *)ConfigureResourceBuffer(*unaff_RDI,unaff_RSI + STRUCT_OFFSET_SIZE);
-  if ((int)preturnValue1 != 0) {
-    return preturnValue1;
+  pfunctionResult1 = (uint64 *)ConfigureResourceBuffer(*unaff_RDI,unaff_RSI + STRUCT_OFFSET_SIZE);
+  if ((int)pfunctionResult1 != 0) {
+    return pfunctionResult1;
   }
-  preturnValue2 = (uint32 *)FUN_180847820();
-  preturnValue1 = (uint64 *)0x0;
+  pfunctionResult2 = (uint32 *)FUN_180847820();
+  pfunctionResult1 = (uint64 *)0x0;
   unsignedVar9 = *(uint *)(unaff_RDI + 8);
-  currentUnsignedSize = *preturnValue2;
-  localUInt2 = preturnValue2[1];
-  unsignedVar3 = preturnValue2[2];
-  unsignedVar4 = preturnValue2[3];
+  currentUnsignedSize = *pfunctionResult2;
+  localUInt2 = pfunctionResult2[1];
+  unsignedVar3 = pfunctionResult2[2];
+  unsignedVar4 = pfunctionResult2[3];
   *(uint32 *)(unaff_RBP + -0x19) = currentUnsignedSize;
   *(uint32 *)(unaff_RBP + -0x15) = localUInt2;
   *(uint32 *)(unaff_RBP + -0x11) = unsignedVar3;
   *(uint32 *)(unaff_RBP + -0xd) = unsignedVar4;
   unsignedVar8 = 0;
-  preturnValue3 = preturnValue1;
+  pfunctionResult3 = pfunctionResult1;
   if (unsignedVar9 < 0x6d) {
     if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
       functionResult = *unaff_RDI;
-      preturnValue3 = (uint64 *)FUN_1808aed00(functionResult,unaff_RBP + -0x19,4);
-      if ((int)preturnValue3 != 0) {
-        return preturnValue3;
+      pfunctionResult3 = (uint64 *)FUN_1808aed00(functionResult,unaff_RBP + -0x19,4);
+      if ((int)pfunctionResult3 != 0) {
+        return pfunctionResult3;
       }
-      preturnValue3 = (uint64 *)FUN_1808aed00(functionResult,unaff_RBP + -0x15,2);
-      if ((int)preturnValue3 != 0) {
-        return preturnValue3;
+      pfunctionResult3 = (uint64 *)FUN_1808aed00(functionResult,unaff_RBP + -0x15,2);
+      if ((int)pfunctionResult3 != 0) {
+        return pfunctionResult3;
       }
-      preturnValue3 = (uint64 *)FUN_1808aed00(functionResult,unaff_RBP + -0x13,2);
-      if ((int)preturnValue3 != 0) {
-        return preturnValue3;
+      pfunctionResult3 = (uint64 *)FUN_1808aed00(functionResult,unaff_RBP + -0x13,2);
+      if ((int)pfunctionResult3 != 0) {
+        return pfunctionResult3;
       }
-      preturnValue3 = (uint64 *)FUN_1808aed00(functionResult,unaff_RBP + -0x11,8);
+      pfunctionResult3 = (uint64 *)FUN_1808aed00(functionResult,unaff_RBP + -0x11,8);
       currentUnsignedSize = extraout_XMM0_Da;
     }
     else {
-      preturnValue3 = (uint64 *)BYTE_OFFSET_FLAG;
+      pfunctionResult3 = (uint64 *)BYTE_OFFSET_FLAG;
     }
   }
-  if ((int)preturnValue3 != 0) {
-    return preturnValue3;
+  if ((int)pfunctionResult3 != 0) {
+    return pfunctionResult3;
   }
   if (0x81 < *(uint *)(unaff_RDI + 8)) {
-    preturnValue1 = (uint64 *)FUN_1808a79f0(currentUnsignedSize,unaff_RSI + SYSTEM_OFFSET_STATUS1);
+    pfunctionResult1 = (uint64 *)FUN_1808a79f0(currentUnsignedSize,unaff_RSI + SYSTEM_OFFSET_STATUS1);
     floatVar21 = extraout_XMM0_Da_00;
-    if ((int)preturnValue1 != 0) {
-      return preturnValue1;
+    if ((int)pfunctionResult1 != 0) {
+      return pfunctionResult1;
     }
     goto LAB_18089c300;
   }
@@ -17723,7 +17723,7 @@ uint64 * FUN_18089c1fb(void)
     *(uint64 *)(unaff_RBP + -BYTE_OFFSET_1) = 0;
     *(uint64 *)(unaff_RBP + -0x21) = 0;
     unsignedVar9 = FUN_1808a54c0(currentUnsignedSize,unaff_RBP + -BYTE_OFFSET_1,0);
-    preturnValue3 = (uint64 *)(ulonglong)unsignedVar9;
+    pfunctionResult3 = (uint64 *)(ulonglong)unsignedVar9;
     if (unsignedVar9 != 0) {
 LAB_18089c40a:
       unsignedVar9 = *(uint *)(unaff_RBP + -ERROR_CODE_5);
@@ -17734,7 +17734,7 @@ LAB_18089c40a:
       localStatus9 = *(int *)(unaff_RBP + -0x21);
       if ((int)functionResult0 < 0) {
         if (0 < localStatus9) {
-          return preturnValue3;
+          return pfunctionResult3;
         }
         if ((0 < (int)unsignedVar9) && (*(longlong *)(unaff_RBP + -BYTE_OFFSET_1) != 0)) {
                     // WARNING: Subroutine does not return
@@ -17746,18 +17746,18 @@ LAB_18089c40a:
         unsignedVar9 = unsignedVar8;
       }
       else {
-        preturnValue1 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
+        pfunctionResult1 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
       }
       if (localStatus9 < 0) {
         localLong18 = (longlong)-localStatus9;
         if (localStatus9 < 0) {
-          localLong17 = (longlong)localStatus9 * RESOURCE_OFFSET_HANDLE + 0x14 + (longlong)preturnValue1;
+          localLong17 = (longlong)localStatus9 * RESOURCE_OFFSET_HANDLE + 0x14 + (longlong)pfunctionResult1;
           do {
-            preturnValue2 = (uint32 *)FUN_180847820();
-            currentUnsignedSize = preturnValue2[1];
-            localUInt2 = preturnValue2[2];
-            unsignedVar3 = preturnValue2[3];
-            *(uint32 *)(localLong17 + -0x14) = *preturnValue2;
+            pfunctionResult2 = (uint32 *)FUN_180847820();
+            currentUnsignedSize = pfunctionResult2[1];
+            localUInt2 = pfunctionResult2[2];
+            unsignedVar3 = pfunctionResult2[3];
+            *(uint32 *)(localLong17 + -0x14) = *pfunctionResult2;
             *(uint32 *)(localLong17 + -RESOURCE_HANDLE_OFFSET) = currentUnsignedSize;
             *(uint32 *)(localLong17 + -0xc) = localUInt2;
             *(uint32 *)(localLong17 + -8) = unsignedVar3;
@@ -17773,42 +17773,42 @@ LAB_18089c40a:
         unsignedVar9 = -unsignedVar9;
       }
       if (unsignedVar9 == 0) {
-        return preturnValue3;
+        return pfunctionResult3;
       }
       FUN_1808aef40(unaff_RBP + -BYTE_OFFSET_1,0);
-      return preturnValue3;
+      return pfunctionResult3;
     }
     localStatus9 = *(int *)(unaff_RBP + -0x21);
     floatVar21 = extraout_XMM0_Da_03;
     if (localStatus9 == 0) {
-      preturnValue3 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
+      pfunctionResult3 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
     }
     else {
       unsignedVar9 = (int)*(uint *)(unaff_RSI + SYSTEM_OFFSET_STATUS2) >> ERROR_CODE_FAILED;
       if ((int)((*(uint *)(unaff_RSI + SYSTEM_OFFSET_STATUS2) ^ unsignedVar9) - unsignedVar9) < localStatus9) {
         unsignedVar9 = FUN_180883750(unaff_RSI + BUFFER_OFFSET_DATA,localStatus9);
-        preturnValue3 = (uint64 *)(ulonglong)unsignedVar9;
+        pfunctionResult3 = (uint64 *)(ulonglong)unsignedVar9;
         if (unsignedVar9 != 0) goto LAB_18089c40a;
         localStatus9 = *(int *)(unaff_RBP + -0x21);
         floatVar21 = extraout_XMM0_Da_04;
       }
-      preturnValue3 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
-      for (preturnValue6 = preturnValue3; (preturnValue3 <= preturnValue6 && (preturnValue6 < preturnValue3 + (longlong)localStatus9 * 3));
+      pfunctionResult3 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
+      for (preturnValue6 = pfunctionResult3; (pfunctionResult3 <= preturnValue6 && (preturnValue6 < pfunctionResult3 + (longlong)localStatus9 * 3));
           preturnValue6 = preturnValue6 + 3) {
         *(uint64 *)(unaff_RBP + 0x77) = 0;
         unsignedVar9 = FUN_1808aec50(unaff_RSI + BUFFER_OFFSET_DATA,unaff_RBP + 0x77);
-        preturnValue3 = (uint64 *)(ulonglong)unsignedVar9;
+        pfunctionResult3 = (uint64 *)(ulonglong)unsignedVar9;
         if (unsignedVar9 != 0) goto LAB_18089c40a;
         functionResult = preturnValue6[1];
-        preturnValue3 = *(uint64 **)(unaff_RBP + 0x77);
-        *preturnValue3 = *preturnValue6;
-        preturnValue3[1] = functionResult;
-        *(uint32 *)(preturnValue3 + 2) = *(uint32 *)(preturnValue6 + 2);
+        pfunctionResult3 = *(uint64 **)(unaff_RBP + 0x77);
+        *pfunctionResult3 = *preturnValue6;
+        pfunctionResult3[1] = functionResult;
+        *(uint32 *)(pfunctionResult3 + 2) = *(uint32 *)(preturnValue6 + 2);
         floatVar21 = *(float *)((longlong)preturnValue6 + 0x14) + *(float *)(preturnValue6 + 2);
-        *(float *)((longlong)preturnValue3 + 0x14) = floatVar21;
-        *(byte *)(preturnValue3 + 3) = 1;
+        *(float *)((longlong)pfunctionResult3 + 0x14) = floatVar21;
+        *(byte *)(pfunctionResult3 + 3) = 1;
         localStatus9 = *(int *)(unaff_RBP + -0x21);
-        preturnValue3 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
+        pfunctionResult3 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
       }
     }
     unsignedVar9 = *(uint *)(unaff_RBP + -ERROR_CODE_5);
@@ -17818,19 +17818,19 @@ LAB_18089c40a:
     }
     if ((int)functionResult0 < 0) {
       if (0 < localStatus9) goto LAB_18089c586;
-      if ((0 < (int)unsignedVar9) && (preturnValue3 != (uint64 *)0x0)) {
+      if ((0 < (int)unsignedVar9) && (pfunctionResult3 != (uint64 *)0x0)) {
                     // WARNING: Subroutine does not return
-        utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),preturnValue3,&utilityMemoryDataBuffer,RESOURCE_HANDLE_OFFSET0,1);
+        utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),pfunctionResult3,&utilityMemoryDataBuffer,RESOURCE_HANDLE_OFFSET0,1);
       }
       *(uint64 *)(unaff_RBP + -BYTE_OFFSET_1) = 0;
       *(uint32 *)(unaff_RBP + -ERROR_CODE_5) = 0;
-      preturnValue3 = preturnValue1;
+      pfunctionResult3 = pfunctionResult1;
       unsignedVar9 = unsignedVar8;
     }
     if (localStatus9 < 0) {
       localLong18 = (longlong)-localStatus9;
       if (localStatus9 < 0) {
-        localLong17 = (longlong)localStatus9 * RESOURCE_OFFSET_HANDLE + 0x14 + (longlong)preturnValue3;
+        localLong17 = (longlong)localStatus9 * RESOURCE_OFFSET_HANDLE + 0x14 + (longlong)pfunctionResult3;
         do {
           pfVar14 = (float *)FUN_180847820();
           floatVar21 = *pfVar14;
@@ -17857,10 +17857,10 @@ LAB_18089c40a:
     }
   }
   else {
-    preturnValue1 = (uint64 *)FUN_1808a5780(currentUnsignedSize,unaff_RSI + BUFFER_OFFSET_DATA);
+    pfunctionResult1 = (uint64 *)FUN_1808a5780(currentUnsignedSize,unaff_RSI + BUFFER_OFFSET_DATA);
     floatVar21 = extraout_XMM0_Da_02;
-    if ((int)preturnValue1 != 0) {
-      return preturnValue1;
+    if ((int)pfunctionResult1 != 0) {
+      return pfunctionResult1;
     }
   }
 LAB_18089c586:
@@ -17899,9 +17899,9 @@ uint64 * FUN_18089c22e(void)
   uint unsignedVar8;
   uint unsignedVar9;
   uint functionResult0;
-  uint32 *preturnValue1;
-  uint64 *preturnValue2;
-  uint64 *preturnValue3;
+  uint32 *pfunctionResult1;
+  uint64 *pfunctionResult2;
+  uint64 *pfunctionResult3;
   float *pfVar14;
   ulonglong functionResult5;
   uint64 *preturnValue6;
@@ -17920,49 +17920,49 @@ uint64 * FUN_18089c22e(void)
   float extraout_XMM0_Da_04;
   float floatVar21;
   
-  preturnValue1 = (uint32 *)FUN_180847820();
-  preturnValue3 = (uint64 *)0x0;
+  pfunctionResult1 = (uint32 *)FUN_180847820();
+  pfunctionResult3 = (uint64 *)0x0;
   unsignedVar9 = *(uint *)(unaff_RDI + 8);
-  currentUnsignedSize = *preturnValue1;
-  localUInt2 = preturnValue1[1];
-  unsignedVar3 = preturnValue1[2];
-  unsignedVar4 = preturnValue1[3];
+  currentUnsignedSize = *pfunctionResult1;
+  localUInt2 = pfunctionResult1[1];
+  unsignedVar3 = pfunctionResult1[2];
+  unsignedVar4 = pfunctionResult1[3];
   *(uint32 *)(unaff_RBP + -0x19) = currentUnsignedSize;
   *(uint32 *)(unaff_RBP + -0x15) = localUInt2;
   *(uint32 *)(unaff_RBP + -0x11) = unsignedVar3;
   *(uint32 *)(unaff_RBP + -0xd) = unsignedVar4;
   unsignedVar8 = 0;
-  preturnValue2 = preturnValue3;
+  pfunctionResult2 = pfunctionResult3;
   if (unsignedVar9 < 0x6d) {
     if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
       functionResult = *unaff_RDI;
-      preturnValue2 = (uint64 *)FUN_1808aed00(functionResult,unaff_RBP + -0x19,4);
-      if ((int)preturnValue2 != 0) {
-        return preturnValue2;
+      pfunctionResult2 = (uint64 *)FUN_1808aed00(functionResult,unaff_RBP + -0x19,4);
+      if ((int)pfunctionResult2 != 0) {
+        return pfunctionResult2;
       }
-      preturnValue2 = (uint64 *)FUN_1808aed00(functionResult,unaff_RBP + -0x15,2);
-      if ((int)preturnValue2 != 0) {
-        return preturnValue2;
+      pfunctionResult2 = (uint64 *)FUN_1808aed00(functionResult,unaff_RBP + -0x15,2);
+      if ((int)pfunctionResult2 != 0) {
+        return pfunctionResult2;
       }
-      preturnValue2 = (uint64 *)FUN_1808aed00(functionResult,unaff_RBP + -0x13,2);
-      if ((int)preturnValue2 != 0) {
-        return preturnValue2;
+      pfunctionResult2 = (uint64 *)FUN_1808aed00(functionResult,unaff_RBP + -0x13,2);
+      if ((int)pfunctionResult2 != 0) {
+        return pfunctionResult2;
       }
-      preturnValue2 = (uint64 *)FUN_1808aed00(functionResult,unaff_RBP + -0x11,8);
+      pfunctionResult2 = (uint64 *)FUN_1808aed00(functionResult,unaff_RBP + -0x11,8);
       currentUnsignedSize = extraout_XMM0_Da;
     }
     else {
-      preturnValue2 = (uint64 *)BYTE_OFFSET_FLAG;
+      pfunctionResult2 = (uint64 *)BYTE_OFFSET_FLAG;
     }
   }
-  if ((int)preturnValue2 != 0) {
-    return preturnValue2;
+  if ((int)pfunctionResult2 != 0) {
+    return pfunctionResult2;
   }
   if (0x81 < *(uint *)(unaff_RDI + 8)) {
-    preturnValue3 = (uint64 *)FUN_1808a79f0(currentUnsignedSize,unaff_RSI + SYSTEM_OFFSET_STATUS1);
+    pfunctionResult3 = (uint64 *)FUN_1808a79f0(currentUnsignedSize,unaff_RSI + SYSTEM_OFFSET_STATUS1);
     floatVar21 = extraout_XMM0_Da_00;
-    if ((int)preturnValue3 != 0) {
-      return preturnValue3;
+    if ((int)pfunctionResult3 != 0) {
+      return pfunctionResult3;
     }
     goto LAB_18089c300;
   }
@@ -17970,7 +17970,7 @@ uint64 * FUN_18089c22e(void)
     *(uint64 *)(unaff_RBP + -BYTE_OFFSET_1) = 0;
     *(uint64 *)(unaff_RBP + -0x21) = 0;
     unsignedVar9 = FUN_1808a54c0(currentUnsignedSize,unaff_RBP + -BYTE_OFFSET_1,0);
-    preturnValue2 = (uint64 *)(ulonglong)unsignedVar9;
+    pfunctionResult2 = (uint64 *)(ulonglong)unsignedVar9;
     if (unsignedVar9 != 0) {
 LAB_18089c40a:
       unsignedVar9 = *(uint *)(unaff_RBP + -ERROR_CODE_5);
@@ -17981,7 +17981,7 @@ LAB_18089c40a:
       localStatus9 = *(int *)(unaff_RBP + -0x21);
       if ((int)functionResult0 < 0) {
         if (0 < localStatus9) {
-          return preturnValue2;
+          return pfunctionResult2;
         }
         if ((0 < (int)unsignedVar9) && (*(longlong *)(unaff_RBP + -BYTE_OFFSET_1) != 0)) {
                     // WARNING: Subroutine does not return
@@ -17993,18 +17993,18 @@ LAB_18089c40a:
         unsignedVar9 = unsignedVar8;
       }
       else {
-        preturnValue3 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
+        pfunctionResult3 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
       }
       if (localStatus9 < 0) {
         localLong18 = (longlong)-localStatus9;
         if (localStatus9 < 0) {
-          localLong17 = (longlong)localStatus9 * RESOURCE_OFFSET_HANDLE + 0x14 + (longlong)preturnValue3;
+          localLong17 = (longlong)localStatus9 * RESOURCE_OFFSET_HANDLE + 0x14 + (longlong)pfunctionResult3;
           do {
-            preturnValue1 = (uint32 *)FUN_180847820();
-            currentUnsignedSize = preturnValue1[1];
-            localUInt2 = preturnValue1[2];
-            unsignedVar3 = preturnValue1[3];
-            *(uint32 *)(localLong17 + -0x14) = *preturnValue1;
+            pfunctionResult1 = (uint32 *)FUN_180847820();
+            currentUnsignedSize = pfunctionResult1[1];
+            localUInt2 = pfunctionResult1[2];
+            unsignedVar3 = pfunctionResult1[3];
+            *(uint32 *)(localLong17 + -0x14) = *pfunctionResult1;
             *(uint32 *)(localLong17 + -RESOURCE_HANDLE_OFFSET) = currentUnsignedSize;
             *(uint32 *)(localLong17 + -0xc) = localUInt2;
             *(uint32 *)(localLong17 + -8) = unsignedVar3;
@@ -18020,42 +18020,42 @@ LAB_18089c40a:
         unsignedVar9 = -unsignedVar9;
       }
       if (unsignedVar9 == 0) {
-        return preturnValue2;
+        return pfunctionResult2;
       }
       FUN_1808aef40(unaff_RBP + -BYTE_OFFSET_1,0);
-      return preturnValue2;
+      return pfunctionResult2;
     }
     localStatus9 = *(int *)(unaff_RBP + -0x21);
     floatVar21 = extraout_XMM0_Da_03;
     if (localStatus9 == 0) {
-      preturnValue2 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
+      pfunctionResult2 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
     }
     else {
       unsignedVar9 = (int)*(uint *)(unaff_RSI + SYSTEM_OFFSET_STATUS2) >> ERROR_CODE_FAILED;
       if ((int)((*(uint *)(unaff_RSI + SYSTEM_OFFSET_STATUS2) ^ unsignedVar9) - unsignedVar9) < localStatus9) {
         unsignedVar9 = FUN_180883750(unaff_RSI + BUFFER_OFFSET_DATA,localStatus9);
-        preturnValue2 = (uint64 *)(ulonglong)unsignedVar9;
+        pfunctionResult2 = (uint64 *)(ulonglong)unsignedVar9;
         if (unsignedVar9 != 0) goto LAB_18089c40a;
         localStatus9 = *(int *)(unaff_RBP + -0x21);
         floatVar21 = extraout_XMM0_Da_04;
       }
-      preturnValue2 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
-      for (preturnValue6 = preturnValue2; (preturnValue2 <= preturnValue6 && (preturnValue6 < preturnValue2 + (longlong)localStatus9 * 3));
+      pfunctionResult2 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
+      for (preturnValue6 = pfunctionResult2; (pfunctionResult2 <= preturnValue6 && (preturnValue6 < pfunctionResult2 + (longlong)localStatus9 * 3));
           preturnValue6 = preturnValue6 + 3) {
         *(uint64 *)(unaff_RBP + 0x77) = 0;
         unsignedVar9 = FUN_1808aec50(unaff_RSI + BUFFER_OFFSET_DATA,unaff_RBP + 0x77);
-        preturnValue2 = (uint64 *)(ulonglong)unsignedVar9;
+        pfunctionResult2 = (uint64 *)(ulonglong)unsignedVar9;
         if (unsignedVar9 != 0) goto LAB_18089c40a;
         functionResult = preturnValue6[1];
-        preturnValue2 = *(uint64 **)(unaff_RBP + 0x77);
-        *preturnValue2 = *preturnValue6;
-        preturnValue2[1] = functionResult;
-        *(uint32 *)(preturnValue2 + 2) = *(uint32 *)(preturnValue6 + 2);
+        pfunctionResult2 = *(uint64 **)(unaff_RBP + 0x77);
+        *pfunctionResult2 = *preturnValue6;
+        pfunctionResult2[1] = functionResult;
+        *(uint32 *)(pfunctionResult2 + 2) = *(uint32 *)(preturnValue6 + 2);
         floatVar21 = *(float *)((longlong)preturnValue6 + 0x14) + *(float *)(preturnValue6 + 2);
-        *(float *)((longlong)preturnValue2 + 0x14) = floatVar21;
-        *(byte *)(preturnValue2 + 3) = 1;
+        *(float *)((longlong)pfunctionResult2 + 0x14) = floatVar21;
+        *(byte *)(pfunctionResult2 + 3) = 1;
         localStatus9 = *(int *)(unaff_RBP + -0x21);
-        preturnValue2 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
+        pfunctionResult2 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
       }
     }
     unsignedVar9 = *(uint *)(unaff_RBP + -ERROR_CODE_5);
@@ -18065,19 +18065,19 @@ LAB_18089c40a:
     }
     if ((int)functionResult0 < 0) {
       if (0 < localStatus9) goto LAB_18089c586;
-      if ((0 < (int)unsignedVar9) && (preturnValue2 != (uint64 *)0x0)) {
+      if ((0 < (int)unsignedVar9) && (pfunctionResult2 != (uint64 *)0x0)) {
                     // WARNING: Subroutine does not return
-        utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),preturnValue2,&utilityMemoryDataBuffer,RESOURCE_HANDLE_OFFSET0,1);
+        utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),pfunctionResult2,&utilityMemoryDataBuffer,RESOURCE_HANDLE_OFFSET0,1);
       }
       *(uint64 *)(unaff_RBP + -BYTE_OFFSET_1) = 0;
       *(uint32 *)(unaff_RBP + -ERROR_CODE_5) = 0;
-      preturnValue2 = preturnValue3;
+      pfunctionResult2 = pfunctionResult3;
       unsignedVar9 = unsignedVar8;
     }
     if (localStatus9 < 0) {
       localLong18 = (longlong)-localStatus9;
       if (localStatus9 < 0) {
-        localLong17 = (longlong)localStatus9 * RESOURCE_OFFSET_HANDLE + 0x14 + (longlong)preturnValue2;
+        localLong17 = (longlong)localStatus9 * RESOURCE_OFFSET_HANDLE + 0x14 + (longlong)pfunctionResult2;
         do {
           pfVar14 = (float *)FUN_180847820();
           floatVar21 = *pfVar14;
@@ -18104,10 +18104,10 @@ LAB_18089c40a:
     }
   }
   else {
-    preturnValue3 = (uint64 *)FUN_1808a5780(currentUnsignedSize,unaff_RSI + BUFFER_OFFSET_DATA);
+    pfunctionResult3 = (uint64 *)FUN_1808a5780(currentUnsignedSize,unaff_RSI + BUFFER_OFFSET_DATA);
     floatVar21 = extraout_XMM0_Da_02;
-    if ((int)preturnValue3 != 0) {
-      return preturnValue3;
+    if ((int)pfunctionResult3 != 0) {
+      return pfunctionResult3;
     }
   }
 LAB_18089c586:
@@ -18148,9 +18148,9 @@ ulonglong FUN_18089c2d8(uint64 resourceHandle)
   uint unsignedVar9;
   uint functionResult0;
   ulonglong functionResult1;
-  uint32 *preturnValue2;
+  uint32 *pfunctionResult2;
   float *pfVar13;
-  uint64 *preturnValue4;
+  uint64 *pfunctionResult4;
   uint64 *preturnValue5;
   longlong localLong16;
   longlong unaff_RBP;
@@ -18201,22 +18201,22 @@ LAB_18089c40a:
         }
         *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1) = unaff_R12;
         *(uint *)(unaff_RBP + -ERROR_CODE_5) = unsignedVar8;
-        preturnValue4 = unaff_R12;
+        pfunctionResult4 = unaff_R12;
         unsignedVar9 = unsignedVar8;
       }
       else {
-        preturnValue4 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
+        pfunctionResult4 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
       }
       if (localStatus8 < 0) {
         localLong17 = (longlong)-localStatus8;
         if (localStatus8 < 0) {
-          localLong16 = (longlong)localStatus8 * RESOURCE_OFFSET_HANDLE + 0x14 + (longlong)preturnValue4;
+          localLong16 = (longlong)localStatus8 * RESOURCE_OFFSET_HANDLE + 0x14 + (longlong)pfunctionResult4;
           do {
-            preturnValue2 = (uint32 *)FUN_180847820();
-            functionResult = preturnValue2[1];
-            localUInt2 = preturnValue2[2];
-            unsignedVar3 = preturnValue2[3];
-            *(uint32 *)(localLong16 + -0x14) = *preturnValue2;
+            pfunctionResult2 = (uint32 *)FUN_180847820();
+            functionResult = pfunctionResult2[1];
+            localUInt2 = pfunctionResult2[2];
+            unsignedVar3 = pfunctionResult2[3];
+            *(uint32 *)(localLong16 + -0x14) = *pfunctionResult2;
             *(uint32 *)(localLong16 + -RESOURCE_HANDLE_OFFSET) = functionResult;
             *(uint32 *)(localLong16 + -0xc) = localUInt2;
             *(uint32 *)(localLong16 + -8) = unsignedVar3;
@@ -18240,7 +18240,7 @@ LAB_18089c40a:
     localStatus8 = *(int *)(unaff_RBP + -0x21);
     floatVar20 = extraout_XMM0_Da_02;
     if (localStatus8 == 0) {
-      preturnValue4 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
+      pfunctionResult4 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
     }
     else {
       unsignedVar9 = (int)*(uint *)(unaff_RSI + SYSTEM_OFFSET_STATUS2) >> ERROR_CODE_FAILED;
@@ -18251,23 +18251,23 @@ LAB_18089c40a:
         localStatus8 = *(int *)(unaff_RBP + -0x21);
         floatVar20 = extraout_XMM0_Da_03;
       }
-      preturnValue4 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
-      for (preturnValue5 = preturnValue4; (preturnValue4 <= preturnValue5 && (preturnValue5 < preturnValue4 + (longlong)localStatus8 * 3));
+      pfunctionResult4 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
+      for (preturnValue5 = pfunctionResult4; (pfunctionResult4 <= preturnValue5 && (preturnValue5 < pfunctionResult4 + (longlong)localStatus8 * 3));
           preturnValue5 = preturnValue5 + 3) {
         *(uint64 **)(unaff_RBP + 0x77) = unaff_R12;
         unsignedVar9 = FUN_1808aec50(unaff_RSI + BUFFER_OFFSET_DATA,unaff_RBP + 0x77);
         functionResult1 = (ulonglong)unsignedVar9;
         if (unsignedVar9 != 0) goto LAB_18089c40a;
         unsignedVar7 = preturnValue5[1];
-        preturnValue4 = *(uint64 **)(unaff_RBP + 0x77);
-        *preturnValue4 = *preturnValue5;
-        preturnValue4[1] = unsignedVar7;
-        *(uint32 *)(preturnValue4 + 2) = *(uint32 *)(preturnValue5 + 2);
+        pfunctionResult4 = *(uint64 **)(unaff_RBP + 0x77);
+        *pfunctionResult4 = *preturnValue5;
+        pfunctionResult4[1] = unsignedVar7;
+        *(uint32 *)(pfunctionResult4 + 2) = *(uint32 *)(preturnValue5 + 2);
         floatVar20 = *(float *)((longlong)preturnValue5 + 0x14) + *(float *)(preturnValue5 + 2);
-        *(float *)((longlong)preturnValue4 + 0x14) = floatVar20;
-        *(byte *)(preturnValue4 + 3) = 1;
+        *(float *)((longlong)pfunctionResult4 + 0x14) = floatVar20;
+        *(byte *)(pfunctionResult4 + 3) = 1;
         localStatus8 = *(int *)(unaff_RBP + -0x21);
-        preturnValue4 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
+        pfunctionResult4 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
       }
     }
     unsignedVar9 = *(uint *)(unaff_RBP + -ERROR_CODE_5);
@@ -18277,19 +18277,19 @@ LAB_18089c40a:
     }
     if ((int)functionResult0 < 0) {
       if (0 < localStatus8) goto LAB_18089c586;
-      if ((0 < (int)unsignedVar9) && (preturnValue4 != (uint64 *)0x0)) {
+      if ((0 < (int)unsignedVar9) && (pfunctionResult4 != (uint64 *)0x0)) {
                     // WARNING: Subroutine does not return
-        utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),preturnValue4,&utilityMemoryDataBuffer,RESOURCE_HANDLE_OFFSET0,1);
+        utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),pfunctionResult4,&utilityMemoryDataBuffer,RESOURCE_HANDLE_OFFSET0,1);
       }
       *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1) = unaff_R12;
       *(uint *)(unaff_RBP + -ERROR_CODE_5) = unsignedVar8;
-      preturnValue4 = unaff_R12;
+      pfunctionResult4 = unaff_R12;
       unsignedVar9 = unsignedVar8;
     }
     if (localStatus8 < 0) {
       localLong17 = (longlong)-localStatus8;
       if (localStatus8 < 0) {
-        localLong16 = (longlong)localStatus8 * RESOURCE_OFFSET_HANDLE + 0x14 + (longlong)preturnValue4;
+        localLong16 = (longlong)localStatus8 * RESOURCE_OFFSET_HANDLE + 0x14 + (longlong)pfunctionResult4;
         do {
           pfVar13 = (float *)FUN_180847820();
           floatVar20 = *pfVar13;
