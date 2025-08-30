@@ -21395,14 +21395,14 @@ void InitializeGraphicsMemory(longlong *handleIdentifier)
     *system_ptr_value = &g_global_system_config;
     InitializeSystemModule47(system_configuration_data,system_pointer_var[SYSTEM_OBJECT_OFFSET_28]);
     system_pointer_var[SYSTEM_OBJECT_OFFSET_28] = 0;
-    system_pointer_var[0x29] = &resourcePoolPointer;
-    if (system_pointer_var[0x2a] != 0) {
+    system_pointer_var[SYSTEM_DATA_INDEX_RESOURCE_POOL_PTR] = &resourcePoolPointer;
+    if (system_pointer_var[SYSTEM_DATA_INDEX_RESOURCE_POOL_FLAG] != 0) {
                     // WARNING: Subroutine does not return
       ProcessSystemOperation();
     }
-    system_pointer_var[0x2a] = 0;
+    system_pointer_var[SYSTEM_DATA_INDEX_RESOURCE_POOL_FLAG] = 0;
     *(uint32_t *)(system_pointer_var + 0x2c) = 0;
-    system_pointer_var[0x29] = &globalSystemPointerData;
+    system_pointer_var[SYSTEM_DATA_INDEX_RESOURCE_POOL_PTR] = &globalSystemPointerData;
     InitializeAudioSystem();
     if (system_long_result != 0) {
                     // WARNING: Subroutine does not return
@@ -25669,13 +25669,13 @@ uint64_t * InitializeSystemModule36(uint64_t *handleIdentifier)
   handleIdentifier[6] = 0;
   handleIdentifier[8] = 0;
   handleIdentifier[SYSTEM_OBJECT_OFFSET_60f] = 0;
-  handleIdentifier[0x610] = 0;
+  handleIdentifier[SYSTEM_DATA_INDEX_HANDLE_IDENTIFIER] = 0;
   system_ptr_value = handleIdentifier + SYSTEM_OFFSET_F;
   handleIdentifier[SYSTEM_DATA_BLOCK_SIZE_C] = system_ptr_value;
   handleIdentifier[SYSTEM_CONFIG_SIZE_STATUS] = (ulonglong)(-(int)system_pointer_var & 7) + (longlong)system_ptr_value;
   handleIdentifier[SYSTEM_CONFIG_SIZE_EVENT] = handleIdentifier + SYSTEM_OBJECT_OFFSET_60f;
   handleIdentifier[SYSTEM_OBJECT_OFFSET_60f] = &g_system_func_11;
-  handleIdentifier[0x610] = InitializeUISystem;
+  handleIdentifier[SYSTEM_DATA_INDEX_HANDLE_IDENTIFIER] = InitializeUISystem;
   return handleIdentifier;
 }
 
@@ -26705,7 +26705,7 @@ void InitializeSystemDataNode31(void)
   if ((longlong *)node_root[SYSTEM_OFFSET_2D3] != (longlong *)SYSTEM_NULL_POINTER) {
     (**(code **)(*(longlong *)node_root[SYSTEM_OFFSET_2D3] + SYSTEM_OBJECT_OFFSET_38))();
   }
-  if ((longlong *)node_root[0x2c0] != (longlong *)SYSTEM_NULL_POINTER) {
+  if ((longlong *)node_root[SYSTEM_DATA_INDEX_CONFIG_HANDLER] != (longlong *)SYSTEM_NULL_POINTER) {
     (**(code **)(*(longlong *)node_root[0x2c0] + SYSTEM_OBJECT_OFFSET_38))();
   }
   ProcessSystemData88(node_root + SYSTEM_CONFIG_SIZE_FINAL6);
