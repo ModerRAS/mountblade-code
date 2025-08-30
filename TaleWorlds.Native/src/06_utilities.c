@@ -44694,7 +44694,7 @@ void UtilityUnwindSystemPhase13(void)
   byte boolean_result_flag;
   
   EnterCriticalSection(UTILITY_CRITICAL_SECTION_HANDLE);
-  uRam0000000180d49150 = 0;
+  utility_global_memory_clear_flag = 0;
   LeaveCriticalSection(UTILITY_CRITICAL_SECTION_HANDLE);
   if (g_systemEventHandle != 0) {
     SetEvent();
@@ -81241,7 +81241,7 @@ void resourceManagerMonitor(void)
     free(resource_buffer,loop_counter);
     event_system_end_ptr_main = 0;
     event_system_buffer_main = 0;
-    uRam0000000180c91f20 = 0;
+    utility_global_init_flag = 0;
   }
   return;
 }
@@ -81967,7 +81967,7 @@ void resourceLoadFromDisk(void)
     }
     free(processing_buffer);
   }
-  uRam0000000180bfc130 = 0;
+  utility_global_cleanup_flag = 0;
   g_resource_bufferSize = ALIGNMENT_MASK;
   g_resource_bufferLow = 0;
   return;
