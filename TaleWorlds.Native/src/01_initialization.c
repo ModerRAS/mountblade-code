@@ -1,5 +1,16 @@
 // 01_initialization.c - 初始化系统模块
 
+// 最新美化内容（2025年8月30日最终批次void类型变量和特殊类型定义美化工作完成）：
+// - 美化void类型变量声明，将file_system_handle等替换为void* file_system_handle等明确指针类型
+// - 美化内存池相关变量，将memory_pool_handle等替换为void* memory_pool_handle等语义化指针类型
+// - 美化系统数据相关变量，将system_data_buffer等替换为void* system_data_buffer等语义化指针类型
+// - 美化特殊类型定义，将uint0x102_t等替换为uint32_t等标准类型定义
+// - 美化网络系统变量，将network_socket_handle等替换为int32_t network_socket_handle等语义化类型
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了初始化系统中void类型变量和特殊类型定义的语义化替换
+// - 原本实现：完全重构初始化系统所有类型定义体系，建立统一的语义化类型规范
+// - 简化实现：仅将常见的void类型变量和特殊类型定义替换为语义化名称，保持代码结构不变
+
 // 最新美化内容（2025年8月30日最终批次标签定义语义化美化工作完成）：
 // - 美化系统标签定义，将SYSTEM_INIT_LABEL_*定义中的LAB_名称替换为对应的语义化名称
 // - 将SYSTEM_INIT_LABEL_MAIN_ENTRY中的LAB_1808fd14a替换为system_init_label_parameter_check
@@ -594,6 +605,13 @@
 #define SYSTEM_INIT_STRING_IN_SUFFIX          SYSTEM_INIT_STRING_IN_SUFFIX    // IN后缀字符串
 #define SYSTEM_INIT_STRING_TO_SUFFIX          SYSTEM_INIT_STRING_TO_SUFFIX    // TO后缀字符串
 
+// 硬编码值语义化常量定义（2025年8月30日最终批次补充美化）
+#define SYSTEM_INIT_OFFSET_HEADER_EA0X10A798280X10CBBB 0xea0x10a798280x10cbbb
+#define SYSTEM_INIT_SIZE_POINTER_D98F4C06880EDA4 0xd98f4c06880eda4
+#define SYSTEM_INIT_FLAG_ACTIVE_AUDIO_2D290X10584C8CF0X10E5 0x2d290x10584c8cf0x10e5
+#define SYSTEM_INIT_FLAG_ACTIVE_AUDIO_21C0X10CEDD07D816D 0x21c0x10cedd07d816d
+#define SYSTEM_INIT_FLAG_ACTIVE_AUDIO_C22BB0C0X1026587CE 0xc22bb0c0x1026587CE
+
 #include "TaleWorlds.Native.Split.h"
 
 // 01_initialization.c - 901 个函数
@@ -782,7 +800,7 @@ uint8_t system_initialization_status_array[27];// 系统初始化状态数组（
 void* g_system_context_array[148];// 系统上下文指针数组（148个元素）
 void* g_memory_pool_base;
 void* g_memory_allocator;
-uint0x102_t system_active_thread_count;
+uint32_t system_active_thread_count;      // 系统活动线程计数
 void* g_thread_scheduler;
 void* g_resource_manager;
 void* g_resource_loader;
@@ -791,7 +809,7 @@ void* g_graphics_renderer;
 void* g_audio_device;
 void* g_audio_mixer;
 void* system_data_eighth;
-int0x102_t network_socket_handle;
+int32_t network_socket_handle;         // 网络套接字句柄
 void* system_data_ninth;
 
 // 函数: void MemoryManagerSetup;
@@ -828,16 +846,16 @@ void* system_internal_system_initialized;   // 内部系统初始化状态指针
 // 函数: void InitializeNetworkSystem;
 void* InitializeNetworkSystem;
 void* g_config_data;
-int0x102_t system_error_code;
-uint0x102_t system_operation_flags;
+int32_t system_error_code;              // 系统错误代码
+uint32_t system_operation_flags;        // 系统操作标志
 uint64_t system_performance_counter;
-uint0x102_t system_debug_flags;
-uint0x102_t system_log_level;
+uint32_t system_debug_flags;              // 系统调试标志
+uint32_t system_log_level;                // 系统日志级别
 uint64_t system_memory_usage;
 float system_cpu_usage;
 void* ValidateInitialization;
-void system_input_processing_context;
-void system_network_init_data;
+void* system_input_processing_context; // 系统输入处理上下文指针
+void* system_network_init_data;         // 系统网络初始化数据指针
 void* system_network_init_pointer;
 float system_gpu_usage;
 float system_frame_rate;
@@ -886,13 +904,13 @@ void* system_audio_config;               // 音频配置指针
 void* system_config_pointer;              // 系统配置指针
 size_t system_page_size;
 size_t system_memory_alignment;
-void system_data_cache_config;
+void* system_data_cache_config;         // 系统数据缓存配置指针
 // 系统配置变量声明（2025年8月30日最终批次美化）
 void* system_physics_config;             // 物理配置指针
-void system_cache_address;
+void* system_cache_address;               // 系统缓存地址指针
 void* system_input_config;               // 输入配置指针
-void system_heap_address;
-void system_stack_address;
+void* system_heap_address;                 // 系统堆地址指针
+void* system_stack_address;               // 系统栈地址指针
 void* system_thread_config;              // 线程配置指针
 // 系统配置变量声明（2025年8月30日最终批次美化）
 void* system_memory_config;             // 内存配置指针
@@ -904,49 +922,49 @@ void* system_debug_config;               // 调试配置指针
 
 // 函数: void InitializeFileSystem;
 void InitializeFileSystem;
-void file_system_handle;
-void file_system_buffer;
-void file_system_cache;
-void file_system_metadata;
-void file_system_descriptor;
-void file_system_entry;
-void file_system_node;
-void file_system_block;
-void memory_pool_handle;
-void memory_pool_buffer;
-void memory_pool_metadata;
-void memory_pool_descriptor;
-void memory_pool_entry;
-void memory_pool_node;
-void memory_pool_block;
-void memory_pool_cache;
-void memory_pool_allocator;
-void system_data_buffer;
-void system_data_handle;
-void system_data_cache;
-void system_data_metadata;
-void system_data_descriptor;
-void system_data_entry;
-void system_data_node;
-void system_data_block;
-void system_data_region;
-void system_data_segment;
-void system_data_page;
-void system_data_frame;
-void system_data_chunk;
-void system_data_unit;
-void system_data_item;
-void system_data_table;
-void system_data_array;
+void* file_system_handle;           // 文件系统句柄指针
+void* file_system_buffer;           // 文件系统缓冲区指针
+void* file_system_cache;             // 文件系统缓存指针
+void* file_system_metadata;       // 文件系统元数据指针
+void* file_system_descriptor;   // 文件系统描述符指针
+void* file_system_entry;             // 文件系统条目指针
+void* file_system_node;               // 文件系统节点指针
+void* file_system_block;             // 文件系统块指针
+void* memory_pool_handle;           // 内存池句柄指针
+void* memory_pool_buffer;           // 内存池缓冲区指针
+void* memory_pool_metadata;       // 内存池元数据指针
+void* memory_pool_descriptor;   // 内存池描述符指针
+void* memory_pool_entry;             // 内存池条目指针
+void* memory_pool_node;               // 内存池节点指针
+void* memory_pool_block;             // 内存池块指针
+void* memory_pool_cache;             // 内存池缓存指针
+void* memory_pool_allocator;     // 内存池分配器指针
+void* system_data_buffer;           // 系统数据缓冲区指针
+void* system_data_handle;           // 系统数据句柄指针
+void* system_data_cache;             // 系统数据缓存指针
+void* system_data_metadata;       // 系统数据元数据指针
+void* system_data_descriptor;   // 系统数据描述符指针
+void* system_data_entry;             // 系统数据条目指针
+void* system_data_node;               // 系统数据节点指针
+void* system_data_block;             // 系统数据块指针
+void* system_data_region;           // 系统数据区域指针
+void* system_data_segment;         // 系统数据段指针
+void* system_data_page;               // 系统数据页指针
+void* system_data_frame;             // 系统数据帧指针
+void* system_data_chunk;             // 系统数据块指针
+void* system_data_unit;               // 系统数据单元指针
+void* system_data_item;               // 系统数据项指针
+void* system_data_table;             // 系统数据表指针
+void* system_data_array;             // 系统数据数组指针
 // 美化系统标志变量名（2025年8月30日最终批次补充美化）
 char system_flag_primary;                   // 主系统标志system_flag_primary
 char system_flag_secondary;                 // 次要系统标志system_flag_secondary
 char system_flag_tertiary;                  // 第三系统标志system_flag_tertiary
 char system_flag_quaternary;               // 第四系统标志system_flag_quaternary
-void memory_allocator_handle;
-void memory_allocator_cache;
-void memory_allocator_metadata;
-void memory_allocator_descriptor;
+void* memory_allocator_handle;     // 内存分配器句柄指针
+void* memory_allocator_cache;       // 内存分配器缓存指针
+void* memory_allocator_metadata; // 内存分配器元数据指针
+void* memory_allocator_descriptor; // 内存分配器描述符指针
 void memory_allocator_entry;
 void memory_allocator_buffer;
 void memory_allocator_node;
@@ -1087,7 +1105,7 @@ void g_system_resource_backup_manager;
 void g_system_started;
 void g_initialization_failed;
 void g_system_error;
-int0x102_t system_error_code;
+int32_t system_error_code;              // 系统错误代码
 void g_error_message;
 void g_system_shutdown;
 void g_system_paused;
@@ -1133,7 +1151,7 @@ void g_effect_manager;
 void g_audio_stream;
 void* g_audio_mixer;
 void g_audio_compressor;
-int0x102_t network_socket_handle;
+int32_t network_socket_handle;         // 网络套接字句柄
 void g_network_connection;
 void g_network_protocol;
 void g_network_security;
@@ -1503,7 +1521,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(system_context_base_pointer,&system_stack_frame_pointer,system_config_data_pointer,system_initialization_result + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_result);
     system_config_data_pointer = system_stack_frame_pointer;
   }
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADERea0x10a798280x10cbbb;
+  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER_EA0X10A798280X10CBBB;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_0x10;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_graphics_renderer;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
@@ -8599,7 +8617,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(system_context_base_pointer,&system_stack_frame_pointer,system_config_data_pointer,system_initialization_result + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_result);
     system_config_data_pointer = system_stack_frame_pointer;
   }
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADERea0x10a798280x10cbbb;
+  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER_EA0X10A798280X10CBBB;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_0x10;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_graphics_renderer;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
@@ -10765,7 +10783,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(system_context_base_pointer,&system_stack_frame_pointer,system_config_data_pointer,system_initialization_result + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_result);
     system_config_data_pointer = system_stack_frame_pointer;
   }
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADERea0x10a798280x10cbbb;
+  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER_EA0X10A798280X10CBBB;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_0x10;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_graphics_renderer;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
@@ -11299,7 +11317,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(system_context_base_pointer,&system_stack_frame_pointer,system_config_data_pointer,system_initialization_result + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_result);
     system_config_data_pointer = system_stack_frame_pointer;
   }
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADERea0x10a798280x10cbbb;
+  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER_EA0X10A798280X10CBBB;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_0x10;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_graphics_renderer;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
@@ -13044,7 +13062,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(system_context_base_pointer,&system_stack_frame_pointer,system_config_data_pointer,system_initialization_result + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_result);
     system_config_data_pointer = system_stack_frame_pointer;
   }
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADERea0x10a798280x10cbbb;
+  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER_EA0X10A798280X10CBBB;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_0x10;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_graphics_renderer;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
@@ -13750,7 +13768,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(system_context_base_pointer,&system_stack_frame_pointer,system_config_data_pointer,system_initialization_result + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_result);
     system_config_data_pointer = system_stack_frame_pointer;
   }
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADERea0x10a798280x10cbbb;
+  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER_EA0X10A798280X10CBBB;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_0x10;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_graphics_renderer;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
@@ -15876,7 +15894,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(system_context_base_pointer,&system_stack_frame_pointer,system_config_data_pointer,system_initialization_result + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_result);
     system_config_data_pointer = system_stack_frame_pointer;
   }
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADERea0x10a798280x10cbbb;
+  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER_EA0X10A798280X10CBBB;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_0x10;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_graphics_renderer;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
