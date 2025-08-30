@@ -1751,7 +1751,7 @@ void WotsMainNativeSDLL(unsigned long long handle)
   return;
 }
   data_180bf0102 = 0;
-  uint_var_ = function_(global_data_,线程栈大小,8,3);
+  uint_var_ = function_(global_data_,THREAD_STACK_SIZE,8,3);
   global_data_ = create_event_handle(uint_var_);
   create_thread_context(&stack_ptr_,handle);
   uint_var_ = allocate_thread_stack(&stack_ptr_,&g_threadString1);
@@ -1778,7 +1778,7 @@ label_:
       char_ptr_var_ = char_ptr_var_ + 1;
     } while (uint_var_ < stack_var_);
   }
-  uint_var_ = 无符号32位整数最大值;
+  uint_var_ = UINT32_MAX;
 label_:
   if (int_var_ != -1) {
     setup_thread_parameters(&thread_stack_ptr_98,&thread_stack_ptr_78,uint_var_,uint_var_);
@@ -1797,7 +1797,7 @@ label_:
     thread_stack_ptr_78 = &g_threadString4;
   }
   initialize_event_system();
-  uint_var_ = function_(global_data_,网络缓冲区大小,8,10);
+  uint_var_ = function_(global_data_,NETWORK_BUFFER_SIZE,8,10);
   global_data_ = function_(uint_var_);
   thread_data_ptr = (long long *)function_(global_data_,0xe8,8,3);
   thread_stack_ptr_10 = thread_data_ptr;
@@ -2428,7 +2428,7 @@ label_:
                           char_ptr_var_ = char_ptr_var_ + 1;
                         } while (uint_var_ < stack_var_);
                       }
-                      uint_var_ = 无符号32位整数最大值;
+                      uint_var_ = UINT32_MAX;
 label_:
                       if (uint_var_ != 0xffffffff) {
                         long_var_ = setup_thread_parameters(&stack_ptr_,&stack_ptr_,0);
