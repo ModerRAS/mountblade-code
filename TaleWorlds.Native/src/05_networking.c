@@ -1779,7 +1779,7 @@ void NetworkConnectSocket(uint64_t network_socket_descriptor,uint64_t *network_b
   uint8_t *connection_buffer_pointer;
   int64_t socket_context_array [2];
   uint64_t *session_config_array [2];
-  uint8_t connection_send_buffer [256];
+  uint8_t connection_send_buffer [NETWORK_BUFFER_SIZE_256];
   uint64_t connection_encryption_key;
   network_encryption_key_main = global_network_xor_key ^ (ulonglong)network_temp_validation_buffer;
   if (network_buffer_ptr == (uint64_t *)ZERO_OFFSET) {
