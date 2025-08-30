@@ -23021,7 +23021,7 @@ void ConfigureGraphicsShader(uint64_t handleIdentifier,longlong resourceIdentifi
   uint32_t init_stack_uint_param_278;
   uint64_t init_stack_ulong_param_270;
   void *system_buffer_ptr_global_context;
-  longlong init_stack_memory_base_260;
+  longlong system_init_stack_memory_base;
   void *system_buffer_ptr_data_transfer;
   longlong init_stack_memory_size_250;
   uint init_stack_uint_param_248;
@@ -23084,7 +23084,7 @@ void ConfigureGraphicsShader(uint64_t handleIdentifier,longlong resourceIdentifi
   system_init_stack_config_handle = system_configuration_data ^ (ulonglong)system_local_buffer_368;
   system_pointer_value = (uint8_t *)SYSTEM_NULL_POINTER;
   init_stack_buffer_index_334 = 0;
-  init_stack_memory_base_260 = g_system_base_1;
+  system_init_stack_memory_base = g_system_base_1;
   init_stack_char_flag_338 = SYSTEM_CHAR_NULL_TERMINATOR;
   system_pointer_value = &g_system_data_variable3;
   if (*(void **)(resourceIdentifier + SYSTEM_OFFSET_8) != (void *)SYSTEM_NULL_POINTER) {
@@ -25667,7 +25667,7 @@ void InitializeAuthenticationSystem(longlong *handleIdentifier,longlong resource
   uint32_t system_init_stack_param_secondary;
   uint32_t uint_stack_status_flag;
   uint32_t system_init_stack_param_tertiary;
-  uint32_t initialization_stack_config_value_10c;
+  uint32_t system_init_stack_config_value_primary;
   uint8_t init_stack_uint_param_one_hundred_eight;
   uint32_t system_init_stack_uint_config7;
   uint32_t system_init_stack_uint_config3;
@@ -25718,7 +25718,7 @@ void InitializeAuthenticationSystem(longlong *handleIdentifier,longlong resource
   system_init_stack_param_secondary = 0;
   uint_stack_status_flag = 0;
   system_init_stack_param_tertiary = 0;
-  initialization_stack_config_value_10c = SYSTEM_FLOAT_1_0;
+  system_init_stack_config_value_primary = SYSTEM_FLOAT_1_0;
   system_init_stack_uint_config7 = SYSTEM_DATA_COMPARE_SIZE10101;
   system_init_stack_uint_config3 = 1;
   init_stack_uint_param_one_hundred_eight = 1;
@@ -29528,7 +29528,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
   uint32_t system_init_stack_config_handle8;
   ulonglong system_init_stack_config_handle0;
   uint init_stack_texture_flags_378;
-  int init_stack_texture_index_374;
+  int system_init_stack_texture_index;
   int init_stack_texture_counter_370;
   longlong init_stack_graphics_offset_368;
   uint64_t ******pppppsystem_buffer_ptr_shader_data;
@@ -29551,7 +29551,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
   uint32_t init_stack_ulong_param_2d0;
   longlong init_stack_graphics_index_2c8;
   ulonglong system_stack_config_param_2c0;
-  longlong init_stack_graphics_ptr_2b8;
+  longlong system_init_stack_graphics_ptr;
   uint64_t *system_buffer_ptr_resource_pool_2b0;
   uint64_t *system_buffer_ptr_resource_data_2a8;
   uint64_t *system_buffer_ptr_resource_data;
@@ -29588,10 +29588,10 @@ void InitializeTextureSystem(longlong *handleIdentifier)
   system_buffer_ptr_multi_pointer_shader = (uint64_t *******)SYSTEM_NULL_POINTER;
   init_stack_texture_id_348 = 0;
   init_stack_texture_handle_340 = 0;
-  init_stack_graphics_ptr_2b8 = *g_system_base_1;
+  system_init_stack_graphics_ptr = *g_system_base_1;
   init_stack_texture_counter_370 = 0;
-  system_long_result_temp = *(longlong *)(init_stack_graphics_ptr_2b8 + SYSTEM_DATA_OFFSET_8A8);
-  if (*(longlong *)(init_stack_graphics_ptr_2b8 + SYSTEM_DATA_OFFSET_8B0) - system_long_result >> 5 != SYSTEM_COMPARISON_ZERO) {
+  system_long_result_temp = *(longlong *)(system_init_stack_graphics_ptr + SYSTEM_DATA_OFFSET_8A8);
+  if (*(longlong *)(system_init_stack_graphics_ptr + SYSTEM_DATA_OFFSET_8B0) - system_long_result >> 5 != SYSTEM_COMPARISON_ZERO) {
     init_stack_graphics_offset_368 = 0;
     do {
       system_long_result_temp = init_stack_graphics_offset_368;
@@ -29642,7 +29642,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
       strcpy_s(system_local_buffer_network,SYSTEM_DATA_COMPARE_SIZE,&g_system_global_variable4);
       ConfigureSystemModule(&system_buffer_ptr_resource_pool_small,&system_buffer_ptr_texture_pool,&system_buffer_ptr_resource_context_290);
       system_buffer_ptr_resource_context_290 = &globalSystemPointerData;
-      init_stack_texture_index_374 = 0;
+      system_init_stack_texture_index = 0;
       init_stack_graphics_index_2c8 = 0;
       system_stack_config_param_2c0 = (longlong)system_buffer_ptr_vertex_buffer - (longlong)system_buffer_ptr_texture_pool >> 5;
       system_node_root = system_buffer_ptr_texture_pool;
@@ -29652,7 +29652,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
         do {
           system_long_result_temp = init_stack_graphics_index_2c8;
           system_node_root = system_buffer_ptr_texture_pool;
-          system_temp_integer = init_stack_texture_index_374;
+          system_temp_integer = system_init_stack_texture_index;
           system_pointer_value = &g_system_data_variable3;
           if ((void *)system_buffer_ptr_texture_pool[init_stack_graphics_index_2c8 * SYSTEM_OFFSET_4 + 1] != (void *)SYSTEM_NULL_POINTER) {
             system_pointer_value = (void *)system_buffer_ptr_texture_pool[init_stack_graphics_index_2c8 * SYSTEM_OFFSET_4 + 1];
@@ -29757,7 +29757,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
               }
             }
             system_long_result_temp = init_stack_graphics_index_2c8;
-            system_temp_integer = init_stack_texture_index_374;
+            system_temp_integer = system_init_stack_texture_index;
             if (handle_validation_flag) {
               if (system_pointer_chain4 == (uint64_t *******)system_buffer_ptr_multi_pointer_resource) {
                 if ((system_pointer_chain4 != &pppppsystem_buffer_ptr_shader_data) && (*(int *)(system_pointer_chain4 + 6) == SYSTEM_COMPARISON_ZERO)) {
@@ -29787,7 +29787,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
               }
               system_pointer_chain4 = (uint64_t *******)InitializeSystemHandle(system_pointer_chain4);
               system_long_result_temp = init_stack_graphics_index_2c8;
-              system_temp_integer = init_stack_texture_index_374;
+              system_temp_integer = system_init_stack_texture_index;
             }
           }
           system_result_operation = *(uint *)(system_node_root + system_long_result * SYSTEM_OFFSET_4 + 2);
@@ -29808,14 +29808,14 @@ void InitializeTextureSystem(longlong *handleIdentifier)
           system_buffer_ptr_allocation_temp = (void *)SYSTEM_NULL_POINTER;
           init_stack_data_size_318 = init_stack_data_size_318 & SYSTEM_HIGH_32BIT_MASK;
           system_buffer_ptr_resource_pool_large = &globalSystemPointerData;
-          init_stack_texture_index_374 = system_temp_integer_result + 1;
+          system_init_stack_texture_index = system_temp_integer_result + 1;
           init_stack_graphics_index_2c8 = system_long_result + 1;
           system_node_root = system_buffer_ptr_texture_pool;
           system_pointer_value = system_buffer_ptr_texture_pool;
           system_pointer_value = system_buffer_ptr_vertex_buffer;
           system_temp_integer = init_stack_texture_counter_370;
           system_long_result_temp = init_stack_graphics_offset_368;
-        } while ((ulonglong)(longlong)init_stack_texture_index_374 < system_stack_config_param_2c0);
+        } while ((ulonglong)(longlong)system_init_stack_texture_index < system_stack_config_param_2c0);
       }
       for (; system_node_current = system_temp_config_value, system_pointer_value = system_temp_config_value, system_node_root != system_buffer_ptr_vertex_buffer; system_node_root = system_node_root + SYSTEM_OFFSET_4)
       {
@@ -29845,11 +29845,11 @@ void InitializeTextureSystem(longlong *handleIdentifier)
       system_buffer_ptr_resource_pool_small = &globalSystemPointerData;
       init_stack_texture_counter_370 = system_temp_integer_result + 1;
       init_stack_graphics_offset_368 = system_long_result + 1;
-      system_long_result_temp = *(longlong *)(init_stack_graphics_ptr_2b8 + SYSTEM_DATA_OFFSET_8A8);
+      system_long_result_temp = *(longlong *)(system_init_stack_graphics_ptr + SYSTEM_DATA_OFFSET_8A8);
       system_buffer_ptr_texture_pool = system_pointer_value;
       system_buffer_ptr_vertex_buffer = system_pointer_value;
     } while ((ulonglong)(longlong)init_stack_texture_counter_370 <
-             (ulonglong)(*(longlong *)(init_stack_graphics_ptr_2b8 + SYSTEM_DATA_OFFSET_8B0) - system_long_result >> 5));
+             (ulonglong)(*(longlong *)(system_init_stack_graphics_ptr + SYSTEM_DATA_OFFSET_8B0) - system_long_result >> 5));
   }
   init_stack_system_handle = SYSTEM_FLOAT_CONSTANT_1;
   initialization_stack_unsigned_param_40 = SYSTEM_FLOAT_VALUE_1_0F;
@@ -57510,7 +57510,7 @@ void ConfigureSystemSettings(uint handleIdentifier,longlong resourceIdentifier,l
   float init_float_stack_118;
   float init_float_stack_114;
   float init_float_stack_110;
-  uint32_t initialization_stack_config_value_10c;
+  uint32_t system_init_stack_config_value_primary;
   float init_float_stack_108;
   float init_float_stack_104;
   float init_float_stack_100;
@@ -58136,7 +58136,7 @@ code_r0x00018007db1b:
           init_float_stack_e0 = -init_float_stack_e0;
           init_float_stack_118 = -init_float_stack_e8;
           init_float_stack_114 = -init_float_stack_e4;
-          initialization_stack_config_value_10c = 0x7f7fffff;
+          system_init_stack_config_value_primary = 0x7f7fffff;
           init_float_stack_e8 = -init_float_stack_e8;
           init_float_stack_e4 = -init_float_stack_e4;
           init_float_stack_dc = SYSTEM_FLOAT_MAX_VALUE;
