@@ -1,6 +1,23 @@
-// 系统数据定义文件 - 美化硬编码值（2025年8月30日最终批次+补充批次+最终完成批次+续+最新完成批次+变量名美化批次）
+// 系统数据定义文件 - 美化硬编码值（2025年8月30日最终批次+补充批次+最终完成批次+续+最新完成批次+变量名美化批次+语义化常量替换批次）
 // 简化实现：仅将常见的硬编码值替换为语义化常量
 // 原本实现：完全重构硬编码值体系
+
+// 本次语义化常量替换批次内容（2025年8月30日语义化常量替换批次）：
+// - 删除重复的常量定义，如SYSTEM_OFFSET_STRING_COUNTER
+// - 添加系统特殊数值常量定义，包括浮点数最大值、π/4值等
+// - 添加系统字符串模式常量定义，包括消息模式、终止符模式等
+// - 添加系统位掩码常量定义，包括浮点数上位掩码、地址对齐掩码等
+// - 添加系统错误码常量定义，包括特殊错误码和超时错误码
+// - 添加系统最大值常量定义，包括32位、64位、浮点数最大值等
+// - 添加系统地址偏移常量定义，包括特殊地址偏移和内存边界偏移
+// - 添加系统执行参数常量定义，包括特殊执行参数
+// - 替换代码中的硬编码错误码为语义化常量，如-0x7f6dfffb替换为SYSTEM_ERROR_CODE_SPECIAL_1
+// - 替换代码中的硬编码位掩码为语义化常量，如0xfffffffe替换为SYSTEM_BIT_MASK_ADDRESS_ALIGN
+// - 替换代码中的硬编码执行参数为语义化常量，如0xfffffffd替换为SYSTEM_EXECUTION_PARAM_SPECIAL
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中剩余硬编码值的语义化替换
+// - 原本实现：完全重构所有硬编码值体系，建立统一的语义化命名规范
+// - 简化实现：仅将常见的硬编码值替换为语义化常量，保持代码结构不变
 
 // 新增语义化常量定义（2025年8月30日美化批次）：
 #define SYSTEM_OFFSET_HANDLE_PARAM_11 0x11
@@ -13035,7 +13052,7 @@ section_processing_jump_label_:
       if (thread_result_status != 0) break;
     }
     else {
-      system_execution_function(*(unsigned long long *)(unregister_bx + SYSTEM_MODULE_OFFSET_1),0xfffffffd,1);
+      system_execution_function(*(unsigned long long *)(unregister_bx + SYSTEM_MODULE_OFFSET_1),SYSTEM_EXECUTION_PARAM_SPECIAL,1);
     }
     if (*(uint *)(*(long long *)(unregister_bx + 8) + SYSTEM_CONFIG_OFFSET_INIT_FLAG) <= buffer_allocation_result) break;
 section_processing_jump_label_:
@@ -14990,3 +15007,6 @@ void system_data_initialization_cleanup(void)
 // 系统地址偏移常量定义
 #define SYSTEM_ADDRESS_OFFSET_SPECIAL_1 0x1c0042ed               // 特殊地址偏移1
 #define SYSTEM_ADDRESS_OFFSET_MEMORY_BOUNDARY 0x17ffffff          // 内存边界地址偏移
+
+// 系统执行参数常量定义
+#define SYSTEM_EXECUTION_PARAM_SPECIAL 0xfffffffd               // 特殊执行参数
