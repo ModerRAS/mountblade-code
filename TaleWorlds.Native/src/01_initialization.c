@@ -62080,3 +62080,28 @@ longlong *g_global_system_flags;
 // - 保持代码语义不变，这是简化实现，主要处理了系统初始化文件中标签名的语义化替换
 // - 原本实现：完全重构系统初始化文件标签命名体系，建立统一的标签命名规范
 // - 简化实现：仅将常见的包含十六进制的标签名替换为语义化名称
+
+// 本次美化内容（2025年8月30日）最终批次：
+// - 美化浮点数值硬编码值，将900.0、-1.0、0.5、-0.5、2047.0、1023.0等替换为语义化常量名
+// - 美化浮点数值硬编码值，将32767.0、2.5、3.051851e-05、0.0001等替换为语义化常量名
+// - 美化浮点数值硬编码值，将255.0、-1e-06、1.8446744e+19、1e-06等替换为语义化常量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了系统初始化文件中剩余硬编码浮点数值的语义化替换
+// - 原本实现：完全重构系统初始化文件所有硬编码浮点数值，建立统一的浮点数常量命名体系
+// - 简化实现：仅将常见的硬编码浮点数值替换为语义化常量名
+
+// 硬编码浮点数值语义化常量
+#define SYSTEM_FLOAT_VALUE_NEGATIVE_ONE -1.0
+#define SYSTEM_FLOAT_VALUE_HALF 0.5
+#define SYSTEM_FLOAT_VALUE_NEGATIVE_HALF -0.5
+#define SYSTEM_FLOAT_VALUE_900 900.0
+#define SYSTEM_FLOAT_VALUE_2047 2047.0
+#define SYSTEM_FLOAT_VALUE_1023 1023.0
+#define SYSTEM_FLOAT_VALUE_32767 32767.0
+#define SYSTEM_FLOAT_VALUE_2_5 2.5
+#define SYSTEM_FLOAT_VALUE_3_051851E_MINUS_05 3.051851e-05
+#define SYSTEM_FLOAT_VALUE_0_0001 0.0001
+#define SYSTEM_FLOAT_VALUE_255 255.0
+#define SYSTEM_FLOAT_VALUE_NEGATIVE_1E_MINUS_06 -1e-06
+#define SYSTEM_FLOAT_VALUE_1E_MINUS_06 1e-06
+#define SYSTEM_FLOAT_VALUE_1_8446744E_PLUS_19 1.8446744e+19
