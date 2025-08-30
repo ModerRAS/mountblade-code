@@ -3647,7 +3647,7 @@ uint64 check_utility_operation_result(longlong resource_handle_identifier) # 资
   
   iteration_counter = system_memory_operation(*(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),utility_stack_buffer_array);
   if ((int)iteration_counter == 0) {
-    long_ptr_buffer = *(longlong **)(utility_stack_buffer_array[0] + POINTER_DATA_OFFSET);
+    long_ptr_buffer = *(longlong **)(utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] + POINTER_DATA_OFFSET);
     while ((*(longlong **)(utility_stack_buffer_array[0] + POINTER_DATA_OFFSET) <= long_ptr_buffer &&
            (long_ptr_buffer < *(longlong **)(utility_stack_buffer_array[0] + POINTER_DATA_OFFSET) + *(int *)(utility_stack_buffer_array[0] + UTILITY_SECONDARY_BYTE_OFFSET)))) {
       operation_buffer = *long_ptr_buffer;
