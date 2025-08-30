@@ -33534,7 +33534,7 @@ ulonglong FUN_180060a50(longlong *param_1,uint *param_2)
     if (uVar9 != 0) {
       do {
         if (puVar4 == (ulonglong *)0x0) {
-          puVar4 = (ulonglong *)&DAT_00000008;
+          puVar4 = (ulonglong *)&g_system_constant_size;;
         }
         current_node = (ulonglong *)(*puVar4 - 8);
         if (*puVar4 == 0) {
@@ -33562,7 +33562,7 @@ ulonglong FUN_180060a50(longlong *param_1,uint *param_2)
   if ((int)uVar10 != 0) {
     do {
       if (puVar4 == (ulonglong *)0x0) {
-        puVar4 = (ulonglong *)&DAT_00000008;
+        puVar4 = (ulonglong *)&g_system_constant_size;;
       }
       uVar10 = *puVar4;
       puVar5 = (ulonglong *)(uVar10 - 8);
@@ -33784,7 +33784,7 @@ uint64_t FUN_180060e40(undefined8 *param_1,longlong param_2,undefined8 param_3)
     data_ptr = (longlong *)*param_1;
     plVar2 = *(longlong **)(param_2 + SYSTEM_DATA_COMPARE_SIZE);
     if (plVar2 == (longlong *)0x0) {
-      plVar2 = (longlong *)&DAT_00000008;
+      plVar2 = (longlong *)&g_system_constant_size;;
     }
     lVar3 = *plVar2;
     while( true ) {
@@ -37406,7 +37406,7 @@ uint64_t FUN_180068250(longlong param_1,longlong param_2,longlong param_3)
       }
       else {
         _DAT_00000000 = 0;
-        _DAT_00000008 = 0;
+        _g_system_constant_size; = 0;
         _DAT_00000018 = 0;
         LOCK();
         _DAT_00000010 = uVar8;
