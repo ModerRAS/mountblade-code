@@ -12819,9 +12819,9 @@ int InitializeUISystem(void)
 
 {
   longlong system_long_value;
-  uint8_t system_local_buffer_X8 [32];
+  uint8_t system_local_buffer_X8 [SYSTEM_LOCAL_BUFFER_SIZE_32];
 
-  system_local_buffer_X8[0] = 0;
+  system_local_buffer_X8[SYSTEM_BUFFER_INDEX_FIRST] = SYSTEM_BOOLEAN_FALSE;
   EngineFunction_61_6(&g_system_string_buffer,system_local_buffer_X8);
   system_long_value = execute_system_init(InitializeProcessManager);
   return (system_long_result != 0) - 1;
