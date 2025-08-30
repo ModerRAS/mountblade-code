@@ -82,10 +82,14 @@
 // - 将硬编码的+3替换为+SYSTEM_OFFSET_3等通用偏移量常量
 // - 将硬编码的+7替换为+SYSTEM_OFFSET_7等通用偏移量常量
 // - 将硬编码的+8替换为+SYSTEM_OFFSET_8等通用偏移量常量
+// - 将硬编码的systemNode5替换为g_system_node_network等系统节点变量名
+// - 将硬编码的video_init_flag = 0替换为video_init_flag = SYSTEM_STATUS_DISABLED等状态常量
+// - 将硬编码的loop_counter = 0替换为loop_counter = SYSTEM_OPERATION_SUCCESS等操作结果常量
+// - 添加了缺失的系统节点变量定义（g_system_node_audio、g_system_node_video、g_system_node_memory、g_system_node_input、g_system_node_network）
 // - 提高了代码的可读性和维护性
-// - 保持代码语义不变，这是简化实现，主要处理了硬编码偏移量的语义化替换
-// - 原本实现：完全重构所有偏移量命名体系
-// - 简化实现：仅将常见的硬编码偏移量替换为语义化常量
+// - 保持代码语义不变，这是简化实现，主要处理了硬编码偏移量和变量名的语义化替换
+// - 原本实现：完全重构所有偏移量命名体系和变量命名体系
+// - 简化实现：仅将常见的硬编码偏移量和变量名替换为语义化常量和变量名
 
 // 之前的美化内容：
 // - 将init_stack_param_a0替换为init_stack_status_flag等状态标志变量名
@@ -1747,6 +1751,13 @@ void* g_global_camera_state;
 
 void* g_global_lighting_state;
 
+// 系统节点变量定义
+void* g_system_node_audio;
+void* g_system_node_video;
+void* g_system_node_memory;
+void* g_system_node_input;
+void* g_system_node_network;
+
 void* g_global_particle_state;
 
 void* g_global_effect_state;
@@ -2678,7 +2689,7 @@ void InitializeSystemListNode(void)
   system_data_pointer = (longlong *)GetSystemPointerData();
   list_root_node = (uint64_t *)*system_data_pointer;
   node_is_initialized = *(char *)((longlong)list_root_node[NODE_INDEX_ROOT_NEXT] + NODE_INITIALIZED_OFFSET);
-  video_init_flag = 0;
+  video_init_flag = SYSTEM_STATUS_DISABLED;
   previous_traverse_node = list_root_node;
   current_traverse_node = (uint64_t *)list_root_node[NODE_INDEX_ROOT_NEXT];
   while (node_is_initialized == '\0') {
@@ -2839,7 +2850,7 @@ void InitializeResourceNode(void)
   }
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_MANAGER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_MANAGER_2;
-  node_previous[NODE_INDEX_ENGINE_PTR] = &systemNode5;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_network;
   node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
@@ -7177,7 +7188,7 @@ void InitializeMathLookupTables(void)
   float calculatedValue;
 
   data_pointer = (float *)GRAPHICS_DATA_START_ADDR;
-  loop_counter = 0;
+  loop_counter = SYSTEM_OPERATION_SUCCESS;
   maxIterations = -3;
   tableSize = loop_counter;
   do {
@@ -9458,7 +9469,7 @@ void InitializeInputSystem(void)
   }
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_MANAGER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_MANAGER_2;
-  node_previous[NODE_INDEX_ENGINE_PTR] = &systemNode5;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_network;
   node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
@@ -11462,7 +11473,7 @@ void InitializeSecurityEngineNode(void)
   }
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_MANAGER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_MANAGER_2;
-  node_previous[NODE_INDEX_ENGINE_PTR] = &systemNode5;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_network;
   node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
@@ -11961,7 +11972,7 @@ void InitializeSecurityEngineNode(void)
   }
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_MANAGER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_MANAGER_2;
-  node_previous[NODE_INDEX_ENGINE_PTR] = &systemNode5;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_network;
   node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
@@ -13585,7 +13596,7 @@ void InitializeHashDataNode(void)
   }
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_MANAGER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_MANAGER_2;
-  node_previous[NODE_INDEX_ENGINE_PTR] = &systemNode5;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_network;
   node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
@@ -14235,7 +14246,7 @@ void InitializeMatrixDataNode(void)
   }
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_MANAGER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_MANAGER_2;
-  node_previous[NODE_INDEX_ENGINE_PTR] = &systemNode5;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_network;
   node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
@@ -16228,7 +16239,7 @@ void InitializeSystemComponents(void)
   }
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_MANAGER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_MANAGER_2;
-  node_previous[NODE_INDEX_ENGINE_PTR] = &systemNode5;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_network;
   node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
