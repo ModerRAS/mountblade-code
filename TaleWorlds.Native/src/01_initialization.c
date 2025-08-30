@@ -219,7 +219,8 @@
 #define SYSTEM_INIT_FLOAT_VALUE_0_075       0x3e99999a  // 浮点数0.075的十六进制表示
 #define SYSTEM_INIT_FLOAT_VALUE_PI_2        0x3fc90fdb  // 浮点数π/2的十六进制表示
 #define SYSTEM_INIT_FLOAT_VALUE_MAX         SYSTEM_INIT_OFFSET_ARRAY_7F7fffff  // 最大浮点数的十六进制表示
-#define SYSTEM_INIT_DOUBLE_VALUE_1_0        0x3f8000003f800000  // 双精度浮点数1.0的十六进制表示
+#define SYSTEM_INIT_DOUBLE_VALUE_1_0        0x3ff0000000000000  // 双精度浮点数1.0的十六进制表示
+#define SYSTEM_INIT_DOUBLE_FLOAT_PAIR_1_0   0x3f8000003f800000  // 两个单精度1.0组合的十六进制表示
 
 // 补充硬编码值语义化常量（2025年8月30日最终批次补充）
 #define SYSTEM_INIT_VALUE_STACK_11            SYSTEM_INIT_VALUE_STACK_11     // 栈值11SYSTEM_INIT_VALUE_STACK_11
@@ -22635,7 +22636,7 @@ void InitializeSystemCore(void)
   *(system_uint32_t *)(system_long_var_3 + SYSTEM_INIT_FLAG_INITIALIZED4c) = system_local_uint_primary1;
   system_local_uint_primary1 = log2f(*(float *)(_g_system_initialized + SYSTEM_INIT_FLAG_INITIALIZED220) * 0.01);
   *(system_uint32_t *)(system_long_var_3 + SYSTEM_INIT_FLAG_INITIALIZED3c) = system_local_uint_primary1;
-  *(system_uint64_t *)(system_long_var_3 + SYSTEM_INIT_FLAG_INITIALIZED54) = 0x3f8000003f800000;
+  *(system_uint64_t *)(system_long_var_3 + SYSTEM_INIT_FLAG_INITIALIZED54) = SYSTEM_INIT_DOUBLE_FLOAT_PAIR_1_0;
   lStack_1d8 = SYSTEM_INIT_DOUBLE_VALUE_1_0;
   *(system_uint64_t *)(system_long_var_3 + SYSTEM_INIT_FLAG_INITIALIZED5c) = 0x3f8000003f800000;
   system_long_var_4 = _g_system_initialized;
@@ -52687,30 +52688,30 @@ void InitializeSystemCore(void)
   system_uint32_t system_register_r14d;
   system_uint32_t system_stack_param_28;
   system_uint64_t system_stack_param_30;
-  ulonglong uStack0000000000000038;
-  system_uint64_t uStack0000000000000040;
-  ulonglong uStack0000000000000048;
-  system_uint64_t uStack0000000000000050;
-  ulonglong uStack0000000000000058;
-  system_uint32_t uStack0000000000000060;
-  system_uint32_t uStack0000000000000064;
-  system_uint32_t uStack0000000000000068;
+  ulonglong system_stack_uint64_38;
+  system_uint64_t system_stack_uint64_40;
+  ulonglong system_stack_uint64_48;
+  system_uint64_t system_stack_uint64_50;
+  ulonglong system_stack_uint64_58;
+  system_uint32_t system_stack_uint32_60;
+  system_uint32_t system_stack_uint32_64;
+  system_uint32_t system_stack_uint32_68;
   system_uint32_t system_stack_param_6c;
   system_uint32_t in_stack_000000e0;
   system_uint32_t in_stack_000000e8;
   
   system_stack_param_30 = *system_register_rdi_input;
-  uStack0000000000000040 = system_register_rdi_input[SYSTEM_ARRAY_INDEX_THIRD];
-  uStack0000000000000050 = system_register_rdi_input[SYSTEM_ARRAY_INDEX_FIFTH];
-  uStack0000000000000060 = *(system_uint32_t *)(system_register_rdi_input + 6);
-  uStack0000000000000064 = *(system_uint32_t *)((longlong)system_register_rdi_input + SYSTEM_INIT_OFFSET_ARRAY_34);
-  uStack0000000000000068 = *(system_uint32_t *)(system_register_rdi_input + 7);
+  system_stack_uint64_40 = system_register_rdi_input[SYSTEM_ARRAY_INDEX_THIRD];
+  system_stack_uint64_50 = system_register_rdi_input[SYSTEM_ARRAY_INDEX_FIFTH];
+  system_stack_uint32_60 = *(system_uint32_t *)(system_register_rdi_input + 6);
+  system_stack_uint32_64 = *(system_uint32_t *)((longlong)system_register_rdi_input + SYSTEM_INIT_OFFSET_ARRAY_34);
+  system_stack_uint32_68 = *(system_uint32_t *)(system_register_rdi_input + 7);
   system_stack_param_28 = in_stack_000000e8;
   system_stack_param_6c = SYSTEM_INIT_FLOAT_VALUE_1_0;
-  uStack0000000000000058 = system_register_rdi_input[SYSTEM_ARRAY_INDEX_SIXTH] & SYSTEM_INIT_ERROR_GENERIC;
-  uStack0000000000000048 = system_register_rdi_input[SYSTEM_ARRAY_INDEX_FOURTH] & SYSTEM_INIT_ERROR_GENERIC;
-  uStack0000000000000038 = system_register_rdi_input[SYSTEM_ARRAY_INDEX_SECOND] & SYSTEM_INIT_ERROR_GENERIC;
-  system_function_(0x3f800000,uStack0000000000000060,system_register_r14d,&stackSYSTEM_INIT_VALUE_CHAR_NULL0000030,in_stack_000000e0);
+  system_stack_uint64_58 = system_register_rdi_input[SYSTEM_ARRAY_INDEX_SIXTH] & SYSTEM_INIT_ERROR_GENERIC;
+  system_stack_uint64_48 = system_register_rdi_input[SYSTEM_ARRAY_INDEX_FOURTH] & SYSTEM_INIT_ERROR_GENERIC;
+  system_stack_uint64_38 = system_register_rdi_input[SYSTEM_ARRAY_INDEX_SECOND] & SYSTEM_INIT_ERROR_GENERIC;
+  system_function_(0x3f800000,system_stack_uint32_60,system_register_r14d,&stackSYSTEM_INIT_VALUE_CHAR_NULL0000030,in_stack_000000e0);
   return;
 }
 
@@ -54588,7 +54589,7 @@ void InitializeSystemCore(void)
   bool system_bool_var_48;
   system_uint32_t unaff_XMM7_Da;
   system_uint32_t unaff_XMM7_Db;
-  system_uint64_t uStack0000000000000050;
+  system_uint64_t system_stack_uint64_50;
   system_uint64_t in_stack_00000058;
   
   system_local_uint_tertiary5 = (int)*(char *)(system_register_rdi_input + SYSTEM_INIT_VALUE_STACK_13) + *(int *)(system_register_rdi_input + SYSTEM_INIT_FLAG_ENABLED8);
@@ -54651,7 +54652,7 @@ void InitializeSystemCore(void)
     system_init_var_40 = *(int *)(system_long_var_16 + SYSTEM_INIT_FLAG_ENABLEDc) + *(int *)(system_long_var_16 + SYSTEM_INIT_FLAG_ENABLED8);
     *(int *)(system_long_var_16 + SYSTEM_INIT_FLAG_INITIALIZED8) = *(int *)(_g_system_initialized + SYSTEM_INIT_FLAG_INITIALIZED24);
     if (0 < system_init_var_40) {
-      uStack0000000000000050 = in_stack_00000058;
+      system_stack_uint64_50 = in_stack_00000058;
       system_long_var_31 = (longlong)*(int *)(_g_system_initialized + SYSTEM_INIT_VALUE_STACK_1478) * SYSTEM_INIT_FLAG_ENABLED28 + _g_system_initialized + SYSTEM_INIT_VALUE_STACK_1228;
       system_local_uint_tertiary0 = InitializeSystemCore(system_long_var_31,system_init_var_40,system_long_var_43,psystem_float_var_15,CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da));
       *(system_uint32_t *)(system_long_var_16 + SYSTEM_INIT_OFFSET_0X30) = system_local_uint_tertiary0;
@@ -54880,7 +54881,7 @@ void InitializeSystemCore(longlong system_context_param,uint system_config_param
   bool system_bool_var_47;
   system_uint32_t unaff_XMM7_Da;
   system_uint32_t unaff_XMM7_Db;
-  system_uint64_t uStack0000000000000050;
+  system_uint64_t system_stack_uint64_50;
   system_uint64_t in_stack_00000058;
   
   system_context_param = (longlong)*(int *)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED50) * SYSTEM_INIT_FLAG_ENABLED28 + system_context_param;
@@ -54940,7 +54941,7 @@ void InitializeSystemCore(longlong system_context_param,uint system_config_param
     system_init_var_39 = *(int *)(system_long_var_15 + SYSTEM_INIT_FLAG_ENABLEDc) + *(int *)(system_long_var_15 + SYSTEM_INIT_FLAG_ENABLED8);
     *(int *)(system_long_var_15 + SYSTEM_INIT_FLAG_INITIALIZED8) = *(int *)(_g_system_initialized + SYSTEM_INIT_FLAG_INITIALIZED24);
     if (0 < system_init_var_39) {
-      uStack0000000000000050 = in_stack_00000058;
+      system_stack_uint64_50 = in_stack_00000058;
       system_long_var_31 = (longlong)*(int *)(_g_system_initialized + SYSTEM_INIT_VALUE_STACK_1478) * SYSTEM_INIT_FLAG_ENABLED28 + _g_system_initialized + SYSTEM_INIT_VALUE_STACK_1228;
       system_local_uint_secondary9 = InitializeSystemCore(system_long_var_31,system_init_var_39,system_context_param,system_thread_param,CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da));
       *(system_uint32_t *)(system_long_var_15 + SYSTEM_INIT_OFFSET_0X30) = system_local_uint_secondary9;
@@ -55143,7 +55144,7 @@ void InitializeSystemCore(void)
   ulonglong system_local_uint_secondary2;
   ulonglong system_local_uint_secondary3;
   bool system_bool_var_24;
-  system_uint64_t uStack0000000000000050;
+  system_uint64_t system_stack_uint64_50;
   system_uint64_t in_stack_00000058;
   
   system_initialization_result = *(longlong *)(system_register_rbx_input + 600);
@@ -55151,7 +55152,7 @@ void InitializeSystemCore(void)
     system_init_var_16 = *(int *)(system_initialization_result + SYSTEM_INIT_FLAG_ENABLEDc) + *(int *)(system_initialization_result + SYSTEM_INIT_FLAG_ENABLED8);
     *(int *)(system_initialization_result + SYSTEM_INIT_FLAG_INITIALIZED8) = *(int *)(_g_system_initialized + SYSTEM_INIT_FLAG_INITIALIZED24);
     if (0 < system_init_var_16) {
-      uStack0000000000000050 = in_stack_00000058;
+      system_stack_uint64_50 = in_stack_00000058;
       system_long_var_12 = (longlong)*(int *)(_g_system_initialized + SYSTEM_INIT_VALUE_STACK_1478) * SYSTEM_INIT_FLAG_ENABLED28 + _g_system_initialized + SYSTEM_INIT_VALUE_STACK_1228;
       system_init_flag_6 = InitializeSystemCore(system_long_var_12,system_init_var_16);
       *(system_uint32_t *)(system_initialization_result + SYSTEM_INIT_OFFSET_0X30) = system_init_flag_6;

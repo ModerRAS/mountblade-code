@@ -12050,7 +12050,7 @@ unsigned long long get_thread_handle_param(unsigned long long handle_param)
   system_execution_function(&system_exception_function_1,&ExceptionList);
   system_initialization_result = cpuid_Extended_Feature_Enumeration_info(7);
   system_mode_flag = (byte)(*(uint *)(system_initialization_result + 8) >> 4) & 1;
-  GetSystemInfo(auStack_40);
+  GetSystemInfo(system_stack_buffer_system_info);
   if (system_maximum_stack_size != SYSTEM_ZERO_VALUE) {
     system_global_data_pointer_variable = (ulong long)system_maximum_stack_size;
   }
@@ -12213,7 +12213,7 @@ long long process_context_handle_param(long long *handle_param)
           system_maximum_stack_size = merge_32bit_values(system_float_variable,system_float_variable);
           system_maximum_stack_size = CONCAT31(system_maximum_stack_size_bitfield1_3_,SYSTEM_PARAM_SINGLE_VALIDATE);
           system_maximum_stack_size = SYSTEM_ZERO_VALUE;
-          system_execution_function(system_thread_operation_flags,&system_maximum_stack_size,0,auStack_358);
+          system_execution_function(system_thread_operation_flags,&system_maximum_stack_size,0,system_stack_buffer_thread_operation);
           system_float_variable = fStack_328;
           if (cStack_324 == '\0') {
             system_float_variable = SYSTEM_FLOAT_VALUE_ZERO;
@@ -12277,7 +12277,7 @@ long long process_context_handle_param(long long *handle_param)
           system_maximum_stack_size = *(unsigned long long *)system_float_pointer_variable;
           system_maximum_stack_size = CONCAT31(system_maximum_stack_size_bitfield1_3_,SYSTEM_PARAM_SINGLE_VALIDATE);
           system_maximum_stack_size = SYSTEM_ZERO_VALUE;
-          system_execution_function(system_thread_operation_flags,&system_maximum_stack_size,0,auStack_358);
+          system_execution_function(system_thread_operation_flags,&system_maximum_stack_size,0,system_stack_buffer_thread_operation);
           system_float_variable = fStack_328;
           if (cStack_324 == '\0') {
             system_float_variable = SYSTEM_FLOAT_VALUE_ZERO;
@@ -12315,7 +12315,7 @@ long long process_context_handle_param(long long *handle_param)
   if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
     __Throw_C_error_std__YAXH_Z(system_thread_result_status);
   }
-  system_execute_crypto_operation(system_maximum_stack_size ^ (ulong long)auStack_3a8);
+  system_execute_crypto_operation(system_maximum_stack_size ^ (ulong long)system_stack_buffer_crypto_large);
 }
                     system_data_character = system_data_character + system_char_variable;
                     if (system_data_character != '\0' && byte_flag_value7 == system_data_character < '\0') {
@@ -14943,10 +14943,10 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_OFFSET_MODULE_DATA_3580 0x3580                      // 模块数据3580偏移量
 
 // 数值比较常量定义（2025年8月30日最终批次补充）
-#define SYSTEM_COMPARE_VALUE_3 3                                   // 比较值3
-#define SYSTEM_COMPARE_VALUE_5 5                                   // 比较值5
-#define SYSTEM_COMPARE_VALUE_6 6                                   // 比较值6
-#define SYSTEM_COMPARE_VALUE_8 8                                   // 比较值8
+#define SYSTEM_COMPARE_VALUE_TRIPLE 3                                   // 比较值3
+#define SYSTEM_COMPARE_VALUE_QUINTUPLE 5                                   // 比较值5
+#define SYSTEM_COMPARE_VALUE_SEXTUPLE 6                                   // 比较值6
+#define SYSTEM_COMPARE_VALUE_OCTUPLE 8                                   // 比较值8
 
 // 位操作常量定义（2025年8月30日最终批次补充）
 #define SYSTEM_BIT_SHIFT_1 1                                       // 位偏移1
