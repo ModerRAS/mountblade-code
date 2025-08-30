@@ -149,10 +149,6 @@
 // 简化实现：主要处理硬编码值的语义化替换和变量名改善，保持核心功能不变
 
 
-// 新增语义化常量定义 - 网络加密常量
-#define NETWORK_ENCRYPTION_DISABLED NETWORK_OPERATION_FAILURE       // 网络加密：禁用
-#define NETWORK_ENCRYPTION_ENABLED NETWORK_OPERATION_SUCCESS        // 网络加密：启用
-#define NETWORK_ENCRYPTION_MULTI_MODE NETWORK_BUFFER_SIZE_MEDIUM     // 网络加密：多模式
 
 // 新增语义化常量定义 - 网络缩放因子常量
 #define NETWORK_SCALING_FACTOR_1_5 1.5f        // 网络缩放因子1.5

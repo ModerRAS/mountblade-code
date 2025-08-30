@@ -263,6 +263,29 @@
 #define SYSTEM_HASH_CONSTANT_1 0x7a143595
 #define SYSTEM_HASH_CONSTANT_2 0x3d4d51cb
 
+// 系统状态常量
+#define SYSTEM_STATUS_UNINITIALIZED 0
+#define SYSTEM_STATUS_INITIALIZED 1
+#define SYSTEM_STATUS_READY 3
+
+// 引擎状态常量
+#define ENGINE_STATUS_UNINITIALIZED 0
+#define ENGINE_STATUS_AUDIO_INITIALIZED 1
+#define ENGINE_STATUS_RENDER_INITIALIZED 3
+
+// 引擎类型常量
+#define ENGINE_TYPE_CORE 0
+#define ENGINE_TYPE_VIDEO 3
+#define ENGINE_TYPE_INPUT 1
+
+// 内存池状态常量
+#define MEMORY_POOL_UNINITIALIZED 0
+#define MEMORY_POOL_INITIALIZED 1
+
+// 资源池状态常量
+#define RESOURCE_POOL_EMPTY 0
+#define RESOURCE_POOL_READY 1
+
 // 系统句柄常量
 #define SYSTEM_HANDLE_INVALID_1 0x3fffff03
 #define SYSTEM_HANDLE_INVALID_2 0x3ffffffb
@@ -1119,6 +1142,29 @@
 // 系统哈希常量
 #define SYSTEM_HASH_CONSTANT_1 0x7a143595
 #define SYSTEM_HASH_CONSTANT_2 0x3d4d51cb
+
+// 系统状态常量
+#define SYSTEM_STATUS_UNINITIALIZED 0
+#define SYSTEM_STATUS_INITIALIZED 1
+#define SYSTEM_STATUS_READY 3
+
+// 引擎状态常量
+#define ENGINE_STATUS_UNINITIALIZED 0
+#define ENGINE_STATUS_AUDIO_INITIALIZED 1
+#define ENGINE_STATUS_RENDER_INITIALIZED 3
+
+// 引擎类型常量
+#define ENGINE_TYPE_CORE 0
+#define ENGINE_TYPE_VIDEO 3
+#define ENGINE_TYPE_INPUT 1
+
+// 内存池状态常量
+#define MEMORY_POOL_UNINITIALIZED 0
+#define MEMORY_POOL_INITIALIZED 1
+
+// 资源池状态常量
+#define RESOURCE_POOL_EMPTY 0
+#define RESOURCE_POOL_READY 1
 void* g_game_data_reserved_audio;
 
 void* g_game_render_data;
@@ -1192,7 +1238,7 @@ void* g_system_data_reserved;
 
 void* g_system_memory_pool;
 
-uint64_t g_system_flags;
+uint64_t g_system_runtime_flags;
 void* g_system_state;
 
 void* g_system_config;
@@ -1283,8 +1329,8 @@ void* g_global_physics_data;
 
 void* g_global_animation_data;
 
-int g_initialization_status;
-longlong g_system_memory_size;
+int g_system_initialization_progress_status;
+longlong g_system_total_memory_size;
 void* g_global_ui_data;
 // function_ptr g_function_initialize_game;
 
@@ -1358,11 +1404,11 @@ void* g_static_thread_pool;
 
 void* g_static_task_queue;
 
-char g_system_initialized_flag;
+char g_system_startup_completed_flag;
 
-char g_engine_ready_flag;
-char g_graphics_initialized_flag;
-char g_audio_initialized_flag;
+char g_engine_startup_ready_flag;
+char g_graphics_subsystem_initialized_flag;
+char g_audio_subsystem_initialized_flag;
 void* g_global_memory_allocator;
 
 void* g_global_file_system;
@@ -1415,16 +1461,16 @@ void* g_global_physics_system;
 
 void* g_global_render_system;
 
-longlong g_global_system_memory_base;
+longlong g_system_memory_base_address;
 void* g_static_zero_buffer;
 
 void* g_global_input_system;
 
 void* g_global_scene_manager;
 
-ulonglong g_global_system_tick_count_primary;
+ulonglong g_system_primary_tick_counter;
 
-ulonglong g_global_system_tick_count_secondary;
+ulonglong g_system_secondary_tick_counter;
 ulonglong g_global_system_tick_count_tertiary;
 uint64_t g_system_initialization_flag_primary;
 uint64_t g_system_initialization_flag_secondary;
@@ -2443,7 +2489,7 @@ void InitializeResourceNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_MANAGER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_MANAGER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &systemNode5;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -2489,7 +2535,7 @@ void InitializeResourceNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -2630,7 +2676,7 @@ void InitializeNetworkNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_THREAD_SCHEDULER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_THREAD_SCHEDULER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -2643,18 +2689,18 @@ int InitializeEngineBaseStructures(void)
   longlong initialization_result;
 
   // 初始化引擎基础数据结构指针
-  g_engine_data_pointer = 0;
-  g_memory_base_address = 0;
-  g_reserved_memory_1 = 0;
-  g_render_context_state = 3;
-  g_audio_context_state = 0;
-  g_system_audio_initialization_flag = 0;
-  g_reserved_memory_2 = 0;
-  g_system_render_initialization_flag = 3;
+  g_engine_data_pointer = SYSTEM_NULL_POINTER;
+  g_memory_base_address = SYSTEM_NULL_POINTER;
+  g_reserved_memory_1 = SYSTEM_NULL_POINTER;
+  g_render_context_state = ENGINE_STATUS_RENDER_INITIALIZED;
+  g_audio_context_state = ENGINE_STATUS_UNINITIALIZED;
+  g_system_audio_initialization_flag = SYSTEM_STATUS_UNINITIALIZED;
+  g_reserved_memory_2 = SYSTEM_NULL_POINTER;
+  g_system_render_initialization_flag = ENGINE_STATUS_RENDER_INITIALIZED;
   g_resource_pool_pointer = &resourcePoolPointer;
-  g_resource_pool_size = 0;
-  g_memory_pool_state = 0;
-  g_memory_pool_size = 0;
+  g_resource_pool_size = RESOURCE_POOL_EMPTY;
+  g_memory_pool_state = MEMORY_POOL_UNINITIALIZED;
+  g_memory_pool_size = MEMORY_POOL_UNINITIALIZED;
 // 初始化引擎状态函数
 void InitializeEngineState(void)
 
@@ -2823,7 +2869,7 @@ void InitializeAudioSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_VIDEO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_VIDEO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -2899,7 +2945,7 @@ void InitializeNetworkSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -3367,7 +3413,7 @@ void initialize_system_phase10(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_VIDEO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_VIDEO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -3508,7 +3554,7 @@ void initialize_graphics_phase3(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_EVENT_HANDLER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_EVENT_HANDLER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -3584,7 +3630,7 @@ void InitializeDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -3960,7 +4006,7 @@ void InitializePoolNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -4287,7 +4333,7 @@ void InitializeSetNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -4710,7 +4756,7 @@ void InitializePropertyNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -5115,7 +5161,7 @@ void InitializeMemorySystemObject(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_VIDEO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_VIDEO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -5208,7 +5254,7 @@ void initialize_process_system_object(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_VIDEO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_VIDEO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -5254,7 +5300,7 @@ void initialize_event_system_object(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -5602,7 +5648,7 @@ void InitializeThreadConfig2(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -6102,7 +6148,7 @@ void EnableInputDevice(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_EVENT_HANDLER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_EVENT_HANDLER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -6149,7 +6195,7 @@ void DisableInputDevice(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -6478,7 +6524,7 @@ void ReceiveNetworkData(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -7002,7 +7048,7 @@ void InitializeNetworkSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_VIDEO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_VIDEO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -7049,7 +7095,7 @@ void InitializeConfigSubsystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -7425,7 +7471,7 @@ void InitializeSystemTimer(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_EVENT_HANDLER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_EVENT_HANDLER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -7472,7 +7518,7 @@ void InitializeSystemLogger(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -7942,7 +7988,7 @@ void InitializeShaderDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_EVENT_HANDLER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_EVENT_HANDLER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -8036,7 +8082,7 @@ void InitializeNetworkResourceNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -8432,7 +8478,7 @@ void InitializeShaderSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -8874,7 +8920,7 @@ void InitializeSystemLogger(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_audio;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -9062,7 +9108,7 @@ void InitializeInputSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_MANAGER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_MANAGER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &systemNode5;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -9109,7 +9155,7 @@ void InitializeNetworkSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -9250,7 +9296,7 @@ void InitializeVideoSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_THREAD_SCHEDULER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_THREAD_SCHEDULER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -9515,7 +9561,7 @@ void InitializeResourceSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -9844,7 +9890,7 @@ void InitializeDatabaseSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -10173,7 +10219,7 @@ void InitializeRenderSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -10502,7 +10548,7 @@ void InitializeNetworkInitNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -10878,7 +10924,7 @@ void ConfigureGraphicsParameters(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_audio;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -11066,7 +11112,7 @@ void InitializeSecurityEngineNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_MANAGER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_MANAGER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &systemNode5;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -11113,7 +11159,7 @@ void InitializeSystemDataNode29(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -11254,7 +11300,7 @@ void InitializeSystemDataNode31(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_THREAD_SCHEDULER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_THREAD_SCHEDULER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -11377,7 +11423,7 @@ void ConfigureGraphicsParameters(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_audio;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -11565,7 +11611,7 @@ void InitializeSecurityEngineNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_MANAGER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_MANAGER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &systemNode5;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -11612,7 +11658,7 @@ void InitializeSystemDataNode29(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -11753,7 +11799,7 @@ void InitializeSystemDataNode31(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_THREAD_SCHEDULER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_THREAD_SCHEDULER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -11838,7 +11884,7 @@ void ConfigureSystemHandles(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -12224,7 +12270,7 @@ void InitializeAudioSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -12553,7 +12599,7 @@ void InitializeInputSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -13001,7 +13047,7 @@ void InitializeNetworkMutex(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_audio;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -13189,7 +13235,7 @@ void InitializeHashDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_MANAGER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_MANAGER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &systemNode5;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -13236,7 +13282,7 @@ void InitializeFileDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -13377,7 +13423,7 @@ void InitializeVectorDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_THREAD_SCHEDULER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_THREAD_SCHEDULER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -13651,7 +13697,7 @@ void InitializeArrayDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_audio;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -13839,7 +13885,7 @@ void InitializeMatrixDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_MANAGER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_MANAGER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &systemNode5;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -13886,7 +13932,7 @@ void InitializeGraphicsDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -14027,7 +14073,7 @@ void InitializeVideoDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_THREAD_SCHEDULER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_THREAD_SCHEDULER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -14309,7 +14355,7 @@ void InitializeConfigDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_VIDEO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_VIDEO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -14356,7 +14402,7 @@ void InitializeResourceDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -15221,7 +15267,7 @@ void InitializeCacheDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_VIDEO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_VIDEO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -15268,7 +15314,7 @@ void InitializePoolDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -15644,7 +15690,7 @@ void SetupSystemMemory(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_audio;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -15832,7 +15878,7 @@ void InitializeSystemComponents(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_MANAGER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_MANAGER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &systemNode5;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -15879,7 +15925,7 @@ void SetupSystemServices(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_VIDEO;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -16020,7 +16066,7 @@ void InitializeMapDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_THREAD_SCHEDULER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_THREAD_SCHEDULER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = ENGINE_TYPE_INPUT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
