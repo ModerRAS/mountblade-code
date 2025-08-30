@@ -94,6 +94,9 @@
 // 26. 将temp_variable_float替换为utility_temp_float_value等浮点值变量名
 // 27. 将utility_temp_long_value替换为utility_temp_long_value等长整型临时变量名
 // 28. 将utility_temp_unsigned_value替换为utility_temp_unsigned_value等无符号临时变量名
+// 29. 将CONCAT71替换为UTILITY_BIT_CONCAT_8_1等位操作函数名
+// 30. 将unsignedStackArrayX1c替换为UTILITY_STACK_ARRAY_1C等栈数组变量名
+// 31. 将local_variableontext_buffer_data替换为UTILITY_CONTEXT_BUFFER_DATA等上下文缓冲区变量名
 // 提高了代码的可读性和维护性
 // 保持代码语义不变
 // 这是简化实现，主要处理了工具系统中通用临时变量名的语义化替换
