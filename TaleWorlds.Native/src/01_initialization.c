@@ -1211,7 +1211,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -1261,7 +1261,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -1311,7 +1311,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_memory_allocator;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -1361,7 +1361,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_thread_scheduler;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -1411,7 +1411,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_resource_loader;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -1461,7 +1461,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_graphics_renderer;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -1511,7 +1511,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_SIZE_POINTERd98f4c06880eda4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_audio_mixer;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -1561,7 +1561,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &network_socket_handle;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -1611,7 +1611,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_physics_simulator;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -1661,7 +1661,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_ui_renderer;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -1730,7 +1730,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_FLAG_ENABLED_AUDIO_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -1818,7 +1818,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -1868,7 +1868,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_FLAG_INITIALIZEDf4bab01d34055a5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -1954,7 +1954,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -2004,7 +2004,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 4;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -2054,7 +2054,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -2104,7 +2104,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -2154,7 +2154,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -2204,7 +2204,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
   return;
 }
 
@@ -2254,7 +2254,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = eced9bb5517ad;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -2304,7 +2304,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -2354,7 +2354,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -2404,7 +2404,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -2454,7 +2454,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_FLAG_INITIALIZEDf4bab01d34055a5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -2504,7 +2504,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_FLAG_ENABLED_AUDIO_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -2554,7 +2554,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_SIZE_POINTER1d539e33614429f;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 4;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -2604,7 +2604,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = a29a844ce399;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -2686,7 +2686,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -2736,7 +2736,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 4;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -2786,7 +2786,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -2836,7 +2836,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -2886,7 +2886,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -2936,7 +2936,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
   return;
 }
 
@@ -2986,7 +2986,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = eced9bb5517ad;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -3036,7 +3036,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -3086,7 +3086,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -3136,7 +3136,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 4;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -3186,7 +3186,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -3236,7 +3236,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -3286,7 +3286,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -3336,7 +3336,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
   return;
 }
 
@@ -3386,7 +3386,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = eced9bb5517ad;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -3436,7 +3436,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -3486,7 +3486,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 4;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -3536,7 +3536,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -3586,7 +3586,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -3636,7 +3636,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -3686,7 +3686,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
   return;
 }
 
@@ -3736,7 +3736,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = eced9bb5517ad;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -3786,7 +3786,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_FLAG_ENABLED_AUDIO_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -3836,7 +3836,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -3886,7 +3886,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -3936,7 +3936,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 4;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -3986,7 +3986,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -4036,7 +4036,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -4086,7 +4086,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -4136,7 +4136,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
   return;
 }
 
@@ -4186,7 +4186,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = eced9bb5517ad;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -4270,7 +4270,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -4320,7 +4320,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_FLAG_INITIALIZEDf4bab01d34055a5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -4370,7 +4370,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -4420,7 +4420,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_FLAG_INITIALIZEDf4bab01d34055a5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -4470,7 +4470,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -4520,7 +4520,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 4;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -4570,7 +4570,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -4620,7 +4620,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -4670,7 +4670,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -4720,7 +4720,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
   return;
 }
 
@@ -4770,7 +4770,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = eced9bb5517ad;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -4844,7 +4844,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -4894,7 +4894,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 4;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -4944,7 +4944,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -4994,7 +4994,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -5044,7 +5044,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -5094,7 +5094,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
   return;
 }
 
@@ -5144,7 +5144,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = eced9bb5517ad;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -5346,7 +5346,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_SIZE_POINTER1d539e33614429f;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 4;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -5396,7 +5396,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = a29a844ce399;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -5446,7 +5446,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -5496,7 +5496,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 4;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -5546,7 +5546,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -5596,7 +5596,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -5646,7 +5646,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -5696,7 +5696,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
   return;
 }
 
@@ -5746,7 +5746,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = eced9bb5517ad;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -5796,7 +5796,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -5846,7 +5846,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 4;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -5896,7 +5896,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -5946,7 +5946,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -5996,7 +5996,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -6046,7 +6046,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
   return;
 }
 
@@ -6096,7 +6096,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = eced9bb5517ad;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -6203,7 +6203,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -6253,7 +6253,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -6303,7 +6303,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -6353,7 +6353,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_FLAG_INITIALIZEDf4bab01d34055a5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -6403,7 +6403,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -6453,7 +6453,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 4;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -6503,7 +6503,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -6553,7 +6553,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -6603,7 +6603,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -6653,7 +6653,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
   return;
 }
 
@@ -6703,7 +6703,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = eced9bb5517ad;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -6753,7 +6753,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_SIZE_POINTER1d539e33614429f;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 4;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -6803,7 +6803,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = a29a844ce399;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -6853,7 +6853,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -6903,7 +6903,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 4;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -6953,7 +6953,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -7003,7 +7003,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -7053,7 +7053,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -7103,7 +7103,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
   return;
 }
 
@@ -7153,7 +7153,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = eced9bb5517ad;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -7203,7 +7203,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -7253,7 +7253,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -7303,7 +7303,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_SIZE_POINTER1d539e33614429f;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 4;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -7353,7 +7353,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = a29a844ce399;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -7403,7 +7403,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_FLAG_ENABLED_AUDIO_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -7453,7 +7453,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -7503,7 +7503,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 4;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -7553,7 +7553,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -7603,7 +7603,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -7653,7 +7653,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -7703,7 +7703,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
   return;
 }
 
@@ -7753,7 +7753,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = eced9bb5517ad;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -7883,7 +7883,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -7933,7 +7933,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 4;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -7983,7 +7983,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -8033,7 +8033,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -8083,7 +8083,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -8133,7 +8133,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
   return;
 }
 
@@ -8183,7 +8183,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = eced9bb5517ad;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -8233,7 +8233,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_FLAG_ENABLED_AUDIO_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -8307,7 +8307,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -8357,7 +8357,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -8407,7 +8407,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_memory_allocator;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -8457,7 +8457,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_thread_scheduler;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -8507,7 +8507,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_resource_loader;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -8557,7 +8557,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_graphics_renderer;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -8607,7 +8607,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_SIZE_POINTERd98f4c06880eda4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_audio_mixer;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -8657,7 +8657,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &network_socket_handle;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -8707,7 +8707,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_physics_simulator;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -8757,7 +8757,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_ui_renderer;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -8807,7 +8807,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -9073,7 +9073,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -9123,7 +9123,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 4;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -9173,7 +9173,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -9223,7 +9223,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -9273,7 +9273,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -9323,7 +9323,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
   return;
 }
 
@@ -9373,7 +9373,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = eced9bb5517ad;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -9423,7 +9423,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -9473,7 +9473,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 4;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -9523,7 +9523,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -9573,7 +9573,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -9623,7 +9623,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -9673,7 +9673,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
   return;
 }
 
@@ -9723,7 +9723,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = eced9bb5517ad;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -9773,7 +9773,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -9823,7 +9823,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 4;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -9873,7 +9873,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -9923,7 +9923,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -9973,7 +9973,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -10023,7 +10023,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
   return;
 }
 
@@ -10073,7 +10073,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = eced9bb5517ad;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -10123,7 +10123,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -10173,7 +10173,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 4;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -10223,7 +10223,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -10273,7 +10273,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -10323,7 +10323,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -10373,7 +10373,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
   return;
 }
 
@@ -10423,7 +10423,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = eced9bb5517ad;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -10473,7 +10473,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -10523,7 +10523,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -10573,7 +10573,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_memory_allocator;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -10623,7 +10623,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_thread_scheduler;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -10673,7 +10673,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_resource_loader;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -10723,7 +10723,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_graphics_renderer;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -10773,7 +10773,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_SIZE_POINTERd98f4c06880eda4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_audio_mixer;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -10823,7 +10823,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &network_socket_handle;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -10873,7 +10873,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_physics_simulator;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -10923,7 +10923,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_ui_renderer;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -11007,7 +11007,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -11057,7 +11057,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -11107,7 +11107,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_memory_allocator;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -11157,7 +11157,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_thread_scheduler;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -11207,7 +11207,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_resource_loader;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -11257,7 +11257,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_graphics_renderer;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -11307,7 +11307,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_SIZE_POINTERd98f4c06880eda4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_audio_mixer;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -11357,7 +11357,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &network_socket_handle;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -11407,7 +11407,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_physics_simulator;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -11457,7 +11457,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_ui_renderer;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -11555,7 +11555,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -11605,7 +11605,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 4;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -11655,7 +11655,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -11705,7 +11705,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -11755,7 +11755,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -11805,7 +11805,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
   return;
 }
 
@@ -11855,7 +11855,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = eced9bb5517ad;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -11915,7 +11915,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -11965,7 +11965,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -12015,7 +12015,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 4;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -12065,7 +12065,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -12115,7 +12115,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -12165,7 +12165,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -12215,7 +12215,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
   return;
 }
 
@@ -12265,7 +12265,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = eced9bb5517ad;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -12315,7 +12315,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -12365,7 +12365,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 4;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -12415,7 +12415,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -12465,7 +12465,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -12515,7 +12515,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -12565,7 +12565,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
   return;
 }
 
@@ -12615,7 +12615,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = eced9bb5517ad;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -12752,7 +12752,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -12802,7 +12802,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -12852,7 +12852,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_memory_allocator;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -12902,7 +12902,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_thread_scheduler;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -12952,7 +12952,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_resource_loader;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -13002,7 +13002,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_graphics_renderer;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -13052,7 +13052,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_SIZE_POINTERd98f4c06880eda4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_audio_mixer;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -13102,7 +13102,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &network_socket_handle;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -13152,7 +13152,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_physics_simulator;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -13202,7 +13202,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_ui_renderer;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -13358,7 +13358,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_CUSTOM_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 2;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -13408,7 +13408,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_FLAG_INITIALIZED5db30365f277abb;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 2;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -13458,7 +13458,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -13508,7 +13508,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -13558,7 +13558,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_memory_allocator;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -13608,7 +13608,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_thread_scheduler;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -13658,7 +13658,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_resource_loader;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -13708,7 +13708,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_graphics_renderer;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -13758,7 +13758,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_SIZE_POINTERd98f4c06880eda4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_audio_mixer;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -13808,7 +13808,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &network_socket_handle;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -13858,7 +13858,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_physics_simulator;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -13908,7 +13908,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_ui_renderer;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -13958,7 +13958,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_CUSTOM_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 2;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -14008,7 +14008,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_FLAG_INITIALIZED5db30365f277abb;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 2;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -14058,7 +14058,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -14108,7 +14108,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -14158,7 +14158,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -14208,7 +14208,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_FLAG_INITIALIZEDf4bab01d34055a5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -14258,7 +14258,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -14308,7 +14308,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 4;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -14358,7 +14358,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -14408,7 +14408,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -14458,7 +14458,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -14508,7 +14508,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
   return;
 }
 
@@ -14558,7 +14558,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = eced9bb5517ad;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -14608,7 +14608,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_FLAG_ENABLED_AUDIO_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -14658,7 +14658,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_CUSTOM_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 2;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -14708,7 +14708,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_FLAG_INITIALIZED5db30365f277abb;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 2;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -14798,7 +14798,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_CUSTOM_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 2;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -14848,7 +14848,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_FLAG_INITIALIZED5db30365f277abb;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 2;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -14898,7 +14898,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_CUSTOM_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 2;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -14948,7 +14948,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_FLAG_INITIALIZED5db30365f277abb;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 2;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -15034,7 +15034,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_CUSTOM_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 2;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -15084,7 +15084,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_FLAG_INITIALIZED5db30365f277abb;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 2;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -15134,7 +15134,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -15184,7 +15184,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_FLAG_INITIALIZEDf4bab01d34055a5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -15234,7 +15234,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -15284,7 +15284,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = 4;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -15334,7 +15334,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -15384,7 +15384,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -15434,7 +15434,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -15484,7 +15484,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
   return;
 }
 
@@ -15534,7 +15534,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = eced9bb5517ad;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -15584,7 +15584,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -15634,7 +15634,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -15684,7 +15684,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_memory_allocator;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -15734,7 +15734,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_thread_scheduler;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -15784,7 +15784,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_resource_loader;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -15834,7 +15834,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_graphics_renderer;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -15884,7 +15884,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_SIZE_POINTERd98f4c06880eda4;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_audio_mixer;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -15934,7 +15934,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_1;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &network_socket_handle;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
@@ -15984,7 +15984,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_2;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_physics_simulator;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[10] = system_core_init_function;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
 }
 
@@ -16034,7 +16034,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_3;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_ui_renderer;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
-  system_config_data_pointer[10] = system_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter;
   return;
 }
 
