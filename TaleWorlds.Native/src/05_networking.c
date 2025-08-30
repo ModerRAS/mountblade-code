@@ -27409,7 +27409,7 @@ int32_t HandleNetworkClient(int64_t network_socket_handle, uint32_t network_buff
   *(uint64_t **)(network_socket_handle + NETWORK_PACKET_SIZE_DEFAULT8) = network_proc_index_ptr;
            ExecuteNetworkOperation(*(uint64_t *)(g_network_module + NETWORK_MODULE_OFFSET), NETWORK_SOCKET_DESCRIPTOR_RESPONSE_OFFSET, &g_network_buffer_logging_primary, NETWORK_CONNECTION_BUFFER_CURRENTf, 
   network_proc_index_ptr[NETWORK_STATUS_SUCCESS] = network_socket_handle + NETWORK_MIN_PACKET_SIZE_ALT8;
-  network_proc_index_ptr[NETWORK_PROCESSOR_INDEX_PTR_STATUS] = &g_network_socket_handle_value_value_ac;
+  network_proc_index_ptr[NETWORK_PROCESSOR_INDEX_PTR_STATUS] = &g_network_socket_handle_ac;
   *(uint64_t **)(network_socket_handle + NETWORK_SOCKET_CONFIG_OFFSET_A78) = network_proc_index_ptr;
            ExecuteNetworkOperation(*(uint64_t *)(g_network_module + NETWORK_MODULE_OFFSET), NETWORK_SOCKET_DESCRIPTOR_RESPONSE_OFFSET, &g_network_buffer_logging_primary, NETWORK_PORT_EXTENDED_OFFSET, 
   network_proc_index_ptr[NETWORK_STATUS_SUCCESS] = network_socket_handle + NETWORK_STATUS_READY_MASK8;
