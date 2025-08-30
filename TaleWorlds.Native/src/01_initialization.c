@@ -474,11 +474,11 @@
 #define SYSTEM_INIT_VALUE_STRING_MODULE_1   SYSTEM_INIT_MAGIC_COOKIE_STRING_SELDOM_  // 字符串"SELDOM_"的十六进制表示
 #define SYSTEM_INIT_FLOAT_VALUE_1_0         0x3f800000  // 浮点数1.0的十六进制表示
 #define SYSTEM_INIT_FLOAT_VALUE_0_5         SYSTEM_INIT_OFFSET_GLOBAL_0x10F000000  // 浮点数0.5的十六进制表示
-#define SYSTEM_INIT_FLOAT_VALUE_0_2         0x0x10e4ccccd  // 浮点数0.2的十六进制表示
-#define SYSTEM_INIT_FLOAT_VALUE_0_075       0x0x10e99999a  // 浮点数0.075的十六进制表示
-#define SYSTEM_INIT_FLOAT_VALUE_PI_2        0x0x10fc90fdb  // 浮点数π/2的十六进制表示
+#define SYSTEM_INIT_FLOAT_VALUE_0_2         0x3e4ccccd  // 浮点数0.2的十六进制表示
+#define SYSTEM_INIT_FLOAT_VALUE_0_075       0x3e99999a  // 浮点数0.075的十六进制表示
+#define SYSTEM_INIT_FLOAT_VALUE_PI_2        0x3fc90fdb  // 浮点数π/2的十六进制表示
 #define SYSTEM_INIT_FLOAT_VALUE_MAX         SYSTEM_INIT_FLOAT_MAX_VALUE  // 最大浮点数的十六进制表示
-#define SYSTEM_INIT_DOUBLE_VALUE_1_0        0x0x10ff0000000000000  // 双精度浮点数1.0的十六进制表示
+#define SYSTEM_INIT_DOUBLE_VALUE_1_0        0x3ff0000000000000  // 双精度浮点数1.0的十六进制表示
 #define SYSTEM_INIT_DOUBLE_FLOAT_PAIR_1_0   0x0x10f8000000x10f800000  // 两个单精度1.0组合的十六进制表示
 
 // 补充硬编码值语义化常量（2025年8月30日最终批次补充）
