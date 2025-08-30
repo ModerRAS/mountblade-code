@@ -16425,7 +16425,7 @@ int InitializeSystemModule44(void)
 void InitializeMainSystemDLL(uint64_t handleIdentifier)
 
 {
-  uint64_t aflag_initialized [2];
+  uint64_t aflag_initialized [SYSTEM_ARRAY_INDEX_SYSTEM_FLAG];
 
                     // SYSTEM_FLAG_BIT_43d20  31  InitializeMainSystemDLL
 // void InitializeSystemModule45(longlong handleIdentifier)
@@ -16447,7 +16447,7 @@ void InitializeSystemModule45(longlong handleIdentifier)
   InitializeSystemModule46();
   if (systemInitializationObject != (longlong *)SYSTEM_NULL_POINTER) { // 原始名称: systemInitializationObject
     if ((void *)*systemInitializationObject == &g_system_vtable_1) { // 原始名称: systemInitializationObject, g_global_system_config
-      system_init_flag = (char)systemInitializationObject[2] != '\0'; // 原始名称: systemInitializationObject
+      system_init_flag = (char)systemInitializationObject[SYSTEM_ARRAY_INDEX_SYSTEM_FLAG] != '\0'; // 原始名称: systemInitializationObject
     }
     else {
       system_init_flag = (**(code **)((void *)*systemInitializationObject + SYSTEM_OBJECT_OFFSET_68))(); // 原始名称: systemInitializationObject
@@ -17031,7 +17031,7 @@ uint32_t get_game_initialization_status(void)
 void InitializeMainSystem(uint64_t handleIdentifier)
 
 {
-  uint64_t aflag_initialized [2];
+  uint64_t aflag_initialized [SYSTEM_ARRAY_INDEX_SYSTEM_FLAG];
 
                     // SYSTEM_FLAG_BIT_45a00  27  InitializeMainSystem
 // void InitializeNetworkSystem(longlong *handleIdentifier)
