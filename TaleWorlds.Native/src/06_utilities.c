@@ -22496,7 +22496,7 @@ ulonglong GetCheckResult(void)
   longlong *registerRDI;
   int cpuRegisterR12D;
   longlong register_r15;
-  bool booleanFlagboolVar6;
+  bool resource_check_result;
   bool validation_result_flag;
   bool boolongVar8;
   
@@ -22580,7 +22580,7 @@ LAB_18089ea0f:
   if ((int)systemStatus != 0) {
     return systemStatus;
   }
-  booleanFlagboolVar6 = *(uint *)(registerRDI + 8) < FIELD_OFFSET_2;
+  resource_check_result = *(uint *)(registerRDI + 8) < FIELD_OFFSET_2;
   *(char *)(stack_frame_pointer + 0x77) = (char)systemStatus;
   *(char *)(stack_frame_pointer + 0x7f) = (char)systemStatus;
   boolongVar8 = false;
@@ -22593,7 +22593,7 @@ LAB_18089ea0f:
 LAB_18089eaae:
         validation_result_flag = loopCounter == 0;
         if (validation_result_flag) {
-          booleanFlagboolVar6 = *(char *)(stack_frame_pointer + -0x49) != '\0';
+          resource_check_result = *(char *)(stack_frame_pointer + -0x49) != '\0';
           validation_result_flag = true;
         }
       }
@@ -22770,7 +22770,7 @@ LAB_18089ecba:
   if ((int)systemStatus != 0) {
     return systemStatus;
   }
-  if ((((!booleanFlagboolVar6) && (*(char *)(stack_frame_pointer + 0x77) == '\0')) && (*(char *)(stack_frame_pointer + 0x7f) == '\0'))
+  if ((((!resource_check_result) && (*(char *)(stack_frame_pointer + 0x77) == '\0')) && (*(char *)(stack_frame_pointer + 0x7f) == '\0'))
      && (!boolongVar8)) {
     cpuRegisterR12D = 0;
   }
@@ -22804,7 +22804,7 @@ ulonglong ProcessCheckOperation(uint64 resourceHandleIdentifier,uint64 resourceB
   longlong *registerRDI;
   uint32 cpuRegisterR12D;
   longlong register_r15;
-  bool booleanFlagboolVar6;
+  bool resource_check_result;
   bool validation_result_flag;
   bool boolongVar8;
   
@@ -22841,7 +22841,7 @@ LAB_18089ea2c:
   if ((int)systemStatus != 0) {
     return systemStatus;
   }
-  booleanFlagboolVar6 = *(uint *)(registerRDI + 8) < FIELD_OFFSET_2;
+  resource_check_result = *(uint *)(registerRDI + 8) < FIELD_OFFSET_2;
   *(char *)(stack_frame_pointer + 0x77) = (char)systemStatus;
   *(char *)(stack_frame_pointer + 0x7f) = (char)systemStatus;
   boolongVar8 = false;
@@ -22856,7 +22856,7 @@ LAB_18089ea2c:
 LAB_18089eaae:
       validation_result_flag = loopCounter == 0;
       if (validation_result_flag) {
-        booleanFlagboolVar6 = *(char *)(stack_frame_pointer + -0x49) != '\0';
+        resource_check_result = *(char *)(stack_frame_pointer + -0x49) != '\0';
         validation_result_flag = true;
       }
     }
@@ -23061,7 +23061,7 @@ LAB_18089ecd4:
   if ((int)systemStatus != 0) {
     return systemStatus;
   }
-  if ((((!booleanFlagboolVar6) && (*(char *)(stack_frame_pointer + 0x77) == '\0')) && (*(char *)(stack_frame_pointer + 0x7f) == '\0'))
+  if ((((!resource_check_result) && (*(char *)(stack_frame_pointer + 0x77) == '\0')) && (*(char *)(stack_frame_pointer + 0x7f) == '\0'))
      && (!boolongVar8)) {
     cpuRegisterR12D = (uint32)resourceOperationFlags;
   }
