@@ -19511,7 +19511,7 @@ uint8_t InitializeMutexInitNode(longlong handleIdentifier,uint64_t resourceIdent
   int system_integer_result;
   uint64_t init_stack_data_var;
   uint64_t system_status_code;
-  longlong longStack_20;
+  longlong init_stack_mutex_handle_20;
   char init_stack_char_flag_18;
 
   system_status_code = INVALID_HANDLE_VALUE;
