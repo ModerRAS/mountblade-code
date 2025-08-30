@@ -19346,10 +19346,10 @@ bool InitializeSystemComponents(void)
   system_integer_result = uintStack_20 + SYSTEM_CONFIG_SIZE_FINAL;
   ConfigureSystemParameters(&system_buffer_ptr_30,system_int_result);
   node_root = (uint32_t *)(system_buffer_ptr_28 + uintStack_20);
-  *node_root = 0x69676e65;
-  node_root[1] = 0x635f656e;
-  node_root[2] = 0x69666e6f;
-  node_root[3] = 0x78742e67;
+  *node_root = SYSTEM_STRING_ENGINE_TOKEN;
+  node_root[1] = SYSTEM_STRING_CONFIG_TOKEN_SHORT;
+  node_root[2] = SYSTEM_STRING_INFO_TOKEN;
+  node_root[3] = SYSTEM_STRING_EXT_TOKEN;
   *(uint16_t *)(node_root + 4) = 0x74;
   init_stack_uint_parameter_48 = 0;
   longStack_40 = 0;
@@ -19429,8 +19429,8 @@ void InitializeSystemModule9(void)
   system_integer_result = init_stack_ulong_param_50 + SYSTEM_OFFSET_F;
   ConfigureSystemParameters(system_local_buffer_60,system_int_result);
   node_root = (uint32_t *)(system_buffer_ptr_58 + init_stack_ulong_param_50);
-  *node_root = 0x72657375;
-  node_root[1] = 0x6e6f635f;
+  *node_root = SYSTEM_STRING_RESU_TOKEN;
+  node_root[1] = SYSTEM_STRING_CONF_TOKEN;
   node_root[2] = 0x2e676966;
   node_root[3] = 0x747874;
   init_stack_ulong_param_50 = system_integer_result;
