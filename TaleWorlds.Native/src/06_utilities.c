@@ -24507,7 +24507,7 @@ void ExceptionHandlerCleanup8(uint64 resource_handle_identifier,longlong resourc
   int utility_operation_result;
   
   g_system_global_counter_primary = *(uint64 *)(resource_buffer_pointer + utility_buffer_size_data_offset);
-  utility_operation_result = _Mtx_unlock(0x180c91970);
+  utility_operation_result = _Mtx_unlock(UTILITY_MUTEX_HANDLE_1);
   if (utility_operation_result != 0) {
     __Throw_C_error_std__YAXH_Z(localStatus);
   }
@@ -24596,7 +24596,7 @@ void ExceptionHandlerCleanup11(uint64 resource_handle_identifier,longlong resour
   int utility_operation_result;
   
   g_system_global_counter_primary = *(uint64 *)(resource_buffer_pointer + UTILITY_BUFFER_HANDLE_OFFSET);
-  utility_operation_result = _Mtx_unlock(0x180c91970);
+  utility_operation_result = _Mtx_unlock(UTILITY_MUTEX_HANDLE_1);
   if (utility_operation_result != 0) {
     __Throw_C_error_std__YAXH_Z(localStatus);
   }
@@ -24771,7 +24771,7 @@ void ResetSystemSecondaryCounterAndProcessEvent(void)
 {
   byte boolean_result_flag;
   
-  EnterCriticalSection(0x180c82210);
+  EnterCriticalSection(UTILITY_CRITICAL_SECTION_HANDLE);
   g_system_global_counter_secondary = 0;
   LeaveCriticalSection(0x180c82210);
   if (g_systemEventHandle != 0) {
@@ -24800,7 +24800,7 @@ void ResetSystemTempCounterAndProcessEvent(void)
 {
   byte boolean_result_flag;
   
-  EnterCriticalSection(0x180c82210);
+  EnterCriticalSection(UTILITY_CRITICAL_SECTION_HANDLE);
   g_system_global_counter_temp = 0;
   LeaveCriticalSection(0x180c82210);
   if (g_systemEventHandle != 0) {
@@ -42960,7 +42960,7 @@ void Unwind_180906c00(void)
 {
   byte boolean_result_flag;
   
-  EnterCriticalSection(0x180c82210);
+  EnterCriticalSection(UTILITY_CRITICAL_SECTION_HANDLE);
   g_system_global_counter_backup = 0;
   LeaveCriticalSection(0x180c82210);
   if (g_systemEventHandle != 0) {
@@ -44482,7 +44482,7 @@ void Unwind_180907130(void)
 {
   byte boolean_result_flag;
   
-  EnterCriticalSection(0x180c82210);
+  EnterCriticalSection(UTILITY_CRITICAL_SECTION_HANDLE);
   uRam0000000180d49150 = 0;
   LeaveCriticalSection(0x180c82210);
   if (g_systemEventHandle != 0) {
@@ -47640,7 +47640,7 @@ void Unwind_180908040(void)
 {
   byte boolean_result_flag;
   
-  EnterCriticalSection(0x180c82210);
+  EnterCriticalSection(UTILITY_CRITICAL_SECTION_HANDLE);
   systemMemoryCounter = 0;
   LeaveCriticalSection(0x180c82210);
   if (g_systemEventHandle != 0) {
@@ -49100,7 +49100,7 @@ void Unwind_1809089e0(uint64 resource_handle_identifier,longlong resource_buffer
   int utility_operation_result;
   
   g_system_global_counter_primary = *(uint64 *)(resource_buffer_pointer + UTILITY_MEMORY_DATA_OFFSET);
-  utility_operation_result = _Mtx_unlock(0x180c91970);
+  utility_operation_result = _Mtx_unlock(UTILITY_MUTEX_HANDLE_1);
   if (utility_operation_result != 0) {
     __Throw_C_error_std__YAXH_Z(localStatus);
   }
@@ -49988,7 +49988,7 @@ void Unwind_180908d30(void)
 {
   byte boolean_result_flag;
   
-  EnterCriticalSection(0x180c82210);
+  EnterCriticalSection(UTILITY_CRITICAL_SECTION_HANDLE);
   systemMemorySize = 0;
   LeaveCriticalSection(0x180c82210);
   if (g_systemEventHandle != 0) {
@@ -54567,7 +54567,7 @@ void Unwind_18090a6e0(void)
 {
   byte boolean_result_flag;
   
-  EnterCriticalSection(0x180c82210);
+  EnterCriticalSection(UTILITY_CRITICAL_SECTION_HANDLE);
   _system_mutex_manager = 0;
   LeaveCriticalSection(0x180c82210);
   if (g_systemEventHandle != 0) {
@@ -61755,7 +61755,7 @@ void Unwind_18090cfd0(uint64 resource_handle_identifier,longlong resource_buffer
   int utility_operation_result;
   
   g_system_global_counter_primary = *(uint64 *)(resource_buffer_pointer + second_byte_offset);
-  utility_operation_result = _Mtx_unlock(0x180c91970);
+  utility_operation_result = _Mtx_unlock(UTILITY_MUTEX_HANDLE_1);
   if (utility_operation_result != 0) {
     __Throw_C_error_std__YAXH_Z(localStatus);
   }
@@ -61772,7 +61772,7 @@ void Unwind_18090cfe0(uint64 resource_handle_identifier,longlong resource_buffer
   int utility_operation_result;
   
   g_system_global_counter_primary = *(uint64 *)(resource_buffer_pointer + UTILITY_MEMORY_SIZE_OFFSET);
-  utility_operation_result = _Mtx_unlock(0x180c91970);
+  utility_operation_result = _Mtx_unlock(UTILITY_MUTEX_HANDLE_1);
   if (utility_operation_result != 0) {
     __Throw_C_error_std__YAXH_Z(localStatus);
   }
@@ -79964,7 +79964,7 @@ void Unwind_1809127d0(void)
 {
   byte boolean_result_flag;
   
-  EnterCriticalSection(0x180c82210);
+  EnterCriticalSection(UTILITY_CRITICAL_SECTION_HANDLE);
   system_status_variable_value = 0;
   LeaveCriticalSection(0x180c82210);
   if (g_systemEventHandle != 0) {
