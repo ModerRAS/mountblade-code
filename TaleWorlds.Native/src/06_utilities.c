@@ -1230,6 +1230,7 @@ typedef uint32 utility_uint_standard;
 // 统一临时变量定义（2025年8月30日最终批次美化）
 #define utility_temp_integer_register utility_temp_uint_register
 #define utility_temp_security_register utility_temp_uint_register
+#define utility_temporary_stack_buffer utility_temp_stack_buffer
 #define UTILITY_CPU_REGISTER_SECONDARY_R11 utility_cpu_register_secondary_r11
 #define UTILITY_CPU_REGISTER_TERTIARY_R12 utility_cpu_register_tertiary_r12
 #define UTILITY_CPU_REGISTER_QUATERNARY_R13 utility_cpu_register_quaternary_r13
@@ -1521,7 +1522,7 @@ uint64 utility_validate_resource_handle_simple(longlong utility_resource_primary
   longlong *utility_resource_array_pointer;
   longlong utility_stack_param;
   char utility_security_parameter [utility_security_buffer_small];
-  char utility_temporary_stack_buffer [utility_stack_buffer_size_pair];
+  char utility_temp_stack_buffer [utility_stack_buffer_size_pair];
   utility_system_status_value = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + utility_handle_data_offset),&utility_temporary_stack_buffer);
   if ((int)utility_system_status_value != utility_zero) {
     return utility_system_status_value;
@@ -1936,7 +1937,7 @@ uint64 utility_execute_resource_handle_operation(longlong utility_resource_prima
 {
   uint64 utility_operation_result;
   longlong utility_stack_buffer_array [utility_stack_buffer_size_pair];
-  longlong utility_temporary_stack_buffer [utility_stack_buffer_size_pair];
+  longlong utility_temp_stack_buffer [utility_stack_buffer_size_pair];
   utility_operation_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + utility_handle_data_offset),utility_temporary_stack_buffer);
   if ((int)utility_operation_result == utility_zero) {
     if (utility_temporary_stack_buffer[utility_array_index_zero] == utility_zero) {
@@ -1967,7 +1968,7 @@ uint64 utility_manage_resource_handle_operation(longlong utility_resource_primar
 {
   uint64 utility_operation_result;
   longlong utility_stack_buffer_array [utility_stack_buffer_size_pair];
-  longlong utility_temporary_stack_buffer [utility_stack_buffer_size_pair];
+  longlong utility_temp_stack_buffer [utility_stack_buffer_size_pair];
   utility_operation_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + utility_handle_data_offset),utility_temporary_stack_buffer);
   if ((int)utility_operation_result == utility_zero) {
     if (utility_temporary_stack_buffer[utility_array_index_zero] == utility_zero) {
@@ -3887,7 +3888,7 @@ uint64 utility_handle_resource_response(longlong utility_resource_primary_handle
   longlong utility_data_pointer_primary_extended_main;
   uint64 utility_main_iteration_counter;
   float utility_temp_float_storage;
-  longlong utility_temporary_stack_buffer [utility_stack_buffer_size_pair];
+  longlong utility_temp_stack_buffer [utility_stack_buffer_size_pair];
   utility_system_resource_handle = utility_bit_concat_primary_secondary(utility_system_resource_handle.bit_field_primary_secondary,*(uint *)(utility_resource_primary_handle + utility_pointer_data_offset_tertiary));
   if ((*(uint *)(utility_resource_primary_handle + utility_pointer_data_offset_tertiary) & float_infinity_mask) == float_infinity_mask) {
     return utility_error_code_timeout;
@@ -3932,7 +3933,7 @@ uint64 utility_process_resource_result(longlong utility_resource_primary_handle,
   float utility_temp_float_value;
   longlong utility_data_pointer_primary_extended_main;
   uint64 utility_main_iteration_counter;
-  longlong utility_temporary_stack_buffer [utility_stack_buffer_size_pair];
+  longlong utility_temp_stack_buffer [utility_stack_buffer_size_pair];
   utility_main_iteration_counter = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + utility_handle_data_offset),utility_temporary_stack_buffer);
   if ((int)utility_main_iteration_counter == utility_zero) {
     if (utility_temporary_stack_buffer[utility_array_index_zero] == utility_zero) {
@@ -4733,7 +4734,7 @@ uint64 utility_report_resource_cycle(longlong utility_resource_primary_handle,lo
   uint32 utility_temp_loop_counter;
   uint32 utility_temp_loop_counter;
   uint32 utility_temp_loop_counter;
-  char utility_temporary_stack_buffer [utility_stack_buffer_size_pair];
+  char utility_temp_stack_buffer [utility_stack_buffer_size_pair];
   utility_temp_security_register = *(uint32 *)(utility_resource_primary_handle + utility_handle_data_offset);
   utility_temp_security_register = *(uint32 *)(utility_resource_primary_handle + utility_resource_data_offset);
   utility_temp_security_register = *(uint32 *)(utility_resource_primary_handle + utility_resource_offset);
@@ -9566,7 +9567,7 @@ uint64 utility_validate_resource_buffer(longlong *utility_resource_primary_handl
   ulonglong utility_main_iteration_counter;
   ulonglong utility_system_status_value;
   uint64 utility_stack_utility_resource_data_buffer;
-  longlong utility_temporary_stack_buffer [utility_stack_buffer_size_pair];
+  longlong utility_temp_stack_buffer [utility_stack_buffer_size_pair];
   resource_data *utility_local_data_pointer_cache;
   uint32 utility_temp_loop_counter;
   ulonglong utility_temporary_storage_size;
