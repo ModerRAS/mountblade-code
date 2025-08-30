@@ -6104,7 +6104,7 @@ network_check_buffer_status_label:
           if (3 < client_port_address) {
             network_timeout_value_ptr_first = network_timeout_value_ptr_tenth - server_port_address;
             network_timeout_value = (client_port_address - 4U >> NETWORK_BUFFER_SIZE_MEDIUM) + NETWORK_OPERATION_SUCCESS;
-            network_timeout_value = network_timeout_value * 4;
+            network_timeout_value = network_timeout_value * NETWORK_MULTIPLY_SIZE_4;
             network_processor_data_size = (uint64_t *)(server_port_address + NETWORK_PACKET_DATA_PAYLOAD_OFFSET);
             do {
               network_packet_size_ptr = (uint64_t *)((longlong)network_processor_data_size + network_timeout_value_ptr_first + -NETWORK_PACKET_DATA_PAYLOAD_OFFSET);
@@ -6835,7 +6835,7 @@ validate_network_socket_handle_value_value:
     network_processor_data = (uint32_t *)((longlong)dataLength * SOCKET_RESPONSE_OFFSET + network_connection_info_data);
     if ((*(int32_t *)((longlong)network_socket_handle + SOCKET_FLAG_OFFSET) != NETWORK_OPERATION_FAILURE) && (network_operation_result != NETWORK_OPERATION_FAILURE)) {
       network_connection_index_counter = (longlong)(int)((network_processor_data[NETWORK_PROCESSOR_DATA_INDEX_STATUS] ^ network_processor_data[NETWORK_OPERATION_SUCCESS] ^ *network_processor_data ^ network_processor_data[NETWORK_BUFFER_SIZE_MEDIUM]) & network_operation_result - 1U);
-      pnetwork_operation_status_code_third = (int32_t *)(*network_socket_handle + network_connection_index_counter * 4);
+      pnetwork_operation_status_code_third = (int32_t *)(*network_socket_handle + network_connection_index_counter * NETWORK_MULTIPLY_SIZE_4);
       network_operation_result = *(int32_t *)(*network_socket_handle + network_connection_index_counter * 4);
       while (network_operation_result != -NETWORK_OPERATION_SUCCESS) {
         network_connection_index_counter = (longlong)network_operation_result * SOCKET_RESPONSE_OFFSET;
