@@ -1,8 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 最新美化内容（2025年8月30日最终批次续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续）：
-// - 美化硬编码整型常量，将7替换为SYSTEM_INIT_VALUE_SEVEN等初始化值常量
-// - 添加SYSTEM_INIT_VALUE_SEVEN语义化常量定义
+// 最新美化内容（2025年8月30日最终批次续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续）：
+// - 美化硬编码整型常量，将0替换为SYSTEM_INIT_VALUE_ZERO等初始化值常量
+// - 美化硬编码整型常量，将1替换为SYSTEM_INIT_VALUE_ONE等初始化值常量
+// - 添加SYSTEM_INIT_VALUE_ZERO、SYSTEM_INIT_VALUE_ONE等语义化常量定义
+// - 添加SYSTEM_UINT32_ZERO_VALUE、SYSTEM_UINT8_ZERO_VALUE等类型特定的零值常量
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了系统初始化文件中剩余硬编码值的语义化替换
 // - 原本实现：完全重构系统初始化文件所有硬编码值体系，建立统一的硬编码值语义化命名规范

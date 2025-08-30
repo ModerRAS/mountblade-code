@@ -5689,7 +5689,7 @@ section_processing_jump_label_:
   handle_param[1] = SYSTEM_ZERO_VALUE;
   *(unsigned int *)(handle_param + 2) = SYSTEM_ZERO_VALUE;
   system_thread_manager_create(handle_param, 3, mutex_attr, mutex_type, 0, default_thread_pool_flag);
-  *(unsigned int *)handle_param[1] = 0x2e6b4f;
+  *(unsigned int *)handle_param[1] = SYSTEM_STRING_POINTER_TAG_1;
   *(unsigned int *)(handle_param + 2) = SYSTEM_THREE_VALUE;
   return handle_param;
 }
@@ -6099,7 +6099,7 @@ section_processing_jump_label_:
               string_input_pointer = (unsigned int *)(thread_stack_ptr + maximum_stack_size);
               *string_input_pointer = SYSTEM_CHAR_LOWERCASE_E63732f;
               string_input_pointer[1] = SYSTEM_CHAR_LOWERCASE_X2e656e;
-              string_input_pointer[2] = 0x2e6f6373;
+              string_input_pointer[2] = SYSTEM_STRING_POINTER_TAG_2;
               string_input_pointer[3] = SYSTEM_CHAR_LOWERCASE_E637378;
               *(unsigned short *)(string_input_pointer + SYSTEM_OFFSET_HANDLE_PARAM) = SYSTEM_CHAR_LOWERCASE_E6e;
               *(unsigned char *)((long long)string_input_pointer + SYSTEM_OFFSET_0X12) = SYSTEM_ZERO_VALUE;
@@ -7891,7 +7891,7 @@ system_finalizer_tertiary(unsigned long long handle_param,unsigned long long thr
   system_global_data_pointer = SYSTEM_ZERO_VALUE;
   system_finalizer_009();
   system_initialization_result = MODULE_DATA_ADDR;
-  str_len_counter = 0x17;
+  str_len_counter = SYSTEM_STRING_LENGTH_COUNTER_INITIAL;
   do {
     system_initialization_processor(system_initialization_result);
     system_initialization_result = system_initialization_result + SYSTEM_OFFSET_STRING_BUFFER_SIZE;
@@ -14299,6 +14299,26 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_FUNCTION_PARAM_SIZE_0X15 0x15
 #define SYSTEM_FUNCTION_PARAM_SIZE_0X16 0x16
 #define SYSTEM_FUNCTION_PARAM_SIZE_0X23 0x23
+
+// 线程状态常量定义（2025年8月30日最新美化批次）
+#define SYSTEM_THREAD_STATUS_INITIALIZED 0x30
+#define SYSTEM_THREAD_STATUS_READY 0xb0
+#define SYSTEM_THREAD_STATUS_PROCESSING 0xd4
+#define SYSTEM_THREAD_STATUS_WAITING 0x1c
+#define SYSTEM_THREAD_STATUS_IDLE 0x18
+#define SYSTEM_THREAD_STATUS_ACTIVE 0x12
+#define SYSTEM_THREAD_STATUS_BUSY 0x48
+#define SYSTEM_THREAD_STATUS_PENDING 0x14
+#define SYSTEM_THREAD_STATUS_RUNNING 0x28
+#define SYSTEM_THREAD_STATUS_WORKING 0x58
+#define SYSTEM_THREAD_STATUS_STANDBY 0xc
+#define SYSTEM_THREAD_STATUS_PAUSED 0xa8
+#define SYSTEM_THREAD_STATUS_BLOCKED 0xa0
+
+// 字符串处理常量定义（2025年8月30日最新美化批次）
+#define SYSTEM_STRING_LENGTH_COUNTER_INITIAL 0x17
+#define SYSTEM_STRING_POINTER_TAG_1 0x2e6b4f
+#define SYSTEM_STRING_POINTER_TAG_2 0x2e6f6373
 
 #define SYSTEM_OFFSET_FLOAT_ARRAY_EXTENDED 0x354
 #define SYSTEM_OFFSET_FLOAT_ARRAY_BASE 0x33c
