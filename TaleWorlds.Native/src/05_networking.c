@@ -2240,12 +2240,12 @@
 // - 原本实现：完全重构网络系统变量命名体系
 // - 简化实现：仅将常见的变量名替换为语义化名称
 
-// 新增语义化常量定义 - 网络变量语义化替换
+// 新增语义化常量定义 - 网络变量语义化替换（2025年8月30日最终批次续）
 #define network_operation_progress_pointer network_operation_progress_tracker  // 网络操作进度指针
 #define network_packet_temp_size network_packet_temp_size_value  // 网络数据包临时大小
 #define network_timeout_config_ptr network_timeout_configuration_pointer  // 网络超时配置指针
 #define network_latency_factor network_connection_latency_factor  // 网络延迟因子
-#define network_buffer_size network_buffer_sizeiable  // 网络缓冲区大小变量
+#define network_buffer_size network_buffer_size_variable  // 网络缓冲区大小变量
 #define network_op_status network_operation_result_code  // 网络操作状态码
 #define network_char_status network_connection_character_flag  // 网络连接字符标志
 #define network_data_ptr network_connection_data_pointer  // 网络连接数据指针
