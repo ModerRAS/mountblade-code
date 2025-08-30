@@ -796,9 +796,9 @@ int initialize_data_buffer_system(void)
   texture_config_flag = FLAG_CONFIG_RESOURCE;
   strcpy_s(&g_texture_resource_buffer,SYSTEM_CONFIG_BUFFER_SIZE,&texture_resource_data_string);
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &g_default_resource_buffer;
+  default_resource_buffer_ptr = &g_default_resource_buffer;
   g_default_resource_buffer = 0;
-  global_data_ptr = 0;
+  default_resource_flag = 0;
   strcpy_s(&g_default_resource_buffer,SYSTEM_CONFIG_BUFFER_SIZE,&default_resource_string);
   resource_template_ptr = &g_defaultDataTemplate;
   global_data_ptr = &g_texture_config_buffer;
