@@ -15253,7 +15253,7 @@ uint64 ValidateResourceSize(longlong resource_handle_identifier,longlong resourc
             }
           }
           if ((((((validation_flag & POINTER_DATA_OFFSET) == 0) ||
-                (system_status_code = processResourceData(resource_handle_identifier,resource_buffer + 0x268), (int)system_status_code == 0)) &&
+                (system_status_code = processResourceData(resource_handle_identifier,resource_buffer + UTILITY_RESOURCE_OFFSET_268), (int)system_status_code == 0)) &&
                (((validation_flag & utility_buffer_size_data_offset) == 0 ||
                 ((system_status_code = writeResourceProperty(resource_handle_identifier,resource_buffer + UTILITY_FIELD_SIZE_OFFSET), (int)system_status_code == 0 &&
                  (system_status_code = writeResourceProperty(resource_handle_identifier,resource_buffer + UTILITY_STRUCTURE_SIZE_OFFSET), (int)system_status_code == 0)))))) &&
@@ -15287,7 +15287,7 @@ uint64 InitializeResourceProcessor(void)
   longlong threadContextData;
   
   if ((utility_cpu_context & RESOURCE_UTILITY_HANDLE_DATA_OFFSET) != 0) {
-    utility_operation_status = *(int *)(utility_cpu_context + 0x260);
+    utility_operation_status = *(int *)(utility_cpu_context + UTILITY_RESOURCE_OFFSET_260);
     utility_loop_counter = (**(code **)**(uint64 **)(utility_register_context_base + 8))
                       (*(uint64 **)(utility_register_context_base + 8),&utility_stack_buffer_temp,4,cpu_register_r9,utility_operation_status);
     if ((int)utility_loop_counter != 0) {
@@ -21442,7 +21442,7 @@ void avoidUtilityRisks(longlong resource_handle_identifier,uint64 *memory_block_
       utility_operation_status = UTILITY_BYTE_OFFSET_FLAG;
     }
     if (utility_operation_status == 0) {
-      *(uint32 *)(resource_handle_identifier + 0x218) = *(uint32 *)(resource_buffer + 8);
+      *(uint32 *)(resource_handle_identifier + UTILITY_RESOURCE_OFFSET_218) = *(uint32 *)(resource_buffer + 8);
       if (*(uint *)(resource_buffer + 8) < RESOURCE_PROP_OFFSET1) {
         utility_operation_status = 0;
       }
@@ -29093,7 +29093,7 @@ void UtilityFinalizeResourceInit(uint64 resource_handle_identifier,longlong reso
 
 
 
-void UtilityUnwind_180903070(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
+void UtilityUnwindExceptionHandlerPrimary(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
 
 {
   UtilityModule17(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
@@ -29103,7 +29103,7 @@ void UtilityUnwind_180903070(uint64 resource_handle_identifier,longlong resource
 
 
 
-void UtilityUnwind_180903080(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
+void UtilityUnwindExceptionHandlerSecondary(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
 
 {
   uint64 *utility_operation_resultData;
@@ -29120,7 +29120,7 @@ void UtilityUnwind_180903080(uint64 resource_handle_identifier,longlong resource
 
 
 
-void UtilityUnwind_180903090(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
+void UtilityUnwindExceptionHandlerTertiary(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
 
 {
   uint64 *utility_operation_resultData;
@@ -29137,7 +29137,7 @@ void UtilityUnwind_180903090(uint64 resource_handle_identifier,longlong resource
 
 
 
-void UtilityUnwind_1809030a0(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
+void UtilityUnwindExceptionHandlerQuaternary(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
 
 {
   uint64 *utility_operation_resultData;
@@ -29158,7 +29158,7 @@ void UtilityUnwind_1809030a0(uint64 resource_handle_identifier,longlong resource
 
 
 
-void UtilityUnwind_1809030b0(uint64 resource_handle_identifier,longlong resource_buffer)
+void UtilityUnwindResourceHandlerBasic(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   longlong *utility_resource_data_pointer;
@@ -29175,7 +29175,7 @@ void UtilityUnwind_1809030b0(uint64 resource_handle_identifier,longlong resource
 
 
 
-void UtilityUnwind_1809030c0(uint64 resource_handle_identifier,longlong resource_buffer)
+void UtilityUnwindResourceHandlerAdvanced(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   **(uint64 **)(resource_buffer + utility_data_offset_start) = &thread_local_storage_cleanup;
@@ -29184,7 +29184,7 @@ void UtilityUnwind_1809030c0(uint64 resource_handle_identifier,longlong resource
 
 
 
-void UtilityUnwind_1809030d0(uint64 resource_handle_identifier,longlong resource_buffer)
+void UtilityUnwindResourceHandlerExpert(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   longlong *utility_resource_data_pointer;
@@ -29198,7 +29198,7 @@ void UtilityUnwind_1809030d0(uint64 resource_handle_identifier,longlong resource
 
 
 
-void UtilityUnwind_1809030f0(uint64 resource_handle_identifier,longlong resource_buffer)
+void UtilityUnwindResourceHandlerProfessional(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   longlong resource_buffer;
@@ -29218,7 +29218,7 @@ void UtilityUnwind_1809030f0(uint64 resource_handle_identifier,longlong resource
 
 
 
-void UtilityUnwind_180903100(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
+void UtilityUnwindResourceHandlerMaster(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
 
 {
   longlong resource_buffer;
@@ -29238,7 +29238,7 @@ void UtilityUnwind_180903100(uint64 resource_handle_identifier,longlong resource
 
 
 
-void UtilityUnwind_180903110(uint64 resource_handle_identifier,longlong resource_buffer)
+void UtilityUnwindResourceHandlerUltimate(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   longlong resource_buffer;
