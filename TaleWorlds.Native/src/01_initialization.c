@@ -17956,7 +17956,7 @@ void InitializeSystemModule23(longlong *handleIdentifier,uint64_t *resourceIdent
   system_stack_memory_pointer = system_memory_pointer;
   ConfigureSystemHandles(system_memory_pointer);
   *system_memory_pointer = (longlong)&g_global_system_config;
-  system_memory_pointer[SYSTEM_OFFSET_18] = (longlong)&g_system_func_2;
+  system_memory_pointer[SYSTEM_OFFSET_18] = (longlong)&g_system_func_audio_handler;
   system_stack_memory_pointer = system_memory_pointer;
   (**(code **)(*system_memory_pointer + SYSTEM_OBJECT_OFFSET_28))(system_memory_pointer);
   system_status_code = system_configuration_data;
@@ -18062,7 +18062,7 @@ void InitializePhysicsSystem(void)
   ppstack_system_memory_pointer = ppptr_data;
   ConfigureSystemHandles(ppptr_data);
   *ppptr_data = (longlong **)&g_global_system_config;
-  ppptr_data[SYSTEM_OFFSET_18] = (longlong **)&g_system_func_3;
+  ppptr_data[SYSTEM_OFFSET_18] = (longlong **)&g_system_func_video_handler;
   pstack_system_memory_pointer = (longlong **)ppptr_data;
   (*(code *)(*ppptr_data)[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER])(ppptr_data);
   system_status_code = system_configuration_data;
@@ -18152,7 +18152,7 @@ void InitializePhysicsSystem(void)
     system_long_value = (longlong)compare_result * SYSTEM_DATA_COMPARE_SIZE0;
     ppstack_system_memory_pointer = (longlong ***)(system_configuration_data + SYSTEM_CONFIG_OFFSET_30 + system_long_result);
     system_memory_context_ptr = appstack_system_memory_pointer;
-    system_buffer_ptr_function_table = &g_system_func_19;
+    system_buffer_ptr_function_table = &g_system_func_main_handler;
     stack_char_ptr = InitializeStringManagerSystem;
     appstack_system_memory_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = (longlong ***)&ppstack_system_memory_pointer;
     InitializeFontSystem(appstack_system_memory_pointer);
@@ -23743,8 +23743,8 @@ void InitializeSystemModule43(longlong *handleIdentifier,uint64_t resourceIdenti
       (*(int *)(systemCoreData + SYSTEM_DATA_OFFSET_314) != *(int *)(systemCoreData + SYSTEM_DATA_OFFSET_310))) ||
      (*(int *)(systemCoreData + SYSTEM_DATA_OFFSET_544) != *(int *)(systemCoreData + SYSTEM_DATA_OFFSET_540))) {
     stack_system_memory_pointer = system_stack_performance_counter;
-    system_buffer_ptr_system_data = &g_system_func_10;
-    system_buffer_ptr_58 = &g_system_func_9;
+    system_buffer_ptr_system_data = &g_system_func_data_handler;
+    system_buffer_ptr_58 = &g_system_func_memory_handler;
     InitializeFontSystem(system_stack_performance_counter);
   }
   if ((systemCoreData != 0) &&
@@ -23752,8 +23752,8 @@ void InitializeSystemModule43(longlong *handleIdentifier,uint64_t resourceIdenti
       (*(int *)(systemCoreData + SYSTEM_DATA_OFFSET_3F4) != *(int *)(systemCoreData + SYSTEM_DATA_OFFSET_3F0))))) {
     system_status_code = AllocateSystemMemory(systemMemoryPool,SYSTEM_DATA_BLOCK_SIZE,8,3);
     stack_system_memory_pointer = system_stack_input_buffer;
-    system_buffer_ptr_40 = &g_system_func_8;
-    system_buffer_ptr_38 = &g_system_func_7;
+    system_buffer_ptr_40 = &g_system_func_thread_handler;
+    system_buffer_ptr_38 = &g_system_func_event_handler;
     pallocation_size = (longlong *)InitializeInputSystem(system_operation_status,system_stack_input_buffer);
     stack_system_memory_pointer = pallocation_size;
     if (pallocation_size != (longlong *)SYSTEM_NULL_POINTER) {
