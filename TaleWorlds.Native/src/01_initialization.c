@@ -9059,7 +9059,7 @@ void InitializeMemoryResourceNode(void)
   system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
   system_module_type_identifier = MODULE_TYPE_CONFIG_INIT;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_global_system_config,system_config_parameter,INVALID_HANDLE_VALUE);
-  g_system_status_data_object_3 = create_system_object(&thread_parameter_ptr); // 原始名称: system_statusData
+  g_system_status_data_object_config = create_system_object(&thread_parameter_ptr); // 原始名称: system_statusData
   return;
 }
 // WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
@@ -10038,7 +10038,7 @@ void InitializeNetworkSystem(void)
   system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
   system_module_type_identifier = MODULE_TYPE_UI_INIT;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_global_system_config,system_config_parameter,INVALID_HANDLE_VALUE);
-  g_system_config_data_object_4 = create_system_object(&thread_parameter_ptr); // 原始名称: system_configuration_data
+  g_system_config_data_object_primary = create_system_object(&thread_parameter_ptr); // 原始名称: system_configuration_data
   return;
 }
 // WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
@@ -10057,7 +10057,7 @@ void InitializeConfigSystem(void)
   system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
   system_module_type_identifier = MODULE_TYPE_STRING_MANAGER_INIT;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_system_global_config,system_config_parameter,INVALID_HANDLE_VALUE);
-  g_system_data_variable_c_object_4 = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
+  g_system_data_variable_c_object_primary = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
   return;
 }
 // WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
@@ -10076,7 +10076,7 @@ void InitializeFontSystem(void)
   system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
   system_module_type_identifier = MODULE_TYPE_NETWORK_INIT;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_global_system_config,system_config_parameter,INVALID_HANDLE_VALUE);
-  g_system_core_data_object_4 = create_system_object(&thread_parameter_ptr); // 原始名称: systemCoreData
+  g_system_core_data_object_primary = create_system_object(&thread_parameter_ptr); // 原始名称: systemCoreData
   return;
 }
 // WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
@@ -10133,7 +10133,7 @@ void InitializeGraphicsResourceNode(void)
   system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
   init_stack_auth_config_size = SYSTEM_CONFIG_SIZE_AUTH;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_system_global_config,system_config_parameter,INVALID_HANDLE_VALUE);
-  g_system_auth_context_ptr_2 = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
+  g_system_auth_context_ptr_secondary = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
   return;
 }
 // WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
@@ -12513,7 +12513,7 @@ void InitializeHashDataNode(void)
   system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
   system_module_type_identifier = MODULE_TYPE_STRING_MANAGER_INIT;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_system_global_config,system_config_parameter,INVALID_HANDLE_VALUE);
-  g_system_object_24 = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
+  g_system_object_reserved = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
   return;
 }
 // void ConfigureSystemHandles(void)
@@ -17164,10 +17164,10 @@ void InitializeSystemModule45(longlong handleIdentifier)
 
   system_operation_result = INVALID_HANDLE_VALUE;
   InitializePhysicsSystem();
-  g_system_counter_1 = g_system_counter_1 + 1; // 原始名称: system_statusData
+  g_system_iteration_counter = g_system_iteration_counter + 1; // 原始名称: system_statusData
   InitializeSystemModule46();
   if (systemInitializationObject != (longlong *)SYSTEM_NULL_POINTER) { // 原始名称: systemInitializationObject
-    if ((void *)*systemInitializationObject == &g_system_vtable_1) { // 原始名称: systemInitializationObject, g_global_system_config
+    if ((void *)*systemInitializationObject == &g_system_vtable_primary) { // 原始名称: systemInitializationObject, g_global_system_config
       system_initialization_flag = (char)systemInitializationObject[SYSTEM_ARRAY_INDEX_SYSTEM_FLAG] != SYSTEM_CHAR_NULL_TERMINATOR; // 原始名称: systemInitializationObject
     }
     else {
@@ -17191,7 +17191,7 @@ void InitializeSystemModule45(longlong handleIdentifier)
   }
   systemInitializationObject = system_memory_ptr;
   if ((void *)*systemInitializationObject == &g_global_system_config) {
-    if (g_system_handle_1 != SYSTEM_COMPARISON_ZERO) {
+    if (g_system_handle_primary != SYSTEM_COMPARISON_ZERO) {
       InitializePhysicsSystem();
     }
   }
@@ -17206,7 +17206,7 @@ void InitializeSystemModule45(longlong handleIdentifier)
   }
 INIT_LABEL_CHECK_SYSTEM_FLAG:
   InitializeNetworkInitNode(*(uint64_t *)(handleIdentifier + SYSTEM_NODE_HEADER_SIZE));
-  if (*(char *)(g_system_base_1 + SYSTEM_FLAG_OFFSET_1ED) != SYSTEM_CHAR_NULL_TERMINATOR) {
+  if (*(char *)(g_system_base_address + SYSTEM_FLAG_OFFSET_1ED) != SYSTEM_CHAR_NULL_TERMINATOR) {
     system_memory_ptr = (longlong *)AllocateSystemMemory(systemMemoryPool,SYSTEM_OBJECT_OFFSET_28,SYSTEM_INIT_PARAM_MEMORY_ALIGNMENT,3);
     *system_memory_ptr = (longlong)&g_global_system_config;
     *system_memory_ptr = (longlong)&g_global_system_config;
@@ -17300,12 +17300,12 @@ void InitializeDatabaseResourceNode(void)
   init_stack_thread_id_primary = INVALID_HANDLE_VALUE;
   init_stack_security_key_value = system_configuration_data ^ (ulonglong)system_local_buffer_key;
   init_stack_buffer_size_total = 0;
-  if (*(char *)(g_system_context_1 + SYSTEM_OFFSET_18) == SYSTEM_CHAR_NULL_TERMINATOR) {
+  if (*(char *)(g_system_context_primary + SYSTEM_OFFSET_18) == SYSTEM_CHAR_NULL_TERMINATOR) {
     ProcessSystemData(&system_buffer_ptr_graphics_context);
     (**(code **)(**(longlong **)(g_system_base_1 + SYSTEM_OFFSET_2B0) + SYSTEM_OFFSET_98))
               (*(longlong **)(g_system_base_1 + SYSTEM_OFFSET_2B0),&system_buffer_ptr_graphics_context);
     InitializeSystemModule24();
-    system_temp_long_result = g_system_context_1;
+    system_temp_long_result = g_system_context_primary;
     system_operation_result = AllocateSystemMemory(systemMemoryPool,SYSTEM_MEMORY_POOL_SIZE_SMALL,SYSTEM_MEMORY_ALIGNMENT_STANDARD,SYSTEM_MEMORY_FLAGS_STANDARD);
     system_memory_ptr = (longlong *)InitializeSystemModule41(system_status_flag,SYSTEM_INIT_PARAM_POINTER_SIZE,system_long_result);
     system_stack_memory_pointer = system_memory_ptr;
@@ -17356,28 +17356,28 @@ INIT_LABEL_VALIDATE_MEMORY_POINTER:
       system_local_buffer_username[(ulonglong)stack_system_memory_ptr & SYSTEM_OFFSET_Ffffffff] = 0;
       (**(code **)(system_buffer_ptr_network_context + SYSTEM_DATA_COMPARE_SIZE))(&system_buffer_ptr_network_context_param,system_local_buffer_username);
     }
-    system_buffer_ptr_system_info = &g_system_data_variable3;
+    system_buffer_ptr_system_info = &g_system_data_variable_primary;
     if (system_buffer_ptr_network_data != (void *)SYSTEM_NULL_POINTER) {
       system_buffer_ptr_system_info = system_buffer_ptr_system_info;
     }
-    system_buffer_ptr_data_config = &g_system_data_variable3;
+    system_buffer_ptr_data_config = &g_system_data_variable_primary;
     if (system_buffer_ptr_audio_data != (void *)SYSTEM_NULL_POINTER) {
       system_buffer_ptr_data_config = system_buffer_ptr_resource_config;
     }
     system_buffer_ptr_resource_state = &g_system_data_init;
-    InitializeEventSystem(g_system_context_1,5,SYSTEM_MAX_64BIT_VALUE,4);
+    InitializeEventSystem(g_system_context_primary,5,SYSTEM_MAX_64BIT_VALUE,4);
     system_buffer_ptr_graphics_data = &g_system_data_main;
     system_buffer_ptr_graphics_buffer = system_local_buffer_graphics;
     init_stack_parameter_handle = 0;
     system_local_buffer_graphics[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0;
     init_stack_parameter_size = 2;
     InitializeSystemModule17(&system_buffer_ptr_graphics_data,&g_global_system_config,SYSTEM_CONFIG_SIZE_PHYSICS0a7);
-    system_buffer_ptr_data_config = &g_system_data_variable3;
+    system_buffer_ptr_data_config = &g_system_data_variable_primary;
     if (system_buffer_ptr_graphics_buffer != (void *)SYSTEM_NULL_POINTER) {
       system_buffer_ptr_data_config = system_buffer_ptr_primary_config;
     }
     system_buffer_ptr_resource_state = &g_system_data_state;
-    InitializeEventSystem(g_system_context_1,5,SYSTEM_MAX_64BIT_VALUE,4);
+    InitializeEventSystem(g_system_context_primary,5,SYSTEM_MAX_64BIT_VALUE,4);
     init_stack_parameter_size = 0;
     system_buffer_ptr_graphics_data = &globalSystemPointerData;
     system_buffer_ptr_network_context = &resourcePoolPointer;
@@ -17551,7 +17551,7 @@ INIT_LABEL_CHECK_MEMORY_POINTER:
   systemCoreData = 1.0 / (double)(longlong)pstack_system_memory_ptr;
   timeBeginPeriod(1);
   QueryPerformanceCounter(&init_long_temp);
-  if (g_system_data_variable2 != SYSTEM_CHAR_NULL_TERMINATOR) {
+  if (g_system_data_variable_secondary != SYSTEM_CHAR_NULL_TERMINATOR) {
     system_configuration_data = system_configuration_data + (init_long_temp - system_configuration_data);
   }
   system_configuration_data = SYSTEM_HANDLE_STATUS_INVALID;
@@ -17717,7 +17717,7 @@ uint32_t get_game_initialization_status(void)
       ProcessSystemOperation(system_long_result);
     }
   }
-  system_memory_ptr_chain_four = g_system_handle_1;
+  system_memory_ptr_chain_four = g_system_handle_primary;
   system_temp_long_result = system_configuration_data;
   systemCoreData = (longlong ****)SYSTEM_NULL_POINTER;
   if (system_configuration_data != SYSTEM_COMPARISON_ZERO) {
@@ -17726,10 +17726,10 @@ uint32_t get_game_initialization_status(void)
     ProcessSystemOperation(system_long_result);
   }
   system_configuration_data = SYSTEM_HANDLE_STATUS_INVALID;
-  *(uint32_t *)(g_system_handle_1 + SYSTEM_OFFSET_2D) = 2;
+  *(uint32_t *)(g_system_handle_primary + SYSTEM_OFFSET_2D) = 2;
   system_memory_context_ptr = system_memory_config_ptr;
   if (system_memory_ptr_chain_four == (longlong ****)SYSTEM_NULL_POINTER) {
-    g_system_handle_1 = (longlong ****)SYSTEM_NULL_POINTER;
+    g_system_handle_primary = (longlong ****)SYSTEM_NULL_POINTER;
     WaitForSingleObject(inputSystemData,SYSTEM_SEMAPHORE_TIMEOUT_INFINITE);
     do {
       system_temp_integer = ReleaseSemaphore(inputSystemData,SYSTEM_SEMAPHORE_RELEASE_COUNT);
@@ -23275,7 +23275,7 @@ void HandleSystemOperation92(void)
     InitializeMutexInitNode(system_status_flag,&system_stack_memory_pointer,0);
   }
   InitializeFilesystemSystem(system_configuration_data);
-  if (g_system_handle_1 != SYSTEM_COMPARISON_ZERO) {
+  if (g_system_handle_primary != SYSTEM_COMPARISON_ZERO) {
     ConfigureGraphicsShader();
   }
   InitializeFilesystemSystem(system_configuration_data);
@@ -23295,7 +23295,7 @@ void HandleSystemOperation92(void)
     InitializeMutexInitNode(system_status_flag,&system_stack_memory_pointer,0);
   }
   InitializeFilesystemSystem(system_configuration_data);
-  if (g_system_handle_1 != SYSTEM_COMPARISON_ZERO) {
+  if (g_system_handle_primary != SYSTEM_COMPARISON_ZERO) {
     ConfigureGraphicsShader();
   }
   InitializeFilesystemSystem(system_configuration_data);
@@ -23307,7 +23307,7 @@ void HandleSystemOperation92(void)
     InitializeMutexInitNode(system_status_flag,&system_stack_memory_pointer,0);
   }
   InitializeFilesystemSystem(system_configuration_data);
-  if (g_system_handle_1 != SYSTEM_COMPARISON_ZERO) {
+  if (g_system_handle_primary != SYSTEM_COMPARISON_ZERO) {
     ConfigureGraphicsShader();
   }
   InitializeFilesystemSystem(system_configuration_data);
@@ -26423,13 +26423,13 @@ void SetupGraphicsDevice(uint64_t handleIdentifier,uint64_t resourceIdentifier,u
   *(uint8_t *)(systemCoreData + SYSTEM_DATA_OFFSET_3A0) = 1;
   InitializeFilesystemSystem(system_configuration_data);
   InitializeFilesystemSystem(system_configuration_data);
-  if (g_system_handle_1 != SYSTEM_COMPARISON_ZERO) {
+  if (g_system_handle_primary != SYSTEM_COMPARISON_ZERO) {
     ConfigureGraphicsShader();
   }
   InitializeFilesystemSystem(system_configuration_data);
   InitializeFilesystemSystem(system_configuration_data);
   InitializeFilesystemSystem(system_configuration_data);
-  if (g_system_handle_1 != SYSTEM_COMPARISON_ZERO) {
+  if (g_system_handle_primary != SYSTEM_COMPARISON_ZERO) {
     ConfigureGraphicsShader();
   }
   InitializeFilesystemSystem(system_configuration_data);
@@ -43332,7 +43332,7 @@ void ConfigureSystemParameters(uint64_t handleIdentifier,uint64_t resourceIdenti
 
   system_temp_long_result = g_system_handle_1;
   system_operation_result = INVALID_HANDLE_VALUE;
-  if (g_system_handle_1 != SYSTEM_COMPARISON_ZERO) {
+  if (g_system_handle_primary != SYSTEM_COMPARISON_ZERO) {
     system_temp_long_result = g_system_handle_1 + SYSTEM_OFFSET_F0;
     system_temp_long_result = g_system_handle_1 + SYSTEM_CONFIG_SIZE_FINAL0;
     system_temp_integer = _Mtx_lock(system_long_result);
