@@ -12237,7 +12237,7 @@ unsigned long long system_initialize_context(unsigned long long handle_param)
 {
   unsigned long long system_buffer_allocation_result;
   long long system_string_length_counter;
-  system_buffer_allocation_result = system_execution_function(system_global_data_pointer_variable,handle_param,0x19);
+  system_buffer_allocation_result = system_execution_function(system_global_data_pointer_variable,handle_param,SYSTEM_FUNCTION_PARAM_SIZE_LARGE_EXTENDED);
   system_string_length_counter = allocate_temporary_buffer(system_buffer_allocation_result);
   LOCK();
   system_global_data_pointer_variable = system_global_data_pointer_variable + system_string_length_counter;
