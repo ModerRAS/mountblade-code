@@ -7533,7 +7533,7 @@ network_address_validation_label:
             network_status_code_third_performance = (int)network_packet_size_ptr_ptr;
             if ((*(int64_t *)(server_port + (longlong)network_status_code_third_performance * MODULE_STATUS_OFFSET) == *(int64_t *)(networkAddress + MODULE_STATUS_OFFSET)) &&
                (*(int64_t *)(server_port + NETWORK_PACKET_HEADER_SIZE + (longlong)network_status_code_third_performance * MODULE_STATUS_OFFSET) == *(int64_t *)(networkAddress + SESSION_CONFIG_SIZE)))
-            goto joined_rjoined_network_address_validation;
+            goto network_address_validation_label;
             network_packet_size_ptr_ptr = (uint64_t *)(ulonglong)(network_status_code_third_performance + 1U);
           } while ((int)(network_status_code_third_performance + 1U) < network_operation_result);
         network_operation_result = sendNetworkPacket(network_connection_processor_ptr,network_socket_descriptor_value);
