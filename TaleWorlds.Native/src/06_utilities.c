@@ -3135,7 +3135,7 @@ uint64 execute_resource_command(longlong resourceHandleIdentifier)
   uint64 systemStatus;
   uint64 *validationResultArray;
   int integerVar6;
-  float floatVarfloatVar7;
+  float floatResultVar7;
   byte arrayVar8 [16];
   longlong longStackX8Var2;
   
@@ -3145,7 +3145,7 @@ uint64 execute_resource_command(longlong resourceHandleIdentifier)
   }
   resourceBuffer = *(longlong *)(systemMemoryHandle + 8);
   if (resourceBuffer != 0) {
-    floatVarfloatVar7 = *(float *)(resourceHandleIdentifier + POINTER_DATA_OFFSET);
+    floatResultVar7 = *(float *)(resourceHandleIdentifier + POINTER_DATA_OFFSET);
     for (validationResultArray = *(uint64 **)(resourceBuffer + BUFFER_DATA_OFFSET);
         (*(uint64 **)(resourceBuffer + BUFFER_DATA_OFFSET) <= validationResultArray &&
         (validationResultArray < *(uint64 **)(resourceBuffer + BUFFER_DATA_OFFSET) + *(int *)(resourceBuffer + listHeadOffset))); validationResultArray = validationResultArray + 1) {
@@ -3159,19 +3159,19 @@ uint64 execute_resource_command(longlong resourceHandleIdentifier)
       loopCounter = *(uint *)(*(longlong *)(resourceBuffer + resourceHandleOffset) + FIELD_OFFSET_2);
       loopCounter = loopCounter >> 4;
       if ((loopCounter & 1) == 0) {
-        if ((((loopCounter >> 3 & 1) != 0) && (integerVar6 = (int)floatVarfloatVar7, integerVar6 != -INT_MIN)) &&
-           ((float)integerVar6 != floatVarfloatVar7)) {
-          arrayVar8._4_4_ = floatVarfloatVar7;
-          arrayVar8._0_4_ = floatVarfloatVar7;
+        if ((((loopCounter >> 3 & 1) != 0) && (integerVar6 = (int)floatResultVar7, integerVar6 != -INT_MIN)) &&
+           ((float)integerVar6 != floatResultVar7)) {
+          arrayVar8._4_4_ = floatResultVar7;
+          arrayVar8._0_4_ = floatResultVar7;
           arrayVar8._8_8_ = 0;
           loopCounter = movmskps(loopCounter,arrayVar8);
-          floatVarfloatVar7 = (float)(int)(integerVar6 - (loopCounter & 1));
+          floatResultVar7 = (float)(int)(integerVar6 - (loopCounter & 1));
         }
-        floatVarfloatVar7 = (float)calculate_resource_dataSize(*(longlong *)(resourceBuffer + resourceHandleOffset),floatVarfloatVar7);
+        floatResultVar7 = (float)calculate_resource_dataSize(*(longlong *)(resourceBuffer + resourceHandleOffset),floatResultVar7);
         if (((*(char *)(resourceBuffer + FIELD_OFFSET_2) == '\0') ||
             ((*(uint *)(*(longlong *)(resourceBuffer + resourceHandleOffset) + FIELD_OFFSET_2) >> 1 & 1) == 0)) &&
-           (floatVarfloatVar7 != *(float *)(resourceBuffer + POINTER_DATA_OFFSET))) {
-          *(float *)(resourceBuffer + POINTER_DATA_OFFSET) = floatVarfloatVar7;
+           (floatResultVar7 != *(float *)(resourceBuffer + POINTER_DATA_OFFSET))) {
+          *(float *)(resourceBuffer + POINTER_DATA_OFFSET) = floatResultVar7;
           utilityPrepareResourceAccess(resourceBuffer);
           *(byte *)(resourceBuffer + 0x35) = 0;
         }
@@ -4016,19 +4016,19 @@ uint64 get_file_position(longlong resourceHandleIdentifier)
       loopCounter = *(uint *)(*(longlong *)(resourceBuffer + resourceHandleOffset) + FIELD_OFFSET_2);
       loopCounter = loopCounter >> 4;
       if ((loopCounter & 1) == 0) {
-        if ((((loopCounter >> 3 & 1) != 0) && (integerVar6 = (int)floatVarfloatVar7, integerVar6 != -INT_MIN)) &&
-           ((float)integerVar6 != floatVarfloatVar7)) {
-          arrayVar8._4_4_ = floatVarfloatVar7;
-          arrayVar8._0_4_ = floatVarfloatVar7;
+        if ((((loopCounter >> 3 & 1) != 0) && (integerVar6 = (int)floatResultVar7, integerVar6 != -INT_MIN)) &&
+           ((float)integerVar6 != floatResultVar7)) {
+          arrayVar8._4_4_ = floatResultVar7;
+          arrayVar8._0_4_ = floatResultVar7;
           arrayVar8._8_8_ = 0;
           loopCounter = movmskps(loopCounter,arrayVar8);
-          floatVarfloatVar7 = (float)(int)(integerVar6 - (loopCounter & 1));
+          floatResultVar7 = (float)(int)(integerVar6 - (loopCounter & 1));
         }
-        floatVarfloatVar7 = (float)calculate_resource_dataSize(*(longlong *)(resourceBuffer + resourceHandleOffset),floatVarfloatVar7);
+        floatResultVar7 = (float)calculate_resource_dataSize(*(longlong *)(resourceBuffer + resourceHandleOffset),floatResultVar7);
         if (((*(char *)(resourceBuffer + FIELD_OFFSET_2) == '\0') ||
             ((*(uint *)(*(longlong *)(resourceBuffer + resourceHandleOffset) + FIELD_OFFSET_2) >> 1 & 1) == 0)) &&
-           (floatVarfloatVar7 != *(float *)(resourceBuffer + POINTER_DATA_OFFSET))) {
-          *(float *)(resourceBuffer + POINTER_DATA_OFFSET) = floatVarfloatVar7;
+           (floatResultVar7 != *(float *)(resourceBuffer + POINTER_DATA_OFFSET))) {
+          *(float *)(resourceBuffer + POINTER_DATA_OFFSET) = floatResultVar7;
           utilityPrepareResourceAccess(resourceBuffer);
           *(byte *)(resourceBuffer + 0x35) = 0;
         }
@@ -8284,7 +8284,7 @@ uint64 enable_debug_logging(void)
 void log_debug_message(longlong resourceHandleIdentifier,byte *memoryBlockBlockBlockSize,int *resourceOperationFlags)
 
 {
-  byte boolVar1;
+  byte booleanResultVar1;
   longlong tempBuffer;
   char charVar3;
   int iterationCounter;
@@ -8344,7 +8344,7 @@ void log_debug_message(longlong resourceHandleIdentifier,byte *memoryBlockBlockB
         longVar6 = tempBuffer - ((longlong)floatVar11 + longVar6);
         *(longlong *)(resourceHandleIdentifier + resourceHandleDataOffset) = longVar6;
       }
-      boolVar1 = *(byte *)(resourceHandleIdentifier + 0x6c);
+      booleanResultVar1 = *(byte *)(resourceHandleIdentifier + 0x6c);
       if (*(longlong *)(resourceHandleIdentifier + 0xc0) != 0) {
         validationResult = evaluate_system_state(resourceHandleIdentifier);
         iterationCounter = (**(code **)(resourceHandleIdentifier + 0xc0))
@@ -8352,7 +8352,7 @@ void log_debug_message(longlong resourceHandleIdentifier,byte *memoryBlockBlockB
                           );
         if (iterationCounter != 0) goto ExecuteSecurityValidation;
       }
-      if (((((boolVar1 & 2) != 0 || (longlong)temporaryFloatValue + longVar7 < tempBuffer - longVar6) &&
+      if (((((booleanResultVar1 & 2) != 0 || (longlong)temporaryFloatValue + longVar7 < tempBuffer - longVar6) &&
            (iterationCounter = *plocalInt, *plocalInt = iterationCounter + 1, iterationCounter < 10)) &&
           ((*(uint *)(resourceHandleIdentifier + 0x6c) >> resourceHandleOffset & 1) == 0)) &&
          (((*(uint *)(resourceHandleIdentifier + 0x6c) >> 0x19 & 1) != 0 && (statusCounter == *(int *)(resourceHandleIdentifier + 0xb0))))) {
@@ -9204,7 +9204,7 @@ ulonglong validate_memory_address(longlong resourceHandleIdentifier)
   int localStatus4;
   longlong resourceDataBufferVar5;
   int localStatus6;
-  bool boolVar17;
+  bool booleanResultVar17;
   int aiStackX_8 [2];
   uint unsignedStackArrayX10 [2];
   uint64 unsignedStackX18;
@@ -9410,9 +9410,9 @@ ulonglong validate_memory_address(longlong resourceHandleIdentifier)
         } while ((aiStackX_8[0] != -1) &&
                 (aiStackX_8[0] = *(int *)(resourceDataBufferPointer3[2] + 4 + resourceDataBufferVar5 * resourceHandleDataOffset), aiStackX_8[0] != -1));
         resourceCounter = localStatus1 + 1;
-        boolVar17 = localStatus1 != -1;
+        booleanResultVar17 = localStatus1 != -1;
         localStatus1 = 0;
-        if (boolVar17) {
+        if (booleanResultVar17) {
           localStatus1 = resourceCounter;
         }
         if (localStatus1 != (int)resourceDataBufferPointer3[1]) {
@@ -17565,7 +17565,7 @@ uint64 * ProcessValidationRequest(void)
   uint32 systemStatus;
   float floatVarfloatVar5;
   float floatVarfloatVar6;
-  float floatVarfloatVar7;
+  float floatResultVar7;
   uint iterationIndex;
   uint unsignedVar9;
   uint functionResultVar;
@@ -17761,11 +17761,11 @@ LAB_18089c40a:
           floatVar21 = *pfVar14;
           floatVarfloatVar5 = pfVar14[1];
           floatVarfloatVar6 = pfVar14[2];
-          floatVarfloatVar7 = pfVar14[3];
+          floatResultVar7 = pfVar14[3];
           *(float *)(resourceDataBuffer7 + -RESOURCE_DATA_INDEX) = floatVar21;
           *(float *)(resourceDataBuffer7 + -resourceHandleDataOffset) = floatVarfloatVar5;
           *(float *)(resourceDataBuffer7 + -STRUCT_MULTIPLIER) = floatVarfloatVar6;
-          *(float *)(resourceDataBuffer7 + -8) = floatVarfloatVar7;
+          *(float *)(resourceDataBuffer7 + -8) = floatResultVar7;
           *(uint64 *)(resourceDataBuffer7 + -4) = 0;
           resourceDataBuffer8 = resourceDataBuffer8 + -1;
           resourceDataBuffer7 = resourceDataBuffer7 + resourceHandleOffset;
@@ -17820,7 +17820,7 @@ uint64 * HandleValidationCallback(void)
   uint32 systemStatus;
   float floatVarfloatVar5;
   float floatVarfloatVar6;
-  float floatVarfloatVar7;
+  float floatResultVar7;
   uint iterationIndex;
   uint unsignedVar9;
   uint functionResultVar;
@@ -18008,11 +18008,11 @@ LAB_18089c40a:
           floatVar21 = *pfVar14;
           floatVarfloatVar5 = pfVar14[1];
           floatVarfloatVar6 = pfVar14[2];
-          floatVarfloatVar7 = pfVar14[3];
+          floatResultVar7 = pfVar14[3];
           *(float *)(resourceDataBuffer7 + -RESOURCE_DATA_INDEX) = floatVar21;
           *(float *)(resourceDataBuffer7 + -resourceHandleDataOffset) = floatVarfloatVar5;
           *(float *)(resourceDataBuffer7 + -STRUCT_MULTIPLIER) = floatVarfloatVar6;
-          *(float *)(resourceDataBuffer7 + -8) = floatVarfloatVar7;
+          *(float *)(resourceDataBuffer7 + -8) = floatResultVar7;
           *(uint64 *)(resourceDataBuffer7 + -4) = 0;
           resourceDataBuffer8 = resourceDataBuffer8 + -1;
           resourceDataBuffer7 = resourceDataBuffer7 + resourceHandleOffset;
@@ -18085,7 +18085,7 @@ ulonglong ValidateDataIntegrity(uint64 resourceHandleIdentifier)
   int localStatus8;
   uint64 *unaff_R12;
   uint unaff_R15D;
-  bool boolVar19;
+  bool booleanResultVar19;
   float floatRegisterXMM0;
   float floatRegisterXMM0_00;
   float floatRegisterXMM0_01;
@@ -18256,7 +18256,7 @@ LAB_18089c586:
   }
 LAB_18089c300:
   if ((0x70 < *(uint *)(registerRDI + 8)) &&
-     (boolVar19 = *(uint *)(registerRDI[1] + resourceHandleOffset) == iterationIndex, iterationIndex = unaff_R15D, boolVar19)) {
+     (booleanResultVar19 = *(uint *)(registerRDI[1] + resourceHandleOffset) == iterationIndex, iterationIndex = unaff_R15D, booleanResultVar19)) {
     iterationIndex = writeResourceData(*registerRDI,registerRSI + 0x68,4);
     floatVar20 = floatRegisterXMM0_00;
   }
@@ -24692,7 +24692,7 @@ void ExceptionHandlerCleanup20(uint64 resourceHandleIdentifier,longlong resource
 void UnwindHandler_0f0(void)
 
 {
-  byte boolVar1;
+  byte booleanResultVar1;
   
   EnterCriticalSection(0x180c82210);
   g_systemGlobalCounter2 = 0;
@@ -24704,11 +24704,11 @@ void UnwindHandler_0f0(void)
     ResetEvent(g_systemEventHandle);
     return;
   }
-  boolVar1 = (byte)g_securityTokenMask & 0x3f;
+  booleanResultVar1 = (byte)g_securityTokenMask & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> boolVar1 |
-            (g_securityTokenMask ^ g_systemFunctionPointer) << bufferSizeDataOffset - boolVar1))(0x180c82238);
+  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> booleanResultVar1 |
+            (g_securityTokenMask ^ g_systemFunctionPointer) << bufferSizeDataOffset - booleanResultVar1))(0x180c82238);
   return;
 }
 
@@ -24719,7 +24719,7 @@ void UnwindHandler_0f0(void)
 void UnwindHandler_100(void)
 
 {
-  byte boolVar1;
+  byte booleanResultVar1;
   
   EnterCriticalSection(0x180c82210);
   g_systemGlobalCounter3 = 0;
@@ -24731,11 +24731,11 @@ void UnwindHandler_100(void)
     ResetEvent(g_systemEventHandle);
     return;
   }
-  boolVar1 = (byte)g_securityTokenMask & 0x3f;
+  booleanResultVar1 = (byte)g_securityTokenMask & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> boolVar1 |
-            (g_securityTokenMask ^ g_systemFunctionPointer) << bufferSizeDataOffset - boolVar1))(0x180c82238);
+  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> booleanResultVar1 |
+            (g_securityTokenMask ^ g_systemFunctionPointer) << bufferSizeDataOffset - booleanResultVar1))(0x180c82238);
   return;
 }
 
@@ -24963,7 +24963,7 @@ void cleanupExceptionContext_1809022d0(uint64 resourceHandleIdentifier,longlong 
 
 
 
-void Unwind_180902300(uint64 resourceHandleIdentifier,longlong resourceBuffer)
+void handleExceptionStack_180902300(uint64 resourceHandleIdentifier,longlong resourceBuffer)
 
 {
   *(dataValueValue **)(resourceBuffer + 0xd8) = &threadLocalStorageCleanup;
@@ -24972,7 +24972,7 @@ void Unwind_180902300(uint64 resourceHandleIdentifier,longlong resourceBuffer)
 
 
 
-void Unwind_180902310(uint64 resourceHandleIdentifier,longlong resourceBuffer)
+void resetExceptionState_180902310(uint64 resourceHandleIdentifier,longlong resourceBuffer)
 
 {
   if ((*(uint *)(resourceBuffer + firstFieldOffset) & bufferSizeDataOffset) != 0) {
@@ -24984,7 +24984,7 @@ void Unwind_180902310(uint64 resourceHandleIdentifier,longlong resourceBuffer)
 
 
 
-void Unwind_180902340(uint64 resourceHandleIdentifier,longlong resourceBuffer)
+void processExceptionData_180902340(uint64 resourceHandleIdentifier,longlong resourceBuffer)
 
 {
   if ((*(uint *)(resourceBuffer + firstFieldOffset) & bufferOffsetTemp) != 0) {
@@ -24996,7 +24996,7 @@ void Unwind_180902340(uint64 resourceHandleIdentifier,longlong resourceBuffer)
 
 
 
-void Unwind_180902370(uint64 resourceHandleIdentifier,longlong resourceBuffer)
+void validateExceptionFrame_180902370(uint64 resourceHandleIdentifier,longlong resourceBuffer)
 
 {
   *(dataValueValue **)(resourceBuffer + resourceHandleDataOffset) = &threadLocalStorageCleanup;
@@ -25005,7 +25005,7 @@ void Unwind_180902370(uint64 resourceHandleIdentifier,longlong resourceBuffer)
 
 
 
-void Unwind_180902380(uint64 resourceHandleIdentifier,longlong resourceBuffer)
+void restoreExceptionContext_180902380(uint64 resourceHandleIdentifier,longlong resourceBuffer)
 
 {
   if ((*(uint *)(resourceBuffer + firstFieldOffset) & resourceHandleDataOffset0) != 0) {
@@ -42843,7 +42843,7 @@ void Unwind_180906bd0(uint64 resourceHandleIdentifier,longlong resourceBuffer)
 void Unwind_180906c00(void)
 
 {
-  byte boolVar1;
+  byte booleanResultVar1;
   
   EnterCriticalSection(0x180c82210);
   g_systemGlobalCounter4 = 0;
@@ -42855,11 +42855,11 @@ void Unwind_180906c00(void)
     ResetEvent(g_systemEventHandle);
     return;
   }
-  boolVar1 = (byte)g_securityTokenMask & 0x3f;
+  booleanResultVar1 = (byte)g_securityTokenMask & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> boolVar1 |
-            (g_securityTokenMask ^ g_systemFunctionPointer) << bufferSizeDataOffset - boolVar1))(0x180c82238);
+  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> booleanResultVar1 |
+            (g_securityTokenMask ^ g_systemFunctionPointer) << bufferSizeDataOffset - booleanResultVar1))(0x180c82238);
   return;
 }
 
@@ -44365,7 +44365,7 @@ void Unwind_180907120(uint64 resourceHandleIdentifier,longlong resourceBuffer)
 void Unwind_180907130(void)
 
 {
-  byte boolVar1;
+  byte booleanResultVar1;
   
   EnterCriticalSection(0x180c82210);
   uRam0000000180d49150 = 0;
@@ -44377,11 +44377,11 @@ void Unwind_180907130(void)
     ResetEvent(g_systemEventHandle);
     return;
   }
-  boolVar1 = (byte)g_securityTokenMask & 0x3f;
+  booleanResultVar1 = (byte)g_securityTokenMask & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> boolVar1 |
-            (g_securityTokenMask ^ g_systemFunctionPointer) << bufferSizeDataOffset - boolVar1))(0x180c82238);
+  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> booleanResultVar1 |
+            (g_securityTokenMask ^ g_systemFunctionPointer) << bufferSizeDataOffset - booleanResultVar1))(0x180c82238);
   return;
 }
 
@@ -47523,7 +47523,7 @@ void Unwind_180908030(uint64 resourceHandleIdentifier,longlong resourceBuffer)
 void Unwind_180908040(void)
 
 {
-  byte boolVar1;
+  byte booleanResultVar1;
   
   EnterCriticalSection(0x180c82210);
   _systemVar91f8 = 0;
@@ -47535,11 +47535,11 @@ void Unwind_180908040(void)
     ResetEvent(g_systemEventHandle);
     return;
   }
-  boolVar1 = (byte)g_securityTokenMask & 0x3f;
+  booleanResultVar1 = (byte)g_securityTokenMask & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> boolVar1 |
-            (g_securityTokenMask ^ g_systemFunctionPointer) << bufferSizeDataOffset - boolVar1))(0x180c82238);
+  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> booleanResultVar1 |
+            (g_securityTokenMask ^ g_systemFunctionPointer) << bufferSizeDataOffset - booleanResultVar1))(0x180c82238);
   return;
 }
 
@@ -49871,7 +49871,7 @@ void Unwind_180908d00(uint64 resourceHandleIdentifier,longlong resourceBuffer)
 void Unwind_180908d30(void)
 
 {
-  byte boolVar1;
+  byte booleanResultVar1;
   
   EnterCriticalSection(0x180c82210);
   _systemVar9210 = 0;
@@ -49883,11 +49883,11 @@ void Unwind_180908d30(void)
     ResetEvent(g_systemEventHandle);
     return;
   }
-  boolVar1 = (byte)g_securityTokenMask & 0x3f;
+  booleanResultVar1 = (byte)g_securityTokenMask & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> boolVar1 |
-            (g_securityTokenMask ^ g_systemFunctionPointer) << bufferSizeDataOffset - boolVar1))(0x180c82238);
+  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> booleanResultVar1 |
+            (g_securityTokenMask ^ g_systemFunctionPointer) << bufferSizeDataOffset - booleanResultVar1))(0x180c82238);
   return;
 }
 
@@ -54414,7 +54414,7 @@ void Unwind_18090a6d0(void)
 void Unwind_18090a6e0(void)
 
 {
-  byte boolVar1;
+  byte booleanResultVar1;
   
   EnterCriticalSection(0x180c82210);
   _systemVar9238 = 0;
@@ -54426,11 +54426,11 @@ void Unwind_18090a6e0(void)
     ResetEvent(g_systemEventHandle);
     return;
   }
-  boolVar1 = (byte)g_securityTokenMask & 0x3f;
+  booleanResultVar1 = (byte)g_securityTokenMask & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> boolVar1 |
-            (g_securityTokenMask ^ g_systemFunctionPointer) << bufferSizeDataOffset - boolVar1))(0x180c82238);
+  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> booleanResultVar1 |
+            (g_securityTokenMask ^ g_systemFunctionPointer) << bufferSizeDataOffset - booleanResultVar1))(0x180c82238);
   return;
 }
 
@@ -79811,7 +79811,7 @@ void Unwind_1809127c0(uint64 resourceHandleIdentifier,longlong resourceBuffer,ui
 void Unwind_1809127d0(void)
 
 {
-  byte boolVar1;
+  byte booleanResultVar1;
   
   EnterCriticalSection(0x180c82210);
   _systemVar9270 = 0;
@@ -79823,11 +79823,11 @@ void Unwind_1809127d0(void)
     ResetEvent(g_systemEventHandle);
     return;
   }
-  boolVar1 = (byte)g_securityTokenMask & 0x3f;
+  booleanResultVar1 = (byte)g_securityTokenMask & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> boolVar1 |
-            (g_securityTokenMask ^ g_systemFunctionPointer) << bufferSizeDataOffset - boolVar1))(0x180c82238);
+  (*(code *)((g_securityTokenMask ^ g_systemFunctionPointer) >> booleanResultVar1 |
+            (g_securityTokenMask ^ g_systemFunctionPointer) << bufferSizeDataOffset - booleanResultVar1))(0x180c82238);
   return;
 }
 
