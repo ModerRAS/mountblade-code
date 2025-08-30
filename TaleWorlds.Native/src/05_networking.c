@@ -3838,7 +3838,7 @@ NetworkCreateListenerFunc NetworkCreateListener;
 // 网络连接接受函数指针
 typedef void* (*NetworkAcceptConnectionFunc)(void* listener);
 NetworkAcceptConnectionFunc NetworkAcceptConnection;
-void* g_networkListenerObject;
+void* g_network_listener;
 // 网络连接拒绝函数指针
 typedef void (*NetworkRejectConnectionFunc)(void* network_connection_processor);
 NetworkRejectConnectionFunc NetworkRejectConnection;
@@ -3883,7 +3883,7 @@ void* g_networkConnectionPool;
 // 网络带宽信息指针
 void* g_network_bandwidth_info_ptr;
 // 网络延迟测量值
-uint32 g_network_latency_measurement_value;
+uint32 g_network_latency_measurement;
 // 网络丢包率（美化后）
 float g_network_packet_loss_rate;
 // 网络统计信息
