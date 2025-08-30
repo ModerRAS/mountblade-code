@@ -12375,10 +12375,10 @@ int InitializeSystemCore(void)
 
 {
   longlong system_long_var_1;
-  undefined1 auStackX_8 [32];
+  undefined1 system_stack_uchar_array_32bit_zero [32];
   
-  auStackX_8[0] = SYSTEM_INIT_VALUE_ZERO;
-  system_register_service(&g_system_initialized,auStackX_8);
+  system_stack_uchar_array_32bit_zero[0] = SYSTEM_INIT_VALUE_ZERO;
+  system_register_service(&g_system_initialized,system_stack_uchar_array_32bit_zero);
   system_long_var_1 = system_allocate_memory(GetSystemConfigC);
   return (system_long_var_1 != 0) - 1;
 }
@@ -18273,7 +18273,7 @@ void InitializeSystemCore(undefined8 system_param_1,undefined8 system_param_2,un
   longlong system_long_var_11;
   ulonglong system_ulong_var_12;
   longlong system_long_var_13;
-  char *pcVar14;
+  char *system_char_pointer_var_14;
   undefined *psystem_ulong_var_15;
   uint system_ulong_var_16;
   int iVar17;
@@ -18365,11 +18365,11 @@ void InitializeSystemCore(undefined8 system_param_1,undefined8 system_param_2,un
         system_long_var_11 = system_long_var_11 + 1;
         system_char_buffer = pcStack_80[system_long_var_11];
       }
-      pcVar14 = "";
+      system_char_pointer_var_14 = "";
       if (pcStack_80 != (char *)SYSTEM_INIT_VALUE_CHAR_NULL) {
-        pcVar14 = pcStack_80;
+        system_char_pointer_var_14 = pcStack_80;
       }
-      system_process_service(system_ptr_pool,&g_system_context,pcVar14);
+      system_process_service(system_ptr_pool,&g_system_context,system_char_pointer_var_14);
       system_double_1 = *(double *)(system_long_var_13 + SYSTEM_INIT_OFFSET_0XA0 + system_init_flag_10);
       system_double_3 = (double)*(uint *)(system_long_var_13 + SYSTEM_INIT_VALUE_STACK_110 + system_init_flag_10);
       if (system_double_3 != 0.0) {
@@ -18495,11 +18495,11 @@ void InitializeSystemCore(undefined8 system_param_1,undefined8 system_param_2,un
           system_long_var_6 = system_long_var_6 + 1;
           system_char_buffer = pcStack_a0[system_long_var_6];
         }
-        pcVar14 = "";
+        system_char_pointer_var_14 = "";
         if (pcStack_a0 != (char *)SYSTEM_INIT_VALUE_CHAR_NULL) {
-          pcVar14 = pcStack_a0;
+          system_char_pointer_var_14 = pcStack_a0;
         }
-        system_process_service(system_ptr_pool,&g_system_context,pcVar14,*(undefined8 *)(system_long_var_11 + SYSTEM_INIT_OFFSET_0X60));
+        system_process_service(system_ptr_pool,&g_system_context,system_char_pointer_var_14,*(undefined8 *)(system_long_var_11 + SYSTEM_INIT_OFFSET_0X60));
         puStack_a8 = &g_system_context;
         if (pcStack_a0 != (char *)SYSTEM_INIT_VALUE_CHAR_NULL) {
                     // WARNING: Subroutine does not return
@@ -18532,16 +18532,16 @@ void InitializeSystemCore(undefined8 system_param_1,undefined8 system_param_2,un
     do {
       system_long_var_6 = _g_physics_world;
       system_long_var_13 = SYSTEM_INIT_VALUE_ZERO;
-      pcVar14 = *(char **)(_g_physics_world + 8 + system_long_var_11);
-      system_char_buffer = *pcVar14;
+      system_char_pointer_var_14 = *(char **)(_g_physics_world + 8 + system_long_var_11);
+      system_char_buffer = *system_char_pointer_var_14;
       while (system_char_buffer != '\0') {
-        system_long_var_7 = strchr(&g_system_initialized,(int)pcVar14[system_long_var_13]);
+        system_long_var_7 = strchr(&g_system_initialized,(int)system_char_pointer_var_14[system_long_var_13]);
         if (system_long_var_7 != 0) {
           *(undefined1 *)(system_long_var_13 + *(longlong *)(system_long_var_6 + 8 + system_long_var_11)) = SYSTEM_INIT_VALUE_STRING_TERMINATOR;
         }
         system_long_var_13 = system_long_var_13 + 1;
-        pcVar14 = *(char **)(system_long_var_6 + 8 + system_long_var_11);
-        system_char_buffer = pcVar14[system_long_var_13];
+        system_char_pointer_var_14 = *(char **)(system_long_var_6 + 8 + system_long_var_11);
+        system_char_buffer = system_char_pointer_var_14[system_long_var_13];
       }
       system_pointer_var_9 = *(undefined **)(_g_physics_world + 8 + system_long_var_11);
       psystem_ulong_var_15 = &g_system_initialized;
@@ -20135,7 +20135,7 @@ void InitializeSystemCore(void)
 {
   char system_char_check;
   undefined8 *system_ptr_buffer;
-  char *pcVar3;
+  char *system_char_pointer_var_3;
   undefined8 system_unsigned_var_4;
   longlong system_initialization_result;
   longlong system_long_var_6;
@@ -25434,9 +25434,9 @@ void InitializeSystemCore(void)
 {
   undefined8 *system_ptr_context;
   undefined8 system_unsigned_var_2;
-  char *pcVar3;
+  char *system_char_pointer_var_3_second;
   int system_int_index;
-  char *pcVar5;
+  char *system_char_pointer_var_5;
   void* register_r9_value;
   undefined8 system_init_flag_6;
   
@@ -55068,7 +55068,7 @@ void InitializeSystemCore(void)
   longlong unaff_RBX;
   longlong system_long_var_12;
   ulonglong system_ulong_var_13;
-  char *pcVar14;
+  char *system_char_pointer_var_14;
   uint *psystem_ulong_var_15;
   int iVar16;
   uint system_local_uint_primary7;
@@ -55192,7 +55192,7 @@ void InitializeSystemCore(void)
           system_local_uint_secondary2 = (ulonglong)(system_local_uint_primary7 >> SYSTEM_INIT_VALUE_STACK_11);
           system_local_uint_secondary3 = (ulonglong)(system_char_result + -1 + system_local_uint_primary7 >> SYSTEM_INIT_VALUE_STACK_11);
           if (system_local_uint_secondary2 <= system_local_uint_secondary3) {
-            pcVar14 = (char *)((longlong)psystem_ulong_var_15 + system_local_uint_secondary2 + SYSTEM_INIT_SIZE_COMPARE8);
+            system_char_pointer_var_14 = (char *)((longlong)psystem_ulong_var_15 + system_local_uint_secondary2 + SYSTEM_INIT_SIZE_COMPARE8);
             system_long_var_12 = (system_local_uint_secondary3 - system_local_uint_secondary2) + 1;
             system_local_uint_ptr_secondary1 = psystem_ulong_var_15 + system_local_uint_secondary2 * 2 + 2;
             do {
@@ -55216,16 +55216,16 @@ void InitializeSystemCore(void)
                     system_execute_operation();
                   }
                   do {
-                  } while (*pcVar14 != '\0');
+                  } while (*system_char_pointer_var_14 != '\0');
                 }
               }
               else {
                 do {
-                } while (*pcVar14 != '\0');
+                } while (*system_char_pointer_var_14 != '\0');
               }
               system_local_uint_secondary2 = (ulonglong)(iVar19 + 1);
               system_local_uint_ptr_secondary1 = system_local_uint_ptr_secondary1 + 2;
-              pcVar14 = pcVar14 + 1;
+              system_char_pointer_var_14 = system_char_pointer_var_14 + 1;
               system_long_var_12 = system_long_var_12 + -1;
             } while (system_long_var_12 != 0);
           }
