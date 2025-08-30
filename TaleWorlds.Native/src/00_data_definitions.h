@@ -10944,7 +10944,7 @@ section_processing_jump_label_133:
           system_thread_stack_pointer_variable = system_string_input_pointer;
           system_buffer_allocation_result = allocate_temporary_buffer(system_string_input_pointer);
           system_maximum_stack_size = (char *)merge_32bit_values(system_system_maximum_stack_size_low_half_extended,system_buffer_allocation_result);
-          *system_string_input_pointer = path_buffer_size4c4d58;
+          *system_string_input_pointer = SYSTEM_PATH_BUFFER_SIZE_4C4D58;
           system_string_input_pointer[1] = SYSTEM_CHAR_LOWERCASE_E646f6e;
           system_string_input_pointer[2] = SYSTEM_CHAR_LOWERCASE_T697720;
           system_string_input_pointer[3] = SYSTEM_CHAR_LOWERCASE_A6e2068;
@@ -10999,8 +10999,8 @@ section_processing_jump_label_133:
           system_buffer_allocation_result = allocate_temporary_buffer(system_string_input_pointer);
           system_maximum_stack_size = merge_32bit_values(system_system_maximum_stack_size_low_half_extended,system_buffer_allocation_result);
           *system_string_input_pointer = SYSTEM_CHAR_LOWERCASE_O632022;
-          system_string_input_pointer[1] = path_buffer_size646c75;
-          system_string_input_pointer[2] = path_buffer_size746f6e;
+          system_string_input_pointer[1] = SYSTEM_PATH_BUFFER_SIZE_646C75;
+          system_string_input_pointer[2] = SYSTEM_PATH_BUFFER_SIZE_746F6E;
           system_string_input_pointer[3] = SYSTEM_CHAR_LOWERCASE_F206562;
           system_string_input_pointer[4] = SYSTEM_CHAR_LOWERCASE_D6e756f;
           *(unsigned short *)(system_string_input_pointer + 5) = 0x21;
@@ -11165,7 +11165,7 @@ section_processing_jump_label_135:
       system_thread_stack_pointer_variable = system_string_input_pointer;
       system_buffer_allocation_result = allocate_temporary_buffer(system_string_input_pointer);
       system_maximum_stack_size = merge_32bit_values(system_system_maximum_stack_size_low_half_extended,system_buffer_allocation_result);
-      *system_string_input_pointer = path_buffer_size4c4d58;
+      *system_string_input_pointer = SYSTEM_PATH_BUFFER_SIZE_4C4D58;
       system_string_input_pointer[1] = SYSTEM_CHAR_LOWERCASE_E646f6e;
       system_string_input_pointer[2] = SYSTEM_CHAR_LOWERCASE_T697720;
       system_string_input_pointer[3] = SYSTEM_CHAR_LOWERCASE_A6e2068;
@@ -11212,8 +11212,8 @@ section_processing_jump_label_135:
       system_buffer_allocation_result = allocate_temporary_buffer(system_string_input_pointer);
       system_maximum_stack_size = merge_32bit_values(system_system_maximum_stack_size_low_half_extended,system_buffer_allocation_result);
       *system_string_input_pointer = SYSTEM_CHAR_LOWERCASE_O632022;
-      system_string_input_pointer[1] = path_buffer_size646c75;
-      system_string_input_pointer[2] = path_buffer_size746f6e;
+      system_string_input_pointer[1] = SYSTEM_PATH_BUFFER_SIZE_646C75;
+      system_string_input_pointer[2] = SYSTEM_PATH_BUFFER_SIZE_746F6E;
       system_string_input_pointer[3] = SYSTEM_CHAR_LOWERCASE_F206562;
       system_string_input_pointer[4] = SYSTEM_CHAR_LOWERCASE_D6e756f;
       *(unsigned short *)(system_string_input_pointer + 5) = 0x21;
@@ -12590,8 +12590,8 @@ unsigned long long allocate_resource_memory(int handle_param)
     system_thread_result_status = system_thread_result_status + 8;
     system_string_length_counter_ptr_secondary = system_string_length_counter_ptr_secondary + 8;
   } while (system_thread_result_status < STRING_BUFFER_SIZE_SECONDARY);
-  if ((int)system_buffer_allocation_result < path_buffer_size0) {
-    if (3 < (int)(path_buffer_size0 - system_buffer_allocation_result)) {
+  if ((int)system_buffer_allocation_result < SYSTEM_PATH_BUFFER_SIZE_0) {
+    if (3 < (int)(SYSTEM_PATH_BUFFER_SIZE_0 - system_buffer_allocation_result)) {
       system_buffer_allocation_result = system_buffer_allocation_result + 10;
       system_string_length_counter_ptr_secondary = (int *)SYSTEM_STRING_LENGTH_COUNTER_ALT_ADDR;
       system_thread_result_status = (SYSTEM_CONSTANT_3 - (SYSTEM_CONSTANT_2c - system_buffer_allocation_result >> 2)) * 4;
@@ -12694,7 +12694,7 @@ unsigned long long allocate_resource_memory(int handle_param)
         system_buffer_allocation_result = system_buffer_allocation_result + SYSTEM_OFFSET_HANDLE_PARAM;
       } while ((int)system_buffer_allocation_result < SYSTEM_CONSTANT_2f);
     }
-    if ((int)system_buffer_allocation_result < path_buffer_size0) {
+    if ((int)system_buffer_allocation_result < SYSTEM_PATH_BUFFER_SIZE_0) {
       system_string_length_counter_ptr_secondary = (int *)((long long)system_thread_result_status * 4 + SYSTEM_PERFORMANCE_COUNTER_ADDR);
       do {
         if (system_float_pointer_variable < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
@@ -12722,7 +12722,7 @@ unsigned long long allocate_resource_memory(int handle_param)
           system_thread_result_status = handle_param;
         }
         handle_param = system_thread_result_status;
-      } while ((int)system_buffer_allocation_result < path_buffer_size0);
+      } while ((int)system_buffer_allocation_result < SYSTEM_PATH_BUFFER_SIZE_0);
     }
   }
   return 0;
