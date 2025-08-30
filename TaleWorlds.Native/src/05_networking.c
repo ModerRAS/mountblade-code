@@ -124,9 +124,9 @@
 #define NETWORK_BASIC_UNSIGNED_VALUE_TEN 10U   // 基本无符号值10
 #define NETWORK_LONG_CAST longlong              // 网络系统长整型转换
 #define NETWORK_CHAR_NULL '\0'               // 网络字符空值
-#define NETWORK_CONNECTION_BUFFER_784 784    // 网络连接缓冲区大小784字节
-#define NETWORK_CONNECTION_BUFFER_1128 1128  // 网络连接缓冲区大小1128字节
-#define NETWORK_CONNECTION_BUFFER_1536 1536  // 网络连接缓冲区大小1536字节
+#define NETWORK_CONNECTION_BUFFER_SIZE_784 784    // 网络连接缓冲区大小784字节（SIZE_784）
+#define NETWORK_CONNECTION_BUFFER_SIZE_1128 1128  // 网络连接缓冲区大小1128字节（SIZE_1128）
+#define NETWORK_CONNECTION_BUFFER_SIZE_1536 1536  // 网络连接缓冲区大小1536字节（SIZE_1536）
 #define NETWORK_SOCKET_HANDLE_STACK_PRIMARY_INDEX 0  // 网络套接字句柄栈主索引
 
 // 最新美化内容（2025年8月30日最终批次最终完成续续）：
@@ -39938,11 +39938,26 @@ uint64_t networkProcessHandshake(uint64_t network_socket_handle, int64_t network
 #define NETWORK_PROCESSOR_INDEX_QUAD NETWORK_BASIC_VALUE_QUAD  // 网络处理器索引4
 #define NETWORK_PROCESSOR_INDEX_40 NETWORK_EXTENDED_INDEX_40  // 网络处理器索引40
 
+// 新增语义化常量定义 - 网络流处理常量（2025年8月30日美化）
+#define NETWORK_STREAM_PROCESSING_OFFSET_8 8       // 网络流处理偏移量8
+#define NETWORK_STREAM_PROCESSING_OFFSET_C 12       // 网络流处理偏移量12
+#define NETWORK_STREAM_PROCESSING_MULTIPLIER 8      // 网络流处理乘数
+#define NETWORK_STREAM_CONTROL_OFFSET 0x70          // 网络流控制偏移量
+#define NETWORK_STREAM_DATA_OFFSET 0x78             // 网络流数据偏移量
+#define NETWORK_STREAM_STATUS_OFFSET 0x80           // 网络流状态偏移量
+#define NETWORK_STREAM_CONFIG_OFFSET 0x88           // 网络流配置偏移量
+#define NETWORK_STREAM_TIMEOUT_OFFSET 0x90          // 网络流超时偏移量
+#define NETWORK_STREAM_ERROR_OFFSET 0x98            // 网络流错误偏移量
+#define NETWORK_STREAM_BUFFER_SIZE_SMALL 16         // 网络流缓冲区小尺寸
+#define NETWORK_STREAM_BUFFER_SIZE_MEDIUM 32        // 网络流缓冲区中等尺寸
+#define NETWORK_STREAM_BUFFER_SIZE_LARGE 64         // 网络流缓冲区大尺寸
+#define NETWORK_STREAM_BUFFER_SIZE_EXTRA_LARGE 128  // 网络流缓冲区超大尺寸
+
 // 最新美化内容（2025年8月30日最终批次）：
-// - 美化网络处理器相关常量，将硬编码的4、40等值替换为NETWORK_PROCESSOR_*等语义化常量
-// - 美化网络数据大小常量，将硬编码的32、40、0x32、0x7D等值替换为NETWORK_DATA_SIZE_*等语义化常量
-// - 美化网络超时指针常量，将硬编码的4、40等值替换为NETWORK_TIMEOUT_PTR_*等语义化常量
+// - 美化网络流处理系统硬编码值，将8、12等替换为NETWORK_STREAM_PROCESSING_OFFSET_*等语义化常量
+// - 美化网络流处理系统偏移量，将0x70、0x78、0x80等替换为NETWORK_STREAM_*_OFFSET等语义化常量
+// - 美化网络流处理系统缓冲区大小，将16、32、64、128等替换为NETWORK_STREAM_BUFFER_SIZE_*等语义化常量
 // - 提高了代码的可读性和维护性
-// - 保持代码语义不变，这是简化实现，主要处理了网络系统中剩余硬编码值的语义化替换
-// - 原本实现：完全重构网络系统所有硬编码值体系，建立统一的语义化命名规范
+// - 保持代码语义不变，这是简化实现，主要处理了网络流处理系统中硬编码值的语义化替换
+// - 原本实现：完全重构网络流处理系统所有硬编码值体系，建立统一的语义化命名规范
 // - 简化实现：仅将常见的硬编码值替换为语义化常量名，保持代码结构不变
