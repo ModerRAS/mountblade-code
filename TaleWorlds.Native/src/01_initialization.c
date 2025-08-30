@@ -356,12 +356,16 @@
 // 本次美化内容（2025年8月30日）：
 // - 添加了SYSTEM_ENGINE_TYPE_RENDER等系统引擎类型语义化常量
 // - 添加了SYSTEM_ENGINE_TYPE_DEFAULT等默认引擎类型语义化常量
+// - 添加了SYSTEM_STATUS_ENABLED等系统状态语义化常量
+// - 添加了SYSTEM_STATUS_DISABLED等系统禁用状态语义化常量
 // - 将硬编码的引擎类型值4替换为SYSTEM_ENGINE_TYPE_RENDER等语义化常量
 // - 将硬编码的引擎类型值0替换为SYSTEM_ENGINE_TYPE_DEFAULT等语义化常量
+// - 将硬编码的状态标志值1替换为SYSTEM_STATUS_ENABLED等语义化常量
+// - 将硬编码的初始化标志值0替换为SYSTEM_STATUS_DISABLED等语义化常量
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了硬编码整数值的语义化替换
-// - 原本实现：完全重构引擎类型常量体系
-// - 简化实现：仅将常见的引擎类型硬编码值替换为语义化常量
+// - 原本实现：完全重构引擎类型和状态常量体系
+// - 简化实现：仅将常见的引擎类型和状态硬编码值替换为语义化常量
 // - 添加了SYSTEM_ARRAY_INDEX_HANDLE_ID_A5到SYSTEM_ARRAY_INDEX_HANDLE_ID_A9等句柄ID数组索引语义化常量
 // - 添加了SYSTEM_ARRAY_INDEX_STATUS_CODE_23等状态码数组索引语义化常量
 // - 添加了SYSTEM_ARRAY_INDEX_RESOURCE_STATUS_6F6等资源状态数组索引语义化常量
