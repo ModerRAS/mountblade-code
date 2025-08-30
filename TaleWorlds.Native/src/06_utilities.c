@@ -7662,7 +7662,7 @@ uint64 utilityAnalyzeResourcePerformance(longlong resource_handle_identifier,lon
       }
       *(float *)(resource_handle_identifier + RESOURCE_HANDLE_OFFSET) = utility_temp_float_secondary;
       operation_buffer = *(longlong *)(operation_buffer + UTILITY_MEMORY_SIZE_OFFSET);
-      *(float *)(utility_memory_offset + 4 + (longlong)(int)utility_stack_byte_data[0] * RESOURCE_HANDLE_OFFSET) = utility_temp_float_secondary;
+      *(float *)(utility_memory_offset + UTILITY_FLOAT_COMPONENT_COUNT + (longlong)(int)utility_stack_byte_data[0] * RESOURCE_HANDLE_OFFSET) = utility_temp_float_secondary;
       *(uint64 *)(resource_handle_identifier + POINTER_DATA_OFFSET) = *(uint64 *)(operation_buffer + (longlong)(int)utility_stack_byte_data[0] * UTILITY_DOUBLE_WORD_SIZE);
                     // WARNING: Subroutine does not return
       utilityReleaseResourceHandle(*(uint64 *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),resource_handle_identifier);
@@ -7715,7 +7715,7 @@ uint64 utilityOptimizeResourcePerformance(longlong resource_handle_identifier,lo
       if ((*(float *)(utility_data_array_index + UTILITY_STRUCTURE_SIZE_OFFSET) <= utility_temp_float_value) &&
          (utility_temp_float_value < *(float *)(utility_data_array_index + RESOURCE_PROP_OFFSET) || utility_temp_float_value == *(float *)(utility_data_array_index + RESOURCE_PROP_OFFSET))) {
         operation_buffer = *(longlong *)(operation_buffer + UTILITY_MEMORY_SIZE_OFFSET);
-        *(float *)(utility_long_value + 4 + utility_memory_offset * RESOURCE_HANDLE_OFFSET) = utility_temp_float_value;
+        *(float *)(utility_long_value + UTILITY_FLOAT_COMPONENT_COUNT + utility_memory_offset * RESOURCE_HANDLE_OFFSET) = utility_temp_float_value;
         *(uint64 *)(resource_handle_identifier + POINTER_DATA_OFFSET) = *(uint64 *)(operation_buffer + (longlong)utility_stack_context_data[0] * UTILITY_DOUBLE_WORD_SIZE);
                     // WARNING: Subroutine does not return
         utilityReleaseResourceHandle(*(uint64 *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),resource_handle_identifier);

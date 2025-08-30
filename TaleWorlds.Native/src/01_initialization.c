@@ -1019,21 +1019,21 @@ void* g_system_debug;
 // 系统资源初始化函数
 void* InitializeSystemResources;
 
-void* g_global_game_data_cache;
+void* g_global_game_data_cache;  // 全局游戏数据缓存指针
 // 核心组件初始化函数
 void InitializeCoreComponents(void);
 // 内存管理器设置函数
 void SetupMemoryManager(void);
 
-void** g_system_startup_data;
+void** g_system_startup_data;  // 系统启动数据指针数组
 
-void* g_engine_context;
+void* g_engine_context;  // 引擎上下文指针
 
-void* g_resource_manager_main;
+void* g_resource_manager_main;  // 主资源管理器指针
 
-void* g_memory_pool_main;
+void* g_memory_pool_main;  // 主内存池指针
 
-void* g_graphics_context_main;
+void* g_graphics_context_main;  // 主图形上下文指针
 
 void* _guard_check_icall;
 // 系统安全检查函数
@@ -1041,15 +1041,15 @@ void* SystemSecurityCheck;
 // 引擎初始化完成函数
 void CompleteEngineInitialization(void);
 
-void* g_system_heap;
+void* g_system_heap;  // 系统堆指针
 
-void* g_module_registry;
+void* g_module_registry;  // 模块注册表指针
 
-void* g_service_manager;
+void* g_service_manager;  // 服务管理器指针
 
-void* g_event_system;
+void* g_event_system;  // 事件系统指针
 
-void* g_message_queue;
+void* g_message_queue;  // 消息队列指针
 
 void* g_thread_pool;
 
