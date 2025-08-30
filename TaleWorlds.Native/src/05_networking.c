@@ -7578,7 +7578,7 @@ uint64_t NetworkValidateSocket(int64_t *network_socket_handle)
   if (network_loop_counter == network_operation_status_code) {
     network_loop_counter = network_loop_counter * NETWORK_BUFFER_SIZE_MEDIUM;
     if (network_loop_counter < 4) {
-      network_loop_counter = 4;
+      network_loop_counter = NETWORK_DATA_SIZE_4;
     if (((network_loop_counter <= network_operation_status_code) || ((int)network_socket_handle[NETWORK_ARRAY_INDEX_3] != network_operation_status_code)) || ((int)network_socket_handle[NETWORK_ARRAY_INDEX_4] != -NETWORK_OPERATION_SUCCESS)) {
     network_buffer_size_var = (int)*(uint32_t *)((longlong)network_socket_handle + NETWORK_ERROR_INVALID_OFFSET) >> BIT_SHIFT_MASK;
     if (((int)((*(uint32_t *)((longlong)network_socket_handle + NETWORK_ERROR_INVALID_OFFSET) ^ network_buffer_size_var) - network_buffer_size_var) < network_loop_counter) &&
