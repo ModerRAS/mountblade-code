@@ -59298,4 +59298,4 @@ void utility_unwind_final_function_stage_06_08(uint64 utility_resource_primary_h
   *(uint64 *)(utility_resource_buffer_handle + UTILITY_THREAD_LOCAL_STORAGE_OFFSET_HANDLER_PRIMARY) = &utility_thread_local_storage_cleanup;
   return;
 }
-void utility_unwind_final_function_stage_06_0A(uint64 utility_resource_primary_handle,longlong utility_primary_resource_c
+void utility_unwind_final_function_stage_06_thread_callback(uint64 utility_resource_primary_handle,longlong utility_primary_resource_c
