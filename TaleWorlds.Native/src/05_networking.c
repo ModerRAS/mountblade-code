@@ -1027,14 +1027,14 @@
 #define NETWORK_STATUS_CODE_9        9     // 网络状态码9
 
 // 新增语义化常量定义 - 网络配置参数
-#define NETWORK_CONFIG_PARAM_3       3     // 网络配置参数3
-#define NETWORK_CONFIG_PARAM_4       NETWORK_ARRAY_SIZE_4     // 网络配置参数4
-#define NETWORK_CONFIG_PARAM_5       5     // 网络配置参数5
-#define NETWORK_CONFIG_PARAM_7       7     // 网络配置参数7
-#define NETWORK_CONFIG_PARAM_9       9     // 网络配置参数9
-#define NETWORK_CONFIG_PARAM_10      10    // 网络配置参数10
+#define NETWORK_CONFIG_PARAM_MINIMAL       3     // 网络配置参数最小值
+#define NETWORK_CONFIG_PARAM_SMALL       NETWORK_ARRAY_SIZE_4     // 网络配置参数小值
+#define NETWORK_CONFIG_PARAM_MEDIUM       5     // 网络配置参数中等值
+#define NETWORK_CONFIG_PARAM_LARGE       7     // 网络配置参数大值
+#define NETWORK_CONFIG_PARAM_EXTRA_LARGE       9     // 网络配置参数超大值
+#define NETWORK_CONFIG_PARAM_TEN      10    // 网络配置参数十
 
-#define NETWORK_TIMEOUT_THRESHOLD_999 999    // 网络超时阈值999
+#define NETWORK_TIMEOUT_THRESHOLD_HIGH 999    // 网络超时阈值高值
 #define NETWORK_OPERATION_SUCCESS 1         // 网络操作成功
 #define NETWORK_OPERATION_STATUS_FAILURE 0         // 网络操作失败
 
