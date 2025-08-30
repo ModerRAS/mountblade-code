@@ -5529,8 +5529,8 @@ long long process_memory_block(long long handle_param,long long system_thread_op
       *(unsigned long long *)(system_string_length_counter + SYSTEM_OFFSET_STRING_BUFFER_SIZE + (long long)system_string_input_pointer) = SYSTEM_ZERO_VALUE;
       system_string_length_counter = system_string_length_counter + -1;
       *(unsigned long long *)(system_string_length_counter + (long long)system_string_input_pointer) = SYSTEM_ZERO_VALUE;
-      *(unsigned int *)(system_string_length_counter + 8 + (long long)system_string_input_pointer) = SYSTEM_ZERO_VALUE;
-      *(unsigned int *)(system_string_length_counter + 8 + (long long)system_string_input_pointer) = *(unsigned int *)(psystem_thread_operation_flags + -3);
+      *(unsigned int *)(system_string_length_counter + SYSTEM_BUFFER_OFFSET_8 + (long long)system_string_input_pointer) = SYSTEM_ZERO_VALUE;
+      *(unsigned int *)(system_string_length_counter + SYSTEM_BUFFER_OFFSET_8 + (long long)system_string_input_pointer) = *(unsigned int *)(psystem_thread_operation_flags + -3);
       *(unsigned long long *)(system_string_length_counter + (long long)system_string_input_pointer) = *system_string_input_pointer;
       *(unsigned int *)(system_string_length_counter + SYSTEM_CONFIG_OFFSET_INIT_FLAG + (long long)system_string_input_pointer) = *(unsigned int *)((long long)psystem_thread_operation_flags + -0xc);
       *(unsigned int *)(system_string_length_counter + SYSTEM_OFFSET_STRING_BUFFER_SIZE + (long long)system_string_input_pointer) = *(unsigned int *)(psystem_thread_operation_flags + -2);
@@ -6040,8 +6040,8 @@ section_processing_jump_label_33:
         system_string_input_pointer = (unsigned long long *)system_execution_function(&system_multi_level_stack_primary,&system_multi_level_stack_temp);
         system_multi_level_pointer_current = (unsigned long long *******)*system_string_input_pointer;
       }
-      if (system_multi_level_pointer_current + 5 != system_multi_level_pointer_temp_second) {
-        system_event_handle_paramr_process_multi_pointer(system_multi_level_pointer_current + 5,*system_multi_level_pointer_temp_second,system_multi_level_pointer_temp_second[1]);
+      if (system_multi_level_pointer_current + SYSTEM_COMPARE_VALUE_5 != system_multi_level_pointer_temp_second) {
+        system_event_handle_paramr_process_multi_pointer(system_multi_level_pointer_current + SYSTEM_COMPARE_VALUE_5,*system_multi_level_pointer_temp_second,system_multi_level_pointer_temp_second[1]);
       }
       system_multi_level_pointer_current = &system_multi_level_stack_root;
       if (system_multi_level_stack_pointer_second != (unsigned long long *******)0x0) {
