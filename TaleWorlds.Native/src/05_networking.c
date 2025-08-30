@@ -126,7 +126,7 @@
 // - 美化网络系统变量名，将network_is_available0替换为network_is_available_primary等可用性标志变量名
 // - 美化网络系统变量名，将network_temp_validation_buffere8替换为network_temp_validation_buffer_small等验证缓冲区变量名
 // - 美化网络系统变量名，将network_packet_offsetset_header8替换为network_packet_offsetset_header_small等数据包偏移量变量名
-// - 美化网络系统变量名，将network_stack_arrayay_context替换为network_stack_arrayay_context_pointer等栈上下文指针变量名
+// - 美化网络系统变量名，将network_stack_array_context替换为network_stack_array_context_pointer等栈上下文指针变量名
 // - 美化网络系统变量名，将process_data_validation替换为network_process_data_validation等验证标签
 // - 美化网络系统变量名，将network_float_stack__11c替换为network_float_stack_buffer_neg_extra_large等浮点栈变量名
 // - 提高了代码的可读性和维护性
@@ -202,7 +202,7 @@
 // - 美化网络可用性标志，将network_is_available_primary替换为network_is_available_primary等可用性标志变量名
 // - 美化网络临时验证缓冲区，将network_temp_validation_buffer_small替换为network_temp_validation_buffer_small/medium等验证缓冲区变量名
 // - 美化网络数据包偏移量，将network_packet_offsetset_header_small替换为network_packet_offsetset_header_small等数据包偏移量变量名
-// - 美化网络栈上下文指针，将network_stack_arrayay_context_pointer替换为network_stack_arrayay_context_pointer_pointer等栈上下文指针变量名
+// - 美化网络栈上下文指针，将network_stack_array_context_pointer替换为network_stack_array_context_pointer_pointer等栈上下文指针变量名
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了网络系统中剩余变量名的语义化替换
 // - 原本实现：完全重构网络系统变量命名体系
@@ -706,7 +706,7 @@
 #define network_encryption_key_tertiary        network_encryption_key_third
 
 // 网络栈数组上下文变量名语义化替换
-#define network_stack_arrayay_context           network_stack_arrayay_context_pointer
+#define network_stack_array_context           network_stack_array_context_pointer
 
 // 网络操作状态指针变量名语义化替换
 #define pnetwork_operation_status2            pnetwork_operation_status_secondary
@@ -2208,7 +2208,7 @@
 //   * network_stack_session_context -> network_stack_uint_operation_lengthgth
 //   * network_stack_uint_paramc -> network_stack_uint_operation_mask
 //   * network_stack_session_context -> network_stack_uint_connection_handle
-//   * network_stack_arrayay_context_pointer -> network_stack_arrayay_context_pointer
+//   * network_stack_array_context_pointer -> network_stack_array_context_pointer
 //   * network_stack_connection_context -> network_stack_connection_context
 //   * network_stack_buffer_size -> network_stack_uint_connection_status
 //   * network_stack_timeout_offsetset -> network_stack_uint_transfer_size
@@ -33785,7 +33785,7 @@ void network_socket_handle(int64_t *network_socket_handle, uint64_t network_buff
   bool network_is_available_primary;
   float network_float_stack_buffer_large [NETWORK_BUFFER_CAPACITY_MEDIUM];
   int64_t *network_stack_context_pointer_config;
-  int64_t *network_stack_arrayay_context_pointer_pointer [NETWORK_BUFFER_CAPACITY_MEDIUM];
+  int64_t *network_stack_array_context_pointer_pointer [NETWORK_BUFFER_CAPACITY_MEDIUM];
   int64_t network_stack_context_connection;
   float network_float_stack_release [NETWORK_BUFFER_CAPACITY_MEDIUM];
   int64_t network_arrayay_stack_config [NETWORK_BUFFER_CAPACITY_MEDIUM];
@@ -33835,7 +33835,7 @@ void network_socket_handle(int64_t *network_socket_handle, uint64_t network_buff
       network_socket_index = *(int32_t *)(network_timeout_value_secondary + CONNECTION_BUFFER_SIZE);
         network_stack_session_context = network_stack_session_context & NETWORK_MAX_SIZE_00000000;
         network_stack_context_pointer_config = (int64_t *)&network_session_config_data;
-        network_stack_arrayay_context_pointer[NETWORK_OPERATION_STATUS_FAILURE] = (int64_t *)CONCAT44(network_stack_arrayay_context_pointer[NETWORK_OPERATION_STATUS_FAILURE]._field_high_dword_, network_socket_index);
+        network_stack_array_context_pointer[NETWORK_OPERATION_STATUS_FAILURE] = (int64_t *)CONCAT44(network_stack_array_context_pointer[NETWORK_OPERATION_STATUS_FAILURE]._field_high_dword_, network_socket_index);
         dataLength = network_socket_handle(network_socket_handle, &network_stack_context_pointer_config);
         if (dataLength != NETWORK_OPERATION_STATUS_FAILURE) goto network_jump_target;
       network_timeout_config_pointer_extended = network_timeout_config_pointer;
@@ -33910,9 +33910,9 @@ void network_socket_handle(int64_t *network_socket_handle, uint64_t network_buff
               network_stack_context_pointer_config = (int64_t *)&g_network_buffer_pointer_tertiary90;
               network_stack_session_context = network_stack_session_context & NETWORK_MAX_SIZE_00000000;
               network_socket_handle[NETWORK_BUFFER_CAPACITY_MEDIUM] = network_processor_result;
-              network_stack_arrayay_context_pointer[NETWORK_OPERATION_STATUS_FAILURE] = network_timeout_config_pointer;
+              network_stack_array_context_pointer[NETWORK_OPERATION_STATUS_FAILURE] = network_timeout_config_pointer;
               if (network_buffer_pointer != NETWORK_OPERATION_STATUS_FAILURE) {
-                network_stack_arrayay_context_pointer[NETWORK_OPERATION_STATUS_FAILURE] = (int64_t *)(network_processor_result - network_buffer_pointer);
+                network_stack_array_context_pointer[NETWORK_OPERATION_STATUS_FAILURE] = (int64_t *)(network_processor_result - network_buffer_pointer);
               dataLength = network_socket_handle(network_socket_handle, &network_stack_context_pointer_config);
             dataLength = (**(code **)(network_stack_buffer_pointer_extended + MODULE_STATUS_OFFSET))(&network_stack_buffer_pointer_extended, network_validation_temporary_buffer, CONNECTION_STATE_OFFSET);
             dataLength = (**(code **)(*network_socket_handle + NETWORK_PACKET_HEADER_SIZE))(network_socket_handle, network_validation_temporary_buffer);
@@ -33931,13 +33931,13 @@ void network_socket_handle(int64_t *network_socket_handle, uint64_t network_buff
         network_frequency_calculated_octonary = (float)network_stack_buffer_size;
             network_timeout_value_secondary = (longlong)(int)network_float_stack_buffer_large[NETWORK_OPERATION_STATUS_FAILURE] * SOCKET_DESCRIPTOR_RESPONSE_OFFSET;
             network_stack_session_context = NETWORK_MAX_SIZE_FFFFFFFF;
-            network_stack_arrayay_context_pointer[NETWORK_OPERATION_STATUS_FAILURE] = (int64_t *)CONCAT44(network_stack_arrayay_context_pointer[NETWORK_OPERATION_STATUS_FAILURE]._field_high_dword_, NETWORK_MAX_SIZE);
+            network_stack_array_context_pointer[NETWORK_OPERATION_STATUS_FAILURE] = (int64_t *)CONCAT44(network_stack_array_context_pointer[NETWORK_OPERATION_STATUS_FAILURE]._field_high_dword_, NETWORK_MAX_SIZE);
             network_stack_context_pointer_config = *(int64_t **)(network_timeout_config_pointer[NETWORK_BUFFER_CAPACITY_MEDIUM] + SESSION_CONFIG_SIZE + network_timeout_value_secondary);
             network_stack_connection_context = network_timeout_value_secondary;
-            NetworkThreadManager0(network_stack_context_pointer_config, &network_stack_session_context, network_stack_arrayay_context_pointer);
+            NetworkThreadManager0(network_stack_context_pointer_config, &network_stack_session_context, network_stack_array_context_pointer);
             network_timeout_config_pointer_extended = network_stack_context_pointer_config;
-            if ((int)network_stack_arrayay_context_pointer[NETWORK_OPERATION_STATUS_FAILURE] != -NETWORK_OPERATION_SUCCESS) {
-              network_socket_index = (int)network_stack_arrayay_context_pointer[NETWORK_OPERATION_STATUS_FAILURE];
+            if ((int)network_stack_array_context_pointer[NETWORK_OPERATION_STATUS_FAILURE] != -NETWORK_OPERATION_SUCCESS) {
+              network_socket_index = (int)network_stack_array_context_pointer[NETWORK_OPERATION_STATUS_FAILURE];
               dataLength = (int)network_stack_session_context;
                   network_timeout_value_secondary = *(int64_t *)(network_timeout_config_pointer_extended[NETWORK_BUFFER_CAPACITY_MEDIUM] + NETWORK_PACKET_HEADER_SIZE + (longlong)network_socket_index * MODULE_STATUS_OFFSET);
                   if (((*(int64_t *)(network_timeout_value_secondary + NETWORK_STATUS_READY_MASK) != NETWORK_OPERATION_STATUS_FAILURE) && (*(int64_t *)(network_timeout_value_secondary + NETWORK_SOCKET_RESOURCE_OFFSET) == NETWORK_OPERATION_STATUS_FAILURE))
