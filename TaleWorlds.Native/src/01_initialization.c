@@ -212,6 +212,18 @@
 #define SYSTEM_INIT_MAGIC_COOKIE_ENGINE_4     SYSTEM_INIT_MAGIC_COOKIE_ENGINE_4 // 引擎魔法cookie 4SYSTEM_INIT_MAGIC_COOKIE_ENGINE_4
 #define SYSTEM_INIT_MAGIC_COOKIE_ENGINE_5     SYSTEM_INIT_MAGIC_COOKIE_ENGINE_5     // 引擎魔法cookie 5SYSTEM_INIT_MAGIC_COOKIE_ENGINE_5
 #define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_1     SYSTEM_INIT_MAGIC_COOKIE_PREFAB_1 // 预制体魔法cookie 1SYSTEM_INIT_MAGIC_COOKIE_PREFAB_1
+
+// 系统初始化浮点系数常量（2025年8月30日最终批次补充）
+#define SYSTEM_INIT_FLOAT_COEFFICIENT_1        1.6750001  // 系统初始化浮点系数1 - 用于计算system_float_var_7
+#define SYSTEM_INIT_FLOAT_COEFFICIENT_2        2.4750001  // 系统初始化浮点系数2 - 用于计算system_float_var_7
+#define SYSTEM_INIT_FLOAT_COEFFICIENT_3        4.4666667  // 系统初始化浮点系数3 - 用于计算system_float_5
+#define SYSTEM_INIT_FLOAT_COEFFICIENT_4        6.6000004  // 系统初始化浮点系数4 - 用于计算system_float_5
+#define SYSTEM_INIT_FLOAT_COEFFICIENT_5        3.3500001  // 系统初始化浮点系数5 - 用于计算system_float_var_6
+#define SYSTEM_INIT_FLOAT_COEFFICIENT_6        4.9500003  // 系统初始化浮点系数6 - 用于计算system_float_var_6
+#define SYSTEM_INIT_FLOAT_COEFFICIENT_7        13.400001  // 系统初始化浮点系数7 - 用于计算system_float_4
+#define SYSTEM_INIT_FLOAT_COEFFICIENT_8        19.800001  // 系统初始化浮点系数8 - 用于计算system_float_4
+#define SYSTEM_INIT_FLOAT_COEFFICIENT_9        17.866667  // 系统初始化浮点系数9 - 用于计算system_float_5
+#define SYSTEM_INIT_FLOAT_COEFFICIENT_10       26.400002  // 系统初始化浮点系数10 - 用于计算system_float_5
 #define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_2     SYSTEM_INIT_MAGIC_COOKIE_PREFAB_2 // 预制体魔法cookie 2SYSTEM_INIT_MAGIC_COOKIE_PREFAB_2
 #define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_3     SYSTEM_INIT_MAGIC_COOKIE_PREFAB_3 // 预制体魔法cookie 3SYSTEM_INIT_MAGIC_COOKIE_PREFAB_3
 #define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_4     SYSTEM_INIT_MAGIC_COOKIE_PREFAB_4 // 预制体魔法cookie 4SYSTEM_INIT_MAGIC_COOKIE_PREFAB_4
@@ -21799,9 +21811,9 @@ void InitializeSystemCore(longlong system_param_1)
     system_compare_result = SYSTEM_INIT_VALUE_THREE;
   }
   system_float_var_8 = (float)system_compare_result;
-  system_float_var_7 = system_float_var_8 * 1.6750001 + 2.4750001;
-  system_float_5 = system_float_var_8 * 4.4666667 + 6.6000004;
-  system_float_var_6 = system_float_var_8 * 3.3500001 + 4.9500003;
+  system_float_var_7 = system_float_var_8 * SYSTEM_INIT_FLOAT_COEFFICIENT_1 + SYSTEM_INIT_FLOAT_COEFFICIENT_2;
+  system_float_5 = system_float_var_8 * SYSTEM_INIT_FLOAT_COEFFICIENT_3 + SYSTEM_INIT_FLOAT_COEFFICIENT_4;
+  system_float_var_6 = system_float_var_8 * SYSTEM_INIT_FLOAT_COEFFICIENT_5 + SYSTEM_INIT_FLOAT_COEFFICIENT_6;
   system_float_4 = system_float_var_7 + system_float_var_6;
   *(float *)(system_param_1 + SYSTEM_INIT_SIZE_0X38c) = system_float_var_6 * system_float_var_6;
   system_float_var_7 = system_float_var_7 + system_float_4;
