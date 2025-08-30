@@ -209,7 +209,6 @@
 // - 保持代码语义不变，这是简化实现，主要处理了网络系统中浮点栈变量名的语义化替换
 // - 原本实现：完全重构网络系统浮点栈变量命名体系
 // - 简化实现：仅将常见的硬编码浮点栈变量名替换为语义化名称
-#define NETWORK_BUFFER_SIZE_10      10
 
 // 网络系统数组索引语义化常量（本次美化内容）
 #define NETWORK_ARRAY_INDEX_3       3
@@ -223,7 +222,6 @@
 // 网络系统数组大小语义化常量（本次美化内容）
 #define NETWORK_ARRAY_SIZE_34       34
 #define NETWORK_ARRAY_SIZE_5        5
-#define NETWORK_BUFFER_SIZE_10      10
 
 // 网络系统处理器数据索引语义化常量（本次美化内容）
 #define NETWORK_PROCESSOR_DATA_INDEX_STATUS    3
@@ -533,7 +531,6 @@
 #define NETWORK_BUFFER_SIZE_40 40  // 网络缓冲区大小40字节
 
 // 新增语义化常量定义 - 网络数组索引常量
-#define NETWORK_ARRAY_INDEX_3 3  // 网络数组索引3
 #define NETWORK_TIMEOUT_CONFIG_SIZE 5  // 网络超时配置结构体大小
 #define NETWORK_ARRAY_INDEX_4 4  // 网络数组索引4
 #define NETWORK_ARRAY_INDEX_5 5  // 网络数组索引5
