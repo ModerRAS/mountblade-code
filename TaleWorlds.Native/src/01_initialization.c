@@ -22530,7 +22530,7 @@ void ConfigureGraphicsShader(uint64_t handleIdentifier,longlong resourceIdentifi
   uint init_stack_uint_param_300;
   uint64_t init_stack_uint_offset_2f8;
   ulonglong init_stack_pointer_2f0;
-  void *system_buffer_ptr_2e8;
+  void *system_buffer_ptr_resource_pool_small;
   uint8_t *system_buffer_ptr_2e0;
   uint init_stack_index_2d8;
   ulonglong init_stack_ulong_param_2d0;
@@ -23669,7 +23669,7 @@ void InitializeEffectSystem(longlong handleIdentifier,uint64_t resourceIdentifie
   char init_stack_char_buffer_2ff [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   longlong *stack_system_memory_ptr;
   uint32_t init_stack_loop_counter_2f0;
-  void *system_buffer_ptr_2e8;
+  void *system_buffer_ptr_resource_pool_small;
   uint64_t *system_buffer_ptr_2e0;
   uint32_t init_stack_config_offset_2d8;
   uint64_t init_stack_ulong_param_2d0;
@@ -29073,7 +29073,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
   uint64_t *system_buffer_ptr_vertex_buffer;
   uint64_t init_stack_uint_offset_2f8;
   uint32_t init_stack_loop_counter_2f0;
-  void *system_buffer_ptr_2e8;
+  void *system_buffer_ptr_resource_pool_small;
   longlong init_stack_graphics_temp_2e0;
   uint32_t init_stack_ulong_param_2d0;
   longlong init_stack_graphics_index_2c8;
@@ -37431,7 +37431,7 @@ void InitializeFontSystem(uint64_t handleIdentifier)
   void *system_buffer_ptr_vertex_buffer;
   uint32_t init_stack_uint_offset_2f8;
   ulonglong init_stack_pointer_2f0;
-  void *system_buffer_ptr_2e8;
+  void *system_buffer_ptr_resource_pool_small;
   void *system_buffer_ptr_2e0;
   uint32_t init_stack_config_offset_2d8;
   ulonglong init_stack_ulong_param_2d0;
