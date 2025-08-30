@@ -4251,7 +4251,7 @@ void utility_process_memory_allocation(longlong resource_handle_identifier,longl
           allocation_status = utility_allocate_memory(memory_block_handle);
           if (allocation_status != UTILITY_PAIR_COUNT) {
                     // WARNING: Subroutine does not return
-            utility_free_memory(memory_block_handle,1); # 内存块释放函数
+            utility_free_memory(memory_block_handle,UTILITY_MEMORY_RELEASE_IMMEDIATE); # 内存块释放函数
           }
           processed_block_count = processed_block_count + UTILITY_INDEX_INCREMENT;
           utility_iteration_counter = utility_iteration_counter + UTILITY_POINTER_INCREMENT;
@@ -4302,7 +4302,7 @@ void utility_handle_resource_cleanup(void)
           utility_operation_status = utility_allocate_memory(utility_memory_block_handle);
           if (utility_operation_status != UTILITY_PAIR_COUNT) {
                     // WARNING: Subroutine does not return
-            utility_free_memory(utility_memory_block_handle,1); # 内存块释放函数
+            utility_free_memory(utility_memory_block_handle,UTILITY_MEMORY_RELEASE_IMMEDIATE); # 内存块释放函数
           }
           utility_iteration_counter = utility_iteration_counter + UTILITY_INTEGER_INCREMENT_VALUE;
           utility_data_array_index = utility_data_array_index + UTILITY_POINTER_SIZE_OFFSET_BYTE;
@@ -4685,7 +4685,7 @@ uint64 allocate_resource_memoryBlock(longlong resource_handle_identifier)
     }
     if (*(longlong *)(system_resource_handle_primary + RESOURCE_UTILITY_HANDLE_DATA_OFFSET) != UTILITY_NULL_RESULT) {
                     // WARNING: Subroutine does not return
-      utility_free_memory(*(longlong *)(system_resource_handle_primary + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),1); # 内存块释放函数
+      utility_free_memory(*(longlong *)(system_resource_handle_primary + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),UTILITY_MEMORY_RELEASE_IMMEDIATE); # 内存块释放函数
     }
     utility_operation_status = UTILITY_NULL_RESULT;
   }
@@ -4708,7 +4708,7 @@ uint64 get_system_utility_operation_result(void)
   }
   if (*(longlong *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET) != UTILITY_NULL_RESULT) {
                     // WARNING: Subroutine does not return
-    utility_free_memory(*(longlong *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),1); # 内存块释放函数
+    utility_free_memory(*(longlong *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),UTILITY_MEMORY_RELEASE_IMMEDIATE); # 内存块释放函数
   }
   return UTILITY_NULL_RESULT;
 }
@@ -4757,7 +4757,7 @@ uint64 process_resource_dataValue(longlong resource_handle_identifier)
     return UTILITY_BYTE_OFFSET_FLAG;
   }
                     // WARNING: Subroutine does not return
-  utility_free_memory(*(longlong *)(system_resource_handle_primary + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),1); # 内存块释放函数
+  utility_free_memory(*(longlong *)(system_resource_handle_primary + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),UTILITY_MEMORY_RELEASE_IMMEDIATE); # 内存块释放函数
 }
 
 
@@ -4778,7 +4778,7 @@ uint32 get_memory_usage(void)
     return UTILITY_BYTE_OFFSET_FLAG;
   }
                     // WARNING: Subroutine does not return
-  utility_free_memory(*(longlong *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),1); # 内存块释放函数
+  utility_free_memory(*(longlong *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),UTILITY_MEMORY_RELEASE_IMMEDIATE); # 内存块释放函数
 }
 
 
@@ -4824,7 +4824,7 @@ uint64 validate_resource_access(longlong resource_handle_identifier)
     return UTILITY_BYTE_OFFSET_FLAG;
   }
                     // WARNING: Subroutine does not return
-  utility_free_memory(*(longlong *)(system_resource_handle_primary + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),1); # 内存块释放函数
+  utility_free_memory(*(longlong *)(system_resource_handle_primary + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),UTILITY_MEMORY_RELEASE_IMMEDIATE); # 内存块释放函数
 }
 
 
@@ -4845,7 +4845,7 @@ uint32 get_system_info(void)
     return UTILITY_BYTE_OFFSET_FLAG;
   }
                     // WARNING: Subroutine does not return
-  utility_free_memory(*(longlong *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),1); # 内存块释放函数
+  utility_free_memory(*(longlong *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),UTILITY_MEMORY_RELEASE_IMMEDIATE); # 内存块释放函数
 }
 
 
@@ -5256,7 +5256,7 @@ uint64 terminate_process(longlong resource_handle_identifier)
     return UTILITY_BYTE_OFFSET_FLAG;
   }
                     // WARNING: Subroutine does not return
-  utility_free_memory(*(longlong *)(system_resource_handle_primary + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),1); # 内存块释放函数
+  utility_free_memory(*(longlong *)(system_resource_handle_primary + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),UTILITY_MEMORY_RELEASE_IMMEDIATE); # 内存块释放函数
 }
 
 
@@ -5277,7 +5277,7 @@ uint32 get_cpu_usage(void)
     return UTILITY_BYTE_OFFSET_FLAG;
   }
                     // WARNING: Subroutine does not return
-  utility_free_memory(*(longlong *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),1); # 内存块释放函数
+  utility_free_memory(*(longlong *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),UTILITY_MEMORY_RELEASE_IMMEDIATE); # 内存块释放函数
 }
 
 
@@ -5323,7 +5323,7 @@ uint64 manage_thread_pool(longlong resource_handle_identifier)
     return UTILITY_BYTE_OFFSET_FLAG;
   }
                     // WARNING: Subroutine does not return
-  utility_free_memory(*(longlong *)(system_resource_handle_primary + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),1); # 内存块释放函数
+  utility_free_memory(*(longlong *)(system_resource_handle_primary + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),UTILITY_MEMORY_RELEASE_IMMEDIATE); # 内存块释放函数
 }
 
 
@@ -5344,7 +5344,7 @@ uint32 get_thread_count(void)
     return UTILITY_BYTE_OFFSET_FLAG;
   }
                     // WARNING: Subroutine does not return
-  utility_free_memory(*(longlong *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),1); # 内存块释放函数
+  utility_free_memory(*(longlong *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),UTILITY_MEMORY_RELEASE_IMMEDIATE); # 内存块释放函数
 }
 
 
@@ -5389,7 +5389,7 @@ uint64 lock_mutex(longlong resource_handle_identifier)
     return UTILITY_BYTE_OFFSET_FLAG;
   }
                     // WARNING: Subroutine does not return
-  utility_free_memory(*(longlong *)(operation_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),1); # 内存块释放函数
+  utility_free_memory(*(longlong *)(operation_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),UTILITY_MEMORY_RELEASE_IMMEDIATE); # 内存块释放函数
 }
 
 
@@ -5408,7 +5408,7 @@ uint32 unlock_mutex(void)
     return UTILITY_BYTE_OFFSET_FLAG;
   }
                     // WARNING: Subroutine does not return
-  utility_free_memory(*(longlong *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),1); # 内存块释放函数
+  utility_free_memory(*(longlong *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),UTILITY_MEMORY_RELEASE_IMMEDIATE); # 内存块释放函数
 }
 
 
@@ -5454,7 +5454,7 @@ uint64 wait_for_semaphore(longlong resource_handle_identifier)
     return UTILITY_BYTE_OFFSET_FLAG;
   }
                     // WARNING: Subroutine does not return
-  utility_free_memory(*(longlong *)(system_resource_handle_primary + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),1); # 内存块释放函数
+  utility_free_memory(*(longlong *)(system_resource_handle_primary + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),UTILITY_MEMORY_RELEASE_IMMEDIATE); # 内存块释放函数
 }
 
 
@@ -5475,7 +5475,7 @@ uint32 release_semaphore(void)
     return UTILITY_BYTE_OFFSET_FLAG;
   }
                     // WARNING: Subroutine does not return
-  utility_free_memory(*(longlong *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),1); # 内存块释放函数
+  utility_free_memory(*(longlong *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),UTILITY_MEMORY_RELEASE_IMMEDIATE); # 内存块释放函数
 }
 
 
@@ -5521,7 +5521,7 @@ uint64 wait_for_event(longlong resource_handle_identifier)
     return UTILITY_BYTE_OFFSET_FLAG;
   }
                     // WARNING: Subroutine does not return
-  utility_free_memory(*(longlong *)(system_resource_handle_primary + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),1); # 内存块释放函数
+  utility_free_memory(*(longlong *)(system_resource_handle_primary + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),UTILITY_MEMORY_RELEASE_IMMEDIATE); # 内存块释放函数
 }
 
 
@@ -5542,7 +5542,7 @@ uint32 set_event(void)
     return UTILITY_BYTE_OFFSET_FLAG;
   }
                     // WARNING: Subroutine does not return
-  utility_free_memory(*(longlong *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),1); # 内存块释放函数
+  utility_free_memory(*(longlong *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),UTILITY_MEMORY_RELEASE_IMMEDIATE); # 内存块释放函数
 }
 
 
@@ -5588,7 +5588,7 @@ uint64 create_timer(longlong resource_handle_identifier)
     return UTILITY_BYTE_OFFSET_FLAG;
   }
                     // WARNING: Subroutine does not return
-  utility_free_memory(*(longlong *)(system_resource_handle_primary + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),1); # 内存块释放函数
+  utility_free_memory(*(longlong *)(system_resource_handle_primary + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),UTILITY_MEMORY_RELEASE_IMMEDIATE); # 内存块释放函数
 }
 
 
@@ -5609,7 +5609,7 @@ uint32 start_timer(void)
     return UTILITY_BYTE_OFFSET_FLAG;
   }
                     // WARNING: Subroutine does not return
-  utility_free_memory(*(longlong *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),1); # 内存块释放函数
+  utility_free_memory(*(longlong *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),UTILITY_MEMORY_RELEASE_IMMEDIATE); # 内存块释放函数
 }
 
 
@@ -5652,7 +5652,7 @@ uint64 get_timer_elapsed(longlong resource_handle_identifier)
     return UTILITY_BYTE_OFFSET_FLAG;
   }
                     // WARNING: Subroutine does not return
-  utility_free_memory(*(longlong *)(system_resource_handle_primary + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),1); # 内存块释放函数
+  utility_free_memory(*(longlong *)(system_resource_handle_primary + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),UTILITY_MEMORY_RELEASE_IMMEDIATE); # 内存块释放函数
 }
 
 
@@ -5723,7 +5723,7 @@ uint64 open_file_resource_handle_identifier(longlong resource_handle_identifier)
     return UTILITY_BYTE_OFFSET_FLAG;
   }
                     // WARNING: Subroutine does not return
-  utility_free_memory(*(longlong *)(system_resource_handle_primary + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),1); # 内存块释放函数
+  utility_free_memory(*(longlong *)(system_resource_handle_primary + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),UTILITY_MEMORY_RELEASE_IMMEDIATE); # 内存块释放函数
 }
 
 
@@ -84692,4 +84692,28 @@ void CleanupThreadResources(uint64 resource_handle_identifier,uint64 resource_bu
 #define UTILITY_SYSTEM_STATUS_INITIALIZING 4
 #define UTILITY_SYSTEM_STATUS_RUNNING 5
 #define UTILITY_SYSTEM_STATUS_SHUTTING_DOWN 6
+
+// 新增语义化宏定义 - 美化内存释放参数常量
+#define UTILITY_MEMORY_RELEASE_IMMEDIATE 1
+#define UTILITY_MEMORY_RELEASE_DEFERRED 0
+#define UTILITY_MEMORY_RELEASE_CLEANUP 2
+
+// 新增语义化宏定义 - 美化错误代码常量
+#define UTILITY_ERROR_CODE_INVALID_HANDLE -1
+#define UTILITY_ERROR_CODE_OPERATION_FAILED -1
+
+// 新增语义化宏定义 - 美化比较结果常量
+#define UTILITY_COMPARISON_RESULT_EQUAL 0
+#define UTILITY_COMPARISON_RESULT_GREATER 1
+#define UTILITY_COMPARISON_RESULT_LESS -1
+
+// 新增语义化宏定义 - 美化缓冲区操作常量
+#define UTILITY_BUFFER_OPERATION_READ 0
+#define UTILITY_BUFFER_OPERATION_WRITE 1
+#define UTILITY_BUFFER_OPERATION_CLEAR 2
+
+// 新增语义化宏定义 - 美化索引增量常量
+#define UTILITY_INDEX_INCREMENT 1
+#define UTILITY_INDEX_DECREMENT -1
+#define UTILITY_POINTER_INCREMENT 8
 
