@@ -998,7 +998,7 @@ void* g_global_data_180a25af0;
 
 void* g_global_data_180a25b00;
 
-void* g_global_data_180a25ab8;
+void* g_global_system_data_1;
 
 void* g_global_data_180a25ac8;
 
