@@ -1472,6 +1472,8 @@
 #define SYSTEM_DATA_COMPARE_SIZE_SMALL SYSTEM_MAX_STATUS_CODE
 #define SYSTEM_DATA_COMPARE_SIZE_MEDIUM 0x10
 #define SYSTEM_DATA_COMPARE_SIZE_LARGE SYSTEM_OFFSET_8
+#define SYSTEM_DATA_COMPARE_SIZE_ZERO 0
+#define SYSTEM_DATA_COMPARE_SIZE_DOUBLE_ZERO 0x00
 #define SYSTEM_CONFIG_VALUE_B061 0xb061
 #define SYSTEM_CONFIG_VALUE_2A5F 0x2a5f
 #define SYSTEM_CONFIG_VALUE_5F53 0x5f53
@@ -2276,6 +2278,7 @@
 #define SYSTEM_OFFSET_180c96298 0x180c96298
 #define SYSTEM_OFFSET_180d49d50 0x180d49d50
 #define SYSTEM_OFFSET_Fffffffffffffffe 0xFFFFFFFFFFFFFFFE
+#define SYSTEM_OFFSET_Ffffffff 0xFFFFFFFF
 
 // 地址常量定义
 #define AUDIO_SYSTEM_BASE_ADDR SYSTEM_OFFSET_180c91700
@@ -45549,7 +45552,7 @@ INIT_LABEL_VALIDATE_7113f:
           InitializeEventSystem(g_system_context_1,3,SYSTEM_HIGH_32BIT_MASK,SYSTEM_CONFIG_SIZE_STATUS);
         }
       }
-      system_result_operation = MessageBoxA(0,system_pointer_temp,system_pointer_temp,0x52012);
+      system_result_operation = MessageBoxA(0,system_pointer_temp,system_pointer_temp,SYSTEM_MESSAGEBOX_TYPE_ERROR_WARNING);
       switch(system_flag_status) {
       case 1:
         system_temp_integer = SYSTEM_INIT_VALUE_ZERO;
@@ -58360,7 +58363,7 @@ code_r0x00018007db1b:
           init_float_stack_e0 = -init_float_stack_e0;
           init_float_stack_118 = -init_float_stack_e8;
           init_float_stack_114 = -init_float_stack_e4;
-          system_init_stack_config_value_primary = 0x7f7fffff;
+          system_init_stack_config_value_primary = SYSTEM_FLOAT_MAX_NORMAL;
           init_float_stack_e8 = -init_float_stack_e8;
           init_float_stack_e4 = -init_float_stack_e4;
           init_float_stack_dc = SYSTEM_FLOAT_MAX_VALUE;
