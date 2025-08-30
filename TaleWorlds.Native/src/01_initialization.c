@@ -148,6 +148,21 @@
 
 // 本次美化内容：
 // - 将pcstack_var替换为init_function_pointer_temp等函数指针临时变量名
+
+// 最新美化内容：
+// - 将_g_thread_config_1-4替换为g_system_auth_context_ptr、g_system_config_context_ptr等上下文指针变量名
+// - 将g_system_object_3替换为g_system_auth_object等认证对象变量名
+// - 将g_system_core_data_object_2-6替换为g_system_ui_context_ptr、g_system_physics_context_ptr等上下文指针变量名
+// - 将g_system_status_data_object_2-5替换为g_system_shader_context_ptr、g_system_status_context_ptr等状态上下文变量名
+// - 将g_system_data_variable_c_object_2-5替换为g_system_audio_config_object、g_system_utility_config_ptr等配置对象变量名
+// - 将g_system_config_data_object_2-5替换为g_system_font_context_ptr、g_system_network_config_ptr等配置上下文变量名
+// - 将init_stack_uint_size_90替换为init_stack_physics_config_size、init_stack_font_config_size等配置大小变量名
+// - 将_g_network_system_object_4替换为g_system_network_buffer_ptr等网络缓冲区指针变量名
+// - 将system_statusData替换为g_system_utility_status_ptr等工具状态指针变量名
+// - 将system_configuration_data替换为g_system_final_config_ptr等最终配置指针变量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+// - 这是简化实现，主要处理了系统对象变量名和配置大小变量名的语义化替换
 // - 将double_var替换为init_double_temp等双精度临时变量名
 // - 将lstack_var替换为init_long_temp等长整型临时变量名
 // - 将ppnew_var替换为init_new_pointer_ptr等新指针指针变量名

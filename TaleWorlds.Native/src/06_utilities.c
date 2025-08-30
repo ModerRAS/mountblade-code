@@ -292,6 +292,7 @@
 #define LOCAL_STACK_VARIABLE_VALUE local_stack_variable_value
 #define LOCAL_STACK_OFFSET_BUFFER local_stack_offset_buffer
 #define LOCAL_STACK_OFFSET_MULTIPLIER local_stack_offset_multiplier
+#define GENERIC_DATA_POINTER generic_data_pointer
 #define UTILITY_COUNTER_OFFSET 0xac
 #define UTILITY_SYSTEM_CONFIG_OFFSET 0x1c8
 #define UTILITY_STACK_SECURITY_OFFSET 0x5f0
@@ -1764,16 +1765,18 @@ dataValue utility_resource_report_status;
 // 函数: data_value resourceGenerateReport;
 dataValue utility_resource_generate_report;
 dataValue utility_resource_report_format;
-dataValue event_handler_queue_data;
+// 美化变量名 - 将事件处理变量名替换为语义化名称
+dataValue utility_event_handler_queue_data;
 
 // 函数: data_value resourceBatchOperation;
-dataValue resourceBatchOperation;
-dataValue event_handler_callback_data;
-dataValue event_handler_state_data;
-dataValue event_system_queue_data;
-dataValue event_system_callback_data;
-dataValue event_system_state_data;
-dataValue memoryBlockTrackingTable;
+dataValue utility_resource_batch_operation;
+dataValue utility_event_handler_callback_data;
+dataValue utility_event_handler_state_data;
+dataValue utility_event_system_queue_data;
+dataValue utility_event_system_callback_data;
+dataValue utility_event_system_state_data;
+// 美化变量名 - 将内存块变量名替换为语义化名称
+dataValue utility_memory_block_tracking_table;
 dataValue thread_local_storage_cleanup;
 
 // 函数: data_value InitializeThreadLocalStorage;
@@ -1784,31 +1787,33 @@ void *tlsPointer;
 // 新增变量声明 - 替换未定义的变量
 byte validation_buffer_data[VALIDATION_BUFFER_DATA_SIZE];
 void *security_stack_base;
-dataValue event_system_priority_data;
-dataValue memoryBlockDebugInfo;
-dataValue event_system_timeout_data;
-dataValue memoryBlockLeakDetector;
-dataValue systemCallData;
-dataValue event_system_filter_data;
-dataValue event_system_handler_data;
-dataValue event_system_manager_data;
+// 美化变量名 - 将事件系统和内存块变量名替换为语义化名称
+dataValue utility_event_system_priority_data;
+dataValue utility_memory_block_debug_info;
+dataValue utility_event_system_timeout_data;
+dataValue utility_memory_block_leak_detector;
+dataValue utility_system_call_data;
+dataValue utility_event_system_filter_data;
+dataValue utility_event_system_handler_data;
+dataValue utility_event_system_manager_data;
 
 // 函数: data_value CleanupThreadResources;
 dataValue CleanupThreadResources;
-dataValue event_system_cleanup_data;
-dataValue event_system_initialization_data;
-dataValue semaphoreWaitTimeout;
+// 美化变量名 - 将系统变量名替换为语义化名称
+dataValue utility_event_system_cleanup_data;
+dataValue utility_event_system_initialization_data;
+dataValue utility_semaphore_wait_timeout;
 dataValue utility_buffer_system_manager;
 dataValue utility_buffer_system_pool;
-dataValue semaphoreInitState;
-dataValue semaphoreControlFlag;
-dataValue semaphoreRecursionCount;
-dataValue memory_block_system_manager_data;
-dataValue render_system_texture_data;
-dataValue render_system_shader_data;
-dataValue render_system_buffer_data;
-dataValue network_system_connection_data;
-dataValue network_system_socket_data;
+dataValue utility_semaphore_init_state;
+dataValue utility_semaphore_control_flag;
+dataValue utility_semaphore_recursion_count;
+dataValue utility_memory_block_system_manager_data;
+dataValue utility_render_system_texture_data;
+dataValue utility_render_system_shader_data;
+dataValue utility_render_system_buffer_data;
+dataValue utility_network_system_connection_data;
+dataValue utility_network_system_socket_data;
 dataValue mutexInitializationFlag;
 dataValue utility_buffer_manager_state;
 dataValue system_area_data;
