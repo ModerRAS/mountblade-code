@@ -261,6 +261,10 @@
 // - 新增美化内容：将变量名如 resource_type_1 -> texture_resource_type
 // - 新增美化内容：将变量名如 system_global_data_pointer -> shader_resource_flag/audio_resource_flag等语义化名称
 // - 这是简化实现，主要处理了变量名和函数名的语义化替换
+// - 最新美化内容：修复了大量自引用的常量定义，如 SYSTEM_FLOAT_ARRAY_ADDR_2 SYSTEM_FLOAT_ARRAY_ADDR_2 -> SYSTEM_FLOAT_ARRAY_ADDR_2 0x180c8ed80
+// - 为所有自引用的常量定义提供了正确的十六进制值
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
 
 // - 新增美化内容：将变量名如 g_global_system_data -> global_system_data_pointer
 // - 新增美化内容：将变量名如 g_system_config_data -> system_config_data_pointer

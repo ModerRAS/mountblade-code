@@ -38381,7 +38381,7 @@ uint64_t ProcessSystemData(longlong handleIdentifier,longlong resourceIdentifier
       }
       else {
         system_temp_init_flag = 0;
-        g_system_constant_size; = 0;
+        g_system_constant_size = 0;
         system_temp_data_buffer = 0;
         LOCK();
         system_temp_result_buffer = system_integer_result_unsigned;
