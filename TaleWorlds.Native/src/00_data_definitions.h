@@ -3840,24 +3840,24 @@ void WotsMainNativeCoreCLR(unsigned long long handle_param)
           maximum_stack_size_extended = SYSTEM_ZERO_VALUE;
           thread_stack_ptr2c0 = (unsigned char *)SYSTEM_NULL_POINTER;
           maximum_stack_size2b8 = SYSTEM_ZERO_VALUE;
-          if (string_ptr_17 != (void *)SYSTEM_NULL_POINTER) {
+          if (system_string_pointer_17 != (void *)SYSTEM_NULL_POINTER) {
             system_string_length = SYSTEM_STRING_LENGTH_INVALID;
             do {
               prev_length = system_string_length;
               system_string_length = prev_length + 1;
-            } while (string_ptr_17[system_string_length] != '\0');
+            } while (system_string_pointer_17[system_string_length] != '\0');
             if ((int)system_string_length != 0) {
               buffer_size = (int)prev_length + 2;
               alloc_size = buffer_size;
               if (buffer_size < STRING_BUFFER_SIZE) {
                 alloc_size = STRING_BUFFER_SIZE;
               }
-              buffer_ptr = (unsigned char *)system_execution_function(system_global_data_pointer,(long long)alloc_size,SYSTEM_OFFSET_13);
-              *buffer_ptr = SYSTEM_ZERO_VALUE;
-              thread_stack_ptr2c0 = buffer_ptr;
-              buffer_handle_param = allocate_temporary_buffer(buffer_ptr);
+              system_buffer_pointer = (unsigned char *)system_execution_function(system_global_data_pointer,(long long)alloc_size,SYSTEM_OFFSET_13);
+              *system_buffer_pointer = SYSTEM_ZERO_VALUE;
+              thread_stack_ptr2c0 = system_buffer_pointer;
+              buffer_handle_param = allocate_temporary_buffer(system_buffer_pointer);
               maximum_stack_size_extended = merge_32bit_values(maximum_stack_size_extended_low_half_,buffer_handle_param);
-              memcpy(buffer_ptr,string_ptr_17,buffer_size);
+              memcpy(system_buffer_pointer,system_string_pointer_17,buffer_size);
             }
           }
           maximum_stack_size2b8 = SYSTEM_ZERO_VALUE;
@@ -12155,7 +12155,7 @@ unsigned long long get_thread_handle_param(unsigned long long handle_param)
   if (!in_ZF) {
     buffer_allocation_result = handle_param;
   }
-  pthread_operation_flags = (unsigned long long *)system_execution_function(system_temporary_stack_array,buffer_allocation_result);
+  pthread_operation_flags = (unsigned long long *)system_execution_function(SYSTEM_TEMP_STACK_ARRAY,buffer_allocation_result);
   buffer_allocation_result = pthread_operation_flags[1];
   *unaffected_register_dI = *pthread_operation_flags;
   unaffected_register_dI[1] = buffer_allocation_result;
@@ -13892,9 +13892,9 @@ section_processing_jump_label_:
   system_execute_crypto_operation(maximum_stack_size ^ (ulong long)auStack_248);
 }
   string_concatenation_flag = '\x01';
-  wcscpy_s(system_temporary_stack_array,STRING_BUFFER_SIZE4);
+  wcscpy_s(SYSTEM_TEMP_STACK_ARRAY,STRING_BUFFER_SIZE4);
   if (string_concatenation_flag != '\0') {
-    wcscat_s(system_temporary_stack_array,STRING_BUFFER_SIZE4);
+    wcscat_s(SYSTEM_TEMP_STACK_ARRAY,STRING_BUFFER_SIZE4);
     if (string_concatenation_flag != '\0') {
       system_execution_function(system_temporary_stack_array,0);
     }

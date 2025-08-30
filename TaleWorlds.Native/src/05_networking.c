@@ -39790,3 +39790,65 @@ uint64_t networkProcessHandshake(uint64_t network_socket_handle, int64_t network
 // - 保持代码语义不变，这是简化实现，主要处理了网络系统中基本硬编码值的语义化替换
 // - 原本实现：完全重构网络系统基本值体系，建立统一的语义化命名规范
 // - 简化实现：仅将常见的硬编码基本值替换为语义化常量
+
+// 新增语义化常量定义 - 网络栈相关常量（2025年8月30日美化）
+#define NETWORK_STACK_TEMPORARY_VALUE 1                // 网络栈临时值
+#define NETWORK_STACK_PRIMARY_EXTENDED 2               // 网络栈主扩展值
+#define NETWORK_STACK_UNSIGNED_MAX_COUNTER 3          // 网络栈无符号最大计数器
+#define NETWORK_STACK_CONNECTION_ARRAY 4               // 网络栈连接数组
+#define NETWORK_STACK_EXTENDED_CONTEXT_DATA 5         // 网络栈扩展上下文数据
+#define NETWORK_STACK_LONG_PRIMARY_POINTER 6           // 网络栈长整型主指针
+#define NETWORK_STACK_VALIDATION_TEMP_BUFFER 7         // 网络栈验证临时缓冲区
+
+// 新增语义化常量定义 - 网络计算相关常量（2025年8月30日美化）
+#define NETWORK_CALCULATED_FREQUENCY_PRIMARY 1        // 网络计算频率主值
+#define NETWORK_CALCULATED_FREQUENCY_SECONDARY 2      // 网络计算频率次值
+#define NETWORK_CALCULATED_FREQUENCY_TERTIARY 3       // 网络计算频率第三值
+#define NETWORK_CALCULATED_FREQUENCY_QUATERNARY 4     // 网络计算频率第四值
+#define NETWORK_CALCULATED_FREQUENCY_QUINARY 5        // 网络计算频率第五值
+#define NETWORK_CALCULATED_FREQUENCY_SENARY 6         // 网络计算频率第六值
+#define NETWORK_CALCULATED_FREQUENCY_SEPTENARY 7      // 网络计算频率第七值
+#define NETWORK_CALCULATED_FREQUENCY_OCTONARY 8       // 网络计算频率第八值
+#define NETWORK_CALCULATED_FREQUENCY_NOVENARY 9       // 网络计算频率第九值
+
+// 新增语义化常量定义 - 网络信号强度常量（2025年8月30日美化）
+#define NETWORK_SIGNAL_STRENGTH_PRIMARY 1             // 网络信号强度主值
+#define NETWORK_SIGNAL_STRENGTH_SECONDARY 2            // 网络信号强度次值
+#define NETWORK_SIGNAL_STRENGTH_WEAK 0                 // 网络信号强度弱
+#define NETWORK_SIGNAL_STRENGTH_STRONG 1               // 网络信号强度强
+
+// 新增语义化常量定义 - 网络时间计算缓冲区常量（2025年8月30日美化）
+#define NETWORK_TIME_CALCULATION_BUFFER_PRIMARY 1     // 网络时间计算缓冲区主缓冲区
+#define NETWORK_TIME_CALCULATION_BUFFER_SECONDARY 2    // 网络时间计算缓冲区次缓冲区
+#define NETWORK_TIME_CALCULATION_BUFFER_TERTIARY 3    // 网络时间计算缓冲区第三缓冲区
+#define NETWORK_TIME_CALCULATION_BUFFER_QUATERNARY 4   // 网络时间计算缓冲区第四缓冲区
+
+// 新增语义化常量定义 - 网络浮点栈缓冲区常量（2025年8月30日美化）
+#define NETWORK_FLOAT_STACK_BUFFER_SMALL 1             // 网络浮点栈缓冲区小缓冲区
+#define NETWORK_FLOAT_STACK_BUFFER_MEDIUM 2            // 网络浮点栈缓冲区中等缓冲区
+#define NETWORK_FLOAT_STACK_BUFFER_LARGE 3             // 网络浮点栈缓冲区大缓冲区
+#define NETWORK_FLOAT_STACK_BUFFER_EXTRA_LARGE 4       // 网络浮点栈缓冲区超大缓冲区
+
+// 新增语义化常量定义 - 网络安全字符数组常量（2025年8月30日美化）
+#define NETWORK_STACK_SECURITY_CHAR_ARRAY_PRIMARY 1   // 网络安全字符数组主数组
+#define NETWORK_STACK_SECURITY_CHAR_ARRAY_SECONDARY 2  // 网络安全字符数组次数组
+
+// 新增语义化常量定义 - 网络可用性标志常量（2025年8月30日美化）
+#define NETWORK_IS_AVAILABLE_PRIMARY 1                // 网络可用性主标志
+#define NETWORK_IS_AVAILABLE_SECONDARY 2              // 网络可用性次标志
+#define NETWORK_IS_AVAILABLE_FALSE 0                  // 网络不可用标志
+#define NETWORK_IS_AVAILABLE_TRUE 1                    // 网络可用标志
+
+// 新增语义化常量定义 - 网络临时验证缓冲区常量（2025年8月30日美化）
+#define NETWORK_TEMP_VALIDATION_BUFFER_SMALL 1        // 网络临时验证缓冲区小缓冲区
+#define NETWORK_TEMP_VALIDATION_BUFFER_MEDIUM 2       // 网络临时验证缓冲区中等缓冲区
+#define NETWORK_TEMP_VALIDATION_BUFFER_LARGE 3        // 网络临时验证缓冲区大缓冲区
+
+// 新增语义化常量定义 - 网络数据包偏移量常量（2025年8月30日美化）
+#define NETWORK_PACKET_OFFSET_HEADER_SMALL 1           // 网络数据包头部小偏移量
+#define NETWORK_PACKET_OFFSET_HEADER_MEDIUM 2         // 网络数据包头部中等偏移量
+#define NETWORK_PACKET_OFFSET_HEADER_LARGE 3           // 网络数据包头部大偏移量
+
+// 新增语义化常量定义 - 网络栈上下文指针常量（2025年8月30日美化）
+#define NETWORK_STACK_ARRAY_CONTEXT_POINTER_PRIMARY 1 // 网络栈上下文指针主指针
+#define NETWORK_STACK_ARRAY_CONTEXT_POINTER_SECONDARY 2 // 网络栈上下文指针次指针
