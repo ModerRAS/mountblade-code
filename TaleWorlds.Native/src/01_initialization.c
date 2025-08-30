@@ -52996,7 +52996,7 @@ void initialize_system_module_forty_one(uint64_t *handleIdentifier,longlong reso
     system_result_operation = *(uint32_t *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_2B8);
   }
   *(uint32_t *)(handleIdentifier + SYSTEM_MEMORY_OFFSET_STACK_SIZE) = system_integer_unsigned_temp;
-  if ((*(char *)(resourceIdentifier + 0x2cc) == SYSTEM_CHAR_NULL_TERMINATOR) && (*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8) != SYSTEM_COMPARISON_ZERO)) {
+  if ((*(char *)(resourceIdentifier + SYSTEM_MEMORY_OFFSET_2CC) == SYSTEM_CHAR_NULL_TERMINATOR) && (*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8) != SYSTEM_COMPARISON_ZERO)) {
     system_result_operation = InitializeModule13();
   }
   else {
