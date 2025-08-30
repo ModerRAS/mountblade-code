@@ -601,7 +601,6 @@
 #define SYSTEM_OFFSET_STRING_LENGTH 0x24
 #define SYSTEM_OFFSET_SYSTEM_MODE 0xa0
 #define SYSTEM_OFFSET_STACK_POINTER 0xc
-#define SYSTEM_OFFSET_STRING_COUNTER 0x178
 #define SYSTEM_OFFSET_STRING_BASE 0x180
 #define SYSTEM_OFFSET_MODULE_DATA 0x1ee
 #define SYSTEM_OFFSET_RENDER_CONFIG 0x22c
@@ -14948,3 +14947,47 @@ void system_data_initialization_cleanup(void)
 // 美化硬编码常量定义（2025年8月30日美化批次）
 #define SYSTEM_INITIALIZATION_OFFSET_PRIMARY 0x12f8              // 初始化主偏移量
 #define SYSTEM_INITIALIZATION_OFFSET_SECONDARY 0x1308             // 初始化次偏移量
+
+// 系统特殊数值常量定义（2025年8月30日美化批次）
+#define SYSTEM_FLOAT_MAX_VALUE 0x7f7fffff                          // 浮点数最大值
+#define SYSTEM_FLOAT_PI_DIV_4 0x3d088889                          // π/4值
+#define SYSTEM_FLOAT_ARRAY_MULTIPLIER 0x4cbebc20                 // 浮点数组乘数
+#define SYSTEM_FLOAT_INITIALIZED_VALUE 0x41200000                 // 浮点初始化值
+#define SYSTEM_FLOAT_STANDARD_VALUE 0x3f800000                    // 标准浮点值(1.0)
+#define SYSTEM_FLOAT_SPECIAL_CONSTANT 0xccbebc20                  // 特殊浮点常量
+
+// 系统字符串模式常量定义
+#define SYSTEM_STRING_PATTERN_COLON_MSG 0x3a726f72               // 冒号消息模式
+#define SYSTEM_STRING_PATTERN_OBJECT_MSG 0x2220656d               // 对象消息模式
+#define SYSTEM_STRING_PATTERN_TERMINATOR_1 0x526f662f             // 终止符模式1
+#define SYSTEM_STRING_PATTERN_TERMINATOR_2 0x5f646563             // 终止符模式2
+#define SYSTEM_STRING_PATTERN_TERMINATOR_3 0x466f6e63             // 终止符模式3
+#define SYSTEM_STRING_POINTER_TAG_2 0x2e6f6373                    // 字符串指针标签2
+
+// 系统位掩码常量定义
+#define SYSTEM_BIT_MASK_FLOAT_UPPER 0xffffff00                    // 浮点数上位掩码
+#define SYSTEM_BIT_MASK_ADDRESS_ALIGN 0xfffffffe                  // 地址对齐掩码
+#define SYSTEM_BIT_MASK_MEMORY_ALIGN 0xffffffffffffffe0U         // 内存对齐掩码
+#define SYSTEM_BIT_MASK_SPECIAL_1 0xffdefffe                      // 特殊掩码1
+#define SYSTEM_BIT_MASK_REGISTER_ALIGN 0xffffff20                 // 寄存器对齐掩码
+#define SYSTEM_BIT_MASK_ALIGN_2BIT 0xfffffffc                     // 2位对齐掩码
+#define SYSTEM_BIT_MASK_ALIGN_5BIT 0xffffffe0                     // 5位对齐掩码
+#define SYSTEM_BIT_MASK_ALIGN_6BIT 0xffffffc0                     // 6位对齐掩码
+
+// 系统错误码常量定义
+#define SYSTEM_ERROR_CODE_SPECIAL_1 -0x7f6dfffb                   // 特殊错误码1
+#define SYSTEM_ERROR_CODE_SPECIAL_2 -0x7f6dffff                   // 特殊错误码2
+#define SYSTEM_ERROR_CODE_SPECIAL_3 -0x7f6dff01                   // 特殊错误码3
+#define SYSTEM_ERROR_CODE_SPECIAL_4 -0x7f6dfffd                   // 特殊错误码4
+#define SYSTEM_ERROR_CODE_SPECIAL_5 -0x7f6dfffa                   // 特殊错误码5
+#define SYSTEM_ERROR_CODE_TIMEOUT -0x7ffeffff                     // 超时错误码
+
+// 系统最大值常量定义
+#define SYSTEM_MAX_VALUE_32BIT 0xffffffff                         // 32位最大值
+#define SYSTEM_MAX_VALUE_64BIT 0xffffffffffffffff                 // 64位最大值
+#define SYSTEM_MAX_VALUE_FLOAT 0x7f7fffff                         // 浮点数最大值
+#define SYSTEM_MAX_VALUE_STACK 0x7f7fffff3f800000                // 栈最大值
+
+// 系统地址偏移常量定义
+#define SYSTEM_ADDRESS_OFFSET_SPECIAL_1 0x1c0042ed               // 特殊地址偏移1
+#define SYSTEM_ADDRESS_OFFSET_MEMORY_BOUNDARY 0x17ffffff          // 内存边界地址偏移

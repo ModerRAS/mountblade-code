@@ -1749,6 +1749,12 @@
 #define network_temp_value                    network_temp_value
 #define network_validation_temp_buf   network_validation_temp_buf
 
+// 网络栈数据上下文指针变量名语义化替换
+#define network_stack_data_context_main_pointer    network_stack_data_ctx_main_ptr
+#define network_stack_unsigned_iteration_counter_nonal    network_stack_iter_nonal
+#define network_stack_unsigned_iteration_counter_denary    network_stack_iter_denary
+#define network_connection_processor_pointer    network_conn_processor_ptr
+
 // 网络地址变量名语义化替换
 #define networkAddress                        network_server_addr
 #define server_port                           server_port_address
