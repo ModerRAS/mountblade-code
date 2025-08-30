@@ -35001,7 +35001,7 @@ uint64_t network_socket_descriptor(float network_socket_descriptor)
         network_encryption_array[0] = 0;
         if ((ulonglong)timeout_config_ptr[2] < (ulonglong)network_encryption_array[0] + 4) {
       network_buffer_size_byte_value = NetworkServerOperation0(*timeout_config_ptr,network_stack_socket_handle_array,1,4,0);
-    if (0x3ff < network_stack_socket_handle_array[0]) {
+    if (NETWORK_SOCKET_HANDLE_THRESHOLD < network_stack_socket_handle_array[0]) {
     network_buffer_size_byte_value = networkSignData7(network_socket_descriptor + NETWORK_SOCKET_HEADER_OFFSET);
     if ((int)network_buffer_size_byte_value == 0) goto network_jump_label;
   if (0 < (int)network_stack_socket_handle_array[0]) {
