@@ -2740,23 +2740,23 @@ void HandleResourceCleanup(void)
   longlong utility_base_register_pointer;
   longlong utility_array_handle_pointer;
   int utility_iteration_counter;
-  byte *utility_utility_stack_parameter_ptr;
-  int utility_utility_stack_parameter_secondary;
-  uint32 utility_utility_stack_parameter_tertiary;
+  byte *utility_stack_buffer_ptr;
+  int utility_stack_buffer_secondary;
+  uint32 utility_stack_buffer_tertiary;
   ulonglong utility_security_parameter;
   
   if (*(longlong *)(utility_input_register_value + 8) != 0) {
-    utility_utility_stack_parameter_ptr = &utility_stack_local_variable_buffer;
+    utility_stack_buffer_ptr = &utility_stack_local_variable_buffer;
     utility_iteration_counter = 0;
-    utility_utility_stack_parameter_secondary = 0;
-    utility_utility_stack_parameter_tertiary = SECURITY_TOKEN_MASK;
+    utility_stack_buffer_secondary = 0;
+    utility_stack_buffer_tertiary = SECURITY_TOKEN_MASK;
     utility_operation_result = AllocateSystemMemory(*(uint64 *)(utility_base_register_pointer + UTILITY_MEMORY_SIZE_OFFSET),*(longlong *)(utility_input_register_value + 8),
                           &utility_stack_working_buffer_primary);
     if (utility_operation_result == 0) {
-      if (0 < utility_utility_stack_parameter_secondary) {
+      if (0 < utility_stack_buffer_secondary) {
         utility_array_handle_pointer = 0;
         do {
-          utility_resource_operation_result = *(uint64 *)(utility_utility_stack_parameter_ptr + utility_array_handle_pointer);
+          utility_resource_operation_result = *(uint64 *)(utility_stack_buffer_ptr + utility_array_handle_pointer);
           utility_operation_result = utility_allocate_memory_block(utility_resource_operation_result);
           if (utility_operation_result != 2) {
                     // WARNING: Subroutine does not return
@@ -2764,7 +2764,7 @@ void HandleResourceCleanup(void)
           }
           utility_iteration_counter = utility_iteration_counter + 1;
           utility_array_handle_pointer = utility_array_handle_pointer + 8;
-        } while (utility_iteration_counter < utility_utility_stack_parameter_secondary);
+        } while (utility_iteration_counter < utility_stack_buffer_secondary);
       }
       FreeMemoryBuffer(&utility_stack_working_buffer_primary);
     }
