@@ -252,7 +252,10 @@
 // 77. 将operation_buffer + UTILITY_RESOURCE_OFFSET_8B0替换为operation_buffer + UTILITY_RESOURCE_OFFSET_8B0等操作缓冲区偏移量
 // 78. 将resource_buffer + UTILITY_RESOURCE_OFFSET_160替换为resource_buffer + UTILITY_RESOURCE_OFFSET_160等资源偏移量
 // 79. 将resource_buffer + UTILITY_RESOURCE_OFFSET_858替换为resource_buffer + UTILITY_RESOURCE_OFFSET_858等资源偏移量
-// 这是简化实现，主要处理了工具系统中资源偏移量的语义化替换
+// 80. 将0x87替换为UTILITY_ITERATION_LIMIT_PRIMARY等迭代阈值常量
+// 81. 将0x52替换为UTILITY_ITERATION_LIMIT_SECONDARY等迭代阈值常量
+// 82. 将0x36替换为UTILITY_ITERATION_LIMIT_TERTIARY等迭代阈值常量
+// 这是简化实现，主要处理了工具系统中资源偏移量和迭代阈值的语义化替换
 // 提高了代码的可读性和维护性
 // 保持代码语义不变
 

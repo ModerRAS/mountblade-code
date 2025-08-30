@@ -606,7 +606,7 @@ int initialize_texture_resource_manager(void)
   void* resource_value_ptr = &texture_resource_buffer;
   texture_resource_buffer = 0;
   texture_resource_type = RESOURCE_TYPE_TEXTURE;
-  strcpy_s(&resource_buffer_1, RESOURCE_BUFFER_SIZE, &texture_resource_string, texture_resource_string_length, DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&texture_resource_buffer, RESOURCE_BUFFER_SIZE, &texture_resource_string, texture_resource_string_length, DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(texture_resource_manager_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -615,10 +615,10 @@ int initialize_primary_shader_resource_manager(void)
   long long system_init_result;
   unsigned long long shader_resource_string_length;
   void* resource_buffer_ptr = &g_resource_data_buffer;
-  void* resource_value_ptr = &resource_buffer_2;
-  resource_buffer_2 = 0;
-  resource_type_2 = RESOURCE_TYPE_SHADER;
-  strcpy_s(&resource_buffer_2, RESOURCE_BUFFER_SIZE, &shader_resource_string, shader_resource_string_length, DEFAULT_THREAD_POOL_FLAG);
+  void* resource_value_ptr = &shader_resource_buffer_primary;
+  shader_resource_buffer_primary = 0;
+  shader_resource_type_primary = RESOURCE_TYPE_SHADER;
+  strcpy_s(&shader_resource_buffer_primary, RESOURCE_BUFFER_SIZE, &shader_resource_string, shader_resource_string_length, DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(shader_resource_manager_1_init_function);
   return (system_init_result != 0) - 1;
 }
