@@ -2379,10 +2379,10 @@ dataValue g_database_temp_flags;                     // 数据库临时标志
 
 // 函数: resource_data SetupDatabaseTables;
 dataValue SetupDatabaseTables;
-dataValue g_aiBehaviorWorkBuffer;
-dataValue aiBehaviorWorkOffset;
-dataValue aiBehaviorWorkSize;
-dataValue aiBehaviorWorkFlags;
+dataValue g_ai_behavior_work_buffer;                // AI行为工作缓冲区
+dataValue g_ai_behavior_work_offset;                // AI行为工作偏移量
+dataValue g_ai_behavior_work_size;                  // AI行为工作大小
+dataValue g_ai_behavior_work_flags;                 // AI行为工作标志
 dataValue g_aiBehaviorReserved;
 dataValue g_ai_behavior_tree;
 dataValue g_aiDecisionWorkBuffer;

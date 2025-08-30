@@ -10954,7 +10954,7 @@ unsigned long long get_thread_handle_param(unsigned long long handle_param)
     system_global_data_pointer = thread_op_flags;
     *(unsigned long long *)
      (*(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8) + STRING_BUFFER_SIZE) =
-         0x180bf4000;
+         SYSTEM_STRING_BUFFER_BASE_ADDR;
     FlsSetValue(thread_op_flags);
   }
   system_execution_function(&system_exception_function_1,&ExceptionList);
