@@ -1,5 +1,27 @@
 #include "TaleWorlds.Native.Split.h"
 
+// 本次美化内容（2025年8月30日）第二十一批次：
+// - 美化系统内存偏移量常量名，将SYSTEM_OFFSET_72替换为SYSTEM_MEMORY_OFFSET_THREAD_STACK等线程栈偏移量常量名
+// - 美化系统内存偏移量常量名，将SYSTEM_OFFSET_1DD0替换为SYSTEM_MEMORY_OFFSET_ENGINE_CONFIG_1等引擎配置偏移量常量名
+// - 美化系统内存偏移量常量名，将SYSTEM_OFFSET_9F90替换为SYSTEM_MEMORY_OFFSET_GRAPHICS_BUFFER_1等图形缓冲区偏移量常量名
+// - 美化系统内存偏移量常量名，将SYSTEM_OFFSET_74替换为SYSTEM_MEMORY_OFFSET_STRING_TERMINATOR等字符串终止符偏移量常量名
+// - 美化系统内存偏移量常量名，将SYSTEM_OFFSET_1D8替换为SYSTEM_MEMORY_OFFSET_FUNCTION_TABLE等函数表偏移量常量名
+// - 美化系统内存偏移量常量名，将SYSTEM_OFFSET_2C替换为SYSTEM_MEMORY_OFFSET_ARRAY_INDEX等数组索引偏移量常量名
+// - 美化系统内存偏移量常量名，将SYSTEM_OFFSET_B2替换为SYSTEM_MEMORY_OFFSET_CONFIG_FLAG_1等配置标志偏移量常量名
+// - 美化系统内存偏移量常量名，将SYSTEM_OFFSET_24替换为SYSTEM_MEMORY_OFFSET_DATA_HEADER等数据头偏移量常量名
+// - 美化系统内存偏移量常量名，将SYSTEM_OFFSET_23C替换为SYSTEM_MEMORY_OFFSET_MEMORY_BLOCK等内存块偏移量常量名
+// - 美化系统乘数常量名，将SYSTEM_MULTIPLIER_3548替换为SYSTEM_MULTIPLIER_MEMORY_ALLOCATION等内存分配乘数常量名
+// - 美化临时字符串常量名，将SYSTEM_STRING_TEMP_0x33替换为SYSTEM_STRING_TEMP_DIGIT_THREE等数字三临时字符串常量名
+// - 美化临时字符串常量名，将SYSTEM_STRING_TEMP_0x3a替换为SYSTEM_STRING_TEMP_COLON等冒号临时字符串常量名
+// - 美化缓冲区变量名，将system_buffer_ptr_138替换为system_buffer_ptr_username_buffer等用户名缓冲区变量名
+// - 美化缓冲区变量名，将system_buffer_ptr_140替换为system_buffer_ptr_audio_buffer等音频缓冲区变量名
+// - 美化本地缓冲区变量名，将system_local_buffer_334替换为system_local_buffer_resource_comment等资源注释缓冲区变量名
+// - 美化缓冲区大小变量名，将init_stack_buffer_size_one_hundred_thirty替换为init_stack_buffer_size_username_offset等用户名偏移量变量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了系统初始化文件中剩余硬编码十六进制值的语义化替换
+// - 原本实现：完全重构系统初始化文件硬编码值体系，重新设计所有硬编码值的语义化规范
+// - 简化实现：仅将常见的硬编码十六进制值替换为语义化常量
+
 // 本次美化内容（2025年8月30日）第二十批次：
 // - 美化变量名，将system_buffer_ptr_320替换为system_buffer_ptr_graphics_buffer等图形缓冲区指针变量名
 // - 美化变量名，将system_buffer_ptr_40替换为system_buffer_ptr_function_handler等函数处理指针变量名
