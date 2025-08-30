@@ -570,7 +570,7 @@ void* g_ui_mutex_attribute_address = (void*)UI_MUTEX_ATTRIBUTE_ADDR;
 void* g_ui_mutex_type_address = (void*)UI_MUTEX_TYPE_ADDR;
 // 原始名称: system_18045f210 - 栈数据地址1
 void* g_stack_data_primary_address = (void*)STACK_DATA_PRIMARY_ADDR;
-// 原始名称: system_18045f200 - 栈数据地址2
+// 原始名称: system_stack_data_secondary - 栈数据地址2
 void* g_stack_data_secondary_address = (void*)STACK_DATA_SECONDARY_ADDR;
 
 // 初始化系统配置
@@ -6306,7 +6306,7 @@ system_finalizer_tertiary(unsigned long long handle_param,unsigned long long thr
   pstack_long_var = alStack_30;
   // Original name: system_18045f210
       thread_stack_ptr = &g_stack_data_address_18045f210;
-  thread_stack_ptr = &system_18045f200;
+  thread_stack_ptr = &system_stack_data_secondary;
   psystem_initialization_result = (long long *)system_execution_function(buffer_alloc_result,alStack_30);
   pstack_long_var = psystem_initialization_result;
   if (psystem_initialization_result != (long long *)0x0) {
@@ -8721,20 +8721,20 @@ section_processing_jump_label_:
                     buffer_alloc_result = path_buffer_size;
                     goto section_processing_jump_label_;
                   }
-                  system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39850,1);
+                  system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_1,1);
                   if (system_char_variable != '\0') goto section_processing_jump_label_;
-                  system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39820,1);
+                  system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_2,1);
                   if (system_char_variable != '\0') {
 section_processing_jump_label_:
                     buffer_alloc_result = 0x30;
                     goto section_processing_jump_label_;
                   }
-                  system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39940,1);
+                  system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_3,1);
                   if (system_char_variable != '\0') {
                     buffer_alloc_result = 0x31;
                     goto section_processing_jump_label_;
                   }
-                  system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a19c8c,1);
+                  system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_4,1);
                   if (system_char_variable != '\0') {
                     buffer_alloc_result = 0x32;
                     goto section_processing_jump_label_;
@@ -8743,168 +8743,168 @@ section_processing_jump_label_:
               }
             }
             else {
-              system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a397d8,1);
+              system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_5,1);
               if (system_char_variable == '\0') {
-                system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a397c8,1);
+                system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_6,1);
                 if (system_char_variable != '\0') goto section_processing_jump_label_;
-                system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39740,1);
+                system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_7,1);
                 if (system_char_variable != '\0') goto section_processing_jump_label_;
-                system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39728,1);
+                system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_8,1);
                 if (system_char_variable != '\0') goto section_processing_jump_label_;
-                system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39768,1);
+                system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_9,1);
                 if (system_char_variable != '\0') goto section_processing_jump_label_;
-                system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39758,1);
+                system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_10,1);
                 if (system_char_variable != '\0') goto section_processing_jump_label_;
-                system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39870,1);
+                system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_11,1);
                 if (system_char_variable != '\0') goto section_processing_jump_label_;
-                system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a19c8c,1);
+                system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_4,1);
                 if (system_char_variable != '\0') {
 section_processing_jump_label_:
                   buffer_alloc_result = 0x19;
                   goto section_processing_jump_label_;
                 }
-                system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39864,1);
+                system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_12,1);
                 if (system_char_variable != '\0') {
                   buffer_alloc_result = 0x35;
                   goto section_processing_jump_label_;
                 }
-                system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a398a8,1);
+                system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_13,1);
                 if (system_char_variable != '\0') goto section_processing_jump_label_;
               }
             }
           }
           else {
-            system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39568,1);
+            system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_14,1);
             if (system_char_variable == '\0') {
-              system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39538,1);
+              system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_15,1);
               if (system_char_variable != '\0') {
 section_processing_jump_label_:
                 buffer_alloc_result = 7;
                 goto section_processing_jump_label_;
               }
-              system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a396c8,1);
+              system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_16,1);
               if (system_char_variable != '\0') goto section_processing_jump_label_;
-              system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a396b0,1);
+              system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_17,1);
               if (system_char_variable != '\0') goto section_processing_jump_label_;
-              system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39710,1);
+              system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_18,1);
               if (system_char_variable != '\0') {
 section_processing_jump_label_:
                 buffer_alloc_result = 10;
                 goto section_processing_jump_label_;
               }
-              system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a396f0,1);
+              system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_19,1);
               if (system_char_variable != '\0') goto section_processing_jump_label_;
-              system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39640,1);
+              system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_20,1);
               if (system_char_variable != '\0') goto section_processing_jump_label_;
-              system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39628,1);
+              system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_21,1);
               if (system_char_variable != '\0') {
                 buffer_alloc_result = 0xd;
                 goto section_processing_jump_label_;
               }
-              system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39688,1);
+              system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_22,1);
               if (system_char_variable != '\0') {
                 buffer_alloc_result = 0xe;
                 goto section_processing_jump_label_;
               }
-              system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39660,1);
+              system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_23,1);
               if (system_char_variable != '\0') {
                 buffer_alloc_result = 0xf;
                 goto section_processing_jump_label_;
               }
-              system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a397a8,1);
+              system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_24,1);
               if (system_char_variable != '\0') goto section_processing_jump_label_;
-              system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39788,1);
+              system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_25,1);
               if (system_char_variable != '\0') goto section_processing_jump_label_;
             }
           }
         }
         else {
-          system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39270,1);
+          system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_26,1);
           if (system_char_variable == '\0') {
-            system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a393a8,1);
+            system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_27,1);
             if (system_char_variable != '\0') goto section_processing_jump_label_;
-            system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39390,1);
+            system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_28,1);
             if (system_char_variable != '\0') {
 section_processing_jump_label_:
               buffer_alloc_result = 9;
               goto section_processing_jump_label_;
             }
-            system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a393f0,1);
+            system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_29,1);
             if (system_char_variable != '\0') goto section_processing_jump_label_;
-            system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a393d0,1);
+            system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_30,1);
             if (system_char_variable != '\0') goto section_processing_jump_label_;
-            system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39348,1);
+            system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_31,1);
             if (system_char_variable != '\0') {
 section_processing_jump_label_:
               buffer_alloc_result = 0x17;
               goto section_processing_jump_label_;
             }
-            system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39328,1);
+            system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_32,1);
             if (system_char_variable != '\0') goto section_processing_jump_label_;
-            system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39378,1);
+            system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_33,1);
             if (system_char_variable != '\0') goto section_processing_jump_label_;
-            system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39360,1);
+            system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_34,1);
             if (system_char_variable != '\0') {
               buffer_alloc_result = 0x21;
               goto section_processing_jump_label_;
             }
-            system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a394a0,1);
+            system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_35,1);
             if (system_char_variable != '\0') {
               buffer_alloc_result = 0x22;
               goto section_processing_jump_label_;
             }
-            system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39480,1);
+            system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_36,1);
             if (system_char_variable != '\0') {
               buffer_alloc_result = 0x23;
               goto section_processing_jump_label_;
             }
-            system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a394e0,1);
+            system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_37,1);
             if (system_char_variable != '\0') goto section_processing_jump_label_;
-            system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a394b8,1);
+            system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_38,1);
             if (system_char_variable != '\0') {
               buffer_alloc_result = 0x25;
               goto section_processing_jump_label_;
             }
-            system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39428,1);
+            system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_39,1);
             if (system_char_variable != '\0') {
               buffer_alloc_result = 0x26;
               goto section_processing_jump_label_;
             }
-            system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39408,1);
+            system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_40,1);
             if (system_char_variable != '\0') {
               buffer_alloc_result = 0x27;
               goto section_processing_jump_label_;
             }
-            system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39468,1);
+            system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_41,1);
             if (system_char_variable != '\0') goto section_processing_jump_label_;
-            system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39450,1);
+            system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_42,1);
             if (system_char_variable != '\0') {
               buffer_alloc_result = 0x29;
               goto section_processing_jump_label_;
             }
-            system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a395c0,1);
+            system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_43,1);
             if (system_char_variable != '\0') {
               buffer_alloc_result = 0x2a;
               goto section_processing_jump_label_;
             }
-            system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39598,1);
+            system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_44,1);
             if (system_char_variable != '\0') {
               buffer_alloc_result = 0x2b;
               goto section_processing_jump_label_;
             }
-            system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39600,1);
+            system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_45,1);
             if (system_char_variable != '\0') goto section_processing_jump_label_;
-            system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a395e0,1);
+            system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_46,1);
             if (system_char_variable != '\0') {
               buffer_alloc_result = 0x2d;
               goto section_processing_jump_label_;
             }
-            system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39518,1);
+            system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_47,1);
             if (system_char_variable != '\0') {
               buffer_alloc_result = 0x2e;
               goto section_processing_jump_label_;
             }
-            system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39500,1);
+            system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_48,1);
             if (system_char_variable != '\0') {
               buffer_alloc_result = 0x2f;
               goto section_processing_jump_label_;
@@ -8913,59 +8913,59 @@ section_processing_jump_label_:
         }
       }
       else {
-        system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a391b8,1);
+        system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_49,1);
         if (system_char_variable == '\0') {
-          system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39188,1);
+          system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_50,1);
           if (system_char_variable != '\0') {
 section_processing_jump_label_:
             buffer_alloc_result = 0xb;
             goto section_processing_jump_label_;
           }
-          system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39210,1);
+          system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_51,1);
           if (system_char_variable != '\0') goto section_processing_jump_label_;
-          system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a391e8,1);
+          system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_52,1);
           if (system_char_variable != '\0') goto section_processing_jump_label_;
-          system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39128,1);
+          system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_53,1);
           if (system_char_variable != '\0') {
 section_processing_jump_label_:
             buffer_alloc_result = 0x11;
             goto section_processing_jump_label_;
           }
-          system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39110,1);
+          system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_54,1);
           if (system_char_variable != '\0') {
             buffer_alloc_result = 0x12;
             goto section_processing_jump_label_;
           }
-          system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39170,1);
+          system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_55,1);
           if (system_char_variable != '\0') {
             buffer_alloc_result = 0x13;
             goto section_processing_jump_label_;
           }
-          system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39148,1);
+          system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_56,1);
           if (system_char_variable != '\0') goto section_processing_jump_label_;
-          system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a392d0,1);
+          system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_57,1);
           if (system_char_variable != '\0') {
             buffer_alloc_result = 0x15;
             goto section_processing_jump_label_;
           }
-          system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a392b8,1);
+          system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_58,1);
           if (system_char_variable != '\0') {
             buffer_alloc_result = 0x16;
             goto section_processing_jump_label_;
           }
-          system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39308,1);
+          system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_59,1);
           if (system_char_variable != '\0') goto section_processing_jump_label_;
-          system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a392e8,1);
+          system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_60,1);
           if (system_char_variable != '\0') goto section_processing_jump_label_;
-          system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39250,1);
+          system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_61,1);
           if (system_char_variable != '\0') goto section_processing_jump_label_;
-          system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39230,1);
+          system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_62,1);
           if (system_char_variable != '\0') {
 section_processing_jump_label_:
             buffer_alloc_result = 0x1a;
             goto section_processing_jump_label_;
           }
-          system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39298,1);
+          system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_63,1);
           if (system_char_variable != '\0') {
             buffer_alloc_result = 0x1b;
             goto section_processing_jump_label_;
@@ -8974,70 +8974,70 @@ section_processing_jump_label_:
       }
     }
     else {
-      system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a38ef0,1);
+      system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_64,1);
       if (system_char_variable == '\0') {
-        system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a38fd8,1);
+        system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_65,1);
         if (system_char_variable != '\0') goto section_processing_jump_label_;
         system_char_variable = validate_handle_param_parameters(auStack_50,&g_buffer_backup,1);
         if (system_char_variable != '\0') goto section_processing_jump_label_;
-        system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a38fc0,1);
+        system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_66,1);
         if (system_char_variable != '\0') goto section_processing_jump_label_;
-        system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39008,1);
+        system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_67,1);
         if (system_char_variable != '\0') goto section_processing_jump_label_;
-        system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a38ff0,1);
+        system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_68,1);
         if (system_char_variable != '\0') goto section_processing_jump_label_;
-        system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a38f78,1);
+        system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_69,1);
         if (system_char_variable != '\0') goto section_processing_jump_label_;
-        system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a38f60,1);
+        system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_70,1);
         if (system_char_variable != '\0') goto section_processing_jump_label_;
-        system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a38fa8,1);
+        system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_71,1);
         if (system_char_variable != '\0') goto section_processing_jump_label_;
-        system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a38f90,1);
+        system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_72,1);
         if (system_char_variable != '\0') goto section_processing_jump_label_;
-        system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a390b8,1);
+        system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_73,1);
         if (system_char_variable != '\0') goto section_processing_jump_label_;
-        system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39090,1);
+        system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_74,1);
         if (system_char_variable != '\0') goto section_processing_jump_label_;
-        system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a390f0,1);
+        system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_75,1);
         if (system_char_variable != '\0') goto section_processing_jump_label_;
-        system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a390d0,1);
+        system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_76,1);
         if (system_char_variable != '\0') goto section_processing_jump_label_;
-        system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39030,1);
+        system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_77,1);
         if (system_char_variable != '\0') goto section_processing_jump_label_;
-        system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a34c20,1);
+        system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_78,1);
         if (system_char_variable != '\0') {
           buffer_alloc_result = 0x54;
           goto section_processing_jump_label_;
         }
-        system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39020,1);
+        system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_79,1);
         if (system_char_variable != '\0') goto section_processing_jump_label_;
-        system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39078,1);
+        system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_80,1);
         if (system_char_variable != '\0') goto section_processing_jump_label_;
-        system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a39058,1);
+        system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_81,1);
         if (system_char_variable != '\0') goto section_processing_jump_label_;
       }
     }
   }
   else {
-    system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a0ee38,1);
+    system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_82,1);
     if (system_char_variable == '\0') {
-      system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a38f50,1);
+      system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_83,1);
       if (system_char_variable != '\0') {
 section_processing_jump_label_:
         buffer_alloc_result = 8;
         goto section_processing_jump_label_;
       }
-      system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a38f40,1);
+      system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_84,1);
       if (system_char_variable != '\0') goto section_processing_jump_label_;
-      system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a38ee0,1);
+      system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_85,1);
       if (system_char_variable != '\0') {
 section_processing_jump_label_:
         buffer_alloc_result = 0x18;
         goto section_processing_jump_label_;
       }
-      system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a38ed0,1);
+      system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_86,1);
       if (system_char_variable != '\0') goto section_processing_jump_label_;
-      system_char_variable = validate_handle_param_parameters(auStack_50,&system_180a38f00,1);
+      system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_87,1);
       if (system_char_variable != '\0') {
 section_processing_jump_label_:
         buffer_alloc_result = 0x28;
@@ -9053,7 +9053,7 @@ section_processing_jump_label_:
 }
   system_flag_buffer_11 = 0;
   system_crypto_initializer(system_execution_function);
-  system_execution_function(&system_18064ffc0);
+  system_execution_function(&system_cleanup_function);
   str_len_counter = 0;
   system_global_data_pointer = system_execution_function;
   pthread_op_flags = (unsigned int *)&thread_pool_data_buffer;
@@ -9063,7 +9063,7 @@ section_processing_jump_label_:
       system_execution_function(pthread_op_flags);
     }
     if (str_len_counter != 2) {
-      system_execution_function(&system_180a3db60,*(unsigned long long *)(pthread_op_flags + 4),*pthread_op_flags);
+      system_execution_function(&system_thread_function_1,*(unsigned long long *)(pthread_op_flags + 4),*pthread_op_flags);
     }
     str_len_counter = str_len_counter + 1;
     pthread_op_flags = pthread_op_flags + 6;
@@ -9079,7 +9079,7 @@ section_processing_jump_label_:
   system_global_data_pointer = (long long)system_global_data_pointer;
   system_execution_function();
   if (system_control_flag_buffer != '\0') {
-    system_execution_function(&system_180a3d970);
+    system_execution_function(&system_thread_function_2);
   }
   return;
 }
@@ -9289,7 +9289,7 @@ section_processing_jump_label_:
   *(unsigned char *)(string_input_ptr + 3) = 0;
   stack_size_max = 0x18;
   stack_size_max._0_4_ = buffer_alloc_result;
-  system_execution_function(acStack_40,&system_1809fd0a0,thread_result_index);
+  system_execution_function(acStack_40,&system_thread_function_3,thread_result_index);
   system_initialization_result0 = -1;
   do {
     str_len_counter = system_initialization_result0;
@@ -9419,20 +9419,20 @@ char * system_execution_function(unsigned int handle_param,unsigned long long th
   if (thread_stack_ptr != (void *)0x0) {
     string_input_ptr = thread_stack_ptr;
   }
-  system_execution_function(&system_180a3cac0,string_input_ptr);
+  system_execution_function(&system_string_function_1,string_input_ptr);
   *param_9 = 0;
   str_len_counter = *system_operation_parameter;
   thread_result_index = 0;
   if (str_len_counter != system_operation_parameter[1]) {
     do {
       if (0xf < thread_result_index) {
-        system_execution_function(&system_180a3ca70,STRING_BUFFER_SIZE);
+        system_execution_function(&system_string_function_2,STRING_BUFFER_SIZE);
       }
       string_input_ptr = &default_resource_config_string;
       if (*(void **)(str_len_counter + 8) != (void *)0x0) {
         string_input_ptr = *(void **)(str_len_counter + 8);
       }
-      system_execution_function(&system_180a3ca20,string_input_ptr);
+      system_execution_function(&system_string_function_3,string_input_ptr);
       thread_result_index = *param_9;
       str_len_counter = (long long)thread_result_index * 0x3088 + thread_stack_base_address;
       string_input_ptr = &default_resource_config_string;
@@ -9859,7 +9859,7 @@ section_processing_jump_label_:
       thread_stack_ptr = &g_threadString2;
       handle_param_system_error(string_input_ptr);
     }
-    buffer_alloc_result = validate_config_handle_param(character_scan_pointer,&system_180a12e10);
+    buffer_alloc_result = validate_config_handle_param(character_scan_pointer,&system_validation_function_1);
     character_scan_pointer = (char *)(ulong long)buffer_alloc_result;
   }
   *mutex_attr = &g_threadString2;
@@ -9955,7 +9955,7 @@ section_processing_jump_label_:
     if (character_scan_pointer == character_scan_pointer + -0x180a0794b) {
       character_scan_pointer = character_scan_pointer + (long long)character_scan_pointer;
       if (character_scan_pointer <= character_scan_pointer) break;
-      str_len_counter = (long long)&system_180a0794c - (long long)character_scan_pointer;
+      str_len_counter = (long long)&system_string_end_marker_1 - (long long)character_scan_pointer;
       while (*character_scan_pointer == character_scan_pointer[str_len_counter]) {
         character_scan_pointer = character_scan_pointer + 1;
         if (character_scan_pointer <= character_scan_pointer) goto section_processing_jump_label_;
@@ -9994,7 +9994,7 @@ section_processing_jump_label_:
         system_execution_function(&thread_stack_ptr,str_len_counter,character_scan_pointer,string_input_ptr,buffer_alloc_result,buffer_alloc_result);
         break;
       }
-      str_len_counter = (long long)&system_180a0ee30 - (long long)character_scan_pointer;
+      str_len_counter = (long long)&system_string_end_marker_2 - (long long)character_scan_pointer;
       while (*character_scan_pointer == character_scan_pointer[str_len_counter]) {
         character_scan_pointer = character_scan_pointer + 1;
         if (character_scan_pointer <= character_scan_pointer) goto section_processing_jump_label_;
@@ -10106,7 +10106,7 @@ section_processing_jump_label_:
 }
   system_initialized_flag = 0;
   if (system_char_variable != '\0') {
-    system_thread_initializer(&system_180a3cc28,handle_param);
+    system_thread_initializer(&system_thread_function_4,handle_param);
   }
   if (str_len_counter != -1) {
     LOCK();
@@ -10308,7 +10308,7 @@ long long system_initialize_resources(unsigned long long handle_param,unsigned l
   if (*pcStack_28 != '\0') {
     system_initialization_result = 0;
     do {
-      str_len_counter = strchr(&system_180a3cc48,(int)pcStack_28[system_initialization_result]);
+      str_len_counter = strchr(&system_string_buffer_1,(int)pcStack_28[system_initialization_result]);
       if (str_len_counter != 0) {
         pcStack_28[system_initialization_result] = ' ';
       }
@@ -10319,7 +10319,7 @@ long long system_initialize_resources(unsigned long long handle_param,unsigned l
   if (pcStack_28 != (char *)0x0) {
     character_scan_pointer = pcStack_28;
   }
-  system_execution_function(character_scan_pointer,&system_180a3cbe0,mutex_attr,mutex_attr + 4,buffer_alloc_result);
+  system_execution_function(character_scan_pointer,&system_thread_function_5,mutex_attr,mutex_attr + 4,buffer_alloc_result);
   thread_stack_ptr = &g_threadString2;
   if (pcStack_28 != (char *)0x0) {
     handle_param_system_error();
@@ -10346,7 +10346,7 @@ long long allocate_thread_resources(unsigned long long handle_param,unsigned lon
   if (*pcStack_28 != '\0') {
     system_initialization_result = 0;
     do {
-      str_len_counter = strchr(&system_180a3c9ec,(int)pcStack_28[system_initialization_result]);
+      str_len_counter = strchr(&system_string_buffer_2,(int)pcStack_28[system_initialization_result]);
       if (str_len_counter != 0) {
         pcStack_28[system_initialization_result] = ' ';
       }
@@ -10357,7 +10357,7 @@ long long allocate_thread_resources(unsigned long long handle_param,unsigned lon
   if (pcStack_28 != (char *)0x0) {
     character_scan_pointer = pcStack_28;
   }
-  system_execution_function(character_scan_pointer,&system_180a3cc0c,mutex_attr,mutex_attr + 4,mutex_attr + 8);
+  system_execution_function(character_scan_pointer,&system_thread_function_6,mutex_attr,mutex_attr + 4,mutex_attr + 8);
   thread_stack_ptr = &g_threadString2;
   if (pcStack_28 != (char *)0x0) {
     handle_param_system_error();
@@ -10384,7 +10384,7 @@ long long initialize_thread_pool_resources(unsigned long long handle_param,unsig
   if (*pcStack_28 != '\0') {
     system_initialization_result = 0;
     do {
-      str_len_counter = strchr(&system_180a3cc04,(int)pcStack_28[system_initialization_result]);
+      str_len_counter = strchr(&system_string_buffer_3,(int)pcStack_28[system_initialization_result]);
       if (str_len_counter != 0) {
         pcStack_28[system_initialization_result] = ' ';
       }
@@ -10395,7 +10395,7 @@ long long initialize_thread_pool_resources(unsigned long long handle_param,unsig
   if (pcStack_28 != (char *)0x0) {
     character_scan_pointer = pcStack_28;
   }
-  system_execution_function(character_scan_pointer,&system_180a3cc1c,mutex_attr,mutex_attr + 4);
+  system_execution_function(character_scan_pointer,&system_thread_function_7,mutex_attr,mutex_attr + 4);
   thread_stack_ptr = &g_threadString2;
   if (pcStack_28 != (char *)0x0) {
     handle_param_system_error();
@@ -10425,7 +10425,7 @@ long long validate_thread_configuration(unsigned long long handle_param,unsigned
   if (*pcStack_28 != '\0') {
     str_len_counter = 0;
     do {
-      str_len_counter = strchr(&system_180a3c9ec,(int)pcStack_28[str_len_counter]);
+      str_len_counter = strchr(&system_string_buffer_2,(int)pcStack_28[str_len_counter]);
       if (str_len_counter != 0) {
         pcStack_28[str_len_counter] = ' ';
       }
@@ -10436,7 +10436,7 @@ long long validate_thread_configuration(unsigned long long handle_param,unsigned
   if (pcStack_28 != (char *)0x0) {
     character_scan_pointer = pcStack_28;
   }
-  thread_result_index = system_execution_function(character_scan_pointer,&system_180a3c9f8,mutex_attr,mutex_attr + 4,mutex_attr + 8,
+  thread_result_index = system_execution_function(character_scan_pointer,&system_thread_function_8,mutex_attr,mutex_attr + 4,mutex_attr + 8,
                         (unsigned int *)(mutex_attr + 0xc),buffer_alloc_result);
   if (thread_result_index == 3) {
     *(unsigned int *)(mutex_attr + 0xc) = 0x3f800000;
@@ -10457,7 +10457,7 @@ long long process_thread_initialization(unsigned long long handle_param,unsigned
   void *thread_stack_ptr;
   char *pcStack_28;
   buffer_alloc_result = DEFAULT_THREAD_POOL_FLAG;
-  system_initialization_result = system_execution_function(handle_param,&system_180a16818);
+  system_initialization_result = system_execution_function(handle_param,&system_memory_function_1);
   if (system_initialization_result == 0) {
     return 0;
   }
@@ -10469,7 +10469,7 @@ long long process_thread_initialization(unsigned long long handle_param,unsigned
   if (*pcStack_28 != '\0') {
     system_initialization_result = 0;
     do {
-      str_len_counter = strchr(&system_180a3cc04,(int)pcStack_28[system_initialization_result]);
+      str_len_counter = strchr(&system_string_buffer_3,(int)pcStack_28[system_initialization_result]);
       if (str_len_counter != 0) {
         pcStack_28[system_initialization_result] = ' ';
       }
@@ -10480,7 +10480,7 @@ long long process_thread_initialization(unsigned long long handle_param,unsigned
   if (pcStack_28 != (char *)0x0) {
     character_scan_pointer = pcStack_28;
   }
-  system_execution_function(character_scan_pointer,&system_180a3c9f8,mutex_attr + 4,mutex_attr + 8,mutex_attr + 0xc,mutex_attr,buffer_alloc_result);
+  system_execution_function(character_scan_pointer,&system_thread_function_8,mutex_attr + 4,mutex_attr + 8,mutex_attr + 0xc,mutex_attr,buffer_alloc_result);
   thread_stack_ptr = &g_threadString2;
   if (pcStack_28 != (char *)0x0) {
     handle_param_system_error();
@@ -10507,7 +10507,7 @@ long long initialize_thread_synchronization(unsigned long long handle_param,unsi
     if (*pcStack_28 != '\0') {
       str_len_counter = 0;
       do {
-        str_len_counter = strchr(&system_180a3cc04,(int)pcStack_28[str_len_counter]);
+        str_len_counter = strchr(&system_string_buffer_3,(int)pcStack_28[str_len_counter]);
         if (str_len_counter != 0) {
           pcStack_28[str_len_counter] = ' ';
         }
@@ -10518,7 +10518,7 @@ long long initialize_thread_synchronization(unsigned long long handle_param,unsi
     if (pcStack_28 != (char *)0x0) {
       character_scan_pointer = pcStack_28;
     }
-    system_execution_function(character_scan_pointer,&system_180a3ccc8,mutex_attr,mutex_attr + 4,mutex_attr + 8,mutex_attr + STRING_BUFFER_SIZE,
+    system_execution_function(character_scan_pointer,&system_thread_function_9,mutex_attr,mutex_attr + 4,mutex_attr + 8,mutex_attr + STRING_BUFFER_SIZE,
                   mutex_attr + 0x14,mutex_attr + 0x18,mutex_attr + path_buffer_size,mutex_attr + 0x24,mutex_attr + 0x28);
     thread_stack_ptr = &g_threadString2;
     if (pcStack_28 != (char *)0x0) {
@@ -10549,7 +10549,7 @@ long long setup_thread_communication(unsigned long long handle_param,unsigned lo
     if (*pcStack_50 != '\0') {
       str_len_counter = 0;
       do {
-        str_len_counter = strchr(&system_180a3cc04,(int)pcStack_50[str_len_counter]);
+        str_len_counter = strchr(&system_string_buffer_3,(int)pcStack_50[str_len_counter]);
         if (str_len_counter != 0) {
           pcStack_50[str_len_counter] = ' ';
         }
@@ -10560,7 +10560,7 @@ long long setup_thread_communication(unsigned long long handle_param,unsigned lo
     if (pcStack_50 != (char *)0x0) {
       character_scan_pointer = pcStack_50;
     }
-    system_execution_function(character_scan_pointer,&system_180a3cca0,mutex_attr,mutex_attr + 4,mutex_attr + 8,mutex_attr + 0xc,mutex_attr + STRING_BUFFER_SIZE
+    system_execution_function(character_scan_pointer,&system_thread_function_10,mutex_attr,mutex_attr + 4,mutex_attr + 8,mutex_attr + 0xc,mutex_attr + STRING_BUFFER_SIZE
                   ,mutex_attr + 0x14,mutex_attr + 0x18,mutex_attr + 0x1c,mutex_attr + path_buffer_size,mutex_attr + 0x24,
                   mutex_attr + 0x28,mutex_attr + 0x2c,mutex_attr + 0x30,mutex_attr + 0x34,mutex_attr + 0x38,
                   mutex_attr + 0x3c,str_len_counter,buffer_alloc_result);
@@ -10612,7 +10612,7 @@ unsigned long long get_thread_handle_param(unsigned long long handle_param)
 }
   system_flag_buffer_11 = 0;
   system_crypto_initializer(system_execution_function);
-  system_execution_function(&system_18064ffc0);
+  system_execution_function(&system_cleanup_function);
   str_len_counter = 0;
   system_global_data_pointer = system_execution_function;
   string_input_ptr = (unsigned int *)&string_input_buffer;
@@ -10622,7 +10622,7 @@ unsigned long long get_thread_handle_param(unsigned long long handle_param)
       system_execution_function(string_input_ptr);
     }
     if (str_len_counter != 2) {
-      system_execution_function(&system_180a3db60,*(unsigned long long *)(string_input_ptr + 4),*string_input_ptr);
+      system_execution_function(&system_thread_function_1,*(unsigned long long *)(string_input_ptr + 4),*string_input_ptr);
     }
     str_len_counter = str_len_counter + 1;
     string_input_ptr = string_input_ptr + 6;
@@ -10638,21 +10638,21 @@ unsigned long long get_thread_handle_param(unsigned long long handle_param)
   system_global_data_pointer = (long long)system_global_data_pointer;
   system_execution_function();
   if (system_control_flag_buffer != '\0') {
-    system_execution_function(&system_180a3d970);
+    system_execution_function(&system_thread_function_2);
   }
   return;
 }
   string_processing_flag = 1;
   if (network_status_flag == '\0') {
     network_status_flag = '\x01';
-    thread_op_flags = FlsAlloc(&system_18064f970);
+    thread_op_flags = FlsAlloc(&system_tls_function);
     system_global_data_pointer = thread_op_flags;
     *(unsigned long long *)
      (*(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8) + STRING_BUFFER_SIZE) =
          0x180bf4000;
     FlsSetValue(thread_op_flags);
   }
-  system_execution_function(&system_180a3d988,&ExceptionList);
+  system_execution_function(&system_exception_function_1,&ExceptionList);
   system_initialization_result = cpuid_Extended_Feature_Enumeration_info(7);
   system_mode_flag = (byte)(*(uint *)(system_initialization_result + 8) >> 4) & 1;
   GetSystemInfo(auStack_40);
@@ -10660,7 +10660,7 @@ unsigned long long get_thread_handle_param(unsigned long long handle_param)
     system_global_data_pointer = (ulong long)stack_size_max;
   }
   system_execution_function();
-  system_execution_function(&system_180a3d940,0);
+  system_execution_function(&system_exception_function_2,0);
   system_execution_function();
   system_execution_result_ptr = (long long *)system_execution_function();
   if ((void *)(*system_execution_result_ptr + 0x3d8) == &system_config_buffer) {
@@ -10691,7 +10691,7 @@ unsigned long long get_thread_handle_param(unsigned long long handle_param)
   }
   system_execution_function();
 section_processing_jump_label_:
-  system_execution_function(&system_180a3d958,system_global_data_pointer);
+  system_execution_function(&system_exception_function_3,system_global_data_pointer);
   auth_data_flag = 1;
   return;
 }
@@ -10935,7 +10935,7 @@ long long process_context_handle_param(long long *handle_param)
                   }
                 }
                 pthread_op_flags = string_input_ptr;
-                *(void **)((long long)pthread_op_flags + -8) = &system_18076804b;
+                *(void **)((long long)pthread_op_flags + -8) = &system_memory_function_2;
                 (*unaffected_registerDI)();
                 *(unsigned long long *)((long long)pthread_op_flags + -8) = 0x180768051;
                 CoUninitialize();
@@ -11415,7 +11415,7 @@ section_processing_jump_label_:
         buffer_alloc_result = *pthread_op_flags + 1000;
         *pthread_op_flags = buffer_alloc_result;
         str_len_counter = system_execution_function(*(unsigned long long *)(system_global_data_pointer + 0x1a0),
-                              *(unsigned long long *)(unreg_bx + 0x1d0),buffer_alloc_result * 4,&system_18097c490,0x113);
+                              *(unsigned long long *)(unreg_bx + 0x1d0),buffer_alloc_result * 4,&system_validation_function_2,0x113);
         *(long long *)(unreg_bx + 0x1d0) = str_len_counter;
         if (str_len_counter == 0) goto section_processing_jump_label_;
       }
@@ -11450,7 +11450,7 @@ section_processing_jump_label_:
     }
     if ((*(long long *)(unreg_bx + 0x1d0) != 0) && ((unaffected_registerD & SYSTEM_CONFIG_BUFFER_SIZE_ZERO0) == 0)) {
       system_execution_function(*(unsigned long long *)(system_global_data_pointer + 0x1a0),*(long long *)(unreg_bx + 0x1d0),
-                    &system_18097c490,0x282,1);
+                    &system_validation_function_2,0x282,1);
     }
     *(ulong long *)(unreg_bx + 0x178) = unaffected_register;
     *(unsigned int *)(*(long long *)(unreg_bx + 8) + 8) = 2;
@@ -12009,7 +12009,7 @@ unsigned long long initialize_timer_context(unsigned long long handle_param,unsi
 }
       string_termination_flag = '\0';
       if (system_global_data_pointer == 0) {
-        str_len_counter = system_execution_function(&system_18098ab30);
+        str_len_counter = system_execution_function(&system_system_function_1);
         if (str_len_counter != 0) {
           str_len_counter = LoadLibraryExW(str_len_counter,0,0);
         }
@@ -12018,16 +12018,16 @@ unsigned long long initialize_timer_context(unsigned long long handle_param,unsi
         if (str_len_counter == 0) goto section_processing_jump_label_;
       }
       if ((((system_global_data_pointer == (code *)0x0) &&
-           (system_global_data_pointer = (code *)GetProcAddress(system_global_data_pointer,&system_18098aef8),
+           (system_global_data_pointer = (code *)GetProcAddress(system_global_data_pointer,&system_library_function_1),
            system_global_data_pointer == (code *)0x0)) ||
           ((system_global_data_pointer == 0 &&
-           (system_global_data_pointer = GetProcAddress(system_global_data_pointer,&system_18098af08), system_global_data_pointer == 0))))
+           (system_global_data_pointer = GetProcAddress(system_global_data_pointer,&system_library_function_2), system_global_data_pointer == 0))))
          || ((system_global_data_pointer == 0 &&
-             (system_global_data_pointer = GetProcAddress(system_global_data_pointer,&system_18098af18), system_global_data_pointer == 0)))
+             (system_global_data_pointer = GetProcAddress(system_global_data_pointer,&system_library_function_3), system_global_data_pointer == 0)))
          ) goto section_processing_jump_label_;
       if ((system_global_data_pointer == 0) &&
-         (system_global_data_pointer = system_execution_function(&system_18098af28,0), system_global_data_pointer != 0)) {
-        system_global_data_pointer = (code *)GetProcAddress(system_global_data_pointer,&system_18098af40);
+         (system_global_data_pointer = system_execution_function(&system_library_function_4,0), system_global_data_pointer != 0)) {
+        system_global_data_pointer = (code *)GetProcAddress(system_global_data_pointer,&system_library_function_5);
       }
       character_scan_pointer = system_global_data_pointer;
       if (system_global_data_pointer == (code *)0x0) goto section_processing_jump_label_;
@@ -12050,7 +12050,7 @@ unsigned long long initialize_timer_context(unsigned long long handle_param,unsi
         stack_size_max = 0;
         _guard_check_icall(system_global_data_pointer);
         thread_stack_ptr = &stack_size_max;
-        thread_result_index = (*character_scan_pointer)(INVALID_HANDLE_VALUE80000002,&system_18098af50,0,buffer_alloc_result | path_buffer_size019);
+        thread_result_index = (*character_scan_pointer)(INVALID_HANDLE_VALUE80000002,&system_library_function_6,0,buffer_alloc_result | path_buffer_size019);
         if (thread_result_index == 0) {
           stack_size_max = 0x80;
           stack_size_max = 4;
@@ -12063,25 +12063,25 @@ unsigned long long initialize_timer_context(unsigned long long handle_param,unsi
       goto section_processing_jump_label_;
     }
   }
-  OutputDebugStringW(&system_18098afa0);
+  OutputDebugStringW(&system_debug_string_1);
   SetLastError(0);
 section_processing_jump_label_:
   system_execute_crypto_operation(stack_size_max ^ (ulong long)system_debug_stack_buffer);
 }
           thread_result_flag = thread_result_index == 1;
-          SetConsoleTitleA(&system_18098b4e0);
+          SetConsoleTitleA(&system_console_title_1);
         }
       }
       thread_validation_flag = thread_result_flag == '\0';
       if (system_global_data_pointer == 0) {
-        str_len_counter = _wfsopen(handle_param,&system_18098b51c,SYSTEM_CONFIG_BUFFER_SIZE);
+        str_len_counter = _wfsopen(handle_param,&system_file_function_1,SYSTEM_CONFIG_BUFFER_SIZE);
         if (str_len_counter == 0) {
-          system_execution_function(&system_string_buffer_5,0xc1,&system_string_buffer_6,&system_18098b520,handle_param);
+          system_execution_function(&system_string_buffer_5,0xc1,&system_string_buffer_6,&system_string_function_4,handle_param);
           byte_check_result0 = false;
         }
         else {
           fclose(str_len_counter);
-          system_execution_function(&system_string_buffer_5,200,&system_string_buffer_6,&system_18098b580,handle_param);
+          system_execution_function(&system_string_buffer_5,200,&system_string_buffer_6,&system_string_function_5,handle_param);
           str_len_counter = _wcsdup(handle_param);
           str_len_counter = -1;
           if (str_len_counter != 0) {
@@ -12137,7 +12137,7 @@ section_processing_jump_label_:
         }
       }
       else {
-        system_execution_function(&system_string_buffer_5,0xb4,&system_string_buffer_6,&system_18098b4e8,handle_param);
+        system_execution_function(&system_string_buffer_5,0xb4,&system_string_buffer_6,&system_string_function_6,handle_param);
         byte_check_result0 = true;
       }
       return byte_check_result0;
@@ -12172,9 +12172,9 @@ bool check_system_availability(void)
       system_short_char_value0 = (short)unaffected_register;
     } while (*(short *)(unaffected_registerDI + str_len_counter * 2) != system_short_char_value0);
     if (str_len_counter != 0) {
-      string_input_ptr = &system_18098b464;
+      string_input_ptr = &system_debug_string_2;
       if (unaff_SIL != '\0') {
-        string_input_ptr = &system_18098b45c;
+        string_input_ptr = &system_debug_string_3;
       }
       system_global_data_pointer = _wfsopen();
       if ((1 < system_global_data_pointer) && ((uint)unaffected_register < in_stack_00000090)) {
@@ -12185,19 +12185,19 @@ bool check_system_availability(void)
         if (buffer_alloc_result != in_stack_00000098) {
           thread_result_index = AllocConsole();
           thread_result_flag = thread_result_index == 1;
-          SetConsoleTitleA(&system_18098b4e0);
+          SetConsoleTitleA(&system_console_title_1);
         }
       }
       thread_validation_flag = thread_result_flag == (char)unaffected_register;
       if (system_global_data_pointer == unaffected_register) {
         str_len_counter = _wfsopen();
         if (str_len_counter == 0) {
-          system_execution_function(&system_string_buffer_5,0xc1,&system_string_buffer_6,&system_18098b520);
+          system_execution_function(&system_string_buffer_5,0xc1,&system_string_buffer_6,&system_string_function_4);
           byte_check_result2 = false;
         }
         else {
           fclose(str_len_counter);
-          system_execution_function(&system_string_buffer_5,200,&system_string_buffer_6,&system_18098b580);
+          system_execution_function(&system_string_buffer_5,200,&system_string_buffer_6,&system_string_function_5);
           str_len_counter = _wcsdup();
           str_len_counter = -1;
           if (str_len_counter != 0) {
@@ -12252,7 +12252,7 @@ section_processing_jump_label_:
         }
       }
       else {
-        system_execution_function(&system_string_buffer_5,0xb4,&system_string_buffer_6,&system_18098b4e8);
+        system_execution_function(&system_string_buffer_5,0xb4,&system_string_buffer_6,&system_string_function_6);
         byte_check_result2 = true;
       }
       return byte_check_result2;
@@ -12276,7 +12276,7 @@ bool validate_system_resources(void)
   long long unaffected_register;
   long long str_len_counter;
   fclose();
-  system_execution_function(&system_string_buffer_5,200,&system_string_buffer_6,&system_18098b580);
+  system_execution_function(&system_string_buffer_5,200,&system_string_buffer_6,&system_string_function_5);
   str_len_counter = _wcsdup();
   if (str_len_counter != 0) {
     do {
