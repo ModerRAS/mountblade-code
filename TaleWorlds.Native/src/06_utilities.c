@@ -3143,13 +3143,13 @@ uint64 execute_resource_command(longlong resourceHandleIdentifier)
   if ((int)systemStatus != 0) {
     return systemStatus;
   }
-  resourceBuffer = *(longlong *)(longStackX8Var2 + 8);
+  resourceBuffer = *(longlong *)(systemMemoryHandle + 8);
   if (resourceBuffer != 0) {
     floatVarfloatVar7 = *(float *)(resourceHandleIdentifier + POINTER_DATA_OFFSET);
     for (validationResultArray = *(uint64 **)(resourceBuffer + BUFFER_DATA_OFFSET);
         (*(uint64 **)(resourceBuffer + BUFFER_DATA_OFFSET) <= validationResultArray &&
         (validationResultArray < *(uint64 **)(resourceBuffer + BUFFER_DATA_OFFSET) + *(int *)(resourceBuffer + listHeadOffset))); validationResultArray = validationResultArray + 1) {
-      systemStatus = utilityHandleResourceOperation(*validationResultArray,floatVarfloatVar7,0);
+      systemStatus = utilityHandleResourceOperation(*validationResultArray,resourcePosition,0);
       if ((int)systemStatus != 0) {
         return systemStatus;
       }
@@ -3987,26 +3987,26 @@ uint64 get_file_position(longlong resourceHandleIdentifier)
 
 {
   longlong resourceBuffer;
-  uint loopCounter;
-  uint loopCounter;
+  uint resourceIndex;
+  uint resourceCounter;
   uint64 systemStatus;
   uint64 *validationResultArray;
-  int integerVar6;
-  float floatVarfloatVar7;
-  byte arrayVar8 [16];
-  longlong longStackX8Var2;
+  int operationStatus;
+  float resourcePosition;
+  byte systemBuffer [16];
+  longlong systemMemoryHandle;
   
-  systemStatus = SystemMemoryFunction(*(uint32 *)(resourceHandleIdentifier + resourceHandleDataOffset),&longStackX8Var2longStackX8Var2);
+  systemStatus = SystemMemoryFunction(*(uint32 *)(resourceHandleIdentifier + resourceHandleDataOffset),&systemMemoryHandle);
   if ((int)systemStatus != 0) {
     return systemStatus;
   }
-  resourceBuffer = *(longlong *)(longStackX8Var2 + 8);
+  resourceBuffer = *(longlong *)(systemMemoryHandle + 8);
   if (resourceBuffer != 0) {
-    floatVarfloatVar7 = *(float *)(resourceHandleIdentifier + RESOURCE_DATA_INDEX);
+    resourcePosition = *(float *)(resourceHandleIdentifier + RESOURCE_DATA_INDEX);
     for (validationResultArray = *(uint64 **)(resourceBuffer + BUFFER_DATA_OFFSET);
         (*(uint64 **)(resourceBuffer + BUFFER_DATA_OFFSET) <= validationResultArray &&
         (validationResultArray < *(uint64 **)(resourceBuffer + BUFFER_DATA_OFFSET) + *(int *)(resourceBuffer + listHeadOffset))); validationResultArray = validationResultArray + 1) {
-      systemStatus = utilityHandleResourceOperation(*validationResultArray,floatVarfloatVar7,0);
+      systemStatus = utilityHandleResourceOperation(*validationResultArray,resourcePosition,0);
       if ((int)systemStatus != 0) {
         return systemStatus;
       }
@@ -4100,12 +4100,12 @@ ulonglong create_directory(longlong resourceHandleIdentifier,uint64 resourceBuff
   uint functionResultVar;
   ulonglong loopCounter;
   longlong arrayHandleData;
-  uint64 unsignedStackX8;
+  uint64 localRegisterR8;
   uint32 localBuffer [2];
-  longlong lStack_50;
+  longlong localStackVar50;
   int signedLocalVar;
   
-  loopCounter = SystemMemoryFunction(*(uint32 *)(resourceHandleIdentifier + FIELD_OFFSET_3),&unsignedStackX8unsignedStackX8);
+  loopCounter = SystemMemoryFunction(*(uint32 *)(resourceHandleIdentifier + FIELD_OFFSET_3),&localRegisterR8);
   if ((int)loopCounter == 0) {
     signedLocalVar = *(int *)(resourceHandleIdentifier + resourceHandleOffset);
     if ((0 < signedLocalVar) && (*(uint *)(resourceHandleIdentifier + byteOffsetFlag) < 2)) {
