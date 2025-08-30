@@ -211,6 +211,12 @@
 #define SYSTEM_STACK_OFFSET_NEGATIVE_3 -3
 #define SYSTEM_STACK_OFFSET_NEGATIVE_2 -2
 #define SYSTEM_STACK_OFFSET_POSITIVE_4 4
+
+// 系统数组索引常量语义化定义
+#define SYSTEM_ARRAY_INDEX_PREVIOUS 2
+#define SYSTEM_ARRAY_INDEX_NEXT 1
+#define SYSTEM_ARRAY_INDEX_STATUS 6
+#define SYSTEM_ARRAY_OFFSET_SIZE 8
 #define SYSTEM_MEMORY_POOL_SIZE_SMALL 0x70
 #define SYSTEM_MEMORY_POOL_SIZE_MEDIUM 0xa8
 #define SYSTEM_MEMORY_POOL_SIZE_LARGE 0xc0
@@ -17965,7 +17971,7 @@ void InitializePhysicsSystem(void)
   ConfigureSystemParameters(&system_buffer_ptr_graphics_main,compare_result);
   node_next = (uint32_t *)(system_buffer_ptr_graphics_data + init_stack_param_608);
   *node_next = SYSTEM_STRING_ENGINE_TOKEN;
-  node_next[1] = SYSTEM_STRING_CONFIG_TOKEN_SHORT;
+  node_next[SYSTEM_ARRAY_INDEX_NEXT] = SYSTEM_STRING_CONFIG_TOKEN_SHORT;
   node_next[2] = SYSTEM_STRING_INFO_TOKEN;
   node_next[3] = SYSTEM_STRING_EXT_TOKEN;
   *(uint16_t *)(node_next + 4) = SYSTEM_STRING_T_CHAR;
@@ -18056,11 +18062,11 @@ void ConfigureGraphicsParameters(uint64_t handleIdentifier,uint64_t resourceIden
   }
   node_previous = (uint64_t *)(system_configuration_data + SYSTEM_CONFIG_SIZE_STATUS0 + (longlong)compare_result * SYSTEM_DATA_COMPARE_SIZE0);
   system_ptr_value = node_previous;
-  if ((uint64_t *)node_previous[2] != (uint64_t *)SYSTEM_NULL_POINTER) {
-    node_next = (uint64_t *)node_previous[2];
+  if ((uint64_t *)node_previous[SYSTEM_ARRAY_INDEX_PREVIOUS] != (uint64_t *)SYSTEM_NULL_POINTER) {
+    node_next = (uint64_t *)node_previous[SYSTEM_ARRAY_INDEX_PREVIOUS];
     do {
       if (*(int *)(system_configuration + SYSTEM_DATA_COMPARE_SIZE) == 0) {
-        system_ptr_value = (uint64_t *)node_next[1];
+        system_ptr_value = (uint64_t *)node_next[SYSTEM_ARRAY_INDEX_NEXT];
         system_boolean_flag = false;
       }
       else {
@@ -18078,7 +18084,7 @@ void ConfigureGraphicsParameters(uint64_t handleIdentifier,uint64_t resourceIden
           } while (system_int_result_unsigned != 0);
           system_boolean_flag = 0 < compare_result;
           if (compare_result < 1) {
-            system_ptr_value = (uint64_t *)node_next[1];
+            system_ptr_value = (uint64_t *)node_next[SYSTEM_ARRAY_INDEX_NEXT];
             goto INIT_LABEL_PROCESS_POINTER_DATA;
           }
         }
@@ -18178,7 +18184,7 @@ void InitializeSystemModule31(uint64_t handleIdentifier,uint64_t resourceIdentif
   ConfigureSystemParameters(&system_buffer_ptr_thread_context,SYSTEM_OFFSET_18);
   node_next = (uint32_t *)(system_buffer_ptr_thread_data + init_stack_uint_param_thread);
   *node_next = SYSTEM_STRING_PREFIX_TOKEN;
-  node_next[1] = SYSTEM_STRING_ROM_TOKEN;
+  node_next[SYSTEM_ARRAY_INDEX_NEXT] = SYSTEM_STRING_ROM_TOKEN;
   node_next[2] = SYSTEM_STRING_CONFIG_TOKEN_UNDERSCORE;
   node_next[3] = SYSTEM_STRING_GOL_TOKEN;
   node_next[4] = SYSTEM_STRING_TXT_TOKEN;
@@ -23033,7 +23039,7 @@ bool InitializeSystemResources(longlong handleIdentifier)
     do {
       if (intStack_20 == 0) {
         system_boolean_flag = false;
-        system_ptr_value = (uint64_t *)node_next[1];
+        system_ptr_value = (uint64_t *)node_next[SYSTEM_ARRAY_INDEX_NEXT];
       }
       else {
         if (*(int *)(node_next + 6) == 0) {
@@ -23049,7 +23055,7 @@ bool InitializeSystemResources(longlong handleIdentifier)
           } while (system_int_result_unsigned != 0);
           system_boolean_flag = 0 < system_integer_result;
           if (system_int_result < 1) {
-            system_ptr_value = (uint64_t *)node_next[1];
+            system_ptr_value = (uint64_t *)node_next[SYSTEM_ARRAY_INDEX_NEXT];
             goto INIT_LABEL_SYSTEM_51f8b;
           }
         }
@@ -24653,7 +24659,7 @@ INIT_LABEL_SYSTEM_54912:
                 node_previous = (uint32_t *)(system_buffer_ptr_150 + uintStack_148);
                 *node_previous = 0x6563732f;
                 node_previous[1] = SYSTEM_INIT_DATA_OFFSET_782e656e;
-                node_previous[2] = 0x2e6f6373;
+                node_previous[SYSTEM_ARRAY_INDEX_PREVIOUS] = 0x2e6f6373;
                 node_previous[3] = 0x65637378;
                 *(uint16_t *)(node_previous + 4) = 0x656e;
                 *(uint8_t *)((longlong)node_previous + SYSTEM_CONFIG_SIZE_RENDER) = 0;
@@ -32594,7 +32600,7 @@ longlong InitializeVideoSystem(longlong handleIdentifier)
             *(uint32_t *)(system_long_result + node_previous[1]) = 0;
             system_long_value = system_long_result + SYSTEM_DATA_COMPARE_SIZE;
           }
-          node_previous[2] = (ulonglong)system_ptr_value;
+          node_previous[SYSTEM_ARRAY_INDEX_PREVIOUS] = (ulonglong)system_ptr_value;
           *(ulonglong **)(handleIdentifier + SYSTEM_CONFIG_OFFSET_30) = node_previous;
         }
         *(uint32_t *)(handleIdentifier + 600) = 0;
@@ -33141,7 +33147,7 @@ uint64_t InitializeSystemModule23(longlong handleIdentifier,longlong resourceIde
       system_ptr_value = (uint64_t *)(*(longlong *)(handleIdentifier + SYSTEM_INIT_DATA_OFFSET_78) + system_int_result_unsigned * SYSTEM_DATA_COMPARE_SIZE);
       system_status_code = system_pointer_var[1];
       *node_next = *system_ptr_value;
-      node_next[1] = system_integer_result_unsigned;
+      node_next[SYSTEM_ARRAY_INDEX_NEXT] = system_integer_result_unsigned;
       system_status_code = system_integer_result_unsigned;
       node_next = node_next + 2;
     } while (system_int_result_unsigned != *(ulonglong *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_70));
@@ -39238,7 +39244,7 @@ uint64_t * InitializeSystemModule47(longlong *handleIdentifier)
             *(uint32_t *)((longlong)system_pointer_var + node_previous[1]) = 0;
             system_ptr_value = system_pointer_var + 2;
           }
-          node_previous[2] = (ulonglong)system_ptr_value;
+          node_previous[SYSTEM_ARRAY_INDEX_PREVIOUS] = (ulonglong)system_ptr_value;
           handleIdentifier[6] = (longlong)node_previous;
         }
         *(uint32_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4b) = 0;
@@ -39269,7 +39275,7 @@ uint64_t * InitializeSystemModule47(longlong *handleIdentifier)
   node_next = (uint64_t *)AllocateSystemResource(systemMemoryPool,SYSTEM_OBJECT_OFFSET_68,10);
   system_ptr_value = system_ptr_value;
   if (node_next != (uint64_t *)SYSTEM_NULL_POINTER) {
-    node_next[1] = 0;
+    node_next[SYSTEM_ARRAY_INDEX_NEXT] = 0;
     *(uint8_t *)(node_next + 2) = 0;
     node_next[3] = 0;
     *node_next = &g_system_global_config;
@@ -39293,7 +39299,7 @@ uint64_t * InitializeSystemModule47(longlong *handleIdentifier)
       if (system_long_result == 0) {
         system_ptr_value = system_ptr_value;
       }
-      node_next[1] = system_ptr_value;
+      node_next[SYSTEM_ARRAY_INDEX_NEXT] = system_ptr_value;
       LOCK();
       system_long_value = *handleIdentifier;
       thread_operation_flag = system_long_result == system_long_value;
@@ -41021,7 +41027,7 @@ uint64_t * SetupSystemServices(longlong *handleIdentifier)
             *(uint32_t *)((longlong)system_pointer_var + node_previous[1]) = 0;
             system_ptr_value = system_pointer_var + 2;
           }
-          node_previous[2] = (ulonglong)system_ptr_value;
+          node_previous[SYSTEM_ARRAY_INDEX_PREVIOUS] = (ulonglong)system_ptr_value;
           handleIdentifier[6] = (longlong)node_previous;
         }
         *(uint32_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4b) = 0;
@@ -41052,7 +41058,7 @@ uint64_t * SetupSystemServices(longlong *handleIdentifier)
   node_next = (uint64_t *)AllocateSystemResource(systemMemoryPool,SYSTEM_OBJECT_OFFSET_68,10);
   system_ptr_value = system_ptr_value;
   if (node_next != (uint64_t *)SYSTEM_NULL_POINTER) {
-    node_next[1] = 0;
+    node_next[SYSTEM_ARRAY_INDEX_NEXT] = 0;
     *(uint8_t *)(node_next + 2) = 0;
     node_next[3] = 0;
     *node_next = &g_system_global_config;
@@ -41076,7 +41082,7 @@ uint64_t * SetupSystemServices(longlong *handleIdentifier)
       if (system_long_result == 0) {
         system_ptr_value = system_ptr_value;
       }
-      node_next[1] = system_ptr_value;
+      node_next[SYSTEM_ARRAY_INDEX_NEXT] = system_ptr_value;
       LOCK();
       system_long_value = *handleIdentifier;
       thread_operation_flag = system_long_result == system_long_value;
@@ -47213,7 +47219,7 @@ void InitializeAudioMutex(uint64_t *handleIdentifier,ulonglong resourceIdentifie
       system_status_code = resourceIdentifier;
       do {
         node_previous[1] = 0;
-        node_previous[2] = 0;
+        node_previous[SYSTEM_ARRAY_INDEX_PREVIOUS] = 0;
         node_previous[3] = 0;
         *(uint32_t *)(node_previous + 4) = 0;
         *(uint16_t *)((longlong)system_pointer_var + -10) = 0;
@@ -50906,7 +50912,7 @@ INIT_LABEL_SYSTEM_782e0:
     *(uint64_t *)((longlong)node_previous + 0x2c) = SYSTEM_MAX_64BIT_VALUE;
     *(uint32_t *)(node_previous + 9) = SYSTEM_OFFSET_Ffffffff;
     *node_previous = 0;
-    node_previous[2] = 0;
+    node_previous[SYSTEM_ARRAY_INDEX_PREVIOUS] = 0;
     node_previous[NODE_INDEX_ENGINE_ID_2] = 0;
     *(uint32_t *)(node_previous + 5) = SYSTEM_OFFSET_Ffffffff;
     *(uint32_t *)(node_previous + 4) = SYSTEM_OFFSET_Ffffffff;
@@ -51003,7 +51009,7 @@ INIT_LABEL_SYSTEM_782e0:
     *(uint64_t *)((longlong)node_previous + 0x2c) = SYSTEM_MAX_64BIT_VALUE;
     *(uint32_t *)(node_previous + 9) = SYSTEM_OFFSET_Ffffffff;
     *node_previous = 0;
-    node_previous[2] = 0;
+    node_previous[SYSTEM_ARRAY_INDEX_PREVIOUS] = 0;
     node_previous[NODE_INDEX_ENGINE_ID_2] = 0;
     *(uint32_t *)(node_previous + 5) = SYSTEM_OFFSET_Ffffffff;
     *(uint32_t *)(node_previous + 4) = SYSTEM_OFFSET_Ffffffff;
@@ -51101,7 +51107,7 @@ INIT_LABEL_SYSTEM_782e0:
     *(uint64_t *)((longlong)node_previous + 0x2c) = SYSTEM_MAX_64BIT_VALUE;
     *(uint32_t *)(node_previous + 9) = SYSTEM_OFFSET_Ffffffff;
     *node_previous = 0;
-    node_previous[2] = 0;
+    node_previous[SYSTEM_ARRAY_INDEX_PREVIOUS] = 0;
     node_previous[NODE_INDEX_ENGINE_ID_2] = 0;
     *(uint32_t *)(node_previous + 5) = SYSTEM_OFFSET_Ffffffff;
     *(uint32_t *)(node_previous + 4) = SYSTEM_OFFSET_Ffffffff;
@@ -51189,7 +51195,7 @@ INIT_LABEL_SYSTEM_782e0:
     *(uint64_t *)((longlong)node_previous + 0x2c) = SYSTEM_MAX_64BIT_VALUE;
     *(uint32_t *)(node_previous + 9) = SYSTEM_OFFSET_Ffffffff;
     *node_previous = 0;
-    node_previous[2] = 0;
+    node_previous[SYSTEM_ARRAY_INDEX_PREVIOUS] = 0;
     node_previous[NODE_INDEX_ENGINE_ID_2] = 0;
     *(uint32_t *)(node_previous + 5) = SYSTEM_OFFSET_Ffffffff;
     *(uint32_t *)(node_previous + 4) = SYSTEM_OFFSET_Ffffffff;
