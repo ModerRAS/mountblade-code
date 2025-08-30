@@ -22028,7 +22028,7 @@ void ConfigureGraphicsShader(void)
     system_configuration_data = timeGetTime();
   }
   else {
-    system_configuration_data = 0xb061;
+    system_configuration_data = SYSTEM_CONFIG_VALUE_B061;
   }
   system_long_value = systemCoreData;
   system_configuration_data = system_configuration_data ^ SYSTEM_FLAG_BIT_41c64e6d;
@@ -23126,7 +23126,7 @@ void InitializeSystemComponents(longlong handleIdentifier,longlong resourceIdent
   system_status_code = ValidateResourceAllocation(system_pointer_var);
   init_stack_param_58 = CONCAT44(init_stack_param_58._4_4_,system_int_result_unsigned);
   *system_ptr_value = SYSTEM_STRING_MODULE_DOM;
-  *(uint16_t *)(system_pointer_var + 1) = 0x2a5f;
+  *(uint16_t *)(system_pointer_var + 1) = SYSTEM_CONFIG_VALUE_2A5F;
   *(uint8_t *)((longlong)system_pointer_var + 10) = 0;
   init_stack_param_60 = 10;
   compare_result = CompareSystemBuffers(handleIdentifier + 0x2c0,&system_buffer_ptr_config_data);
@@ -23141,7 +23141,7 @@ void InitializeSystemComponents(longlong handleIdentifier,longlong resourceIdent
     system_status_code = ValidateResourceAllocation(system_pointer_var);
     init_stack_uint_param_data = CONCAT44(init_stack_uint_param_data._4_4_,system_int_result_unsigned);
     *system_ptr_value = SYSTEM_STRING_MODULE_DOM_Asterisk;
-    *(uint16_t *)(system_pointer_var + 1) = 0x5f53;
+    *(uint16_t *)(system_pointer_var + 1) = SYSTEM_CONFIG_VALUE_5F53;
     *(uint8_t *)((longlong)system_pointer_var + 10) = 0;
     init_stack_uint_param_80 = 10;
     CompareSystemBuffers(handleIdentifier + 0x2c0,&system_buffer_ptr_small_buffer);
@@ -23186,7 +23186,7 @@ uint64_t InitializeSystemModule16(uint64_t handleIdentifier,uint64_t resourceIde
   system_status_code = ValidateResourceAllocation(system_pointer_var);
   init_stack_ulong_param_50 = CONCAT44(init_stack_ulong_param_50._4_4_,system_int_result_unsigned);
   *system_ptr_value = SYSTEM_STRING_MODULE_DOM;
-  *(uint16_t *)(system_pointer_var + 1) = 0x2a5f;
+  *(uint16_t *)(system_pointer_var + 1) = SYSTEM_CONFIG_VALUE_2A5F;
   *(uint8_t *)((longlong)system_pointer_var + 10) = 0;
   init_stack_param_58 = 10;
   compare_result = CompareSystemBuffers(system_long_result + 0x2c0,&system_buffer_ptr_system_contextsystem_buffer_ptr_system_context);
@@ -23201,7 +23201,7 @@ uint64_t InitializeSystemModule16(uint64_t handleIdentifier,uint64_t resourceIde
     system_status_code = ValidateResourceAllocation(system_pointer_var);
     init_stack_uint_param_size = CONCAT44(init_stack_uint_param_size._4_4_,system_int_result_unsigned);
     *system_ptr_value = SYSTEM_STRING_MODULE_DOM_Asterisk;
-    *(uint16_t *)(system_pointer_var + 1) = 0x5f53;
+    *(uint16_t *)(system_pointer_var + 1) = SYSTEM_CONFIG_VALUE_5F53;
     *(uint8_t *)((longlong)system_pointer_var + 10) = 0;
     init_stack_uint_param_data = 10;
     CompareSystemBuffers(system_long_result + 0x2c0,&system_buffer_ptr_data_array);
@@ -23271,8 +23271,8 @@ void InitializeAudioMutex(longlong handleIdentifier,float resourceIdentifier,uin
         system_float_value = *(float *)(g_system_base_1 + SYSTEM_OFFSET_1f8);
       }
       system_float_value = *(float *)(systemCoreData + SYSTEM_OFFSET_1E30);
-      if (0 < *(int *)(systemCoreData + 0x1f80)) {
-        system_float_value = system_result_float / (float)*(int *)(systemCoreData + 0x1f80);
+      if (0 < *(int *)(systemCoreData + SYSTEM_DATA_OFFSET_1f80)) {
+        system_float_value = system_result_float / (float)*(int *)(systemCoreData + SYSTEM_DATA_OFFSET_1f80);
       }
       system_float_value = (float)((int)system_result_float + -1);
       if (system_result_float <= (float)((int)system_result_float + -1)) {
