@@ -64,34 +64,34 @@ dataValue g_errorHandlerLoggingEnabled;       // 错误处理器日志
 // 函数: dataValueValue g_validate_memory_config;
 // 内存配置验证函数180941630
 dataValue g_validate_memory_config;
-byte g_g_thread_sync_initialized;
+byte g_thread_sync_initialized;
 
 // 函数: dataValueValue g_initialize_thread_sync;
 // 线程同步初始化函数180941650
 dataValue g_initialize_thread_sync;
-byte g_g_thread_sync_active;
+byte g_thread_sync_active;
 
 // 函数: dataValueValue g_initialize_event_handler;
 // 事件处理初始化函数180941690
 dataValue g_initialize_event_handler;
-byte g_g_thread_sync_pending;
+byte g_thread_sync_pending;
 
 // 函数: dataValueValue g_initialize_semaphore;
 // 信号量初始化函数1809416d0
 dataValue g_initialize_semaphore;
-byte g_g_semaphore_initialized;
+byte g_semaphore_initialized;
 
 // 函数: dataValueValue g_cleanup_thread_sync;
 dataValue g_cleanup_thread_sync;
-dataValue g_g_thread_cleanup_data;
-dataValue g_g_thread_cleanup_ptr;
+dataValue g_thread_cleanup_data;
+dataValue g_thread_cleanup_ptr;
 
 // 函数: dataValueValue g_close_system_handle;
 dataValue g_close_system_handle;
 
 // 函数: dataValueValue g_destroy_mutex;
 dataValue g_destroy_mutex;
-dataValue g_g_mutex_destroy_handle;
+dataValue g_mutex_destroy_handle;
 dataValue g_g_mutex_destroy_context;
 dataValue g_g_mutex_destroy_callback;
 dataValue g_g_mutex_destroy_work_data;
