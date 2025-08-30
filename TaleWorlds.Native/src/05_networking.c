@@ -1,5 +1,41 @@
 #include "TaleWorlds.Native.Split.h"
 
+// 结构体字段语义化常量定义
+#define STRUCT_FIELD_BYTE_0    _byte_0_
+#define STRUCT_FIELD_WORD_0    _word_0_
+#define STRUCT_FIELD_DWORD_0   _dword_0_
+#define STRUCT_FIELD_QWORD_0   _qword_0_
+#define STRUCT_FIELD_BYTE_1    _byte_1_
+#define STRUCT_FIELD_WORD_1    _word_1_
+#define STRUCT_FIELD_DWORD_1   _dword_1_
+#define STRUCT_FIELD_SEPTA_1   _septabyte_1_
+#define STRUCT_FIELD_QWORD_1   _qword_1_
+#define STRUCT_FIELD_BYTE_2    _byte_2_
+#define STRUCT_FIELD_WORD_2    _word_2_
+#define STRUCT_FIELD_DWORD_2   _dword_2_
+#define STRUCT_FIELD_QWORD_2   _qword_2_
+#define STRUCT_FIELD_BYTE_3    _byte_3_
+#define STRUCT_FIELD_WORD_3    _word_3_
+#define STRUCT_FIELD_DWORD_3   _dword_3_
+#define STRUCT_FIELD_QWORD_3   _qword_3_
+#define STRUCT_FIELD_BYTE_4    _byte_4_
+#define STRUCT_FIELD_DWORD_4   _dword_4_
+#define STRUCT_FIELD_QWORD_4   _qword_4_
+#define STRUCT_FIELD_BYTE_5    _byte_5_
+#define STRUCT_FIELD_WORD_5    _word_5_
+#define STRUCT_FIELD_DWORD_5   _dword_5_
+#define STRUCT_FIELD_BYTE_6    _byte_6_
+#define STRUCT_FIELD_WORD_6    _word_6_
+#define STRUCT_FIELD_DWORD_6   _dword_6_
+#define STRUCT_FIELD_BYTE_7    _byte_7_
+#define STRUCT_FIELD_WORD_7    _word_7_
+#define STRUCT_FIELD_DWORD_7   _dword_7_
+#define STRUCT_FIELD_DWORD_8   _dword_8_
+#define STRUCT_FIELD_QWORD_8   _qword_8_
+#define STRUCT_FIELD_DWORD_11  _dword_11_
+#define STRUCT_FIELD_DWORD_12  _dword_12_
+#define STRUCT_FIELD_WORD_14   _word_14_
+
 // 最新美化内容（2025年8月30日）：
 // - 完成网络系统函数内部变量名的语义化美化工作
 // - 将timeout_config_ptr替换为network_timeout_config_ptr（网络超时配置指针）
