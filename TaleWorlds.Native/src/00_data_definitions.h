@@ -126,8 +126,7 @@
 #define SYSTEM_MEMORY_OFFSET_D 0xd
 #define SYSTEM_MEMORY_OFFSET_E 0xe
 #define SYSTEM_MEMORY_OFFSET_RESERVED_461 0x461
-#define SYSTEM_MEMORY_OFFSET_RESERVED_A3B 0xa3b
-#define SYSTEM_MEMORY_OFFSET_RESERVED_HEX_A3B 0xa3b
+#define SYSTEM_MEMORY_OFFSET_RESERVED_A3B 0xa3b  // 保留内存偏移量A3B
 
 // 系统指针偏移量常量
 #define SYSTEM_POINTER_OFFSET_STANDARD_C 0xc
@@ -14938,13 +14937,13 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_PATH_BUFFER_SIZE_MEDIUM 0x19                            // 路径缓冲区大小25（中）
 
 // 新增语义化偏移量常量（2025年8月30日最终批次美化）
-#define SYSTEM_OFFSET_E8 0xe8                                      // E8偏移量
-#define SYSTEM_OFFSET_D 0x0d                                       // D偏移量
-#define SYSTEM_OFFSET_13 0x13                                      // 13偏移量
-#define SYSTEM_OFFSET_24 0x24                                      // 24偏移量
-#define SYSTEM_OFFSET_3088 0x3088                                  // 3088偏移量
-#define SYSTEM_OFFSET_282 0x282                                    // 282偏移量
-#define SYSTEM_OFFSET_ENTRY_SIZE 0x14                              // 入口大小偏移量
-#define SYSTEM_OFFSET_NEGATIVE_BUFFER_SIZE -0x400                  // 负缓冲区大小偏移量
+#define SYSTEM_OFFSET_JUMP_INSTRUCTION 0xe8                               // 跳转指令偏移量
+#define SYSTEM_OFFSET_CONTROL_REGISTER 0x0d                               // 控制寄存器偏移量
+#define SYSTEM_OFFSET_STANDARD_PARAM 0x13                                // 标准参数偏移量
+#define SYSTEM_OFFSET_EXTENDED_CONTROL 0x24                              // 扩展控制偏移量
+#define SYSTEM_OFFSET_MEMORY_SCALE_FACTOR 0x3088                          // 内存缩放因子偏移量
+#define SYSTEM_OFFSET_DATA_ALIGNMENT_FACTOR 0x282                        // 数据对齐因子偏移量
+#define SYSTEM_OFFSET_STRUCTURE_ENTRY_SIZE 0x14                          // 结构体入口大小偏移量
+#define SYSTEM_OFFSET_NEGATIVE_LARGE_BUFFER -0x400                        // 负大缓冲区偏移量
 
 #endif // DATA_DEFINITIONS_H
