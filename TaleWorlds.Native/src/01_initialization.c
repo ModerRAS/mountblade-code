@@ -1939,7 +1939,7 @@ int InitializeEngineBaseStructures(void)
   g_memory_pool_state = 0;
   g_memory_pool_size = 0;
 // 初始化引擎状态函数
-void InitializeEngineState_18002d150(void)
+void InitializeEngineState(void)
 
 {
   char is_initialized;
@@ -2019,7 +2019,7 @@ int InitializeSystemSemaphore(void)
   return (semaphore_result != 0) - 1;
 }
 // 初始化渲染系统函数
-void InitializeRenderingSystem_18002d320(void)
+void InitializeRenderingSystem(void)
 
 {
   char is_initialized;
@@ -2065,7 +2065,7 @@ void InitializeRenderingSystem_18002d320(void)
   return;
 }
 // 初始化音频系统函数
-void InitializeAudioSystem_18002d420(void)
+void InitializeAudioSystem(void)
 
 {
   char is_initialized;
@@ -2141,7 +2141,7 @@ void InitializeConfigData(void)
   return;
 }
 // 初始化网络系统函数
-void InitializeNetworkSystem_18002d5e0(void)
+void InitializeNetworkSystem(void)
 
 {
   char is_initialized;
@@ -58866,17 +58866,14 @@ void InitializeSystemResources(uint64_t handleIdentifier,longlong resourceIdenti
          (longlong)system_int_result);
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// function_ptr g_function_18004b6f0;
-void* g_function_18004b6f0;
-// function_ptr g_function_18006f4c0;
-
-void* g_function_18006f4c0;
-// function_ptr g_function_18004c090;
-
-void* g_function_18004c090;
-// function_ptr g_function_180055ed0;
-
-void* g_function_180055ed0;
+// function_ptr g_system_audio_callback;
+void* g_system_audio_callback;
+// function_ptr g_system_graphics_callback;
+void* g_system_graphics_callback;
+// function_ptr g_system_input_callback;
+void* g_system_input_callback;
+// function_ptr g_system_network_callback;
+void* g_system_network_callback;
 
 uint32_t g_global_system_config;
 
