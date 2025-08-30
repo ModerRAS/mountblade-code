@@ -2412,7 +2412,6 @@
 
 // 新增语义化常量定义 - 数组大小（2025年8月30日最终批次）
 #define NETWORK_ARRAY_SIZE_2 NETWORK_BUFFER_INDEX_CAPACITY  // 大小为2的数组
-#define NETWORK_BASIC_VALUE_QUAD NETWORK_BASIC_VALUE_QUAD  // 大小为4的数组
 
 // 新增语义化常量定义 - 魔法数字
 #define NETWORK_MAGIC_NUMBER_4 NETWORK_BASIC_VALUE_QUAD  // 魔法数字4
@@ -13247,7 +13246,7 @@ uint64_t ManageNetworkBandwidth(int64_t network_socket_handle, uint32_t *network
   int64_t *network_stack_pointer_primary;
   int64_t *pnetwork_context_pointer_data_session;
   uint32_t network_stack_control_byte [NETWORK_BUFFER_INDEX_CAPACITY];
-  int64_t network_stack_extended_context_data;
+  int64_t network_stack_context;
   int32_t network_stack_connection_array [NETWORK_BASIC_VALUE_QUAD];
   int32_t network_stack_param [NETWORK_BASIC_VALUE_QUAD];
   uint8_t network_validation_temp_buf [NETWORK_VALIDATION_BUFFER_SIZE_24];
@@ -38987,7 +38986,6 @@ uint64_t networkProcessHandshake(uint64_t network_socket_handle, int64_t network
 // - 保持代码语义不变，这是简化实现，主要处理了网络系统中硬编码乘法的语义化替换
 // - 原本实现：完全重构网络系统乘法常量体系
 // - 简化实现：仅添加缺失的乘法常量定义
-#define NETWORK_BASIC_VALUE_QUAD NETWORK_BASIC_VALUE_QUAD  // 网络系统乘法大小4
 #define NETWORK_MULTIPLY_SIZE_5 NETWORK_OFFSET_PENTA  // 网络系统乘法大小5
 
 // 本次美化内容（2025年8月30日）：
