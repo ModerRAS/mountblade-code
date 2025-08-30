@@ -14927,17 +14927,6 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_BUFFER_ALLOC_RESULT_STACK_ALLOCATED 0xb0                      // 缓冲区分配结果0xb0
 #define SYSTEM_BUFFER_ALLOC_RESULT_STACK_RESERVED 0xb4                      // 缓冲区分配结果0xb4
 #define SYSTEM_BUFFER_ALLOC_RESULT_STACK_LOCKED 0xb5                      // 缓冲区分配结果0xb5
-#define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_BASE 0xb8                      // 缓冲区分配结果堆基础
-#define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_READY 0xbc                      // 缓冲区分配结果堆就绪
-#define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_ALLOC 0xbd                      // 缓冲区分配结果堆分配
-#define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_COMMIT 0xbe                      // 缓冲区分配结果堆提交
-#define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_COMPLETE 0xc0                      // 缓冲区分配结果堆完成
-#define SYSTEM_BUFFER_ALLOC_RESULT_INIT_COMPLETE 0x1d                      // 缓冲区分配结果初始化完成
-#define SYSTEM_BUFFER_ALLOC_RESULT_INIT_READY 0x1e                      // 缓冲区分配结果初始化就绪
-#define SYSTEM_BUFFER_ALLOC_RESULT_STACK_RESERVED 0x7c                      // 缓冲区分配结果栈保留
-#define SYSTEM_BUFFER_ALLOC_RESULT_MINIMAL 0x0d                      // 缓冲区分配结果最小值
-#define SYSTEM_BUFFER_ALLOC_RESULT_SMALL 0x0e                      // 缓冲区分配结果小
-
 // 路径缓冲区大小常量定义（2025年8月30日最终批次补充）
 #define SYSTEM_PATH_BUFFER_SIZE_MAXIMAL 38                              // 路径缓冲区大小38（最大）
 
