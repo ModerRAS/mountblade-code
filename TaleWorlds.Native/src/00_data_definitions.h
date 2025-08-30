@@ -1139,7 +1139,7 @@ int initialize_video_module(void)
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &system_config_buffer_primary;
   system_config_buffer_primary = 0;
-  system_global_data_pointer = 9;
+  system_global_data_pointer = SYSTEM_OPCODE_VIDEO_INIT;
   strcpy_s(&system_config_buffer_primary,SYSTEM_CONFIG_BUFFER_SIZE,&system_string_secondary,system_string_length_parameter,DEFAULT_THREAD_POOL_FLAG);
   system_initialization_result = system_execution_function(memory_manager_initialization_callback);
   return (system_initialization_result != 0) - 1;
@@ -1151,7 +1151,7 @@ int initialize_input_module(void)
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &system_config_buffer_secondary;
   system_config_buffer_secondary = 0;
-  system_global_data_pointer = 9;
+  system_global_data_pointer = SYSTEM_OPCODE_INPUT_INIT;
   strcpy_s(&system_config_buffer_secondary,SYSTEM_CONFIG_BUFFER_SIZE,&system_string_tertiary,system_string_length_parameter,DEFAULT_THREAD_POOL_FLAG);
   system_initialization_result = system_execution_function(thread_manager_initialization_callback);
   return (system_initialization_result != 0) - 1;
