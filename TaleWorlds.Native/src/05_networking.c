@@ -4060,20 +4060,20 @@ void* g_network_address;
 void* g_network_protocol;
 void* g_network_security;
 void* g_network_timeout;
-void* g_network_packet_size_ptr;
-void* g_network_max_packet_size;
-void* g_network_compression_object;
+void* g_network_packet_size_ptr;          // 网络包大小指针
+void* g_network_max_packet_size;           // 网络最大包大小
+void* g_network_compression_object;        // 网络压缩对象
 // 网络连接初始化函数指针
 typedef void (*NetworkInitializeConnectionFunc)(void);
 NetworkInitializeConnectionFunc NetworkInitializeConnection;
-void* g_network_session_data;
+void* g_network_session_data;               // 网络会话数据
 // 网络监听器创建函数指针
 typedef void* (*NetworkCreateListenerFunc)(int32_t port);
 NetworkCreateListenerFunc NetworkCreateListener;
 // 网络连接接受函数指针
 typedef void* (*NetworkAcceptConnectionFunc)(void* listener);
 NetworkAcceptConnectionFunc NetworkAcceptConnection;
-void* g_network_listener;
+void* g_network_listener;                     // 网络监听器
 // 网络连接拒绝函数指针
 typedef void (*NetworkRejectConnectionFunc)(void* network_connection_processor);
 NetworkRejectConnectionFunc NetworkRejectConnection;
