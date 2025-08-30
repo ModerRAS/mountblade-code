@@ -14069,7 +14069,7 @@ int initialize_system_module_twenty_one(void)
 {
   longlong system_long_result_temp;
 
-  EngineFunction_42_4();
+  InitializeEngineCore();
   system_long_result_temp = execute_system_init(InitializeCoreSystem);
   return (system_long_result != SYSTEM_OPERATION_SUCCESS) + SYSTEM_RETURN_VALUE_SUCCESS_MINUS_1;
 }
