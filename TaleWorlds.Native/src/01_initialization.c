@@ -15408,16 +15408,16 @@ int ConfigureGraphicsParameters(void)
   initialize_system_component(NETWORK_SYSTEM_INIT_ADDR_1,SYSTEM_INIT_PARAM_POINTER_SIZE,5,&g_subsystem_init_function,InitializeNetworkSystem);
   initialize_system_component(NETWORK_SYSTEM_INIT_ADDR_2,SYSTEM_INIT_PARAM_POINTER_SIZE,5,&g_subsystem_init_function,InitializeNetworkSystem);
   _Mtx_init_in_situ(NETWORK_SYSTEM_MUTEX_ADDR,2);
-  _g_network_state_1 = 0; // 原始名称: systemCoreData
+  _g_network_state_1 = SYSTEM_INIT_STATUS_DISABLED; // 原始名称: systemCoreData
   g_network_buffer_size = SYSTEM_HANDLE_STATUS_INVALID;
-  _g_network_state_2 = 0; // 原始名称: systemCoreData
+  _g_network_state_2 = SYSTEM_INIT_STATUS_DISABLED; // 原始名称: systemCoreData
   _g_network_config_1 = SYSTEM_CONFIG_VALUE_TERTIARY; // 原始名称: system_configuration_data
   g_network_socket_handle = SYSTEM_HANDLE_STATUS_INVALID;
   g_network_packet_data = SYSTEM_HANDLE_STATUS_INVALID;
   g_network_buffer_data = SYSTEM_HANDLE_STATUS_INVALID;
   g_network_config_data = SYSTEM_CONFIG_VALUE_TERTIARY;
   g_network_state_data = SYSTEM_HANDLE_STATUS_INVALID;
-  system_memory_register_primary = 0;
+  system_memory_register_primary = SYSTEM_HANDLE_STATUS_INVALID;
   g_network_timeout_value = SYSTEM_HANDLE_STATUS_INVALID;
   g_network_connection_data = SYSTEM_CONFIG_VALUE_TERTIARY;
   EngineFunction_11_2();
@@ -16705,9 +16705,9 @@ int InitializeSystemModule36(void)
   system_configuration_data = 3;
   systemCoreData = &g_system_string_buffer;
   system_configuration_data = &g_system_string_buffer;
-  systemCoreData = 0;
+  systemCoreData = SYSTEM_HANDLE_STATUS_INVALID;
   system_configuration_data = 0;
-  systemCoreData = 0;
+  systemCoreData = SYSTEM_HANDLE_STATUS_INVALID;
   system_temp_long = execute_system_init(InitializeLogSystem);
   return (system_long_result != SYSTEM_OPERATION_SUCCESS) + SYSTEM_RETURN_VALUE_SUCCESS_MINUS_1;
 }
@@ -16816,9 +16816,9 @@ int InitializeRenderSystem(void)
   system_configuration_data = 3;
   systemCoreData = &g_system_string_buffer;
   system_configuration_data = &g_system_string_buffer;
-  systemCoreData = 0;
+  systemCoreData = SYSTEM_HANDLE_STATUS_INVALID;
   system_configuration_data = 0;
-  systemCoreData = 0;
+  systemCoreData = SYSTEM_HANDLE_STATUS_INVALID;
   system_temp_long = execute_system_init(InitializeConfigurationSystem);
   return (system_long_result != SYSTEM_OPERATION_SUCCESS) + SYSTEM_RETURN_VALUE_SUCCESS_MINUS_1;
 }
@@ -20721,7 +20721,7 @@ void ConfigureSystemHandles(void)
                     // WARNING: Subroutine does not return
     ProcessSystemOperation(system_long_result);
   }
-  systemCoreData = 0;
+  systemCoreData = SYSTEM_HANDLE_STATUS_INVALID;
   timeEndPeriod(1);
   system_temp_long = systemCoreData;
   if (systemCoreData != 0) {
@@ -20729,7 +20729,7 @@ void ConfigureSystemHandles(void)
                     // WARNING: Subroutine does not return
     ProcessSystemOperation(system_long_result);
   }
-  systemCoreData = 0;
+  systemCoreData = SYSTEM_HANDLE_STATUS_INVALID;
   return;
 }
 
@@ -22202,7 +22202,7 @@ void InitializeGraphicsMemory(longlong *handleIdentifier)
   }
   system_configuration_data = 0;
   InitializeSystemDataNode31();
-  systemCoreData = 0;
+  systemCoreData = SYSTEM_HANDLE_STATUS_INVALID;
   if (handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != 0) {
                     // WARNING: Subroutine does not return
     ProcessSystemOperation();
@@ -23146,7 +23146,7 @@ void HandleSystemOperation92(void)
   }
   system_ptr_value = (uint64_t *)*systemCoreData;
   if (system_temp_pointer != (uint64_t *)SYSTEM_NULL_POINTER) {
-    *systemCoreData = 0;
+    *systemCoreData = SYSTEM_HANDLE_STATUS_INVALID;
     (**(code **)*system_temp_pointer)(system_temp_pointer,1);
   }
   system_memory_ptr = system_configuration_data;
