@@ -2752,8 +2752,8 @@ void NetworkSendDataChunk(uint64_t network_socket_handle, uint64_t network_buffe
 // 函数: void NetworkSendDataBuffer(uint64_t network_socket_handle, uint64_t network_buffer_ptr, uint64_t network_buffer_size_var, uint64_t network_timeout_value_var_var, 
 void NetworkSendDataBuffer(uint64_t network_socket_handle, uint64_t network_buffer_ptr, uint64_t network_buffer_size_var, uint64_t network_timeout_value_var_var, 
   int64_t network_global_buffer;
-  int64_t register_xmm0_temp;
-  network_processor_handler = register_xmm0_temp;
+  int64_t register_xmm0_temporary;
+  network_processor_handler = register_xmm0_temporary;
   network_operation_result = network_initialize_socket();
       network_primary_connection_data = (**(code **)(*network_timeout_config_ptr + CONNECTION_INFO_OFFSET))(network_timeout_config_ptr, network_send_buffer_ptr, NETWORK_OPERATION_SUCCESS, network_timeout_value_var_var, network_socket_handle);
       if (network_primary_connection_data == NETWORK_OPERATION_STATUS_FAILURE) {
@@ -7088,15 +7088,15 @@ int32_t ValidatePacketFormat(int64_t *network_socket_handle)
   uint32_t network_connection_processor_data_tertiary;
   int32_t network_status_variable_value;
   socket_descriptor_value = network_socket_handle[NETWORK_SOCKET_HANDLE_INDEX_STATUS];
-    client_port_address_address = network_socket_handle[NETWORK_CONTROL_PACKET_TYPE_HANDSHAKE];
-    if (client_port_address_address != NETWORK_OPERATION_STATUS_FAILURE) {
+    client_port_address_value = network_socket_handle[NETWORK_CONTROL_PACKET_TYPE_HANDSHAKE];
+    if (client_port_address_value != NETWORK_OPERATION_STATUS_FAILURE) {
       InitializeNetworkContext();
-      CleanupNetworkContext(client_port_address_address);
+      CleanupNetworkContext(client_port_address_value);
     if (*(int32_t *)((longlong)network_socket_handle + NETWORK_CONTEXT_CAPACITY_OFFSET) == NETWORK_OPERATION_STATUS_FAILURE) {
     if ((int)network_socket_handle[NETWORK_SOCKET_HANDLE_INDEX_FAILURE] != NETWORK_OPERATION_STATUS_FAILURE) {
-      client_port_address_address = NETWORK_OPERATION_STATUS_FAILURE;
-      pdataLength = (int32_t *)network_socket_handle[NETWORK_BUFFER_SIZE_LARGE];
-        if (*pdataLength != -NETWORK_OPERATION_SUCCESS) {
+      client_port_address_value = NETWORK_OPERATION_STATUS_FAILURE;
+      packet_data_length = (int32_t *)network_socket_handle[NETWORK_BUFFER_SIZE_LARGE];
+        if (*packet_data_length != -NETWORK_OPERATION_SUCCESS) {
           network_operation_status_code = ((int32_t *)network_socket_handle[NETWORK_BUFFER_SIZE_LARGE])[network_operation_status_code];
           goto validate_network_address;
         client_port_address_address = client_port_address_address + NETWORK_OPERATION_SUCCESS;
