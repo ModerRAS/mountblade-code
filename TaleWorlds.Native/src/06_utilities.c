@@ -2237,26 +2237,26 @@ dataValue g_mesh_index_config_triangles;              // 网格索引配置三�
 dataValue g_mesh_index_config_lines;                  // 网格索引配置线条
 dataValue g_mesh_index_config_points;                 // 网格索引配置点
 dataValue g_mesh_index_config_patches;                // 网格索引配置补丁
-dataValue meshLayoutConfigInterleaved;
-dataValue meshLayoutConfigSeparated;
-dataValue meshLayoutConfigCompressed;
-dataValue meshLayoutConfigOptimized;
-dataValue meshBoundingBoxConfigLocal;
-dataValue meshBoundingBoxConfigWorld;
-dataValue meshBoundingBoxConfigOriented;
-dataValue meshBoundingBoxConfigAxisAligned;
-dataValue meshCollisionConfigStatic;
-dataValue meshCollisionConfigDynamic;
-dataValue meshCollisionConfigTrigger;
-dataValue meshCollisionConfigKinematic;
-dataValue shaderCompileConfigVertex;
-dataValue shaderCompileConfigFragment;
-dataValue shaderCompileConfigGeometry;
-dataValue shaderCompileConfigCompute;
-dataValue shaderProgramConfigLink;
-dataValue shaderProgramConfigUniform;
-dataValue shaderProgramConfigAttribute;
-dataValue shaderProgramConfigTexture;
+dataValue g_mesh_layout_config_interleaved;          // 网格布局配置交错
+dataValue g_mesh_layout_config_separated;            // 网格布局配置分离
+dataValue g_mesh_layout_config_compressed;           // 网格布局配置压缩
+dataValue g_mesh_layout_config_optimized;             // 网格布局配置优化
+dataValue g_mesh_bounding_box_config_local;          // 网格包围盒配置本地
+dataValue g_mesh_bounding_box_config_world;          // 网格包围盒配置世界
+dataValue g_mesh_bounding_box_config_oriented;        // 网格包围盒配置定向
+dataValue g_mesh_bounding_box_config_axis_aligned;    // 网格包围盒配置轴对齐
+dataValue g_mesh_collision_config_static;             // 网格碰撞配置静态
+dataValue g_mesh_collision_config_dynamic;            // 网格碰撞配置动态
+dataValue g_mesh_collision_config_trigger;            // 网格碰撞配置触发器
+dataValue g_mesh_collision_config_kinematic;          // 网格碰撞配置运动学
+dataValue g_shader_compile_config_vertex;             // 着色器编译配置顶点
+dataValue g_shader_compile_config_fragment;           // 着色器编译配置片段
+dataValue g_shader_compile_config_geometry;           // 着色器编译配置几何
+dataValue g_shader_compile_config_compute;            // 着色器编译配置计算onfigCompute;
+dataValue g_shader_program_config_link;               // 着色器程序配置链接
+dataValue g_shader_program_config_uniform;            // 着色器程序配置统一变量
+dataValue g_shader_program_config_attribute;          // 着色器程序配置属性
+dataValue g_shader_program_config_texture;            // 着色器程序配置纹理
 dataValue shaderUniformConfigMatrix;
 dataValue shaderUniformConfigVector;
 dataValue shaderUniformConfigScalar;
