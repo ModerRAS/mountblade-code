@@ -61,6 +61,18 @@
 // - 保持代码语义不变
 // - 这是简化实现，主要处理了系统缓冲区指针变量和寄存器变量的语义化替换
 
+// 本次美化内容：
+// - 将重复的g_global_high_memory_data变量替换为g_global_system_reserved_1-10等语义化名称
+// - 将重复的g_system_status_flag变量替换为g_system_initialization_flag和g_system_processing_flag等描述性名称
+// - 将g_system_status_flag替换为g_system_operation_status等清晰名称
+// - 将g_global_system_counter_1/2替换为g_global_system_tick_counter和g_global_system_frame_counter等语义化名称
+// - 将g_global_memory_address_1/2替换为g_global_memory_base_address和g_global_memory_end_address等描述性名称
+// - 将g_system_reserved_1/2替换为g_system_reserved_flag_1/2等标志变量名称
+// - 将g_global_data_flag替换为g_global_data_operation_flag等操作标志名称
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+// - 这是简化实现，主要处理了重复变量名和通用变量名的语义化替换
+
 // 地址常量定义
 #define AUDIO_SYSTEM_BASE_ADDR 0x180c91700
 #define INPUT_SYSTEM_BASE_ADDR 0x180c91800
@@ -548,7 +560,7 @@ void* g_global_navigation_manager;
 
 void* g_global_controls_manager;
 
-char g_system_status_flag;
+char g_system_initialization_flag;
 void* g_global_task_manager;
 
 void* g_global_schedule_manager;
@@ -567,7 +579,7 @@ void* g_global_quest_manager;
 
 void* g_global_audio_manager;
 
-char g_system_status_flag;
+char g_system_processing_flag;
 
 void* g_static_system_manager;
 
@@ -663,29 +675,22 @@ void* g_global_data_system_buffer;
 
 void* g_function_create_buffer;
 
-void* g_global_high_memory_data;
-
-void* g_global_high_memory_data;
-
-void* g_global_high_memory_data;
-
-void* g_global_high_memory_data;
+void* g_global_system_reserved_1;
+void* g_global_system_reserved_2;
+void* g_global_system_reserved_3;
+void* g_global_system_reserved_4;
 
 char g_system_video_initialized;
 
-void* g_global_high_memory_data;
-
-void* g_global_high_memory_data;
+void* g_global_system_reserved_5;
+void* g_global_system_reserved_6;
 
 void* g_static_data_system_init;
 
-void* g_global_high_memory_data;
-
-void* g_global_high_memory_data;
-
-void* g_global_high_memory_data;
-
-void* g_global_high_memory_data;
+void* g_global_system_reserved_7;
+void* g_global_system_reserved_8;
+void* g_global_system_reserved_9;
+void* g_global_system_reserved_10;
 
 void* g_static_data_audio_system;
 
@@ -59774,17 +59779,17 @@ void* g_system_event_processor;
 
 void* g_static_system_config;
 
-uint64_t g_system_status_flag;
+uint64_t g_system_operation_status;
 uint32_t g_system_error_code;
 void* *g_system_pointer_array;
 uint8_t *g_system_byte_buffer;
 uint32_t g_system_config_flag;
-longlong g_global_system_counter_1;
-longlong g_global_system_counter_2;
-longlong g_global_memory_address_1;
-longlong g_global_memory_address_2;
-uint32_t g_system_reserved_1;
-uint32_t g_system_reserved_2;
+longlong g_global_system_tick_counter;
+longlong g_global_system_frame_counter;
+longlong g_global_memory_base_address;
+longlong g_global_memory_end_address;
+uint32_t g_system_reserved_flag_1;
+uint32_t g_system_reserved_flag_2;
 void* g_static_memory_pool;
 
 void* g_static_resource_cache;
@@ -59797,7 +59802,7 @@ void* g_global_system_data;
 
 longlong g_global_system_handle;
 
-uint64_t g_global_data_flag;
+uint64_t g_global_data_operation_flag;
 longlong g_global_memory_pointer;
 longlong *g_global_system_flags;
 
