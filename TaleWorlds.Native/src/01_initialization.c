@@ -21439,7 +21439,7 @@ INIT_LABEL_SYSTEM_4c7ef:
     if (system_long_result == 0) {
       *(uint32_t *)((longlong)handleIdentifier + SYSTEM_NODE_OFFSET_NEXT) = 0;
       *(uint32_t *)((longlong)handleIdentifier + 0x29) = SYSTEM_DATA_COMPARE_SIZE10101;
-      *(uint8_t *)(handleIdentifier + 5) = 1;
+      *(uint8_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_5) = 1;
       *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_71) = SYSTEM_FLOAT_ONE;
       *(uint8_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_76) = 1;
       *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_25) = 0;
@@ -21466,7 +21466,7 @@ INIT_LABEL_SYSTEM_4c7ef:
       *(uint8_t *)(system_long_result + 8) = 0;
       handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = system_long_value;
       handleIdentifier[SYSTEM_DATA_OFFSET_27] = 0;
-      *(uint8_t *)(handleIdentifier + 7) = 0;
+      *(uint8_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_7) = 0;
       *(uint32_t *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_3C) = SYSTEM_OFFSET_Ffffffff;
       handleIdentifier[SYSTEM_FLAG_BIT_43] = 0;
       *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_26) = SYSTEM_OFFSET_Ffffffff;
@@ -31075,7 +31075,7 @@ uint64_t * InitializeNetworkInitNode(uint64_t *handleIdentifier,uint64_t *resour
   *system_ptr_value = &g_thread_parameter_ptr;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = handleIdentifier + 7;
   *(uint32_t *)(handleIdentifier + 6) = 0;
-  *(uint8_t *)(handleIdentifier + 7) = 0;
+  *(uint8_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_7) = 0;
   system_status_code = resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   *system_ptr_value = *resourceIdentifier;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = system_integer_result_unsigned;

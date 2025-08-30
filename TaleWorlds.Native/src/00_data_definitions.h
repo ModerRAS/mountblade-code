@@ -12821,87 +12821,130 @@ unsigned long long allocate_system_buffer(uint handle_param)
   }
   return 1;
 }
-ulong long process_buffer_allocation(long long handle_param)
+// 系统缓冲区分配处理器 - 处理内存缓冲区分配操作
+// 简化实现：主要处理图像段头部信息的缓冲区分配
+ulong long system_buffer_allocation_processor(long long handle_param)
 {
-  ulong long buffer_alloc_result;
-  uint7 thread_op_flags;
-  IMAGE_SECTION_HEADER *image_section_header_pointer;
-  buffer_alloc_result = 0;
-  for (image_section_header_pointer = &image_section_header_start; image_section_header_pointer != (IMAGE_SECTION_HEADER *)&system_image_section_end;
-      image_section_header_pointer = image_section_header_pointer + 1) {
-    if (((ulong long)(uint)image_section_header_pointer->VirtualAddress <= handle_param - SYSTEM_BASE_ADDRESSU) &&
-       (buffer_alloc_result = (ulong long)((image_section_header_pointer->Misc).PhysicalAddress + image_section_header_pointer->VirtualAddress),
-       handle_param - SYSTEM_BASE_ADDRESSU < buffer_alloc_result)) goto section_processing_jump_label_;
+  ulong long allocation_result;
+  uint7 section_flags;
+  IMAGE_SECTION_HEADER *section_header_ptr;
+  
+  allocation_result = 0;
+  
+  // 遍历图像段头部信息
+  for (section_header_ptr = &image_section_header_start; 
+       section_header_ptr != (IMAGE_SECTION_HEADER *)&system_image_section_end;
+       section_header_ptr = section_header_ptr + 1) {
+    
+    // 检查句柄参数是否在当前段范围内
+    if (((ulong long)(uint)section_header_ptr->VirtualAddress <= handle_param - SYSTEM_BASE_ADDRESSU) &&
+       (allocation_result = (ulong long)((section_header_ptr->Misc).PhysicalAddress + section_header_ptr->VirtualAddress),
+       handle_param - SYSTEM_BASE_ADDRESSU < allocation_result)) {
+      goto section_processing_complete_label;
+    }
   }
-  image_section_header_pointer = (IMAGE_SECTION_HEADER *)0x0;
-section_processing_jump_label_:
-  if (image_section_header_pointer == (IMAGE_SECTION_HEADER *)0x0) {
-    buffer_alloc_result = buffer_alloc_result & INVALID_HANDLE_VALUEffffff00;
+  
+  section_header_ptr = (IMAGE_SECTION_HEADER *)SYSTEM_NULL_POINTER;
+  
+section_processing_complete_label:
+  if (section_header_ptr == (IMAGE_SECTION_HEADER *)SYSTEM_NULL_POINTER) {
+    allocation_result = allocation_result & INVALID_HANDLE_VALUEffffff00;
   }
   else {
-    thread_op_flags = (uint7)(buffer_alloc_result >> 8);
-    if ((int)image_section_header_pointer->Characteristics < 0) {
-      buffer_alloc_result = (ulong long)thread_op_flags << 8;
+    section_flags = (uint7)(allocation_result >> 8);
+    if ((int)section_header_ptr->Characteristics < 0) {
+      allocation_result = (ulong long)section_flags << 8;
     }
     else {
-      buffer_alloc_result = CONCAT_BYTES_TO_64BIT(thread_op_flags,1);
+      allocation_result = CONCAT_BYTES_TO_64BIT(section_flags, 1);
     }
   }
-  return buffer_alloc_result;
+  
+  return allocation_result;
 }
-    system_cleanup_flag = '\0';
-  }
-  return;
+
+// 系统清理函数 - 清理系统资源
+void system_cleanup_resources(void)
+{
+  system_cleanup_flag = '\0';
 }
+
+// 系统标志重置函数 - 重置主要系统标志
+void system_reset_primary_flags(void)
+{
   system_global_flag_primary = 0;
-  return;
 }
+
+// 系统标志重置函数 - 重置第四级系统标志
+void system_reset_quaternary_flags(void)
+{
   system_global_flag_quaternary = 0;
-  return;
 }
-    script_system_initialized = '\0';
-  }
-  return;
+
+// 脚本系统清理函数 - 清理脚本系统资源
+void script_system_cleanup(void)
+{
+  script_system_initialized = '\0';
 }
-    configuration_system_initialized = '\0';
-  }
-  return;
+
+// 配置系统清理函数 - 清理配置系统资源
+void configuration_system_cleanup(void)
+{
+  configuration_system_initialized = '\0';
 }
-    memory_system_initialized = '\0';
-  }
-  return;
+
+// 内存系统清理函数 - 清理内存系统资源
+void memory_system_cleanup(void)
+{
+  memory_system_initialized = '\0';
 }
-    thread_pool_system_initialized = '\0';
-  }
-  return;
+
+// 线程池系统清理函数 - 清理线程池系统资源
+void thread_pool_system_cleanup(void)
+{
+  thread_pool_system_initialized = '\0';
 }
-    module_system_initialized = '\0';
-  }
-  return;
+
+// 模块系统清理函数 - 清理模块系统资源
+void module_system_cleanup(void)
+{
+  module_system_initialized = '\0';
 }
-    system_data_status_flag = '\0';
-  }
-  return;
+
+// 系统数据状态清理函数 - 清理系统数据状态
+void system_data_status_cleanup(void)
+{
+  system_data_status_flag = '\0';
 }
-    system_data_control_flag = '\0';
-  }
-  return;
+
+// 系统数据控制清理函数 - 清理系统数据控制
+void system_data_control_cleanup(void)
+{
+  system_data_control_flag = '\0';
 }
-    audio_system_initialized = '\0';
-  }
-  return;
+
+// 音频系统清理函数 - 清理音频系统资源
+void audio_system_cleanup(void)
+{
+  audio_system_initialized = '\0';
 }
-    render_system_initialized = '\0';
-  }
-  return;
+
+// 渲染系统清理函数 - 清理渲染系统资源
+void render_system_cleanup(void)
+{
+  render_system_initialized = '\0';
 }
-    physics_system_initialized = '\0';
-  }
-  return;
+
+// 物理系统清理函数 - 清理物理系统资源
+void physics_system_cleanup(void)
+{
+  physics_system_initialized = '\0';
 }
-    system_data_initialization_flag = '\0';
-  }
-  return;
+
+// 系统数据初始化清理函数 - 清理系统数据初始化状态
+void system_data_initialization_cleanup(void)
+{
+  system_data_initialization_flag = '\0';
 }
 
 #endif // DATA_DEFINITIONS_H
