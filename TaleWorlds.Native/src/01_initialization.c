@@ -1951,9 +1951,26 @@
 #define SYSTEM_OFFSET_5 SYSTEM_MEMORY_OFFSET_UNIT_5
 #define SYSTEM_OFFSET_6 6
 #define SYSTEM_OFFSET_7 7
-#define SYSTEM_OFFSET_8 SYSTEM_OFFSET_8
+#define SYSTEM_OFFSET_8 8
 #define SYSTEM_OFFSET_9 9
 #define SYSTEM_OFFSET_10 10
+
+// 系统硬编码字符串值语义化常量（2025年8月30日最终批次补充）
+#define SYSTEM_STRING_EXEC_FUNCTION_1 0x6146206e
+#define SYSTEM_STRING_EXEC_FUNCTION_2 0x64656c69
+#define SYSTEM_STRING_NODE_INIT 0x69746f4e
+#define SYSTEM_STRING_CONFIG_1 0x61636966
+#define SYSTEM_STRING_CONFIG_2 0x6e6f6974
+#define SYSTEM_STRING_CONFIG_3 0x73734120
+#define SYSTEM_STRING_CONFIG_4 0x21747265
+#define SYSTEM_STRING_NOTEPAD_PREFIX 0x6973736572707845
+#define SYSTEM_STRING_HASH_MARKER 0x23232323
+
+// 系统硬编码数值语义化常量（2025年8月30日最终批次补充）
+#define SYSTEM_UINT16_VALUE_COLON 0x21
+#define SYSTEM_UINT16_VALUE_3A 0x3a
+#define SYSTEM_UINT16_VALUE_A0A 0xa0a
+#define SYSTEM_UINT32_VALUE_NINE 9
 #define SYSTEM_OFFSET_18 0x18
 #define SYSTEM_OFFSET_50 0x50
 #define SYSTEM_OFFSET_80 0x80
@@ -19800,7 +19817,7 @@ void InitializePhysicsSystem(void)
   uint8_t system_local_buffer_vertex_data [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   void *system_buffer_ptr_texture_data;
   uint8_t *system_buffer_ptr_vertex_data;
-  uint32_t init_stack_uint_offset_config;
+  uint32_t init_stack_uint_config_offset;
   uint8_t system_local_buffer_resource_data [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   ulonglong init_stack_uint_param_config_hash;
 
