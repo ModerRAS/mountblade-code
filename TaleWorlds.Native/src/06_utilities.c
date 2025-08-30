@@ -18,6 +18,10 @@
 // 15. 美化了局部索引变量名，将localIndex替换为utility_local_index等
 // 16. 美化了缓冲区数据偏移量常量，将0x84、0x67、0x79、UTILITY_SIZE_THRESHOLD_7A等硬编码常量替换为UTILITY_BUFFER_DATA_OFFSET_*等语义化名称
 // 17. 美化了系统资源访问大小常量，将0xc1c等硬编码常量替换为UTILITY_SYSTEM_RESOURCE_ACCESS_SIZE_C1C等语义化名称
+// 18. 修复了循环引用的宏定义问题，将UTILITY_SIZE_THRESHOLD_7E等自引用宏替换为具体的十六进制值
+// 19. 修复了UTILITY_ERROR_CODE_FAILED等错误码宏的循环引用问题
+// 20. 修复了UTILITY_FLOAT_INFINITY_MASK等浮点常量的循环引用问题
+// 21. 修复了UTILITY_REGISTER_EBP_MASK等寄存器掩码的循环引用问题
 // 提高了代码的可读性和维护性
 // 保持代码语义不变，这是简化实现，主要处理了工具系统中变量名的语义化替换和错误修复
 
@@ -1560,7 +1564,7 @@
 // 新增语义化宏定义 - 替换句柄常量
 #define UTILITY_HANDLE_INVALID 0
 #define UTILITY_HANDLE_MIN 1
-#define UTILITY_HANDLE_MAX UTILITY_HANDLE_MAX
+#define UTILITY_HANDLE_MAX 0xffffffff
 #define UTILITY_HANDLE_FLAGS_VALID 0x1
 #define UTILITY_HANDLE_FLAGS_ACTIVE 0x2
 #define UTILITY_HANDLE_FLAGS_LOCKED 0x4
