@@ -19881,20 +19881,20 @@ void InitializeSystemModule46(uint64_t handleIdentifier,uint64_t *resourceIdenti
 
   init_stack_parameter_28 = system_configuration_data ^ (ulonglong)system_local_buffer_58;
   if (*system_configuration < 1) {
-    longStack_38 = 0;
-    intStack_30 = 0;
+    init_stack_timeout_seconds_38 = 0;
+    init_stack_timeout_nanoseconds_30 = 0;
   }
   else {
     system_temp_long = _Xtime_get_ticks();
     system_temp_long = (system_long_result + *system_configuration * 10) * 100;
-    longStack_38 = system_long_result / 1000000000;
-    intStack_30 = (int)system_long_result + (int)longStack_38 * -1000000000;
+    init_stack_timeout_seconds_38 = system_long_result / 1000000000;
+    init_stack_timeout_nanoseconds_30 = (int)system_long_result + (int)init_stack_timeout_seconds_38 * -1000000000;
   }
   system_temp_integer = _Mtx_current_owns(*resourceIdentifier);
   if (system_temp_integer_temp == 0) {
     __Throw_Cpp_error_std__YAXH_Z(4);
   }
-  system_operation_result = _Cnd_timedwait(handleIdentifier,*resourceIdentifier,&longStack_38);
+  system_operation_result = _Cnd_timedwait(handleIdentifier,*resourceIdentifier,&init_stack_timeout_seconds_38);
   if ((system_temp_counter & SYSTEM_OFFSET_Fffffffd) != 0) {
     __Throw_C_error_std__YAXH_Z(system_status_flag);
   }
