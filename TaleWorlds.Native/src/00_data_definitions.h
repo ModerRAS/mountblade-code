@@ -13425,7 +13425,7 @@ goto section_processing_jump_label_522;
         system_maximum_stack_size = SYSTEM_ZERO_VALUE;
         _guard_check_icall(system_global_data_pointer_variable);
         system_thread_stack_pointer_variable = &system_maximum_stack_size;
-        system_thread_result_status = (*system_character_scan_pointer)(INVALID_HANDLE_VALUE80000002,&system_library_function_6,0,system_buffer_allocation_result | path_buffer_size019);
+        system_thread_result_status = (*system_character_scan_pointer)(INVALID_HANDLE_VALUE80000002,&system_library_function_6,0,system_buffer_allocation_result | SYSTEM_PATH_BUFFER_SIZE_19);
         if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
           system_maximum_stack_size = SYSTEM_POINTER_OFFSET0;
           system_maximum_stack_size = SYSTEM_FOUR_VALUE;
