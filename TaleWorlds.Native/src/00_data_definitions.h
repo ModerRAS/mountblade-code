@@ -7283,7 +7283,7 @@ unsigned long long allocate_system_memory(long long handle_param,long long *thre
   long long *system_memory_buffer_ptr;
   long long str_len_counter;
   long long *pstack_long_var;
-  unsigned int system_temporary_stack_array [2];
+  unsigned int SYSTEM_TEMP_STACK_ARRAY [2];
   long long *system_memory_stack_primary;
   long long *plStack_78;
   unsigned long long maximum_stack_size;
