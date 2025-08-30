@@ -4228,8 +4228,8 @@ int InitializeThreadConfig1(void)
   longlong system_long_value;
   uint64_t system_parameter;
 
-  _g_thread_config_1 = &g_system_core_data_ptr; // 美化名称: systemCoreData
-  _g_thread_config_2 = &g_system_configuration_data_ptr; // 美化名称: system_configuration_data
+  g_system_auth_context_ptr = &g_system_core_data_ptr; // 美化名称: systemCoreData
+  g_system_config_context_ptr = &g_system_configuration_data_ptr; // 美化名称: system_configuration_data
 // void InitializeSystemObject1(void)
 
 void InitializeSystemObject1(void)
@@ -5111,7 +5111,7 @@ void InitializeSystemObject19(void)
   system_system_local_buffer_primary[0] = 0;
   module_type_id = MODULE_TYPE_AUTHENTICATION_INIT;
   strcpy_s(system_system_local_buffer_primary,0x80,&g_init_string_5,system_parameter,INVALID_HANDLE_VALUE);
-  g_system_object_3 = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
+  g_system_auth_object = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
@@ -5122,8 +5122,8 @@ int InitializeThreadConfig3(void)
   longlong system_long_value;
   uint64_t system_parameter;
 
-  _g_thread_config_3 = &g_system_core_data_ptr; // 美化名称: systemCoreData
-  _g_thread_config_4 = &g_system_configuration_data_ptr; // 美化名称: system_configuration_data
+  g_system_network_context_ptr = &g_system_core_data_ptr; // 美化名称: systemCoreData
+  g_system_security_context_ptr = &g_system_configuration_data_ptr; // 美化名称: system_configuration_data
 // void InitializeSystemObject20(void)
 
 void InitializeSystemObject20(void)
@@ -5140,7 +5140,7 @@ void InitializeSystemObject20(void)
   system_system_local_buffer_primary[0] = 0;
   module_type_id = MODULE_TYPE_UI_INIT;
   strcpy_s(system_system_local_buffer_primary,0x80,&g_init_string_6,system_parameter,INVALID_HANDLE_VALUE);
-  g_system_core_data_object_2 = create_system_object(&thread_parameter_ptr); // 原始名称: systemCoreData
+  g_system_ui_context_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: systemCoreData
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
@@ -5159,7 +5159,7 @@ void InitializeSystemObject21(void)
   system_system_local_buffer_primary[0] = 0;
   module_type_id = MODULE_TYPE_SHADER_INIT;
   strcpy_s(system_system_local_buffer_primary,0x80,&g_init_string_7,system_parameter,INVALID_HANDLE_VALUE);
-  g_system_status_data_object_2 = create_system_object(&thread_parameter_ptr); // 原始名称: system_statusData
+  g_system_shader_context_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: system_statusData
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
@@ -5197,7 +5197,7 @@ void InitializeSystemObject23(void)
   system_system_local_buffer_primary[0] = 0;
   module_type_id = MODULE_TYPE_AUDIO_INIT;
   strcpy_s(system_system_local_buffer_primary,0x80,&g_system_string_buffer,system_parameter,INVALID_HANDLE_VALUE);
-  g_system_data_variable_c_object_2 = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
+  g_system_audio_config_object = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
@@ -5214,9 +5214,9 @@ void InitializeSystemObject24(void)
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_system_local_buffer_primary;
   system_system_local_buffer_primary[0] = 0;
-  init_stack_uint_size_90 = 0x13;
+  init_stack_physics_config_size = 0x13;
   strcpy_s(system_system_local_buffer_primary,0x80,&g_init_string_9,system_parameter,INVALID_HANDLE_VALUE);
-  g_system_core_data_object_3 = create_system_object(&thread_parameter_ptr); // 原始名称: systemCoreData
+  g_system_physics_context_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: systemCoreData
   return;
 }
 // void InitializeSystemObject25(void)
@@ -8674,9 +8674,9 @@ void InitializeAuthenticationSystem(void)
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_system_local_buffer_primary;
   system_system_local_buffer_primary[0] = 0;
-  init_stack_uint_size_90 = 0x13;
+  init_stack_system_config_size = 0x13;
   strcpy_s(system_system_local_buffer_primary,0x80,&g_global_system_config,system_parameter,INVALID_HANDLE_VALUE);
-  g_system_core_data_object_6 = create_system_object(&thread_parameter_ptr); // 原始名称: systemCoreData
+  g_system_resource_context_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: systemCoreData
   return;
 }
 // void InitializeResourceSystem(void)
