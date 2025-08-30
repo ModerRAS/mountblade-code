@@ -1218,10 +1218,10 @@ dataValue audio_system_effect_data;
 
 // 函数: dataValueValue resourceMonitorActivity;
 dataValue resourceMonitorActivity;
-dataValue resourceMonitorBuffer1;
-dataValue resourceMonitorBuffer2;
-dataValue resourceMonitorBuffer3;
-dataValue resourceMonitorBuffer4;
+dataValue resourceMonitorBufferPrimary;
+dataValue resourceMonitorBufferSecondary;
+dataValue resourceMonitorBufferTertiary;
+dataValue resourceMonitorBufferQuaternary;
 
 // 函数: dataValueValue resourceManageLifecycle;
 dataValue resourceManageLifecycle;
@@ -1424,66 +1424,66 @@ double cameraFrameRate;
 double cameraExposureTime;
 int cameraCaptureMode;
 double cameraZoomLevel;
-dataValue cameraBufferPool1;
-dataValue cameraBufferPool2;
-dataValue cameraBufferPool3;
-dataValue cameraBufferPool4;
-dataValue cameraBufferPool5;
-dataValue cameraBufferPool6;
-dataValue cameraBufferPool7;
-dataValue cameraBufferPool8;
-dataValue cameraBufferPool9;
-dataValue cameraBufferPool10;
-dataValue cameraBufferPool11;
-dataValue cameraBufferPool12;
-dataValue cameraBufferPool13;
-dataValue cameraBufferPool14;
-dataValue cameraBufferPool15;
-dataValue cameraBufferPool16;
-dataValue cameraBufferPool17;
-dataValue cameraBufferPool18;
-dataValue cameraBufferPool19;
-dataValue cameraBufferPool20;
-dataValue cameraBufferPool21;
-dataValue cameraBufferPool22;
-dataValue cameraBufferPool23;
-dataValue cameraBufferPool24;
-dataValue cameraBufferPool25;
-dataValue cameraBufferPool26;
-dataValue cameraBufferPool27;
-dataValue cameraBufferPool28;
-dataValue cameraBufferPool29;
-dataValue cameraBufferPool30;
-dataValue cameraBufferPool31;
-dataValue cameraBufferPool32;
-dataValue cameraBufferPool33;
-dataValue cameraBufferPool34;
-dataValue cameraBufferPool35;
-dataValue cameraBufferPool36;
-dataValue cameraBufferPool37;
-dataValue cameraBufferPool38;
-dataValue cameraBufferPool39;
-dataValue cameraBufferPool40;
-dataValue cameraBufferPool41;
-dataValue cameraBufferPool42;
-dataValue cameraBufferPool43;
-dataValue cameraBufferPool44;
-dataValue cameraBufferPool45;
-dataValue cameraBufferPool46;
-dataValue cameraBufferPool47;
-dataValue cameraBufferPool48;
-dataValue cameraBufferPool49;
-dataValue cameraBufferPool50;
-dataValue cameraBufferPool51;
-dataValue cameraBufferPool52;
-dataValue cameraBufferPool53;
-dataValue cameraBufferPool54;
-dataValue cameraBufferPool55;
-dataValue cameraBufferPool56;
-dataValue cameraBufferPool57;
-dataValue cameraBufferPool58;
-dataValue cameraBufferPool59;
-dataValue cameraBufferPool60;
+dataValue cameraBufferPoolDepth;
+dataValue cameraBufferPoolColor;
+dataValue cameraBufferPoolStencil;
+dataValue cameraBufferPoolNormal;
+dataValue cameraBufferPoolPosition;
+dataValue cameraBufferPoolVelocity;
+dataValue cameraBufferPoolLighting;
+dataValue cameraBufferPoolShadow;
+dataValue cameraBufferPoolReflection;
+dataValue cameraBufferPoolDepth0;
+dataValue cameraBufferPoolDepth1;
+dataValue cameraBufferPoolDepth2;
+dataValue cameraBufferPoolDepth3;
+dataValue cameraBufferPoolDepth4;
+dataValue cameraBufferPoolDepth5;
+dataValue cameraBufferPoolDepth6;
+dataValue cameraBufferPoolDepth7;
+dataValue cameraBufferPoolDepth8;
+dataValue cameraBufferPoolDepth9;
+dataValue cameraBufferPoolColor0;
+dataValue cameraBufferPoolColor1;
+dataValue cameraBufferPoolColor2;
+dataValue cameraBufferPoolColor3;
+dataValue cameraBufferPoolColor4;
+dataValue cameraBufferPoolColor5;
+dataValue cameraBufferPoolColor6;
+dataValue cameraBufferPoolColor7;
+dataValue cameraBufferPoolColor8;
+dataValue cameraBufferPoolColor9;
+dataValue cameraBufferPoolStencil0;
+dataValue cameraBufferPoolStencil1;
+dataValue cameraBufferPoolStencil2;
+dataValue cameraBufferPoolStencil3;
+dataValue cameraBufferPoolStencil4;
+dataValue cameraBufferPoolStencil5;
+dataValue cameraBufferPoolStencil6;
+dataValue cameraBufferPoolStencil7;
+dataValue cameraBufferPoolStencil8;
+dataValue cameraBufferPoolStencil9;
+dataValue cameraBufferPoolNormal0;
+dataValue cameraBufferPoolNormal1;
+dataValue cameraBufferPoolNormal2;
+dataValue cameraBufferPoolNormal3;
+dataValue cameraBufferPoolNormal4;
+dataValue cameraBufferPoolNormal5;
+dataValue cameraBufferPoolNormal6;
+dataValue cameraBufferPoolNormal7;
+dataValue cameraBufferPoolNormal8;
+dataValue cameraBufferPoolNormal9;
+dataValue cameraBufferPoolPosition0;
+dataValue cameraBufferPoolPosition1;
+dataValue cameraBufferPoolPosition2;
+dataValue cameraBufferPoolPosition3;
+dataValue cameraBufferPoolPosition4;
+dataValue cameraBufferPoolPosition5;
+dataValue cameraBufferPoolPosition6;
+dataValue cameraBufferPoolPosition7;
+dataValue cameraBufferPoolPosition8;
+dataValue cameraBufferPoolPosition9;
+dataValue cameraBufferPoolVelocity0;
 dataValue systemValidationData;
 dataValue systemConfigData;
 dataValue systemMemoryPool;
@@ -24780,7 +24780,9 @@ void ExecuteResourceBufferCleanup(uint64 resource_handle_identifier,longlong res
 
 
 
-void UnwindHandler_130(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
+// 函数: void InvokeResourceHandleCallback(
+// 调用资源句柄回调
+void InvokeResourceHandleCallback(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
 
 {
   code *pcharacterValue;
@@ -24794,7 +24796,9 @@ void UnwindHandler_130(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_140(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void SetThreadLocalStorageCleanupF0(
+// 设置线程本地存储清理函数F0
+void SetThreadLocalStorageCleanupF0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   *(dataValueValue **)(resource_buffer + 0xf0) = &threadLocalStorageCleanup;
@@ -24803,7 +24807,9 @@ void UnwindHandler_140(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_150(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void SetThreadLocalStorageCleanupFirstField(
+// 设置线程本地存储清理函数首字段
+void SetThreadLocalStorageCleanupFirstField(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   *(dataValueValue **)(resource_buffer + first_field_offset) = &threadLocalStorageCleanup;
@@ -24812,7 +24818,9 @@ void UnwindHandler_150(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_160(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void SetThreadLocalStorageCleanupF0Again(
+// 再次设置线程本地存储清理函数F0
+void SetThreadLocalStorageCleanupF0Again(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   *(dataValueValue **)(resource_buffer + 0xf0) = &threadLocalStorageCleanup;
@@ -24821,7 +24829,9 @@ void UnwindHandler_160(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_170(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void InitializeThreadLocalStorageData(
+// 初始化线程本地存储数据
+void InitializeThreadLocalStorageData(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   *(uint64 *)(resource_buffer + 0x138) = &threadLocalStorageData;
@@ -24837,7 +24847,9 @@ void UnwindHandler_170(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_180(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void ProcessThreadLocalStorageOperation(
+// 处理线程本地存储操作
+void ProcessThreadLocalStorageOperation(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   *(uint64 *)(resource_buffer + SYSTEM_TABLE_OFFSET) = &threadLocalStorageData;
@@ -24853,7 +24865,9 @@ void UnwindHandler_180(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_190(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void HandleThreadLocalStorageSync(
+// 处理线程本地存储同步
+void HandleThreadLocalStorageSync(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   if ((*(uint *)(resource_buffer + first_field_offset) & 1) != 0) {
@@ -24865,7 +24879,9 @@ void UnwindHandler_190(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_1c0(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void ValidateThreadLocalStorageHandle(
+// 验证线程本地存储句柄
+void ValidateThreadLocalStorageHandle(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   *(uint64 *)(resource_buffer + SYS_STATUS_OFFSET1) = &threadLocalStorageData;
@@ -24881,7 +24897,9 @@ void UnwindHandler_1c0(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_1d0(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void CleanupThreadLocalStorageResources(
+// 清理线程本地存储资源
+void CleanupThreadLocalStorageResources(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   *(dataValueValue **)(resource_buffer + 0x138) = &threadLocalStorageCleanup;
@@ -24890,7 +24908,9 @@ void UnwindHandler_1d0(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_1e0(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void ResetThreadLocalStoragePointers(
+// 重置线程本地存储指针
+void ResetThreadLocalStoragePointers(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   if ((*(uint *)(resource_buffer + first_field_offset) & 2) != 0) {
@@ -24902,7 +24922,9 @@ void UnwindHandler_1e0(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_210(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void AllocateThreadLocalStorageBuffer(
+// 分配线程本地存储缓冲区
+void AllocateThreadLocalStorageBuffer(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   *(dataValueValue **)(resource_buffer + HANDLE_DATA_OFFSET) = &threadLocalStorageCleanup;
@@ -24911,7 +24933,9 @@ void UnwindHandler_210(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_220(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void FreeThreadLocalStorageBuffer(
+// 释放线程本地存储缓冲区
+void FreeThreadLocalStorageBuffer(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   if ((*(uint *)(resource_buffer + first_field_offset) & 4) != 0) {
@@ -24923,7 +24947,9 @@ void UnwindHandler_220(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_250(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void ConfigureThreadLocalStorageSettings(
+// 配置线程本地存储设置
+void ConfigureThreadLocalStorageSettings(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   *(dataValueValue **)(resource_buffer + 0x118) = &threadLocalStorageCleanup;
@@ -24932,7 +24958,9 @@ void UnwindHandler_250(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_260(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void InitializeThreadLocalStorageMutex(
+// 初始化线程本地存储互斥锁
+void InitializeThreadLocalStorageMutex(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   if ((*(uint *)(resource_buffer + first_field_offset) & 8) != 0) {
@@ -24944,7 +24972,9 @@ void UnwindHandler_260(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_290(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void LockThreadLocalStorageMutex(
+// 锁定线程本地存储互斥锁
+void LockThreadLocalStorageMutex(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   *(dataValueValue **)(resource_buffer + SYSTEM_FLAGS_OFFSET) = &threadLocalStorageCleanup;
@@ -24953,7 +24983,9 @@ void UnwindHandler_290(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_2a0(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void UnlockThreadLocalStorageMutex(
+// 解锁线程本地存储互斥锁
+void UnlockThreadLocalStorageMutex(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   if ((*(uint *)(resource_buffer + first_field_offset) & resource_handle_data_offset) != 0) {
@@ -82357,7 +82389,7 @@ void resourceMonitorActivity(void)
 void resourceManageLifecycle(void)
 
 {
-  _resourceMonitorBuffer1 = &threadLocalStorageCleanup;
+  _resourceMonitorBufferPrimary = &threadLocalStorageCleanup;
   return;
 }
 
