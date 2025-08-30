@@ -19568,7 +19568,7 @@ ulonglong InitializeIntegritySystem(void)
   systemFlagsData = 0;
   validation_flag = 0;
   system_status_code = systemFlagsData;
-  if (0x6f < *(uint *)(utility_register_context_base + 8)) {
+  if (UTILITY_OFFSET_RESOURCE_HANDLE < *(uint *)(utility_register_context_base + UTILITY_OFFSET_ERROR_COUNTER)) {
     if (*(int *)(utility_register_context_base[1] + RESOURCE_HANDLE_OFFSET) == 0) {
       system_status_code = writeResourceData(*utility_register_context_base,utility_register_context + UTILITY_FIELD_SIZE_OFFSET,(ulonglong)validation_flag);
     }
