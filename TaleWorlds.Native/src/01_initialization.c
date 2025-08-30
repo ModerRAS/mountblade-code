@@ -52,12 +52,12 @@
 #define SYSTEM_STRING_PROCESS_INFO 0x69676e65
 #define SYSTEM_STRING_ENGINE_CONFIG_2 0x635f656e
 #define SYSTEM_STRING_ENGINE_INFO 0x69666e6f
-#define SYSTEM_STRING_ENGINE_EXT SYSTEM_INIT_DATA_OFFSET_78742e67
+#define SYSTEM_STRING_ENGINE_EXT 0x78742e67
 #define SYSTEM_STRING_PREFIX_INFO 0x72657375
 #define SYSTEM_STRING_CONFIG_INFO 0x6e6f635f
 #define SYSTEM_STRING_FILE_EXT 0x2e676966
 #define SYSTEM_STRING_VERSION_INFO 0x32312e322e3176
-#define SYSTEM_STRING_TEMP_PREFIX SYSTEM_MEMORY_POOL_SIZE_SMALL6d6554
+#define SYSTEM_STRING_TEMP_PREFIX 0x6d6554
 #define SYSTEM_STRING_TEMP_SUFFIX 0x7261726f
 #define SYSTEM_STRING_RESOURCE_SUFFIX 0x73655279
 #define SYSTEM_STRING_CRUOR_SUFFIX 0x6372756f
@@ -73,7 +73,7 @@
 #define SYSTEM_STRING_ENGINE_TOKEN 0x69676e65
 #define SYSTEM_STRING_CONFIG_TOKEN_SHORT 0x635f656e
 #define SYSTEM_STRING_INFO_TOKEN 0x69666e6f
-#define SYSTEM_STRING_EXT_TOKEN SYSTEM_INIT_DATA_OFFSET_78742e67
+#define SYSTEM_STRING_EXT_TOKEN 0x78742e67
 #define SYSTEM_STRING_RESU_TOKEN 0x72657375
 #define SYSTEM_STRING_CONF_TOKEN 0x6e6f635f
 #define SYSTEM_STRING_T_CHAR 0x74
@@ -647,7 +647,7 @@
 #define SYSTEM_MAX_64BIT_VALUE SYSTEM_OFFSET_Ffffffffffffffff
 #define SYSTEM_ADDRESS_ALIGNMENT_MASK SYSTEM_OFFSET_Ffffffffffc00000
 #define SYSTEM_MODULE_FLAG_MASK SYSTEM_OFFSET_Ffff7fff
-#define SYSTEM_POWER_2_BIT_MASK SYSTEM_DATA_BLOCK_SIZE00000000000000
+#define SYSTEM_POWER_2_BIT_MASK 0x1000000000000000
 
 // 更多字符串常量定义
 #define SYSTEM_STRING_Slot_path 0x736c6f6f542f2e2e  // "../Tools" backwards
@@ -22197,7 +22197,7 @@ void HandleSystemOperation92(void)
   *(uint8_t *)system_ptr_value = 0;
   system_buffer_ptr_config_data = system_ptr_value;
   system_status_code = ValidateResourceAllocation(system_pointer_var);
-  *system_ptr_value = SYSTEM_MEMORY_POOL_SIZE_SMALL6d6554;
+  *system_ptr_value = 0x6d6554;
   system_pointer_var[1] = 0x7261726f;
   system_pointer_var[2] = 0x73655279;
   system_pointer_var[3] = 0x6372756f;
@@ -36813,7 +36813,7 @@ void InitializeSecurityEngineNode(uint64_t handleIdentifier,longlong resourceIde
   ProcessResourceData(&system_buffer_ptr_audio_buffer,g_system_base_1 + SYSTEM_CONFIG_SIZE_UTILITY_20,system_configuration,systemFlags,0);
   system_integer_result = init_stack_uint_param_buffer + 3;
   ConfigureSystemParameters(&system_buffer_ptr_audio_buffer,system_int_result);
-  *(uint32_t *)((ulonglong)init_stack_uint_param_buffer + longStack_a0) = SYSTEM_MEMORY_POOL_SIZE_SMALL6d74;
+  *(uint32_t *)((ulonglong)init_stack_uint_param_buffer + longStack_a0) = 0x6d74;
   init_stack_uint_param_buffer = system_integer_result;
   system_init_flag = ValidateSystemData(&system_buffer_ptr_audio_buffer);
   if (system_init_flag == '\0') {

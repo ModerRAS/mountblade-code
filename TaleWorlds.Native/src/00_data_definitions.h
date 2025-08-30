@@ -6206,7 +6206,7 @@ unsigned char allocate_with_mutex(unsigned long long handle_param,unsigned long 
 {
   long long system_initialization_result;
   uint thread_op_flags;
-  ulong long in_RAX;
+  ulong long system_input_register_rax;
   ulong long buffer_alloc_result;
   long long str_len_counter;
   uint unaff_EDI;
@@ -6217,7 +6217,7 @@ unsigned char allocate_with_mutex(unsigned long long handle_param,unsigned long 
   long long *system_input_stack_parameter;
   char system_input_stack_flag;
   str_len_counter = 0;
-  buffer_alloc_result = in_RAX & UINT32_MAX;
+  buffer_alloc_result = system_input_register_rax & UINT32_MAX;
   do {
     buffer_alloc_result = 0;
     if (unaff_EDI != 0) {
@@ -11066,13 +11066,13 @@ section_processing_jump_label_:
                 _endthreadex(0);
                 return;
               }
-              system_char_variable = (char)*in_RAX;
+              system_char_variable = (char)*system_input_register_rax;
             }
-            in_RAX = (int *)CONCAT_BYTES_TO_64BIT((int7)((ulong long)in_RAX >> 8),system_char_variable + system_char_variable);
+            system_input_register_rax = (int *)CONCAT_BYTES_TO_64BIT((int7)((ulong long)system_input_register_rax >> 8),system_char_variable + system_char_variable);
 LAB_180768028_1:
-            system_int_param_ptr = (int *)(((ulong long)in_RAX & UINT32_MAXffffff20) - 0x75);
+            system_int_param_ptr = (int *)(((ulong long)system_input_register_rax & UINT32_MAXffffff20) - 0x75);
             *system_int_param_ptr = *system_int_param_ptr + (int)handle_param;
-            *(int *)(((ulong long)in_RAX & UINT32_MAXffffff20) - 0x17ffffff) = (int)pthread_op_flags;
+            *(int *)(((ulong long)system_input_register_rax & UINT32_MAXffffff20) - 0x17ffffff) = (int)pthread_op_flags;
             halt_baddata();
           }
         }
@@ -11119,7 +11119,7 @@ unsigned long long allocate_resource_memory(int handle_param)
   unsigned long long thread_op_flags;
   unsigned long long extraout_XMM0_Qb;
   float float_var;
-  unsigned char in_XMM2 [16];
+  unsigned char system_input_xmm_register_2 [16];
   unsigned char athread_op_flags [16];
   float float_var;
   float float_var;
@@ -11166,11 +11166,11 @@ unsigned long long allocate_resource_memory(int handle_param)
         float_var = athread_op_flags._4_4_;
         float_var = athread_op_flags._8_4_;
         float_var = athread_op_flags._12_4_;
-        in_XMM2._0_4_ = (float_var + float_var) - float_var * float_var * athread_op_flags._0_4_;
-        in_XMM2._4_4_ = (float_var + float_var) - float_var * float_var * athread_op_flags._4_4_;
-        in_XMM2._8_4_ = (float_var + float_var) - float_var * float_var * athread_op_flags._8_4_;
-        in_XMM2._12_4_ = (float_var + float_var) - float_var * float_var * athread_op_flags._12_4_;
-        *(unsigned char (*) [16])(system_initialization_result5 + buffer_alloc_result * 4) = in_XMM2;
+        system_input_xmm_register_2._0_4_ = (float_var + float_var) - float_var * float_var * athread_op_flags._0_4_;
+        system_input_xmm_register_2._4_4_ = (float_var + float_var) - float_var * float_var * athread_op_flags._4_4_;
+        system_input_xmm_register_2._8_4_ = (float_var + float_var) - float_var * float_var * athread_op_flags._8_4_;
+        system_input_xmm_register_2._12_4_ = (float_var + float_var) - float_var * float_var * athread_op_flags._12_4_;
+        *(unsigned char (*) [16])(system_initialization_result5 + buffer_alloc_result * 4) = system_input_xmm_register_2;
         buffer_alloc_result = buffer_alloc_result + 4;
         buffer_alloc_result = buffer_alloc_result;
       } while ((int)buffer_alloc_result < (int)(buffer_alloc_result - buffer_alloc_result));
