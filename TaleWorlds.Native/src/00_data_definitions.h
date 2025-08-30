@@ -1224,12 +1224,12 @@
 #define SYSTEM_STRING_BUFFER_BASE_ADDR 0x180bf4000
 #define SYSTEM_CLEANUP_FUNCTION_ADDR 0x18064ffc0
 #define SYSTEM_STRING_OFFSET_ADDR 0x180c919b0
-#define RENDER_ENGINE_MAIN_FUNCTION 0x00018005c480
+#define SYSTEM_RENDER_ENGINE_MAIN_FUNCTION 0x00018005c480
 #define SYSTEM_INITIALIZATION_FUNCTION 0x00018013d940
-#define FLAG_HANDLER_FUNCTION 0x0001804ca2d0
-#define MEMORY_ALLOCATION_FUNCTION 0x0001800a1eb0
-#define FLOAT_CONVERSION_FUNCTION 0x000180329ed1
-#define MUTEX_SET_FUNCTION 0x00018064e870
+#define SYSTEM_FLAG_HANDLER_FUNCTION 0x0001804ca2d0
+#define SYSTEM_MEMORY_ALLOCATION_FUNCTION 0x0001800a1eb0
+#define SYSTEM_FLOAT_CONVERSION_FUNCTION 0x000180329ed1
+#define SYSTEM_MUTEX_SET_FUNCTION 0x00018064e870
 #define THREAD_HANDLER_FUNCTION 0x00018076a7d0
 #define MODULE_LOAD_FUNCTION 0x000180856540
 #define DATA_HANDLER_FUNCTION 0x0001808cf230
@@ -6386,7 +6386,7 @@ code_section_1ade:
     *thread_operation_flags = (float)(ushort)maximum_stack_size * SYSTEM_FLOAT_VALUE_VERY_SMALL;
     buffer_allocation_result = (uint)maximum_stack_size_halfword1_;
     buffer_allocation_result = maximum_stack_size_halfword2_;
-    goto code_section_16a1;
+    goto code_section_data_validation;
   case 0x28:
     thread_priority_level = mutex_type;
     system_handle_paramr_006(system_initialization_result0,&maximum_stack_size,handle_param,&system_stack_unsigned_int_param_18);
@@ -6394,7 +6394,7 @@ code_section_1ade:
     *thread_operation_flags = (float)(byte)maximum_stack_size * SYSTEM_FLOAT_CONVERSION_FACTOR_0_003921569;
     buffer_allocation_result = (uint)maximum_stack_size_byte1_;
     buffer_allocation_result = (ushort)maximum_stack_size_byte2_;
-    goto code_section_16a1;
+    goto code_section_data_validation;
   case 0x29:
     thread_priority_level = mutex_type;
     system_handle_paramr_006(system_initialization_result0,&maximum_stack_size,handle_param,&system_stack_unsigned_int_param_18);
@@ -7412,7 +7412,7 @@ unsigned char allocate_with_mutex(unsigned long long handle_param,unsigned long 
   ulong long buffer_allocation_result;
   long long str_len_counter;
   uint unaff_EDI;
-  unsigned char in_R10B;
+  unsigned char cpu_register_r10b_value;
   long long *unaffected_register;
   uint unaffected_register_d;
   ulong long buffer_allocation_result;
@@ -7440,20 +7440,20 @@ unsigned char allocate_with_mutex(unsigned long long handle_param,unsigned long 
         buffer_allocation_result = buffer_allocation_result - 1;
       } while (buffer_allocation_result != 0);
     }
-    in_R10B = SYSTEM_ONE_VALUE;
+    cpu_register_r10b_value = SYSTEM_ONE_VALUE;
 section_processing_jump_label_:
     str_len_counter = str_len_counter + 8;
     buffer_allocation_result = buffer_allocation_result - 1;
     mutex_attr = system_input_stack_parameter;
     if (buffer_allocation_result == SYSTEM_ZERO_VALUE) {
-      return in_R10B;
+      return cpu_register_r10b_value;
     }
   } while( true );
 }
 unsigned char check_allocation_complete(void)
 {
-  unsigned char in_R10B;
-  return in_R10B;
+  unsigned char cpu_register_r10b_value;
+  return cpu_register_r10b_value;
 }
 unsigned long long
 system_allocator_tertiary(unsigned long long handle_param,long long *thread_operation_flags,unsigned long long *mutex_attr,unsigned int mutex_type,
