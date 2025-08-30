@@ -14,7 +14,7 @@
 
 // 最新美化内容（2025年8月30日最终批次常量清理）：
 // - 美化系统魔法数字，将SYSTEM_INIT_FLAG_ACTIVE6ecbd4daf41613e替换为SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_3等语义化常量
-// - 美化系统指针变量名，将stack_pointer_1替换为system_temp_pointer等语义化变量名
+// - 美化系统指针变量名，将system_stack_pointer替换为system_temp_pointer等语义化变量名
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了初始化系统中剩余魔法数字和变量名的语义化替换
 // - 原本实现：完全重构初始化系统所有魔法数字和变量命名体系，建立统一的语义化命名规范
@@ -963,7 +963,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -1013,7 +1013,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -1063,7 +1063,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -1113,7 +1113,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -1163,7 +1163,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -1213,7 +1213,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -1263,7 +1263,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -1363,7 +1363,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -1432,7 +1432,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -1629,13 +1629,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = 7;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -1756,7 +1756,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -1856,7 +1856,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -1956,7 +1956,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -2206,7 +2206,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -2361,13 +2361,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = SYSTEM_INIT_VALUE_STACK_11;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -2488,7 +2488,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -2588,7 +2588,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -2688,7 +2688,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -2888,7 +2888,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -2988,7 +2988,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -3088,7 +3088,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -3238,7 +3238,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -3338,7 +3338,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -3438,7 +3438,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -3488,7 +3488,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -3688,7 +3688,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -3788,7 +3788,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -3888,7 +3888,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -3935,13 +3935,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = 8;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -4272,7 +4272,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -4372,7 +4372,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -4472,7 +4472,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -4519,13 +4519,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = SYSTEM_INIT_VALUE_STACK_11;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -4646,7 +4646,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -4746,7 +4746,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -4846,7 +4846,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -4893,13 +4893,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = 10;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -4925,13 +4925,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = 9;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -4949,13 +4949,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = SYSTEM_INIT_VALUE_STACK_15;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -4973,13 +4973,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = SYSTEM_INIT_VALUE_STACK_12;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -4997,13 +4997,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = 7;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_initialized,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_initialized,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -5021,13 +5021,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = SYSTEM_INIT_FLAG_ENABLED3;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -5248,7 +5248,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -5348,7 +5348,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -5448,7 +5448,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -5598,7 +5598,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -5698,7 +5698,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -5798,7 +5798,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -6205,7 +6205,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -6305,7 +6305,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -6405,7 +6405,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -6655,7 +6655,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -6755,7 +6755,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -6855,7 +6855,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -7105,7 +7105,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -7255,7 +7255,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -7355,7 +7355,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -7455,7 +7455,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -7502,13 +7502,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = SYSTEM_INIT_VALUE_STACK_12;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -7534,13 +7534,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = SYSTEM_INIT_FLAG_ENABLED6;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_initialized,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_initialized,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -7558,13 +7558,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = SYSTEM_INIT_FLAG_ENABLED6;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_initialized,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_initialized,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -7685,7 +7685,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -7785,7 +7785,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -7885,7 +7885,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -7935,7 +7935,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -7982,13 +7982,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = SYSTEM_INIT_FLAG_ENABLEDc;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -8059,7 +8059,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -8109,7 +8109,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -8159,7 +8159,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -8209,7 +8209,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -8259,7 +8259,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -8309,7 +8309,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -8359,7 +8359,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -8459,7 +8459,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -8556,13 +8556,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = 9;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -8580,13 +8580,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = 8;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -8604,13 +8604,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = SYSTEM_INIT_VALUE_STACK_11;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -8628,13 +8628,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = SYSTEM_INIT_VALUE_STACK_13;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -8652,13 +8652,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = SYSTEM_INIT_FLAG_ENABLEDc;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -8676,13 +8676,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = SYSTEM_INIT_FLAG_ENABLED5;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -8700,13 +8700,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = SYSTEM_INIT_VALUE_STACK_14;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -8724,13 +8724,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = SYSTEM_INIT_FLAG_ENABLEDa;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -8748,13 +8748,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = SYSTEM_INIT_FLAG_ENABLED3;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -8875,7 +8875,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -8975,7 +8975,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -9075,7 +9075,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -9225,7 +9225,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -9325,7 +9325,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -9425,7 +9425,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -9575,7 +9575,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -9675,7 +9675,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -9775,7 +9775,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -9925,7 +9925,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -10025,7 +10025,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -10125,7 +10125,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -10225,7 +10225,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -10275,7 +10275,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -10325,7 +10325,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -10375,7 +10375,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -10425,7 +10425,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -10475,7 +10475,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -10525,7 +10525,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -10625,7 +10625,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -10672,13 +10672,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = SYSTEM_INIT_FLAG_ENABLED6;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -10759,7 +10759,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -10809,7 +10809,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -10859,7 +10859,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -10909,7 +10909,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -10959,7 +10959,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -11009,7 +11009,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -11059,7 +11059,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -11159,7 +11159,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -11206,13 +11206,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = SYSTEM_INIT_FLAG_ENABLED2;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -11230,13 +11230,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = 8;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -11357,7 +11357,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -11457,7 +11457,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -11557,7 +11557,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -11767,7 +11767,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -11867,7 +11867,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -11967,7 +11967,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -12117,7 +12117,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -12217,7 +12217,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -12317,7 +12317,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -12364,13 +12364,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = SYSTEM_INIT_FLAG_ENABLEDb;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -12504,7 +12504,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -12554,7 +12554,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -12604,7 +12604,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -12654,7 +12654,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -12704,7 +12704,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -12754,7 +12754,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -12804,7 +12804,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -12904,7 +12904,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -12951,13 +12951,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = SYSTEM_INIT_SIZE_COMPARE;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -12975,13 +12975,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = SYSTEM_INIT_VALUE_STACK_15;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_initialized,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_initialized,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -12999,13 +12999,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = SYSTEM_INIT_OFFSET_CHAR_CHECK;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_initialized,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_initialized,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -13023,13 +13023,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = SYSTEM_INIT_FLAG_ENABLED4;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_initialized,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_initialized,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -13060,7 +13060,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -13110,7 +13110,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -13210,7 +13210,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -13260,7 +13260,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -13310,7 +13310,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -13360,7 +13360,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -13410,7 +13410,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -13460,7 +13460,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -13510,7 +13510,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -13610,7 +13610,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -13660,7 +13660,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -13710,7 +13710,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -14060,7 +14060,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -14160,7 +14160,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -14260,7 +14260,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -14310,7 +14310,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -14360,7 +14360,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -14410,7 +14410,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -14500,7 +14500,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -14550,7 +14550,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -14600,7 +14600,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -14650,7 +14650,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -14697,13 +14697,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = SYSTEM_INIT_VALUE_STACK_13;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -14736,7 +14736,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -14786,7 +14786,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -15036,7 +15036,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -15136,7 +15136,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -15236,7 +15236,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -15336,7 +15336,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -15386,7 +15386,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -15436,7 +15436,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -15486,7 +15486,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -15536,7 +15536,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -15586,7 +15586,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -15636,7 +15636,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -15736,7 +15736,7 @@ void InitializeSystemCore(void)
   undefined8 *system_config_data_pointer;
   undefined8 *system_temp_data_pointer;
   undefined8 *system_stack_frame_pointer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_ptr_buffer = (undefined8 *)*system_context_base_pointer;
@@ -15783,13 +15783,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = SYSTEM_INIT_FLAG_ENABLEDb;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -15875,13 +15875,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = SYSTEM_INIT_SIZE_COMPARE;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -15939,13 +15939,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = SYSTEM_INIT_FLAG_ENABLED7;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -15963,13 +15963,13 @@ void InitializeSystemCore(void)
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined1 asystem_stack_uint_88 [136];
   
   puStack_a0 = &g_system_context;
-  puStack_98 = auStack_88;
-  auStack_88[0] = SYSTEM_INIT_VALUE_ZERO;
+  puStack_98 = asystem_stack_uint_88;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = SYSTEM_INIT_FLAG_ENABLED1;
-  strcpy_s(auStack_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(asystem_stack_uint_88,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&puStack_a0);
   return;
 }
@@ -17406,14 +17406,14 @@ void InitializeSystemCore(longlong system_param_1,longlong system_param_2,longlo
   longlong system_long_var_2;
   longlong system_long_var_3;
   undefined1 auStack_a8 [32];
-  undefined8 uStack_88;
+  undefined8 system_stack_uint_88;
   undefined *puStack_80;
   undefined1 *puStack_78;
   undefined4 uStack_70;
   undefined1 auStack_68 [32];
   ulonglong uStack_48;
   
-  uStack_88 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
+  system_stack_uint_88 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
   uStack_48 = _g_system_initialized ^ (ulonglong)auStack_a8;
   puStack_80 = &g_system_context;
   puStack_78 = auStack_68;
@@ -17644,7 +17644,7 @@ int InitializeSystemCore(longlong system_param_1,longlong system_param_2)
   undefined8 uStack_a0;
   undefined8 uStack_98;
   undefined8 uStack_90;
-  undefined8 uStack_88;
+  undefined8 system_stack_uint_88;
   undefined8 uStack_80;
   undefined8 uStack_78;
   undefined8 uStack_70;
@@ -17692,7 +17692,7 @@ int InitializeSystemCore(longlong system_param_1,longlong system_param_2)
   uStack_a0 = SYSTEM_INIT_VALUE_ZERO;
   uStack_98 = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = SYSTEM_INIT_VALUE_ZERO;
-  uStack_88 = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_uint_88 = SYSTEM_INIT_VALUE_ZERO;
   uStack_80 = SYSTEM_INIT_VALUE_ZERO;
   uStack_78 = SYSTEM_INIT_VALUE_ZERO;
   uStack_70 = SYSTEM_INIT_VALUE_ZERO;
@@ -18317,7 +18317,7 @@ void InitializeSystemCore(undefined8 system_param_1,undefined8 system_param_2,un
   char *pcStack_a0;
   undefined4 uStack_98;
   ulonglong uStack_90;
-  undefined *puStack_88;
+  undefined *psystem_stack_uint_88;
   char *pcStack_80;
   undefined4 uStack_78;
   ulonglong uStack_70;
@@ -18371,11 +18371,11 @@ void InitializeSystemCore(undefined8 system_param_1,undefined8 system_param_2,un
     do {
       system_long_var_13 = _g_system_initialized;
       system_long_var_11 = SYSTEM_INIT_VALUE_ZERO;
-      puStack_88 = &g_system_context;
+      psystem_stack_uint_88 = &g_system_context;
       uStack_70 = SYSTEM_INIT_VALUE_ZERO;
       pcStack_80 = (char *)SYSTEM_INIT_VALUE_CHAR_NULL;
       uStack_78 = SYSTEM_INIT_VALUE_ZERO;
-      system_call_service(&puStack_88,*(undefined4 *)(_g_system_initialized + SYSTEM_INIT_SIZE_COMPARE + system_init_flag_10));
+      system_call_service(&psystem_stack_uint_88,*(undefined4 *)(_g_system_initialized + SYSTEM_INIT_SIZE_COMPARE + system_init_flag_10));
       system_int_var_17 = *(int *)(system_long_var_13 + SYSTEM_INIT_SIZE_COMPARE + system_init_flag_10);
       if (system_int_var_17 != 0) {
                     // WARNING: Subroutine does not return
@@ -18544,14 +18544,14 @@ void InitializeSystemCore(undefined8 system_param_1,undefined8 system_param_2,un
         system_unsigned_var_4 = system_ulong_var_16;
       }
       system_process_service(system_ptr_pool,&g_system_initialized);
-      puStack_88 = &g_system_context;
+      psystem_stack_uint_88 = &g_system_context;
       if (pcStack_80 != (char *)SYSTEM_INIT_VALUE_CHAR_NULL) {
                     // WARNING: Subroutine does not return
         system_execute_operation();
       }
       pcStack_80 = (char *)SYSTEM_INIT_VALUE_CHAR_NULL;
       uStack_70 = uStack_70 & SYSTEM_INIT_ERROR_GENERIC00000000;
-      puStack_88 = &g_system_context;
+      psystem_stack_uint_88 = &g_system_context;
       system_ulong_var_16 = system_unsigned_var_4 + 1;
       system_ulong_var_12 = (ulonglong)system_ulong_var_16;
       system_init_flag_10 = system_init_flag_10 + SYSTEM_INIT_SIZE_COMPARE0;
@@ -20074,7 +20074,7 @@ void InitializeSystemCore(void)
   undefined8 *system_ptr_memory;
   undefined *system_ptr_data;
   int system_int_status;
-  undefined1 auStack_88 [32];
+  undefined1 asystem_stack_uint_88 [32];
   undefined4 uStack_68;
   undefined1 auStack_60 [8];
   undefined *puStack_58;
@@ -20087,7 +20087,7 @@ void InitializeSystemCore(void)
   ulonglong uStack_10;
   
   uStack_40 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
-  uStack_10 = _g_system_initialized ^ (ulonglong)auStack_88;
+  uStack_10 = _g_system_initialized ^ (ulonglong)asystem_stack_uint_88;
   uStack_68 = SYSTEM_INIT_VALUE_ZERO;
   system_char_check = InitializeSystemCore();
   if (system_char_check == '\0') {
@@ -20451,7 +20451,7 @@ void InitializeSystemCore(undefined8 *system_param_1)
   longlong system_long_var_3;
   uint system_unsigned_var_4;
   undefined *system_ptr_pool;
-  undefined1 auStack_88 [32];
+  undefined1 asystem_stack_uint_88 [32];
   undefined4 uStack_68;
   undefined8 uStack_60;
   undefined8 *puStack_58;
@@ -20462,7 +20462,7 @@ void InitializeSystemCore(undefined8 *system_param_1)
   ulonglong uStack_18;
   
   uStack_60 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
-  uStack_18 = _g_system_initialized ^ (ulonglong)auStack_88;
+  uStack_18 = _g_system_initialized ^ (ulonglong)asystem_stack_uint_88;
   *system_param_1 = &g_system_context;
   system_param_1[1] = SYSTEM_INIT_VALUE_ZERO;
   *(undefined4 *)(system_param_1 + 2) = SYSTEM_INIT_VALUE_ZERO;
@@ -20504,7 +20504,7 @@ void InitializeSystemCore(undefined8 *system_param_1)
   uStack_68 = 1;
   puStack_50 = &g_system_context;
                     // WARNING: Subroutine does not return
-  system_process_data(uStack_18 ^ (ulonglong)auStack_88);
+  system_process_data(uStack_18 ^ (ulonglong)asystem_stack_uint_88);
 }
 
 
@@ -20725,7 +20725,7 @@ void InitializeSystemCore(longlong system_param_1,undefined8 system_param_2,unde
   int system_int_count;
   ulonglong *system_ptr_memory;
   longlong system_long_var_4;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   undefined8 system_stack_uint_var_20;
   undefined1 auStack_78 [32];
   undefined8 uStack_58;
@@ -21316,7 +21316,7 @@ void InitializeSystemCore(longlong system_param_1)
   undefined1 auStack_a8 [8];
   undefined *puStack_a0;
   uint uStack_98;
-  undefined8 uStack_88;
+  undefined8 system_stack_uint_88;
   undefined8 uStack_80;
   undefined8 uStack_78;
   undefined4 uStack_70;
@@ -22152,7 +22152,7 @@ void InitializeSystemCore(undefined8 system_param_1,longlong system_param_2)
   undefined8 uStack_a8;
   undefined *puStack_98;
   undefined1 *puStack_90;
-  undefined4 uStack_88;
+  undefined4 system_stack_uint_88;
   undefined1 auStack_80 [72];
   ulonglong uStack_38;
   
@@ -22292,12 +22292,12 @@ undefined4 InitializeSystemCore(void)
   longlong lStack_a0;
   uint uStack_98;
   undefined8 uStack_90;
-  undefined8 uStack_88;
+  undefined8 system_stack_uint_88;
   undefined1 auStack_80 [32];
   undefined1 auStack_60 [40];
   
   system_long_var_3 = _g_system_initialized;
-  uStack_88 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
+  system_stack_uint_88 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
   asystem_local_uint_primary = *(undefined1 (*) [16])
             (*(longlong *)(_g_system_initialized + 8) + SYSTEM_INIT_VALUE_STACK_12c +
             (ulonglong)(*(uint *)(*(longlong *)(_g_system_initialized + 8) + SYSTEM_INIT_FLAG_ENABLED3c) & 1) * SYSTEM_INIT_FLAG_ACTIVE8);
@@ -23658,7 +23658,7 @@ void InitializeSystemCore(longlong system_param_1,longlong system_param_2,undefi
   longlong system_long_var_6;
   undefined8 system_init_flag_7;
   undefined *puStack_90;
-  undefined8 *puStack_88;
+  undefined8 *psystem_stack_uint_88;
   undefined4 uStack_80;
   undefined8 uStack_78;
   undefined *puStack_70;
@@ -23705,11 +23705,11 @@ void InitializeSystemCore(longlong system_param_1,longlong system_param_2,undefi
   if (-1 < system_compare_result) {
     puStack_90 = &g_system_context;
     uStack_78 = SYSTEM_INIT_VALUE_ZERO;
-    puStack_88 = (undefined8 *)SYSTEM_INIT_VALUE_CHAR_NULL;
+    psystem_stack_uint_88 = (undefined8 *)SYSTEM_INIT_VALUE_CHAR_NULL;
     uStack_80 = SYSTEM_INIT_VALUE_ZERO;
     system_ptr_data = (undefined8 *)system_allocate_memory(_g_system_initialized,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_FLAG_ENABLED3,system_param_4,system_init_flag_7);
     *(undefined1 *)system_ptr_data = SYSTEM_INIT_VALUE_ZERO;
-    puStack_88 = system_ptr_data;
+    psystem_stack_uint_88 = system_ptr_data;
     system_unsigned_var_2 = system_validate_operation(system_ptr_data);
     uStack_78 = CONCAT44(uStack_78._4_4_,system_unsigned_var_2);
     *system_ptr_data = SYSTEM_INIT_FLAG_ACTIVE54c55444f4d5f2a;
@@ -23737,7 +23737,7 @@ undefined8 InitializeSystemCore(undefined8 system_param_1,undefined8 system_para
   undefined4 system_unsigned_var_2;
   int system_compare_result;
   undefined8 *system_ptr_data;
-  undefined *puStack_88;
+  undefined *psystem_stack_uint_88;
   undefined8 *puStack_80;
   undefined4 uStack_78;
   undefined8 uStack_70;
@@ -23766,7 +23766,7 @@ undefined8 InitializeSystemCore(undefined8 system_param_1,undefined8 system_para
   uStack_58 = 10;
   system_compare_result = system_function_(system_long_var_1 + SYSTEM_INIT_FLAG_INITIALIZEDc0,&puStack_68);
   if (-1 < system_compare_result) {
-    puStack_88 = &g_system_context;
+    psystem_stack_uint_88 = &g_system_context;
     uStack_70 = SYSTEM_INIT_VALUE_ZERO;
     puStack_80 = (undefined8 *)SYSTEM_INIT_VALUE_CHAR_NULL;
     uStack_78 = SYSTEM_INIT_VALUE_ZERO;
@@ -23779,8 +23779,8 @@ undefined8 InitializeSystemCore(undefined8 system_param_1,undefined8 system_para
     *(undefined2 *)(system_ptr_data + 1) = SYSTEM_INIT_VALUE_STRING_TERMINATOR53;
     *(undefined1 *)((longlong)system_ptr_data + 10) = SYSTEM_INIT_VALUE_ZERO;
     uStack_78 = 10;
-    system_function_(system_long_var_1 + SYSTEM_INIT_FLAG_INITIALIZEDc0,&puStack_88);
-    puStack_88 = &g_system_context;
+    system_function_(system_long_var_1 + SYSTEM_INIT_FLAG_INITIALIZEDc0,&psystem_stack_uint_88);
+    psystem_stack_uint_88 = &g_system_context;
                     // WARNING: Subroutine does not return
     system_execute_operation(system_ptr_data);
   }
@@ -24363,7 +24363,7 @@ void InitializeSystemCore(undefined8 system_param_1,undefined8 system_param_2,lo
   undefined8 uStack_c0;
   undefined4 uStack_b8;
   undefined8 uStack_b0;
-  undefined1 auStack_88 [32];
+  undefined1 asystem_stack_uint_88 [32];
   undefined8 uStack_68;
   undefined8 uStack_60;
   char acStack_58 [16];
@@ -24402,7 +24402,7 @@ void InitializeSystemCore(undefined8 system_param_1,undefined8 system_param_2,lo
   if (g_system_initialized != '\0') {
     system_pointer_var_9 = &g_system_context;
   }
-  system_write_service(auStack_88,system_pointer_var_9);
+  system_write_service(asystem_stack_uint_88,system_pointer_var_9);
   puStack_c8 = &g_system_context;
   uStack_b0 = SYSTEM_INIT_VALUE_ZERO;
   uStack_c0 = SYSTEM_INIT_VALUE_ZERO;
@@ -25853,7 +25853,7 @@ void InitializeSystemCore(longlong system_param_1)
   undefined1 uStack_a0;
   undefined *puStack_98;
   undefined *puStack_90;
-  uint uStack_88;
+  uint system_stack_uint_88;
   ulonglong uStack_80;
   longlong lStack_78;
   longlong alStack_70 [2];
@@ -25894,9 +25894,9 @@ void InitializeSystemCore(longlong system_param_1)
     puStack_98 = &g_system_context;
     uStack_80 = SYSTEM_INIT_VALUE_ZERO;
     puStack_90 = (undefined *)SYSTEM_INIT_VALUE_CHAR_NULL;
-    uStack_88 = SYSTEM_INIT_VALUE_ZERO;
+    system_stack_uint_88 = SYSTEM_INIT_VALUE_ZERO;
     system_call_service(&puStack_98,SYSTEM_INIT_FLAG_ENABLEDc);
-    system_ptr_pool = (undefined4 *)(puStack_90 + uStack_88);
+    system_ptr_pool = (undefined4 *)(puStack_90 + system_stack_uint_88);
     *system_ptr_pool = 0x73736f50;
     system_ptr_pool[1] = 0x656c6269;
     system_ptr_pool[2] = 0x61656420;
@@ -25904,9 +25904,9 @@ void InitializeSystemCore(longlong system_param_1)
     *(undefined8 *)(system_ptr_pool + 4) = SYSTEM_INIT_MAGIC_COOKIE_ENGINE_56365746564206b;
     system_ptr_pool[6] = SYSTEM_INIT_OFFSET_STACK_PARAM2c6465;
     *(undefined1 *)(system_ptr_pool + 7) = SYSTEM_INIT_VALUE_ZERO;
-    uStack_88 = SYSTEM_INIT_FLAG_ENABLEDc;
+    system_stack_uint_88 = SYSTEM_INIT_FLAG_ENABLEDc;
     system_call_service(&puStack_98,0x3e);
-    system_ptr_pool = (undefined4 *)(puStack_90 + uStack_88);
+    system_ptr_pool = (undefined4 *)(puStack_90 + system_stack_uint_88);
     *system_ptr_pool = SYSTEM_INIT_MAGIC_COOKIE_ENGINE_1;
     system_ptr_pool[1] = 0x6420656e;
     system_ptr_pool[2] = 0x6e206469;
@@ -25917,9 +25917,9 @@ void InitializeSystemCore(longlong system_param_1)
     system_ptr_pool[7] = 0x6f662065;
     *(undefined2 *)(system_ptr_pool + 8) = SYSTEM_INIT_OFFSET_STACK_PARAM72;
     *(undefined1 *)((longlong)system_ptr_pool + SYSTEM_INIT_FLAG_INITIALIZED2) = SYSTEM_INIT_VALUE_ZERO;
-    uStack_88 = 0x3e;
+    system_stack_uint_88 = 0x3e;
     InitializeSystemCore(acStack_60,&g_system_context,900);
-    system_unsigned_var_3 = uStack_88;
+    system_unsigned_var_3 = system_stack_uint_88;
     system_long_var_4 = -1;
     do {
       system_long_var_8 = system_long_var_4;
@@ -25927,15 +25927,15 @@ void InitializeSystemCore(longlong system_param_1)
     } while (acStack_60[system_long_var_8 + 1] != '\0');
     system_int_offset = (int)(system_long_var_8 + 1);
     if (0 < system_int_offset) break;
-    system_unsigned_var_1 = uStack_88 + 10;
+    system_unsigned_var_1 = system_stack_uint_88 + 10;
     system_call_service(&puStack_98,system_unsigned_var_1);
-    system_module_data_pointer = (undefined8 *)(puStack_90 + uStack_88);
+    system_module_data_pointer = (undefined8 *)(puStack_90 + system_stack_uint_88);
     *system_module_data_pointer = 0x73646e6f63657320;
     *(undefined2 *)(system_module_data_pointer + 1) = SYSTEM_INIT_OFFSET_STACK_PARAM21;
     *(undefined1 *)((longlong)system_module_data_pointer + 10) = SYSTEM_INIT_VALUE_ZERO;
-    uStack_88 = system_unsigned_var_1;
+    system_stack_uint_88 = system_unsigned_var_1;
     system_call_service(&puStack_98,system_unsigned_var_3 + SYSTEM_INIT_FLAG_INITIALIZEDb);
-    system_ptr_pool = (undefined4 *)(puStack_90 + uStack_88);
+    system_ptr_pool = (undefined4 *)(puStack_90 + system_stack_uint_88);
     *system_ptr_pool = 0x65766544;
     system_ptr_pool[1] = 0x65706f6c;
     system_ptr_pool[2] = 0x6e692072;
@@ -25951,7 +25951,7 @@ void InitializeSystemCore(longlong system_param_1)
     }
     uStack_a0 = SYSTEM_INIT_VALUE_ZERO;
     uStack_a8 = SYSTEM_INIT_VALUE_ZERO;
-    uStack_88 = system_unsigned_var_3 + SYSTEM_INIT_FLAG_INITIALIZEDb;
+    system_stack_uint_88 = system_unsigned_var_3 + SYSTEM_INIT_FLAG_INITIALIZEDb;
     (**(system_code **)(*(longlong *)*_g_system_initialized + SYSTEM_INIT_OFFSET_STACK_PARAM))
               ((longlong *)*_g_system_initialized,&g_system_context,SYSTEM_INIT_FLAG_ENABLED75c,system_pointer_var_9);
     *(double *)(system_param_1 + SYSTEM_INIT_VALUE_STACK_120) = system_double_2;
@@ -25964,9 +25964,9 @@ void InitializeSystemCore(longlong system_param_1)
     uStack_80 = uStack_80 & SYSTEM_INIT_ERROR_GENERIC00000000;
     puStack_98 = &g_system_context;
   }
-  system_call_service(&puStack_98,uStack_88 + system_int_offset);
+  system_call_service(&puStack_98,system_stack_uint_88 + system_int_offset);
                     // WARNING: Subroutine does not return
-  memcpy(puStack_90 + uStack_88,acStack_60,(longlong)((int)system_long_var_8 + 2));
+  memcpy(puStack_90 + system_stack_uint_88,acStack_60,(longlong)((int)system_long_var_8 + 2));
 }
 
 
@@ -32056,7 +32056,7 @@ void InitializeSystemCore(undefined8 system_param_1,undefined8 system_param_2,un
   undefined8 system_unsigned_var_1;
   undefined8 *system_ptr_buffer;
   undefined8 system_stack_uint_10;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   undefined8 system_stack_uint_20;
   
   system_stack_uint_10 = system_param_2;
@@ -35327,7 +35327,7 @@ int InitializeSystemCore(undefined8 system_param_1,undefined8 system_param_2,und
 {
   int system_int_param;
   ulonglong *system_ptr_buffer;
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   undefined8 system_stack_uint_20;
   
   system_stack_uint_18 = system_param_3;
@@ -36297,7 +36297,7 @@ void InitializeSystemCore(undefined8 system_param_1,undefined8 system_param_2,un
 void InitializeSystemCore(undefined8 system_param_1,undefined8 system_param_2,undefined8 system_param_3,undefined8 system_param_4)
 
 {
-  void* stack_pointer_1;
+  void* system_stack_pointer;
   undefined8 system_stack_uint_20;
   
   system_stack_uint_18 = system_param_3;
@@ -37300,7 +37300,7 @@ ulonglong InitializeSystemCore(undefined8 system_param_1)
   ulonglong uStack_a0;
   undefined8 *puStack_98;
   undefined8 *puStack_90;
-  undefined8 uStack_88;
+  undefined8 system_stack_uint_88;
   undefined4 uStack_80;
   undefined8 uStack_78;
   longlong lStack_70;
@@ -37312,7 +37312,7 @@ ulonglong InitializeSystemCore(undefined8 system_param_1)
   uStack_38 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
   puStack_98 = (undefined8 *)SYSTEM_INIT_VALUE_CHAR_NULL;
   puStack_90 = (undefined8 *)SYSTEM_INIT_VALUE_CHAR_NULL;
-  uStack_88 = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_uint_88 = SYSTEM_INIT_VALUE_ZERO;
   uStack_80 = SYSTEM_INIT_VALUE_THREE;
   system_char_check = InitializeSystemCore(&puStack_98);
   system_config_data_pointer = puStack_90;
@@ -37443,7 +37443,7 @@ void InitializeSystemCore(longlong *system_param_1,longlong system_param_2,longl
   undefined4 uStack_9c;
   ulonglong uStack_98;
   ulonglong uStack_90;
-  undefined1 uStack_88;
+  undefined1 system_stack_uint_88;
   undefined7 uStack_87;
   longlong lStack_78;
   ulonglong uStack_70;
@@ -37478,17 +37478,17 @@ void InitializeSystemCore(longlong *system_param_1,longlong system_param_2,longl
   }
   lStack_78 = SYSTEM_INIT_VALUE_ZERO;
   uStack_70 = SYSTEM_INIT_VALUE_STACK_15;
-  uStack_88 = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_uint_88 = SYSTEM_INIT_VALUE_ZERO;
   do {
     system_long_var_10 = system_long_var_10 + 1;
   } while (system_module_data_pointer[system_long_var_10] != '\0');
-  InitializeSystemCore(&uStack_88,system_module_data_pointer,system_long_var_10);
+  InitializeSystemCore(&system_stack_uint_88,system_module_data_pointer,system_long_var_10);
   system_long_var_12 = lStack_78;
   system_unsigned_var_1 = uStack_a8;
   uStack_98 = SYSTEM_INIT_VALUE_ZERO;
   uStack_90 = SYSTEM_INIT_VALUE_STACK_15;
   uStack_a8 = uStack_a8 & SYSTEM_INIT_VALUE_STACK_15fffff00;
-  system_long_var_10 = CONCAT71(uStack_87,uStack_88);
+  system_long_var_10 = CONCAT71(uStack_87,system_stack_uint_88);
   system_init_flag_9 = CONCAT44(uStack_a4,system_unsigned_var_1) & SYSTEM_INIT_ERROR_GENERICffffff00;
   system_ptr_pool = &uStack_c8;
   if (SYSTEM_INIT_VALUE_STACK_15 < uStack_b0) {
@@ -37529,7 +37529,7 @@ void InitializeSystemCore(longlong *system_param_1,longlong system_param_2,longl
     }
     lStack_78 = SYSTEM_INIT_VALUE_ZERO;
     uStack_70 = SYSTEM_INIT_VALUE_STACK_15;
-    uStack_88 = SYSTEM_INIT_VALUE_ZERO;
+    system_stack_uint_88 = SYSTEM_INIT_VALUE_ZERO;
     if (SYSTEM_INIT_VALUE_STACK_15 < uStack_b0) {
       system_init_flag_9 = uStack_b0 + 1;
       system_long_var_12 = CONCAT71(uStack_c7,uStack_c8);
@@ -37795,7 +37795,7 @@ void InitializeSystemCore(undefined8 system_param_1)
   undefined *puStack_c0;
   undefined4 uStack_b8;
   undefined auStack_b0 [40];
-  undefined4 auStack_88 [14];
+  undefined4 asystem_stack_uint_88 [14];
   ulonglong uStack_50;
   ulonglong uStack_38;
   
@@ -37896,9 +37896,9 @@ void InitializeSystemCore(undefined8 system_param_1)
   uStack_2f8 = SYSTEM_INIT_VALUE_ZERO;
   system_init_flag_10 = system_get_status();
   system_function_(&puStack_2e8,&system_data_cache,system_init_flag_10 / SYSTEM_INIT_SIZE_COMPARE0000 & SYSTEM_INIT_ERROR_GENERIC);
-  auStack_88[0] = SYSTEM_INIT_FLAG_ACTIVE8;
+  asystem_stack_uint_88[0] = SYSTEM_INIT_FLAG_ACTIVE8;
   system_local_uint_primary1 = GetCurrentProcess();
-  system_int_value = K32GetProcessMemoryInfo(system_local_uint_primary1,auStack_88,SYSTEM_INIT_FLAG_ACTIVE8);
+  system_int_value = K32GetProcessMemoryInfo(system_local_uint_primary1,asystem_stack_uint_88,SYSTEM_INIT_FLAG_ACTIVE8);
   system_init_flag_10 = SYSTEM_INIT_VALUE_ZERO;
   if (system_int_value != 0) {
     system_init_flag_10 = uStack_50;
@@ -38289,7 +38289,7 @@ void InitializeSystemCore(undefined8 system_param_1,longlong system_param_2,unde
   undefined *puStack_a8;
   longlong lStack_a0;
   uint uStack_98;
-  undefined *puStack_88;
+  undefined *psystem_stack_uint_88;
   longlong lStack_80;
   undefined4 uStack_70;
   undefined **ppuStack_68;
@@ -38324,32 +38324,32 @@ void InitializeSystemCore(undefined8 system_param_1,longlong system_param_2,unde
   uStack_50 = SYSTEM_INIT_VALUE_ZERO;
   ppuStack_68 = (undefined **)&g_system_context;
   system_char_pointer_1 = *(system_code **)(*plStack_b0 + SYSTEM_INIT_OFFSET_HEADER);
-  system_unsigned_var_3 = system_return_result(&puStack_88,_g_system_initialized + SYSTEM_INIT_VALUE_STACK_140);
+  system_unsigned_var_3 = system_return_result(&psystem_stack_uint_88,_g_system_initialized + SYSTEM_INIT_VALUE_STACK_140);
   (*system_char_pointer_1)(plStack_b0,system_unsigned_var_3);
-  puStack_88 = &g_system_context;
+  psystem_stack_uint_88 = &g_system_context;
   if (lStack_80 != 0) {
                     // WARNING: Subroutine does not return
     system_execute_operation();
   }
   lStack_80 = SYSTEM_INIT_VALUE_ZERO;
   uStack_70 = SYSTEM_INIT_VALUE_ZERO;
-  puStack_88 = &g_system_context;
+  psystem_stack_uint_88 = &g_system_context;
   if (system_param_2 == 0) {
     system_long_var_4 = InitializeSystemCore(_g_system_initialized);
     (**(system_code **)(*plStack_b0 + 8))(plStack_b0,system_param_1,*(undefined4 *)(system_long_var_4 + SYSTEM_INIT_SIZE_0X38));
   }
   else {
     system_char_pointer_1 = *(system_code **)(*plStack_b0 + SYSTEM_INIT_SIZE_COMPARE);
-    system_unsigned_var_3 = system_write_service(&puStack_88,system_param_2);
+    system_unsigned_var_3 = system_write_service(&psystem_stack_uint_88,system_param_2);
     (*system_char_pointer_1)(plStack_b0,system_param_1,system_unsigned_var_3);
-    puStack_88 = &g_system_context;
+    psystem_stack_uint_88 = &g_system_context;
     if (lStack_80 != 0) {
                     // WARNING: Subroutine does not return
       system_execute_operation();
     }
     lStack_80 = SYSTEM_INIT_VALUE_ZERO;
     uStack_70 = SYSTEM_INIT_VALUE_ZERO;
-    puStack_88 = &g_system_context;
+    psystem_stack_uint_88 = &g_system_context;
   }
   system_function_(&puStack_a8);
   puStack_a8 = &g_system_context;
@@ -38373,7 +38373,7 @@ void InitializeSystemCore(longlong *system_param_1,undefined8 system_param_2,und
   longlong system_long_var_2;
   undefined *system_ptr_memory;
   ulonglong system_unsigned_var_4;
-  undefined8 uStack_88;
+  undefined8 system_stack_uint_88;
   longlong lStack_80;
   undefined *puStack_70;
   longlong lStack_68;
@@ -38383,7 +38383,7 @@ void InitializeSystemCore(longlong *system_param_1,undefined8 system_param_2,und
   undefined *puStack_48;
   undefined4 uStack_38;
   
-  uStack_88 = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_uint_88 = SYSTEM_INIT_VALUE_ZERO;
   lStack_80 = SYSTEM_INIT_VALUE_ZERO;
   system_long_var_2 = *system_param_1;
   puStack_70 = &g_system_context;
@@ -38420,8 +38420,8 @@ void InitializeSystemCore(longlong *system_param_1,undefined8 system_param_2,und
   if (puStack_48 != (undefined *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_ptr_memory = puStack_48;
   }
-  system_execute_service(&uStack_88,system_ptr_memory,&file_system_buffer,system_param_4,0);
-  InitializeSystemCore(system_param_2,&uStack_88);
+  system_execute_service(&system_stack_uint_88,system_ptr_memory,&file_system_buffer,system_param_4,0);
+  InitializeSystemCore(system_param_2,&system_stack_uint_88);
   if (lStack_80 != 0) {
     fclose();
     lStack_80 = SYSTEM_INIT_VALUE_ZERO;
@@ -38723,7 +38723,7 @@ void InitializeSystemCore(undefined8 system_param_1,undefined8 system_param_2,ch
   undefined *puStack_a0;
   undefined8 *puStack_98;
   undefined4 uStack_90;
-  undefined8 uStack_88;
+  undefined8 system_stack_uint_88;
   undefined1 auStack_80 [72];
   
   system_char_buffer = (**(system_code **)**(undefined8 **)(_g_system_initialized + SYSTEM_INIT_FLAG_ENABLED8))();
@@ -38734,14 +38734,14 @@ void InitializeSystemCore(undefined8 system_param_1,undefined8 system_param_2,ch
 LAB_180066bf4:
         InitializeSystemCore(auStack_80);
         puStack_a0 = &g_system_context;
-        uStack_88 = SYSTEM_INIT_VALUE_ZERO;
+        system_stack_uint_88 = SYSTEM_INIT_VALUE_ZERO;
         puStack_98 = (undefined8 *)SYSTEM_INIT_VALUE_CHAR_NULL;
         uStack_90 = SYSTEM_INIT_VALUE_ZERO;
         system_ptr_pool = (undefined8 *)system_allocate_memory(_g_system_initialized,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_FLAG_ENABLED3);
         *(undefined1 *)system_ptr_pool = SYSTEM_INIT_VALUE_ZERO;
         puStack_98 = system_ptr_pool;
         system_unsigned_var_4 = system_validate_operation(system_ptr_pool);
-        uStack_88 = CONCAT44(uStack_88._4_4_,system_unsigned_var_4);
+        system_stack_uint_88 = CONCAT44(system_stack_uint_88._4_4_,system_unsigned_var_4);
         *system_ptr_pool = 0x73656873617263;
         uStack_90 = 7;
         system_function_(auStack_80,&puStack_a0);
@@ -38785,7 +38785,7 @@ LAB_180066bf4:
   }
   else {
     puStack_a0 = &g_system_context;
-    uStack_88 = SYSTEM_INIT_VALUE_ZERO;
+    system_stack_uint_88 = SYSTEM_INIT_VALUE_ZERO;
     puStack_98 = (undefined8 *)SYSTEM_INIT_VALUE_CHAR_NULL;
     uStack_90 = SYSTEM_INIT_VALUE_ZERO;
     system_long_var_1 = -1;
@@ -38802,7 +38802,7 @@ LAB_180066bf4:
       puStack_98 = (undefined8 *)system_allocate_memory(_g_system_initialized,(longlong)system_compare_result,SYSTEM_INIT_FLAG_ENABLED3);
       *(undefined1 *)puStack_98 = SYSTEM_INIT_VALUE_ZERO;
       system_unsigned_var_4 = system_validate_operation(puStack_98);
-      uStack_88 = CONCAT44(uStack_88._4_4_,system_unsigned_var_4);
+      system_stack_uint_88 = CONCAT44(system_stack_uint_88._4_4_,system_unsigned_var_4);
                     // WARNING: Subroutine does not return
       memcpy(puStack_98,&g_system_initialized,system_int_size);
     }
@@ -39338,7 +39338,7 @@ void InitializeSystemCore(longlong *system_param_1)
   undefined8 uStack_b8;
   undefined2 uStack_b0;
   undefined1 uStack_ae;
-  undefined1 auStack_88 [64];
+  undefined1 asystem_stack_uint_88 [64];
   undefined8 uStack_48;
   undefined8 uStack_40;
   
@@ -39357,7 +39357,7 @@ void InitializeSystemCore(longlong *system_param_1)
       *system_local_long_ptr_eighth = (longlong)&thread_pool_buffer;
       *(bool *)(system_local_long_ptr_eighth + 1) = system_long_var_4 == 3;
     }
-    (**(system_code **)(*system_local_long_ptr_eighth + SYSTEM_INIT_FLAG_ENABLED8))(system_local_long_ptr_eighth,auStack_88,system_init_var_9 + system_long_var_3,lStackX_8,system_init_flag_6,system_ulong_var_5);
+    (**(system_code **)(*system_local_long_ptr_eighth + SYSTEM_INIT_FLAG_ENABLED8))(system_local_long_ptr_eighth,asystem_stack_uint_88,system_init_var_9 + system_long_var_3,lStackX_8,system_init_flag_6,system_ulong_var_5);
                     // WARNING: Subroutine does not return
     system_execute_operation(system_local_long_ptr_eighth);
   }
@@ -39453,7 +39453,7 @@ void InitializeSystemCore(undefined8 *system_param_1)
 
 {
   undefined1 auStack_b8 [48];
-  undefined8 *puStack_88;
+  undefined8 *psystem_stack_uint_88;
   undefined8 uStack_70;
   undefined8 *puStack_68;
   ulonglong uStack_30;
@@ -39463,9 +39463,9 @@ void InitializeSystemCore(undefined8 *system_param_1)
   puStack_68 = system_param_1;
   InitializeSystemCore();
   *system_param_1 = &g_system_context;
-  puStack_88 = system_param_1 + 0x6e;
+  psystem_stack_uint_88 = system_param_1 + 0x6e;
                     // WARNING: Subroutine does not return
-  memset(puStack_88,0,SYSTEM_INIT_OFFSET_STACK_PARAM0000);
+  memset(psystem_stack_uint_88,0,SYSTEM_INIT_OFFSET_STACK_PARAM0000);
 }
 
 
@@ -41355,7 +41355,7 @@ void InitializeSystemCore(undefined8 *system_param_1)
   longlong system_long_var_6;
   longlong system_long_var_7;
   undefined1 auStack_b8 [48];
-  undefined8 *puStack_88;
+  undefined8 *psystem_stack_uint_88;
   undefined8 *puStack_80;
   undefined8 uStack_68;
   undefined8 *puStack_60;
@@ -41411,10 +41411,10 @@ void InitializeSystemCore(undefined8 *system_param_1)
       system_unsigned_var_2 = system_unsigned_var_2 + SYSTEM_INIT_FLAG_ENABLED48;
     } while (system_unsigned_var_3 < (ulonglong)system_param_1[6]);
   }
-  puStack_88 = system_param_1 + SYSTEM_INIT_FLAG_ACTIVEf;
+  psystem_stack_uint_88 = system_param_1 + SYSTEM_INIT_FLAG_ACTIVEf;
   _Cnd_init_in_situ();
-  puStack_88 = system_param_1 + SYSTEM_INIT_OFFSET_0X58;
-  _Mtx_init_in_situ(puStack_88,2);
+  psystem_stack_uint_88 = system_param_1 + SYSTEM_INIT_OFFSET_0X58;
+  _Mtx_init_in_situ(psystem_stack_uint_88,2);
   *(undefined4 *)(system_param_1 + 0x65) = SYSTEM_INIT_VALUE_ZERO;
   *(undefined4 *)((longlong)system_param_1 + SYSTEM_INIT_OFFSET_ARRAY_32c) = SYSTEM_INIT_SIZE_BUFFER_SMALL;
   puStack_80 = system_param_1 + 0x66;
@@ -44477,7 +44477,7 @@ ulonglong InitializeSystemCore(undefined8 system_param_1,undefined8 system_param
   undefined *puStack_a0;
   undefined *puStack_98;
   undefined4 uStack_90;
-  ulonglong uStack_88;
+  ulonglong system_stack_uint_88;
   undefined *puStack_80;
   longlong lStack_78;
   undefined4 uStack_68;
@@ -44530,7 +44530,7 @@ ulonglong InitializeSystemCore(undefined8 system_param_1,undefined8 system_param
     }
     system_ptr_pool = puStack_b8;
     puStack_a0 = &g_system_context;
-    uStack_88 = SYSTEM_INIT_VALUE_ZERO;
+    system_stack_uint_88 = SYSTEM_INIT_VALUE_ZERO;
     puStack_98 = (undefined *)SYSTEM_INIT_VALUE_CHAR_NULL;
     uStack_90 = SYSTEM_INIT_VALUE_ZERO;
     system_function_(&puStack_a0,&g_thread_manager,system_param_2);
@@ -44664,7 +44664,7 @@ ulonglong InitializeSystemCore(undefined8 system_param_1,undefined8 system_param
       system_execute_operation();
     }
     puStack_98 = (undefined *)SYSTEM_INIT_VALUE_CHAR_NULL;
-    uStack_88 = uStack_88 & SYSTEM_INIT_ERROR_GENERIC00000000;
+    system_stack_uint_88 = system_stack_uint_88 & SYSTEM_INIT_ERROR_GENERIC00000000;
     puStack_a0 = &g_system_context;
     puStack_c0 = &g_system_context;
     if (system_ptr_pool != (undefined *)SYSTEM_INIT_VALUE_CHAR_NULL) {
@@ -44705,7 +44705,7 @@ ulonglong InitializeSystemCore(undefined8 system_param_1,undefined8 system_param
   undefined4 uStack_a0;
   ulonglong uStack_98;
   undefined *puStack_90;
-  undefined8 *puStack_88;
+  undefined8 *psystem_stack_uint_88;
   undefined4 uStack_80;
   ulonglong uStack_78;
   undefined *puStack_70;
@@ -44830,11 +44830,11 @@ LAB_180070230:
         system_ulong_var_13 = SYSTEM_INIT_VALUE_ZERO;
         puStack_90 = &g_system_context;
         uStack_78 = SYSTEM_INIT_VALUE_ZERO;
-        puStack_88 = (undefined8 *)SYSTEM_INIT_VALUE_CHAR_NULL;
+        psystem_stack_uint_88 = (undefined8 *)SYSTEM_INIT_VALUE_CHAR_NULL;
         uStack_80 = SYSTEM_INIT_VALUE_ZERO;
         system_pointer_var_9 = (undefined8 *)system_allocate_memory(_g_system_initialized,SYSTEM_INIT_OFFSET_ARRAY_34,SYSTEM_INIT_FLAG_ENABLED3);
         *(undefined1 *)system_pointer_var_9 = SYSTEM_INIT_VALUE_ZERO;
-        puStack_88 = system_pointer_var_9;
+        psystem_stack_uint_88 = system_pointer_var_9;
         system_ulong_var_16 = system_validate_operation(system_pointer_var_9);
         uStack_78 = CONCAT44(uStack_78._4_4_,system_ulong_var_16);
         *system_pointer_var_9 = 0x7270706d75645c5c;
@@ -44852,7 +44852,7 @@ LAB_180070230:
       else {
         system_ulong_var_13 = *(undefined1 *)(_g_system_initialized + SYSTEM_INIT_FLAG_ENABLED41);
         psystem_temp_data_pointer = (undefined **)system_return_result(&puStack_50,_g_system_initialized + SYSTEM_INIT_FLAG_ENABLED48);
-        system_pointer_var_9 = puStack_88;
+        system_pointer_var_9 = psystem_stack_uint_88;
       }
       system_ulong_var_16 = system_return_result(&puStack_70,psystem_temp_data_pointer);
       if (bVar15) {
@@ -44861,7 +44861,7 @@ LAB_180070230:
                     // WARNING: Subroutine does not return
           system_execute_operation(system_pointer_var_9);
         }
-        puStack_88 = (undefined8 *)SYSTEM_INIT_VALUE_CHAR_NULL;
+        psystem_stack_uint_88 = (undefined8 *)SYSTEM_INIT_VALUE_CHAR_NULL;
         uStack_78 = uStack_78 & SYSTEM_INIT_ERROR_GENERIC00000000;
         puStack_90 = &g_system_context;
       }
@@ -45061,7 +45061,7 @@ void InitializeSystemCore(undefined8 system_param_1,undefined8 system_param_2)
 
 // 函数: void InitializeSystemCore(undefined8 system_param_1,longlong system_param_2,undefined4 system_param_3,longlong system_param_4,
 void InitializeSystemCore(undefined8 system_param_1,longlong system_param_2,undefined4 system_param_3,longlong system_param_4,
-                  char system_param_5,char param_6)
+                  char system_module_param_5,char system_config_param_6)
 
 {
   system_code *system_char_pointer_1;
@@ -45691,7 +45691,7 @@ void InitializeSystemCore(undefined8 system_param_1,longlong system_param_2,unde
   uint system_local_uint_primary1;
   uint system_ulong_var_12;
   undefined *puStack_90;
-  undefined1 *puStack_88;
+  undefined1 *psystem_stack_uint_88;
   uint uStack_80;
   ulonglong uStack_78;
   undefined *puStack_70;
@@ -45732,49 +45732,49 @@ void InitializeSystemCore(undefined8 system_param_1,longlong system_param_2,unde
   }
   puStack_90 = &g_system_context;
   uStack_78 = SYSTEM_INIT_VALUE_ZERO;
-  puStack_88 = (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL;
+  psystem_stack_uint_88 = (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL;
   uStack_80 = SYSTEM_INIT_VALUE_ZERO;
-  puStack_88 = (undefined1 *)system_allocate_memory(_g_system_initialized,SYSTEM_INIT_FLAG_ENABLED2,SYSTEM_INIT_FLAG_ENABLED3);
-  *puStack_88 = SYSTEM_INIT_VALUE_ZERO;
-  system_unsigned_var_2 = system_validate_operation(puStack_88);
+  psystem_stack_uint_88 = (undefined1 *)system_allocate_memory(_g_system_initialized,SYSTEM_INIT_FLAG_ENABLED2,SYSTEM_INIT_FLAG_ENABLED3);
+  *psystem_stack_uint_88 = SYSTEM_INIT_VALUE_ZERO;
+  system_unsigned_var_2 = system_validate_operation(psystem_stack_uint_88);
   uStack_78 = CONCAT44(uStack_78._4_4_,system_unsigned_var_2);
-  system_module_data_pointer = (undefined4 *)(puStack_88 + uStack_80);
+  system_module_data_pointer = (undefined4 *)(psystem_stack_uint_88 + uStack_80);
   *system_module_data_pointer = 0x65737341;
   system_module_data_pointer[1] = 0x6f697472;
   system_module_data_pointer[2] = 0x6146206e;
   system_module_data_pointer[3] = 0x64656c69;
   *(undefined2 *)(system_module_data_pointer + 4) = SYSTEM_INIT_FLAG_INITIALIZED1;
   uStack_80 = SYSTEM_INIT_FLAG_ENABLED1;
-  if (puStack_88 == (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL) {
+  if (psystem_stack_uint_88 == (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     uStack_80 = SYSTEM_INIT_FLAG_ENABLED1;
-    puStack_88 = (undefined1 *)system_allocate_memory(_g_system_initialized,SYSTEM_INIT_FLAG_ENABLED3,SYSTEM_INIT_FLAG_ENABLED3);
-    *puStack_88 = SYSTEM_INIT_VALUE_ZERO;
+    psystem_stack_uint_88 = (undefined1 *)system_allocate_memory(_g_system_initialized,SYSTEM_INIT_FLAG_ENABLED3,SYSTEM_INIT_FLAG_ENABLED3);
+    *psystem_stack_uint_88 = SYSTEM_INIT_VALUE_ZERO;
 LAB_180071af3:
-    system_unsigned_var_3 = system_validate_operation(puStack_88);
+    system_unsigned_var_3 = system_validate_operation(psystem_stack_uint_88);
     uStack_78 = CONCAT44(uStack_78._4_4_,system_unsigned_var_3);
   }
   else if (system_unsigned_var_2 < SYSTEM_INIT_FLAG_ENABLED3) {
     uStack_80 = SYSTEM_INIT_FLAG_ENABLED1;
-    puStack_88 = (undefined1 *)system_function_(_g_system_initialized,puStack_88,SYSTEM_INIT_FLAG_ENABLED3,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_FLAG_ENABLED3);
+    psystem_stack_uint_88 = (undefined1 *)system_function_(_g_system_initialized,psystem_stack_uint_88,SYSTEM_INIT_FLAG_ENABLED3,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_FLAG_ENABLED3);
     goto LAB_180071af3;
   }
-  *(undefined2 *)(puStack_88 + uStack_80) = 10;
+  *(undefined2 *)(psystem_stack_uint_88 + uStack_80) = 10;
   uStack_80 = SYSTEM_INIT_FLAG_ENABLED2;
   system_unsigned_var_2 = SYSTEM_INIT_FLAG_ENABLED3;
-  if (puStack_88 == (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL) {
+  if (psystem_stack_uint_88 == (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     uStack_80 = SYSTEM_INIT_FLAG_ENABLED2;
-    puStack_88 = (undefined1 *)system_allocate_memory(_g_system_initialized,SYSTEM_INIT_FLAG_ENABLED4,SYSTEM_INIT_FLAG_ENABLED3);
-    *puStack_88 = SYSTEM_INIT_VALUE_ZERO;
+    psystem_stack_uint_88 = (undefined1 *)system_allocate_memory(_g_system_initialized,SYSTEM_INIT_FLAG_ENABLED4,SYSTEM_INIT_FLAG_ENABLED3);
+    *psystem_stack_uint_88 = SYSTEM_INIT_VALUE_ZERO;
 LAB_180071b69:
-    system_unsigned_var_3 = system_validate_operation(puStack_88);
+    system_unsigned_var_3 = system_validate_operation(psystem_stack_uint_88);
     uStack_78 = CONCAT44(uStack_78._4_4_,system_unsigned_var_3);
   }
   else if ((uint)uStack_78 < SYSTEM_INIT_FLAG_ENABLED4) {
     uStack_80 = SYSTEM_INIT_FLAG_ENABLED2;
-    puStack_88 = (undefined1 *)system_function_(_g_system_initialized,puStack_88,SYSTEM_INIT_FLAG_ENABLED4,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_FLAG_ENABLED3);
+    psystem_stack_uint_88 = (undefined1 *)system_function_(_g_system_initialized,psystem_stack_uint_88,SYSTEM_INIT_FLAG_ENABLED4,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_FLAG_ENABLED3);
     goto LAB_180071b69;
   }
-  *(undefined2 *)(puStack_88 + uStack_80) = 10;
+  *(undefined2 *)(psystem_stack_uint_88 + uStack_80) = 10;
   uStack_80 = SYSTEM_INIT_FLAG_ENABLED3;
   if (system_param_2 != 0) {
     system_long_var_4 = -1;
@@ -45787,86 +45787,86 @@ LAB_180071b69:
       system_local_uint_primary1 = system_unsigned_var_2;
       if (system_int_param != -SYSTEM_INIT_FLAG_ENABLED3) {
         system_ulong_var_12 = system_int_param + SYSTEM_INIT_FLAG_ENABLED4;
-        if (puStack_88 == (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL) {
+        if (psystem_stack_uint_88 == (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL) {
           if ((int)system_ulong_var_12 < SYSTEM_INIT_SIZE_COMPARE) {
             system_ulong_var_12 = SYSTEM_INIT_SIZE_COMPARE;
           }
           uStack_80 = system_unsigned_var_2;
-          puStack_88 = (undefined1 *)system_allocate_memory(_g_system_initialized,(longlong)(int)system_ulong_var_12,SYSTEM_INIT_FLAG_ENABLED3);
-          *puStack_88 = SYSTEM_INIT_VALUE_ZERO;
+          psystem_stack_uint_88 = (undefined1 *)system_allocate_memory(_g_system_initialized,(longlong)(int)system_ulong_var_12,SYSTEM_INIT_FLAG_ENABLED3);
+          *psystem_stack_uint_88 = SYSTEM_INIT_VALUE_ZERO;
         }
         else {
           system_local_uint_primary1 = uStack_80;
           if (system_ulong_var_12 <= (uint)uStack_78) goto LAB_180071c1a;
           uStack_80 = system_unsigned_var_2;
-          puStack_88 = (undefined1 *)system_function_(_g_system_initialized,puStack_88,system_ulong_var_12,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_FLAG_ENABLED3);
+          psystem_stack_uint_88 = (undefined1 *)system_function_(_g_system_initialized,psystem_stack_uint_88,system_ulong_var_12,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_FLAG_ENABLED3);
         }
-        system_unsigned_var_3 = system_validate_operation(puStack_88);
+        system_unsigned_var_3 = system_validate_operation(psystem_stack_uint_88);
         uStack_78 = CONCAT44(uStack_78._4_4_,system_unsigned_var_3);
         system_local_uint_primary1 = uStack_80;
       }
 LAB_180071c1a:
       uStack_80 = system_local_uint_primary1;
                     // WARNING: Subroutine does not return
-      memcpy(puStack_88 + uStack_80,system_param_2,(longlong)((int)system_long_var_10 + 2));
+      memcpy(psystem_stack_uint_88 + uStack_80,system_param_2,(longlong)((int)system_long_var_10 + 2));
     }
   }
-  if (puStack_88 == (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL) {
+  if (psystem_stack_uint_88 == (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     uStack_80 = system_unsigned_var_2;
-    puStack_88 = (undefined1 *)system_allocate_memory(_g_system_initialized,SYSTEM_INIT_FLAG_ENABLED5,SYSTEM_INIT_FLAG_ENABLED3);
-    *puStack_88 = SYSTEM_INIT_VALUE_ZERO;
+    psystem_stack_uint_88 = (undefined1 *)system_allocate_memory(_g_system_initialized,SYSTEM_INIT_FLAG_ENABLED5,SYSTEM_INIT_FLAG_ENABLED3);
+    *psystem_stack_uint_88 = SYSTEM_INIT_VALUE_ZERO;
 LAB_180071c93:
-    system_unsigned_var_3 = system_validate_operation(puStack_88);
+    system_unsigned_var_3 = system_validate_operation(psystem_stack_uint_88);
     uStack_78 = CONCAT44(uStack_78._4_4_,system_unsigned_var_3);
   }
   else if ((uint)uStack_78 < SYSTEM_INIT_FLAG_ENABLED5) {
     uStack_80 = system_unsigned_var_2;
-    puStack_88 = (undefined1 *)system_function_(_g_system_initialized,puStack_88,SYSTEM_INIT_FLAG_ENABLED5,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_FLAG_ENABLED3);
+    psystem_stack_uint_88 = (undefined1 *)system_function_(_g_system_initialized,psystem_stack_uint_88,SYSTEM_INIT_FLAG_ENABLED5,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_FLAG_ENABLED3);
     goto LAB_180071c93;
   }
-  *(undefined2 *)(puStack_88 + uStack_80) = SYSTEM_INIT_OFFSET_ARRAY_3A;
+  *(undefined2 *)(psystem_stack_uint_88 + uStack_80) = SYSTEM_INIT_OFFSET_ARRAY_3A;
   uStack_80 = SYSTEM_INIT_FLAG_ENABLED4;
   system_convert_data(&puStack_90,system_param_3);
   system_unsigned_var_2 = uStack_80;
   system_local_uint_primary1 = uStack_80 + 1;
   if (system_local_uint_primary1 != 0) {
     system_ulong_var_12 = uStack_80 + 2;
-    if (puStack_88 == (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL) {
+    if (psystem_stack_uint_88 == (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       if ((int)system_ulong_var_12 < SYSTEM_INIT_SIZE_COMPARE) {
         system_ulong_var_12 = SYSTEM_INIT_SIZE_COMPARE;
       }
-      puStack_88 = (undefined1 *)system_allocate_memory(_g_system_initialized,(longlong)(int)system_ulong_var_12,SYSTEM_INIT_FLAG_ENABLED3);
-      *puStack_88 = SYSTEM_INIT_VALUE_ZERO;
+      psystem_stack_uint_88 = (undefined1 *)system_allocate_memory(_g_system_initialized,(longlong)(int)system_ulong_var_12,SYSTEM_INIT_FLAG_ENABLED3);
+      *psystem_stack_uint_88 = SYSTEM_INIT_VALUE_ZERO;
     }
     else {
       if (system_ulong_var_12 <= (uint)uStack_78) goto LAB_180071d1f;
-      puStack_88 = (undefined1 *)system_function_(_g_system_initialized,puStack_88,system_ulong_var_12,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_FLAG_ENABLED3);
+      psystem_stack_uint_88 = (undefined1 *)system_function_(_g_system_initialized,psystem_stack_uint_88,system_ulong_var_12,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_FLAG_ENABLED3);
     }
-    system_unsigned_var_3 = system_validate_operation(puStack_88);
+    system_unsigned_var_3 = system_validate_operation(psystem_stack_uint_88);
     uStack_78 = CONCAT44(uStack_78._4_4_,system_unsigned_var_3);
   }
 LAB_180071d1f:
-  *(undefined2 *)(puStack_88 + uStack_80) = 10;
+  *(undefined2 *)(psystem_stack_uint_88 + uStack_80) = 10;
   system_ulong_var_12 = system_unsigned_var_2 + SYSTEM_INIT_VALUE_STACK_13;
   uStack_80 = system_local_uint_primary1;
   if (system_ulong_var_12 != 0) {
     system_local_uint_primary1 = system_unsigned_var_2 + SYSTEM_INIT_VALUE_STACK_14;
-    if (puStack_88 == (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL) {
+    if (psystem_stack_uint_88 == (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       if ((int)system_local_uint_primary1 < SYSTEM_INIT_SIZE_COMPARE) {
         system_local_uint_primary1 = SYSTEM_INIT_SIZE_COMPARE;
       }
-      puStack_88 = (undefined1 *)system_allocate_memory(_g_system_initialized,(longlong)(int)system_local_uint_primary1,SYSTEM_INIT_FLAG_ENABLED3);
-      *puStack_88 = SYSTEM_INIT_VALUE_ZERO;
+      psystem_stack_uint_88 = (undefined1 *)system_allocate_memory(_g_system_initialized,(longlong)(int)system_local_uint_primary1,SYSTEM_INIT_FLAG_ENABLED3);
+      *psystem_stack_uint_88 = SYSTEM_INIT_VALUE_ZERO;
     }
     else {
       if (system_local_uint_primary1 <= (uint)uStack_78) goto LAB_180071d94;
-      puStack_88 = (undefined1 *)system_function_(_g_system_initialized,puStack_88,system_local_uint_primary1,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_FLAG_ENABLED3);
+      psystem_stack_uint_88 = (undefined1 *)system_function_(_g_system_initialized,psystem_stack_uint_88,system_local_uint_primary1,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_FLAG_ENABLED3);
     }
-    system_unsigned_var_3 = system_validate_operation(puStack_88);
+    system_unsigned_var_3 = system_validate_operation(psystem_stack_uint_88);
     uStack_78 = CONCAT44(uStack_78._4_4_,system_unsigned_var_3);
   }
 LAB_180071d94:
-  system_config_data_pointer = (undefined8 *)(puStack_88 + uStack_80);
+  system_config_data_pointer = (undefined8 *)(psystem_stack_uint_88 + uStack_80);
   *system_config_data_pointer = 0x6973736572707845;
   *(undefined4 *)(system_config_data_pointer + 1) = SYSTEM_INIT_OFFSET_STACK_PARAM3a6e6f;
   *(undefined1 *)((longlong)system_config_data_pointer + SYSTEM_INIT_VALUE_STACK_12) = SYSTEM_INIT_VALUE_ZERO;
@@ -45881,48 +45881,48 @@ LAB_180071d94:
       system_int_param = system_ulong_var_12 + (int)system_long_var_4;
       if (system_int_param != 0) {
         system_unsigned_var_2 = system_int_param + 1;
-        if (puStack_88 == (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL) {
+        if (psystem_stack_uint_88 == (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL) {
           if ((int)system_unsigned_var_2 < SYSTEM_INIT_SIZE_COMPARE) {
             system_unsigned_var_2 = SYSTEM_INIT_SIZE_COMPARE;
           }
-          puStack_88 = (undefined1 *)system_allocate_memory(_g_system_initialized,(longlong)(int)system_unsigned_var_2,SYSTEM_INIT_FLAG_ENABLED3);
-          *puStack_88 = SYSTEM_INIT_VALUE_ZERO;
+          psystem_stack_uint_88 = (undefined1 *)system_allocate_memory(_g_system_initialized,(longlong)(int)system_unsigned_var_2,SYSTEM_INIT_FLAG_ENABLED3);
+          *psystem_stack_uint_88 = SYSTEM_INIT_VALUE_ZERO;
         }
         else {
           if (system_unsigned_var_2 <= (uint)uStack_78) goto LAB_180071e34;
-          puStack_88 = (undefined1 *)system_function_(_g_system_initialized,puStack_88,system_unsigned_var_2,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_FLAG_ENABLED3);
+          psystem_stack_uint_88 = (undefined1 *)system_function_(_g_system_initialized,psystem_stack_uint_88,system_unsigned_var_2,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_FLAG_ENABLED3);
         }
-        system_unsigned_var_3 = system_validate_operation(puStack_88);
+        system_unsigned_var_3 = system_validate_operation(psystem_stack_uint_88);
         uStack_78 = CONCAT44(uStack_78._4_4_,system_unsigned_var_3);
       }
 LAB_180071e34:
                     // WARNING: Subroutine does not return
-      memcpy(puStack_88 + uStack_80,system_param_4,(longlong)((int)system_long_var_10 + 2));
+      memcpy(psystem_stack_uint_88 + uStack_80,system_param_4,(longlong)((int)system_long_var_10 + 2));
     }
   }
   if (system_unsigned_var_2 + SYSTEM_INIT_VALUE_STACK_14 != 0) {
     system_local_uint_primary1 = system_unsigned_var_2 + SYSTEM_INIT_VALUE_STACK_15;
-    if (puStack_88 == (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL) {
+    if (psystem_stack_uint_88 == (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       if ((int)system_local_uint_primary1 < SYSTEM_INIT_SIZE_COMPARE) {
         system_local_uint_primary1 = SYSTEM_INIT_SIZE_COMPARE;
       }
-      puStack_88 = (undefined1 *)system_allocate_memory(_g_system_initialized,(longlong)(int)system_local_uint_primary1,SYSTEM_INIT_FLAG_ENABLED3);
-      *puStack_88 = SYSTEM_INIT_VALUE_ZERO;
+      psystem_stack_uint_88 = (undefined1 *)system_allocate_memory(_g_system_initialized,(longlong)(int)system_local_uint_primary1,SYSTEM_INIT_FLAG_ENABLED3);
+      *psystem_stack_uint_88 = SYSTEM_INIT_VALUE_ZERO;
     }
     else {
       if (system_local_uint_primary1 <= (uint)uStack_78) goto LAB_180071eb0;
-      puStack_88 = (undefined1 *)system_function_(_g_system_initialized,puStack_88,system_local_uint_primary1,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_FLAG_ENABLED3);
+      psystem_stack_uint_88 = (undefined1 *)system_function_(_g_system_initialized,psystem_stack_uint_88,system_local_uint_primary1,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_FLAG_ENABLED3);
     }
-    system_unsigned_var_3 = system_validate_operation(puStack_88);
+    system_unsigned_var_3 = system_validate_operation(psystem_stack_uint_88);
     uStack_78 = CONCAT44(uStack_78._4_4_,system_unsigned_var_3);
   }
 LAB_180071eb0:
-  *(undefined2 *)(puStack_88 + uStack_80) = 10;
+  *(undefined2 *)(psystem_stack_uint_88 + uStack_80) = 10;
   uStack_80 = system_unsigned_var_2 + SYSTEM_INIT_VALUE_STACK_14;
   InitializeSystemCore(_g_system_initialized,5,SYSTEM_INIT_ERROR_GENERIC00000000,&g_process_handle);
   system_temp_data_pointer = &g_system_initialized;
-  if (puStack_88 != (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL) {
-    system_temp_data_pointer = puStack_88;
+  if (psystem_stack_uint_88 != (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL) {
+    system_temp_data_pointer = psystem_stack_uint_88;
   }
   InitializeSystemCore(_g_system_initialized,4,SYSTEM_INIT_ERROR_GENERIC00000000,&g_resource_manager,system_temp_data_pointer);
   system_ptr_pool = &g_system_initialized;
@@ -45932,16 +45932,16 @@ LAB_180071eb0:
   InitializeSystemCore(_g_system_initialized,4,SYSTEM_INIT_ERROR_GENERIC00000000,3,system_ptr_pool);
   InitializeSystemCore();
   system_temp_data_pointer = &g_system_initialized;
-  if (puStack_88 != (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL) {
-    system_temp_data_pointer = puStack_88;
+  if (psystem_stack_uint_88 != (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL) {
+    system_temp_data_pointer = psystem_stack_uint_88;
   }
   OutputDebugStringA(system_temp_data_pointer);
   do {
     system_int_param = ReleaseSemaphore(_g_file_system,1);
   } while (system_int_param == 0);
   puStack_90 = &g_system_context;
-  if (puStack_88 == (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL) {
-    puStack_88 = (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL;
+  if (psystem_stack_uint_88 == (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL) {
+    psystem_stack_uint_88 = (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL;
     uStack_78 = uStack_78 & SYSTEM_INIT_ERROR_GENERIC00000000;
     puStack_90 = &g_system_context;
     puStack_70 = &g_system_context;
@@ -45966,7 +45966,7 @@ LAB_180071eb0:
 
 // 函数: void InitializeSystemCore(undefined8 system_param_1,longlong system_param_2,undefined4 system_param_3,longlong system_param_4,
 void InitializeSystemCore(undefined8 system_param_1,longlong system_param_2,undefined4 system_param_3,longlong system_param_4,
-                  undefined1 system_param_5,char param_6)
+                  undefined1 system_param_5,char system_config_param_6)
 
 {
   system_code *system_char_pointer_1;
@@ -46592,7 +46592,7 @@ bool InitializeSystemCore(undefined8 system_param_1,undefined8 *system_param_2)
   undefined4 uStack_a0;
   ulonglong uStack_98;
   undefined *puStack_90;
-  undefined1 *puStack_88;
+  undefined1 *psystem_stack_uint_88;
   undefined4 uStack_80;
   ulonglong uStack_78;
   undefined *puStack_70;
@@ -46756,7 +46756,7 @@ bool InitializeSystemCore(undefined8 system_param_1,undefined8 *system_param_2)
   }
   puStack_90 = &g_system_context;
   uStack_78 = SYSTEM_INIT_VALUE_ZERO;
-  puStack_88 = (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL;
+  psystem_stack_uint_88 = (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL;
   uStack_80 = SYSTEM_INIT_VALUE_ZERO;
   if (system_compare_result != 0) {
     system_ulong_var_15 = system_compare_result + 1;
@@ -46766,7 +46766,7 @@ bool InitializeSystemCore(undefined8 system_param_1,undefined8 *system_param_2)
     }
     system_temp_data_pointer = (undefined1 *)system_allocate_memory(_g_system_initialized,system_local_uint_primary1,SYSTEM_INIT_FLAG_ENABLED3);
     *system_temp_data_pointer = SYSTEM_INIT_VALUE_ZERO;
-    puStack_88 = system_temp_data_pointer;
+    psystem_stack_uint_88 = system_temp_data_pointer;
     system_unsigned_var_1 = system_validate_operation(system_temp_data_pointer);
     uStack_78 = CONCAT44(uStack_78._4_4_,system_unsigned_var_1);
                     // WARNING: Subroutine does not return
@@ -46813,8 +46813,8 @@ bool InitializeSystemCore(undefined8 system_param_1,undefined8 *system_param_2)
   system_init_flag_9 = __acrt_iob_func(2);
   fflush(system_init_flag_9);
   puStack_90 = &g_system_context;
-  if (puStack_88 == (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL) {
-    puStack_88 = (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL;
+  if (psystem_stack_uint_88 == (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL) {
+    psystem_stack_uint_88 = (undefined1 *)SYSTEM_INIT_VALUE_CHAR_NULL;
     uStack_78 = uStack_78 & SYSTEM_INIT_ERROR_GENERIC00000000;
     puStack_90 = &g_system_context;
     for (system_ptr_pool = puStack_68; system_ptr_pool != puStack_60; system_ptr_pool = system_ptr_pool + 4) {
@@ -46967,7 +46967,7 @@ void InitializeSystemCore(undefined8 system_param_1,undefined4 system_param_2,un
 void SetupMemoryManager(undefined8 system_param_1,undefined8 system_param_2,undefined8 system_param_3,undefined8 system_param_4)
 
 {
-  undefined *puStack_88;
+  undefined *psystem_stack_uint_88;
   undefined8 uStack_80;
   undefined4 uStack_78;
   undefined8 uStack_70;
@@ -46984,7 +46984,7 @@ void SetupMemoryManager(undefined8 system_param_1,undefined8 system_param_2,unde
   undefined8 uStack_18;
   
   uStack_18 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
-  puStack_88 = &g_system_context;
+  psystem_stack_uint_88 = &g_system_context;
   uStack_70 = SYSTEM_INIT_VALUE_ZERO;
   uStack_80 = SYSTEM_INIT_VALUE_ZERO;
   uStack_78 = SYSTEM_INIT_VALUE_ZERO;
@@ -46998,9 +46998,9 @@ void SetupMemoryManager(undefined8 system_param_1,undefined8 system_param_2,unde
   uStack_26 = SYSTEM_INIT_VALUE_ZERO;
   uStack_36 = SYSTEM_INIT_VALUE_ZERO;
   uStack_2e = SYSTEM_INIT_VALUE_ZERO;
-  InitializeSystemCore(&puStack_88,system_param_1,system_param_3,system_param_4,&uStack_68);
-  InitializeSystemCore(&puStack_88,system_param_3);
-  InitializeSystemCore(&puStack_88);
+  InitializeSystemCore(&psystem_stack_uint_88,system_param_1,system_param_3,system_param_4,&uStack_68);
+  InitializeSystemCore(&psystem_stack_uint_88,system_param_3);
+  InitializeSystemCore(&psystem_stack_uint_88);
   return;
 }
 
@@ -50754,7 +50754,7 @@ void InitializeSystemCore(longlong *system_param_1)
   longlong *system_context_base_pointer;
   longlong system_initialization_result;
   byte system_validation_flag_6;
-  undefined1 auStack_88 [32];
+  undefined1 asystem_stack_uint_88 [32];
   ulonglong *puStack_68;
   undefined8 uStack_60;
   undefined *puStack_58;
@@ -50768,7 +50768,7 @@ void InitializeSystemCore(longlong *system_param_1)
   ulonglong uStack_20;
   
   uStack_60 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
-  uStack_20 = _g_system_initialized ^ (ulonglong)auStack_88;
+  uStack_20 = _g_system_initialized ^ (ulonglong)asystem_stack_uint_88;
   system_unsigned_var_1 = *(undefined8 *)(system_param_1[0x37] + SYSTEM_INIT_FLAG_ENABLEDe0);
   puStack_58 = &g_system_context;
   puStack_50 = auStack_40;
@@ -50842,7 +50842,7 @@ void InitializeSystemCore(longlong *system_param_1)
   }
 LAB_18007738d:
                     // WARNING: Subroutine does not return
-  system_process_data(uStack_20 ^ (ulonglong)auStack_88);
+  system_process_data(uStack_20 ^ (ulonglong)asystem_stack_uint_88);
 }
 
 
@@ -52436,7 +52436,7 @@ undefined1 InitializeSystemCore(void)
 
 
 ulonglong InitializeSystemCore(longlong system_param_1,undefined8 system_param_2,undefined4 system_param_3,float *system_param_4,
-                       undefined4 system_param_5,undefined4 param_6)
+                       undefined4 system_module_param_5,undefined4 system_config_param_6)
 
 {
   float system_float_var_1;
@@ -52463,7 +52463,7 @@ ulonglong InitializeSystemCore(longlong system_param_1,undefined8 system_param_2
   ulonglong system_local_uint_secondary1;
   longlong system_long_var_22;
   byte bVar23;
-  undefined8 uStack_88;
+  undefined8 system_stack_uint_88;
   ulonglong uStack_80;
   undefined8 uStack_78;
   ulonglong uStack_70;
@@ -52501,7 +52501,7 @@ LAB_180077fcf:
         *(byte *)(system_param_1 + SYSTEM_INIT_VALUE_STACK_15e) = *(byte *)(system_param_1 + SYSTEM_INIT_VALUE_STACK_15e) & SYSTEM_INIT_VALUE_STACK_15b;
       }
       if ((*(uint *)(system_param_1 + SYSTEM_INIT_SIZE_COMPARE0) & SYSTEM_INIT_SIZE_BUFFER_EXTRA_LARGE0000) == 0) {
-        uStack_88 = *(undefined8 *)system_param_4;
+        system_stack_uint_88 = *(undefined8 *)system_param_4;
         uStack_80._0_4_ = (float)*(undefined8 *)(system_param_4 + 2);
         uStack_78 = *(undefined8 *)(system_param_4 + 4);
         uStack_70._0_4_ = (float)*(undefined8 *)(system_param_4 + 6);
@@ -52532,7 +52532,7 @@ LAB_180077fcf:
         system_float_var_8 = *(float *)(system_param_1 + SYSTEM_INIT_FLAG_ENABLED38);
         system_float_var_9 = *(float *)(system_param_1 + SYSTEM_INIT_FLAG_ENABLED40);
         uStack_70._0_4_ = system_float_var_3 * system_float_var_12 + system_float_var_7 * system_float_var_15 + system_float_var_8 * system_float_var_18;
-        uStack_88 = CONCAT44(system_float_var_6 * system_float_var_11 + system_float_var_1 * system_float_var_14 + system_float_var_2 * system_float_var_17,
+        system_stack_uint_88 = CONCAT44(system_float_var_6 * system_float_var_11 + system_float_var_1 * system_float_var_14 + system_float_var_2 * system_float_var_17,
                              system_float_var_6 * system_float_var_10 + system_float_var_1 * system_float_var_13 + system_float_var_2 * system_float_var_16);
         system_float_var_1 = *(float *)(system_param_1 + SYSTEM_INIT_FLAG_ENABLED48);
         system_float_var_2 = *(float *)(system_param_1 + SYSTEM_INIT_FLAG_ENABLED50);
@@ -52550,7 +52550,7 @@ LAB_180077fcf:
       uStack_60 = (ulonglong)(uint)(float)uStack_60;
       uStack_70 = (ulonglong)(uint)(float)uStack_70;
       uStack_80 = (ulonglong)(uint)(float)uStack_80;
-      system_local_uint_secondary1 = system_function_(system_param_2,system_param_1,system_param_3,&uStack_88,system_param_5,param_6);
+      system_local_uint_secondary1 = system_function_(system_param_2,system_param_1,system_param_3,&system_stack_uint_88,system_param_5,param_6);
       return system_local_uint_secondary1;
     }
     in_RAX = SYSTEM_INIT_VALUE_ZERO;
@@ -56951,7 +56951,7 @@ ulonglong InitializeSystemCore(longlong system_param_1,longlong *system_param_2,
   undefined4 uStack_a0;
   longlong *plStack_98;
   longlong lStack_90;
-  undefined4 uStack_88;
+  undefined4 system_stack_uint_88;
   longlong *aplStack_78 [2];
   system_code *pcStack_68;
   undefined *puStack_60;
@@ -57036,7 +57036,7 @@ ulonglong InitializeSystemCore(longlong system_param_1,longlong *system_param_2,
     system_config_data_pointer[3] = SYSTEM_INIT_VALUE_ZERO;
     InitializeSystemCore(psystem_long_var_14 + 1);
   }
-  uStack_88 = 1;
+  system_stack_uint_88 = 1;
   lStack_90 = system_param_1;
   InitializeSystemCore(&lStack_90);
   system_long_var_6 = *(longlong *)(system_param_1 + SYSTEM_INIT_FLAG_INITIALIZED10);
@@ -57687,8 +57687,8 @@ void InitializeSystemCore(longlong system_param_1,longlong system_param_2,longlo
 
 
 
-// 函数: void InitializeSystemCore(longlong *system_param_1,byte system_param_2,longlong *system_param_3,longlong *system_param_4,char system_param_5)
-void InitializeSystemCore(longlong *system_param_1,byte system_param_2,longlong *system_param_3,longlong *system_param_4,char system_param_5)
+// 函数: void InitializeSystemCore(longlong *system_param_1,byte system_param_2,longlong *system_param_3,longlong *system_param_4,char system_module_param_5)
+void InitializeSystemCore(longlong *system_param_1,byte system_param_2,longlong *system_param_3,longlong *system_param_4,char system_module_param_5)
 
 {
   char *system_char_pointer_1;
