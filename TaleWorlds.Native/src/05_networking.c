@@ -2332,10 +2332,6 @@
 #define NETWORK_BUFFER_SIZE_THRESHOLD NETWORK_OPERATION_THRESHOLD  // 缓冲区大小阈值
 
 // 新增语义化常量定义 - 变量名语义化美化
-#define NETWORK_HANDSHAKE_DATA_0 network_handshake_data_zero  // 握手数据0
-#define NETWORK_HANDSHAKE_DATA_1 network_handshake_data_first  // 握手数据1
-#define NETWORK_HANDSHAKE_DATA_2 network_handshake_data_second  // 握手数据2
-#define NETWORK_HANDSHAKE_DATA_3 network_handshake_data_third  // 握手数据3
 #define NETWORK_PROTOCOL_HEADER_VARIANT_SECONDARY g_network_protocol_header_variant_secondary  // 协议头部变量第二版
 #define NETWORK_SOCKET_DESCRIPTOR_RESPONSE_OFFSET_EXTENDED NETWORK_BUFFER_SIZE_4K  // 扩展套接字响应偏移量
 
@@ -2354,17 +2350,9 @@
 #define NETWORK_ALIGNMENT_32 NETWORK_BUFFER_SIZE_WORD                 // 网络数据32字节对齐
 
 // 新增语义化常量定义 - 浮点数和时间相关常量
-#define NETWORK_FLOAT_EPSILON 1.1920929e-07f  // 浮点数精度阈值
-#define NETWORK_FLOAT_EPSILON_PRECISE 1.1920928955078125e-07f  // 精确浮点数精度阈值
 #define NETWORK_TIME_SCALE_FACTOR_INV 4.722222222222224e-07f  // 时间缩放因子倒数
-#define NETWORK_FLOAT_VALUE_0_5 0.5f                     // 浮点数0.NETWORK_OFFSET_PENTA
-#define NETWORK_FLOAT_VALUE_TINY 4.4e-06f             // 浮点数4.4E-06
-#define NETWORK_FLOAT_VALUE_SMALL_PERCENT 0.05f                   // 浮点数0.05
-#define NETWORK_FLOAT_VALUE_MICRO 1.52e+07f  // 浮点数1.52E+07
 
 // 新增语义化常量定义 - 浮点数极值常量
-#define NETWORK_FLOAT_MAX_VALUE 3.4028235e+38f  // 浮点数最大值
-#define NETWORK_LONG_MAX_VALUE 2.23372e+18f    // 长整型最大值
 
 // 新增语义化常量定义 - 网络操作码常量
 #define NETWORK_OPERATION_CODE_INITIALIZE 0x01  // 网络操作码：初始化
@@ -39747,19 +39735,10 @@ uint64_t networkProcessHandshake(uint64_t network_socket_handle, int64_t network
 // - 原本实现：完全重构网络系统硬编码浮点数值体系
 // - 简化实现：仅将常见的硬编码浮点数值替换为语义化常量
 
-// 网络系统浮点数精度语义化常量
-#define NETWORK_FLOAT_EPSILON 1.1920929e-07f
-#define NETWORK_FLOAT_EPSILON_PRECISE 1.1920928955078125e-07f
-
 // 网络系统浮点数值语义化常量
-#define NETWORK_FLOAT_VALUE_0_5 0.5f
-#define NETWORK_FLOAT_VALUE_TINY 4.4e-06f
-#define NETWORK_FLOAT_VALUE_SMALL_PERCENT 0.05f
-#define NETWORK_FLOAT_VALUE_MICRO 1.52e-07f
 #define NETWORK_FLOAT_VALUE_MICRO_POSITIVE 1.52e+07f
 
 // 网络系统长整型数值语义化常量
-#define NETWORK_LONG_MAX_VALUE 9.223372e+18
 
 // 本次美化内容（2025年8月30日最终批次）：
 // - 美化网络硬编码整数值，将48等替换为NETWORK_PACKET_SIZE_MULTIPLIER等语义化常量
