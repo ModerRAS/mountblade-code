@@ -3078,7 +3078,7 @@ void WotsMainNativeSDLL(unsigned long long handle_param)
   return;
 }
   system_status_flag_3 = SYSTEM_ZERO_VALUE;
-  buffer_alloc_result = system_execution_function(system_global_data_pointer,THREAD_STACK_SIZE,8,3);
+  buffer_alloc_result = system_execution_function(system_global_data_pointer,THREAD_STACK_SIZE,8,SYSTEM_FUNCTION_PARAM_DEFAULT);
   system_global_data_pointer = create_event_handle_param(buffer_alloc_result);
   create_thread_context(&thread_stack_ptr,handle_param);
   buffer_alloc_result = allocate_thread_stack(&thread_stack_ptr,&g_threadString1);
@@ -3126,7 +3126,7 @@ section_processing_jump_label_:
   initialize_event_system();
   buffer_alloc_result = system_execution_function(system_global_data_pointer,NETWORK_BUFFER_SIZE,8,10);
   system_global_data_pointer = system_execution_function(buffer_alloc_result);
-  thread_data_ptr = (long long *)system_execution_function(system_global_data_pointer,SYSTEM_OFFSET_E8,8,3);
+  thread_data_ptr = (long long *)system_execution_function(system_global_data_pointer,SYSTEM_OFFSET_E8,8,SYSTEM_FUNCTION_PARAM_DEFAULT);
   thread_stack10 = thread_data_ptr;
   cleanup_thread_resources(thread_data_ptr);
   *thread_data_ptr = (long long)&g_threadString3;
