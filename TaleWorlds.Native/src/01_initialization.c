@@ -21165,7 +21165,7 @@ INIT_LABEL_SYSTEM_4c7ef:
       *(uint32_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4d) = 0;
       *(uint64_t *)((longlong)handleIdentifier + 500) = 0;
       *(uint8_t *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_28) = 0;
-      *(uint8_t *)((longlong)handleIdentifier + 0x1fc) = 0;
+      *(uint8_t *)((longlong)handleIdentifier + SYSTEM_OFFSET_1fc) = 0;
       handleIdentifier[SYSTEM_DATA_OFFSET_7B] = 0;
       handleIdentifier[SYSTEM_DATA_OFFSET_57] = 0;
       system_long_value = AllocateSystemMemory(systemMemoryPool,0xc,4,3);
