@@ -30084,7 +30084,7 @@ void HandleSystemOperation92(uint64_t handleIdentifier,uint64_t resourceIdentifi
   system_buffer_ptr_48 = node_root;
   system_status_code = ValidateResourceAllocation(node_root);
   init_stack_config_handle = CONCAT44(init_stack_config_handle._4_4_,system_int_result_unsigned);
-  *node_root = 0x6320726f74696445;
+  *node_root = SYSTEM_STRING_IDENTIFIER_DIR_ROOT;
   *(uint32_t *)(node_root + 1) = 0x69666e6f;
   *(uint16_t *)((longlong)node_root + SYSTEM_OFFSET_C) = SYSTEM_OFFSET_67;
   init_stack_uint_param_40 = SYSTEM_CONFIG_SIZE_STATUS;
@@ -30099,7 +30099,7 @@ uint64_t InitializeSystemModule59(uint64_t handleIdentifier,ulonglong resourceId
 {
   ConfigureSystemHandles();
   if ((resourceIdentifier & 1) != 0) {
-    free(handleIdentifier,0xa90);
+    free(handleIdentifier,SYSTEM_RESOURCE_SIZE_MEDIUM_A90);
   }
   return handleIdentifier;
 }
