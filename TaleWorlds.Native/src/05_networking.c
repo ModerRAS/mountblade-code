@@ -4221,7 +4221,7 @@ uint32_t network_process_socket_data(int64_t *network_socket_handle)
     int32_t network_op_status;                      // 处理状态
   uint32_t calc_packet_size;  // 简化实现：将calculated_packet_size美化为calc_packet_size
   uint32_t socket_buf_size;  // 简化实现：将socket_buffer_size美化为socket_buf_size
-  socket_buf_size = *(uint32_t *)((longlong)network_socket_handle + NETWORK_SOCKET_BUFFER_OFFSET);
+  socket_buf_size = *(uint32_t *)((NETWORK_LONG_CAST)network_socket_handle + NETWORK_SOCKET_BUFFER_OFFSET);
   calc_packet_size = socket_buf_size ^ (int)socket_buf_size >> NETWORK_BIT_SHIFT_MASK_5BIT;
   if ((int)(calc_packet_size - ((int)socket_buf_size >> NETWORK_BIT_SHIFT_MASK_5BIT)) < NETWORK_STATUS_FAILURE) {
     if (NETWORK_STATUS_FAILURE < (int)network_socket_handle[NETWORK_SOCKET_INDEX_PRIMARY]) {
