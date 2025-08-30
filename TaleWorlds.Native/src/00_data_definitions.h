@@ -7302,7 +7302,7 @@ unsigned long long allocate_system_memory(long long handle_param,long long *thre
     }
     system_resource_003(pstack_long_var,&plStack_78);
     *(uint *)(pstack_long_var + path_buffer_size) = *(uint *)(pstack_long_var + path_buffer_size) | SYSTEM_CONFIG_BUFFER_SIZE_ZERO;
-    system_temporary_stack_array[0] = *mutex_attr;
+    SYSTEM_TEMP_STACK_ARRAY[0] = *mutex_attr;
     psystem_initialization_result = (long long *)(handle_param + SYSTEM_OFFSET_MUTEX_PTR);
     system_memory_stack_primary = psystem_initialization_result;
     thread_result_status = _Mtx_lock(psystem_initialization_result);
@@ -7311,7 +7311,7 @@ unsigned long long allocate_system_memory(long long handle_param,long long *thre
     }
     buffer_allocation_result = system_execution_function(system_global_data_pointer,SYSTEM_FUNCTION_PARAM_SIZE_0X298,8,3);
     system_memory_buffer_ptr = (long long *)system_memory_001(buffer_allocation_result);
-    system_parallel_stack_buffer_pointer = (long long **)merge_32bit_values(system_parallel_stack_buffer_pointer_low_half_,system_temporary_stack_array[0]);
+    system_parallel_stack_buffer_pointer = (long long **)merge_32bit_values(system_parallel_stack_buffer_pointer_low_half_,SYSTEM_TEMP_STACK_ARRAY[0]);
     system_memory_stack_backup = system_memory_buffer_ptr;
     system_memory_manager_006(handle_param + SYSTEM_OFFSET_MEMORY_MANAGER,auStack_58,&system_parallel_stack_buffer_pointer);
     thread_result_status = _Mtx_unlock(psystem_initialization_result);
@@ -7343,7 +7343,7 @@ unsigned long long allocate_system_memory(long long handle_param,long long *thre
     }
   }
   else {
-    system_temporary_stack_array[0] = *mutex_attr;
+    SYSTEM_TEMP_STACK_ARRAY[0] = *mutex_attr;
     str_len_counter = system_memory_manager_007(handle_param);
     if (str_len_counter == SYSTEM_ZERO_VALUE) {
       *thread_operation_flags = SYSTEM_ZERO_VALUE;
@@ -7356,7 +7356,7 @@ unsigned long long allocate_system_memory(long long handle_param,long long *thre
       if (thread_result_status != 0) {
         __Throw_C_error_std__YAXH_Z(thread_result_status);
       }
-      system_memory_manager_008(handle_param + SYSTEM_OFFSET_MEMORY_MANAGER,system_temporary_stack_array);
+      system_memory_manager_008(handle_param + SYSTEM_OFFSET_MEMORY_MANAGER,SYSTEM_TEMP_STACK_ARRAY);
       thread_result_status = _Mtx_unlock(psystem_initialization_result);
       if (thread_result_status != 0) {
         __Throw_C_error_std__YAXH_Z(thread_result_status);
@@ -12150,7 +12150,7 @@ unsigned long long get_thread_handle_param(unsigned long long handle_param)
   unsigned long long buffer_allocation_result;
   unsigned long long *unaffected_register_dI;
   bool in_ZF;
-  unsigned char system_temporary_stack_array [8];
+  unsigned char SYSTEM_TEMP_STACK_ARRAY [8];
   buffer_allocation_result = SYSTEM_AUDIO_BUFFER_ADDR;
   if (!in_ZF) {
     buffer_allocation_result = handle_param;

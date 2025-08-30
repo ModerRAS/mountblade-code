@@ -5021,18 +5021,18 @@ int32_t NetworkSendPacketWithRetry(int64_t network_socket_handle, int64_t networ
 int32_t NetworkSendPacketWithTimeout(int64_t network_socket_handle, int64_t network_buffer_ptr, int32_t network_buffer_size)
 {
     uint64_t network_proc_index;
-  int32_t dataLength;
+  int32_t network_data_length;
   network_proc_index = *(uint64_t *)(network_socket_handle + MODULE_STATUS_OFFSET);
   network_socket_index = networkCopyData(network_buffer_ptr, network_buffer_size, &network_session_config_data);
-  dataLength = networkCopyData(network_buffer_ptr + network_socket_index, network_buffer_size - network_socket_index, &g_networkNullTerminator);
-  network_socket_index = network_socket_index + dataLength;
-  dataLength = network_send_buf(network_socket_index + network_buffer_ptr, network_buffer_size - network_socket_index, network_proc_index);
-  dataLength = networkCopyData(network_socket_index + network_buffer_ptr, network_buffer_size - network_socket_index, &g_networkNullTerminator);
-  dataLength = networkProcessPacketData(network_socket_index + network_buffer_ptr, network_buffer_size - network_socket_index, network_data_ptr);
-  dataLength = networkProcessPacketData(network_socket_index + network_buffer_ptr, network_buffer_size - network_socket_index, network_buffer_size);
-  dataLength = networkProcessBufferData(network_socket_index + network_buffer_ptr, network_buffer_size - network_socket_index, network_packet_temp_size);
-  dataLength = networkProcessBufferData(network_socket_index + network_buffer_ptr, network_buffer_size - network_socket_index, network_op_status);
-  return dataLength + network_socket_index;
+  network_data_length = networkCopyData(network_buffer_ptr + network_socket_index, network_buffer_size - network_socket_index, &g_networkNullTerminator);
+  network_socket_index = network_socket_index + network_data_length;
+  network_data_length = network_send_buf(network_socket_index + network_buffer_ptr, network_buffer_size - network_socket_index, network_proc_index);
+  network_data_length = networkCopyData(network_socket_index + network_buffer_ptr, network_buffer_size - network_socket_index, &g_networkNullTerminator);
+  network_data_length = networkProcessPacketData(network_socket_index + network_buffer_ptr, network_buffer_size - network_socket_index, network_data_ptr);
+  network_data_length = networkProcessPacketData(network_socket_index + network_buffer_ptr, network_buffer_size - network_socket_index, network_buffer_size);
+  network_data_length = networkProcessBufferData(network_socket_index + network_buffer_ptr, network_buffer_size - network_socket_index, network_packet_temp_size);
+  network_data_length = networkProcessBufferData(network_socket_index + network_buffer_ptr, network_buffer_size - network_socket_index, network_op_status);
+  return network_data_length + network_socket_index;
 int32_t NetworkSendPacketWithFragmentation(int64_t network_socket_handle, int64_t network_buffer_ptr, int32_t network_buffer_size)
   network_proc_count = networkFormatPacket(network_op_status + network_buffer_ptr, network_buffer_size - network_op_status, &network_session_config_size);
   network_proc_count = NetworkDecompressData(network_op_status + network_buffer_ptr, network_buffer_size - network_op_status, &network_module_status_current);
