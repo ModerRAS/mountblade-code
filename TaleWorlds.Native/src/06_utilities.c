@@ -82,6 +82,7 @@
 #define UTILITY_RESOURCE_OFFSET_208 0x208
 #define UTILITY_RESOURCE_OFFSET_20C 0x20c
 #define UTILITY_SYSTEM_TABLE_OFFSET 0x119
+#define UTILITY_MEMORY_OFFSET_114 0x114
 #define UTILITY_MEMORY_OFFSET_80D8 0x80d8
 #define UTILITY_MEMORY_OFFSET_81D8 0x81d8
 #define UTILITY_MEMORY_OFFSET_81E8 0x81e8
@@ -144,9 +145,9 @@
 // 28. 将char_stack_temp_20替换为utility_temp_status_char等状态字符变量名
 // 29. 将UtilityUnwind_1809023b0等十六进制地址函数名替换为UtilityUnwindExceptionHandlerBasic等语义化函数名
 // 30. 将float_array_stack_198替换为utility_stack_float_array_buffer等浮点数组变量名
-// 30. 将pointer_uint_stack_58替换为utility_stack_pointer_buffer等指针缓冲区变量名
-// 31. 将stack_float_value_primary_temp替换为utility_stack_float_primary_temp等浮点临时变量名
-// 32. 将stack_float_value_4c替换为utility_stack_float_parameter等浮点参数变量名
+// 31. 将pointer_uint_stack_58替换为utility_stack_pointer_buffer等指针缓冲区变量名
+// 32. 将stack_float_value_primary_temp替换为utility_stack_float_primary_temp等浮点临时变量名
+// 33. 将stack_float_value_4c替换为utility_stack_float_parameter等浮点参数变量名
 // 33. 将temp_variable_float替换为utility_temp_float_value等浮点值变量名
 // 34. 将utility_temp_long_value替换为utility_temp_long_value等长整型临时变量名
 // 35. 将utility_temp_unsigned_value替换为utility_temp_unsigned_value等无符号临时变量名
@@ -28489,7 +28490,7 @@ void UtilityUnwindExceptionHandlerSterilizeZeroZeroZeroAllZero(uint64 resource_h
 
 
 
-void UtilityUnwind_180902dd0(void)
+void UtilityCleanupMutex(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -29008,7 +29009,7 @@ void UtilityUnwindExceptionHandlerPurgeZeroZeroZeroZeroZeroAllZero(uint64 resour
 
 
 
-void UtilityUnwind_180903000(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
+void UtilityProcessResourceOperations(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
 
 {
   uint64 *utility_operation_resultData;
