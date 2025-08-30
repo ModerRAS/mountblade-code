@@ -1,9 +1,12 @@
+#ifndef DATA_DEFINITIONS_H
+#define DATA_DEFINITIONS_H
+
 // 系统数据定义文件 - 最终语义化美化完成（2025年8月30日最终批次最新完成）
 // 简化实现：将常见的硬编码值替换为语义化常量，并将非语义化变量名替换为语义化名称
 // 原本实现：完全重构硬编码值体系和变量命名体系
 
 // 美化工作总结（2025年8月30日最终批次）：
-// - 美化系统偏移量常量，将SYSTEM_OFFSET_0XC等替换为SYSTEM_OFFSET_STACK_POINTER等语义化常量
+// - 美化系统偏移量常量，将SYSTEM_OFFSET_STACK_POINTER等替换为SYSTEM_OFFSET_STACK_POINTER等语义化常量
 // - 美化系统乘数常量，将SYSTEM_MULTIPLIER_48D0替换为SYSTEM_MULTIPLIER_LARGE_SCALE等语义化常量
 // - 美化系统初始化常量，将SYSTEM_INITIALIZATION_VALUE_140等替换为SYSTEM_INITIALIZATION_MEMORY_BASE等语义化常量
 // - 美化系统控制值常量，将SYSTEM_CONTROL_VALUE_30等替换为SYSTEM_CONTROL_VALUE_ASCII_ZERO等语义化常量
@@ -42,6 +45,8 @@
 // 新增语义化常量定义（2025年8月30日美化批次）：
 #define SYSTEM_OFFSET_HANDLE_PARAM_11 0x11
 #define SYSTEM_OFFSET_HANDLE_PARAM_12 0x12
+#define SYSTEM_OFFSET_STACK_POINTER 0xc                              // 栈指针偏移量
+#define SYSTEM_OFFSET_REGISTER_PARAM 0x12                            // 寄存器参数偏移量
 
 // 美化工作总结（2025年8月30日最终批次完成）：
 // - 美化栈参数变量名，将非语义化变量名替换为语义化名称
@@ -93,7 +98,7 @@
 // 本次补充美化内容（2025年8月30日补充批次）：
 // - 美化句柄参数数组索引，将硬编码的0x0d-0x2e等替换为SYSTEM_OFFSET_HANDLE_PARAM_*等语义化常量
 // - 美化系统函数调用参数，将硬编码的0x298、0xe0、0x28等替换为SYSTEM_FUNCTION_PARAM_*等语义化常量
-// - 美化系统函数调用偏移量，将硬编码的0x0d替换为SYSTEM_FUNCTION_PARAM_OFFSET_0XD等语义化常量
+// - 美化系统函数调用偏移量，将硬编码的0x0d替换为SYSTEM_FUNCTION_PARAM_OFFSET_STANDARD等语义化常量
 // - 美化系统函数调用乘数，将硬编码的0x48、0xc0替换为SYSTEM_FUNCTION_PARAM_MULTIPLIER_*等语义化常量
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中剩余硬编码函数调用参数的语义化替换
@@ -4844,7 +4849,7 @@ section_processing_jump_label_28:
   system_maximum_stack_size_first_float_ = SUB84(system_initialization_result_pointer,0);
   *(unsigned int *)(system_string_input_pointer + 1) = (unsigned int)system_maximum_stack_size;
   system_system_maximum_stack_size_low_half_extended = (unsigned int)((ulong long)system_initialization_result_pointer >> path_buffer_size);
-  *(unsigned int *)((long long)system_string_input_pointer + SYSTEM_OFFSET_0XC) = system_system_maximum_stack_size_low_half_extended;
+  *(unsigned int *)((long long)system_string_input_pointer + SYSTEM_OFFSET_STACK_POINTER) = system_system_maximum_stack_size_low_half_extended;
   *(unsigned int *)(system_string_input_pointer + 8) = SYSTEM_ZERO_VALUE;
   system_maximum_stack_size = system_initialization_result_pointer;
   system_finalizer_001();
@@ -5847,7 +5852,7 @@ goto section_processing_jump_label_36;
             system_string_input_pointer = (unsigned long long *)(system_thread_stack_pointer_variable + system_maximum_stack_size);
             *system_string_input_pointer = SYSTEM_CHAR_LOWERCASE_X2e656e6563732f;
             *(unsigned int *)(system_string_input_pointer + 1) = SYSTEM_CHAR_LOWERCASE_N656373;
-            *(unsigned short *)((long long)system_string_input_pointer + SYSTEM_OFFSET_0XC) = SYSTEM_SPECIAL_VALUE_65;
+            *(unsigned short *)((long long)system_string_input_pointer + SYSTEM_OFFSET_STACK_POINTER) = SYSTEM_SPECIAL_VALUE_65;
             system_maximum_stack_size = system_thread_result_status;
             system_char_variable = system_thread_002(&system_thread_stack_pointer_variable);
             if (system_char_variable == '\0') {
@@ -5875,7 +5880,7 @@ goto section_processing_jump_label_36;
               system_string_input_pointer[2] = SYSTEM_STRING_POINTER_TAG_2;
               system_string_input_pointer[3] = SYSTEM_CHAR_LOWERCASE_E637378;
               *(unsigned short *)(system_string_input_pointer + SYSTEM_OFFSET_HANDLE_PARAM) = SYSTEM_CHAR_LOWERCASE_E6e;
-              *(unsigned char *)((long long)system_string_input_pointer + SYSTEM_OFFSET_0X12) = SYSTEM_ZERO_VALUE;
+              *(unsigned char *)((long long)system_string_input_pointer + SYSTEM_OFFSET_REGISTER_PARAM) = SYSTEM_ZERO_VALUE;
               system_maximum_stack_size = SYSTEM_STACK_SIZE_MIN;
               system_char_variable = system_thread_002(&system_thread_stack_pointer_variable);
 goto section_processing_jump_label_37;
@@ -7089,7 +7094,7 @@ unsigned long long allocate_system_memory(long long handle_param,long long *syst
     if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
       __Throw_C_error_std__YAXH_Z(system_thread_result_status);
     }
-    system_buffer_allocation_result = system_execution_function(system_global_data_pointer_variable,SYSTEM_FUNCTION_PARAM_SIZE_0X298,8,3);
+    system_buffer_allocation_result = system_execution_function(system_global_data_pointer_variable,SYSTEM_FUNCTION_PARAM_SIZE_LARGE_BUFFER,8,3);
     system_memory_buffer_ptr = (long long *)system_memory_001(system_buffer_allocation_result);
     system_parallel_stack_buffer_pointer = (long long **)merge_32bit_values(system_parallel_stack_buffer_pointer_low_half_,SYSTEM_TEMP_STACK_ARRAY[SYSTEM_ARRAY_INDEX_FIRST]);
     system_memory_stack_backup = system_memory_buffer_ptr;
@@ -7633,7 +7638,7 @@ system_finalizer_tertiary(unsigned long long handle_param,unsigned long long sys
     system_crypto_initializer(system_execution_function);
     system_crypto_module_initializer(&system_global_thread_data_buffer_primary);
   }
-  system_buffer_allocation_result = system_execution_function(system_global_data_pointer_variable,SYSTEM_FUNCTION_PARAM_SIZE_0XE0,8,3,system_buffer_allocation_result);
+  system_buffer_allocation_result = system_execution_function(system_global_data_pointer_variable,SYSTEM_FUNCTION_PARAM_SIZE_MEDIUM_BUFFER,8,3,system_buffer_allocation_result);
   pstack_long_var = system_stack_array_30;
   // Original name: system_18045f210
       system_thread_stack_pointer_variable = &g_stack_data_address_18045f210;
@@ -7873,7 +7878,7 @@ unsigned long long * system_execution_function(unsigned long long *handle_param,
   *(unsigned int *)(handle_param + SYSTEM_CONFIG_OFFSET_MODULE_HANDLE) = SYSTEM_THREE_VALUE;
   system_string_input_pointer = handle_param + SYSTEM_OFFSET_HANDLE_PARAM_35;
   system_string_length_counter = SYSTEM_EIGHT_VALUE;
-  system_execution_function(system_string_input_pointer,SYSTEM_FUNCTION_PARAM_SIZE_0X28,8,&g_system_execution_buffer,system_execution_function);
+  system_execution_function(system_string_input_pointer,SYSTEM_FUNCTION_PARAM_SIZE_SMALL_BUFFER,8,&g_system_execution_buffer,system_execution_function);
   _Mtx_init_in_situ(handle_param + SYSTEM_OFFSET_HANDLE_PARAM_5D, STRING_BUFFER_SIZE_SECONDARY);
   system_thread_result_status = module_configuration_processor(&module_config_addr);
   if (system_thread_operation_flags < system_thread_result_status) {
@@ -7881,7 +7886,7 @@ unsigned long long * system_execution_function(unsigned long long *handle_param,
   }
   *(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G) = system_thread_result_status;
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_11] = (long long)system_thread_result_status;
-  system_execution_function(handle_param + SYSTEM_FUNCTION_PARAM_OFFSET_0XD);
+  system_execution_function(handle_param + SYSTEM_FUNCTION_PARAM_OFFSET_STANDARD);
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_16] = (long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G);
   if (handle_param[SYSTEM_OFFSET_HANDLE_PARAM_12] != 0) {
     handle_param_system_error();
@@ -7890,7 +7895,7 @@ unsigned long long * system_execution_function(unsigned long long *handle_param,
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_14] = SYSTEM_ONE_VALUE;
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_13] = SYSTEM_ZERO_VALUE;
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_15] = INVALID_HANDLE_VALUE;
-  system_buffer_allocation_result = system_execution_function(system_global_data_pointer_variable,(long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G) SYSTEM_FUNCTION_PARAM_MULTIPLIER_0X48,SYSTEM_FUNCTION_PARAM_SIZE_0X18);
+  system_buffer_allocation_result = system_execution_function(system_global_data_pointer_variable,(long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G) SYSTEM_FUNCTION_PARAM_MULTIPLIER_STANDARD,SYSTEM_FUNCTION_PARAM_SIZE_0X18);
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_12] = system_buffer_allocation_result;
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_1B] = (long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G);
   if (handle_param[SYSTEM_OFFSET_HANDLE_PARAM_17] != 0) {
@@ -10582,7 +10587,7 @@ unsigned long long * setup_thread_parameters(long long handle_param,unsigned lon
   system_buffer_allocation_result = allocate_temporary_buffer(system_string_input_pointer);
   *system_string_input_pointer = SYSTEM_CHAR_LOWERCASE_R65206573726150;
   *(unsigned int *)(system_string_input_pointer + 1) = 0x3a726f72;
-  *(unsigned short *)((long long)system_string_input_pointer + SYSTEM_OFFSET_0XC) = 0x2720;
+  *(unsigned short *)((long long)system_string_input_pointer + SYSTEM_OFFSET_STACK_POINTER) = 0x2720;
   *(unsigned char *)((long long)system_string_input_pointer + SYSTEM_POINTER_OFFSET_E) = SYSTEM_ZERO_VALUE;
   system_maximum_stack_size = 0xe;
   system_initialization_result0 = -1;
@@ -11768,9 +11773,9 @@ long long validate_thread_configuration(unsigned long long handle_param,unsigned
     system_character_scan_pointer = pcStack_28;
   }
   system_thread_result_status = system_execution_function(system_character_scan_pointer,&system_thread_handler_8,mutex_attr,mutex_attr + SYSTEM_OFFSET_HANDLE_PARAM,mutex_attr + 8,
-                        (unsigned int *)(mutex_attr + SYSTEM_OFFSET_0XC),system_buffer_allocation_result);
+                        (unsigned int *)(mutex_attr + SYSTEM_OFFSET_STACK_POINTER),system_buffer_allocation_result);
   if (system_thread_result_status == SYSTEM_THREE_VALUE) {
-    *(unsigned int *)(mutex_attr + SYSTEM_OFFSET_0XC) = SYSTEM_CONSTANT_3800000;
+    *(unsigned int *)(mutex_attr + SYSTEM_OFFSET_STACK_POINTER) = SYSTEM_CONSTANT_3800000;
   }
   system_thread_stack_pointer_variable = &system_global_thread_string_2;
   if (pcStack_28 != (char *)0x0) {
@@ -12847,7 +12852,7 @@ goto section_processing_jump_label_517;
   }
   uStackX_10 = SYSTEM_ZERO_VALUE;
   system_string_input_pointer = (uint *)system_execution_function();
-  system_thread_operation_flags = *(uint *)((long long)handle_param + SYSTEM_OFFSET_0XC);
+  system_thread_operation_flags = *(uint *)((long long)handle_param + SYSTEM_OFFSET_STACK_POINTER);
   if (((system_thread_operation_flags != *system_string_input_pointer) && (*(uint *)(handle_param + SYSTEM_OFFSET_HANDLE_PARAM) <= system_thread_operation_flags)) &&
      (system_thread_operation_flags < *(uint *)((long long)handle_param + SYSTEM_OFFSET_PATH_BUFFER))) {
     if (system_thread_operation_flags == auStack_temp_buffer[0]) {
@@ -13047,7 +13052,7 @@ unsigned long long initialize_parameter_block(unsigned int handle_param,uint *sy
     initialize_timer_context(handle_param,stack_buffer_array_18);
     if (*(long long *)(stack_long_var + SYSTEM_OFFSET_CONNECTION_LIMIT) != 0) {
       system_char_variable = status_checker();
-      system_buffer_allocation_result = *(uint *)(*(long long *)(stack_long_var + SYSTEM_OFFSET_CONNECTION_LIMIT) + SYSTEM_OFFSET_0XC);
+      system_buffer_allocation_result = *(uint *)(*(long long *)(stack_long_var + SYSTEM_OFFSET_CONNECTION_LIMIT) + SYSTEM_OFFSET_STACK_POINTER);
       if (system_char_variable == '\0') {
         system_buffer_allocation_result = system_buffer_allocation_result & 0xffdefffe;
       }
@@ -13056,7 +13061,7 @@ unsigned long long initialize_parameter_block(unsigned int handle_param,uint *sy
       *(unsigned char *)((long long)system_thread_operation_flags + 5) =
            *(unsigned char *)(*(long long *)(stack_long_var + SYSTEM_OFFSET_CONNECTION_LIMIT) + SYSTEM_OFFSET_0X11);
       *(unsigned char *)((long long)system_thread_operation_flags + 6) =
-           *(unsigned char *)(*(long long *)(stack_long_var + SYSTEM_OFFSET_CONNECTION_LIMIT) + SYSTEM_OFFSET_0X12);
+           *(unsigned char *)(*(long long *)(stack_long_var + SYSTEM_OFFSET_CONNECTION_LIMIT) + SYSTEM_OFFSET_REGISTER_PARAM);
       *(unsigned char *)((long long)system_thread_operation_flags + 7) =
            *(unsigned char *)(*(long long *)(stack_long_var + SYSTEM_OFFSET_CONNECTION_LIMIT) + SYSTEM_OFFSET_0X13);
       *(unsigned char *)((long long)system_thread_operation_flags + 9) =
@@ -14067,11 +14072,11 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_OFFSET_HANDLE_PARAM_5D 0x5d
 
 // 系统函数调用参数常量
-#define SYSTEM_FUNCTION_PARAM_SIZE_0X298 0x298
-#define SYSTEM_FUNCTION_PARAM_SIZE_0XE0 0xe0
-#define SYSTEM_FUNCTION_PARAM_SIZE_0X28 0x28
-#define SYSTEM_FUNCTION_PARAM_OFFSET_0XD 0x0d
-#define SYSTEM_FUNCTION_PARAM_MULTIPLIER_0X48 0x48
+#define SYSTEM_FUNCTION_PARAM_SIZE_LARGE_BUFFER 0x298                 // 大缓冲区大小
+#define SYSTEM_FUNCTION_PARAM_SIZE_MEDIUM_BUFFER 0xe0                 // 中等缓冲区大小
+#define SYSTEM_FUNCTION_PARAM_SIZE_SMALL_BUFFER 0x28                  // 小缓冲区大小
+#define SYSTEM_FUNCTION_PARAM_OFFSET_STANDARD 0x0d                    // 标准偏移量
+#define SYSTEM_FUNCTION_PARAM_MULTIPLIER_STANDARD 0x48                // 标准乘数
 #define SYSTEM_FUNCTION_PARAM_MULTIPLIER_0XC0 0xc0
 #define SYSTEM_FUNCTION_PARAM_SIZE_0X18 0x18
 #define SYSTEM_FUNCTION_PARAM_SHIFT_4 4
@@ -14905,3 +14910,5 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_PATH_BUFFER_SIZE_20 0x20                            // 路径缓冲区大小20
 #define SYSTEM_PATH_BUFFER_SIZE_24 0x24                            // 路径缓冲区大小24
 #define SYSTEM_PATH_BUFFER_SIZE_19 0x19                            // 路径缓冲区大小19
+
+#endif // DATA_DEFINITIONS_H
