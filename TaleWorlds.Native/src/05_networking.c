@@ -8745,7 +8745,7 @@ int32_t ValidatePacketFormat(int64_t *network_socket_handle)
   uint32_t network_max_value_primary;
   int32_t network_integer_stack_secondary;
   uint32_t network_connection_processor_data_tertiary;
-  int32_t network_status_variable_value;
+  int32_t network_status_variable;
   socket_descriptor_value = network_socket_handle[NETWORK_SOCKET_HANDLE_INDEX_STATUS];
     client_port_addr_current = network_socket_handle[NETWORK_CONTROL_PACKET_TYPE_HANDSHAKE];
     if (client_port_addr_current != NETWORK_STATUS_FAILURE) {
@@ -8866,7 +8866,7 @@ process_index_validation:
   network_integer_stack_secondary = network_op_status;
   network_session_size_current = uint32_t)network_encryption_key;
   network_network_float_value_calculated = network_encryption_key._field_high_dword_;
-  network_status_variable_value = network_integer_stack_primary;
+  network_status_variable = network_integer_stack_primary;
   goto network_client_secure_exit_label;
     network_op_status = network_op_status + NETWORK_STATUS_SUCCESS;
     client_port_addr_current = client_port_addr_current + NETWORK_STATUS_SUCCESS;
@@ -18286,7 +18286,7 @@ uint64_t network_socket_handle(int64_t network_socket_handle, int64_t network_bu
 void UpdateNetworkState(int64_t network_socket_handle, uint64_t network_buffer_ptr, char network_buffer_size)
 {
     ushort network_stack_unsigned_max_connections_primary;
-  uint8_t network_bool_stack_uint_var;
+  uint8_t network_bool_stack_unsigned_var;
   uint8_t network_bool_unsigned_iteration_counter_max;
   uint8_t network_bool_data_offsetset_quinary;
   uint8_t network_bool_data_offsetset_senary;
