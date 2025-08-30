@@ -3578,7 +3578,7 @@ ulonglong calculate_memory_allocation(longlong resource_handle_identifier,longlo
         if (utility_long_value_pointer == (longlong *)UTILITY_NULL_POINTER) {
           memory_block_pointer = (longlong *)UTILITY_STRUCTURE_SIZE_OFFSET;
         }
-        *(longlong *)(memory_block_pointer_value[4] + 8 + (longlong)data_buffer) = *memory_block_pointer;
+        *(longlong *)(memory_block_pointer_value[UTILITY_ARRAY_INDEX_QUATERNARY] + UTILITY_OFFSET_ERROR_COUNTER + (longlong)data_buffer) = *memory_block_pointer;
         if (utility_long_value_pointer == resource_data_pointer) break;
         memory_block_pointer = (longlong *)(*utility_long_value_pointer + -RESOURCE_HANDLE_OFFSET);
         if (*utility_long_value_pointer == 0) {
