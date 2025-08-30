@@ -2309,18 +2309,18 @@ dataValue g_render_resource_work_buffer;              // 渲染资源工作缓�
 dataValue g_render_resource_work_offset;              // 渲染资源工作偏移量
 dataValue g_render_resource_work_size;                // 渲染资源工作大小
 dataValue g_render_resource_work_flags;               // 渲染资源工作标志
-dataValue g_renderTextureWorkBuffer;
-dataValue render_texture_work_offset;
-dataValue render_texture_work_size;
-dataValue render_texture_work_flags;
-dataValue g_renderSamplerWorkBuffer;
-dataValue render_sampler_work_offset;
-dataValue render_sampler_work_size;
-dataValue render_sampler_work_flags;
-dataValue g_renderBlendWorkBuffer;
-dataValue render_blend_work_offset;
-dataValue render_blend_work_size;
-dataValue render_blend_work_flags;
+dataValue g_render_texture_work_buffer;               // 渲染纹理工作缓冲区
+dataValue g_render_texture_work_offset;               // 渲染纹理工作偏移量
+dataValue g_render_texture_work_size;                 // 渲染纹理工作大小
+dataValue g_render_texture_work_flags;                // 渲染纹理工作标志
+dataValue g_render_sampler_work_buffer;               // 渲染采样器工作缓冲区
+dataValue g_render_sampler_work_offset;               // 渲染采样器工作偏移量
+dataValue g_render_sampler_work_size;                 // 渲染采样器工作大小
+dataValue g_render_sampler_work_flags;                // 渲染采样器工作标志
+dataValue g_render_blend_work_buffer;                // 渲染混合工作缓冲区
+dataValue g_render_blend_work_offset;                // 渲染混合工作偏移量
+dataValue g_render_blend_work_size;                  // 渲染混合工作大小
+dataValue g_render_blend_work_flags;                 // 渲染混合工作标志
 dataValue animationSystemState;
 dataValue g_aiNavigationWorkBuffer;
 dataValue animationClipData;

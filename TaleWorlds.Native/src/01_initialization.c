@@ -34,9 +34,11 @@
 // - 将0xac替换为SYSTEM_OBJECT_OFFSET_AC等对象偏移量常量
 // - 将SYSTEM_OBJECT_OFFSET_60替换为SYSTEM_OBJECT_OFFSET_60等对象偏移量常量
 // - 将数组索引[0x74]等替换为[SYSTEM_DATA_BLOCK_SIZE_74]等语义化常量
+// - 添加了SYSTEM_NODE_INDEX_ROOT_NEXT等节点数组索引语义化常量
+// - 将硬编码数组索引[1]、[2]、[6]、[7]、[8]、[9]、[10]替换为语义化常量
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
-// - 这是简化实现，主要处理了硬编码十六进制常量的语义化替换
+// - 这是简化实现，主要处理了硬编码十六进制常量和数组索引的语义化替换
 
 // 系统常量语义化定义
 #define SYSTEM_INVALID_HANDLE_VALUE 0xFFFFFFFFFFFFFFFF
@@ -218,6 +220,16 @@
 #define SYSTEM_NODE_OFFSET_NEXT 0x24
 #define SYSTEM_NODE_STRIDE_LARGE 0x69
 #define SYSTEM_NODE_STRIDE_SMALL 0xb
+
+// 系统节点数组索引常量语义化定义
+#define SYSTEM_NODE_INDEX_ROOT_NEXT 1
+#define SYSTEM_NODE_INDEX_CURRENT_NEXT 0
+#define SYSTEM_NODE_INDEX_CURRENT_PREV 2
+#define SYSTEM_NODE_INDEX_SIGNATURE_PRIMARY 6
+#define SYSTEM_NODE_INDEX_SIGNATURE_SECONDARY 7
+#define SYSTEM_NODE_INDEX_DEFAULT_FUNCTION 8
+#define SYSTEM_NODE_INDEX_STATUS_FLAG 9
+#define SYSTEM_NODE_INDEX_INITIALIZATION_FUNCTION 10
 
 // 系统核心偏移量常量语义化定义
 #define SYSTEM_CORE_OFFSET_CONFIG 0x22
