@@ -51685,7 +51685,7 @@ void InitializeSystemModule_caching(void)
   }
   system_result_temp_primary = *(longlong *)(system_register_buffer_ptr + SYSTEM_CONFIG_SIZE_INPUT8);
   module_type_flag = *(byte *)(system_long_result + SYSTEM_OBJECT_OFFSET_38c);
-  if (module_type_flag == 9) {
+  if (module_type_flag == SYSTEM_MODULE_TYPE_FLAG_AUDIO) {
     module_type_flag = IsSystemInitialized();
     *(byte *)(system_long_result + SYSTEM_OBJECT_OFFSET_38c) = module_type_flag;
   }
@@ -51944,7 +51944,7 @@ void InitializeSystemLogger(void)
   system_result_temp_primary = *(longlong *)(system_register_buffer_ptr + SYSTEM_CONFIG_SIZE_INPUT8);
   system_feature_flag = *(byte *)(system_long_result + SYSTEM_OBJECT_OFFSET_38c);
   system_result_temp_primary = system_register_buffer_ptr;
-  if (system_feature_flag == 9) {
+  if (system_feature_flag == SYSTEM_FEATURE_FLAG_ENABLED) {
     system_feature_flag = IsSystemInitialized();
     *(byte *)(system_long_result + SYSTEM_OBJECT_OFFSET_38c) = system_feature_flag;
   }
@@ -58155,7 +58155,7 @@ void ConfigureSystemSettings(uint handleIdentifier,longlong resourceIdentifier,l
     break;
   case SYSTEM_OFFSET_4:
   case 5:
-    if ((handleIdentifier == 5) && (0 < *(int *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_38))) {
+    if ((handleIdentifier == SYSTEM_HANDLE_ID_AUDIO) && (0 < *(int *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_38))) {
       system_boolean_flag = true;
     }
     else {
