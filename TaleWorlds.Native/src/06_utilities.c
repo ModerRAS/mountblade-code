@@ -226,9 +226,9 @@ dataValue g_export_config_settings;
 dataValue g_sync_config_settings;
 dataValue g_share_config_settings;
 dataValue g_publish_config_settings;
-dataValue g_配置流媒体设置;
-dataValue g_配置记录设置;
-dataValue g_配置广播设置;
+dataValue g_streaming_config_settings;
+dataValue g_recording_config_settings;
+dataValue g_broadcast_config_settings;
 dataValue g_配置验证标志;
 dataValue g_配置序列化缓冲区;
 dataValue g_配置反序列化缓冲区;
@@ -247,10 +247,10 @@ dataValue g_配置属性;
 dataValue g_配置属性列表;
 dataValue g_配置参数;
 dataValue g_配置选项;
-dataValue g_配置偏好设置;
+dataValue g_preference_config_settings;
 dataValue g_配置选择项;
 dataValue g_配置选项列表;
-dataValue g_配置设置数组;
+dataValue g_config_settings_array;
 dataValue g_配置值数组;
 dataValue g_配置键数组;
 dataValue g_配置数据数组;
@@ -288,7 +288,7 @@ dataValue g_配置系统版本;
 dataValue g_配置系统构建号;
 dataValue g_配置系统平台;
 dataValue g_配置系统架构;                 // 配置系统架构
-dataValue g_配置系统区域设置;               // 配置系统区域设置
+dataValue g_system_region_config_settings;               // 配置系统区域设置
 dataValue g_配置系统时区;                 // 配置系统时区
 dataValue g_配置系统语言;                 // 配置系统语言
 dataValue g_配置系统日期格式;             // 配置系统日期格式
@@ -297,7 +297,7 @@ dataValue g_配置系统数字格式;             // 配置系统数字格式
 dataValue g_配置系统货币格式;             // 配置系统货币格式
 dataValue g_配置系统度量系统;             // 配置系统度量系统
 dataValue g_配置系统键盘布局;             // 配置系统键盘布局
-dataValue g_配置系统鼠标设置;             // 配置系统鼠标设置
+dataValue g_system_mouse_config_settings;             // 配置系统鼠标设置
 dataValue g_配置系统显示设置;             // 配置系统显示设置
 dataValue g_配置系统声音设置;             // 配置系统声音设置
 dataValue g_配置系统网络设置;             // 配置系统网络设置
