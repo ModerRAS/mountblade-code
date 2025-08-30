@@ -1,10 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 最新美化内容：
-// - 将uintStack_2f8替换为init_stack_uint_offset_2f8等栈偏移量变量名
-// - 将uintStack_418替换为init_stack_uint_config_offset_418等配置偏移量变量名
-// - 将uintStack_3b8替换为init_stack_uint_thread_local_size_3b8等线程本地大小变量名
-// - 将uintStack_358替换为init_stack_uint_thread_local_size_358等线程本地大小变量名
+// - 将init_stack_uint_offset_2f8替换为init_stack_uint_offset_2f8等栈偏移量变量名
+// - 将init_stack_uint_config_offset_418替换为init_stack_uint_config_offset_418等配置偏移量变量名
+// - 将init_stack_uint_thread_local_size_3b8替换为init_stack_uint_thread_local_size_3b8等线程本地大小变量名
+// - 将init_stack_uint_thread_local_size_358替换为init_stack_uint_thread_local_size_358等线程本地大小变量名
 // - 将uintStack_20替换为init_stack_uint_parameter_20等参数变量名
 // - 将uintStack_10替换为init_stack_uint_config_value_10等配置值变量名
 // - 提高了代码的可读性和维护性
@@ -240,7 +240,7 @@
 // - 将system_buffer_ptr_vertex_buffer替换为system_buffer_ptr_vertex_buffer等顶点缓冲区变量名
 // - 将system_buffer_ptr_small_buffer替换为system_buffer_ptr_small_buffer等小缓冲区变量名
 // - 将system_buffer_ptr_data_array替换为system_buffer_ptr_data_array等数据数组变量名
-// - 将uintStack_418等栈变量替换为init_stack_uint_render_aux等语义化名称
+// - 将init_stack_uint_config_offset_418等栈变量替换为init_stack_uint_render_aux等语义化名称
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
 
@@ -17491,7 +17491,7 @@ void InitializePhysicsSystem(void)
   uint8_t system_local_buffer_350 [72];
   void *system_buffer_ptr_texture_pool;
   uint8_t *system_buffer_ptr_vertex_buffer;
-  uint32_t uintStack_2f8;
+  uint32_t init_stack_uint_offset_2f8;
   uint8_t system_local_buffer_2f0 [648];
   ulonglong init_stack_uint_param_68;
 
@@ -17547,7 +17547,7 @@ void InitializePhysicsSystem(void)
   system_buffer_ptr_profiler = &g_system_core_data_ptr;
   system_buffer_ptr_graphics_aux = system_local_buffer_410;
   system_local_buffer_410[0] = 0;
-  uintStack_418 = SYSTEM_OFFSET_18;
+  init_stack_uint_config_offset_418 = SYSTEM_OFFSET_18;
   system_status_code = strcpy_s(system_local_buffer_410,SYSTEM_DATA_BLOCK_SIZE,&g_global_config_3);
   system_configuration_data = (float)InitializeSystemProfiler(system_operation_status,&system_buffer_ptr_profiler);
   system_configuration_data = 1.0 / system_configuration_data;
@@ -17555,7 +17555,7 @@ void InitializePhysicsSystem(void)
   system_buffer_ptr_profiler_context = &g_system_core_data_ptr;
   system_buffer_ptr_render_state = system_local_buffer_3b0;
   system_local_buffer_3b0[0] = 0;
-  uintStack_3b8 = SYSTEM_CONFIG_SIZE_THREAD_LOCAL;
+  init_stack_uint_thread_local_size_3b8 = SYSTEM_CONFIG_SIZE_THREAD_LOCAL;
   system_status_code = strcpy_s(system_local_buffer_3b0,SYSTEM_DATA_BLOCK_SIZE,&g_global_config_1);
   g_system_data_variablec = (float)InitializeSystemProfiler(system_operation_status,&system_buffer_ptr_profiler_context);
   g_system_data_variablec = 1.0 / g_system_data_variablec;
@@ -17563,14 +17563,14 @@ void InitializePhysicsSystem(void)
   system_buffer_ptr_shader_context = &g_system_core_data_ptr;
   system_buffer_ptr_shader_data = system_local_buffer_350;
   system_local_buffer_350[0] = 0;
-  uintStack_358 = SYSTEM_CONFIG_SIZE_THREAD_LOCAL;
+  init_stack_uint_thread_local_size_358 = SYSTEM_CONFIG_SIZE_THREAD_LOCAL;
   system_status_code = strcpy_s(system_local_buffer_350,SYSTEM_DATA_BLOCK_SIZE,&g_global_config_1);
   system_float_value = (float)ConfigureSystemParameters(system_operation_status,&system_buffer_ptr_shader_context);
   system_buffer_ptr_shader_context = &globalSystemPointerData;
   system_buffer_ptr_texture_pool = &g_system_core_data_ptr;
   system_buffer_ptr_vertex_buffer = system_local_buffer_2f0;
   system_local_buffer_2f0[0] = 0;
-  uintStack_2f8 = SYSTEM_OFFSET_18;
+  init_stack_uint_offset_2f8 = SYSTEM_OFFSET_18;
   system_status_code = strcpy_s(system_local_buffer_2f0,SYSTEM_DATA_BLOCK_SIZE,&g_global_config_3);
   system_float_value = (float)ConfigureSystemParameters(system_operation_status,&system_buffer_ptr_texture_pool);
   system_buffer_ptr_texture_pool = &globalSystemPointerData;
@@ -21262,7 +21262,7 @@ void ConfigureGraphicsShader(uint64_t handleIdentifier,longlong resourceIdentifi
   void *system_buffer_ptr_310;
   uint8_t *system_buffer_ptr_texture_pool;
   uint uintStack_300;
-  uint64_t uintStack_2f8;
+  uint64_t init_stack_uint_offset_2f8;
   ulonglong init_stack_pointer_2f0;
   void *system_buffer_ptr_2e8;
   uint8_t *system_buffer_ptr_2e0;
@@ -21358,7 +21358,7 @@ void ConfigureGraphicsShader(uint64_t handleIdentifier,longlong resourceIdentifi
   } while (system_pointer_var[system_long_result] != '\0');
   system_status_code = system_long_result + 2;
   system_buffer_ptr_310 = &resourcePoolPointer;
-  uintStack_2f8 = 0;
+  init_stack_uint_offset_2f8 = 0;
   system_buffer_ptr_texture_pool = (uint8_t *)0x0;
   uintStack_300 = 0;
   system_buffer_ptr_268 = system_ptr_value;
@@ -27805,7 +27805,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
   longlong longStack_310;
   uint64_t *system_buffer_ptr_texture_pool;
   uint64_t *system_buffer_ptr_vertex_buffer;
-  uint64_t uintStack_2f8;
+  uint64_t init_stack_uint_offset_2f8;
   uint32_t uintStack_2f0;
   void *system_buffer_ptr_2e8;
   longlong longStack_2e0;
@@ -27894,7 +27894,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
       system_buffer_ptr_398 = &globalSystemPointerData;
       system_buffer_ptr_texture_pool = (uint64_t *)0x0;
       system_buffer_ptr_vertex_buffer = (uint64_t *)0x0;
-      uintStack_2f8 = 0;
+      init_stack_uint_offset_2f8 = 0;
       uintStack_2f0 = 3;
       system_buffer_ptr_290 = &g_system_data_node_primary_config;
       system_buffer_ptr_288 = system_local_buffer_278;
@@ -35586,7 +35586,7 @@ void InitializeSystemResources(uint64_t handleIdentifier)
   uint64_t *system_buffer_ptr_310;
   uint64_t uintStack_308;
   uint32_t uintStack_300;
-  uint64_t uintStack_2f8;
+  uint64_t init_stack_uint_offset_2f8;
   longlong longStack_2f0;
   uint64_t uintStack_2e0;
   longlong longStack_2d8;
@@ -35650,15 +35650,15 @@ void InitializeSystemResources(uint64_t handleIdentifier)
   longStack_298 = 0;
   init_stack_ulong_parameter_288 = 0;
   system_buffer_ptr_2a0 = &globalSystemPointerData;
-  uintStack_2f8 = 0;
+  init_stack_uint_offset_2f8 = 0;
   longStack_2f0 = 0;
   InitializeSharedMemory(handleIdentifier,&system_buffer_ptr_280,&g_system_network_module_data);
   system_ptr_value = &g_system_data_variable3;
   if (system_buffer_ptr_278 != (void *)0x0) {
     system_ptr_value = system_buffer_ptr_278;
   }
-  ProcessSystemNode(&uintStack_2f8,system_pointer_var,&g_system_video_module_data);
-  InitializeTextureSystem(systemCoreData,&uintStack_2f8);
+  ProcessSystemNode(&init_stack_uint_offset_2f8,system_pointer_var,&g_system_video_module_data);
+  InitializeTextureSystem(systemCoreData,&init_stack_uint_offset_2f8);
   if (longStack_2f0 != 0) {
     fclose();
     longStack_2f0 = 0;
@@ -36163,7 +36163,7 @@ void InitializeFontSystem(uint64_t handleIdentifier)
   uint32_t uintStack_310;
   void *system_buffer_ptr_texture_pool;
   void *system_buffer_ptr_vertex_buffer;
-  uint32_t uintStack_2f8;
+  uint32_t init_stack_uint_offset_2f8;
   ulonglong init_stack_pointer_2f0;
   void *system_buffer_ptr_2e8;
   void *system_buffer_ptr_2e0;
@@ -36326,7 +36326,7 @@ void InitializeFontSystem(uint64_t handleIdentifier)
   system_buffer_ptr_texture_pool = &resourcePoolPointer;
   uintStack_2f0 = 0;
   system_buffer_ptr_vertex_buffer = (void *)0x0;
-  uintStack_2f8 = 0;
+  init_stack_uint_offset_2f8 = 0;
   system_status_code = GetSystemStatus();
   ConfigureBufferAttributes(&system_buffer_ptr_2e8,&g_system_global_config,usystem_int_result / SYSTEM_DATA_COMPARE_SIZE0000 & SYSTEM_OFFSET_Ffffffff);
   system_local_buffer_primary[0] = SYSTEM_FLAG_BIT_48;

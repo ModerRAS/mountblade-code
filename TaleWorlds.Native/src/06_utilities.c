@@ -20049,25 +20049,25 @@ UTILITY_LABEL_SKIP_TO_NEXT:
     return utility_iteration_counter;
   }
   switch(utility_temp_unsigned_int) {
-  case 0:
-    utility_system_status_code = 0;
+  case UTILITY_STATUS_CODE_ZERO:
+    utility_system_status_code = UTILITY_STATUS_CODE_ZERO;
     break;
-  case 1:
-    utility_system_status_code = 1;
+  case UTILITY_STATUS_CODE_ONE:
+    utility_system_status_code = UTILITY_STATUS_CODE_ONE;
     break;
-  case 2:
-    utility_system_status_code = 2;
+  case UTILITY_STATUS_CODE_TWO:
+    utility_system_status_code = UTILITY_STATUS_CODE_TWO;
     break;
-  case 3:
-    utility_system_status_code = 3;
+  case UTILITY_STATUS_CODE_THREE:
+    utility_system_status_code = UTILITY_STATUS_CODE_THREE;
     break;
   case 4:
     break;
-  case 5:
-    utility_system_status_code = 5;
+  case UTILITY_STATUS_CODE_FIVE:
+    utility_system_status_code = UTILITY_STATUS_CODE_FIVE;
     break;
-  case 6:
-    utility_system_status_code = 6;
+  case UTILITY_STATUS_CODE_SIX:
+    utility_system_status_code = UTILITY_STATUS_CODE_SIX;
     break;
   case 7:
     utility_system_status_code = 7;
@@ -41702,7 +41702,7 @@ void UtilityFunctionHandler0(uint64 resource_handle_identifier,longlong resource
 void UtilityFunctionHandler0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  calculateArrayIndex((ulonglong)(*(uint *)(resource_buffer + UTILITY_FIELD_PRIMARY_OFFSET) & UTILITY_ERROR_CODE_FAILED) * 0x1a8 +
+  calculateArrayIndex((ulonglong)(*(uint *)(resource_buffer + UTILITY_FIELD_PRIMARY_OFFSET) & UTILITY_ERROR_CODE_FAILED) * UTILITY_ARRAY_SIZE_MEDIUM +
                 *(longlong *)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET));
   *(byte *)
    ((*(longlong *)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET) - (ulonglong)(*(uint *)(resource_buffer + UTILITY_FIELD_PRIMARY_OFFSET) & UTILITY_ERROR_CODE_FAILED)) + 0x352f) = 1;
@@ -41740,7 +41740,7 @@ void UtilityFunctionHandler40(uint64 resource_handle_identifier,longlong resourc
   bool utility_operation_status;
   
   array_handle_pointer = (longlong *)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET);
-  calculateArrayIndex((ulonglong)(*(uint *)(resource_buffer + UTILITY_FIELD_PRIMARY_OFFSET) & UTILITY_ERROR_CODE_FAILED) * 0x1a8 + *array_handle_pointer);
+  calculateArrayIndex((ulonglong)(*(uint *)(resource_buffer + UTILITY_FIELD_PRIMARY_OFFSET) & UTILITY_ERROR_CODE_FAILED) * UTILITY_ARRAY_SIZE_MEDIUM + *array_handle_pointer);
   LOCK();
   resource_data_pointer = (longlong *)(*array_handle_pointer + UTILITY_STACK_OFFSET_3508);
   utility_memory_offset = *resource_data_pointer;
