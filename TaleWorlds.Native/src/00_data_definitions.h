@@ -12501,7 +12501,7 @@ unsigned long long allocate_resource_memory(int handle_param)
     }
     if ((int)buffer_allocation_result < (int)buffer_allocation_result) {
       pfloat_var = (float *)(system_initialization_result5 + buffer_allocation_result * 4);
-      float_var = 1.0 / (float)(int)buffer_allocation_result;
+      float_var = SYSTEM_FLOAT_VALUE_ONE / (float)(int)buffer_allocation_result;
       unassigned_xmm_register_six = zero_extension_float((uint)float_var);
       do {
         float_var = (float)cosf(((float)(int)buffer_allocation_result * 6.2831855 + 3.1415927) * float_var);
