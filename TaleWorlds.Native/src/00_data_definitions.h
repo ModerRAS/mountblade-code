@@ -180,6 +180,15 @@
 #define SYSTEM_NINE_VALUE 9
 #define SYSTEM_TEN_VALUE 10
 
+// 系统模块句柄常量
+#define SYSTEM_MODULE_HANDLE_NULL 0
+
+// 系统互斥锁类型常量
+#define SYSTEM_MUTEX_TYPE_DEFAULT 2
+
+// 系统栈大小常量
+#define SYSTEM_STACK_SIZE_MINIMUM 3
+
 // 系统函数偏移量常量
 #define SYSTEM_FUNC_OFFSET_CLEANUP 0x28
 #define SYSTEM_FUNC_OFFSET_INITIALIZE 0x38
@@ -1546,7 +1555,7 @@ int initialize_main_thread_pool(void* handle_param, void* thread_op_flags, void*
   unsigned long long pool_thread_op_flags = DEFAULT_THREAD_POOL_FLAG;
   
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(MAIN_THREAD_POOL_MUTEX_ADDR, 2, mutex_attr, mutex_type, pool_thread_op_flags);
+  _Mtx_init_in_situ(MAIN_THREAD_POOL_MUTEX_ADDR, SYSTEM_MUTEX_TYPE_DEFAULT, mutex_attr, mutex_type, pool_thread_op_flags);
   main_thread_pool_status = SYSTEM_STATUS_SUCCESS;
   system_initialization_result = system_execution_function(main_thread_pool_initialization_function);
   return (system_initialization_result != 0) - 1;
@@ -1558,7 +1567,7 @@ int initialize_rendering_thread_pool(void* handle_param, void* thread_op_flags, 
   unsigned long long pool_thread_op_flags = DEFAULT_THREAD_POOL_FLAG;
   
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(RENDER_THREAD_POOL_MUTEX_ADDR, 2, mutex_attr, mutex_type, pool_thread_op_flags);
+  _Mtx_init_in_situ(RENDER_THREAD_POOL_MUTEX_ADDR, SYSTEM_MUTEX_TYPE_DEFAULT, mutex_attr, mutex_type, pool_thread_op_flags);
   render_thread_pool_status = SYSTEM_STATUS_SUCCESS;
   system_initialization_result = system_execution_function(rendering_thread_pool_initialization_function);
   return (system_initialization_result != 0) - 1;
@@ -1570,7 +1579,7 @@ int initialize_network_thread_pool(void* handle_param, void* thread_op_flags, vo
   unsigned long long pool_thread_op_flags = DEFAULT_THREAD_POOL_FLAG;
   
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(NETWORK_THREAD_POOL_MUTEX_ADDR, 2, mutex_attr, mutex_type, pool_thread_op_flags);
+  _Mtx_init_in_situ(NETWORK_THREAD_POOL_MUTEX_ADDR, SYSTEM_MUTEX_TYPE_DEFAULT, mutex_attr, mutex_type, pool_thread_op_flags);
   network_thread_pool_status = SYSTEM_STATUS_SUCCESS;
   system_initialization_result = system_execution_function(network_thread_pool_initialization_function);
   return (system_initialization_result != 0) - 1;
@@ -1582,7 +1591,7 @@ int initialize_io_thread_pool(void* handle_param, void* thread_op_flags, void* m
   unsigned long long pool_thread_op_flags = DEFAULT_THREAD_POOL_FLAG;
   
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(IO_THREAD_POOL_MUTEX_ADDR, 2, mutex_attr, mutex_type, pool_thread_op_flags);
+  _Mtx_init_in_situ(IO_THREAD_POOL_MUTEX_ADDR, SYSTEM_MUTEX_TYPE_DEFAULT, mutex_attr, mutex_type, pool_thread_op_flags);
   io_thread_pool_status = SYSTEM_STATUS_SUCCESS;
   system_initialization_result = system_execution_function(io_thread_pool_initialization_function);
   return (system_initialization_result != 0) - 1;
@@ -2765,7 +2774,7 @@ int initialize_health_checker(void)
 int initialize_worker_thread_pool(unsigned long long handle_param,unsigned long long thread_op_flags,unsigned long long mutex_attr,unsigned long long mutex_type)
 {
   long long system_initialization_result;
-  _Mtx_init_in_situ(SECOND_MUTEX_ADDRESS,2,mutex_attr,mutex_type,DEFAULT_THREAD_POOL_FLAG);
+  _Mtx_init_in_situ(SECOND_MUTEX_ADDRESS,SYSTEM_MUTEX_TYPE_DEFAULT,mutex_attr,mutex_type,DEFAULT_THREAD_POOL_FLAG);
   system_initialization_result = system_execution_function(resource_manager_54_init_function);
   return (system_initialization_result != 0) - 1;
 }
@@ -2905,7 +2914,7 @@ int initialize_recovery_system(void)
 int initialize_priority_thread_pool(unsigned long long handle_param,unsigned long long thread_op_flags,unsigned long long mutex_attr,unsigned long long mutex_type)
 {
   long long system_initialization_result;
-  _Mtx_init_in_situ(THIRD_MUTEX_ADDRESS,2,mutex_attr,mutex_type,DEFAULT_THREAD_POOL_FLAG);
+  _Mtx_init_in_situ(THIRD_MUTEX_ADDRESS,SYSTEM_MUTEX_TYPE_DEFAULT,mutex_attr,mutex_type,DEFAULT_THREAD_POOL_FLAG);
   system_global_data_pointer = &shared_system_data_buffer;
   system_global_data_pointer = &system_thread_data_buffer;
   system_global_data_pointer = SYSTEM_ZERO_VALUE;
@@ -2944,7 +2953,7 @@ int initialize_performance_monitor(void)
   system_global_data_pointer = &shared_system_data_buffer;
   system_global_data_pointer = &system_large_string_3;
   system_large_string_3 = SYSTEM_ZERO_VALUE;
-  system_global_data_pointer = 5;
+  system_global_data_pointer = SYSTEM_FIVE_VALUE;
   strcpy_s(&system_large_string_3,SYSTEM_CONFIG_BUFFER_SIZE,&g_largeString3,system_string_length_parameter,DEFAULT_THREAD_POOL_FLAG);
   system_initialization_result = system_execution_function(resource_manager_60_init_function);
   return (system_initialization_result != 0) - 1;
@@ -2987,7 +2996,7 @@ int initialize_scaling_system(void)
 }
   system_thread_flag_2 = 1;
   system_thread_flag_1 = SYSTEM_ZERO_VALUE;
-  system_temp_stack_array[0] = GetModuleHandleA(0);
+  system_temp_stack_array[0] = GetModuleHandleA(SYSTEM_MODULE_HANDLE_NULL);
   initialize_core_system(handle_param,system_temp_stack_array);
   initialize_subsystem_modules();
   initialize_service_layer();
@@ -2998,7 +3007,7 @@ void WotsMainNativeSDLL(unsigned long long handle_param)
   unsigned long long system_temp_stack_array [2];
   system_thread_flag_2 = SYSTEM_ZERO_VALUE;
   system_thread_flag_1 = SYSTEM_ZERO_VALUE;
-  system_temp_stack_array[0] = GetModuleHandleA(0);
+  system_temp_stack_array[0] = GetModuleHandleA(SYSTEM_MODULE_HANDLE_NULL);
   initialize_core_system(handle_param,system_temp_stack_array);
   initialize_subsystem_modules();
   initialize_service_layer();
@@ -3093,7 +3102,7 @@ section_processing_jump_label_:
 }
   system_thread_flag_2 = 1;
   system_thread_flag_1 = SYSTEM_ZERO_VALUE;
-  system_temp_stack_array[0] = GetModuleHandleA(0);
+  system_temp_stack_array[0] = GetModuleHandleA(SYSTEM_MODULE_HANDLE_NULL);
   initialize_core_system(handle_param,system_temp_stack_array);
   initialize_subsystem_modules();
   initialize_service_layer();
@@ -3104,7 +3113,7 @@ void WotsMainNative(unsigned long long handle_param)
   unsigned long long system_temp_stack_array [2];
   system_thread_flag_2 = SYSTEM_ZERO_VALUE;
   system_thread_flag_1 = SYSTEM_ZERO_VALUE;
-  system_temp_stack_array[0] = GetModuleHandleA(0);
+  system_temp_stack_array[0] = GetModuleHandleA(SYSTEM_MODULE_HANDLE_NULL);
   initialize_core_system(handle_param,system_temp_stack_array);
   initialize_subsystem_modules();
   initialize_service_layer();
@@ -3115,7 +3124,7 @@ void WotsMainNativeCoreCLR(unsigned long long handle_param)
   unsigned long long system_temp_stack_array [2];
   system_thread_flag_2 = SYSTEM_ZERO_VALUE;
   system_thread_flag_1 = 1;
-  system_temp_stack_array[0] = GetModuleHandleA(0);
+  system_temp_stack_array[0] = GetModuleHandleA(SYSTEM_MODULE_HANDLE_NULL);
   initialize_core_system(handle_param,system_temp_stack_array);
   initialize_subsystem_modules();
   initialize_service_layer();
@@ -3134,7 +3143,7 @@ void WotsMainNativeCoreCLR(unsigned long long handle_param)
   thread_stack_size_max68 = SYSTEM_ZERO_VALUE;
   thread_stack_size_max60 = SYSTEM_ZERO_VALUE;
   thread_stack_size_max58 = SYSTEM_ZERO_VALUE;
-  thread_stack_size_max50 = 3;
+  thread_stack_size_max50 = SYSTEM_STACK_SIZE_MINIMUM;
   create_thread_context(&thread_stack48,handle_param);
   system_execution_function(&thread_stack_size_max68,&thread_stack48);
   thread_stack48 = &g_threadString2;
@@ -7237,7 +7246,7 @@ system_finalizer_tertiary(unsigned long long handle_param,unsigned long long thr
     str_len_counter = str_len_counter + -1;
   } while (str_len_counter != 0);
   system_flag_buffer_9 = SYSTEM_ZERO_VALUE;
-  _Mtx_init_in_situ(MODULE_MUTEX_ADDR,2,mutex_attr,mutex_type,buffer_alloc_result);
+  _Mtx_init_in_situ(MODULE_MUTEX_ADDR,SYSTEM_MUTEX_TYPE_DEFAULT,mutex_attr,mutex_type,buffer_alloc_result);
   system_global_data_pointer = UINT32_MAX;
   system_global_data_pointer = SYSTEM_ZERO_VALUE;
   system_global_data_pointer = SYSTEM_ZERO_VALUE;
