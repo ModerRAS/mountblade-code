@@ -1014,7 +1014,7 @@
 // - 保持代码语义不变
 
 // 本次美化内容：
-// - 将系统寄存器变量名如in_R10、in_R11替换为system_register_r10、system_register_r11等语义化名称
+// - 将系统寄存器变量名如system_register_r10、system_register_r11替换为system_register_r10、system_register_r11等语义化名称
 // - 将XMM寄存器变量名如in_XMM0_Dc、in_XMM1_Dc等替换为system_register_xmm0_dc、system_register_xmm1_dc等语义化名称
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
@@ -23402,7 +23402,7 @@ void ProcessSystemAllocation(longlong handleIdentifier)
 {
   longlong system_long_value;
   longlong system_long_value;
-  longlong in_RAX;
+  longlong system_register_rax;
   longlong system_long_value;
   ulonglong system_status_code;
   longlong *system_RSI;
@@ -23414,7 +23414,7 @@ void ProcessSystemAllocation(longlong handleIdentifier)
   system_long_value = *system_RSI;
   allocation_size = system_long_value_result - system_long_value;
   system_status_code = allocation_size >> 2;
-  if ((ulonglong)(in_RAX - handleIdentifier >> 2) < system_integer_result_temp_unsigned) {
+  if ((ulonglong)(system_register_rax - handleIdentifier >> 2) < system_integer_result_temp_unsigned) {
     if (system_operation_status == 0) {
       system_long_value = 0;
     }
@@ -23807,7 +23807,7 @@ void InitializeAudioMutex(longlong handleIdentifier,float resourceIdentifier,uin
   uint system_status_code;
   longlong system_long_value;
   uint system_status_code;
-  uint64_t in_RDX;
+  uint64_t system_register_rdx;
   longlong system_long_value;
   uint system_status_code;
   uint system_status_code;
@@ -23832,7 +23832,7 @@ void InitializeAudioMutex(longlong handleIdentifier,float resourceIdentifier,uin
     network_initialization_flag = false;
   }
   if (network_initialization_flag) {
-    system_float_value = (float)exp2f(systemCoreData,in_RDX,system_configuration,systemFlags,INVALID_HANDLE_VALUE);
+    system_float_value = (float)exp2f(systemCoreData,system_register_rdx,system_configuration,systemFlags,INVALID_HANDLE_VALUE);
     if (*(char *)(handleIdentifier + SYSTEM_DATA_OFFSET_22d) == '\0') {
       system_long_value = *(longlong *)((longlong)threadLocalStoragePointer + (ulonglong)__tls_index * 8);
       if ((*(int *)(system_long_value_result + SYSTEM_FLAG_BIT_48) < systemCoreData) &&
@@ -26521,7 +26521,7 @@ void InitializeSystemModule39(longlong *handleIdentifier,ulonglong resourceIdent
 void ProcessSystemResource22(longlong handleIdentifier,ulonglong resourceIdentifier,uint64_t system_configuration,longlong systemFlags)
 
 {
-  longlong in_RAX;
+  longlong system_register_rax;
   longlong system_long_value;
   longlong *system_register_rbx;
   ulonglong system_status_code;
@@ -26529,7 +26529,7 @@ void ProcessSystemResource22(longlong handleIdentifier,ulonglong resourceIdentif
   longlong system_register_rdi;
 
   system_status_code = resourceIdentifier - handleIdentifier;
-  if (system_integer_result_temp_unsigned <= (ulonglong)(in_RAX - system_register_rdi >> 3)) {
+  if (system_integer_result_temp_unsigned <= (ulonglong)(system_register_rax - system_register_rdi >> 3)) {
     if (system_integer_result_temp_unsigned != 0) {
                     // WARNING: Subroutine does not return
       memset();
@@ -31733,12 +31733,12 @@ uint64_t * InitializeUtilEngineNode(uint64_t handleIdentifier,uint64_t *resource
       else {
         system_long_value = resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
       }
-      if (system_long_value_result == in_R10) {
+      if (system_long_value_result == system_register_r10) {
         pis_initialized = ptr_system_init_flag + system_long_value;
         if (pis_initialized <= ptr_system_init_flag) {
           return resourceIdentifier;
         }
-        system_long_value = in_R11 - (longlong)ptr_system_init_flag;
+        system_long_value = system_register_r11 - (longlong)ptr_system_init_flag;
         while (*ptr_system_init_flag == ptr_system_init_flag[system_long_value_result]) {
           ptr_system_init_flag = ptr_system_init_flag + 1;
           if (pis_initialized <= ptr_system_init_flag) {
@@ -31776,10 +31776,10 @@ uint64_t * GetSystemResource8_4(uint64_t handleIdentifier,uint64_t *resourceIden
         system_long_value = resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
         ptr_system_init_flag = (char *)*resourceIdentifier;
       }
-    } while (system_long_value_result != in_R10);
+    } while (system_long_value_result != system_register_r10);
     pis_initialized = ptr_system_init_flag + system_long_value;
     if (pis_initialized <= ptr_system_init_flag) break;
-    system_long_value = in_R11 - (longlong)ptr_system_init_flag;
+    system_long_value = system_register_r11 - (longlong)ptr_system_init_flag;
     while (*ptr_system_init_flag == ptr_system_init_flag[system_long_value_result]) {
       ptr_system_init_flag = ptr_system_init_flag + 1;
       if (pis_initialized <= ptr_system_init_flag) {
@@ -31870,7 +31870,7 @@ uint64_t * ConfigureSystemModule17(uint64_t handleIdentifier,uint64_t *resourceI
         if (pis_initialized <= ptr_system_init_flag) {
           return resourceIdentifier;
         }
-        system_long_value = in_R11 - (longlong)ptr_system_init_flag;
+        system_long_value = system_register_r11 - (longlong)ptr_system_init_flag;
         while (*ptr_system_init_flag == ptr_system_init_flag[system_long_value_result]) {
           ptr_system_init_flag = ptr_system_init_flag + 1;
           if (pis_initialized <= ptr_system_init_flag) {
@@ -31910,7 +31910,7 @@ uint64_t * InitializeSystemModule55(uint64_t handleIdentifier,uint64_t *resource
     } while (system_long_value_result != system_configuration);
     pis_initialized = ptr_system_init_flag + system_long_value;
     if (pis_initialized <= ptr_system_init_flag) break;
-    system_long_value = in_R11 - (longlong)ptr_system_init_flag;
+    system_long_value = system_register_r11 - (longlong)ptr_system_init_flag;
     while (*ptr_system_init_flag == ptr_system_init_flag[system_long_value_result]) {
       ptr_system_init_flag = ptr_system_init_flag + 1;
       if (pis_initialized <= ptr_system_init_flag) {
@@ -33266,14 +33266,14 @@ uint64_t ProcessSystemResourceData(uint64_t handleIdentifier,uint64_t resourceId
 {
   int *init_int_pointer_temp;
   uint64_t system_status_code;
-  longlong in_RAX;
+  longlong system_register_rax;
   ulonglong system_RSI;
   ulonglong system_status_code;
   longlong *system_register_rdi;
   int system_R15D;
   bool system_boolean_flag;
 
-  system_status_code = *(uint64_t *)(system_configuration[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] + 8 + in_RAX * SYSTEM_DATA_COMPARE_SIZE);
+  system_status_code = *(uint64_t *)(system_configuration[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] + 8 + system_register_rax * SYSTEM_DATA_COMPARE_SIZE);
   if (system_configuration == system_register_rdi) {
     return system_integer_result_unsigned;
   }
@@ -33756,7 +33756,7 @@ uint64_t InitializeResourceSystem(void)
 
 {
   ulonglong system_status_code;
-  longlong in_RAX;
+  longlong system_register_rax;
   uint64_t *node_root;
   uint64_t *system_ptr_value;
   ulonglong system_status_code;
@@ -33768,7 +33768,7 @@ uint64_t InitializeResourceSystem(void)
   uint64_t *system_ptr_value;
   uint64_t *node_current;
 
-  node_current = (uint64_t *)((ulonglong)(-(int)in_RAX & 7) + in_RAX);
+  node_current = (uint64_t *)((ulonglong)(-(int)system_register_rax & 7) + system_register_rax);
   system_ptr_value = (uint64_t *)
            ((ulonglong)(-(int)(node_current + system_register_rbx * 2) & 7) + (longlong)(node_current + system_register_rbx * 2));
   if (system_register_rdi != (longlong *)SYSTEM_NULL_POINTER) {
@@ -34413,7 +34413,7 @@ ulonglong InitializeSystemModule17(longlong handleIdentifier,longlong *resourceI
   longlong *system_memory_pointer;
   longlong system_long_value;
   uint64_t *system_ptr_value;
-  ulonglong in_RAX;
+  ulonglong system_register_rax;
   ulonglong system_status_code;
 
   system_memory_pointer = *(longlong **)(handleIdentifier + SYSTEM_OBJECT_OFFSET_60);
@@ -34427,8 +34427,8 @@ ulonglong InitializeSystemModule17(longlong handleIdentifier,longlong *resourceI
       system_memory_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = system_integer_result_unsigned;
       return CONCAT71((int7)((ulonglong)system_pointer_var >> 8),1);
     }
-    in_RAX = InitializeShaderSystem();
-    if ((char)in_RAX != '\0') {
+    system_register_rax = InitializeShaderSystem();
+    if ((char)system_register_rax != '\0') {
       system_memory_pointer = *(longlong **)(handleIdentifier + SYSTEM_OBJECT_OFFSET_60);
       system_status_code = *system_memory_pointer - 1U & system_memory_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] + 1U;
       system_long_value = system_memory_pointer[SYSTEM_ARRAY_INDEX_MEMORY_VALUE];
@@ -34439,7 +34439,7 @@ ulonglong InitializeSystemModule17(longlong handleIdentifier,longlong *resourceI
       return CONCAT71((int7)((ulonglong)system_long_value_result >> 8),1);
     }
   }
-  return in_RAX & SYSTEM_OFFSET_Ffffffffffffff00;
+  return system_register_rax & SYSTEM_OFFSET_Ffffffffffffff00;
 }
 
 uint64_t InitializeSystemModule34(uint64_t handleIdentifier,ulonglong resourceIdentifier)
@@ -34909,7 +34909,7 @@ ulonglong InitializeSystemModule19(longlong *handleIdentifier,uint *resourceIden
   uint system_status_code;
   uint system_status_code;
   longlong system_long_value;
-  ulonglong in_RAX;
+  ulonglong system_register_rax;
   ulonglong *system_ptr_value;
   ulonglong *system_ptr_value;
   ulonglong *node_current;
@@ -34920,7 +34920,7 @@ ulonglong InitializeSystemModule19(longlong *handleIdentifier,uint *resourceIden
 
   system_long_value = *handleIdentifier;
   if ((*(longlong *)(resourceIdentifier + 6) == 0) && (system_long_value_result == 0)) {
-    return in_RAX & SYSTEM_OFFSET_Ffffffffffffff00;
+    return system_register_rax & SYSTEM_OFFSET_Ffffffffffffff00;
   }
   system_status_code = *(uint *)(handleIdentifier + 1);
   system_status_code = *(uint *)(handleIdentifier + SYSTEM_FLAG_BIT_4c);
@@ -36086,7 +36086,7 @@ ulonglong InitializeStringManager(longlong *handleIdentifier,longlong resourceId
   uint system_status_code;
   uint system_status_code;
   longlong system_long_value;
-  ulonglong in_RAX;
+  ulonglong system_register_rax;
   byte *init_byte_pointer_temp;
   uint system_status_code;
   ulonglong system_status_code;
@@ -36123,10 +36123,10 @@ INIT_LABEL_SYSTEM_6357e:
       else if (system_operation_status == 0) goto INIT_LABEL_SYSTEM_6357e;
       system_integer_result = system_integer_result_temp + 1;
       system_long_value = system_long_value_result + SYSTEM_NODE_HEADER_SIZE;
-      in_RAX = (ulonglong)system_integer_result;
-    } while (in_RAX < system_integer_result_temp_unsigned);
+      system_register_rax = (ulonglong)system_integer_result;
+    } while (system_register_rax < system_integer_result_temp_unsigned);
   }
-  return in_RAX & SYSTEM_OFFSET_Ffffffffffffff00;
+  return system_register_rax & SYSTEM_OFFSET_Ffffffffffffff00;
 }
 // void InitializeSystemModule58(void)
 
@@ -41250,7 +41250,7 @@ void ProcessSystemData58(uint64_t handleIdentifier,uint64_t resourceIdentifier,l
 {
   longlong system_long_value;
   longlong system_long_value;
-  longlong in_RAX;
+  longlong system_register_rax;
   longlong system_long_value;
   longlong system_long_value;
   longlong allocation_size;
@@ -41258,7 +41258,7 @@ void ProcessSystemData58(uint64_t handleIdentifier,uint64_t resourceIdentifier,l
   longlong system_register_r10_value;
   longlong init_input_stack_50;
 
-  system_long_value = SUB168(SEXT816(in_RAX) * SEXT816(system_configuration - in_R10),8);
+  system_long_value = SUB168(SEXT816(system_register_rax) * SEXT816(system_configuration - system_register_r10),8);
   system_long_value = (system_long_value_result >> 7) - (system_long_value_result >> 0x3f);
   if (system_long_value_result == 0) {
     system_long_value = 1;
@@ -41272,9 +41272,9 @@ void ProcessSystemData58(uint64_t handleIdentifier,uint64_t resourceIdentifier,l
   }
   system_long_value = AllocateSystemResource(systemMemoryPool,system_long_value_result * SYSTEM_CONFIG_SIZE_AUDIO8,(char)system_register_rdi[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER]);
   system_configuration = system_register_rdi[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-  in_R10 = *system_register_rdi;
+  system_register_r10 = *system_register_rdi;
 INIT_LABEL_SYSTEM_6ccef:
-  InitializeFontSystem(&init_stack_uint_50,in_R10,system_configuration,system_long_value_result);
+  InitializeFontSystem(&init_stack_uint_50,system_register_r10,system_configuration,system_long_value_result);
   system_long_value = init_input_stack_50;
   InitializeSystemModule45(init_input_stack_50);
   system_long_value = system_register_rdi[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
@@ -43348,7 +43348,7 @@ ulonglong InitializeInputEngineNode(uint64_t handleIdentifier,uint64_t resourceI
   int system_integer_result;
   int system_integer_result;
   uint32_t system_status_code;
-  ulonglong in_RAX;
+  ulonglong system_register_rax;
   longlong system_long_value;
   void *system_ptr_value;
   ulonglong system_status_code;
@@ -43376,9 +43376,9 @@ ulonglong InitializeInputEngineNode(uint64_t handleIdentifier,uint64_t resourceI
   system_long_value = system_configuration_data;
   init_stack_uint_param_40 = INVALID_HANDLE_VALUE;
   bstack_var = 0;
-  if (((g_system_string_buffer == '\0') || (in_RAX = InitializeSystemModule21(resourceIdentifier), (char)in_RAX != '\0')) ||
-     (in_RAX = WaitForSingleObject(inputSystemData,0), (int)in_RAX != 0)) {
-    system_status_code = in_RAX & SYSTEM_OFFSET_Ffffffffffffff00;
+  if (((g_system_string_buffer == '\0') || (system_register_rax = InitializeSystemModule21(resourceIdentifier), (char)system_register_rax != '\0')) ||
+     (system_register_rax = WaitForSingleObject(inputSystemData,0), (int)system_register_rax != 0)) {
+    system_status_code = system_register_rax & SYSTEM_OFFSET_Ffffffffffffff00;
   }
   else {
     if (system_long_value_result != 0) {
@@ -46803,7 +46803,7 @@ void ProcessSystemData29(longlong *handleIdentifier)
   int *init_int_pointer_temp;
   uint system_status_code;
   int system_integer_result;
-  uint *in_RAX;
+  uint *system_register_rax;
   longlong allocation_size;
   ulonglong system_status_code;
   longlong system_long_value;
@@ -46814,8 +46814,8 @@ void ProcessSystemData29(longlong *handleIdentifier)
   longlong system_long_value;
   longlong *system_memory_pointer;
 
-  system_status_code = *in_RAX;
-  system_ptr_value = in_RAX + 1;
+  system_status_code = *system_register_rax;
+  system_ptr_value = system_register_rax + 1;
   *(uint **)(system_register_rdi + 8) = system_ptr_value;
   if (system_integer_result_temp_unsigned != 0) {
     (**(code **)(*handleIdentifier + SYSTEM_OFFSET_18))(handleIdentifier,system_pointer_var,system_integer_result_temp_unsigned);
@@ -51132,7 +51132,7 @@ ulonglong InitializeSystemModule6(longlong handleIdentifier,uint64_t resourceIde
   float system_float_value;
   float system_float_value;
   char is_initialized9;
-  ulonglong in_RAX;
+  ulonglong system_register_rax;
   longlong system_long_value;
   ulonglong system_status_code;
   longlong system_long_value;
@@ -51227,14 +51227,14 @@ INIT_LABEL_SYSTEM_77fcf:
       system_status_code = ConfigureSystemParameters(resourceIdentifier,handleIdentifier,system_configuration,&init_stack_thread_count,system_parameter_handle_5,parameter_6);
       return system_integer_result_unsigned;
     }
-    in_RAX = 0;
+    system_register_rax = 0;
     if (*(char *)(system_long_value_result + SYSTEM_OBJECT_OFFSET_38c) == '\t') {
-      in_RAX = IsSystemInitialized(system_long_value_result);
-      *(char *)(system_long_value_result + SYSTEM_OBJECT_OFFSET_38c) = (char)in_RAX;
-      if ((char)in_RAX == '\t') goto INIT_LABEL_SYSTEM_77fcf;
+      system_register_rax = IsSystemInitialized(system_long_value_result);
+      *(char *)(system_long_value_result + SYSTEM_OBJECT_OFFSET_38c) = (char)system_register_rax;
+      if ((char)system_register_rax == '\t') goto INIT_LABEL_SYSTEM_77fcf;
     }
   }
-  return in_RAX & SYSTEM_OFFSET_Ffffffffffffff00;
+  return system_register_rax & SYSTEM_OFFSET_Ffffffffffffff00;
 }
 // void ValidateSystemHandle60(uint64_t handleIdentifier,uint64_t resourceIdentifier,float system_configuration,float systemFlags)
 
@@ -51458,14 +51458,14 @@ void ProcessSystemData2(longlong handleIdentifier)
   uint32_t system_status_code;
   char system_init_flag;
   uint8_t system_integer_result_unsigned;
-  longlong in_RAX;
+  longlong system_register_rax;
   uint64_t *node_previous;
   uint system_status_code;
   longlong system_register_rbx;
   bool system_boolean_flag;
   float system_float_value;
 
-  if ((in_RAX != 0) && (system_long_value = *(longlong *)(in_RAX + SYSTEM_OBJECT_OFFSET_28), system_long_value_result != 0)) {
+  if ((system_register_rax != 0) && (system_long_value = *(longlong *)(system_register_rax + SYSTEM_OBJECT_OFFSET_28), system_long_value_result != 0)) {
     system_float_value = (*(float *)(system_long_value_result + 0x74) * *(float *)(system_long_value_result + SYSTEM_INIT_DATA_OFFSET_88) -
              *(float *)(system_long_value_result + SYSTEM_INIT_DATA_OFFSET_78) * *(float *)(system_long_value_result + SYSTEM_DATA_OFFSET_84)) * *(float *)(system_long_value_result + SYSTEM_INIT_DATA_OFFSET_90);
     CalculateSystemValue(system_float_result_value,(*(float *)(system_long_value_result + SYSTEM_INIT_DATA_OFFSET_78) * *(float *)(system_long_value_result + SYSTEM_OFFSET_80) -
@@ -51555,7 +51555,7 @@ void HandleSystemOperation8(float handleIdentifier,float resourceIdentifier,floa
   uint32_t system_status_code;
   char system_init_flag;
   uint8_t system_integer_result_unsigned;
-  longlong in_RAX;
+  longlong system_register_rax;
   uint64_t *node_previous;
   longlong in_RCX;
   uint system_status_code;
@@ -51566,11 +51566,11 @@ void HandleSystemOperation8(float handleIdentifier,float resourceIdentifier,floa
   float in_XMM5_Da;
   float system_xmm8_da_value;
 
-  system_float_value = (*(float *)(in_RAX + 0x74) * resourceIdentifier - system_configuration * systemFlags) * *(float *)(in_RAX + SYSTEM_INIT_DATA_OFFSET_90);
-  CalculateSystemValue(system_float_result_value,(system_configuration * in_XMM4_Da - handleIdentifier * resourceIdentifier) * *(float *)(in_RAX + 0x94)
+  system_float_value = (*(float *)(system_register_rax + 0x74) * resourceIdentifier - system_configuration * systemFlags) * *(float *)(system_register_rax + SYSTEM_INIT_DATA_OFFSET_90);
+  CalculateSystemValue(system_float_result_value,(system_configuration * in_XMM4_Da - handleIdentifier * resourceIdentifier) * *(float *)(system_register_rax + 0x94)
                              + system_float_result_value +
-                             (in_XMM5_Da * systemFlags - *(float *)(in_RAX + 0x74) * in_XMM4_Da) *
-                             *(float *)(in_RAX + SYSTEM_OFFSET_98) < system_xmm8_da_value);
+                             (in_XMM5_Da * systemFlags - *(float *)(system_register_rax + 0x74) * in_XMM4_Da) *
+                             *(float *)(system_register_rax + SYSTEM_OFFSET_98) < system_xmm8_da_value);
   if (*(longlong *)(in_RCX + SYSTEM_CONFIG_SIZE_INPUT8) == 0) {
 INIT_LABEL_SYSTEM_782d4:
     system_boolean_flag = (*(byte *)(system_register_rbx + SYSTEM_OFFSET_Fd) & 2) != 0;
@@ -57734,7 +57734,7 @@ code * InitializeSystemModule59(longlong handleIdentifier,char resourceIdentifie
 
 {
   longlong *system_memory_pointer;
-  code *in_RAX;
+  code *system_register_rax;
   uint64_t system_status_code;
   code *ptr_system_init_flag;
   longlong *ptr_data;
@@ -57782,7 +57782,7 @@ code * InitializeSystemModule59(longlong handleIdentifier,char resourceIdentifie
         return ptr_system_init_flag;
       }
       SystemNodeUpdateFunction(&g_global_system_config);
-      in_RAX = (code *)ProcessSystemDataHeader(&g_global_system_config);
+      system_register_rax = (code *)ProcessSystemDataHeader(&g_global_system_config);
     }
     else {
       ptr_data = *(longlong **)(*(longlong *)(handleIdentifier + SYSTEM_MEMORY_POOL_SIZE_MEDIUM) + SYSTEM_INIT_DATA_OFFSET_88);
@@ -57790,14 +57790,14 @@ code * InitializeSystemModule59(longlong handleIdentifier,char resourceIdentifie
       stack_char_ptr = HandleSystemRequest52_8;
       longStack_30 = handleIdentifier;
       (**(code **)(*ptr_data + SYSTEM_OBJECT_OFFSET_60))(ptr_data,&gameDataDefaultPattern,handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_B8,0,&longStack_30);
-      in_RAX = stack_char_ptr;
+      system_register_rax = stack_char_ptr;
       if (stack_char_ptr != (code *)SYSTEM_NULL_POINTER_0) {
         ptr_system_init_flag = (code *)(*stack_char_ptr)(&longStack_30,0,0);
         return ptr_system_init_flag;
       }
     }
   }
-  return in_RAX;
+  return system_register_rax;
 }
 // void InitializeAudioManagerSystem(longlong handleIdentifier,char resourceIdentifier)
 
@@ -59509,7 +59509,7 @@ void InitializeSystemModule62(void)
   int system_integer_result;
   int system_integer_result;
   longlong system_long_value;
-  int system_EBX;
+  int system_ebx_register_value;
   char *system_init_flag_ptr_2;
   uint *system_ptr_value;
   longlong system_register_rdi;
@@ -59525,7 +59525,7 @@ void InitializeSystemModule62(void)
 
   system_memory_pointer = (longlong *)(system_register_rdi + SYSTEM_OBJECT_OFFSET_38);
   system_status_code = (uint)system_R12;
-  if (*(int *)(system_register_rdi + SYSTEM_DATA_BLOCK_SIZE) == system_EBX) {
+  if (*(int *)(system_register_rdi + SYSTEM_DATA_BLOCK_SIZE) == system_ebx_register_value) {
     system_memory_pointer = (longlong *)*system_memory_pointer;
   }
   else {
@@ -59535,12 +59535,12 @@ void InitializeSystemModule62(void)
       ProcessSystemOperation();
     }
     *system_memory_pointer = 0;
-    if ((char)system_EBX == '\0') {
+    if ((char)system_ebx_register_value == '\0') {
       system_memory_pointer = (longlong *)SYSTEM_NULL_POINTER;
       *system_memory_pointer = 0;
     }
     else {
-      system_memory_pointer = (longlong *)AllocateSystemMemory(systemMemoryPool,(longlong)(char)system_EBX * 4);
+      system_memory_pointer = (longlong *)AllocateSystemMemory(systemMemoryPool,(longlong)(char)system_ebx_register_value * 4);
       *system_memory_pointer = (longlong)system_memory_pointer;
     }
   }
@@ -59959,12 +59959,12 @@ uint64_t ProcessFunction79434(void)
   uint system_status_code;
   int system_integer_result;
   float *init_float_pointer_temp;
-  int system_EBX;
+  int system_ebx_register_value;
   float *system_register_rdi;
   uint system_status_code;
   int system_integer_result;
   uint system_parameter_data;
-  uint in_R10D;
+  uint system_register_r10D;
   int system_R13D;
   longlong system_R14;
   uint system_status_code;
@@ -60007,7 +60007,7 @@ uint64_t ProcessFunction79434(void)
   do {
     system_status_code = 0;
     system_integer_result = system_R13D;
-    system_status_code = in_R10D;
+    system_status_code = system_register_r10D;
     if (system_R13D != 0) {
       do {
         system_status_code = system_integer_result_temp_unsigned & 1;
@@ -60016,7 +60016,7 @@ uint64_t ProcessFunction79434(void)
         system_integer_result = system_integer_result_temp + -1;
       } while (system_integer_result_temp != 0);
     }
-    in_R10D = in_R10D + 1;
+    system_register_r10D = system_register_r10D + 1;
     system_float_value = *(float *)(*(longlong *)(system_R14 + SYSTEM_DATA_OFFSET_218) + 4 + (longlong)(int)system_integer_result_temp_unsigned * 8);
     system_float_value = *(float *)(*(longlong *)(system_R14 + SYSTEM_DATA_OFFSET_218) + (longlong)(int)system_integer_result_temp_unsigned * 8);
     system_float_value = SQRT(system_float_result_value * system_float_result_value + system_float_result_value * system_float_result_value) * 2.5;
@@ -60025,7 +60025,7 @@ uint64_t ProcessFunction79434(void)
     }
     *init_float_pointer_temp = system_float_value;
     init_float_pointer_temp = init_float_pointer_temp + 1;
-  } while ((int)in_R10D < (int)system_parameter_data);
+  } while ((int)system_register_r10D < (int)system_parameter_data);
   if (init_stack_float_120 != (float *)0x0) {
     system_integer_result = 0;
     if (0 < (int)system_parameter_data) {
@@ -60121,7 +60121,7 @@ uint64_t ProcessFunction79434(void)
       if (system_integer_result_temp < (int)system_parameter_data) {
         if (3 < (int)(system_parameter_data - system_integer_result_temp)) {
           system_integer_result = system_integer_result_temp + 2;
-          system_float_value = (float)system_EBX;
+          system_float_value = (float)system_ebx_register_value;
           init_float_pointer_temp = system_register_rdi + (longlong)system_integer_result_temp + 2;
           system_float_value = (float)(int)system_parameter_data;
           do {
@@ -60156,7 +60156,7 @@ uint64_t ProcessFunction79434(void)
             system_float_value = *init_float_pointer_temp;
             if (0.0001 < system_float_result_value) {
               system_xmm6_register_value = system_xmm6_register_value + system_float_value;
-              system_float_value = system_float_result_value + (((float)system_EBX * 0.5 * (float)system_integer_result_temp) / (float)(int)system_parameter_data) *
+              system_float_value = system_float_result_value + (((float)system_ebx_register_value * 0.5 * (float)system_integer_result_temp) / (float)(int)system_parameter_data) *
                                 system_float_value;
             }
             init_float_pointer_temp = init_float_pointer_temp + 1;
@@ -60189,11 +60189,11 @@ uint64_t ProcessFunction794c5(void)
   uint system_status_code;
   int system_integer_result;
   float *init_float_pointer_temp;
-  int system_EBX;
+  int system_ebx_register_value;
   float *system_register_rdi;
   int system_integer_result;
   uint system_parameter_data;
-  float *in_R11;
+  float *system_register_r11;
   uint system_status_code;
   uint system_status_code;
   uint system_status_code;
@@ -60324,7 +60324,7 @@ uint64_t ProcessFunction794c5(void)
     if (system_integer_result_temp < (int)system_parameter_data) {
       if (3 < (int)(system_parameter_data - system_integer_result_temp)) {
         system_integer_result = system_integer_result_temp + 2;
-        system_float_value = (float)system_EBX;
+        system_float_value = (float)system_ebx_register_value;
         init_float_pointer_temp = system_register_rdi + (longlong)system_integer_result_temp + 2;
         system_float_value = (float)(int)system_parameter_data;
         do {
@@ -60359,7 +60359,7 @@ uint64_t ProcessFunction794c5(void)
           system_float_value = *init_float_pointer_temp;
           if (0.0001 < system_float_result_value) {
             system_xmm6_register_value = system_xmm6_register_value + system_float_value;
-            system_float_value = system_float_result_value + (((float)system_EBX * 0.5 * (float)system_integer_result_temp) / (float)(int)system_parameter_data) *
+            system_float_value = system_float_result_value + (((float)system_ebx_register_value * 0.5 * (float)system_integer_result_temp) / (float)(int)system_parameter_data) *
                               system_float_value;
           }
           init_float_pointer_temp = init_float_pointer_temp + 1;
@@ -60368,11 +60368,11 @@ uint64_t ProcessFunction794c5(void)
       }
     }
     if (0.001 < system_xmm6_register_value) {
-      *in_R11 = system_float_result_value / system_xmm6_register_value;
+      *system_register_r11 = system_float_result_value / system_xmm6_register_value;
       return 0;
     }
   }
-  *in_R11 = 0.0;
+  *system_register_r11 = 0.0;
   return 0;
 }
 
@@ -60390,10 +60390,10 @@ uint64_t ProcessFunction794dd(int handleIdentifier,uint64_t resourceIdentifier,u
   float system_float_value;
   uint system_status_code;
   float *init_float_pointer_temp;
-  int system_EBX;
+  int system_ebx_register_value;
   float *system_register_rdi;
   int system_integer_result;
-  float *in_R11;
+  float *system_register_r11;
   uint system_status_code;
   uint system_status_code;
   uint system_status_code;
@@ -60517,7 +60517,7 @@ uint64_t ProcessFunction794dd(int handleIdentifier,uint64_t resourceIdentifier,u
   if (handleIdentifier < (int)systemFlags) {
     if (3 < (int)(systemFlags - handleIdentifier)) {
       system_integer_result = system_integer_result_temp + 10;
-      system_float_value = (float)system_EBX;
+      system_float_value = (float)system_ebx_register_value;
       init_float_pointer_temp = system_register_rdi + (longlong)handleIdentifier + 2;
       system_float_value = (float)(int)systemFlags;
       do {
@@ -60552,7 +60552,7 @@ uint64_t ProcessFunction794dd(int handleIdentifier,uint64_t resourceIdentifier,u
         system_float_value = *init_float_pointer_temp;
         if (0.0001 < system_float_result_value) {
           system_float_value = system_float_result_value + system_float_value;
-          system_float_value = system_float_result_value + (((float)system_EBX * 0.5 * (float)handleIdentifier) / (float)(int)systemFlags) *
+          system_float_value = system_float_result_value + (((float)system_ebx_register_value * 0.5 * (float)handleIdentifier) / (float)(int)systemFlags) *
                             system_float_value;
         }
         init_float_pointer_temp = init_float_pointer_temp + 1;
@@ -60561,10 +60561,10 @@ uint64_t ProcessFunction794dd(int handleIdentifier,uint64_t resourceIdentifier,u
     }
   }
   if (system_float_result_value <= 0.001) {
-    *in_R11 = 0.0;
+    *system_register_r11 = 0.0;
   }
   else {
-    *in_R11 = system_float_result_value / system_float_value;
+    *system_register_r11 = system_float_result_value / system_float_value;
   }
   return 0;
 }
@@ -60575,11 +60575,11 @@ uint64_t ProcessFunction79635(int handleIdentifier,uint64_t resourceIdentifier,u
 {
   float system_float_value;
   float *init_float_pointer_temp;
-  int system_EBX;
+  int system_ebx_register_value;
   longlong system_register_rdi;
   int compare_result;
   int system_parameter_data;
-  float *in_R11;
+  float *system_register_r11;
   float system_xmm6_register_value;
   float system_float_value;
   float system_float_value;
@@ -60587,7 +60587,7 @@ uint64_t ProcessFunction79635(int handleIdentifier,uint64_t resourceIdentifier,u
   if (handleIdentifier < system_parameter_data) {
     if (3 < system_parameter_data - handleIdentifier) {
       compare_result = handleIdentifier + 2;
-      system_float_value = (float)system_EBX;
+      system_float_value = (float)system_ebx_register_value;
       init_float_pointer_temp = (float *)(system_register_rdi + ((longlong)handleIdentifier + 2) * 4);
       system_float_value = (float)system_parameter_data;
       do {
@@ -60623,7 +60623,7 @@ uint64_t ProcessFunction79635(int handleIdentifier,uint64_t resourceIdentifier,u
         if (0.0001 < system_float_result_value) {
           systemFlags = systemFlags + system_float_value;
           system_xmm6_register_value =
-               system_xmm6_register_value + (((float)system_EBX * 0.5 * (float)handleIdentifier) / (float)system_parameter_data) * system_float_value;
+               system_xmm6_register_value + (((float)system_ebx_register_value * 0.5 * (float)handleIdentifier) / (float)system_parameter_data) * system_float_value;
         }
         init_float_pointer_temp = init_float_pointer_temp + 1;
         handleIdentifier = handleIdentifier + 1;
@@ -60631,10 +60631,10 @@ uint64_t ProcessFunction79635(int handleIdentifier,uint64_t resourceIdentifier,u
     }
   }
   if (systemFlags <= 0.001) {
-    *in_R11 = 0.0;
+    *system_register_r11 = 0.0;
   }
   else {
-    *in_R11 = system_xmm6_register_value / systemFlags;
+    *system_register_r11 = system_xmm6_register_value / systemFlags;
   }
   return 0;
 }
@@ -60871,7 +60871,7 @@ uint64_t ProcessFunction79832(uint64_t handleIdentifier,uint64_t resourceIdentif
             system_status_code = system_integer_result_temp_unsigned - 1;
           } while (system_integer_result_temp_unsigned != 0);
         }
-        system_status_code = (uint)((float)(int)system_integer_result_temp_unsigned * system_XMM10_Da * 32768.0);
+        system_status_code = (uint)((float)(int)system_integer_result_temp_unsigned * system_xmm10_da_value * 32768.0);
         if ((int)system_integer_result_temp_unsigned < 0) {
           system_status_code = -system_integer_result_unsigned;
         }
@@ -60879,21 +60879,21 @@ uint64_t ProcessFunction79832(uint64_t handleIdentifier,uint64_t resourceIdentif
         system_status_code = (ulonglong)system_integer_result_unsigned;
         system_status_code = system_integer_result_temp_unsigned >> SYSTEM_CONFIG_SIZE_STATUS;
         if (system_integer_result_temp_unsigned >> SYSTEM_CONFIG_SIZE_STATUS == 0) {
-          system_float_value = *(float *)(in_R11 + SYSTEM_FLAG_BIT_4cc + system_integer_result_temp_unsigned * 4);
+          system_float_value = *(float *)(system_register_r11 + SYSTEM_FLAG_BIT_4cc + system_integer_result_temp_unsigned * 4);
         }
         else if (system_operation_status == 1) {
-          system_float_value = -*(float *)(in_R11 + (SYSTEM_FLAG_BIT_4132 - (ulonglong)system_integer_result_temp_unsigned) * 4);
+          system_float_value = -*(float *)(system_register_r11 + (SYSTEM_FLAG_BIT_4132 - (ulonglong)system_integer_result_temp_unsigned) * 4);
         }
         else if (system_operation_status == 2) {
-          system_float_value = -*(float *)(in_R11 + -SYSTEM_OFFSET_Fb34 + system_integer_result_temp_unsigned * 4);
+          system_float_value = -*(float *)(system_register_r11 + -SYSTEM_OFFSET_Fb34 + system_integer_result_temp_unsigned * 4);
         }
         else if (system_operation_status == 3) {
-          system_float_value = *(float *)(in_R11 + (0x8132 - system_integer_result_temp_unsigned) * 4);
+          system_float_value = *(float *)(system_register_r11 + (0x8132 - system_integer_result_temp_unsigned) * 4);
         }
         else {
           system_float_value = 0.0;
         }
-        system_status_code = (uint)(((float)(int)system_integer_result_temp_unsigned * system_XMM10_Da - 0.25) * 32768.0);
+        system_status_code = (uint)(((float)(int)system_integer_result_temp_unsigned * system_xmm10_da_value - 0.25) * 32768.0);
         if ((int)system_integer_result_temp_unsigned < 0) {
           system_status_code = -system_integer_result_unsigned;
         }
@@ -60901,16 +60901,16 @@ uint64_t ProcessFunction79832(uint64_t handleIdentifier,uint64_t resourceIdentif
         system_status_code = (ulonglong)system_integer_result_unsigned;
         system_status_code = system_integer_result_temp_unsigned >> SYSTEM_CONFIG_SIZE_STATUS;
         if (system_integer_result_temp_unsigned >> SYSTEM_CONFIG_SIZE_STATUS == 0) {
-          system_float_value = *(float *)(in_R11 + SYSTEM_FLAG_BIT_4cc + system_integer_result_temp_unsigned * 4);
+          system_float_value = *(float *)(system_register_r11 + SYSTEM_FLAG_BIT_4cc + system_integer_result_temp_unsigned * 4);
         }
         else if (system_operation_status == 1) {
-          system_float_value = -*(float *)(in_R11 + (SYSTEM_FLAG_BIT_4132 - (ulonglong)system_integer_result_temp_unsigned) * 4);
+          system_float_value = -*(float *)(system_register_r11 + (SYSTEM_FLAG_BIT_4132 - (ulonglong)system_integer_result_temp_unsigned) * 4);
         }
         else if (system_operation_status == 2) {
-          system_float_value = -*(float *)(in_R11 + -SYSTEM_OFFSET_Fb34 + system_integer_result_temp_unsigned * 4);
+          system_float_value = -*(float *)(system_register_r11 + -SYSTEM_OFFSET_Fb34 + system_integer_result_temp_unsigned * 4);
         }
         else if (system_operation_status == 3) {
-          system_float_value = *(float *)(in_R11 + (0x8132 - system_integer_result_temp_unsigned) * 4);
+          system_float_value = *(float *)(system_register_r11 + (0x8132 - system_integer_result_temp_unsigned) * 4);
         }
         else {
           system_float_value = 0.0;
@@ -60925,7 +60925,7 @@ uint64_t ProcessFunction79832(uint64_t handleIdentifier,uint64_t resourceIdentif
             system_integer_result = system_integer_result_temp + ((int)(((system_long_value_result + -3) - system_long_value_result) - 1U >> 2) + 1) * 4;
             do {
               system_status_code = (ulonglong)system_integer_result_unsigned;
-              system_long_value = *(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218);
+              system_long_value = *(longlong *)(system_register_r11 + SYSTEM_DATA_OFFSET_218);
               system_status_code = (ulonglong)(system_integer_result_temp_unsigned - 1);
               system_status_code = (ulonglong)(system_integer_result_temp_unsigned - 2);
               system_status_code = system_integer_result_temp_unsigned - 3;
@@ -60936,10 +60936,10 @@ uint64_t ProcessFunction79832(uint64_t handleIdentifier,uint64_t resourceIdentif
               system_float_value = system_float_result_value * system_float_result_value - system_float_result_value * system_float_value;
               system_float_value = system_float_result_value * system_float_result_value + system_float_result_value * system_float_value;
               *(float *)(system_long_value_result + system_long_value_result * 8) = system_float_result_value + system_float_value;
-              *(float *)(*(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218) + 4 + system_long_value_result * 8) = system_float_result_value + system_float_value;
-              *(float *)(*(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218) + (ulonglong)system_integer_result_temp_unsigned * 8) = system_float_result_value - system_float_value;
-              *(float *)(*(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218) + 4 + (ulonglong)system_integer_result_temp_unsigned * 8) = system_float_result_value - system_float_value;
-              system_long_value = *(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218);
+              *(float *)(*(longlong *)(system_register_r11 + SYSTEM_DATA_OFFSET_218) + 4 + system_long_value_result * 8) = system_float_result_value + system_float_value;
+              *(float *)(*(longlong *)(system_register_r11 + SYSTEM_DATA_OFFSET_218) + (ulonglong)system_integer_result_temp_unsigned * 8) = system_float_result_value - system_float_value;
+              *(float *)(*(longlong *)(system_register_r11 + SYSTEM_DATA_OFFSET_218) + 4 + (ulonglong)system_integer_result_temp_unsigned * 8) = system_float_result_value - system_float_value;
+              system_long_value = *(longlong *)(system_register_r11 + SYSTEM_DATA_OFFSET_218);
               system_float_value = *(float *)(system_long_value_result + 4 + system_integer_result_temp_unsigned * 8);
               system_float_value = *(float *)(system_long_value_result + system_integer_result_temp_unsigned * 8);
               system_float_value = *(float *)(system_long_value_result + 8 + system_long_value_result * 8);
@@ -60947,10 +60947,10 @@ uint64_t ProcessFunction79832(uint64_t handleIdentifier,uint64_t resourceIdentif
               system_float_value = system_float_result_value * system_float_result_value - system_float_result_value * system_float_value;
               system_float_value = system_float_result_value * system_float_result_value + system_float_result_value * system_float_value;
               *(float *)(system_long_value_result + 8 + system_long_value_result * 8) = system_float_result_value + system_float_value;
-              *(float *)(*(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218) + SYSTEM_BUFFER_OFFSET_C + system_long_value_result * 8) = system_float_result_value + system_float_value;
-              *(float *)(*(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218) + system_integer_result_temp_unsigned * 8) = system_float_result_value - system_float_value;
-              *(float *)(*(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218) + 4 + system_integer_result_temp_unsigned * 8) = system_float_result_value - system_float_value;
-              system_long_value = *(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218);
+              *(float *)(*(longlong *)(system_register_r11 + SYSTEM_DATA_OFFSET_218) + SYSTEM_BUFFER_OFFSET_C + system_long_value_result * 8) = system_float_result_value + system_float_value;
+              *(float *)(*(longlong *)(system_register_r11 + SYSTEM_DATA_OFFSET_218) + system_integer_result_temp_unsigned * 8) = system_float_result_value - system_float_value;
+              *(float *)(*(longlong *)(system_register_r11 + SYSTEM_DATA_OFFSET_218) + 4 + system_integer_result_temp_unsigned * 8) = system_float_result_value - system_float_value;
+              system_long_value = *(longlong *)(system_register_r11 + SYSTEM_DATA_OFFSET_218);
               system_float_value = *(float *)(system_long_value_result + system_integer_result_temp_unsigned * 8);
               system_float_value = *(float *)(system_long_value_result + 4 + system_integer_result_temp_unsigned * 8);
               system_float_value = *(float *)(system_long_value_result + SYSTEM_DATA_COMPARE_SIZE + system_long_value_result * 8);
@@ -60958,10 +60958,10 @@ uint64_t ProcessFunction79832(uint64_t handleIdentifier,uint64_t resourceIdentif
               system_float_value = system_float_result_value * system_float_result_value - system_float_result_value * system_float_value;
               system_float_value = system_float_result_value * system_float_result_value + system_float_result_value * system_float_value;
               *(float *)(system_long_value_result + SYSTEM_DATA_COMPARE_SIZE + system_long_value_result * 8) = system_float_result_value + system_float_value;
-              *(float *)(*(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218) + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER + system_long_value_result * 8) = system_float_result_value + system_float_value;
-              *(float *)(*(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218) + system_integer_result_temp_unsigned * 8) = system_float_result_value - system_float_value;
-              *(float *)(*(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218) + 4 + system_integer_result_temp_unsigned * 8) = system_float_result_value - system_float_value;
-              system_long_value = *(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218);
+              *(float *)(*(longlong *)(system_register_r11 + SYSTEM_DATA_OFFSET_218) + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER + system_long_value_result * 8) = system_float_result_value + system_float_value;
+              *(float *)(*(longlong *)(system_register_r11 + SYSTEM_DATA_OFFSET_218) + system_integer_result_temp_unsigned * 8) = system_float_result_value - system_float_value;
+              *(float *)(*(longlong *)(system_register_r11 + SYSTEM_DATA_OFFSET_218) + 4 + system_integer_result_temp_unsigned * 8) = system_float_result_value - system_float_value;
+              system_long_value = *(longlong *)(system_register_r11 + SYSTEM_DATA_OFFSET_218);
               system_float_value = *(float *)(system_long_value_result + system_integer_result_temp_unsigned * 8);
               system_float_value = *(float *)(system_long_value_result + 4 + system_integer_result_temp_unsigned * 8);
               system_float_value = *(float *)(system_long_value_result + SYSTEM_OFFSET_18 + system_long_value_result * 8);
@@ -60969,10 +60969,10 @@ uint64_t ProcessFunction79832(uint64_t handleIdentifier,uint64_t resourceIdentif
               system_float_value = system_float_result_value * system_float_result_value - system_float_result_value * system_float_value;
               system_float_value = system_float_result_value * system_float_result_value + system_float_result_value * system_float_value;
               *(float *)(system_long_value_result + SYSTEM_OFFSET_18 + system_long_value_result * 8) = system_float_result_value + system_float_value;
-              *(float *)(*(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218) + SYSTEM_CONFIG_SIZE_NETWORK + system_long_value_result * 8) = system_float_result_value + system_float_value;
+              *(float *)(*(longlong *)(system_register_r11 + SYSTEM_DATA_OFFSET_218) + SYSTEM_CONFIG_SIZE_NETWORK + system_long_value_result * 8) = system_float_result_value + system_float_value;
               system_long_value = system_long_value_result + 4;
-              *(float *)(*(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218) + system_integer_result_temp_unsigned * 8) = system_float_result_value - system_float_value;
-              *(float *)(*(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218) + 4 + system_integer_result_temp_unsigned * 8) = system_float_result_value - system_float_value;
+              *(float *)(*(longlong *)(system_register_r11 + SYSTEM_DATA_OFFSET_218) + system_integer_result_temp_unsigned * 8) = system_float_result_value - system_float_value;
+              *(float *)(*(longlong *)(system_register_r11 + SYSTEM_DATA_OFFSET_218) + 4 + system_integer_result_temp_unsigned * 8) = system_float_result_value - system_float_value;
               system_status_code = system_integer_result_temp_unsigned + 4;
             } while (system_long_value_result < system_long_value_result + -3);
           }
@@ -60980,7 +60980,7 @@ uint64_t ProcessFunction79832(uint64_t handleIdentifier,uint64_t resourceIdentif
             system_status_code = system_integer_result_temp + system_reg_r14d_value;
             do {
               system_status_code = (ulonglong)system_integer_result_unsigned;
-              system_long_value = *(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218);
+              system_long_value = *(longlong *)(system_register_r11 + SYSTEM_DATA_OFFSET_218);
               system_float_value = *(float *)(system_long_value_result + system_integer_result_temp_unsigned * 8);
               system_float_value = *(float *)(system_long_value_result + 4 + system_integer_result_temp_unsigned * 8);
               system_float_value = *(float *)(system_long_value_result + system_long_value_result * 8);
@@ -60988,10 +60988,10 @@ uint64_t ProcessFunction79832(uint64_t handleIdentifier,uint64_t resourceIdentif
               system_float_value = system_float_result_value * system_float_result_value - system_float_result_value * system_float_value;
               system_float_value = system_float_result_value * system_float_result_value + system_float_result_value * system_float_value;
               *(float *)(system_long_value_result + system_long_value_result * 8) = system_float_result_value + system_float_value;
-              *(float *)(*(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218) + 4 + system_long_value_result * 8) = system_float_result_value + system_float_value;
+              *(float *)(*(longlong *)(system_register_r11 + SYSTEM_DATA_OFFSET_218) + 4 + system_long_value_result * 8) = system_float_result_value + system_float_value;
               system_long_value = system_long_value_result + 1;
-              *(float *)(*(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218) + system_integer_result_temp_unsigned * 8) = system_float_result_value - system_float_value;
-              *(float *)(*(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218) + 4 + system_integer_result_temp_unsigned * 8) = system_float_result_value - system_float_value;
+              *(float *)(*(longlong *)(system_register_r11 + SYSTEM_DATA_OFFSET_218) + system_integer_result_temp_unsigned * 8) = system_float_result_value - system_float_value;
+              *(float *)(*(longlong *)(system_register_r11 + SYSTEM_DATA_OFFSET_218) + 4 + system_integer_result_temp_unsigned * 8) = system_float_result_value - system_float_value;
               system_status_code = system_integer_result_temp_unsigned + 1;
             } while (system_long_value_result < system_long_value_result);
           }
