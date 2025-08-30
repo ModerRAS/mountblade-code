@@ -106,7 +106,7 @@
 #define SYSTEM_INIT_SIZE_BUFFER_EXTRA_LARGE    0x400   // 超大缓冲区大小SYSTEM_INIT_OFFSET_0X400
 #define SYSTEM_INIT_SIZE_PAGE                   0x1000  // 页大小SYSTEM_INIT_VALUE_CHAR_ONE000
 #define SYSTEM_INIT_OFFSET_HEADER              0x40    // 头部偏移量SYSTEM_INIT_OFFSET_0X40
-#define SYSTEM_INIT_SIZE_POINTER               SYSTEM_INIT_OFFSET_0X8     // 指针大小SYSTEM_INIT_OFFSET_0X8
+#define SYSTEM_INIT_SIZE_POINTER               0x8     // 指针大小SYSTEM_INIT_OFFSET_0X8
 
 // 魔法数字常量（用于系统标识）
 #define SYSTEM_INIT_MAGIC_COOKIE_1             SYSTEM_INIT_OFFSET_0X4fc124d23d41985f // 系统魔法cookie 1
@@ -116,9 +116,9 @@
 #define SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_3      0x6ecbd4daf41613e // 系统活动魔法cookie 3
 
 // 系统标志位常量
-#define SYSTEM_INIT_FLAG_ENABLED               SYSTEM_INIT_VALUE_CHAR_ONE     // 启用标志SYSTEM_INIT_VALUE_CHAR_ONE
+#define SYSTEM_INIT_FLAG_ENABLED               0x1     // 启用标志SYSTEM_INIT_VALUE_CHAR_ONE
 #define SYSTEM_INIT_FLAG_INITIALIZED           0x2     // 初始化标志
-#define SYSTEM_INIT_FLAG_ACTIVE                SYSTEM_INIT_OFFSET_0X4     // 活动标志SYSTEM_INIT_OFFSET_0X4
+#define SYSTEM_INIT_FLAG_ACTIVE                0x4     // 活动标志SYSTEM_INIT_OFFSET_0X4
 #define SYSTEM_INIT_FLAG_READY                 SYSTEM_INIT_OFFSET_0X8     // 就绪标志SYSTEM_INIT_OFFSET_0X8
 
 // 系统错误码常量
