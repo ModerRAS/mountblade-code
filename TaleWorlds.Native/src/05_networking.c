@@ -18,6 +18,16 @@
 // - 美化网络连接信息，将network_connection_info替换为network_connection_info_data等连接信息变量名
 // - 美化网络加密密钥，将network_encryption_key_tertiary替换为network_encryption_key_third等密钥变量名
 // - 美化客户端端口，将client_port替换为client_port_address等客户端变量名
+// - 美化网络频率计算变量名，将network_calculated_frequency9替换为network_calculated_frequency_novenary等频率计算变量名
+// - 美化网络信号强度变量名，将network_signal_strength0/1替换为network_signal_strength_primary/secondary等信号强度变量名
+// - 美化网络基础频率计算变量名，将network_calculated_frequency0替换为network_calculated_frequency_base等基础频率变量名
+// - 美化网络时间计算缓冲区，将network_double_time_calculation_buffer_38替换为network_time_calculation_buffer_quad等时间计算缓冲区变量名
+// - 美化网络浮点栈缓冲区，将network_float_stack_348替换为network_float_stack_buffer_large等浮点栈缓冲区变量名
+// - 美化网络安全字符数组，将anetwork_stack_status_char4替换为network_stack_security_char_array等安全字符数组变量名
+// - 美化网络可用性标志，将network_is_available0替换为network_is_available_primary等可用性标志变量名
+// - 美化网络临时验证缓冲区，将network_temp_validation_buffere8替换为network_temp_validation_buffer_small/medium等验证缓冲区变量名
+// - 美化网络数据包偏移量，将network_packet_offset_header8替换为network_packet_offset_header_small等数据包偏移量变量名
+// - 美化网络栈上下文指针，将apnetwork_stack_context_330替换为network_stack_array_context_pointer等栈上下文指针变量名
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了网络系统中剩余变量名的语义化替换
 // - 原本实现：完全重构网络系统变量命名体系
@@ -3493,9 +3503,9 @@ void* * NetworkGetThreadLocalStorage(void)
     GetNetworkTimeout(&_networkConnectionLimit);
     if (_networkConnectionLimit == NETWORK_STATUS_ERROR) {
       _network_timeout_value_ptrMin = NETWORK_OPERATION_FAILURE;
-      network_timeout_reserved_value_1 = NETWORK_OPERATION_FAILURE;
-      network_timeout_reserved_value_2 = NETWORK_OPERATION_FAILURE;
-      network_timeout_reserved_value_3 = NETWORK_OPERATION_FAILURE;
+      network_timeout_reserved_value_primary = NETWORK_OPERATION_FAILURE;
+      network_timeout_reserved_value_secondary = NETWORK_OPERATION_FAILURE;
+      network_timeout_reserved_value_tertiary = NETWORK_OPERATION_FAILURE;
       SetNetworkTimeout(&_networkConnectionLimit);
   return &_network_timeout_value_ptrMin;
 // 函数: void NetworkHandleSecurity(uint64_t network_socket_handle, uint8_t *network_buffer_ptr)
