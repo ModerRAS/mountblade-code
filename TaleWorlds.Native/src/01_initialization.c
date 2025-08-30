@@ -17062,11 +17062,11 @@ void InitializePhysicsSystem(void)
   code *stack_char_ptr;
   uint64_t uintStack_4f8;
   longlong **pstack_system_memory_pointer;
-  void *system_buffer_ptr_4e8;
-  uint8_t *system_buffer_ptr_4e0;
+  void *system_buffer_ptr_graphics_buffer;
+  uint8_t *system_buffer_ptr_graphics_temp;
   uint32_t uintStack_4d8;
   uint8_t localBuffer_4d0 [72];
-  void *system_buffer_ptr_488;
+  void *system_buffer_ptr_graphics_workspace;
   uint8_t *system_buffer_ptr_480;
   uint32_t uintStack_478;
   uint8_t localBuffer_470 [72];
