@@ -1931,14 +1931,22 @@ uint32 g_network_log_size;
 bool g_network_log_rotation_enabled;
 bool g_network_log_compression_enabled;
 LogArchive* g_network_log_archive;
-void* g_networkConnectionPoolDataObject;
-void* g_networkConnectionPoolSizeValue;
-void* g_networkConnectionPoolIndexValue;
-void* g_networkConnectionPoolLockObject;
-void* g_networkConnectionPoolStatusObject;
-void* g_networkConnectionPoolConfiguration;
-void* g_networkConnectionPoolManagerObject;
-void* g_networkConnectionPoolAllocatorObject;
+// 网络连接池数据对象 - 存储连接池的核心数据
+void* g_network_connection_pool_data;
+// 网络连接池大小值 - 管理连接池的大小配置
+void* g_network_connection_pool_size;
+// 网络连接池索引值 - 管理连接池的索引配置
+void* g_network_connection_pool_index;
+// 网络连接池锁对象 - 用于连接池的线程同步
+void* g_network_connection_pool_lock;
+// 网络连接池状态对象 - 跟踪连接池的运行状态
+void* g_network_connection_pool_status;
+// 网络连接池配置对象 - 存储连接池的配置信息
+void* g_network_connection_pool_config;
+// 网络连接池管理器对象 - 负责连接池的整体管理
+void* g_network_connection_pool_manager;
+// 网络连接池分配器对象 - 负责连接池资源的分配
+void* g_network_connection_pool_allocator;
 void* g_networkConnectionPoolDeallocatorObject;
 void* g_networkConnectionPoolInitializerObject;
 void* g_networkConnectionPoolFinalizerObject;
@@ -29770,10 +29778,10 @@ uint64_t ValidateNetworkConnection(uint64_t network_socket_handle, uint64_t netw
 uint64_t ReceiveNetworkPacket(uint64_t network_socket_handle, float *network_buffer_ptr)
 {
     uint32_t connection_handle_tertiary;
-  uint32_t connection_handle1c;
+  uint32_t connection_handle_primary;
   char *pnetwork_stack_small_char_secondary;
   network_processor_index = EncryptNetworkData(network_socket_handle, &connection_handle_tertiary);
-    network_char_temp = (char *)CONCAT44(connection_handle1c, connection_handle_tertiary);
+    network_char_temp = (char *)CONCAT44(connection_handle_primary, connection_handle_tertiary);
     network_double_time_factor = (double)strtod(network_char_temp, &pnetwork_stack_small_char_secondary);
     *network_buffer_ptr = (float)network_double_time_factor;
     if (*pnetwork_stack_small_char_secondary == ' ') {
@@ -31873,17 +31881,17 @@ uint64_t networkFilterPacket9(int64_t network_socket_handle, int32_t network_buf
         socket_descriptor_value = *(int64_t *)(network_socket_handle + NETWORK_STATUS_READY_MASK);
           network_primary_connection_data = (longlong)network_operation_result_code;
           if (*(uint32_t *)(socket_descriptor_value + network_connection_info_data * MODULE_STATUS_OFFSET) == network_operation_status_code) {
-            connection_handle1c = (uint)((ulonglong)*(uint64_t *)(socket_descriptor_value + NETWORK_PACKET_HEADER_SIZE + network_connection_info_data * MODULE_STATUS_OFFSET) >> SOCKET_RESPONSE_OFFSET);
-            if (connection_handle1c != NETWORK_OPERATION_FAILURE) {
-              *network_buffer_size_var = connection_handle1c;
+            connection_handle_primary = (uint)((ulonglong)*(uint64_t *)(socket_descriptor_value + NETWORK_PACKET_HEADER_SIZE + network_connection_info_data * MODULE_STATUS_OFFSET) >> SOCKET_RESPONSE_OFFSET);
+            if (connection_handle_primary != NETWORK_OPERATION_FAILURE) {
+              *network_buffer_size_var = connection_handle_primary;
           network_operation_result_code = *(int32_t *)(socket_descriptor_value + 4 + network_connection_info_data * MODULE_STATUS_OFFSET);
-      connection_handle1c = NETWORK_OPERATION_FAILURE;
+      connection_handle_primary = NETWORK_OPERATION_FAILURE;
       network_processor_data_ptr = (uint64_t *)
                ((longlong)*(int32_t *)(*(int64_t *)(network_socket_handle + SESSION_CONFIG_SIZE) + (longlong)network_buffer_ptr * NETWORK_SOCKET_BUFFER_OFFSET) +
                *(int64_t *)(network_socket_handle + NETWORK_PACKET_HEADER_SIZE));
       if (network_processor_data_ptr != (uint64_t *)ZERO_OFFSET) {
         (**(code **)*network_processor_data_ptr)();
-      *network_buffer_size_var = connection_handle1c;
+      *network_buffer_size_var = connection_handle_primary;
 uint64_t networkEstablishSecureConnection0(int64_t network_socket_handle, uint64_t network_buffer_ptr, int64_t network_buffer_size_var, uint32_t network_timeout_milliseconds)
 {
     int32_t network_stack_int0000000000000044;
