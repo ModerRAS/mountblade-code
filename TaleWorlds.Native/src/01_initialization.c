@@ -38,6 +38,11 @@
 // - 将硬编码数组索引[1]、[2]、[6]、[7]、[8]、[9]、[10]替换为语义化常量
 // - 添加了SYSTEM_DATA_INDEX_RESOURCE_POOL_PTR等系统数据数组索引语义化常量
 // - 替换硬编码数组索引[0x29]、[0x2a]、[0x610]、[0x2c0]、[0x23]为语义化常量
+// - 添加了SYSTEM_ARRAY_INDEX_SYSTEM_FLAGS等系统数组索引语义化常量
+// - 添加了SYSTEM_ARRAY_INDEX_GUARD_CHECK等保护检查数组索引语义化常量
+// - 添加了SYSTEM_ARRAY_INDEX_INIT_FLAG等初始化标志数组索引语义化常量
+// - 添加了SYSTEM_ARRAY_INDEX_HANDLE_ID_1/2等句柄ID数组索引语义化常量
+// - 将硬编码数组索引[0x23]、[0x2c]、[0x2f]、[0x36]、[0x37]替换为语义化常量
 // - 为全局变量添加了详细的中文注释，提高代码可读性
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
@@ -47344,7 +47349,7 @@ uint64_t * InitializeSystemModule41(uint64_t *handleIdentifier,char resourceIden
   *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_1E) = 0;
   handleIdentifier[SYSTEM_HANDLE_INDEX_23] = 0;
   handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_1] = 0;
-  handleIdentifier[0x37] = 0;
+  handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_2] = 0;
   handleIdentifier[SYSTEM_OBJECT_OFFSET_38] = 0;
   handleIdentifier[SYSTEM_DATA_OFFSET_3E] = handleIdentifier;
   handleIdentifier[SYSTEM_DATA_OFFSET_3D] = 0;
@@ -47391,8 +47396,8 @@ uint64_t * InitializeSystemModule41(uint64_t *handleIdentifier,char resourceIden
   }
   *(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fd) = *(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fd) & 0xbf;
   *(uint8_t *)((longlong)handleIdentifier + SYSTEM_OFFSET_Ff) = 1;
-  ptr_data = (longlong *)handleIdentifier[0x37];
-  handleIdentifier[0x37] = 0;
+  ptr_data = (longlong *)handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_2];
+  handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_2] = 0;
   if (ptr_data != (longlong *)SYSTEM_NULL_POINTER) {
     (**(code **)(*ptr_data + SYSTEM_OBJECT_OFFSET_38))();
   }
@@ -47729,8 +47734,8 @@ void InitializeAudioSystem(uint64_t *handleIdentifier)
     ProcessSystemOperation();
   }
   handleIdentifier[SYSTEM_HANDLE_INDEX_59] = 0;
-  system_memory_pointer = (longlong *)handleIdentifier[0x37];
-  handleIdentifier[0x37] = 0;
+  system_memory_pointer = (longlong *)handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_2];
+  handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_2] = 0;
   if (system_memory_pointer != (longlong *)SYSTEM_NULL_POINTER) {
     (**(code **)(*system_memory_pointer + SYSTEM_OBJECT_OFFSET_38))();
   }
@@ -48975,7 +48980,7 @@ void InitializeNetworkSystem(longlong *handleIdentifier)
 
   init_stack_param_60 = INVALID_HANDLE_VALUE;
   init_stack_uint_parameter_20 = system_configuration_data ^ (ulonglong)system_local_buffer_primary;
-  system_status_code = *(uint64_t *)(handleIdentifier[0x37] + SYSTEM_OFFSET_1E0);
+  system_status_code = *(uint64_t *)(handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_2] + SYSTEM_OFFSET_1E0);
   system_buffer_ptr_58 = &g_system_data_main;
   system_buffer_ptr_50 = system_local_buffer_40;
   system_local_buffer_40[0] = system_local_buffer_40[0] & SYSTEM_OFFSET_Ffffffffffffff00;
@@ -48984,7 +48989,7 @@ void InitializeNetworkSystem(longlong *handleIdentifier)
   system_status_code = InitializeSystemBufferEx(system_operation_status,&system_buffer_ptr_58,0);
   system_buffer_ptr_58 = &globalSystemPointerData;
   if (system_int_result_unsigned != 0) {
-    allocation_size = handleIdentifier[0x37];
+    allocation_size = handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_2];
     if ((*(ulonglong *)(allocation_size + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER0) & system_int_result_unsigned) != 0) {
       system_boolean_flag = *(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fd) & SYSTEM_NODE_HEADER_SIZE;
       ptr_data = handleIdentifier;
@@ -49005,7 +49010,7 @@ void InitializeNetworkSystem(longlong *handleIdentifier)
         InitializeStackData(&system_buffer_ptr_58);
         ValidateSystemStack(&system_buffer_ptr_58);
         DestroySystemStack(&system_buffer_ptr_58);
-        allocation_size = handleIdentifier[0x37];
+        allocation_size = handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_2];
       }
       if ((*(ulonglong *)(allocation_size + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER0) & system_int_result_unsigned) != 0) goto INIT_LABEL_SYSTEM_7738d;
     }
