@@ -15409,16 +15409,16 @@ int ConfigureGraphicsParameters(void)
   initialize_system_component(NETWORK_SYSTEM_INIT_ADDR_2,SYSTEM_INIT_PARAM_POINTER_SIZE,5,&g_subsystem_init_function,InitializeNetworkSystem);
   _Mtx_init_in_situ(NETWORK_SYSTEM_MUTEX_ADDR,2);
   _g_network_state_1 = 0; // 原始名称: systemCoreData
-  g_network_buffer_size = 0;
+  g_network_buffer_size = SYSTEM_HANDLE_STATUS_INVALID;
   _g_network_state_2 = 0; // 原始名称: systemCoreData
   _g_network_config_1 = 3; // 原始名称: system_configuration_data
-  g_network_socket_handle = 0;
-  g_network_packet_data = 0;
-  g_network_buffer_data = 0;
+  g_network_socket_handle = SYSTEM_HANDLE_STATUS_INVALID;
+  g_network_packet_data = SYSTEM_HANDLE_STATUS_INVALID;
+  g_network_buffer_data = SYSTEM_HANDLE_STATUS_INVALID;
   g_network_config_data = 3;
-  g_network_state_data = 0;
+  g_network_state_data = SYSTEM_HANDLE_STATUS_INVALID;
   system_memory_register_primary = 0;
-  g_network_timeout_value = 0;
+  g_network_timeout_value = SYSTEM_HANDLE_STATUS_INVALID;
   g_network_connection_data = 3;
   EngineFunction_11_2();
   system_temp_long = execute_system_init(&g_system_reserved_data);
