@@ -873,10 +873,10 @@ dataValue renderViewportState;
 
 // 函数: dataValueValue renderCommandInitialize;
 dataValue renderCommandInitialize;
-dataValue renderCommandBuffer1;
-dataValue renderCommandBuffer2;
-dataValue renderCommandBuffer3;
-dataValue renderCommandBuffer4;
+dataValue renderCommandBufferPrimary;
+dataValue renderCommandBufferSecondary;
+dataValue renderCommandBufferTransfer;
+dataValue renderCommandBufferCompute;
 dataValue renderScissorRect;
 
 // 函数: dataValueValue renderStateInitialize;
@@ -3141,7 +3141,7 @@ uint64 execute_resource_command(longlong resource_handle_identifier)
   uint64 system_status;
   uint64 *validation_resultArray;
   int integer_value;
-  float float_result;
+  float float_result_var;
   byte array_var8 [16];
   longlong systemResourceHandle;
   
@@ -3151,7 +3151,7 @@ uint64 execute_resource_command(longlong resource_handle_identifier)
   }
   resource_buffer = *(longlong *)(systemMemoryHandle + 8);
   if (resource_buffer != 0) {
-    float_result = *(float *)(resource_handle_identifier + PTR_DATA_OFFSET);
+    float_result_var = *(float *)(resource_handle_identifier + PTR_DATA_OFFSET);
     for (validation_resultArray = *(uint64 **)(resource_buffer + BUFFER_DATA_OFFSET);
         (*(uint64 **)(resource_buffer + BUFFER_DATA_OFFSET) <= validation_resultArray &&
         (validation_resultArray < *(uint64 **)(resource_buffer + BUFFER_DATA_OFFSET) + *(int *)(resource_buffer + listHeadOffset))); validation_resultArray = validation_resultArray + 1) {
@@ -3165,19 +3165,19 @@ uint64 execute_resource_command(longlong resource_handle_identifier)
       loop_counter = *(uint *)(*(longlong *)(resource_buffer + resource_handle_offset) + FIELD_OFFSET_2);
       loop_counter = loop_counter >> 4;
       if ((loop_counter & 1) == 0) {
-        if ((((loop_counter >> 3 & 1) != 0) && (integer_value = (int)float_result, integer_value != -INT_MIN)) &&
-           ((float)integer_value != float_result)) {
-          array_var8._4_4_ = float_result;
-          array_var8._0_4_ = float_result;
+        if ((((loop_counter >> 3 & 1) != 0) && (integer_value = (int)float_result_var, integer_value != -INT_MIN)) &&
+           ((float)integer_value != float_result_var)) {
+          array_var8._4_4_ = float_result_var;
+          array_var8._0_4_ = float_result_var;
           array_var8._8_8_ = 0;
           loop_counter = movmskps(loop_counter,array_var8);
-          float_result = (float)(int)(integer_value - (loop_counter & 1));
+          float_result_var = (float)(int)(integer_value - (loop_counter & 1));
         }
-        float_result = (float)calc_resource_data_size(*(longlong *)(resource_buffer + resource_handle_offset),float_result);
+        float_result_var = (float)calc_resource_data_size(*(longlong *)(resource_buffer + resource_handle_offset),float_result_var);
         if (((*(char *)(resource_buffer + FIELD_OFFSET_2) == '\0') ||
             ((*(uint *)(*(longlong *)(resource_buffer + resource_handle_offset) + FIELD_OFFSET_2) >> 1 & 1) == 0)) &&
-           (float_result != *(float *)(resource_buffer + PTR_DATA_OFFSET))) {
-          *(float *)(resource_buffer + PTR_DATA_OFFSET) = float_result;
+           (float_result_var != *(float *)(resource_buffer + PTR_DATA_OFFSET))) {
+          *(float *)(resource_buffer + PTR_DATA_OFFSET) = float_result_var;
           utilityPrepareResourceAccess(resource_buffer);
           *(byte *)(resource_buffer + 0x35) = 0;
         }
@@ -4022,19 +4022,19 @@ uint64 get_file_position(longlong resource_handle_identifier)
       loop_counter = *(uint *)(*(longlong *)(resource_buffer + resource_handle_offset) + FIELD_OFFSET_2);
       loop_counter = loop_counter >> 4;
       if ((loop_counter & 1) == 0) {
-        if ((((loop_counter >> 3 & 1) != 0) && (integer_value = (int)float_result, integer_value != -INT_MIN)) &&
-           ((float)integer_value != float_result)) {
-          array_var8._4_4_ = float_result;
-          array_var8._0_4_ = float_result;
+        if ((((loop_counter >> 3 & 1) != 0) && (integer_value = (int)float_result_var, integer_value != -INT_MIN)) &&
+           ((float)integer_value != float_result_var)) {
+          array_var8._4_4_ = float_result_var;
+          array_var8._0_4_ = float_result_var;
           array_var8._8_8_ = 0;
           loop_counter = movmskps(loop_counter,array_var8);
-          float_result = (float)(int)(integer_value - (loop_counter & 1));
+          float_result_var = (float)(int)(integer_value - (loop_counter & 1));
         }
-        float_result = (float)calc_resource_data_size(*(longlong *)(resource_buffer + resource_handle_offset),float_result);
+        float_result_var = (float)calc_resource_data_size(*(longlong *)(resource_buffer + resource_handle_offset),float_result_var);
         if (((*(char *)(resource_buffer + FIELD_OFFSET_2) == '\0') ||
             ((*(uint *)(*(longlong *)(resource_buffer + resource_handle_offset) + FIELD_OFFSET_2) >> 1 & 1) == 0)) &&
-           (float_result != *(float *)(resource_buffer + PTR_DATA_OFFSET))) {
-          *(float *)(resource_buffer + PTR_DATA_OFFSET) = float_result;
+           (float_result_var != *(float *)(resource_buffer + PTR_DATA_OFFSET))) {
+          *(float *)(resource_buffer + PTR_DATA_OFFSET) = float_result_var;
           utilityPrepareResourceAccess(resource_buffer);
           *(byte *)(resource_buffer + 0x35) = 0;
         }
@@ -12049,7 +12049,7 @@ uint64 ConfigureResourceSettings(longlong *resource_handle_identifier,char *memo
   char char_value;
   int resourceCounter;
   uint iteration_index_var;
-  char *pointerCharpcVar9;
+  char *char_pointer_var9;
   int localStatus0;
   uint *function_result_data_1;
   
@@ -12076,19 +12076,19 @@ uint64 ConfigureResourceSettings(longlong *resource_handle_identifier,char *memo
         }
       }
       resource_buffer = resource_buffer + 1;
-      pointerCharpcVar9 = (char *)(resource_handle_identifier[4] + 1 + (ulonglong)(*function_result_data_1 & 0xffffff));
+      char_pointer_var9 = (char *)(resource_handle_identifier[4] + 1 + (ulonglong)(*function_result_data_1 & 0xffffff));
       char_value = *memoryBlockBlockBlockSize;
       while (char_value != '\0') {
-        if (*pointerCharpcVar9 == '\0') goto process_string_data;
+        if (*char_pointer_var9 == '\0') goto process_string_data;
         char_value = resourceConvertFunction(char_value);
-        char_value = resourceConvertFunction(*pointerCharpcVar9);
+        char_value = resourceConvertFunction(*char_pointer_var9);
         if (char_value != char_value) break;
         pcharacterValue = resource_buffer + 1;
         resource_buffer = resource_buffer + 1;
-        pointerCharpcVar9 = pointerCharpcVar9 + 1;
+        char_pointer_var9 = char_pointer_var9 + 1;
         char_value = *pcharacterValue;
       }
-      if (*pointerCharpcVar9 != '\0') {
+      if (*char_pointer_var9 != '\0') {
         return ERROR_CODE_INVALID;
       }
 process_string_data:
@@ -14954,7 +14954,7 @@ void orderUtilityLists(longlong resource_handle_identifier,int *memoryBlockBlock
 
 {
   char *pcharacterValue;
-  code *pointerCharpcVar2;
+  code *char_pointer_var2;
   char char_value;
   uint32 in_eax;
   uint32_t validation_result;
@@ -14981,8 +14981,8 @@ void orderUtilityLists(longlong resource_handle_identifier,int *memoryBlockBlock
   *memoryBlockBlockBlockSize = *memoryBlockBlockBlockSize + iterationCounter;
   pcharacterValue = (char *)((longlong)&plocalInt + CONCAT44(in_reg_00000004,iterationCounter));
   *pcharacterValue = *pcharacterValue + char_value + '\x18';
-  pointerCharpcVar2 = (code *)swi(3);
-  (*pointerCharpcVar2)();
+  char_pointer_var2 = (code *)swi(3);
+  (*char_pointer_var2)();
   return;
 }
 
@@ -17571,7 +17571,7 @@ uint64 * ProcessValidationRequest(void)
   uint32 system_status;
   float float_secondary_value;
   float float_secondary_value;
-  float float_result;
+  float float_result_var;
   uint iteration_index_var;
   uint loop_counter;
   uint resource_operation_result;
@@ -17767,11 +17767,11 @@ LAB_VALIDATION_FAILED:
           float_value = *float_ptr;
           float_secondary_value = float_ptr[1];
           float_secondary_value = float_ptr[2];
-          float_result = float_ptr[3];
+          float_result_var = float_ptr[3];
           *(float *)(resourceDataBuffer7 + -RESOURCE_DATA_IDX) = float_value;
           *(float *)(resourceDataBuffer7 + -resource_handle_data_offset) = float_secondary_value;
           *(float *)(resourceDataBuffer7 + -STRUCT_MULT) = float_secondary_value;
-          *(float *)(resourceDataBuffer7 + -8) = float_result;
+          *(float *)(resourceDataBuffer7 + -8) = float_result_var;
           *(uint64 *)(resourceDataBuffer7 + -4) = 0;
           resourceDataBuffer8 = resourceDataBuffer8 + -1;
           resourceDataBuffer7 = resourceDataBuffer7 + resource_handle_offset;
@@ -17826,7 +17826,7 @@ uint64 * HandleValidationCallback(void)
   uint32 system_status;
   float float_secondary_value;
   float float_secondary_value;
-  float float_result;
+  float float_result_var;
   uint iteration_index_var;
   uint loop_counter;
   uint resource_operation_result;
@@ -18014,11 +18014,11 @@ LAB_VALIDATION_FAILED:
           float_value = *float_ptr;
           float_secondary_value = float_ptr[1];
           float_secondary_value = float_ptr[2];
-          float_result = float_ptr[3];
+          float_result_var = float_ptr[3];
           *(float *)(resourceDataBuffer7 + -RESOURCE_DATA_IDX) = float_value;
           *(float *)(resourceDataBuffer7 + -resource_handle_data_offset) = float_secondary_value;
           *(float *)(resourceDataBuffer7 + -STRUCT_MULT) = float_secondary_value;
-          *(float *)(resourceDataBuffer7 + -8) = float_result;
+          *(float *)(resourceDataBuffer7 + -8) = float_result_var;
           *(uint64 *)(resourceDataBuffer7 + -4) = 0;
           resourceDataBuffer8 = resourceDataBuffer8 + -1;
           resourceDataBuffer7 = resourceDataBuffer7 + resource_handle_offset;
@@ -29184,7 +29184,7 @@ void Unwind_180903460(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   int *localStatusPointer;
-  char *pointerCharpcVar2;
+  char *char_pointer_var2;
   uint64 *pointerVar3;
   longlong *pointerLongVar4;
   longlong memory_offset_data;
@@ -29206,9 +29206,9 @@ void Unwind_180903460(uint64 resource_handle_identifier,longlong resource_buffer
   }
   memory_offset_data = pointerLongVar4[5];
   while (memory_offset_data != 0) {
-    pointerCharpcVar2 = (char *)(memory_offset_data + 0x141);
+    char_pointer_var2 = (char *)(memory_offset_data + 0x141);
     memory_offset_data = *(longlong *)(memory_offset_data + 0x138);
-    if (*pointerCharpcVar2 != '\0') {
+    if (*char_pointer_var2 != '\0') {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
@@ -29483,7 +29483,7 @@ void Unwind_180903510(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   int *localStatusPointer;
-  char *pointerCharpcVar2;
+  char *char_pointer_var2;
   uint64 *pointerVar3;
   longlong *pointerLongVar4;
   longlong memory_offset_data;
@@ -29507,9 +29507,9 @@ void Unwind_180903510(uint64 resource_handle_identifier,longlong resource_buffer
   }
   memory_offset_data = pointerLongVar4[5];
   while (memory_offset_data != 0) {
-    pointerCharpcVar2 = (char *)(memory_offset_data + 0x141);
+    char_pointer_var2 = (char *)(memory_offset_data + 0x141);
     memory_offset_data = *(longlong *)(memory_offset_data + 0x138);
-    if (*pointerCharpcVar2 != '\0') {
+    if (*char_pointer_var2 != '\0') {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
@@ -29634,7 +29634,7 @@ void Unwind_180903580(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   int *localStatusPointer;
-  char *pointerCharpcVar2;
+  char *char_pointer_var2;
   uint64 *pointerVar3;
   longlong *pointerLongVar4;
   longlong memory_offset_data;
@@ -29656,9 +29656,9 @@ void Unwind_180903580(uint64 resource_handle_identifier,longlong resource_buffer
   }
   memory_offset_data = pointerLongVar4[5];
   while (memory_offset_data != 0) {
-    pointerCharpcVar2 = (char *)(memory_offset_data + 0x141);
+    char_pointer_var2 = (char *)(memory_offset_data + 0x141);
     memory_offset_data = *(longlong *)(memory_offset_data + 0x138);
-    if (*pointerCharpcVar2 != '\0') {
+    if (*char_pointer_var2 != '\0') {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
@@ -35228,7 +35228,7 @@ void Unwind_180904960(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   int *localStatusPointer;
-  char *pointerCharpcVar2;
+  char *char_pointer_var2;
   uint64 *pointerVar3;
   longlong threadContextData;
   longlong memory_offset_data;
@@ -35251,9 +35251,9 @@ void Unwind_180904960(uint64 resource_handle_identifier,longlong resource_buffer
   }
   threadContextData = *(longlong *)(memory_offset_data + 0xa0);
   while (threadContextData != 0) {
-    pointerCharpcVar2 = (char *)(threadContextData + 0x141);
+    char_pointer_var2 = (char *)(threadContextData + 0x141);
     threadContextData = *(longlong *)(threadContextData + 0x138);
-    if (*pointerCharpcVar2 != '\0') {
+    if (*char_pointer_var2 != '\0') {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
@@ -35290,7 +35290,7 @@ void Unwind_180904970(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   int *localStatusPointer;
-  char *pointerCharpcVar2;
+  char *char_pointer_var2;
   uint64 *pointerVar3;
   longlong threadContextData;
   longlong memory_offset_data;
@@ -35313,9 +35313,9 @@ void Unwind_180904970(uint64 resource_handle_identifier,longlong resource_buffer
   }
   threadContextData = *(longlong *)(memory_offset_data + 0x308);
   while (threadContextData != 0) {
-    pointerCharpcVar2 = (char *)(threadContextData + 0x141);
+    char_pointer_var2 = (char *)(threadContextData + 0x141);
     threadContextData = *(longlong *)(threadContextData + 0x138);
-    if (*pointerCharpcVar2 != '\0') {
+    if (*char_pointer_var2 != '\0') {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
@@ -35352,7 +35352,7 @@ void Unwind_180904990(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   int *localStatusPointer;
-  char *pointerCharpcVar2;
+  char *char_pointer_var2;
   uint64 *pointerVar3;
   longlong threadContextData;
   longlong memory_offset_data;
@@ -35375,9 +35375,9 @@ void Unwind_180904990(uint64 resource_handle_identifier,longlong resource_buffer
   }
   threadContextData = *(longlong *)(memory_offset_data + 0x570);
   while (threadContextData != 0) {
-    pointerCharpcVar2 = (char *)(threadContextData + 0x141);
+    char_pointer_var2 = (char *)(threadContextData + 0x141);
     threadContextData = *(longlong *)(threadContextData + 0x138);
-    if (*pointerCharpcVar2 != '\0') {
+    if (*char_pointer_var2 != '\0') {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
@@ -35558,7 +35558,7 @@ void Unwind_180904a20(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   int *localStatusPointer;
-  char *pointerCharpcVar2;
+  char *char_pointer_var2;
   uint64 *pointerVar3;
   longlong threadContextData;
   longlong memory_offset_data;
@@ -35581,9 +35581,9 @@ void Unwind_180904a20(uint64 resource_handle_identifier,longlong resource_buffer
   }
   threadContextData = *(longlong *)(memory_offset_data + 0xa0);
   while (threadContextData != 0) {
-    pointerCharpcVar2 = (char *)(threadContextData + 0x141);
+    char_pointer_var2 = (char *)(threadContextData + 0x141);
     threadContextData = *(longlong *)(threadContextData + 0x138);
-    if (*pointerCharpcVar2 != '\0') {
+    if (*char_pointer_var2 != '\0') {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
@@ -35620,7 +35620,7 @@ void Unwind_180904a30(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   int *localStatusPointer;
-  char *pointerCharpcVar2;
+  char *char_pointer_var2;
   uint64 *pointerVar3;
   longlong threadContextData;
   longlong memory_offset_data;
@@ -35643,9 +35643,9 @@ void Unwind_180904a30(uint64 resource_handle_identifier,longlong resource_buffer
   }
   threadContextData = *(longlong *)(memory_offset_data + 0x308);
   while (threadContextData != 0) {
-    pointerCharpcVar2 = (char *)(threadContextData + 0x141);
+    char_pointer_var2 = (char *)(threadContextData + 0x141);
     threadContextData = *(longlong *)(threadContextData + 0x138);
-    if (*pointerCharpcVar2 != '\0') {
+    if (*char_pointer_var2 != '\0') {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
@@ -35682,7 +35682,7 @@ void Unwind_180904a50(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   int *localStatusPointer;
-  char *pointerCharpcVar2;
+  char *char_pointer_var2;
   uint64 *pointerVar3;
   longlong threadContextData;
   longlong memory_offset_data;
@@ -35705,9 +35705,9 @@ void Unwind_180904a50(uint64 resource_handle_identifier,longlong resource_buffer
   }
   threadContextData = *(longlong *)(memory_offset_data + 0x570);
   while (threadContextData != 0) {
-    pointerCharpcVar2 = (char *)(threadContextData + 0x141);
+    char_pointer_var2 = (char *)(threadContextData + 0x141);
     threadContextData = *(longlong *)(threadContextData + 0x138);
-    if (*pointerCharpcVar2 != '\0') {
+    if (*char_pointer_var2 != '\0') {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
@@ -39294,7 +39294,7 @@ void Unwind_180905b60(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   int *localStatusPointer;
-  char *pointerCharpcVar2;
+  char *char_pointer_var2;
   uint64 *pointerVar3;
   longlong threadContextData;
   longlong memory_offset_data;
@@ -39319,9 +39319,9 @@ void Unwind_180905b60(uint64 resource_handle_identifier,longlong resource_buffer
   }
   threadContextData = *(longlong *)(memory_offset_data + struct_size_offset);
   while (threadContextData != 0) {
-    pointerCharpcVar2 = (char *)(threadContextData + 0x141);
+    char_pointer_var2 = (char *)(threadContextData + 0x141);
     threadContextData = *(longlong *)(threadContextData + 0x138);
-    if (*pointerCharpcVar2 != '\0') {
+    if (*char_pointer_var2 != '\0') {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
@@ -39394,7 +39394,7 @@ void Unwind_180905b90(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   int *localStatusPointer;
-  char *pointerCharpcVar2;
+  char *char_pointer_var2;
   uint64 *pointerVar3;
   longlong *pointerLongVar4;
   longlong memory_offset_data;
@@ -39416,9 +39416,9 @@ void Unwind_180905b90(uint64 resource_handle_identifier,longlong resource_buffer
   }
   memory_offset_data = pointerLongVar4[5];
   while (memory_offset_data != 0) {
-    pointerCharpcVar2 = (char *)(memory_offset_data + 0x141);
+    char_pointer_var2 = (char *)(memory_offset_data + 0x141);
     memory_offset_data = *(longlong *)(memory_offset_data + 0x138);
-    if (*pointerCharpcVar2 != '\0') {
+    if (*char_pointer_var2 != '\0') {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
@@ -39644,7 +39644,7 @@ void Unwind_180905c50(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   int *localStatusPointer;
-  char *pointerCharpcVar2;
+  char *char_pointer_var2;
   uint64 *pointerVar3;
   longlong threadContextData;
   longlong memory_offset_data;
@@ -39669,9 +39669,9 @@ void Unwind_180905c50(uint64 resource_handle_identifier,longlong resource_buffer
   }
   threadContextData = *(longlong *)(memory_offset_data + struct_size_offset);
   while (threadContextData != 0) {
-    pointerCharpcVar2 = (char *)(threadContextData + 0x141);
+    char_pointer_var2 = (char *)(threadContextData + 0x141);
     threadContextData = *(longlong *)(threadContextData + 0x138);
-    if (*pointerCharpcVar2 != '\0') {
+    if (*char_pointer_var2 != '\0') {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
@@ -39816,7 +39816,7 @@ void Unwind_180905ca0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   int *localStatusPointer;
-  char *pointerCharpcVar2;
+  char *char_pointer_var2;
   uint64 *pointerVar3;
   longlong *pointerLongVar4;
   longlong memory_offset_data;
@@ -39838,9 +39838,9 @@ void Unwind_180905ca0(uint64 resource_handle_identifier,longlong resource_buffer
   }
   memory_offset_data = pointerLongVar4[5];
   while (memory_offset_data != 0) {
-    pointerCharpcVar2 = (char *)(memory_offset_data + 0x141);
+    char_pointer_var2 = (char *)(memory_offset_data + 0x141);
     memory_offset_data = *(longlong *)(memory_offset_data + 0x138);
-    if (*pointerCharpcVar2 != '\0') {
+    if (*char_pointer_var2 != '\0') {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
@@ -40164,7 +40164,7 @@ void Unwind_180905ea0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   int *localStatusPointer;
-  char *pointerCharpcVar2;
+  char *char_pointer_var2;
   uint64 *pointerVar3;
   longlong threadContextData;
   longlong memory_offset_data;
@@ -40189,9 +40189,9 @@ void Unwind_180905ea0(uint64 resource_handle_identifier,longlong resource_buffer
   }
   threadContextData = *(longlong *)(memory_offset_data + 0xf0);
   while (threadContextData != 0) {
-    pointerCharpcVar2 = (char *)(threadContextData + 0x3541);
+    char_pointer_var2 = (char *)(threadContextData + 0x3541);
     threadContextData = *(longlong *)(threadContextData + 0x3538);
-    if (*pointerCharpcVar2 != '\0') {
+    if (*char_pointer_var2 != '\0') {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
@@ -40270,7 +40270,7 @@ void Unwind_180905ef0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   int *localStatusPointer;
-  char *pointerCharpcVar2;
+  char *char_pointer_var2;
   uint64 *pointerVar3;
   longlong *pointerLongVar4;
   longlong memory_offset_data;
@@ -40292,9 +40292,9 @@ void Unwind_180905ef0(uint64 resource_handle_identifier,longlong resource_buffer
   }
   memory_offset_data = pointerLongVar4[5];
   while (memory_offset_data != 0) {
-    pointerCharpcVar2 = (char *)(memory_offset_data + 0x3541);
+    char_pointer_var2 = (char *)(memory_offset_data + 0x3541);
     memory_offset_data = *(longlong *)(memory_offset_data + 0x3538);
-    if (*pointerCharpcVar2 != '\0') {
+    if (*char_pointer_var2 != '\0') {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
@@ -40376,7 +40376,7 @@ void Unwind_180905f70(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   int *localStatusPointer;
-  char *pointerCharpcVar2;
+  char *char_pointer_var2;
   uint64 *pointerVar3;
   longlong *pointerLongVar4;
   longlong memory_offset_data;
@@ -40398,9 +40398,9 @@ void Unwind_180905f70(uint64 resource_handle_identifier,longlong resource_buffer
   }
   memory_offset_data = pointerLongVar4[5];
   while (memory_offset_data != 0) {
-    pointerCharpcVar2 = (char *)(memory_offset_data + 0x3541);
+    char_pointer_var2 = (char *)(memory_offset_data + 0x3541);
     memory_offset_data = *(longlong *)(memory_offset_data + 0x3538);
-    if (*pointerCharpcVar2 != '\0') {
+    if (*char_pointer_var2 != '\0') {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
@@ -40475,7 +40475,7 @@ void Unwind_180905fa0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   int *localStatusPointer;
-  char *pointerCharpcVar2;
+  char *char_pointer_var2;
   uint64 *pointerVar3;
   longlong threadContextData;
   longlong memory_offset_data;
@@ -40500,9 +40500,9 @@ void Unwind_180905fa0(uint64 resource_handle_identifier,longlong resource_buffer
   }
   threadContextData = *(longlong *)(memory_offset_data + 0xf0);
   while (threadContextData != 0) {
-    pointerCharpcVar2 = (char *)(threadContextData + 0x3541);
+    char_pointer_var2 = (char *)(threadContextData + 0x3541);
     threadContextData = *(longlong *)(threadContextData + 0x3538);
-    if (*pointerCharpcVar2 != '\0') {
+    if (*char_pointer_var2 != '\0') {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
@@ -40560,7 +40560,7 @@ void Unwind_180905fe0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   int *localStatusPointer;
-  char *pointerCharpcVar2;
+  char *char_pointer_var2;
   uint64 *pointerVar3;
   longlong *pointerLongVar4;
   longlong memory_offset_data;
@@ -40582,9 +40582,9 @@ void Unwind_180905fe0(uint64 resource_handle_identifier,longlong resource_buffer
   }
   memory_offset_data = pointerLongVar4[5];
   while (memory_offset_data != 0) {
-    pointerCharpcVar2 = (char *)(memory_offset_data + 0x3541);
+    char_pointer_var2 = (char *)(memory_offset_data + 0x3541);
     memory_offset_data = *(longlong *)(memory_offset_data + 0x3538);
-    if (*pointerCharpcVar2 != '\0') {
+    if (*char_pointer_var2 != '\0') {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
