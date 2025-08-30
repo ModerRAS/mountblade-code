@@ -3312,12 +3312,12 @@ void ProcessMemoryAllocation(longlong resource_handle_identifier,longlong resour
   
   security_validation_token = g_security_token_mask ^ (ulonglong)security_buffer;
   allocation_status = system_memory_operation(*(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),resource_info_array);
-  if ((allocation_status == 0) && (*(longlong *)(resource_info_array[0] + 8) != 0)) {
+  if ((allocation_status == 0) && (*(longlong *)(resource_info_array[UTILITY_ARRAY_INDEX_PRIMARY] + 8) != 0)) {
     allocated_memory_pointer = security_buffer;
     processed_block_count = 0;
     memory_block_count = 0;
     security_validation_token = SECURITY_TOKEN_MASK;
-    allocation_status = allocate_system_memory(*(uint64 *)(resource_buffer + UTILITY_MEMORY_SIZE_OFFSET),*(longlong *)(resource_info_array[0] + 8),
+    allocation_status = allocate_system_memory(*(uint64 *)(resource_buffer + UTILITY_MEMORY_SIZE_OFFSET),*(longlong *)(resource_info_array[UTILITY_ARRAY_INDEX_PRIMARY] + 8),
                           &allocated_memory_pointer);
     if (allocation_status == 0) {
       if (0 < memory_block_count) {
@@ -3467,7 +3467,7 @@ uint64 validate_resource_handle_identifier(longlong resource_handle_identifier) 
       return validation_flag;
     }
     if ((char)system_status_code == (char)validation_flag) {
-      if (utility_security_data[0] == (char)validation_flag) {
+      if (utility_security_data[UTILITY_ARRAY_INDEX_PRIMARY] == (char)validation_flag) {
         utility_data_ptr = (longlong *)(resource_buffer + RESOURCE_POINTER_OFFSET);
         utility_iteration_index = 0;
         resource_count = *(int *)(resource_buffer + utility_resource_index);
@@ -17174,8 +17174,8 @@ UTILITY_LABEL_VALIDATE_RESOURCE_BOUNDARY:
     }
     systemFlagsData = 0;
     if (system_status_code == 0) {
-      systemFlagsData = (uint)(utility_security_data[0] != '\0');
-      iteration_counter = (uint)(utility_security_data[0] == '\0');
+      systemFlagsData = (uint)(utility_security_data[UTILITY_ARRAY_INDEX_PRIMARY] != '\0');
+      iteration_counter = (uint)(utility_security_data[UTILITY_ARRAY_INDEX_PRIMARY] == '\0');
       system_status_code = 0;
     }
     if (system_status_code != 0) {
