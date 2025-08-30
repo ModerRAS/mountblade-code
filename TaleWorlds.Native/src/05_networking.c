@@ -1,7 +1,7 @@
 
 
 
-// 最新美化内容（2025年8月30日）：
+// 最新美化内容（2025年8月30日最终批次）：
 // - 美化网络数据大小变量名，将data_size_3/5/7/9替换为network_data_size_tertiary/quinary/septenary/novenary等语义化变量名
 // - 美化网络处理器变量名，将processor_data_3/5/7/9替换为network_processor_data_tertiary/quinary/septenary/novenary等语义化变量名
 // - 美化网络连接变量名，将connection_data_3/5/7/9替换为network_connection_data_tertiary/quinary/septenary/novenary等语义化变量名
@@ -1041,11 +1041,11 @@
 // - 简化实现：仅将含义不明确的变量名替换为语义化名称
 
 // 新增语义化常量定义 - 网络操作状态码
-#define NETWORK_STATUS_CODE_3A 0x3a  // 网络状态码3A
-#define NETWORK_STATUS_CODE_RESERVED_3F 0x3f  // 网络状态码3F
-#define NETWORK_STATUS_CODE_EXTENDED_46 0x46  // 网络状态码46
-#define NETWORK_STATUS_CODE_49 0x49  // 网络状态码49
-#define NETWORK_STATUS_CODE_55 0x55  // 网络状态码55
+#define NETWORK_STATUS_CODE_3A NETWORK_STATUS_CODE_3A  // 网络状态码3A
+#define NETWORK_STATUS_CODE_RESERVED_3F NETWORK_STATUS_CODE_RESERVED_3F  // 网络状态码3F
+#define NETWORK_STATUS_CODE_EXTENDED_46 NETWORK_STATUS_CODE_EXTENDED_46  // 网络状态码46
+#define NETWORK_STATUS_CODE_49 NETWORK_STATUS_CODE_49  // 网络状态码49
+#define NETWORK_STATUS_CODE_55 NETWORK_STATUS_CODE_55  // 网络状态码55
 #define NETWORK_STATUS_CODE_56 NETWORK_MODULE_STATUS_CHECK  // 网络状态码56
 #define NETWORK_STATUS_CODE_6A 0x6a  // 网络状态码6A
 #define NETWORK_STATUS_CODE_6F 0x6f  // 网络状态码6F
@@ -1208,7 +1208,7 @@
 #define NETWORK_HANDSHAKE_DATA_2 network_handshake_data_second  // 握手数据2
 #define NETWORK_HANDSHAKE_DATA_3 network_handshake_data_third  // 握手数据3
 #define NETWORK_PROTOCOL_HEADER_VARIANT_SECONDARY g_network_protocol_header_variant_secondary  // 协议头部变量第二版
-#define SOCKET_DESCRIPTOR_RESPONSE_OFFSET_EXTENDED 0x1000  // 扩展套接字响应偏移量
+#define SOCKET_DESCRIPTOR_RESPONSE_OFFSET_EXTENDED NETWORK_BUFFER_SIZE_4K  // 扩展套接字响应偏移量
 
 // 简化实现：网络系统模块
 // 原本实现：包含复杂的网络连接管理、数据传输、错误处理等功能
@@ -1408,6 +1408,29 @@
 #define NETWORK_MAGIC_NUMBER_8 NETWORK_PACKET_HEADER_SIZE  // 魔法数字8
 #define NETWORK_MAGIC_NUMBER_32 NETWORK_BUFFER_SIZE_32  // 魔法数字32
 #define NETWORK_MAGIC_NUMBER_256 NETWORK_BUFFER_SIZE_256  // 魔法数字256
+
+// 新增语义化常量定义 - 网络状态码
+#define NETWORK_STATUS_CODE_3A 0x3a  // 网络状态码3A
+#define NETWORK_STATUS_CODE_RESERVED_3F 0x3f  // 网络状态码3F
+#define NETWORK_STATUS_CODE_EXTENDED_46 0x46  // 网络状态码46
+#define NETWORK_STATUS_CODE_49 0x49  // 网络状态码49
+#define NETWORK_STATUS_CODE_55 0x55  // 网络状态码55
+
+// 新增语义化常量定义 - 网络缓冲区大小
+#define NETWORK_BUFFER_SIZE_4K 0x1000  // 4KB缓冲区大小
+#define NETWORK_BUFFER_SIZE_8K 0x2000  // 8KB缓冲区大小
+#define NETWORK_BUFFER_SIZE_16K 0x4000  // 16KB缓冲区大小
+#define NETWORK_BUFFER_SIZE_32K 0x8000  // 32KB缓冲区大小
+
+// 新增语义化常量定义 - 网络超时值
+#define NETWORK_TIMEOUT_1000MS 0x3e8  // 1000毫秒超时
+#define NETWORK_TIMEOUT_5000MS 0x1388  // 5000毫秒超时
+#define NETWORK_TIMEOUT_10000MS 0x2710  // 10000毫秒超时
+
+// 新增语义化常量定义 - 网络端口
+#define NETWORK_PORT_HTTP 0x50  // HTTP端口
+#define NETWORK_PORT_HTTPS 0x1bb  // HTTPS端口
+#define NETWORK_PORT_ALT_HTTP 0x1f90  // 替代HTTP端口
 #define NETWORK_STATUS_OFFSET_6F0 NETWORK_STATUS_OFFSET_6F0  // 网络状态偏移量6F0
 #define NETWORK_STATUS_OFFSET_710 NETWORK_STATUS_CODE_710  // 网络状态偏移量710
 #define NETWORK_STATUS_OFFSET_720 NETWORK_STATUS_OFFSET_720  // 网络状态偏移量720
@@ -1525,7 +1548,7 @@
 #define NETWORK_SOCKET_CHANNEL_OFFSET 0x96
 #define NETWORK_SOCKET_CHECKSUM_OFFSET NETWORK_CONTEXT_OFFSET
 #define NETWORK_SOCKET_CONFIG_OFFSET_ALT NETWORK_COMPARE_VALUE_4F
-#define NETWORK_SOCKET_CONFIG_WRITE_OFFSET 0x50  // 套接字配置写入偏移量
+#define NETWORK_SOCKET_CONFIG_WRITE_OFFSET NETWORK_PORT_HTTP  // 套接字配置写入偏移量
 #define NETWORK_SOCKET_CONNECTION_OFFSET NETWORK_COMPARE_VALUE_4D  // 套接字连接偏移量
 #define NETWORK_SOCKET_CONTEXT_DATA_OFFSET NETWORK_STATUS_CODE_82  // 套接字上下文数据偏移量
 #define NETWORK_SOCKET_CONTEXT_POINTER_OFFSET NETWORK_VALIDATION_OFFSET_8F  // 套接字上下文指针偏移量
@@ -37403,7 +37426,7 @@ uint64_t networkProcessHandshake(uint64_t network_socket_handle, int64_t network
 #define NETWORK_ENCRYPTION_OFFSET_SECONDARY    NETWORK_MIN_PACKET_SIZE
 #define NETWORK_ENCRYPTION_OFFSET_TERTIARY     0x30
 #define NETWORK_VALIDATION_OFFSET_PRIMARY      NETWORK_BUFFER_SIZE_64
-#define NETWORK_VALIDATION_OFFSET_SECONDARY    0x50
+#define NETWORK_VALIDATION_OFFSET_SECONDARY    NETWORK_PORT_HTTP
 #define NETWORK_ENCRYPTION_OFFSET_8 0x8  // 网络加密偏移量8
 
 // 新增语义化常量定义 - 网络缓冲区大小
@@ -37917,7 +37940,7 @@ uint64_t networkProcessHandshake(uint64_t network_socket_handle, int64_t network
 #define NETWORK_HEX_VALUE_FFFF 0xFFFF    // 网络十六进制值FFFF（65535）
 #define NETWORK_HEX_VALUE_FFFFFFFF NETWORK_MAX_SIZE_FFFFFFFF  // 网络十六进制值FFFFFFFF（4294967295）
 #define NETWORK_HEX_VALUE_80 0x80        // 网络十六进制值80（128）
-#define NETWORK_HEX_VALUE_8000 0x8000    // 网络十六进制值8000（32768）
+#define NETWORK_HEX_VALUE_8000 NETWORK_BUFFER_SIZE_32K    // 网络十六进制值8000（32768）
 #define NETWORK_HEX_VALUE_80000000 0x80000000  // 网络十六进制值80000000（2147483648）
 #define NETWORK_HEX_VALUE_7F 0x7F        // 网络十六进制值7F（127）
 #define NETWORK_HEX_VALUE_7FFF 0x7FFF    // 网络十六进制值7FFF（32767）
