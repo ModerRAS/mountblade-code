@@ -7013,8 +7013,8 @@ network_handle_address_operation_label:
     goto validate_connection_index;
   network_operation_status_code = *network_processor_data_tertiary;
   client_port_address = (longlong)(int)((int)pnetwork_server_address[NETWORK_OPERATION_SUCCESS] - 1U & network_operation_status_code);
-  network_processor_data_quaternary = (uint32_t *)(*pnetwork_server_address + client_port_address * 4);
-  network_processor_index = *(uint32_t *)(*pnetwork_server_address + client_port_address * 4);
+  network_processor_data_quaternary = (uint32_t *)(*pnetwork_server_address + client_port_address * NETWORK_MULTIPLY_SIZE_4);
+  network_processor_index = *(uint32_t *)(*pnetwork_server_address + client_port_address * NETWORK_MULTIPLY_SIZE_4);
   if (network_processor_index == NETWORK_MAX_SIZE) goto handle_address_operation;
   while (network_connection_processor_data_fifth = (uint32_t *)((longlong)(int)network_processor_index * MODULE_STATUS_OFFSET + pnetwork_server_address[NETWORK_BUFFER_SIZE_MEDIUM]), *network_connection_processor_data_fifth != network_operation_status_code) {
     network_processor_index = network_connection_processor_data_fifth[NETWORK_OPERATION_SUCCESS];
@@ -7108,7 +7108,7 @@ int32_t networkStartClient(int64_t *network_socket_handle)
        (network_operation_status_code = *(int32_t *)(*network_socket_handle +
                          (int)((network_global_buffer ^ network_buffer_size_var ^
                                 network_connection_processor_state ^ network_connection_processor_flag) &
-                              (int)network_socket_handle[NETWORK_OPERATION_SUCCESS] - 1U) * 4), network_operation_status_code != -NETWORK_OPERATION_SUCCESS)) {
+                              (int)network_socket_handle[NETWORK_OPERATION_SUCCESS] - 1U) * NETWORK_MULTIPLY_SIZE_4), network_operation_status_code != -NETWORK_OPERATION_SUCCESS)) {
         network_socket_context_array = (int64_t *)((longlong)network_operation_status_code * SOCKET_RESPONSE_OFFSET + network_socket_handle[NETWORK_BUFFER_SIZE_MEDIUM]);
         if ((*network_socket_context_array == socket_descriptor_value) && (network_socket_context_array[NETWORK_OPERATION_SUCCESS] == network_connection_index_counter)) {
           client_port_address = network_socket_context_array[3];
@@ -7120,8 +7120,8 @@ int32_t networkStartClient(int64_t *network_socket_handle)
       pnetwork_socket_idx = (int32_t *)*network_socket_context_array;
       client_port_address = (longlong)
               (int)((network_operation_status_code ^ network_buffer_size_var ^ network_data_pointer ^ network_buffer_size_var) & (int)network_socket_handle[NETWORK_SOCKET_HANDLE_INDEX_FAILURE] - 1U);
-      network_socket_context_array = (int64_t *)(network_socket_handle[NETWORK_BUFFER_SIZE_LARGE] + client_port_address * 4);
-      network_status_tertiary = *(int32_t *)(network_socket_handle[NETWORK_BUFFER_SIZE_LARGE] + client_port_address * 4);
+      network_socket_context_array = (int64_t *)(network_socket_handle[NETWORK_BUFFER_SIZE_LARGE] + client_port_address * NETWORK_MULTIPLY_SIZE_4);
+      network_status_tertiary = *(int32_t *)(network_socket_handle[NETWORK_BUFFER_SIZE_LARGE] + client_port_address * NETWORK_MULTIPLY_SIZE_4);
       if (network_status_tertiary != -NETWORK_OPERATION_SUCCESS) {
           timeout_config_ptr_ptr_primary = (int64_t *)((longlong)network_status_tertiary * SOCKET_RESPONSE_OFFSET + network_socket_handle[NETWORK_PACKET_HEADER_SIZE]);
           if ((*timeout_config_ptr_ptr_primary == socket_descriptor_value) && (timeout_config_ptr_ptr_primary[NETWORK_OPERATION_SUCCESS] == network_connection_index_counter)) {
@@ -7146,8 +7146,8 @@ int32_t networkStartClient(int64_t *network_socket_handle)
   if ((int)network_socket_context_array[NETWORK_OPERATION_SUCCESS] == NETWORK_OPERATION_FAILURE) {
   network_operation_status_code = *network_processor_data_secondary;
   server_port_address = (longlong)(int)((int)network_socket_context_array[NETWORK_OPERATION_SUCCESS] - 1U & network_operation_status_code);
-  network_processor_data_tertiary = (uint32_t *)(*network_socket_context_array + server_port_address * 4);
-  network_data_pointer = *(uint32_t *)(*network_socket_context_array + server_port_address * 4);
+  network_processor_data_tertiary = (uint32_t *)(*network_socket_context_array + server_port_address * NETWORK_MULTIPLY_SIZE_4);
+  network_data_pointer = *(uint32_t *)(*network_socket_context_array + server_port_address * NETWORK_MULTIPLY_SIZE_4);
   if (network_data_pointer == NETWORK_MAX_SIZE) goto handle_address_operation;
   while (network_processor_data_quaternary = (uint32_t *)((longlong)(int)network_data_pointer * MODULE_STATUS_OFFSET + network_socket_context_array[NETWORK_BUFFER_SIZE_MEDIUM]), *network_processor_data_quaternary != network_operation_status_code) {
     network_data_pointer = network_processor_data_quaternary[NETWORK_OPERATION_SUCCESS];

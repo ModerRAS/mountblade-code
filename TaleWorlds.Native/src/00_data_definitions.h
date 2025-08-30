@@ -189,6 +189,15 @@
 // 系统栈大小常量
 #define SYSTEM_STACK_SIZE_MINIMUM 3
 
+// 系统字符串处理常量
+#define SYSTEM_STRING_LENGTH_INVALID -1
+
+// 系统线程处理常量
+#define SYSTEM_THREAD_RESULT_INVALID -1
+
+// 系统时间常量
+#define SYSTEM_SLEEP_TIME_MINIMUM 1
+
 // 系统函数偏移量常量
 #define SYSTEM_FUNC_OFFSET_CLEANUP 0x28
 #define SYSTEM_FUNC_OFFSET_INITIALIZE 0x38
@@ -3028,7 +3037,7 @@ void WotsMainNativeSDLL(unsigned long long handle_param)
       character_scan_pointer = character_scan_pointer + 1;
     } while (thread_result_index + 1U < stack_size_max);
   }
-  thread_result_index = -1;
+  thread_result_index = SYSTEM_THREAD_RESULT_INVALID;
 section_processing_jump_label_:
   buffer_alloc_result = thread_result_index + 1;
   buffer_alloc_result = (ulong long)(int)buffer_alloc_result;
@@ -3043,7 +3052,7 @@ section_processing_jump_label_:
   }
   buffer_alloc_result = UINT32_MAX;
 section_processing_jump_label_:
-  if (thread_result_index != -1) {
+  if (thread_result_index != SYSTEM_THREAD_RESULT_INVALID) {
     setup_thread_parameters(&thread_stack98,&thread_stack78,buffer_alloc_result,buffer_alloc_result);
     thread_name_pointer = &default_resource_config_string;
     if (thread_stack70 != (void *)SYSTEM_NULL_POINTER) {
@@ -3171,7 +3180,7 @@ void WotsMainNativeCoreCLR(unsigned long long handle_param)
     system_handle_param_buffer = SYSTEM_ZERO_VALUE;
     return;
   }
-  str_len_counter = -1;
+  str_len_counter = SYSTEM_STRING_LENGTH_INVALID;
   do {
     str_len_counter = str_len_counter + 1;
   } while (*(char *)(handle_param + str_len_counter) != '\0');
@@ -3189,7 +3198,7 @@ void WotsMainNativeCoreCLR(unsigned long long handle_param)
           thread_stack_ptr2c0 = (unsigned char *)SYSTEM_NULL_POINTER;
           stack_size_max2b8 = SYSTEM_ZERO_VALUE;
           if (string_ptr_17 != (void *)SYSTEM_NULL_POINTER) {
-            system_string_length = -1;
+            system_string_length = SYSTEM_STRING_LENGTH_INVALID;
             do {
               prev_length = system_string_length;
               system_string_length = prev_length + 1;
@@ -3276,7 +3285,7 @@ section_processing_jump_label_:
                 character_scan_pointer = character_scan_pointer + 1;
               } while (thread_result_index + 1U < stack_size_max);
             }
-            thread_result_index = -1;
+            thread_result_index = SYSTEM_THREAD_RESULT_INVALID;
 section_processing_jump_label_:
             buffer_alloc_result = thread_result_index + 1;
             thread_op_flags = (ulong long)(int)buffer_alloc_result;
@@ -3291,7 +3300,7 @@ section_processing_jump_label_:
             }
             thread_op_flags = UINT32_MAX;
 section_processing_jump_label_:
-            if (thread_result_index != -1) {
+            if (thread_result_index != SYSTEM_THREAD_RESULT_INVALID) {
               setup_thread_parameters(&thread_stack_ptr,&thread_stack_ptr,buffer_alloc_result,thread_op_flags);
               thread_result_index = thread_priority_level;
               thread_result_index = SYSTEM_ZERO_VALUE;
@@ -3347,7 +3356,7 @@ section_processing_jump_label_:
                   character_scan_pointer = character_scan_pointer + 1;
                 } while (thread_result_index + 1U < stack_size_max);
               }
-              thread_result_index = -1;
+              thread_result_index = SYSTEM_THREAD_RESULT_INVALID;
 section_processing_jump_label_:
               buffer_alloc_result = thread_result_index + 1;
               thread_op_flags = (ulong long)(int)buffer_alloc_result;
@@ -3362,7 +3371,7 @@ section_processing_jump_label_:
               }
               thread_op_flags = UINT32_MAX;
 section_processing_jump_label_:
-              if (thread_result_index != -1) {
+              if (thread_result_index != SYSTEM_THREAD_RESULT_INVALID) {
                 setup_thread_parameters(&thread_stack_ptr,&thread_stack_ptr,buffer_alloc_result,thread_op_flags);
                 thread_result_index = thread_priority_level;
                 thread_result_index = SYSTEM_ZERO_VALUE;
@@ -3453,7 +3462,7 @@ section_processing_jump_label_:
                   if (thread_stack_ptr != (void *)SYSTEM_NULL_POINTER) {
                     string_input_ptr = thread_stack_ptr;
                   }
-                  str_len_counter = -1;
+                  str_len_counter = SYSTEM_STRING_LENGTH_INVALID;
                   do {
                     str_len_counter = str_len_counter + 1;
                   } while (string_input_ptr[str_len_counter] != '\0');
@@ -3907,7 +3916,7 @@ section_processing_jump_label_:
     if (thread_op_flags == 0xf) goto section_processing_jump_label_;
   }
 section_processing_jump_label_:
-  thread_result_index = -1;
+  thread_result_index = SYSTEM_THREAD_RESULT_INVALID;
 section_processing_jump_label_:
   setup_thread_parameters(&thread_stack_ptr,&thread_stack_ptr,thread_result_index + 0xf,string_input_ptr);
   thread_stack_ptr = (unsigned long long *)0x0;
@@ -7191,7 +7200,7 @@ system_finalizer_tertiary(unsigned long long handle_param,unsigned long long thr
 }
     string_buffer_constant = SYSTEM_ZERO_VALUE;
     if (handle_param != 0) {
-      str_len_counter = -1;
+      str_len_counter = SYSTEM_STRING_LENGTH_INVALID;
       do {
         str_len_counter = str_len_counter + 1;
       } while (*(char *)(handle_param + str_len_counter) != '\0');
@@ -10000,7 +10009,7 @@ bool validate_handle_param_parameters(long long handle_param,long long thread_op
   int thread_result_index;
   long long str_len_counter;
   char *character_scan_pointer;
-  str_len_counter = -1;
+  str_len_counter = SYSTEM_STRING_LENGTH_INVALID;
   do {
     str_len_counter = str_len_counter + 1;
   } while (*(char *)(thread_op_flags + str_len_counter) != '\0');
@@ -10062,7 +10071,7 @@ int find_string_index_in_array(long long handle_param)
       str_len_counter = str_len_counter + 1;
     } while (str_len_counter < thread_result_index);
   }
-  thread_result_index = -1;
+  thread_result_index = SYSTEM_THREAD_RESULT_INVALID;
 section_processing_jump_label_:
   thread_stack_ptr = &g_threadString2;
   if (thread_stack_base_address != 0) {
@@ -10495,7 +10504,7 @@ section_processing_jump_label_:
           *(unsigned char *)(string_input_ptr + 5) = SYSTEM_ZERO_VALUE;
           stack_size_max = (ulong long)buffer_alloc_result;
           if (mutex_attr != (char *)0x0) {
-            str_len_counter = -1;
+            str_len_counter = SYSTEM_STRING_LENGTH_INVALID;
             do {
               str_len_counter = str_len_counter;
               str_len_counter = str_len_counter + 1;
@@ -11604,7 +11613,7 @@ unsigned int validate_resource_handle_param(int handle_param)
     system_buffer_temp = SYSTEM_ZERO_VALUE;
     return;
   }
-  str_len_counter = -1;
+  str_len_counter = SYSTEM_STRING_LENGTH_INVALID;
   do {
     str_len_counter = str_len_counter + 1;
   } while (*(char *)(handle_param + str_len_counter) != '\0');
@@ -12343,7 +12352,7 @@ section_processing_jump_label_:
 section_processing_jump_label_:
     if (unaffected_registerB != '\0') {
       thread_result_index = *(int *)(*(long long *)(unreg_bx + 8) + 0x14);
-      if (thread_result_index != -1) {
+      if (thread_result_index != SYSTEM_THREAD_RESULT_INVALID) {
         *(int *)(*(long long *)(unreg_bx + 8) + 0x14) = thread_result_index - *(int *)(unreg_bx + SYSTEM_MODULE_OFFSET_2);
       }
     }
@@ -12982,7 +12991,7 @@ section_processing_jump_label_:
           fclose(str_len_counter);
           system_execution_function(&system_string_buffer_5,200,&system_string_buffer_6,&system_string_function_5,handle_param);
           str_len_counter = _wcsdup(handle_param);
-          str_len_counter = -1;
+          str_len_counter = SYSTEM_STRING_LENGTH_INVALID;
           if (str_len_counter != 0) {
             do {
               str_len_counter = str_len_counter;
@@ -13065,7 +13074,7 @@ bool check_system_availability(void)
   uint in_stack_00000090;
   uint in_stack_00000098;
   if (unaffected_registerDI != 0) {
-    str_len_counter = -1;
+    str_len_counter = SYSTEM_STRING_LENGTH_INVALID;
     do {
       str_len_counter = str_len_counter + 1;
       system_short_char_value0 = (short)unaffected_register;
@@ -13098,7 +13107,7 @@ bool check_system_availability(void)
           fclose(str_len_counter);
           system_execution_function(&system_string_buffer_5,200,&system_string_buffer_6,&system_string_function_5);
           str_len_counter = _wcsdup();
-          str_len_counter = -1;
+          str_len_counter = SYSTEM_STRING_LENGTH_INVALID;
           if (str_len_counter != 0) {
             do {
               str_len_counter = str_len_counter;
