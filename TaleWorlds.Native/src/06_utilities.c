@@ -229,16 +229,16 @@ dataValue g_publish_config_settings;
 dataValue g_streaming_config_settings;
 dataValue g_recording_config_settings;
 dataValue g_broadcast_config_settings;
-dataValue g_配置验证标志;
-dataValue g_配置序列化缓冲区;
-dataValue g_配置反序列化缓冲区;
-dataValue g_配置加密密钥;
-dataValue g_配置解密密钥;
-dataValue g_配置压缩缓冲区;
-dataValue g_配置解压缩缓冲区;
-dataValue g_配置校验和数据;
-dataValue g_配置哈希数据;
-dataValue g_配置签名数据;
+dataValue g_config_validation_flag;
+dataValue g_config_serialization_buffer;
+dataValue g_config_deserialization_buffer;
+dataValue g_config_encryption_key;
+dataValue g_config_decryption_key;
+dataValue g_config_compression_buffer;
+dataValue g_config_decompression_buffer;
+dataValue g_config_checksum_data;
+dataValue g_config_hash_data;
+dataValue g_config_signature_data;
 dataValue g_配置真实性数据;
 dataValue g_配置完整性数据;
 dataValue g_配置版本信息;
@@ -6635,7 +6635,7 @@ void create_network_socket(longlong resourceHandleIdentifier,longlong resourceDa
 
 
 
-// WARNING: Removing unreachable block (ram,0x000180893865)
+// WARNING: Removing unreachable block (ram,UNREACHABLE_BLOCK_180893865)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int bind_network_socket(longlong resourceHandleIdentifier,longlong resourceDataBuffer)
@@ -6677,7 +6677,7 @@ int bind_network_socket(longlong resourceHandleIdentifier,longlong resourceDataB
 
 
 
-// WARNING: Removing unreachable block (ram,0x000180893865)
+// WARNING: Removing unreachable block (ram,UNREACHABLE_BLOCK_180893865)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int connect_network_socket(longlong resourceHandleIdentifier,uint64 resourceDataBuffer)
@@ -6749,7 +6749,7 @@ void listen_network_socket(longlong resourceHandleIdentifier,longlong resourceDa
 
 
 
-// WARNING: Removing unreachable block (ram,0x000180893a22)
+// WARNING: Removing unreachable block (ram,UNREACHABLE_BLOCK_180893a22)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int accept_network_connection(longlong resourceHandleIdentifier,longlong resourceDataBuffer)
@@ -6790,7 +6790,7 @@ int accept_network_connection(longlong resourceHandleIdentifier,longlong resourc
 
 
 
-// WARNING: Removing unreachable block (ram,0x000180893a22)
+// WARNING: Removing unreachable block (ram,UNREACHABLE_BLOCK_180893a22)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int send_network_dataValue(uint64 resourceHandleIdentifier,uint64 resourceDataBuffer)
@@ -7930,12 +7930,12 @@ validate_resource_status:
 
 
 
-// WARNING: Removing unreachable block (ram,0x000180895f53)
-// WARNING: Removing unreachable block (ram,0x000180895f67)
-// WARNING: Removing unreachable block (ram,0x000180895fa1)
-// WARNING: Removing unreachable block (ram,0x000180895fa9)
-// WARNING: Removing unreachable block (ram,0x000180895fb1)
-// WARNING: Removing unreachable block (ram,0x000180895fc0)
+// WARNING: Removing unreachable block (ram,UNREACHABLE_BLOCK_180895f53)
+// WARNING: Removing unreachable block (ram,UNREACHABLE_BLOCK_180895f67)
+// WARNING: Removing unreachable block (ram,UNREACHABLE_BLOCK_180895fa1)
+// WARNING: Removing unreachable block (ram,UNREACHABLE_BLOCK_180895fa9)
+// WARNING: Removing unreachable block (ram,UNREACHABLE_BLOCK_180895fb1)
+// WARNING: Removing unreachable block (ram,UNREACHABLE_BLOCK_180895fc0)
 // WARNING: Removing unreachable block (ram,0x000180896027)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 

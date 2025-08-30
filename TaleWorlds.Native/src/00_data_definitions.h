@@ -6712,14 +6712,14 @@ int validate_config_parameters(unsigned long long handle,unsigned long long flag
   create_thread_context(&stack_ptr_,handle,mutex_attr,mutex_type,线程池默认标志);
   long_var_ = stack_long_;
   if (stack_int_ == STRING_BUFFER_SIZE) {
-    int_var_ = strcmp(stack_long_,&unknown_180a389f0);
+    int_var_ = strcmp(stack_long_,&g_empty_string_const);
     if (int_var_ == 0) goto label_;
-    int_var_ = strcmp(long_var_,&unknown_180a38a08);
+    int_var_ = strcmp(long_var_,&g_null_string_const);
     if (int_var_ == 0) {
       int_var_ = 100;
       goto label_;
     }
-    ptr_var_ = &unknown_180a38c28;
+    ptr_var_ = &g_string_buffer_ptr;
 label_:
     int_var_ = strcmp(long_var_,ptr_var_);
     if (int_var_ != 0) {
@@ -6730,19 +6730,19 @@ label_:
   }
   else {
     if (stack_int_ == 0x15) {
-      int_var_ = strcmp(stack_long_,&unknown_180a389d8);
+      int_var_ = strcmp(stack_long_,&unknown_180a389d8g_config_path_string);
       if (int_var_ == 0) {
         int_var_ = 0x30;
         goto label_;
       }
 label_:
-      int_var_ = strcmp(long_var_,&unknown_180a38aa8);
+      int_var_ = strcmp(long_var_,&unknown_180a38aa8g_system_path_string);
       if (int_var_ == 0) {
         int_var_ = 0xb0;
         goto label_;
       }
 label_:
-      int_var_ = strcmp(long_var_,&unknown_180a38ac0);
+      int_var_ = strcmp(long_var_,&unknown_180a38ac0g_temp_path_string);
       if (int_var_ == 0) {
         int_var_ = 0xd4;
         goto label_;
@@ -6766,7 +6766,7 @@ label_:
       goto label_;
     }
     if (stack_int_ == 0x1a) {
-      int_var_ = strcmp(stack_long_,&unknown_180a38958);
+      int_var_ = strcmp(stack_long_,&unknown_180a38958g_log_path_string);
       if (int_var_ == 0) {
         int_var_ = 0x1c;
         goto label_;
@@ -6786,7 +6786,7 @@ label_:
       goto label_;
     }
     if (stack_int_ == CONFIG_PATH_BUFFER_SIZE) {
-      int_var_ = strcmp(stack_long_,&unknown_180a389b0);
+      int_var_ = strcmp(stack_long_,&unknown_180a389b0g_save_path_string);
       if (int_var_ == 0) {
         int_var_ = 0x30;
         goto label_;
@@ -6803,7 +6803,7 @@ label_:
     }
     if (stack_int_ == 0x15) goto label_;
     if (stack_int_ == 0x1f) {
-      int_var_ = strcmp(stack_long_,&unknown_180a38a88);
+      int_var_ = strcmp(stack_long_,&unknown_180a38a88g_data_path_string);
       if (int_var_ == 0) {
         int_var_ = 0x48;
         goto label_;
@@ -7100,21 +7100,21 @@ function_(unsigned long long handle,unsigned long long flags,unsigned char mutex
   unsigned char auStack_30 [40];
   create_thread_context(auStack_30,handle,mutex_attr,mutex_type,线程池默认标志);
   create_thread_context(auStack_50,flags);
-  cVar1 = validate_handle_parameters(auStack_30,&unknown_180a389d8,1);
+  cVar1 = validate_handle_parameters(auStack_30,&unknown_180a389d8g_config_path_string,1);
   if (cVar1 == '\0') {
     cVar1 = validate_handle_parameters(auStack_30,&unknown_180a38a08,1);
     if (cVar1 == '\0') {
-      cVar1 = validate_handle_parameters(auStack_30,&unknown_180a38958,1);
+      cVar1 = validate_handle_parameters(auStack_30,&unknown_180a38958g_log_path_string,1);
       if (cVar1 == '\0') {
-        cVar1 = validate_handle_parameters(auStack_30,&unknown_180a389b0,1);
+        cVar1 = validate_handle_parameters(auStack_30,&unknown_180a389b0g_save_path_string,1);
         if (cVar1 == '\0') {
           cVar1 = validate_handle_parameters(auStack_30,&unknown_180a38988,1);
           if (cVar1 == '\0') {
-            cVar1 = validate_handle_parameters(auStack_30,&unknown_180a38aa8,1);
+            cVar1 = validate_handle_parameters(auStack_30,&unknown_180a38aa8g_system_path_string,1);
             if (cVar1 == '\0') {
-              cVar1 = validate_handle_parameters(auStack_30,&unknown_180a38a88,1);
+              cVar1 = validate_handle_parameters(auStack_30,&unknown_180a38a88g_data_path_string,1);
               if (cVar1 == '\0') {
-                cVar1 = validate_handle_parameters(auStack_30,&unknown_180a38ac0,1);
+                cVar1 = validate_handle_parameters(auStack_30,&unknown_180a38ac0g_temp_path_string,1);
                 if (cVar1 == '\0') {
                   cVar1 = func_0x0001800a1eb0(auStack_30,&unknown_180a38a48);
                   if (cVar1 == '\0') {
