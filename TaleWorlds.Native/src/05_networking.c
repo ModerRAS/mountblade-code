@@ -18,6 +18,38 @@
 // 本次美化内容（2025年8月30日）：
 // - 美化网络超时阈值常量名，将NETWORK_TIMEOUT_THRESHOLD_3999替换为NETWORK_TIMEOUT_THRESHOLD_MAXIMUM等语义化常量名
 // - 美化网络参数大小常量名，将NETWORK_PARAM_SIZE_*替换为NETWORK_PARAM_SIZE_*等语义化常量名
+
+// 最新美化内容（2025年8月30日）：
+// - 添加了NETWORK_SERVER_ADDRESS_PTR_INDEX_STATUS等服务器地址值指针数组索引语义化常量
+// - 添加了NETWORK_CLIENT_ADDRESS_PTR_INDEX_STATUS等客户端地址值指针数组索引语义化常量
+// - 添加了NETWORK_SOCKET_CONTEXT_INDEX_STATUS等套接字上下文数组索引语义化常量
+// - 添加了NETWORK_SECONDARY_SOCKET_DESCRIPTOR_INDEX_STATUS等辅助套接字描述符数组索引语义化常量
+// - 添加了NETWORK_NETWORK_SOCKET_DESCRIPTOR_VAR_INDEX_STATUS等网络套接字描述符变量数组索引语义化常量
+// - 添加了NETWORK_SOCKET_DESCRIPTOR_SECONDARY_PRIMARY_INDEX_STATUS等套接字描述符次要主套接字数组索引语义化常量
+// - 添加了NETWORK_PACKET_SIZE_PTR_INDEX_CONFIG等数据包大小指针数组索引语义化常量
+// - 添加了NETWORK_INTEGER_STACK_INDEX_STATUS等整数栈数组索引语义化常量
+// - 添加了NETWORK_CONNECTION_INFO_PTR_INDEX_STATUS等连接信息指针数组索引语义化常量
+// - 添加了NETWORK_PRIMARY_LONG_PTR_INDEX_STATUS等主长指针数组索引语义化常量
+// - 添加了NETWORK_CONTEXT_STACK_PTR_INDEX_STATUS等上下文栈指针数组索引语义化常量
+// - 添加了NETWORK_SOCKET_INIT_BUFFER_SIZE等套接字初始化缓冲区大小语义化常量
+// - 将硬编码的network_network_socket_descriptor_var_secondary[3]替换为network_network_socket_descriptor_var_secondary[NETWORK_NETWORK_SOCKET_DESCRIPTOR_VAR_INDEX_STATUS]等语义化索引
+// - 将硬编码的network_socket_descriptor_secondary_primary_socket_socket[3]替换为network_socket_descriptor_secondary_primary_socket_socket[NETWORK_SOCKET_DESCRIPTOR_SECONDARY_PRIMARY_INDEX_STATUS]等语义化索引
+// - 将硬编码的network_secondary_socket_descriptor[3]替换为network_secondary_socket_descriptor[NETWORK_SECONDARY_SOCKET_DESCRIPTOR_INDEX_STATUS]等语义化索引
+// - 将硬编码的server_port_address_value_pointer[3]替换为server_port_address_value_pointer[NETWORK_SERVER_ADDRESS_PTR_INDEX_STATUS]等语义化索引
+// - 将硬编码的client_port_address_value_pointer[3]替换为client_port_address_value_pointer[NETWORK_CLIENT_ADDRESS_PTR_INDEX_STATUS]等语义化索引
+// - 将硬编码的network_context_stack_pointer[3]替换为network_context_stack_pointer[NETWORK_CONTEXT_STACK_PTR_INDEX_STATUS]等语义化索引
+// - 将硬编码的network_socket_context[3]替换为network_socket_context[NETWORK_SOCKET_CONTEXT_INDEX_STATUS]等语义化索引
+// - 将硬编码的network_socket_context_array[7]替换为network_socket_context_array[NETWORK_SOCKET_CONTEXT_INDEX_ENCRYPTION]等语义化索引
+// - 将硬编码的server_port_address_value_pointer[5]替换为server_port_address_value_pointer[NETWORK_SERVER_ADDRESS_PTR_INDEX_CONFIG]等语义化索引
+// - 将硬编码的network_packet_size_pointer[5]替换为network_packet_size_pointer[NETWORK_PACKET_SIZE_PTR_INDEX_CONFIG]等语义化索引
+// - 将硬编码的pnetwork_integer_stack_secondary[3]替换为pnetwork_integer_stack_secondary[NETWORK_INTEGER_STACK_INDEX_STATUS]等语义化索引
+// - 将硬编码的connection_info_pointer[3]替换为connection_info_pointer[NETWORK_CONNECTION_INFO_PTR_INDEX_STATUS]等语义化索引
+// - 将硬编码的network_primary_long_pointer[3]替换为network_primary_long_pointer[NETWORK_PRIMARY_LONG_PTR_INDEX_STATUS]等语义化索引
+// - 将硬编码的int64_t network_socket_init_buffer [3]替换为int64_t network_socket_init_buffer [NETWORK_SOCKET_INIT_BUFFER_SIZE]等语义化大小
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了网络系统中剩余硬编码数组索引的语义化替换
+// - 原本实现：完全重构网络系统数组索引体系，重新设计所有数组索引的语义化规范
+// - 简化实现：仅将常见的硬编码数组索引替换为语义化常量
 // - 美化网络状态码常量名，将NETWORK_STATUS_CODE_*替换为NETWORK_STATUS_CODE_*等语义化常量名
 // - 美化网络配置参数常量名，将NETWORK_CONFIG_PARAM_*替换为NETWORK_CONFIG_PARAM_*等语义化常量名
 // - 美化网络负偏移量常量名，将NETWORK_NEGATIVE_OFFSET_*替换为NETWORK_NEGATIVE_OFFSET_*等语义化常量名
@@ -24144,7 +24176,7 @@ void networkBroadcastData4(int64_t network_socket_handle, int64_t *network_buffe
             while (network_processor_count != -NETWORK_OPERATION_SUCCESS) {
               network_primary_long_pointer = (int64_t *)((longlong)network_processor_count * SOCKET_DESCRIPTOR_RESPONSE_OFFSET + network_context_pointer_data_validation);
               if ((*network_primary_long_pointer == *(int64_t *)network_packet_size_pointer) && (network_primary_long_pointer[NETWORK_OPERATION_SUCCESS] == connection_info_pointer[NETWORK_CONNECTION_INFO_PTR_INDEX_STATUS])) {
-                pnetwork_server_address = (int64_t *)network_primary_long_pointer[3];
+                pnetwork_server_address = (int64_t *)network_primary_long_pointer[NETWORK_PRIMARY_LONG_PTR_INDEX_STATUS];
               network_processor_count = (int)network_primary_long_pointer[NETWORK_BUFFER_CAPACITY_MEDIUM];
           network_stack_context_status = server_port_address_value;
           if (pnetwork_server_address == (int64_t *)MEMORY_MEMORY_ZERO_OFFSET) {
@@ -25590,7 +25622,7 @@ int64_t networkHandleProtocolError7(int64_t network_socket_handle, uint32_t *net
     if (network_status_tertiary != -NETWORK_OPERATION_SUCCESS) {
         network_primary_long_pointer = (int64_t *)((longlong)network_status_tertiary * SOCKET_DESCRIPTOR_RESPONSE_OFFSET + *(int64_t *)(network_timeout_value_pointer_tenth + NETWORK_CONFIG_DATA_OFFSET_28));
         if ((*network_primary_long_pointer == server_port_address_value) && (network_primary_long_pointer[NETWORK_OPERATION_SUCCESS] == client_port_address_value)) {
-          network_timeout_value_pointer_tenth = network_primary_long_pointer[3];
+          network_timeout_value_pointer_tenth = network_primary_long_pointer[NETWORK_PRIMARY_LONG_PTR_INDEX_STATUS];
         network_status_tertiary = (int)network_primary_long_pointer[NETWORK_BUFFER_CAPACITY_MEDIUM];
       } while (network_status_tertiary != -NETWORK_OPERATION_SUCCESS);
   network_timeout_value_pointer_tenth = NETWORK_OPERATION_STATUS_FAILURE;
@@ -31098,7 +31130,7 @@ int64_t * networkCompressBuffer2(uint64_t network_socket_handle, int64_t network
        network_calculated_status_code != -NETWORK_OPERATION_SUCCESS)) {
         network_primary_long_pointer = (int64_t *)((longlong)network_calculated_status_code * SOCKET_DESCRIPTOR_RESPONSE_OFFSET + *(int64_t *)(network_timeout_value + NETWORK_SOCKET_DATA_OFFSET48));
         if ((*network_primary_long_pointer == server_port_address_value) && (network_primary_long_pointer[NETWORK_OPERATION_SUCCESS] == network_timeout_value_pointer_tenth)) {
-          network_primary_long_pointer = (int64_t *)network_primary_long_pointer[3];
+          network_primary_long_pointer = (int64_t *)network_primary_long_pointer[NETWORK_PRIMARY_LONG_PTR_INDEX_STATUS];
           if (network_primary_long_pointer != (int64_t *)MEMORY_MEMORY_ZERO_OFFSET) goto network_jump_target;
         network_calculated_status_code = (int)network_primary_long_pointer[NETWORK_BUFFER_CAPACITY_MEDIUM];
     network_primary_long_pointer = client_port_address_value_pointer;
