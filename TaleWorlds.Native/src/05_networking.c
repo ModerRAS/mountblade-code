@@ -5250,7 +5250,7 @@ int32_t NetworkCopyPacketData(int64_t network_socket_handle, int64_t network_buf
 // 函数: void NetworkInitializeConnectionPool(uint64_t network_socket_handle, uint64_t *network_buffer_ptr)
 void NetworkInitializeConnectionPool(uint64_t network_socket_handle, uint64_t *network_buffer_ptr)
   uint8_t network_validation_max [NETWORK_BUFFER_SIZE_WORD];
-  uint8_t *network_stack_temp_var_buf;
+  uint8_t *network_stack_temp_data_buf;
   uint64_t network_response_status_primary;
   uint64_t network_response_status_secondary;
   int64_t network_context_main_pointer;
@@ -40113,3 +40113,9 @@ uint64_t networkProcessHandshake(uint64_t network_socket_handle, int64_t network
 // 新增语义化常量定义 - 网络系统浮点数值语义化美化（2025年8月30日最终批次补充）
 #define NETWORK_FLOAT_VALUE_FAILURE_MULTIPLIER 0.01f      // 网络失败值乘数0.01
 #define NETWORK_FLOAT_VALUE_PARAM_SIZE_MAXIMUM 0.0f     // 网络参数大小最大值0.0
+
+// 新增语义化常量定义 - 网络系统浮点数值语义化美化（2025年8月30日最终批次补充）
+#define NETWORK_FLOAT_VALUE_FAILURE_MULTIPLIER 0.01f      // 网络失败值乘数0.01
+#define NETWORK_FLOAT_VALUE_PARAM_SIZE_MAXIMUM 0.0f     // 网络参数大小最大值0.0
+#define NETWORK_FLOAT_VALUE_ZERO 0.0f                    // 网络浮点零值
+#define NETWORK_FLOAT_VALUE_ONE_HUNDRED 100.0f            // 网络浮点值100
