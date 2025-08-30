@@ -1,6 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 最新美化内容（2025年8月30日最终批次）：
+// - 美化线程本地存储变量名，将threadLocalStorageBase替换为thread_local_storage_base等语义化变量名
 // - 美化系统栈变量名，将longStack_c8替换为long_stack_data_buffer等数据缓冲区变量名
 // - 美化系统栈变量名，将intStack_c0替换为int_stack_size_counter等大小计数器变量名
 // - 美化系统栈变量名，将intStack_f8替换为int_stack_loop_counter等循环计数器变量名
