@@ -25625,7 +25625,7 @@ void InitializeAuthenticationSystem(longlong *handleIdentifier,longlong resource
   uint32_t initialization_stack_unsigned_long_param_120;
   uint32_t uint_stack_param_aux;
   uint32_t init_stack_ulong_parameter_118;
-  uint32_t uintStack_114;
+  uint32_t uint_stack_status_flag;
   uint32_t init_stack_ulong_parameter_110;
   uint32_t initialization_stack_config_value_10c;
   uint8_t init_stack_uint_param_one_hundred_eight;
@@ -25676,7 +25676,7 @@ void InitializeAuthenticationSystem(longlong *handleIdentifier,longlong resource
   initialization_stack_unsigned_long_param_120 = SYSTEM_FLOAT_1_0;
   uint_stack_param_aux = 0;
   init_stack_ulong_parameter_118 = 0;
-  uintStack_114 = 0;
+  uint_stack_status_flag = 0;
   init_stack_ulong_parameter_110 = 0;
   initialization_stack_config_value_10c = SYSTEM_FLOAT_1_0;
   init_stack_uint_config_value_107 = SYSTEM_DATA_COMPARE_SIZE10101;
@@ -45728,7 +45728,7 @@ void InitializeSystemTimer(uint64_t handleIdentifier,longlong resourceIdentifier
   char cStack_118;
   char cStack_117;
   uint8_t uintStack_116;
-  uint uintStack_114;
+  uint uint_stack_status_flag;
   void *system_buffer_ptr_data_aux;
   uint8_t *system_buffer_ptr_context_main;
   uint init_stack_uint_param_one_hundred;
@@ -45756,7 +45756,7 @@ void InitializeSystemTimer(uint64_t handleIdentifier,longlong resourceIdentifier
   init_stack_buffer_size = INVALID_HANDLE_VALUE;
   init_stack_system_handle = system_configuration_data ^ (ulonglong)system_local_buffer_168;
   system_pointer_value = (uint8_t *)SYSTEM_NULL_POINTER;
-  uintStack_114 = 0;
+  uint_stack_status_flag = 0;
   uintStack_116 = 0;
   init_stack_audio_parameter = system_configuration;
   init_stack_string_ptr_88 = systemFlags;
@@ -45770,7 +45770,7 @@ void InitializeSystemTimer(uint64_t handleIdentifier,longlong resourceIdentifier
   init_stack_uint_param_f8_hex = 0;
   system_buffer_ptr_context_main = (uint8_t *)SYSTEM_NULL_POINTER;
   init_stack_uint_param_one_hundred = 0;
-  uintStack_114 = SYSTEM_OFFSET_4;
+  uint_stack_status_flag = SYSTEM_OFFSET_4;
   system_result_operation = *(uint *)(system_long_result + SYSTEM_DATA_COMPARE_SIZE);
   system_result_operation = (ulonglong)system_integer_unsigned_temp;
   system_result_operation = 0;
@@ -45831,7 +45831,7 @@ INIT_LABEL_SYSTEM_721e1:
     }
   }
   InitializeSharedMemory(&system_buffer_ptr_data_aux,&system_buffer_ptr_audio_buffer,&init_stack_handle_id);
-  uintStack_114 = 0;
+  uint_stack_status_flag = 0;
   system_buffer_ptr_data_aux = &resourcePoolPointer;
   if (system_pointer_temp != (uint8_t *)SYSTEM_NULL_POINTER) {
                     // WARNING: Subroutine does not return
@@ -46201,19 +46201,19 @@ INIT_LABEL_SYSTEM_729bd:
           init_stack_uint_param_c0 = 0x33;
           system_pointer_chain = &system_buffer_ptr_config;
           system_result_operation = 2;
-          uintStack_114 = 2;
+          uint_stack_status_flag = 2;
         }
         else {
           system_pointer_chain = (void **)ProcessResourceData(&system_buffer_ptr_resource_data,g_system_base_1 + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER8);
           system_result_operation = SYSTEM_HANDLE_STATUS_VALID;
-          uintStack_114 = 1;
+          uint_stack_status_flag = 1;
           system_pointer_value = system_buffer_ptr_thread_context;
         }
         system_result_operation = ProcessResourceData(&system_buffer_ptr_graphics_config,system_pointer_chain);
         if ((system_counter_temp & 2) != SYSTEM_COMPARISON_ZERO) {
           system_result_operation = system_counter_temp & SYSTEM_OFFSET_Fffffffd;
           system_buffer_ptr_config = &resourcePoolPointer;
-          uintStack_114 = system_integer_unsigned_temp;
+          uint_stack_status_flag = system_integer_unsigned_temp;
           if (system_pointer_temp != (uint64_t *)SYSTEM_NULL_POINTER) {
                     // WARNING: Subroutine does not return
             ProcessSystemOperation(system_pointer_temp);
@@ -46223,7 +46223,7 @@ INIT_LABEL_SYSTEM_729bd:
           system_buffer_ptr_config = &globalSystemPointerData;
         }
         if ((system_counter_temp & 1) != SYSTEM_COMPARISON_ZERO) {
-          uintStack_114 = system_counter_temp & SYSTEM_OFFSET_Fffffffe;
+          uint_stack_status_flag = system_counter_temp & SYSTEM_OFFSET_Fffffffe;
           system_buffer_ptr_resource_main = &resourcePoolPointer;
           if (init_stack_long_value_78 != SYSTEM_COMPARISON_ZERO) {
                     // WARNING: Subroutine does not return
