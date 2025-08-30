@@ -2717,13 +2717,13 @@ void HandleResourceCleanup(void)
   uint32 utility_stack_parameter_tertiary;
   ulonglong utility_security_parameter;
   
-  if (*(longlong *)(utility_input_register + 8) != 0) {
+  if (*(longlong *)(utility_input_register_value + 8) != 0) {
     utility_stack_parameter_ptr = &utility_stack_local_variable_buffer;
     utility_iteration_counter = 0;
     utility_stack_parameter_secondary = 0;
     utility_stack_parameter_tertiary = SECURITY_TOKEN_MASK;
     utility_operation_result = AllocateSystemMemory(*(uint64 *)(utility_base_register_pointer + UTILITY_MEMORY_SIZE_OFFSET),*(longlong *)(utility_input_register_value + 8),
-                          &utility_stack_working_buffer_30);
+                          &utility_stack_working_buffer_primary);
     if (utility_operation_result == 0) {
       if (0 < utility_stack_parameter_secondary) {
         utility_array_handle_pointer = 0;
