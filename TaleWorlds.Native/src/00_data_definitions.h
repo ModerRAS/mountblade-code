@@ -12289,13 +12289,5 @@ label_:
   }
   return;
 }
-    network_system_initialized = '\0';
-  }
-  return;
-}
-
-#endif // DATA_DEFINITIONS_H
-  return;
-}
 
 #endif // DATA_DEFINITIONS_H
