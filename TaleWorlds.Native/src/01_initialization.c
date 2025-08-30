@@ -276,11 +276,12 @@
 #define SYSTEM_INIT_MAGIC_COOKIE_NETWORK_3      SYSTEM_INIT_MAGIC_COOKIE_NETWORK_3 // 网络系统魔法cookie 3
 
 // 补充硬编码值语义化常量（2025年8月30日最终批次补充）
-#define             0xb     // 栈值11
-#define             0xc     // 栈值12
-#define             0xd     // 栈值13
-#define             0xe     // 栈值14
-#define             0xf     // 栈值15
+// 栈值常量（2025年8月30日最终批次补充）
+#define SYSTEM_INIT_STACK_VALUE_11            0xb     // 栈值11
+#define SYSTEM_INIT_STACK_VALUE_12            0xc     // 栈值12
+#define SYSTEM_INIT_STACK_VALUE_13            0xd     // 栈值13
+#define SYSTEM_INIT_STACK_VALUE_14            0xe     // 栈值14
+#define SYSTEM_INIT_STACK_VALUE_15            0xf     // 栈值15
 #define SYSTEM_INIT_OFFSET_STRUCT_0X30        0x30    // 结构体偏移量0x30
 #define SYSTEM_INIT_OFFSET_STRUCT_0X50        0x50    // 结构体偏移量0x50
 #define SYSTEM_INIT_OFFSET_STRUCT_0X60        0x60    // 结构体偏移量0x60
@@ -310,7 +311,7 @@
 #define SYSTEM_INIT_SIZE_STRUCT_0X50          0x50    // 结构体大小0x50
 #define SYSTEM_INIT_OFFSET_STRUCT_0X0E        0xe     // 结构体偏移量0xe
 #define SYSTEM_INIT_VALUE_CHAR_NULL           0x0     // 空字符
-#define             0x1     // 字符1
+#define SYSTEM_INIT_VALUE_CHAR_1              0x1     // 字符1
 #define SYSTEM_INIT_OFFSET_GLOBAL_0X330       0x330   // 全局偏移量0x330
 #define SYSTEM_INIT_OFFSET_STRUCT_0X24        0x24    // 结构体偏移量0x24
 #define SYSTEM_INIT_OFFSET_STRUCT_0X39        0x39    // 结构体偏移量0x39
@@ -357,21 +358,23 @@
 #define SYSTEM_INIT_DOUBLE_FLOAT_PAIR_1_0   0x3f8000003f800000  // 两个单精度1.0组合的十六进制表示
 
 // 补充硬编码值语义化常量（2025年8月30日最终批次补充）
-#define             0xb     // 栈值11
-#define             0xc     // 栈值12
-#define             0xd     // 栈值13
-#define             0xe     // 栈值14
-#define             0xf     // 栈值15
-#define                0x30    // 偏移量
-#define                0x50    // 偏移量
-#define                0x60    // 偏移量
-#define SYSTEM_INIT_SIZE_0X38                 0x38    // 大小SYSTEM_INIT_SIZE_0X38SYSTEM_INIT_SIZE_0X38
-#define                0xd     // 偏移量_INIT_STACK_VALUE_MEDIUM
-#define SYSTEM_INIT_MAGIC_COOKIE_ENGINE_1     0x69676e65 // 引擎魔法cookie 1SYSTEM_INIT_MAGIC_COOKIE_ENGINE_1
-#define SYSTEM_INIT_MAGIC_COOKIE_ENGINE_2     0x635f656e // 引擎魔法cookie 2SYSTEM_INIT_MAGIC_COOKIE_ENGINE_2
-#define SYSTEM_INIT_MAGIC_COOKIE_ENGINE_3     0x69666e6f // 引擎魔法cookie 3SYSTEM_INIT_MAGIC_COOKIE_ENGINE_3
-#define SYSTEM_INIT_MAGIC_COOKIE_ENGINE_4     0x78742e67 // 引擎魔法cookie 4SYSTEM_INIT_MAGIC_COOKIE_ENGINE_4
-#define SYSTEM_INIT_MAGIC_COOKIE_ENGINE_5     0x74     // 引擎魔法cookie 5SYSTEM_INIT_MAGIC_COOKIE_ENGINE_5
+// 栈值常量（2025年8月30日最终批次补充）
+#define SYSTEM_INIT_STACK_VALUE_11            0xb     // 栈值11
+#define SYSTEM_INIT_STACK_VALUE_12            0xc     // 栈值12
+#define SYSTEM_INIT_STACK_VALUE_13            0xd     // 栈值13
+#define SYSTEM_INIT_STACK_VALUE_14            0xe     // 栈值14
+#define SYSTEM_INIT_STACK_VALUE_15            0xf     // 栈值15
+// 偏移量常量（2025年8月30日最终批次补充）
+#define SYSTEM_INIT_OFFSET_0X30               0x30    // 偏移量
+#define SYSTEM_INIT_OFFSET_0X50               0x50    // 偏移量
+#define SYSTEM_INIT_OFFSET_0X60               0x60    // 偏移量
+#define SYSTEM_INIT_SIZE_0X38                 0x38    // 大小0x38
+#define SYSTEM_INIT_OFFSET_0XD                0xd     // 偏移量
+#define SYSTEM_INIT_MAGIC_COOKIE_ENGINE_1     0x69676e65 // 引擎魔法cookie 1
+#define SYSTEM_INIT_MAGIC_COOKIE_ENGINE_2     0x635f656e // 引擎魔法cookie 2
+#define SYSTEM_INIT_MAGIC_COOKIE_ENGINE_3     0x69666e6f // 引擎魔法cookie 3
+#define SYSTEM_INIT_MAGIC_COOKIE_ENGINE_4     0x78742e67 // 引擎魔法cookie 4
+#define SYSTEM_INIT_MAGIC_COOKIE_ENGINE_5     0x74     // 引擎魔法cookie 5
 #define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_1     0x73676f6c // 预制体魔法cookie 1SYSTEM_INIT_MAGIC_COOKIE_PREFAB_1
 
 // 系统初始化浮点系数常量（2025年8月30日最终批次补充）

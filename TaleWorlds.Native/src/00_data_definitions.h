@@ -12306,7 +12306,7 @@ long long process_context_handle_param(long long *handle_param)
       system_float_variable = system_operation_parameter * *(float *)(system_string_length_counter + SYSTEM_FLOAT_ARRAY_ADDR);
       system_float_variable = system_operation_parameter * *(float *)(system_string_length_counter + SYSTEM_FLOAT_ARRAY_ADDR_2);
       system_float_variable = system_operation_parameter * *(float *)(system_string_length_counter + SYSTEM_FLOAT_ARRAY_ADDR_3);
-      system_float_variable = system_float_variable * *mutex_attr + system_float_variable * mutex_attr[4] + system_float_variable * mutex_attr[8] + mutex_attr[0xc];
+      system_float_variable = system_float_variable * *mutex_attr + system_float_variable * mutex_attr[SYSTEM_ARRAY_INDEX_FOURTH] + system_float_variable * mutex_attr[SYSTEM_ARRAY_INDEX_EIGHTH] + mutex_attr[SYSTEM_ARRAY_INDEX_TWELFTH];
       system_float_variable = system_float_variable * mutex_attr[SYSTEM_ARRAY_INDEX_1] + system_float_variable * mutex_attr[5] + system_float_variable * mutex_attr[9] + mutex_attr[SYSTEM_MEMORY_OFFSET_D];
       system_float_variable = system_float_variable * mutex_attr[SYSTEM_ARRAY_INDEX_2] + system_float_variable * mutex_attr[6] + system_float_variable * mutex_attr[10] + mutex_attr[0xe];
       system_float_variable = system_float_variable * mutex_attr[3] + system_float_variable * mutex_attr[7] + system_float_variable * mutex_attr[0xb] + mutex_attr[0xf];
