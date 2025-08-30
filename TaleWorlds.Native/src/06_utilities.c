@@ -91,25 +91,25 @@
 // 23. 将local_resource_buffer替换为UTILITY_LOCAL_RESOURCE_BUFFER等局部缓冲区变量名
 // 24. 将local_process_buffer替换为UTILITY_LOCAL_PROCESS_BUFFER等局部处理缓冲区变量名
 // 25. 将local_security_buffer替换为UTILITY_LOCAL_SECURITY_BUFFER等局部安全缓冲区变量名
-// 19. 将utility_temp_var_4替换为utility_temp_validation_flag等标志变量名
-// 20. 将utility_signed_var_1替换为utility_temp_signed_value等有符号临时变量名
-// 21. 将char_stack_temp_20替换为utility_temp_status_char等状态字符变量名
-// 22. 将float_array_stack_198替换为utility_stack_float_array_buffer等浮点数组变量名
-// 23. 将pointer_uint_stack_58替换为utility_stack_pointer_buffer等指针缓冲区变量名
-// 24. 将stack_float_value_primary_temp替换为utility_stack_float_primary_temp等浮点临时变量名
-// 25. 将stack_float_value_4c替换为utility_stack_float_parameter等浮点参数变量名
-// 26. 将temp_variable_float替换为utility_temp_float_value等浮点值变量名
-// 27. 将utility_temp_long_value替换为utility_temp_long_value等长整型临时变量名
-// 28. 将utility_temp_unsigned_value替换为utility_temp_unsigned_value等无符号临时变量名
-// 29. 将CONCAT71替换为UTILITY_BIT_CONCAT_8_1等位操作函数名
-// 30. 将unsignedStackArrayX1c替换为UTILITY_STACK_ARRAY_1C等栈数组变量名
-// 31. 将local_variableontext_buffer_data替换为UTILITY_CONTEXT_BUFFER_DATA等上下文缓冲区变量名
-// 32. 将utility_base_register_pointer替换为utility_register_context_base等寄存器上下文变量名
-// 33. 将utility_input_register_value替换为utility_register_input_value等输入寄存器变量名
-// 34. 将utility_stack_working_buffer_primary替换为utility_stack_buffer_primary等栈缓冲区变量名
-// 35. 将utility_stack_local_variable_buffer替换为utility_stack_buffer_local等本地缓冲区变量名
-// 36. 将utility_stack_buffer_secondary替换为utility_stack_buffer_count等计数变量名
-// 37. 将utility_stack_buffer_tertiary替换为utility_stack_buffer_mask等掩码变量名
+// 26. 将utility_temp_var_4替换为utility_temp_validation_flag等标志变量名
+// 27. 将utility_signed_var_1替换为utility_temp_signed_value等有符号临时变量名
+// 28. 将char_stack_temp_20替换为utility_temp_status_char等状态字符变量名
+// 29. 将float_array_stack_198替换为utility_stack_float_array_buffer等浮点数组变量名
+// 30. 将pointer_uint_stack_58替换为utility_stack_pointer_buffer等指针缓冲区变量名
+// 31. 将stack_float_value_primary_temp替换为utility_stack_float_primary_temp等浮点临时变量名
+// 32. 将stack_float_value_4c替换为utility_stack_float_parameter等浮点参数变量名
+// 33. 将temp_variable_float替换为utility_temp_float_value等浮点值变量名
+// 34. 将utility_temp_long_value替换为utility_temp_long_value等长整型临时变量名
+// 35. 将utility_temp_unsigned_value替换为utility_temp_unsigned_value等无符号临时变量名
+// 36. 将CONCAT71替换为UTILITY_BIT_CONCAT_8_1等位操作函数名
+// 37. 将unsignedStackArrayX1c替换为UTILITY_STACK_ARRAY_1C等栈数组变量名
+// 38. 将local_variableontext_buffer_data替换为UTILITY_CONTEXT_BUFFER_DATA等上下文缓冲区变量名
+// 39. 将utility_base_register_pointer替换为utility_register_context_base等寄存器上下文变量名
+// 40. 将utility_input_register_value替换为utility_register_input_value等输入寄存器变量名
+// 41. 将utility_stack_working_buffer_primary替换为utility_stack_buffer_primary等栈缓冲区变量名
+// 42. 将utility_stack_local_variable_buffer替换为utility_stack_buffer_local等本地缓冲区变量名
+// 43. 将utility_stack_buffer_secondary替换为utility_stack_buffer_count等计数变量名
+// 44. 将utility_stack_buffer_tertiary替换为utility_stack_buffer_mask等掩码变量名
 // 38. 将utility_memory_size_offset替换为utility_memory_size等内存大小变量名
 // 39. 将utility_array_handle_pointer替换为utility_array_index等数组索引变量名
 // 40. 将utility_allocate_memory_block替换为utility_allocate_memory等内存分配函数名
@@ -9144,15 +9144,9 @@ uint64 FindCallbackFunction(longlong resource_handle_identifier,uint64 resource_
   utility_thread_stack_secondary_offset = 0;
 process_next_character:
   generic_data_pointer = (uint64 *)
-<<<<<<< Updated upstream
            ((longlong)*(int *)(*(longlong *)(UTILITY_REGISTER_R10 + RESOURCE_HANDLE_OFFSET) + resourceOperationFlags * structure_multiplier) +
            *(longlong *)(UTILITY_REGISTER_R10 + 8));
   if (utility_unsigned_pointer_var3 != (uint64 *)UTILITY_NULL_POINTER) {
-=======
-           ((longlong)*(int *)(*(longlong *)(in_R10 + RESOURCE_HANDLE_OFFSET) + resourceOperationFlags * structure_multiplier) +
-           *(longlong *)(in_R10 + 8));
-  if (UTILITY_RESOURCE_POINTER_PRIMARY != (uint64 *)UTILITY_NULL_POINTER) {
->>>>>>> Stashed changes
     (**(code **)*generic_data_pointer)();
   }
   *utility_cpu_context = utility_thread_stack_secondary_offset;
