@@ -11810,7 +11810,7 @@ int SystemFunction_44_0(void)
 {
   longlong lVar1;
 
-  FUN_1804777d0();
+  EngineFunction_42_4();
   lVar1 = execute_system_init(InitializeCoreSystem);
   return (lVar1 != 0) - 1;
 }
@@ -11822,7 +11822,7 @@ int SystemFunction_47_2(void)
   uint8_t auStackX_8 [32];
 
   auStackX_8[0] = 1;
-  FUN_180477890(&g_system_data_variable0,auStackX_8);
+  EngineFunction_61_6(&g_system_data_variable0,auStackX_8);
   lVar1 = execute_system_init(InitializeMemoryManager);
   return (lVar1 != 0) - 1;
 }
@@ -11834,7 +11834,7 @@ int SystemFunction_52_0(void)
   uint8_t auStackX_8 [32];
 
   auStackX_8[0] = 0;
-  FUN_180477890(&g_system_data_variable0,auStackX_8);
+  EngineFunction_61_6(&g_system_data_variable0,auStackX_8);
   lVar1 = execute_system_init(InitializeProcessManager);
   return (lVar1 != 0) - 1;
 }
@@ -13736,9 +13736,9 @@ int SystemFunction_51_2(void)
 {
   longlong lVar1;
 
-  initialize_system_component(&g_system_memory_data,8,5,&g_subsystem_init_function,FUN_network_init);
-  initialize_system_component(0x180c96248,8,5,&g_subsystem_init_function,FUN_network_init);
-  initialize_system_component(0x180c96298,8,5,&g_subsystem_init_function,FUN_network_init);
+  initialize_system_component(&g_system_memory_data,8,5,&g_subsystem_init_function,InitializeNetworkSubsystem);
+  initialize_system_component(0x180c96248,8,5,&g_subsystem_init_function,InitializeNetworkSubsystem);
+  initialize_system_component(0x180c96298,8,5,&g_subsystem_init_function,InitializeNetworkSubsystem);
   _Mtx_init_in_situ(0x180c962c0,2);
   _g_network_state_1 = 0; // 原始名称: _g_system_data_variable0
   g_network_buffer_size = 0;
@@ -13752,7 +13752,7 @@ int SystemFunction_51_2(void)
   uRam0000000180c96358 = 0;
   g_network_timeout_value = 0;
   g_network_connection_data = 3;
-  FUN_1804ac640();
+  EngineFunction_11_2();
   lVar1 = execute_system_init(&g_system_reserved_data);
   return (lVar1 != 0) - 1;
 }
@@ -15981,9 +15981,9 @@ void WotsMain(uint64_t param_1)
   uint64_t aflag_initialized [2];
 
                     // 0x45a00  27  WotsMain
-// void FUN_network_init(longlong *param_1)
+// void InitializeNetworkSubsystem(longlong *param_1)
 
-void FUN_network_init(longlong *param_1)
+void InitializeNetworkSubsystem(longlong *param_1)
 
 {
   if ((longlong *)*param_1 != (longlong *)0x0) {
@@ -38657,7 +38657,7 @@ void SystemFunction_48_0(longlong param_1)
   SystemFunction_42_4();
   if ((*(char *)(_g_system_data_variable0 + SYSTEM_NODE_HEADER_SIZE) == '\0') && (*(char *)(_g_system_data_variable0 + 0x21) == '\0')) {
     uVar3 = FUN_1808fc418(0x428);
-    plStack_250 = (longlong *)FUN_18049d530(uVar3);
+    plStack_250 = (longlong *)EngineFunction_40_0(uVar3);
   }
   else {
     plStack_250 = (longlong *)FUN_18062b1e0(_g_system_memory_pool_1,0x28,8,3);
@@ -50362,7 +50362,7 @@ uint64_t * SystemFunction_76_8(uint64_t *param_1,ulonglong param_2)
   uVar1 = 0xfffffffffffffffe;
   *param_1 = &g_system_global_variable8;
   SystemFunction_88_0();
-  FUN_1808fc8a8(param_1 + 1,8,7,FUN_network_init,uVar1);
+  FUN_1808fc8a8(param_1 + 1,8,7,InitializeNetworkSubsystem,uVar1);
   if ((param_2 & 1) != 0) {
     free(param_1,0x158);
   }
