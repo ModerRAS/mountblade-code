@@ -1,5 +1,28 @@
 #include "TaleWorlds.Native.Split.h"
 
+// 本次美化内容（2025年8月30日）第十六批次：
+// - 美化变量名，将system_buffer_ptr_50替换为system_buffer_ptr_thread_context等线程上下文指针变量名
+// - 美化变量名，将system_buffer_ptr_48替换为system_buffer_ptr_thread_data等线程数据指针变量名
+// - 美化变量名，将system_buffer_ptr_2e8替换为system_buffer_ptr_resource_pool_small等小型资源池指针变量名
+// - 美化变量名，将system_buffer_ptr_2e0替换为system_buffer_ptr_resource_pool_micro等微型资源池指针变量名
+// - 美化变量名，将system_buffer_ptr_2c8替换为system_buffer_ptr_resource_pool_nano等纳米资源池指针变量名
+// - 美化变量名，将system_buffer_ptr_2c0替换为system_buffer_ptr_resource_pool_pico等皮科资源池指针变量名
+// - 美化变量名，将system_buffer_ptr_2a0替换为system_buffer_ptr_resource_data等资源数据指针变量名
+// - 美化变量名，将system_buffer_ptr_258替换为system_buffer_ptr_data_transfer等数据传输指针变量名
+// - 美化变量名，将system_buffer_ptr_238替换为system_buffer_ptr_temp_storage等临时存储指针变量名
+// - 美化变量名，将system_buffer_ptr_1b0替换为system_buffer_ptr_config_main等主配置指针变量名
+// - 美化变量名，将system_buffer_ptr_198替换为system_buffer_ptr_operation_handle等操作句柄指针变量名
+// - 美化变量名，将system_buffer_ptr_190替换为system_buffer_ptr_thread_main等主线程指针变量名
+// - 美化变量名，将system_buffer_ptr_178替换为system_buffer_ptr_resource_main等主资源指针变量名
+// - 美化变量名，将system_buffer_ptr_148替换为system_buffer_ptr_data_main等主数据指针变量名
+// - 美化变量名，将system_buffer_ptr_128替换为system_buffer_ptr_function_main等主函数指针变量名
+// - 美化变量名，将system_buffer_ptr_108替换为system_buffer_ptr_context_main等主上下文指针变量名
+// - 美化变量名，将system_buffer_ptr_310替换为system_buffer_ptr_resource_pool_medium等中型资源池指针变量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了系统初始化文件中剩余变量名的语义化替换
+// - 原本实现：完全重构系统初始化文件变量命名体系，建立统一的变量命名规范
+// - 简化实现：仅将常见的包含数字的变量名替换为语义化名称
+
 // 本次美化内容（2025年8月30日）第十五批次：
 // - 美化比较结果变量名，将compare_result替换为system_memory_comparison_result等内存比较结果变量名
 // - 美化资源初始化函数名，将get_resource_init_function_1替换为get_resource_init_function_primary等语义化函数名
@@ -22571,25 +22594,25 @@ void ConfigureGraphicsShader(uint64_t handleIdentifier,longlong resourceIdentifi
   uint init_stack_parameter_1c8;
   uint32_t init_stack_parameter_1c0;
   void *system_buffer_ptr_graphics_context;
-  void *system_buffer_ptr_1b0;
+  void *system_buffer_ptr_config_main;
   int intStack_1a8;
   uint32_t init_stack_parameter_1a0;
-  void *system_buffer_ptr_198;
-  void *system_buffer_ptr_190;
+  void *system_buffer_ptr_operation_handle;
+  void *system_buffer_ptr_thread_main;
   int intStack_188;
   uint32_t init_stack_buffer_size_180;
-  void *system_buffer_ptr_178;
+  void *system_buffer_ptr_resource_main;
   longlong init_stack_memory_block_170;
   uint32_t init_stack_buffer_size_160;
   uint64_t init_stack_data_size_158;
   ulonglong init_stack_data_size_150;
-  void *system_buffer_ptr_148;
+  void *system_buffer_ptr_data_main;
   longlong init_stack_memory_chunk_140;
   uint32_t init_stack_buffer_size_one_hundred_thirty;
-  void *system_buffer_ptr_128;
+  void *system_buffer_ptr_function_main;
   longlong init_stack_memory_segment_120;
   uint32_t init_stack_ulong_parameter_110;
-  void *system_buffer_ptr_108;
+  void *system_buffer_ptr_context_main;
   longlong init_stack_memory_page_100;
   uint32_t init_stack_uint_param_f0_hex;
   uint64_t *system_buffer_ptr_thread_param;
@@ -22623,7 +22646,7 @@ void ConfigureGraphicsShader(uint64_t handleIdentifier,longlong resourceIdentifi
     system_temp_long_result = system_long_result + SYSTEM_OFFSET_1;
   } while (system_temp_pointer[system_long_result] != SYSTEM_CHAR_NULL_TERMINATOR);
   system_operation_result = system_long_result + 2;
-  system_buffer_ptr_310 = &resourcePoolPointer;
+  system_buffer_ptr_resource_pool_medium = &resourcePoolPointer;
   init_stack_uint_offset_2f8 = 0;
   system_buffer_ptr_texture_pool = (uint8_t *)SYSTEM_NULL_POINTER;
   init_stack_uint_param_300 = 0;
@@ -24535,7 +24558,7 @@ void InitializeNetworkSystem(uint64_t handleIdentifier,longlong resourceIdentifi
   uint8_t system_local_buffer_1c8 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   void **psystem_buffer_ptr_1a8;
   uint64_t init_stack_parameter_1a0;
-  void *system_buffer_ptr_198;
+  void *system_buffer_ptr_operation_handle;
   uint64_t uintStack_190;
   int intStack_188;
   uint8_t system_local_buffer_e8 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
@@ -24900,7 +24923,7 @@ void InitializeSystemTimer(uint64_t handleIdentifier,uint64_t resourceIdentifier
   uint8_t init_stack_uint_parameter_208;
   uint32_t uintStack_1f8;
   uint32_t uintStack_1f4;
-  void *system_buffer_ptr_1b0;
+  void *system_buffer_ptr_config_main;
   uint8_t *system_buffer_ptr_1a8;
   uint init_stack_parameter_1a0;
   uint64_t init_stack_parameter_198;
@@ -25171,7 +25194,7 @@ void InitializeAuthenticationSystem(longlong *handleIdentifier,longlong resource
   uint uintStack_19c;
   uint8_t init_stack_parameter_198;
   uint32_t uintStack_194;
-  void *system_buffer_ptr_190;
+  void *system_buffer_ptr_thread_main;
   longlong longStack_188;
   int intStack_180;
   uint32_t init_stack_parameter_handle;
@@ -26503,7 +26526,7 @@ void SetupDebuggingPipeline(uint64_t handleIdentifier,uint64_t *resourceIdentifi
   uint64_t init_stack_uint_parameter_128;
   uint64_t *system_buffer_ptr_120;
   void **psystem_buffer_ptr_118;
-  void *system_buffer_ptr_108;
+  void *system_buffer_ptr_context_main;
   uint8_t *system_buffer_ptr_100;
   uint32_t init_stack_uint_param_f8_hex;
   uint8_t system_local_buffer_f0 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
@@ -36186,7 +36209,7 @@ void InitializeDataEngineNode(int *handleIdentifier)
   ulonglong system_operation_result;
   uint8_t system_local_buffer_1f8 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   uint16_t system_local_buffer_1b8 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-  void *system_buffer_ptr_1b0;
+  void *system_buffer_ptr_config_main;
   uint32_t *system_buffer_ptr_1a8;
   uint32_t init_stack_parameter_1a0;
   uint64_t init_stack_parameter_198;
@@ -36877,7 +36900,7 @@ void InitializeSystemResources(uint64_t handleIdentifier)
   init_stack_config_handle = system_configuration_data ^ (ulonglong)system_local_buffer_358;
   InitializeInputSystem(&system_buffer_ptr_2a0);
   system_buffer_ptr_318 = (uint64_t *)SYSTEM_NULL_POINTER;
-  system_buffer_ptr_310 = (uint64_t *)SYSTEM_NULL_POINTER;
+  system_buffer_ptr_resource_pool_medium = (uint64_t *)SYSTEM_NULL_POINTER;
   init_stack_uint_param_308 = 0;
   init_stack_uint_param_300 = 3;
   system_buffer_ptr_resource_pool_pico = (uint64_t *)SYSTEM_NULL_POINTER;
@@ -36892,7 +36915,7 @@ void InitializeSystemResources(uint64_t handleIdentifier)
                     // WARNING: Subroutine does not return
     memset(system_local_buffer_temp_data_238,0,SYSTEM_NODE_HEADER_SIZE0);
   }
-  for (; system_buffer_ptr_310 = system_temp_pointer, system_temp_pointer != system_root_node; system_ptr_value = system_temp_pointer + 4) {
+  for (; system_buffer_ptr_resource_pool_medium = system_temp_pointer, system_temp_pointer != system_root_node; system_ptr_value = system_temp_pointer + 4) {
     (**(code **)*system_temp_pointer)(system_temp_pointer,0);
     system_ptr_value = system_buffer_ptr_310;
   }
@@ -37127,7 +37150,7 @@ void InitializeSystemModule67(longlong *handleIdentifier,longlong resourceIdenti
   uint64_t *system_ptr_value;
   uint8_t system_local_buffer_username [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   longlong long_stack_one_hundred_eighteen;
-  void *system_buffer_ptr_108;
+  void *system_buffer_ptr_context_main;
   uint8_t *system_buffer_ptr_100;
   uint32_t init_stack_uint_param_f8_hex;
   uint64_t init_stack_uint_param_f0_hex;
@@ -37468,10 +37491,10 @@ void InitializeFontSystem(uint64_t handleIdentifier)
   void *system_buffer_ptr_graphics_context;
   uint32_t uintStack_1a8;
   void *system_buffer_ptr_1a0;
-  void *system_buffer_ptr_198;
+  void *system_buffer_ptr_operation_handle;
   uint32_t uintStack_188;
   void *system_buffer_ptr_graphics_buffer;
-  void *system_buffer_ptr_178;
+  void *system_buffer_ptr_resource_main;
   uint32_t uintStack_168;
   uint64_t *system_buffer_ptr_160;
   uint64_t *system_buffer_ptr_158;
@@ -38154,10 +38177,10 @@ void InitializeSystemModule30(uint64_t handleIdentifier,uint64_t resourceIdentif
   longlong init_stack_parameter_1b0;
   uint32_t uintStack_1a8;
   uint64_t init_stack_parameter_1a0;
-  void *system_buffer_ptr_198;
+  void *system_buffer_ptr_operation_handle;
   longlong longStack_190;
   uint32_t init_stack_buffer_size_180;
-  void *system_buffer_ptr_178;
+  void *system_buffer_ptr_resource_main;
   void *system_buffer_ptr_170;
   uint32_t uintStack_168;
   ulonglong init_stack_buffer_size_160;

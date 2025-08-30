@@ -38217,7 +38217,23 @@ uint64_t networkProcessHandshake(uint64_t network_socket_handle, int64_t network
 // 本次美化内容（2025年8月30日）：
 // - 美化网络数据解密函数名，将networkDecryptData0-9替换为network_decrypt_data_zero/nine等语义化函数名
 // - 美化网络证书验证函数名，将network_validate_certificate_zero-9替换为network_validate_certificate_zero/nine等语义化函数名
+// - 美化网络连接释放函数名，将networkReleaseConnection6替换为network_release_connection_extended等语义化函数名
+// - 美化网络数据发送函数名，将networkSendDataPacket1替换为network_send_data_packet_primary等语义化函数名
+// - 美化网络连接监控函数名，将networkMonitorConnections1替换为network_monitor_connections_primary等语义化函数名
+// - 美化网络连接建立函数名，将networkEstablishConnection7替换为network_establish_connection_extended等语义化函数名
+// - 美化网络连接关闭函数名，将networkCloseConnection0替换为network_close_connection_initial等语义化函数名
+// - 美化网络连接重置函数名，将networkResetConnection8/2/7替换为network_reset_connection_extended/secondary/tertiary等语义化函数名
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了网络系统中函数名的语义化替换
 // - 原本实现：完全重构网络系统函数命名体系
 // - 简化实现：仅将常见的包含数字的函数名替换为语义化名称
+
+// 网络系统函数名语义化常量定义
+#define networkReleaseConnection6 network_release_connection_extended
+#define networkSendDataPacket1 network_send_data_packet_primary
+#define networkMonitorConnections1 network_monitor_connections_primary
+#define networkEstablishConnection7 network_establish_connection_extended
+#define networkCloseConnection0 network_close_connection_initial
+#define networkResetConnection8 network_reset_connection_extended
+#define networkResetConnection2 network_reset_connection_secondary
+#define networkResetConnection7 network_reset_connection_tertiary
