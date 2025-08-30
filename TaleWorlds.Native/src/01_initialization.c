@@ -12659,9 +12659,9 @@ void InitializeSystemModule67(void)
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_system_local_buffer_primary;
   system_system_local_buffer_primary[0] = 0;
-  init_stack_uint_size_90 = 0x14;
+  init_stack_network_buffer_size = 0x14;
   strcpy_s(system_system_local_buffer_primary,0x80,&g_system_string_buffer,system_parameter,INVALID_HANDLE_VALUE);
-  _g_network_system_object_4 = create_system_object(&thread_parameter_ptr); // 原始名称: system_configuration_data
+  g_system_network_buffer_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: system_configuration_data
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
@@ -15375,9 +15375,9 @@ void CleanupThreadLocalStorage(void)
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_system_local_buffer_primary;
   system_system_local_buffer_primary[0] = 0;
-  init_stack_uint_size_90 = 0x17;
+  init_stack_utility_config_size_2 = 0x17;
   strcpy_s(system_system_local_buffer_primary,0x80,&g_system_global_config,system_parameter,INVALID_HANDLE_VALUE);
-  system_statusData = create_system_object(&thread_parameter_ptr);
+  g_system_utility_status_ptr = create_system_object(&thread_parameter_ptr);
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address

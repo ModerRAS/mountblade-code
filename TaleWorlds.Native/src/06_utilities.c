@@ -1731,30 +1731,34 @@ dataValue utility_audio_system_stream_data;
 dataValue utility_audio_system_effect_data;
 
 // 函数: data_value resourceMonitorActivity;
-dataValue resourceMonitorActivity;
-dataValue resourceMonitorBufferPrimary;
-dataValue resourceMonitorBufferSecondary;
-dataValue resourceMonitorBufferTertiary;
-dataValue resourceMonitorBufferQuaternary;
+// 美化变量名 - 将资源监控变量名替换为语义化名称
+dataValue utility_resource_monitor_activity;
+dataValue utility_resource_monitor_buffer_primary;
+dataValue utility_resource_monitor_buffer_secondary;
+dataValue utility_resource_monitor_buffer_tertiary;
+dataValue utility_resource_monitor_buffer_quaternary;
 
 // 函数: data_value resourceManageLifecycle;
-dataValue resourceManageLifecycle;
-dataValue performance_monitor_frame_data;
-dataValue memoryBlockAllocatorHeap;
+// 美化变量名 - 将资源管理变量名替换为语义化名称
+dataValue utility_resource_manage_lifecycle;
+dataValue utility_performance_monitor_frame_data;
+dataValue utility_memory_block_allocator_heap;
 
 // 函数: data_value resourceOptimizePerformance;
-dataValue resourceOptimizePerformance;
-dataValue resource_optimization_texture_data;
-dataValue memoryBlockPoolManager;
-dataValue resource_optimization_mesh_data;
-dataValue eventHandlerState;
+// 美化变量名 - 将资源优化变量名替换为语义化名称
+dataValue utility_resource_optimize_performance;
+dataValue utility_resource_optimization_texture_data;
+dataValue utility_memory_block_pool_manager;
+dataValue utility_resource_optimization_mesh_data;
+dataValue utility_event_handler_state;
 
 // 函数: data_value resourceReportStatus;
-dataValue resourceReportStatus;
+// 美化变量名 - 将资源报告变量名替换为语义化名称
+dataValue utility_resource_report_status;
 
 // 函数: data_value resourceGenerateReport;
-dataValue resourceGenerateReport;
-dataValue resourceReportFormat;
+dataValue utility_resource_generate_report;
+dataValue utility_resource_report_format;
 dataValue event_handler_queue_data;
 
 // 函数: data_value resourceBatchOperation;
