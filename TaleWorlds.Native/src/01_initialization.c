@@ -32,6 +32,12 @@
 #define SYSTEM_STRING_TXT_TOKEN 0x747874
 #define SYSTEM_STRING_UNDERSCORE_TOKEN 0x5f
 #define SYSTEM_CONFIG_SIZE_THREAD_LOCAL 0xb
+#define SYSTEM_STRING_ENGINE_TOKEN 0x69676e65
+#define SYSTEM_STRING_CONFIG_TOKEN_SHORT 0x635f656e
+#define SYSTEM_STRING_INFO_TOKEN 0x69666e6f
+#define SYSTEM_STRING_EXT_TOKEN 0x78742e67
+#define SYSTEM_STRING_RESU_TOKEN 0x72657375
+#define SYSTEM_STRING_CONF_TOKEN 0x6e6f635f
 
 // 01_initialization.c - 初始化系统代码（已美化变量名和函数名）
 
@@ -17827,11 +17833,11 @@ void InitializeSystemModule31(uint64_t handleIdentifier,uint64_t resourceIdentif
   init_stack_uint_param_thread = 5;
   ConfigureSystemParameters(&system_buffer_ptr_thread_context,SYSTEM_OFFSET_18);
   node_next = (uint32_t *)(system_buffer_ptr_thread_data + init_stack_uint_param_thread);
-  *node_next = 0x66726570;
-  node_next[1] = 0x616d726f;
-  node_next[2] = 0x5f65636e;
-  node_next[3] = 0x2e676f6c;
-  node_next[4] = 0x747874;
+  *node_next = SYSTEM_STRING_PREFIX_TOKEN;
+  node_next[1] = SYSTEM_STRING_ROM_TOKEN;
+  node_next[2] = SYSTEM_STRING_CONFIG_TOKEN_UNDERSCORE;
+  node_next[3] = SYSTEM_STRING_GOL_TOKEN;
+  node_next[4] = SYSTEM_STRING_TXT_TOKEN;
   init_stack_uint_param_thread = SYSTEM_OFFSET_18;
   system_ptr_value = (uint64_t *)AllocateSystemMemory(systemMemoryPool,SYSTEM_OFFSET_18,8,3);
   system_ptr_value = &g_system_data_variable3;
@@ -18045,7 +18051,7 @@ void InitializeSystemModule31(uint64_t handleIdentifier,uint64_t resourceIdentif
       while (system_init_flag != '\0') {
         system_long_value = strchr(&g_system_data_variable4,(int)pis_initialized4[system_long_result]);
         if (system_long_result != 0) {
-          *(uint8_t *)(system_long_result + *(longlong *)(system_long_result + 8 + system_long_result)) = 0x5f;
+          *(uint8_t *)(system_long_result + *(longlong *)(system_long_result + 8 + system_long_result)) = SYSTEM_STRING_UNDERSCORE_TOKEN;
         }
         system_long_value = system_long_result + 1;
         pis_initialized4 = *(char **)(system_long_result + 8 + system_long_result);
