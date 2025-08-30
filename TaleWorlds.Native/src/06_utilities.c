@@ -1127,15 +1127,15 @@ byte g_resourceInitFlag;
 dataValue resourceRefCount;
 dataValue resourceMemoryUsage;
 uint64 reflectionCubeMap;
-dataValue resourceReflectionBuffer1;
-dataValue resourceReflectionBuffer2;
-dataValue resourceReflectionBuffer3;
-dataValue resourceReflectionBuffer4;
+dataValue resourceReflectionBufferPrimary;
+dataValue resourceReflectionBufferSecondary;
+dataValue resourceReflectionBufferTertiary;
+dataValue resourceReflectionBufferQuaternary;
 
 // 函数: dataValueValue resourceDecompressData;
 dataValue resourceDecompressData;
-dataValue resourceDecompressBuffer1;
-dataValue resourceDecompressBuffer2;
+dataValue resourceDecompressBufferPrimary;
+dataValue resourceDecompressBufferSecondary;
 dataValue resourceDecompressAlgorithm;
 dataValue resourceDecompressLevel;
 dataValue resourceDecompressChecksum;
@@ -1143,26 +1143,26 @@ dataValue resourceDecompressMetadataValue;
 
 // 函数: dataValueValue resourceEncryptData;
 dataValue resourceEncryptData;
-dataValue resourceEncryptBuffer1;
-dataValue resourceEncryptBuffer2;
-dataValue resourceEncryptBuffer3;
-dataValue resourceEncryptBuffer4;
+dataValue resourceEncryptBufferPrimary;
+dataValue resourceEncryptBufferSecondary;
+dataValue resourceEncryptBufferTertiary;
+dataValue resourceEncryptBufferQuaternary;
 
 // 函数: dataValueValue resourceDecryptData;
 dataValue resourceDecryptData;
 dataValue reflectionMipChain;
-dataValue resourceDecryptBuffer1;
-dataValue resourceDecryptBuffer2;
-dataValue resourceDecryptBuffer3;
-dataValue resourceDecryptBuffer4;
+dataValue resourceDecryptBufferPrimary;
+dataValue resourceDecryptBufferSecondary;
+dataValue resourceDecryptBufferTertiary;
+dataValue resourceDecryptBufferQuaternary;
 dataValue renderOcclusionQuery;
 
 // 函数: dataValueValue resourceSignData;
 dataValue resourceSignData;
-dataValue resourceSignBuffer1;
-dataValue resourceSignBuffer2;
-dataValue resourceSignBuffer3;
-dataValue resourceSignBuffer4;
+dataValue resourceSignBufferPrimary;
+dataValue resourceSignBufferSecondary;
+dataValue resourceSignBufferTertiary;
+dataValue resourceSignBufferQuaternary;
 dataValue renderBatchData;
 
 // 函数: dataValueValue resourceVerifySignature;
@@ -1194,17 +1194,17 @@ dataValue resourceCacheCompression;
 dataValue ai_system_navigation_data;
 dataValue ai_system_behavior_data;
 dataValue scene_manager_object_data;
-dataValue resourceCacheBuffer1;
-dataValue resourceCacheBuffer2;
-dataValue resourceCacheBuffer3;
-dataValue resourceCacheBuffer4;
+dataValue resourceCacheBufferPrimary;
+dataValue resourceCacheBufferSecondary;
+dataValue resourceCacheBufferTertiary;
+dataValue resourceCacheBufferQuaternary;
 
 // 函数: dataValueValue resourceCacheInvalidate;
 dataValue resourceCacheInvalidate;
-dataValue resourceCacheInvalidateBuffer1;
-dataValue resourceCacheInvalidateBuffer2;
-dataValue resourceCacheInvalidateBuffer3;
-dataValue resourceCacheInvalidateBuffer4;
+dataValue resourceCacheInvalidateBufferPrimary;
+dataValue resourceCacheInvalidateBufferSecondary;
+dataValue resourceCacheInvalidateBufferTertiary;
+dataValue resourceCacheInvalidateBufferQuaternary;
 
 // 函数: dataValueValue resourceCacheUpdate;
 dataValue resourceCacheUpdate;
@@ -24767,7 +24767,9 @@ void ProcessResourceHandleCallback(uint64 resource_handle_identifier,longlong re
 
 
 
-void UnwindHandler_120(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void ExecuteResourceBufferCleanup(uint64 resource_handle_identifier,longlong resource_buffer)
+// 执行资源缓冲区清理
+void ExecuteResourceBufferCleanup(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   if (*(longlong **)(resource_buffer + 0xa8) != (longlong *)0x0) {
@@ -81714,7 +81716,7 @@ void resourceDecompressData(uint64 resource_handle_identifier,uint64 resource_bu
   uint64 *resource_operation_resultData;
   uint64 *loop_counterPointer;
   
-  RegisterResourceFunction(&resourceReflectionBuffer1,_resourceReflectionBuffer3,resourceOperationFlags,resourceCallbackFunction,0xfffffffffffffffe);
+  RegisterResourceFunction(&resourceReflectionBufferPrimary,_resourceReflectionBufferTertiary,resourceOperationFlags,resourceCallbackFunction,0xfffffffffffffffe);
   resource_operation_resultData = resourceListEnd;
   for (loop_counterPointer = resourceListStart; loop_counterPointer != resource_operation_resultData; loop_counterPointer = loop_counterPointer + 7) {
     *loop_counterPointer = &threadLocalStorageData;
@@ -81758,7 +81760,7 @@ void resourceEncryptData(void)
 void resourceDecryptData(void)
 
 {
-  _resourceEncryptBuffer1 = &threadLocalStorageCleanup;
+  _resourceEncryptBufferPrimary = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81771,7 +81773,7 @@ void resourceDecryptData(void)
 void resourceSignData(void)
 
 {
-  _resourceDecryptBuffer1 = &threadLocalStorageCleanup;
+  _resourceDecryptBufferPrimary = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81784,7 +81786,7 @@ void resourceSignData(void)
 void resourceVerifySignature(void)
 
 {
-  _resourceSignBuffer1 = &threadLocalStorageCleanup;
+  _resourceSignBufferPrimary = &threadLocalStorageCleanup;
   return;
 }
 
@@ -82160,7 +82162,7 @@ void resourceCacheFlush(void)
 void resourceCacheInvalidate(void)
 
 {
-  _resourceCacheBuffer1 = &threadLocalStorageCleanup;
+  _resourceCacheBufferPrimary = &threadLocalStorageCleanup;
   return;
 }
 
@@ -82173,7 +82175,7 @@ void resourceCacheInvalidate(void)
 void resourceCacheUpdate(void)
 
 {
-  _resourceCacheInvalidateBuffer1 = &threadLocalStorageCleanup;
+  _resourceCacheInvalidateBufferPrimary = &threadLocalStorageCleanup;
   return;
 }
 
