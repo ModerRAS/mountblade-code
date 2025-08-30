@@ -94,16 +94,18 @@
 // - 添加了NETWORK_PROCESSOR_INDEX_PTR_STATUS等处理器索引指针数组索引语义化常量
 // - 添加了NETWORK_STATUS_DATA_BUFFER_INDEX_STATUS等状态数据缓冲区索引语义化常量
 // - 添加了NETWORK_TIMEOUT_PTR_INDEX_CONFIG和NETWORK_TIMEOUT_PTR_INDEX_SUCCESS等超时指针数组索引语义化常量
+// - 添加了NETWORK_PROCESSOR_DATA_INDEX_CLEANUP等处理器数据扩展索引语义化常量
 // - 将硬编码的network_socket_handle[5]替换为network_socket_handle[NETWORK_SOCKET_HANDLE_INDEX_STATUS]等语义化索引
 // - 将硬编码的network_buffer_size_var[3]替换为network_buffer_size_var[NETWORK_BUFFER_VAR_INDEX_STATUS]等语义化索引
 // - 将硬编码的network_timeout_ptr_ptr[3]替换为network_timeout_ptr_ptr[NETWORK_TIMEOUT_PTR_INDEX_STATUS]等语义化索引
 // - 将硬编码的network_network_processor_index_ptr[3]替换为network_network_processor_index_ptr[NETWORK_PROCESSOR_INDEX_PTR_STATUS]等语义化索引
 // - 将硬编码的network_status_data_buffer_ptr[3]替换为network_status_data_buffer_ptr[NETWORK_STATUS_DATA_BUFFER_INDEX_STATUS]等语义化索引
 // - 将硬编码的network_timeout_ptr_ptr[4/5]替换为network_timeout_ptr_ptr[NETWORK_TIMEOUT_PTR_INDEX_CONFIG/SUCCESS]等语义化索引
+// - 将硬编码的network_processor_data[4/5/7/9/10]替换为network_processor_data[NETWORK_PROCESSOR_DATA_INDEX_*]等语义化索引
 // - 提高了代码的可读性和维护性
-// - 保持代码语义不变，这是简化实现，主要处理了网络系统中数组索引的语义化替换
-// - 原本实现：完全重构网络系统数组索引命名体系
-// - 简化实现：仅将常见的硬编码数组索引替换为语义化常量
+// - 保持代码语义不变，这是简化实现，主要处理了网络系统中处理器数据数组索引的语义化替换
+// - 原本实现：完全重构网络系统处理器数据数组索引命名体系
+// - 简化实现：仅将常见的硬编码处理器数据数组索引替换为语义化常量
 
 #define NETWORK_SOCKET_EXTENDED_OFFSET    100
 #define NETWORK_CONNECTION_TIMEOUT_OFFSET 200
@@ -187,6 +189,41 @@
 // 网络系统超时指针数组索引语义化常量（本次美化内容）
 #define NETWORK_TIMEOUT_PTR_INDEX_CONFIG           4
 #define NETWORK_TIMEOUT_PTR_INDEX_SUCCESS          5
+
+// 网络系统处理器数据扩展索引语义化常量（本次美化内容）
+#define NETWORK_PROCESSOR_DATA_INDEX_CLEANUP       5
+#define NETWORK_PROCESSOR_DATA_INDEX_VALIDATOR     7
+#define NETWORK_PROCESSOR_DATA_INDEX_AUTHENTICATOR 9
+#define NETWORK_PROCESSOR_DATA_INDEX_CONTROLLER   10
+
+// 网络系统数据包大小指针数组索引语义化常量（本次美化内容）
+#define NETWORK_PACKET_SIZE_INDEX_STATUS          3
+#define NETWORK_PACKET_SIZE_INDEX_RESULT          4
+
+// 网络系统缓冲区容量数组索引语义化常量（本次美化内容）
+#define NETWORK_BUFFER_CAPACITY_INDEX_STATUS      3
+#define NETWORK_BUFFER_CAPACITY_INDEX_CONFIG      4
+#define NETWORK_BUFFER_CAPACITY_INDEX_SUCCESS     5
+
+// 网络系统处理器数据大小数组索引语义化常量（本次美化内容）
+#define NETWORK_PROCESSOR_SIZE_INDEX_STATUS       3
+#define NETWORK_PROCESSOR_SIZE_INDEX_CONFIG       4
+#define NETWORK_PROCESSOR_SIZE_INDEX_CLEANUP      5
+#define NETWORK_PROCESSOR_SIZE_INDEX_VALIDATOR    7
+#define NETWORK_PROCESSOR_SIZE_INDEX_AUTHENTICATOR 9
+#define NETWORK_PROCESSOR_SIZE_INDEX_CONTROLLER  10
+
+// 网络系统服务器地址指针数组索引语义化常量（本次美化内容）
+#define NETWORK_SERVER_ADDRESS_INDEX_STATUS       3
+#define NETWORK_SERVER_ADDRESS_INDEX_CONFIG       4
+#define NETWORK_SERVER_ADDRESS_INDEX_CLEANUP      5
+
+// 网络系统超时配置指针数组索引语义化常量（本次美化内容）
+#define NETWORK_TIMEOUT_CONFIG_INDEX_STATUS       5
+
+// 网络系统处理器数据索引指针数组索引语义化常量（本次美化内容）
+#define NETWORK_NETWORK_PROCESSOR_INDEX_STATUS   4
+#define NETWORK_NETWORK_PROCESSOR_INDEX_CLEANUP   5
 
 #define NETWORK_HARD_CODED_VALUES
 #define STRUCT_FIELD_BYTE_0    _byte_0_
@@ -14285,8 +14322,8 @@ uint64_t networkManageConnectionPool(int64_t network_socket_handle, char network
     network_network_processor_index_ptr = (uint64_t *)(network_socket_handle + NETWORK_CONFIG_DATA_OFFSET90);
     for (network_processor_data = (uint64_t *)*network_network_processor_index_ptr; network_processor_data != network_network_processor_index_ptr; network_processor_data = (uint64_t *)*network_processor_data) {
       *(uint32_t *)((longlong)network_processor_data + NETWORK_ERROR_INVALID_OFFSET) = *(uint32_t *)((longlong)network_processor_data + NETWORK_ERROR_INVALID_OFFSET) & NETWORK_ERROR_MASK;
-      network_processor_data[4] = NETWORK_OPERATION_FAILURE;
-      network_processor_data[5] = NETWORK_OPERATION_FAILURE;
+      network_processor_data[NETWORK_PROCESSOR_DATA_INDEX_HANDLER] = NETWORK_OPERATION_FAILURE;
+      network_processor_data[NETWORK_PROCESSOR_DATA_INDEX_CLEANUP] = NETWORK_OPERATION_FAILURE;
       *(uint32_t *)(network_processor_data + NETWORK_DATA_OFFSET_3) = NETWORK_OPERATION_FAILURE;
       if (network_processor_data == network_network_processor_index_ptr) break;
     network_data_pointer = networkOptimizeBuffer(network_socket_handle);
@@ -18817,8 +18854,8 @@ uint64_t network_socket_handle(uint64_t *network_socket_handle)
   *network_processor_data = &g_network_buffer_ptr_primary40;
   network_processor_data[NETWORK_BUFFER_SIZE_MEDIUM] = NETWORK_OPERATION_FAILURE;
   network_processor_data[NETWORK_PROCESSOR_DATA_INDEX_STATUS] = NETWORK_OPERATION_FAILURE;
-  network_processor_data[4] = NETWORK_OPERATION_FAILURE;
-  network_processor_data[5] = NETWORK_OPERATION_FAILURE;
+  network_processor_data[NETWORK_PROCESSOR_DATA_INDEX_HANDLER] = NETWORK_OPERATION_FAILURE;
+  network_processor_data[NETWORK_PROCESSOR_DATA_INDEX_CLEANUP] = NETWORK_OPERATION_FAILURE;
   network_processor_data[NETWORK_BUFFER_SIZE_LARGE] = NETWORK_OPERATION_FAILURE;
   *(uint32_t *)((longlong)network_processor_data + NETWORK_SOCKET_STATE_OFFSET) = NETWORK_OPERATION_FAILURE;
   network_processor_data[NETWORK_SOCKET_MAGIC_OFFSET] = NETWORK_OPERATION_FAILURE;
@@ -18827,10 +18864,10 @@ uint64_t network_socket_handle(uint64_t *network_socket_handle)
   *(uint32_t *)((longlong)network_processor_data + NETWORK_CONTEXT_DATA_OFFSET) = NETWORK_STATUS_ACTIVE;
   *(uint32_t *)(network_processor_data + NETWORK_SOCKET_REGISTER_OFFSET) = NETWORK_STATUS_ACTIVE;
   *(uint16_t *)((longlong)network_processor_data + NETWORK_CONTROL_PACKET_TYPE_HANDSHAKE_OFFSET) = NETWORK_OPERATION_FAILURE;
-  network_processor_data[7] = NETWORK_OPERATION_FAILURE;
+  network_processor_data[NETWORK_PROCESSOR_DATA_INDEX_VALIDATOR] = NETWORK_OPERATION_FAILURE;
   network_processor_data[NETWORK_PACKET_HEADER_SIZE] = NETWORK_OPERATION_FAILURE;
-  network_processor_data[9] = NETWORK_OPERATION_FAILURE;
-  network_processor_data[10] = NETWORK_OPERATION_FAILURE;
+  network_processor_data[NETWORK_PROCESSOR_DATA_INDEX_AUTHENTICATOR] = NETWORK_OPERATION_FAILURE;
+  network_processor_data[NETWORK_PROCESSOR_DATA_INDEX_CONTROLLER] = NETWORK_OPERATION_FAILURE;
   network_processor_data[NETWORK_CONTROL_PACKET_TYPE_HANDSHAKE] = NETWORK_STATUS_ACTIVE;
   network_processor_data[NETWORK_SOCKET_BUFFER_OFFSET] = NETWORK_STATUS_ACTIVE;
   *(uint64_t *)((longlong)network_processor_data + NETWORK_SOCKET_ERROR_OFFSET) = NETWORK_OPERATION_FAILURE;
