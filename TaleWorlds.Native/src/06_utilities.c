@@ -52144,7 +52144,7 @@ void UtilityUnwindHandler3cCleanup(uint64 resource_handle_identifier,longlong re
   UtilityModule15(utility_array_index + 0x81d8,*(uint64 *)(utility_array_index + 0x81e8),resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   UtilityModule15(utility_array_index + 0x81a8,*(uint64 *)(utility_array_index + 0x81b8));
   UtilityModule15(utility_array_index + 0x8178,*(uint64 *)(utility_array_index + 0x8188));
-  RegisterResourceCallback(utility_array_index + 0x80d8,POINTER_DATA_OFFSET,5,ResourceCallbackHandler1);
+  RegisterResourceCallback(utility_array_index + UTILITY_MEMORY_OFFSET_80D8,POINTER_DATA_OFFSET,5,ResourceCallbackHandler1);
   if (*utility_resource_data_pointer != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
@@ -52987,7 +52987,7 @@ void UtilityUtilityUnwind_1809096c0(uint64 resource_handle_identifier,longlong r
   UtilityModule15(utility_array_index + 0x81d8,*(uint64 *)(utility_array_index + 0x81e8),resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   UtilityModule15(utility_array_index + 0x81a8,*(uint64 *)(utility_array_index + 0x81b8));
   UtilityModule15(utility_array_index + 0x8178,*(uint64 *)(utility_array_index + 0x8188));
-  RegisterResourceCallback(utility_array_index + 0x80d8,POINTER_DATA_OFFSET,5,ResourceCallbackHandler1);
+  RegisterResourceCallback(utility_array_index + UTILITY_MEMORY_OFFSET_80D8,POINTER_DATA_OFFSET,5,ResourceCallbackHandler1);
   if (*utility_resource_data_pointer != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
