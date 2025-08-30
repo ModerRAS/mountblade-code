@@ -3905,9 +3905,9 @@ NetworkMemoryManager* g_network_memory_manager;
 // 网络线程锁
 ThreadLock* g_network_thread_lock;
 // 网络临界区
-CriticalSection* g_networkCriticalSection;
+CriticalSection* g_network_critical_section;
 // 网络信号量
-Semaphore* g_networkSemaphore;
+Semaphore* g_network_semaphore;
 // 网络事件信号
 EventSignal* g_networkEventSignal;
 // 网络线程池

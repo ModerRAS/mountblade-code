@@ -18974,7 +18974,7 @@ void initialize_system_module_global_setup(longlong handleIdentifier,longlong re
   system_buffer_ptr_resource_main = &g_system_data_main;
   system_buffer_ptr_config_context = system_local_buffer_thread_data;
   init_stack_uint_param_size = SYSTEM_INIT_VALUE_ZERO;
-  system_local_buffer_thread_data[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0;
+  system_local_buffer_thread_data[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_INIT_VALUE_ZERO;
   system_long_result_temp = strstr(*(uint64_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_STRING_BUFFER));
   if (system_long_result != SYSTEM_COMPARISON_ZERO) {
     system_long_result_temp = -1;
@@ -19026,7 +19026,7 @@ void InitializeNetworkInitNode(longlong handleIdentifier)
   if (system_temp_integer_result != SYSTEM_COMPARISON_ZERO) {
     __Throw_C_error_std__YAXH_Z(system_temp_integer_result);
   }
-  *(uint8_t *)(handleIdentifier + SYSTEM_OFFSET_98) = 1;
+  *(uint8_t *)(handleIdentifier + SYSTEM_OFFSET_98) = SYSTEM_INIT_VALUE_ONE;
   system_temp_integer = _Cnd_broadcast(handleIdentifier);
   if (system_temp_integer_result != SYSTEM_COMPARISON_ZERO) {
     __Throw_C_error_std__YAXH_Z(system_temp_integer_result);
@@ -19094,7 +19094,7 @@ void initialize_system_module_thirty_seven(longlong *handleIdentifier)
       ProcessSystemOperation();
     }
     system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT] = SYSTEM_INDEX_PRIMARY;
-    *(uint32_t *)(system_node_root + SYSTEM_ARRAY_OFFSET_THIRD) = 0;
+    *(uint32_t *)(system_node_root + SYSTEM_ARRAY_OFFSET_THIRD) = SYSTEM_UINT32_ZERO_VALUE;
     *system_node_root = &globalSystemPointerData;
   }
   if (*handleIdentifier != SYSTEM_COMPARISON_ZERO) {
@@ -19191,9 +19191,9 @@ int InitializeGameSystem(longlong handleIdentifier,longlong resourceIdentifier)
   system_long_result_temp = SYSTEM_INIT_VALUE_ZERO;
   system_buffer_ptr_resource_pool = (uint64_t *)&resourcePoolPointer;
   system_init_stack_param_primary = SYSTEM_OPERATION_SUCCESS;
-  system_init_stack_temp_validation = 0;
+  system_init_stack_temp_validation = SYSTEM_INIT_VALUE_ZERO;
   init_stack_uint_parameter_128 = SYSTEM_INIT_VALUE_ZERO;
-  init_stack_uint_param_one_hundred_eight = 0;
+  init_stack_uint_param_one_hundred_eight = SYSTEM_INIT_VALUE_ZERO;
   init_stack_uint_param_one_hundred = 0;
   init_stack_uint_param_f8_hex = 0;
   init_stack_uint_param_f0_hex = 0;
@@ -20135,7 +20135,7 @@ void initialize_system_module_seventeen(longlong *handleIdentifier)
       ProcessSystemOperation();
     }
     system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT] = SYSTEM_INDEX_PRIMARY;
-    *(uint32_t *)(system_node_root + SYSTEM_ARRAY_OFFSET_THIRD) = 0;
+    *(uint32_t *)(system_node_root + SYSTEM_ARRAY_OFFSET_THIRD) = SYSTEM_UINT32_ZERO_VALUE;
     *system_node_root = &globalSystemPointerData;
   }
   if (*handleIdentifier != SYSTEM_COMPARISON_ZERO) {
@@ -26187,14 +26187,14 @@ INIT_LABEL_MEMORY_MANAGER_SETUP:
       system_buffer_ptr_resource_aux = &resourcePoolPointer;
       init_stack_uint_param_one_hundred = 0;
       system_buffer_ptr_data_aux = (uint8_t *)SYSTEM_NULL_POINTER;
-      init_stack_uint_param_one_hundred_eight = 0;
+      init_stack_uint_param_one_hundred_eight = SYSTEM_INIT_VALUE_ZERO;
       ConfigureSystemParameters(&system_buffer_ptr_resource_aux,*(uint32_t *)(system_long_result + SYSTEM_DATA_COMPARE_SIZE));
       if (*(int *)(system_long_result + SYSTEM_DATA_COMPARE_SIZE) != SYSTEM_COMPARISON_ZERO) {
                     // WARNING: Subroutine does not return
         memcpy(system_buffer_ptr_data_aux,*(uint64_t *)(system_long_result + SYSTEM_OFFSET_8),*(int *)(system_long_result + SYSTEM_DATA_COMPARE_SIZE) + 1);
       }
       if (*(longlong *)(system_long_result + SYSTEM_OFFSET_8) != SYSTEM_COMPARISON_ZERO) {
-        init_stack_uint_param_one_hundred_eight = 0;
+        init_stack_uint_param_one_hundred_eight = SYSTEM_INIT_VALUE_ZERO;
         if (system_buffer_ptr_data_aux != (uint8_t *)SYSTEM_NULL_POINTER) {
           *system_buffer_ptr_data_aux = 0;
         }
@@ -26921,7 +26921,7 @@ void initialize_system_module_six(longlong handleIdentifier,uint64_t resourceIde
           *system_node_root = &resourcePoolPointer;
           if (system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT] == SYSTEM_COMPARISON_ZERO) {
             system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT] = SYSTEM_INDEX_PRIMARY;
-            *(uint32_t *)(system_node_root + SYSTEM_ARRAY_OFFSET_THIRD) = 0;
+            *(uint32_t *)(system_node_root + SYSTEM_ARRAY_OFFSET_THIRD) = SYSTEM_UINT32_ZERO_VALUE;
             *system_node_root = &globalSystemPointerData;
                     // WARNING: Subroutine does not return
             ProcessSystemOperation(system_node_root);
@@ -45155,7 +45155,7 @@ void ConfigureSystemHandles(uint64_t handleIdentifier,longlong resourceIdentifie
   system_buffer_ptr_resource_aux = &resourcePoolPointer;
   init_stack_uint_param_one_hundred = 0;
   system_buffer_ptr_data_aux = (uint8_t *)SYSTEM_NULL_POINTER;
-  init_stack_uint_param_one_hundred_eight = 0;
+  init_stack_uint_param_one_hundred_eight = SYSTEM_INIT_VALUE_ZERO;
   uint_stack_param_aux = SYSTEM_OFFSET_4;
   system_result_operation = *(uint *)(system_long_result + SYSTEM_DATA_COMPARE_SIZE);
   system_result_operation = (ulonglong)system_integer_unsigned_temp;
@@ -45497,7 +45497,7 @@ INIT_LABEL_VALIDATE_7113f:
   system_buffer_ptr_resource_aux = &resourcePoolPointer;
   init_stack_uint_param_one_hundred = 0;
   system_buffer_ptr_data_aux = (uint8_t *)SYSTEM_NULL_POINTER;
-  init_stack_uint_param_one_hundred_eight = 0;
+  init_stack_uint_param_one_hundred_eight = SYSTEM_INIT_VALUE_ZERO;
   if (module_initialization_flag == SYSTEM_COMPARISON_ZERO) {
     system_long_result_temp = InitializeSystemLogger(&system_buffer_ptr_global_data,0);
     init_stack_uint_param_one_hundred_eight = *(uint *)(system_long_result + SYSTEM_DATA_COMPARE_SIZE);
@@ -50536,7 +50536,7 @@ void InitializeSystemProfiler(longlong *handleIdentifier)
       ProcessSystemOperation();
     }
     system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT] = SYSTEM_INDEX_PRIMARY;
-    *(uint32_t *)(system_node_root + SYSTEM_ARRAY_OFFSET_THIRD) = 0;
+    *(uint32_t *)(system_node_root + SYSTEM_ARRAY_OFFSET_THIRD) = SYSTEM_UINT32_ZERO_VALUE;
     *system_node_root = &globalSystemPointerData;
   }
   if (*handleIdentifier != SYSTEM_COMPARISON_ZERO) {
