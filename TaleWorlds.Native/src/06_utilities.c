@@ -17,6 +17,9 @@
 // - 将0x31替换为UTILITY_SIZE_THRESHOLD_31等大小阈值常量
 // - 将0x3f替换为UTILITY_SECURITY_TOKEN_MASK_3F等安全令牌掩码常量
 // - 将0xe/0x19/0xd/0x12等替换为UTILITY_OPERATION_RESULT_INDEX_*等操作结果索引常量
+// - 将0x288替换为UTILITY_RESOURCE_CALLBACK_OFFSET_288等资源回调偏移量常量
+// - 将0x328替换为UTILITY_MEMORY_DATA_OFFSET_328等内存数据偏移量常量
+// - 将0x500替换为UTILITY_CONTEXT_MODULE_OFFSET_500等上下文模块偏移量常量
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了工具系统中十六进制常量的语义化替换
 // - 原本实现：完全重构常量定义体系
@@ -2138,7 +2141,7 @@ dataValue g_resource_manager_config_audio;          // 资源管理器配置音�
 dataValue g_scene_manager_config_lighting;         // 场景管理器配置光照;
 dataValue g_scene_manager_config_shadows;          // 场景管理器配置阴影;
 dataValue g_scene_manager_config_post_processing;    // 场景管理器配置后处理;
-dataValue sceneManagerConfigRendering;
+dataValue g_scene_manager_config_rendering;       // 场景管理器配置渲染;
 dataValue materialShaderConfig;
 dataValue materialTextureConfig;
 dataValue materialPropertyConfig;
