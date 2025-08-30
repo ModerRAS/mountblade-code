@@ -2059,7 +2059,7 @@ int initialize_base_resource_manager(void)
   long long system_initialization_result;
   unsigned long long base_resource_system_string_length;
   resource_string_base = SYSTEM_ZERO_VALUE;
-  g_resource_id_1 = SYSTEM_SIX_VALUE;
+  base_resource_manager_id = SYSTEM_SIX_VALUE;
   strcpy_s(&resource_string_base, STRING_BUFFER_SIZE, &base_resource_string, base_resource_system_string_length, default_thread_pool_flag);
   system_initialization_result = system_execution_function(base_resource_manager_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
