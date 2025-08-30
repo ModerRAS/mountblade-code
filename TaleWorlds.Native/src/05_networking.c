@@ -3717,10 +3717,10 @@ void* g_networkPendingDataObject;
 void* g_networkActiveConnectionCount;
 // 网络连接池
 void* g_networkConnectionPool;
-// 网络带宽
-void* g_networkBandwidthInfo;
-// 网络延迟
-uint32 g_network_latency_measurement;
+// 网络带宽信息指针
+void* g_network_bandwidth_info_ptr;
+// 网络延迟测量值
+uint32 g_network_latency_measurement_value;
 // 网络丢包率（美化后）
 float g_network_packet_loss_rate;
 // 网络统计信息
@@ -3731,12 +3731,12 @@ NetworkPerformance* g_networkPerformance;
 NetworkMetrics* g_networkMetrics;
 // 网络诊断信息
 NetworkDiagnostics* g_networkDiagnostics;
-// 网络发送缓冲区指针
-void* g_networkSendDataBufferPtr;
-// 网络接收缓冲区指针
-void* g_networkReceiveDataBufferPtr;
-// 网络缓冲区池
-void* g_networkDataBufferPool;
+// 网络发送数据缓冲区指针
+void* g_network_send_data_buffer_ptr;
+// 网络接收数据缓冲区指针
+void* g_network_receive_data_buffer_ptr;
+// 网络数据缓冲区池
+void* g_network_data_buffer_pool;
 // 网络内存管理器
 NetworkMemoryManager* g_networkMemoryManager;
 // 网络线程锁
@@ -3749,10 +3749,10 @@ Semaphore* g_networkSemaphore;
 EventSignal* g_networkEventSignal;
 // 网络线程池
 ThreadPool* g_networkThreadPool;
-// 网络缓冲区大小
-void* g_networkDataBufferSize;
-// 网络缓冲区对齐
-void* g_networkDataBufferAlignment;
+// 网络数据缓冲区大小
+void* g_network_data_buffer_size;
+// 网络数据缓冲区对齐
+void* g_network_data_buffer_alignment;
 // 网络连接标志（美化后）
 uint32_t g_network_connection_processor_flags;
 // 网络连接模式（美化后）
@@ -3775,47 +3775,81 @@ SyncData* g_networkSyncData;
 LobbyData* g_networkLobbyData;
 // 网络匹配数据
 MatchData* g_networkMatchData;
-// 网络套接字描述符主变量
-void* network_primary_socket_descriptor;
+// 网络主套接字描述符
+void* g_network_primary_socket_descriptor;
 // 网络会话上下文主变量
 void* network_session_main_ctx;
 // 网络广播消息函数指针
 typedef int32_t (*NetworkBroadcastMessageFunc)(void* message, size_t size);
-NetworkBroadcastMessageFunc NetworkBroadcastMessage;
+NetworkBroadcastMessageFunc g_network_broadcast_message_func;
 BroadcastBuffer* g_network_broadcast_buffer;
+// 网络多播组
 MulticastGroup* g_network_multicast_group;
+// 网络多播地址
 NetworkAddress* g_network_multicast_address;
-uint16 g_network_multicast_port_number;
-uint8 g_network_multicast_time_to_live;
+// 网络多播端口号
+uint16 g_network_multicast_port;
+// 网络多播生存时间
+uint8 g_network_multicast_ttl;
+// 网络多播接口
 NetworkInterface* g_network_multicast_interface;
+// 网络多播套接字
 NetworkSocket* g_network_multicast_socket;
-uint32 g_network_maximum_connection_count;
-uint32 g_network_active_connection_count;
-uint32 g_network_connection_processor_maximum_limit;
-uint32 g_network_connection_processor_timeout_duration;
-uint32 g_network_heartbeat_interval_duration;
-uint32 g_network_ping_interval_duration;
+// 网络最大连接数
+uint32 g_network_max_connections;
+// 网络活跃连接数
+uint32 g_network_active_connections;
+// 网络连接处理器最大限制
+uint32 g_network_conn_processor_max_limit;
+// 网络连接处理器超时持续时间
+uint32 g_network_conn_processor_timeout;
+// 网络心跳间隔持续时间
+uint32 g_network_heartbeat_interval;
+// 网络ping间隔持续时间
+uint32 g_network_ping_interval;
+// 网络保持连接启用标志
 bool g_network_keep_alive_enabled;
-uint32 g_network_disconnect_timeout_duration;
-uint32 g_network_reconnect_delay_duration;
-uint32 g_network_retry_attempt_count;
-ConnectionQuality* g_network_connection_processor_quality;
-ConnectionStability* g_network_connection_processor_stability;
-ConnectionHistory* g_network_connection_processor_history;
-ConnectionStats* g_network_connection_processor_stats;
-ConnectionMetrics* g_network_connection_processor_metrics;
-void* g_networkBandwidthInfoMonitor;
-LatencyMonitor* g_network_latency_measurement_monitor;
+// 网络断开连接超时持续时间
+uint32 g_network_disconnect_timeout;
+// 网络重新连接延迟持续时间
+uint32 g_network_reconnect_delay;
+// 网络重试尝试次数
+uint32 g_network_retry_attempts;
+// 网络连接质量
+ConnectionQuality* g_network_conn_quality;
+// 网络连接稳定性
+ConnectionStability* g_network_conn_stability;
+// 网络连接历史
+ConnectionHistory* g_network_conn_history;
+// 网络连接统计
+ConnectionStats* g_network_conn_stats;
+// 网络连接度量
+ConnectionMetrics* g_network_conn_metrics;
+// 网络带宽信息监视器
+void* g_network_bandwidth_monitor;
+// 网络延迟测量监视器
+LatencyMonitor* g_network_latency_monitor;
+// 网络数据包丢失监视器
 PacketLossMonitor* g_network_packet_loss_monitor;
+// 网络抖动监视器
 JitterMonitor* g_network_jitter_monitor;
+// 网络吞吐量监视器
 ThroughputMonitor* g_network_throughput_monitor;
-void* g_networkErrorMessageMonitor;
-void* g_networkSecurityObjectMonitor;
+// 网络错误消息监视器
+void* g_network_error_message_monitor;
+// 网络安全对象监视器
+void* g_network_security_monitor;
+// 网络性能监视器
 PerformanceMonitor* g_network_performance_monitor;
-DiagnosticData* g_networkDiagnosticData;
+// 网络诊断数据
+DiagnosticData* g_network_diagnostic_data;
+// 网络调试信息
 DebugInfo* g_network_debug_info;
+// 网络日志级别
 LogLevel g_network_log_level;
+// 网络日志缓冲区
 LogBuffer* g_network_log_buffer;
+// 网络日志文件
 LogFile* g_network_log_file;
 uint32 g_network_log_buffer_size;
 bool g_network_log_rotation_enabled;
@@ -4112,7 +4146,7 @@ network_send_buf_start_label:
   network_exit_on_error(network_context_global_data_array + NETWORK_STATUS_SUCCESS);
 // 函数: void NetworkSendData(uint32_t network_socket_handle, int32_t network_buffer_ptr, int64_t network_buffer_size)
 // 简化实现：发送网络数据，处理数据分片和传输超时
-void NetworkSendData(uint32_t network_socket_handle, int32_t network_buffer_ptr, int64_t network_buffer_size) {
+void network_send_data(uint32_t network_socket_handle, int32_t network_buffer_ptr, int64_t network_buffer_size) {
   int64_t *network_timeout_config_ptr;
   int64_t network_primary_conn_data;
   int64_t network_data_buf_ptr;
@@ -4145,7 +4179,7 @@ void NetworkSendData(uint32_t network_socket_handle, int32_t network_buffer_ptr,
       network_execute_error_recovery(network_secondary_conn_info, network_buffer_size, NETWORK_STATUS_SUCCESS);
   network_exit_on_error(&network_processor_handler);
 // 函数: void NetworkSendDataChunk(uint64_t network_socket_handle, uint64_t network_buffer_ptr, uint8_t network_buffer_size, uint64_t network_timeout, 
-void NetworkSendDataChunk(uint64_t network_socket_handle, uint64_t network_buffer_ptr, uint8_t network_buffer_size, uint64_t network_timeout,                    uint64_t network_ctx_array_ptr, uint64_t network_processor_handler, int64_t network_timeout_duration) {
+void network_send_data_chunk(uint64_t network_socket_handle, uint64_t network_buffer_ptr, uint8_t network_buffer_size, uint64_t network_timeout,                    uint64_t network_ctx_array_ptr, uint64_t network_processor_handler, int64_t network_timeout_duration) {
     int64_t network_processor_info;
   uint32_t network_socket_id;
   int64_t network_data_index;
@@ -4245,7 +4279,7 @@ uint32_t network_get_connection_data(uint32_t network_socket_handle, int64_t net
 network_timeout_processing_label:
   network_exit_on_error(&network_session_config_size);
 // 函数: void NetworkSendDataWithTimeout(uint64_t network_socket_handle, uint64_t network_buffer_ptr, uint64_t network_buffer_size, uint64_t network_timeout)
-void NetworkSendDataWithTimeout(uint64_t network_socket_handle, uint64_t network_buffer_ptr, uint64_t network_buffer_size, uint64_t network_timeout) {
+void network_send_data_with_timeout(uint64_t network_socket_handle, uint64_t network_buffer_ptr, uint64_t network_buffer_size, uint64_t network_timeout) {
   void *network_processor_data_ptr;
   uint64_t network_reg_ctx_value;
   uint64_t *network_socket_ctx;
@@ -4399,7 +4433,7 @@ network_socket_close_end_label:
 network_socket_close_start_label:
   network_encrypt_data(network_encryption_key_main ^ (NETWORK_ULONG_LONG)network_validation_buffer_small);
 // 函数: void NetworkCloseSocket(uint64_t network_socket_handle)
-void NetworkCloseSocket(uint64_t network_socket_handle) {
+void network_close_socket(uint64_t network_socket_handle) {
   uint8_t network_validation_large_buffer [NETWORK_BUFFER_SIZE_WORD];
   uint8_t *network_temp_data_buf_ptr;
   int64_t network_context_global_data_array [NETWORK_BUFFER_INDEX_CAPACITY];
@@ -4442,7 +4476,7 @@ int32_t NetworkSendDataImmediate(int64_t network_socket_handle, int64_t network_
   network_op_status = networkProcessPacketData(network_op_result + network_buffer_ptr, network_buffer_size - network_op_result, network_op_status);
   return network_op_status + network_op_result;
 // 函数: void NetworkSendDataPacket(int64_t network_socket_handle, uint64_t network_buffer_ptr, uint32_t network_buffer_size)
-void NetworkSendDataPacket(int64_t network_socket_handle, uint64_t network_buffer_ptr, uint32_t network_buffer_size) {
+void network_send_data_packet(int64_t network_socket_handle, uint64_t network_buffer_ptr, uint32_t network_buffer_size) {
   networkSendAcknowledge(network_buffer_ptr, network_buffer_size, *(uint32_t *)(network_socket_handle + MODULE_STATUS_OFFSET), *(uint32_t *)(network_socket_handle + SESSION_CONFIG_SIZE), 
                 *(uint32_t *)(network_socket_handle + NETWORK_ERROR_OFFSET_INVALID));
   return;
@@ -4467,7 +4501,7 @@ int32_t NetworkReceiveDataChunk(int64_t network_socket_handle, int64_t network_b
   network_proc_count = networkCalculateChecksum(network_op_status + network_buffer_ptr, network_buffer_size - network_op_status, &network_encryption_key_main);
   network_proc_count = networkProcessBufferData(network_op_status + network_buffer_ptr, network_buffer_size - network_op_status, network_op_status);
   return network_proc_count + network_op_status;
-int32_t NetworkReceiveDataBuffer(int64_t network_socket_handle, int64_t network_buffer_ptr, int32_t network_buffer_size){
+int32_t network_receive_data_buffer(int64_t network_socket_handle, int64_t network_buffer_ptr, int32_t network_buffer_size){
   network_op_status = *(uint64_t *)(network_socket_handle + SESSION_CONFIG_SIZE);
   network_op_status = network_send_buf(network_op_result + network_buffer_ptr, network_buffer_size - network_op_result, network_op_status);
 int32_t NetworkReceiveDataWithFlags(int64_t network_socket_handle, int64_t network_buffer_ptr, int32_t network_buffer_size)
@@ -4475,14 +4509,14 @@ int32_t NetworkReceiveDataWithFlags(int64_t network_socket_handle, int64_t netwo
     uint8_t network_op_status;
   network_op_status = *(uint8_t *)(network_socket_handle + SESSION_CONFIG_SIZE);
   network_op_status = networkValidateChecksum(network_op_result + network_buffer_ptr, network_buffer_size - network_op_result, network_op_status);
-int32_t NetworkReceiveDataWithTimeout(int64_t network_socket_handle, int64_t network_buffer_ptr, int32_t network_buffer_size) {
+int32_t network_receive_data_with_timeout(int64_t network_socket_handle, int64_t network_buffer_ptr, int32_t network_buffer_size) {
   network_op_status = networkValidatePacketData(network_op_result + network_buffer_ptr, network_buffer_size - network_op_result, network_op_status);
-int32_t NetworkReceiveDataNonBlocking(int64_t network_socket_handle, int64_t network_buffer_ptr, int32_t network_buffer_size) {
+int32_t network_receive_data_non_blocking(int64_t network_socket_handle, int64_t network_buffer_ptr, int32_t network_buffer_size) {
   network_op_status = networkProcessBufferData(network_op_result + network_buffer_ptr, network_buffer_size - network_op_result, network_op_status);
-int32_t NetworkReceiveDataWithPeek(int64_t network_socket_handle, int64_t network_buffer_ptr, int32_t network_buffer_size) {
+int32_t network_receive_data_with_peek(int64_t network_socket_handle, int64_t network_buffer_ptr, int32_t network_buffer_size) {
   network_op_status = *(uint32_t *)(network_socket_handle + NETWORK_ERROR_OFFSET_INVALID);
   network_proc_count = networkProcessPacketData(network_op_status + network_buffer_ptr, network_buffer_size - network_op_status, network_op_status);
-int32_t NetworkReceiveDataWithUrgent(int64_t network_socket_handle, int64_t network_buffer_ptr, int32_t network_buffer_size) {
+int32_t network_receive_data_with_urgent(int64_t network_socket_handle, int64_t network_buffer_ptr, int32_t network_buffer_size) {
 int32_t NetworkReceiveDataWithTruncation(int64_t network_socket_handle, int64_t network_buffer_ptr, int32_t network_buffer_size)
 {
     uint64_t network_session_config_size;
@@ -4529,15 +4563,15 @@ int32_t NetworkReceiveDataWithOptions(int64_t network_socket_handle, int64_t net
   network_op_status = networkCopyData(network_op_result + network_buffer_ptr, network_buffer_size - network_op_result, &g_networkNullTerminator);
   network_op_status = networkParsePacket(network_op_result + network_buffer_ptr, network_buffer_size - network_op_result, &network_connection_processor_handle_main);
   network_op_status = networkCopyData(network_op_result + network_buffer_ptr, network_buffer_size - network_op_result, network_socket_handle + NETWORK_SOCKET_DATA_OFFSET);
-int32_t NetworkReceiveDataWithEncryption(int64_t network_socket_handle, int64_t network_buffer_ptr, int32_t network_buffer_size) {
+int32_t network_receive_data_with_encryption(int64_t network_socket_handle, int64_t network_buffer_ptr, int32_t network_buffer_size) {
   network_packet_size_temp = *(uint8_t *)(network_socket_handle + NETWORK_ERROR_OFFSET_INVALID);
   network_proc_count = networkCopyData(network_op_status + network_buffer_ptr, network_buffer_size - network_op_status, network_socket_handle + CONNECTION_BUFFER_SIZE);
-int32_t NetworkReceiveDataWithCompression(int64_t network_socket_handle, int64_t network_buffer_ptr, int32_t network_buffer_size) {
+int32_t network_receive_data_with_compression(int64_t network_socket_handle, int64_t network_buffer_ptr, int32_t network_buffer_size) {
   network_op_status = *(uint8_t *)(network_socket_handle + NETWORK_ERROR_OFFSET_INVALID);
   network_op_status = networkCopyData(network_op_result + network_buffer_ptr, network_buffer_size - network_op_result, network_socket_handle + CONNECTION_BUFFER_SIZE);
   network_op_status = networkCopyData(network_op_result + network_buffer_ptr, network_buffer_size - network_op_result, network_socket_handle + NETWORK_NETWORK_ENCRYPTION_OFFSET);
-int32_t NetworkReceiveDataWithChecksum(int64_t network_socket_handle, int64_t network_buffer_ptr, int32_t network_buffer_size) {
-int32_t NetworkReceiveDataWithPriority(int64_t network_socket_handle, int64_t network_buffer_ptr, int32_t network_buffer_size) {
+int32_t network_receive_data_with_checksum(int64_t network_socket_handle, int64_t network_buffer_ptr, int32_t network_buffer_size) {
+int32_t network_receive_data_with_priority(int64_t network_socket_handle, int64_t network_buffer_ptr, int32_t network_buffer_size) {
   network_encryption_key_main = *(uint32_t *)(network_socket_handle + MODULE_STATUS_OFFSET);
   network_response_status = *(uint32_t *)(network_socket_handle + SESSION_STRUCT_SIZE);
   network_socket_flag = *(uint32_t *)(network_socket_handle + SESSION_CONFIG_SIZE);
