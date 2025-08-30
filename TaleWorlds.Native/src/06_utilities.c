@@ -202,6 +202,8 @@
 #define UTILITY_POINTER_SIZE 8
 #define UTILITY_POINTER_INCREMENT 8
 #define UTILITY_INDEX_INCREMENT 1
+#define UTILITY_STACK_BUFFER_SIZE_2 2
+#define UTILITY_STACK_BUFFER_SIZE_4 4
 
 // 新增语义化宏定义 - 替换临时栈变量
 #define UTILITY_TEMP_STACK_BUFFER_SIZE 2
@@ -3329,7 +3331,7 @@ uint64 manage_resource_memoryBlock(longlong resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   uint64 utility_loop_counter;
-  longlong utility_stack_buffer_array [2];
+  longlong utility_stack_buffer_array [UTILITY_STACK_BUFFER_SIZE_2];
   
   utility_loop_counter = system_memory_operation(*(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),utility_stack_buffer_array);
   resource_buffer = utility_stack_buffer_array[0];
@@ -3364,7 +3366,7 @@ uint64 check_utility_operation_result(longlong resource_handle_identifier) # 资
   longlong process_buffer;
   uint64 utility_loop_counter;
   longlong *long_ptr_buffer;
-  longlong utility_stack_buffer_array [4];
+  longlong utility_stack_buffer_array [UTILITY_STACK_BUFFER_SIZE_4];
   
   utility_loop_counter = system_memory_operation(*(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),utility_stack_buffer_array);
   if ((int)utility_loop_counter == 0) {
@@ -3392,7 +3394,7 @@ uint64 validate_memory_dataSize(longlong resource_handle_identifier,uint64 resou
   longlong resource_buffer;
   uint64 utility_loop_counter;
   int utility_array_index;
-  longlong utility_stack_buffer_array [2];
+  longlong utility_stack_buffer_array [UTILITY_STACK_BUFFER_SIZE_2];
   
   utility_loop_counter = system_memory_operation(*(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),utility_stack_buffer_array);
   resource_buffer = utility_stack_buffer_array[0];
@@ -3430,7 +3432,7 @@ uint64 query_resource_resource_handle_identifier(longlong resource_handle_identi
 {
   longlong resource_buffer;
   uint64 utility_loop_counter;
-  longlong utility_stack_buffer_array [4];
+  longlong utility_stack_buffer_array [UTILITY_STACK_BUFFER_SIZE_4];
   
   utility_loop_counter = system_memory_operation(*(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),utility_stack_buffer_array);
   if ((int)utility_loop_counter != 0) {
@@ -3658,7 +3660,7 @@ uint64 resource_handle_identifier_resource_operation(longlong resource_handle_id
 
 {
   uint64 utility_operation_status;
-  longlong utility_stack_buffer_array [2];
+  longlong utility_stack_buffer_array [UTILITY_STACK_BUFFER_SIZE_2];
   longlong utility_temp_stack_buffer [2];
   
   utility_operation_status = system_memory_operation(*(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),utility_temp_stack_buffer);
@@ -3694,7 +3696,7 @@ uint64 manage_resource_resource_handle_identifier(longlong resource_handle_ident
 
 {
   uint64 utility_operation_status;
-  longlong utility_stack_buffer_array [2];
+  longlong utility_stack_buffer_array [UTILITY_STACK_BUFFER_SIZE_2];
   longlong utility_temp_stack_buffer [2];
   
   utility_operation_status = system_memory_operation(*(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),utility_temp_stack_buffer);
@@ -4926,7 +4928,7 @@ uint64 get_file_permissions(longlong resource_handle_identifier)
 
 {
   uint64 utility_operation_status;
-  longlong utility_stack_buffer_array [4];
+  longlong utility_stack_buffer_array [UTILITY_STACK_BUFFER_SIZE_4];
   
   utility_operation_status = system_memory_operation(*(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),utility_stack_buffer_array);
   if ((int)utility_operation_status == 0) {
@@ -6004,7 +6006,7 @@ uint64 utilityValidateResourceTransaction(longlong resource_handle_identifier,lo
   int statusCounter;
   int utility_capacity;
   longlong resource_data_buffer_initial_ptr;
-  longlong utility_stack_buffer_array [2];
+  longlong utility_stack_buffer_array [UTILITY_STACK_BUFFER_SIZE_2];
   uint resource_stack_buffer_validation;
   float float_stack_buffer_data;
   
