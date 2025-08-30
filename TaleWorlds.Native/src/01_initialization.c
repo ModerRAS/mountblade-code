@@ -25450,7 +25450,7 @@ void InitializeNetworkSystem(uint64_t handleIdentifier,longlong resourceIdentifi
            (longlong)(int_stack_buffer_size + 1));
   }
   ConfigureSystemParameters(resourceIdentifier,SYSTEM_TEMP_PLUS_SIX);
-  *(uint16_t *)((ulonglong)*(uint *)(resourceIdentifier + SYSTEM_DATA_COMPARE_SIZE) + *(longlong *)(resourceIdentifier + SYSTEM_OFFSET_8)) = 10;
+  *(uint16_t *)((ulonglong)*(uint *)(resourceIdentifier + SYSTEM_DATA_COMPARE_SIZE) + *(longlong *)(resourceIdentifier + SYSTEM_OFFSET_8)) = SYSTEM_DATA_SIZE_TEN;
   *(int *)(resourceIdentifier + SYSTEM_DATA_COMPARE_SIZE) = system_temp_integer_result + 6;
   system_memory_comparison_result = SYSTEM_TEMP_PLUS_OFFSET_B;
   ConfigureSystemParameters(resourceIdentifier,system_memory_comparison_result);
@@ -25465,7 +25465,7 @@ void InitializeNetworkSystem(uint64_t handleIdentifier,longlong resourceIdentifi
            (longlong)(int_stack_data_size + 1));
   }
   ConfigureSystemParameters(resourceIdentifier,SYSTEM_TEMP_PLUS_SIZE_C);
-  *(uint16_t *)((ulonglong)*(uint *)(resourceIdentifier + SYSTEM_DATA_COMPARE_SIZE) + *(longlong *)(resourceIdentifier + SYSTEM_OFFSET_8)) = 10;
+  *(uint16_t *)((ulonglong)*(uint *)(resourceIdentifier + SYSTEM_DATA_COMPARE_SIZE) + *(longlong *)(resourceIdentifier + SYSTEM_OFFSET_8)) = SYSTEM_DATA_SIZE_TEN;
   *(int *)(resourceIdentifier + SYSTEM_DATA_COMPARE_SIZE) = system_temp_integer_result + SYSTEM_POINTER_OFFSET_C;
   system_buffer_ptr_operation_handle = &globalSystemPointerData;
   system_buffer_ptr_pointer_1a8 = &system_buffer_ptr_global_data;
@@ -27469,7 +27469,7 @@ uint64_t * InitializeNetworkMutex(uint64_t *handleIdentifier)
   *handleIdentifier = SYSTEM_NULL_HANDLE;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NULL_HANDLE;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NULL_HANDLE;
-  *(uint32_t *)(handleIdentifier + 3) = 10;
+  *(uint32_t *)(handleIdentifier + 3) = SYSTEM_DATA_SIZE_TEN;
   return handleIdentifier;
 }
 
@@ -33690,7 +33690,7 @@ void HandleSystemOperation_data_validation(void)
       system_buffer_ptr_graphics_primary = &g_system_data_node_primary_config;
       system_buffer_ptr_audio_aux = system_local_buffer_file_system;
       system_local_buffer_file_system[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0;
-      init_stack_data_size_150 = 10;
+      init_stack_data_size_150 = SYSTEM_DATA_SIZE_TEN;
       strcpy_s(system_local_buffer_file_system,SYSTEM_DATA_COMPARE_SIZE,&g_global_system_config);
       ProcessSystemData_script_processing(init_stack_char_buffer_48,&g_global_system_config,system_counter_temp);
       system_result_temp_primary = SYSTEM_INIT_VALUE_NEGATIVE_ONE;
@@ -37171,7 +37171,7 @@ uint64_t InitializeSystemModule_basic0(uint64_t handleIdentifier,uint32_t resour
     system_operation_result = SYSTEM_CONFIG_SIZE_C;
     break;
   case SYSTEM_OFFSET_4:
-    system_operation_result = 10;
+    system_operation_result = SYSTEM_DATA_SIZE_TEN;
     break;
   case 5:
     system_operation_result = 9;
@@ -45448,7 +45448,7 @@ INIT_LABEL_VALIDATE_70b00:
   *system_buffer_ptr_resource_pool = SYSTEM_COMPARISON_ZERO;
   system_operation_result = ValidateResourceAllocation(system_buffer_ptr_username_buffer);
   init_stack_uint_parameter_128 = CONCAT44(init_stack_uint_parameter_128._4_4_,system_counter_temp);
-  *(uint16_t *)(system_buffer_ptr_username_buffer + init_stack_buffer_size_username_offset) = 10;
+  *(uint16_t *)(system_buffer_ptr_username_buffer + init_stack_buffer_size_username_offset) = SYSTEM_DATA_SIZE_TEN;
   init_stack_buffer_size_username_offset = SYSTEM_COMPARISON_ONE;
   system_operation_result = SYSTEM_COMPARISON_TWO;
   if (system_buffer_ptr_resource_pool == (uint8_t *)SYSTEM_NULL_POINTER) {
@@ -45465,7 +45465,7 @@ INIT_LABEL_VALIDATE_70db8:
     system_buffer_ptr_resource_pool = (uint8_t *)AllocateGraphicsMemory(systemMemoryPool,system_temp_config_value,3,SYSTEM_DATA_COMPARE_SIZE);
     goto INIT_LABEL_SYSTEM_70db8;
   }
-  *(uint16_t *)(system_buffer_ptr_username_buffer + init_stack_buffer_size_username_offset) = 10;
+  *(uint16_t *)(system_buffer_ptr_username_buffer + init_stack_buffer_size_username_offset) = SYSTEM_DATA_SIZE_TEN;
   init_stack_buffer_size_username_offset = SYSTEM_COMPARISON_TWO;
   if (resourceIdentifier != SYSTEM_COMPARISON_ZERO) {
     system_result_temp_primary = SYSTEM_INIT_VALUE_NEGATIVE_ONE;
@@ -45540,7 +45540,7 @@ INIT_LABEL_VALIDATE_70ee8:
     init_stack_uint_parameter_128 = CONCAT44(init_stack_uint_parameter_128._4_4_,system_counter_temp);
   }
 INIT_LABEL_VALIDATE_70f81:
-  *(uint16_t *)(system_buffer_ptr_username_buffer + init_stack_buffer_size_username_offset) = 10;
+  *(uint16_t *)(system_buffer_ptr_username_buffer + init_stack_buffer_size_username_offset) = SYSTEM_DATA_SIZE_TEN;
   system_operation_result = system_counter_temp + SYSTEM_CONFIG_SIZE_STATUS;
   init_stack_buffer_size_username_offset = system_integer_unsigned_temp;
   if (system_counter_temp != SYSTEM_COMPARISON_ZERO) {
@@ -45616,7 +45616,7 @@ INIT_LABEL_VALIDATE_710b8:
     init_stack_uint_parameter_128 = CONCAT44(init_stack_uint_parameter_128._4_4_,system_counter_temp);
   }
 INIT_LABEL_VALIDATE_7113f:
-  *(uint16_t *)(system_buffer_ptr_username_buffer + init_stack_buffer_size_username_offset) = 10;
+  *(uint16_t *)(system_buffer_ptr_username_buffer + init_stack_buffer_size_username_offset) = SYSTEM_DATA_SIZE_TEN;
   init_stack_buffer_size_username_offset = system_temp_integer;
   if (system_long_result != SYSTEM_COMPARISON_ZERO) {
     initialize_system_module_thirty_four(system_long_result);
@@ -45938,7 +45938,7 @@ INIT_LABEL_VALIDATE_71af3:
     system_buffer_ptr_data_primary = (uint8_t *)AllocateGraphicsMemory(systemMemoryPool,system_temp_config_value,SYSTEM_CONFIG_SIZE_PHYSICS,SYSTEM_DATA_COMPARE_SIZE,SYSTEM_CONFIG_SIZE_PHYSICS);
     goto INIT_LABEL_SYSTEM_71af3;
   }
-  *(uint16_t *)(system_buffer_ptr_data_primary + init_stack_uint_param_80) = 10;
+  *(uint16_t *)(system_buffer_ptr_data_primary + init_stack_uint_param_80) = SYSTEM_DATA_SIZE_TEN;
   init_stack_uint_param_80 = SYSTEM_CONFIG_SIZE_RENDER;
   system_operation_result = SYSTEM_CONFIG_SIZE_PHYSICS;
   if (system_buffer_ptr_data_primary == (uint8_t *)SYSTEM_NULL_POINTER) {
@@ -45954,7 +45954,7 @@ INIT_LABEL_PROCESS_71b69:
     system_buffer_ptr_data_primary = (uint8_t *)AllocateGraphicsMemory(systemMemoryPool,system_temp_config_value,SYSTEM_CONFIG_SIZE_NETWORK_BUFFER,SYSTEM_DATA_COMPARE_SIZE,SYSTEM_CONFIG_SIZE_PHYSICS);
     goto INIT_LABEL_SYSTEM_71b69;
   }
-  *(uint16_t *)(system_buffer_ptr_data_primary + init_stack_uint_param_80) = 10;
+  *(uint16_t *)(system_buffer_ptr_data_primary + init_stack_uint_param_80) = SYSTEM_DATA_SIZE_TEN;
   init_stack_uint_param_80 = SYSTEM_CONFIG_SIZE_PHYSICS;
   if (resourceIdentifier != SYSTEM_COMPARISON_ZERO) {
     system_result_temp_primary = SYSTEM_INIT_VALUE_NEGATIVE_ONE;
@@ -46026,7 +46026,7 @@ INIT_LABEL_VALIDATE_71c93:
     init_stack_uint_param_data = CONCAT44(init_stack_uint_param_data._4_4_,system_counter_temp);
   }
 INIT_LABEL_VALIDATE_71d1f:
-  *(uint16_t *)(system_buffer_ptr_data_primary + init_stack_uint_param_80) = 10;
+  *(uint16_t *)(system_buffer_ptr_data_primary + init_stack_uint_param_80) = SYSTEM_DATA_SIZE_TEN;
   system_operation_result = system_counter_temp + SYSTEM_CONFIG_SIZE_STATUS;
   init_stack_uint_param_80 = system_integer_unsigned_temp;
   if (system_counter_temp != SYSTEM_COMPARISON_ZERO) {
@@ -46097,7 +46097,7 @@ INIT_LABEL_VALIDATE_71e34:
     init_stack_uint_param_data = CONCAT44(init_stack_uint_param_data._4_4_,system_counter_temp);
   }
 INIT_LABEL_VALIDATE_71eb0:
-  *(uint16_t *)(system_buffer_ptr_data_primary + init_stack_uint_param_80) = 10;
+  *(uint16_t *)(system_buffer_ptr_data_primary + init_stack_uint_param_80) = SYSTEM_DATA_SIZE_TEN;
   init_stack_uint_param_80 = system_counter_temp + SYSTEM_CONFIG_SIZE_EVENT;
   initialize_system_data_node_thirty(g_system_context_1,5,SYSTEM_HIGH_32BIT_MASK,&g_global_system_config);
   system_node_next = &g_system_data_variable3;
@@ -46392,7 +46392,7 @@ INIT_LABEL_INIT_72521:
         system_buffer_ptr_temp_buffer = (uint8_t *)AllocateGraphicsMemory(systemMemoryPool,system_temp_config_value,SYSTEM_CONFIG_SIZE_FONT,SYSTEM_DATA_COMPARE_SIZE);
         goto INIT_LABEL_SYSTEM_72521;
       }
-      *(uint16_t *)(system_buffer_ptr_temp_buffer + init_stack_uint_parameter_128) = 10;
+      *(uint16_t *)(system_buffer_ptr_temp_buffer + init_stack_uint_parameter_128) = SYSTEM_DATA_SIZE_TEN;
       init_stack_uint_parameter_128 = SYSTEM_CONFIG_SIZE_AUTH;
       system_operation_result = SYSTEM_CONFIG_SIZE_FONT;
       if (system_buffer_ptr_temp_buffer == (uint8_t *)SYSTEM_NULL_POINTER) {
@@ -46409,7 +46409,7 @@ INIT_LABEL_INIT_725ac:
         system_buffer_ptr_temp_buffer = (uint8_t *)AllocateGraphicsMemory(systemMemoryPool,system_temp_config_value,SYSTEM_CONFIG_SIZE_UTILITY_2,SYSTEM_DATA_COMPARE_SIZE);
         goto INIT_LABEL_SYSTEM_725ac;
       }
-      *(uint16_t *)(system_buffer_ptr_temp_buffer + init_stack_uint_parameter_128) = 10;
+      *(uint16_t *)(system_buffer_ptr_temp_buffer + init_stack_uint_parameter_128) = SYSTEM_DATA_SIZE_TEN;
       init_stack_uint_parameter_128 = SYSTEM_CONFIG_SIZE_FONT;
       if (resourceIdentifier != SYSTEM_COMPARISON_ZERO) {
         system_result_temp_primary = SYSTEM_INIT_VALUE_NEGATIVE_ONE;
@@ -46484,7 +46484,7 @@ INIT_LABEL_PROCESS_726e7:
         system_init_stack_param_primary = CONCAT44(system_init_stack_param_primary._4_4_,system_counter_temp);
       }
 INIT_LABEL_VALIDATE_72780:
-      *(uint16_t *)(system_buffer_ptr_temp_buffer + init_stack_uint_parameter_128) = 10;
+      *(uint16_t *)(system_buffer_ptr_temp_buffer + init_stack_uint_parameter_128) = SYSTEM_DATA_SIZE_TEN;
       system_operation_result = system_counter_temp + SYSTEM_CONFIG_SIZE_STATUS;
       init_stack_uint_parameter_128 = system_integer_unsigned_temp;
       if (system_counter_temp != SYSTEM_COMPARISON_ZERO) {
