@@ -7988,44 +7988,44 @@ unsigned long long * system_execution_function(unsigned long long *handle_param,
   handle_param[STRING_BUFFER_SIZE] = SYSTEM_ZERO_VALUE;
   handle_param[0x11] = SYSTEM_ZERO_VALUE;
   handle_param[0x12] = SYSTEM_ZERO_VALUE;
-  handle_param[0x13] = SYSTEM_ZERO_VALUE;
-  handle_param[0x14] = SYSTEM_ZERO_VALUE;
-  handle_param[0x15] = SYSTEM_ZERO_VALUE;
-  handle_param[0x16] = SYSTEM_ZERO_VALUE;
-  handle_param[0x17] = SYSTEM_ZERO_VALUE;
-  handle_param[0x18] = SYSTEM_ZERO_VALUE;
-  handle_param[0x19] = SYSTEM_ZERO_VALUE;
-  handle_param[0x1a] = SYSTEM_ZERO_VALUE;
-  handle_param[0x1b] = SYSTEM_ZERO_VALUE;
-  handle_param[0x1c] = SYSTEM_ZERO_VALUE;
-  handle_param[0x1d] = SYSTEM_ZERO_VALUE;
-  handle_param[0x1e] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_13] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_14] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_15] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_16] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_17] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_18] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_19] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_1A] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_1B] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_1C] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_1D] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_1E] = SYSTEM_ZERO_VALUE;
   handle_param[SYSTEM_CONSTANT_2] = SYSTEM_ZERO_VALUE;
   handle_param[path_buffer_size] = SYSTEM_ZERO_VALUE;
-  handle_param[0x21] = SYSTEM_ZERO_VALUE;
-  handle_param[0x22] = SYSTEM_ZERO_VALUE;
-  handle_param[0x23] = SYSTEM_ZERO_VALUE;
-  handle_param[0x24] = SYSTEM_ZERO_VALUE;
-  handle_param[0x25] = SYSTEM_ZERO_VALUE;
-  handle_param[0x26] = SYSTEM_ZERO_VALUE;
-  handle_param[0x27] = SYSTEM_ZERO_VALUE;
-  handle_param[0x28] = SYSTEM_ZERO_VALUE;
-  handle_param[0x29] = SYSTEM_ZERO_VALUE;
-  handle_param[0x2a] = SYSTEM_ZERO_VALUE;
-  handle_param[0x2b] = SYSTEM_ZERO_VALUE;
-  handle_param[0x2c] = SYSTEM_ZERO_VALUE;
-  handle_param[0x2d] = SYSTEM_ZERO_VALUE;
-  handle_param[0x2e] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_21] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_22] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_23] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_24] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_25] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_26] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_27] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_28] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_29] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_2A] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_2B] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_2C] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_2D] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_2E] = SYSTEM_ZERO_VALUE;
   handle_param[SYSTEM_CHAR_SLASH] = SYSTEM_ZERO_VALUE;
-  psystem_initialization_result = handle_param + 0x31;
+  psystem_initialization_result = handle_param + SYSTEM_OFFSET_HANDLE_PARAM_31;
   *psystem_initialization_result = SYSTEM_ZERO_VALUE;
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_32] = SYSTEM_ZERO_VALUE;
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_33] = SYSTEM_ZERO_VALUE;
   *(unsigned int *)(handle_param + SYSTEM_CONFIG_OFFSET_MODULE_HANDLE) = SYSTEM_THREE_VALUE;
-  string_input_pointer = handle_param + 0x35;
+  string_input_pointer = handle_param + SYSTEM_OFFSET_HANDLE_PARAM_35;
   str_len_counter = SYSTEM_EIGHT_VALUE;
   system_execution_function(string_input_pointer,0x28,8,&g_system_execution_buffer,system_execution_function);
-  _Mtx_init_in_situ(handle_param + 0x5d, STRING_BUFFER_SIZE_SECONDARY);
+  _Mtx_init_in_situ(handle_param + SYSTEM_OFFSET_HANDLE_PARAM_5D, STRING_BUFFER_SIZE_SECONDARY);
   thread_result_status = module_configuration_processor(&module_config_addr);
   if (thread_operation_flags < thread_result_status) {
     thread_result_status = thread_operation_flags;
@@ -8033,60 +8033,60 @@ unsigned long long * system_execution_function(unsigned long long *handle_param,
   *(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G) = thread_result_status;
   handle_param[0x11] = (long long)thread_result_status;
   system_execution_function(handle_param + 0xd);
-  handle_param[0x16] = (long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G);
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_16] = (long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G);
   if (handle_param[0x12] != 0) {
     handle_param_system_error();
   }
   handle_param[0x12] = SYSTEM_ZERO_VALUE;
-  handle_param[0x14] = SYSTEM_ONE_VALUE;
-  handle_param[0x13] = SYSTEM_ZERO_VALUE;
-  handle_param[0x15] = INVALID_HANDLE_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_14] = SYSTEM_ONE_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_13] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_15] = INVALID_HANDLE_VALUE;
   buffer_allocation_result = system_execution_function(system_global_data_pointer,(long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G) * 0x48,0x18);
   handle_param[0x12] = buffer_allocation_result;
-  handle_param[0x1b] = (long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G);
-  if (handle_param[0x17] != 0) {
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_1B] = (long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G);
+  if (handle_param[SYSTEM_OFFSET_HANDLE_PARAM_17] != 0) {
     handle_param_system_error();
   }
-  handle_param[0x17] = SYSTEM_ZERO_VALUE;
-  handle_param[0x19] = SYSTEM_ONE_VALUE;
-  handle_param[0x18] = SYSTEM_ZERO_VALUE;
-  handle_param[0x1a] = INVALID_HANDLE_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_17] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_19] = SYSTEM_ONE_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_18] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_1A] = INVALID_HANDLE_VALUE;
   buffer_allocation_result = system_execution_function(system_global_data_pointer,(long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G) * 0xc0,0x18);
-  handle_param[0x17] = buffer_allocation_result;
-  handle_param[0x2a] = (long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G);
-  if (handle_param[0x26] == SYSTEM_ZERO_VALUE) {
-    handle_param[0x26] = SYSTEM_ZERO_VALUE;
-    handle_param[0x28] = SYSTEM_ONE_VALUE;
-    handle_param[0x27] = SYSTEM_ZERO_VALUE;
-    handle_param[0x29] = INVALID_HANDLE_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_17] = buffer_allocation_result;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_2A] = (long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G);
+  if (handle_param[SYSTEM_OFFSET_HANDLE_PARAM_26] == SYSTEM_ZERO_VALUE) {
+    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_26] = SYSTEM_ZERO_VALUE;
+    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_28] = SYSTEM_ONE_VALUE;
+    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_27] = SYSTEM_ZERO_VALUE;
+    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_29] = INVALID_HANDLE_VALUE;
     buffer_allocation_result = system_execution_function(system_global_data_pointer,(long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G) << 4,0x18);
-    handle_param[0x26] = buffer_allocation_result;
+    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_26] = buffer_allocation_result;
     handle_param[path_buffer_size] = (long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G);
     system_execution_function(handle_param + SYSTEM_OFFSET_PATH_SIZE);
     handle_param[SYSTEM_CHAR_SLASH] = (long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G);
-    if (handle_param[0x2b] != 0) {
+    if (handle_param[SYSTEM_OFFSET_HANDLE_PARAM_2B] != 0) {
       handle_param_system_error();
     }
-    handle_param[0x2b] = SYSTEM_ZERO_VALUE;
-    handle_param[0x2d] = SYSTEM_ONE_VALUE;
-    handle_param[0x2c] = SYSTEM_ZERO_VALUE;
-    handle_param[0x2e] = INVALID_HANDLE_VALUE;
+    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_2B] = SYSTEM_ZERO_VALUE;
+    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_2D] = SYSTEM_ONE_VALUE;
+    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_2C] = SYSTEM_ZERO_VALUE;
+    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_2E] = INVALID_HANDLE_VALUE;
     buffer_allocation_result = system_execution_function(system_global_data_pointer,(long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G) << 4,0x18);
-    handle_param[0x2b] = buffer_allocation_result;
+    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_2B] = buffer_allocation_result;
     do {
       string_input_pointer[4] = (long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G);
       system_execution_function(string_input_pointer);
       string_input_pointer = string_input_pointer + 5;
       str_len_counter = str_len_counter + -1;
     } while (str_len_counter != 0);
-    handle_param[0x25] = (long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G);
-    if (handle_param[0x21] == SYSTEM_ZERO_VALUE) {
-      handle_param[0x21] = SYSTEM_ZERO_VALUE;
-      handle_param[0x23] = SYSTEM_ONE_VALUE;
-      handle_param[0x22] = SYSTEM_ZERO_VALUE;
-      handle_param[0x24] = INVALID_HANDLE_VALUE;
+    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_25] = (long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G);
+    if (handle_param[SYSTEM_OFFSET_HANDLE_PARAM_21] == SYSTEM_ZERO_VALUE) {
+      handle_param[SYSTEM_OFFSET_HANDLE_PARAM_21] = SYSTEM_ZERO_VALUE;
+      handle_param[SYSTEM_OFFSET_HANDLE_PARAM_23] = SYSTEM_ONE_VALUE;
+      handle_param[SYSTEM_OFFSET_HANDLE_PARAM_22] = SYSTEM_ZERO_VALUE;
+      handle_param[SYSTEM_OFFSET_HANDLE_PARAM_24] = INVALID_HANDLE_VALUE;
       buffer_allocation_result = system_execution_function(system_global_data_pointer,(long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G) * SYSTEM_POINTER_OFFSET8,0x18);
-      handle_param[0x21] = buffer_allocation_result;
+      handle_param[SYSTEM_OFFSET_HANDLE_PARAM_21] = buffer_allocation_result;
       buffer_allocation_result = (ulong long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G);
       str_len_counter = *psystem_initialization_result;
       if ((ulong long)(handle_param[SYSTEM_OFFSET_HANDLE_PARAM_33] - str_len_counter >> 3) < buffer_allocation_result) {
