@@ -343,5 +343,10 @@
 #define NETWORK_DATA_PTR_OFFSET_PRIMARY 360     // 数据指针主偏移量
 #define NETWORK_DATA_PTR_OFFSET_SECONDARY 368   // 数据指针次偏移量
 
-// - 将硬编码的套接字压缩偏移量常量替换为语义化常量
-// - 将硬编码的套接字句柄偏移量常量替换为语义化常量
+// 网络系统套接字压缩偏移量语义化常量（2025年8月30日最终批次最新完成）
+#define NETWORK_SOCKET_COMPRESSION_OFFSET_PRIMARY 0x1f4   // 套接字压缩主偏移量
+#define NETWORK_SOCKET_COMPRESSION_OFFSET_SECONDARY 0x258 // 套接字压缩次偏移量
+
+// 网络系统套接字句柄偏移量语义化常量（2025年8月30日最终批次最新完成）
+#define NETWORK_SOCKET_HANDLE_OFFSET_PRIMARY 0x2bc   // 套接字句柄主偏移量
+#define NETWORK_SOCKET_HANDLE_OFFSET_SECONDARY 0x320 // 套接字句柄次偏移量
