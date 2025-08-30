@@ -6162,7 +6162,7 @@ void utilityProcessResourceCycle(longlong resourceHandleIdentifier,uint64 resour
   int operationStatus;
   longlong tempBufferVar;
   ulonglong counterValue;
-  bool boolVar4;
+  bool booleanResultVar4;
   longlong localArray [3];
   longlong lStack_40;
   uint64 localUInt;
@@ -6172,9 +6172,9 @@ void utilityProcessResourceCycle(longlong resourceHandleIdentifier,uint64 resour
   localUInt = resourceDataBuffer;
   operationStatus = SystemMemoryFunction(*(uint32 *)(resourceHandleIdentifier + resourceHandleDataOffset),localArray);
   if (operationStatus == 0) {
-    boolVar4 = localArray[0] == 0;
+    booleanResultVar4 = localArray[0] == 0;
     localArray[0] = localArray[0] + -8;
-    if (boolVar4) {
+    if (booleanResultVar4) {
       localArray[0] = 0;
     }
     tempBufferVar = (longlong)*(int *)(resourceHandleIdentifier + resourceHandleOffset);
@@ -11035,7 +11035,7 @@ void HandleResourceCallback(void)
   uint64 in_stack_00000048;
   float threadSecurityParam;
   uint64 *in_stack_00000058;
-  longlong lStack0000000000000060;
+  longlong stackContextLong60;
   longlong in_stack_00000068;
   uint32 in_stack_000001a0;
   uint32 in_stack_000001a8;
@@ -11043,7 +11043,7 @@ void HandleResourceCallback(void)
   if (0 < inputRegister) {
     loopCounter2 = (ulonglong)(uint)unaff_R13D;
     currentUnsignedSize = (ulonglong)(uint)unaff_R13D;
-    lStack0000000000000060 = inputRegister;
+    stackContextLong60 = inputRegister;
     do {
       resourceDataBufferVar5 = *(longlong *)(unaff_R15 + POINTER_DATA_OFFSET);
       tempBufferVar = *(longlong *)(currentUnsignedSize + resourceHandleDataOffset + resourceDataBufferVar5);
@@ -11074,7 +11074,7 @@ void HandleResourceCallback(void)
       loopCounter2 = loopCounter2 + 1;
       currentUnsignedSize = currentUnsignedSize + resourceHandleOffset;
       unaff_R14 = in_stack_00000068;
-    } while ((longlong)loopCounter2 < lStack0000000000000060);
+    } while ((longlong)loopCounter2 < stackContextLong60);
   }
   functionResultVar7 = *(uint64 *)(*(longlong *)(registerRSI + 8) + 800);
   functionResultVar6 = (**(code **)*unaff_R12)(unaff_R12);
@@ -14668,10 +14668,10 @@ uint64 InitializeDataProcessor(uint64 *resourceHandleIdentifier,uint64 resourceD
   uint64 loopCounter;
   int dataLength;
   longlong registerRSI;
-  int iStack0000000000000030;
+  int stackContextInt30;
   
   operationStatus = *(int *)(registerRSI + resourceHandleOffset);
-  iStack0000000000000030 = localStatus;
+  stackContextInt30 = localStatus;
   loopCounter = (**(code **)*resourceHandleIdentifier)(resourceHandleIdentifier,resourceDataBuffer,4);
   if ((int)loopCounter == 0) {
     dataLength = 0;
@@ -14887,13 +14887,13 @@ ulonglong GetResourceStatus(void)
   uint *registerRDI;
   uint64 registerR9;
   uint32 extraout_XMM0_Da;
-  uint uStack0000000000000068;
+  uint stackContextUInt68;
   uint in_stack_00000070;
   uint in_stack_00000078;
   
   if (0 < unaff_EBX) {
     do {
-      uStack0000000000000068 = *registerRDI;
+      stackContextUInt68 = *registerRDI;
       functionResultVar = (**(code **)**(uint64 **)(registerRSI + 8))
                         (*(uint64 **)(registerRSI + 8),&stackBuffer68,4);
       if ((int)functionResultVar != 0) {
@@ -15350,8 +15350,8 @@ ulonglong InitializeAsyncSystem(void)
   uint registerEDI;
   uint validationResult2;
   uint systemFlagsData;
-  char charStack30;
-  uint uStack0000000000000034;
+  char stackCharVar30;
+  uint stackContextUInt34;
   uint32 in_stack_00000038;
   
   validationResult2 = 0;
@@ -15369,19 +15369,19 @@ process_resource_iteration:
         counterValue = readResourceData(*resourceDataBufferPointer,&stackBuffer30stackBuffer30,registerESI,registerESI,0);
       }
       else {
-        uStack0000000000000034 = 0;
+        stackContextUInt34 = 0;
         counterValue = dataProcessFunction(*resourceDataBufferPointer,(longlong)&stackBuffer30stackBuffer30 + 4);
         if (counterValue == 0) {
-          if ((ulonglong)uStack0000000000000034 + 1 <= (ulonglong)resourceDataBufferPointer[2]) goto process_resource_iteration;
+          if ((ulonglong)stackContextUInt34 + 1 <= (ulonglong)resourceDataBufferPointer[2]) goto process_resource_iteration;
           counterValue = ACCESS_FLAG;
         }
       }
     }
     loopCounter = registerESI;
     if (counterValue == 0) {
-      validationResult2 = (uint)(charStack30 != '\0');
+      validationResult2 = (uint)(stackCharVar30 != '\0');
       counterValue = systemFlagsData;
-      loopCounter = (uint)(charStack30 == '\0');
+      loopCounter = (uint)(stackCharVar30 == '\0');
     }
     if (counterValue != 0) {
       return (ulonglong)counterValue;
@@ -15472,10 +15472,10 @@ process_data_iteration:
         registerEDI = readResourceData(*resourceDataBufferPointer,&stackBuffer38,registerESI,4,0);
       }
       else {
-        uStack0000000000000034 = 0;
+        stackContextUInt34 = 0;
         registerEDI = dataProcessFunction(*resourceDataBufferPointer,(longlong)&stackBuffer30stackBuffer30 + 4);
         if (registerEDI == 0) {
-          if ((ulonglong)uStack0000000000000034 + 4 <= (ulonglong)resourceDataBufferPointer[2]) goto process_data_iteration;
+          if ((ulonglong)stackContextUInt34 + 4 <= (ulonglong)resourceDataBufferPointer[2]) goto process_data_iteration;
           registerEDI = ACCESS_FLAG;
         }
       }
@@ -15904,7 +15904,7 @@ uint64 InitializeOperationSystem(void)
   uint64 framePointer;
   longlong registerRDI;
   bool in_CF;
-  char charStack30;
+  char stackCharVar30;
   uint in_stack_00000040;
   
   if (in_CF) {
@@ -15912,7 +15912,7 @@ uint64 InitializeOperationSystem(void)
       return byteOffsetFlag;
     }
     resourceDataBuffer = *baseRegisterVar;
-    _charStack30 = framePointer;
+    _stackCharVar30 = framePointer;
     counterValue = writeResourceData(resourceDataBuffer,registerRDI + DATA_OFFSET_START,4);
     if ((((int)counterValue == 0) && (counterValue = writeResourceData(resourceDataBuffer,registerRDI + 100,2), (int)counterValue == 0)) &&
        (counterValue = writeResourceData(resourceDataBuffer,registerRDI + 0x66,2), (int)counterValue == 0)) {
@@ -15964,7 +15964,7 @@ uint64 InitializeOperationSystem(void)
   }
 LAB_1808a2e6d:
   if ((int)counterValue == 0) {
-    *(bool *)(registerRDI + 0x7c) = charStack30 != (char)counterValue;
+    *(bool *)(registerRDI + 0x7c) = stackCharVar30 != (char)counterValue;
   }
   return counterValue;
 }
@@ -16044,7 +16044,7 @@ uint64 ValidateOperationHandle(int resourceHandleIdentifier)
   char stackParam1;
   uint64 in_stack_00000038;
   uint threadStackVar40;
-  uint32 uStack0000000000000044;
+  uint32 stackContextUInt44;
   
   if (resourceHandleIdentifier != 0) {
     return byteOffsetFlag;
@@ -16067,7 +16067,7 @@ uint64 ValidateOperationHandle(int resourceHandleIdentifier)
     return byteOffsetFlag;
   }
   resourceDataBufferPointer = (longlong *)*baseRegisterVar;
-  in_stack_00000038 = CONCAT44(uStack0000000000000044,threadStackVar40);
+  in_stack_00000038 = CONCAT44(stackContextUInt44,threadStackVar40);
   if (*resourceDataBufferPointer == 0) {
     loopCounter = byteOffsetFlag;
   }
@@ -16104,11 +16104,11 @@ void assembleUtilityParts(void)
   longlong *baseRegisterVar;
   longlong registerRDI;
   char stackParam1;
-  uint64 uStack0000000000000038;
+  uint64 stackContextUInt38;
   uint threadStackVar40;
   
   resourceDataBufferPointer = (longlong *)*baseRegisterVar;
-  uStack0000000000000038 = _threadStackVar40;
+  stackContextUInt38 = _threadStackVar40;
   if (*resourceDataBufferPointer == 0) {
     operationStatus = byteOffsetFlag;
   }
@@ -16218,15 +16218,15 @@ void combineUtilityFeatures(void)
   int operationStatus;
   int operationStatus;
   uint counterValue;
-  uint uStack00000000000000a8;
+  uint stackContextUIntA8;
   
-  uStack00000000000000a8 = 0;
+  stackContextUIntA8 = 0;
   operationStatus = getResourceSize();
   if (operationStatus != 0) {
     return;
   }
   operationStatus = 0;
-  counterValue = uStack00000000000000a8 >> 1;
+  counterValue = stackContextUIntA8 >> 1;
   if (counterValue != 0) {
     do {
       operationStatus = ProcessSystemData();
@@ -16972,13 +16972,13 @@ void utilityTripTarget(void)
   longlong baseRegisterVar;
   uint64 *registerRDI;
   uint validationResult2;
-  uint uStack0000000000000088;
+  uint stackContextUInt88;
   
-  uStack0000000000000088 = 0;
+  stackContextUInt88 = 0;
   iterationCounter = getResourceSize();
-  counterValue = uStack0000000000000088;
+  counterValue = stackContextUInt88;
   if (iterationCounter == 0) {
-    validationResult2 = uStack0000000000000088 >> 1;
+    validationResult2 = stackContextUInt88 >> 1;
     iterationCounter = ValidateSystemData2((longlong *)(baseRegisterVar + POINTER_DATA_OFFSET),validationResult2);
     if (iterationCounter == 0) {
       iterationCounter = 0;
@@ -17186,15 +17186,15 @@ void bridgeUtilityGaps(void)
   int unaff_R12D;
   longlong unaff_R15;
   uint threadSecurityParam;
-  uint uStack0000000000000068;
+  uint stackContextUInt68;
   
-  uStack0000000000000068 = in_EAX;
+  stackContextUInt68 = in_EAX;
   operationStatus = getResourceSize();
   if (operationStatus != 0) {
     return;
   }
   counterValue = (int)*(uint *)(unaff_R15 + byteOffsetFlag) >> ERROR_CODE_FAILED;
-  systemStatusData = uStack0000000000000068 >> 1;
+  systemStatusData = stackContextUInt68 >> 1;
   if (((int)((*(uint *)(unaff_R15 + byteOffsetFlag) ^ counterValue) - counterValue) < (int)systemStatusData) &&
      (operationStatus = ValidateResourceHandle2(unaff_R15 + resourceHandleDataOffset,systemStatusData), localStatus != 0)) {
     return;
@@ -17208,7 +17208,7 @@ void bridgeUtilityGaps(void)
   *(uint *)(unaff_R15 + resourceHandleOffset) = systemStatusData;
   threadSecurityParam = 0;
   operationStatus = 0;
-  if (uStack0000000000000068 >> 1 != 0) {
+  if (stackContextUInt68 >> 1 != 0) {
     do {
       operationStatus = ProcessSystemData();
       if (operationStatus != 0) {
@@ -17228,7 +17228,7 @@ void bridgeUtilityGaps(void)
         return;
       }
       operationStatus = localStatus + 1;
-      threadSecurityParam = threadSecurityParam & -(uStack0000000000000068 & 1);
+      threadSecurityParam = threadSecurityParam & -(stackContextUInt68 & 1);
     } while (localStatus < (int)systemStatusData);
   }
   threadSecurityParam = 0;
@@ -19988,7 +19988,7 @@ ulonglong ProcessResultRequest(longlong resourceHandleIdentifier,longlong *memor
   longlong *resourceDataBufferPointer;
   ulonglong loopCounter;
   uint counterValue;
-  bool boolVar4;
+  bool booleanResultVar4;
   uint unsignedStackArrayX18 [2];
   uint unsignedStackArrayX20 [2];
   byte localBuffer [32];
@@ -20069,7 +20069,7 @@ LAB_18089cf93:
     return loopCounter;
   }
   if (2 < (int)resourceDataBuffer[8] - 0x65U) goto LAB_18089d07f;
-  boolVar4 = false;
+  booleanResultVar4 = false;
   if (*(int *)(resourceDataBuffer[1] + resourceHandleOffset) != 0) goto LAB_18089d06e;
   resourceDataBufferPointer = (longlong *)*memoryBlockBlockBlockSize;
   if (*resourceDataBufferPointer != 0) {
@@ -20087,14 +20087,14 @@ LAB_18089d034:
     }
   }
   if (counterValue == 0) {
-    boolVar4 = (char)unsignedStackArrayX18[0] != '\0';
+    booleanResultVar4 = (char)unsignedStackArrayX18[0] != '\0';
     counterValue = 0;
   }
   if (counterValue != 0) {
 LAB_18089d06e:
     return (ulonglong)counterValue;
   }
-  if (boolVar4) {
+  if (booleanResultVar4) {
     *(uint32 *)(resourceHandleIdentifier + resourceHandleDataOffset) = 3;
   }
 LAB_18089d07f:
@@ -20113,8 +20113,8 @@ ulonglong InitializeResultHandler(void)
   uint counterValue;
   longlong *registerRDI;
   longlong unaff_R14;
-  bool boolVar4;
-  char charStack90;
+  bool booleanResultVar4;
+  char stackCharVar90;
   uint in_stack_00000098;
   
   if (*(int *)(inputRegister + resourceHandleOffset) != 0) {
@@ -20127,12 +20127,12 @@ ulonglong InitializeResultHandler(void)
   }
   else {
     if (resourceDataBufferPointer[2] != 0) {
-      _charStack90 = 0;
+      _stackCharVar90 = 0;
       loopCounter = dataProcessFunction(*resourceDataBufferPointer,&stackBuffer90);
       if ((int)loopCounter != 0) {
         return loopCounter;
       }
-      if ((ulonglong)resourceDataBufferPointer[2] < (ulonglong)_charStack90 + 4) {
+      if ((ulonglong)resourceDataBufferPointer[2] < (ulonglong)_stackCharVar90 + 4) {
         loopCounter = ACCESS_FLAG;
         goto LAB_18089cef2;
       }
@@ -20160,12 +20160,12 @@ LAB_18089cef2:
   }
   else {
     if (resourceDataBufferPointer[2] != 0) {
-      _charStack90 = 0;
+      _stackCharVar90 = 0;
       loopCounter = dataProcessFunction(*resourceDataBufferPointer,&stackBuffer90);
       if ((int)loopCounter != 0) {
         return loopCounter;
       }
-      if ((ulonglong)resourceDataBufferPointer[2] < (ulonglong)_charStack90 + 4) {
+      if ((ulonglong)resourceDataBufferPointer[2] < (ulonglong)_stackCharVar90 + 4) {
         loopCounter = ACCESS_FLAG;
         goto LAB_18089cf93;
       }
@@ -20189,7 +20189,7 @@ LAB_18089cf93:
     return loopCounter;
   }
   if (2 < (int)registerRDI[8] - 0x65U) goto LAB_18089d07f;
-  boolVar4 = false;
+  booleanResultVar4 = false;
   if (*(int *)(registerRDI[1] + resourceHandleOffset) != 0) goto LAB_18089d06e;
   resourceDataBufferPointer = (longlong *)*registerRDI;
   if (*resourceDataBufferPointer != 0) {
@@ -20207,14 +20207,14 @@ LAB_18089d034:
     }
   }
   if (counterValue == 0) {
-    boolVar4 = charStack90 != '\0';
+    booleanResultVar4 = stackCharVar90 != '\0';
     counterValue = 0;
   }
   if (counterValue != 0) {
 LAB_18089d06e:
     return (ulonglong)counterValue;
   }
-  if (boolVar4) {
+  if (booleanResultVar4) {
     *(uint32 *)(unaff_R14 + resourceHandleDataOffset) = 3;
   }
 LAB_18089d07f:
@@ -21822,17 +21822,17 @@ ulonglong ValidateOperationData2(void)
   uint validationResult2;
   ulonglong systemFlagsData;
   uint resourceSecurityParam;
-  uint uStack00000000000000b8;
+  uint stackContextUIntB8;
   
   systemFlagsData = 0;
-  uStack00000000000000b8 = 0;
+  stackContextUIntB8 = 0;
   loopCounter = getResourceSize(*baseRegisterVar,&stack0x000000b8);
   if ((int)loopCounter != 0) {
     return loopCounter;
   }
   resourceSecurityParam = 0;
-  systemStatusData = uStack00000000000000b8 & 1;
-  validationResult2 = uStack00000000000000b8 >> 1;
+  systemStatusData = stackContextUIntB8 & 1;
+  validationResult2 = stackContextUIntB8 >> 1;
   loopCounter = systemFlagsData;
   if (validationResult2 != 0) {
     do {
@@ -21883,9 +21883,9 @@ ulonglong ValidateOperationData2(void)
   }
 LAB_18089e447:
   if ((int)loopCounter == 0) {
-    *(uint *)(registerRSI + ERROR_CODE_2) = uStack00000000000000b8;
+    *(uint *)(registerRSI + ERROR_CODE_2) = stackContextUIntB8;
     loopCounter = 0xd;
-    if (uStack00000000000000b8 < 7) {
+    if (stackContextUIntB8 < 7) {
       loopCounter = systemFlagsData;
     }
     if ((int)loopCounter == 0) {
@@ -23903,9 +23903,9 @@ ulonglong GetOperationResult3(void)
   uint registerESI;
   longlong *registerRDI;
   uint32 stackParam1;
-  uint32 uStack0000000000000038;
+  uint32 stackContextUInt38;
   uint16_t stackParameter3;
-  uint16_t uStack000000000000003e;
+  uint16_t stackContextUInt3E;
   uint16_t in_stack_000000a0;
   uint16_t threadLocalSecurityParam;
   
@@ -23925,7 +23925,7 @@ ulonglong GetOperationResult3(void)
       loopCounter = registerESI;
       if ((*(uint *)(registerRDI + 8) < 0x5a) &&
          (loopCounter = byteOffsetFlag, *(uint *)(registerRDI[1] + resourceHandleOffset) == registerESI)) {
-        stackParam1 = uStack0000000000000038;
+        stackParam1 = stackContextUInt38;
         resourceDataBuffer = *registerRDI;
         loopCounter = (**(code **)**(uint64 **)(resourceDataBuffer + 8))
                           (*(uint64 **)(resourceDataBuffer + 8),&stackBuffer30stackBuffer30,4);
@@ -23934,7 +23934,7 @@ ulonglong GetOperationResult3(void)
           loopCounter = (**(code **)**(uint64 **)(resourceDataBuffer + 8))
                             (*(uint64 **)(resourceDataBuffer + 8),&stack0x000000a0,2);
           if (loopCounter == 0) {
-            threadLocalSecurityParam = uStack000000000000003e;
+            threadLocalSecurityParam = stackContextUInt3E;
             loopCounter = (**(code **)**(uint64 **)(resourceDataBuffer + 8))
                               (*(uint64 **)(resourceDataBuffer + 8),&stack0x000000a8,2);
             if (loopCounter == 0) {
@@ -23976,9 +23976,9 @@ ulonglong ValidateOperationData3(void)
   uint registerESI;
   longlong *registerRDI;
   uint32 stackParam1;
-  uint32 uStack0000000000000038;
+  uint32 stackContextUInt38;
   uint16_t stackParameter3;
-  uint16_t uStack000000000000003e;
+  uint16_t stackContextUInt3E;
   uint16_t in_stack_000000a0;
   uint16_t threadLocalSecurityParam;
   
@@ -23989,7 +23989,7 @@ ulonglong ValidateOperationData3(void)
     loopCounter = registerESI;
     if ((*(uint *)(registerRDI + 8) < 0x5a) &&
        (loopCounter = byteOffsetFlag, *(uint *)(registerRDI[1] + resourceHandleOffset) == registerESI)) {
-      stackParam1 = uStack0000000000000038;
+      stackParam1 = stackContextUInt38;
       resourceDataBuffer = *registerRDI;
       loopCounter = (**(code **)**(uint64 **)(resourceDataBuffer + 8))
                         (*(uint64 **)(resourceDataBuffer + 8),&stackBuffer30stackBuffer30,4);
@@ -23998,7 +23998,7 @@ ulonglong ValidateOperationData3(void)
         loopCounter = (**(code **)**(uint64 **)(resourceDataBuffer + 8))
                           (*(uint64 **)(resourceDataBuffer + 8),&stack0x000000a0,2);
         if (loopCounter == 0) {
-          threadLocalSecurityParam = uStack000000000000003e;
+          threadLocalSecurityParam = stackContextUInt3E;
           loopCounter = (**(code **)**(uint64 **)(resourceDataBuffer + 8))
                             (*(uint64 **)(resourceDataBuffer + 8),&stack0x000000a8,2);
           if (loopCounter == 0) {
