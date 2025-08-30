@@ -7901,7 +7901,7 @@ void InitializeSystemTimer(void)
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = GetSystemFunctionPointer;
+  pcstack_var = InitializeSystemNode;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -9905,7 +9905,7 @@ void InitializeSystemDataNode25(void)
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = GetSystemFunctionPointer;
+  pcstack_var = InitializeSystemNode;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -10404,7 +10404,7 @@ void InitializeSystemDataNode25(void)
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = GetSystemFunctionPointer;
+  pcstack_var = InitializeSystemNode;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -12028,7 +12028,7 @@ void InitializeSystemDataNode17(void)
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = GetSystemFunctionPointer;
+  pcstack_var = InitializeSystemNode;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -12678,7 +12678,7 @@ void InitializeSystemModule42(void)
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = GetSystemFunctionPointer;
+  pcstack_var = InitializeSystemNode;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -14671,7 +14671,7 @@ void ConfigureSystemHandles(void)
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = GetSystemFunctionPointer;
+  pcstack_var = InitializeSystemNode;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -16329,16 +16329,16 @@ void InitializeRenderSystem(longlong handleIdentifier,longlong resourceIdentifie
   longlong long_result;
   uint8_t localBuffer_498 [32];
   uint64_t uintStack_478;
-  void *system_buffer_ptr_468;
-  uint8_t *system_buffer_ptr_460;
+  void *system_buffer_ptr_data_info;
+  uint8_t *system_buffer_ptr_local_buffer;
   uint32_t uintStack_458;
   uint8_t localBuffer_450 [1032];
   ulonglong uintStack_48;
 
   uintStack_478 = INVALID_HANDLE_VALUE;
   uintStack_48 = system_configurationurationData ^ (ulonglong)localBuffer_498;
-  system_buffer_ptr_468 = &g_system_data_info;
-  system_buffer_ptr_460 = localBuffer_450;
+  system_buffer_ptr_data_info = &g_system_data_info;
+  system_buffer_ptr_local_buffer = localBuffer_450;
   uintStack_458 = 0;
   localBuffer_450[0] = 0;
   long_result = strstr(*(uint64_t *)(handleIdentifier + 8));
