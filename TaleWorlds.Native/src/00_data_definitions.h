@@ -5410,7 +5410,7 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
         string_input_ptr = (uint *)(buffer_alloc_result + *(long long *)(mutex_attr + 0x1a));
       }
       if ((*(int *)(system_init_result0 + 0x48) < global_data_ptr) &&
-         (system_crypto_004(&data_180d48e24), global_data_ptr == -1)) {
+         (system_crypto_004(&crypto_module_data_buffer), global_data_ptr == -1)) {
         resource_template_ptr = &g_defaultDataTemplate;
         global_data_ptr = &g_data_network_flag;
         global_data_ptr = 0;
@@ -5421,9 +5421,9 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
         global_data_ptr = 3;
         global_data_ptr = 0;
         system_crypto_initializer(&system_crypto_data);
-        system_crypto_module_initializer(&data_180d48e24);
+        system_crypto_module_initializer(&crypto_module_data_buffer);
       }
-      string_input_ptr = &data_180d48e30;
+      string_input_ptr = &crypto_string_buffer;
       if (buffer_alloc_result < (ulong long)
                   ((*(long long *)(thread_op_flags + 0x1c) - *(long long *)(thread_op_flags + 0x1a)) / 0xb0)) {
         string_input_ptr = (void *)(buffer_alloc_result + *(long long *)(thread_op_flags + 0x1a));
@@ -5557,10 +5557,10 @@ unsigned long long allocate_system_memory(long long handle_param,long long *thre
   }
   return buffer_alloc_result;
 }
-    data_180d49748 = 0;
+    auth_data_buffer = 0;
     system_memory_002(0x180d496e0);
     system_crypto_initializer(system_execution_function);
-    system_crypto_module_initializer(&data_180d496d0);
+    system_crypto_module_initializer(&auth_data_buffer);
   }
   thread_result_index = _Mtx_lock(handle_param + 0x6e8);
   if (thread_result_index != 0) {
@@ -5604,10 +5604,10 @@ long long allocate_with_thread_op_flags(long long handle_param,uint thread_op_fl
   long long str_len_counter;
   uint *string_input_ptr;
   if ((*(int *)(*(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8) +
-               0x48) < global_data_ptr) && (system_crypto_004(&data_180d497d0), global_data_ptr == -1)) {
+               0x48) < global_data_ptr) && (system_crypto_004(&network_data_buffer), global_data_ptr == -1)) {
     system_memory_004(0x180d497e0);
     system_crypto_initializer(system_execution_function);
-    system_crypto_module_initializer(&data_180d497d0);
+    system_crypto_module_initializer(&network_data_buffer);
   }
   if ((ulong long)mutex_attr <= *(ulong long *)(handle_param + 0x160)) {
     for (string_input_ptr = *(uint **)(*(long long *)(handle_param + 0x9f8) +
@@ -5646,7 +5646,7 @@ long long allocate_system_buffer(unsigned long long handle_param,long long *thre
   uint buffer_alloc_result;
   if (*(int *)(*(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8) +
               0x48) < global_data_ptr) {
-    system_crypto_004(&data_180d49990);
+    system_crypto_004(&render_data_buffer);
     if (global_data_ptr == -1) {
       buffer_alloc_result = system_execution_function(global_data_ptr,0x1c8,8,3);
       global_data_ptr = system_memory_manager_001(buffer_alloc_result);
@@ -5665,9 +5665,9 @@ long long allocate_system_buffer(unsigned long long handle_param,long long *thre
       *string_input_ptr = &g_memory_manager_address;
       global_data_ptr = string_input_ptr;
       global_data_ptr = system_get_memory_manager_instance();
-      global_data_ptr = (*global_data_ptr)(&data_180c918c0);
+      global_data_ptr = (*global_data_ptr)(&system_mutex_buffer);
       global_data_ptr = 0;
-      system_crypto_module_initializer(&data_180d49990);
+      system_crypto_module_initializer(&render_data_buffer);
     }
   }
   buffer_alloc_result = 0;
@@ -5682,8 +5682,8 @@ long long allocate_system_buffer(unsigned long long handle_param,long long *thre
       buffer_alloc_result = (ulong long)thread_op_flags;
     } while (thread_op_flags < buffer_alloc_result);
   }
-  (**(code **)(**(long long **)(&data_180d48de0 + (ulong long)*(uint *)(mutex_attr + 0x8c) * 8) + 8))();
-  return *(long long *)(&data_180d48de0 + (ulong long)*(uint *)(mutex_attr + 0x8c) * 8);
+  (**(code **)(**(long long **)(&mutex_attr_data_buffer + (ulong long)*(uint *)(mutex_attr + 0x8c) * 8) + 8))();
+  return *(long long *)(&mutex_attr_data_buffer + (ulong long)*(uint *)(mutex_attr + 0x8c) * 8);
 }
 unsigned long long
 system_allocator_008(unsigned long long handle_param,long long *thread_op_flags,unsigned long long *mutex_attr,unsigned int mutex_type,
@@ -5965,14 +5965,14 @@ unsigned char check_memory_bounds(void)
   (*character_scan_pointer)();
   return;
 }
-      data_180d499e8 = 0;
+      config_data_buffer_0 = 0;
       global_data_ptr = 6;
-      strcpy_s(&data_180d499e8,path_buffer_size0,&data_180a3c074,str_len_param,buffer_alloc_result);
+      strcpy_s(&config_data_buffer_0,path_buffer_size0,&path_buffer_0,str_len_param,buffer_alloc_result);
       system_crypto_initializer(system_execution_function);
-      system_crypto_module_initializer(&data_180d499c8);
+      system_crypto_module_initializer(&string_handle_buffer);
     }
   }
-  (**(code **)(*global_data_ptr + 0x70))(global_data_ptr,&data_180d499d0);
+  (**(code **)(*global_data_ptr + 0x70))(global_data_ptr,&thread_data_buffer);
   return;
 }
 unsigned int
@@ -6030,17 +6030,17 @@ system_finalizer_007(unsigned long long handle_param,unsigned long long thread_o
   }
   return thread_op_flags;
 }
-    data_180d49c08 = 0;
+    string_buffer_constant = 0;
     if (handle_param != 0) {
       str_len_counter = -1;
       do {
         str_len_counter = str_len_counter + 1;
       } while (*(char *)(handle_param + str_len_counter) != '\0');
       global_data_ptr = (unsigned int)str_len_counter;
-      strcpy_s(&data_180d49c08,string_buffer_size_constant,handle_param);
+      strcpy_s(&string_buffer_constant,string_buffer_size_constant,handle_param);
     }
     system_crypto_initializer(system_execution_function);
-    system_crypto_module_initializer(&data_180d49d08);
+    system_crypto_module_initializer(&thread_data_buffer_0);
   }
   buffer_alloc_result = system_execution_function(global_data_ptr,0xe0,8,3,buffer_alloc_result);
   pstack_long_var = alStack_30;

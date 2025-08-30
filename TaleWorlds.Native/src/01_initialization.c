@@ -47,6 +47,9 @@
 // - 为函数指针添加了清晰的注释分组，如游戏引擎初始化函数指针、音频引擎初始化函数指针等
 // - 添加了RENDER_DATA_END_ADDR等计算常量，提高代码可读性
 // - 保持了代码语义不变，仅提高可读性和维护性
+// - 本次美化内容：将栈变量名如uintStack_200等替换为init_stack_uint_param_200等语义化名称
+// - 将系统标志变量名如g_system_flag_1等替换为g_system_initialization_flag_1等描述性名称
+// - 这是简化实现，主要处理了栈变量和系统标志变量的语义化替换
 
 // 最新美化内容：
 // - 将system_buffer_ptr_468等数字后缀变量替换为语义化名称如system_buffer_ptr_data_config等
