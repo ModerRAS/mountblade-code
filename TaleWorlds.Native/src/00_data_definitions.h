@@ -3743,22 +3743,22 @@ label_:
 }
       data_180d492a8 = 0;
       global_data_ = 6;
-      strcpy_s(&data_180d492a8,系统配置缓冲区大小,&data_180a06998,mutex_type,uint_var_);
+      strcpy_s(&data_180d492a8, SYSTEM_CONFIG_BUFFER_SIZE, &data_180a06998, mutex_type, uint_var_);
       global_data_ = &g_defaultDataTemplate;
       global_data_ = &data_180d49300;
       data_180d49300 = 0;
       global_data_ = 4;
-      strcpy_s(&data_180d49300,系统配置缓冲区大小,&data_180a06990);
+      strcpy_s(&data_180d49300, SYSTEM_CONFIG_BUFFER_SIZE, &data_180a06990);
       global_data_ = &g_defaultDataTemplate;
       global_data_ = &data_180d49358;
       data_180d49358 = 0;
       global_data_ = 6;
-      strcpy_s(&data_180d49358,系统配置缓冲区大小,&data_180a069a8);
+      strcpy_s(&data_180d49358, SYSTEM_CONFIG_BUFFER_SIZE, &data_180a069a8);
       global_data_ = &g_defaultDataTemplate;
       global_data_ = &data_180d493b0;
       data_180d493b0 = 0;
       global_data_ = 6;
-      strcpy_s(&data_180d493b0,系统配置缓冲区大小,&data_180a069a0);
+      strcpy_s(&data_180d493b0, SYSTEM_CONFIG_BUFFER_SIZE, &data_180a069a0);
       system_crypto_002(&systemCryptoData1);
       system_crypto_003(&data_180d49288);
     }
@@ -3773,7 +3773,7 @@ label_:
   handle[3] = 0;
   handle[1] = 0;
   *(unsigned int *)(handle + 2) = 0;
-  system_thread_manager_001(handle,3,mutex_attr,mutex_type,0,线程池默认标志);
+  system_thread_manager_001(handle, 3, mutex_attr, mutex_type, 0, THREAD_POOL_DEFAULT_FLAG);
   *(unsigned int *)handle[1] = 0x2e6b4f;
   *(unsigned int *)(handle + 2) = 3;
   return handle;
@@ -3959,7 +3959,7 @@ long long process_memory_with_flags(unsigned long long handle,long long flags,lo
     }
     if ((*(char *)(in_RCX + 0xb74) != '\0') &&
        (init_result0 = *(long long *)(*(long long *)(alStackX_10[0] + 0x3580) + 0x530), init_result0 != 0)) {
-      *(unsigned int *)(init_result0 + 系统配置缓冲区大小) = 0x41200000;
+      *(unsigned int *)(init_result0 + SYSTEM_CONFIG_BUFFER_SIZE) = 0x41200000;
     }
     if (*(int *)(in_RCX + 0xa3a) != 0) {
       uint_var_ = *(unsigned int *)(in_RCX + 0xa3a);
@@ -3975,7 +3975,7 @@ long long process_memory_with_flags(unsigned long long handle,long long flags,lo
         int_var_ = (*(int *)(in_RCX + 0xa3a) - 1U >> 0xc) + 1;
       }
       if (int_var_ != 0) {
-        memcpy(pppppinit_result7[1],in_RCX[0xa3b],CONFIG_PATH_BUFFER_SIZE000);
+        memcpy(pppppinit_result7[1], in_RCX[0xa3b], CONFIG_PATH_BUFFER_SIZE_000);
       }
       init_result0 = *(long long *)(*(long long *)(alStackX_10[0] + 0x3580) + 0x118);
       if (init_result0 != 0) {
@@ -3991,7 +3991,7 @@ long long process_memory_with_flags(unsigned long long handle,long long flags,lo
   }
   while (int_var_ = (int)uint_var_, (ulong long)(long long)int_var_ < (ulong long)*(uint *)(in_RCX + 0xb5b)) {
     ppppinit_result3 = in_RCX[(uint_var_ >> 10) + 0xb5c] +
-                 (ulong long)(uint)(int_var_ + (int)(uint_var_ >> 10) * -系统配置缓冲区大小0) * 0x18;
+                 (ulong long)(uint)(int_var_ + (int)(uint_var_ >> 10) * -SYSTEM_CONFIG_BUFFER_SIZE_0) * 0x18;
     system_resource_001(*ppppinit_result3);
     function_(*ppppinit_result3,ppppinit_result3[1],ppppinit_result3 + 2,0,ppppinit_result3 + 10);
     uint_var_ = (ulong long)(int_var_ + 1);
@@ -4024,7 +4024,7 @@ system_processor_006(unsigned long long *handle,long long flags,unsigned long lo
   handle[3] = 0;
   handle[1] = 0;
   *(unsigned int *)(handle + 2) = 0;
-  system_thread_manager_001(handle,9,mutex_attr,mutex_type,0,线程池默认标志);
+  system_thread_manager_001(handle, 9, mutex_attr, mutex_type, 0, THREAD_POOL_DEFAULT_FLAG);
   pflags = (unsigned long long *)handle[1];
   *pflags = 0x6a624f656e656353;
   *(unsigned short *)(pflags + 1) = 0x2f;
