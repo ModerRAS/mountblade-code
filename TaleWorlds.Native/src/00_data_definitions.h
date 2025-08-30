@@ -3100,7 +3100,7 @@ section_processing_jump_label_:
               if (thread_stack1b0 != (void *)SYSTEM_NULL_POINTER) {
                 handle_param_system_error();
               }
-              thread_stack1b0 = (void *)0x0;
+              thread_stack1b0 = (void *)SYSTEM_NULL_POINTER;
               thread_stack_size_max1a0 = 0;
               thread_stack1b8 = &g_threadString4;
             }
@@ -6537,7 +6537,7 @@ section_processing_jump_label_:
   system_memory_002(PRIMARY_MEMORY_POOL_ADDR);
   str_len_counter = PRIMARY_MEMORY_POOL_ADDR;
 section_processing_jump_label_:
-  thread_result_index = _Mtx_unlock(handle_param + 0x6e8);
+  thread_result_index = _Mtx_unlock(handle_param + SYSTEM_MUTEX_OFFSET_6E8);
   if (thread_result_index != 0) {
     __Throw_C_error_std__YAXH_Z(thread_result_index);
   }
@@ -6593,18 +6593,18 @@ long long allocate_system_buffer(unsigned long long handle_param,long long *thre
               SYSTEM_THREAD_LOCAL_STORAGE_OFFSET) < system_global_data_pointer) {
     system_crypto_004(&render_data_buffer);
     if (system_global_data_pointer == -1) {
-      buffer_alloc_result = system_execution_function(system_global_data_pointer,0x1c8,8,3);
+      buffer_alloc_result = system_execution_function(system_global_data_pointer,SYSTEM_ALLOC_SIZE_1C8,8,3);
       system_global_data_pointer = system_memory_manager_001(buffer_alloc_result);
       buffer_alloc_result = system_execution_function(system_global_data_pointer,path_buffer_size0,8,3);
       system_global_data_pointer = system_allocate_memory_buffer(buffer_alloc_result);
-      string_input_ptr = (unsigned long long *)system_execution_function(system_global_data_pointer,0xf8,8,3);
+      string_input_ptr = (unsigned long long *)system_execution_function(system_global_data_pointer,SYSTEM_ALLOC_SIZE_F8,8,3);
       system_memory_003(string_input_ptr);
       // Original name: system_180a1b368
       *string_input_ptr = &g_handle_param_manager_address;
       system_register_memory_pointer(string_input_ptr);
       system_global_data_pointer = string_input_ptr;
       system_global_data_pointer = system_execution_function();
-      string_input_ptr = (unsigned long long *)system_execution_function(system_global_data_pointer,0xb0,8,3);
+      string_input_ptr = (unsigned long long *)system_execution_function(system_global_data_pointer,SYSTEM_ALLOC_SIZE_B0,8,3);
       system_memory_003(string_input_ptr);
       // Original name: system_180a1b3f0
       *string_input_ptr = &g_memory_manager_address;
