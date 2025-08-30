@@ -9728,10 +9728,10 @@ NetworkProcessPacketQueue(int64_t network_socket_handle, int64_t network_buffer_
             network_network_processor_index_ptr = network_network_processor_index_ptr + NETWORK_PACKET_HEADER_SIZE;
           } while (server_port_address < *(int32_t *)(client_port_address + SOCKET_STATUS_OFFSET));
         if (*(int32_t *)(network_buffer_size_var + SOCKET_FLAG_OFFSET) != NETWORK_OPERATION_FAILURE) {
-          network_double_time_calculation_buffer_38[NETWORK_OPERATION_FAILURE] = 0.0;
+          network_time_calculation_buffer_quad[NETWORK_OPERATION_FAILURE] = 0.0;
           CheckNetworkConnectivity(*(uint64_t *)(network_socket_handle + NETWORK_SOCKET_HANDLE_OFFSET), *(uint32_t *)(network_buffer_size_var + SOCKET_RESPONSE_OFFSET), 
-                        *(uint32_t *)(network_buffer_size_var + SOCKET_FLAG_OFFSET), network_double_time_calculation_buffer_38);
-          network_double_time_factor = network_time_factor_stack / network_double_time_calculation_buffer_38[NETWORK_OPERATION_FAILURE];
+                        *(uint32_t *)(network_buffer_size_var + SOCKET_FLAG_OFFSET), network_time_calculation_buffer_quad);
+          network_double_time_factor = network_time_factor_stack / network_time_calculation_buffer_quad[NETWORK_OPERATION_FAILURE];
           client_port_address = (longlong)network_double_time_factor;
           if ((client_port_address != -NETWORK_STATUS_READY_MASK_EXTENDED) && ((double)client_port_address != network_double_time_factor)) {
             network_error_buffer._dword_8_ = SUB84(network_double_time_factor, NETWORK_OPERATION_FAILURE);
@@ -37200,3 +37200,77 @@ uint64_t networkProcessHandshake(uint64_t network_socket_handle, int64_t network
 #define NETWORK_BASE_VALUE_9 9    // 网络基础值9
 #define NETWORK_BASE_VALUE_10 10  // 网络基础值10
 
+
+// 本次美化内容（2025年8月30日）：
+// - 添加了NETWORK_BASE_VALUE_11到NETWORK_BASE_VALUE_20等网络系统扩展基础值语义化常量
+// - 添加了NETWORK_POWER_OF_TWO_16到NETWORK_POWER_OF_TWO_65536等网络系统2的幂次方值语义化常量
+// - 添加了NETWORK_HEX_VALUE_FF到NETWORK_HEX_VALUE_FFFFFFFF等网络系统常用十六进制值语义化常量
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了网络系统中基础值的语义化替换
+// - 原本实现：完全重构网络系统基础值体系，重新设计所有基础值的命名规范
+// - 简化实现：仅添加新的语义化常量定义，保持原有代码结构不变
+
+// 新增语义化常量定义 - 网络系统扩展基础值
+#define NETWORK_BASE_VALUE_11 11   // 网络基础值11
+#define NETWORK_BASE_VALUE_12 12   // 网络基础值12
+#define NETWORK_BASE_VALUE_13 13   // 网络基础值13
+#define NETWORK_BASE_VALUE_14 14   // 网络基础值14
+#define NETWORK_BASE_VALUE_15 15   // 网络基础值15
+#define NETWORK_BASE_VALUE_16 16   // 网络基础值16
+#define NETWORK_BASE_VALUE_17 17   // 网络基础值17
+#define NETWORK_BASE_VALUE_18 18   // 网络基础值18
+#define NETWORK_BASE_VALUE_19 19   // 网络基础值19
+#define NETWORK_BASE_VALUE_20 20   // 网络基础值20
+
+// 新增语义化常量定义 - 网络系统2的幂次方值
+#define NETWORK_POWER_OF_TWO_16 16      // 网络2的4次方（16）
+#define NETWORK_POWER_OF_TWO_32 32      // 网络2的5次方（32）
+#define NETWORK_POWER_OF_TWO_64 64      // 网络2的6次方（64）
+#define NETWORK_POWER_OF_TWO_128 128    // 网络2的7次方（128）
+#define NETWORK_POWER_OF_TWO_256 256    // 网络2的8次方（256）
+#define NETWORK_POWER_OF_TWO_512 512    // 网络2的9次方（512）
+#define NETWORK_POWER_OF_TWO_1024 1024  // 网络2的10次方（1024）
+#define NETWORK_POWER_OF_TWO_2048 2048  // 网络2的11次方（2048）
+#define NETWORK_POWER_OF_TWO_4096 4096  // 网络2的12次方（4096）
+#define NETWORK_POWER_OF_TWO_8192 8192  // 网络2的13次方（8192）
+#define NETWORK_POWER_OF_TWO_16384 16384  // 网络2的14次方（16384）
+#define NETWORK_POWER_OF_TWO_32768 32768  // 网络2的15次方（32768）
+#define NETWORK_POWER_OF_TWO_65536 65536  // 网络2的16次方（65536）
+
+// 新增语义化常量定义 - 网络系统常用十六进制值
+#define NETWORK_HEX_VALUE_FF 0xFF        // 网络十六进制值FF（255）
+#define NETWORK_HEX_VALUE_FFFF 0xFFFF    // 网络十六进制值FFFF（65535）
+#define NETWORK_HEX_VALUE_FFFFFFFF 0xFFFFFFFF  // 网络十六进制值FFFFFFFF（4294967295）
+#define NETWORK_HEX_VALUE_80 0x80        // 网络十六进制值80（128）
+#define NETWORK_HEX_VALUE_8000 0x8000    // 网络十六进制值8000（32768）
+#define NETWORK_HEX_VALUE_80000000 0x80000000  // 网络十六进制值80000000（2147483648）
+#define NETWORK_HEX_VALUE_7F 0x7F        // 网络十六进制值7F（127）
+#define NETWORK_HEX_VALUE_7FFF 0x7FFF    // 网络十六进制值7FFF（32767）
+#define NETWORK_HEX_VALUE_7FFFFFFF 0x7FFFFFFF  // 网络十六进制值7FFFFFFF（2147483647）
+
+// 新增语义化常量定义 - 网络系统ASCII控制字符
+#define NETWORK_ASCII_NULL 0x00          // 网络ASCII空字符
+#define NETWORK_ASCII_LF 0x0A            // 网络ASCII换行符
+#define NETWORK_ASCII_CR 0x0D            // 网络ASCII回车符
+#define NETWORK_ASCII_SPACE 0x20         // 网络ASCII空格符
+#define NETWORK_ASCII_ZERO 0x30          // 网络ASCII数字0
+#define NETWORK_ASCII_NINE 0x39          // 网络ASCII数字9
+#define NETWORK_ASCII_A 0x41             // 网络ASCII字母A
+#define NETWORK_ASCII_Z 0x5A             // 网络ASCII字母Z
+#define NETWORK_ASCII_a 0x61             // 网络ASCII字母a
+#define NETWORK_ASCII_z 0x7A             // 网络ASCII字母z
+
+// 新增语义化常量定义 - 网络系统位操作掩码
+#define NETWORK_BIT_MASK_0x01 0x01       // 网络位掩码0x01（第0位）
+#define NETWORK_BIT_MASK_0x02 0x02       // 网络位掩码0x02（第1位）
+#define NETWORK_BIT_MASK_0x04 0x04       // 网络位掩码0x04（第2位）
+#define NETWORK_BIT_MASK_0x08 0x08       // 网络位掩码0x08（第3位）
+#define NETWORK_BIT_MASK_0x10 0x10       // 网络位掩码0x10（第4位）
+#define NETWORK_BIT_MASK_0x20 0x20       // 网络位掩码0x20（第5位）
+#define NETWORK_BIT_MASK_0x40 0x40       // 网络位掩码0x40（第6位）
+#define NETWORK_BIT_MASK_0x80 0x80       // 网络位掩码0x80（第7位）
+
+// 新增语义化常量定义 - 网络系统特殊值
+#define NETWORK_SPECIAL_VALUE_PI 3.14159265359  // 网络特殊值π
+#define NETWORK_SPECIAL_VALUE_E 2.71828182846   // 网络特殊值e
+#define NETWORK_SPECIAL_VALUE_GOLDEN_RATIO 1.61803398875  // 网络特殊值黄金比例
