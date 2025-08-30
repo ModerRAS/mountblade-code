@@ -1,5 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 
+// 本次美化内容（2025年8月30日）第七批次：
+// - 美化临时变量名，将system_temp_integer_temp替换为system_temp_integer_result等整数结果变量名
+// - 美化长整型结果变量名，将system_long_result替换为system_temp_long_result等语义化变量名
+// - 美化临时指针变量名，将system_temp_pointer替换为system_ptr_temp_value等指针变量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了剩余临时变量名的语义化替换
+// - 原本实现：完全重构所有临时变量命名体系
+// - 简化实现：仅将常见的临时变量名替换为语义化名称
+
 // 本次美化内容（2025年8月30日）第六批次：
 // - 美化InitializeSystemDataNode32函数中的变量名
 // - 将uintStack_2c8替换为system_stack_buffer_index_2c8等缓冲区索引变量名
