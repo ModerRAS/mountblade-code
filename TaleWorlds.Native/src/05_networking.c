@@ -7,7 +7,7 @@
 #define NETWORK_SOCKET_TIMEOUT_DATA_OFFSET 0x3d8  // 套接字超时数据偏移量
 #define NETWORK_SOCKET_HANDLE_OFFSET_5D 0x5d  // 套接字句柄偏移量5D
 #define NETWORK_SOCKET_CLEANUP_OFFSET 0x69  // 套接字清理偏移量
-#define NETWORK_SOCKET_DATA_OFFSET_7A 0x7a  // 套接字数据偏移量7A
+#define NETWORK_SOCKET_DATA_OFFSET_7A 0x7a  // 套接字数据连接偏移量
 #define NETWORK_CONFIGURE_CONNECTION_OFFSET 0x7a5  // 配置连接偏移量
 #define NETWORK_LOG_CONNECTION_OFFSET 0x8a4  // 网络日志连接偏移量
 #define NETWORK_BUFFER_OFFSET_8D 0x8d  // 缓冲区偏移量8D
