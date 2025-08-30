@@ -62724,3 +62724,9 @@ longlong *g_global_system_flags;
 // 系统数据大小常量（2025年8月30日最终批次补充）
 #define SYSTEM_DATA_SIZE_TEN 10
 
+// 系统空值和单位值常量（2025年8月30日最终批次补充）
+#define SYSTEM_NULL_VALUE 0
+#define SYSTEM_UNIT_VALUE 1
+#define SYSTEM_DUAL_VALUE 2
+#define SYSTEM_TRIPLE_VALUE 3
+
