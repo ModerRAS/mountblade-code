@@ -7806,8 +7806,8 @@ handle_resource_error:
 
 
 
-// 函数: void get_thread_local_variabletaValue(void)
-void get_thread_local_variabletaValue(void)
+// 函数: void get_thread_local_data_value(void)
+void get_thread_local_data_value(void)
 
 {
   ulonglong threadLocalSecurityParam;
