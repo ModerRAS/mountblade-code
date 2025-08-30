@@ -320,9 +320,9 @@
 #define SYSTEM_INIT_LABEL_LOOP_CONDITION        system_init_label_loop_condition  // 循环条件标签
 #define SYSTEM_INIT_LABEL_LOOP_END              system_init_label_loop_end  // 循环结束标签
 #define SYSTEM_INIT_LABEL_DATA_PROCESS          system_init_label_data_process  // 数据处理标签
-#define SYSTEM_INIT_LABEL_ARRAY_CHECK           LAB_180047f90x10  // 数组检查标签
-#define SYSTEM_INIT_LABEL_VALIDATION_COMPLETE   LAB_180048dd7  // 验证完成标签
-#define SYSTEM_INIT_LABEL_CLEANUP_START         LAB_180048db7  // 清理开始标签
+#define SYSTEM_INIT_LABEL_ARRAY_CHECK           system_init_label_array_check  // 数组检查标签
+#define SYSTEM_INIT_LABEL_VALIDATION_COMPLETE   system_init_label_validation_complete  // 验证完成标签
+#define SYSTEM_INIT_LABEL_CLEANUP_START         system_init_label_cleanup_start  // 清理开始标签
 
 // 系统错误码常量
 #define SYSTEM_INIT_ERROR_GENERIC              0xfffffffffffffff
