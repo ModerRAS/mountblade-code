@@ -2150,7 +2150,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(system_context_base_pointer,&system_stack_frame_pointer,system_config_data_pointer,system_initialization_result + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_result);
     system_config_data_pointer = system_stack_frame_pointer;
   }
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER2feffe4481676e;
+  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_HEADER_MAGIC;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
@@ -2882,7 +2882,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(system_context_base_pointer,&system_stack_frame_pointer,system_config_data_pointer,system_initialization_result + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_result);
     system_config_data_pointer = system_stack_frame_pointer;
   }
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER2feffe4481676e;
+  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_HEADER_MAGIC;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
@@ -3282,7 +3282,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(system_context_base_pointer,&system_stack_frame_pointer,system_config_data_pointer,system_initialization_result + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_result);
     system_config_data_pointer = system_stack_frame_pointer;
   }
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER2feffe4481676e;
+  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_HEADER_MAGIC;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
@@ -3632,7 +3632,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(system_context_base_pointer,&system_stack_frame_pointer,system_config_data_pointer,system_initialization_result + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_result);
     system_config_data_pointer = system_stack_frame_pointer;
   }
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER2feffe4481676e;
+  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_HEADER_MAGIC;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
@@ -4082,7 +4082,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(system_context_base_pointer,&system_stack_frame_pointer,system_config_data_pointer,system_initialization_result + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_result);
     system_config_data_pointer = system_stack_frame_pointer;
   }
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER2feffe4481676e;
+  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_HEADER_MAGIC;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
@@ -4666,7 +4666,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(system_context_base_pointer,&system_stack_frame_pointer,system_config_data_pointer,system_initialization_result + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_result);
     system_config_data_pointer = system_stack_frame_pointer;
   }
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER2feffe4481676e;
+  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_HEADER_MAGIC;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
@@ -5040,7 +5040,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(system_context_base_pointer,&system_stack_frame_pointer,system_config_data_pointer,system_initialization_result + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_result);
     system_config_data_pointer = system_stack_frame_pointer;
   }
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER2feffe4481676e;
+  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_HEADER_MAGIC;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
@@ -5642,7 +5642,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(system_context_base_pointer,&system_stack_frame_pointer,system_config_data_pointer,system_initialization_result + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_result);
     system_config_data_pointer = system_stack_frame_pointer;
   }
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER2feffe4481676e;
+  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_HEADER_MAGIC;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
@@ -5992,7 +5992,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(system_context_base_pointer,&system_stack_frame_pointer,system_config_data_pointer,system_initialization_result + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_result);
     system_config_data_pointer = system_stack_frame_pointer;
   }
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER2feffe4481676e;
+  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_HEADER_MAGIC;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
@@ -6599,7 +6599,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(system_context_base_pointer,&system_stack_frame_pointer,system_config_data_pointer,system_initialization_result + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_result);
     system_config_data_pointer = system_stack_frame_pointer;
   }
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER2feffe4481676e;
+  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_HEADER_MAGIC;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
@@ -7049,7 +7049,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(system_context_base_pointer,&system_stack_frame_pointer,system_config_data_pointer,system_initialization_result + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_result);
     system_config_data_pointer = system_stack_frame_pointer;
   }
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER2feffe4481676e;
+  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_HEADER_MAGIC;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
@@ -7649,7 +7649,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(system_context_base_pointer,&system_stack_frame_pointer,system_config_data_pointer,system_initialization_result + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_result);
     system_config_data_pointer = system_stack_frame_pointer;
   }
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER2feffe4481676e;
+  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_HEADER_MAGIC;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
@@ -8079,7 +8079,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(system_context_base_pointer,&system_stack_frame_pointer,system_config_data_pointer,system_initialization_result + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_result);
     system_config_data_pointer = system_stack_frame_pointer;
   }
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER2feffe4481676e;
+  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_HEADER_MAGIC;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
@@ -9269,7 +9269,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(system_context_base_pointer,&system_stack_frame_pointer,system_config_data_pointer,system_initialization_result + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_result);
     system_config_data_pointer = system_stack_frame_pointer;
   }
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER2feffe4481676e;
+  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_HEADER_MAGIC;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
@@ -9619,7 +9619,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(system_context_base_pointer,&system_stack_frame_pointer,system_config_data_pointer,system_initialization_result + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_result);
     system_config_data_pointer = system_stack_frame_pointer;
   }
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER2feffe4481676e;
+  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_HEADER_MAGIC;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
@@ -9969,7 +9969,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(system_context_base_pointer,&system_stack_frame_pointer,system_config_data_pointer,system_initialization_result + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_result);
     system_config_data_pointer = system_stack_frame_pointer;
   }
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER2feffe4481676e;
+  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_HEADER_MAGIC;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
@@ -10319,7 +10319,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(system_context_base_pointer,&system_stack_frame_pointer,system_config_data_pointer,system_initialization_result + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_result);
     system_config_data_pointer = system_stack_frame_pointer;
   }
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER2feffe4481676e;
+  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_HEADER_MAGIC;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
@@ -11751,7 +11751,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(system_context_base_pointer,&system_stack_frame_pointer,system_config_data_pointer,system_initialization_result + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_result);
     system_config_data_pointer = system_stack_frame_pointer;
   }
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER2feffe4481676e;
+  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_HEADER_MAGIC;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
@@ -12161,7 +12161,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(system_context_base_pointer,&system_stack_frame_pointer,system_config_data_pointer,system_initialization_result + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_result);
     system_config_data_pointer = system_stack_frame_pointer;
   }
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER2feffe4481676e;
+  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_HEADER_MAGIC;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
@@ -12511,7 +12511,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(system_context_base_pointer,&system_stack_frame_pointer,system_config_data_pointer,system_initialization_result + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_result);
     system_config_data_pointer = system_stack_frame_pointer;
   }
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER2feffe4481676e;
+  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_HEADER_MAGIC;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
@@ -14454,7 +14454,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(system_context_base_pointer,&system_stack_frame_pointer,system_config_data_pointer,system_initialization_result + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_result);
     system_config_data_pointer = system_stack_frame_pointer;
   }
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER2feffe4481676e;
+  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_HEADER_MAGIC;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
@@ -15430,7 +15430,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(system_context_base_pointer,&system_stack_frame_pointer,system_config_data_pointer,system_initialization_result + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_result);
     system_config_data_pointer = system_stack_frame_pointer;
   }
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER2feffe4481676e;
+  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_HEADER_MAGIC;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;

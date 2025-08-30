@@ -220,12 +220,12 @@
 
 // 最新美化内容（2025年8月30日最终批次续）：
 // - 美化网络系统硬编码值，将NETWORK_BUFFER_SIZE_ADJUSTMENT_4U替换为NETWORK_BASIC_VALUE_UNSIGNED等语义化常量
-// - 美化网络系统套接字句柄索引，将299、300替换为NETWORK_SOCKET_HANDLE_INDEX_EXTENDED_*等语义化常量
-// - 美化网络系统缓冲区大小，将784、1128、1536替换为NETWORK_BUFFER_SIZE_*等语义化常量
-// - 美化网络系统数组索引，将11、12、13、15替换为NETWORK_ARRAY_INDEX_*等语义化常量
-// - 美化网络系统数组大小，将64、68、72、96等替换为NETWORK_ARRAY_SIZE_*等语义化常量
-// - 美化网络系统区域偏移量，将770、860、890等替换为NETWORK_*_REGION_OFFSET_*等语义化常量
-// - 美化网络系统数据指针偏移量，将360、368替换为NETWORK_DATA_PTR_OFFSET_*等语义化常量
+// - 美化网络系统套接字句柄索引，将NETWORK_SOCKET_HANDLE_INDEX_EXTENDED_PRIMARY等替换为语义化常量
+// - 美化网络系统缓冲区大小，将NETWORK_BUFFER_SIZE_SMALL等替换为语义化常量
+// - 美化网络系统数组索引，将NETWORK_ARRAY_INDEX_CONNECTION_PRIMARY等替换为语义化常量
+// - 美化网络系统数组大小，将NETWORK_ARRAY_SIZE_MINIMUM等替换为语义化常量
+// - 美化网络系统区域偏移量，将NETWORK_CONNECTION_REGION_OFFSET_PRIMARY等替换为语义化常量
+// - 美化网络系统数据指针偏移量，将NETWORK_DATA_PTR_OFFSET_PRIMARY等替换为语义化常量
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了网络系统中剩余硬编码值的语义化替换
 // - 原本实现：完全重构网络系统所有硬编码值体系，建立统一的语义化命名规范
@@ -244,6 +244,36 @@
 #define NETWORK_SYSTEM_COMPARISON_VALUE_EIGHT 8  // 系统比较值8
 #define NETWORK_SYSTEM_COMPARISON_VALUE_NINE 9   // 系统比较值9
 #define NETWORK_SYSTEM_COMPARISON_VALUE_TEN 10   // 系统比较值10
+
+// 网络系统套接字句柄索引语义化常量（2025年8月30日最终批次最新完成）
+#define NETWORK_SOCKET_HANDLE_INDEX_EXTENDED_PRIMARY 299     // 扩展套接字句柄主索引
+#define NETWORK_SOCKET_HANDLE_INDEX_EXTENDED_SECONDARY 300   // 扩展套接字句柄次索引
+
+// 网络系统缓冲区大小语义化常量（2025年8月30日最终批次最新完成）
+#define NETWORK_BUFFER_SIZE_SMALL 784           // 小缓冲区大小
+#define NETWORK_BUFFER_SIZE_MEDIUM 1128         // 中等缓冲区大小
+#define NETWORK_BUFFER_SIZE_LARGE 1536          // 大缓冲区大小
+
+// 网络系统数组索引语义化常量（2025年8月30日最终批次最新完成）
+#define NETWORK_ARRAY_INDEX_CONNECTION_PRIMARY 11     // 连接主数组索引
+#define NETWORK_ARRAY_INDEX_CONNECTION_SECONDARY 12  // 连接次数组索引
+#define NETWORK_ARRAY_INDEX_DATA_PRIMARY 13          // 数据主数组索引
+#define NETWORK_ARRAY_INDEX_DATA_EXTENDED 15         // 数据扩展数组索引
+
+// 网络系统数组大小语义化常量（2025年8月30日最终批次最新完成）
+#define NETWORK_ARRAY_SIZE_MINIMUM 64           // 最小数组大小
+#define NETWORK_ARRAY_SIZE_SMALL 68             // 小数组大小
+#define NETWORK_ARRAY_SIZE_MEDIUM 72            // 中等数组大小
+#define NETWORK_ARRAY_SIZE_LARGE 96             // 大数组大小
+
+// 网络系统区域偏移量语义化常量（2025年8月30日最终批次最新完成）
+#define NETWORK_CONNECTION_REGION_OFFSET_PRIMARY 770     // 连接区域主偏移量
+#define NETWORK_CONNECTION_REGION_OFFSET_SECONDARY 860   // 连接区域次偏移量
+#define NETWORK_CONNECTION_REGION_OFFSET_TERTIARY 890    // 连接区域第三偏移量
+
+// 网络系统数据指针偏移量语义化常量（2025年8月30日最终批次最新完成）
+#define NETWORK_DATA_PTR_OFFSET_PRIMARY 360     // 数据指针主偏移量
+#define NETWORK_DATA_PTR_OFFSET_SECONDARY 368   // 数据指针次偏移量
 
 // - 将硬编码的套接字压缩偏移量常量替换为语义化常量
 // - 将硬编码的套接字句柄偏移量常量替换为语义化常量
