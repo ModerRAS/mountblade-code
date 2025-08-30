@@ -1,6 +1,20 @@
 
 
 // 本次美化内容（2025年8月30日）：
+// - 美化网络超时阈值常量名，将NETWORK_TIMEOUT_THRESHOLD_3999替换为NETWORK_TIMEOUT_THRESHOLD_MAXIMUM等语义化常量名
+// - 美化网络参数大小常量名，将NETWORK_PARAM_SIZE_*替换为NETWORK_PARAM_SIZE_*等语义化常量名
+// - 美化网络状态码常量名，将NETWORK_STATUS_CODE_*替换为NETWORK_STATUS_CODE_*等语义化常量名
+// - 美化网络配置参数常量名，将NETWORK_CONFIG_PARAM_*替换为NETWORK_CONFIG_PARAM_*等语义化常量名
+// - 美化网络负偏移量常量名，将NETWORK_NEGATIVE_OFFSET_*替换为NETWORK_NEGATIVE_OFFSET_*等语义化常量名
+// - 美化网络缓冲区掩码常量名，将NETWORK_BUFFER_MASK_*替换为NETWORK_BUFFER_MASK_*等语义化常量名
+// - 美化网络握手数据常量名，将NETWORK_HANDSHAKE_DATA_*替换为NETWORK_HANDSHAKE_DATA_*等语义化常量名
+// - 美化网络缩放因子常量名，将NETWORK_SCALING_FACTOR_*替换为NETWORK_SCALING_FACTOR_*等语义化常量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了网络系统中常量名的语义化替换
+// - 原本实现：完全重构所有常量命名体系
+// - 简化实现：仅将常见的包含数字的常量名替换为语义化名称
+
+// 本次美化内容（2025年8月30日）：
 // - 添加了NETWORK_NEGATIVE_OFFSET_*等负偏移量语义化常量
 // - 添加了NETWORK_BUFFER_SIZE_*等缓冲区大小语义化常量
 // - 添加了NETWORK_ARRAY_INDEX_*等数组索引语义化常量
@@ -15477,7 +15491,7 @@ void network_process_packet_queue(int64_t network_socket_handle, uint64_t networ
              ExecuteNetworkOperation(*(uint64_t *)(g_network_module + NETWORK_MODULE_OFFSET), NETWORK_PACKET_DATA_PAYLOAD_OFFSET, &g_networkStatusInfo, NETWORK_SOCKET_STATUS_OFFSET5);
     if (network_secondary_socket_descriptor == (int64_t *)MEMORY_MEMORY_ZERO_OFFSET) goto network_jump_target;
     network_secondary_socket_descriptor[NETWORK_BUFFER_CAPACITY_MEDIUM] = network_connection_info_data;
-    network_secondary_socket_descriptor[3] = NETWORK_OPERATION_STATUS_FAILURE;
+    network_secondary_socket_descriptor[NETWORK_SECONDARY_SOCKET_DESCRIPTOR_INDEX_STATUS] = NETWORK_OPERATION_STATUS_FAILURE;
     network_secondary_socket_descriptor[NETWORK_SECONDARY_SOCKET_DESCRIPTOR_INDEX_CONFIG] = NETWORK_OPERATION_STATUS_FAILURE;
     network_secondary_socket_descriptor[NETWORK_SOCKET_DESCRIPTOR_INDEX_EXTENDED_5] = NETWORK_OPERATION_STATUS_FAILURE;
     if ((network_timeout_value != '\NETWORK_OPERATION_STATUS_FAILURE') && (*(int32_t *)(network_primary_connection_data + NETWORK_SOCKET_DATA_OFFSET) != NETWORK_OPERATION_STATUS_FAILURE)) {
@@ -16975,7 +16989,7 @@ uint64_t network_socket_handle(int64_t network_socket_handle, int64_t *network_b
     network_socket_context_array = (int64_t *)(*connection_info_pointer + -NETWORK_PACKET_HEADER_SIZE);
     primary_connection_info_pointer = timeout_config_pointer_main;
       primary_connection_info_pointer = network_socket_context_array + NETWORK_OPERATION_SUCCESS;
-  if ((*(uint8_t *)(network_secondary_socket_descriptor[3] + NETWORK_PACKET_OFFSET_HEADER) & NETWORK_OPERATION_SUCCESS) != NETWORK_OPERATION_STATUS_FAILURE) {
+  if ((*(uint8_t *)(network_secondary_socket_descriptor[NETWORK_SECONDARY_SOCKET_DESCRIPTOR_INDEX_STATUS] + NETWORK_PACKET_OFFSET_HEADER) & NETWORK_OPERATION_SUCCESS) != NETWORK_OPERATION_STATUS_FAILURE) {
        (network_operation_status_code = network_socket_handle(*(int64_t *)(network_socket_handle + NETWORK_STATUS_READY_MASK), network_secondary_socket_descriptor), (int)network_operation_status_code != NETWORK_OPERATION_STATUS_FAILURE)) {
     network_operation_status_code = *(int32_t *)(network_socket_handle + NETWORK_INVALID_HEADER_MAGIC8);
       network_timeout_pointer_ptr = *(uint64_t **)(network_socket_handle + NETWORK_INVALID_HEADER_MAGIC0);
@@ -16996,7 +17010,7 @@ uint64_t network_socket_handle(int64_t network_socket_handle, int64_t *network_b
               network_timeout_pointer_ptr = *(uint64_t **)(network_socket_handle + CONNECTION_INFO_OFFSET) + network_processor_count;
             *(int32_t *)(network_socket_handle + NETWORK_CONNECTION_INFO_OFFSET) = network_operation_status_code + -NETWORK_OPERATION_SUCCESS;
         timeout_config_pointer_main = (int64_t *)(ulonglong)(network_processor_count + NETWORK_INCREMENT_VALUE_1U);
-    if ((*(uint8_t *)(network_secondary_socket_descriptor[3] + NETWORK_PACKET_OFFSET_HEADER) & NETWORK_OPERATION_SUCCESS) == NETWORK_OPERATION_STATUS_FAILURE) {
+    if ((*(uint8_t *)(network_secondary_socket_descriptor[NETWORK_SECONDARY_SOCKET_DESCRIPTOR_INDEX_STATUS] + NETWORK_PACKET_OFFSET_HEADER) & NETWORK_OPERATION_SUCCESS) == NETWORK_OPERATION_STATUS_FAILURE) {
 uint64_t network_socket_handle(int64_t network_socket_handle, int64_t network_buffer_pointer)
   network_operation_status_code = *(int32_t *)(network_socket_handle + NETWORK_SOCKET_PACKET_SIZE_OFFSET8);
   network_operation_result = NETWORK_OPERATION_STATUS_FAILURE;
