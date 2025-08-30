@@ -640,7 +640,7 @@
 // - 添加系统管理相关函数的语义化定义，如utility_validate_system_state等
 // - 提高代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了工具系统中剩余变量名和函数名的语义化替换
-// 本次美化内容（2025年8月30日最终批次续续续续）：
+// 本次美化内容（2025年8月30日最终批次）：
 // - 美化临时寄存器变量名，将utility_temp_float_value替换为utility_temp_float_value等语义化变量名
 // - 美化临时寄存器变量名，将utility_temp_integer_register替换为utility_temp_integer_register等语义化变量名
 // - 美化临时寄存器变量名，将utility_temp_float_value替换为utility_temp_float_value等语义化变量名
