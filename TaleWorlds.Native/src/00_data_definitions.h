@@ -26,7 +26,7 @@
 // - 美化浮点数常量，将硬编码的0.0替换为SYSTEM_FLOAT_VALUE_ZERO等语义化常量
 // - 美化浮点数常量，将硬编码的-1.0替换为SYSTEM_FLOAT_VALUE_NEGATIVE_ONE等语义化常量
 // - 美化转换因子常量，将硬编码的0.003921569替换为SYSTEM_FLOAT_CONVERSION_BYTE_TO_FLOAT等语义化常量
-// - 美化转换因子常量，将硬编码的0.007843138替换为SYSTEM_FLOAT_CONVERSION_BYTE_TO_FLOAT_HALF等语义化常量
+// - 美化转换因子常量，将硬编码的SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT替换为SYSTEM_FLOAT_CONVERSION_BYTE_TO_FLOAT_HALF等语义化常量
 // - 美化转换因子常量，将硬编码的3.0518044e-05替换为SYSTEM_FLOAT_CONVERSION_USHORT_TO_FLOAT等语义化常量
 // - 美化归一化因子常量，将硬编码的127.5替换为SYSTEM_FLOAT_NORMALIZATION_FACTOR等语义化常量
 // - 美化归一化因子常量，将硬编码的32767.5替换为SYSTEM_FLOAT_NORMALIZATION_FACTOR_LARGE等语义化常量
@@ -69,7 +69,7 @@
 // - 简化实现：仅将常见的硬编码十六进制值替换为语义化常量
 
 // 本次最终美化内容（2025年8月30日最终批次）：
-// - 美化浮点数转换常量，将硬编码的0.007843138替换为SYSTEM_FLOAT_CONVERSION_BYTE_TO_FLOAT_HALF等语义化常量
+// - 美化浮点数转换常量，将硬编码的SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT替换为SYSTEM_FLOAT_CONVERSION_BYTE_TO_FLOAT_HALF等语义化常量
 // - 美化数值转换常量，将硬编码的1000.0替换为SYSTEM_FLOAT_CONVERSION_FACTOR_1000等语义化常量
 // - 美化阈值常量，将硬编码的12582912.0替换为SYSTEM_FLOAT_CONVERSION_THRESHOLD_12582912等语义化常量
 // - 提高了代码的可读性和维护性
@@ -120,6 +120,7 @@
 #define SYSTEM_FLOAT_MAX_DOUBLE_VALUE 1.8446744e+19    // 最大双精度浮点数
 #define SYSTEM_FLOAT_MAX_VALUE 3.4028235e+38           // 最大浮点数
 #define SYSTEM_FLOAT_CONVERSION_FACTOR_0_003921569 0.003921569 // 转换因子
+#define SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT // 字节转浮点数转换因子
 
 // 系统字符常量定义
 #define SYSTEM_CHAR_NULL 0x00
@@ -6796,9 +6797,9 @@ unsigned long long process_system_request(unsigned long long *handle_param)
     if (0 < (int)pfloat_var) {
       buffer_allocation_result = (ulong long)pfloat_var & UINT32_MAX;
       do {
-        float_var = (float)byte_string_input_pointer[1] * 0.007843138 - SYSTEM_FLOAT_VALUE_ONE;
-        float_var = (float)*byte_string_input_pointer * 0.007843138 - SYSTEM_FLOAT_VALUE_ONE;
-        float_var = (float)byte_string_input_pointer[2] * 0.007843138 - SYSTEM_FLOAT_VALUE_ONE;
+        float_var = (float)byte_string_input_pointer[1] * SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT - SYSTEM_FLOAT_VALUE_ONE;
+        float_var = (float)*byte_string_input_pointer * SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT - SYSTEM_FLOAT_VALUE_ONE;
+        float_var = (float)byte_string_input_pointer[2] * SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT - SYSTEM_FLOAT_VALUE_ONE;
         float_var = float_var * float_var + float_var * float_var + float_var * float_var;
         temporary_buffer_secondary = rsqrtss(zero_extension_float((uint)float_var),zero_extension_float((uint)float_var));
         float_var = temporary_buffer_secondary_first_float_;
@@ -6891,9 +6892,9 @@ unsigned long long process_system_request(unsigned long long *handle_param)
     if (0 < (int)buffer_allocation_result) {
       buffer_allocation_result = buffer_allocation_result & UINT32_MAX;
       do {
-        float_var = (float)string_input_pointer[1] * 0.007843138 - SYSTEM_FLOAT_VALUE_ONE;
-        float_var = (float)*string_input_pointer * 0.007843138 - SYSTEM_FLOAT_VALUE_ONE;
-        float_var = (float)string_input_pointer[2] * 0.007843138 - SYSTEM_FLOAT_VALUE_ONE;
+        float_var = (float)string_input_pointer[1] * SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT - SYSTEM_FLOAT_VALUE_ONE;
+        float_var = (float)*string_input_pointer * SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT - SYSTEM_FLOAT_VALUE_ONE;
+        float_var = (float)string_input_pointer[2] * SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT - SYSTEM_FLOAT_VALUE_ONE;
         float_var = float_var * float_var + float_var * float_var + float_var * float_var;
         temporary_buffer_secondary = rsqrtss(zero_extension_float((uint)float_var),zero_extension_float((uint)float_var));
         float_var = temporary_buffer_secondary_first_float_;
@@ -6918,9 +6919,9 @@ unsigned long long process_system_request(unsigned long long *handle_param)
     if (0 < (int)buffer_allocation_result) {
       buffer_allocation_result = buffer_allocation_result & UINT32_MAX;
       do {
-        float_var = (float)byte_string_input_pointer[1] * 0.007843138 - SYSTEM_FLOAT_VALUE_ONE;
-        float_var = (float)*byte_string_input_pointer * 0.007843138 - SYSTEM_FLOAT_VALUE_ONE;
-        float_var = (float)byte_string_input_pointer[2] * 0.007843138 - SYSTEM_FLOAT_VALUE_ONE;
+        float_var = (float)byte_string_input_pointer[1] * SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT - SYSTEM_FLOAT_VALUE_ONE;
+        float_var = (float)*byte_string_input_pointer * SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT - SYSTEM_FLOAT_VALUE_ONE;
+        float_var = (float)byte_string_input_pointer[2] * SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT - SYSTEM_FLOAT_VALUE_ONE;
         float_var = float_var * float_var + float_var * float_var + float_var * float_var;
         temporary_buffer_secondary = rsqrtss(zero_extension_float((uint)float_var),zero_extension_float((uint)float_var));
         float_var = temporary_buffer_secondary_first_float_;
@@ -14344,10 +14345,10 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_FLOAT_ADJUSTMENT_SMALL 0.01
 
 // 扩展转换常量
-#define SYSTEM_FLOAT_CONVERSION_BYTE_TO_FLOAT_HALF 0.007843138
+#define SYSTEM_FLOAT_CONVERSION_BYTE_TO_FLOAT_HALF SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT
 #define SYSTEM_FLOAT_CONVERSION_FACTOR_1000 SYSTEM_FLOAT_CONVERSION_FACTOR_1000
 #define SYSTEM_FLOAT_CONVERSION_THRESHOLD_12582912 SYSTEM_FLOAT_CONVERSION_THRESHOLD_12582912
-#define SYSTEM_FLOAT_CONVERSION_FACTOR_0_007843138 0.007843138
+#define SYSTEM_FLOAT_CONVERSION_FACTOR_0_007843138 SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT
 
 
 // 数字比较语义化常量（2025年8月30日新增）
@@ -14433,10 +14434,10 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_FLOAT_ADJUSTMENT_SMALL 0.01
 
 // 扩展转换常量
-#define SYSTEM_FLOAT_CONVERSION_BYTE_TO_FLOAT_HALF 0.007843138
+#define SYSTEM_FLOAT_CONVERSION_BYTE_TO_FLOAT_HALF SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT
 #define SYSTEM_FLOAT_CONVERSION_FACTOR_1000 SYSTEM_FLOAT_CONVERSION_FACTOR_1000
 #define SYSTEM_FLOAT_CONVERSION_THRESHOLD_12582912 SYSTEM_FLOAT_CONVERSION_THRESHOLD_12582912
-#define SYSTEM_FLOAT_CONVERSION_FACTOR_0_007843138 0.007843138
+#define SYSTEM_FLOAT_CONVERSION_FACTOR_0_007843138 SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT
 
 
 // 通用偏移量常量 - 美化硬编码值（2025年8月30日最终批次）
@@ -14543,7 +14544,7 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_FLOAT_THREAD_OP_FLAG_TERTIARY 1.0              // 线程操作标志第三
 
 // 系统浮点转换常量
-#define SYSTEM_FLOAT_BYTE_TO_FLOAT_CONVERSION 0.007843138     // 字节到浮点转换因子
+#define SYSTEM_FLOAT_BYTE_TO_FLOAT_CONVERSION SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT     // 字节到浮点转换因子
 #define SYSTEM_FLOAT_CONVERSION_NORMALIZATION_OFFSET 1.0       // 归一化偏移量
 
 // 系统寄存器操作常量
