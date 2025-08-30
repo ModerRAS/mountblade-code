@@ -92,10 +92,14 @@
 // - 添加了NETWORK_BUFFER_VAR_INDEX_STATUS等缓冲区变量数组索引语义化常量
 // - 添加了NETWORK_TIMEOUT_PTR_INDEX_STATUS等超时指针数组索引语义化常量
 // - 添加了NETWORK_PROCESSOR_INDEX_PTR_STATUS等处理器索引指针数组索引语义化常量
+// - 添加了NETWORK_STATUS_DATA_BUFFER_INDEX_STATUS等状态数据缓冲区索引语义化常量
+// - 添加了NETWORK_TIMEOUT_PTR_INDEX_CONFIG和NETWORK_TIMEOUT_PTR_INDEX_SUCCESS等超时指针数组索引语义化常量
 // - 将硬编码的network_socket_handle[5]替换为network_socket_handle[NETWORK_SOCKET_HANDLE_INDEX_STATUS]等语义化索引
 // - 将硬编码的network_buffer_size_var[3]替换为network_buffer_size_var[NETWORK_BUFFER_VAR_INDEX_STATUS]等语义化索引
 // - 将硬编码的network_timeout_ptr_ptr[3]替换为network_timeout_ptr_ptr[NETWORK_TIMEOUT_PTR_INDEX_STATUS]等语义化索引
 // - 将硬编码的network_network_processor_index_ptr[3]替换为network_network_processor_index_ptr[NETWORK_PROCESSOR_INDEX_PTR_STATUS]等语义化索引
+// - 将硬编码的network_status_data_buffer_ptr[3]替换为network_status_data_buffer_ptr[NETWORK_STATUS_DATA_BUFFER_INDEX_STATUS]等语义化索引
+// - 将硬编码的network_timeout_ptr_ptr[4/5]替换为network_timeout_ptr_ptr[NETWORK_TIMEOUT_PTR_INDEX_CONFIG/SUCCESS]等语义化索引
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了网络系统中数组索引的语义化替换
 // - 原本实现：完全重构网络系统数组索引命名体系
@@ -176,6 +180,13 @@
 
 // 网络系统处理器索引指针数组索引语义化常量（本次美化内容）
 #define NETWORK_PROCESSOR_INDEX_PTR_STATUS     3
+
+// 网络系统状态数据缓冲区索引语义化常量（本次美化内容）
+#define NETWORK_STATUS_DATA_BUFFER_INDEX_STATUS     3
+
+// 网络系统超时指针数组索引语义化常量（本次美化内容）
+#define NETWORK_TIMEOUT_PTR_INDEX_CONFIG           4
+#define NETWORK_TIMEOUT_PTR_INDEX_SUCCESS          5
 
 #define NETWORK_HARD_CODED_VALUES
 #define STRUCT_FIELD_BYTE_0    _byte_0_
@@ -5302,7 +5313,7 @@ void SendNetworkData(uint32_t network_socket_handle)
           network_status_data_buffer_ptr = (uint32_t *)network_allocate_memory();
           network_buffer_size_var = network_status_data_buffer_ptr[NETWORK_OPERATION_SUCCESS];
           network_data_pointer = network_status_data_buffer_ptr[NETWORK_BUFFER_SIZE_MEDIUM];
-          network_processor_index = network_status_data_buffer_ptr[3];
+          network_processor_index = network_status_data_buffer_ptr[NETWORK_STATUS_DATA_BUFFER_INDEX_STATUS];
           network_buffer_size_var[-4] = *network_status_data_buffer_ptr;
           network_buffer_size_var[-3] = network_buffer_size_var;
           network_buffer_size_var[-NETWORK_BUFFER_SIZE_MEDIUM] = network_data_pointer;
@@ -6482,7 +6493,7 @@ uint64_t ReleaseNetworkResources(int64_t network_socket_handle, uint64_t *networ
     *network_status_data_buffer_ptr = network_packet_size_temporary;
     network_status_data_buffer_ptr[NETWORK_OPERATION_SUCCESS] = network_buffer_size_var;
     network_status_data_buffer_ptr[NETWORK_BUFFER_SIZE_MEDIUM] = CONCAT44(network_packet_size_temporary, NETWORK_MAX_SIZE);
-    network_status_data_buffer_ptr[3] = network_operation_status_code;
+    network_status_data_buffer_ptr[NETWORK_STATUS_DATA_BUFFER_INDEX_STATUS] = network_operation_status_code;
     *(int32_t *)(network_socket_handle + SESSION_CONFIG_SIZE) = *(int32_t *)(network_socket_handle + SESSION_CONFIG_SIZE) + NETWORK_OPERATION_SUCCESS;
     network_status_data_buffer_ptr = (uint64_t *)((longlong)network_loop_counter * SOCKET_RESPONSE_OFFSET + *(int64_t *)(network_socket_handle + MODULE_STATUS_OFFSET));
     *(uint32_t *)(network_socket_handle + SOCKET_RESPONSE_OFFSET) = *(uint32_t *)(network_status_data_buffer_ptr + NETWORK_BUFFER_SIZE_MEDIUM);
@@ -28880,7 +28891,7 @@ void NetworkUpdateConnectionData(int64_t network_socket_handle, uint64_t network
         network_processor_index = network_status_data_buffer_ptr[NETWORK_OPERATION_SUCCESS];
         *network_buffer_capacity = *network_status_data_buffer_ptr;
         network_buffer_capacity[NETWORK_OPERATION_SUCCESS] = network_processor_index;
-        network_processor_index = network_status_data_buffer_ptr[3];
+        network_processor_index = network_status_data_buffer_ptr[NETWORK_STATUS_DATA_BUFFER_INDEX_STATUS];
         network_buffer_capacity[NETWORK_BUFFER_SIZE_MEDIUM] = network_status_data_buffer_ptr[NETWORK_BUFFER_SIZE_MEDIUM];
         network_buffer_capacity[3] = network_processor_index;
         network_processor_index = network_status_data_buffer_ptr[5];
