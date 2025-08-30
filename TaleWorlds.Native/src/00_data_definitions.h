@@ -6124,7 +6124,7 @@ system_finalizer_007(unsigned long long handle_param,unsigned long long thread_o
   global_data_ptr = 0x3f800000;
   global_data_ptr = 0;
   global_data_ptr = 1;
-  global_data_ptr = &data_180be0000;
+  global_data_ptr = &system_data_buffer_1;
   global_data_ptr = 0;
   physics_system_initialized = 1;
   global_data_ptr = 0;
@@ -6138,7 +6138,7 @@ system_finalizer_007(unsigned long long handle_param,unsigned long long thread_o
   global_data_ptr = 0x3f800000;
   global_data_ptr = 0;
   global_data_ptr = 1;
-  global_data_ptr = &data_180be0000;
+  global_data_ptr = &system_data_buffer_1;
   global_data_ptr = 4;
   global_data_ptr = 0;
   global_data_ptr = 0;
@@ -6173,7 +6173,7 @@ system_finalizer_007(unsigned long long handle_param,unsigned long long thread_o
   global_data_ptr = 0x3f800000;
   global_data_ptr = 0;
   global_data_ptr = 1;
-  global_data_ptr = &data_180be0000;
+  global_data_ptr = &system_data_buffer_1;
   script_system_initialized = 1;
   global_data_ptr = 3;
   global_data_ptr = 0;
@@ -6285,7 +6285,7 @@ unsigned long long * system_execution_function(unsigned long long *handle_param,
   str_len_counter = 8;
   system_execution_function(string_input_ptr,0x28,8,&system_1804ce1a0,system_execution_function);
   _Mtx_init_in_situ(handle_param + 0x5d, STRING_BUFFER_SIZE_SECONDARY);
-  thread_result_index = func_0x0001804ca2d0(&data_180c95fc8);
+  thread_result_index = func_0x0001804ca2d0(&module_config_addr);
   if (thread_op_flags < thread_result_index) {
     thread_result_index = thread_op_flags;
   }
@@ -6419,8 +6419,8 @@ unsigned long long initialize_graphics_context(unsigned long long handle_param,u
   }
   return buffer_alloc_result;
 }
-    data_180d49f6c = '\0';
-    system_crypto_module_initializer(&data_180d49f68);
+    thread_data_buffer_char = '\0';
+    system_crypto_module_initializer(&thread_data_buffer_0);
   }
   thread_op_flags = *(unsigned long long *)(*(long long *)(*(long long *)(handle_param + 0x8a8) + 0x260) + path_buffer_size8);
   string_input_ptr = (unsigned int *)system_execution_function(thread_op_flags,0,thread_op_flags);
@@ -6624,7 +6624,7 @@ unsigned long long initialize_graphics_context(unsigned long long handle_param,u
        ((pfloat_var[5] <= float_var && float_var != pfloat_var[5] || (pfloat_var[6] <= float_var && float_var != pfloat_var[6]))
        )) {
       do {
-      } while (data_180d49f6c != '\0');
+      } while (thread_data_buffer_char != '\0');
       LOCK();
       UNLOCK();
       pfloat_var = *(float **)(handle_param + 0x860);
@@ -6656,11 +6656,11 @@ unsigned long long initialize_graphics_context(unsigned long long handle_param,u
       }
       *(ulong long *)(pfloat_var + 4) = merge_32bit_values(fStack_194,fStack_198);
       *(ulong long *)(pfloat_var + 6) = merge_32bit_values(stack_size_max,fStack_190);
-      data_180d49f6c = '\0';
+      thread_data_buffer_char = '\0';
     }
     if (((float_var < *pfloat_var) || (float_var < pfloat_var[1])) || (fStack_180 < pfloat_var[2])) {
       do {
-      } while (data_180d49f6c != '\0');
+      } while (thread_data_buffer_char != '\0');
       LOCK();
       UNLOCK();
       pfloat_var = *(float **)(handle_param + 0x860);
@@ -6692,14 +6692,14 @@ unsigned long long initialize_graphics_context(unsigned long long handle_param,u
       }
       *(ulong long *)(pfloat_var + 4) = merge_32bit_values(fStack_194,fStack_198);
       *(ulong long *)(pfloat_var + 6) = merge_32bit_values(stack_size_max,fStack_190);
-      data_180d49f6c = '\0';
+      thread_data_buffer_char = '\0';
     }
     pfloat_var = *(float **)(handle_param + 0x868);
     if (((pfloat_var[4] <= float_var && float_var != pfloat_var[4]) ||
         (pfloat_var[5] <= float_var && float_var != pfloat_var[5])) ||
        (pfloat_var[6] <= float_var && float_var != pfloat_var[6])) {
       do {
-      } while (data_180d49f6c != '\0');
+      } while (thread_data_buffer_char != '\0');
       LOCK();
       UNLOCK();
       pfloat_var = *(float **)(handle_param + 0x868);
@@ -6731,11 +6731,11 @@ unsigned long long initialize_graphics_context(unsigned long long handle_param,u
       }
       *(ulong long *)(pfloat_var + 4) = merge_32bit_values(fStack_194,fStack_198);
       *(ulong long *)(pfloat_var + 6) = merge_32bit_values(stack_size_max,fStack_190);
-      data_180d49f6c = '\0';
+      thread_data_buffer_char = '\0';
     }
     if (((float_var < *pfloat_var) || (float_var < pfloat_var[1])) || (fStack_180 < pfloat_var[2])) {
       do {
-      } while (data_180d49f6c != '\0');
+      } while (thread_data_buffer_char != '\0');
       LOCK();
       UNLOCK();
       pfloat_var = *(float **)(handle_param + 0x868);
@@ -6767,14 +6767,14 @@ unsigned long long initialize_graphics_context(unsigned long long handle_param,u
       }
       *(ulong long *)(pfloat_var + 4) = merge_32bit_values(fStack_194,fStack_198);
       *(ulong long *)(pfloat_var + 6) = merge_32bit_values(stack_size_max,fStack_190);
-      data_180d49f6c = '\0';
+      thread_data_buffer_char = '\0';
     }
   }
   return;
 }
-        data_180d49f98 = 0;
+        system_string_buffer = 0;
         global_data_ptr = 8;
-        strcpy_s(&data_180d49f98, SYSTEM_CONFIG_BUFFER_SIZE, &system_180a353b8);
+        strcpy_s(&system_string_buffer, SYSTEM_CONFIG_BUFFER_SIZE, &system_180a353b8);
         system_crypto_initializer(system_execution_function);
         system_crypto_module_initializer(&data_180d49f70);
       }
