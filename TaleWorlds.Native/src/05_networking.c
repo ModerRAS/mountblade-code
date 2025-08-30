@@ -308,6 +308,7 @@
 // - 添加了NETWORK_ARRAY_SIZE_16等数组大小语义化常量定义
 #define NETWORK_SOCKET_DATA_PTR_OFFSET_9            9     // 套接字数据指针偏移量9
 #define NETWORK_CONNECTION_PROCESSOR_INCREMENT          5     // 连接处理器增量值
+#define NETWORK_CONFIG_DATA_OFFSET_5                5     // 配置数据偏移量5
 // - 将硬编码的数组大小[NETWORK_ERROR_BUFFER_SIZE_16]替换为NETWORK_ARRAY_SIZE_16等语义化常量
 // - 将硬编码的数组大小[NETWORK_BUFFER_SIZE_32]替换为NETWORK_ARRAY_SIZE_32等语义化常量
 // - 将硬编码的数组大小[33]替换为NETWORK_ARRAY_SIZE_33等语义化常量
@@ -36948,9 +36949,9 @@ void network_decrypt_data_zero(void)
   networkTerminateConnection();
 // 函数: void network_decrypt_data_one(void)
 void network_decrypt_data_one(void)
-// 函数: void networkDecryptData2(void)
-void networkDecryptData2(void)
-uint64_t networkDecryptData3(int64_t network_socket_handle, uint64_t *network_buffer_pointer, uint32_t network_buffer_size_var, uint32_t network_timeout_value, 
+// 函数: void network_decrypt_data_two(void)
+void network_decrypt_data_two(void)
+uint64_t network_decrypt_data_three(int64_t network_socket_handle, uint64_t *network_buffer_pointer, uint32_t network_buffer_size_var, uint32_t network_timeout_value, 
                        char network_connection_parameter)
   network_packet_size_temporary = networkReceiveProtocolMessage(network_buffer_pointer, network_validation_temporary_bufferfer, NETWORK_OPERATION_SUCCESS, NETWORK_PROTOCOL_CLIENT, network_buffer_size_var);
   if (((int)network_packet_size_temporary == NETWORK_OPERATION_STATUS_FAILURE) && (network_packet_size_temporary = networkReceiveProtocolMessage(network_buffer_pointer, network_validation_temporary_bufferfer, NETWORK_OPERATION_STATUS_FAILURE, network_timeout_value, NETWORK_OPERATION_STATUS_FAILURE), (int)network_packet_size_temporary == NETWORK_OPERATION_STATUS_FAILURE))
