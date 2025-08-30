@@ -4040,8 +4040,8 @@ GameState* g_network_game_state;
 SyncData* g_network_sync_data;
 // 网络大厅数据（美化后）
 LobbyData* g_network_lobby_data;
-// 网络匹配数据
-MatchData* g_networkMatchData;
+// 网络匹配数据（美化后）
+MatchData* g_network_match_data;
 // 网络主套接字描述符
 void* g_network_primary_var_socket_descriptor;
 // 网络会话上下文主变量
