@@ -36609,6 +36609,26 @@ uint64_t networkProcessHandshake(uint64_t network_socket_descriptor, int64_t net
 // 新增语义化常量定义 - 网络套接字配置
 #define SOCKET_CONFIG_MASK_FF 0xff  // 套接字配置掩码FF
 
+// 新增语义化常量定义 - 网络操作成功码
+#define NETWORK_OPERATION_SUCCESS 1  // 网络操作成功
+#define NETWORK_CONNECTION_ACTIVE 1  // 网络连接活跃状态
+#define NETWORK_SOCKET_VALID 1  // 网络套接字有效
+#define NETWORK_DATA_READY 1  // 网络数据就绪
+
+// 新增语义化常量定义 - 网络超时配置
+#define NETWORK_TIMEOUT_DEFAULT 1000  // 网络默认超时时间(毫秒)
+#define NETWORK_TIMEOUT_SHORT 100  // 网络短超时时间(毫秒)
+#define NETWORK_TIMEOUT_LONG 5000  // 网络长超时时间(毫秒)
+
+// 新增语义化常量定义 - 网络缓冲区配置
+#define NETWORK_BUFFER_SIZE_SMALL 64  // 网络缓冲区小尺寸
+#define NETWORK_BUFFER_SIZE_LARGE 512  // 网络缓冲区大尺寸
+#define NETWORK_BUFFER_SIZE_EXTRA_LARGE 2048  // 网络缓冲区超大尺寸
+
+// 新增语义化常量定义 - 网络重试配置
+#define NETWORK_RETRY_COUNT_MAX 3  // 网络最大重试次数
+#define NETWORK_RETRY_DELAY_BASE 100  // 网络重试延迟基数(毫秒)
+
 // 美化说明：
 // - 将硬编码的NETWORK_COMPARE_VALUE_3D替换为NETWORK_COMPARE_VALUE_3D网络比较值
 // - 将硬编码的NETWORK_COMPARE_VALUE_3B替换为NETWORK_COMPARE_VALUE_3B网络比较值
