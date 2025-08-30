@@ -63014,3 +63014,12 @@ longlong *system_memory_pool_pointer;
 #define SYSTEM_INIT_CONTEXT_INDEX_CENTER_Y         0xa6    // 中心Y索引
 #define SYSTEM_INIT_CONTEXT_INDEX_CENTER_Z         0xa7    // 中心Z索引
 #define SYSTEM_INIT_CONTEXT_INDEX_RADIUS           0xa9    // 半径索引
+
+// 系统初始化硬编码值语义化常量（2025年8月30日最终批次最新完成）
+#define SYSTEM_INIT_MUTEX_PRIORITY_MEDIUM      2       // 中等互斥锁优先级
+#define SYSTEM_INIT_CONFIG_VALUE_STANDARD      1       // 标准配置值
+#define SYSTEM_INIT_CONFIG_VALUE_EXTENDED      4       // 扩展配置值
+#define SYSTEM_INIT_STACK_VALUE_SEVEN          7       // 栈值七
+#define SYSTEM_INIT_STACK_VALUE_EIGHT          8       // 栈值八
+#define SYSTEM_INIT_STACK_VALUE_NINE           9       // 栈值九
+#define SYSTEM_INIT_STACK_VALUE_TEN            10      // 栈值十
