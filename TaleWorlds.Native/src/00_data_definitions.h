@@ -941,25 +941,25 @@ int initialize_network_module(void)
   global_data_ptr = 0x1a;
   strcpy_s(&g_memory_string_manager_buffer,PRIMARY_STRING_BUFFER_SIZE,&g_memoryString12);
   global_data_ptr = &g_memoryAllocationFlag;
-  global_data_ptr = &g_memory_shader_buffer0;
-  g_memory_shader_buffer0 = 0;
+  global_data_ptr = &g_memory_vertex_buffer;
+  g_memory_vertex_buffer = 0;
   global_data_ptr = 0x1b;
-  strcpy_s(&g_memory_shader_buffer0,PRIMARY_STRING_BUFFER_SIZE,&g_memoryString13);
+  strcpy_s(&g_memory_vertex_buffer,PRIMARY_STRING_BUFFER_SIZE,&g_memoryString13);
   global_data_ptr = &g_memoryAllocationFlag;
-  global_data_ptr = &g_memory_shader_buffer1;
-  g_memory_shader_buffer1 = 0;
+  global_data_ptr = &g_memory_fragment_buffer;
+  g_memory_fragment_buffer = 0;
   global_data_ptr = 0xc;
-  strcpy_s(&g_memory_shader_buffer1,PRIMARY_STRING_BUFFER_SIZE,&g_memoryString14);
+  strcpy_s(&g_memory_fragment_buffer,PRIMARY_STRING_BUFFER_SIZE,&g_memoryString14);
   global_data_ptr = &g_memoryAllocationFlag;
-  global_data_ptr = &g_memory_shader_buffer2;
-  g_memory_shader_buffer2 = 0;
+  global_data_ptr = &g_memory_geometry_buffer;
+  g_memory_geometry_buffer = 0;
   global_data_ptr = 0x11;
-  strcpy_s(&g_memory_shader_buffer2,PRIMARY_STRING_BUFFER_SIZE,&g_memoryString15);
+  strcpy_s(&g_memory_geometry_buffer,PRIMARY_STRING_BUFFER_SIZE,&g_memoryString15);
   global_data_ptr = &g_memoryAllocationFlag;
-  global_data_ptr = &g_memory_shader_buffer3;
-  g_memory_shader_buffer3 = 0;
+  global_data_ptr = &g_memory_tessellation_buffer;
+  g_memory_tessellation_buffer = 0;
   global_data_ptr = 0x11;
-  strcpy_s(&g_memory_shader_buffer3,PRIMARY_STRING_BUFFER_SIZE,&g_memoryString16);
+  strcpy_s(&g_memory_tessellation_buffer,PRIMARY_STRING_BUFFER_SIZE,&g_memoryString16);
   system_init_result = system_execution_function(&g_systemInitFunction2);
   return (system_init_result != 0) - 1;
 }
@@ -1124,9 +1124,9 @@ int initialize_network_module(void)
   system_init_result = system_execution_function(&g_systemInitFunction3);
   return (system_init_result != 0) - 1;
 }
-  module_string_buffer_1 = 0;
+  module_config_buffer_1 = 0;
   global_data_ptr = 0xd;
-  strcpy_s(&module_string_buffer_1,path_buffer_size,&g_configString1,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_config_buffer_1,path_buffer_size,&g_configString1,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(event_system_init_callback);
   return (system_init_result != 0) - 1;
 }
@@ -1142,9 +1142,9 @@ int initialize_physics_module(void)
   system_init_result = system_execution_function(time_system_init_callback);
   return (system_init_result != 0) - 1;
 }
-  module_string_buffer_2 = 0;
+  module_config_buffer_2 = 0;
   global_data_ptr = STRING_BUFFER_SIZE;
-  strcpy_s(&module_string_buffer_2,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString1,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_config_buffer_2,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString1,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(file_system_init_callback);
   return (system_init_result != 0) - 1;
 }
@@ -1153,10 +1153,10 @@ int initialize_ai_module(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_3;
-  module_string_buffer_3 = 0;
+  global_data_ptr = &module_texture_buffer_1;
+  module_texture_buffer_1 = 0;
   global_data_ptr = 0x13;
-  strcpy_s(&module_string_buffer_3,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString2,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_texture_buffer_1,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString2,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(debug_system_init_callback);
   return (system_init_result != 0) - 1;
 }
@@ -1165,10 +1165,10 @@ int initialize_ui_module(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_4;
-  module_string_buffer_4 = 0;
+  global_data_ptr = &module_texture_buffer_2;
+  module_texture_buffer_2 = 0;
   global_data_ptr = 0x12;
-  strcpy_s(&module_string_buffer_4,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString3,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_texture_buffer_2,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString3,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_7_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1177,10 +1177,10 @@ int initialize_scripting_module(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_5;
-  module_string_buffer_5 = 0;
+  global_data_ptr = &module_texture_buffer_3;
+  module_texture_buffer_3 = 0;
   global_data_ptr = 0x12;
-  strcpy_s(&module_string_buffer_5,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString4,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_texture_buffer_3,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString4,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_8_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1189,10 +1189,10 @@ int initialize_audio_engine(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_6;
-  module_string_buffer_6 = 0;
+  global_data_ptr = &module_texture_buffer_4;
+  module_texture_buffer_4 = 0;
   global_data_ptr = 0xd;
-  strcpy_s(&module_string_buffer_6,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString5,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_texture_buffer_4,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString5,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_9_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1201,10 +1201,10 @@ int initialize_video_subsystem(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_7;
-  module_string_buffer_7 = 0;
+  global_data_ptr = &module_texture_buffer_5;
+  module_texture_buffer_5 = 0;
   global_data_ptr = STRING_BUFFER_SIZE;
-  strcpy_s(&module_string_buffer_7,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString6,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_texture_buffer_5,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString6,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_10_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1213,10 +1213,10 @@ int initialize_input_handle_paramr(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_8;
-  module_string_buffer_8 = 0;
+  global_data_ptr = &module_texture_buffer_6;
+  module_texture_buffer_6 = 0;
   global_data_ptr = 0x17;
-  strcpy_s(&module_string_buffer_8,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString7,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_texture_buffer_6,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString7,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_11_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1225,10 +1225,10 @@ int initialize_network_stack(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_9;
-  module_string_buffer_9 = 0;
+  global_data_ptr = &module_texture_buffer_7;
+  module_texture_buffer_7 = 0;
   global_data_ptr = STRING_BUFFER_SIZE;
-  strcpy_s(&module_string_buffer_9,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString8,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_texture_buffer_7,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString8,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_12_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1237,10 +1237,10 @@ int initialize_file_system(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_10;
-  module_string_buffer_10 = 0;
+  global_data_ptr = &module_config_buffer_10;
+  module_config_buffer_10 = 0;
   global_data_ptr = 0xd;
-  strcpy_s(&module_string_buffer_10,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString9,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_config_buffer_10,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString9,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_13_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1249,10 +1249,10 @@ int initialize_memory_manager(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_11;
-  module_string_buffer_11 = 0;
+  global_data_ptr = &module_config_buffer_11;
+  module_config_buffer_11 = 0;
   global_data_ptr = 0xc;
-  strcpy_s(&module_string_buffer_11,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString10,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_config_buffer_11,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString10,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_14_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1261,10 +1261,10 @@ int initialize_thread_manager(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_12;
-  module_string_buffer_12 = 0;
+  global_data_ptr = &module_config_buffer_12;
+  module_config_buffer_12 = 0;
   global_data_ptr = 0x16;
-  strcpy_s(&module_string_buffer_12,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString11,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_config_buffer_12,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString11,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_15_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1273,10 +1273,10 @@ int initialize_event_system(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_13;
-  module_string_buffer_13 = 0;
+  global_data_ptr = &module_config_buffer_13;
+  module_config_buffer_13 = 0;
   global_data_ptr = 0x13;
-  strcpy_s(&module_string_buffer_13,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString12,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_config_buffer_13,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString12,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_16_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1285,10 +1285,10 @@ int initialize_timer_service(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_14;
-  module_string_buffer_14 = 0;
+  global_data_ptr = &module_config_buffer_14;
+  module_config_buffer_14 = 0;
   global_data_ptr = 0x14;
-  strcpy_s(&module_string_buffer_14,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString13,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_config_buffer_14,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString13,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_17_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1297,10 +1297,10 @@ int initialize_logger_system(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_15;
-  module_string_buffer_15 = 0;
+  global_data_ptr = &module_config_buffer_15;
+  module_config_buffer_15 = 0;
   global_data_ptr = 0x17;
-  strcpy_s(&module_string_buffer_15,SYSTEM_CONFIG_BUFFER_SIZE,&logger_string_buffer,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_config_buffer_15,SYSTEM_CONFIG_BUFFER_SIZE,&logger_string_buffer,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_18_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1309,10 +1309,10 @@ int initialize_config_system(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_16;
-  module_string_buffer_16 = 0;
+  global_data_ptr = &module_config_buffer_16;
+  module_config_buffer_16 = 0;
   global_data_ptr = 0x17;
-  strcpy_s(&module_string_buffer_16,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString14,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_config_buffer_16,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString14,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_19_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1321,10 +1321,10 @@ int initialize_resource_cache(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_17;
-  module_string_buffer_17 = 0;
+  global_data_ptr = &module_config_buffer_17;
+  module_config_buffer_17 = 0;
   global_data_ptr = path_buffer_size;
-  strcpy_s(&module_string_buffer_17,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString15,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_config_buffer_17,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString15,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_20_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1333,10 +1333,10 @@ int initialize_asset_loader(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_18;
-  module_string_buffer_18 = 0;
+  global_data_ptr = &module_config_buffer_18;
+  module_config_buffer_18 = 0;
   global_data_ptr = 0x13;
-  strcpy_s(&module_string_buffer_18,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString16,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_config_buffer_18,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString16,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_21_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1345,10 +1345,10 @@ int initialize_shader_system(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_19;
-  module_string_buffer_19 = 0;
+  global_data_ptr = &module_config_buffer_19;
+  module_config_buffer_19 = 0;
   global_data_ptr = 0x1e;
-  strcpy_s(&module_string_buffer_19,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString17,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_config_buffer_19,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString17,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_22_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1357,10 +1357,10 @@ int initialize_texture_manager(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_20;
-  module_string_buffer_20 = 0;
+  global_data_ptr = &module_config_buffer_20;
+  module_config_buffer_20 = 0;
   global_data_ptr = 0x1b;
-  strcpy_s(&module_string_buffer_20,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString18,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_config_buffer_20,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString18,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_23_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1369,10 +1369,10 @@ int initialize_mesh_system(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_21;
-  module_string_buffer_21 = 0;
+  global_data_ptr = &module_config_buffer_21;
+  module_config_buffer_21 = 0;
   global_data_ptr = 0x1b;
-  strcpy_s(&module_string_buffer_21,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString19,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_config_buffer_21,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString19,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_24_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1381,10 +1381,10 @@ int initialize_animation_system(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_22;
-  module_string_buffer_22 = 0;
+  global_data_ptr = &module_config_buffer_22;
+  module_config_buffer_22 = 0;
   global_data_ptr = 0x1c;
-  strcpy_s(&module_string_buffer_22,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString20,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_config_buffer_22,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString20,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_25_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1393,10 +1393,10 @@ int initialize_particle_system(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_23;
-  module_string_buffer_23 = 0;
+  global_data_ptr = &module_config_buffer_23;
+  module_config_buffer_23 = 0;
   global_data_ptr = 0x1d;
-  strcpy_s(&module_string_buffer_23,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString21,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_config_buffer_23,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString21,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_26_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1405,10 +1405,10 @@ int initialize_physics_engine(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_24;
-  module_string_buffer_24 = 0;
+  global_data_ptr = &module_config_buffer_24;
+  module_config_buffer_24 = 0;
   global_data_ptr = path_buffer_size;
-  strcpy_s(&module_string_buffer_24,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString22,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_config_buffer_24,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString22,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_27_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1417,10 +1417,10 @@ int initialize_collision_system(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_25;
-  module_string_buffer_25 = 0;
+  global_data_ptr = &module_config_buffer_25;
+  module_config_buffer_25 = 0;
   global_data_ptr = 0x1d;
-  strcpy_s(&module_string_buffer_25,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString23,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_config_buffer_25,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString23,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_28_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1441,10 +1441,10 @@ int initialize_navigation_system(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_27;
-  module_string_buffer_27 = 0;
+  global_data_ptr = &module_config_buffer_27;
+  module_config_buffer_27 = 0;
   global_data_ptr = 0x17;
-  strcpy_s(&module_string_buffer_27,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString24,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_config_buffer_27,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString24,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_30_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1453,10 +1453,10 @@ int initialize_ui_framework(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_28;
-  module_string_buffer_28 = 0;
+  global_data_ptr = &module_config_buffer_28;
+  module_config_buffer_28 = 0;
   global_data_ptr = 0x1f;
-  strcpy_s(&module_string_buffer_28,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString25,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_config_buffer_28,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString25,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_31_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1465,10 +1465,10 @@ int initialize_scripting_engine(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_29;
-  module_string_buffer_29 = 0;
+  global_data_ptr = &module_config_buffer_29;
+  module_config_buffer_29 = 0;
   global_data_ptr = 0x21;
-  strcpy_s(&module_string_buffer_29,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString26,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_config_buffer_29,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString26,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_32_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1477,10 +1477,10 @@ int initialize_database_system(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_30;
-  module_string_buffer_30 = 0;
+  global_data_ptr = &module_texture_buffer_10;
+  module_texture_buffer_10 = 0;
   global_data_ptr = 0x25;
-  strcpy_s(&module_string_buffer_30,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString27,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_texture_buffer_10,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString27,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_33_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1489,10 +1489,10 @@ int initialize_network_manager(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_31;
-  module_string_buffer_31 = 0;
+  global_data_ptr = &module_texture_buffer_11;
+  module_texture_buffer_11 = 0;
   global_data_ptr = 0x23;
-  strcpy_s(&module_string_buffer_31,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString28,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_texture_buffer_11,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString28,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_34_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1501,10 +1501,10 @@ int initialize_security_system(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_32;
-  module_string_buffer_32 = 0;
+  global_data_ptr = &module_texture_buffer_12;
+  module_texture_buffer_12 = 0;
   global_data_ptr = 0x1e;
-  strcpy_s(&module_string_buffer_32,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString29,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_texture_buffer_12,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString29,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_35_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1513,10 +1513,10 @@ int initialize_encryption_service(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_33;
-  module_string_buffer_33 = 0;
+  global_data_ptr = &module_texture_buffer_13;
+  module_texture_buffer_13 = 0;
   global_data_ptr = 0x1e;
-  strcpy_s(&module_string_buffer_33,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString30,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_texture_buffer_13,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString30,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_36_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1525,10 +1525,10 @@ int initialize_authentication_system(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_34;
-  module_string_buffer_34 = 0;
+  global_data_ptr = &module_texture_buffer_14;
+  module_texture_buffer_14 = 0;
   global_data_ptr = 0x12;
-  strcpy_s(&module_string_buffer_34,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString31,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_texture_buffer_14,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString31,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_37_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1537,10 +1537,10 @@ int initialize_permission_manager(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_35;
-  module_string_buffer_35 = 0;
+  global_data_ptr = &module_texture_buffer_15;
+  module_texture_buffer_15 = 0;
   global_data_ptr = 0x13;
-  strcpy_s(&module_string_buffer_35,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString32,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_texture_buffer_15,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString32,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_38_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1549,10 +1549,10 @@ int initialize_session_manager(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_36;
-  module_string_buffer_36 = 0;
+  global_data_ptr = &module_texture_buffer_16;
+  module_texture_buffer_16 = 0;
   global_data_ptr = 0x13;
-  strcpy_s(&module_string_buffer_36,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString33,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_texture_buffer_16,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString33,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_39_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1561,10 +1561,10 @@ int initialize_user_profile_system(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_37;
-  module_string_buffer_37 = 0;
+  global_data_ptr = &module_texture_buffer_17;
+  module_texture_buffer_17 = 0;
   global_data_ptr = 0x16;
-  strcpy_s(&module_string_buffer_37,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString34,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_texture_buffer_17,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString34,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_40_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1573,10 +1573,10 @@ int initialize_save_system(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_38;
-  module_string_buffer_38 = 0;
+  global_data_ptr = &module_texture_buffer_18;
+  module_texture_buffer_18 = 0;
   global_data_ptr = 0x1a;
-  strcpy_s(&module_string_buffer_38,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString35,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_texture_buffer_18,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString35,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_41_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1585,10 +1585,10 @@ int initialize_achievement_system(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_39;
-  module_string_buffer_39 = 0;
+  global_data_ptr = &module_texture_buffer_19;
+  module_texture_buffer_19 = 0;
   global_data_ptr = 0x15;
-  strcpy_s(&module_string_buffer_39,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString36,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_texture_buffer_19,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString36,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_42_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1597,10 +1597,10 @@ int initialize_statistics_system(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_40;
-  module_string_buffer_40 = 0;
+  global_data_ptr = &module_texture_buffer_20;
+  module_texture_buffer_20 = 0;
   global_data_ptr = 0x13;
-  strcpy_s(&module_string_buffer_40,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString37,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_texture_buffer_20,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString37,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_43_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1609,10 +1609,10 @@ int initialize_analytics_service(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_41;
-  module_string_buffer_41 = 0;
+  global_data_ptr = &module_texture_buffer_21;
+  module_texture_buffer_21 = 0;
   global_data_ptr = 0x13;
-  strcpy_s(&module_string_buffer_41,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString38,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_texture_buffer_21,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString38,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_44_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1621,10 +1621,10 @@ int initialize_debug_system(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_42;
-  module_string_buffer_42 = 0;
+  global_data_ptr = &module_texture_buffer_22;
+  module_texture_buffer_22 = 0;
   global_data_ptr = 0x1b;
-  strcpy_s(&module_string_buffer_42,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString39,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_texture_buffer_22,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString39,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_45_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1633,10 +1633,10 @@ int initialize_profiling_system(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_43;
-  module_string_buffer_43 = 0;
+  global_data_ptr = &module_texture_buffer_23;
+  module_texture_buffer_23 = 0;
   global_data_ptr = 0x19;
-  strcpy_s(&module_string_buffer_43,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString40,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_texture_buffer_23,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString40,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_46_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1645,10 +1645,10 @@ int initialize_crash_handle_paramr(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_44;
-  module_string_buffer_44 = 0;
+  global_data_ptr = &module_texture_buffer_24;
+  module_texture_buffer_24 = 0;
   global_data_ptr = 0x15;
-  strcpy_s(&module_string_buffer_44,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString41,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_texture_buffer_24,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString41,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_47_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1657,10 +1657,10 @@ int initialize_error_reporting(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_45;
-  module_string_buffer_45 = 0;
+  global_data_ptr = &module_texture_buffer_25;
+  module_texture_buffer_25 = 0;
   global_data_ptr = 0x28;
-  strcpy_s(&module_string_buffer_45,SYSTEM_CONFIG_BUFFER_SIZE,&security_config_buffer,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_texture_buffer_25,SYSTEM_CONFIG_BUFFER_SIZE,&security_config_buffer,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_48_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1669,10 +1669,10 @@ int initialize_update_system(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_46;
-  module_string_buffer_46 = 0;
+  global_data_ptr = &module_texture_buffer_26;
+  module_texture_buffer_26 = 0;
   global_data_ptr = 0x23;
-  strcpy_s(&module_string_buffer_46,SYSTEM_CONFIG_BUFFER_SIZE,&encryption_config_buffer,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_texture_buffer_26,SYSTEM_CONFIG_BUFFER_SIZE,&encryption_config_buffer,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_49_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1681,10 +1681,10 @@ int initialize_patch_manager(void)
   long long system_init_result;
   unsigned long long string_length;
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &module_string_buffer_47;
-  module_string_buffer_47 = 0;
+  global_data_ptr = &module_texture_buffer_27;
+  module_texture_buffer_27 = 0;
   global_data_ptr = 0x17;
-  strcpy_s(&module_string_buffer_47,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString42,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&module_texture_buffer_27,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString42,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_50_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1893,9 +1893,9 @@ int initialize_performance_monitor(void)
   system_init_result = system_execution_function(resource_manager_60_init_function);
   return (system_init_result != 0) - 1;
 }
-  config_path_buffer_1 = 0;
+  config_shader_path_buffer = 0;
   global_data_ptr = 0xd;
-  strcpy_s(&config_path_buffer_1,path_buffer_size,&g_configString1,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&config_shader_path_buffer,path_buffer_size,&g_configString1,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_61_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1904,16 +1904,16 @@ int initialize_load_balancer(void)
   long long system_init_result;
   unsigned long long string_length;
   global_data_ptr = &g_alternateDataTemplate;
-  global_data_ptr = &config_path_buffer_2;
-  config_path_buffer_2 = 0;
+  global_data_ptr = &config_texture_path_buffer;
+  config_texture_path_buffer = 0;
   global_data_ptr = 9;
-  strcpy_s(&config_path_buffer_2,path_buffer_size,&g_configString2,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&config_texture_path_buffer,path_buffer_size,&g_configString2,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_62_init_function);
   return (system_init_result != 0) - 1;
 }
-  config_path_buffer_3 = 0;
+  config_model_path_buffer = 0;
   global_data_ptr = 0xd;
-  strcpy_s(&config_path_buffer_3,path_buffer_size,&g_configString1,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&config_model_path_buffer,path_buffer_size,&g_configString1,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_63_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -1922,10 +1922,10 @@ int initialize_scaling_system(void)
   long long system_init_result;
   unsigned long long string_length;
   global_data_ptr = &g_alternateDataTemplate;
-  global_data_ptr = &config_path_buffer_4;
-  config_path_buffer_4 = 0;
+  global_data_ptr = &config_audio_path_buffer;
+  config_audio_path_buffer = 0;
   global_data_ptr = 9;
-  strcpy_s(&config_path_buffer_4,path_buffer_size,&g_configString2,str_len_param,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&config_audio_path_buffer,path_buffer_size,&g_configString2,str_len_param,DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(resource_manager_64_init_function);
   return (system_init_result != 0) - 1;
 }
