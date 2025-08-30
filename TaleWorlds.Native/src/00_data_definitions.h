@@ -352,8 +352,8 @@ int initialize_texture_resource_manager(void)
   void* resource_buffer_ptr = &g_resource_data_buffer;
   void* resource_value_ptr = &resource_buffer_1;
   resource_buffer_1 = 0;
-  resource_type_1 = 资源类型纹理;
-  strcpy_s(&resource_buffer_1, 资源缓冲区大小, &string_source_002, str_length, 线程池默认标志);
+  resource_type_1 = RESOURCE_TYPE_TEXTURE;
+  strcpy_s(&resource_buffer_1, RESOURCE_BUFFER_SIZE, &string_source_002, str_length, THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(texture_resource_manager_init_function);
   return (init_result != 0) - 1;
 }
@@ -364,8 +364,8 @@ int initialize_shader_resource_manager_1(void)
   void* resource_buffer_ptr = &g_resource_data_buffer;
   void* resource_value_ptr = &resource_buffer_2;
   resource_buffer_2 = 0;
-  resource_type_2 = 资源类型着色器;
-  strcpy_s(&resource_buffer_2, 资源缓冲区大小, &string_source_003, str_length, 线程池默认标志);
+  resource_type_2 = RESOURCE_TYPE_SHADER;
+  strcpy_s(&resource_buffer_2, RESOURCE_BUFFER_SIZE, &string_source_003, str_length, THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(shader_resource_manager_1_init_function);
   return (init_result != 0) - 1;
 }
@@ -376,8 +376,8 @@ int initialize_shader_resource_manager_2(void)
   void* resource_buffer_ptr = &g_resource_data_buffer;
   void* resource_value_ptr = &resource_buffer_3;
   resource_buffer_3 = 0;
-  resource_type_3 = 资源类型着色器;
-  strcpy_s(&resource_buffer_3, 资源缓冲区大小, &string_source_004, str_length, 线程池默认标志);
+  resource_type_3 = RESOURCE_TYPE_SHADER;
+  strcpy_s(&resource_buffer_3, RESOURCE_BUFFER_SIZE, &string_source_004, str_length, THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(shader_resource_manager_2_init_function);
   return (init_result != 0) - 1;
 }
@@ -388,8 +388,8 @@ int initialize_audio_resource_manager(void)
   void* resource_data_buffer_pointer = &g_resource_data_buffer;
   void* resource_buffer_value_pointer = &resource_buffer_4;
   resource_buffer_4 = 0;
-  resource_type_4 = 资源类型音频;
-  strcpy_s(&resource_buffer_4, 资源缓冲区大小, &string_source_005, string_length_parameter, 线程池默认标志);
+  resource_type_4 = RESOURCE_TYPE_AUDIO;
+  strcpy_s(&resource_buffer_4, RESOURCE_BUFFER_SIZE, &string_source_005, string_length_parameter, THREAD_POOL_DEFAULT_FLAG);
   initialization_result = execute_function(audio_resource_manager_init_function);
   return (initialization_result != 0) - 1;
 }
@@ -400,8 +400,8 @@ int initialize_font_resource_manager(void)
   void* resource_data_buffer_pointer = &g_resource_data_buffer;
   void* resource_buffer_value_pointer = &resource_buffer_5;
   resource_buffer_5 = 0;
-  resource_type_5 = 资源类型音频;
-  strcpy_s(&resource_buffer_5, 资源缓冲区大小, &string_source_006, string_length_parameter, 线程池默认标志);
+  resource_type_5 = RESOURCE_TYPE_AUDIO;
+  strcpy_s(&resource_buffer_5, RESOURCE_BUFFER_SIZE, &string_source_006, string_length_parameter, THREAD_POOL_DEFAULT_FLAG);
   initialization_result = execute_function(font_resource_manager_init_function);
   return (initialization_result != 0) - 1;
 }
@@ -413,7 +413,7 @@ int initialize_model_resource_manager(void)
   void* resource_buffer_value_pointer = &resource_buffer_6;
   resource_buffer_6 = 0;
   resource_type_6 = 4;
-  strcpy_s(&resource_buffer_6, 资源缓冲区大小, &string_source_007, string_length_parameter, 线程池默认标志);
+  strcpy_s(&resource_buffer_6, RESOURCE_BUFFER_SIZE, &string_source_007, string_length_parameter, THREAD_POOL_DEFAULT_FLAG);
   initialization_result = execute_function(model_resource_manager_init_function);
   return (initialization_result != 0) - 1;
 }
@@ -425,7 +425,7 @@ int initialize_animation_resource_manager(void)
   void* system_data_pointer = &g_system_name_data;
   g_system_name_data = 0;
   int resource_type = 5;
-  strcpy_s(&g_system_name_buffer, 资源缓冲区大小, &g_system_name_string, string_length_parameter, 线程池默认标志);
+  strcpy_s(&g_system_name_buffer, RESOURCE_BUFFER_SIZE, &g_system_name_string, string_length_parameter, THREAD_POOL_DEFAULT_FLAG);
   initialization_result = execute_function(animation_resource_manager_init_function);
   return (initialization_result != 0) - 1;
 }
@@ -438,7 +438,7 @@ int initialize_particle_resource_manager(void)
   void* buffer_pointer = &g_system_version_data;
   g_system_version_data = 0;
   int resource_type = 5;
-  strcpy_s(&g_system_version_buffer, 资源缓冲区大小, &g_system_version_string, string_length_parameter, 线程池默认标志);
+  strcpy_s(&g_system_version_buffer, RESOURCE_BUFFER_SIZE, &g_system_version_string, string_length_parameter, THREAD_POOL_DEFAULT_FLAG);
   initialization_result = execute_function(particle_resource_manager_init_function);
   return (initialization_result != 0) - 1;
 }
@@ -450,8 +450,8 @@ int initialize_config_string_buffer(void)
   g_config_string_buffer_ptr = &g_empty_data_buffer;
   g_config_data_ptr = &g_config_data_value;
   g_config_data_value = 0;
-  g_config_resource_type = 资源类型纹理;
-  strcpy_s(&g_config_file_path, CONFIG_PATH_BUFFER_SIZE, &g_config_path_string, string_length_parameter, 线程池默认标志);
+  g_config_resource_type = RESOURCE_TYPE_TEXTURE;
+  strcpy_s(&g_config_file_path, CONFIG_PATH_BUFFER_SIZE, &g_config_path_string, string_length_parameter, THREAD_POOL_DEFAULT_FLAG);
   initialization_result = execute_function(config_string_buffer_init_callback);
   return (initialization_result != 0) - 1;
 }
@@ -464,7 +464,7 @@ int initialize_savegame_string_buffer(void)
   g_savegame_data_ptr = &g_savegame_data_value;
   g_savegame_data_value = 0;
   g_savegame_resource_type = 9;
-  strcpy_s(&g_save_file_path, CONFIG_PATH_BUFFER_SIZE, &g_save_path_string, string_length_parameter, 线程池默认标志);
+  strcpy_s(&g_save_file_path, CONFIG_PATH_BUFFER_SIZE, &g_save_path_string, string_length_parameter, THREAD_POOL_DEFAULT_FLAG);
   initialization_result = execute_function(savegame_string_buffer_init_callback);
   return (initialization_result != 0) - 1;
 }
@@ -472,7 +472,7 @@ int initialize_savegame_string_buffer(void)
 int initialize_main_mutex(void* handle, void* flags, void* mutex_attr, int mutex_type)
 {
   long long initialization_result;
-  _Mtx_init_in_situ(主线程池互斥锁地址, 字符串缓冲区大小2, mutex_attr, mutex_type, 线程池默认标志);
+  _Mtx_init_in_situ(MAIN_THREAD_POOL_MUTEX_ADDR, STRING_BUFFER_SIZE_2, mutex_attr, mutex_type, THREAD_POOL_DEFAULT_FLAG);
   initialization_result = execute_function(main_mutex_init_callback);
   return (initialization_result != 0) - 1;
 }
@@ -482,33 +482,33 @@ int initialize_data_buffer_system(void)
   long long init_result;
   unsigned long long str_len_param;
   g_system_config_buffer = 0;
-  g_system_config_flags = 标志已初始化;
-  strcpy_s(&g_system_config_buffer,系统配置缓冲区大小,&g_systemConfigString,str_len_param,线程池默认标志);
+  g_system_config_flags = FLAG_INITIALIZED;
+  strcpy_s(&g_system_config_buffer,SYSTEM_CONFIG_BUFFER_SIZE,&g_systemConfigString,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   g_resource_template_ptr_1 = &g_defaultDataTemplate;
   g_texture_resource_ptr = &texture_resource_data;
   texture_resource_data = 0;
-  g_resource_type_1 = 标志纹理资源;
-  strcpy_s(&texture_resource_data,系统配置缓冲区大小,&g_texture_resource_string);
+  g_resource_type_1 = FLAG_TEXTURE_RESOURCE;
+  strcpy_s(&texture_resource_data,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string);
   g_resource_template_ptr_2 = &g_defaultDataTemplate;
   g_shader_resource_ptr = &shader_resource_data;
   shader_resource_data = 0;
-  global_data_ = 标志着色器资源;
-  strcpy_s(&shader_resource_data,系统配置缓冲区大小,&g_shader_resource_string);
+  global_data_ = FLAG_SHADER_RESOURCE;
+  strcpy_s(&shader_resource_data,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string);
   global_data_ = &g_defaultDataTemplate;
   g_audio_resource_ptr = &audio_resource_data;
   audio_resource_data = 0;
-  global_data_ = 标志音频资源;
-  strcpy_s(&audio_resource_data,系统配置缓冲区大小,&g_audio_resource_string);
+  global_data_ = FLAG_AUDIO_RESOURCE;
+  strcpy_s(&audio_resource_data,SYSTEM_CONFIG_BUFFER_SIZE,&g_audio_resource_string);
   global_data_ = &g_defaultDataTemplate;
   g_font_resource_ptr = &font_resource_data;
   font_resource_data = 0;
-  global_data_ = 标志字体资源;
-  strcpy_s(&font_resource_data,系统配置缓冲区大小,&g_font_resource_string);
+  global_data_ = FLAG_FONT_RESOURCE;
+  strcpy_s(&font_resource_data,SYSTEM_CONFIG_BUFFER_SIZE,&g_font_resource_string);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &resource_data_5;
   resource_data_5 = 0;
-  global_data_ = 标志字体资源;
-  strcpy_s(&resource_data_5,系统配置缓冲区大小,&g_resourceString5);
+  global_data_ = FLAG_FONT_RESOURCE;
+  strcpy_s(&resource_data_5,SYSTEM_CONFIG_BUFFER_SIZE,&g_resourceString5);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf6978;
   data_180bf6978 = 0;
@@ -517,128 +517,128 @@ int initialize_data_buffer_system(void)
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf69d0;
   data_180bf69d0 = 0;
-  global_data_ = 标志模型资源;
-  strcpy_s(&data_180bf69d0,系统配置缓冲区大小,&g_resourceString7);
+  global_data_ = FLAG_MODEL_RESOURCE;
+  strcpy_s(&data_180bf69d0,SYSTEM_CONFIG_BUFFER_SIZE,&g_resourceString7);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf6a28;
   data_180bf6a28 = 0;
-  global_data_ = 标志着色器资源;
-  strcpy_s(&data_180bf6a28,系统配置缓冲区大小,&g_resourceString8);
+  global_data_ = FLAG_SHADER_RESOURCE;
+  strcpy_s(&data_180bf6a28,SYSTEM_CONFIG_BUFFER_SIZE,&g_resourceString8);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf6a80;
   data_180bf6a80 = 0;
-  global_data_ = 标志粒子资源;
-  strcpy_s(&data_180bf6a80,系统配置缓冲区大小,&g_resourceString9);
+  global_data_ = FLAG_PARTICLE_RESOURCE;
+  strcpy_s(&data_180bf6a80,SYSTEM_CONFIG_BUFFER_SIZE,&g_resourceString9);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf6ad8;
   data_180bf6ad8 = 0;
-  global_data_ = 标志配置资源;
-  strcpy_s(&data_180bf6ad8,系统配置缓冲区大小,&g_texture_resource_string0);
+  global_data_ = FLAG_CONFIG_RESOURCE;
+  strcpy_s(&data_180bf6ad8,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string0);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf6b30;
   data_180bf6b30 = 0;
   global_data_ = 0;
-  strcpy_s(&data_180bf6b30,系统配置缓冲区大小,&data_18098bc73);
+  strcpy_s(&data_180bf6b30,SYSTEM_CONFIG_BUFFER_SIZE,&data_18098bc73);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf6b88;
   data_180bf6b88 = 0;
-  global_data_ = 标志存档资源;
-  strcpy_s(&data_180bf6b88,系统配置缓冲区大小,&g_texture_resource_string1);
+  global_data_ = FLAG_SAVE_GAME_RESOURCE;
+  strcpy_s(&data_180bf6b88,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string1);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf6be0;
   data_180bf6be0 = 0;
   global_data_ = 7;
-  strcpy_s(&data_180bf6be0,系统配置缓冲区大小,&g_texture_resource_string2);
+  strcpy_s(&data_180bf6be0,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string2);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf6c38;
   data_180bf6c38 = 0;
-  global_data_ = 标志字符串管理器资源;
-  strcpy_s(&data_180bf6c38,系统配置缓冲区大小,&g_texture_resource_string3);
+  global_data_ = FLAG_STRING_MANAGER_RESOURCE;
+  strcpy_s(&data_180bf6c38,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string3);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf6c90;
   data_180bf6c90 = 0;
-  global_data_ = 标志物理资源;
-  strcpy_s(&data_180bf6c90,系统配置缓冲区大小,&g_texture_resource_string4);
+  global_data_ = FLAG_PHYSICS_RESOURCE;
+  strcpy_s(&data_180bf6c90,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string4);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf6ce8;
   data_180bf6ce8 = 0;
-  global_data_ = 标志物理资源;
-  strcpy_s(&data_180bf6ce8,系统配置缓冲区大小,&g_texture_resource_string5);
+  global_data_ = FLAG_PHYSICS_RESOURCE;
+  strcpy_s(&data_180bf6ce8,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string5);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf6d40;
   data_180bf6d40 = 0;
-  global_data_ = 标志字符串管理器资源;
-  strcpy_s(&data_180bf6d40,系统配置缓冲区大小,&g_texture_resource_string6);
+  global_data_ = FLAG_STRING_MANAGER_RESOURCE;
+  strcpy_s(&data_180bf6d40,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string6);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf6d98;
   data_180bf6d98 = 0;
-  global_data_ = 标志UI资源;
-  strcpy_s(&data_180bf6d98,系统配置缓冲区大小,&g_texture_resource_string7);
+  global_data_ = FLAG_UI_RESOURCE;
+  strcpy_s(&data_180bf6d98,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string7);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf6df0;
   data_180bf6df0 = 0;
-  global_data_ = 标志脚本资源;
-  strcpy_s(&data_180bf6df0,系统配置缓冲区大小,&g_texture_resource_string8);
+  global_data_ = FLAG_SCRIPT_RESOURCE;
+  strcpy_s(&data_180bf6df0,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string8);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf6e48;
   data_180bf6e48 = 0;
-  global_data_ = 标志网络资源;
-  strcpy_s(&data_180bf6e48,系统配置缓冲区大小,&g_texture_resource_string9);
+  global_data_ = FLAG_NETWORK_RESOURCE;
+  strcpy_s(&data_180bf6e48,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string9);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf6ea0;
   data_180bf6ea0 = 0;
-  global_data_ = 标志字符串管理器资源;
-  strcpy_s(&data_180bf6ea0,系统配置缓冲区大小,&g_shader_resource_string0);
+  global_data_ = FLAG_STRING_MANAGER_RESOURCE;
+  strcpy_s(&data_180bf6ea0,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string0);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf6ef8;
   data_180bf6ef8 = 0;
   global_data_ = STRING_BUFFER_SIZE;
-  strcpy_s(&data_180bf6ef8,系统配置缓冲区大小,&g_shader_resource_string1);
+  strcpy_s(&data_180bf6ef8,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string1);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf6f50;
   data_180bf6f50 = 0;
-  global_data_ = 标志配置资源;
-  strcpy_s(&data_180bf6f50,系统配置缓冲区大小,&g_shader_resource_string2);
+  global_data_ = FLAG_CONFIG_RESOURCE;
+  strcpy_s(&data_180bf6f50,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string2);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf6fa8;
   data_180bf6fa8 = 0;
-  global_data_ = 标志认证资源;
-  strcpy_s(&data_180bf6fa8,系统配置缓冲区大小,&g_shader_resource_string3);
+  global_data_ = FLAG_AUTH_RESOURCE;
+  strcpy_s(&data_180bf6fa8,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string3);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf7000;
   data_180bf7000 = 0;
-  global_data_ = 标志安全资源;
-  strcpy_s(&data_180bf7000,系统配置缓冲区大小,&g_shader_resource_string4);
+  global_data_ = FLAG_SECURITY_RESOURCE;
+  strcpy_s(&data_180bf7000,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string4);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf7058;
   data_180bf7058 = 0;
-  global_data_ = 标志物理资源;
-  strcpy_s(&data_180bf7058,系统配置缓冲区大小,&g_shader_resource_string5);
+  global_data_ = FLAG_PHYSICS_RESOURCE;
+  strcpy_s(&data_180bf7058,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string5);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf70b0;
   data_180bf70b0 = 0;
-  global_data_ = 标志配置资源;
-  strcpy_s(&data_180bf70b0,系统配置缓冲区大小,&g_shader_resource_string6);
+  global_data_ = FLAG_CONFIG_RESOURCE;
+  strcpy_s(&data_180bf70b0,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string6);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf7108;
   data_180bf7108 = 0;
   global_data_ = CONFIG_PATH_BUFFER_SIZE;
-  strcpy_s(&data_180bf7108,系统配置缓冲区大小,&g_shader_resource_string7);
+  strcpy_s(&data_180bf7108,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string7);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf7160;
   data_180bf7160 = 0;
-  global_data_ = 标志网络资源;
-  strcpy_s(&data_180bf7160,系统配置缓冲区大小,&g_shader_resource_string8);
+  global_data_ = FLAG_NETWORK_RESOURCE;
+  strcpy_s(&data_180bf7160,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string8);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf71b8;
   data_180bf71b8 = 0;
-  global_data_ = 标志安全资源;
-  strcpy_s(&data_180bf71b8,系统配置缓冲区大小,&g_shader_resource_string9);
+  global_data_ = FLAG_SECURITY_RESOURCE;
+  strcpy_s(&data_180bf71b8,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string9);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf7210;
   data_180bf7210 = 0;
   global_data_ = 0xf;
-  strcpy_s(&data_180bf7210,系统配置缓冲区大小,&g_audio_resource_string0);
+  strcpy_s(&data_180bf7210,SYSTEM_CONFIG_BUFFER_SIZE,&g_audio_resource_string0);
   init_result = execute_function(&g_systemInitFunction1);
   return (init_result != 0) - 1;
 }
@@ -650,7 +650,7 @@ int initialize_audio_module(void)
   global_data_ = &data_180bf7268;
   data_180bf7268 = 0;
   global_data_ = 0xb;
-  strcpy_s(&data_180bf7268,系统配置缓冲区大小,&g_systemString1,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf7268,SYSTEM_CONFIG_BUFFER_SIZE,&g_systemString1,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(data_buffer_system_init_callback);
   return (init_result != 0) - 1;
 }
@@ -662,7 +662,7 @@ int initialize_video_module(void)
   global_data_ = &data_180bf72c8;
   data_180bf72c8 = 0;
   global_data_ = 9;
-  strcpy_s(&data_180bf72c8,系统配置缓冲区大小,&g_systemString2,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf72c8,SYSTEM_CONFIG_BUFFER_SIZE,&g_systemString2,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(memory_manager_init_callback);
   return (init_result != 0) - 1;
 }
@@ -674,7 +674,7 @@ int initialize_input_module(void)
   global_data_ = &data_180bf7328;
   data_180bf7328 = 0;
   global_data_ = 9;
-  strcpy_s(&data_180bf7328,系统配置缓冲区大小,&g_systemString3,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf7328,SYSTEM_CONFIG_BUFFER_SIZE,&g_systemString3,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(thread_manager_init_callback);
   return (init_result != 0) - 1;
 }
@@ -686,249 +686,249 @@ int initialize_network_module(void)
   global_data_ = &data_180bf7388;
   data_180bf7388 = 0;
   global_data_ = 0xb;
-  strcpy_s(&data_180bf7388,0x80,&g_memoryString1,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf7388,0x80,&g_memoryString1,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   global_data_ = &g_memoryAllocationFlag;
   global_data_ = &data_180bf7420;
   data_180bf7420 = 0;
   global_data_ = STRING_BUFFER_SIZE;
-  strcpy_s(&data_180bf7420,0x80,&g_memoryString2);
+  strcpy_s(&data_180bf7420,STRING_BUFFER_SIZE_1,&g_memoryString2);
   global_data_ = &g_memoryAllocationFlag;
   global_data_ = &data_180bf74b8;
   data_180bf74b8 = 0;
   global_data_ = 0xd;
-  strcpy_s(&data_180bf74b8,0x80,&g_memoryString3);
+  strcpy_s(&data_180bf74b8,STRING_BUFFER_SIZE_1,&g_memoryString3);
   global_data_ = &g_memoryAllocationFlag;
   global_data_ = &data_180bf7550;
   data_180bf7550 = 0;
   global_data_ = 0xd;
-  strcpy_s(&data_180bf7550,0x80,&g_memoryString4);
+  strcpy_s(&data_180bf7550,STRING_BUFFER_SIZE_1,&g_memoryString4);
   global_data_ = &g_memoryAllocationFlag;
   global_data_ = &data_180bf75e8;
   data_180bf75e8 = 0;
   global_data_ = 0xc;
-  strcpy_s(&data_180bf75e8,0x80,&g_memoryString5);
+  strcpy_s(&data_180bf75e8,STRING_BUFFER_SIZE_1,&g_memoryString5);
   global_data_ = &g_memoryAllocationFlag;
   global_data_ = &data_180bf7680;
   data_180bf7680 = 0;
   global_data_ = 0x13;
-  strcpy_s(&data_180bf7680,0x80,&g_memoryString6);
+  strcpy_s(&data_180bf7680,STRING_BUFFER_SIZE_1,&g_memoryString6);
   global_data_ = &g_memoryAllocationFlag;
   global_data_ = &data_180bf7718;
   data_180bf7718 = 0;
   global_data_ = 10;
-  strcpy_s(&data_180bf7718,0x80,&g_memoryString7);
+  strcpy_s(&data_180bf7718,STRING_BUFFER_SIZE_1,&g_memoryString7);
   global_data_ = &g_memoryAllocationFlag;
   global_data_ = &data_180bf77b0;
   data_180bf77b0 = 0;
   global_data_ = 0xc;
-  strcpy_s(&data_180bf77b0,0x80,&g_memoryString8);
+  strcpy_s(&data_180bf77b0,STRING_BUFFER_SIZE_1,&g_memoryString8);
   global_data_ = &g_memoryAllocationFlag;
   global_data_ = &data_180bf7848;
   data_180bf7848 = 0;
   global_data_ = 0x11;
-  strcpy_s(&data_180bf7848,0x80,&g_memoryString9);
+  strcpy_s(&data_180bf7848,STRING_BUFFER_SIZE_1,&g_memoryString9);
   global_data_ = &g_memoryAllocationFlag;
   global_data_ = &data_180bf78e0;
   data_180bf78e0 = 0;
   global_data_ = 0x11;
-  strcpy_s(&data_180bf78e0,0x80,&g_memoryString10);
+  strcpy_s(&data_180bf78e0,STRING_BUFFER_SIZE_1,&g_memoryString10);
   global_data_ = &g_memoryAllocationFlag;
   global_data_ = &data_180bf7978;
   data_180bf7978 = 0;
   global_data_ = 0x19;
-  strcpy_s(&data_180bf7978,0x80,&g_memoryString11);
+  strcpy_s(&data_180bf7978,STRING_BUFFER_SIZE_1,&g_memoryString11);
   global_data_ = &g_memoryAllocationFlag;
   global_data_ = &data_180bf7a10;
   data_180bf7a10 = 0;
   global_data_ = 0x1a;
-  strcpy_s(&data_180bf7a10,0x80,&g_memoryString12);
+  strcpy_s(&data_180bf7a10,STRING_BUFFER_SIZE_1,&g_memoryString12);
   global_data_ = &g_memoryAllocationFlag;
   global_data_ = &data_180bf7aa8;
   data_180bf7aa8 = 0;
   global_data_ = 0x1b;
-  strcpy_s(&data_180bf7aa8,0x80,&g_memoryString13);
+  strcpy_s(&data_180bf7aa8,STRING_BUFFER_SIZE_1,&g_memoryString13);
   global_data_ = &g_memoryAllocationFlag;
   global_data_ = &data_180bf7b40;
   data_180bf7b40 = 0;
   global_data_ = 0xc;
-  strcpy_s(&data_180bf7b40,0x80,&g_memoryString14);
+  strcpy_s(&data_180bf7b40,STRING_BUFFER_SIZE_1,&g_memoryString14);
   global_data_ = &g_memoryAllocationFlag;
   global_data_ = &data_180bf7bd8;
   data_180bf7bd8 = 0;
   global_data_ = 0x11;
-  strcpy_s(&data_180bf7bd8,0x80,&g_memoryString15);
+  strcpy_s(&data_180bf7bd8,STRING_BUFFER_SIZE_1,&g_memoryString15);
   global_data_ = &g_memoryAllocationFlag;
   global_data_ = &data_180bf7c70;
   data_180bf7c70 = 0;
   global_data_ = 0x11;
-  strcpy_s(&data_180bf7c70,0x80,&g_memoryString16);
+  strcpy_s(&data_180bf7c70,STRING_BUFFER_SIZE_1,&g_memoryString16);
   init_result = execute_function(&g_systemInitFunction2);
   return (init_result != 0) - 1;
 }
   data_180bf7ea8 = 0;
   global_data_ = 0x13;
-  strcpy_s(&data_180bf7ea8,系统配置缓冲区大小,&g_systemConfigString,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf7ea8,SYSTEM_CONFIG_BUFFER_SIZE,&g_systemConfigString,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf7f00;
   data_180bf7f00 = 0;
   global_data_ = 0xd;
-  strcpy_s(&data_180bf7f00,系统配置缓冲区大小,&g_texture_resource_string);
+  strcpy_s(&data_180bf7f00,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf7f58;
   data_180bf7f58 = 0;
   global_data_ = 0x17;
-  strcpy_s(&data_180bf7f58,系统配置缓冲区大小,&g_shader_resource_string);
+  strcpy_s(&data_180bf7f58,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf7fb0;
   data_180bf7fb0 = 0;
   global_data_ = 0xd;
-  strcpy_s(&data_180bf7fb0,系统配置缓冲区大小,&g_audio_resource_string);
+  strcpy_s(&data_180bf7fb0,SYSTEM_CONFIG_BUFFER_SIZE,&g_audio_resource_string);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf8008;
   data_180bf8008 = 0;
   global_data_ = 0xc;
-  strcpy_s(&data_180bf8008,系统配置缓冲区大小,&g_font_resource_string);
+  strcpy_s(&data_180bf8008,SYSTEM_CONFIG_BUFFER_SIZE,&g_font_resource_string);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf8060;
   data_180bf8060 = 0;
   global_data_ = 0xc;
-  strcpy_s(&data_180bf8060,系统配置缓冲区大小,&g_resourceString5);
+  strcpy_s(&data_180bf8060,SYSTEM_CONFIG_BUFFER_SIZE,&g_resourceString5);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf80b8;
   data_180bf80b8 = 0;
   global_data_ = STRING_BUFFER_SIZE;
-  strcpy_s(&data_180bf80b8,系统配置缓冲区大小,&g_resourceString6);
+  strcpy_s(&data_180bf80b8,SYSTEM_CONFIG_BUFFER_SIZE,&g_resourceString6);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf8110;
   data_180bf8110 = 0;
   global_data_ = 0x1f;
-  strcpy_s(&data_180bf8110,系统配置缓冲区大小,&g_resourceString7);
+  strcpy_s(&data_180bf8110,SYSTEM_CONFIG_BUFFER_SIZE,&g_resourceString7);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf8168;
   data_180bf8168 = 0;
   global_data_ = 0x17;
-  strcpy_s(&data_180bf8168,系统配置缓冲区大小,&g_resourceString8);
+  strcpy_s(&data_180bf8168,SYSTEM_CONFIG_BUFFER_SIZE,&g_resourceString8);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf81c0;
   data_180bf81c0 = 0;
   global_data_ = 0x13;
-  strcpy_s(&data_180bf81c0,系统配置缓冲区大小,&g_resourceString9);
+  strcpy_s(&data_180bf81c0,SYSTEM_CONFIG_BUFFER_SIZE,&g_resourceString9);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf8218;
   data_180bf8218 = 0;
   global_data_ = 0x14;
-  strcpy_s(&data_180bf8218,系统配置缓冲区大小,&g_texture_resource_string0);
+  strcpy_s(&data_180bf8218,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string0);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf8270;
   data_180bf8270 = 0;
   global_data_ = 0;
-  strcpy_s(&data_180bf8270,系统配置缓冲区大小,&data_18098bc73);
+  strcpy_s(&data_180bf8270,SYSTEM_CONFIG_BUFFER_SIZE,&data_18098bc73);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf82c8;
   data_180bf82c8 = 0;
   global_data_ = 0x1b;
-  strcpy_s(&data_180bf82c8,系统配置缓冲区大小,&g_texture_resource_string1);
+  strcpy_s(&data_180bf82c8,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string1);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf8320;
   data_180bf8320 = 0;
   global_data_ = 7;
-  strcpy_s(&data_180bf8320,系统配置缓冲区大小,&g_texture_resource_string2);
+  strcpy_s(&data_180bf8320,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string2);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf8378;
   data_180bf8378 = 0;
   global_data_ = 0x19;
-  strcpy_s(&data_180bf8378,系统配置缓冲区大小,&g_texture_resource_string3);
+  strcpy_s(&data_180bf8378,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string3);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf83d0;
   data_180bf83d0 = 0;
   global_data_ = 0x12;
-  strcpy_s(&data_180bf83d0,系统配置缓冲区大小,&g_texture_resource_string4);
+  strcpy_s(&data_180bf83d0,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string4);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf8428;
   data_180bf8428 = 0;
   global_data_ = 0x12;
-  strcpy_s(&data_180bf8428,系统配置缓冲区大小,&g_texture_resource_string5);
+  strcpy_s(&data_180bf8428,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string5);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf8480;
   data_180bf8480 = 0;
   global_data_ = 0x19;
-  strcpy_s(&data_180bf8480,系统配置缓冲区大小,&g_texture_resource_string6);
+  strcpy_s(&data_180bf8480,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string6);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf84d8;
   data_180bf84d8 = 0;
   global_data_ = 0x11;
-  strcpy_s(&data_180bf84d8,系统配置缓冲区大小,&g_texture_resource_string7);
+  strcpy_s(&data_180bf84d8,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string7);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf8530;
   data_180bf8530 = 0;
   global_data_ = 0x18;
-  strcpy_s(&data_180bf8530,系统配置缓冲区大小,&g_texture_resource_string8);
+  strcpy_s(&data_180bf8530,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string8);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf8588;
   data_180bf8588 = 0;
   global_data_ = 0x13;
-  strcpy_s(&data_180bf8588,系统配置缓冲区大小,&g_texture_resource_string9);
+  strcpy_s(&data_180bf8588,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string9);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf85e0;
   data_180bf85e0 = 0;
   global_data_ = 0x19;
-  strcpy_s(&data_180bf85e0,系统配置缓冲区大小,&g_shader_resource_string0);
+  strcpy_s(&data_180bf85e0,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string0);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf8638;
   data_180bf8638 = 0;
   global_data_ = STRING_BUFFER_SIZE;
-  strcpy_s(&data_180bf8638,系统配置缓冲区大小,&g_shader_resource_string1);
+  strcpy_s(&data_180bf8638,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string1);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf8690;
   data_180bf8690 = 0;
   global_data_ = 0x14;
-  strcpy_s(&data_180bf8690,系统配置缓冲区大小,&g_shader_resource_string2);
+  strcpy_s(&data_180bf8690,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string2);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf86e8;
   data_180bf86e8 = 0;
   global_data_ = 0xf;
-  strcpy_s(&data_180bf86e8,系统配置缓冲区大小,&g_shader_resource_string3);
+  strcpy_s(&data_180bf86e8,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string3);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf8740;
   data_180bf8740 = 0;
   global_data_ = 0x16;
-  strcpy_s(&data_180bf8740,系统配置缓冲区大小,&g_shader_resource_string4);
+  strcpy_s(&data_180bf8740,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string4);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf8798;
   data_180bf8798 = 0;
   global_data_ = 0x12;
-  strcpy_s(&data_180bf8798,系统配置缓冲区大小,&g_shader_resource_string5);
+  strcpy_s(&data_180bf8798,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string5);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf87f0;
   data_180bf87f0 = 0;
   global_data_ = 0x14;
-  strcpy_s(&data_180bf87f0,系统配置缓冲区大小,&g_shader_resource_string6);
+  strcpy_s(&data_180bf87f0,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string6);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf8848;
   data_180bf8848 = 0;
   global_data_ = CONFIG_PATH_BUFFER_SIZE;
-  strcpy_s(&data_180bf8848,系统配置缓冲区大小,&g_shader_resource_string7);
+  strcpy_s(&data_180bf8848,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string7);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf88a0;
   data_180bf88a0 = 0;
   global_data_ = 0x13;
-  strcpy_s(&data_180bf88a0,系统配置缓冲区大小,&g_shader_resource_string8);
+  strcpy_s(&data_180bf88a0,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string8);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf88f8;
   data_180bf88f8 = 0;
   global_data_ = 0x16;
-  strcpy_s(&data_180bf88f8,系统配置缓冲区大小,&g_shader_resource_string9);
+  strcpy_s(&data_180bf88f8,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string9);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf8950;
   data_180bf8950 = 0;
   global_data_ = 0xf;
-  strcpy_s(&data_180bf8950,系统配置缓冲区大小,&g_audio_resource_string0);
+  strcpy_s(&data_180bf8950,SYSTEM_CONFIG_BUFFER_SIZE,&g_audio_resource_string0);
   init_result = execute_function(&g_systemInitFunction3);
   return (init_result != 0) - 1;
 }
   data_180bf90c8 = 0;
   global_data_ = 0xd;
-  strcpy_s(&data_180bf90c8,CONFIG_PATH_BUFFER_SIZE,&g_configString1,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf90c8,CONFIG_PATH_BUFFER_SIZE,&g_configString1,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(event_system_init_callback);
   return (init_result != 0) - 1;
 }
@@ -940,13 +940,13 @@ int initialize_physics_module(void)
   global_data_ = &data_180bf5ba0;
   data_180bf5ba0 = 0;
   global_data_ = 9;
-  strcpy_s(&data_180bf5ba0,CONFIG_PATH_BUFFER_SIZE,&g_configString2,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf5ba0,CONFIG_PATH_BUFFER_SIZE,&g_configString2,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(time_system_init_callback);
   return (init_result != 0) - 1;
 }
   data_180bf91c8 = 0;
   global_data_ = STRING_BUFFER_SIZE;
-  strcpy_s(&data_180bf91c8,系统配置缓冲区大小,&g_moduleString1,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf91c8,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString1,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(file_system_init_callback);
   return (init_result != 0) - 1;
 }
@@ -958,7 +958,7 @@ int initialize_ai_module(void)
   global_data_ = &data_180bf9228;
   data_180bf9228 = 0;
   global_data_ = 0x13;
-  strcpy_s(&data_180bf9228,系统配置缓冲区大小,&g_moduleString2,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf9228,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString2,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(debug_system_init_callback);
   return (init_result != 0) - 1;
 }
@@ -970,7 +970,7 @@ int initialize_ui_module(void)
   global_data_ = &data_180bf9288;
   data_180bf9288 = 0;
   global_data_ = 0x12;
-  strcpy_s(&data_180bf9288,系统配置缓冲区大小,&g_moduleString3,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf9288,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString3,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_7_init_function);
   return (init_result != 0) - 1;
 }
@@ -982,7 +982,7 @@ int initialize_scripting_module(void)
   global_data_ = &data_180bf92e8;
   data_180bf92e8 = 0;
   global_data_ = 0x12;
-  strcpy_s(&data_180bf92e8,系统配置缓冲区大小,&g_moduleString4,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf92e8,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString4,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_8_init_function);
   return (init_result != 0) - 1;
 }
@@ -994,7 +994,7 @@ int initialize_audio_engine(void)
   global_data_ = &data_180bf9348;
   data_180bf9348 = 0;
   global_data_ = 0xd;
-  strcpy_s(&data_180bf9348,系统配置缓冲区大小,&g_moduleString5,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf9348,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString5,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_9_init_function);
   return (init_result != 0) - 1;
 }
@@ -1006,7 +1006,7 @@ int initialize_video_subsystem(void)
   global_data_ = &data_180bf93a8;
   data_180bf93a8 = 0;
   global_data_ = STRING_BUFFER_SIZE;
-  strcpy_s(&data_180bf93a8,系统配置缓冲区大小,&g_moduleString6,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf93a8,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString6,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_10_init_function);
   return (init_result != 0) - 1;
 }
@@ -1018,7 +1018,7 @@ int initialize_input_handler(void)
   global_data_ = &data_180bf9408;
   data_180bf9408 = 0;
   global_data_ = 0x17;
-  strcpy_s(&data_180bf9408,系统配置缓冲区大小,&g_moduleString7,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf9408,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString7,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_11_init_function);
   return (init_result != 0) - 1;
 }
@@ -1030,7 +1030,7 @@ int initialize_network_stack(void)
   global_data_ = &data_180bf9468;
   data_180bf9468 = 0;
   global_data_ = STRING_BUFFER_SIZE;
-  strcpy_s(&data_180bf9468,系统配置缓冲区大小,&g_moduleString8,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf9468,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString8,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_12_init_function);
   return (init_result != 0) - 1;
 }
@@ -1042,7 +1042,7 @@ int initialize_file_system(void)
   global_data_ = &data_180bf94c8;
   data_180bf94c8 = 0;
   global_data_ = 0xd;
-  strcpy_s(&data_180bf94c8,系统配置缓冲区大小,&g_moduleString9,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf94c8,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString9,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_13_init_function);
   return (init_result != 0) - 1;
 }
@@ -1054,7 +1054,7 @@ int initialize_memory_manager(void)
   global_data_ = &data_180bf9528;
   data_180bf9528 = 0;
   global_data_ = 0xc;
-  strcpy_s(&data_180bf9528,系统配置缓冲区大小,&g_moduleString10,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf9528,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString10,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_14_init_function);
   return (init_result != 0) - 1;
 }
@@ -1066,7 +1066,7 @@ int initialize_thread_manager(void)
   global_data_ = &data_180bf9588;
   data_180bf9588 = 0;
   global_data_ = 0x16;
-  strcpy_s(&data_180bf9588,系统配置缓冲区大小,&g_moduleString11,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf9588,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString11,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_15_init_function);
   return (init_result != 0) - 1;
 }
@@ -1078,7 +1078,7 @@ int initialize_event_system(void)
   global_data_ = &data_180bf95e8;
   data_180bf95e8 = 0;
   global_data_ = 0x13;
-  strcpy_s(&data_180bf95e8,系统配置缓冲区大小,&g_moduleString12,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf95e8,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString12,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_16_init_function);
   return (init_result != 0) - 1;
 }
@@ -1090,7 +1090,7 @@ int initialize_timer_service(void)
   global_data_ = &data_180bf9648;
   data_180bf9648 = 0;
   global_data_ = 0x14;
-  strcpy_s(&data_180bf9648,系统配置缓冲区大小,&g_moduleString13,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf9648,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString13,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_17_init_function);
   return (init_result != 0) - 1;
 }
@@ -1102,7 +1102,7 @@ int initialize_logger_system(void)
   global_data_ = &data_180bf96a8;
   data_180bf96a8 = 0;
   global_data_ = 0x17;
-  strcpy_s(&data_180bf96a8,系统配置缓冲区大小,&data_180a22cb0,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf96a8,SYSTEM_CONFIG_BUFFER_SIZE,&data_180a22cb0,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_18_init_function);
   return (init_result != 0) - 1;
 }
@@ -1114,7 +1114,7 @@ int initialize_config_system(void)
   global_data_ = &data_180bf9708;
   data_180bf9708 = 0;
   global_data_ = 0x17;
-  strcpy_s(&data_180bf9708,系统配置缓冲区大小,&g_moduleString14,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf9708,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString14,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_19_init_function);
   return (init_result != 0) - 1;
 }
@@ -1126,7 +1126,7 @@ int initialize_resource_cache(void)
   global_data_ = &data_180bf9768;
   data_180bf9768 = 0;
   global_data_ = CONFIG_PATH_BUFFER_SIZE;
-  strcpy_s(&data_180bf9768,系统配置缓冲区大小,&g_moduleString15,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf9768,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString15,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_20_init_function);
   return (init_result != 0) - 1;
 }
@@ -1138,7 +1138,7 @@ int initialize_asset_loader(void)
   global_data_ = &data_180bf97c8;
   data_180bf97c8 = 0;
   global_data_ = 0x13;
-  strcpy_s(&data_180bf97c8,系统配置缓冲区大小,&g_moduleString16,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf97c8,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString16,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_21_init_function);
   return (init_result != 0) - 1;
 }
@@ -1150,7 +1150,7 @@ int initialize_shader_system(void)
   global_data_ = &data_180bf9828;
   data_180bf9828 = 0;
   global_data_ = 0x1e;
-  strcpy_s(&data_180bf9828,系统配置缓冲区大小,&g_moduleString17,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf9828,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString17,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_22_init_function);
   return (init_result != 0) - 1;
 }
@@ -1162,7 +1162,7 @@ int initialize_texture_manager(void)
   global_data_ = &data_180bf9888;
   data_180bf9888 = 0;
   global_data_ = 0x1b;
-  strcpy_s(&data_180bf9888,系统配置缓冲区大小,&g_moduleString18,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf9888,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString18,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_23_init_function);
   return (init_result != 0) - 1;
 }
@@ -1174,7 +1174,7 @@ int initialize_mesh_system(void)
   global_data_ = &data_180bf98e8;
   data_180bf98e8 = 0;
   global_data_ = 0x1b;
-  strcpy_s(&data_180bf98e8,系统配置缓冲区大小,&g_moduleString19,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf98e8,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString19,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_24_init_function);
   return (init_result != 0) - 1;
 }
@@ -1186,7 +1186,7 @@ int initialize_animation_system(void)
   global_data_ = &data_180bf9948;
   data_180bf9948 = 0;
   global_data_ = 0x1c;
-  strcpy_s(&data_180bf9948,系统配置缓冲区大小,&g_moduleString20,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf9948,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString20,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_25_init_function);
   return (init_result != 0) - 1;
 }
@@ -1198,7 +1198,7 @@ int initialize_particle_system(void)
   global_data_ = &data_180bf99a8;
   data_180bf99a8 = 0;
   global_data_ = 0x1d;
-  strcpy_s(&data_180bf99a8,系统配置缓冲区大小,&g_moduleString21,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf99a8,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString21,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_26_init_function);
   return (init_result != 0) - 1;
 }
@@ -1210,7 +1210,7 @@ int initialize_physics_engine(void)
   global_data_ = &data_180bf9a08;
   data_180bf9a08 = 0;
   global_data_ = CONFIG_PATH_BUFFER_SIZE;
-  strcpy_s(&data_180bf9a08,系统配置缓冲区大小,&g_moduleString22,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf9a08,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString22,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_27_init_function);
   return (init_result != 0) - 1;
 }
@@ -1222,7 +1222,7 @@ int initialize_collision_system(void)
   global_data_ = &data_180bf9a68;
   data_180bf9a68 = 0;
   global_data_ = 0x1d;
-  strcpy_s(&data_180bf9a68,系统配置缓冲区大小,&g_moduleString23,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf9a68,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString23,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_28_init_function);
   return (init_result != 0) - 1;
 }
@@ -1234,7 +1234,7 @@ int initialize_ai_system(void)
   g_string_manager_ptr_180bf9ab8 = &g_string_buffer_180bf9ac8;
   g_string_buffer_180bf9ac8 = 0;
   g_string_manager_type_180bf9ac0 = 0x1c;
-  strcpy_s(&g_string_buffer_180bf9ac8,系统配置缓冲区大小,&data_180a22d48,str_len_param,线程池默认标志);
+  strcpy_s(&g_string_buffer_180bf9ac8,SYSTEM_CONFIG_BUFFER_SIZE,&data_180a22d48,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_29_init_function);
   return (init_result != 0) - 1;
 }
@@ -1246,7 +1246,7 @@ int initialize_navigation_system(void)
   global_data_ = &data_180bf9b28;
   data_180bf9b28 = 0;
   global_data_ = 0x17;
-  strcpy_s(&data_180bf9b28,系统配置缓冲区大小,&g_moduleString24,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf9b28,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString24,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_30_init_function);
   return (init_result != 0) - 1;
 }
@@ -1258,7 +1258,7 @@ int initialize_ui_framework(void)
   global_data_ = &data_180bf9b88;
   data_180bf9b88 = 0;
   global_data_ = 0x1f;
-  strcpy_s(&data_180bf9b88,系统配置缓冲区大小,&g_moduleString25,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf9b88,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString25,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_31_init_function);
   return (init_result != 0) - 1;
 }
@@ -1270,7 +1270,7 @@ int initialize_scripting_engine(void)
   global_data_ = &data_180bf9be8;
   data_180bf9be8 = 0;
   global_data_ = 0x21;
-  strcpy_s(&data_180bf9be8,系统配置缓冲区大小,&g_moduleString26,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf9be8,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString26,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_32_init_function);
   return (init_result != 0) - 1;
 }
@@ -1282,7 +1282,7 @@ int initialize_database_system(void)
   global_data_ = &data_180bf9c48;
   data_180bf9c48 = 0;
   global_data_ = 0x25;
-  strcpy_s(&data_180bf9c48,系统配置缓冲区大小,&g_moduleString27,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf9c48,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString27,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_33_init_function);
   return (init_result != 0) - 1;
 }
@@ -1294,7 +1294,7 @@ int initialize_network_manager(void)
   global_data_ = &data_180bf9ca8;
   data_180bf9ca8 = 0;
   global_data_ = 0x23;
-  strcpy_s(&data_180bf9ca8,系统配置缓冲区大小,&g_moduleString28,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf9ca8,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString28,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_34_init_function);
   return (init_result != 0) - 1;
 }
