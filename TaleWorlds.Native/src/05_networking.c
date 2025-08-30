@@ -3516,7 +3516,7 @@ network_validate_input_label:
       network_timeout_ptr_ptr = (uint8_t *)((longlong)&network_keepalive_interval + 3);
       network_connection_processor_timeout = CONCAT31(CONCAT21(network_connection_processor_timeout._2_2_,(char)network_data_ptr),(char)((ushort)network_data_ptr >> NETWORK_PACKET_HEADER_SIZE));
       network_buffer_size = network_temp_data_buffer;
-      network_result_code = 5;
+      network_result_code = NETWORK_CONNECTION_TIMEOUT_SECONDS;
       network_processor_data_size = network_temp_data_buffer;
         network_buffer_size = network_socket_descriptor;
         network_processor_data_size = network_processor_data_size + -NETWORK_BUFFER_SIZE_MEDIUM;
