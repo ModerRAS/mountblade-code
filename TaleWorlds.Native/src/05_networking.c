@@ -332,6 +332,32 @@
 #define NETWORK_STATUS_OFFSET_3F0 0x3F0  // 网络状态偏移量3F0
 #define NETWORK_SOCKET_CLEANUP_OFFSET 0x69  // 套接字清理偏移量
 #define NETWORK_CONFIGURE_CONNECTION_OFFSET 0x7a5  // 配置连接偏移量
+
+// 新增语义化常量定义 - 网络套接字数组索引
+#define NETWORK_SOCKET_INDEX_3 3  // 网络套接字数组索引3
+#define NETWORK_SOCKET_INDEX_4 4  // 网络套接字数组索引4
+#define NETWORK_SOCKET_INDEX_5 5  // 网络套接字数组索引5
+#define NETWORK_SOCKET_INDEX_7 7  // 网络套接字数组索引7
+#define NETWORK_SOCKET_INDEX_9 9  // 网络套接字数组索引9
+
+// 新增语义化常量定义 - 网络上下文数组索引
+#define NETWORK_CONTEXT_INDEX_3 3  // 网络上下文数组索引3
+#define NETWORK_CONTEXT_INDEX_4 4  // 网络上下文数组索引4
+#define NETWORK_CONTEXT_INDEX_5 5  // 网络上下文数组索引5
+#define NETWORK_CONTEXT_INDEX_7 7  // 网络上下文数组索引7
+#define NETWORK_CONTEXT_INDEX_10 10  // 网络上下文数组索引10
+
+// 新增语义化常量定义 - 网络配置数组索引
+#define NETWORK_CONFIG_INDEX_3 3  // 网络配置数组索引3
+#define NETWORK_CONFIG_INDEX_4 4  // 网络配置数组索引4
+#define NETWORK_CONFIG_INDEX_5 5  // 网络配置数组索引5
+#define NETWORK_CONFIG_INDEX_7 7  // 网络配置数组索引7
+#define NETWORK_CONFIG_INDEX_10 10  // 网络配置数组索引10
+
+// 新增语义化常量定义 - 网络超时数组索引
+#define NETWORK_TIMEOUT_INDEX_3 3  // 网络超时数组索引3
+#define NETWORK_TIMEOUT_INDEX_4 4  // 网络超时数组索引4
+#define NETWORK_TIMEOUT_INDEX_5 5  // 网络超时数组索引5
 #define NETWORK_LOG_CONNECTION_OFFSET NETWORK_COMPARE_VALUE_8A4  // 网络日志连接偏移量
 #define NETWORK_BUFFER_OFFSET_8D 0x8d  // 缓冲区偏移量8D
 #define NETWORK_LOG_EVENT_OFFSET NETWORK_SOCKET_CONFIG_OFFSET_A2c  // 网络日志事件偏移量
