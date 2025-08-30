@@ -509,14 +509,14 @@
 #define SYSTEM_BIT_MASK_BIT_6 0x40                                    // 位掩码位6
 #define SYSTEM_BIT_MASK_BIT_7 0x80                                    // 位掩码位7
 // 字节级位掩码常量定义（2025年8月30日语义化美化）
-#define SYSTEM_BIT_MASK_BIT_40 0x100
-#define SYSTEM_BIT_MASK_BIT_50 0x200
-#define SYSTEM_BIT_MASK_BIT_60 0x400
-#define SYSTEM_BIT_MASK_BIT_70 0x800
-#define SYSTEM_BIT_MASK_BIT_400 0x1000
-#define SYSTEM_BIT_MASK_BIT_500 0x2000
-#define SYSTEM_BIT_MASK_BIT_600 0x4000
-#define SYSTEM_BIT_MASK_BIT_700 0x8000
+#define SYSTEM_BIT_MASK_BYTE_BIT_0 0x100                               // 字节位0掩码
+#define SYSTEM_BIT_MASK_BYTE_BIT_1 0x200                               // 字节位1掩码
+#define SYSTEM_BIT_MASK_BYTE_BIT_2 0x400                               // 字节位2掩码
+#define SYSTEM_BIT_MASK_BYTE_BIT_3 0x800                               // 字节位3掩码
+#define SYSTEM_BIT_MASK_WORD_BIT_0 0x1000                              // 字位0掩码
+#define SYSTEM_BIT_MASK_WORD_BIT_1 0x2000                              // 字位1掩码
+#define SYSTEM_BIT_MASK_WORD_BIT_2 0x4000                              // 字位2掩码
+#define SYSTEM_BIT_MASK_WORD_BIT_3 0x8000                              // 字位3掩码
 
 // 位掩码语义化常量定义
 #define SYSTEM_BIT_MASK_BYTE_ALIGNMENT 0x100                    // 字节对齐掩码
@@ -528,10 +528,10 @@
 #define SYSTEM_BIT_MASK_SEGMENT_ALIGNMENT 0x4000                // 段对齐掩码
 #define SYSTEM_BIT_MASK_BLOCK_ALIGNMENT 0x8000                   // 块对齐掩码
 // 段级位掩码常量定义（2025年8月30日语义化美化）
-#define SYSTEM_BIT_MASK_BIT_4000 0x10000
-#define SYSTEM_BIT_MASK_BIT_5000 0x20000
-#define SYSTEM_BIT_MASK_BIT_6000 0x40000
-#define SYSTEM_BIT_MASK_BIT_7000 0x80000
+#define SYSTEM_BIT_MASK_DWORD_BIT_0 0x10000                             // 双字位0掩码
+#define SYSTEM_BIT_MASK_DWORD_BIT_1 0x20000                             // 双字位1掩码
+#define SYSTEM_BIT_MASK_DWORD_BIT_2 0x40000                             // 双字位2掩码
+#define SYSTEM_BIT_MASK_DWORD_BIT_3 0x80000                             // 双字位3掩码
 
 // 段级位掩码常量定义（2025年8月30日语义化美化）
 #define SYSTEM_BIT_MASK_LARGE_SECTION_ALIGNMENT 0x10000            // 大节对齐掩码
@@ -539,10 +539,10 @@
 #define SYSTEM_BIT_MASK_LARGE_BLOCK_ALIGNMENT 0x40000              // 大块对齐掩码
 #define SYSTEM_BIT_MASK_SUPER_BLOCK_ALIGNMENT 0x80000              // 超级块对齐掩码
 // 兆级位掩码常量定义（2025年8月30日语义化美化）
-#define SYSTEM_BIT_MASK_BIT_40000 0x100000
-#define SYSTEM_BIT_MASK_BIT_50000 0x200000
-#define SYSTEM_BIT_MASK_BIT_60000 0x400000
-#define SYSTEM_BIT_MASK_BIT_70000 0x800000
+#define SYSTEM_BIT_MASK_QWORD_BIT_0 0x100000                            // 四字位0掩码
+#define SYSTEM_BIT_MASK_QWORD_BIT_1 0x200000                            // 四字位1掩码
+#define SYSTEM_BIT_MASK_QWORD_BIT_2 0x400000                            // 四字位2掩码
+#define SYSTEM_BIT_MASK_QWORD_BIT_3 0x800000                            // 四字位3掩码
 
 // 兆级位掩码常量定义（2025年8月30日语义化美化）
 #define SYSTEM_BIT_MASK_MEGA_SECTION_ALIGNMENT 0x100000           // 兆节对齐掩码
@@ -550,10 +550,10 @@
 #define SYSTEM_BIT_MASK_MEGA_BLOCK_ALIGNMENT 0x400000             // 兆块对齐掩码
 #define SYSTEM_BIT_MASK_GIGA_ALIGNMENT 0x800000                  // 千兆对齐掩码
 // 超级位掩码常量定义（2025年8月30日语义化美化）
-#define SYSTEM_BIT_MASK_BIT_400000 0x1000000
-#define SYSTEM_BIT_MASK_BIT_500000 0x2000000
-#define SYSTEM_BIT_MASK_BIT_600000 0x4000000
-#define SYSTEM_BIT_MASK_BIT_700000 0x8000000
+#define SYSTEM_BIT_MASK_MEGABYTE_BIT_0 0x1000000                         // 兆字节位0掩码
+#define SYSTEM_BIT_MASK_MEGABYTE_BIT_1 0x2000000                         // 兆字节位1掩码
+#define SYSTEM_BIT_MASK_MEGABYTE_BIT_2 0x4000000                         // 兆字节位2掩码
+#define SYSTEM_BIT_MASK_MEGABYTE_BIT_3 0x8000000                         // 兆字节位3掩码
 
 // 缓冲区分配结果常量定义（2025年8月30日美化批次）
 #define SYSTEM_BUFFER_ALLOC_RESULT_MINIMAL 0x0d    // 缓冲区分配结果0X0D
@@ -14372,14 +14372,15 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_OFFSET_CRYPTO_MODULE_DATA 0x260
 
 // 浮点数常量
-#define SYSTEM_FLOAT_VALUE_ONE_THIRD 0.33333334
-#define SYSTEM_FLOAT_VALUE_TEN_POINT_ZERO_FIVE 10.05
-#define SYSTEM_FLOAT_VALUE_THREE_POINT_ZERO 2.9999998
-#define SYSTEM_FLOAT_VALUE_THIRTEEN_POINT_FIVE 13.5
-#define SYSTEM_FLOAT_VALUE_TWELVE_POINT_FIVE 12.5
-#define SYSTEM_FLOAT_VALUE_THIRTY_SEVEN_POINT_FIVE 37.5
-#define SYSTEM_FLOAT_VALUE_FORTY_FIVE_POINT_ZERO 45.0
-#define SYSTEM_FLOAT_VALUE_FIFTEEN_POINT_ZERO 15.0
+// 数学常量定义（2025年8月30日语义化美化）
+#define SYSTEM_FLOAT_VALUE_ONE_THIRD 0.33333334                    // 三分之一浮点数值
+#define SYSTEM_FLOAT_VALUE_TEN_POINT_ZERO_FIVE 10.05                // 十点零五浮点数值
+#define SYSTEM_FLOAT_VALUE_THREE_POINT_ZERO 2.9999998               // 三点零浮点数值（接近3.0）
+#define SYSTEM_FLOAT_VALUE_THIRTEEN_POINT_FIVE 13.5                  // 十三点五浮点数值
+#define SYSTEM_FLOAT_VALUE_TWELVE_POINT_FIVE 12.5                   // 十二点五浮点数值
+#define SYSTEM_FLOAT_VALUE_THIRTY_SEVEN_POINT_FIVE 37.5             // 三十七点五浮点数值
+#define SYSTEM_FLOAT_VALUE_FORTY_FIVE_POINT_ZERO 45.0                // 四十五点零浮点数值
+#define SYSTEM_FLOAT_VALUE_FIFTEEN_POINT_ZERO 15.0                  // 十五点零浮点数值
 #define SYSTEM_FLOAT_VALUE_LARGE_POSITIVE 1e+08
 #define SYSTEM_FLOAT_VALUE_LARGE_NEGATIVE -1e+08
 
