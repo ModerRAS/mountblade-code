@@ -3586,6 +3586,7 @@ void InitializeSystemListNode(void)
   int system_memory_comparison_result;
   longlong *system_data_pointer;
   longlong system_node_allocation_size;
+  longlong system_node_total_allocation_size;
   uint64_t *current_traverse_node;
   uint64_t *previous_traverse_node;
   uint64_t *next_traverse_node;
@@ -3613,7 +3614,7 @@ void InitializeSystemListNode(void)
   }
   if ((previous_traverse_node == list_root_node) || (system_memory_comparison_result = memcmp(&system_data_pattern_video, previous_traverse_node + NODE_DATA_OFFSET, SYSTEM_DATA_COMPARE_SIZE), system_memory_comparison_result < SYSTEM_COMPARE_RESULT_EQUAL)) {
     system_node_allocation_size = CalculateAllocationSize(system_data_pointer);
-    AllocateSystemMemory(system_data_pointer, &new_video_node, previous_traverse_node, system_node_allocation_size_total + SYSTEM_NODE_HEADER_SIZE, system_node_allocation_size);
+    AllocateSystemMemory(system_data_pointer, &new_video_node, previous_traverse_node, system_node_total_allocation_size + SYSTEM_NODE_HEADER_SIZE, system_node_allocation_size);
     previous_traverse_node = new_video_node;
   }
   previous_traverse_node[NODE_INDEX_ENGINE_ID_PRIMARY] = SYSTEM_NODE_ID_VIDEO_DECODER_PRIMARY;
