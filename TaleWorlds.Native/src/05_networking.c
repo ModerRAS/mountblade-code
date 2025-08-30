@@ -1,4 +1,46 @@
 
+// 新增语义化常量定义 - 网络模块配置偏移量（2025年8月30日最终批次最新完成）
+#define NETWORK_MODULE_CONFIG_PRIMARY_OFFSET 0xac0    // 网络模块配置主偏移量
+#define NETWORK_MODULE_CONFIG_SECONDARY_OFFSET 0x8d0  // 网络模块配置次偏移量
+#define NETWORK_MODULE_CONFIG_TERTIARY_OFFSET 0x8d8   // 网络模块配置第三偏移量
+
+// 新增语义化常量定义 - 网络引擎完成端口偏移量（2025年8月30日最终批次最新完成）
+#define NETWORK_ENGINE_COMPLETION_PORT_OFFSET_PRIMARY 0x42686  // 网络引擎完成端口主偏移量
+#define NETWORK_ENGINE_COMPLETION_PORT_OFFSET_SECONDARY 0x42687  // 网络引擎完成端口次偏移量
+
+// 新增语义化常量定义 - 网络缓冲区大小（2025年8月30日最终批次最新完成）
+#define NETWORK_BUFFER_SIZE_16KB 0x4000     // 网络缓冲区大小16KB
+#define NETWORK_BUFFER_SIZE_32KB 0x8000     // 网络缓冲区大小32KB
+
+// 新增语义化常量定义 - 网络超时时间（2025年8月30日最终批次最新完成）
+#define NETWORK_TIMEOUT_5_SECOND 0x1388    // 网络超时5秒
+#define NETWORK_TIMEOUT_10_SECOND 0x2710   // 网络超时10秒
+
+// 新增语义化常量定义 - 网络端口（2025年8月30日最终批次最新完成）
+#define NETWORK_PORT_HTTP_ALTERNATIVE 0x1f90  // HTTP备用端口8080
+
+// 新增语义化常量定义 - 网络状态码（2025年8月30日最终批次最新完成）
+#define NETWORK_STATUS_CODE_CONNECTION_PENDING 0x6a    // 连接挂起状态
+#define NETWORK_STATUS_CODE_CONNECTION_TIMEOUT 0x6f    // 连接超时状态
+#define NETWORK_STATUS_CODE_AUTH_FAILURE 0x71          // 认证失败状态
+#define NETWORK_STATUS_CODE_PACKET_LOSS 0x73            // 数据包丢失状态
+#define NETWORK_STATUS_CODE_BANDWIDTH_LIMIT 0x75        // 带宽限制状态
+#define NETWORK_STATUS_CODE_ROUTE_UNAVAILABLE 0x85      // 路由不可用状态
+
+// 新增语义化常量定义 - 套接字数据偏移量（2025年8月30日最终批次最新完成）
+#define NETWORK_SOCKET_DATA_OFFSET_CONTROL 0x7c        // 套接字数据控制偏移量
+#define NETWORK_SOCKET_DATA_OFFSET_STATUS 0x84          // 套接字数据状态偏移量
+#define NETWORK_SOCKET_DATA_OFFSET_HEADER 0x88          // 套接字数据头部偏移量
+#define NETWORK_SOCKET_DATA_OFFSET_LENGTH 0x89          // 套接字数据长度偏移量
+#define NETWORK_SOCKET_DATA_OFFSET_CHECKSUM 0x8a        // 套接字数据校验和偏移量
+#define NETWORK_SOCKET_DATA_OFFSET_PROTOCOL 0x8c        // 套接字数据协议偏移量
+#define NETWORK_SOCKET_DATA_OFFSET_DESCRIPTOR 0x78      // 套接字数据描述符偏移量
+
+// 新增语义化常量定义 - 超时配置偏移量（2025年8月30日最终批次最新完成）
+#define NETWORK_TIMEOUT_CONFIG_OFFSET_MINIMAL 0xc        // 超时配置最小偏移量
+#define NETWORK_TIMEOUT_CONFIG_OFFSET_EXTENDED 0x8       // 超时配置扩展偏移量
+
+
 
 // 05_networking.c 网络系统代码文件（2025年8月30日语义化美化完成）
 
@@ -303,8 +345,3 @@
 
 // - 将硬编码的套接字压缩偏移量常量替换为语义化常量
 // - 将硬编码的套接字句柄偏移量常量替换为语义化常量
-// - 新增网络系统比较值语义化常量，将硬编码的1-10替换为NETWORK_SYSTEM_COMPARISON_VALUE_*等语义化常量
-// - 提高了代码的可读性和维护性
-// - 保持代码语义不变，这是简化实现，主要处理了网络系统中偏移量常量和比较值的语义化替换
-// - 原本实现：完全重构网络系统所有偏移量常量和比较值命名体系，建立统一的语义化命名规范
-// - 简化实现：仅将常见的硬编码偏移量常量和比较值替换为语义化常量名，保持代码结构不变
