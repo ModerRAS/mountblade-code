@@ -9188,7 +9188,7 @@ uint64 FreeMemoryResource(void)
 ulonglong validate_memory_address(longlong handleIdentifier)
 
 {
-  byte *pbVar1;
+  byte *pbooleanFlag;
   uint32 loopCounter;
   uint64 counterValue;
   int iterationCounter;
@@ -9482,8 +9482,8 @@ validate_operation_result:
   if (0 < *(int *)(handleIdentifier + POINTER_DATA_OFFSET)) {
     do {
       iterationIndex = (int)functionResult + 1;
-      pbVar1 = (byte *)(validationResult2 + 0xb + *(longlong *)(handleIdentifier + RESOURCE_HANDLE_OFFSET));
-      *pbVar1 = *pbVar1 & 0xfe;
+      pbooleanFlag = (byte *)(validationResult2 + 0xb + *(longlong *)(handleIdentifier + RESOURCE_HANDLE_OFFSET));
+      *pbooleanFlag = *pbooleanFlag & 0xfe;
       validationResult2 = validationResult2 + STRUCT_MULTIPLIER;
       functionResult = (ulonglong)iterationIndex;
     } while ((int)iterationIndex < *(int *)(handleIdentifier + POINTER_DATA_OFFSET));
@@ -12074,7 +12074,7 @@ uint64 ValidateResourceBuffer(longlong *handleIdentifier,char resourceDataBuffer
 uint64 ConfigureResourceSettings(longlong *handleIdentifier,char *memoryBlockBlockBlockSize,uint64 *operationFlags)
 
 {
-  char *pcVar1;
+  char *pcharacterValue;
   uint64 *ploopCounter;
   byte boolVar3;
   uint64 systemStatusData;
@@ -12116,10 +12116,10 @@ uint64 ConfigureResourceSettings(longlong *handleIdentifier,char *memoryBlockBlo
         charVar5 = resourceConvertFunction(charVar5);
         charVar6 = resourceConvertFunction(*pcVar9);
         if (charVar5 != charVar6) break;
-        pcVar1 = resourceDataBuffer + 1;
+        pcharacterValue = resourceDataBuffer + 1;
         resourceDataBuffer = resourceDataBuffer + 1;
         pcVar9 = pcVar9 + 1;
-        charVar5 = *pcVar1;
+        charVar5 = *pcharacterValue;
       }
       if (*pcVar9 != '\0') {
         return ERROR_CODE_INVALID;
@@ -12216,7 +12216,7 @@ binarySearchInArray(longlong arrayHandle, uint *searchKey, uint64 param3, uint32
 
 uint32
 ProcessResourceBatch(longlong *handleIdentifier,int resourceDataBuffer,uint32 *operationFlags,byte *callbackFunction,int additionalResourceParam,
-             int *param_6)
+             int *statusPointer)
 
 {
   uint32 *functionResultData;
@@ -12327,8 +12327,8 @@ ProcessResourceBatch(longlong *handleIdentifier,int resourceDataBuffer,uint32 *o
         functionResult6 = 0x41;
       }
     }
-    if (param_6 != (int *)0x0) {
-      *param_6 = localStatus7 + 1;
+    if (statusPointer != (int *)0x0) {
+      *statusPointer = localStatus7 + 1;
     }
     return functionResult6;
   }
@@ -14999,7 +14999,7 @@ uint64 InitializeResourceSystem(void)
 void orderUtilityLists(longlong handleIdentifier,int *memoryBlockBlockBlockSize)
 
 {
-  char *pcVar1;
+  char *pcharacterValue;
   code *pcVar2;
   char charVar3;
   uint32 in_EAX;
@@ -15025,8 +15025,8 @@ void orderUtilityLists(longlong handleIdentifier,int *memoryBlockBlockBlockSize)
        *(char *)CONCAT44(in_register_00000004,systemStatusData) + charVar3;
   integerVar5 = CONCAT31(validationResult2,charVar3 + '\x18');
   *memoryBlockBlockBlockSize = *memoryBlockBlockBlockSize + integerVar5;
-  pcVar1 = (char *)((longlong)&plocalInt + CONCAT44(in_register_00000004,integerVar5));
-  *pcVar1 = *pcVar1 + charVar3 + '\x18';
+  pcharacterValue = (char *)((longlong)&plocalInt + CONCAT44(in_register_00000004,integerVar5));
+  *pcharacterValue = *pcharacterValue + charVar3 + '\x18';
   pcVar2 = (code *)swi(3);
   (*pcVar2)();
   return;
@@ -24796,11 +24796,11 @@ void Unwind_180902100(void)
 void Unwind_180902110(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + 0xa0) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + 0xa0),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + 0xa0) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + 0xa0),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -24821,11 +24821,11 @@ void Unwind_180902120(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_180902130(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + 0xa0) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + 0xa0),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + 0xa0) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + 0xa0),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -27442,11 +27442,11 @@ void Unwind_180902c60(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_180902c70(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + DATA_OFFSET_START) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + DATA_OFFSET_START),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + DATA_OFFSET_START) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + DATA_OFFSET_START),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -27456,11 +27456,11 @@ void Unwind_180902c70(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_180902c80(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + DATA_OFFSET_START) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + DATA_OFFSET_START),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + DATA_OFFSET_START) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + DATA_OFFSET_START),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -30614,11 +30614,11 @@ void Unwind_1809038c0(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_1809038d0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + 0x88) + DATA_OFFSET_START);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + 0x88) + LIST_HEAD_OFFSET,0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + 0x88) + DATA_OFFSET_START);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + 0x88) + LIST_HEAD_OFFSET,0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -30628,11 +30628,11 @@ void Unwind_1809038d0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_1809038e0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + MEMORY_SIZE_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + MEMORY_SIZE_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + MEMORY_SIZE_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + MEMORY_SIZE_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -31062,11 +31062,11 @@ void Unwind_180903a90(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_180903ab0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -31114,11 +31114,11 @@ void Unwind_180903ad0(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_180903ae0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + 0x68);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + SYSTEM_STATUS_OFFSET,0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + 0x68);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + SYSTEM_STATUS_OFFSET,0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -31128,11 +31128,11 @@ void Unwind_180903ae0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_180903af0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + SYSTEM_STATUS_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + SYSTEM_STATUS_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + SYSTEM_STATUS_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + SYSTEM_STATUS_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -31600,11 +31600,11 @@ void Unwind_180903cd0(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_180903ce0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + 0x88) + 0x68);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + 0x88) + SYSTEM_STATUS_OFFSET,0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + 0x88) + 0x68);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + 0x88) + SYSTEM_STATUS_OFFSET,0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -33005,11 +33005,11 @@ void Unwind_1809040d0(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_1809040e0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + POINTER_DATA_OFFSET) + DATA_OFFSET_START);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + POINTER_DATA_OFFSET) + LIST_HEAD_OFFSET,0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + POINTER_DATA_OFFSET) + DATA_OFFSET_START);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + POINTER_DATA_OFFSET) + LIST_HEAD_OFFSET,0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -33019,11 +33019,11 @@ void Unwind_1809040e0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_1809040f0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + SECOND_BYTE_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + SECOND_BYTE_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + SECOND_BYTE_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + SECOND_BYTE_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -33052,11 +33052,11 @@ void Unwind_180904100(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_180904110(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + DATA_OFFSET_START);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + LIST_HEAD_OFFSET,0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + DATA_OFFSET_START);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + LIST_HEAD_OFFSET,0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -33161,11 +33161,11 @@ void Unwind_180904160(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_180904180(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + POINTER_DATA_OFFSET) + 0xb0);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + POINTER_DATA_OFFSET) + 0xa0,0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + POINTER_DATA_OFFSET) + 0xb0);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + POINTER_DATA_OFFSET) + 0xa0,0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -33194,11 +33194,11 @@ void Unwind_1809041a0(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_1809041b0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + 0xb0);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + 0xa0,0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + 0xb0);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + 0xa0,0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -34657,11 +34657,11 @@ void Unwind_180904630(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_180904650(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + FIRST_FIELD_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + POINTER_DATA_OFFSET,0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + FIRST_FIELD_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + POINTER_DATA_OFFSET,0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -34671,11 +34671,11 @@ void Unwind_180904650(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_180904660(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -34685,11 +34685,11 @@ void Unwind_180904660(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_180904670(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + SYSTEM_STATUS_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + SYSTEM_STATUS_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + SYSTEM_STATUS_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + SYSTEM_STATUS_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -34713,11 +34713,11 @@ void Unwind_180904680(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_180904690(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + FIRST_FIELD_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + POINTER_DATA_OFFSET,0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + FIRST_FIELD_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + POINTER_DATA_OFFSET,0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -34787,11 +34787,11 @@ void Unwind_1809046d0(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_1809046e0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + STRUCT_OFFSET_1);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + 0xc0,0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + STRUCT_OFFSET_1);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + 0xc0,0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -34801,11 +34801,11 @@ void Unwind_1809046e0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_180904700(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + 0x68) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + 0x68),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + 0x68) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + 0x68),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -34815,11 +34815,11 @@ void Unwind_180904700(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_180904710(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + DATA_OFFSET_START) + STRUCT_OFFSET_1);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + DATA_OFFSET_START) + 0xc0,0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + DATA_OFFSET_START) + STRUCT_OFFSET_1);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + DATA_OFFSET_START) + 0xc0,0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -34829,11 +34829,11 @@ void Unwind_180904710(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_180904730(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + 0x70) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + 0x70),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + 0x70) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + 0x70),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -34843,11 +34843,11 @@ void Unwind_180904730(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_180904740(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + 0x68) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + 0x68),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + 0x68) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + 0x68),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -34867,11 +34867,11 @@ void Unwind_180904750(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_180904760(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + POINTER_DATA_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + POINTER_DATA_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + POINTER_DATA_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + POINTER_DATA_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -34937,11 +34937,11 @@ void Unwind_1809047c0(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_1809047d0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + POINTER_DATA_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + POINTER_DATA_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + POINTER_DATA_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + POINTER_DATA_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -37558,11 +37558,11 @@ void Unwind_180905380(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_180905390(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + 0xd8) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + 0xd8),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + 0xd8) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + 0xd8),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -37572,11 +37572,11 @@ void Unwind_180905390(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_1809053a0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + 0xd8) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + 0xd8),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + 0xd8) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + 0xd8),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -37597,11 +37597,11 @@ void Unwind_1809053b0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_1809053c0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + 0xf0) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + 0xf0),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + 0xf0) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + 0xf0),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -37633,11 +37633,11 @@ void Unwind_1809053e0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_1809053f0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + SYSTEM_FLAGS_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + SYSTEM_FLAGS_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + SYSTEM_FLAGS_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + SYSTEM_FLAGS_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -37647,11 +37647,11 @@ void Unwind_1809053f0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_180905400(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET0) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET0),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET0) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET0),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -37661,11 +37661,11 @@ void Unwind_180905400(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_180905410(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + SYSTEM_FLAGS_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + SYSTEM_FLAGS_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + SYSTEM_FLAGS_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + SYSTEM_FLAGS_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -37675,11 +37675,11 @@ void Unwind_180905410(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_180905420(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + 0xf0) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + 0xf0),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + 0xf0) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + 0xf0),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -37689,11 +37689,11 @@ void Unwind_180905420(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_180905430(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET0) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET0),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET0) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET0),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -37703,11 +37703,11 @@ void Unwind_180905430(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_180905440(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET8) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET8),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET8) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET8),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -37717,11 +37717,11 @@ void Unwind_180905440(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_180905450(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET0) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET0),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET0) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET0),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -37731,11 +37731,11 @@ void Unwind_180905450(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_180905460(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET8) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET8),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET8) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET8),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -37745,11 +37745,11 @@ void Unwind_180905460(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_180905470(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + 0xa8) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + 0xa8),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + 0xa8) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + 0xa8),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -37759,11 +37759,11 @@ void Unwind_180905470(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_180905480(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + SYSTEM_FLAGS_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + SYSTEM_FLAGS_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + SYSTEM_FLAGS_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + SYSTEM_FLAGS_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -37773,11 +37773,11 @@ void Unwind_180905480(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_180905490(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -38110,11 +38110,11 @@ void Unwind_180905650(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_180905660(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + POINTER_DATA_OFFSET) + 0x158);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + POINTER_DATA_OFFSET) + 0x148,0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + POINTER_DATA_OFFSET) + 0x158);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + POINTER_DATA_OFFSET) + 0x148,0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -38124,11 +38124,11 @@ void Unwind_180905660(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_180905680(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + POINTER_DATA_OFFSET) + 0x178);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + POINTER_DATA_OFFSET) + 0x168,0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + POINTER_DATA_OFFSET) + 0x178);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + POINTER_DATA_OFFSET) + 0x168,0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -38156,11 +38156,11 @@ void Unwind_1809056b0(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_1809056c0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + 0x158);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + 0x148,0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + 0x158);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + 0x148,0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -38170,11 +38170,11 @@ void Unwind_1809056c0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_1809056e0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + 0x178);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + 0x168,0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + 0x178);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + 0x168,0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -38184,11 +38184,11 @@ void Unwind_1809056e0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_180905700(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + BUFFER_DATA_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + BUFFER_DATA_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + BUFFER_DATA_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + BUFFER_DATA_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -38466,11 +38466,11 @@ void Unwind_1809057e0(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_1809057f0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + 0x2e8) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + 0x2e8),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + 0x2e8) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + 0x2e8),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -39070,11 +39070,11 @@ void Unwind_1809059a0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_1809059b0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + 0x2e8) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + 0x2e8),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + 0x2e8) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + 0x2e8),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -39283,11 +39283,11 @@ void Unwind_180905b00(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_180905b10(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + STRUCT_OFFSET_1);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + 0xc0,0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + STRUCT_OFFSET_1);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + 0xc0,0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -39977,11 +39977,11 @@ void Unwind_180905d20(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_180905d40(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + FIRST_FIELD_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + FIRST_FIELD_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + FIRST_FIELD_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + FIRST_FIELD_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -40034,11 +40034,11 @@ void Unwind_180905d80(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_180905d90(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + 0x158);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + 0x148,0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + 0x158);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + 0x148,0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -40048,11 +40048,11 @@ void Unwind_180905d90(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_180905db0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + 0x178);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + 0x168,0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + 0x178);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + 0x168,0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -40167,11 +40167,11 @@ void Unwind_180905e40(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_180905e50(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + 0x70) + 0x158);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + 0x70) + 0x148,0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + 0x70) + 0x158);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + 0x70) + 0x148,0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -40181,11 +40181,11 @@ void Unwind_180905e50(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_180905e70(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + 0x70) + 0x178);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + 0x70) + 0x168,0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + 0x70) + 0x178);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + 0x70) + 0x168,0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -40195,11 +40195,11 @@ void Unwind_180905e70(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_180905e90(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + HANDLE_DATA_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + HANDLE_DATA_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + HANDLE_DATA_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + HANDLE_DATA_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -43848,11 +43848,11 @@ void Unwind_180906e40(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_180906e50(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + 0x170) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + 0x170),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + 0x170) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + 0x170),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -43979,11 +43979,11 @@ void Unwind_180906ee0(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_180906ef0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + 0x170) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + 0x170),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + 0x170) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + 0x170),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -46503,11 +46503,11 @@ void Unwind_180907b40(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_180907b50(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + LIST_HEAD_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + BUFFER_SIZE_DATA_OFFSET,0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + LIST_HEAD_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + BUFFER_SIZE_DATA_OFFSET,0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -46517,11 +46517,11 @@ void Unwind_180907b50(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_180907b60(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + 0x70);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + DATA_OFFSET_START,0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + 0x70);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + DATA_OFFSET_START,0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -47346,11 +47346,11 @@ void Unwind_180907f40(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_180907f60(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + RESOURCE_HANDLE_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + 8,0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + RESOURCE_HANDLE_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + 8,0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -47983,11 +47983,11 @@ void Unwind_1809081f0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_180908200(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + SYSTEM_STATUS_OFFSET) + RESOURCE_HANDLE_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + SYSTEM_STATUS_OFFSET) + 8,0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + SYSTEM_STATUS_OFFSET) + RESOURCE_HANDLE_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + SYSTEM_STATUS_OFFSET) + 8,0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -47997,11 +47997,11 @@ void Unwind_180908200(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_180908210(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + RESOURCE_HANDLE_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + 8,0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + RESOURCE_HANDLE_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + LIST_HEAD_OFFSET) + 8,0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -51250,11 +51250,11 @@ void Unwind_180909360(uint64 handleIdentifier,uint *memoryBlockBlockBlockSize)
 void Unwind_180909390(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -51264,11 +51264,11 @@ void Unwind_180909390(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_1809093a0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -51450,11 +51450,11 @@ void Unwind_1809093e0(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_180909400(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + BUFFER_DATA_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + BUFFER_DATA_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + BUFFER_DATA_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + BUFFER_DATA_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -51536,11 +51536,11 @@ void Unwind_180909460(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_180909470(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + 0x70) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + 0x70),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + 0x70) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + 0x70),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -63471,11 +63471,11 @@ void Unwind_18090d310(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_18090d320(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + 0xa88) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + 0xa88),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + 0xa88) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + 0xa88),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -63485,11 +63485,11 @@ void Unwind_18090d320(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_18090d330(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + 0xa88) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + 0xa88),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + 0xa88) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + 0xa88),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -63499,11 +63499,11 @@ void Unwind_18090d330(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_18090d340(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + 0xa80) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + 0xa80),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + 0xa80) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + 0xa80),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -63513,11 +63513,11 @@ void Unwind_18090d340(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_18090d350(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + 0xa80) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + 0xa80),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + 0xa80) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + 0xa80),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -64463,11 +64463,11 @@ void Unwind_18090d4f0(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_18090d500(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + SECOND_BYTE_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + SECOND_BYTE_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + SECOND_BYTE_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + SECOND_BYTE_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -64477,11 +64477,11 @@ void Unwind_18090d500(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_18090d510(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + 0xe8) + STRUCT_OFFSET_1);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + 0xe8) + 0xc0,0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + 0xe8) + STRUCT_OFFSET_1);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + 0xe8) + 0xc0,0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -67656,11 +67656,11 @@ void Unwind_18090ecf0(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_18090ed00(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + BUFFER_OFFSET_TEMP) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + BUFFER_OFFSET_TEMP),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + BUFFER_OFFSET_TEMP) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + BUFFER_OFFSET_TEMP),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -67670,11 +67670,11 @@ void Unwind_18090ed00(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_18090ed10(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + BUFFER_OFFSET_TEMP) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + BUFFER_OFFSET_TEMP),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + BUFFER_OFFSET_TEMP) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + BUFFER_OFFSET_TEMP),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -67802,11 +67802,11 @@ void Unwind_18090ed80(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_18090ed90(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + 0x178) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + 0x178),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + 0x178) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + 0x178),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -67816,11 +67816,11 @@ void Unwind_18090ed90(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_18090eda0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + 0x150) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + 0x150),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + 0x150) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + 0x150),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -67866,11 +67866,11 @@ void Unwind_18090edd0(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_18090ede0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + 0x88) + FIRST_FIELD_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + 0x88) + POINTER_DATA_OFFSET,0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + 0x88) + FIRST_FIELD_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + 0x88) + POINTER_DATA_OFFSET,0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -67916,11 +67916,11 @@ void Unwind_18090ee10(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_18090ee20(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + 0x150) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + 0x150),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + 0x150) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + 0x150),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -67944,11 +67944,11 @@ void Unwind_18090ee30(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_18090ee40(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET) + FIRST_FIELD_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET) + POINTER_DATA_OFFSET,0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET) + FIRST_FIELD_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + RESOURCE_HANDLE_DATA_OFFSET) + POINTER_DATA_OFFSET,0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -67994,11 +67994,11 @@ void Unwind_18090ee70(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_18090ee80(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + 0xe8) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + 0xe8),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + 0xe8) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + 0xe8),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -68008,11 +68008,11 @@ void Unwind_18090ee80(uint64 handleIdentifier,longlong resourceDataBuffer,uint64
 void Unwind_18090ee90(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + 0x178) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + 0x178),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + 0x178) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + 0x178),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -68271,11 +68271,11 @@ void Unwind_18090ef70(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_18090ef80(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + HANDLE_DATA_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + HANDLE_DATA_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + HANDLE_DATA_OFFSET) + RESOURCE_HANDLE_DATA_OFFSET);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + HANDLE_DATA_OFFSET),0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -68642,11 +68642,11 @@ void Unwind_18090f0d0(uint64 handleIdentifier,longlong resourceDataBuffer)
 void Unwind_18090f0e0(uint64 handleIdentifier,longlong resourceDataBuffer,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  code *pcVar1;
+  code *pcharacterValue;
   
-  pcVar1 = *(code **)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + 0x68);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + SYSTEM_STATUS_OFFSET,0,0,callbackFunction,0xfffffffffffffffe);
+  pcharacterValue = *(code **)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + 0x68);
+  if (pcharacterValue != (code *)0x0) {
+    (*pcharacterValue)(*(longlong *)(resourceDataBuffer + BUFFER_SIZE_DATA_OFFSET) + SYSTEM_STATUS_OFFSET,0,0,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -80159,7 +80159,7 @@ void checkResourceState(uint64 handleIdentifier,longlong resourceDataBuffer)
   char charVar1;
   int operationStatus;
   
-  FUN_1808fc5ac();
+  ProcessSystemInitialization();
   charVar1 = *(char *)(resourceDataBuffer + STRUCTURE_SIZE_OFFSET);
   operationStatus = func_0x0001808fd8d4();
   if ((operationStatus != 0) && (charVar1 == '\0')) {
