@@ -1617,6 +1617,12 @@
 // 系统句柄偏移量常量语义化定义
 #define SYSTEM_HANDLE_OFFSET_RESOURCE_DATA SYSTEM_MEMORY_SIZE_58
 #define SYSTEM_HANDLE_OFFSET_STATUS_CODE 0x6c
+
+// 系统初始化值常量语义化定义（2025年8月30日最终批次续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续）
+#define SYSTEM_INIT_VALUE_ZERO 0
+#define SYSTEM_INIT_VALUE_ONE 1
+#define SYSTEM_UINT32_ZERO_VALUE 0
+#define SYSTEM_UINT8_ZERO_VALUE 0
 #define SYSTEM_HANDLE_OFFSET_PRIORITY 0x77
 #define SYSTEM_HANDLE_OFFSET_TYPE 0x7b
 #define SYSTEM_HANDLE_OFFSET_STATE 0x7f
@@ -18940,10 +18946,10 @@ uint64_t * InitializeInputMutex(uint64_t *handleIdentifier)
 {
   *handleIdentifier = &globalSystemPointerData;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NULL_HANDLE;
-  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
   *handleIdentifier = &g_system_data_main;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = handleIdentifier + SYSTEM_OFFSET_3;
-  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
   *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = 0;
   return handleIdentifier;
 }
@@ -20864,10 +20870,10 @@ uint64_t * ConfigureGraphicsShader(uint64_t *handleIdentifier)
 {
   *handleIdentifier = &globalSystemPointerData;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NULL_HANDLE;
-  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
   *handleIdentifier = &g_thread_parameter_ptr;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = handleIdentifier + SYSTEM_OFFSET_3;
-  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
   *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = 0;
   return handleIdentifier;
 }
@@ -20919,10 +20925,10 @@ InitializeInputMutex(uint64_t *handleIdentifier,longlong resourceIdentifier,uint
 
   *handleIdentifier = &globalSystemPointerData;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NULL_HANDLE;
-  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
   *handleIdentifier = &g_thread_parameter_ptr;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = handleIdentifier + SYSTEM_OFFSET_3;
-  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
   *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = 0;
   *(uint32_t *)(handleIdentifier + 2) = *(uint32_t *)(resourceIdentifier + SYSTEM_DATA_COMPARE_SIZE);
   system_pointer_value = &g_system_data_variable3;
@@ -21009,10 +21015,10 @@ uint64_t * InitializeResourceSystem(uint64_t *handleIdentifier)
 {
   *handleIdentifier = &globalSystemPointerData;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NULL_HANDLE;
-  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
   *handleIdentifier = &g_system_core_data_ptr;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = handleIdentifier + SYSTEM_OFFSET_3;
-  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
   *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = 0;
   return handleIdentifier;
 }
@@ -21064,10 +21070,10 @@ InitializeSecuritySystem(uint64_t *handleIdentifier,longlong resourceIdentifier,
 
   *handleIdentifier = &globalSystemPointerData;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NULL_HANDLE;
-  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
   *handleIdentifier = &g_system_core_data_ptr;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = handleIdentifier + SYSTEM_OFFSET_3;
-  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
   *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = 0;
   if (resourceIdentifier != SYSTEM_COMPARISON_ZERO) {
     system_long_result_temp = -1;
@@ -21622,13 +21628,13 @@ InitializeSystemProfiler(uint64_t *handleIdentifier,uint64_t resourceIdentifier,
   system_result_operation = SYSTEM_HANDLE_INVALID;
   *handleIdentifier = &globalSystemPointerData;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NULL_HANDLE;
-  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
   *handleIdentifier = &resourcePoolPointer;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NULL_HANDLE;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NULL_HANDLE;
-  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
   ConfigureSystemParameters(handleIdentifier,0,system_configuration,systemFlags,0,SYSTEM_HANDLE_INVALID);
-  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
   if ((uint8_t *)handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != (uint8_t *)SYSTEM_NULL_POINTER) {
     *(uint8_t *)handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NULL_HANDLE;
   }
@@ -21776,10 +21782,10 @@ void initialize_system_module_twenty_four(uint64_t *handleIdentifier)
   init_stack_system_hash = system_configuration_data ^ (ulonglong)system_local_buffer_primary;
   *handleIdentifier = &globalSystemPointerData;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NULL_HANDLE;
-  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
   *handleIdentifier = &g_system_data_main;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = handleIdentifier + SYSTEM_OFFSET_3;
-  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
   *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = 0;
   system_result_operation = *(uint *)(handleIdentifier + 2);
   system_result_operation = system_counter_temp + 7;
@@ -21824,11 +21830,11 @@ longlong * ProcessSystemData(longlong *handleIdentifier,uint64_t resourceIdentif
 {
   *handleIdentifier = (longlong)&globalSystemPointerData;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NULL_HANDLE;
-  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
   *handleIdentifier = (longlong)&resourcePoolPointer;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NULL_HANDLE;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NULL_HANDLE;
-  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
   if (*(char *)(systemCoreData + SYSTEM_CORE_OFFSET_CONFIG) != SYSTEM_CHAR_NULL_TERMINATOR) {
     InitializeResourceBlock(handleIdentifier,systemCoreData + SYSTEM_OBJECT_OFFSET_28);
     return handleIdentifier;
@@ -21860,10 +21866,10 @@ InitializeStringManager(uint64_t *handleIdentifier,longlong resourceIdentifier,u
 
   *handleIdentifier = &globalSystemPointerData;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NULL_HANDLE;
-  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
   *handleIdentifier = &g_system_data_main;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = handleIdentifier + SYSTEM_OFFSET_3;
-  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
   *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = 0;
   *(uint32_t *)(handleIdentifier + 2) = *(uint32_t *)(resourceIdentifier + SYSTEM_DATA_COMPARE_SIZE);
   system_pointer_value = &g_system_data_variable3;
@@ -22190,10 +22196,10 @@ uint64_t * InitializeTextureSystem(uint64_t *handleIdentifier)
 {
   *handleIdentifier = &globalSystemPointerData;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NULL_HANDLE;
-  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
   *handleIdentifier = &g_system_core_data_ptr;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = handleIdentifier + SYSTEM_OFFSET_3;
-  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
   *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = 0;
   ValidateResourceHandle(handleIdentifier + SYSTEM_NODE_STRIDE_SMALL);
   handleIdentifier[SYSTEM_DATA_BLOCK_SIZE_74] = 0;
@@ -27450,10 +27456,10 @@ initialize_system_module_forty_six(uint64_t *handleIdentifier,longlong resourceI
 
   *handleIdentifier = &globalSystemPointerData;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NULL_HANDLE;
-  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
   *handleIdentifier = &g_system_data_node_primary_config;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = handleIdentifier + SYSTEM_OFFSET_3;
-  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
   *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = 0;
   if (resourceIdentifier != SYSTEM_COMPARISON_ZERO) {
     system_long_result_temp = -1;
@@ -31796,11 +31802,11 @@ uint64_t * ConfigureSystemSettings(uint64_t *handleIdentifier)
 {
   *handleIdentifier = &globalSystemPointerData;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NULL_HANDLE;
-  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
   *handleIdentifier = &resourcePoolPointer;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NULL_HANDLE;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NULL_HANDLE;
-  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = &globalSystemPointerData;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NULL_HANDLE;
   *(uint32_t *)(handleIdentifier + 6) = 0;
@@ -32338,11 +32344,11 @@ uint64_t * initialize_system_module_forty_two(uint64_t *handleIdentifier,longlon
 {
   *handleIdentifier = &globalSystemPointerData;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NULL_HANDLE;
-  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
   *handleIdentifier = &resourcePoolPointer;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NULL_HANDLE;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NULL_HANDLE;
-  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
   *(uint32_t *)(handleIdentifier + 2) = *(uint32_t *)(resourceIdentifier + SYSTEM_DATA_COMPARE_SIZE);
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = *(uint64_t *)(resourceIdentifier + SYSTEM_OFFSET_8);
   *(uint32_t *)((longlong)handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK) = *(uint32_t *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_NETWORK);
@@ -40463,10 +40469,10 @@ initialize_system_module_thirteen(uint64_t *handleIdentifier,longlong resourceId
 
   *handleIdentifier = &globalSystemPointerData;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NULL_HANDLE;
-  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
   *handleIdentifier = &g_system_global_config;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = handleIdentifier + SYSTEM_OFFSET_3;
-  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
   *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = 0;
   *(uint32_t *)(handleIdentifier + 2) = *(uint32_t *)(resourceIdentifier + SYSTEM_DATA_COMPARE_SIZE);
   system_pointer_value = &g_system_data_variable3;
@@ -40482,10 +40488,10 @@ uint64_t * InitializeShaderSystem(uint64_t *handleIdentifier)
 {
   *handleIdentifier = &globalSystemPointerData;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NULL_HANDLE;
-  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
   *handleIdentifier = &g_system_global_config;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = handleIdentifier + SYSTEM_OFFSET_3;
-  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
   *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = 0;
   handleIdentifier[SYSTEM_OBJECT_OFFSET_2B] = 0;
   handleIdentifier[SYSTEM_HANDLE_INDEX_2C] = _guard_check_icall;
@@ -44345,13 +44351,13 @@ initialize_system_module_resource_cleanup(uint64_t *handleIdentifier,uint64_t re
   if (g_system_flag_status == SYSTEM_CHAR_NULL_TERMINATOR) {
     *handleIdentifier = &globalSystemPointerData;
     handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NULL_HANDLE;
-    *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+    *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
     *handleIdentifier = &resourcePoolPointer;
     handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NULL_HANDLE;
     handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NULL_HANDLE;
-    *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+    *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
     ConfigureSystemParameters(handleIdentifier,0,system_configuration,systemFlags,0,SYSTEM_HANDLE_INVALID);
-    *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = 0;
+    *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
     if ((uint8_t *)handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != (uint8_t *)SYSTEM_NULL_POINTER) {
       *(uint8_t *)handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NULL_HANDLE;
     }
