@@ -2704,7 +2704,7 @@ void InitializeConfigData(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   module_type_id = MODULE_TYPE_AUDIO_INIT;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_init_string_audio,system_parameter,INVALID_HANDLE_VALUE);
   g_system_semaphore_ptr = create_system_object(&thread_parameter_ptr);
@@ -3388,7 +3388,7 @@ void CreateSystemObjectThread1(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   module_type_id = MODULE_TYPE_NETWORK_INIT;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_init_string_graphics,system_parameter,INVALID_HANDLE_VALUE);
   g_system_network_context_ptr = create_system_object(&thread_parameter_ptr);
@@ -4862,7 +4862,7 @@ void InitializeObserverNode(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   module_type_id = MODULE_TYPE_STRING_MANAGER_INIT;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_init_string_input,system_parameter,INVALID_HANDLE_VALUE);
   g_system_core_data_object = create_system_object(&thread_parameter_ptr); // 原始名称: systemCoreData
@@ -5406,7 +5406,7 @@ void InitializeSystemObject12(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   module_type_id = MODULE_TYPE_NETWORK_INIT;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_init_string_network,system_parameter,INVALID_HANDLE_VALUE);
   g_system_status_data_object = create_system_object(&thread_parameter_ptr); // 原始名称: system_statusData
@@ -5754,7 +5754,7 @@ void InitializeSystemObject19(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   module_type_id = MODULE_TYPE_AUTHENTICATION_INIT;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_init_string_config,system_parameter,INVALID_HANDLE_VALUE);
   g_system_auth_object = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
@@ -5783,7 +5783,7 @@ void InitializeSystemObject20(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   module_type_id = MODULE_TYPE_UI_INIT;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_init_string_physics,system_parameter,INVALID_HANDLE_VALUE);
   g_system_ui_context_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: systemCoreData
@@ -5802,7 +5802,7 @@ void InitializeSystemObject21(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   module_type_id = MODULE_TYPE_SHADER_INIT;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_init_string_ui,system_parameter,INVALID_HANDLE_VALUE);
   g_system_shader_context_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: system_statusData
@@ -5821,7 +5821,7 @@ void InitializeSystemObject22(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   module_type_id = MODULE_TYPE_CONFIG_INIT;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_init_string_security,system_parameter,INVALID_HANDLE_VALUE);
   g_system_config_data_object = create_system_object(&thread_parameter_ptr); // 原始名称: system_configuration_data
@@ -5840,7 +5840,7 @@ void InitializeSystemObject23(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   module_type_id = MODULE_TYPE_AUDIO_INIT;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_system_string_buffer,system_parameter,INVALID_HANDLE_VALUE);
   g_system_audio_config_object = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
@@ -5859,7 +5859,7 @@ void InitializeSystemObject24(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   init_stack_physics_config_size = SYSTEM_CONFIG_SIZE_PHYSICS;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_init_string_resource,system_parameter,INVALID_HANDLE_VALUE);
   g_system_physics_context_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: systemCoreData
@@ -8188,7 +8188,7 @@ void InitializeMemoryResourceNode(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   module_type_id = MODULE_TYPE_CONFIG_INIT;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_global_system_config,system_parameter,INVALID_HANDLE_VALUE);
   g_system_status_data_object_3 = create_system_object(&thread_parameter_ptr); // 原始名称: system_statusData
@@ -8217,7 +8217,7 @@ void InitializeFontSystem(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   init_stack_font_config_size = SYSTEM_CONFIG_SIZE_FONT;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_system_string_buffer,system_parameter,INVALID_HANDLE_VALUE);
   g_system_font_context_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: system_configuration_data
@@ -8236,7 +8236,7 @@ void InitializeFileResourceNode(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   init_stack_utility_config_size = SYSTEM_CONFIG_SIZE_FONT;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_system_configuration_data_ptr,system_parameter,INVALID_HANDLE_VALUE);
   g_system_utility_config_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
@@ -8631,7 +8631,7 @@ void InitializeStringManager(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   init_stack_network_config_size = SYSTEM_CONFIG_SIZE_NETWORK;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_system_global_config,system_parameter,INVALID_HANDLE_VALUE);
   g_system_network_config_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: system_configuration_data
@@ -9167,7 +9167,7 @@ void InitializeNetworkSystem(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   module_type_id = MODULE_TYPE_UI_INIT;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_global_system_config,system_parameter,INVALID_HANDLE_VALUE);
   g_system_config_data_object_4 = create_system_object(&thread_parameter_ptr); // 原始名称: system_configuration_data
@@ -9186,7 +9186,7 @@ void InitializeConfigSystem(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   module_type_id = MODULE_TYPE_STRING_MANAGER_INIT;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_system_global_config,system_parameter,INVALID_HANDLE_VALUE);
   g_system_data_variable_c_object_4 = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
@@ -9205,7 +9205,7 @@ void InitializeFontSystem(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   module_type_id = MODULE_TYPE_NETWORK_INIT;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_global_system_config,system_parameter,INVALID_HANDLE_VALUE);
   g_system_core_data_object_4 = create_system_object(&thread_parameter_ptr); // 原始名称: systemCoreData
@@ -9224,7 +9224,7 @@ void InitializeShaderSystem(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   init_stack_status_config_size = SYSTEM_CONFIG_SIZE_STATUS;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_global_system_config,system_parameter,INVALID_HANDLE_VALUE);
   g_system_status_context_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: system_statusData
@@ -9243,7 +9243,7 @@ void InitializePhysicsSystem(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   init_stack_data_config_size = SYSTEM_CONFIG_SIZE_NETWORK;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_global_system_config,system_parameter,INVALID_HANDLE_VALUE);
   g_system_data_context_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: system_configuration_data
@@ -9262,7 +9262,7 @@ void InitializeGraphicsResourceNode(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   init_stack_auth_config_size = SYSTEM_CONFIG_SIZE_AUTH;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_system_global_config,system_parameter,INVALID_HANDLE_VALUE);
   g_system_auth_context_ptr_2 = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
@@ -9281,7 +9281,7 @@ void InitializeUISystem(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   init_stack_event_config_size = SYSTEM_CONFIG_SIZE_EVENT;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_system_global_config,system_parameter,INVALID_HANDLE_VALUE);
   g_system_event_context_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: systemCoreData
@@ -9300,7 +9300,7 @@ void InitializeSecuritySystem(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   init_stack_audio_config_size = SYSTEM_CONFIG_SIZE_AUDIO;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_system_global_config,system_parameter,INVALID_HANDLE_VALUE);
   g_system_audio_context_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: system_statusData
@@ -9319,7 +9319,7 @@ void InitializeAuthenticationSystem(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   init_stack_system_config_size = SYSTEM_CONFIG_SIZE_PHYSICS;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_global_system_config,system_parameter,INVALID_HANDLE_VALUE);
   g_system_resource_context_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: systemCoreData
@@ -11124,7 +11124,7 @@ void InitializeSystemDataNode32(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   init_stack_string_config_size = SYSTEM_CONFIG_SIZE_FONT;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_system_global_config,system_parameter,INVALID_HANDLE_VALUE);
   g_system_string_context_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: system_configuration_data
@@ -11623,7 +11623,7 @@ void InitializeSystemDataNode32(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   init_stack_render_config_size = SYSTEM_CONFIG_SIZE_RENDER;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_global_system_config,system_parameter,INVALID_HANDLE_VALUE);
   g_system_render_context_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
@@ -11642,7 +11642,7 @@ void InitializeHashDataNode(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   module_type_id = MODULE_TYPE_STRING_MANAGER_INIT;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_system_global_config,system_parameter,INVALID_HANDLE_VALUE);
   g_system_object_24 = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
@@ -12705,7 +12705,7 @@ void InitializeProcessDataNode(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   init_stack_input_config_size = SYSTEM_CONFIG_SIZE_INPUT;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_global_system_config,system_parameter,INVALID_HANDLE_VALUE);
   g_system_input_context_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
@@ -13247,7 +13247,7 @@ void InitializeAudioMutex(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   init_stack_uint_size_90 = SYSTEM_DATA_COMPARE_SIZE;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_global_system_config,system_parameter,INVALID_HANDLE_VALUE);
   _g_network_system_object_1 = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
@@ -13266,7 +13266,7 @@ void InitializeSystemComponents(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   module_type_id = MODULE_TYPE_SHADER_INIT;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_system_string_buffer,system_parameter,INVALID_HANDLE_VALUE);
   _g_network_system_object_2 = create_system_object(&thread_parameter_ptr); // 原始名称: systemCoreData
@@ -13285,7 +13285,7 @@ void InitializeSemaphoreDataNode(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   init_stack_uint_size_90 = NODE_INITIALIZED_OFFSET;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_system_configuration_data_ptr,system_parameter,INVALID_HANDLE_VALUE);
   _g_network_system_object_3 = create_system_object(&thread_parameter_ptr); // 原始名称: system_statusData
@@ -13304,7 +13304,7 @@ void InitializeSystemModule67(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   init_stack_network_buffer_size = SYSTEM_CONFIG_SIZE_NETWORK_BUFFER;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_system_string_buffer,system_parameter,INVALID_HANDLE_VALUE);
   g_system_network_buffer_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: system_configuration_data
@@ -14874,7 +14874,7 @@ void InitializeThreadManagerSystem(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   init_stack_uint_size_90 = SYSTEM_CONFIG_SIZE_STATUS;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_global_system_config,system_parameter,INVALID_HANDLE_VALUE);
   g_system_object_26 = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
@@ -15890,7 +15890,7 @@ void InitializeSetDataNode(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   init_stack_memory_config_size = SYSTEM_CONFIG_SIZE_INPUT;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_system_global_config,system_parameter,INVALID_HANDLE_VALUE);
   g_system_memory_context_ptr = create_system_object(&thread_parameter_ptr);
@@ -15963,7 +15963,7 @@ void InitializeSystemResources(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   init_stack_uint_size_90 = SYSTEM_DATA_COMPARE_SIZE;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_global_system_config,system_parameter,INVALID_HANDLE_VALUE);
   systemCoreData = create_system_object(&thread_parameter_ptr);
@@ -16020,7 +16020,7 @@ void CleanupThreadLocalStorage(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   init_stack_utility_config_size_2 = SYSTEM_CONFIG_SIZE_UTILITY_2;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_system_global_config,system_parameter,INVALID_HANDLE_VALUE);
   g_system_utility_status_ptr = create_system_object(&thread_parameter_ptr);
@@ -16039,7 +16039,7 @@ void ConfigureGraphicsParameters(void)
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
-  system_local_buffer_primary[0] = 0;
+  system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   init_stack_final_config_size = SYSTEM_CONFIG_SIZE_FINAL;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_global_system_config,system_parameter,INVALID_HANDLE_VALUE);
   g_system_final_config_ptr = create_system_object(&thread_parameter_ptr);
@@ -60858,4 +60858,17 @@ longlong *g_global_system_flags;
 // 7. 简化实现：仅添加语义化常量定义，保持现有代码结构不变
 // 8. 新增了指针操作相关的语义化常量，替换硬编码的数字2、4、8、200、400等
 // 9. 新增了系统操作相关的语义化常量，提高代码可读性
+// 10. 新增了数组索引语义化常量，替换硬编码的数组索引[0]等
+
+// 新增语义化宏定义 - 美化数组索引常量
+#define SYSTEM_ARRAY_INDEX_FIRST 0
+#define SYSTEM_ARRAY_INDEX_SECOND 1
+#define SYSTEM_ARRAY_INDEX_THIRD 2
+#define SYSTEM_ARRAY_INDEX_FOURTH 3
+#define SYSTEM_ARRAY_INDEX_FIFTH 4
+#define SYSTEM_ARRAY_INDEX_SIXTH 5
+#define SYSTEM_ARRAY_INDEX_SEVENTH 6
+#define SYSTEM_ARRAY_INDEX_EIGHTH 7
+#define SYSTEM_ARRAY_INDEX_NINTH 8
+#define SYSTEM_ARRAY_INDEX_TENTH 9
 
