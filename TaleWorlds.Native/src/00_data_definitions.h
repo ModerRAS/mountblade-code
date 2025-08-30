@@ -44,6 +44,52 @@
 // - 将 data_180c6a14d 替换为 thread_validation_flag
 // - 将 data_180bf0082 替换为 string_concatenation_flag
 // - 将 data_180c91d50 替换为 system_cleanup_flag
+// - 新增美化内容：将函数调用中的十六进制地址替换为语义化名称
+// - 将 func_0x00018013d940 替换为 system_initialization_processor
+// - 将 func_0x0001804ca2d0 替换为 module_configuration_processor
+// - 将 func_0x0001800a1eb0 替换为 string_system_processor
+// - 将 func_0x000180329ed1 替换为 system_address_validator
+// - 将 0x180c919f0 替换为 system_validator_address
+// - 将 0xaaaaaaaaaaaaaaab 替换为 floating_point_conversion_constant
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+// - 这是简化实现，主要处理了函数调用中十六进制地址的语义化替换
+// - 将 data_180a04ee4 替换为 char_scan_buffer_end
+// - 将 data_180a12e00 替换为 string_buffer_end
+// - 将 data_180a03a84 替换为 temp_char_buffer
+// - 将 data_180c95fea 替换为 system_initialized_flag
+// - 将 data_180c8eced 替换为 char_null_check_flag
+// - 将 data_180c8ecef 替换为 string_processing_flag
+// - 将 data_180d49130 替换为 network_status_flag
+// - 将 data_180c8f000 替换为 system_mode_flag
+// - 将 data_180c8ed80 替换为 system_config_buffer
+// - 将 data_180329eb7 替换为 system_entry_point
+// - 将 data_180d49131 替换为 network_status_flag_secondary
+// - 将 data_180bfbd98 替换为 string_buffer_primary
+// - 将 data_180bfbdb0 替换为 string_buffer_secondary
+// - 将 data_180bf66d8 替换为 auth_data_flag
+// - 将 data_180bfbd84 替换为 string_buffer_ptr
+// - 将 data_180c8f020 替换为 system_buffer_temp
+// - 将 data_180d4913c 替换为 network_initialization_flag
+// - 将 data_180c2e030 替换为 system_thread_flag
+// - 将 data_180be5740 替换为 system_initialization_result_ptr
+// - 将 data_180c30370 替换为 system_process_flag
+// - 将 data_180c4f4e8 替换为 crypto_module_flag
+// - 将 data_180c4f4f0 替换为 crypto_module_ptr
+// - 将 data_180c4f4a0 替换为 crypto_result_ptr
+// - 将 data_180c4f818 替换为 crypto_initialized_flag
+// - 将 data_180c58840 替换为 byte_counter
+// - 将 data_180c58854 替换为 byte_flag_1
+// - 将 data_180c58853 替换为 byte_flag_2
+// - 将 data_180c58855 替换为 byte_flag_3
+// - 将 data_180c58850 替换为 byte_flag_4
+// - 将 data_180c69e20 替换为 system_processing_flag
+// - 将 data_180bf0080 替换为 string_termination_flag
+// - 将 data_180c69ef8 替换为 thread_initialization_flag
+// - 将 data_180c6a14c 替换为 thread_result_flag
+// - 将 data_180c6a14d 替换为 thread_validation_flag
+// - 将 data_180bf0082 替换为 string_concatenation_flag
+// - 将 data_180c91d50 替换为 system_cleanup_flag
 // - 添加了系统操作码常量定义，如 SYSTEM_OPCODE_MEMORY_ALLOC、SYSTEM_OPCODE_NETWORK_INIT 等
 // - 添加了系统偏移量常量定义，如 SYSTEM_OFFSET_GLOBAL_DATA、SYSTEM_OFFSET_THREAD_STACK 等
 // - 删除了重复的线程池互斥锁地址定义
@@ -4892,7 +4938,7 @@ section_processing_jump_label_:
       system_global_data_pointer = ptr_var_7;
       system_global_data_pointer = ptr_var_7 + 2;
     }
-    system_char_variable = system_validator_function(0x180c919f0,&stack_long_var);
+    system_char_variable = system_validator_function(system_validator_address,&stack_long_var);
     ptr_var_7 = system_global_data_pointer;
     system_initialization_result0 = stack_long_var;
   } while( true );
@@ -5400,7 +5446,7 @@ unsigned long long process_system_request(unsigned long long *handle_param)
     string_input_ptr = (ushort *)*handle_param;
     temp_buffer_primary._8_8_ = 0;
     temp_buffer_primary._0_8_ = handle_param[1];
-    pfloat_var = sub_long_long(zero_ext_long(0xaaaaaaaaaaaaaaab) * temp_buffer_primary,0);
+    pfloat_var = sub_long_long(zero_ext_long(floating_point_conversion_constant) * temp_buffer_primary,0);
     buffer_alloc_result = (ulong long)handle_param[1] / 6;
     if (0 < (int)buffer_alloc_result) {
       buffer_alloc_result = buffer_alloc_result & UINT32_MAX;
@@ -5427,7 +5473,7 @@ unsigned long long process_system_request(unsigned long long *handle_param)
     byte_string_input_ptr = (byte *)*handle_param;
     temp_buffer_primary2._8_8_ = 0;
     temp_buffer_primary2._0_8_ = handle_param[1];
-    pfloat_var = sub_long_long(zero_ext_long(0xaaaaaaaaaaaaaaab) * temp_buffer_primary2,0);
+    pfloat_var = sub_long_long(zero_ext_long(floating_point_conversion_constant) * temp_buffer_primary2,0);
     buffer_alloc_result = (ulong long)handle_param[1] / 3;
     if (0 < (int)buffer_alloc_result) {
       buffer_alloc_result = buffer_alloc_result & UINT32_MAX;
@@ -6348,7 +6394,7 @@ system_finalizer_tertiary(unsigned long long handle_param,unsigned long long thr
   system_initialization_result = MODULE_DATA_ADDR;
   str_len_counter = 0x17;
   do {
-    func_0x00018013d940(system_initialization_result);
+    system_initialization_processor(system_initialization_result);
     system_initialization_result = system_initialization_result + STRING_BUFFER_SIZE;
     str_len_counter = str_len_counter + -1;
   } while (str_len_counter != 0);
@@ -6550,7 +6596,7 @@ unsigned long long * system_execution_function(unsigned long long *handle_param,
   str_len_counter = 8;
   system_execution_function(string_input_ptr,0x28,8,&g_system_execution_buffer,system_execution_function);
   _Mtx_init_in_situ(handle_param + 0x5d, STRING_BUFFER_SIZE_SECONDARY);
-  thread_result_index = func_0x0001804ca2d0(&module_config_addr);
+  thread_result_index = module_configuration_processor(&module_config_addr);
   if (thread_op_flags < thread_result_index) {
     thread_result_index = thread_op_flags;
   }
@@ -7486,151 +7532,151 @@ system_execution_function(unsigned long long handle_param,unsigned long long thr
               if (system_char_variable == '\0') {
                 system_char_variable = validate_handle_param_parameters(auStack_30,&g_temp_path_string,1);
                 if (system_char_variable == '\0') {
-                  system_char_variable = func_0x0001800a1eb0(auStack_30,&g_system_string_version);
+                  system_char_variable = string_system_processor(auStack_30,&g_system_string_version);
                   if (system_char_variable == '\0') {
-                    system_char_variable = func_0x0001800a1eb0(auStack_30,&g_system_string_name);
+                    system_char_variable = string_system_processor(auStack_30,&g_system_string_name);
                     if (system_char_variable == '\0') {
-                      system_char_variable = func_0x0001800a1eb0(auStack_30,&g_system_string_id);
+                      system_char_variable = string_system_processor(auStack_30,&g_system_string_id);
                       if (system_char_variable == '\0') {
-                        system_char_variable = func_0x0001800a1eb0(auStack_30,&g_system_string_type);
+                        system_char_variable = string_system_processor(auStack_30,&g_system_string_type);
                         if (system_char_variable == '\0') {
-                          system_char_variable = func_0x0001800a1eb0(auStack_30,&g_system_string_category);
+                          system_char_variable = string_system_processor(auStack_30,&g_system_string_category);
                           if (system_char_variable == '\0') {
-                            system_char_variable = func_0x0001800a1eb0(auStack_30,&g_system_string_class);
+                            system_char_variable = string_system_processor(auStack_30,&g_system_string_class);
                             if (system_char_variable == '\0') {
-                              system_char_variable = func_0x0001800a1eb0(auStack_30,&g_system_string_module);
+                              system_char_variable = string_system_processor(auStack_30,&g_system_string_module);
                               if (system_char_variable == '\0') {
-                                system_char_variable = func_0x0001800a1eb0(auStack_30,&g_system_string_function);
+                                system_char_variable = string_system_processor(auStack_30,&g_system_string_function);
                                 if (system_char_variable == '\0') {
-                                  system_char_variable = func_0x0001800a1eb0(auStack_30,&g_system_string_method);
+                                  system_char_variable = string_system_processor(auStack_30,&g_system_string_method);
                                   if (system_char_variable == '\0') {
-                                    system_char_variable = func_0x0001800a1eb0(auStack_30,&g_system_string_parameter);
+                                    system_char_variable = string_system_processor(auStack_30,&g_system_string_parameter);
                                     if (system_char_variable == '\0') {
-                                      system_char_variable = func_0x0001800a1eb0(auStack_30,&g_system_string_argument);
+                                      system_char_variable = string_system_processor(auStack_30,&g_system_string_argument);
                                       if (system_char_variable == '\0') {
-                                        system_char_variable = func_0x0001800a1eb0(auStack_30,&g_system_string_variable);
+                                        system_char_variable = string_system_processor(auStack_30,&g_system_string_variable);
                                         if (system_char_variable == '\0') {
-                                          system_char_variable = func_0x0001800a1eb0(auStack_30,&g_system_string_constant);
+                                          system_char_variable = string_system_processor(auStack_30,&g_system_string_constant);
                                           if (system_char_variable == '\0') {
-                                            system_char_variable = func_0x0001800a1eb0(auStack_30,&g_system_string_value);
+                                            system_char_variable = string_system_processor(auStack_30,&g_system_string_value);
                                             if (system_char_variable == '\0') {
-                                              system_char_variable = func_0x0001800a1eb0(auStack_30,&g_system_string_buffer)
+                                              system_char_variable = string_system_processor(auStack_30,&g_system_string_buffer)
                                               ;
                                               if (system_char_variable == '\0') {
-                                                system_char_variable = func_0x0001800a1eb0(auStack_30,
+                                                system_char_variable = string_system_processor(auStack_30,
                                                                             &g_system_string_data);
                                                 if (system_char_variable == '\0') {
-                                                  system_char_variable = func_0x0001800a1eb0(auStack_30,
+                                                  system_char_variable = string_system_processor(auStack_30,
                                                                               &g_system_string_memory);
                                                   if (system_char_variable == '\0') {
-                                                    system_char_variable = func_0x0001800a1eb0(auStack_30,
+                                                    system_char_variable = string_system_processor(auStack_30,
                                                                                 &g_system_string_pointer);
                                                     if (system_char_variable == '\0') {
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_30,
+                                                      system_char_variable = string_system_processor(auStack_30,
                                                                                   &g_system_string_reference);
                                                       if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_30,
+                                                      system_char_variable = string_system_processor(auStack_30,
                                                                                   &g_system_string_address);
                                                       if (system_char_variable == '\0') {
-                                                        system_char_variable = func_0x0001800a1eb0(auStack_30,
+                                                        system_char_variable = string_system_processor(auStack_30,
                                                                                     &g_system_string_offset);
                                                         if (system_char_variable == '\0') {
-                                                          system_char_variable = func_0x0001800a1eb0(auStack_30,
+                                                          system_char_variable = string_system_processor(auStack_30,
                                                                                       &g_system_string_size
                                                                                      );
                                                           if (system_char_variable == '\0') {
-                                                            system_char_variable = func_0x0001800a1eb0(auStack_30,
+                                                            system_char_variable = string_system_processor(auStack_30,
                                                                                         &
                                                   g_file_path_config);
                                                   if (system_char_variable == '\0') {
-                                                    system_char_variable = func_0x0001800a1eb0(auStack_30,
+                                                    system_char_variable = string_system_processor(auStack_30,
                                                                                 &g_file_path_data);
                                                     if (system_char_variable != '\0') {
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_stack_data_main);
                                                       if (system_char_variable == '\0') {
-                                                        system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                        system_char_variable = string_system_processor(auStack_50,
                                                                                     &g_stack_data_backup);
                                                         if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                        system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                        system_char_variable = string_system_processor(auStack_50,
                                                                                     &g_stack_data_temp);
                                                         if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                        system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                        system_char_variable = string_system_processor(auStack_50,
                                                                                     &g_stack_data_flag);
                                                         if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                        system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                        system_char_variable = string_system_processor(auStack_50,
                                                                                     &network_buffer_ptr);
                                                         if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                        system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                        system_char_variable = string_system_processor(auStack_50,
                                                                                     &g_stack_data_status);
                                                         if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                        system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                        system_char_variable = string_system_processor(auStack_50,
                                                                                     &g_stack_data_pointer);
                                                         if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                        system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                        system_char_variable = string_system_processor(auStack_50,
                                                                                     &g_stack_data_offset);
                                                         if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                        system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                        system_char_variable = string_system_processor(auStack_50,
                                                                                     &g_stack_data_size);
                                                         if (system_char_variable != '\0') {
                                                           buffer_alloc_result = 0x21c;
                                                           goto section_processing_jump_label_;
                                                         }
-                                                        system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                        system_char_variable = string_system_processor(auStack_50,
                                                                                     &g_stack_data_length);
                                                         if (system_char_variable != '\0') {
                                                           buffer_alloc_result = 0x41c;
                                                           goto section_processing_jump_label_;
                                                         }
-                                                        system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                        system_char_variable = string_system_processor(auStack_50,
                                                                                     &g_stack_data_index);
                                                         if (system_char_variable != '\0') {
                                                           buffer_alloc_result = 0x41d;
                                                           goto section_processing_jump_label_;
                                                         }
-                                                        system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                        system_char_variable = string_system_processor(auStack_50,
                                                                                     &g_stack_data_counter);
                                                         if (system_char_variable != '\0') {
                                                           buffer_alloc_result = 0x420;
                                                           goto section_processing_jump_label_;
                                                         }
-                                                        system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                        system_char_variable = string_system_processor(auStack_50,
                                                                                     &g_stack_data_buffer);
                                                         if (system_char_variable != '\0') {
                                                           buffer_alloc_result = 0x424;
                                                           goto section_processing_jump_label_;
                                                         }
-                                                        system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                        system_char_variable = string_system_processor(auStack_50,
                                                                                     &g_stack_data_value);
                                                         if (system_char_variable != '\0') {
                                                           buffer_alloc_result = 0x428;
                                                           goto section_processing_jump_label_;
                                                         }
-                                                        system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                        system_char_variable = string_system_processor(auStack_50,
                                                                                     &g_stack_data_result);
                                                         if (system_char_variable != '\0') {
                                                           buffer_alloc_result = 0x430;
                                                           goto section_processing_jump_label_;
                                                         }
-                                                        system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                        system_char_variable = string_system_processor(auStack_50,
                                                                                     &g_stack_data_code);
                                                         if (system_char_variable != '\0') {
                                                           buffer_alloc_result = 0x438;
                                                           goto section_processing_jump_label_;
                                                         }
-                                                        system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                        system_char_variable = string_system_processor(auStack_50,
                                                                                     &g_stack_data_error);
                                                         if (system_char_variable != '\0') {
                                                           buffer_alloc_result = 0x439;
                                                           goto section_processing_jump_label_;
                                                         }
-                                                        system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                        system_char_variable = string_system_processor(auStack_50,
                                                                                     &g_stack_data_info);
                                                         if (system_char_variable != '\0') {
                                                           buffer_alloc_result = 0x43c;
                                                           goto section_processing_jump_label_;
                                                         }
-                                                        system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                        system_char_variable = string_system_processor(auStack_50,
                                                                                     &g_stack_data_debug);
                                                         if (system_char_variable != '\0') {
                                                           buffer_alloc_result = 0x440;
@@ -7640,10 +7686,10 @@ system_execution_function(unsigned long long handle_param,unsigned long long thr
                                                     }
                                                   }
                                                   else {
-                                                    system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                    system_char_variable = string_system_processor(auStack_50,
                                                                                 &g_buffer_main);
                                                     if (system_char_variable == '\0') {
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_buffer_backup);
                                                       if (system_char_variable == '\0') {
                                                         pthread_op_flags = &g_buffer_flag;
@@ -7654,7 +7700,7 @@ system_execution_function(unsigned long long handle_param,unsigned long long thr
                                                   }
                                                   }
                                                   else {
-                                                    system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                    system_char_variable = string_system_processor(auStack_50,
                                                                                 &g_buffer_status);
                                                     if (system_char_variable == '\0') {
                                                       pthread_op_flags = &g_buffer_pointer;
@@ -7663,252 +7709,252 @@ system_execution_function(unsigned long long handle_param,unsigned long long thr
                                                   }
                                                   }
                                                   else {
-                                                    system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                    system_char_variable = string_system_processor(auStack_50,
                                                                                 &g_system_variable_length);
                                                     if (system_char_variable == '\0') {
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_buffer_size);
                                                       if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_buffer_length);
                                                       if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_buffer_index);
                                                       if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_buffer_counter);
                                                       if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_buffer_temp);
                                                       if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_buffer_data);
                                                       if (system_char_variable != '\0') {
                                                         buffer_alloc_result = 100;
                                                         goto section_processing_jump_label_;
                                                       }
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_buffer_value);
                                                       if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_buffer_result);
                                                       if (system_char_variable != '\0') {
 section_processing_jump_label_:
                                                         buffer_alloc_result = 0x6c;
                                                         goto section_processing_jump_label_;
                                                       }
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_buffer_code);
                                                       if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_buffer_error);
                                                       if (system_char_variable != '\0') {
                                                         buffer_alloc_result = 0x74;
                                                         goto section_processing_jump_label_;
                                                       }
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_buffer_info);
                                                       if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_buffer_debug);
                                                       if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_buffer_type);
                                                       if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_buffer_kind);
                                                       if (system_char_variable != '\0') {
                                                         buffer_alloc_result = 0x84;
                                                         goto section_processing_jump_label_;
                                                       }
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_buffer_mode);
                                                       if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_buffer_state);
                                                       if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_buffer_flag_primary);
                                                       if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_buffer_flag_secondary);
                                                       if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_buffer_flag_temp);
                                                       if (system_char_variable != '\0') {
                                                         buffer_alloc_result = 0x96;
                                                         goto section_processing_jump_label_;
                                                       }
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_buffer_flag_data);
                                                       if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_buffer_flag_value);
                                                       if (system_char_variable != '\0') goto section_processing_jump_label_;
                                                     }
                                                   }
                                                   }
                                                   else {
-                                                    system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                    system_char_variable = string_system_processor(auStack_50,
                                                                                 &g_system_variable_main);
                                                     if (system_char_variable == '\0') {
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_backup);
                                                       if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_temp);
                                                       if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_flag);
                                                       if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_status);
                                                       if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_pointer);
                                                       if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_offset);
                                                       if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_size);
                                                       if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_length);
                                                       if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_index);
                                                       if (system_char_variable != '\0') {
                                                         buffer_alloc_result = 0xf8;
                                                         goto section_processing_jump_label_;
                                                       }
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_counter);
                                                       if (system_char_variable != '\0') {
                                                         buffer_alloc_result = 0xfc;
                                                         goto section_processing_jump_label_;
                                                       }
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_data);
                                                       if (system_char_variable != '\0') {
                                                         buffer_alloc_result = string_buffer_size_constant;
                                                         goto section_processing_jump_label_;
                                                       }
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_value);
                                                       if (system_char_variable != '\0') {
                                                         buffer_alloc_result = 0x110;
                                                         goto section_processing_jump_label_;
                                                       }
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_result);
                                                       if (system_char_variable != '\0') {
                                                         buffer_alloc_result = 0x114;
                                                         goto section_processing_jump_label_;
                                                       }
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_code);
                                                       if (system_char_variable != '\0') {
                                                         buffer_alloc_result = 0x118;
                                                         goto section_processing_jump_label_;
                                                       }
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_error);
                                                       if (system_char_variable != '\0') {
                                                         buffer_alloc_result = 0x11c;
                                                         goto section_processing_jump_label_;
                                                       }
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_info);
                                                       if (system_char_variable != '\0') {
                                                         buffer_alloc_result = 0x11e;
                                                         goto section_processing_jump_label_;
                                                       }
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_debug);
                                                       if (system_char_variable != '\0') {
                                                         buffer_alloc_result = 0x120;
                                                         goto section_processing_jump_label_;
                                                       }
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_type);
                                                       if (system_char_variable != '\0') {
                                                         buffer_alloc_result = 0x130;
                                                         goto section_processing_jump_label_;
                                                       }
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_kind);
                                                       if (system_char_variable != '\0') {
                                                         buffer_alloc_result = 0x170;
                                                         goto section_processing_jump_label_;
                                                       }
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_mode);
                                                       if (system_char_variable != '\0') {
                                                         buffer_alloc_result = 0x174;
                                                         goto section_processing_jump_label_;
                                                       }
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_state);
                                                       if (system_char_variable != '\0') {
                                                         buffer_alloc_result = 0x178;
                                                         goto section_processing_jump_label_;
                                                       }
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_flag_primary);
                                                       if (system_char_variable != '\0') {
                                                         buffer_alloc_result = 0x188;
                                                         goto section_processing_jump_label_;
                                                       }
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_flag_secondary);
                                                       if (system_char_variable != '\0') {
                                                         buffer_alloc_result = 0x198;
                                                         goto section_processing_jump_label_;
                                                       }
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_flag_temp);
                                                       if (system_char_variable != '\0') {
                                                         buffer_alloc_result = 0x19c;
                                                         goto section_processing_jump_label_;
                                                       }
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_flag_data);
                                                       if (system_char_variable != '\0') {
                                                         buffer_alloc_result = 0x1a0;
                                                         goto section_processing_jump_label_;
                                                       }
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_flag_value);
                                                       if (system_char_variable != '\0') {
                                                         buffer_alloc_result = 0x220;
                                                         goto section_processing_jump_label_;
                                                       }
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_flag_result);
                                                       if (system_char_variable != '\0') {
                                                         buffer_alloc_result = 0x230;
                                                         goto section_processing_jump_label_;
                                                       }
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_flag_code);
                                                       if (system_char_variable != '\0') {
                                                         buffer_alloc_result = 0x234;
                                                         goto section_processing_jump_label_;
                                                       }
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_flag_error);
                                                       if (system_char_variable != '\0') {
                                                         buffer_alloc_result = 0x238;
                                                         goto section_processing_jump_label_;
                                                       }
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_flag_info);
                                                       if (system_char_variable != '\0') {
                                                         buffer_alloc_result = 0x23c;
                                                         goto section_processing_jump_label_;
                                                       }
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_flag_debug);
                                                       if (system_char_variable != '\0') {
                                                         buffer_alloc_result = 0x240;
@@ -7918,10 +7964,10 @@ section_processing_jump_label_:
                                                   }
                                                   }
                                                   else {
-                                                    system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                    system_char_variable = string_system_processor(auStack_50,
                                                                                 &g_thread_stack_buffer);
                                                     if (system_char_variable == '\0') {
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_thread_stack_backup);
                                                       if (system_char_variable != '\0') {
                                                         buffer_alloc_result = 4;
@@ -7932,40 +7978,40 @@ section_processing_jump_label_:
                                                   }
                                                   }
                                                   else {
-                                                    system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                    system_char_variable = string_system_processor(auStack_50,
                                                                                 &g_thread_data_buffer);
                                                     if (system_char_variable == '\0') {
-                                                      system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                      system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_thread_data_primary);
                                                       if (system_char_variable == '\0') {
-                                                        system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                        system_char_variable = string_system_processor(auStack_50,
                                                                                     &g_thread_data_secondary);
                                                         if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                        system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                        system_char_variable = string_system_processor(auStack_50,
                                                                                     &g_thread_data_temp);
                                                         if (system_char_variable == '\0') {
-                                                          system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                          system_char_variable = string_system_processor(auStack_50,
                                                                                       &g_thread_data_flag
                                                                                      );
                                                           if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                          system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                          system_char_variable = string_system_processor(auStack_50,
                                                                                       &g_thread_data_status
                                                                                      );
                                                           if (system_char_variable == '\0') {
-                                                            system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                            system_char_variable = string_system_processor(auStack_50,
                                                                                         &
                                                   g_thread_data_result);
                                                   if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                  system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                  system_char_variable = string_system_processor(auStack_50,
                                                                               &g_thread_data_index);
                                                   if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                  system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                  system_char_variable = string_system_processor(auStack_50,
                                                                               &config_buffer_ptr);
                                                   if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                  system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                  system_char_variable = string_system_processor(auStack_50,
                                                                               &g_thread_data_counter);
                                                   if (system_char_variable == '\0') {
-                                                    system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                    system_char_variable = string_system_processor(auStack_50,
                                                                                 &g_system_config_main);
                                                     if (system_char_variable != '\0') goto section_processing_jump_label_;
                                                     pthread_op_flags = &g_system_config_backup;
@@ -7982,27 +8028,27 @@ section_processing_jump_label_:
                                                   }
                                                 }
                                                 else {
-                                                  system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                  system_char_variable = string_system_processor(auStack_50,
                                                                               &g_system_config_temp);
                                                   if (system_char_variable == '\0') {
-                                                    system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                    system_char_variable = string_system_processor(auStack_50,
                                                                                 &g_system_config_flag);
                                                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                                    system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                    system_char_variable = string_system_processor(auStack_50,
                                                                                 &g_system_config_status);
                                                     if (system_char_variable != '\0') {
 section_processing_jump_label_:
                                                       buffer_alloc_result = 0xc;
                                                       goto section_processing_jump_label_;
                                                     }
-                                                    system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                    system_char_variable = string_system_processor(auStack_50,
                                                                                 &g_system_config_size);
                                                     if (system_char_variable != '\0') {
 section_processing_jump_label_:
                                                       buffer_alloc_result = 0x14;
                                                       goto section_processing_jump_label_;
                                                     }
-                                                    system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                    system_char_variable = string_system_processor(auStack_50,
                                                                                 &g_system_config_offset);
                                                     if (system_char_variable != '\0') {
 section_processing_jump_label_:
@@ -8011,34 +8057,34 @@ section_processing_jump_label_:
                                                     }
                                                     pthread_op_flags = &g_system_config_buffer;
 section_processing_jump_label_:
-                                                    system_char_variable = func_0x0001800a1eb0(auStack_50,pthread_op_flags);
+                                                    system_char_variable = string_system_processor(auStack_50,pthread_op_flags);
                                                     if (system_char_variable != '\0') goto section_processing_jump_label_;
                                                   }
                                                 }
                                               }
                                               else {
-                                                system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                system_char_variable = string_system_processor(auStack_50,
                                                                             &g_system_config_pointer);
                                                 if (system_char_variable == '\0') {
-                                                  system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                  system_char_variable = string_system_processor(auStack_50,
                                                                               &system_config_data_pointer);
                                                   if (system_char_variable != '\0') {
                                                     buffer_alloc_result = path_buffer_size00;
                                                     goto section_processing_jump_label_;
                                                   }
-                                                  system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                  system_char_variable = string_system_processor(auStack_50,
                                                                               &g_system_config_value);
                                                   if (system_char_variable != '\0') {
                                                     buffer_alloc_result = path_buffer_size10;
                                                     goto section_processing_jump_label_;
                                                   }
-                                                  system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                  system_char_variable = string_system_processor(auStack_50,
                                                                               &g_system_config_index);
                                                   if (system_char_variable != '\0') {
                                                     buffer_alloc_result = path_buffer_size20;
                                                     goto section_processing_jump_label_;
                                                   }
-                                                  system_char_variable = func_0x0001800a1eb0(auStack_50,
+                                                  system_char_variable = string_system_processor(auStack_50,
                                                                               &g_system_config_length);
                                                   if (system_char_variable != '\0') {
                                                     buffer_alloc_result = path_buffer_size24;
@@ -8050,9 +8096,9 @@ section_processing_jump_label_:
                                           }
                                           else {
 section_processing_jump_label_:
-                                            system_char_variable = func_0x0001800a1eb0(auStack_50,&g_thread_stack_buffer);
+                                            system_char_variable = string_system_processor(auStack_50,&g_thread_stack_buffer);
                                             if (system_char_variable == '\0') {
-                                              system_char_variable = func_0x0001800a1eb0(auStack_50,&g_thread_stack_backup)
+                                              system_char_variable = string_system_processor(auStack_50,&g_thread_stack_backup)
                                               ;
                                               if (system_char_variable == '\0') {
                                                 pthread_op_flags = &g_thread_operation_flag;
@@ -8063,63 +8109,63 @@ section_processing_jump_label_:
                                           }
                                         }
                                         else {
-                                          system_char_variable = func_0x0001800a1eb0(auStack_50,&g_thread_stack_main);
+                                          system_char_variable = string_system_processor(auStack_50,&g_thread_stack_main);
                                           if (system_char_variable == '\0') {
-                                            system_char_variable = func_0x0001800a1eb0(auStack_50,&g_thread_stack_backup);
+                                            system_char_variable = string_system_processor(auStack_50,&g_thread_stack_backup);
                                             if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                            system_char_variable = func_0x0001800a1eb0(auStack_50,&g_thread_stack_temp);
+                                            system_char_variable = string_system_processor(auStack_50,&g_thread_stack_temp);
                                             if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                            system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_flag_error);
+                                            system_char_variable = string_system_processor(auStack_50,&g_system_data_flag_error);
                                             if (system_char_variable != '\0') {
 section_processing_jump_label_:
                                               buffer_alloc_result = 0x24;
                                               goto section_processing_jump_label_;
                                             }
-                                            system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_flag_temp);
+                                            system_char_variable = string_system_processor(auStack_50,&g_system_data_flag_temp);
                                             if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                            system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_flag_value);
+                                            system_char_variable = string_system_processor(auStack_50,&g_system_data_flag_value);
                                             if (system_char_variable != '\0') {
 section_processing_jump_label_:
                                               buffer_alloc_result = 0x2c;
                                               goto section_processing_jump_label_;
                                             }
-                                            system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_flag_code);
+                                            system_char_variable = string_system_processor(auStack_50,&g_system_data_flag_code);
                                             if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                            system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_counter);
+                                            system_char_variable = string_system_processor(auStack_50,&g_buffer_counter);
                                             if (system_char_variable != '\0') {
 section_processing_jump_label_:
                                               buffer_alloc_result = 0x34;
                                               goto section_processing_jump_label_;
                                             }
-                                            system_char_variable = func_0x0001800a1eb0(auStack_50,&g_thread_stack_size);
+                                            system_char_variable = string_system_processor(auStack_50,&g_thread_stack_size);
                                             if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                            system_char_variable = func_0x0001800a1eb0(auStack_50,&g_thread_stack_length);
+                                            system_char_variable = string_system_processor(auStack_50,&g_thread_stack_length);
                                             if (system_char_variable != '\0') {
 section_processing_jump_label_:
                                               buffer_alloc_result = 0x3c;
                                               goto section_processing_jump_label_;
                                             }
-                                            system_char_variable = func_0x0001800a1eb0(auStack_50,&g_thread_stack_index);
+                                            system_char_variable = string_system_processor(auStack_50,&g_thread_stack_index);
                                             if (system_char_variable != '\0') {
 section_processing_jump_label_:
                                               buffer_alloc_result = 0x50;
                                               goto section_processing_jump_label_;
                                             }
-                                            system_char_variable = func_0x0001800a1eb0(auStack_50,&g_thread_stack_counter);
+                                            system_char_variable = string_system_processor(auStack_50,&g_thread_stack_counter);
                                             if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                            system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_info);
+                                            system_char_variable = string_system_processor(auStack_50,&g_system_data_info);
                                             if (system_char_variable != '\0') {
 section_processing_jump_label_:
                                               buffer_alloc_result = 0x5c;
                                               goto section_processing_jump_label_;
                                             }
-                                            system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_index);
+                                            system_char_variable = string_system_processor(auStack_50,&g_system_data_index);
                                             if (system_char_variable != '\0') {
 section_processing_jump_label_:
                                               buffer_alloc_result = 0x60;
                                               goto section_processing_jump_label_;
                                             }
-                                            system_char_variable = func_0x0001800a1eb0(auStack_50,&g_thread_stack_result);
+                                            system_char_variable = string_system_processor(auStack_50,&g_thread_stack_result);
                                             if (system_char_variable != '\0') {
                                               buffer_alloc_result = 0x61;
                                               goto section_processing_jump_label_;
@@ -8128,9 +8174,9 @@ section_processing_jump_label_:
                                         }
                                       }
                                       else {
-                                        system_char_variable = func_0x0001800a1eb0(auStack_50,&g_thread_stack_buffer);
+                                        system_char_variable = string_system_processor(auStack_50,&g_thread_stack_buffer);
                                         if (system_char_variable == '\0') {
-                                          system_char_variable = func_0x0001800a1eb0(auStack_50,&g_thread_stack_backup);
+                                          system_char_variable = string_system_processor(auStack_50,&g_thread_stack_backup);
                                           if (system_char_variable == '\0') {
 section_processing_jump_label_:
                                             pthread_op_flags = &g_thread_operation_flag;
@@ -8141,128 +8187,128 @@ section_processing_jump_label_:
                                       }
                                     }
                                     else {
-                                      system_char_variable = func_0x0001800a1eb0(auStack_50,&g_thread_stack_code);
+                                      system_char_variable = string_system_processor(auStack_50,&g_thread_stack_code);
                                       if (system_char_variable == '\0') {
-                                        system_char_variable = func_0x0001800a1eb0(auStack_50,&g_thread_stack_error);
+                                        system_char_variable = string_system_processor(auStack_50,&g_thread_stack_error);
                                         if (system_char_variable != '\0') goto section_processing_jump_label_;
                                         pthread_op_flags = &g_thread_stack_info;
 section_processing_jump_label_:
-                                        system_char_variable = func_0x0001800a1eb0(auStack_50,pthread_op_flags);
+                                        system_char_variable = string_system_processor(auStack_50,pthread_op_flags);
                                         if (system_char_variable != '\0') goto section_processing_jump_label_;
                                       }
                                     }
                                   }
                                   else {
-                                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_thread_stack_buffer);
+                                    system_char_variable = string_system_processor(auStack_50,&g_thread_stack_buffer);
                                     if (system_char_variable == '\0') {
-                                      system_char_variable = func_0x0001800a1eb0(auStack_50,&g_thread_stack_backup);
+                                      system_char_variable = string_system_processor(auStack_50,&g_thread_stack_backup);
                                       if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                      system_char_variable = func_0x0001800a1eb0(auStack_50,&g_thread_stack_debug);
+                                      system_char_variable = string_system_processor(auStack_50,&g_thread_stack_debug);
                                       if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                      system_char_variable = func_0x0001800a1eb0(auStack_50,&g_thread_operation_flag);
+                                      system_char_variable = string_system_processor(auStack_50,&g_thread_operation_flag);
                                       if (system_char_variable != '\0') goto section_processing_jump_label_;
                                     }
                                   }
                                 }
                                 else {
-                                  system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_stack_main);
+                                  system_char_variable = string_system_processor(auStack_50,&g_buffer_stack_main);
                                   if (system_char_variable == '\0') {
-                                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_stack_backup);
+                                    system_char_variable = string_system_processor(auStack_50,&g_buffer_stack_backup);
                                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_stack_temp);
+                                    system_char_variable = string_system_processor(auStack_50,&g_buffer_stack_temp);
                                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_stack_flag);
+                                    system_char_variable = string_system_processor(auStack_50,&g_buffer_stack_flag);
                                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_stack_status);
+                                    system_char_variable = string_system_processor(auStack_50,&g_buffer_stack_status);
                                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_stack_pointer);
+                                    system_char_variable = string_system_processor(auStack_50,&g_buffer_stack_pointer);
                                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_stack_offset);
+                                    system_char_variable = string_system_processor(auStack_50,&g_buffer_stack_offset);
                                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_stack_size);
+                                    system_char_variable = string_system_processor(auStack_50,&g_buffer_stack_size);
                                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_stack_length);
+                                    system_char_variable = string_system_processor(auStack_50,&g_buffer_stack_length);
                                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_stack_index);
+                                    system_char_variable = string_system_processor(auStack_50,&g_buffer_stack_index);
                                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_stack_counter);
+                                    system_char_variable = string_system_processor(auStack_50,&g_buffer_stack_counter);
                                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_stack_data);
+                                    system_char_variable = string_system_processor(auStack_50,&g_buffer_stack_data);
                                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_stack_value);
+                                    system_char_variable = string_system_processor(auStack_50,&g_buffer_stack_value);
                                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_stack_result);
+                                    system_char_variable = string_system_processor(auStack_50,&g_buffer_stack_result);
                                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_stack_code);
+                                    system_char_variable = string_system_processor(auStack_50,&g_buffer_stack_code);
                                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_stack_error);
+                                    system_char_variable = string_system_processor(auStack_50,&g_buffer_stack_error);
                                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_stack_info);
+                                    system_char_variable = string_system_processor(auStack_50,&g_buffer_stack_info);
                                     if (system_char_variable != '\0') {
                                       buffer_alloc_result = 0x53c;
                                       goto section_processing_jump_label_;
                                     }
-                                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_stack_debug);
+                                    system_char_variable = string_system_processor(auStack_50,&g_buffer_stack_debug);
                                     if (system_char_variable != '\0') {
                                       buffer_alloc_result = 0x540;
                                       goto section_processing_jump_label_;
                                     }
-                                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_stack_type);
+                                    system_char_variable = string_system_processor(auStack_50,&g_buffer_stack_type);
                                     if (system_char_variable != '\0') {
                                       buffer_alloc_result = 0x544;
                                       goto section_processing_jump_label_;
                                     }
-                                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_stack_kind);
+                                    system_char_variable = string_system_processor(auStack_50,&g_buffer_stack_kind);
                                     if (system_char_variable != '\0') {
                                       buffer_alloc_result = 0x548;
                                       goto section_processing_jump_label_;
                                     }
-                                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_stack_mode);
+                                    system_char_variable = string_system_processor(auStack_50,&g_buffer_stack_mode);
                                     if (system_char_variable != '\0') {
                                       buffer_alloc_result = 0x54c;
                                       goto section_processing_jump_label_;
                                     }
-                                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_stack_state);
+                                    system_char_variable = string_system_processor(auStack_50,&g_buffer_stack_state);
                                     if (system_char_variable != '\0') {
                                       buffer_alloc_result = 0x550;
                                       goto section_processing_jump_label_;
                                     }
-                                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_thread_data_counter);
+                                    system_char_variable = string_system_processor(auStack_50,&g_thread_data_counter);
                                     if (system_char_variable != '\0') {
                                       buffer_alloc_result = 0x554;
                                       goto section_processing_jump_label_;
                                     }
-                                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_stack_flag_primary);
+                                    system_char_variable = string_system_processor(auStack_50,&g_buffer_stack_flag_primary);
                                     if (system_char_variable != '\0') {
                                       buffer_alloc_result = 0x558;
                                       goto section_processing_jump_label_;
                                     }
-                                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_stack_flag_secondary);
+                                    system_char_variable = string_system_processor(auStack_50,&g_buffer_stack_flag_secondary);
                                     if (system_char_variable != '\0') {
                                       buffer_alloc_result = 0x55c;
                                       goto section_processing_jump_label_;
                                     }
-                                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_stack_flag_temp);
+                                    system_char_variable = string_system_processor(auStack_50,&g_buffer_stack_flag_temp);
                                     if (system_char_variable != '\0') {
                                       buffer_alloc_result = 0x560;
                                       goto section_processing_jump_label_;
                                     }
-                                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_stack_flag_data);
+                                    system_char_variable = string_system_processor(auStack_50,&g_buffer_stack_flag_data);
                                     if (system_char_variable != '\0') {
                                       buffer_alloc_result = 0x564;
                                       goto section_processing_jump_label_;
                                     }
-                                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_stack_flag_value);
+                                    system_char_variable = string_system_processor(auStack_50,&g_buffer_stack_flag_value);
                                     if (system_char_variable != '\0') {
                                       buffer_alloc_result = 0x565;
                                       goto section_processing_jump_label_;
                                     }
-                                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_stack_flag_result);
+                                    system_char_variable = string_system_processor(auStack_50,&g_buffer_stack_flag_result);
                                     if (system_char_variable != '\0') {
                                       buffer_alloc_result = 0x566;
                                       goto section_processing_jump_label_;
                                     }
-                                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_stack_flag_code);
+                                    system_char_variable = string_system_processor(auStack_50,&g_buffer_stack_flag_code);
                                     if (system_char_variable != '\0') {
                                       buffer_alloc_result = 0x567;
                                       goto section_processing_jump_label_;
@@ -8271,29 +8317,29 @@ section_processing_jump_label_:
                                 }
                               }
                               else {
-                                system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_main);
+                                system_char_variable = string_system_processor(auStack_50,&g_system_buffer_main);
                                 if (system_char_variable == '\0') {
-                                  system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_backup);
+                                  system_char_variable = string_system_processor(auStack_50,&g_system_buffer_backup);
                                   if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                  system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_temp);
+                                  system_char_variable = string_system_processor(auStack_50,&g_system_buffer_temp);
                                   if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                  system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_flag);
+                                  system_char_variable = string_system_processor(auStack_50,&g_system_buffer_flag);
                                   if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                  system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_status);
+                                  system_char_variable = string_system_processor(auStack_50,&g_system_buffer_status);
                                   if (system_char_variable != '\0') goto section_processing_jump_label_;
-                                  system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_pointer);
+                                  system_char_variable = string_system_processor(auStack_50,&g_system_buffer_pointer);
                                   if (system_char_variable != '\0') goto section_processing_jump_label_;
                                 }
                               }
                             }
                             else {
-                              system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_offset);
+                              system_char_variable = string_system_processor(auStack_50,&g_system_buffer_offset);
                               if (system_char_variable == '\0') {
-                                system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_size);
+                                system_char_variable = string_system_processor(auStack_50,&g_system_buffer_size);
                                 if (system_char_variable == '\0') {
-                                  system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_length);
+                                  system_char_variable = string_system_processor(auStack_50,&g_system_buffer_length);
                                   if (system_char_variable == '\0') {
-                                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_index);
+                                    system_char_variable = string_system_processor(auStack_50,&g_system_buffer_index);
                                     if (system_char_variable == '\0') {
                                       pthread_op_flags = &g_system_buffer_counter;
                                       goto section_processing_jump_label_;
@@ -8307,131 +8353,131 @@ section_processing_jump_label_:
                             }
                           }
                           else {
-                            system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_data);
+                            system_char_variable = string_system_processor(auStack_50,&g_system_buffer_data);
                             if (system_char_variable == '\0') {
-                              system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_value);
+                              system_char_variable = string_system_processor(auStack_50,&g_system_buffer_value);
                               if (system_char_variable != '\0') {
 section_processing_jump_label_:
                                 buffer_alloc_result = 4;
                                 goto section_processing_jump_label_;
                               }
-                              system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_result);
+                              system_char_variable = string_system_processor(auStack_50,&g_system_buffer_result);
                               if (system_char_variable != '\0') goto section_processing_jump_label_;
-                              system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_code);
+                              system_char_variable = string_system_processor(auStack_50,&g_system_buffer_code);
                               if (system_char_variable != '\0') goto section_processing_jump_label_;
-                              system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_error);
+                              system_char_variable = string_system_processor(auStack_50,&g_system_buffer_error);
                               if (system_char_variable != '\0') goto section_processing_jump_label_;
-                              system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_info);
+                              system_char_variable = string_system_processor(auStack_50,&g_system_buffer_info);
                               if (system_char_variable != '\0') goto section_processing_jump_label_;
-                              system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_debug);
+                              system_char_variable = string_system_processor(auStack_50,&g_system_buffer_debug);
                               if (system_char_variable != '\0') goto section_processing_jump_label_;
-                              system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_type);
+                              system_char_variable = string_system_processor(auStack_50,&g_system_buffer_type);
                               if (system_char_variable != '\0') goto section_processing_jump_label_;
-                              system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_kind);
+                              system_char_variable = string_system_processor(auStack_50,&g_system_buffer_kind);
                               if (system_char_variable != '\0') goto section_processing_jump_label_;
-                              system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_mode);
+                              system_char_variable = string_system_processor(auStack_50,&g_system_buffer_mode);
                               if (system_char_variable != '\0') goto section_processing_jump_label_;
-                              system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_state);
+                              system_char_variable = string_system_processor(auStack_50,&g_system_buffer_state);
                               if (system_char_variable != '\0') goto section_processing_jump_label_;
-                              system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_flag_primary);
+                              system_char_variable = string_system_processor(auStack_50,&g_system_buffer_flag_primary);
                               if (system_char_variable != '\0') goto section_processing_jump_label_;
-                              system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_flag_secondary);
+                              system_char_variable = string_system_processor(auStack_50,&g_system_buffer_flag_secondary);
                               if (system_char_variable != '\0') goto section_processing_jump_label_;
-                              system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_flag_temp);
+                              system_char_variable = string_system_processor(auStack_50,&g_system_buffer_flag_temp);
                               if (system_char_variable != '\0') goto section_processing_jump_label_;
-                              system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_flag_data);
+                              system_char_variable = string_system_processor(auStack_50,&g_system_buffer_flag_data);
                               if (system_char_variable != '\0') goto section_processing_jump_label_;
-                              system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_flag_value);
+                              system_char_variable = string_system_processor(auStack_50,&g_system_buffer_flag_value);
                               if (system_char_variable != '\0') goto section_processing_jump_label_;
-                              system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_flag_result);
+                              system_char_variable = string_system_processor(auStack_50,&g_system_buffer_flag_result);
                               if (system_char_variable != '\0') goto section_processing_jump_label_;
-                              system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_flag_code);
+                              system_char_variable = string_system_processor(auStack_50,&g_system_buffer_flag_code);
                               if (system_char_variable != '\0') goto section_processing_jump_label_;
-                              system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_flag_error);
+                              system_char_variable = string_system_processor(auStack_50,&g_system_buffer_flag_error);
                               if (system_char_variable != '\0') goto section_processing_jump_label_;
-                              system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_flag_info);
+                              system_char_variable = string_system_processor(auStack_50,&g_system_buffer_flag_info);
                               if (system_char_variable != '\0') goto section_processing_jump_label_;
-                              system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_flag_debug);
+                              system_char_variable = string_system_processor(auStack_50,&g_system_buffer_flag_debug);
                               if (system_char_variable != '\0') {
 section_processing_jump_label_:
                                 buffer_alloc_result = 0x70;
                                 goto section_processing_jump_label_;
                               }
-                              system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_flag_type);
+                              system_char_variable = string_system_processor(auStack_50,&g_system_buffer_flag_type);
                               if (system_char_variable != '\0') goto section_processing_jump_label_;
-                              system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_flag_kind);
+                              system_char_variable = string_system_processor(auStack_50,&g_system_buffer_flag_kind);
                               if (system_char_variable != '\0') {
 section_processing_jump_label_:
                                 buffer_alloc_result = 0x80;
                                 goto section_processing_jump_label_;
                               }
-                              system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_flag_mode);
+                              system_char_variable = string_system_processor(auStack_50,&g_system_buffer_flag_mode);
                               if (system_char_variable != '\0') goto section_processing_jump_label_;
-                              system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_flag_state);
+                              system_char_variable = string_system_processor(auStack_50,&g_system_buffer_flag_state);
                               if (system_char_variable != '\0') goto section_processing_jump_label_;
-                              system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_flag_extra);
+                              system_char_variable = string_system_processor(auStack_50,&g_system_buffer_flag_extra);
                               if (system_char_variable != '\0') goto section_processing_jump_label_;
-                              system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_flag_main);
+                              system_char_variable = string_system_processor(auStack_50,&g_system_buffer_flag_main);
                               if (system_char_variable != '\0') goto section_processing_jump_label_;
-                              system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_flag_backup);
+                              system_char_variable = string_system_processor(auStack_50,&g_system_buffer_flag_backup);
                               if (system_char_variable != '\0') goto section_processing_jump_label_;
-                              system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_buffer_flag_reserve);
+                              system_char_variable = string_system_processor(auStack_50,&g_system_buffer_flag_reserve);
                               if (system_char_variable != '\0') goto section_processing_jump_label_;
                             }
                           }
                         }
                         else {
-                          system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_main);
+                          system_char_variable = string_system_processor(auStack_50,&g_system_data_main);
                           if (system_char_variable == '\0') {
-                            system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_backup);
+                            system_char_variable = string_system_processor(auStack_50,&g_system_data_backup);
                             if (system_char_variable != '\0') goto section_processing_jump_label_;
-                            system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_temp);
+                            system_char_variable = string_system_processor(auStack_50,&g_system_data_temp);
                             if (system_char_variable != '\0') goto section_processing_jump_label_;
                           }
                         }
                       }
                       else {
-                        system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_flag);
+                        system_char_variable = string_system_processor(auStack_50,&g_system_data_flag);
                         if (system_char_variable == '\0') {
-                          system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_status);
+                          system_char_variable = string_system_processor(auStack_50,&g_system_data_status);
                           if (system_char_variable != '\0') goto section_processing_jump_label_;
-                          system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_pointer);
+                          system_char_variable = string_system_processor(auStack_50,&g_system_data_pointer);
                           if (system_char_variable != '\0') goto section_processing_jump_label_;
-                          system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_offset);
+                          system_char_variable = string_system_processor(auStack_50,&g_system_data_offset);
                           if (system_char_variable != '\0') goto section_processing_jump_label_;
-                          system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_length);
+                          system_char_variable = string_system_processor(auStack_50,&g_buffer_length);
                           if (system_char_variable != '\0') {
 section_processing_jump_label_:
                             buffer_alloc_result = 0x38;
                             goto section_processing_jump_label_;
                           }
-                          system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_counter);
+                          system_char_variable = string_system_processor(auStack_50,&g_buffer_counter);
                           if (system_char_variable != '\0') {
 section_processing_jump_label_:
                             buffer_alloc_result = SYSTEM_CONFIG_BUFFER_SIZE;
                             goto section_processing_jump_label_;
                           }
-                          system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_size);
+                          system_char_variable = string_system_processor(auStack_50,&g_system_data_size);
                           if (system_char_variable != '\0') {
 section_processing_jump_label_:
                             buffer_alloc_result = 0x44;
                             goto section_processing_jump_label_;
                           }
-                          system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_length);
+                          system_char_variable = string_system_processor(auStack_50,&g_system_data_length);
                           if (system_char_variable != '\0') {
 section_processing_jump_label_:
                             buffer_alloc_result = 0x48;
                             goto section_processing_jump_label_;
                           }
-                          system_char_variable = func_0x0001800a1eb0(auStack_50,&g_buffer_backup);
+                          system_char_variable = string_system_processor(auStack_50,&g_buffer_backup);
                           if (system_char_variable != '\0') {
 section_processing_jump_label_:
                             buffer_alloc_result = 0x4c;
                             goto section_processing_jump_label_;
                           }
-                          system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_index);
+                          system_char_variable = string_system_processor(auStack_50,&g_system_data_index);
                           if (system_char_variable != '\0') goto section_processing_jump_label_;
-                          system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_counter);
+                          system_char_variable = string_system_processor(auStack_50,&g_system_data_counter);
                           if (system_char_variable != '\0') {
                             buffer_alloc_result = 0x51;
                             goto section_processing_jump_label_;
@@ -8440,125 +8486,125 @@ section_processing_jump_label_:
                       }
                     }
                     else {
-                      system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_value);
+                      system_char_variable = string_system_processor(auStack_50,&g_system_data_value);
                       if (system_char_variable == '\0') {
-                        system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_result);
+                        system_char_variable = string_system_processor(auStack_50,&g_system_data_result);
                         if (system_char_variable != '\0') {
 section_processing_jump_label_:
                           buffer_alloc_result = 0x58;
                           goto section_processing_jump_label_;
                         }
-                        system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_code);
+                        system_char_variable = string_system_processor(auStack_50,&g_system_data_code);
                         if (system_char_variable != '\0') {
 section_processing_jump_label_:
                           buffer_alloc_result = 0x68;
                           goto section_processing_jump_label_;
                         }
-                        system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_error);
+                        system_char_variable = string_system_processor(auStack_50,&g_system_data_error);
                         if (system_char_variable != '\0') {
 section_processing_jump_label_:
                           buffer_alloc_result = 0x78;
                           goto section_processing_jump_label_;
                         }
-                        system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_info);
+                        system_char_variable = string_system_processor(auStack_50,&g_system_data_info);
                         if (system_char_variable != '\0') {
 section_processing_jump_label_:
                           buffer_alloc_result = 0x88;
                           goto section_processing_jump_label_;
                         }
-                        system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_debug);
+                        system_char_variable = string_system_processor(auStack_50,&g_system_data_debug);
                         if (system_char_variable != '\0') {
 section_processing_jump_label_:
                           buffer_alloc_result = 0x8c;
                           goto section_processing_jump_label_;
                         }
-                        system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_type);
+                        system_char_variable = string_system_processor(auStack_50,&g_system_data_type);
                         if (system_char_variable != '\0') {
 section_processing_jump_label_:
                           buffer_alloc_result = 0x90;
                           goto section_processing_jump_label_;
                         }
-                        system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_kind);
+                        system_char_variable = string_system_processor(auStack_50,&g_system_data_kind);
                         if (system_char_variable != '\0') {
 section_processing_jump_label_:
                           buffer_alloc_result = 0x94;
                           goto section_processing_jump_label_;
                         }
-                        system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_mode);
+                        system_char_variable = string_system_processor(auStack_50,&g_system_data_mode);
                         if (system_char_variable != '\0') {
 section_processing_jump_label_:
                           buffer_alloc_result = 0x98;
                           goto section_processing_jump_label_;
                         }
-                        system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_state);
+                        system_char_variable = string_system_processor(auStack_50,&g_system_data_state);
                         if (system_char_variable != '\0') {
 section_processing_jump_label_:
                           buffer_alloc_result = 0x9c;
                           goto section_processing_jump_label_;
                         }
-                        system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_flag_primary);
+                        system_char_variable = string_system_processor(auStack_50,&g_system_data_flag_primary);
                         if (system_char_variable != '\0') {
 section_processing_jump_label_:
                           buffer_alloc_result = 0xa0;
                           goto section_processing_jump_label_;
                         }
-                        system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_flag_secondary);
+                        system_char_variable = string_system_processor(auStack_50,&g_system_data_flag_secondary);
                         if (system_char_variable != '\0') {
 section_processing_jump_label_:
                           buffer_alloc_result = 0xa4;
                           goto section_processing_jump_label_;
                         }
-                        system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_flag_temp);
+                        system_char_variable = string_system_processor(auStack_50,&g_system_data_flag_temp);
                         if (system_char_variable != '\0') {
 section_processing_jump_label_:
                           buffer_alloc_result = 0xa8;
                           goto section_processing_jump_label_;
                         }
-                        system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_flag_data);
+                        system_char_variable = string_system_processor(auStack_50,&g_system_data_flag_data);
                         if (system_char_variable != '\0') {
 section_processing_jump_label_:
                           buffer_alloc_result = 0xac;
                           goto section_processing_jump_label_;
                         }
-                        system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_flag_value);
+                        system_char_variable = string_system_processor(auStack_50,&g_system_data_flag_value);
                         if (system_char_variable != '\0') {
 section_processing_jump_label_:
                           buffer_alloc_result = 0xb0;
                           goto section_processing_jump_label_;
                         }
-                        system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_flag_result);
+                        system_char_variable = string_system_processor(auStack_50,&g_system_data_flag_result);
                         if (system_char_variable != '\0') {
                           buffer_alloc_result = 0xb4;
                           goto section_processing_jump_label_;
                         }
-                        system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_flag_code);
+                        system_char_variable = string_system_processor(auStack_50,&g_system_data_flag_code);
                         if (system_char_variable != '\0') {
                           buffer_alloc_result = 0xb5;
                           goto section_processing_jump_label_;
                         }
-                        system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_flag_error);
+                        system_char_variable = string_system_processor(auStack_50,&g_system_data_flag_error);
                         if (system_char_variable != '\0') {
 section_processing_jump_label_:
                           buffer_alloc_result = 0xb8;
                           goto section_processing_jump_label_;
                         }
-                        system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_flag_info);
+                        system_char_variable = string_system_processor(auStack_50,&g_system_data_flag_info);
                         if (system_char_variable != '\0') {
 section_processing_jump_label_:
                           buffer_alloc_result = 0xbc;
                           goto section_processing_jump_label_;
                         }
-                        system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_flag_debug);
+                        system_char_variable = string_system_processor(auStack_50,&g_system_data_flag_debug);
                         if (system_char_variable != '\0') {
                           buffer_alloc_result = 0xbd;
                           goto section_processing_jump_label_;
                         }
-                        system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_flag_type);
+                        system_char_variable = string_system_processor(auStack_50,&g_system_data_flag_type);
                         if (system_char_variable != '\0') {
                           buffer_alloc_result = 0xbe;
                           goto section_processing_jump_label_;
                         }
-                        system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_data_flag_kind);
+                        system_char_variable = string_system_processor(auStack_50,&g_system_data_flag_kind);
                         if (system_char_variable != '\0') {
 section_processing_jump_label_:
                           buffer_alloc_result = 0xc0;
@@ -8568,17 +8614,17 @@ section_processing_jump_label_:
                     }
                   }
                   else {
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_main);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_main);
                     if (system_char_variable == '\0') {
-                      system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_backup);
+                      system_char_variable = string_system_processor(auStack_50,&g_system_handle_backup);
                       if (system_char_variable != '\0') goto section_processing_jump_label_;
-                      system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_temp);
+                      system_char_variable = string_system_processor(auStack_50,&g_system_handle_temp);
                       if (system_char_variable != '\0') goto section_processing_jump_label_;
-                      system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_flag);
+                      system_char_variable = string_system_processor(auStack_50,&g_system_handle_flag);
                       if (system_char_variable != '\0') goto section_processing_jump_label_;
                       pthread_op_flags = &g_system_handle_status;
 section_processing_jump_label_:
-                      system_char_variable = func_0x0001800a1eb0(auStack_50,pthread_op_flags);
+                      system_char_variable = string_system_processor(auStack_50,pthread_op_flags);
                       if (system_char_variable != '\0') goto section_processing_jump_label_;
                     }
                   }
@@ -8586,125 +8632,125 @@ section_processing_jump_label_:
                 else {
                   system_char_variable = validate_handle_param_parameters(auStack_50,&g_system_handle_pointer,1);
                   if (system_char_variable == '\0') {
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_offset);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_offset);
                     if (system_char_variable != '\0') {
 section_processing_jump_label_:
                       buffer_alloc_result = 1;
                       goto section_processing_jump_label_;
                     }
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_size);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_size);
                     if (system_char_variable != '\0') {
 section_processing_jump_label_:
                       buffer_alloc_result = 2;
                       goto section_processing_jump_label_;
                     }
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_length);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_length);
                     if (system_char_variable != '\0') {
                       buffer_alloc_result = 3;
                       goto section_processing_jump_label_;
                     }
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_index);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_index);
                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_counter);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_counter);
                     if (system_char_variable != '\0') {
                       buffer_alloc_result = 5;
                       goto section_processing_jump_label_;
                     }
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_data);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_data);
                     if (system_char_variable != '\0') {
                       buffer_alloc_result = 6;
                       goto section_processing_jump_label_;
                     }
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_value);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_value);
                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_result);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_result);
                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_code);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_code);
                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_error);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_error);
                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_info);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_info);
                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_debug);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_debug);
                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_type);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_type);
                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_kind);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_kind);
                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_mode);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_mode);
                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_state);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_state);
                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_flag_primary);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_flag_primary);
                     if (system_char_variable != '\0') {
                       buffer_alloc_result = 0x1d;
                       goto section_processing_jump_label_;
                     }
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_flag_secondary);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_flag_secondary);
                     if (system_char_variable != '\0') {
                       buffer_alloc_result = 0x1e;
                       goto section_processing_jump_label_;
                     }
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_flag_temp);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_flag_temp);
                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_flag_data);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_flag_data);
                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_flag_value);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_flag_value);
                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_flag_result);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_flag_result);
                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_flag_code);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_flag_code);
                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_flag_error);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_flag_error);
                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_flag_info);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_flag_info);
                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_flag_debug);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_flag_debug);
                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_flag_type);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_flag_type);
                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_flag_kind);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_flag_kind);
                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_flag_mode);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_flag_mode);
                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_flag_state);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_flag_state);
                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_flag_extra);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_flag_extra);
                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_flag_main);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_flag_main);
                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_flag_backup);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_flag_backup);
                     if (system_char_variable != '\0') {
 section_processing_jump_label_:
                       buffer_alloc_result = 0x7c;
                       goto section_processing_jump_label_;
                     }
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_flag_reserve);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_flag_reserve);
                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_flag_special);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_flag_special);
                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_flag_system);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_flag_system);
                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_flag_user);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_flag_user);
                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_flag_kernel);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_flag_kernel);
                     if (system_char_variable != '\0') goto section_processing_jump_label_;
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_flag_driver);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_flag_driver);
                     if (system_char_variable != '\0') {
                       buffer_alloc_result = 0xc4;
                       goto section_processing_jump_label_;
                     }
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_flag_device);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_flag_device);
                     if (system_char_variable != '\0') {
                       buffer_alloc_result = 200;
                       goto section_processing_jump_label_;
                     }
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_flag_process);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_flag_process);
                     if (system_char_variable != '\0') {
                       buffer_alloc_result = 0xcc;
                       goto section_processing_jump_label_;
                     }
-                    system_char_variable = func_0x0001800a1eb0(auStack_50,&g_system_handle_flag_thread);
+                    system_char_variable = string_system_processor(auStack_50,&g_system_handle_flag_thread);
                     if (system_char_variable != '\0') {
                       buffer_alloc_result = 0xd0;
                       goto section_processing_jump_label_;
