@@ -247,6 +247,9 @@
 // 系统线程标志常量
 #define SYSTEM_THREAD_FLAG_ENABLED 1
 
+// 系统操作标志常量
+#define SYSTEM_OPERATION_FLAG_ENABLED 1
+
 // 系统函数偏移量常量
 #define SYSTEM_FUNC_OFFSET_CLEANUP 0x28
 #define SYSTEM_FUNC_OFFSET_INITIALIZE 0x38
