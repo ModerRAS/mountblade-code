@@ -1,3 +1,38 @@
+// 新增系统常量定义 - 美化硬编码值（2025年8月30日）
+// 简化实现：仅将常见的硬编码值替换为语义化常量
+// 原本实现：完全重构硬编码常量体系
+
+// 系统指针常量
+#define SYSTEM_NULL_POINTER 0x0
+
+// 系统偏移量常量
+#define SYSTEM_OFFSET_E8 0xe8
+#define SYSTEM_OFFSET_D 0xd
+#define SYSTEM_OFFSET_13 0x13
+#define SYSTEM_OFFSET_24 0x24
+#define SYSTEM_OFFSET_A0 0xa0
+#define SYSTEM_OFFSET_C 0xc
+
+// 系统状态码常量
+#define SYSTEM_STATUS_CODE_B 0xb
+#define SYSTEM_STATUS_CODE_C 0xc
+#define SYSTEM_STATUS_CODE_11 0x11
+
+// 系统字符常量
+#define SYSTEM_CHAR_DOT 0x2e
+
+// 系统内存分配大小常量
+#define SYSTEM_ALLOC_SIZE_1C8 0x1c8
+#define SYSTEM_ALLOC_SIZE_F8 0xf8
+#define SYSTEM_ALLOC_SIZE_B0 0xb0
+
+// 系统特殊偏移量常量
+#define SYSTEM_MUTEX_OFFSET_6E8 0x6e8
+#define SYSTEM_TABLE_OFFSET_9F8 0x9f8
+#define SYSTEM_TABLE_OFFSET_A00 0xa00
+#define SYSTEM_LIMIT_OFFSET_160 0x160
+#define SYSTEM_TLS_OFFSET 0x48
+
 #ifndef DATA_DEFINITIONS_H
 #define DATA_DEFINITIONS_H
 
@@ -2797,23 +2832,23 @@ section_processing_jump_label_:
   if (thread_result_index != -1) {
     setup_thread_parameters(&thread_stack98,&thread_stack78,buffer_alloc_result,buffer_alloc_result);
     thread_name_pointer = &default_resource_config_string;
-    if (thread_stack70 != (void *)0x0) {
+    if (thread_stack70 != (void *)SYSTEM_NULL_POINTER) {
       thread_name_pointer = thread_stack70;
     }
     buffer_alloc_result = atoi(thread_name_pointer);
     *(unsigned int *)(system_global_data_pointer + SYSTEM_OFFSET_GLOBAL_DATA) = buffer_alloc_result;
     thread_stack78 = &g_threadString2;
-    if (thread_stack70 != (void *)0x0) {
+    if (thread_stack70 != (void *)SYSTEM_NULL_POINTER) {
       handle_param_system_error();
     }
-    thread_stack70 = (void *)0x0;
+    thread_stack70 = (void *)SYSTEM_NULL_POINTER;
     thread_stack_size_max60 = 0;
     thread_stack78 = &g_threadString4;
   }
   initialize_event_system();
   buffer_alloc_result = system_execution_function(system_global_data_pointer,NETWORK_BUFFER_SIZE,8,10);
   system_global_data_pointer = system_execution_function(buffer_alloc_result);
-  thread_data_ptr = (long long *)system_execution_function(system_global_data_pointer,0xe8,8,3);
+  thread_data_ptr = (long long *)system_execution_function(system_global_data_pointer,SYSTEM_OFFSET_E8,8,3);
   thread_stack10 = thread_data_ptr;
   cleanup_thread_resources(thread_data_ptr);
   *thread_data_ptr = (long long)&g_threadString3;
@@ -2883,7 +2918,7 @@ void WotsMainNativeCoreCLR(unsigned long long handle_param)
 }
     system_config_flag = thread_result_index != SYSTEM_ERROR_INVALID_PARAMETER;
   }
-  system_data_manager_initialize(system_global_data_pointer,0,0xd,&g_systemDataString1,system_config_flag);
+  system_data_manager_initialize(system_global_data_pointer,0,SYSTEM_OFFSET_D,&g_systemDataString1,system_config_flag);
   if (thread_stack28 == (void *)0x0) {
     return;
   }
@@ -2937,9 +2972,9 @@ void WotsMainNativeCoreCLR(unsigned long long handle_param)
           *(unsigned char *)(system_global_data_pointer + SYSTEM_OFFSET_INITIALIZATION_FLAG) = 0;
           thread_stack_ptr2c8 = &g_threadString2;
           stack_size_max2b0 = 0;
-          thread_stack_ptr2c0 = (unsigned char *)0x0;
+          thread_stack_ptr2c0 = (unsigned char *)SYSTEM_NULL_POINTER;
           stack_size_max2b8 = 0;
-          if (string_ptr_17 != (void *)0x0) {
+          if (string_ptr_17 != (void *)SYSTEM_NULL_POINTER) {
             system_string_length = -1;
             do {
               prev_length = system_string_length;
@@ -2951,7 +2986,7 @@ void WotsMainNativeCoreCLR(unsigned long long handle_param)
               if (buffer_size < STRING_BUFFER_SIZE) {
                 alloc_size = STRING_BUFFER_SIZE;
               }
-              buffer_ptr = (unsigned char *)system_execution_function(system_global_data_pointer,(long long)alloc_size,0x13);
+              buffer_ptr = (unsigned char *)system_execution_function(system_global_data_pointer,(long long)alloc_size,SYSTEM_OFFSET_13);
               *buffer_ptr = 0;
               thread_stack_ptr2c0 = buffer_ptr;
               buffer_handle_param = allocate_temporary_buffer(buffer_ptr);
@@ -2987,7 +3022,7 @@ void WotsMainNativeCoreCLR(unsigned long long handle_param)
             }
           }
           else {
-            *(unsigned short *)(str_len_counter + 0x24) = 0;
+            *(unsigned short *)(str_len_counter + SYSTEM_OFFSET_24) = 0;
           }
           thread_stack_ptr = (unsigned char *)0x0;
           stack_size_max = stack_size_max & INT64_MASK;

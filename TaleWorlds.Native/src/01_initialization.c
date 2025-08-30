@@ -34180,7 +34180,7 @@ ulonglong InitializeSystemModule36(longlong handleIdentifier,longlong *resourceI
     }
     else {
       system_init_flag = InitializeShaderSystem(handleIdentifier);
-      if (system_init_flag == '\0') goto joined_r0x00018005fdcd;
+      if (system_init_flag == '\0') goto system_label_initialization_complete;
       pallocation_size = *(longlong **)(handleIdentifier + SYSTEM_OBJECT_OFFSET_60);
       system_status_code = *pallocation_size - 1U & pallocation_size[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] + 1U;
       node_root0 = *(ulonglong **)(pallocation_size[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] + system_int_result_unsigned * 8);
