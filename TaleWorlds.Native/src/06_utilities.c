@@ -5065,9 +5065,9 @@ uint64 release_system_resources(void)
   longlong utility_stack_frame_pointer;
   uint32 *generic_data_pointer;
   uint utility_system_status_code;
-  ulonglong validation_flag;
+  ulonglong validation_flag_primary;
   longlong utility_thread_stack_offset;           // 线程栈偏移量50
-  ulonglong validation_flag;
+  longlong allocation_buffer_data;
   
   validation_flag = 0;
   validation_flag = UTILITY_REGISTER_INPUT_VALUE - 8;
