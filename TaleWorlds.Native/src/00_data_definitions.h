@@ -4748,7 +4748,7 @@ section_processing_jump_label_:
     buffer_allocation_result = system_global_data_pointer;
     if ((system_global_data_pointer != 0) &&
        (psystem_initialization_result = *(long long **)(system_global_data_pointer + SYSTEM_OFFSET_NETWORK_DATA_PTR), psystem_initialization_result != (long long *)SYSTEM_NULL_POINTER)) {
-      ppstack_long_var = &pstack_long_var;
+      system_double_pointer_stack_long = &pstack_long_var;
       pstack_long_var = psystem_initialization_result;
       (**(code **)(*psystem_initialization_result + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG))();
       system_event_handle_paramr_allocate_memory(buffer_allocation_result,&pstack_long_var);
@@ -4757,7 +4757,7 @@ section_processing_jump_label_:
     if (*(char *)(system_global_data_pointer + SYSTEM_OFFSET_AUDIO_STATUS) == '\0') {
       if ((system_global_data_pointer != 0) &&
          (psystem_initialization_result = *(long long **)(system_global_data_pointer + SYSTEM_OFFSET_NETWORK_DATA_PTR), psystem_initialization_result != (long long *)SYSTEM_NULL_POINTER)) {
-        ppstack_long_var = &pstack_long_var;
+        system_double_pointer_stack_long = &pstack_long_var;
         pstack_long_var = psystem_initialization_result;
         (**(code **)(*psystem_initialization_result + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG))();
         system_event_handle_paramr_initialize_stack(buffer_allocation_result,&pstack_long_var,0);
@@ -4857,7 +4857,7 @@ section_processing_jump_label_:
     buffer_allocation_result = system_global_data_pointer;
     if ((system_global_data_pointer != 0) &&
        (psystem_initialization_result = *(long long **)(system_global_data_pointer + SYSTEM_OFFSET_NETWORK_DATA_PTR), psystem_initialization_result != (long long *)SYSTEM_NULL_POINTER)) {
-      ppstack_long_var = &pstack_long_var;
+      system_double_pointer_stack_long = &pstack_long_var;
       pstack_long_var = psystem_initialization_result;
       (**(code **)(*psystem_initialization_result + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG))();
       system_event_handle_paramr_allocate_memory(buffer_allocation_result,&pstack_long_var);
@@ -4866,7 +4866,7 @@ section_processing_jump_label_:
     if (*(char *)(system_global_data_pointer + SYSTEM_OFFSET_AUDIO_STATUS) == '\0') {
       if ((system_global_data_pointer != 0) &&
          (psystem_initialization_result = *(long long **)(system_global_data_pointer + SYSTEM_OFFSET_NETWORK_DATA_PTR), psystem_initialization_result != (long long *)SYSTEM_NULL_POINTER)) {
-        ppstack_long_var = &pstack_long_var;
+        system_double_pointer_stack_long = &pstack_long_var;
         pstack_long_var = psystem_initialization_result;
         (**(code **)(*psystem_initialization_result + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG))();
         system_event_handle_paramr_initialize_stack(buffer_allocation_result,&pstack_long_var,0);
@@ -4946,16 +4946,16 @@ section_processing_jump_label_:
   maximum_stack_size = system_global_data_pointer;
   system_global_data_pointer = (long long *)*string_input_pointer;
   system_operation_stack_buffer[0] = SYSTEM_ZERO_VALUE;
-  stack_pointer_extended = alStack_90;
+  stack_pointer_extended = system_stack_array_90;
   buffer_allocation_result = SYSTEM_ZERO_VALUE;
-  alStack_90[0] = SYSTEM_ZERO_VALUE;
-  alStack_90[1] = SYSTEM_ZERO_VALUE;
-  alStack_90[2] = SYSTEM_ZERO_VALUE;
+  system_stack_array_90[0] = SYSTEM_ZERO_VALUE;
+  system_stack_array_90[1] = SYSTEM_ZERO_VALUE;
+  system_stack_array_90[2] = SYSTEM_ZERO_VALUE;
   maximum_stack_size = SYSTEM_THREE_VALUE;
   system_execution_function(system_operation_stack_buffer);
   system_handle_param_manager_002((long long)system_global_data_pointer * SYSTEM_OFFSET_MULTIPLIER + system_global_data_pointer + SYSTEM_OFFSET_HANDLE_PARAM,system_operation_stack_buffer);
-  stack_pointer_extended = alStack_90;
-  if (alStack_90[0] != 0) {
+  stack_pointer_extended = system_stack_array_90;
+  if (system_stack_array_90[0] != 0) {
     handle_param_system_error();
   }
   system_global_data_pointer = system_initialization_result_pointer;
@@ -4972,10 +4972,10 @@ section_processing_jump_label_:
   maximum_stack_size = system_global_data_pointer;
   system_global_data_pointer = (long long *)*system_initialization_result_pointer;
   system_operation_stack_buffer[0] = SYSTEM_ZERO_VALUE;
-  stack_pointer_extended = alStack_90;
-  alStack_90[0] = SYSTEM_ZERO_VALUE;
-  alStack_90[1] = SYSTEM_ZERO_VALUE;
-  alStack_90[2] = SYSTEM_ZERO_VALUE;
+  stack_pointer_extended = system_stack_array_90;
+  system_stack_array_90[0] = SYSTEM_ZERO_VALUE;
+  system_stack_array_90[1] = SYSTEM_ZERO_VALUE;
+  system_stack_array_90[2] = SYSTEM_ZERO_VALUE;
   maximum_stack_size = SYSTEM_THREE_VALUE;
   system_execution_function(system_operation_stack_buffer);
   system_execution_function(system_operation_stack_buffer);
@@ -5004,8 +5004,8 @@ section_processing_jump_label_:
       } while (system_initialization_result2 != 0);
     }
   }
-  stack_pointer_extended = alStack_90;
-  if (alStack_90[0] != 0) {
+  stack_pointer_extended = system_stack_array_90;
+  if (system_stack_array_90[0] != 0) {
     handle_param_system_error();
   }
   system_global_data_pointer = psystem_initialization_result;
@@ -5020,7 +5020,7 @@ section_processing_jump_label_:
       __Throw_C_error_std__YAXH_Z(thread_result_status);
     }
     system_initialization_result_pointer = system_global_data_pointer;
-    plStack_2c0 = system_global_data_pointer;
+    system_pointer_stack_2c0 = system_global_data_pointer;
     system_global_data_pointer = (long long *)*string_input_pointer;
     system_initializer_003(&systemConfigData1,0,0);
     system_config_001(&systemConfigData2);
@@ -5028,13 +5028,13 @@ section_processing_jump_label_:
     system_parameter_stack_buffer[0] = FLOAT_ONE;
     maximum_stack_size = path_buffer_size000;
     thread_stack_ptr = &systemConfigBufferPtr;
-    pplStack_328 = (long long **)&maximum_stack_size;
+    system_double_pointer_stack_328 = (long long **)&maximum_stack_size;
     system_config_002(&systemConfigData3,4,system_global_data_pointer + SYSTEM_OFFSET_DATA_INTEGRITY,system_parameter_stack_buffer);
     stack_pointer_extended = (long long *)merge_32bit_values(stack_pointer_extended_low_half_, SYSTEM_CONFIG_BUFFER_SIZE_ZERO);
     maximum_stack_size = (long long *)merge_32bit_values(maximum_stack_size_low_half_extended,FLOAT_ONE);
     maximum_stack_size = path_buffer_size000;
     thread_stack_ptr = &systemConfigBufferPtr;
-    pplStack_328 = &stack_pointer_extended;
+    system_double_pointer_stack_328 = &stack_pointer_extended;
     system_config_002(&systemConfigData4,4,system_global_data_pointer + SYSTEM_OFFSET_STRING_FLAG0,&maximum_stack_size);
     system_initializer_004();
     system_global_data_pointer = system_initialization_result_pointer;
@@ -5050,14 +5050,14 @@ section_processing_jump_label_:
       __Throw_C_error_std__YAXH_Z(thread_result_status);
     }
     system_initialization_result_pointer = system_global_data_pointer;
-    plStack_2c0 = system_global_data_pointer;
+    system_pointer_stack_2c0 = system_global_data_pointer;
     system_global_data_pointer = (long long *)*string_input_pointer;
     system_initializer_003(&systemConfigData6,0,0);
     maximum_stack_size = (long long *)merge_32bit_values(maximum_stack_size_low_half_extended, SYSTEM_CONFIG_BUFFER_SIZE_ZERO);
     stack_pointer_extended = (long long *)merge_32bit_values(stack_pointer_extended_low_half_,FLOAT_ONE);
     maximum_stack_size = path_buffer_size000;
     thread_stack_ptr = &systemConfigBufferPtr;
-    pplStack_328 = (long long **)&maximum_stack_size;
+    system_double_pointer_stack_328 = (long long **)&maximum_stack_size;
     system_config_002(&systemConfigData5,4,system_global_data_pointer + SYSTEM_OFFSET_STRING_FLAG8,&stack_pointer_extended);
     system_initializer_004();
     system_global_data_pointer = system_initialization_result_pointer;
@@ -5073,14 +5073,14 @@ section_processing_jump_label_:
       __Throw_C_error_std__YAXH_Z(thread_result_status);
     }
     system_initialization_result_pointer = system_global_data_pointer;
-    plStack_2c0 = system_global_data_pointer;
+    system_pointer_stack_2c0 = system_global_data_pointer;
     system_global_data_pointer = (long long *)*string_input_pointer;
     system_initializer_003(&systemConfigData7,0,0);
     maximum_stack_size = (long long *)merge_32bit_values(maximum_stack_size_low_half_extended, SYSTEM_CONFIG_BUFFER_SIZE_ZERO);
     stack_pointer_extended = (long long *)merge_32bit_values(stack_pointer_extended_low_half_,FLOAT_ONE);
     maximum_stack_size = path_buffer_size000;
     thread_stack_ptr = &systemConfigBufferPtr;
-    pplStack_328 = (long long **)&maximum_stack_size;
+    system_double_pointer_stack_328 = (long long **)&maximum_stack_size;
     system_config_002(&systemConfigData5,4,system_global_data_pointer + SYSTEM_OFFSET_STRING_FLAGc,&stack_pointer_extended);
     if (*(float *)(system_global_data_pointer + SYSTEM_OFFSET_STRING_FLAGc) == SYSTEM_FLOAT_VALUE_ZERO) {
       *(unsigned int *)(system_global_data_pointer + SYSTEM_OFFSET_STRING_FLAGc) = FLOAT_ONE;
@@ -5206,16 +5206,16 @@ section_processing_jump_label_:
       __Throw_C_error_std__YAXH_Z(thread_result_status);
     }
     system_initialization_result_pointer = system_global_data_pointer;
-    plStack_2c0 = system_global_data_pointer;
+    system_pointer_stack_2c0 = system_global_data_pointer;
     system_global_data_pointer = (long long *)*string_input_pointer;
     stack_pointer_extended = (long long *)SYSTEM_NULL_POINTER;
     maximum_stack_size = (long long *)SYSTEM_NULL_POINTER;
-    pplStack_328 = (long long **)&cStack_300;
+    system_double_pointer_stack_328 = (long long **)&system_character_stack_300;
     system_processor_002(system_initialization_result2,&thread_stack_ptr,&stack_pointer_extended,&maximum_stack_size);
     if (*(char *)(system_initialization_result2 + SYSTEM_OFFSET_FUNCTION_HANDLER) != '\0') {
       system_processor_003(system_initialization_result2,&stack_pointer_extended,&maximum_stack_size,acStack_2ff);
     }
-    if ((cStack_300 == '\0') && (acStack_2ff[0] == '\0')) {
+    if ((system_character_stack_300 == '\0') && (acStack_2ff[0] == '\0')) {
       *(unsigned char *)(system_initialization_result2 + SYSTEM_OFFSET_FUNCTION_HANDLER) = SYSTEM_ZERO_VALUE;
     }
     system_global_data_pointer = system_initialization_result_pointer;
@@ -5408,7 +5408,7 @@ section_processing_jump_label_:
       __Throw_C_error_std__YAXH_Z(thread_result_status);
     }
     buffer_allocation_result = system_global_data_pointer;
-    pplStack_1b8 = (long long **)system_global_data_pointer;
+    system_double_pointer_stack_1b8 = (long long **)system_global_data_pointer;
     system_global_data_pointer = *string_input_pointer;
     system_initializer_003(&systemInitData1,0,0);
     system_sum_accumulator_1 = SYSTEM_FLOAT_VALUE_ZERO;
@@ -5461,10 +5461,10 @@ section_processing_jump_label_:
   buffer_allocation_result = thread_operation_flags;
   if (0 < (int)system_initialization_result8) {
     do {
-      string_input_pointer = (unsigned long long *)system_validator_002(system_initialization_result8,&plStack_1d0,(long long)(int)buffer_allocation_result);
-      (**(code **)(*(long long *)*string_input_pointer + 0x98))();
-      if (plStack_1d0 != (long long *)SYSTEM_NULL_POINTER) {
-        (**(code **)(*plStack_1d0 + SYSTEM_OFFSET_CLEANUP_FUNCTION))();
+      string_input_pointer = (unsigned long long *)system_validator_002(system_initialization_result8,&system_pointer_stack_1d0,(long long)(int)buffer_allocation_result);
+      (**(code **)(*(long long *)*string_input_pointer + SYSTEM_CONTROL_VALUE_98))();
+      if (system_pointer_stack_1d0 != (long long *)SYSTEM_NULL_POINTER) {
+        (**(code **)(*system_pointer_stack_1d0 + SYSTEM_OFFSET_CLEANUP_FUNCTION))();
       }
       thread_operation_flags = (int)buffer_allocation_result + 1;
       system_initialization_result8 = *(long long *)(system_global_data_pointer + SYSTEM_OFFSET_GLOBAL_DATA_PTR70) - *(long long *)(system_global_data_pointer + SYSTEM_OFFSET_GLOBAL_DATA_PTR68) >> 3;
@@ -5528,7 +5528,7 @@ section_processing_jump_label_:
     __Throw_C_error_std__YAXH_Z(thread_result_status);
   }
   buffer_allocation_result = system_global_data_pointer;
-  pplStack_220 = (long long **)system_global_data_pointer;
+  system_double_pointer_stack_220 = (long long **)system_global_data_pointer;
   system_global_data_pointer = *string_input_pointer;
   system_initialization_result8 = *(long long *)(system_global_data_pointer + 0x1a08 + (long long)(int)system_global_data_pointer * 8);
   if (system_initialization_result8 != 0) {
@@ -5590,10 +5590,10 @@ section_processing_jump_label_:
         (**(code **)(string_input_pointer + SYSTEM_POINTER_OFFSET0))();
       }
     }
-    plStack_1c0 = *(long long **)(system_initialization_result6 + SYSTEM_OFFSET_STRING_BUFFER_SIZE);
+    system_pointer_stack_1c0 = *(long long **)(system_initialization_result6 + SYSTEM_OFFSET_STRING_BUFFER_SIZE);
     *(unsigned long long *)(system_initialization_result6 + SYSTEM_OFFSET_STRING_BUFFER_SIZE) = SYSTEM_ZERO_VALUE;
-    if (plStack_1c0 != (long long *)SYSTEM_NULL_POINTER) {
-      (**(code **)(*plStack_1c0 + SYSTEM_OFFSET_CLEANUP_FUNCTION))();
+    if (system_pointer_stack_1c0 != (long long *)SYSTEM_NULL_POINTER) {
+      (**(code **)(*system_pointer_stack_1c0 + SYSTEM_OFFSET_CLEANUP_FUNCTION))();
     }
     *(unsigned int *)(system_initialization_result6 + 8) = SYSTEM_ZERO_VALUE;
     if (system_data_parameter_third != (long long *)SYSTEM_NULL_POINTER) {
@@ -5603,39 +5603,39 @@ section_processing_jump_label_:
     system_data_parameter_secondary = UINT64_MAX;
   }
   else if (*(int *)(system_initialization_result6 + 8) != 0) goto section_processing_jump_label_;
-  *(uint *)(system_global_data_pointer + 0x1614) =
-       (*(int *)(system_global_data_pointer + 0x1614) + 1U) % *(uint *)(system_global_data_pointer + SYSTEM_OFFSET_COUNTER_MAX);
+  *(uint *)(system_global_data_pointer + SYSTEM_CONTROL_VALUE_COUNTER_MODULO) =
+       (*(int *)(system_global_data_pointer + SYSTEM_CONTROL_VALUE_COUNTER_MODULO) + 1U) % *(uint *)(system_global_data_pointer + SYSTEM_OFFSET_COUNTER_MAX);
 section_processing_jump_label_:
-  pplStack_220 = (long long **)&thread_stack_ptr;
+  system_double_pointer_stack_220 = (long long **)&thread_stack_ptr;
   thread_stack_ptr = &g_memoryAllocationFlag;
   thread_stack_ptr = system_initialization_stack_buffer;
   maximum_stack_size = SYSTEM_ZERO_VALUE;
   system_initialization_stack_buffer[0] = SYSTEM_ZERO_VALUE;
   maximum_stack_size = SYSTEM_BUFFER_SIZE_CONFIG;
   maximum_stack_size = thread_operation_flags;
-  pplStack_220 = (long long **)system_execution_function(system_global_data_pointer,path_buffer_size,8,3);
-  *pplStack_220 = (long long *)&g_threadString4;
-  pplStack_220[1] = (long long *)SYSTEM_NULL_POINTER;
-  *(unsigned int *)(pplStack_220 + 2) = SYSTEM_ZERO_VALUE;
-  *pplStack_220 = (long long *)&g_threadString2;
-  pplStack_220[3] = (long long *)SYSTEM_NULL_POINTER;
-  pplStack_220[1] = (long long *)SYSTEM_NULL_POINTER;
-  *(unsigned int *)(pplStack_220 + 2) = SYSTEM_ZERO_VALUE;
+  system_double_pointer_stack_220 = (long long **)system_execution_function(system_global_data_pointer,path_buffer_size,8,3);
+  *system_double_pointer_stack_220 = (long long *)&g_threadString4;
+  system_double_pointer_stack_220[1] = (long long *)SYSTEM_NULL_POINTER;
+  *(unsigned int *)(system_double_pointer_stack_220 + 2) = SYSTEM_ZERO_VALUE;
+  *system_double_pointer_stack_220 = (long long *)&g_threadString2;
+  system_double_pointer_stack_220[3] = (long long *)SYSTEM_NULL_POINTER;
+  system_double_pointer_stack_220[1] = (long long *)SYSTEM_NULL_POINTER;
+  *(unsigned int *)(system_double_pointer_stack_220 + 2) = SYSTEM_ZERO_VALUE;
   psystem_initialization_result7 = system_global_data_pointer;
   maximum_stack_size = SYSTEM_ZERO_VALUE;
-  thread_operation_flags = *(unsigned int *)(pplStack_220 + 3);
-  *(int *)(pplStack_220 + 3) = (int)system_global_data_pointer[SYSTEM_GLOBAL_DATA_INDEX_CONFIG_VALUE];
+  thread_operation_flags = *(unsigned int *)(system_double_pointer_stack_220 + 3);
+  *(int *)(system_double_pointer_stack_220 + 3) = (int)system_global_data_pointer[SYSTEM_GLOBAL_DATA_INDEX_CONFIG_VALUE];
   *(unsigned int *)(psystem_initialization_result7 + 10) = thread_operation_flags;
-  system_initialization_result6 = (long long)pplStack_220[1];
-  pplStack_220[1] = (long long *)psystem_initialization_result7[8];
+  system_initialization_result6 = (long long)system_double_pointer_stack_220[1];
+  system_double_pointer_stack_220[1] = (long long *)psystem_initialization_result7[8];
   psystem_initialization_result7[8] = system_initialization_result6;
-  thread_operation_flags = *(unsigned int *)(pplStack_220 + 2);
-  *(int *)(pplStack_220 + 2) = (int)psystem_initialization_result7[9];
+  thread_operation_flags = *(unsigned int *)(system_double_pointer_stack_220 + 2);
+  *(int *)(system_double_pointer_stack_220 + 2) = (int)psystem_initialization_result7[9];
   *(unsigned int *)(psystem_initialization_result7 + 9) = thread_operation_flags;
-  thread_operation_flags = *(unsigned int *)((long long)pplStack_220 + SYSTEM_OFFSET_PATH_SIZE);
-  *(unsigned int *)((long long)pplStack_220 + SYSTEM_OFFSET_PATH_SIZE) = *(unsigned int *)((long long)psystem_initialization_result7 + SYSTEM_OFFSET_INITIALIZATION_FLAG);
+  thread_operation_flags = *(unsigned int *)((long long)system_double_pointer_stack_220 + SYSTEM_OFFSET_PATH_SIZE);
+  *(unsigned int *)((long long)system_double_pointer_stack_220 + SYSTEM_OFFSET_PATH_SIZE) = *(unsigned int *)((long long)psystem_initialization_result7 + SYSTEM_OFFSET_INITIALIZATION_FLAG);
   *(unsigned int *)((long long)psystem_initialization_result7 + SYSTEM_OFFSET_INITIALIZATION_FLAG) = thread_operation_flags;
-  thread_stack_ptr = pplStack_220;
+  thread_stack_ptr = system_double_pointer_stack_220;
   if (*(code **)(*psystem_initialization_result7 + 8) == (code *)&system_exception_handle_paramr) {
     *(unsigned int *)(psystem_initialization_result7 + 9) = SYSTEM_ZERO_VALUE;
     if ((unsigned char *)psystem_initialization_result7[8] != (unsigned char *)SYSTEM_NULL_POINTER) {
@@ -5685,22 +5685,22 @@ section_processing_jump_label_:
     (**(code **)(*psystem_initialization_result7 + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG))(psystem_initialization_result7);
   }
   character_scan_pointer = system_global_data_pointer;
-  pplStack_220 = &plStack_228;
-  plStack_228 = psystem_initialization_result7;
+  system_double_pointer_stack_220 = &system_pointer_stack_228;
+  system_pointer_stack_228 = psystem_initialization_result7;
   if (psystem_initialization_result7 != (long long *)SYSTEM_NULL_POINTER) {
     (**(code **)(*psystem_initialization_result7 + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG))(psystem_initialization_result7);
   }
-  pplStack_1b8 = &plStack_228;
+  system_double_pointer_stack_1b8 = &system_pointer_stack_228;
   string_input_pointer = *(unsigned long long **)(*(long long *)(character_scan_pointer + 8) + 8);
   character_scan_pointer = *(code **)*string_input_pointer;
-  pplStack_220 = &plStack_218;
-  plStack_218 = plStack_228;
-  if (plStack_228 != (long long *)SYSTEM_NULL_POINTER) {
-    (**(code **)(*plStack_228 + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG))();
+  system_double_pointer_stack_220 = &system_pointer_stack_218;
+  system_pointer_stack_218 = system_pointer_stack_228;
+  if (system_pointer_stack_228 != (long long *)SYSTEM_NULL_POINTER) {
+    (**(code **)(*system_pointer_stack_228 + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG))();
   }
-  (*character_scan_pointer)(string_input_pointer,&plStack_218);
-  if (plStack_228 != (long long *)SYSTEM_NULL_POINTER) {
-    (**(code **)(*plStack_228 + SYSTEM_OFFSET_CLEANUP_FUNCTION))();
+  (*character_scan_pointer)(string_input_pointer,&system_pointer_stack_218);
+  if (system_pointer_stack_228 != (long long *)SYSTEM_NULL_POINTER) {
+    (**(code **)(*system_pointer_stack_228 + SYSTEM_OFFSET_CLEANUP_FUNCTION))();
   }
   if (psystem_initialization_result7 != (long long *)SYSTEM_NULL_POINTER) {
     (**(code **)(*psystem_initialization_result7 + SYSTEM_OFFSET_CLEANUP_FUNCTION))(psystem_initialization_result7);
@@ -5721,7 +5721,7 @@ section_processing_jump_label_:
   }
   pthread_operation_flags = *(unsigned long long **)(*handle_param + SYSTEM_OFFSET_GLOBAL_DATA_PTR);
   character_scan_pointer = *(code **)*pthread_operation_flags;
-  ppstack_long_var = &pstack_long_var;
+  system_double_pointer_stack_long = &pstack_long_var;
   pstack_long_var = *(long long **)(*handle_param + SYSTEM_OFFSET_STRING_BUFFER_SIZE);
   if (pstack_long_var != (long long *)SYSTEM_NULL_POINTER) {
     (**(code **)(*pstack_long_var + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG))();
@@ -5831,11 +5831,11 @@ long long process_memory_with_thread_operation_flags(unsigned long long handle_p
       g_data_system_flag = g_data_system_flag == '\0';
     }
     if (g_data_system_flag != '\0') {
-      (*(code *)(*reg_rcx[SYSTEM_OFFSET_MODULE_C170])[9])(reg_rcx[SYSTEM_OFFSET_MODULE_C170],astack_long_var[0] + SYSTEM_FUNCTION_OFFSET_CALLBACK_120);
+      (*(code *)(*reg_rcx[SYSTEM_OFFSET_MODULE_C170])[9])(reg_rcx[SYSTEM_OFFSET_MODULE_C170],system_alternative_stack_long[0] + SYSTEM_FUNCTION_OFFSET_CALLBACK_120);
     }
   }
-  system_initialization_result0 = astack_long_var[0];
-  if ((*(int *)(*(long long *)(astack_long_var[0] + SYSTEM_OFFSET_MODULE_DATA_3580) + SYSTEM_OFFSET_MODULE_SECONDARY) != 0) &&
+  system_initialization_result0 = system_alternative_stack_long[0];
+  if ((*(int *)(*(long long *)(system_alternative_stack_long[0] + SYSTEM_OFFSET_MODULE_DATA_3580) + SYSTEM_OFFSET_MODULE_SECONDARY) != 0) &&
      (buffer_allocation_result = buffer_allocation_result, buffer_allocation_result = buffer_allocation_result, (long long)reg_rcx[SYSTEM_OFFSET_REGISTER_1D] - (long long)reg_rcx[SYSTEM_OFFSET_REGISTER_1C] >> 3 != 0))
   {
     do {
@@ -5847,18 +5847,18 @@ long long process_memory_with_thread_operation_flags(unsigned long long handle_p
     } while ((ulong long)(long long)(int)buffer_allocation_result <
              (ulong long)((long long)reg_rcx[SYSTEM_OFFSET_REGISTER_1D] - (long long)reg_rcx[SYSTEM_OFFSET_REGISTER_1C] >> 3));
   }
-  ppplStack_b8 = (long long ***)0x0;
+  system_triple_pointer_stack_b8 = (long long ***)0x0;
   maximum_stack_size = (long long *)merge_32bit_values(maximum_stack_size_low_half_extended,(unsigned int)maximum_stack_size);
-  if (*(int *)(*(long long *)(astack_long_var[0] + SYSTEM_OFFSET_MODULE_DATA_3580) + SYSTEM_OFFSET_MODULE_SECONDARY) != 0) {
+  if (*(int *)(*(long long *)(system_alternative_stack_long[0] + SYSTEM_OFFSET_MODULE_DATA_3580) + SYSTEM_OFFSET_MODULE_SECONDARY) != 0) {
     maximum_stack_size = (long long *)merge_32bit_values(maximum_stack_size_low_half_extended,(unsigned int)maximum_stack_size);
-    if ((((*(byte *)(astack_long_var[0] + SYSTEM_FUNCTION_OFFSET_STACK_1BD8) & path_buffer_size) != 0) &&
+    if ((((*(byte *)(system_alternative_stack_long[0] + SYSTEM_FUNCTION_OFFSET_STACK_1BD8) & path_buffer_size) != 0) &&
         (maximum_stack_size = (long long *)merge_32bit_values(maximum_stack_size_low_half_extended,(unsigned int)maximum_stack_size),
         *(char *)(system_global_data_pointer + SYSTEM_OFFSET_SYSTEM_FLAG) != '\0')) &&
        (maximum_stack_size = (long long *)merge_32bit_values(maximum_stack_size_low_half_extended,(unsigned int)maximum_stack_size),
        6 < *(int *)(reg_rcx + SYSTEM_FUNCTION_OFFSET_REGISTER_4F8))) {
       buffer_allocation_result = system_execution_function(system_global_data_pointer,SYSTEM_OFFSET_CRYPTO_HANDLE,SYSTEM_OFFSET_CRYPTO_SIZE,SYSTEM_OFFSET_CRYPTO_PARAM);
-      pppstack_long_var = (long long ***)&maximum_stack_size;
-      plStack_68 = astack_long_var;
+      psystem_double_pointer_stack_long = (long long ***)&maximum_stack_size;
+      system_pointer_stack_68 = system_alternative_stack_long;
       thread_stack_ptr = &systemThreadData1;
       thread_stack_ptr = &systemThreadData2;
       maximum_stack_size_first_float_ = SUB84(reg_rcx,0);
@@ -5866,46 +5866,46 @@ long long process_memory_with_thread_operation_flags(unsigned long long handle_p
       maximum_stack_size_first_float_ = (unsigned int)maximum_stack_size;
       maximum_stack_size_low_half_extended = maximum_stack_size_low_half_extended;
       maximum_stack_size = reg_rcx;
-      maximum_stack_size = plStack_68;
-      ppplStack_b8 = (long long ***)system_execution_function(buffer_allocation_result,&maximum_stack_size);
-      if (ppplStack_b8 != (long long ***)0x0) {
-        ppsystem_memory_stack_primary = ppplStack_b8;
-        (*(code *)(*ppplStack_b8)[5])(ppplStack_b8);
+      maximum_stack_size = system_pointer_stack_68;
+      system_triple_pointer_stack_b8 = (long long ***)system_execution_function(buffer_allocation_result,&maximum_stack_size);
+      if (system_triple_pointer_stack_b8 != (long long ***)0x0) {
+        ppsystem_memory_stack_primary = system_triple_pointer_stack_b8;
+        (*(code *)(*system_triple_pointer_stack_b8)[5])(system_triple_pointer_stack_b8);
       }
       buffer_allocation_result = system_global_data_pointer;
       ppsystem_memory_stack_primary = (long long ***)0x0;
       if (*(int *)(system_global_data_pointer + SYSTEM_OFFSET_CLEANUP_FUNCTION0) == SYSTEM_ZERO_VALUE) {
-        ppppstack_long_var = &pppstack_long_var;
-        pppstack_long_var = ppplStack_b8;
-        if (ppplStack_b8 != (long long ***)0x0) {
-          (*(code *)(*ppplStack_b8)[5])(ppplStack_b8);
+        ppsystem_double_pointer_stack_long = &psystem_double_pointer_stack_long;
+        psystem_double_pointer_stack_long = system_triple_pointer_stack_b8;
+        if (system_triple_pointer_stack_b8 != (long long ***)0x0) {
+          (*(code *)(*system_triple_pointer_stack_b8)[5])(system_triple_pointer_stack_b8);
         }
-        system_event_handle_paramr_allocate_memory(buffer_allocation_result,&pppstack_long_var);
+        system_event_handle_paramr_allocate_memory(buffer_allocation_result,&psystem_double_pointer_stack_long);
       }
       else {
-        (*(code *)(*ppplStack_b8)[0xc])(ppplStack_b8);
-        if ((*ppplStack_b8)[0xe] == (long long *)&systemThreadCheckData) {
+        (*(code *)(*system_triple_pointer_stack_b8)[0xc])(system_triple_pointer_stack_b8);
+        if ((*system_triple_pointer_stack_b8)[0xe] == (long long *)&systemThreadCheckData) {
           LOCK();
-          *(unsigned char *)(ppplStack_b8 + 2) = SYSTEM_ONE_VALUE;
+          *(unsigned char *)(system_triple_pointer_stack_b8 + 2) = SYSTEM_ONE_VALUE;
           UNLOCK();
-          system_cleanup_module(ppplStack_b8 + SYSTEM_OFFSET_HANDLE_PARAM);
+          system_cleanup_module(system_triple_pointer_stack_b8 + SYSTEM_OFFSET_HANDLE_PARAM);
         }
         else {
-          (*(code *)(*ppplStack_b8)[0xe])(ppplStack_b8);
+          (*(code *)(*system_triple_pointer_stack_b8)[0xe])(system_triple_pointer_stack_b8);
         }
       }
     }
-    system_processor_007(reg_rcx,astack_long_var[0]);
+    system_processor_007(reg_rcx,system_alternative_stack_long[0]);
     buffer_allocation_result = system_global_data_pointer;
     if (((reg_rcx[SYSTEM_OFFSET_POINTER_9] != (long long ****)0x0) && (*(char *)(system_global_data_pointer + 0xfa) != '\0')) &&
-       ((*(long long *)(astack_long_var[0] + SYSTEM_OFFSET_MODULE_DATA_3580) != 0 &&
-        (*(int *)(*(long long *)(astack_long_var[0] + SYSTEM_OFFSET_MODULE_DATA_3580) + SYSTEM_OFFSET_MODULE_SECONDARY) != 0)))) {
-      maximum_stack_size = &ppppstack_long_var;
-      ppppstack_long_var = (long long ****)reg_rcx[SYSTEM_OFFSET_POINTER_9][0x461];
-      if (ppppstack_long_var != (long long ****)0x0) {
-        (*(code *)(*ppppstack_long_var)[5])();
+       ((*(long long *)(system_alternative_stack_long[0] + SYSTEM_OFFSET_MODULE_DATA_3580) != 0 &&
+        (*(int *)(*(long long *)(system_alternative_stack_long[0] + SYSTEM_OFFSET_MODULE_DATA_3580) + SYSTEM_OFFSET_MODULE_SECONDARY) != 0)))) {
+      maximum_stack_size = &ppsystem_double_pointer_stack_long;
+      ppsystem_double_pointer_stack_long = (long long ****)reg_rcx[SYSTEM_OFFSET_POINTER_9][0x461];
+      if (ppsystem_double_pointer_stack_long != (long long ****)0x0) {
+        (*(code *)(*ppsystem_double_pointer_stack_long)[5])();
       }
-      system_event_handle_paramr_initialize_stack(buffer_allocation_result,&ppppstack_long_var,0);
+      system_event_handle_paramr_initialize_stack(buffer_allocation_result,&ppsystem_double_pointer_stack_long,0);
     }
     if ((*(char *)((long long)reg_rcx + SYSTEM_OFFSET_PATH_TERMINATOR) != '\0') &&
        (0 < (int)(((long long)reg_rcx[SYSTEM_OFFSET_REGISTER_B6] - (long long)reg_rcx[SYSTEM_OFFSET_REGISTER_B5]) / SYSTEM_OFFSET_PATH_ENTRY_SIZE))) {
@@ -5927,26 +5927,26 @@ long long process_memory_with_thread_operation_flags(unsigned long long handle_p
         }
       }
     }
-    system_initialization_result0 = astack_long_var[0];
-    psystem_initialization_result1 = *(long long **)(*(long long *)(astack_long_var[0] + SYSTEM_OFFSET_MODULE_DATA_3580) + SYSTEM_OFFSET_MODULE_C0);
+    system_initialization_result0 = system_alternative_stack_long[0];
+    psystem_initialization_result1 = *(long long **)(*(long long *)(system_alternative_stack_long[0] + SYSTEM_OFFSET_MODULE_DATA_3580) + SYSTEM_OFFSET_MODULE_C0);
     if (psystem_initialization_result1 != (long long *)SYSTEM_NULL_POINTER) {
-      plStack_78 = psystem_initialization_result1;
+      system_pointer_stack_78 = psystem_initialization_result1;
       (**(code **)(*psystem_initialization_result1 + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG))(psystem_initialization_result1);
     }
-    plStack_78 = *(long long **)(system_initialization_result0 + 0x12498);
+    system_pointer_stack_78 = *(long long **)(system_initialization_result0 + 0x12498);
     *(long long **)(system_initialization_result0 + 0x12498) = psystem_initialization_result1;
-    if (plStack_78 != (long long *)SYSTEM_NULL_POINTER) {
-      (**(code **)(*plStack_78 + SYSTEM_OFFSET_CLEANUP_FUNCTION))();
+    if (system_pointer_stack_78 != (long long *)SYSTEM_NULL_POINTER) {
+      (**(code **)(*system_pointer_stack_78 + SYSTEM_OFFSET_CLEANUP_FUNCTION))();
     }
     ppppsystem_initialization_result3 = reg_rcx[99];
     if (ppppsystem_initialization_result3 != (long long ****)0x0) {
-      (*(code *)(*ppppsystem_initialization_result3)[SYSTEM_CONSTANT_2])(ppppsystem_initialization_result3,astack_long_var[0]);
+      (*(code *)(*ppppsystem_initialization_result3)[SYSTEM_CONSTANT_2])(ppppsystem_initialization_result3,system_alternative_stack_long[0]);
     }
     if (reg_rcx[SYSTEM_OFFSET_REGISTER_22] != (long long ****)0x0) {
-      (*(code *)reg_rcx[SYSTEM_OFFSET_REGISTER_23])(astack_long_var[0]);
+      (*(code *)reg_rcx[SYSTEM_OFFSET_REGISTER_23])(system_alternative_stack_long[0]);
     }
     if ((*(char *)(reg_rcx + SYSTEM_OFFSET_MODULE_FLAG) != '\0') &&
-       (system_initialization_result0 = *(long long *)(*(long long *)(astack_long_var[0] + SYSTEM_OFFSET_MODULE_DATA_3580) + SYSTEM_OFFSET_MODULE_DATA_530), system_initialization_result0 != 0)) {
+       (system_initialization_result0 = *(long long *)(*(long long *)(system_alternative_stack_long[0] + SYSTEM_OFFSET_MODULE_DATA_3580) + SYSTEM_OFFSET_MODULE_DATA_530), system_initialization_result0 != 0)) {
       *(unsigned int *)(system_initialization_result0 + SYSTEM_CONFIG_BUFFER_SIZE) = SYSTEM_FLOAT_VALUE_INITIALIZED;
     }
     if (*(int *)(reg_rcx + SYSTEM_FUNCTION_OFFSET_REGISTER_A3A) != 0) {
@@ -5965,7 +5965,7 @@ long long process_memory_with_thread_operation_flags(unsigned long long handle_p
       if (thread_result_status != 0) {
         memcpy(pppppsystem_initialization_result7[1], reg_rcx[0xa3b], path_buffer_size_000);
       }
-      system_initialization_result0 = *(long long *)(*(long long *)(astack_long_var[0] + SYSTEM_OFFSET_MODULE_DATA_3580) + 0x118);
+      system_initialization_result0 = *(long long *)(*(long long *)(system_alternative_stack_long[0] + SYSTEM_OFFSET_MODULE_DATA_3580) + 0x118);
       if (system_initialization_result0 != 0) {
         *(long long ******)(system_initialization_result0 + 0x98c8) =
              reg_rcx + (long long)*(int *)(reg_rcx + 0xa39) + SYSTEM_OFFSET_MODULE_MULTIPLIER + SYSTEM_OFFSET_MODULE_BASE_EXTENDED;
@@ -5989,12 +5989,12 @@ long long process_memory_with_thread_operation_flags(unsigned long long handle_p
   *(unsigned int *)(reg_rcx + 0xb5b) = SYSTEM_ZERO_VALUE;
   buffer_allocation_result = system_global_data_pointer;
   UNLOCK();
-  if (ppplStack_b8 != (long long ***)0x0) {
-    pppstack_long_var = (long long ***)&ppplStack_b0;
-    ppplStack_b0 = ppplStack_b8;
-    (*(code *)(*ppplStack_b8)[5])(ppplStack_b8);
-    system_event_handle_paramr_initialize_stack(buffer_allocation_result,&ppplStack_b0,0);
-    buffer_allocation_result = (*(code *)(*ppplStack_b8)[7])(ppplStack_b8);
+  if (system_triple_pointer_stack_b8 != (long long ***)0x0) {
+    psystem_double_pointer_stack_long = (long long ***)&system_triple_pointer_stack_b0;
+    system_triple_pointer_stack_b0 = system_triple_pointer_stack_b8;
+    (*(code *)(*system_triple_pointer_stack_b8)[5])(system_triple_pointer_stack_b8);
+    system_event_handle_paramr_initialize_stack(buffer_allocation_result,&system_triple_pointer_stack_b0,0);
+    buffer_allocation_result = (*(code *)(*system_triple_pointer_stack_b8)[7])(system_triple_pointer_stack_b8);
   }
   return buffer_allocation_result;
 }
@@ -7358,7 +7358,7 @@ unsigned long long allocate_system_memory(long long handle_param,long long *thre
   long long *pstack_long_var;
   unsigned int SYSTEM_TEMP_STACK_ARRAY [2];
   long long *system_memory_stack_primary;
-  long long *plStack_78;
+  long long *system_pointer_stack_78;
   unsigned long long maximum_stack_size;
   long long **system_parallel_stack_buffer_pointer;
   long long *system_memory_stack_backup;
@@ -7367,13 +7367,13 @@ unsigned long long allocate_system_memory(long long handle_param,long long *thre
   buffer_allocation_result = SYSTEM_ZERO_VALUE;
   byte_flag_value = *(byte *)(mutex_attr + 2);
   if ((mutex_type >> 1 & 1) != 0) {
-    system_ui_003(system_global_data_pointer,&plStack_78,mutex_attr + SYSTEM_CONFIG_OFFSET_INIT_FLAG,1);
+    system_ui_003(system_global_data_pointer,&system_pointer_stack_78,mutex_attr + SYSTEM_CONFIG_OFFSET_INIT_FLAG,1);
     string_input_pointer = (unsigned long long *)system_ui_006();
     system_resource_002(*string_input_pointer,&pstack_long_var);
     if (system_memory_stack_primary != (long long *)SYSTEM_NULL_POINTER) {
       (**(code **)(*system_memory_stack_primary + SYSTEM_OFFSET_CLEANUP_FUNCTION))();
     }
-    system_resource_003(pstack_long_var,&plStack_78);
+    system_resource_003(pstack_long_var,&system_pointer_stack_78);
     *(uint *)(pstack_long_var + path_buffer_size) = *(uint *)(pstack_long_var + path_buffer_size) | SYSTEM_CONFIG_BUFFER_SIZE_ZERO;
     SYSTEM_TEMP_STACK_ARRAY[0] = *mutex_attr;
     psystem_initialization_result = (long long *)(handle_param + SYSTEM_OFFSET_MUTEX_PTR);
@@ -7404,8 +7404,8 @@ unsigned long long allocate_system_memory(long long handle_param,long long *thre
     if (pstack_long_var != (long long *)SYSTEM_NULL_POINTER) {
       (**(code **)(*pstack_long_var + SYSTEM_OFFSET_CLEANUP_FUNCTION))();
     }
-    if (plStack_78 != (long long *)SYSTEM_NULL_POINTER) {
-      (**(code **)(*plStack_78 + SYSTEM_OFFSET_CLEANUP_FUNCTION))();
+    if (system_pointer_stack_78 != (long long *)SYSTEM_NULL_POINTER) {
+      (**(code **)(*system_pointer_stack_78 + SYSTEM_OFFSET_CLEANUP_FUNCTION))();
     }
   }
   if ((mutex_type >> 2 & 1) == SYSTEM_ZERO_VALUE) {
@@ -7927,17 +7927,17 @@ system_finalizer_tertiary(unsigned long long handle_param,unsigned long long thr
     system_crypto_module_initializer(&thread_data_buffer_primary);
   }
   buffer_allocation_result = system_execution_function(system_global_data_pointer,SYSTEM_FUNCTION_PARAM_SIZE_0XE0,8,3,buffer_allocation_result);
-  pstack_long_var = alStack_30;
+  pstack_long_var = system_stack_array_30;
   // Original name: system_18045f210
       thread_stack_ptr = &g_stack_data_address_18045f210;
   thread_stack_ptr = &system_stack_data_secondary;
-  psystem_initialization_result = (long long *)system_execution_function(buffer_allocation_result,alStack_30);
+  psystem_initialization_result = (long long *)system_execution_function(buffer_allocation_result,system_stack_array_30);
   pstack_long_var = psystem_initialization_result;
   if (psystem_initialization_result != (long long *)SYSTEM_NULL_POINTER) {
     (**(code **)(*psystem_initialization_result + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG))(psystem_initialization_result);
   }
   buffer_allocation_result = system_global_data_pointer;
-  ppstack_long_var = &pstack_long_var;
+  system_double_pointer_stack_long = &pstack_long_var;
   pstack_long_var = psystem_initialization_result;
   if (psystem_initialization_result != (long long *)SYSTEM_NULL_POINTER) {
     (**(code **)(*psystem_initialization_result + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG))(psystem_initialization_result);
@@ -8292,7 +8292,7 @@ unsigned long long initialize_graphics_context(unsigned long long handle_param,u
     }
     UNLOCK();
     if (byte_system_status) {
-      appstack_long_var[0] = apstack_long_var;
+      asystem_double_pointer_stack_long[0] = apstack_long_var;
       apstack_long_var[0] = system_global_data_pointer;
       if (system_global_data_pointer != (long long *)SYSTEM_NULL_POINTER) {
         (**(code **)(*system_global_data_pointer + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG))();
@@ -10710,11 +10710,11 @@ section_processing_jump_label_:
 double calculate_system_performance(void)
 {
   long long system_initialization_result;
-  long long astack_long_var [4];
+  long long system_alternative_stack_long [4];
   system_initialization_result = system_global_data_pointer;
   if (system_global_data_pointer == SYSTEM_ZERO_VALUE) {
-    QueryPerformanceCounter(astack_long_var);
-    system_initialization_result = astack_long_var[0];
+    QueryPerformanceCounter(system_alternative_stack_long);
+    system_initialization_result = system_alternative_stack_long[0];
   }
   return (double)(system_initialization_result - system_global_data_pointer) * system_global_data_pointer;
 }
@@ -11736,8 +11736,8 @@ section_processing_jump_label_:
     LOCK();
     system_global_data_pointer = system_global_data_pointer + -1;
     UNLOCK();
-    CloseHandle(alStack_3d0[0]);
-    alStack_3d0[0] = -1;
+    CloseHandle(system_stack_array_3d0[0]);
+    system_stack_array_3d0[0] = -1;
   }
   thread_stack_ptr = &g_threadString2;
   if (thread_stack_ptr == (void *)SYSTEM_NULL_POINTER) {
