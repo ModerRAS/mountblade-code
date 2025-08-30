@@ -58106,12 +58106,12 @@ code_r0x00018007db1b:
         lVar4 = *(longlong *)(param_2 + 0x68);
         *(char *)pfVar20 =
              (char)(int)(*(float *)(*(longlong *)(param_2 + 0xd0) +
-                                   (longlong)*(int *)(lVar21 + lVar4) * 0x14) * 255.0);
+                                   (longlong)*(int *)(lVar21 + lVar4) * 0x14) * SYSTEM_FLOAT_NORMALIZATION_VALUE_255_0);
         *(char *)((longlong)pfVar20 + 1) =
              (char)(int)(*(float *)(*(longlong *)(param_2 + 0xd0) + 4 +
-                                   (longlong)*(int *)(lVar21 + lVar4) * 0x14) * 255.0);
+                                   (longlong)*(int *)(lVar21 + lVar4) * 0x14) * SYSTEM_FLOAT_NORMALIZATION_VALUE_255_0);
         uVar9 = (uint)(*(float *)(*(longlong *)(param_2 + 0xd0) + 8 +
-                                 (longlong)*(int *)(lVar21 + lVar4) * 0x14) * 255.0);
+                                 (longlong)*(int *)(lVar21 + lVar4) * 0x14) * SYSTEM_FLOAT_NORMALIZATION_VALUE_255_0);
         *(char *)((longlong)pfVar20 + 2) = (char)uVar9;
         fVar28 = (float)((uVar9 & 0xff) + (uint)*(byte *)((longlong)pfVar20 + 1) +
                         (uint)*(byte *)pfVar20);
@@ -58127,12 +58127,12 @@ code_r0x00018007db1b:
         pbVar18 = (byte *)((longlong)pfVar20 + lVar24);
         lVar4 = *(longlong *)(param_2 + 0x68);
         *pbVar18 = (byte)(int)(*(float *)(*(longlong *)(param_2 + 0xd0) +
-                                         (longlong)*(int *)(lVar21 + 0x5c + lVar4) * 0x14) * 255.0);
+                                         (longlong)*(int *)(lVar21 + 0x5c + lVar4) * 0x14) * SYSTEM_FLOAT_NORMALIZATION_VALUE_255_0);
         pbVar18[1] = (byte)(int)(*(float *)(*(longlong *)(param_2 + 0xd0) + 4 +
-                                           (longlong)*(int *)(lVar21 + 0x5c + lVar4) * 0x14) * 255.0
+                                           (longlong)*(int *)(lVar21 + 0x5c + lVar4) * 0x14) * SYSTEM_FLOAT_NORMALIZATION_VALUE_255_0
                                 );
         uVar9 = (uint)(*(float *)(*(longlong *)(param_2 + 0xd0) + 8 +
-                                 (longlong)*(int *)(lVar21 + 0x5c + lVar4) * 0x14) * 255.0);
+                                 (longlong)*(int *)(lVar21 + 0x5c + lVar4) * 0x14) * SYSTEM_FLOAT_NORMALIZATION_VALUE_255_0);
         pbVar18[2] = (byte)uVar9;
         fVar28 = (float)((uVar9 & 0xff) + (uint)pbVar18[1] + (uint)*pbVar18);
         if (0.0 <= fVar28) {
@@ -58147,12 +58147,12 @@ code_r0x00018007db1b:
         pbVar18 = pbVar18 + lVar24;
         lVar4 = *(longlong *)(param_2 + 0x68);
         *pbVar18 = (byte)(int)(*(float *)(*(longlong *)(param_2 + 0xd0) +
-                                         (longlong)*(int *)(lVar21 + 0xb8 + lVar4) * 0x14) * 255.0);
+                                         (longlong)*(int *)(lVar21 + 0xb8 + lVar4) * 0x14) * SYSTEM_FLOAT_NORMALIZATION_VALUE_255_0);
         pbVar18[1] = (byte)(int)(*(float *)(*(longlong *)(param_2 + 0xd0) + 4 +
-                                           (longlong)*(int *)(lVar21 + 0xb8 + lVar4) * 0x14) * 255.0
+                                           (longlong)*(int *)(lVar21 + 0xb8 + lVar4) * 0x14) * SYSTEM_FLOAT_NORMALIZATION_VALUE_255_0
                                 );
         uVar9 = (uint)(*(float *)(*(longlong *)(param_2 + 0xd0) + 8 +
-                                 (longlong)*(int *)(lVar21 + 0xb8 + lVar4) * 0x14) * 255.0);
+                                 (longlong)*(int *)(lVar21 + 0xb8 + lVar4) * 0x14) * SYSTEM_FLOAT_NORMALIZATION_VALUE_255_0);
         pbVar18[2] = (byte)uVar9;
         fVar28 = (float)((uVar9 & 0xff) + (uint)pbVar18[1] + (uint)*pbVar18);
         if (0.0 <= fVar28) {
@@ -58167,13 +58167,13 @@ code_r0x00018007db1b:
         pbVar18 = pbVar18 + lVar24;
         lVar4 = *(longlong *)(param_2 + 0x68);
         *pbVar18 = (byte)(int)(*(float *)(*(longlong *)(param_2 + 0xd0) +
-                                         (longlong)*(int *)(lVar21 + 0x114 + lVar4) * 0x14) * 255.0)
+                                         (longlong)*(int *)(lVar21 + 0x114 + lVar4) * 0x14) * SYSTEM_FLOAT_NORMALIZATION_VALUE_255_0)
         ;
         pbVar18[1] = (byte)(int)(*(float *)(*(longlong *)(param_2 + 0xd0) + 4 +
                                            (longlong)*(int *)(lVar21 + 0x114 + lVar4) * 0x14) *
                                 255.0);
         uVar9 = (uint)(*(float *)(*(longlong *)(param_2 + 0xd0) + 8 +
-                                 (longlong)*(int *)(lVar21 + 0x114 + lVar4) * 0x14) * 255.0);
+                                 (longlong)*(int *)(lVar21 + 0x114 + lVar4) * 0x14) * SYSTEM_FLOAT_NORMALIZATION_VALUE_255_0);
         pbVar18[2] = (byte)uVar9;
         fVar28 = (float)((uVar9 & 0xff) + (uint)pbVar18[1] + (uint)*pbVar18);
         if (0.0 <= fVar28) {
@@ -58197,13 +58197,13 @@ code_r0x00018007db1b:
       do {
         lVar25 = *(longlong *)(param_2 + 0x68);
         uVar23 = (uint)(*(float *)(*(longlong *)(param_2 + 0xd0) +
-                                  (longlong)*(int *)(lVar21 + lVar25) * 0x14) * 255.0);
+                                  (longlong)*(int *)(lVar21 + lVar25) * 0x14) * SYSTEM_FLOAT_NORMALIZATION_VALUE_255_0);
         puVar19[-2] = (char)uVar23;
         uVar14 = (uint)(*(float *)(*(longlong *)(param_2 + 0xd0) + 4 +
-                                  (longlong)*(int *)(lVar21 + lVar25) * 0x14) * 255.0);
+                                  (longlong)*(int *)(lVar21 + lVar25) * 0x14) * SYSTEM_FLOAT_NORMALIZATION_VALUE_255_0);
         puVar19[-1] = (char)uVar14;
         uVar9 = (uint)(*(float *)(*(longlong *)(param_2 + 0xd0) + 8 +
-                                 (longlong)*(int *)(lVar21 + lVar25) * 0x14) * 255.0);
+                                 (longlong)*(int *)(lVar21 + lVar25) * 0x14) * SYSTEM_FLOAT_NORMALIZATION_VALUE_255_0);
         *puVar19 = (char)uVar9;
         fVar28 = (float)((uVar9 & 0xff) + (uVar14 & 0xff) + (uVar23 & 0xff));
         if (0.0 <= fVar28) {
