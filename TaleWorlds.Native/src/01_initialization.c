@@ -49454,7 +49454,7 @@ float * HandleSystemOperation_resource_management(float *handleIdentifier)
       handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A1] = SYSTEM_FLOAT_VALUE_ZERO;
       handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A2] = SYSTEM_FLOAT_VALUE_ZERO;
       handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A3] = SYSTEM_FLOAT_VALUE_ZERO;
-      handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A4] = 0.0;
+      handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A4] = SYSTEM_FLOAT_VALUE_ZERO;
       handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A5] = 0.0;
       handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A6] = 0.0;
       handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A7] = 0.0;
@@ -55072,7 +55072,7 @@ float * InitializeResourceSystem(float *handleIdentifier)
       handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A1] = SYSTEM_FLOAT_VALUE_ZERO;
       handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A2] = SYSTEM_FLOAT_VALUE_ZERO;
       handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A3] = SYSTEM_FLOAT_VALUE_ZERO;
-      handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A4] = 0.0;
+      handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A4] = SYSTEM_FLOAT_VALUE_ZERO;
       handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A5] = 0.0;
       handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A6] = 0.0;
       handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A7] = 0.0;
