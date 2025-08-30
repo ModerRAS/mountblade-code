@@ -5016,11 +5016,11 @@ void SendNetworkData(uint32_t network_socket_handle)
           network_buffer_size_var[-3] = network_buffer_size_var;
           network_buffer_size_var[-NETWORK_BUFFER_SIZE_MEDIUM] = network_data_pointer;
           network_buffer_size_var[-NETWORK_OPERATION_SUCCESS] = network_processor_index;
-          *network_buffer_size_var = 4;
-          network_buffer_size_var[NETWORK_OPERATION_SUCCESS] = 4;
+          *network_buffer_size_var = NETWORK_DATA_SIZE_4;
+          network_buffer_size_var[NETWORK_OPERATION_SUCCESS] = NETWORK_DATA_SIZE_4;
           network_status_data_buffer_ptr = (uint32_t *)network_allocate_receive_buffer();
           network_buffer_size_var[NETWORK_BUFFER_SIZE_MEDIUM] = *network_status_data_buffer_ptr;
-          network_buffer_size_var[3] = network_operation_status_code_temp_var;
+          network_buffer_size_var[NETWORK_ARRAY_INDEX_3] = network_operation_status_code_temp_var;
           network_timeout_milliseconds = network_timeout_milliseconds + -NETWORK_OPERATION_SUCCESS;
           network_buffer_size_var = network_buffer_size_var + NETWORK_PACKET_HEADER_SIZE;
         } while (network_timeout_milliseconds != NETWORK_OPERATION_FAILURE);
@@ -5182,7 +5182,7 @@ uint64_t GetNetworkStatistics(void)
   uint32_t network_connection_processor_flag;
   uint32_t network_operation_count;
   uint32_t network_timeout_value_ptr_counter;
-  network_operation_count = 4;
+  network_operation_count = NETWORK_DATA_SIZE_4;
   network_timeout_value_ptr_counter = 4;
   network_allocate_receive_buffer();
   network_allocate_memory();
@@ -9746,7 +9746,7 @@ uint64_t NetworkProcessConnectionResponse(uint64_t network_socket_handle, int64_
       network_timeout_config_pointer = network_buffer_primary + 4;
 uint64_t NetworkHandleConnectionError(uint64_t *network_socket_handle)
 {
-    int64_t network_contextArray18;
+    int64_t network_context_array_secondary;
   timeout_config_ptr_main = (int64_t *)ZERO_OFFSET;
   network_secondary_socket_descriptor = network_socket_handle + NETWORK_CONNECTION_EXTENDED_OFFSET;
   server_port_ptr = (int64_t *)(*network_secondary_socket_descriptor + -SESSION_CONFIG_SIZE);

@@ -87,6 +87,33 @@
 #define SYSTEM_OFFSET_SYSTEM_FLAG_2 0x21
 #define SYSTEM_OFFSET_STACK_SIZE 0x18
 #define SYSTEM_OFFSET_HANDLE_POINTER 0xbd0
+#define SYSTEM_OFFSET_TLS_FLAG 0x48
+#define SYSTEM_OFFSET_THREAD_STACK_POINTER 0x228
+#define SYSTEM_OFFSET_SYSTEM_INITIALIZED 0xa0
+#define SYSTEM_OFFSET_GLOBAL_CONFIG 0x1510
+#define SYSTEM_OFFSET_SYSTEM_STATUS_1 0xe0
+#define SYSTEM_OFFSET_VALIDATION_TYPE 0x161c
+#define SYSTEM_OFFSET_RESOURCE_HANDLE 0x17ec
+#define SYSTEM_OFFSET_FINALIZER_DATA 0x1870
+#define SYSTEM_OFFSET_CALLBACK_TABLE 0x2b0
+#define SYSTEM_OFFSET_STRING_DATA 0x38c
+#define SYSTEM_OFFSET_SYSTEM_CONFIG_1 0x1518
+#define SYSTEM_OFFSET_SYSTEM_CONFIG_2 0x1530
+#define SYSTEM_OFFSET_MUTEX_DATA 0x1590
+#define SYSTEM_OFFSET_MODULE_DATA 0x1a08
+#define SYSTEM_OFFSET_UI_CALLBACK 0x70
+#define SYSTEM_OFFSET_THREAD_CLEANUP 0x2c0
+#define SYSTEM_OFFSET_ERROR_COUNT 0xe00
+#define SYSTEM_OFFSET_TIMER_DATA 0x1a0
+#define SYSTEM_OFFSET_RENDER_DATA 0x1d0
+#define SYSTEM_OFFSET_SYSTEM_CHECK 0x1626
+#define SYSTEM_OFFSET_SYSTEM_MODE 0x60
+#define SYSTEM_OFFSET_COUNTER_1 0x1614
+#define SYSTEM_OFFSET_COUNTER_2 0x162c
+#define SYSTEM_OFFSET_COUNTER_MAX 0x1d4c
+#define SYSTEM_OFFSET_MODULE_STATUS 0x380
+#define SYSTEM_OFFSET_SYSTEM_FLAG_3 0xf8
+#define SYSTEM_OFFSET_SYSTEM_FLAG_4 0xfa
 
 // 系统资源类型常量
 #define SYSTEM_RESOURCE_TYPE_DEFAULT 5
@@ -3527,8 +3554,8 @@ section_processing_jump_label_:
                       stack_size_max = merge_32bit_values(stack_size_max._4_4_,buffer_alloc_result);
                       *string_input_ptr = STRING_TERMINATOR_PATTERN_1;
                       string_input_ptr[1] = STRING_TERMINATOR_PATTERN_2;
-                      string_input_ptr[2] = 0x666e6f63;
-                      string_input_ptr[3] = 0x3a6769;
+                      string_input_ptr[2] = SYSTEM_STRING_PATTERN_1;
+                      string_input_ptr[3] = SYSTEM_STRING_PATTERN_2;
                       stack_size_max = SYSTEM_MEMORY_ALLOC_HUGE;
                       thread_op_flags = thread_op_flags;
                       thread_op_flags = thread_op_flags;
@@ -3539,7 +3566,7 @@ section_processing_jump_label_:
                       thread_result_index = strcmp(string_input_ptr);
                       if (thread_result_index == SYSTEM_ZERO_VALUE) {
                         cStack_338 = '\x01';
-                        *(unsigned char *)(system_global_data_pointer + 0x22) = 1;
+                        *(unsigned char *)(system_global_data_pointer + SYSTEM_OFFSET_SYSTEM_FLAG_1) = 1;
                         goto section_processing_jump_label_;
                       }
 section_processing_jump_label_:
@@ -3558,7 +3585,7 @@ section_processing_jump_label_:
                       if (buffer_alloc_result == SYSTEM_BUFFER_ALLOC_RESULT_CONFIG) {
                         thread_result_index = strcmp(string_input_ptr);
                         if (thread_result_index == SYSTEM_ZERO_VALUE) {
-                          *(unsigned char *)(system_global_data_pointer + 0x21) = 1;
+                          *(unsigned char *)(system_global_data_pointer + SYSTEM_OFFSET_SYSTEM_FLAG_2) = 1;
                           goto section_processing_jump_label_;
                         }
                         goto section_processing_jump_label_;
@@ -3605,10 +3632,10 @@ section_processing_jump_label_:
                         }
                         stack_size_max = *(uint *)(str_len_counter + STRING_BUFFER_SIZE);
                         pcStack_328 = *(char **)(str_len_counter + 8);
-                        stack_size_max = *(long long *)(str_len_counter + 0x18);
+                        stack_size_max = *(long long *)(str_len_counter + SYSTEM_OFFSET_STACK_SIZE);
                         *(unsigned int *)(str_len_counter + STRING_BUFFER_SIZE) = SYSTEM_ZERO_VALUE;
                         *(unsigned long long *)(str_len_counter + 8) = SYSTEM_ZERO_VALUE;
-                        *(unsigned long long *)(str_len_counter + 0x18) = SYSTEM_ZERO_VALUE;
+                        *(unsigned long long *)(str_len_counter + SYSTEM_OFFSET_STACK_SIZE) = SYSTEM_ZERO_VALUE;
                         thread_stack_ptr = &g_threadString2;
                         if (thread_stack_base_address != 0) {
                           handle_param_system_error();
