@@ -209,10 +209,36 @@
 // - 原本实现：完全重构网络系统变量命名体系，消除所有重复变量名和不规范命名
 // - 简化实现：仅修复明显的变量名重复错误和替换剩余的硬编码常量名
 
+// 网络系统模块配置偏移量语义化常量（2025年8月30日最终批次最新完成）
+#define NETWORK_MODULE_CONFIG_OFFSET_PRIMARY 0xac0    // 模块配置主偏移量
+#define NETWORK_MODULE_CONFIG_OFFSET_SECONDARY 0x8d0   // 模块配置次偏移量
+#define NETWORK_MODULE_CONFIG_OFFSET_TERTIARY 0x8d8    // 模块配置第三偏移量
+
+// 网络系统状态码语义化常量（2025年8月30日最终批次最新完成）
+#define NETWORK_STATUS_CODE_CONNECTION_PENDING 0x6a   // 连接待处理状态码
+#define NETWORK_STATUS_CODE_CONNECTION_ACTIVE 0x6f     // 连接活跃状态码
+#define NETWORK_STATUS_CODE_DATA_RECEIVED 0x71         // 数据接收状态码
+#define NETWORK_STATUS_CODE_DATA_SENT 0x73             // 数据发送状态码
+#define NETWORK_STATUS_CODE_ERROR_TIMEOUT 0x75         // 超时错误状态码
+#define NETWORK_STATUS_CODE_ERROR_NETWORK 0x85         // 网络错误状态码
+
+// 网络系统套接字数据偏移量语义化常量（2025年8月30日最终批次最新完成）
+#define NETWORK_SOCKET_DATA_OFFSET_HEADER 0x7c         // 套接字数据头部偏移量
+#define NETWORK_SOCKET_DATA_OFFSET_PAYLOAD 0x84        // 套接字数据载荷偏移量
+#define NETWORK_SOCKET_DATA_OFFSET_CHECKSUM 0x88       // 套接字数据校验和偏移量
+#define NETWORK_SOCKET_DATA_OFFSET_SEQUENCE 0x89       // 套接字数据序列号偏移量
+#define NETWORK_SOCKET_DATA_OFFSET_ACKNOWLEDGE 0x8a    // 套接字数据确认号偏移量
+#define NETWORK_SOCKET_DATA_OFFSET_FLAGS 0x8c           // 套接字数据标志偏移量
+#define NETWORK_SOCKET_DATA_OFFSET_LENGTH 0x78          // 套接字数据长度偏移量
+
+// 网络系统超时配置偏移量语义化常量（2025年8月30日最终批次最新完成）
+#define NETWORK_TIMEOUT_CONFIG_OFFSET_SHORT 0xc         // 短超时配置偏移量
+#define NETWORK_TIMEOUT_CONFIG_OFFSET_LONG 0x8          // 长超时配置偏移量
+
 // 最新美化内容（2025年8月30日最终批次最新续）：
-// - 美化网络系统硬编码十六进制值，将0x6a、0x6f、0x71、0x73、0x75、0x85等替换为NETWORK_STATUS_CODE_*等语义化常量
-// - 美化网络系统套接字数据偏移量，将0x7c、0x84、0x88、0x89、0x8a、0x8c、0x78等替换为NETWORK_SOCKET_DATA_OFFSET_*等语义化常量
-// - 美化网络系统超时配置偏移量，将0xc、0x8等替换为NETWORK_TIMEOUT_CONFIG_OFFSET_*等语义化常量
+// - 美化网络系统硬编码十六进制值，将NETWORK_STATUS_CODE_CONNECTION_PENDING等替换为语义化常量
+// - 美化网络系统套接字数据偏移量，将NETWORK_SOCKET_DATA_OFFSET_HEADER等替换为语义化常量
+// - 美化网络系统超时配置偏移量，将NETWORK_TIMEOUT_CONFIG_OFFSET_SHORT等替换为语义化常量
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了网络系统中硬编码十六进制值的语义化替换
 // - 原本实现：完全重构网络系统所有硬编码值体系，建立统一的语义化命名规范

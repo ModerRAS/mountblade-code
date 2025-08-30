@@ -2179,7 +2179,7 @@ void InitializeSystemCore(void)
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
   system_char_check = *(char *)((longlong)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND] + SYSTEM_INIT_OFFSET_CHAR_CHECK);
-  psystem_stack_initialization_counter = &g_system_context;
+  system_stack_initialization_counter_ptr = &g_system_context;
   system_config_data_pointer = system_buffer_pointer;
   system_module_data_pointer = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_char_check == '\0') {
@@ -2204,7 +2204,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter_ptr;
   return;
 }
 
@@ -2911,7 +2911,7 @@ void InitializeSystemCore(void)
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
   system_char_check = *(char *)((longlong)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND] + SYSTEM_INIT_OFFSET_CHAR_CHECK);
-  psystem_stack_initialization_counter = &g_system_context;
+  system_stack_initialization_counter_ptr = &g_system_context;
   system_config_data_pointer = system_buffer_pointer;
   system_module_data_pointer = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_char_check == '\0') {
@@ -2936,7 +2936,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter_ptr;
   return;
 }
 
@@ -3311,7 +3311,7 @@ void InitializeSystemCore(void)
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
   system_char_check = *(char *)((longlong)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND] + SYSTEM_INIT_OFFSET_CHAR_CHECK);
-  psystem_stack_initialization_counter = &g_system_context;
+  system_stack_initialization_counter_ptr = &g_system_context;
   system_config_data_pointer = system_buffer_pointer;
   system_module_data_pointer = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_char_check == '\0') {
@@ -3336,7 +3336,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter_ptr;
   return;
 }
 
@@ -3661,7 +3661,7 @@ void InitializeSystemCore(void)
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
   system_char_check = *(char *)((longlong)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND] + SYSTEM_INIT_OFFSET_CHAR_CHECK);
-  psystem_stack_initialization_counter = &g_system_context;
+  system_stack_initialization_counter_ptr = &g_system_context;
   system_config_data_pointer = system_buffer_pointer;
   system_module_data_pointer = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_char_check == '\0') {
@@ -3686,7 +3686,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter_ptr;
   return;
 }
 
@@ -4111,7 +4111,7 @@ void InitializeSystemCore(void)
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
   system_char_check = *(char *)((longlong)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND] + SYSTEM_INIT_OFFSET_CHAR_CHECK);
-  psystem_stack_initialization_counter = &g_system_context;
+  system_stack_initialization_counter_ptr = &g_system_context;
   system_config_data_pointer = system_buffer_pointer;
   system_module_data_pointer = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_char_check == '\0') {
@@ -4136,7 +4136,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter_ptr;
   return;
 }
 
@@ -4695,7 +4695,7 @@ void InitializeSystemCore(void)
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
   system_char_check = *(char *)((longlong)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND] + SYSTEM_INIT_OFFSET_CHAR_CHECK);
-  psystem_stack_initialization_counter = &g_system_context;
+  system_stack_initialization_counter_ptr = &g_system_context;
   system_config_data_pointer = system_buffer_pointer;
   system_module_data_pointer = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_char_check == '\0') {
@@ -4720,7 +4720,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter_ptr;
   return;
 }
 
@@ -5069,7 +5069,7 @@ void InitializeSystemCore(void)
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
   system_char_check = *(char *)((longlong)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND] + SYSTEM_INIT_OFFSET_CHAR_CHECK);
-  psystem_stack_initialization_counter = &g_system_context;
+  system_stack_initialization_counter_ptr = &g_system_context;
   system_config_data_pointer = system_buffer_pointer;
   system_module_data_pointer = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_char_check == '\0') {
@@ -5094,7 +5094,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter_ptr;
   return;
 }
 
@@ -5671,7 +5671,7 @@ void InitializeSystemCore(void)
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
   system_char_check = *(char *)((longlong)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND] + SYSTEM_INIT_OFFSET_CHAR_CHECK);
-  psystem_stack_initialization_counter = &g_system_context;
+  system_stack_initialization_counter_ptr = &g_system_context;
   system_config_data_pointer = system_buffer_pointer;
   system_module_data_pointer = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_char_check == '\0') {
@@ -5696,7 +5696,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter_ptr;
   return;
 }
 
@@ -6021,7 +6021,7 @@ void InitializeSystemCore(void)
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
   system_char_check = *(char *)((longlong)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND] + SYSTEM_INIT_OFFSET_CHAR_CHECK);
-  psystem_stack_initialization_counter = &g_system_context;
+  system_stack_initialization_counter_ptr = &g_system_context;
   system_config_data_pointer = system_buffer_pointer;
   system_module_data_pointer = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_char_check == '\0') {
@@ -6046,7 +6046,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter_ptr;
   return;
 }
 
@@ -6628,7 +6628,7 @@ void InitializeSystemCore(void)
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
   system_char_check = *(char *)((longlong)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND] + SYSTEM_INIT_OFFSET_CHAR_CHECK);
-  psystem_stack_initialization_counter = &g_system_context;
+  system_stack_initialization_counter_ptr = &g_system_context;
   system_config_data_pointer = system_buffer_pointer;
   system_module_data_pointer = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_char_check == '\0') {
@@ -6653,7 +6653,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter_ptr;
   return;
 }
 
@@ -7078,7 +7078,7 @@ void InitializeSystemCore(void)
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
   system_char_check = *(char *)((longlong)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND] + SYSTEM_INIT_OFFSET_CHAR_CHECK);
-  psystem_stack_initialization_counter = &g_system_context;
+  system_stack_initialization_counter_ptr = &g_system_context;
   system_config_data_pointer = system_buffer_pointer;
   system_module_data_pointer = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_char_check == '\0') {
@@ -7103,7 +7103,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter_ptr;
   return;
 }
 
@@ -7678,7 +7678,7 @@ void InitializeSystemCore(void)
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
   system_char_check = *(char *)((longlong)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND] + SYSTEM_INIT_OFFSET_CHAR_CHECK);
-  psystem_stack_initialization_counter = &g_system_context;
+  system_stack_initialization_counter_ptr = &g_system_context;
   system_config_data_pointer = system_buffer_pointer;
   system_module_data_pointer = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_char_check == '\0') {
@@ -7703,7 +7703,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter_ptr;
   return;
 }
 
@@ -8108,7 +8108,7 @@ void InitializeSystemCore(void)
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
   system_char_check = *(char *)((longlong)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND] + SYSTEM_INIT_OFFSET_CHAR_CHECK);
-  psystem_stack_initialization_counter = &g_system_context;
+  system_stack_initialization_counter_ptr = &g_system_context;
   system_config_data_pointer = system_buffer_pointer;
   system_module_data_pointer = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_char_check == '\0') {
@@ -8133,7 +8133,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter_ptr;
   return;
 }
 
@@ -9298,7 +9298,7 @@ void InitializeSystemCore(void)
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
   system_char_check = *(char *)((longlong)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND] + SYSTEM_INIT_OFFSET_CHAR_CHECK);
-  psystem_stack_initialization_counter = &g_system_context;
+  system_stack_initialization_counter_ptr = &g_system_context;
   system_config_data_pointer = system_buffer_pointer;
   system_module_data_pointer = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_char_check == '\0') {
@@ -9323,7 +9323,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter_ptr;
   return;
 }
 
@@ -9648,7 +9648,7 @@ void InitializeSystemCore(void)
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
   system_char_check = *(char *)((longlong)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND] + SYSTEM_INIT_OFFSET_CHAR_CHECK);
-  psystem_stack_initialization_counter = &g_system_context;
+  system_stack_initialization_counter_ptr = &g_system_context;
   system_config_data_pointer = system_buffer_pointer;
   system_module_data_pointer = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_char_check == '\0') {
@@ -9673,7 +9673,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter_ptr;
   return;
 }
 
@@ -9998,7 +9998,7 @@ void InitializeSystemCore(void)
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
   system_char_check = *(char *)((longlong)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND] + SYSTEM_INIT_OFFSET_CHAR_CHECK);
-  psystem_stack_initialization_counter = &g_system_context;
+  system_stack_initialization_counter_ptr = &g_system_context;
   system_config_data_pointer = system_buffer_pointer;
   system_module_data_pointer = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_char_check == '\0') {
@@ -10023,7 +10023,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter_ptr;
   return;
 }
 
@@ -10348,7 +10348,7 @@ void InitializeSystemCore(void)
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
   system_char_check = *(char *)((longlong)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND] + SYSTEM_INIT_OFFSET_CHAR_CHECK);
-  psystem_stack_initialization_counter = &g_system_context;
+  system_stack_initialization_counter_ptr = &g_system_context;
   system_config_data_pointer = system_buffer_pointer;
   system_module_data_pointer = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_char_check == '\0') {
@@ -10373,7 +10373,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter_ptr;
   return;
 }
 
@@ -11780,7 +11780,7 @@ void InitializeSystemCore(void)
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
   system_char_check = *(char *)((longlong)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND] + SYSTEM_INIT_OFFSET_CHAR_CHECK);
-  psystem_stack_initialization_counter = &g_system_context;
+  system_stack_initialization_counter_ptr = &g_system_context;
   system_config_data_pointer = system_buffer_pointer;
   system_module_data_pointer = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_char_check == '\0') {
@@ -11805,7 +11805,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter_ptr;
   return;
 }
 
@@ -12190,7 +12190,7 @@ void InitializeSystemCore(void)
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
   system_char_check = *(char *)((longlong)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND] + SYSTEM_INIT_OFFSET_CHAR_CHECK);
-  psystem_stack_initialization_counter = &g_system_context;
+  system_stack_initialization_counter_ptr = &g_system_context;
   system_config_data_pointer = system_buffer_pointer;
   system_module_data_pointer = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_char_check == '\0') {
@@ -12215,7 +12215,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter_ptr;
   return;
 }
 
@@ -12540,7 +12540,7 @@ void InitializeSystemCore(void)
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
   system_char_check = *(char *)((longlong)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND] + SYSTEM_INIT_OFFSET_CHAR_CHECK);
-  psystem_stack_initialization_counter = &g_system_context;
+  system_stack_initialization_counter_ptr = &g_system_context;
   system_config_data_pointer = system_buffer_pointer;
   system_module_data_pointer = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_char_check == '\0') {
@@ -12565,7 +12565,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter_ptr;
   return;
 }
 
@@ -14483,7 +14483,7 @@ void InitializeSystemCore(void)
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
   system_char_check = *(char *)((longlong)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND] + SYSTEM_INIT_OFFSET_CHAR_CHECK);
-  psystem_stack_initialization_counter = &g_system_context;
+  system_stack_initialization_counter_ptr = &g_system_context;
   system_config_data_pointer = system_buffer_pointer;
   system_module_data_pointer = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_char_check == '\0') {
@@ -14508,7 +14508,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter_ptr;
   return;
 }
 
@@ -15459,7 +15459,7 @@ void InitializeSystemCore(void)
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
   system_char_check = *(char *)((longlong)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND] + SYSTEM_INIT_OFFSET_CHAR_CHECK);
-  psystem_stack_initialization_counter = &g_system_context;
+  system_stack_initialization_counter_ptr = &g_system_context;
   system_config_data_pointer = system_buffer_pointer;
   system_module_data_pointer = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_char_check == '\0') {
@@ -15484,7 +15484,7 @@ void InitializeSystemCore(void)
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
   system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = psystem_stack_initialization_counter;
+  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_counter_ptr;
   return;
 }
 
@@ -19366,7 +19366,7 @@ InitializeSystemCore(system_uint64_t *system_context_param,longlong *system_conf
       system_thread_param[SYSTEM_ARRAY_INDEX_NINTH] = psystem_initialization_result[-SYSTEM_INIT_FLAG_ENABLED_BASE];
       system_thread_param[SYSTEM_ARRAY_INDEX_TENTH] = system_buffer_pointer;
       system_buffer_pointer = psystem_initialization_result[-SYSTEM_INIT_SIZE_COMPARE];
-      system_thread_param[10] = psystem_initialization_result[-SYSTEM_INIT_FLAG_PRIMARY_ENABLED];
+      system_thread_param[SYSTEM_INIT_ARRAY_INDEX_FUNCTION_PTR] = psystem_initialization_result[-SYSTEM_INIT_FLAG_PRIMARY_ENABLED];
       system_thread_param[] = system_buffer_pointer;
       system_buffer_pointer = psystem_initialization_result[-];
       system_thread_param[] = psystem_initialization_result[-];
@@ -50784,7 +50784,7 @@ int InitializeSystemCore(longlong system_context_param,longlong *system_config_p
   system_uint32_t system_ulong_var_15;
   system_uint64_t system_stack_uint_var_8;
   system_uint64_t *system_stack_frame_pointer;
-  system_uint64_t *psystem_stack_initialization_counter;
+  system_uint64_t *system_stack_initialization_counter_ptr;
   uint in_stack_ffffffffffffff38;
   system_uint64_t system_ulong_var_16;
   ulonglong *puStack_80;
@@ -50884,7 +50884,7 @@ int InitializeSystemCore(longlong system_context_param,longlong *system_config_p
     system_config_param[SYSTEM_ARRAY_INDEX_EIGHTH] = system_function_result + SYSTEM_INIT_FLAG_OCTONARY_ENABLED00;
     system_context_handle = SYSTEM_INIT_VALUE_ZERO;
   }
-  psystem_stack_initialization_counter = &system_stack_uint_var_8;
+  system_stack_initialization_counter_ptr = &system_stack_uint_var_8;
   system_stack_uint_var_8 = SYSTEM_INIT_VALUE_ZERO;
   system_ulong_var_15 = system_generic_function_(system_context_handle,system_stack_frame_pointer,&uStack_60,0,in_stack_ffffffffffffff38 & ,0,
                          (byte)system_ulong_var_13 & 1,system_primary_longptr,1,0,0,&system_stack_uint_var_8,system_ulong_var_16);
@@ -52793,7 +52793,7 @@ LAB_180077fcf:
         system_coefficient_a5 = system_thread_param[SYSTEM_ARRAY_INDEX_THIRD];
         system_coefficient_a6 = system_thread_param[SYSTEM_ARRAY_INDEX_NINTH];
         system_coefficient_a7 = system_thread_param[SYSTEM_ARRAY_INDEX_TENTH];
-        system_coefficient_a8 = system_thread_param[10];
+        system_coefficient_a8 = system_thread_param[SYSTEM_INIT_ARRAY_INDEX_FUNCTION_PTR];
         system_scaling_factor = *(float *)(system_context_param + SYSTEM_INIT_FLAG_SECONDARY_ENABLED4);
         system_offset_value = *(float *)(system_context_param + SYSTEM_INIT_FLAG_ENABLED_BASE0);
         uStack_80._0_4_ = system_scaling_factor * system_coefficient_a2 + system_coefficient_a * system_coefficient_a5 + system_coefficient_b * system_coefficient_a8;
@@ -55140,7 +55140,7 @@ void InitializeSystemCore(longlong system_context_param,uint system_config_param
   system_allocation_result5 = *(longlong *)(system_register_rdi_input + SYSTEM_INIT_SIZE_COMPARE);
   system_coefficient_a6 = system_thread_param[SYSTEM_ARRAY_INDEX_NINTH];
   system_coefficient_a7 = system_thread_param[SYSTEM_ARRAY_INDEX_TENTH];
-  system_coefficient_a8 = system_thread_param[10];
+  system_coefficient_a8 = system_thread_param[SYSTEM_INIT_ARRAY_INDEX_FUNCTION_PTR];
   system_coefficient_a9 = system_thread_param[];
   system_coefficient_b0 = *system_thread_param;
   system_coefficient_b1 = system_thread_param[SYSTEM_ARRAY_INDEX_SECOND];
@@ -55169,7 +55169,7 @@ void InitializeSystemCore(longlong system_context_param,uint system_config_param
   system_thread_param[SYSTEM_ARRAY_INDEX_EIGHTH] = system_multiplier * system_coefficient_b7 + system_coefficient_a0 * system_coefficient_b3 + system_coefficient_a1 * system_coefficient_a9;
   system_thread_param[SYSTEM_ARRAY_INDEX_NINTH] = system_divider * system_coefficient_b4 + system_coefficient_a2 * system_coefficient_b0 + system_coefficient_a3 * system_coefficient_a6;
   system_thread_param[SYSTEM_ARRAY_INDEX_TENTH] = system_divider * system_coefficient_b5 + system_coefficient_a2 * system_coefficient_b1 + system_coefficient_a3 * system_coefficient_a7;
-  system_thread_param[10] = system_divider * system_coefficient_b6 + system_coefficient_a2 * system_coefficient_b2 + system_coefficient_a3 * system_coefficient_a8;
+  system_thread_param[SYSTEM_INIT_ARRAY_INDEX_FUNCTION_PTR] = system_divider * system_coefficient_b6 + system_coefficient_a2 * system_coefficient_b2 + system_coefficient_a3 * system_coefficient_a8;
   system_thread_param[] = system_divider * system_coefficient_b7 + system_coefficient_a2 * system_coefficient_b3 + system_coefficient_a3 * system_coefficient_a9;
   system_allocation_result5 = *(longlong *)(system_register_rbx_input + 600);
   if (*(int *)(system_allocation_result5 + SYSTEM_INIT_FLAG_INITIALIZED8) != *(int *)(_g_system_initialized + SYSTEM_INIT_FLAG_INITIALIZED24)) {
