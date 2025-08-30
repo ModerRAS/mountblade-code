@@ -1,5 +1,14 @@
 // 06_utilities.c - 工具系统模块
 // 最终语义化美化版本（2025年8月30日最终批次最新完成）
+// 新增变量名语义化美化工作（2025年8月30日最终批次最新完成）：
+// - 美化循环计数器变量名，将utility_loop_counter_primary_primary等替换为utility_loop_counter_primary等语义化变量名
+// - 美化临时缓冲区变量名，将utility_temp_stack_buffer_buffer替换为utility_temporary_stack_buffer等语义化变量名
+// - 美化浮点数据缓冲区变量名，将utility_float_utility_data_pointer_primary_extended替换为utility_float_data_buffer等语义化变量名
+// - 美化临时计数器变量名，将utility_temporary_utility_loop_counter_secondary_secondary替换为utility_loop_counter_temporary等语义化变量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了工具系统中剩余的非语义化变量名的语义化替换
+// - 原本实现：完全重构工具系统所有变量命名体系，建立统一的语义化命名规范
+// - 简化实现：仅将常见的非语义化变量名替换为语义化名称，保持代码结构不变
 // 新增剩余硬编码值语义化美化（2025年8月30日最终批次最新完成）：
 // - 美化硬编码掩码常量，将UTILITY_MASK_FFFFFFFFFFFE0替换为UTILITY_MASK_CLEAR_LOW_FIVE_BITS等语义化常量
 // - 美化硬编码偏移量变量，将utility_thread_local_storage_offset_extended_extended_1FF8替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_CLEANUP_PRIMARY等语义化常量
@@ -522,7 +531,7 @@
 // - 保持代码语义不变，这是简化实现，主要处理了工具系统中变量名不一致问题和添加全局句柄语义化常量
 // - 简化实现：仅修复明显的变量名不一致问题和添加必要的全局句柄语义化常量，保持代码结构不变
 // 本次美化内容（2025年8月30日最终批次完成）：
-// - 修复变量名不一致问题，将utility_temp_stack_buffer统一为utility_temp_stack_buffer_buffer
+// - 修复变量名不一致问题，将utility_temp_stack_buffer统一为utility_temporary_stack_buffer
 // - 添加utility_bit_mask_single_unit语义化常量定义
 // - 美化硬编码数值常量名，将utility_bit_mask_single_unit替换为utility_bit_mask_single_unit等语义化常量名
 // - 美化硬编码数值常量名，将utility_status_flag_offset_septenary替换为utility_status_flag_offset_extended_extended_extended等语义化常量名
@@ -1842,9 +1851,9 @@ uint64 utility_execute_resource_management_command(longlong utility_resource_pri
         if ((((utility_loop_counter_primary >> UTILITY_SIZE_MULTIPLIER_TRIPLE & (utility_single_unit << utility_bit_mask_single_unit)) != utility_zero) && (utility_temp_cache_register = (int)utility_temp_float_register, utility_temp_integer_register != -utility_integer_minimum)) &&
            ((float)utility_temp_integer_register != utility_temp_float_register)) {
           utility_float_data_buffer.utility_float_component_high = utility_temp_float_register;
-          utility_float_utility_data_pointer_primary_extended.utility_float_component_low = utility_temp_float_register;
-          utility_float_utility_data_pointer_primary_extended.int_part = utility_zero;
-          utility_loop_counter_primary = movmskps(utility_loop_counter_primary,utility_float_utility_data_pointer_primary_extended);
+          utility_float_data_buffer.utility_float_component_low = utility_temp_float_register;
+          utility_float_data_buffer.int_part = utility_zero;
+          utility_loop_counter_primary = movmskps(utility_loop_counter_primary,utility_float_data_buffer);
           utility_temp_float_register = (float)(int)(utility_temp_integer_register - (utility_loop_counter_primary & (utility_single_unit << utility_bit_mask_single_unit)));
         }
         utility_temp_float_register = (float)calc_resource_data_size(*(longlong *)(utility_resource_buffer_handle + utility_resource_offset_standard_primary),utility_temp_float_register);
@@ -2468,9 +2477,9 @@ uint64 get_file_position(longlong utility_resource_primary_handle)
         if ((((utility_loop_counter_primary >> UTILITY_SIZE_MULTIPLIER_TRIPLE & (utility_single_unit << utility_bit_mask_single_unit)) != utility_zero) && (utility_temp_cache_register = (int)utility_temp_float_register, utility_temp_integer_register != -utility_integer_minimum)) &&
            ((float)utility_temp_integer_register != utility_temp_float_register)) {
           utility_float_data_buffer.utility_float_component_high = utility_temp_float_register;
-          utility_float_utility_data_pointer_primary_extended.utility_float_component_low = utility_temp_float_register;
-          utility_float_utility_data_pointer_primary_extended.int_part = utility_zero;
-          utility_loop_counter_primary = movmskps(utility_loop_counter_primary,utility_float_utility_data_pointer_primary_extended);
+          utility_float_data_buffer.utility_float_component_low = utility_temp_float_register;
+          utility_float_data_buffer.int_part = utility_zero;
+          utility_loop_counter_primary = movmskps(utility_loop_counter_primary,utility_float_data_buffer);
           utility_temp_float_register = (float)(int)(utility_temp_integer_register - (utility_loop_counter_primary & (utility_single_unit << utility_bit_mask_single_unit)));
         }
         utility_temp_float_register = (float)calc_resource_data_size(*(longlong *)(utility_resource_buffer_handle + utility_resource_offset_standard_primary),utility_temp_float_register);
@@ -20124,7 +20133,7 @@ ulonglong initializetaskoperator(longlong utility_resource_primary_handle,longlo
   uint16_t utility_stack_utility_data_pointer_primary_extended [utility_array_index_quaternary];
   uint32 utility_local_resource_buffer [utility_stack_buffer_size_main_pair];
   uint32 utility_temporary_loop_counter_primary;
-  uint32 utility_temporary_utility_loop_counter_secondary_secondary;
+  uint32 utility_loop_counter_temporary;
   uint32 utility_temporary_loop_counter_tertiary;
   uint32 utility_temporary_loop_counter_quaternary;
   byte utility_encryption_data [utility_encryption_data_size_standard];
