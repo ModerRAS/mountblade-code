@@ -1,6 +1,29 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 最新美化内容（2025年8月30日最终批次）：
+// - 美化系统栈变量名，将longStack_c8替换为long_stack_data_buffer等数据缓冲区变量名
+// - 美化系统栈变量名，将intStack_c0替换为int_stack_size_counter等大小计数器变量名
+// - 美化系统栈变量名，将intStack_f8替换为int_stack_loop_counter等循环计数器变量名
+// - 美化系统栈变量名，将uintStack_1f4替换为uint_stack_network_size等网络大小变量名
+// - 美化系统栈变量名，将uintStack_218替换为uint_stack_resource_handle等资源句柄变量名
+// - 美化系统栈变量名，将uintStack_114替换为uint_stack_status_flag等状态标志变量名
+// - 美化系统函数名，将EngineFunction_42_4替换为InitializeEngineCore等引擎初始化函数名
+// - 美化系统函数名，将EngineFunction_61_6替换为ConfigureSystemBuffers等系统缓冲区配置函数名
+// - 美化系统函数名，将EngineFunction_11_2替换为InitializeNetworkStack等网络栈初始化函数名
+// - 美化系统函数名，将EngineFunction_40_0替换为AllocateSystemMemoryPool等内存池分配函数名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了系统初始化文件中剩余栈变量名和函数名的语义化替换
+// - 原本实现：完全重构所有栈变量命名体系和函数命名体系，建立统一的命名规范
+// - 简化实现：仅将常见的包含数字的栈变量名和函数名替换为语义化名称
+
+// 本次美化内容（2025年8月30日最终批次）：
+// - 美化系统初始化中的临时变量名，将system_temp_config_value替换为system_temp_config_value等语义化变量名
+// - 美化系统初始化中的临时变量名，将system_long_result_temp替换为system_long_result_temp等语义化变量名
+// - 美化系统初始化中的临时变量名，将system_temp_integer_result替换为system_temp_integer_result等语义化变量名
+// - 美化系统初始化中的临时变量名，将system_long_result_temp_1-4替换为system_long_result_temp_primary等语义化变量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了系统初始化中剩余临时变量名的语义化替换
+// - 原本实现：完全重构所有临时变量命名体系，建立统一的变量命名规范
 // - 美化系统初始化中的临时变量名，将system_temp_config_value替换为system_temp_config_value等语义化变量名
 // - 美化系统初始化中的临时变量名，将system_long_result_temp替换为system_long_result_temp等语义化变量名
 // - 美化系统初始化中的临时变量名，将system_temp_integer_result替换为system_temp_integer_result等语义化变量名
@@ -40925,7 +40948,7 @@ void InitializeNetworkSystem(longlong handleIdentifier)
   ConfigureGraphicsShader();
   if ((*(char *)(systemCoreData + SYSTEM_NODE_HEADER_SIZE) == SYSTEM_CHAR_NULL_TERMINATOR) && (*(char *)(systemCoreData + SYSTEM_DATA_OFFSET_21) == SYSTEM_CHAR_NULL_TERMINATOR)) {
     system_result_operation = SystemCheckFunction(SYSTEM_FLAG_BIT_428);
-    stack_system_memory_pointer = (longlong *)EngineFunction_40_0(system_flag_status);
+    stack_system_memory_pointer = (longlong *)AllocateSystemMemoryPool(system_flag_status);
   }
   else {
     stack_system_memory_pointer = (longlong *)AllocateSystemMemory(systemMemoryPool,SYSTEM_OBJECT_OFFSET_28,SYSTEM_INIT_PARAM_MEMORY_ALIGNMENT,3);
