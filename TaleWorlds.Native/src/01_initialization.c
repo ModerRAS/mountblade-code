@@ -34962,9 +34962,9 @@ code_r0x0001800630e9:
       (**(code **)(*system_memory_pointer + 0x70))(system_memory_pointer,&g_global_system_config);
       ProcessGraphicsCommand(*(longlong *)(handleIdentifier + SYSTEM_NODE_HEADER_SIZE) + SYSTEM_NODE_HEADER_SIZE);
       if (((*(byte *)(*(longlong *)(handleIdentifier + SYSTEM_NODE_HEADER_SIZE) + 8) & 2) != 0) &&
-         (iRam0000000180c912e0 = iRam0000000180c912e0 + -1, iRam0000000180c912e0 == 0)) {
+         (system_int_memory_912e0 = system_int_memory_912e0 + -1, system_int_memory_912e0 == 0)) {
         g_system_stack_buffer; = 0;
-        lRam0000000180c912e8 = 0;
+        system_long_memory_912e8 = 0;
         LOCK();
         g_system_io_buffer; = 0;
         UNLOCK();
@@ -35037,7 +35037,7 @@ code_r0x0001800630e9:
       *(uint64_t *)(*(longlong *)(handleIdentifier + SYSTEM_NODE_HEADER_SIZE) + SYSTEM_DATA_COMPARE_SIZE) = *(uint64_t *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_60);
       break;
     case 8:
-      if ((g_system_stack_buffer; != 0) && (lRam0000000180c912e8 != 0)) {
+      if ((g_system_stack_buffer; != 0) && (system_long_memory_912e8 != 0)) {
         system_local_buffer_X8[0] = *(uint *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_68);
         SetConsoleScreenBufferSize(g_system_stack_buffer;,system_local_buffer_X8[0]);
       }
@@ -37786,9 +37786,9 @@ uint64_t ProcessSystemData(longlong handleIdentifier,longlong resourceIdentifier
         __Throw_C_error_std__YAXH_Z(compare_result);
       }
       InitializeSystemModule32(SYSTEM_NODE_HEADER_SIZE,system_configuration);
-      uRam00000000000001f0 = 0;
-      uRam00000000000001e8 = 0;
-      uRam00000000000001e0 = 0;
+      system_uint_stack_01f0 = 0;
+      system_uint_stack_01e8 = 0;
+      system_uint_stack_01e0 = 0;
       system_init_flag = InitializeNetworkSystem(handleIdentifier,SYSTEM_NODE_HEADER_SIZE,SYSTEM_OFFSET_1E0,SYSTEM_OFFSET_1E8,0x1f0);
       if (system_init_flag == '\0') {
         InitializeSystemModule36(handleIdentifier + 0x370,0);
@@ -37800,13 +37800,13 @@ uint64_t ProcessSystemData(longlong handleIdentifier,longlong resourceIdentifier
         local_varvartemp_variable_18 = 0;
         LOCK();
         local_varvartemp_variable_10 = usystem_integer_result;
-        uRam00000000000001c8 = usystem_integer_result;
-        uRam00000000000001d0 = usystem_integer_result;
-        uRam00000000000001d8 = usystem_integer_result;
+        system_uint_stack_01c8 = usystem_integer_result;
+        system_uint_stack_01d0 = usystem_integer_result;
+        system_uint_stack_01d8 = usystem_integer_result;
         lRam00000000000001f8 = resourceIdentifier;
         *(int *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_RENDER0) = *(int *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_RENDER0) + 1;
         UNLOCK();
-        compare_result = ReadFile(*(uint64_t *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_RENDER8),uRam00000000000001f0,usystem_int_result & SYSTEM_OFFSET_Ffffffff,0,
+        compare_result = ReadFile(*(uint64_t *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_RENDER8),system_uint_stack_01f0,usystem_int_result & SYSTEM_OFFSET_Ffffffff,0,
                          0);
         if (compare_result != 0) {
                     // WARNING: Subroutine does not return
