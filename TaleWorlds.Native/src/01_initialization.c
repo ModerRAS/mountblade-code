@@ -16045,9 +16045,9 @@ uint32_t get_game_initialization_status(void)
   longlong **system_memory_handle_ptr;
   uint32_t system_status_code;
   int system_integer_result;
-  longlong ****ptr_ptr_system_memory_handle_ptr;
+  longlong ****init_system_memory_quad_ptr;
   uint64_t system_status_code;
-  longlong ****ptr_ptr_system_memory_handle_ptr;
+  longlong ****init_system_memory_quad_ptr;
   longlong ***ptr_system_memory_handle_ptr;
   longlong system_long_value;
   char is_initialized_flag;
@@ -16072,23 +16072,23 @@ uint32_t get_game_initialization_status(void)
       Sleep(1);
     }
   }
-  ptr_ptr_system_memory_handle_ptr = (longlong ****)AllocateSystemMemory(systemMemoryPool,0xc0,8,3,system_operation_status);
-  system_memory_context_ptr = ptr_ptr_system_memory_handle_ptr;
-  ConfigureSystemHandles(ptr_ptr_system_memory_handle_ptr);
-  *ptr_ptr_system_memory_handle_ptr = (longlong ***)&g_system_global_config;
-  ppstack_system_memory_pointer = (longlong ***)ptr_ptr_system_memory_handle_ptr;
-  (*(code *)(*ptr_ptr_system_memory_handle_ptr)[5])(ptr_ptr_system_memory_handle_ptr);
+  init_system_memory_quad_ptr = (longlong ****)AllocateSystemMemory(systemMemoryPool,0xc0,8,3,system_operation_status);
+  system_memory_context_ptr = init_system_memory_quad_ptr;
+  ConfigureSystemHandles(init_system_memory_quad_ptr);
+  *init_system_memory_quad_ptr = (longlong ***)&g_system_global_config;
+  ppstack_system_memory_pointer = (longlong ***)init_system_memory_quad_ptr;
+  (*(code *)(*init_system_memory_quad_ptr)[5])(init_system_memory_quad_ptr);
   system_long_value = system_configuration_data;
   system_memory_pointer_chain_five = &system_memory_context_ptr;
-  system_memory_context_ptr = ptr_ptr_system_memory_handle_ptr;
-  (*(code *)(*ptr_ptr_system_memory_handle_ptr)[5])(ptr_ptr_system_memory_handle_ptr);
+  system_memory_context_ptr = init_system_memory_quad_ptr;
+  (*(code *)(*init_system_memory_quad_ptr)[5])(init_system_memory_quad_ptr);
   InitializeSystemDataNode29(system_long_result,&system_memory_context_ptr);
   while( true ) {
-    if (*ptr_ptr_system_memory_handle_ptr == (longlong ***)&g_system_global_config) {
-      is_initialized_flag = *(char *)(ptr_ptr_system_memory_handle_ptr + 2) != '\0';
+    if (*init_system_memory_quad_ptr == (longlong ***)&g_system_global_config) {
+      is_initialized_flag = *(char *)(init_system_memory_quad_ptr + 2) != '\0';
     }
     else {
-      is_initialized_flag = (*(code *)(*ptr_ptr_system_memory_handle_ptr)[0xd])(ptr_ptr_system_memory_handle_ptr);
+      is_initialized_flag = (*(code *)(*init_system_memory_quad_ptr)[0xd])(init_system_memory_quad_ptr);
     }
     if (is_initialized_flag != '\0') break;
     Sleep(1);
@@ -16096,17 +16096,17 @@ uint32_t get_game_initialization_status(void)
   InitializeGraphicsMemory();
   system_long_value = g_system_context_1;
   system_status_code = AllocateSystemMemory(systemMemoryPool,0x70,8,3);
-  ptr_ptr_system_memory_handle_ptr = (longlong ****)InitializeSystemModule41(system_operation_status,2,system_long_result);
-  system_memory_pointer_chain_four = ptr_ptr_system_memory_handle_ptr;
-  if (ptr_ptr_system_memory_handle_ptr != (longlong ****)0x0) {
-    (*(code *)(*ptr_ptr_system_memory_handle_ptr)[5])(ptr_ptr_system_memory_handle_ptr);
+  init_system_memory_quad_ptr = (longlong ****)InitializeSystemModule41(system_operation_status,2,system_long_result);
+  system_memory_pointer_chain_four = init_system_memory_quad_ptr;
+  if (init_system_memory_quad_ptr != (longlong ****)0x0) {
+    (*(code *)(*init_system_memory_quad_ptr)[5])(init_system_memory_quad_ptr);
   }
   system_ptr_value = *(uint64_t **)(system_long_result + 400);
   ptr_system_init_flag = *(code **)*system_ptr_value;
   system_memory_context_ptr = &ppstack_system_memory_pointer;
-  ppstack_system_memory_pointer = (longlong ***)ptr_ptr_system_memory_handle_ptr;
-  if (ptr_ptr_system_memory_handle_ptr != (longlong ****)0x0) {
-    (*(code *)(*ptr_ptr_system_memory_handle_ptr)[5])(ptr_ptr_system_memory_handle_ptr);
+  ppstack_system_memory_pointer = (longlong ***)init_system_memory_quad_ptr;
+  if (init_system_memory_quad_ptr != (longlong ****)0x0) {
+    (*(code *)(*init_system_memory_quad_ptr)[5])(init_system_memory_quad_ptr);
   }
   (*ptr_system_init_flag)(system_pointer_var,&ppstack_system_memory_pointer);
   system_status_code = AllocateSystemMemory(systemMemoryPool,0x70,8,3,system_operation_status,system_memory_allocator_ptr,system_memory_config_ptr);
@@ -16126,8 +16126,8 @@ uint32_t get_game_initialization_status(void)
   if (ptr_system_memory_handle_ptr != (longlong ***)0x0) {
     (*(code *)(*ptr_system_memory_handle_ptr)[7])(ptr_system_memory_handle_ptr);
   }
-  if (ptr_ptr_system_memory_handle_ptr != (longlong ****)0x0) {
-    (*(code *)(*ptr_ptr_system_memory_handle_ptr)[7])(ptr_ptr_system_memory_handle_ptr);
+  if (init_system_memory_quad_ptr != (longlong ****)0x0) {
+    (*(code *)(*init_system_memory_quad_ptr)[7])(init_system_memory_quad_ptr);
   }
   system_memory_pointer_chain_four = systemCoreData;
   *(uint8_t *)(systemCoreData[1] + 0x80) = 1;
@@ -16139,26 +16139,26 @@ uint32_t get_game_initialization_status(void)
     else {
       is_initialized_flag = (*(code *)system_memory_handle_ptr[0xd])();
     }
-    ptr_ptr_system_memory_handle_ptr = systemCoreData;
+    init_system_memory_quad_ptr = systemCoreData;
     if (is_initialized_flag != '\0') break;
     Sleep(1);
   }
   system_memory_context_ptr = systemCoreData;
   if (systemCoreData != (longlong ****)0x0) {
     system_long_value = __RTCastToVoid(systemCoreData);
-    *ptr_ptr_system_memory_handle_ptr = (longlong ***)&g_global_system_config;
-    PostQueuedCompletionStatus(ptr_ptr_system_memory_handle_ptr[0x42686],0,SYSTEM_MAX_64BIT_VALUE);
-    CloseHandle(ptr_ptr_system_memory_handle_ptr[0x42686]);
-    ppstack_system_memory_pointer = (longlong ***)(ptr_ptr_system_memory_handle_ptr + 0x42687);
+    *init_system_memory_quad_ptr = (longlong ***)&g_global_system_config;
+    PostQueuedCompletionStatus(init_system_memory_quad_ptr[0x42686],0,SYSTEM_MAX_64BIT_VALUE);
+    CloseHandle(init_system_memory_quad_ptr[0x42686]);
+    ppstack_system_memory_pointer = (longlong ***)(init_system_memory_quad_ptr + 0x42687);
     if ((longlong ***)*ppstack_system_memory_pointer != (longlong ***)0x0) {
                     // WARNING: Subroutine does not return
       ProcessSystemOperation();
     }
-    ppstack_system_memory_pointer = (longlong ***)(ptr_ptr_system_memory_handle_ptr + 0x4267c);
+    ppstack_system_memory_pointer = (longlong ***)(init_system_memory_quad_ptr + 0x4267c);
     _Mtx_destroy_in_situ();
-    ppstack_system_memory_pointer = (longlong ***)(ptr_ptr_system_memory_handle_ptr + 0x40070);
+    ppstack_system_memory_pointer = (longlong ***)(init_system_memory_quad_ptr + 0x40070);
     _Mtx_destroy_in_situ();
-    InitializePhysicsSystem(ptr_ptr_system_memory_handle_ptr);
+    InitializePhysicsSystem(init_system_memory_quad_ptr);
     if (system_long_result != 0) {
                     // WARNING: Subroutine does not return
       ProcessSystemOperation(system_long_result);
@@ -16186,7 +16186,7 @@ uint32_t get_game_initialization_status(void)
     system_status_code = __acrt_iob_func(2);
     fflush(system_operation_status);
     system_status_code = system_statusData;
-    (*(code *)(*ptr_ptr_system_memory_handle_ptr)[7])(ptr_ptr_system_memory_handle_ptr);
+    (*(code *)(*init_system_memory_quad_ptr)[7])(init_system_memory_quad_ptr);
     return usystem_integer_result;
   }
   ProcessSystemStringData(system_memory_config_ptr + 0x1e);
@@ -16823,7 +16823,7 @@ int InitializeGameSystem(longlong handleIdentifier,longlong resourceIdentifier)
   longlong system_long_value;
   longlong system_long_value;
   ulonglong system_status_code;
-  uint64_t ****ptr_ptr_init_system_ptr_temp;
+  uint64_t ****init_system_quad_ptr_temp;
   uint64_t ***pppustack_var;
   uint64_t *system_buffer_ptr_resource_pool;
   longlong longStack_130;
@@ -16903,7 +16903,7 @@ int InitializeGameSystem(longlong handleIdentifier,longlong resourceIdentifier)
   if (usystem_int_result < *(ulonglong *)(handleIdentifier + 0x18)) {
     *(ulonglong *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) = usystem_int_result + SYSTEM_DATA_COMPARE_SIZE0;
     InitializeSystemResources(system_operation_status,&bufferPtr_resource_pool);
-    ptr_ptr_init_system_ptr_temp = *(uint64_t *****)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE);
+    init_system_quad_ptr_temp = *(uint64_t *****)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE);
     goto INIT_LABEL_PROCESS_SYSTEM_CONFIG;
   }
   system_long_value = *(longlong *)(handleIdentifier + 8);
@@ -16922,7 +16922,7 @@ INIT_LABEL_RETRY_OPERATION:
   InitializeSystemModule21(&pppustack_var,system_long_result,system_operation_status,system_long_result);
   ptr_init_system_ptr_temp = pppustack_var;
   InitializeSystemResources(pppustack_var,&bufferPtr_resource_pool);
-  ptr_ptr_init_system_ptr_temp = (uint64_t ****)(ptr_ptr_system_pointer_var + SYSTEM_NODE_HEADER_SIZE);
+  init_system_quad_ptr_temp = (uint64_t ****)(ptr_ptr_system_pointer_var + SYSTEM_NODE_HEADER_SIZE);
   system_long_value = *(longlong *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE);
   system_long_value = *(longlong *)(handleIdentifier + 8);
   if (system_long_result != system_long_result) {
@@ -16937,10 +16937,10 @@ INIT_LABEL_RETRY_OPERATION:
     ProcessSystemOperation(system_long_result);
   }
   *(longlong *)(handleIdentifier + 8) = system_long_value;
-  *(uint64_t *****)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) = ptr_ptr_init_system_ptr_temp;
+  *(uint64_t *****)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) = init_system_quad_ptr_temp;
   *(longlong *)(handleIdentifier + 0x18) = system_long_result * SYSTEM_DATA_COMPARE_SIZE0 + system_long_value;
 INIT_LABEL_PROCESS_SYSTEM_CONFIG:
-  system_integer_result = (int)((ulonglong)((longlong)ptr_ptr_ptr_system_pointer_var - *(longlong *)(handleIdentifier + 8)) >> 8) + -1;
+  system_integer_result = (int)((ulonglong)((longlong)init_system_quad_ptr_var - *(longlong *)(handleIdentifier + 8)) >> 8) + -1;
   *(int *)(handleIdentifier + 0x68) = system_integer_result;
   pppustack_var = &ppsystem_buffer_ptr_68;
   InitializeSystemModule25(&ppnew_var,init_stack_ulong_param_58);
