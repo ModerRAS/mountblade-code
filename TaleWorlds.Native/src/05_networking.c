@@ -89,6 +89,13 @@
 #define NETWORK_SOCKET_EXTENDED_OFFSET_85C 0x85C  // 套接字扩展偏移量85C
 #define NETWORK_SOCKET_EXTENDED_OFFSET_8BC 0x8BC  // 套接字扩展偏移量8BC
 
+// 新增语义化常量定义 - 其他偏移量
+#define NETWORK_SOCKET_OFFSET_3E4 0x3E4  // 套接字偏移量3E4
+#define NETWORK_SOCKET_OFFSET_3BC 0x3BC  // 套接字偏移量3BC
+#define NETWORK_SOCKET_OFFSET_394 0x394  // 套接字偏移量394
+#define NETWORK_SOCKET_OFFSET_36C 0x36C  // 套接字偏移量36C
+#define NETWORK_CONNECTION_TIMEOUT_OFFSET_55 0x55  // 连接超时偏移量55
+
 // 新增语义化常量定义 - 套接字描述符偏移量
 #define NETWORK_SOCKET_DESCRIPTOR_OFFSET_898 0x898  // 套接字描述符偏移量898
 #define NETWORK_SOCKET_DESCRIPTOR_OFFSET_8A8 0x8A8  // 套接字描述符偏移量8A8
