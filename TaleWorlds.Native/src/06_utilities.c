@@ -2399,10 +2399,10 @@ dataValue g_resource_temp_offset;                    // 资源临时偏移量
 dataValue g_resource_memory_pool;                    // 资源内存池
 dataValue g_resource_temp_size;                      // 资源临时大小
 dataValue g_reference_count_table;                    // 引用计数表
-dataValue g_resourceTempFlags;
-dataValue resourceGarbageCollector;
-dataValue g_resource_reserved_memory;
-dataValue sceneObjectDatabase;
+dataValue g_resource_temp_flags;                     // 资源临时标志
+dataValue g_resource_garbage_collector;               // 资源垃圾收集器
+dataValue g_resource_reserved_memory;                // 资源保留内存
+dataValue g_scene_object_database;                   // 场景对象数据库
 dataValue g_resource_reserved_texture;
 dataValue sceneTransformData;
 dataValue g_sceneWorkBuffer;
