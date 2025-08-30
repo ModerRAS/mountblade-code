@@ -99,6 +99,25 @@
 #define SYSTEM_STRING_CONFIG_TOKEN_SHORT 0x635f656e
 #define SYSTEM_STRING_INFO_TOKEN 0x69666e6f
 #define SYSTEM_STRING_EXT_TOKEN 0x78742e67
+#define SYSTEM_FLAG_BIT_48 0x48
+#define SYSTEM_FLAG_BIT_41c64e6d 0x41c64e6d
+#define SYSTEM_DATA_OFFSET_7Ab8 0x7ab8
+#define SYSTEM_DATA_OFFSET_540 0x540
+#define SYSTEM_DATA_OFFSET_2140 0x2140
+#define SYSTEM_OFFSET_1Ea0 0x1ea0
+#define SYSTEM_NODE_HEADER_SIZEd0 0xd0
+#define SYSTEM_DATA_BLOCK_SIZE_50 0x50
+#define SYSTEM_OFFSET_234 0x234
+#define SYSTEM_OFFSET_238 0x238
+#define SYSTEM_OFFSET_230 0x230
+#define SYSTEM_OFFSET_23c 0x23c
+#define SYSTEM_OFFSET_1d50 0x1d50
+#define SYSTEM_OFFSET_1fc 0x1fc
+#define SYSTEM_OFFSET_2c0 0x2c0
+#define SYSTEM_OFFSET_2f0 0x2f0
+#define SYSTEM_OFFSET_1f8 0x1f8
+#define SYSTEM_DATA_OFFSET_21b0 0x21b0
+#define SYSTEM_DATA_COMPARE_SIZE 0x1fff
 #define SYSTEM_STRING_RESU_TOKEN 0x72657375
 #define SYSTEM_STRING_CONF_TOKEN 0x6e6f635f
 #define SYSTEM_STRING_T_CHAR 0x74
@@ -20860,7 +20879,7 @@ void CopySystemStringData(longlong handleIdentifier)
     system_long_value = system_long_result + 1;
   } while (*(char *)(handleIdentifier + system_long_result) != '\0');
   system_status_code = (uint)system_long_value;
-  if (0x1fff < system_int_result_unsigned) {
+  if (SYSTEM_DATA_COMPARE_SIZE < system_int_result_unsigned) {
     system_status_code = SYSTEM_STATUS_CODE_MAX;
   }
                     // WARNING: Subroutine does not return
