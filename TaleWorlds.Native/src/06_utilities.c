@@ -15517,7 +15517,7 @@ void orderUtilityLists(longlong resource_handle_identifier,int *memory_block_siz
   char_value = (char)cpu_register_eax + -0x57 + in_CF;
   system_status_code = CONCAT_BYTES(validation_flag,char_value);
   *(uint32 *)CONCAT44(utility_register_input_value_var,system_status_code) = system_status_code;
-  *(uint *)(resource_handle_identifier + -0x565dff77) = *(uint *)(resource_handle_identifier + -0x565dff77) & unaff_EBP;
+  *(uint *)(resource_handle_identifier + UTILITY_RESOURCE_MASK_OFFSET) = *(uint *)(resource_handle_identifier + UTILITY_RESOURCE_MASK_OFFSET) & unaff_EBP;
   *(uint32 *)CONCAT44(utility_register_input_value_var,system_status_code) = system_status_code;
   plocalInt = resource_buffer;
   *(uint32 *)CONCAT44(utility_register_input_value_var,system_status_code) = system_status_code;
