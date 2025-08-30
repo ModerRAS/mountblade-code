@@ -610,7 +610,10 @@
 #define SYSTEM_INIT_VALUE_ZERO 0
 #define SYSTEM_INIT_VALUE_ONE 1
 #define SYSTEM_INIT_VALUE_TWO 2
+#define SYSTEM_INIT_VALUE_FIVE 5
 #define SYSTEM_INIT_VALUE_SEVEN 7
+#define SYSTEM_INIT_VALUE_NINE 9
+#define SYSTEM_INIT_VALUE_TEN 10
 #define SYSTEM_INIT_VALUE_NULL 0
 
 // 系统状态语义化常量
@@ -624,11 +627,43 @@
 #define SYSTEM_NULL_HANDLE 0
 #define SYSTEM_NULL_SIZE 0
 
+// 系统浮点数语义化常量
+#define SYSTEM_FLOAT_ONE_HUNDRED_MILLION 1e+08
+#define SYSTEM_FLOAT_MAX_NORMAL 0x7f7fffff
+#define SYSTEM_FLOAT_NEGATIVE_INFINITY 0xbf800000
+#define SYSTEM_FLOAT_HALF 0x3f000000
+#define SYSTEM_FLOAT_SIX_SEVENTHS 0x3f4ccccd
+
+// 系统十六进制值语义化常量
+#define SYSTEM_HEX_VALUE_21 0x21
+#define SYSTEM_HEX_VALUE_33 0x33
+#define SYSTEM_HEX_VALUE_3A 0x3a
+#define SYSTEM_HEX_VALUE_B8 0xb8
+#define SYSTEM_HEX_VALUE_A0A 0xa0a
+#define SYSTEM_HEX_VALUE_HASH_MARKER 0x23232323
+
 // 系统数组索引语义化常量
 #define SYSTEM_ARRAY_INDEX_FIRST 0
 #define SYSTEM_ARRAY_INDEX_SECOND 1
 #define SYSTEM_ARRAY_INDEX_THIRD 2
+#define SYSTEM_ARRAY_INDEX_FOURTH 3
+#define SYSTEM_ARRAY_INDEX_FIFTH 4
+#define SYSTEM_ARRAY_INDEX_SIXTH 5
+#define SYSTEM_ARRAY_INDEX_SEVENTH 6
+#define SYSTEM_ARRAY_INDEX_EIGHTH 7
+#define SYSTEM_ARRAY_INDEX_NINTH 8
+#define SYSTEM_ARRAY_INDEX_TENTH 9
 #define SYSTEM_ARRAY_INDEX_FUNCTION_POINTER 0
+
+// 系统字符串语义化常量
+#define SYSTEM_STRING_NOTEPAD 0x6973736572707845
+#define SYSTEM_STRING_WINDOWS 0x6c726f77656c6174
+#define SYSTEM_STRING_PROCESS 0x50706d75
+#define SYSTEM_STRING_KERNEL 0x6e65726b
+#define SYSTEM_STRING_LISTEN 0x6e696c
+#define SYSTEM_STRING_THREAD 0x726564
+#define SYSTEM_STRING_NODE 0x646f6e
+#define SYSTEM_STRING_INIT 0x74696e69
 
 // 本次美化内容（2025年8月30日）：
 // - 添加了SYSTEM_MEMORY_OFFSET_THREAD_STACK等系统偏移量语义化常量
@@ -24771,7 +24806,7 @@ void InitializeSystemComponents(longlong handleIdentifier,longlong resourceIdent
   *system_pointer_value = SYSTEM_STRING_MODULE_DOM;
   *(uint16_t *)(system_pointer_temp + 1) = SYSTEM_CONFIG_VALUE_2A5F;
   *(uint8_t *)((longlong)system_pointer_temp + 10) = 0;
-  init_stack_buffer_size = 10;
+  init_stack_buffer_size = SYSTEM_INIT_VALUE_TEN;
   system_memory_comparison_result = CompareSystemBuffers(handleIdentifier + SYSTEM_MEDIUM_OFFSET_THREAD_QUEUE,&system_buffer_ptr_config_data);
   if (-1 < system_memory_comparison_result) {
     system_buffer_ptr_small_buffer = &resourcePoolPointer;
@@ -24786,7 +24821,7 @@ void InitializeSystemComponents(longlong handleIdentifier,longlong resourceIdent
     *system_pointer_value = SYSTEM_STRING_MODULE_DOM_Asterisk;
     *(uint16_t *)(system_pointer_temp + 1) = SYSTEM_CONFIG_VALUE_5F53;
     *(uint8_t *)((longlong)system_pointer_temp + 10) = 0;
-    init_stack_uint_param_80 = 10;
+    init_stack_uint_param_80 = SYSTEM_INIT_VALUE_TEN;
     CompareSystemBuffers(handleIdentifier + SYSTEM_MEDIUM_OFFSET_THREAD_QUEUE,&system_buffer_ptr_small_buffer);
     system_buffer_ptr_small_buffer = &resourcePoolPointer;
                     // WARNING: Subroutine does not return
@@ -24831,7 +24866,7 @@ uint64_t InitializeSystemModule_basic6(uint64_t handleIdentifier,uint64_t resour
   *system_pointer_value = SYSTEM_STRING_MODULE_DOM;
   *(uint16_t *)(system_pointer_temp + 1) = SYSTEM_CONFIG_VALUE_2A5F;
   *(uint8_t *)((longlong)system_pointer_temp + 10) = 0;
-  init_stack_handle_id = 10;
+  init_stack_handle_id = SYSTEM_INIT_VALUE_TEN;
   system_memory_comparison_result = CompareSystemBuffers(system_long_result + SYSTEM_MEDIUM_OFFSET_THREAD_QUEUE,&system_buffer_ptr_system_contextsystem_buffer_ptr_system_context);
   if (-1 < system_memory_comparison_result) {
     system_buffer_ptr_data_primary = &resourcePoolPointer;
@@ -24846,7 +24881,7 @@ uint64_t InitializeSystemModule_basic6(uint64_t handleIdentifier,uint64_t resour
     *system_pointer_value = SYSTEM_STRING_MODULE_DOM_Asterisk;
     *(uint16_t *)(system_pointer_temp + 1) = SYSTEM_CONFIG_VALUE_5F53;
     *(uint8_t *)((longlong)system_pointer_temp + 10) = 0;
-    init_stack_uint_param_data = 10;
+    init_stack_uint_param_data = SYSTEM_INIT_VALUE_TEN;
     CompareSystemBuffers(system_long_result + SYSTEM_MEDIUM_OFFSET_THREAD_QUEUE,&system_buffer_ptr_data_primary);
     system_buffer_ptr_data_primary = &resourcePoolPointer;
                     // WARNING: Subroutine does not return
@@ -37420,7 +37455,7 @@ INIT_LABEL_PROCESS_63de9:
           if (*(char *)(*(longlong *)((longlong)system_buffer_ptr_data_list + system_counter_temp + SYSTEM_OFFSET_8) + (longlong)(system_temp_integer_result + -SYSTEM_OFFSET_4) +
                        system_long_result) != (&g_system_input_module_data)[system_long_result]) goto INIT_LABEL_SYSTEM_63de9;
           system_long_result_temp = system_long_result_temp;
-        } while (system_long_result != 5);
+        } while (system_long_result != SYSTEM_INIT_VALUE_FIVE);
         system_boolean_flag = true;
       }
       if (system_status_result) {
@@ -43856,7 +43891,7 @@ uint64_t * InitializeShaderSystem(uint64_t *handleIdentifier,uint64_t resourceId
   *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_7C) = 3;
   handleIdentifier[SYSTEM_DATA_OFFSET_7E] = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_STATE) = 0;
-  *(uint32_t *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_3Fc) = 4000;
+  *(uint32_t *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_3Fc) = SYSTEM_BUFFER_SIZE_4K_VALUE;
   handleIdentifier[SYSTEM_OFFSET_18] = resourceIdentifier;
   handleIdentifier[SYSTEM_DATA_BLOCK_SIZE_RESERVED] = system_configuration;
   *(uint8_t *)(handleIdentifier + SYSTEM_OFFSET_80) = 0;
