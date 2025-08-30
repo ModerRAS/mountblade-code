@@ -22044,11 +22044,11 @@ void ConfigureGraphicsShader(void)
   *(uint32_t *)(system_long_result + SYSTEM_OFFSET_238) = SYSTEM_FLOAT_ONE_VALUE;
   system_float_value = 1.0;
   if (*(int *)(system_long_result + SYSTEM_OFFSET_1Ea0) == 1) {
-    system_integer_result = *(int *)(system_long_result + 0x1d50);
+    system_integer_result = *(int *)(system_long_result + SYSTEM_OFFSET_1d50);
     init_int_pointer_temp = (int *)GetAudioDeviceHandle(*(uint64_t *)(g_system_base_1 + 8),system_local_buffer_graphics);
     system_float_value = (float)system_int_result / (float)*init_int_pointer_temp;
-    system_float_value = system_result_float * *(float *)(system_long_result + 0x234);
-    system_float_value = system_result_float * *(float *)(system_long_result + 0x238);
+    system_float_value = system_result_float * *(float *)(system_long_result + SYSTEM_OFFSET_234);
+    system_float_value = system_result_float * *(float *)(system_long_result + SYSTEM_OFFSET_238);
   }
   if (0.2 <= system_result_float) {
     if (1.0 <= system_result_float) {
@@ -22063,10 +22063,10 @@ void ConfigureGraphicsShader(void)
   if ((0.2 <= system_result_float) && (system_float_value = system_result_float, 1.0 <= system_result_float)) {
     system_float_value = 1.0;
   }
-  *(float *)(system_long_result + 0x238) = system_float_value;
+  *(float *)(system_long_result + SYSTEM_OFFSET_238) = system_float_value;
   *(uint8_t *)(system_long_result + SYSTEM_DATA_OFFSET_22d) = 0;
   system_status_code = log2f();
-  *(uint32_t *)(system_long_result + 0x230) = system_integer_result_unsigned;
+  *(uint32_t *)(system_long_result + SYSTEM_OFFSET_230) = system_integer_result_unsigned;
   system_status_code = log2f();
   *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_240) = system_integer_result_unsigned;
   system_status_code = log2f();
@@ -23493,11 +23493,11 @@ void InitializeSystemModule43(longlong *handleIdentifier,uint64_t resourceIdenti
   *(uint32_t *)(system_long_result + SYSTEM_OFFSET_238) = SYSTEM_FLOAT_ONE_VALUE;
   system_float_value = 1.0;
   if (*(int *)(system_long_result + SYSTEM_OFFSET_1Ea0) == 1) {
-    system_integer_result = *(int *)(system_long_result + 0x1d50);
+    system_integer_result = *(int *)(system_long_result + SYSTEM_OFFSET_1d50);
     init_int_pointer_temp = (int *)GetAudioDeviceHandle(*(uint64_t *)(g_system_base_1 + 8),&system_stack_memory_pointer);
     system_float_value = (float)system_int_result / (float)*init_int_pointer_temp;
-    system_float_value = system_result_float * *(float *)(system_long_result + 0x234);
-    system_float_value = system_result_float * *(float *)(system_long_result + 0x238);
+    system_float_value = system_result_float * *(float *)(system_long_result + SYSTEM_OFFSET_234);
+    system_float_value = system_result_float * *(float *)(system_long_result + SYSTEM_OFFSET_238);
   }
   if (0.2 <= system_result_float) {
     if (1.0 <= system_result_float) {
@@ -23512,7 +23512,7 @@ void InitializeSystemModule43(longlong *handleIdentifier,uint64_t resourceIdenti
     if (1.0 <= system_result_float) {
       system_float_value = 1.0;
     }
-    *(float *)(system_long_result + 0x238) = system_float_value;
+    *(float *)(system_long_result + SYSTEM_OFFSET_238) = system_float_value;
   }
   else {
     *(uint32_t *)(system_long_result + 0x238) = 0x3e4ccccd;
