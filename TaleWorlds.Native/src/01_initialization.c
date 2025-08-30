@@ -21803,7 +21803,7 @@ void initialize_system_module_seventeen(longlong handleIdentifier,uint64_t resou
   init_stack_data_var = systemFlags;
   system_pointer_value = (ulonglong *)GetSystemPointerData();
   init_stack_handle_id = 0;
-  system_buffer_ptr_thread_context = system_buffer_ptr_thread_context = &flag_initialized;system_init_status_flag;
+  system_buffer_ptr_thread_context = system_buffer_ptr_thread_context = &system_init_status_flag;system_init_status_flag;
   __stdio_common_vsprintf(*system_pointer_temp | 1,init_stack_char_buffer_48,SYSTEM_NODE_HEADER_SIZE,resourceIdentifier);
   system_long_result_temp = -1;
   do {
@@ -34550,7 +34550,7 @@ INIT_LABEL_SYSTEM_5f30a:
     return 1;
   }
   if (SYSTEM_OFFSET_8000000000000000 < (*(longlong *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_28) - system_counter_temp) - SYSTEM_NODE_HEADER_SIZE) {
-    system_init_status_flag = initialize_system_module_seventeen(handleIdentifier,&flag_initialized,system_flag_status,system_flag_status,INVALID_HANDLE_VALUE);
+    system_init_status_flag = initialize_system_module_seventeen(handleIdentifier,&system_init_status_flag,system_flag_status,system_flag_status,INVALID_HANDLE_VALUE);
     if (system_init_status_flag != SYSTEM_CHAR_NULL_TERMINATOR) {
       system_memory_pointer = (longlong *)initialize_system_module_fifty_nine(*(uint64_t *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_50));
       if (system_memory_pointer != (longlong *)SYSTEM_NULL_POINTER) {
@@ -35692,7 +35692,7 @@ int ProcessSystemData_script_processing(uint64_t handleIdentifier,uint64_t resou
   system_init_status_flag = system_configuration;
   init_stack_data_var = systemFlags;
   system_node_root = (ulonglong *)GetSystemPointerData();
-  system_temp_integer = __stdio_common_vsprintf(*system_node_root | 1,handleIdentifier,SYSTEM_MAX_64BIT_VALUE,resourceIdentifier,0,&flag_initialized);
+  system_temp_integer = __stdio_common_vsprintf(*system_node_root | 1,handleIdentifier,SYSTEM_MAX_64BIT_VALUE,resourceIdentifier,0,&system_init_status_flag);
   if (system_temp_integer_result < SYSTEM_COMPARISON_ZERO) {
     system_temp_integer = -1;
   }
@@ -36594,7 +36594,7 @@ void ConfigureSystemModule_graphics(uint64_t handleIdentifier,uint64_t resourceI
 
   system_init_status_flag = system_configuration;
   init_stack_data_var = systemFlags;
-  initialize_system_module_forty_one(handleIdentifier,0,SYSTEM_HIGH_32BIT_MASK,SYSTEM_CONFIG_SIZE_STATUS,resourceIdentifier,&flag_initialized);
+  initialize_system_module_forty_one(handleIdentifier,0,SYSTEM_HIGH_32BIT_MASK,SYSTEM_CONFIG_SIZE_STATUS,resourceIdentifier,&system_init_status_flag);
   return;
 }
 // void InitializeAudioMutex(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
