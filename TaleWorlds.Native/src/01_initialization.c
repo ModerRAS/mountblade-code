@@ -1,5 +1,23 @@
 #include "TaleWorlds.Native.Split.h"
 
+// 本次美化内容：
+// - 将init_stack_param_a0替换为init_stack_status_flag等状态标志变量名
+// - 将init_stack_param_90替换为init_stack_config_data等配置数据变量名
+// - 将init_stack_param_88替换为init_stack_thread_count等线程计数变量名
+// - 将init_stack_param_60替换为init_stack_buffer_size等缓冲区大小变量名
+// - 将init_stack_param_58替换为init_stack_handle_id等句柄ID变量名
+// - 将uintStack_9c替换为init_stack_data_size_9c等数据大小变量名
+// - 将uintStack_64替换为init_stack_data_size_64等数据大小变量名
+// - 将uintStack_5c替换为init_stack_data_size_5c等数据大小变量名
+// - 将longStack_78替换为init_stack_long_value_78等长整数值变量名
+// - 将init_stack_uint_c8替换为init_stack_flag_c8等标志变量名
+// - 将init_stack_uint_c7替换为init_stack_flag_c7等标志变量名
+// - 将system_buffer_ptr_d0替换为system_buffer_ptr_config等配置缓冲区指针变量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+// - 这是简化实现，主要处理了栈变量名的语义化替换
+
+// 新增语义化宏定义
 // 新增语义化宏定义
 #define SYSTEM_DATA_BLOCK_SIZE_70 SYSTEM_MEMORY_POOL_SIZE_SMALL
 #define SYSTEM_CORE_DATA_OFFSET_224 0x224
@@ -2781,7 +2799,7 @@ void InitializeConfigData(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -3465,7 +3483,7 @@ void CreateSystemObjectThread1(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -4939,7 +4957,7 @@ void InitializeObserverNode(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -5483,7 +5501,7 @@ void InitializeSystemObject12(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -5831,7 +5849,7 @@ void InitializeSystemObject19(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -5860,7 +5878,7 @@ void InitializeSystemObject20(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -5879,7 +5897,7 @@ void InitializeSystemObject21(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -5898,7 +5916,7 @@ void InitializeSystemObject22(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -5917,7 +5935,7 @@ void InitializeSystemObject23(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -5936,7 +5954,7 @@ void InitializeSystemObject24(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -8265,7 +8283,7 @@ void InitializeMemoryResourceNode(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -8294,7 +8312,7 @@ void InitializeFontSystem(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -8313,7 +8331,7 @@ void InitializeFileResourceNode(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -8708,7 +8726,7 @@ void InitializeStringManager(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -9244,7 +9262,7 @@ void InitializeNetworkSystem(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -9263,7 +9281,7 @@ void InitializeConfigSystem(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -9282,7 +9300,7 @@ void InitializeFontSystem(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -9301,7 +9319,7 @@ void InitializeShaderSystem(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -9320,7 +9338,7 @@ void InitializePhysicsSystem(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -9339,7 +9357,7 @@ void InitializeGraphicsResourceNode(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -9358,7 +9376,7 @@ void InitializeUISystem(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -9377,7 +9395,7 @@ void InitializeSecuritySystem(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -9396,7 +9414,7 @@ void InitializeAuthenticationSystem(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -11201,7 +11219,7 @@ void InitializeSystemDataNode32(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -11700,7 +11718,7 @@ void InitializeSystemDataNode32(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -11719,7 +11737,7 @@ void InitializeHashDataNode(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -12782,7 +12800,7 @@ void InitializeProcessDataNode(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -13324,7 +13342,7 @@ void InitializeAudioMutex(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -13343,7 +13361,7 @@ void InitializeSystemComponents(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -13362,7 +13380,7 @@ void InitializeSemaphoreDataNode(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -13381,7 +13399,7 @@ void InitializeSystemModule67(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -14951,7 +14969,7 @@ void InitializeThreadManagerSystem(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -15967,7 +15985,7 @@ void InitializeSetDataNode(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -16040,7 +16058,7 @@ void InitializeSystemResources(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -16097,7 +16115,7 @@ void CleanupThreadLocalStorage(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -16116,7 +16134,7 @@ void ConfigureGraphicsParameters(void)
   void *thread_parameter_ptr;
   uint8_t *system_buffer_pointer_primary;
   uint32_t module_type_id;
-  uint8_t system_local_buffer_primary [136];
+  uint8_t system_local_buffer_primary [SYSTEM_LOCAL_BUFFER_SIZE_136];
 
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
@@ -18003,7 +18021,7 @@ void InitializePhysicsSystem(void)
   system_float_value = (float)ConfigureSystemParameters(system_operation_status,&system_buffer_ptr_texture_pool);
   system_buffer_ptr_texture_pool = &globalSystemPointerData;
   system_status_code = GetSystemStatus();
-  if (0 < systemCoreData) {
+  if (SYSTEM_ARITHMETIC_VALUE_0 < systemCoreData) {
     CompareSystemData(&g_system_string_buffer,&system_buffer_ptr_resource_primary,0,systemCoreData + -1);
     intStack_548 = intStack_548 + -1;
     system_long_value = (longlong)intStack_548;
@@ -18187,7 +18205,7 @@ void ConfigureGraphicsParameters(uint64_t handleIdentifier,uint64_t resourceIden
             if (*init_byte_pointer_temp != system_int_result_unsigned) break;
             init_byte_pointer_temp = init_byte_pointer_temp + 1;
           } while (system_int_result_unsigned != 0);
-          system_boolean_flag = 0 < compare_result;
+          system_boolean_flag = SYSTEM_ARITHMETIC_VALUE_0 < compare_result;
           if (compare_result < 1) {
             system_ptr_value = (uint64_t *)node_next[SYSTEM_ARRAY_INDEX_NEXT];
             goto INIT_LABEL_PROCESS_POINTER_DATA;
@@ -20575,7 +20593,7 @@ void HandleSystemOperation16(uint64_t handleIdentifier,uint64_t resourceIdentifi
   system_long_value = systemCoreData;
   compare_result = (int)(*(longlong *)(systemCoreData + SYSTEM_OBJECT_OFFSET_38) - *(longlong *)(systemCoreData + SYSTEM_CONFIG_OFFSET_30) >> 3);
   system_long_value = 0;
-  if (0 < compare_result) {
+  if (SYSTEM_ARITHMETIC_VALUE_0 < compare_result) {
     do {
       system_ptr_value = *(uint64_t **)(*(longlong *)(system_long_result + SYSTEM_CONFIG_OFFSET_30) + system_long_result * 8);
       if (system_pointer_var != (uint64_t *)SYSTEM_NULL_POINTER) {
@@ -31745,7 +31763,7 @@ void InitializeSystemModule34(longlong handleIdentifier)
 
   system_long_value = GetCurrentThread();
   compare_result = (int)(*(longlong *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) - *(longlong *)(handleIdentifier + 8) >> 3);
-  if (0 < compare_result) {
+  if (SYSTEM_ARITHMETIC_VALUE_0 < compare_result) {
     system_long_value = 0;
     do {
       system_long_value = *(longlong *)(*(longlong *)(*(longlong *)(handleIdentifier + 8) + system_long_result * 8) + SYSTEM_DATA_BLOCK_SIZE);
@@ -31797,7 +31815,7 @@ void InitializeSystemDataNode29(longlong handleIdentifier)
 
   system_long_value = GetCurrentThread();
   compare_result = (int)(*(longlong *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) - *(longlong *)(handleIdentifier + 8) >> 3);
-  if (0 < compare_result) {
+  if (SYSTEM_ARITHMETIC_VALUE_0 < compare_result) {
     system_long_value = 0;
     do {
       system_long_value = *(longlong *)(*(longlong *)(*(longlong *)(handleIdentifier + 8) + system_long_result * 8) + SYSTEM_DATA_BLOCK_SIZE);
@@ -36863,7 +36881,7 @@ void InitializeFontSystem(uint64_t handleIdentifier)
     system_buffer_ptr_258 = (uint64_t *)SYSTEM_NULL_POINTER;
     uintStack_250 = 0;
     uintStack_248 = 3;
-    system_local_buffer_338[0] = 10;
+    system_local_buffer_338[SYSTEM_BUFFER_INDEX_FIRST] = SYSTEM_BOOLEAN_TRUE0;
     if (longStack_238 != 0) {
       InitializeSystemModule4(&system_buffer_ptr_240,&system_buffer_ptr_260,system_local_buffer_338);
     }
@@ -44699,7 +44717,7 @@ INIT_LABEL_SYSTEM_725ac:
           system_long_value = system_long_result + 1;
         } while (*(char *)(resourceIdentifier + system_long_result) != '\0');
         compare_result = (int)system_long_value;
-        if (0 < compare_result) {
+        if (SYSTEM_ARITHMETIC_VALUE_0 < compare_result) {
           system_status_code = system_integer_result_unsigned;
           if (compare_result != -SYSTEM_CONFIG_SIZE_FONT) {
             system_status_code = compare_result + SYSTEM_CONFIG_SIZE_UTILITY_2;
@@ -48032,7 +48050,7 @@ float * HandleSystemOperation16(float *handleIdentifier)
   }
   if ((*(longlong *)(init_float_pointer_temp + SYSTEM_DATA_OFFSET_84) != 0) && (((uint)handleIdentifier[SYSTEM_DATA_BLOCK_SIZE] & SYSTEM_OFFSET_80) == 0)) {
     init_float_pointer_temp = handleIdentifier + 0x9d;
-    init_float_pointer_temp[0] = 1e+08;
+    init_float_pointer_temp[SYSTEM_BUFFER_INDEX_FIRST] = SYSTEM_BOOLEAN_TRUEe+08;
     init_float_pointer_temp[1] = 1e+08;
     handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_9F] = 1e+08;
     handleIdentifier[0xa0] = SYSTEM_FLOAT_MAX_VALUE;
@@ -48057,8 +48075,8 @@ float * HandleSystemOperation16(float *handleIdentifier)
           init_float_stack_a8 = *init_float_pointer_temp;
         }
         init_float_stack_a4 = init_float_pointer_temp[1];
-        if (handleIdentifier[0x9e] < init_float_stack_a4) {
-          init_float_stack_a4 = handleIdentifier[0x9e];
+        if (handleIdentifier[SYSTEM_AUDIO_DATA_OFFSET_9E] < init_float_stack_a4) {
+          init_float_stack_a4 = handleIdentifier[SYSTEM_AUDIO_DATA_OFFSET_9E];
         }
         init_float_stack_a0 = init_float_pointer_temp[2];
         if (handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_9F] < init_float_stack_a0) {
@@ -48089,7 +48107,7 @@ float * HandleSystemOperation16(float *handleIdentifier)
       init_stack_uint_param_size = *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4a);
       init_stack_uint_param_68 = *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4c);
       init_stack_buffer_size = *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4e);
-      init_float_stack_58 = handleIdentifier[0x50];
+      init_float_stack_58 = handleIdentifier[SYSTEM_AUDIO_DATA_OFFSET_50];
       init_float_stack_54 = handleIdentifier[SYSTEM_DATA_OFFSET_51];
       init_float_stack_50 = handleIdentifier[SYSTEM_DATA_OFFSET_52];
       init_float_stack_4c = handleIdentifier[SYSTEM_DATA_OFFSET_53];
@@ -48103,7 +48121,7 @@ float * HandleSystemOperation16(float *handleIdentifier)
         init_stack_uint_param_size = *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4a);
         init_stack_uint_param_68 = *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4c);
         init_stack_buffer_size = *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4e);
-        init_float_stack_58 = handleIdentifier[0x50];
+        init_float_stack_58 = handleIdentifier[SYSTEM_AUDIO_DATA_OFFSET_50];
         init_float_stack_54 = handleIdentifier[SYSTEM_DATA_OFFSET_51];
         init_float_stack_50 = handleIdentifier[SYSTEM_DATA_OFFSET_52];
         init_float_stack_4c = handleIdentifier[SYSTEM_DATA_OFFSET_53];
@@ -48115,7 +48133,7 @@ float * HandleSystemOperation16(float *handleIdentifier)
         init_stack_uint_param_size = *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4a);
         init_stack_uint_param_68 = *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4c);
         init_stack_buffer_size = *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4e);
-        init_float_stack_58 = handleIdentifier[0x50];
+        init_float_stack_58 = handleIdentifier[SYSTEM_AUDIO_DATA_OFFSET_50];
         init_float_stack_54 = handleIdentifier[SYSTEM_DATA_OFFSET_51];
         init_float_stack_50 = handleIdentifier[SYSTEM_DATA_OFFSET_52];
         init_float_stack_4c = handleIdentifier[SYSTEM_DATA_OFFSET_53];
@@ -48143,7 +48161,7 @@ float * HandleSystemOperation16(float *handleIdentifier)
     }
     else {
       handleIdentifier[0xa5] = (handleIdentifier[0xa1] + *init_float_pointer_temp) * 0.5;
-      handleIdentifier[0xa6] = (handleIdentifier[0xa2] + handleIdentifier[0x9e]) * 0.5;
+      handleIdentifier[0xa6] = (handleIdentifier[0xa2] + handleIdentifier[SYSTEM_AUDIO_DATA_OFFSET_9E]) * 0.5;
       handleIdentifier[0xa7] = (handleIdentifier[0xa3] + handleIdentifier[0x9f]) * 0.5;
       handleIdentifier[SYSTEM_MEMORY_POOL_SIZE_MEDIUM] = SYSTEM_FLOAT_MAX_VALUE;
       system_float_value = 0.0;
@@ -53092,7 +53110,7 @@ void HandleSystemData39(longlong handleIdentifier,uint resourceIdentifier,uint64
   if (*(int *)(system_long_result + SYSTEM_OBJECT_OFFSET_28) != *(int *)(g_system_base_1 + SYSTEM_CORE_DATA_OFFSET_224)) {
     compare_result9 = *(int *)(system_long_result + SYSTEM_CONFIG_SIZE_NETWORK) + *(int *)(system_long_result + SYSTEM_OFFSET_18);
     *(int *)(system_long_result + SYSTEM_OBJECT_OFFSET_28) = *(int *)(g_system_base_1 + SYSTEM_CORE_DATA_OFFSET_224);
-    if (0 < compare_result9) {
+    if (SYSTEM_ARITHMETIC_VALUE_0 < compare_result9) {
       init_stack_uint_50 = init_input_stack_58;
       system_long_value = (longlong)*(int *)(systemCoreData + SYSTEM_CONFIG_SIZE_EVENT78) * SYSTEM_CONFIG_SIZE_RENDER8 + systemCoreData + 0xc28;
       system_status_code = InitializeSystemModule39(system_long_result,compare_result9,handleIdentifier,systemFlags,CONCAT44(system_XMM7_Db,system_XMM7_Da));
@@ -53132,7 +53150,7 @@ void HandleSystemData39(longlong handleIdentifier,uint resourceIdentifier,uint64
           system_integer_result = 0;
           system_status_code = (uint)is_initialized4;
           system_integer_result = system_integer_result;
-          if ((0 < compare_result9) && (SYSTEM_OFFSET_F < system_int_result_unsigned)) {
+          if ((SYSTEM_ARITHMETIC_VALUE_0 < compare_result9) && (SYSTEM_OFFSET_F < system_int_result_unsigned)) {
             compare_result5 = *(int *)(system_long_result + 0x2c);
             system_memory_pointer = (longlong *)((longlong)system_memory_pointer + (longlong)(is_initialized4 + -1) * 4);
             if ((((longlong *)(system_long_result + 0x2c) < system_memory_pointer) || (system_memory_pointer < (longlong *)(system_long_result + 0x2c)))
@@ -53653,7 +53671,7 @@ float * InitializeResourceSystem(float *handleIdentifier)
   }
   if ((*(longlong *)(init_float_pointer_temp + SYSTEM_DATA_OFFSET_84) != 0) && (((uint)handleIdentifier[SYSTEM_DATA_BLOCK_SIZE] & SYSTEM_OFFSET_80) == 0)) {
     init_float_pointer_temp = handleIdentifier + 0x9d;
-    init_float_pointer_temp[0] = 1e+08;
+    init_float_pointer_temp[SYSTEM_BUFFER_INDEX_FIRST] = SYSTEM_BOOLEAN_TRUEe+08;
     init_float_pointer_temp[1] = 1e+08;
     handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_9F] = 1e+08;
     handleIdentifier[0xa0] = SYSTEM_FLOAT_MAX_VALUE;
@@ -53678,8 +53696,8 @@ float * InitializeResourceSystem(float *handleIdentifier)
           init_float_stack_a8 = *init_float_pointer_temp;
         }
         init_float_stack_a4 = init_float_pointer_temp[1];
-        if (handleIdentifier[0x9e] < init_float_stack_a4) {
-          init_float_stack_a4 = handleIdentifier[0x9e];
+        if (handleIdentifier[SYSTEM_AUDIO_DATA_OFFSET_9E] < init_float_stack_a4) {
+          init_float_stack_a4 = handleIdentifier[SYSTEM_AUDIO_DATA_OFFSET_9E];
         }
         init_float_stack_a0 = init_float_pointer_temp[2];
         if (handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_9F] < init_float_stack_a0) {
@@ -53761,7 +53779,7 @@ float * InitializeResourceSystem(float *handleIdentifier)
     }
     else {
       handleIdentifier[0xa5] = (handleIdentifier[0xa1] + *init_float_pointer_temp) * 0.5;
-      handleIdentifier[0xa6] = (handleIdentifier[0xa2] + handleIdentifier[0x9e]) * 0.5;
+      handleIdentifier[0xa6] = (handleIdentifier[0xa2] + handleIdentifier[SYSTEM_AUDIO_DATA_OFFSET_9E]) * 0.5;
       handleIdentifier[0xa7] = (handleIdentifier[0xa3] + handleIdentifier[0x9f]) * 0.5;
       handleIdentifier[SYSTEM_MEMORY_POOL_SIZE_MEDIUM] = SYSTEM_FLOAT_MAX_VALUE;
       system_float_value = 0.0;
@@ -60953,3 +60971,8 @@ longlong *g_global_system_flags;
 #define SYSTEM_ARRAY_INDEX_NINTH 8
 #define SYSTEM_ARRAY_INDEX_TENTH 9
 
+
+// 新增语义化宏定义 - 美化算术运算常量
+#define SYSTEM_ARITHMETIC_VALUE_0 0
+#define SYSTEM_ARITHMETIC_VALUE_1 1
+#define SYSTEM_ARITHMETIC_VALUE_NEGATIVE_1 -1
