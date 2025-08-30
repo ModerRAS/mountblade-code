@@ -2047,6 +2047,14 @@
 #define NETWORK_SOCKET_MAGIC_EXTENDED 0xFFFFFFF7  // 套接字扩展魔数
 #define NETWORK_SOCKET_MAGIC_STANDARD 0xFFFFF00  // 套接字标准魔数
 
+// 网络系统硬编码值语义化常量定义（2025年8月30日最终批次）
+#define MODULE_STATUS_OFFSET_THRESHOLD 600  // 模块状态偏移量阈值
+#define NETWORK_SOCKET_DESCRIPTOR_RESPONSE_OFFSET_THRESHOLD 100  // 套接字描述符响应偏移量阈值
+#define NETWORK_SOCKET_DESCRIPTOR_RESPONSE_OFFSET_EXTENDED_4 0x4  // 套接字描述符响应扩展偏移量4
+#define NETWORK_SOCKET_DESCRIPTOR_RESPONSE_OFFSET_EXTENDED_8 0x8  // 套接字描述符响应扩展偏移量8
+#define NETWORK_SOCKET_DESCRIPTOR_RESPONSE_OFFSET_EXTENDED_200 0x200  // 套接字描述符响应扩展偏移量200
+#define MODULE_STATUS_OFFSET_EXTENDED_6 0x6  // 模块状态扩展偏移量6
+
 #define NETWORK_SOCKET_DATA_OFFSET_STATUS 0x84  // 套接字数据状态偏移量
 #define NETWORK_SOCKET_DATA_OFFSET_HEADER 0x88  // 套接字数据头偏移量
 #define NETWORK_SOCKET_DATA_OFFSET_LENGTH 0x89  // 套接字数据长度偏移量
@@ -6062,7 +6070,7 @@ void NetworkSendToSocket(int64_t *network_socket_handle, uint32_t network_buffer
 void NetworkSendToBuffer(int64_t *network_socket_handle, uint32_t network_buffer_ptr, uint64_t network_buffer_size)
 {
     uint64_t connection_handle_tertiary;
-  if (network_buffer_ptr < MODULE_STATUS_OFFSET600) {
+  if (network_buffer_ptr < MODULE_STATUS_OFFSET_THRESHOLD) {
     *(uint32_t *)(network_socket_handle + NETWORK_BUFFER_INDEX_CAPACITY) = NETWORK_STATUS_FAILURE;
 network_authenticate_client_label:
     network_op_status = EncryptNetworkData(network_buffer_size, network_encryption_array);
