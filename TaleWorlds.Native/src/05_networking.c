@@ -1947,10 +1947,14 @@ void* g_network_connection_pool_config;
 void* g_network_connection_pool_manager;
 // 网络连接池分配器对象 - 负责连接池资源的分配
 void* g_network_connection_pool_allocator;
-void* g_networkConnectionPoolDeallocatorObject;
-void* g_networkConnectionPoolInitializerObject;
-void* g_networkConnectionPoolFinalizerObject;
-void* g_networkConnectionPoolValidatorObject;
+// 网络连接池释放器对象 - 负责连接池资源的释放
+void* g_network_connection_pool_deallocator;
+// 网络连接池初始化器对象 - 负责连接池的初始化
+void* g_network_connection_pool_initializer;
+// 网络连接池终结器对象 - 负责连接池的清理
+void* g_network_connection_pool_finalizer;
+// 网络连接池验证器对象 - 负责连接池的验证
+void* g_network_connection_pool_validator;
 void* g_networkConnectionPoolCleanerObject;
 void* g_networkConnectionPoolResizerObject;
 void* g_networkConnectionPoolIteratorObject;
