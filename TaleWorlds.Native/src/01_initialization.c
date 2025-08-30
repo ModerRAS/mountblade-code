@@ -21624,7 +21624,7 @@ void ConfigureGraphicsShader(uint64_t handleIdentifier,longlong resourceIdentifi
   uintStack_300 = 0;
   system_buffer_ptr_268 = system_ptr_value;
   uintStack_150 = system_integer_result_unsigned;
-  (**(code **)(*(longlong *)(g_system_base_1 + 0x2c0) + SYSTEM_DATA_COMPARE_SIZE))
+  (**(code **)(*(longlong *)(g_system_base_1 + SYSTEM_OFFSET_2c0) + SYSTEM_DATA_COMPARE_SIZE))
             ((longlong *)(g_system_base_1 + 0x2c0),system_pointer_var);
   uintStack_2f0 = 0;
   system_ptr_value = system_ptr_value;
@@ -22040,8 +22040,8 @@ void ConfigureGraphicsShader(void)
   else {
     system_float_value = 1.0;
   }
-  *(float *)(system_long_result + 0x234) = system_float_value;
-  *(uint32_t *)(system_long_result + 0x238) = 0x3f800000;
+  *(float *)(system_long_result + SYSTEM_OFFSET_234) = system_float_value;
+  *(uint32_t *)(system_long_result + SYSTEM_OFFSET_238) = SYSTEM_FLOAT_ONE_VALUE;
   system_float_value = 1.0;
   if (*(int *)(system_long_result + SYSTEM_OFFSET_1Ea0) == 1) {
     system_integer_result = *(int *)(system_long_result + 0x1d50);
@@ -22058,7 +22058,7 @@ void ConfigureGraphicsShader(void)
   else {
     system_float_value = 0.2;
   }
-  *(float *)(system_long_result + 0x234) = system_float_value;
+  *(float *)(system_long_result + SYSTEM_OFFSET_234) = system_float_value;
   system_float_value = 0.2;
   if ((0.2 <= system_result_float) && (system_float_value = system_result_float, 1.0 <= system_result_float)) {
     system_float_value = 1.0;
@@ -23489,8 +23489,8 @@ void InitializeSystemModule43(longlong *handleIdentifier,uint64_t resourceIdenti
   else {
     system_float_value = 1.0;
   }
-  *(float *)(system_long_result + 0x234) = system_float_value;
-  *(uint32_t *)(system_long_result + 0x238) = 0x3f800000;
+  *(float *)(system_long_result + SYSTEM_OFFSET_234) = system_float_value;
+  *(uint32_t *)(system_long_result + SYSTEM_OFFSET_238) = SYSTEM_FLOAT_ONE_VALUE;
   system_float_value = 1.0;
   if (*(int *)(system_long_result + SYSTEM_OFFSET_1Ea0) == 1) {
     system_integer_result = *(int *)(system_long_result + 0x1d50);
@@ -23507,7 +23507,7 @@ void InitializeSystemModule43(longlong *handleIdentifier,uint64_t resourceIdenti
   else {
     system_float_value = 0.2;
   }
-  *(float *)(system_long_result + 0x234) = system_float_value;
+  *(float *)(system_long_result + SYSTEM_OFFSET_234) = system_float_value;
   if (0.2 <= system_result_float) {
     if (1.0 <= system_result_float) {
       system_float_value = 1.0;
