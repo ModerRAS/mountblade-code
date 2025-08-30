@@ -18,7 +18,32 @@
 // - 将 data_180c8f000 替换为 system_mode_flag
 // - 将 data_180c8ed80 替换为 system_config_buffer
 // - 将 data_180329eb7 替换为 system_entry_point
-// - 将 data_1dc4331ba 替换为 register_accumulator
+// - 将 data_180d49131 替换为 network_status_flag_secondary
+// - 将 data_180bfbd98 替换为 string_buffer_primary
+// - 将 data_180bfbdb0 替换为 string_buffer_secondary
+// - 将 data_180bf66d8 替换为 auth_data_flag
+// - 将 data_180bfbd84 替换为 string_buffer_ptr
+// - 将 data_180c8f020 替换为 system_buffer_temp
+// - 将 data_180d4913c 替换为 network_initialization_flag
+// - 将 data_180c2e030 替换为 system_thread_flag
+// - 将 data_180be5740 替换为 system_init_result_ptr
+// - 将 data_180c30370 替换为 system_process_flag
+// - 将 data_180c4f4e8 替换为 crypto_module_flag
+// - 将 data_180c4f4f0 替换为 crypto_module_ptr
+// - 将 data_180c4f4a0 替换为 crypto_result_ptr
+// - 将 data_180c4f818 替换为 crypto_initialized_flag
+// - 将 data_180c58840 替换为 byte_counter
+// - 将 data_180c58854 替换为 byte_flag_1
+// - 将 data_180c58853 替换为 byte_flag_2
+// - 将 data_180c58855 替换为 byte_flag_3
+// - 将 data_180c58850 替换为 byte_flag_4
+// - 将 data_180c69e20 替换为 system_processing_flag
+// - 将 data_180bf0080 替换为 string_termination_flag
+// - 将 data_180c69ef8 替换为 thread_initialization_flag
+// - 将 data_180c6a14c 替换为 thread_result_flag
+// - 将 data_180c6a14d 替换为 thread_validation_flag
+// - 将 data_180bf0082 替换为 string_concatenation_flag
+// - 将 data_180c91d50 替换为 system_cleanup_flag
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
 // 这是简化实现，主要处理了变量名的语义化替换
@@ -10436,18 +10461,18 @@ unsigned long long get_thread_handle_param(unsigned long long handle_param)
   }
   memset((void *)(*plVar3 + 0x3d8),0,0x240);
 }
-  data_180d49131 = 1;
+  network_status_flag_secondary = 1;
   FlsSetValue(global_data_ptr,0);
   FlsFree(global_data_ptr);
   system_execution_function(*(unsigned long long *)
                  (*(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8) +
                  STRING_BUFFER_SIZE),1);
   if (global_data_ptr == 0) {
-    system_execution_function(&data_180bfbd98);
+    system_execution_function(&string_buffer_primary);
   }
   if (global_data_ptr == 0) {
     if (global_data_ptr == 0) {
-      system_execution_function(&data_180bfbdb0);
+      system_execution_function(&string_buffer_secondary);
     }
     if (global_data_ptr == 0) goto label_;
   }
@@ -10460,17 +10485,17 @@ unsigned long long get_thread_handle_param(unsigned long long handle_param)
   system_execution_function();
 label_:
   system_execution_function(&system_180a3d958,global_data_ptr);
-  data_180bf66d8 = 1;
+  auth_data_flag = 1;
   return;
 }
 unsigned int validate_resource_handle_param(int handle_param)
 {
-  if (*(int *)(&data_180bfbd84 + (long long)handle_param * 0x18) == 0) {
+  if (*(int *)(&string_buffer_ptr + (long long)handle_param * 0x18) == 0) {
     system_execution_function(&string_input_buffer + (long long)handle_param * 0x18);
   }
   return *(unsigned int *)(&string_input_buffer + (long long)handle_param * 0x18);
 }
-    data_180c8f020 = 0;
+    system_buffer_temp = 0;
     return;
   }
   str_len_counter = -1;
@@ -10481,9 +10506,9 @@ unsigned int validate_resource_handle_param(int handle_param)
   if (MAX_THREAD_STACK_SIZE < buffer_alloc_result) {
     buffer_alloc_result = MAX_THREAD_STACK_SIZE;
   }
-  memcpy(&data_180c8f020,handle_param,(long long)(int)buffer_alloc_result);
+  memcpy(&system_buffer_temp,handle_param,(long long)(int)buffer_alloc_result);
 }
-  data_180c8f020 = 0;
+  system_buffer_temp = 0;
   return;
 }
 unsigned long long system_initialize_context(unsigned long long handle_param)
@@ -10550,7 +10575,7 @@ long long process_context_handle_param(long long *handle_param)
   }
   return str_len_counter;
 }
-      data_180d4913c = '\x01';
+      network_initialization_flag = '\x01';
       handle_param = stack_size_max;
     }
     pfloat_var = afStack_2e8;
@@ -10732,7 +10757,7 @@ label_:
   *(unsigned char **)((long long)register0x00000020 + -8) = &label_;
   system_execution_function(buffer_alloc_result,character_scan_pointer,mutex_attr,mutex_type);
 }
-    data_180c2e030 = '\x01';
+    system_thread_flag = '\x01';
   }
   if (mutex_attr != (int *)0x0) {
     *mutex_attr = ((thread_op_flags + 1) / 2) * 0x48d0;
@@ -10772,7 +10797,7 @@ unsigned long long allocate_resource_memory(int handle_param)
   unsigned char unaff_XMM6 [16];
   unsigned char athread_op_flags [16];
   ulong long buffer_alloc_result;
-  psystem_init_result4 = (long long *)&data_180be5740;
+  psystem_init_result4 = (long long *)&system_init_result_ptr;
   thread_result_index = 0;
   do {
     buffer_alloc_result = 0;
@@ -11120,7 +11145,7 @@ unsigned long long allocate_resource_memory(int handle_param)
   }
   return 0;
 }
-      data_180c2e030 = '\x01';
+      system_thread_flag = '\x01';
     }
     thread_result_index = system_execution_function(*(unsigned long long *)(unreg_bx + 0x170),*(unsigned int *)(unreg_bx + 0x110),0);
     if ((thread_result_index != 0) ||
@@ -11228,7 +11253,7 @@ label_:
 label_:
   system_execute_crypto_operation(*(ulong long *)(unreg_bp + 0x4ab0) ^ (ulong long)&system_stack_zero);
 }
-      data_180c30370 = '\x01';
+      system_process_flag = '\x01';
     }
     if (((in_stack_00000040._4_4_ != unaffected_registerD) ||
         (thread_result_index = (**(code **)(**(long long **)(unaffected_registerDI + 0x170) + STRING_BUFFER_SIZE))
@@ -11242,12 +11267,12 @@ label_:
 system_execution_function:
   system_execute_crypto_operation(*(ulong long *)(unreg_bp + 0x218) ^ (ulong long)&system_stack_zero);
 }
-      data_180c4f4e8 = 0;
+      crypto_module_flag = 0;
       global_data_ptr = buffer_alloc_result;
-      system_crypto_module_initializer(&data_180c4f4f0);
+      system_crypto_module_initializer(&crypto_module_ptr);
     }
   }
-  return &data_180c4f4a0;
+  return &crypto_result_ptr;
 }
 unsigned long long system_initialize_mutex(unsigned long long *handle_param,long long thread_op_flags,char mutex_attr,char mutex_type)
 {
@@ -11391,7 +11416,7 @@ system_execution_function(long long handle_param,long long thread_op_flags,long 
   }
   return buffer_alloc_result;
 }
-    data_180c4f818 = '\x01';
+    crypto_initialized_flag = '\x01';
   }
   return 0;
 }
@@ -11416,7 +11441,7 @@ unsigned long long get_system_global_state(void)
   if (system_char_variable == '\0') {
     return 0x809200ff;
   }
-  data_180c4f818 = 1;
+  crypto_initialized_flag = 1;
   return 0;
 }
 unsigned long long get_system_configuration(void)
@@ -11428,7 +11453,7 @@ unsigned int validate_system_parameters(int handle_param,int thread_op_flags,int
   int thread_result_index;
   unsigned int thread_op_flags;
   unsigned int auStack_18 [4];
-  if (data_180c4f818 == '\0') {
+  if (crypto_initialized_flag == '\0') {
     return 0x80920005;
   }
   if (((thread_op_flags != 0) || (mutex_attr != 0)) || (3 < handle_param - 1U)) {
@@ -11463,7 +11488,7 @@ unsigned long long initialize_parameter_block(unsigned int handle_param,uint *th
   unsigned short *string_input_ptr;
   byte abStackX_18 [8];
   long long stack_long_var;
-  if (data_180c4f818 == '\0') {
+  if (crypto_initialized_flag == '\0') {
     return 0x80920005;
   }
   if (thread_op_flags == (uint *)0x0) {
@@ -11552,7 +11577,7 @@ int process_parameter_validation(unsigned int handle_param,byte *thread_op_flags
   char system_char_variable;
   int thread_result_index;
   long long str_len_counter;
-  if (data_180c4f818 == '\0') {
+  if (crypto_initialized_flag == '\0') {
     return -0x7f6dfffb;
   }
   if (thread_op_flags == (byte *)0x0) {
@@ -11643,7 +11668,7 @@ unsigned long long get_system_status_info(void)
   func_0x0001808f6ce0();
   return 0x809200ff;
 }
-          data_180c58840 = byte_check_result;
+          byte_counter = byte_check_result;
           *thread_op_flags = thread_result_index;
           *(int *)(str_len_counter + STRING_BUFFER_SIZE) = thread_result_index;
           *(int *)(str_len_counter + 0x18) = thread_result_index;
@@ -11655,12 +11680,12 @@ unsigned long long get_system_status_info(void)
       return 0x8001002d;
     }
   }
-  byte_check_result = data_180c58840 + 1;
+  byte_check_result = byte_counter + 1;
   if (byte_check_result == 0) {
-    byte_check_result = data_180c58840 + 2;
+    byte_check_result = byte_counter + 2;
   }
   thread_result_index = (uint)byte_check_result * string_buffer_size_constant + thread_result_index;
-  data_180c58840 = byte_check_result;
+  byte_counter = byte_check_result;
   *thread_op_flags = thread_result_index;
   *piVar2 = thread_result_index;
   piVar2[2] = thread_result_index;
@@ -11712,10 +11737,10 @@ uint setup_timer_with_attributes(long long handle_param,int thread_op_flags,int 
   }
   return buffer_alloc_result;
 }
-  data_180c58854 = 1;
-  data_180c58853 = 1;
-  data_180c58855 = 1;
-  data_180c58850 = 1;
+  byte_flag_1 = 1;
+  byte_flag_2 = 1;
+  byte_flag_3 = 1;
+  byte_flag_4 = 1;
   global_data_ptr = _beginthread(system_execution_function,0,0);
   if ((global_data_ptr != -1) &&
      (global_data_ptr = _beginthread(system_execution_function,0,0), global_data_ptr != -1)) {
@@ -11723,7 +11748,7 @@ uint setup_timer_with_attributes(long long handle_param,int thread_op_flags,int 
   }
   return 0;
 }
-  data_180c69e20 = 1;
+  system_processing_flag = 1;
   return;
 }
 unsigned int validate_timer_parameters(byte handle_param,byte *thread_op_flags,int mutex_attr)
@@ -11775,7 +11800,7 @@ unsigned long long initialize_timer_context(unsigned long long handle_param,unsi
   }
   return 0x8001002d;
 }
-      data_180bf0080 = '\0';
+      string_termination_flag = '\0';
       if (global_data_ptr == 0) {
         str_len_counter = system_execution_function(&system_18098ab30);
         if (str_len_counter != 0) {
@@ -11826,7 +11851,7 @@ unsigned long long initialize_timer_context(unsigned long long handle_param,unsi
         }
       }
     }
-    if (data_180c69ef8 == '\0') {
+    if (thread_initialization_flag == '\0') {
       SetLastError(thread_op_flags & 0xffffffff);
       goto label_;
     }
@@ -11836,11 +11861,11 @@ unsigned long long initialize_timer_context(unsigned long long handle_param,unsi
 label_:
   system_execute_crypto_operation(stack_size_max ^ (ulong long)stack_buffer_228);
 }
-          data_180c6a14c = thread_result_index == 1;
+          thread_result_flag = thread_result_index == 1;
           SetConsoleTitleA(&system_18098b4e0);
         }
       }
-      data_180c6a14d = data_180c6a14c == '\0';
+      thread_validation_flag = thread_result_flag == '\0';
       if (global_data_ptr == 0) {
         str_len_counter = _wfsopen(handle_param,&system_18098b51c,SYSTEM_CONFIG_BUFFER_SIZE);
         if (str_len_counter == 0) {
@@ -11911,7 +11936,7 @@ label_:
       return byte_check_result0;
     }
   }
-  data_180c6a14d = data_180c6a14c == '\0';
+  thread_validation_flag = thread_result_flag == '\0';
   return true;
 }
 bool check_system_availability(void)
@@ -11952,11 +11977,11 @@ bool check_system_availability(void)
         buffer_alloc_result = GetCurrentProcessId();
         if (buffer_alloc_result != in_stack_00000098) {
           thread_result_index = AllocConsole();
-          data_180c6a14c = thread_result_index == 1;
+          thread_result_flag = thread_result_index == 1;
           SetConsoleTitleA(&system_18098b4e0);
         }
       }
-      data_180c6a14d = data_180c6a14c == (char)unaffected_register;
+      thread_validation_flag = thread_result_flag == (char)unaffected_register;
       if (global_data_ptr == unaffected_register) {
         str_len_counter = _wfsopen();
         if (str_len_counter == 0) {
@@ -12026,7 +12051,7 @@ label_:
       return byte_check_result2;
     }
   }
-  data_180c6a14d = data_180c6a14c == (char)unaffected_register;
+  thread_validation_flag = thread_result_flag == (char)unaffected_register;
   return true;
 }
 bool validate_system_resources(void)
@@ -12096,23 +12121,23 @@ label_:
   }
   return global_data_ptr != unaffected_register;
 }
-  data_180c6a14d = data_180c6a14c == unaffected_registerB;
+  thread_validation_flag = thread_result_flag == unaffected_registerB;
   return 1;
 }
-    data_180bf0082 = '\x01';
+    string_concatenation_flag = '\x01';
     wcscpy_s(stack_buffer_228,STRING_BUFFER_SIZE4,handle_param);
-    if ((data_180bf0082 != '\0') && (wcscat_s(stack_buffer_228,STRING_BUFFER_SIZE4,thread_op_flags), data_180bf0082 != '\0')) {
+    if ((string_concatenation_flag != '\0') && (wcscat_s(stack_buffer_228,STRING_BUFFER_SIZE4,thread_op_flags), string_concatenation_flag != '\0')) {
       system_execution_function(stack_buffer_228,0);
     }
     _set_invalid_parameter_handle_paramr(buffer_alloc_result);
   }
   system_execute_crypto_operation(stack_size_max ^ (ulong long)auStack_248);
 }
-  data_180bf0082 = '\x01';
+  string_concatenation_flag = '\x01';
   wcscpy_s(temp_stack_array,STRING_BUFFER_SIZE4);
-  if (data_180bf0082 != '\0') {
+  if (string_concatenation_flag != '\0') {
     wcscat_s(temp_stack_array,STRING_BUFFER_SIZE4);
-    if (data_180bf0082 != '\0') {
+    if (string_concatenation_flag != '\0') {
       system_execution_function(temp_stack_array,0);
     }
   }
@@ -12193,7 +12218,7 @@ label_:
   }
   return buffer_alloc_result;
 }
-    data_180c91d50 = '\0';
+    system_cleanup_flag = '\0';
   }
   return;
 }
