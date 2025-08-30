@@ -1494,7 +1494,8 @@
 // 本次美化内容（2025年8月30日）第十八批次：
 // - 美化硬编码十六进制值，将0xb替换为SYSTEM_CASE_VALUE_B等switch case值
 // - 美化字符串常量，将0x6c627550替换为SYSTEM_STRING_PATH_POOL_LOWER等路径相关字符串常量
-// - 美化字符串常量，将0x75502e72替换为SYSTEM_STRING_PATH_RUP_LOWER等路径相关字符串常量
+// - 美化字符串常量，将0x6146206n替换为SYSTEM_STRING_TRAIT_PART2等特征相关字符串常量
+// - 美化字符串常量，将0x64656c69替换为SYSTEM_STRING_TRAIT_PART3等特征相关字符串常量
 // - 美化字符串常量，将0x73696c62替换为SYSTEM_STRING_PATH_BLIB_LOWER等路径相关字符串常量
 // - 美化字符串常量，将0x72435c68替换为SYSTEM_STRING_PATH_HCUP_LOWER等路径相关字符串常量
 // - 美化字符串常量，将0x55687361替换为SYSTEM_STRING_PATH_AUHS_LOWER等路径相关字符串常量
@@ -23453,7 +23454,7 @@ void ConfigureGraphicsShader(void)
   *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_248) = system_integer_unsigned_temp;
   system_result_operation = log2f();
   *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_24c) = system_integer_unsigned_temp;
-  system_result_operation = log2f(*(float *)(systemCoreData + SYSTEM_DATA_OFFSET_2220) * 0.01);
+  system_result_operation = log2f(*(float *)(systemCoreData + SYSTEM_DATA_OFFSET_2220) * SYSTEM_FLOAT_MULTIPLIER_POINT_ZERO_ONE);
   *(uint32_t *)(system_long_result + SYSTEM_OFFSET_23c) = system_integer_unsigned_temp;
   *(uint64_t *)(system_long_result + SYSTEM_HANDLE_OFFSET_EXT_DATA_1) = SYSTEM_FLOAT_CONSTANT_1;
   init_stack_time_struct_1d8 = SYSTEM_FLOAT_CONSTANT_1;
