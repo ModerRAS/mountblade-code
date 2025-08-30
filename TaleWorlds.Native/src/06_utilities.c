@@ -753,6 +753,26 @@
 #define UTILITY_BOOLEAN_FLAG_OFFSET_ALT 0x7c
 #define UTILITY_STACK_TEMP_OFFSET 0x7f
 
+// 新增语义化宏定义 - 替换resource_buffer数组索引
+#define UTILITY_BUFFER_STATUS_PENDING 0xe
+#define UTILITY_BUFFER_STATUS_PROCESSING 0x12
+#define UTILITY_BUFFER_STATUS_INITIALIZED 0x16
+#define UTILITY_BUFFER_DATA_START 0x65
+#define UTILITY_BUFFER_DATA_STACK_1 0x69
+#define UTILITY_BUFFER_DATA_STACK_2 0x6a
+#define UTILITY_BUFFER_DATA_STACK_3 0x6b
+#define UTILITY_BUFFER_DATA_STACK_4 0x6d
+#define UTILITY_BUFFER_DATA_STACK_5 0x6e
+#define UTILITY_BUFFER_DATA_STACK_6 0x6f
+#define UTILITY_BUFFER_DATA_STACK_7 0x77
+#define UTILITY_BUFFER_DATA_STACK_8 0x76
+
+// 新增语义化宏定义 - 替换位掩码常量
+#define UTILITY_BIT_MASK_FE 0xfe
+#define UTILITY_BUFFER_SIZE_MEDIUM 0x278
+#define UTILITY_INDEX_SIZE_MEDIUM 0x508
+#define UTILITY_ACCESS_SIZE_MEDIUM 0x130
+
 // 新增语义化宏定义 - 替换临时变量名
 #define UTILITY_TEMP_MEMORY_PTR utility_temp_memory_pointer
 #define UTILITY_TEMP_RESOURCE_PTR utility_temp_resource_pointer
@@ -14267,7 +14287,7 @@ void rankUtilityCapability(longlong resource_handle_identifier,uint32 *memory_bl
             system_status_code = (ulonglong)iteration_counter;
           } while ((int)iteration_counter < resource_size_limit);
         }
-        utility_operation_status = resource_buffer[0xe];
+        utility_operation_status = resource_buffer[UTILITY_BUFFER_STATUS_PENDING];
         utility_stack_resource_buffer = UTILITY_BIT_CONCAT_4_4(utility_stack_resource_buffer._4_4_,resource_size_limit);
         utility_operation_status = (**(code **)**(uint64 **)(resource_handle_identifier + 8))
                           (*(uint64 **)(resource_handle_identifier + 8),&utility_stack_resource_buffer,4);
@@ -14284,7 +14304,7 @@ void rankUtilityCapability(longlong resource_handle_identifier,uint32 *memory_bl
               system_status_code = (ulonglong)iteration_counter;
             } while ((int)iteration_counter < resource_size_limit);
           }
-          utility_operation_status = resource_buffer[0x12];
+          utility_operation_status = resource_buffer[UTILITY_BUFFER_STATUS_PROCESSING];
           utility_stack_resource_buffer = UTILITY_BIT_CONCAT_4_4(utility_stack_resource_buffer._4_4_,resource_size_limit);
           utility_operation_status = (**(code **)**(uint64 **)(resource_handle_identifier + 8))
                             (*(uint64 **)(resource_handle_identifier + 8),&utility_stack_resource_buffer,4);
@@ -14302,7 +14322,7 @@ void rankUtilityCapability(longlong resource_handle_identifier,uint32 *memory_bl
                 system_status_code = system_status_code + 1;
               } while ((longlong)system_status_code < (longlong)resource_size_limit);
             }
-            utility_operation_status = resource_buffer[0x16];
+            utility_operation_status = resource_buffer[UTILITY_BUFFER_STATUS_INITIALIZED];
             utility_stack_resource_buffer = UTILITY_BIT_CONCAT_4_4(utility_stack_resource_buffer._4_4_,resource_size_limit);
             utility_operation_status = (**(code **)**(uint64 **)(resource_handle_identifier + 8))
                               (*(uint64 **)(resource_handle_identifier + 8),&utility_stack_resource_buffer,4);
@@ -14668,7 +14688,7 @@ void searchUtilityItems(longlong resource_handle_identifier,uint32 *memory_block
        (utility_operation_status = validateResourceField(resource_handle_identifier,resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET), resource_size_limit == 0)))) &&
      (utility_operation_status = validateResourceField(resource_handle_identifier,resource_buffer + access_flag), resource_size_limit == 0)) {
     if ((resource_buffer[1] & UTILITY_RESOURCE_HANDLE_OFFSET_ZERO) != 0) {
-      utility_stack_byte_buffer_primary[0] = resource_buffer[0x12];
+      utility_stack_byte_buffer_primary[0] = resource_buffer[UTILITY_BUFFER_STATUS_PROCESSING];
       utility_operation_status = (**(code **)**(uint64 **)(resource_handle_identifier + 8))
                         (*(uint64 **)(resource_handle_identifier + 8),utility_stack_byte_buffer_primary,4);
       if (utility_operation_status != 0) {
@@ -14970,28 +14990,28 @@ void recognizeUtilityPieces(longlong resource_handle_identifier,uint32 *memory_b
         utility_operation_status = (**(code **)**(uint64 **)(resource_handle_identifier + 8))
                           (*(uint64 **)(resource_handle_identifier + 8),&utility_stack_resource_buffer,system_status_code);
         if (utility_operation_status == 0) {
-          utility_stack_resource_buffer.float_part2 = resource_buffer[0x65];
+          utility_stack_resource_buffer.float_part2 = resource_buffer[UTILITY_BUFFER_DATA_START];
           utility_operation_status = (**(code **)**(uint64 **)(resource_handle_identifier + 8))
                             (*(uint64 **)(resource_handle_identifier + 8),&utility_stack_resource_buffer,4);
           if (((utility_operation_status == 0) && (utility_operation_status = checkResourceStatus(resource_handle_identifier,resource_buffer + UTILITY_STACK_DATA_OFFSET_2), utility_operation_status == 0)) &&
              (utility_operation_status = checkResourceStatus(resource_handle_identifier,resource_buffer + UTILITY_STACK_DATA_OFFSET_3), utility_operation_status == 0)) {
-            utility_stack_resource_buffer.float_part2 = resource_buffer[0x69];
+            utility_stack_resource_buffer.float_part2 = resource_buffer[UTILITY_BUFFER_DATA_STACK_1];
             utility_operation_status = (**(code **)**(uint64 **)(resource_handle_identifier + 8))
                               (*(uint64 **)(resource_handle_identifier + 8),&utility_stack_resource_buffer,4);
             if (utility_operation_status == 0) {
-              utility_stack_resource_buffer.float_part2 = resource_buffer[0x6a];
+              utility_stack_resource_buffer.float_part2 = resource_buffer[UTILITY_BUFFER_DATA_STACK_2];
               utility_operation_status = (**(code **)**(uint64 **)(resource_handle_identifier + 8))
                                 (*(uint64 **)(resource_handle_identifier + 8),&utility_stack_resource_buffer,4);
               if (utility_operation_status == 0) {
-                utility_stack_resource_buffer.float_part2 = resource_buffer[0x6b];
+                utility_stack_resource_buffer.float_part2 = resource_buffer[UTILITY_BUFFER_DATA_STACK_3];
                 utility_operation_status = (**(code **)**(uint64 **)(resource_handle_identifier + 8))
                                   (*(uint64 **)(resource_handle_identifier + 8),&utility_stack_resource_buffer,4);
                 if (utility_operation_status == 0) {
-                  utility_stack_resource_buffer.float_part2 = resource_buffer[0x6d];
+                  utility_stack_resource_buffer.float_part2 = resource_buffer[UTILITY_BUFFER_DATA_STACK_4];
                   utility_operation_status = (**(code **)**(uint64 **)(resource_handle_identifier + 8))
                                     (*(uint64 **)(resource_handle_identifier + 8),&utility_stack_resource_buffer,4);
                   if (utility_operation_status == 0) {
-                    utility_stack_resource_buffer.float_part2 = resource_buffer[0x6e];
+                    utility_stack_resource_buffer.float_part2 = resource_buffer[UTILITY_BUFFER_DATA_STACK_5];
                     utility_operation_status = (**(code **)**(uint64 **)(resource_handle_identifier + 8))
                                       (*(uint64 **)(resource_handle_identifier + 8),&utility_stack_resource_buffer,4);
                     if (utility_operation_status == 0) {
@@ -15015,11 +15035,11 @@ void recognizeUtilityPieces(longlong resource_handle_identifier,uint32 *memory_b
                               utility_operation_status = (**(code **)**(uint64 **)(resource_handle_identifier + 8))
                                                 (*(uint64 **)(resource_handle_identifier + 8),&utility_stack_resource_buffer,8);
                               if (utility_operation_status == 0) {
-                                utility_stack_resource_buffer.float_part2 = resource_buffer[0x77];
+                                utility_stack_resource_buffer.float_part2 = resource_buffer[UTILITY_BUFFER_DATA_STACK_7];
                                 utility_operation_status = (**(code **)**(uint64 **)(resource_handle_identifier + 8))
                                                   (*(uint64 **)(resource_handle_identifier + 8),&utility_stack_resource_buffer,4);
                                 if (utility_operation_status == 0) {
-                                  utility_stack_resource_buffer.float_part2 = resource_buffer[0x76];
+                                  utility_stack_resource_buffer.float_part2 = resource_buffer[UTILITY_BUFFER_DATA_STACK_8];
                                   utility_operation_status = (**(code **)**(uint64 **)(resource_handle_identifier + 8))
                                                     (*(uint64 **)(resource_handle_identifier + 8),&utility_stack_resource_buffer,4);
                                   if (utility_operation_status == 0) {
@@ -25804,7 +25824,7 @@ void UtilityHandleExceptionStack300(uint64 resource_handle_identifier,longlong r
 
 
 
-void UtilityResetExceptionState310(uint64 resource_handle_identifier,longlong resource_buffer)
+void UtilityResetExceptionStateBasic(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   if ((*(uint *)(resource_buffer + UTILITY_FIELD_PRIMARY_OFFSET) & utility_buffer_size_data_offset) != 0) {
@@ -25816,7 +25836,7 @@ void UtilityResetExceptionState310(uint64 resource_handle_identifier,longlong re
 
 
 
-void UtilityProcessExceptionData340(uint64 resource_handle_identifier,longlong resource_buffer)
+void UtilityProcessExceptionDataBasic(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   if ((*(uint *)(resource_buffer + UTILITY_FIELD_PRIMARY_OFFSET) & utility_buffer_offset) != 0) {
@@ -25828,7 +25848,7 @@ void UtilityProcessExceptionData340(uint64 resource_handle_identifier,longlong r
 
 
 
-void UtilityValidateExceptionFrame370(uint64 resource_handle_identifier,longlong resource_buffer)
+void UtilityValidateExceptionFrameBasic(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   *(resource_data **)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET) = &thread_local_storage_cleanup;
@@ -25837,7 +25857,7 @@ void UtilityValidateExceptionFrame370(uint64 resource_handle_identifier,longlong
 
 
 
-void UtilityRestoreExceptionContext380(uint64 resource_handle_identifier,longlong resource_buffer)
+void UtilityRestoreExceptionContextBasic(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   if ((*(uint *)(resource_buffer + UTILITY_FIELD_PRIMARY_OFFSET) & UTILITY_RESOURCE_HANDLE_OFFSET_ZERO) != 0) {
@@ -47671,7 +47691,7 @@ void UtilityUnwindSystemPhased1(uint64 resource_handle_identifier,longlong resou
 
 
 
-void UtilityUnwindSystemFunction7d20(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
+void UtilityUnwindSystemHandler(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
 
 {
   uint64 *utility_operation_result;
@@ -50794,9 +50814,9 @@ void UtilityUnwindCleanupPhasedb(uint64 resource_handle_identifier,longlong reso
 
 
 
-// 函数: void SetupThreadLocalStorageDataDC0(
+// 函数: void SetupThreadLocalStorageBasic(
 // 设置线程本地存储数据DC0
-void SetupThreadLocalStorageDataDC0(uint64 resource_handle_identifier,longlong resource_buffer)
+void SetupThreadLocalStorageBasic(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   longlong resource_buffer;
@@ -50815,9 +50835,9 @@ void SetupThreadLocalStorageDataDC0(uint64 resource_handle_identifier,longlong r
 
 
 
-// 函数: void InitializeThreadLocalStorageDD0(
+// 函数: void InitializeThreadLocalStorageBasic(
 // 初始化线程本地存储DD0
-void InitializeThreadLocalStorageDD0(uint64 resource_handle_identifier,longlong resource_buffer)
+void InitializeThreadLocalStorageBasic(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   int *local_status_pointer;
@@ -50864,9 +50884,9 @@ void ConfigureThreadLocalStorageDebug(uint64 resource_handle_identifier,longlong
 
 
 
-// 函数: void ProcessThreadLocalStorageDF0(
+// 函数: void ProcessThreadLocalStorageBasic(
 // 处理线程本地存储DF0
-void ProcessThreadLocalStorageDF0(uint64 resource_handle_identifier,longlong resource_buffer)
+void ProcessThreadLocalStorageBasic(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   int *local_status_pointer;
@@ -50902,9 +50922,9 @@ void ProcessThreadLocalStorageDF0(uint64 resource_handle_identifier,longlong res
 
 
 
-// 函数: void ValidateThreadLocalStorageE00(
+// 函数: void ValidateThreadLocalStorageBasic(
 // 验证线程本地存储E00
-void ValidateThreadLocalStorageE00(uint64 resource_handle_identifier,longlong resource_buffer)
+void ValidateThreadLocalStorageBasic(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   int *local_status_pointer;
@@ -50972,9 +50992,9 @@ void HandleThreadLocalStorageCallbackE40(uint64 resource_handle_identifier,longl
 
 
 
-// 函数: void ResetThreadLocalStorageE50(
+// 函数: void ResetThreadLocalStorageBasic(
 // 重置线程本地存储E50
-void ResetThreadLocalStorageE50(uint64 resource_handle_identifier,longlong resource_buffer)
+void ResetThreadLocalStorageBasic(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   int *local_status_pointer;
@@ -51274,7 +51294,7 @@ void UtilityUnwindCleanupPhasef3(uint64 resource_handle_identifier,longlong reso
 
 
 
-dataValue * Catch_180908f50(uint64 resource_handle_identifier,longlong resource_buffer)
+dataValue * UtilityExceptionHandlerBasic(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   _setstate___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
@@ -51358,7 +51378,7 @@ void UtilityUnwindCleanupPhasefb(uint64 resource_handle_identifier,longlong reso
 
 
 
-dataValue * Catch_180908fc0(uint64 resource_handle_identifier,longlong resource_buffer)
+dataValue * UtilityExceptionHandlerAdvanced(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   _setstate___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
