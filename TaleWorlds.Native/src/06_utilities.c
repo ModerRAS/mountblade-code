@@ -10366,7 +10366,7 @@ validate_utility_operation_result:
     do {
       utility_iteration_index = (int)utility_operation_status + 1;
       pbooleanFlag = (byte *)(validation_flag  + UTILITY_BOOLEAN_FLAG_OFFSET + *(longlong *)(resource_handle_identifier + RESOURCE_HANDLE_OFFSET));
-      *pbooleanFlag = *pbooleanFlag & 0xfe;
+      *pbooleanFlag = *pbooleanFlag & UTILITY_BYTE_FLAG_CLEAR;
       validation_flag = validation_flag + structure_multiplier;
       utility_operation_status = (ulonglong)utility_iteration_index;
     } while ((int)utility_iteration_index < *(int *)(resource_handle_identifier + POINTER_DATA_OFFSET));
@@ -10492,7 +10492,7 @@ uint64 validate_memory_system(longlong resource_handle_identifier)
     plocalIndex[4] = 0;
     plocalIndex[5] = 0;
     *pdataLength = utility_iteration_counter + UTILITY_RESOURCE_DATA_OFFSET_ALT;
-    *(uint16_t *)(plocalIndex + 2) = 0x508;
+    *(uint16_t *)(plocalIndex + UTILITY_OFFSET_SECONDARY_BYTE) = UTILITY_HARDWARE_REGISTER_VALUE;
     *(byte *)((longlong)plocalIndex + 10) = 3;
     plocalIndex[3] = 1;
     operation_buffer = *(longlong *)(*(longlong *)(resource_handle_identifier + 8) + UTILITY_MEMORY_SIZE_OFFSET);
@@ -32770,7 +32770,7 @@ void UtilityUnwindFunctiond90(uint64 resource_handle_identifier,longlong resourc
   *(uint32 *)(resource_buffer + 0x538) = 0;
   *(uint64 *)(resource_buffer + 0x520) = &thread_local_storage_cleanup;
   *(uint64 *)(resource_buffer + 0x500) = &thread_local_storage_data;
-  if (*(longlong *)(resource_buffer + 0x508) != 0) {
+  if (*(longlong *)(resource_buffer + UTILITY_HARDWARE_REGISTER_VALUE) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -34364,7 +34364,7 @@ void UtilityUnwindAdvancedFunction270(uint64 resource_handle_identifier,longlong
   *(uint32 *)(resource_buffer + 0x538) = 0;
   *(uint64 *)(resource_buffer + 0x520) = &thread_local_storage_cleanup;
   *(uint64 *)(resource_buffer + 0x500) = &thread_local_storage_data;
-  if (*(longlong *)(resource_buffer + 0x508) != 0) {
+  if (*(longlong *)(resource_buffer + UTILITY_HARDWARE_REGISTER_VALUE) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }

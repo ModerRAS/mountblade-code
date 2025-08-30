@@ -3027,13 +3027,13 @@ label_:
       system_graphics_002();
     }
     QueryPerformanceCounter(&thread_stack_base_address);
-    dVar15 = (double)thread_stack_base_address * global_data_ptr;
+    system_performance_counter_prev = (double)thread_stack_base_address * global_data_ptr;
     global_data_ptr = global_data_ptr + 1;
-    dVar16 = dVar15 - global_data_ptr;
+    system_performance_counter_diff = system_performance_counter_prev - global_data_ptr;
     if (1.0 < dVar16) {
-      *(float *)(str_len_counter + 500) = (float)((double)global_data_ptr / dVar16);
+      *(float *)(str_len_counter + 500) = (float)((double)global_data_ptr / system_performance_counter_diff);
       global_data_ptr = 0;
-      global_data_ptr = dVar15;
+      global_data_ptr = system_performance_counter_prev;
       *(float *)(str_len_counter + 0x1f8) = (float)(1000.0 / *(double *)(str_len_counter + 0x70));
     }
     if (0.0 < *(double *)(global_data_ptr + 0x1510)) {
@@ -3041,10 +3041,10 @@ label_:
     }
     if (*(char *)(str_len_counter + 0x1ee) == '\0') {
       float_var = *(float *)(str_len_counter + path_buffer_size0);
-      dVar15 = *(double *)(str_len_counter + 0x218);
+      system_performance_timeout = *(double *)(str_len_counter + 0x218);
       do {
         QueryPerformanceCounter(&thread_stack_base_address);
-      } while ((double)thread_stack_base_address * global_data_ptr < (double)float_var + dVar15);
+      } while ((double)thread_stack_base_address * global_data_ptr < (double)float_var + system_performance_timeout);
       QueryPerformanceCounter(&thread_stack_base_address);
       str_len_counter = thread_stack_base_address - global_data_ptr;
       global_data_ptr = thread_stack_base_address;
@@ -3136,13 +3136,13 @@ label_:
       system_graphics_002();
     }
     QueryPerformanceCounter(&thread_stack_base_address);
-    dVar14 = (double)thread_stack_base_address * global_data_ptr;
+    system_performance_base = (double)thread_stack_base_address * global_data_ptr;
     global_data_ptr = global_data_ptr + 1;
-    dVar15 = dVar14 - global_data_ptr;
+    system_performance_diff = system_performance_base - global_data_ptr;
     if (1.0 < dVar15) {
-      *(float *)(handle_param + 500) = (float)((double)global_data_ptr / dVar15);
+      *(float *)(handle_param + 500) = (float)((double)global_data_ptr / system_performance_diff);
       global_data_ptr = 0;
-      global_data_ptr = dVar14;
+      global_data_ptr = system_performance_base;
       *(float *)(handle_param + 0x1f8) = (float)(1000.0 / *(double *)(handle_param + 0x70));
     }
     if (0.0 < *(double *)(global_data_ptr + 0x1510)) {
@@ -3150,10 +3150,10 @@ label_:
     }
     if (*(char *)(handle_param + 0x1ee) == '\0') {
       float_var = *(float *)(handle_param + path_buffer_size0);
-      dVar14 = *(double *)(handle_param + 0x218);
+      system_performance_timeout = *(double *)(handle_param + 0x218);
       do {
         QueryPerformanceCounter(&thread_stack_base_address);
-      } while ((double)thread_stack_base_address * global_data_ptr < (double)float_var + dVar14);
+      } while ((double)thread_stack_base_address * global_data_ptr < (double)float_var + system_performance_timeout);
       QueryPerformanceCounter(&thread_stack_base_address);
       str_len_counter = thread_stack_base_address - global_data_ptr;
       global_data_ptr = thread_stack_base_address;
@@ -3648,28 +3648,28 @@ label_:
     pplStack_1b8 = (long long **)global_data_ptr;
     global_data_ptr = *string_input_ptr;
     system_initializer_003(&systemInitData1,0,0);
-    dVar2 = 0.0;
-    dVar7 = 0.0;
-    dVar9 = 0.0;
-    dVar8 = 0.0;
+    system_sum_accumulator_1 = 0.0;
+    system_sum_accumulator_2 = 0.0;
+    system_sum_accumulator_3 = 0.0;
+    system_sum_accumulator_4 = 0.0;
     buffer_alloc_result = thread_op_flags;
     thread_op_flags = thread_op_flags;
     if (*(long long *)(character_scan_pointer + STRING_BUFFER_SIZE) - *(long long *)(character_scan_pointer + 8) >> 3 != 0) {
       do {
-        dVar1 = *(double *)(*(long long *)(buffer_alloc_result + *(long long *)(character_scan_pointer + 8)) + path_buffer_size0);
-        dVar7 = dVar2 + dVar1;
-        dVar2 = *(double *)(*(long long *)(buffer_alloc_result + *(long long *)(character_scan_pointer + 8)) + 0x1f8);
-        dVar8 = dVar9 + dVar2;
-        system_config_001(&systemInitData2,thread_op_flags,dVar1 / dVar2);
+        system_data_value_1 = *(double *)(*(long long *)(buffer_alloc_result + *(long long *)(character_scan_pointer + 8)) + path_buffer_size0);
+        system_sum_accumulator_2 = system_sum_accumulator_1 + system_data_value_1;
+        system_data_value_2 = *(double *)(*(long long *)(buffer_alloc_result + *(long long *)(character_scan_pointer + 8)) + 0x1f8);
+        system_sum_accumulator_4 = system_sum_accumulator_3 + system_data_value_2;
+        system_config_001(&systemInitData2,thread_op_flags,system_data_value_1 / system_data_value_2);
         thread_op_flags = (int)thread_op_flags + 1;
         buffer_alloc_result = buffer_alloc_result + 8;
         thread_op_flags = (ulong long)thread_op_flags;
-        dVar2 = dVar7;
-        dVar9 = dVar8;
+        system_sum_accumulator_1 = system_sum_accumulator_2;
+        system_sum_accumulator_3 = system_sum_accumulator_4;
       } while ((ulong long)(long long)(int)thread_op_flags <
                (ulong long)(*(long long *)(character_scan_pointer + STRING_BUFFER_SIZE) - *(long long *)(character_scan_pointer + 8) >> 3));
     }
-    system_config_001(&systemConfigData8,dVar7 / dVar8);
+    system_config_001(&systemConfigData8,system_sum_accumulator_2 / system_sum_accumulator_4);
     system_initializer_004();
     global_data_ptr = buffer_alloc_result;
     thread_result_index = _Mtx_unlock(ADDR_MAIN_MUTEX);
