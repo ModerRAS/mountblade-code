@@ -31,6 +31,25 @@
 // - 将硬编码的0x13替换为SYSTEM_STATUS_CODE_COMPLETE等完成状态码常量
 // - 将硬编码的0xfffffffe替换为SYSTEM_MASK_ADDRESS等地址掩码常量
 // - 将硬编码的0x28替换为SYSTEM_OFFSET_BUFFER_POINTER等缓冲区指针偏移量常量
+// - 新增系统模块句柄常量，添加SYSTEM_MODULE_HANDLE_NULL等模块句柄语义化常量
+// - 新增系统互斥锁类型常量，添加SYSTEM_MUTEX_TYPE_DEFAULT等互斥锁类型语义化常量
+// - 新增系统栈大小常量，添加SYSTEM_STACK_SIZE_MINIMUM等栈大小语义化常量
+// - 新增系统字符串处理常量，添加SYSTEM_STRING_LENGTH_INVALID等字符串处理语义化常量
+// - 新增系统线程处理常量，添加SYSTEM_THREAD_RESULT_INVALID等线程处理语义化常量
+// - 新增系统时间常量，添加SYSTEM_SLEEP_TIME_MINIMUM等时间语义化常量
+// - 新增系统操作标志常量，添加SYSTEM_OPERATION_FLAG_ENABLED等操作标志语义化常量
+// - 新增系统函数调用参数常量，添加SYSTEM_FUNCTION_PARAM_DEFAULT等函数参数语义化常量
+// - 将硬编码的system_global_data_pointer = 5替换为SYSTEM_FIVE_VALUE
+// - 将硬编码的GetModuleHandleA(0)替换为GetModuleHandleA(SYSTEM_MODULE_HANDLE_NULL)
+// - 将硬编码的_Mtx_init_in_situ(..., 2, ...)替换为SYSTEM_MUTEX_TYPE_DEFAULT
+// - 将硬编码的thread_stack_size_max50/70 = 3替换为SYSTEM_STACK_SIZE_MINIMUM
+// - 将硬编码的str_len_counter = -1替换为SYSTEM_STRING_LENGTH_INVALID
+// - 将硬编码的thread_result_index = -1替换为SYSTEM_THREAD_RESULT_INVALID
+// - 将硬编码的system_string_length = -1替换为SYSTEM_STRING_LENGTH_INVALID
+// - 将硬编码的if (thread_result_index != -1)替换为SYSTEM_THREAD_RESULT_INVALID
+// - 将硬编码的Sleep(1)替换为SYSTEM_SLEEP_TIME_MINIMUM
+// - 将硬编码的system_thread_flag_1/2 = 1替换为SYSTEM_THREAD_FLAG_ENABLED
+// - 将硬编码的system_execution_function(..., 3)替换为SYSTEM_FUNCTION_PARAM_DEFAULT
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中硬编码值的语义化替换
 // - 原本实现：完全重构所有硬编码值体系
