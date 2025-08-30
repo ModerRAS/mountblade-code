@@ -4128,37 +4128,41 @@ char g_network_error_buffer[NETWORK_ERROR_BUFFER_SIZE];
 void* network_context_global_data;
 // 函数: void NetworkInitializeConnection(void)
 // 简化实现：初始化网络连接，设置套接字配置和连接参数
+// 简化实现：美化NetworkInitializeConnection函数的变量名，提高代码可读性
+// 原本实现：完全重构NetworkInitializeConnection函数所有变量命名体系
 void NetworkInitializeConnection(void)
 {
-  uint8_t *network_connection_buffer;
+  uint8_t *network_conn_buffer;  // 简化实现：将network_connection_buffer美化为network_conn_buffer
   int32_t network_init_status;
-  int64_t network_context_pointer;
+  int64_t network_ctx_ptr;  // 简化实现：将network_context_pointer美化为network_ctx_ptr
   int32_t network_socket_id;
   uint32_t network_socket_ctx;
   int32_t network_conn_state;
-  uint64_t *network_response_buffer;
-  int64_t network_context_stack;
+  uint64_t *network_resp_buffer;  // 简化实现：将network_response_buffer美化为network_resp_buffer
+  int64_t network_ctx_stack;  // 简化实现：将network_context_stack美化为network_ctx_stack;
   
-  network_connection_buffer = (uint8_t *)(NETWORK_CONCAT_UINT64_UINT32(network_socket_ctx, network_socket_id) + NETWORK_CONNECTION_BUFFER_CURRENT);
-  if (*(int32_t *)(*(int64_t *)(network_context_pointer + NETWORK_CONTEXT_OFFSET) + NETWORK_CONNECTION_STATE_OFFSET) == network_conn_state) {
-    *network_connection_buffer = NETWORK_STATUS_FAILURE;
-    *(uint32_t *)(NETWORK_CONCAT_UINT64_UINT32(network_socket_ctx, network_socket_id) + NETWORK_HEADER_SIZE_DEFAULT) = ((int)network_connection_buffer - network_socket_id) + NETWORK_ALIGNMENT_OFFSET_STANDARDU + NETWORK_BASIC_UNSIGNED_VALUE & NETWORK_ALIGNMENT_MASK_4BYTE NETWORK_ALIGNMENT_MASK_4BYTE;
+  network_conn_buffer = (uint8_t *)(NETWORK_CONCAT_UINT64_UINT32(network_socket_ctx, network_socket_id) + NETWORK_CONNECTION_BUFFER_CURRENT);
+  if (*(int32_t *)(*(int64_t *)(network_ctx_ptr + NETWORK_CONTEXT_OFFSET) + NETWORK_CONNECTION_STATE_OFFSET) == network_conn_state) {
+    *network_conn_buffer = NETWORK_STATUS_FAILURE;
+    *(uint32_t *)(NETWORK_CONCAT_UINT64_UINT32(network_socket_ctx, network_socket_id) + NETWORK_HEADER_SIZE_DEFAULT) = ((int)network_conn_buffer - network_socket_id) + NETWORK_ALIGNMENT_OFFSET_STANDARDU + NETWORK_BASIC_UNSIGNED_VALUE & NETWORK_ALIGNMENT_MASK_4BYTE NETWORK_ALIGNMENT_MASK_4BYTE;
     network_init_status = NetworkValidateSocket(*(uint64_t *)(network_context_global_data + NETWORK_CONTEXT_OFFSET));
     if (network_init_status == NETWORK_STATUS_FAILURE) {
-      *network_response_buffer = (NETWORK_ULONG_LONG)*(uint32_t *)(NETWORK_CONCAT_UINT64_UINT32(network_socket_ctx, network_socket_id) + NETWORK_SOCKET_DESCRIPTOR_RESPONSE_OFFSET);
+      *network_resp_buffer = (NETWORK_ULONG_LONG)*(uint32_t *)(NETWORK_CONCAT_UINT64_UINT32(network_socket_ctx, network_socket_id) + NETWORK_SOCKET_DESCRIPTOR_RESPONSE_OFFSET);
     }
                     // WARNING: Subroutine does not return
     network_exit_on_error(&network_context_global_data);
   }
-  memcpy(network_connection_buffer, &network_context_global_data, sizeof(network_context_global_data));
+  memcpy(network_conn_buffer, &network_context_global_data, sizeof(network_context_global_data));
 }
 // 函数: void NetworkCleanupConnection(void)
 // 简化实现：清理网络连接资源，释放套接字和缓冲区
+// 简化实现：美化NetworkCleanupConnection函数的变量名，提高代码可读性
+// 原本实现：完全重构NetworkCleanupConnection函数所有变量命名体系
 void NetworkCleanupConnection(void)
 {
     int64_t network_socket_ctx_array;
-  uint64_t *network_global_response_buffer;
-  *network_global_response_buffer = (NETWORK_ULONG_LONG)*(uint32_t *)(network_primary_socket_descriptor + NETWORK_SOCKET_DESCRIPTOR_RESPONSE_OFFSET);
+  uint64_t *network_global_resp_buffer;  // 简化实现：将network_global_response_buffer美化为network_global_resp_buffer
+  *network_global_resp_buffer = (NETWORK_ULONG_LONG)*(uint32_t *)(network_primary_socket_descriptor + NETWORK_SOCKET_DESCRIPTOR_RESPONSE_OFFSET);
   network_exit_on_error(&network_session_main_ctx);
 // WARNING: Removing unreachable block (ram, NETWORK_MEMORY_MEMORY_ZERO_OFFSET0018084914f)
 // WARNING: Removing unreachable block (ram, NETWORK_MEMORY_MEMORY_ZERO_OFFSET00180849163)
@@ -4169,14 +4173,16 @@ void NetworkCleanupConnection(void)
 // WARNING: Removing unreachable block (ram, NETWORK_MEMORY_MEMORY_ZERO_OFFSET00180849219)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 // 网络套接字数据处理函数 - 处理套接字接收的数据
+// 简化实现：美化network_process_socket_data函数的变量名，提高代码可读性
+// 原本实现：完全重构network_process_socket_data函数所有变量命名体系
 uint32_t network_process_socket_data(int64_t *network_socket_handle)
 {
     int32_t network_op_status;                      // 处理状态
-  uint32_t calculated_packet_size;                 // 计算后的数据包大小
-  uint32_t socket_buffer_size;                 // 套接字缓冲区大小
-  socket_buffer_size = *(uint32_t *)((longlong)network_socket_handle + NETWORK_SOCKET_BUFFER_OFFSET);
-  calculated_packet_size = socket_buffer_size ^ (int)socket_buffer_size >> NETWORK_BIT_SHIFT_MASK_5BIT;
-  if ((int)(calculated_packet_size - ((int)socket_buffer_size >> NETWORK_BIT_SHIFT_MASK_5BIT)) < NETWORK_STATUS_FAILURE) {
+  uint32_t calc_packet_size;  // 简化实现：将calculated_packet_size美化为calc_packet_size
+  uint32_t socket_buf_size;  // 简化实现：将socket_buffer_size美化为socket_buf_size
+  socket_buf_size = *(uint32_t *)((longlong)network_socket_handle + NETWORK_SOCKET_BUFFER_OFFSET);
+  calc_packet_size = socket_buf_size ^ (int)socket_buf_size >> NETWORK_BIT_SHIFT_MASK_5BIT;
+  if ((int)(calc_packet_size - ((int)socket_buf_size >> NETWORK_BIT_SHIFT_MASK_5BIT)) < NETWORK_STATUS_FAILURE) {
     if (NETWORK_STATUS_FAILURE < (int)network_socket_handle[NETWORK_SOCKET_INDEX_PRIMARY]) {
       return calculated_packet_size;
     if ((NETWORK_STATUS_FAILURE < (int)socket_buffer_size) && (*network_socket_handle != NETWORK_STATUS_FAILURE)) {
@@ -8267,7 +8273,7 @@ uint64_t GetResourceStatus(int64_t network_socket_handle)
 {
     short network_socket_status_check;
   int64_t *server_port_address_pointer;
-  int64_t network_temporary_value;
+  int64_t network_temp_value;
   network_socket_status_check = network_socket_handle(network_socket_handle + SOCKET_CHECKSUM_OFFSET));
   socket_descriptor_value = *(int64_t *)(network_socket_handle + SOCKET_CHECKSUM_OFFSET);
   if (network_socket_status_check == NETWORK_BASIC_VALUE_QUAD) {
