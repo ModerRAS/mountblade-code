@@ -37120,7 +37120,7 @@ void InitializeStringManagerSystem(uint64_t handleIdentifier)
 
 {
   uint8_t system_local_buffer_config_key [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-  uint8_t system_local_buffer_288 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
+  uint8_t system_local_buffer_temp_secondary [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   uint64_t init_stack_uint_param_248;
   uint64_t init_stack_uint_param_240;
   uint8_t system_local_buffer_temp_data_238 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
@@ -37129,7 +37129,7 @@ void InitializeStringManagerSystem(uint64_t handleIdentifier)
   init_stack_uint_param_248 = INVALID_HANDLE_VALUE;
   system_init_stack_config_handle = system_configuration_data ^ (ulonglong)system_local_buffer_config_key;
   init_stack_uint_param_240 = handleIdentifier;
-  ProcessResourceData(system_local_buffer_288,g_system_context_1 + SYSTEM_OBJECT_OFFSET_28);
+  ProcessResourceData(system_local_buffer_temp_secondary,g_system_context_1 + SYSTEM_OBJECT_OFFSET_28);
                     // WARNING: Subroutine does not return
   memset(system_local_buffer_temp_data_238,0,SYSTEM_NODE_HEADER_SIZE0);
 }
@@ -37599,7 +37599,7 @@ void initialize_system_module_sixty_seven(longlong *handleIdentifier,longlong re
   ulonglong system_result_operation;
   uint64_t *system_pointer_value;
   uint8_t system_local_buffer_username [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-  longlong long_stack_one_hundred_eighteen;
+  longlong long_stack_temp_primary;
   void *system_buffer_ptr_context_main;
   uint8_t *system_buffer_ptr_data_primary;
   uint32_t init_stack_uint_param_f8_hex;
@@ -37669,7 +37669,7 @@ void initialize_system_module_sixty_seven(longlong *handleIdentifier,longlong re
   if (SYSTEM_OFFSET_F < init_stack_audio_parameter) {
     system_pointer_value = (uint8_t *)CONCAT71(uintStack_c7,init_stack_uint_param_c8);
   }
-  long_stack_one_hundred_eighteen = system_init_stack_long_value;
+  long_stack_temp_primary = system_init_stack_long_value;
   system_pointer_value = (uint64_t *)InitializeSecuritySystem(system_pointer_temp,system_buffer_ptr_input_context);
   system_buffer_ptr_thread_buffer = system_pointer_value;
   if (system_pointer_temp == (uint64_t *)SYSTEM_MAX_64BIT_VALUE) {
@@ -37958,7 +37958,7 @@ void InitializeFontSystem(uint64_t handleIdentifier)
   void *system_buffer_ptr_resource_aux;
   uint8_t *system_buffer_ptr_data_aux;
   uint32_t init_stack_uint_param_one_hundred_eight;
-  uint8_t system_local_buffer_100 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
+  uint8_t system_local_buffer_config_primary [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   void *system_buffer_ptr_graphics_config;
   uint8_t *system_buffer_ptr_thread_param;
   uint32_t init_stack_uint_param_e0_hex;
@@ -38139,10 +38139,10 @@ void InitializeFontSystem(uint64_t handleIdentifier)
   system_pointer_value = system_buffer_ptr_graphics_primary;
   if (1 < (ulonglong)((longlong)system_buffer_ptr_audio_aux - (longlong)system_buffer_ptr_graphics_primary >> 5)) {
     system_buffer_ptr_resource_aux = &g_system_data_node_primary_config;
-    system_buffer_ptr_data_aux = system_local_buffer_100;
-    system_local_buffer_100[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0;
+    system_buffer_ptr_data_aux = system_local_buffer_config_primary;
+    system_local_buffer_config_primary[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0;
     init_stack_uint_param_one_hundred_eight = 1;
-    strcpy_s(system_local_buffer_100,SYSTEM_DATA_COMPARE_SIZE,&g_system_constant_5);
+    strcpy_s(system_local_buffer_config_primary,SYSTEM_DATA_COMPARE_SIZE,&g_system_constant_5);
     initialize_system_module_sixty_seven(&system_buffer_ptr_data_config,system_pointer_temp + SYSTEM_NODE_DATA_OFFSET,&system_buffer_ptr_resource_aux);
     system_buffer_ptr_resource_aux = &globalSystemPointerData;
   }
@@ -50678,7 +50678,7 @@ ulonglong initialize_system_module_six(longlong handleIdentifier,uint *resourceI
   uint32_t system_local_buffer_username [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   ulonglong init_stack_buffer_size_username_offset;
   uint64_t *system_buffer_ptr_array_128 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-  longlong long_stack_one_hundred_eighteen;
+  longlong long_stack_temp_primary;
   uint64_t init_stack_uint_param_one_hundred_eight;
   uint64_t init_stack_uint_param_one_hundred;
   uint64_t init_stack_uint_param_f8_hex;
@@ -50797,8 +50797,8 @@ INIT_LABEL_SYSTEM_77879:
             if ((*(uint *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE0) & SYSTEM_OFFSET_800) != SYSTEM_COMPARISON_ZERO) {
               initialize_system_data_node_twenty_nine(handleIdentifier);
             }
-            long_stack_one_hundred_eighteen = systemCoreData + SYSTEM_DATA_OFFSET_5868;
-            system_pointer_value = (uint *)((longlong)*(int *)(systemCoreData + SYSTEM_DATA_OFFSET_6A78) * SYSTEM_INIT_DATA_OFFSET_908 + long_stack_one_hundred_eighteen);
+            long_stack_temp_primary = systemCoreData + SYSTEM_DATA_OFFSET_5868;
+            system_pointer_value = (uint *)((longlong)*(int *)(systemCoreData + SYSTEM_DATA_OFFSET_6A78) * SYSTEM_INIT_DATA_OFFSET_908 + long_stack_temp_primary);
             LOCK();
             system_result_operation = *system_pointer_value;
             *system_pointer_value = *system_pointer_temp + 1;
@@ -50845,7 +50845,7 @@ INIT_LABEL_SYSTEM_77879:
             } while ((longlong)(ptr_system_initialization_flag + (-SYSTEM_OFFSET_808 - (longlong)system_pointer_temp)) <= (longlong)system_counter_temp);
             system_node_root6 = (uint64_t *)
                       (*(longlong *)
-                        ((longlong)*(int *)(long_stack_one_hundred_eighteen + SYSTEM_CONFIG_SIZE_RENDER10) * SYSTEM_INIT_DATA_OFFSET_908 + long_stack_one_hundred_eighteen + SYSTEM_OFFSET_8 +
+                        ((longlong)*(int *)(long_stack_temp_primary + SYSTEM_CONFIG_SIZE_RENDER10) * SYSTEM_INIT_DATA_OFFSET_908 + long_stack_temp_primary + SYSTEM_OFFSET_8 +
                         system_counter_temp * SYSTEM_OFFSET_8) + (ulonglong)(system_counter_temp - (system_counter_temp & SYSTEM_OFFSET_Fffffe00)) * SYSTEM_OBJECT_OFFSET_60);
             system_long_result_temp = handleIdentifier;
             system_buffer_ptr_array_128[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = system_node_root6;
