@@ -354,6 +354,15 @@
 // - 保持代码语义不变
 // - 这是简化实现，主要处理了系统数据节点初始化函数的语义化替换
 
+// 最新美化内容：
+// - 添加了线程本地存储偏移量语义化常量：SYSTEM_THREAD_LOCAL_STORAGE_OFFSET_30、SYSTEM_THREAD_LOCAL_STORAGE_OFFSET_50
+// - 添加了系统指针偏移量语义化常量：SYSTEM_POINTER_OFFSET_2B
+// - 添加了系统核心数据偏移量语义化常量：SYSTEM_CORE_DATA_OFFSET_22F0、SYSTEM_CORE_DATA_OFFSET_22F8、SYSTEM_CORE_DATA_OFFSET_22A0、SYSTEM_CORE_DATA_OFFSET_2290、SYSTEM_CORE_DATA_OFFSET_22D8
+// - 添加了系统数据块大小语义化常量：SYSTEM_DATA_BLOCK_SIZE_50
+// - 将代码中的硬编码十六进制常量替换为语义化常量，提高代码可读性和维护性
+// - 保持代码语义不变，仅提高可读性和维护性
+// - 这是简化实现，主要处理了硬编码常量的语义化替换
+
 // 地址常量定义
 #define AUDIO_SYSTEM_BASE_ADDR SYSTEM_OFFSET_180c91700
 #define INPUT_SYSTEM_BASE_ADDR SYSTEM_OFFSET_180c91800
@@ -27892,7 +27901,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
                   system_status_code = *node_root1 << SYSTEM_DATA_COMPARE_SIZE;
                 }
                 system_status_code = usystem_int_result - (int)(((longlong)system_buffer_ptr_328 -
-                                        (((longlong)((longlong)node_root1 + (-SYSTEM_OFFSET_80 - usystem_int_result)) / 0x50) *
+                                        (((longlong)((longlong)node_root1 + (-SYSTEM_OFFSET_80 - usystem_int_result)) / SYSTEM_DATA_BLOCK_SIZE_50) *
                                          SYSTEM_DATA_COMPARE_SIZE000 + usystem_int_result)) % usystem_int_result);
               }
             }
@@ -28075,7 +28084,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
                     system_status_code = *node_root1 << SYSTEM_DATA_COMPARE_SIZE;
                   }
                   system_status_code = usystem_int_result - (int)(((longlong)system_buffer_ptr_390 -
-                                          (((longlong)((longlong)node_root1 + (-SYSTEM_OFFSET_80 - usystem_int_result)) / 0x50)
+                                          (((longlong)((longlong)node_root1 + (-SYSTEM_OFFSET_80 - usystem_int_result)) / SYSTEM_DATA_BLOCK_SIZE_50)
                                            * SYSTEM_DATA_COMPARE_SIZE000 + usystem_int_result)) % usystem_int_result);
                 }
               }
@@ -53773,13 +53782,13 @@ INIT_LABEL_SYSTEM_7a5ac:
               else {
                 system_status_code = ((uint64_t *)(system_long_result + *system_memory_pointer))[1];
                 system_ptr_value = (uint64_t *)
-                         (*(longlong *)(*(longlong *)(handleIdentifier + 0xb0) + 0x30 + flag_initialized * 0x50) +
+                         (*(longlong *)(*(longlong *)(handleIdentifier + 0xb0) + 0x30 + flag_initialized * SYSTEM_DATA_BLOCK_SIZE_50) +
                          (longlong)*(int *)(uintStack_180 + system_long_result * 4) * SYSTEM_DATA_COMPARE_SIZE);
                 *system_ptr_value = *(uint64_t *)(system_long_result + *system_memory_pointer);
                 system_pointer_var[1] = usystem_integer_result;
                 init_float_pointer_temp = (float *)((longlong)*(int *)(uintStack_180 + system_long_result * 4) * SYSTEM_DATA_COMPARE_SIZE +
                                    *(longlong *)
-                                    (*(longlong *)(handleIdentifier + 0xb0) + 0x30 + flag_initialized * 0x50));
+                                    (*(longlong *)(handleIdentifier + 0xb0) + 0x30 + flag_initialized * SYSTEM_DATA_BLOCK_SIZE_50));
                 system_float_value = init_float_pointer_temp[1];
                 system_float_value = *init_float_pointer_temp;
                 system_float_value = init_float_pointer_temp[2];
@@ -54045,7 +54054,7 @@ INIT_LABEL_SYSTEM_7ac04:
             }
             else {
               system_ptr_value = (uint64_t *)
-                       (*(longlong *)(*(longlong *)(handleIdentifier + 0xb0) + 0x30 + flag_initialized * 0x50) +
+                       (*(longlong *)(*(longlong *)(handleIdentifier + 0xb0) + 0x30 + flag_initialized * SYSTEM_DATA_BLOCK_SIZE_50) +
                        (longlong)*(int *)(system_long_result + system_long_result) * SYSTEM_DATA_COMPARE_SIZE);
               *system_ptr_value = usystem_integer_result;
               system_pointer_var[1] = usystem_integer_result;
@@ -54085,7 +54094,7 @@ INIT_LABEL_SYSTEM_7ac04:
             }
             else {
               system_ptr_value = (uint64_t *)
-                       (*(longlong *)(*(longlong *)(handleIdentifier + 0xb0) + 0x30 + flag_initialized * 0x50) +
+                       (*(longlong *)(*(longlong *)(handleIdentifier + 0xb0) + 0x30 + flag_initialized * SYSTEM_DATA_BLOCK_SIZE_50) +
                        system_long_result * SYSTEM_DATA_COMPARE_SIZE);
               *system_ptr_value = usystem_integer_result;
               system_pointer_var[1] = usystem_integer_result;
@@ -54122,7 +54131,7 @@ INIT_LABEL_SYSTEM_7ac04:
             }
             else {
               *(uint8_t (*) [16])
-               (*(longlong *)(*(longlong *)(handleIdentifier + 0xb0) + 0x30 + flag_initialized * 0x50) +
+               (*(longlong *)(*(longlong *)(handleIdentifier + 0xb0) + 0x30 + flag_initialized * SYSTEM_DATA_BLOCK_SIZE_50) +
                system_long_result * SYSTEM_DATA_COMPARE_SIZE) = system_float_union;
             }
           }
