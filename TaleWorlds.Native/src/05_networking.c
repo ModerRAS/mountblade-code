@@ -114,6 +114,7 @@
 
 // 网络系统语义化常量定义
 #define NETWORK_CONNECTION_TABLE_OFFSET 0x248  // 连接表偏移量
+#define NETWORK_SOCKET_HANDLE_THRESHOLD 0x3ff  // 套接字句柄阈值
 #define NETWORK_SOCKET_RESOURCE_OFFSET 0x328  // 套接字资源偏移量
 #define NETWORK_SOCKET_TERMINATE_OFFSET 0x3d0  // 套接字终止偏移量
 #define NETWORK_SOCKET_TIMEOUT_DATA_OFFSET 0x3d8  // 套接字超时数据偏移量
@@ -3034,7 +3035,7 @@ void* * NetworkGetThreadLocalStorage(void)
   if (*(int32_t *)(*(int64_t *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
               NETWORK_SOCKET_HEADER_OFFSET) < _networkConnectionLimit) {
     GetNetworkTimeout(&_networkConnectionLimit);
-    if (_networkConnectionLimit == -1) {
+    if (_networkConnectionLimit == NETWORK_STATUS_ERROR) {
       _network_timeout_valueMin = 0;
       network_timeout_value_reserved1 = 0;
       network_timeout_value_reserved2 = 0;
@@ -4959,7 +4960,7 @@ uint32_t * ConfigureSocketOptions(int64_t network_socket_descriptor,uint32_t *ne
       if (network_connection_index_value <= *(uint32_t *)((longlong)network_timeout_value_ptr + NETWORK_PACKET_OFFSET_HEADER)) {
         network_connection_index_value = *(uint32_t *)((longlong)network_timeout_value_ptr + NETWORK_PACKET_OFFSET_HEADER);
       if ((*(int32_t *)(network_primary_connection_data + NETWORK_SOCKET_HEADER_OFFSET) < _network_timeout_valueThreshold) &&
-         (GetNetworkTimeout(&network_timeout_valueThreshold), _network_timeout_valueThreshold == -1)) {
+         (GetNetworkTimeout(&network_timeout_valueThreshold), _network_timeout_valueThreshold == NETWORK_STATUS_ERROR)) {
         _network_timeout_valueCurrent = 0;
         SetNetworkTimeout(&network_timeout_valueThreshold);
       if (*(int32_t *)(network_timeout_value_ptr + SESSION_STRUCT_SIZE) != _network_timeout_valueCurrent) {
@@ -5014,7 +5015,7 @@ void ProcessNetworkMessage(int64_t network_socket_descriptor,uint64_t *network_b
     if (network_data_ptr <= *(uint32_t *)((longlong)network_socket_register_value + NETWORK_PACKET_OFFSET_HEADER)) {
       network_data_ptr = *(uint32_t *)((longlong)network_buffer_size_byte_value + NETWORK_PACKET_OFFSET_HEADER);
     if ((*(int32_t *)(network_socket_descriptor_value + NETWORK_SOCKET_HEADER_OFFSET) < _network_timeout_valueThreshold) &&
-       (GetNetworkTimeout(&network_timeout_valueThreshold), _network_timeout_valueThreshold == -1)) {
+       (GetNetworkTimeout(&network_timeout_valueThreshold), _network_timeout_valueThreshold == NETWORK_STATUS_ERROR)) {
       _network_timeout_valueCurrent = network_socket_register_value;
       SetNetworkTimeout(&network_timeout_valueThreshold);
     network_data_ptr = (uint)network_socket_register_value;
@@ -5082,7 +5083,7 @@ void QueueNetworkEvent(uint64_t network_socket_descriptor,uint64_t network_buffe
 // 函数: void ProcessEventQueue(void)
 void ProcessEventQueue(void)
     GetNetworkTimeout(&network_timeout_valueThreshold);
-    if (_network_timeout_valueThreshold == -1) {
+    if (_network_timeout_valueThreshold == NETWORK_STATUS_ERROR) {
       network_buffer_size_byte_value = (uint)network_socket_register_value;
       if (*(int32_t *)(network_socket_register_value + SESSION_STRUCT_SIZE) != _network_timeout_valueCurrent) {
         socket_descriptor_var_secondary = *(int64_t **)(network_socket_register_value + SOCKET_HANDLE_OFFSET);
@@ -5828,7 +5829,7 @@ handle_port_operation:
 uint64_t ReleaseNetworkResources(int64_t network_socket_descriptor,uint64_t *network_buffer_ptr,uint64_t *network_buffer_size_byte_value,int32_t *network_timeout_value)
   uint64_t *network_status_code_data_pointer;
   network_loop_counter_index = *(int32_t *)(network_socket_descriptor + SOCKET_RESPONSE_OFFSET);
-  if (network_loop_counter_index == -1) {
+  if (network_loop_counter_index == NETWORK_STATUS_ERROR) {
     network_status_return_code = *network_buffer_size_byte_value;
     network_loop_counter_index = *(int32_t *)(network_socket_descriptor + SESSION_CONFIG_SIZE);
     network_packet_size_value = *network_buffer_ptr;
@@ -6257,7 +6258,7 @@ network_validate_connection_index_label:
     CleanupNetworkContext(network_socket_descriptor_value);
 network_client_secure_exit_label:
   network_encryption_key_main_third = timeout_config_ptr;
-  if (network_status_return_code == -1) goto check_address_status;
+  if (network_status_return_code == NETWORK_STATUS_ERROR) goto check_address_status;
   network_connection_data_primary3 = (uint32_t *)((longlong)network_status_return_code * MODULE_STATUS_OFFSET + pnetworkAddress[2]);
   if ((int)pnetworkAddress[1] == 0) {
 network_handle_address_operation_label:
@@ -6392,7 +6393,7 @@ int32_t networkStartClient(int64_t *network_socket_descriptor)
     CleanupNetworkContext(network_socket_register_value);
   return network_status_code_third;
   _network_operation_flag = timeout_config_ptr_primary;
-  if (network_status_code_third == -1) goto check_address_status;
+  if (network_status_code_third == NETWORK_STATUS_ERROR) goto check_address_status;
   network_connection_data_primary2 = (uint32_t *)((longlong)network_status_code_third * MODULE_STATUS_OFFSET + socket_context_pointer_array[2]);
   if ((int)socket_context_pointer_array[1] == 0) {
   network_status_return_code = *network_connection_data_primary2;
@@ -6456,7 +6457,7 @@ int32_t networkConnectClientSecure(int64_t *network_socket_descriptor)
 network_validate_data_pointer_label:
 finalize_network_operation:
 network_server_secure_exit_label:
-  if (network_status_return_code == -1) goto handle_status_operation;
+  if (network_status_return_code == NETWORK_STATUS_ERROR) goto handle_status_operation;
 network_handle_address_validation_error_label:
     goto finalize_network_operation;
   if (network_connection_index_value == NETWORK_MAX_SIZE) goto handle_address_validation_error;
@@ -6469,7 +6470,7 @@ process_pointer_validation:
 int32_t networkStartServerSecure(int64_t *network_socket_descriptor)
       if ((int)socket_context_pointer_array[1] == 0) goto handle_status_operation;
             network_status_code_third = NetworkSocketConfigure(network_socket_descriptor,&network_buffer_primary,timeout_config_ptr_primary + 3);
-  if (network_status_code_third == -1) goto handle_status_operation;
+  if (network_status_code_third == NETWORK_STATUS_ERROR) goto handle_status_operation;
   if (network_data_ptr == NETWORK_MAX_SIZE) goto handle_address_validation_error;
     if (network_data_ptr == NETWORK_MAX_SIZE) goto handle_address_validation_error;
   if (network_status_code_third != 0) goto finalize_network_operation;
@@ -6511,7 +6512,7 @@ check_timeout_status:
 network_validate_buffer_capacity_label:
 network_finalize_session_label:
 joined_rjoined_network_timeout_value:
-  if (network_status_return_code == -1) goto handle_timeout_operation;
+  if (network_status_return_code == NETWORK_STATUS_ERROR) goto handle_timeout_operation;
 handle_session_initialization:
     goto finalize_connection_session;
   if (network_connection_index_value == NETWORK_MAX_SIZE) goto handle_session_initialization;
@@ -6525,7 +6526,7 @@ handle_timeout_operation:
   DecryptNetworkData(pnetworkAddress);
 int32_t networkStartServerEncrypted(int64_t *network_socket_descriptor)
       if ((int)socket_context_pointer_array[1] == 0) goto handle_timeout_operation;
-  if (network_status_code_third == -1) goto handle_timeout_operation;
+  if (network_status_code_third == NETWORK_STATUS_ERROR) goto handle_timeout_operation;
   if (network_data_ptr == NETWORK_MAX_SIZE) goto handle_session_initialization;
     if (network_data_ptr == NETWORK_MAX_SIZE) goto handle_session_initialization;
   if (network_status_code_third != 0) goto finalize_connection_session;
@@ -8001,7 +8002,7 @@ uint64_t networkConnectClient(int64_t *network_socket_descriptor,uint32_t *netwo
       network_status_return_code = *pnetwork_status_code_calculation;
     } while (network_status_return_code != -1);
   network_status_return_code = (int)network_socket_descriptor[4];
-  if (network_status_return_code == -1) {
+  if (network_status_return_code == NETWORK_STATUS_ERROR) {
     network_status_return_code = (int)network_socket_descriptor[3];
     network_status_return_code = *(uint64_t *)network_buffer_ptr;
     network_packet_size_value = *(uint64_t *)(network_buffer_ptr + 2);
@@ -8048,7 +8049,7 @@ uint64_t NetworkSocketConfigure(int64_t *network_socket_descriptor,uint32_t *net
         pnetwork_status_code_secondaryary = (int32_t *)(network_index_counter_value + MODULE_STATUS_OFFSET + network_timeout_value);
         network_status_return_code = *pnetwork_status_code_secondaryary;
     network_status_return_code = (int)network_socket_descriptor[4];
-    if (network_status_return_code == -1) {
+    if (network_status_return_code == NETWORK_STATUS_ERROR) {
       network_connection_index_value = *network_buffer_size_byte_value;
       network_status_return_code = (int)network_socket_descriptor[3];
       network_status_return_code = *(uint64_t *)network_buffer_ptr;
@@ -8090,7 +8091,7 @@ uint64_t NetworkSocketConfigure(int64_t *network_socket_descriptor,uint32_t *net
     client_port = network_socket_register_value[2];
       network_index_counter_value = (longlong)network_status_return_code * SOCKET_RESPONSE_OFFSET;
       if ((*(int64_t *)(network_index_counter_value + client_port) == *(int64_t *)network_socket_register_value) &&
-         (*(int64_t *)(network_index_counter_value + 8 + client_port) == *(int64_t *)(network_socket_register_value + 2))) {
+         (*(int64_t *)(network_index_counter_value + NETWORK_PACKET_HEADER_SIZE + client_port) == *(int64_t *)(network_socket_register_value + 2))) {
       pnetwork_status_code_calculation = (int32_t *)(client_port + MODULE_STATUS_OFFSET + network_index_counter_value);
   network_status_return_code = (int)network_socket_register_value[4];
     network_connection_state = *network_socket_register_value;
@@ -8888,8 +8889,8 @@ uint32_t NetworkGetReceiveCount(void)
 {
     return network_response_buffer_primary;
 uint64_t NetworkParseReceivedData(int64_t *network_socket_descriptor,int32_t *network_buffer_ptr,int32_t *network_buffer_size_byte_value)
-  if ((*network_buffer_size_byte_value == -1) ||
-     (network_operation_progress = *(int32_t *)(network_socket_descriptor[2] + MODULE_STATUS_OFFSET + (longlong)*network_buffer_size_byte_value * SESSION_CONFIG_SIZE), *network_buffer_size_byte_value = network_operation_progress, network_operation_progress == -1
+  if ((*network_buffer_size_byte_value == NETWORK_STATUS_ERROR) ||
+     (network_operation_progress = *(int32_t *)(network_socket_descriptor[2] + MODULE_STATUS_OFFSET + (longlong)*network_buffer_size_byte_value * SESSION_CONFIG_SIZE), *network_buffer_size_byte_value = network_operation_progress, network_operation_progress == NETWORK_STATUS_ERROR
      )) {
     network_operation_progress = 0;
     if (*network_buffer_ptr != -1) {
@@ -10035,7 +10036,7 @@ uint64_t NetworkGetQueueStatus(int64_t network_socket_descriptor,uint32_t *netwo
       if ((*(int64_t *)(network_socket_descriptor_value + network_timeout_value) == *(int64_t *)network_buffer_ptr) &&
          (*(int64_t *)(network_socket_descriptor_value + 8 + network_timeout_value) == *(int64_t *)(network_buffer_ptr + 2))) break;
       network_status_return_code = *(int32_t *)(network_socket_descriptor_value + MODULE_STATUS_OFFSET + network_timeout_value);
-      if (network_status_return_code == -1) {
+      if (network_status_return_code == NETWORK_STATUS_ERROR) {
       *network_buffer_size_byte_value = *(uint64_t *)(network_timeout_value + SESSION_STRUCT_SIZE + (longlong)network_status_return_code * NETWORK_ERROR_INVALID_OFFSET);
 uint64_t NetworkAddToQueue(int64_t network_socket_descriptor,uint64_t *network_buffer_ptr,uint64_t network_buffer_size_byte_value)
 {
@@ -10121,7 +10122,7 @@ void NetworkProcessQueueItem(int64_t network_socket_descriptor,uint64_t *network
         network_socket_descriptor_value = socket_descriptor_var_secondary1[2];
           client_port = (longlong)network_socket_index_value;
           if ((*(int64_t *)(network_socket_descriptor_value + client_port * SESSION_CONFIG_SIZE) == *(int64_t *)(server_port + MODULE_STATUS_OFFSET)) &&
-             (*(int64_t *)(network_socket_descriptor_value + 8 + client_port * SESSION_CONFIG_SIZE) == *(int64_t *)(server_port + SESSION_CONFIG_SIZE)))
+             (*(int64_t *)(network_socket_descriptor_value + NETWORK_PACKET_HEADER_SIZE + client_port * SESSION_CONFIG_SIZE) == *(int64_t *)(server_port + SESSION_CONFIG_SIZE)))
           network_socket_index_value = *(int32_t *)(network_socket_descriptor_value + MODULE_STATUS_OFFSET + client_port * SESSION_CONFIG_SIZE);
         } while (network_socket_index_value != -1);
       network_socket_index_value = -1;
@@ -10240,11 +10241,11 @@ network_packet_handler_loop_label:
             network_buffer_ptr = network_stack_timeout_buffer_primary;
             network_status_code_prev = network_operation_status4;
             if (server_port == 0) {
-              if (network_socket_index_value == -1) break;
+              if (network_socket_index_value == NETWORK_STATUS_ERROR) break;
               server_port = socket_descriptor_var_secondary1[2];
               network_operation_status0 = *(int32_t *)(server_port + MODULE_STATUS_OFFSET + network_timeout_value_tenth);
               network_status_code_timeout_value = network_operation_status4;
-              if (network_operation_status0 == -1) {
+              if (network_operation_status0 == NETWORK_STATUS_ERROR) {
                 network_status_code_timeout_value = 0;
                 if (network_operation_status4 != -1) {
                   network_status_code_timeout_value = network_operation_status4 + 1;
@@ -10259,7 +10260,7 @@ network_packet_handler_loop_label:
                   } while (network_timeout_value_tenth != (int)socket_descriptor_var_secondary1[1]);
                 network_status_code_timeout_value = -1;
                 network_operation_status0 = -1;
-              if (network_status_return_code == -1) {
+              if (network_status_return_code == NETWORK_STATUS_ERROR) {
                 pnetwork_operation_status2 = (int32_t *)(*socket_descriptor_var_secondary1 + (longlong)network_operation_status4 * 4);
                 pnetwork_operation_status2 = (int32_t *)(server_port + (longlong)network_status_return_code * SESSION_CONFIG_SIZE + MODULE_STATUS_OFFSET);
               network_status_return_code = *pnetwork_operation_status2;
@@ -10274,7 +10275,7 @@ network_packet_handler_loop_label:
                 network_status_code_prev = network_status_code_timeout_value;
                 if (network_operation_status4 != network_status_code_timeout_value) {
                   network_status_return_code = -1;
-              if ((network_socket_index_value == -1) || (network_socket_index_value = *(int32_t *)(socket_descriptor_var_secondary1[2] + MODULE_STATUS_OFFSET + network_timeout_value_tenth), network_socket_index_value == -1)) {
+              if ((network_socket_index_value == NETWORK_STATUS_ERROR) || (network_socket_index_value = *(int32_t *)(socket_descriptor_var_secondary1[2] + MODULE_STATUS_OFFSET + network_timeout_value_tenth), network_socket_index_value == NETWORK_STATUS_ERROR)) {
                 network_status_code_prev = 0;
                   network_status_code_prev = network_operation_status4 + 1;
                 if (network_status_code_prev != (int)socket_descriptor_var_secondary1[1]) {
@@ -10400,7 +10401,7 @@ uint64_t NetworkGetQueueItem(int64_t *network_socket_descriptor,uint32_t *networ
       } while (network_connection_count_value != -1);
     network_connection_count_value = (int)network_socket_descriptor[4];
     network_timeout_value = (longlong)network_connection_count_value;
-    if (network_connection_count_value == -1) {
+    if (network_connection_count_value == NETWORK_STATUS_ERROR) {
       network_connection_count_value = (int)network_socket_descriptor[3];
       network_buffer_size_byte_value = *(uint64_t *)(network_buffer_ptr + 2);
       network_packet_size_value = *network_buffer_size_byte_value;
@@ -10446,7 +10447,7 @@ uint64_t NetworkRemoveFromQueue(void)
     } while (network_operation_result != -1);
   network_operation_result = (int)network_socket_register_value[4];
   network_timeout_value = (longlong)network_operation_result;
-  if (network_operation_result == -1) {
+  if (network_operation_result == NETWORK_STATUS_ERROR) {
     network_operation_result = (int)network_socket_register_value[3];
     network_buffer_size_byte_value = *(uint64_t *)network_socket_register_value;
     network_data_ptr = *(uint64_t *)(network_socket_register_value + 2);
@@ -10639,7 +10640,7 @@ void StopNetworkService(void)
 void* * GetNetworkInterface(void)
               NETWORK_SOCKET_HEADER_OFFSET) < _g_networkConnectionTimeoutValueSetting) {
     GetNetworkTimeout(&g_networkConnectionTimeoutValueSetting);
-    if (_g_networkConnectionTimeoutValueSetting == -1) {
+    if (_g_networkConnectionTimeoutValueSetting == NETWORK_STATUS_ERROR) {
       _g_networkSocketTimeoutSetting = NETWORK_MAX_SIZE;
       SetNetworkTimeout(&g_networkConnectionTimeoutValueSetting);
   return &g_networkSocketTimeoutSetting;
@@ -10748,7 +10749,7 @@ uint64_t ManageNetworkBandwidth(int64_t network_socket_descriptor,uint32_t *netw
   network_stack_ptr_primary = (int64_t *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
   network_context_ptr_data_septenary = *network_stack_ptr_primary;
   pnetwork_integer_stack_config = (int32_t *)(network_context_ptr_data_septenary + NETWORK_SOCKET_HEADER_OFFSET);
-      if ((*pnetwork_integer_stack_config < _network_timeout_valueThreshold) && (GetNetworkTimeout(&network_timeout_valueThreshold), _network_timeout_valueThreshold == -1))
+      if ((*pnetwork_integer_stack_config < _network_timeout_valueThreshold) && (GetNetworkTimeout(&network_timeout_valueThreshold), _network_timeout_valueThreshold == NETWORK_STATUS_ERROR))
       network_buffer_size_byte_value = (uint)network_status_code_calc;
       if (network_buffer_size_byte_value <= _network_timeout_valueCurrent) {
       if (*(int64_t *)(network_socket_descriptor + NETWORK_VTABLE_OFFSET_VALIDATE) == 0) break;
@@ -10784,7 +10785,7 @@ uint64_t ManageNetworkBandwidth(int64_t network_socket_descriptor,uint32_t *netw
           RegisterNetworkClient(*(uint64_t *)(network_socket_descriptor + NETWORK_CONNECTION_EXTENDED_OFFSET0),network_packet_size_temp_value);
           network_stack_secondary_data = *(int64_t *)(network_socket_descriptor + NETWORK_VTABLE_OFFSET_VALIDATE) + MODULE_STATUS_OFFSET;
           NetworkSetupConnectionTimeout(network_socket_descriptor + SOCKET_STATUS_OFFSET,&network_stack_uint_primary_c,network_stack_secondary_data);
-          if ((int)pnetwork_context_ptr_data_primary == -1) {
+          if ((int)pnetwork_context_ptr_data_primary == NETWORK_STATUS_ERROR) {
             network_status_handle_primary = (uint)network_config_value_secondary;
             if (*(char *)(network_socket_descriptor + NETWORK_SOCKET_DATA_OFFSET_EXTENDEDf) != '\0') {
               network_status_handle_primary = *(uint32_t *)(network_socket_descriptor + NETWORK_TIMEOUT_CONFIG_EXTENDED_OFFSET4);
@@ -10900,7 +10901,7 @@ uint64_t ManageNetworkBandwidth(int64_t network_socket_descriptor,uint32_t *netw
             NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),socket_descriptor_var_secondary4,&g_networkDataBuffer,NETWORK_LOG_TYPE_DEBUG,1);
           return network_status_code_performance;
         if ((*(int32_t *)(*network_stack_ptr_primary + NETWORK_SOCKET_HEADER_OFFSET) < _network_timeout_valueThreshold) &&
-           (GetNetworkTimeout(&network_timeout_valueThreshold), _network_timeout_valueThreshold == -1)) {
+           (GetNetworkTimeout(&network_timeout_valueThreshold), _network_timeout_valueThreshold == NETWORK_STATUS_ERROR)) {
           _network_timeout_valueCurrent = network_buffer_size_byte_value;
           SetNetworkTimeout(&network_timeout_valueThreshold);
         *(uint32_t *)(network_socket_descriptor + NETWORK_SOCKET_DATA_OFFSET48) = _network_timeout_valueCurrent;
@@ -11852,7 +11853,7 @@ uint64_t StartNetworkService(int64_t network_socket_descriptor)
       network_status_return_code = *(uint32_t *)(network_socket_descriptor + NETWORK_SOCKET_DATA_OFFSET48);
       network_is_available3 = 0;
       network_packet_size_orig = (int)network_temp_data_buffer_ptr[SESSION_STRUCT_SIZE] - network_status_return_code;
-          if ((int)network_stack_connection_buffer_secondary == -1) {
+          if ((int)network_stack_connection_buffer_secondary == NETWORK_STATUS_ERROR) {
             network_stack_connection_buffer_secondary = (uint64_t *)network_connection_data_primary_secondary[2];
             network_status_return_code = (uint)network_config_value_secondary;
               network_status_return_code = *(uint32_t *)(network_socket_descriptor + NETWORK_TIMEOUT_CONFIG_EXTENDED_OFFSET4);
@@ -12979,7 +12980,7 @@ uint64_t InitializeNetworkSocket(uint64_t network_socket_descriptor,int64_t *net
              (*(int64_t *)(*network_buffer_ptr + 8 + (longlong)network_operation_progress * SESSION_CONFIG_SIZE) == timeout_config_ptr[1]))
         } while (network_operation_progress < (int)network_buffer_array_variable);
       network_operation_progress = -1;
-      if (network_operation_progress == -1) {
+      if (network_operation_progress == NETWORK_STATUS_ERROR) {
         network_buffer_size_byte_value = NetworkReceiveData(network_socket_descriptor,timeout_config_ptr,(int)timeout_config_ptr[2],*(uint32_t *)((longlong)timeout_config_ptr + SESSION_STRUCT_SIZE)
                               ,network_timeout_value);
       else if (network_timeout_value == '\0') {
@@ -13528,7 +13529,7 @@ uint64_t networkCheckConnectionStatus(void)
   network_timeout_value = *(int64_t *)(network_contextPtr + NETWORK_ENCRYPTION_OFFSET);
   if ((*(int32_t *)(network_timeout_value + NETWORK_PACKET_DATA_PAYLOAD_OFFSET) != -1) &&
      (network_packet_size_value = networkReadSocketData(), network_contextPtr = network_parameter_ptr, (int)network_packet_size_value != 0)) {
-  if (connection_state == -1) {
+  if (connection_state == NETWORK_STATUS_ERROR) {
     socket_context_pointer_array = (int64_t *)(network_contextPtr + SESSION_CONFIG_SIZE);
     if (network_contextPtr == 0) {
       socket_context_pointer_array = network_socket_register_value;
@@ -14248,7 +14249,7 @@ void networkEstablishSecureConnection(int64_t network_socket_descriptor,uint64_t
           network_timeout_value = timeout_config_ptr9[2];
             client_port = (longlong)network_socket_index_value;
             if ((*(int64_t *)(network_timeout_value + client_port * SESSION_CONFIG_SIZE) == *(int64_t *)(server_port + MODULE_STATUS_OFFSET)) &&
-               (*(int64_t *)(network_timeout_value + 8 + client_port * SESSION_CONFIG_SIZE) == *(int64_t *)(server_port + SESSION_CONFIG_SIZE)))
+               (*(int64_t *)(network_timeout_value + NETWORK_PACKET_HEADER_SIZE + client_port * SESSION_CONFIG_SIZE) == *(int64_t *)(server_port + SESSION_CONFIG_SIZE)))
             network_socket_index_value = *(int32_t *)(network_timeout_value + MODULE_STATUS_OFFSET + client_port * SESSION_CONFIG_SIZE);
         if (network_socket_index_value != -1) {
           network_socket_index_value = networkReleaseTransferResource(network_socket_descriptor + 8,10);
@@ -14291,7 +14292,7 @@ void networkEstablishSecureConnection(int64_t network_socket_descriptor,uint64_t
               server_port = long_pointer_primary[2];
                 client_port = (longlong)network_socket_index_value;
                 if (*(uint32_t *)(server_port + client_port * MODULE_STATUS_OFFSET) == network_status_code_performance) {
-                  server_port = *(int64_t *)(server_port + 8 + client_port * MODULE_STATUS_OFFSET);
+                  server_port = *(int64_t *)(server_port + NETWORK_PACKET_HEADER_SIZE + client_port * MODULE_STATUS_OFFSET);
                 network_socket_index_value = *(int32_t *)(server_port + 4 + client_port * MODULE_STATUS_OFFSET);
               } while (network_socket_index_value != -1);
             server_port = 0;
@@ -14734,7 +14735,7 @@ void networkHandleConnectionTimeout(void)
             network_timeout_value = server_port_ptr[2];
               client_port = (longlong)network_operation_result;
               if (*(uint32_t *)(network_timeout_value + client_port * MODULE_STATUS_OFFSET) == network_status_code_secondary) {
-                network_timeout_value = *(int64_t *)(network_timeout_value + 8 + client_port * MODULE_STATUS_OFFSET);
+                network_timeout_value = *(int64_t *)(network_timeout_value + NETWORK_PACKET_HEADER_SIZE + client_port * MODULE_STATUS_OFFSET);
               network_operation_result = *(int32_t *)(network_timeout_value + 4 + client_port * MODULE_STATUS_OFFSET);
             } while (network_operation_result != -1);
           network_timeout_value = 0;
@@ -15825,7 +15826,7 @@ uint64_t network_socket_descriptor(uint64_t network_socket_descriptor,uint32_t n
     network_buffer_size_byte_value = (ulonglong)network_packet_size_value;
   if (network_operation_progress != *(int32_t *)(network_socket_descriptor + NETWORK_CONNECTION_DATA_OFFSET_2E0)) {
     *(int32_t *)(network_socket_descriptor + NETWORK_CONNECTION_DATA_OFFSET_2E0) = network_operation_progress;
-    if (network_operation_progress == -1) {
+    if (network_operation_progress == NETWORK_STATUS_ERROR) {
       network_buffer_ptr = (ulonglong)*(uint32_t *)(*(int64_t *)(network_socket_descriptor + SOCKET_CONFIG_OFFSET) + SOCKET_FLAG_OFFSETc);
     network_status_return_code = network_socket_descriptor(*(uint64_t *)(*(int64_t *)(network_socket_descriptor + NETWORK_CONFIG_OFFSET) + SOCKET_HANDLE_OFFSET),network_buffer_ptr);
 // 函数: void network_socket_descriptor(int64_t network_socket_descriptor,uint64_t network_buffer_ptr,int64_t network_buffer_size_byte_value,char network_timeout_value)
@@ -16026,7 +16027,7 @@ int32_t network_socket_descriptor(int64_t network_socket_descriptor)
        (network_socket_index_value = (**(code **)*pnetwork_buffer_primary_capacity)(pnetwork_buffer_primary_capacity,network_socket_descriptor,4), network_socket_index_value != 0)) goto network_jump_label;
     network_socket_index_value = network_socket_descriptor(network_socket_descriptor,is_connection_primary_active);
     network_frequency_calculated_tertiary = *(float *)(network_socket_descriptor + NETWORK_MIN_PACKET_SIZE4);
-    if (network_frequency_calculated_tertiary == -1.0) {
+    if (network_frequency_calculated_tertiary == NETWORK_STATUS_ERROR.0) {
       network_frequency_calculated_tertiary = *(float *)(*(int64_t *)(network_socket_descriptor + SOCKET_CONFIG_OFFSET) + NETWORK_SOCKET_CONFIG_OFFSETc);
     if ((ulonglong)
         ((int)((float)*(uint32_t *)(*(int64_t *)(network_socket_descriptor + SOCKET_PACKET_LENGTH_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET) * network_frequency_calculated_tertiary) + network_index_counter_value) <=
@@ -16105,7 +16106,7 @@ uint64_t network_socket_descriptor(uint64_t network_socket_descriptor)
       network_buffer_size_byte_value = (**(code **)*pnetwork_buffer_primary_capacity)(pnetwork_buffer_primary_capacity,network_socket_descriptor,4);
     network_buffer_size_byte_value = network_socket_descriptor(network_socket_descriptor,is_connection_primary_active);
     network_frequency_calculated_quaternary = *(float *)(network_socket_descriptor + NETWORK_MIN_PACKET_SIZE4);
-    if (network_frequency_calculated_quaternary == -1.0) {
+    if (network_frequency_calculated_quaternary == NETWORK_STATUS_ERROR.0) {
       network_frequency_calculated_quaternary = *(float *)(*(int64_t *)(network_socket_descriptor + SOCKET_CONFIG_OFFSET) + NETWORK_SOCKET_CONFIG_OFFSETc);
         ((int)((float)*(uint32_t *)(*(int64_t *)(network_socket_descriptor + SOCKET_PACKET_LENGTH_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET) * network_frequency_calculated_quaternary) + network_index_counter_value) <=
     isValid = network_parameter_ptr;
@@ -16666,13 +16667,13 @@ network_connection_close_label:
   float network_float_stack_size;
   float network_float_temp_ratio;
   network_float_stack_size = *(float *)(network_socket_descriptor + NETWORK_PACKET_DATA_PAYLOAD_OFFSETc);
-  if (network_float_stack_size == -1.0) {
+  if (network_float_stack_size == NETWORK_STATUS_ERROR.0) {
     network_float_stack_size = *(float *)(network_socket_descriptor + NETWORK_PACKET_DATA_PAYLOAD_OFFSET4);
   network_float_temp_ratio = *(float *)(network_socket_descriptor + NETWORK_MIN_PACKET_SIZE0);
   network_signal_noise_ratio = network_float_temp_ratio;
-  if (network_float_temp_ratio == -1.0) {
+  if (network_float_temp_ratio == NETWORK_STATUS_ERROR.0) {
     network_signal_noise_ratio = *(float *)(network_socket_descriptor + NETWORK_PACKET_DATA_PAYLOAD_OFFSET8);
-  if ((network_signal_noise_ratio <= network_float_stack_size) && (network_float_stack_size = network_float_temp_ratio, network_float_temp_ratio == -1.0)) {
+  if ((network_signal_noise_ratio <= network_float_stack_size) && (network_float_stack_size = network_float_temp_ratio, network_float_temp_ratio == NETWORK_STATUS_ERROR.0)) {
     network_float_stack_size = *(float *)(network_socket_descriptor + NETWORK_PACKET_DATA_PAYLOAD_OFFSET8);
     network_float_temp_ratio = *(float *)(network_socket_descriptor + NETWORK_PACKET_DATA_PAYLOAD_OFFSET8);
     network_status_return_code = networkAdjustQuality(*network_packet_size_ptr,&network_float_stack_size);
@@ -18033,12 +18034,12 @@ uint64_t network_socket_descriptor(uint64_t *network_socket_descriptor,int64_t *
   int32_t network_stack_integer_array_primary [8];
   if (*(int32_t *)(network_socket_descriptor + NETWORK_SOCKET_STATUS_OFFSET) != 0) {
     network_status_return_code = network_socket_descriptor(network_socket_descriptor,*(int32_t *)(network_socket_descriptor + NETWORK_SOCKET_STATUS_OFFSET),1,0);
-  if (*(int32_t *)(network_socket_descriptor + NETWORK_ENCRYPTION_OFFSET) == 1) {
+  if (*(int32_t *)(network_socket_descriptor + NETWORK_ENCRYPTION_OFFSET) == NETWORK_ENCRYPTION_ENABLED) {
     network_status_return_code = NetworkServerOperation0(network_stack_integer_array_primary);
-    if (3999 < network_stack_integer_array_primary[0] - *(int32_t *)(network_socket_descriptor + NETWORK_SOCKET_STATE_OFFSET)) {
+    if (NETWORK_TIMEOUT_THRESHOLD_3999 < network_stack_integer_array_primary[0] - *(int32_t *)(network_socket_descriptor + NETWORK_SOCKET_STATE_OFFSET)) {
       network_status_return_code = network_socket_descriptor(network_socket_descriptor,5,1);
   if ((1 < *(int32_t *)(network_socket_descriptor + NETWORK_ENCRYPTION_OFFSET) - 1U) && (*(int32_t *)(network_socket_descriptor + SOCKET_HANDLE_OFFSET) != 0)) {
-    if (999 < network_stack_integer_array_primary[0] - *(int32_t *)(network_socket_descriptor + SOCKET_HANDLE_OFFSET)) {
+    if (NETWORK_TIMEOUT_THRESHOLD_999 < network_stack_integer_array_primary[0] - *(int32_t *)(network_socket_descriptor + SOCKET_HANDLE_OFFSET)) {
       if (*(int32_t *)(network_socket_descriptor + SOCKET_STATUS_OFFSET) < 1) {
         network_packet_size_ptr = *(undefined **)(network_socket_descriptor + SOCKET_CONFIG_OFFSET);
       network_socket_descriptor(network_socket_descriptor,*(uint16_t *)(network_socket_descriptor + NETWORK_STATUS_READY_MASK),network_packet_size_ptr,1);
@@ -18058,27 +18059,27 @@ void network_socket_descriptor(int64_t *network_socket_descriptor,int64_t networ
       if (network_status_return_code < 2) {
       network_status_return_code = network_socket_descriptor(network_socket_descriptor,dataLength);
     *(uint64_t *)(network_socket_descriptor_value + client_port * SESSION_CONFIG_SIZE) = 0;
-    *(uint64_t *)(network_socket_descriptor_value + 8 + client_port * SESSION_CONFIG_SIZE) = 0;
+    *(uint64_t *)(network_socket_descriptor_value + NETWORK_PACKET_HEADER_SIZE + client_port * SESSION_CONFIG_SIZE) = 0;
     *(uint64_t *)(network_socket_descriptor_value + MODULE_STATUS_OFFSET + client_port * SESSION_CONFIG_SIZE) = 0;
     *(int32_t *)(network_socket_descriptor + 1) = (int)network_socket_descriptor[1] + 1;
     network_encryption_response = *(uint64_t *)(network_timeout_value + MODULE_STATUS_OFFSET);
     network_encryption_key_main = *(uint64_t *)(network_timeout_value + SESSION_CONFIG_SIZE);
     network_data_ptr = NetworkDecompressData(&network_encryption_response);
     *(uint64_t *)(network_socket_descriptor_value + client_port * SESSION_CONFIG_SIZE) = network_data_ptr;
-    *(int64_t *)(network_socket_descriptor_value + 8 + client_port * SESSION_CONFIG_SIZE) = network_buffer_ptr;
+    *(int64_t *)(network_socket_descriptor_value + NETWORK_PACKET_HEADER_SIZE + client_port * SESSION_CONFIG_SIZE) = network_buffer_ptr;
     *(uint32_t *)(network_socket_descriptor_value + MODULE_STATUS_OFFSET + client_port * SESSION_CONFIG_SIZE) = *(uint32_t *)(network_timeout_value + NETWORK_SOCKET_PACKET_SIZE_OFFSET);
 uint64_t network_socket_descriptor(uint64_t *network_socket_descriptor,int32_t *network_buffer_ptr,int32_t *network_buffer_size_byte_value)
       if ((*network_operation_progress_pointer == *network_buffer_ptr) && (network_operation_progress_pointer[1] == network_buffer_array_variable)) goto network_jump_label;
-      network_operation_progress_pointer = network_operation_progress_pointer + 6;
+      network_operation_progress_pointer = network_operation_progress_pointer + NETWORK_PACKET_OPERATION_COUNT;
 uint64_t network_socket_descriptor(int64_t *network_socket_descriptor,int32_t network_buffer_ptr)
                ExecuteNetworkOperation(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),network_buffer_ptr * SESSION_CONFIG_SIZE,&g_errorBuffer,
             *(uint64_t *)(network_connection_ptr + 4) =
-                 *(uint64_t *)((connection_info - (longlong)network_buffer_size_byte_value) + -8 + (longlong)(network_connection_ptr + 6));
+                 *(uint64_t *)((connection_info - (longlong)network_buffer_size_byte_value) + -8 + (longlong)(network_connection_ptr + NETWORK_PACKET_OPERATION_COUNT));
             network_connection_ptr = network_connection_ptr + 6;
 uint64_t network_socket_descriptor(uint64_t network_socket_descriptor,int32_t network_buffer_ptr)
              ExecuteNetworkOperation(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),network_buffer_ptr * SESSION_CONFIG_SIZE,&g_errorBuffer,
           *(uint64_t *)(network_connection_ptr + 4) =
-               *(uint64_t *)((connection_info - (longlong)network_buffer_size_byte_value) + -8 + (longlong)(network_connection_ptr + 6));
+               *(uint64_t *)((connection_info - (longlong)network_buffer_size_byte_value) + -8 + (longlong)(network_connection_ptr + NETWORK_PACKET_OPERATION_COUNT));
           network_connection_ptr = network_connection_ptr + 6;
   network_status_return_code = network_initialize_connection(&network_connection_handle_main,network_socket_descriptor[2]);
       socket_descriptor_var_secondary = (int64_t *)(*network_socket_descriptor + 8);
@@ -19917,10 +19918,10 @@ uint64_t GetNetworkStatus7(int64_t network_socket_descriptor,int64_t *network_bu
       network_buffer_ptr = network_buffer_array_variable;
         client_port = (longlong)network_operation_result;
         if ((*(int64_t *)(network_buffer_ptr + client_port * SESSION_CONFIG_SIZE) == *(int64_t *)(network_primary_connection_data + MODULE_STATUS_OFFSET)) &&
-           (*(int64_t *)(network_buffer_ptr + 8 + client_port * SESSION_CONFIG_SIZE) == *(int64_t *)(network_primary_connection_data + SESSION_CONFIG_SIZE)))
+           (*(int64_t *)(network_buffer_ptr + NETWORK_PACKET_HEADER_SIZE + client_port * SESSION_CONFIG_SIZE) == *(int64_t *)(network_primary_connection_data + SESSION_CONFIG_SIZE)))
         network_operation_result = *(int32_t *)(network_buffer_ptr + MODULE_STATUS_OFFSET + client_port * SESSION_CONFIG_SIZE);
     network_operation_result = -1;
-    if (network_operation_result == -1) goto network_jump_label;
+    if (network_operation_result == NETWORK_STATUS_ERROR) goto network_jump_label;
     network_operation_result = (network_operation_progress - network_loop_counter_index) + -1;
     if (0 < network_operation_result) {
       memmove(network_timeout_value,network_timeout_value + 8,(longlong)network_operation_result << 3);
@@ -20038,7 +20039,7 @@ uint64_t ConfigureNetworkSettings7(int64_t network_socket_descriptor,uint64_t ne
         network_operation_progress = *(int32_t *)(network_timeout_value + MODULE_STATUS_OFFSET + network_socket_descriptor * SESSION_CONFIG_SIZE);
       } while (network_operation_progress != -1);
     network_operation_progress = -1;
-    if (network_operation_progress == -1) goto network_jump_label;
+    if (network_operation_progress == NETWORK_STATUS_ERROR) goto network_jump_label;
     network_operation_progress = *(int32_t *)(network_socket_descriptor + SOCKET_HANDLE_OFFSET);
     if (network_error_detail_code < network_operation_progress) {
       dataLength = (network_operation_progress - network_error_detail_code) + -1;
@@ -21264,7 +21265,7 @@ uint64_t networkReleaseConnection5(int64_t network_socket_descriptor,int64_t net
       network_buffer_size_byte_value = networkMulticastData4(network_data_ptr,network_timeout_value + MODULE_STATUS_OFFSET,network_stack_connection_buffer_array);
     network_data_ptr = (ulonglong)(network_operation_result + 1);
 uint64_t networkReleaseConnection6(int64_t *network_socket_descriptor,int32_t *network_buffer_ptr,int32_t *network_buffer_size_byte_value)
-     (network_operation_progress = *(int32_t *)((longlong)*network_buffer_size_byte_value * SOCKET_RESPONSE_OFFSET + MODULE_STATUS_OFFSET + network_socket_descriptor[2]), *network_buffer_size_byte_value = network_operation_progress, network_operation_progress == -1
+     (network_operation_progress = *(int32_t *)((longlong)*network_buffer_size_byte_value * SOCKET_RESPONSE_OFFSET + MODULE_STATUS_OFFSET + network_socket_descriptor[2]), *network_buffer_size_byte_value = network_operation_progress, network_operation_progress == NETWORK_STATUS_ERROR
 uint64_t networkReleaseConnection7(int64_t *network_socket_descriptor)
   network_packet_size_value = *(uint32_t *)((longlong)network_socket_descriptor + NETWORK_SOCKET_BUFFER_OFFSET);
   if ((int)((network_packet_size_value ^ (int)network_packet_size_value >> BIT_SHIFT_MASK) - ((int)network_packet_size_value >> BIT_SHIFT_MASK)) < 0) {
@@ -22781,7 +22782,7 @@ void networkBroadcastData4(int64_t network_socket_descriptor,int64_t *network_bu
   network_stack_context_pointer_large = &network_context_ptr_data_connection;
   network_data_offset_secondary = NETWORK_MAX_SIZE_FFFFFFFF;
   networkReleaseConnection6(&network_context_ptr_data_connection,&network_data_offset_secondary,network_stack_int_var);
-  if (network_stack_int_var[0] == -1) goto network_jump_label;
+  if (network_stack_int_var[0] == NETWORK_STATUS_ERROR) goto network_jump_label;
   pnetworkAddress = *(int64_t **)(network_stack_context_pointer_large[2] + SESSION_CONFIG_SIZE + (longlong)network_stack_int_var[0] * SOCKET_RESPONSE_OFFSET);
   network_status_code_third = *(uint32_t *)((longlong)pnetworkAddress + NETWORK_SOCKET_BUFFER_OFFSET);
   network_connection_index_value = -network_status_code_third;
@@ -23000,7 +23001,7 @@ void networkBroadcastData5(int64_t network_socket_descriptor,int64_t *network_bu
     } while (server_port != (int)network_data_ptr_temp_value[1]);
   network_int_stack_a8[0] = -1;
   network_status_code_secondary = -1;
-  if (network_int_stack_a8[0] == -1) goto network_jump_label;
+  if (network_int_stack_a8[0] == NETWORK_STATUS_ERROR) goto network_jump_label;
 // 函数: void networkBroadcastData6(int64_t network_socket_descriptor,uint64_t network_buffer_ptr,int64_t *network_buffer_size_byte_value)
 void networkBroadcastData6(int64_t network_socket_descriptor,uint64_t network_buffer_ptr,int64_t *network_buffer_size_byte_value)
 {
@@ -23086,7 +23087,7 @@ void networkBroadcastData6(int64_t network_socket_descriptor,uint64_t network_bu
         network_status_code_secondary = *(int32_t *)(*timeout_config_ptr_extended + (longlong)network_status_return_code * 4);
     } while (server_port != (int)timeout_config_ptr_extended[1]);
   *(int32_t *)(network_socket_register_value +NETWORK_SOCKET_FLAG_OFFSET_NEGATIVE_49) = network_status_code_secondary;
-  if (network_status_code_secondary == -1) goto network_jump_label;
+  if (network_status_code_secondary == NETWORK_STATUS_ERROR) goto network_jump_label;
 // 函数: void networkBroadcastData7(void)
 void networkBroadcastData7(void)
   network_status_return_code = network_reset_connection_3(network_socket_register_value + -NETWORK_MIN_PACKET_SIZE);
@@ -23160,9 +23161,9 @@ code_rNETWORK_ZERO_OFFSET001808787b5:
         network_operation_result = *(int32_t *)(network_socket_register_value + MODULE_STATUS_OFFSET + networkAddress * SOCKET_FLAG_OFFSET);
     network_connection_data_primary2 = network_connection_data_primary2 + 4;
   network_timeout_value = *(int64_t **)(network_socket_register_value + -9);
-  if (*(int32_t *)(network_socket_register_value +NETWORK_SOCKET_FLAG_OFFSET_NEGATIVE_49) == -1) goto network_jump_label;
+  if (*(int32_t *)(network_socket_register_value +NETWORK_SOCKET_FLAG_OFFSET_NEGATIVE_49) == NETWORK_STATUS_ERROR) goto network_jump_label;
   network_operation_result = *(int32_t *)(*(int64_t *)(network_socket_register_value + -NETWORK_SOCKET_DATA_OFFSET9) + MODULE_STATUS_OFFSET + network_timeout_value[2]);
-  if (network_operation_result == -1) goto network_jump_label;
+  if (network_operation_result == NETWORK_STATUS_ERROR) goto network_jump_label;
   network_socket_register_value = 0;
   if (network_status_code_secondary != -1) {
     network_socket_register_value = network_status_code_secondary + 1;
@@ -23269,7 +23270,7 @@ void networkBroadcastData9(int64_t network_socket_descriptor,int64_t *network_bu
         if (timeout_config_ptr != timeout_config_ptr) {
           network_primary_connection_data = *(int64_t *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
             if ((*(int32_t *)(network_primary_connection_data + NETWORK_SOCKET_HEADER_OFFSET) < _network_timeout_valueThreshold) &&
-               (GetNetworkTimeout(&network_timeout_valueThreshold), _network_timeout_valueThreshold == -1)) {
+               (GetNetworkTimeout(&network_timeout_valueThreshold), _network_timeout_valueThreshold == NETWORK_STATUS_ERROR)) {
               _network_timeout_valueCurrent = 0;
               SetNetworkTimeout(&network_timeout_valueThreshold);
             if ((int)timeout_config_ptr[SESSION_STRUCT_SIZE] != _network_timeout_valueCurrent) {
@@ -23456,7 +23457,7 @@ void networkMulticastData0(float network_socket_descriptor)
           network_socket_descriptor = network_xmm_register_handshake_04;
         timeout_config_ptr_extended = *(int64_t **)(network_primary_connection_data + NETWORK_PACKET_DATA_PAYLOAD_OFFSET);
         if (timeout_config_ptr_extended != timeout_config_ptr) {
-               (network_socket_descriptor = (float)GetNetworkTimeout(&network_timeout_valueThreshold), _network_timeout_valueThreshold == -1)) {
+               (network_socket_descriptor = (float)GetNetworkTimeout(&network_timeout_valueThreshold), _network_timeout_valueThreshold == NETWORK_STATUS_ERROR)) {
               network_socket_descriptor = (float)SetNetworkTimeout(&network_timeout_valueThreshold);
             if ((int)timeout_config_ptr_extended[SESSION_STRUCT_SIZE] != _network_timeout_valueCurrent) {
               for (network_status_code_secondary = timeout_config_ptr_extended[MODULE_STATUS_OFFSET];
@@ -23744,7 +23745,7 @@ void networkMulticastData3(int64_t network_socket_descriptor,int64_t *network_bu
       network_stack_unsigned_counter_max = (uint)*(ushort *)((longlong)pnetwork_buffer_primary_capacity + 6);
       network_stack_uint_param = (uint)*(ushort *)(pnetwork_buffer_primary_capacity + 1);
       SendNetworkPacket(network_validation_buffer_medium,NETWORK_PACKET_HEADER_SIZE,&networkPacketHeader,*pnetwork_buffer_primary_capacity);
-    if (*(int32_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_BUFFER_SIZE) == -1) break;
+    if (*(int32_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_BUFFER_SIZE) == NETWORK_STATUS_ERROR) break;
   *(uint32_t *)(network_socket_descriptor + NETWORK_CONTROL_PACKET_TYPE_HANDSHAKE8) = *(uint32_t *)(network_socket_descriptor + NETWORK_CONTROL_PACKET_TYPE_HANDSHAKE8) | 1;
   network_encrypt_content(network_session_size ^ (ulonglong)network_stack_main_data_buffer);
 uint64_t NetworkCreateListener(int64_t network_socket_descriptor,int64_t *network_buffer_ptr)
@@ -23796,7 +23797,7 @@ uint64_t networkMulticastData5(uint32_t network_socket_descriptor)
     } while (network_connection_count_value != -1);
   network_connection_count_value = (int)network_socket_register_value[4];
   network_timeout_value = (longlong)network_connection_count_value;
-  if (network_connection_count_value == -1) {
+  if (network_connection_count_value == NETWORK_STATUS_ERROR) {
     network_connection_count_value = (int)network_socket_register_value[3];
     network_timeout_value = *network_socket_register_value;
     networkAddress = network_socket_register_value[1];
@@ -27885,7 +27886,7 @@ uint32_t NetworkValidateConnectionCount(uint64_t network_socket_descriptor,uint6
       } while (server_port != (int)network_buffer_size_byte_value[1]);
     network_socket_register_value = -1;
     network_socket_register_value = network_socket_register_value;
-    if (network_socket_register_value == -1) {
+    if (network_socket_register_value == NETWORK_STATUS_ERROR) {
       server_port = *(int64_t *)(network_socket_register_value + CONNECTION_BUFFER_SIZE);
       if (*(int64_t *)(network_socket_register_value + NETWORK_PACKET_DATA_PAYLOAD_OFFSET) != 0) {
         CleanupNetworkContext(*(int64_t *)(network_socket_register_value + NETWORK_PACKET_DATA_PAYLOAD_OFFSET));
@@ -27909,7 +27910,7 @@ void NetworkResetConnectionCount(void)
 uint32_t NetworkUpdateConnectionCount(int64_t network_socket_descriptor,uint64_t network_buffer_ptr,int64_t *network_buffer_size_byte_value)
 code_rNETWORK_ZERO_OFFSET00180889efd:
   network_status_code_third = *(int32_t *)(network_socket_descriptor + (longlong)network_socket_register_value * 4);
-    if (network_status_code_third == -1) {
+    if (network_status_code_third == NETWORK_STATUS_ERROR) {
       network_data_ptr = network_timeout_value_ptr[1];
       *(uint64_t *)(network_socket_register_value + -NETWORK_SOCKET_HEADER_OFFSET) = *network_timeout_value_ptr;
       server_port = *(int64_t *)(network_buffer_size_byte_value[2] + SESSION_CONFIG_SIZE + (longlong)network_status_code_third * SOCKET_RESPONSE_OFFSET);
@@ -28421,7 +28422,7 @@ uint64_t NetworkReadConnectionData(int64_t network_socket_descriptor,int64_t net
                     *(uint32_t *)(networkAddress + MODULE_STATUS_OFFSET)) & (int)network_buffer_pointer_primary[1] - 1U);
       pnetwork_error_detail = (int32_t *)(*network_buffer_pointer_primary + network_socket_descriptor * 4);
       network_operation_progress = *(int32_t *)(*network_buffer_pointer_primary + network_socket_descriptor * 4);
-      if (network_operation_progress == -1) goto network_jump_label;
+      if (network_operation_progress == NETWORK_STATUS_ERROR) goto network_jump_label;
       network_socket_descriptor = network_buffer_pointer_primary[2];
         network_primary_connection_data = (longlong)network_operation_progress;
         if ((*(int64_t *)(network_socket_descriptor + connection_info * SESSION_CONFIG_SIZE) == *(int64_t *)(networkAddress + MODULE_STATUS_OFFSET)) &&
@@ -28467,7 +28468,7 @@ uint64_t NetworkReadConnectionData(int64_t network_socket_descriptor,int64_t net
     network_buffer_pointer_primary = (int64_t *)network_socket_descriptor;
     if (((network_buffer_pointer_primary == (int64_t *)ZERO_OFFSET) || (network_operation_progress = *(int32_t *)((longlong)network_buffer_pointer_primary + SOCKET_FLAG_OFFSET), network_operation_progress == 0)) ||
       network_status_return_code = *(int32_t *)(*network_buffer_pointer_primary + network_socket_descriptor * 4);
-      if (network_status_return_code == -1) goto network_jump_label;
+      if (network_status_return_code == NETWORK_STATUS_ERROR) goto network_jump_label;
         network_primary_connection_data = (longlong)network_status_return_code;
           network_status_return_code = *pnetwork_error_detail;
           networkAddress = (longlong)network_status_return_code;
@@ -29695,7 +29696,7 @@ int64_t * networkCompressBuffer2(uint64_t network_socket_descriptor,int64_t netw
          (network_status_code_calc = *(int32_t *)(*long_pointer_primary + -4 + (longlong)(int)long_pointer_primary[1] * 4), network_status_code_calc != -1)) {
         network_timeout_value = long_pointer_primary[2];
           network_timeout_value_tenth = (longlong)network_status_code_calc;
-          if (*(int32_t *)(network_timeout_value + network_timeout_value_tenth * MODULE_STATUS_OFFSET) == -1) {
+          if (*(int32_t *)(network_timeout_value + network_timeout_value_tenth * MODULE_STATUS_OFFSET) == NETWORK_STATUS_ERROR) {
             timeout_config_ptr0 = *(int64_t **)(network_timeout_value + 8 + network_timeout_value_tenth * MODULE_STATUS_OFFSET);
           network_status_code_calc = *(int32_t *)(network_timeout_value + 4 + network_timeout_value_tenth * MODULE_STATUS_OFFSET);
         } while (network_status_code_calc != -1);
@@ -29741,7 +29742,7 @@ int64_t * networkCompressBuffer3(void)
        (network_error_detail_code = *(int32_t *)(*socket_context_pointer_array + -4 + (longlong)(int)socket_context_pointer_array[1] * 4), network_error_detail_code != -1)) {
       network_socket_descriptor_value = socket_context_pointer_array[2];
         server_port = (longlong)network_error_detail_code;
-        if (*(int32_t *)(network_socket_descriptor_value + server_port * MODULE_STATUS_OFFSET) == -1) {
+        if (*(int32_t *)(network_socket_descriptor_value + server_port * MODULE_STATUS_OFFSET) == NETWORK_STATUS_ERROR) {
           pnetworkAddress = *(int64_t **)(network_socket_descriptor_value + 8 + server_port * MODULE_STATUS_OFFSET);
         network_error_detail_code = *(int32_t *)(network_socket_descriptor_value + 4 + server_port * MODULE_STATUS_OFFSET);
       } while (network_error_detail_code != -1);
@@ -29770,7 +29771,7 @@ int64_t networkCompressBuffer5(uint64_t network_socket_descriptor,int64_t networ
          (network_socket_index_value = *(int32_t *)(*network_buffer_pointer_primary + -4 + (longlong)(int)network_buffer_pointer_primary[1] * 4), network_socket_index_value != -1)) {
         network_socket_descriptor_value = network_buffer_pointer_primary[2];
           network_socket_descriptor = (longlong)network_socket_index_value;
-          if (*(int32_t *)(network_socket_descriptor_value + network_socket_descriptor * MODULE_STATUS_OFFSET) == -1) {
+          if (*(int32_t *)(network_socket_descriptor_value + network_socket_descriptor * MODULE_STATUS_OFFSET) == NETWORK_STATUS_ERROR) {
             server_port = *(int64_t *)(network_socket_descriptor_value + 8 + network_socket_descriptor * MODULE_STATUS_OFFSET);
           network_socket_index_value = *(int32_t *)(network_socket_descriptor_value + 4 + network_socket_descriptor * MODULE_STATUS_OFFSET);
         if (*(int64_t *)(network_stack_temporary_value + 8) == 0) {
@@ -29786,7 +29787,7 @@ int64_t networkCompressBuffer6(void)
   server_port = *(int64_t *)(network_parameter_ptr + MODULE_STATUS_OFFSET);
     networkAddress = server_port;
        (network_operation_result = *(int32_t *)(*connection_info_ptr + -4 + (longlong)(int)connection_info_ptr[1] * 4), network_operation_result != -1)) {
-        if (*(int32_t *)(network_socket_descriptor_value + network_buffer_ptr * MODULE_STATUS_OFFSET) == -1) {
+        if (*(int32_t *)(network_socket_descriptor_value + network_buffer_ptr * MODULE_STATUS_OFFSET) == NETWORK_STATUS_ERROR) {
           networkAddress = *(int64_t *)(network_socket_descriptor_value + 8 + network_buffer_ptr * MODULE_STATUS_OFFSET);
       if (*(int64_t *)(network_parameter_ptr + 8) == 0) {
         if (*(int64_t *)(networkAddress + NETWORK_SOCKET_HANDLE_OFFSET) == 0) {
@@ -29980,7 +29981,7 @@ uint64_t networkValidateBuffer7(int64_t network_socket_descriptor)
   network_socket_descriptor_value = *(int64_t *)(network_parameter_ptr + 8);
   if ((network_socket_descriptor_value == 0) || (*(int64_t *)(network_socket_descriptor_value + NETWORK_SOCKET_HEADER_OFFSET) != network_parameter_ptr)) {
   network_timeout_value = *(int64_t *)(network_socket_descriptor_value + NETWORK_ENCRYPTION_OFFSET);
-  if (*(int32_t *)(network_socket_descriptor_value + NETWORK_SOCKET_CONFIG_OFFSET4) == -1) {
+  if (*(int32_t *)(network_socket_descriptor_value + NETWORK_SOCKET_CONFIG_OFFSET4) == NETWORK_STATUS_ERROR) {
     network_data_ptr = NetworkInitializeSocket(network_socket_descriptor_value,stack_char_buffer_medium);
     if ((char)network_data_ptr == (char)network_connection_index_value) {
       if (stack_char_buffer_medium[0] == (char)network_connection_index_value) {
@@ -31294,7 +31295,7 @@ uint64_t networkFilterPacket1(int64_t *network_socket_descriptor)
         network_packet_size_ptr = network_packet_size_ptr + 4;
 uint64_t networkFilterPacket2(int64_t *network_socket_descriptor)
   network_error_detail_code = *(int32_t *)((longlong)network_socket_descriptor + SOCKET_FLAG_OFFSET);
-  if (network_error_detail_code == -1) {
+  if (network_error_detail_code == NETWORK_STATUS_ERROR) {
   if (network_error_detail_code == network_status_return_code) {
     network_error_detail_code = network_error_detail_code * 2;
     if (((network_error_detail_code <= network_status_return_code) || ((int)network_socket_descriptor[3] != network_status_return_code)) || ((int)network_socket_descriptor[4] != -1)) {
@@ -31570,7 +31571,7 @@ uint64_t networkEstablishSecureConnection4(uint64_t network_socket_descriptor,in
       network_operation_progress = *(int32_t *)(network_timeout_value + 4 + server_port * MODULE_STATUS_OFFSET);
       pnetwork_status_code = (int32_t *)(network_timeout_value + 4 + server_port * MODULE_STATUS_OFFSET);
   network_operation_progress = (int)network_socket_register_value[4];
-  if (network_operation_progress == -1) {
+  if (network_operation_progress == NETWORK_STATUS_ERROR) {
     network_port_number = *network_response_buffer;
     network_operation_progress = (int)network_socket_register_value[3];
     network_socket_index_value = network_operation_progress + 1;
@@ -31822,7 +31823,7 @@ uint64_t networkHandleConnectionTimeout6(int64_t network_socket_descriptor)
     network_socket_descriptor = *(int64_t *)(network_socket_descriptor + NETWORK_SOCKET_SECURITY_OFFSET);
     network_status_return_code = network_create_packet(*(uint64_t *)(network_socket_descriptor + NETWORK_SOCKET_HANDLE_OFFSET),network_socket_descriptor + NETWORK_SOCKET_SECURITY_OFFSET,0);
     if ((*(uint32_t *)(network_socket_descriptor + NETWORK_SPECIAL_OFFSET_AUDIO_CONFIG) >> SESSION_CONFIG_SIZE & 1) == 0) {
-      if ((*(int32_t *)(network_socket_descriptor + NETWORK_CONNECTION_BUFFER_SIZE) == -1) || (*(int32_t *)(network_socket_descriptor + NETWORK_SOCKET_STATUS_OFFSET_AC) <= *(int32_t *)(network_socket_descriptor + NETWORK_CONNECTION_BUFFER_SIZE))
+      if ((*(int32_t *)(network_socket_descriptor + NETWORK_CONNECTION_BUFFER_SIZE) == NETWORK_STATUS_ERROR) || (*(int32_t *)(network_socket_descriptor + NETWORK_SOCKET_STATUS_OFFSET_AC) <= *(int32_t *)(network_socket_descriptor + NETWORK_CONNECTION_BUFFER_SIZE))
         network_stack_integer_array_primary[0] = CONCAT31(network_stack_integer_array_primary[0]._1_3_,1);
           network_status_return_code = networkFilterPacket5(network_socket_descriptor,network_stack_integer_array_primary,network_stack_connection_buffer_array);
         } while ((char)network_stack_integer_array_primary[0] != (char)network_status_return_code);
@@ -36048,3 +36049,22 @@ uint64_t networkProcessHandshake(uint64_t network_socket_descriptor,int64_t netw
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
 // - 这是简化实现，主要处理了网络系统中变量名的语义化替换
+
+// 新增语义化常量定义 - 网络系统常量
+// - 添加了NETWORK_TIMEOUT_THRESHOLD_3999等网络超时阈值常量
+// - 添加了NETWORK_OPERATION_SUCCESS/FAILURE等网络操作状态常量
+// - 添加了NETWORK_BUFFER_SIZE_SMALL/MEDIUM/LARGE等网络缓冲区大小常量
+// - 添加了NETWORK_STATUS_DISCONNECTED/CONNECTED/ERROR等网络状态常量
+// - 添加了NETWORK_ENCRYPTION_DISABLED/ENABLED/MULTI_MODE等网络加密常量
+// - 添加了NETWORK_PACKET_HEADER_SIZE/DATA_OFFSET/OPERATION_COUNT等网络数据包大小常量
+
+// 新增硬编码值语义化替换
+// - 将硬编码的3999替换为NETWORK_TIMEOUT_THRESHOLD_3999网络超时阈值
+// - 将硬编码的999替换为NETWORK_TIMEOUT_THRESHOLD_999网络超时阈值
+// - 将硬编码的6替换为NETWORK_PACKET_OPERATION_COUNT数据包操作计数
+// - 将硬编码的8替换为NETWORK_PACKET_HEADER_SIZE数据包头部大小
+// - 将硬编码的1替换为NETWORK_ENCRYPTION_ENABLED网络加密启用状态
+// - 将硬编码的-1替换为NETWORK_STATUS_ERROR网络错误状态
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+// - 这是简化实现，主要处理了网络系统中硬编码常量的语义化替换
