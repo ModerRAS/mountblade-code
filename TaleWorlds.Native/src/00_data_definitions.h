@@ -13454,7 +13454,7 @@ int check_system_readiness(void)
     }
   }
   system_synchronization_handler();
-  return -0x7f6dff01;
+  return SYSTEM_ERROR_CODE_SPECIAL_3;
 }
 int validate_system_state(void)
 {
@@ -13474,7 +13474,7 @@ int validate_system_state(void)
     return thread_result_status;
   }
   system_synchronization_handler();
-  return -0x7f6dff01;
+  return SYSTEM_ERROR_CODE_SPECIAL_3;
 }
 unsigned long long get_system_status_info(void)
 {
