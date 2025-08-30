@@ -3676,7 +3676,7 @@ void utility_execute_resource_command(longlong utility_resource_primary_handle,l
   int utility_operation_result;
   longlong utility_buffer_index;
   longlong *utility_long_pointer_buffer;
-  ulonglong utility_temp_integer_register;
+ulonglong utility_temp_int_register;
   byte utility_local_security_buffer [utility_structure_size_medium];
   longlong utility_local_stack_position;
   byte utility_encryption_data [utility_encryption_data_size_standard];
@@ -3738,7 +3738,7 @@ uint64 utility_validate_resource_transaction(longlong utility_resource_primary_h
   uint32 utility_main_iteration_counter;
   uint32 utility_system_status_value;
   uint64 utility_validation_state;
-  int utility_temp_integer_register;
+int utility_temp_int_register;
   int utility_resource_count;
   int utility_status_count;
   int utility_buffer_capacity;
@@ -6603,7 +6603,7 @@ uint64 utility_allocate_memory_block_simple(uint64 utility_resource_primary_hand
   int utility_buffer_index;
   uint64 utility_system_status_value;
   uint64 *utility_primary_validation_array;
-  int utility_temp_integer_register;
+int utility_temp_int_register;
   longlong utility_temporary_long_storage;
   uint32 *putility_iteration_index;
   uint utility_main_iteration_counter;
@@ -6971,7 +6971,7 @@ ulonglong utility_validate_memory_address(longlong utility_resource_primary_hand
   resource_data *utility_local_data_pointer_cache;
   uint32 utility_temp_loop_counter;
   uint32 utility_temp_loop_counter;
-  byte utility_temp_integer_register;
+byte utility_temp_int_register;
   byte utility_process_buffer [utility_memory_offset_standard];
   byte utility_process_buffer [utility_memory_offset_standard];
   byte utility_encryption_data [utility_encryption_data_size_standard];
@@ -8109,7 +8109,7 @@ void utility_process_resource_operation(longlong utility_resource_primary_handle
   longlong utility_buffer_index;
   longlong utility_thread_context_primary;
   char utility_char_data;
-  int utility_temp_integer_register;
+int utility_temp_int_register;
   uint utility_system_flags_variable;
   longlong utility_temporary_long_storage;
   longlong utility_temporary_long_storage;
@@ -8155,7 +8155,7 @@ void utility_process_resource_operation(longlong utility_resource_primary_handle
   uint32 utility_temp_loop_counter;
   uint32 utility_temp_loop_counter;
   uint32 utility_temp_loop_counter;
-  byte utility_temp_integer_register;
+byte utility_temp_int_register;
   uint64 utility_temp_resource_count;
   byte utility_process_buffer [UTILITY_BUFFER_SIZE_MEDIUM_EXTENDED];
   ulonglong utility_temporary_storage_size;
@@ -8994,7 +8994,7 @@ void utility_create_resource_instance(longlong *utility_resource_primary_handle,
   int utility_buffer_index;
   int utility_main_iteration_counter;
   int utility_main_iteration_counter;
-  int utility_temp_integer_register;
+int utility_temp_int_register;
   int utility_resource_count;
   byte utility_local_security_buffer [utility_structure_size_medium];
   uint32 utility_local_resource_buffer [utility_stack_buffer_size_pair];
@@ -9208,7 +9208,7 @@ void utility_process_resource_request(longlong *utility_resource_primary_handle)
   uint32 *utility_generic_data_pointer;
   longlong utility_thread_context_primary;
   char utility_char_data;
-  int utility_temp_integer_register;
+int utility_temp_int_register;
   int utility_resource_count;
   int utility_status_count;
   ulonglong utility_main_iteration_counter;
@@ -9250,7 +9250,7 @@ void utility_process_resource_request(longlong *utility_resource_primary_handle)
   uint32 utility_temp_loop_counter;
   longlong utility_stack_frame_offset;
   uint utility_frame_validation_flag;
-  byte utility_temp_integer_register;
+byte utility_temp_int_register;
   byte utility_process_buffer [utility_buffer_size_small];
   ulonglong utility_temporary_storage_size;
   utility_temp_security_register = utility_security_token_mask ^ (ulonglong)utility_local_security_buffer;
@@ -9507,7 +9507,7 @@ void utility_setup_resource_memory(longlong utility_resource_primary_handle,uint
   int utility_buffer_index;
   int utility_main_iteration_counter;
   uint utility_validation_state;
-  int utility_temp_integer_register;
+int utility_temp_int_register;
   utility_operation_result = resourcecheckfunction(utility_primary_resource_cache);
   utility_operation_result = *(int *)(utility_resource_primary_handle + utility_field_primary_offset_standard);
   utility_validation_state = (int)*(uint *)(utility_resource_primary_handle + utility_field_size_offset) >> utility_error_code_failed;
@@ -11557,7 +11557,7 @@ void classifyutilitytypes(uint32 utility_resource_primary_handle)
   longlong utility_thread_context_primary;
   longlong utility_cpu_context;
   uint64 utility_validation_state;
-  int utility_temp_integer_register;
+int utility_temp_int_register;
   uint32 utility_float_parameter_zero;
   uint32 utility_float_param_primary;
   uint32 utility_float_param_secondary;
@@ -18647,7 +18647,7 @@ ulonglong utility_initialize_system_operator(void)
   uint32 utility_main_iteration_counter;
   uint32 utility_system_status_value;
   uint utility_validation_state;
-  int utility_temp_integer_register;
+int utility_temp_int_register;
   uint32 *utility_pointer_utility_data_pointer_primary_extended;
   ulonglong utility_iteration_index;
   longlong utility_temporary_long_storage;
@@ -31892,7 +31892,7 @@ void utility_close_resource_handler(uint64 utility_resource_primary_handle,longl
   longlong *utility_array_handle_pointer;
   longlong *utility_long_pointer_buffer;
   uint64 *utility_primary_validation_array;
-  int utility_temp_integer_register;
+int utility_temp_int_register;
   int *utility_int_pointer;
   longlong *utility_temporary_long_pointer;
   uint utility_main_iteration_counter;
@@ -32376,7 +32376,7 @@ void utilityconfigureadvancedsystem(uint64 utility_resource_primary_handle,longl
   longlong *utility_array_handle_pointer;
   longlong *utility_long_pointer_buffer;
   uint64 *utility_primary_validation_array;
-  int utility_temp_integer_register;
+int utility_temp_int_register;
   int *utility_int_pointer;
   longlong *utility_temporary_long_pointer;
   uint utility_main_iteration_counter;
