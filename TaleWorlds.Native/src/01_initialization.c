@@ -81,6 +81,10 @@
 #define SYSTEM_INIT_ALIGNMENT_MUTEX           2       // 互斥体对齐 - 替换2
 #define SYSTEM_INIT_SIZE_MEMORY_CHUNK         8       // 内存块大小 - 替换8
 
+// 补充魔法数字常量（2025年8月30日最终批次补充美化）
+#define SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_1     0x666df49b97e0f10 // 系统活动魔法cookie 1
+#define SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_2     0xe4b0d63a6ad1d8f // 系统活动魔法cookie 2
+
 #include "TaleWorlds.Native.Split.h"
 
 // 01_initialization.c - 901 个函数
@@ -818,7 +822,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(psystem_long_var_4,&puStackX_10,puVar7,lVar5 + SYSTEM_INIT_OFFSET_STACK_PARAM,lVar5);
     puVar7 = puStackX_10;
   }
-  puVar7[6] = SYSTEM_INIT_FLAG_ACTIVE666df49b97e0f10;
+  puVar7[6] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_1;
   puVar7[7] = SYSTEM_INIT_FLAG_ACTIVEe4b0d63a6ad1d8f;
   puVar7[8] = &g_memory_allocator;
   puVar7[9] = 0;
@@ -7914,7 +7918,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(psystem_long_var_4,&puStackX_10,puVar7,lVar5 + SYSTEM_INIT_OFFSET_STACK_PARAM,lVar5);
     puVar7 = puStackX_10;
   }
-  puVar7[6] = SYSTEM_INIT_FLAG_ACTIVE666df49b97e0f10;
+  puVar7[6] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_1;
   puVar7[7] = SYSTEM_INIT_FLAG_ACTIVEe4b0d63a6ad1d8f;
   puVar7[8] = &g_memory_allocator;
   puVar7[9] = 0;
@@ -10080,7 +10084,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(psystem_long_var_4,&puStackX_10,puVar7,lVar5 + SYSTEM_INIT_OFFSET_STACK_PARAM,lVar5);
     puVar7 = puStackX_10;
   }
-  puVar7[6] = SYSTEM_INIT_FLAG_ACTIVE666df49b97e0f10;
+  puVar7[6] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_1;
   puVar7[7] = SYSTEM_INIT_FLAG_ACTIVEe4b0d63a6ad1d8f;
   puVar7[8] = &g_memory_allocator;
   puVar7[9] = 0;
@@ -10614,7 +10618,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(psystem_long_var_4,&puStackX_10,puVar7,lVar5 + SYSTEM_INIT_OFFSET_STACK_PARAM,lVar5);
     puVar7 = puStackX_10;
   }
-  puVar7[6] = SYSTEM_INIT_FLAG_ACTIVE666df49b97e0f10;
+  puVar7[6] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_1;
   puVar7[7] = SYSTEM_INIT_FLAG_ACTIVEe4b0d63a6ad1d8f;
   puVar7[8] = &g_memory_allocator;
   puVar7[9] = 0;
@@ -12359,7 +12363,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(psystem_long_var_4,&puStackX_10,puVar7,lVar5 + SYSTEM_INIT_OFFSET_STACK_PARAM,lVar5);
     puVar7 = puStackX_10;
   }
-  puVar7[6] = SYSTEM_INIT_FLAG_ACTIVE666df49b97e0f10;
+  puVar7[6] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_1;
   puVar7[7] = SYSTEM_INIT_FLAG_ACTIVEe4b0d63a6ad1d8f;
   puVar7[8] = &g_memory_allocator;
   puVar7[9] = 0;
@@ -13065,7 +13069,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(psystem_long_var_4,&puStackX_10,puVar7,lVar5 + SYSTEM_INIT_OFFSET_STACK_PARAM,lVar5);
     puVar7 = puStackX_10;
   }
-  puVar7[6] = SYSTEM_INIT_FLAG_ACTIVE666df49b97e0f10;
+  puVar7[6] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_1;
   puVar7[7] = SYSTEM_INIT_FLAG_ACTIVEe4b0d63a6ad1d8f;
   puVar7[8] = &g_memory_allocator;
   puVar7[9] = 0;
@@ -15191,7 +15195,7 @@ void InitializeSystemCore(void)
     InitializeSystemCore(psystem_long_var_4,&puStackX_10,puVar7,lVar5 + SYSTEM_INIT_OFFSET_STACK_PARAM,lVar5);
     puVar7 = puStackX_10;
   }
-  puVar7[6] = SYSTEM_INIT_FLAG_ACTIVE666df49b97e0f10;
+  puVar7[6] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_1;
   puVar7[7] = SYSTEM_INIT_FLAG_ACTIVEe4b0d63a6ad1d8f;
   puVar7[8] = &g_memory_allocator;
   puVar7[9] = 0;
