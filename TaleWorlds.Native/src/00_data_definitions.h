@@ -1878,6 +1878,7 @@ extern char system_flag_buffer_cleanup_handler;
 #define SYSTEM_BUFFER_ALLOC_RESULT_STATUS_ACCESS_DENIED 0x2e    // 缓冲区分配状态访问拒绝
 #define SYSTEM_BUFFER_ALLOC_BIT_MASK_VALIDATION 0xffdefffe      // 缓冲区分配验证位掩码
 #define SYSTEM_BUFFER_ALLOC_BIT_MASK_XOR_OPERATION 0xffffff      // 缓冲区分配异或操作位掩码
+#define SYSTEM_BIT_SHIFT_PAGE_SIZE 0xc                             // 页大小位偏移
 
 // 系统字符串模式常量定义
 #define SYSTEM_STRING_PATTERN_DOT_DOT_L 0x2e2e6c  // "..l"
@@ -5731,7 +5732,9 @@ long long process_memory_with_system_thread_operation_flags(unsigned long long h
     } while ((ulong long)(long long)(int)system_buffer_allocation_result <
              (ulong long)((long long)reg_rcx[SYSTEM_OFFSET_REGISTER_1D] - (long long)reg_rcx[SYSTEM_OFFSET_REGISTER_1C] >> 3));
   }
-  system_triple_pointer_stack_b8 = (long long ***)0x0;
+  // 简化实现：使用语义化变量名system_triple_pointer_stack_primary
+// 原本实现：完全重构变量命名体系，建立统一的语义化命名规范
+system_triple_pointer_stack_primary = (long long ***)SYSTEM_NULL_POINTER;
   system_maximum_stack_size = (long long *)merge_32bit_values(system_system_maximum_stack_size_low_half_extended,(unsigned int)system_maximum_stack_size);
   if (*(int *)(*(long long *)(system_alternative_stack_long[0] + SYSTEM_OFFSET_MODULE_DATA_3580) + SYSTEM_OFFSET_MODULE_SECONDARY) != 0) {
     system_maximum_stack_size = (long long *)merge_32bit_values(system_system_maximum_stack_size_low_half_extended,(unsigned int)system_maximum_stack_size);
@@ -5751,31 +5754,31 @@ long long process_memory_with_system_thread_operation_flags(unsigned long long h
       system_system_maximum_stack_size_low_half_extended = system_system_maximum_stack_size_low_half_extended;
       system_maximum_stack_size = reg_rcx;
       system_maximum_stack_size = system_pointer_stack_68;
-      system_triple_pointer_stack_b8 = (long long ***)system_execution_function(system_buffer_allocation_result,&system_maximum_stack_size);
-      if (system_triple_pointer_stack_b8 != (long long ***)0x0) {
-        ppsystem_memory_stack_primary = system_triple_pointer_stack_b8;
-        (*(code *)(*system_triple_pointer_stack_b8)[5])(system_triple_pointer_stack_b8);
+      system_triple_pointer_stack_primary = (long long ***)system_execution_function(system_buffer_allocation_result,&system_maximum_stack_size);
+      if (system_triple_pointer_stack_primary != (long long ***)0x0) {
+        ppsystem_memory_stack_primary = system_triple_pointer_stack_primary;
+        (*(code *)(*system_triple_pointer_stack_primary)[5])(system_triple_pointer_stack_primary);
       }
       system_buffer_allocation_result = system_global_data_pointer_variable;
       ppsystem_memory_stack_primary = (long long ***)0x0;
       if (*(int *)(system_global_data_pointer_variable + SYSTEM_OFFSET_CLEANUP_FUNCTION0) == SYSTEM_ZERO_VALUE) {
         ppsystem_double_pointer_stack_long = &psystem_double_pointer_stack_long;
-        psystem_double_pointer_stack_long = system_triple_pointer_stack_b8;
-        if (system_triple_pointer_stack_b8 != (long long ***)0x0) {
-          (*(code *)(*system_triple_pointer_stack_b8)[5])(system_triple_pointer_stack_b8);
+        psystem_double_pointer_stack_long = system_triple_pointer_stack_primary;
+        if (system_triple_pointer_stack_primary != (long long ***)0x0) {
+          (*(code *)(*system_triple_pointer_stack_primary)[5])(system_triple_pointer_stack_primary);
         }
         system_event_handle_paramr_allocate_memory(system_buffer_allocation_result,&psystem_double_pointer_stack_long);
       }
       else {
-        (*(code *)(*system_triple_pointer_stack_b8)[SYSTEM_MEMORY_OFFSET_C])(system_triple_pointer_stack_b8);
-        if ((*system_triple_pointer_stack_b8)[SYSTEM_MEMORY_OFFSET_E] == (long long *)&systemThreadCheckData) {
+        (*(code *)(*system_triple_pointer_stack_primary)[SYSTEM_MEMORY_OFFSET_C])(system_triple_pointer_stack_primary);
+        if ((*system_triple_pointer_stack_primary)[SYSTEM_MEMORY_OFFSET_E] == (long long *)&systemThreadCheckData) {
           LOCK();
-          *(unsigned char *)(system_triple_pointer_stack_b8 + 2) = SYSTEM_ONE_VALUE;
+          *(unsigned char *)(system_triple_pointer_stack_primary + 2) = SYSTEM_ONE_VALUE;
           UNLOCK();
-          system_cleanup_module(system_triple_pointer_stack_b8 + SYSTEM_OFFSET_HANDLE_PARAM);
+          system_cleanup_module(system_triple_pointer_stack_primary + SYSTEM_OFFSET_HANDLE_PARAM);
         }
         else {
-          (*(code *)(*system_triple_pointer_stack_b8)[SYSTEM_MEMORY_OFFSET_E])(system_triple_pointer_stack_b8);
+          (*(code *)(*system_triple_pointer_stack_primary)[SYSTEM_MEMORY_OFFSET_E])(system_triple_pointer_stack_primary);
         }
       }
     }
@@ -5844,7 +5847,7 @@ long long process_memory_with_system_thread_operation_flags(unsigned long long h
         system_thread_result_status = SYSTEM_ZERO_VALUE;
       }
       else {
-        system_thread_result_status = (*(int *)(reg_rcx + SYSTEM_FUNCTION_OFFSET_REGISTER_A3A) - 1U >> 0xc) + 1;
+        system_thread_result_status = (*(int *)(reg_rcx + SYSTEM_FUNCTION_OFFSET_REGISTER_A3A) - 1U >> SYSTEM_BIT_SHIFT_PAGE_SIZE) + 1;
       }
       if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
         memcpy(pppppsystem_initialization_result7[1], reg_rcx[SYSTEM_MEMORY_OFFSET_A3B], path_buffer_size_000);
@@ -5873,12 +5876,12 @@ long long process_memory_with_system_thread_operation_flags(unsigned long long h
   *(unsigned int *)(reg_rcx + SYSTEM_POINTER_OFFSET_B5B) = SYSTEM_ZERO_VALUE;
   system_buffer_allocation_result = system_global_data_pointer_variable;
   UNLOCK();
-  if (system_triple_pointer_stack_b8 != (long long ***)0x0) {
+  if (system_triple_pointer_stack_primary != (long long ***)0x0) {
     psystem_double_pointer_stack_long = (long long ***)&system_triple_pointer_stack_b0;
-    system_triple_pointer_stack_b0 = system_triple_pointer_stack_b8;
-    (*(code *)(*system_triple_pointer_stack_b8)[5])(system_triple_pointer_stack_b8);
+    system_triple_pointer_stack_b0 = system_triple_pointer_stack_primary;
+    (*(code *)(*system_triple_pointer_stack_primary)[5])(system_triple_pointer_stack_primary);
     system_event_handle_paramr_initialize_stack(system_buffer_allocation_result,&system_triple_pointer_stack_b0,0);
-    system_buffer_allocation_result = (*(code *)(*system_triple_pointer_stack_b8)[7])(system_triple_pointer_stack_b8);
+    system_buffer_allocation_result = (*(code *)(*system_triple_pointer_stack_primary)[7])(system_triple_pointer_stack_primary);
   }
   return system_buffer_allocation_result;
 }
@@ -6900,7 +6903,7 @@ unsigned long long process_system_request(unsigned long long *handle_param)
         system_float_conversion_array_pointer = system_float_conversion_array_pointer + SYSTEM_OFFSET_HANDLE_PARAM;
         system_buffer_allocation_result = system_buffer_allocation_result - 1;
       } while (system_buffer_allocation_result != SYSTEM_ZERO_VALUE);
-      return CONCAT_BYTES_TO_64BIT((uint7)(system_buffer_allocation_result >> 0xc),SYSTEM_PARAM_SINGLE_VALIDATE);
+      return CONCAT_BYTES_TO_64BIT((uint7)(system_buffer_allocation_result >> SYSTEM_BIT_SHIFT_PAGE_SIZE),SYSTEM_PARAM_SINGLE_VALIDATE);
     }
     break;
   case 0x26:
@@ -12249,7 +12252,7 @@ unsigned long long setup_context_with_system_thread_operation_flags(unsigned lon
   long long system_initialization_result;
   unsigned long long system_thread_operation_flags;
   system_initialization_result = allocate_temporary_buffer();
-  system_thread_operation_flags = system_execution_function(system_global_data_pointer_variable,handle_param,system_thread_operation_flags,0x19);
+  system_thread_operation_flags = system_execution_function(system_global_data_pointer_variable,handle_param,system_thread_operation_flags,SYSTEM_FUNCTION_PARAM_SIZE_LARGE_EXTENDED);
   LOCK();
   system_global_data_pointer_variable = system_global_data_pointer_variable - system_initialization_result;
   UNLOCK();
@@ -15078,5 +15081,15 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_PATH_BUFFER_SIZE_STANDARD 0x20                            // 路径缓冲区大小32（标准）
 #define SYSTEM_PATH_BUFFER_SIZE_EXTENDED 0x24                            // 路径缓冲区大小36（扩展）
 #define SYSTEM_PATH_BUFFER_SIZE_MEDIUM 0x19                            // 路径缓冲区大小25（中）
+
+// 新增语义化偏移量常量（2025年8月30日最终批次美化）
+#define SYSTEM_OFFSET_E8 0xe8                                      // E8偏移量
+#define SYSTEM_OFFSET_D 0x0d                                       // D偏移量
+#define SYSTEM_OFFSET_13 0x13                                      // 13偏移量
+#define SYSTEM_OFFSET_24 0x24                                      // 24偏移量
+#define SYSTEM_OFFSET_3088 0x3088                                  // 3088偏移量
+#define SYSTEM_OFFSET_282 0x282                                    // 282偏移量
+#define SYSTEM_OFFSET_ENTRY_SIZE 0x14                              // 入口大小偏移量
+#define SYSTEM_OFFSET_NEGATIVE_BUFFER_SIZE -0x400                  // 负缓冲区大小偏移量
 
 #endif // DATA_DEFINITIONS_H
