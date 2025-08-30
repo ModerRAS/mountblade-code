@@ -15519,7 +15519,7 @@ void UtilityModule231(void)
   int int_result;
   uint64_t uint_result;
   longlong *long_ptr;
-  uint8_t localBuffer_248 [32];
+  uint8_t system_local_buffer_248 [32];
   void *system_buffer_ptr_228;
   void *system_buffer_ptr_220;
   void *system_buffer_ptr_218;
@@ -15541,13 +15541,13 @@ void UtilityModule231(void)
   void *system_buffer_ptr_188;
   void *system_buffer_ptr_180;
   uint32_t uintStack_178;
-  undefined localBuffer_170 [32];
+  undefined system_local_buffer_170 [32];
   longlong **applongStack_150 [3];
-  uint8_t localBuffer_138 [272];
+  uint8_t system_local_buffer_138 [272];
   ulonglong uintStack_28;
 
   uintStack_198 = INVALID_HANDLE_VALUE;
-  uintStack_28 = systemConfigurationData ^ (ulonglong)localBuffer_248;
+  uintStack_28 = systemConfigurationData ^ (ulonglong)system_local_buffer_248;
   uintStack_200 = 0;
   if (*(char *)(g_system_context_1 + 0x18) == '\0') {
     ProcessSystemData(&bufferPtr_1b8system_buffer_ptr_1b8);
@@ -15589,7 +15589,7 @@ void UtilityModule231(void)
       (**(code **)(system_buffer_ptr_1d8 + SYSTEM_DATA_COMPARE_SIZE))(&bufferPtr_1d8system_buffer_ptr_1d8,applongStack_150);
     }
     plongStack_208 = (longlong *)CONCAT44(plongStack_208._4_4_,SYSTEM_DATA_COMPARE_SIZE1);
-    int_result = GetUserNameA(localBuffer_138,&plongStack_208);
+    int_result = GetUserNameA(system_local_buffer_138,&plongStack_208);
     if (int_result == 0) {
       InitializeResourcePool(&resourcePoolItem2);
     }
@@ -15602,8 +15602,8 @@ LAB_180044db8:
         (*ptr_char_var)();
         return;
       }
-      localBuffer_138[(ulonglong)plongStack_208 & 0xffffffff] = 0;
-      (**(code **)(system_buffer_ptr_1f8 + SYSTEM_DATA_COMPARE_SIZE))(&bufferPtr_1f8system_buffer_ptr_1f8,localBuffer_138);
+      system_local_buffer_138[(ulonglong)plongStack_208 & 0xffffffff] = 0;
+      (**(code **)(system_buffer_ptr_1f8 + SYSTEM_DATA_COMPARE_SIZE))(&bufferPtr_1f8system_buffer_ptr_1f8,system_local_buffer_138);
     }
     system_buffer_ptr_218 = &g_system_data_variable3;
     if (system_buffer_ptr_1f0 != (void *)0x0) {
@@ -15616,9 +15616,9 @@ LAB_180044db8:
     system_buffer_ptr_228 = &g_system_data_init;
     InitializeEventSystem(g_system_context_1,5,0xffffffffffffffff,4);
     system_buffer_ptr_188 = &g_system_data_main;
-    system_buffer_ptr_180 = localBuffer_170;
+    system_buffer_ptr_180 = system_local_buffer_170;
     uintStack_178 = 0;
-    localBuffer_170[0] = 0;
+    system_local_buffer_170[0] = 0;
     uintStack_200 = 2;
     InitializeSystemModule17(&bufferPtr_18system_buffer_ptr_188,&globalSystemVariable,0x130a7);
     system_buffer_ptr_220 = &g_system_data_variable3;
@@ -15656,7 +15656,7 @@ LAB_180044db8:
   }
   uintStack_200 = 0;
                     // WARNING: Subroutine does not return
-  InitializeSystemStack(uintStack_28 ^ (ulonglong)localBuffer_248);
+  InitializeSystemStack(uintStack_28 ^ (ulonglong)system_local_buffer_248);
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 // void InitializeFontSystem(uint64_t handleIdentifier,longlong resourceIdentifier)
@@ -21207,7 +21207,7 @@ void ConfigureGraphicsShader(void)
   longlong longStack_1d0;
   uint64_t *asystem_buffer_ptr_1c8 [10];
   uint64_t uintStack_178;
-  uint8_t localBuffer_170 [8];
+  uint8_t system_local_buffer_170 [8];
   void *system_buffer_ptr_168;
   uint8_t *system_buffer_ptr_160;
   uint32_t uintStack_158;
@@ -21248,7 +21248,7 @@ void ConfigureGraphicsShader(void)
   float_result = 1.0;
   if (*(int *)(long_result + 0x1ea0) == 1) {
     int_result = *(int *)(long_result + 0x1d50);
-    ptr_int_var = (int *)GetAudioDeviceHandle(*(uint64_t *)(g_system_base_1 + 8),localBuffer_170);
+    ptr_int_var = (int *)GetAudioDeviceHandle(*(uint64_t *)(g_system_base_1 + 8),system_local_buffer_170);
     float_result = (float)int_result / (float)*ptr_int_var;
     float_result = float_result * *(float *)(long_result + 0x234);
     float_result = float_result * *(float *)(long_result + 0x238);
@@ -34066,7 +34066,7 @@ void InitializeSystemModule24(uint64_t handleIdentifier,longlong resourceIdentif
   uint8_t *system_buffer_ptr_1a0;
   uint32_t uintStack_198;
   uint8_t localBuffer_190 [88];
-  uint8_t localBuffer_138 [256];
+  uint8_t system_local_buffer_138 [256];
   ulonglong uintStack_38;
 
   long_result = g_system_context_1;
@@ -34099,7 +34099,7 @@ void InitializeSystemModule24(uint64_t handleIdentifier,longlong resourceIdentif
   ConfigureSharedMemory(localBuffer_208,localBuffer_230);
   ActivateSharedMemory(localBuffer_208,1);
                     // WARNING: Subroutine does not return
-  memset(localBuffer_138,0,SYSTEM_DATA_COMPARE_SIZE0);
+  memset(system_local_buffer_138,0,SYSTEM_DATA_COMPARE_SIZE0);
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 // void InitializeEventSystem(longlong *handleIdentifier)
@@ -34356,7 +34356,7 @@ void InitializeUISystem(void)
   uint64_t uintStack_188;
   uint64_t uintStack_180;
   uint64_t uintStack_178;
-  uint8_t localBuffer_138 [256];
+  uint8_t system_local_buffer_138 [256];
   ulonglong uintStack_38;
 
   uintStack_178 = INVALID_HANDLE_VALUE;
@@ -34366,7 +34366,7 @@ void InitializeUISystem(void)
   uintStack_190 = _time64(0);
   uintStack_188 = _localtime64(&uintStack_190);
                     // WARNING: Subroutine does not return
-  memset(localBuffer_138,0,0xff);
+  memset(system_local_buffer_138,0,0xff);
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 // void InitializeSystemDataNode23(int *handleIdentifier)
@@ -35323,7 +35323,7 @@ void SystemFunction_67_2(longlong *handleIdentifier,longlong resourceIdentifier,
   longlong long_result;
   ulonglong uint_result;
   uint64_t *ptr_uint_var;
-  uint8_t localBuffer_138 [32];
+  uint8_t system_local_buffer_138 [32];
   longlong longStack_118;
   void *system_buffer_ptr_108;
   uint8_t *system_buffer_ptr_100;
@@ -35356,7 +35356,7 @@ void SystemFunction_67_2(longlong *handleIdentifier,longlong resourceIdentifier,
   ulonglong uintStack_48;
 
   uintStack_d8 = INVALID_HANDLE_VALUE;
-  uintStack_48 = systemConfigurationData ^ (ulonglong)localBuffer_138;
+  uintStack_48 = systemConfigurationData ^ (ulonglong)system_local_buffer_138;
   uintStack_e8 = 0;
   InitializeUISystem();
   node_current = &g_system_data_variable3;
@@ -35448,7 +35448,7 @@ void SystemFunction_67_2(longlong *handleIdentifier,longlong resourceIdentifier,
     uintStack_b0 = 0xf;
     uintStack_c8 = 0;
                     // WARNING: Subroutine does not return
-    InitializeSystemStack(uintStack_48 ^ (ulonglong)localBuffer_138);
+    InitializeSystemStack(uintStack_48 ^ (ulonglong)system_local_buffer_138);
   }
   uintStack_58 = 0;
   uintStack_50 = 0xf;
@@ -47038,25 +47038,25 @@ float * SystemFunction_16_0(float *handleIdentifier)
   bool bool_var;
   float float_result;
   float float_result;
-  float fStack_b8;
-  float fStack_b4;
-  float fStack_b0;
+  float init_float_stack_b8;
+  float init_float_stack_b4;
+  float init_float_stack_b0;
   uint32_t uintStack_ac;
-  float fStack_a8;
-  float fStack_a4;
-  float fStack_a0;
+  float init_float_stack_a8;
+  float init_float_stack_a4;
+  float init_float_stack_a0;
   uint32_t uintStack_9c;
-  float *pfStack_98;
+  float *init_float_ptr_stack_98;
   uint32_t uintStack_90;
   longlong longStack_88;
   uint64_t uintStack_78;
   uint64_t uintStack_70;
   uint64_t uintStack_68;
   uint64_t uintStack_60;
-  float fStack_58;
-  float fStack_54;
-  float fStack_50;
-  float fStack_4c;
+  float init_float_stack_58;
+  float init_float_stack_54;
+  float init_float_stack_50;
+  float init_float_stack_4c;
   uint64_t uintStack_48;
   uint64_t uintStack_40;
   uint64_t uintStack_38;
@@ -47083,39 +47083,39 @@ float * SystemFunction_16_0(float *handleIdentifier)
     handleIdentifier[0xa7] = 0.0;
     handleIdentifier[0xa8] = 3.4028235e+38;
     uintStack_90 = 0;
-    pfStack_98 = ptr_float_var;
-    InitializeThreadManagerSystem(&pfStack_98);
+    init_float_ptr_stack_98 = ptr_float_var;
+    InitializeThreadManagerSystem(&init_float_ptr_stack_98);
     if (*(int *)(longStack_88 + SYSTEM_DATA_COMPARE_SIZE) != 0) {
       do {
         ptr_float_var = (float *)((longlong)(int)uint_result * SYSTEM_DATA_COMPARE_SIZE + *(longlong *)(longStack_88 + 0x18));
-        fStack_a8 = *ptr_float_var;
-        if (*ptr_float_var < fStack_a8) {
-          fStack_a8 = *ptr_float_var;
+        init_float_stack_a8 = *ptr_float_var;
+        if (*ptr_float_var < init_float_stack_a8) {
+          init_float_stack_a8 = *ptr_float_var;
         }
-        fStack_a4 = ptr_float_var[1];
-        if (handleIdentifier[0x9e] < fStack_a4) {
-          fStack_a4 = handleIdentifier[0x9e];
+        init_float_stack_a4 = ptr_float_var[1];
+        if (handleIdentifier[0x9e] < init_float_stack_a4) {
+          init_float_stack_a4 = handleIdentifier[0x9e];
         }
-        fStack_a0 = ptr_float_var[2];
-        if (handleIdentifier[0x9f] < fStack_a0) {
-          fStack_a0 = handleIdentifier[0x9f];
+        init_float_stack_a0 = ptr_float_var[2];
+        if (handleIdentifier[0x9f] < init_float_stack_a0) {
+          init_float_stack_a0 = handleIdentifier[0x9f];
         }
-        *(ulonglong *)ptr_float_var = CONCAT44(fStack_a4,fStack_a8);
-        *(ulonglong *)(handleIdentifier + 0x9f) = CONCAT44(uintStack_9c,fStack_a0);
-        fStack_b8 = *ptr_float_var;
-        if (fStack_b8 < handleIdentifier[0xa1]) {
-          fStack_b8 = handleIdentifier[0xa1];
+        *(ulonglong *)ptr_float_var = CONCAT44(init_float_stack_a4,init_float_stack_a8);
+        *(ulonglong *)(handleIdentifier + 0x9f) = CONCAT44(uintStack_9c,init_float_stack_a0);
+        init_float_stack_b8 = *ptr_float_var;
+        if (init_float_stack_b8 < handleIdentifier[0xa1]) {
+          init_float_stack_b8 = handleIdentifier[0xa1];
         }
-        fStack_b4 = ptr_float_var[1];
-        if (fStack_b4 < handleIdentifier[0xa2]) {
-          fStack_b4 = handleIdentifier[0xa2];
+        init_float_stack_b4 = ptr_float_var[1];
+        if (init_float_stack_b4 < handleIdentifier[0xa2]) {
+          init_float_stack_b4 = handleIdentifier[0xa2];
         }
-        fStack_b0 = ptr_float_var[2];
-        if (fStack_b0 < handleIdentifier[0xa3]) {
-          fStack_b0 = handleIdentifier[0xa3];
+        init_float_stack_b0 = ptr_float_var[2];
+        if (init_float_stack_b0 < handleIdentifier[0xa3]) {
+          init_float_stack_b0 = handleIdentifier[0xa3];
         }
-        *(ulonglong *)(handleIdentifier + 0xa1) = CONCAT44(fStack_b4,fStack_b8);
-        *(ulonglong *)(handleIdentifier + 0xa3) = CONCAT44(uintStack_ac,fStack_b0);
+        *(ulonglong *)(handleIdentifier + 0xa1) = CONCAT44(init_float_stack_b4,init_float_stack_b8);
+        *(ulonglong *)(handleIdentifier + 0xa3) = CONCAT44(uintStack_ac,init_float_stack_b0);
         uint_result = uint_result + 1;
       } while (uint_result < *(uint *)(longStack_88 + SYSTEM_DATA_COMPARE_SIZE));
     }
@@ -47125,10 +47125,10 @@ float * SystemFunction_16_0(float *handleIdentifier)
       uintStack_70 = *(uint64_t *)(handleIdentifier + 0x4a);
       uintStack_68 = *(uint64_t *)(handleIdentifier + 0x4c);
       uintStack_60 = *(uint64_t *)(handleIdentifier + 0x4e);
-      fStack_58 = handleIdentifier[0x50];
-      fStack_54 = handleIdentifier[0x51];
-      fStack_50 = handleIdentifier[0x52];
-      fStack_4c = handleIdentifier[0x53];
+      init_float_stack_58 = handleIdentifier[0x50];
+      init_float_stack_54 = handleIdentifier[0x51];
+      init_float_stack_50 = handleIdentifier[0x52];
+      init_float_stack_4c = handleIdentifier[0x53];
       uintStack_48 = *(uint64_t *)(handleIdentifier + 0x54);
       uintStack_40 = *(uint64_t *)(handleIdentifier + 0x56);
       InitializeSystemModule19(&uintStack_78);
@@ -47139,10 +47139,10 @@ float * SystemFunction_16_0(float *handleIdentifier)
         uintStack_70 = *(uint64_t *)(handleIdentifier + 0x4a);
         uintStack_68 = *(uint64_t *)(handleIdentifier + 0x4c);
         uintStack_60 = *(uint64_t *)(handleIdentifier + 0x4e);
-        fStack_58 = handleIdentifier[0x50];
-        fStack_54 = handleIdentifier[0x51];
-        fStack_50 = handleIdentifier[0x52];
-        fStack_4c = handleIdentifier[0x53];
+        init_float_stack_58 = handleIdentifier[0x50];
+        init_float_stack_54 = handleIdentifier[0x51];
+        init_float_stack_50 = handleIdentifier[0x52];
+        init_float_stack_4c = handleIdentifier[0x53];
         uintStack_48 = *(uint64_t *)(handleIdentifier + 0x54);
         uintStack_40 = *(uint64_t *)(handleIdentifier + 0x56);
         InitializeUISystem(&uintStack_78,0x3fc90fdb);
@@ -47151,17 +47151,17 @@ float * SystemFunction_16_0(float *handleIdentifier)
         uintStack_70 = *(uint64_t *)(handleIdentifier + 0x4a);
         uintStack_68 = *(uint64_t *)(handleIdentifier + 0x4c);
         uintStack_60 = *(uint64_t *)(handleIdentifier + 0x4e);
-        fStack_58 = handleIdentifier[0x50];
-        fStack_54 = handleIdentifier[0x51];
-        fStack_50 = handleIdentifier[0x52];
-        fStack_4c = handleIdentifier[0x53];
+        init_float_stack_58 = handleIdentifier[0x50];
+        init_float_stack_54 = handleIdentifier[0x51];
+        init_float_stack_50 = handleIdentifier[0x52];
+        init_float_stack_4c = handleIdentifier[0x53];
         uintStack_48 = *(uint64_t *)(handleIdentifier + 0x54);
         uintStack_40 = *(uint64_t *)(handleIdentifier + 0x56);
         InitializeSystemModule39(&uintStack_78);
         ptr_float_var = (float *)UtilityFunction3a240(ptr_float_var,ptr_float_var,&uintStack_78);
       }
     }
-    ptr_float_var = pfStack_98;
+    ptr_float_var = init_float_ptr_stack_98;
     if (handleIdentifier[0xa1] < *ptr_float_var) {
       handleIdentifier[0xa9] = 0.0;
       ptr_float_var[0] = 0.0;
@@ -47201,7 +47201,7 @@ float * SystemFunction_16_0(float *handleIdentifier)
       }
       handleIdentifier[0xa9] = SQRT(float_result);
     }
-    if (pfStack_98 != (float *)0x0) {
+    if (init_float_ptr_stack_98 != (float *)0x0) {
       while( true ) {
         LOCK();
         char_var = *(char *)(ptr_float_var + 0x3b);
@@ -47225,8 +47225,8 @@ LAB_180075f4f:
       *ptr_float_var = (float)((int)*ptr_float_var + -1);
       UNLOCK();
       if (char_var == '\0') {
-        if ((((float_result == 1.4013e-45) && (*(longlong *)(pfStack_98 + 0x84) != 0)) &&
-            (ptr_float_var = pfStack_98, InitializeAuthenticationSystem(pfStack_98), *(char *)(ptr_float_var + 0x3f) == '\0')) &&
+        if ((((float_result == 1.4013e-45) && (*(longlong *)(init_float_ptr_stack_98 + 0x84) != 0)) &&
+            (ptr_float_var = init_float_ptr_stack_98, InitializeAuthenticationSystem(init_float_ptr_stack_98), *(char *)(ptr_float_var + 0x3f) == '\0')) &&
            ((*(char *)(ptr_float_var + 0x3d) == '\0' &&
             (((*(byte *)((longlong)ptr_float_var + 0xfd) & SYSTEM_NODE_HEADER_SIZE) == 0 ||
              ((*(byte *)((longlong)ptr_float_var + 0xfe) & 1) == 0)))))) {
@@ -47261,7 +47261,7 @@ void InitializeSystemModule26(longlong *handleIdentifier)
   longlong long_result;
   float float_result;
   float float_result;
-  uint8_t localBuffer_138 [8];
+  uint8_t system_local_buffer_138 [8];
   longlong *plongStack_130;
   uint32_t uintStack_128;
   longlong *plongStack_120;
@@ -47293,10 +47293,10 @@ void InitializeSystemModule26(longlong *handleIdentifier)
       int_result = 0;
       if (long_ptr == handleIdentifier) {
         plongStack_120 = (longlong *)0x0;
-        localBuffer_138[0] = 0;
+        system_local_buffer_138[0] = 0;
         uintStack_128 = 0;
         plongStack_130 = long_ptr;
-        InitializeSystemModule33(localBuffer_138);
+        InitializeSystemModule33(system_local_buffer_138);
         long_ptr = plongStack_120 + 0x16;
         uint_result = *(ushort *)(plongStack_120 + 0x18);
         float_result = *(float *)(plongStack_120[0x17] + -4 + (ulonglong)uint_result * 4);
@@ -47347,7 +47347,7 @@ void InitializeSystemModule26(longlong *handleIdentifier)
           ConfigureSystemStack(&uintStack_100,long_ptr,int_result,int_result,float_result);
           DestroySystemStack(&uintStack_100);
         }
-        InitializeNetworkManagerSystem(localBuffer_138);
+        InitializeNetworkManagerSystem(system_local_buffer_138);
         if (plongStack_120 != (longlong *)0x0) {
           (**(code **)(*plongStack_120 + 0x38))();
         }
@@ -48400,7 +48400,7 @@ ulonglong InitializeSystemModule6(longlong handleIdentifier,uint *resourceIdenti
   uint *node_new;
   float *pfstack_var;
   longlong lstack_var;
-  uint32_t localBuffer_138 [2];
+  uint32_t system_local_buffer_138 [2];
   ulonglong uintStack_130;
   uint64_t *asystem_buffer_ptr_128 [2];
   longlong longStack_118;
@@ -48412,22 +48412,22 @@ ulonglong InitializeSystemModule6(longlong handleIdentifier,uint *resourceIdenti
   uint64_t uintStack_e0;
   uint64_t uintStack_d8;
   uint64_t uintStack_d0;
-  float fStack_c8;
-  float fStack_c4;
-  float fStack_c0;
-  float fStack_bc;
-  float fStack_b8;
-  float fStack_b4;
-  float fStack_b0;
-  float fStack_ac;
-  float fStack_a8;
-  float fStack_a4;
-  float fStack_a0;
-  float fStack_9c;
-  float fStack_98;
-  float fStack_94;
-  float fStack_90;
-  float fStack_8c;
+  float init_float_stack_c8;
+  float init_float_stack_c4;
+  float init_float_stack_c0;
+  float init_float_stack_bc;
+  float init_float_stack_b8;
+  float init_float_stack_b4;
+  float init_float_stack_b0;
+  float init_float_stack_ac;
+  float init_float_stack_a8;
+  float init_float_stack_a4;
+  float init_float_stack_a0;
+  float init_float_stack_9c;
+  float init_float_stack_98;
+  float init_float_stack_94;
+  float init_float_stack_90;
+  float init_float_stack_8c;
 
   node_new = resourceIdentifier;
   pfstack_var = systemConfig;
@@ -48650,8 +48650,8 @@ LAB_180077879:
               *(uint8_t *)((longlong)abufferPtr_128[0] + 0x4d) = 0;
             }
             if (*(uint **)(node_new + 10) == (uint *)0x0) {
-              localBuffer_138[0] = 0xffffffff;
-              node_root9 = localBuffer_138;
+              system_local_buffer_138[0] = 0xffffffff;
+              node_root9 = system_local_buffer_138;
               ptr_uint_var = node_new;
             }
             else {
@@ -48684,30 +48684,30 @@ LAB_180077879:
       float_result = *(float *)(handleIdentifier + 0x128);
       float_result = *(float *)(handleIdentifier + 0x134);
       float_result = *(float *)(handleIdentifier + 0x130);
-      fStack_c8 = float_result * float_result + float_result * float_result + float_result * float_result;
-      fStack_c4 = float_result * float_result + float_result * float_result + float_result * float_result;
-      fStack_c0 = float_result * float_result + float_result * float_result + float_result * float_result;
-      fStack_bc = float_result * float_result + float_result * float_result + float_result * float_result;
+      init_float_stack_c8 = float_result * float_result + float_result * float_result + float_result * float_result;
+      init_float_stack_c4 = float_result * float_result + float_result * float_result + float_result * float_result;
+      init_float_stack_c0 = float_result * float_result + float_result * float_result + float_result * float_result;
+      init_float_stack_bc = float_result * float_result + float_result * float_result + float_result * float_result;
       float_result = *(float *)(handleIdentifier + 0x138);
       float_result = *(float *)(handleIdentifier + 0x140);
       float_result = *(float *)(handleIdentifier + 0x144);
-      fStack_b8 = float_result * float_result + float_result * float_result + float_result * float_result;
-      fStack_b4 = float_result * float_result + float_result * float_result + float_result * float_result;
-      fStack_b0 = float_result * float_result + float_result * float_result + float_result * float_result;
-      fStack_ac = float_result * float_result + float_result * float_result + float_result * float_result;
+      init_float_stack_b8 = float_result * float_result + float_result * float_result + float_result * float_result;
+      init_float_stack_b4 = float_result * float_result + float_result * float_result + float_result * float_result;
+      init_float_stack_b0 = float_result * float_result + float_result * float_result + float_result * float_result;
+      init_float_stack_ac = float_result * float_result + float_result * float_result + float_result * float_result;
       float_result = *(float *)(handleIdentifier + 0x148);
       float_result = *(float *)(handleIdentifier + 0x154);
       float_result = *(float *)(handleIdentifier + 0x150);
-      fStack_a8 = float_result * float_result + float_result * float_result + float_result * float_result;
-      fStack_a4 = float_result * float_result + float_result * float_result + float_result * float_result;
-      fStack_a0 = float_result * float_result + float_result * float_result + float_result * float_result;
-      fStack_9c = float_result * float_result + float_result * float_result + float_result * float_result;
+      init_float_stack_a8 = float_result * float_result + float_result * float_result + float_result * float_result;
+      init_float_stack_a4 = float_result * float_result + float_result * float_result + float_result * float_result;
+      init_float_stack_a0 = float_result * float_result + float_result * float_result + float_result * float_result;
+      init_float_stack_9c = float_result * float_result + float_result * float_result + float_result * float_result;
       float_result = *(float *)(handleIdentifier + 0x158);
-      fStack_98 = float_result * float_result + float_result * float_result + float_result * float_result + systemConfig[0xc];
-      fStack_94 = float_result * float_result + float_result * float_result + float_result * float_result + systemConfig[0xd];
-      fStack_90 = float_result * float_result + float_result * float_result + float_result * float_result + systemConfig[0xe];
-      fStack_8c = float_result * float_result + float_result * float_result + float_result * float_result + systemConfig[0xf];
-      systemConfig = &fStack_c8;
+      init_float_stack_98 = float_result * float_result + float_result * float_result + float_result * float_result + systemConfig[0xc];
+      init_float_stack_94 = float_result * float_result + float_result * float_result + float_result * float_result + systemConfig[0xd];
+      init_float_stack_90 = float_result * float_result + float_result * float_result + float_result * float_result + systemConfig[0xe];
+      init_float_stack_8c = float_result * float_result + float_result * float_result + float_result * float_result + systemConfig[0xf];
+      systemConfig = &init_float_stack_c8;
     }
     InitializeSystemDataNode15(&uintStack_108,resourceIdentifier + 0xc,*(uint8_t *)(handleIdentifier + 0xf7),systemConfig);
     uint_result = resourceIdentifier[0x6f6];
@@ -49518,7 +49518,7 @@ void SystemFunction_95_0(void)
   byte buffer_byte_flag;
   float *ptr_float_var;
   longlong system_R13;
-  uint32_t uStack0000000000000030;
+  uint32_t init_uint_stack_30;
   uint64_t init_input_stack_60;
   uint64_t init_input_stack_68;
   uint64_t init_input_stack_70;
@@ -49554,7 +49554,7 @@ void SystemFunction_95_0(void)
   float *init_input_stack_180;
   uint64_t init_input_stack_188;
 
-  uStack0000000000000030 = 0xffffffff;
+  init_uint_stack_30 = 0xffffffff;
   InitializeSystemModule1(system_R13 + 0x3388,&stack0x00000030);
   ptr_float_var = init_input_stack_180;
   if ((*(uint *)(system_RBX + SYSTEM_DATA_COMPARE_SIZE0) & 0x4000000) != 0) {
@@ -49762,9 +49762,9 @@ ulonglong InitializeSystemModule6(longlong handleIdentifier,uint64_t resourceIde
   ulonglong uintStack_70;
   uint64_t uintStack_68;
   ulonglong uintStack_60;
-  float fStack_58;
-  float fStack_54;
-  float fStack_50;
+  float init_float_stack_58;
+  float init_float_stack_54;
+  float init_float_stack_50;
   uint32_t uintStack_4c;
 
   long_result = *(longlong *)(handleIdentifier + 0x1b8);
@@ -49800,9 +49800,9 @@ LAB_180077fcf:
         uintStack_70._0_4_ = (float)*(uint64_t *)(systemFlags + 6);
         uintStack_68 = *(uint64_t *)(systemFlags + 8);
         uintStack_60._0_4_ = (float)*(uint64_t *)(systemFlags + 10);
-        fStack_58 = systemFlags[0xc];
-        fStack_54 = systemFlags[0xd];
-        fStack_50 = systemFlags[0xe];
+        init_float_stack_58 = systemFlags[0xc];
+        init_float_stack_54 = systemFlags[0xd];
+        init_float_stack_50 = systemFlags[0xe];
       }
       else {
         float_result = systemFlags[4];
@@ -49835,9 +49835,9 @@ LAB_180077fcf:
                              float_result * float_result + float_result * float_result + float_result * float_result);
         uintStack_68 = CONCAT44(float_result * float_result + float_result * float_result + float_result * float_result,
                              float_result * float_result + float_result * float_result + float_result * float_result);
-        fStack_58 = float_result * float_result + float_result * float_result + float_result * float_result + systemFlags[0xc];
-        fStack_54 = float_result * float_result + float_result * float_result + float_result * float_result + systemFlags[0xd];
-        fStack_50 = float_result * float_result + float_result * float_result + float_result * float_result + systemFlags[0xe];
+        init_float_stack_58 = float_result * float_result + float_result * float_result + float_result * float_result + systemFlags[0xc];
+        init_float_stack_54 = float_result * float_result + float_result * float_result + float_result * float_result + systemFlags[0xd];
+        init_float_stack_50 = float_result * float_result + float_result * float_result + float_result * float_result + systemFlags[0xe];
       }
       uintStack_4c = 0x3f800000;
       uintStack_60 = (ulonglong)(uint)(float)uintStack_60;
@@ -49878,23 +49878,23 @@ void SystemFunction_60_1(uint64_t handleIdentifier,uint64_t resourceIdentifier,f
   float in_XMM4_Db;
   float in_XMM4_Dc;
   float in_XMM5_Da;
-  uint32_t uStack0000000000000028;
-  float fStack0000000000000030;
-  float fStack0000000000000034;
-  float fStack0000000000000038;
-  uint32_t uStack000000000000003c;
-  float fStack0000000000000040;
-  float fStack0000000000000044;
-  float fStack0000000000000048;
-  uint32_t uStack000000000000004c;
-  float fStack0000000000000050;
-  float fStack0000000000000054;
-  float fStack0000000000000058;
-  uint32_t uStack000000000000005c;
-  float fStack0000000000000060;
-  float fStack0000000000000064;
-  float fStack0000000000000068;
-  uint32_t uStack000000000000006c;
+  uint32_t init_uint_stack_28;
+  float init_float_stack_30;
+  float init_float_stack_34;
+  float init_float_stack_38;
+  uint32_t init_uint_stack_3c;
+  float init_float_stack_40;
+  float init_float_stack_44;
+  float init_float_stack_48;
+  uint32_t init_uint_stack_4c;
+  float init_float_stack_50;
+  float init_float_stack_54;
+  float init_float_stack_58;
+  uint32_t init_uint_stack_5c;
+  float init_float_stack_60;
+  float init_float_stack_64;
+  float init_float_stack_68;
+  uint32_t init_uint_stack_6c;
   uint32_t init_input_stack_e0;
   uint32_t init_input_stack_e8;
 
@@ -49906,30 +49906,30 @@ void SystemFunction_60_1(uint64_t handleIdentifier,uint64_t resourceIdentifier,f
   float_result = system_RDI[10];
   float_result = *(float *)(system_RBX + 0x124);
   float_result = *(float *)(system_RBX + 0x130);
-  fStack0000000000000030 = float_result * in_XMM4_Da + (float)handleIdentifier * float_result + (float)resourceIdentifier * float_result;
-  fStack0000000000000034 =
+  init_float_stack_30 = float_result * in_XMM4_Da + (float)handleIdentifier * float_result + (float)resourceIdentifier * float_result;
+  init_float_stack_34 =
        float_result * in_XMM4_Db + (float)((ulonglong)handleIdentifier >> SYSTEM_NODE_HEADER_SIZE) * float_result +
        (float)((ulonglong)resourceIdentifier >> SYSTEM_NODE_HEADER_SIZE) * float_result;
-  fStack0000000000000038 = float_result * in_XMM4_Dc + in_XMM0_Dc * float_result + in_XMM1_Dc * float_result;
+  init_float_stack_38 = float_result * in_XMM4_Dc + in_XMM0_Dc * float_result + in_XMM1_Dc * float_result;
   float_result = *(float *)(system_RBX + 0x138);
   float_result = *(float *)(system_RBX + 0x140);
-  fStack0000000000000040 = in_XMM5_Da * in_XMM4_Da + float_result * float_result + float_result * float_result;
-  fStack0000000000000044 = in_XMM5_Da * in_XMM4_Db + float_result * float_result + float_result * float_result;
-  fStack0000000000000048 = in_XMM5_Da * in_XMM4_Dc + float_result * float_result + float_result * float_result;
+  init_float_stack_40 = in_XMM5_Da * in_XMM4_Da + float_result * float_result + float_result * float_result;
+  init_float_stack_44 = in_XMM5_Da * in_XMM4_Db + float_result * float_result + float_result * float_result;
+  init_float_stack_48 = in_XMM5_Da * in_XMM4_Dc + float_result * float_result + float_result * float_result;
   float_result = *(float *)(system_RBX + 0x148);
   float_result = *(float *)(system_RBX + 0x150);
-  fStack0000000000000050 = systemFlags * in_XMM4_Da + float_result * float_result + float_result * float_result;
-  fStack0000000000000054 = systemFlags * in_XMM4_Db + float_result * float_result + float_result * float_result;
-  fStack0000000000000058 = systemFlags * in_XMM4_Dc + float_result * float_result + float_result * float_result;
+  init_float_stack_50 = systemFlags * in_XMM4_Da + float_result * float_result + float_result * float_result;
+  init_float_stack_54 = systemFlags * in_XMM4_Db + float_result * float_result + float_result * float_result;
+  init_float_stack_58 = systemFlags * in_XMM4_Dc + float_result * float_result + float_result * float_result;
   float_result = *(float *)(system_RBX + 0x158);
-  fStack0000000000000060 = systemConfig * in_XMM4_Da + float_result * float_result + float_result * float_result + system_RDI[0xc];
-  fStack0000000000000064 = systemConfig * in_XMM4_Db + float_result * float_result + float_result * float_result + system_RDI[0xd];
-  fStack0000000000000068 = systemConfig * in_XMM4_Dc + float_result * float_result + float_result * float_result + system_RDI[0xe];
-  uStack0000000000000028 = init_input_stack_e8;
-  uStack000000000000006c = 0x3f800000;
-  uStack000000000000005c = 0;
-  uStack000000000000004c = 0;
-  uStack000000000000003c = 0;
+  init_float_stack_60 = systemConfig * in_XMM4_Da + float_result * float_result + float_result * float_result + system_RDI[0xc];
+  init_float_stack_64 = systemConfig * in_XMM4_Db + float_result * float_result + float_result * float_result + system_RDI[0xd];
+  init_float_stack_68 = systemConfig * in_XMM4_Dc + float_result * float_result + float_result * float_result + system_RDI[0xe];
+  init_uint_stack_28 = init_input_stack_e8;
+  init_uint_stack_6c = 0x3f800000;
+  init_uint_stack_5c = 0;
+  init_uint_stack_4c = 0;
+  init_uint_stack_3c = 0;
   ConfigureSystemParameters(0x3f800000,float_result * float_result,system_R14D,&stack0x00000030,init_input_stack_e0);
   return;
 }
@@ -49940,32 +49940,32 @@ void SystemFunction_84_3(void)
 {
   uint64_t *system_RDI;
   uint32_t system_R14D;
-  uint32_t uStack0000000000000028;
-  uint64_t uStack0000000000000030;
-  ulonglong uStack0000000000000038;
-  uint64_t uStack0000000000000040;
-  ulonglong uStack0000000000000048;
-  uint64_t uStack0000000000000050;
-  ulonglong uStack0000000000000058;
-  uint32_t uStack0000000000000060;
-  uint32_t uStack0000000000000064;
-  uint32_t uStack0000000000000068;
-  uint32_t uStack000000000000006c;
+  uint32_t init_uint_stack_28;
+  uint64_t init_uint_stack_30;
+  ulonglong init_ulonglong_stack_38;
+  uint64_t init_uint_stack_40;
+  ulonglong init_ulonglong_stack_48;
+  uint64_t init_uint_stack_50;
+  ulonglong init_ulonglong_stack_58;
+  uint32_t init_uint_stack_60;
+  uint32_t init_uint_stack_64;
+  uint32_t init_uint_stack_68;
+  uint32_t init_uint_stack_6c;
   uint32_t init_input_stack_e0;
   uint32_t init_input_stack_e8;
 
-  uStack0000000000000030 = *system_RDI;
-  uStack0000000000000040 = system_RDI[2];
-  uStack0000000000000050 = system_RDI[4];
-  uStack0000000000000060 = *(uint32_t *)(system_RDI + 6);
-  uStack0000000000000064 = *(uint32_t *)((longlong)system_RDI + 0x34);
-  uStack0000000000000068 = *(uint32_t *)(system_RDI + 7);
-  uStack0000000000000028 = init_input_stack_e8;
-  uStack000000000000006c = 0x3f800000;
-  uStack0000000000000058 = system_RDI[5] & 0xffffffff;
-  uStack0000000000000048 = system_RDI[3] & 0xffffffff;
-  uStack0000000000000038 = system_RDI[1] & 0xffffffff;
-  ConfigureSystemParameters(0x3f800000,uStack0000000000000060,system_R14D,&stack0x00000030,init_input_stack_e0);
+  init_uint_stack_30 = *system_RDI;
+  init_uint_stack_40 = system_RDI[2];
+  init_uint_stack_50 = system_RDI[4];
+  init_uint_stack_60 = *(uint32_t *)(system_RDI + 6);
+  init_uint_stack_64 = *(uint32_t *)((longlong)system_RDI + 0x34);
+  init_uint_stack_68 = *(uint32_t *)(system_RDI + 7);
+  init_uint_stack_28 = init_input_stack_e8;
+  init_uint_stack_6c = 0x3f800000;
+  init_ulonglong_stack_58 = system_RDI[5] & 0xffffffff;
+  init_ulonglong_stack_48 = system_RDI[3] & 0xffffffff;
+  init_ulonglong_stack_38 = system_RDI[1] & 0xffffffff;
+  ConfigureSystemParameters(0x3f800000,init_uint_stack_60,system_R14D,&stack0x00000030,init_input_stack_e0);
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
@@ -51782,7 +51782,7 @@ void SystemFunction_36_2(void)
   bool memory_pointer_flag;
   uint32_t system_XMM7_Da;
   uint32_t system_XMM7_Db;
-  uint64_t uStack0000000000000050;
+  uint64_t init_uint_stack_50;
   uint64_t init_input_stack_58;
 
   uint_result = (int)*(char *)(system_RDI + 0xd) + *(int *)(system_RDI + 0x18);
@@ -51845,7 +51845,7 @@ void SystemFunction_36_2(void)
     int_result = *(int *)(long_result + 0x1c) + *(int *)(long_result + 0x18);
     *(int *)(long_result + 0x28) = *(int *)(g_system_base_1 + 0x224);
     if (0 < int_result) {
-      uStack0000000000000050 = init_input_stack_58;
+      init_uint_stack_50 = init_input_stack_58;
       long_result = (longlong)*(int *)(systemCoreData + 0xe78) * 0x128 + systemCoreData + 0xc28;
       uint_result = InitializeSystemModule39(long_result,int_result,long_result,ptr_float_var,CONCAT44(system_XMM7_Db,system_XMM7_Da));
       *(uint32_t *)(long_result + 0x30) = uint_result;
@@ -52069,7 +52069,7 @@ void SystemFunction_39_3(longlong handleIdentifier,uint resourceIdentifier,uint6
   bool pointer_operation_flag;
   uint32_t system_XMM7_Da;
   uint32_t system_XMM7_Db;
-  uint64_t uStack0000000000000050;
+  uint64_t init_uint_stack_50;
   uint64_t init_input_stack_58;
 
   handleIdentifier = (longlong)*(int *)(handleIdentifier + 0x250) * 0x128 + handleIdentifier;
@@ -52129,7 +52129,7 @@ void SystemFunction_39_3(longlong handleIdentifier,uint resourceIdentifier,uint6
     compare_result9 = *(int *)(long_result + 0x1c) + *(int *)(long_result + 0x18);
     *(int *)(long_result + 0x28) = *(int *)(g_system_base_1 + 0x224);
     if (0 < compare_result9) {
-      uStack0000000000000050 = init_input_stack_58;
+      init_uint_stack_50 = init_input_stack_58;
       long_result = (longlong)*(int *)(systemCoreData + 0xe78) * 0x128 + systemCoreData + 0xc28;
       uint_result = InitializeSystemModule39(long_result,compare_result9,handleIdentifier,systemFlags,CONCAT44(system_XMM7_Db,system_XMM7_Da));
       *(uint32_t *)(long_result + 0x30) = uint_result;
@@ -52327,7 +52327,7 @@ void SystemFunction_65_4(void)
   ulonglong uint_result;
   ulonglong uint_result;
   bool system_processing_flag;
-  uint64_t uStack0000000000000050;
+  uint64_t init_uint_stack_50;
   uint64_t init_input_stack_58;
 
   allocation_size = *(longlong *)(system_RBX + 600);
@@ -52335,7 +52335,7 @@ void SystemFunction_65_4(void)
     int_result = *(int *)(allocation_size + 0x1c) + *(int *)(allocation_size + 0x18);
     *(int *)(allocation_size + 0x28) = *(int *)(g_system_base_1 + 0x224);
     if (0 < int_result) {
-      uStack0000000000000050 = init_input_stack_58;
+      init_uint_stack_50 = init_input_stack_58;
       long_result = (longlong)*(int *)(systemCoreData + 0xe78) * 0x128 + systemCoreData + 0xc28;
       uint_result = InitializeSystemModule39(long_result,int_result);
       *(uint32_t *)(allocation_size + 0x30) = uint_result;
@@ -52630,15 +52630,15 @@ float * InitializeResourceSystem(float *handleIdentifier)
   ulonglong uint_result;
   bool comparison_result_flag;
   float float_result;
-  float fStack_b8;
-  float fStack_b4;
-  float fStack_b0;
+  float init_float_stack_b8;
+  float init_float_stack_b4;
+  float init_float_stack_b0;
   uint32_t uintStack_ac;
-  float fStack_a8;
-  float fStack_a4;
-  float fStack_a0;
+  float init_float_stack_a8;
+  float init_float_stack_a4;
+  float init_float_stack_a0;
   uint32_t uintStack_9c;
-  float *pfStack_98;
+  float *init_float_ptr_stack_98;
   uint32_t uintStack_90;
   longlong longStack_88;
   uint64_t uintStack_80;
@@ -52647,13 +52647,13 @@ float * InitializeResourceSystem(float *handleIdentifier)
   uint64_t uintStack_68;
   uint64_t uintStack_60;
   void *system_buffer_ptr_58;
-  float fStack_50;
-  float fStack_4c;
+  float init_float_stack_50;
+  float init_float_stack_4c;
   void *system_buffer_ptr_48;
   uint64_t uintStack_40;
   uint64_t uintStack_38;
   uint8_t localBuffer_30 [8];
-  float *pfStack_28;
+  float *init_float_ptr_stack_28;
   uint32_t uintStack_20;
 
   uintStack_38 = INVALID_HANDLE_VALUE;
@@ -52661,7 +52661,7 @@ float * InitializeResourceSystem(float *handleIdentifier)
     localBuffer_30[0] = 0;
     uintStack_20 = 0;
     uintStack_80 = 0x1800795fa;
-    pfStack_28 = handleIdentifier;
+    init_float_ptr_stack_28 = handleIdentifier;
     InitializeSystemModule33(localBuffer_30);
     uintStack_80 = 0x180079605;
     float_result = (float)GetSystemTime(0);
@@ -52675,7 +52675,7 @@ float * InitializeResourceSystem(float *handleIdentifier)
       uintStack_40 = CONCAT44(uintStack_40._4_4_,*(uint32_t *)(*(longlong *)(handleIdentifier + 0x84) + 0x60));
       system_buffer_ptr_58 = &globalSystemVariable;
       uintStack_80 = 0x18007967a;
-      fStack_50 = float_result;
+      init_float_stack_50 = float_result;
       InitializeEventSystem(g_system_context_1,0,0x80000000000,3);
     }
     handleIdentifier[0x40] = (float)((uint)handleIdentifier[0x40] | SYSTEM_DATA_COMPARE_SIZE000);
@@ -52704,39 +52704,39 @@ float * InitializeResourceSystem(float *handleIdentifier)
     handleIdentifier[0xa7] = 0.0;
     handleIdentifier[0xa8] = 3.4028235e+38;
     uintStack_90 = 0;
-    pfStack_98 = ptr_float_var;
-    InitializeThreadManagerSystem(&pfStack_98);
+    init_float_ptr_stack_98 = ptr_float_var;
+    InitializeThreadManagerSystem(&init_float_ptr_stack_98);
     if (*(int *)(longStack_88 + SYSTEM_DATA_COMPARE_SIZE) != 0) {
       do {
         ptr_float_var = (float *)((longlong)(int)uint_result * SYSTEM_DATA_COMPARE_SIZE + *(longlong *)(longStack_88 + 0x18));
-        fStack_a8 = *ptr_float_var;
-        if (*ptr_float_var < fStack_a8) {
-          fStack_a8 = *ptr_float_var;
+        init_float_stack_a8 = *ptr_float_var;
+        if (*ptr_float_var < init_float_stack_a8) {
+          init_float_stack_a8 = *ptr_float_var;
         }
-        fStack_a4 = ptr_float_var[1];
-        if (handleIdentifier[0x9e] < fStack_a4) {
-          fStack_a4 = handleIdentifier[0x9e];
+        init_float_stack_a4 = ptr_float_var[1];
+        if (handleIdentifier[0x9e] < init_float_stack_a4) {
+          init_float_stack_a4 = handleIdentifier[0x9e];
         }
-        fStack_a0 = ptr_float_var[2];
-        if (handleIdentifier[0x9f] < fStack_a0) {
-          fStack_a0 = handleIdentifier[0x9f];
+        init_float_stack_a0 = ptr_float_var[2];
+        if (handleIdentifier[0x9f] < init_float_stack_a0) {
+          init_float_stack_a0 = handleIdentifier[0x9f];
         }
-        *(ulonglong *)ptr_float_var = CONCAT44(fStack_a4,fStack_a8);
-        *(ulonglong *)(handleIdentifier + 0x9f) = CONCAT44(uintStack_9c,fStack_a0);
-        fStack_b8 = *ptr_float_var;
-        if (fStack_b8 < handleIdentifier[0xa1]) {
-          fStack_b8 = handleIdentifier[0xa1];
+        *(ulonglong *)ptr_float_var = CONCAT44(init_float_stack_a4,init_float_stack_a8);
+        *(ulonglong *)(handleIdentifier + 0x9f) = CONCAT44(uintStack_9c,init_float_stack_a0);
+        init_float_stack_b8 = *ptr_float_var;
+        if (init_float_stack_b8 < handleIdentifier[0xa1]) {
+          init_float_stack_b8 = handleIdentifier[0xa1];
         }
-        fStack_b4 = ptr_float_var[1];
-        if (fStack_b4 < handleIdentifier[0xa2]) {
-          fStack_b4 = handleIdentifier[0xa2];
+        init_float_stack_b4 = ptr_float_var[1];
+        if (init_float_stack_b4 < handleIdentifier[0xa2]) {
+          init_float_stack_b4 = handleIdentifier[0xa2];
         }
-        fStack_b0 = ptr_float_var[2];
-        if (fStack_b0 < handleIdentifier[0xa3]) {
-          fStack_b0 = handleIdentifier[0xa3];
+        init_float_stack_b0 = ptr_float_var[2];
+        if (init_float_stack_b0 < handleIdentifier[0xa3]) {
+          init_float_stack_b0 = handleIdentifier[0xa3];
         }
-        *(ulonglong *)(handleIdentifier + 0xa1) = CONCAT44(fStack_b4,fStack_b8);
-        *(ulonglong *)(handleIdentifier + 0xa3) = CONCAT44(uintStack_ac,fStack_b0);
+        *(ulonglong *)(handleIdentifier + 0xa1) = CONCAT44(init_float_stack_b4,init_float_stack_b8);
+        *(ulonglong *)(handleIdentifier + 0xa3) = CONCAT44(uintStack_ac,init_float_stack_b0);
         uint_result = uint_result + 1;
       } while (uint_result < *(uint *)(longStack_88 + SYSTEM_DATA_COMPARE_SIZE));
     }
@@ -52747,8 +52747,8 @@ float * InitializeResourceSystem(float *handleIdentifier)
       uintStack_68 = *(uint64_t *)(handleIdentifier + 0x4c);
       uintStack_60 = *(uint64_t *)(handleIdentifier + 0x4e);
       system_buffer_ptr_58 = *(void **)(handleIdentifier + 0x50);
-      fStack_50 = handleIdentifier[0x52];
-      fStack_4c = handleIdentifier[0x53];
+      init_float_stack_50 = handleIdentifier[0x52];
+      init_float_stack_4c = handleIdentifier[0x53];
       system_buffer_ptr_48 = *(void **)(handleIdentifier + 0x54);
       uintStack_40 = *(uint64_t *)(handleIdentifier + 0x56);
       InitializeSystemModule19(&uintStack_78);
@@ -52760,8 +52760,8 @@ float * InitializeResourceSystem(float *handleIdentifier)
         uintStack_68 = *(uint64_t *)(handleIdentifier + 0x4c);
         uintStack_60 = *(uint64_t *)(handleIdentifier + 0x4e);
         system_buffer_ptr_58 = *(void **)(handleIdentifier + 0x50);
-        fStack_50 = handleIdentifier[0x52];
-        fStack_4c = handleIdentifier[0x53];
+        init_float_stack_50 = handleIdentifier[0x52];
+        init_float_stack_4c = handleIdentifier[0x53];
         system_buffer_ptr_48 = *(void **)(handleIdentifier + 0x54);
         uintStack_40 = *(uint64_t *)(handleIdentifier + 0x56);
         InitializeUISystem(&uintStack_78,0x3fc90fdb);
@@ -52771,15 +52771,15 @@ float * InitializeResourceSystem(float *handleIdentifier)
         uintStack_68 = *(uint64_t *)(handleIdentifier + 0x4c);
         uintStack_60 = *(uint64_t *)(handleIdentifier + 0x4e);
         system_buffer_ptr_58 = *(void **)(handleIdentifier + 0x50);
-        fStack_50 = handleIdentifier[0x52];
-        fStack_4c = handleIdentifier[0x53];
+        init_float_stack_50 = handleIdentifier[0x52];
+        init_float_stack_4c = handleIdentifier[0x53];
         system_buffer_ptr_48 = *(void **)(handleIdentifier + 0x54);
         uintStack_40 = *(uint64_t *)(handleIdentifier + 0x56);
         InitializeSystemModule39(&uintStack_78);
         ptr_float_var = (float *)UtilityFunction3a240(ptr_float_var,ptr_float_var,&uintStack_78);
       }
     }
-    ptr_float_var = pfStack_98;
+    ptr_float_var = init_float_ptr_stack_98;
     if (handleIdentifier[0xa1] < *ptr_float_var) {
       handleIdentifier[0xa9] = 0.0;
       ptr_float_var[0] = 0.0;
@@ -52819,7 +52819,7 @@ float * InitializeResourceSystem(float *handleIdentifier)
       }
       handleIdentifier[0xa9] = SQRT(float_result);
     }
-    if (pfStack_98 != (float *)0x0) {
+    if (init_float_ptr_stack_98 != (float *)0x0) {
       while( true ) {
         LOCK();
         char_var = *(char *)(ptr_float_var + 0x3b);
@@ -52843,8 +52843,8 @@ LAB_180075f4f:
       *ptr_float_var = (float)((int)*ptr_float_var + -1);
       UNLOCK();
       if (char_var == '\0') {
-        if ((((float_result == 1.4013e-45) && (*(longlong *)(pfStack_98 + 0x84) != 0)) &&
-            (ptr_float_var = pfStack_98, InitializeAuthenticationSystem(pfStack_98), *(char *)(ptr_float_var + 0x3f) == '\0')) &&
+        if ((((float_result == 1.4013e-45) && (*(longlong *)(init_float_ptr_stack_98 + 0x84) != 0)) &&
+            (ptr_float_var = init_float_ptr_stack_98, InitializeAuthenticationSystem(init_float_ptr_stack_98), *(char *)(ptr_float_var + 0x3f) == '\0')) &&
            ((*(char *)(ptr_float_var + 0x3d) == '\0' &&
             (((*(byte *)((longlong)ptr_float_var + 0xfd) & SYSTEM_NODE_HEADER_SIZE) == 0 ||
              ((*(byte *)((longlong)ptr_float_var + 0xfe) & 1) == 0)))))) {
@@ -52955,8 +52955,8 @@ void InitializeTextureSystem(longlong handleIdentifier)
   int *pintStack_190;
   uint32_t uintStack_188;
   uint64_t uintStack_180;
-  float fStack_178;
-  float fStack_174;
+  float init_float_stack_178;
+  float init_float_stack_174;
   longlong longStack_170;
   longlong *plongStack_168;
   longlong *plongStack_160;
@@ -53113,25 +53113,25 @@ void InitializeTextureSystem(longlong handleIdentifier)
         float_result = (float_result - float_result) * (float_result - float_result) - (float_result - float_result) * (float_result - float_result);
         float_result = float_result * (float_result - float_result) - float_result * (float_result - float_result);
         float_result = float_result * (float_result - float_result) - float_result * (float_result - float_result);
-        fStack_174 = SQRT(float_result * float_result + float_result * float_result + float_result * float_result);
-        if (fStack_174 <= 0.0) {
+        init_float_stack_174 = SQRT(float_result * float_result + float_result * float_result + float_result * float_result);
+        if (init_float_stack_174 <= 0.0) {
           float_result = 0.0;
           float_result = 0.0;
-          fStack_178 = 1.0;
-          fStack_174 = 1.0;
+          init_float_stack_178 = 1.0;
+          init_float_stack_174 = 1.0;
         }
         else {
-          fStack_178 = 1.0 / fStack_174;
-          float_result = float_result * fStack_178;
-          float_result = fStack_178 * float_result;
-          fStack_178 = fStack_178 * float_result;
+          init_float_stack_178 = 1.0 / init_float_stack_174;
+          float_result = float_result * init_float_stack_178;
+          float_result = init_float_stack_178 * float_result;
+          init_float_stack_178 = init_float_stack_178 * float_result;
         }
         uintStack_180 = CONCAT44(float_result,float_result);
         ptr_float_var = (float *)(*(longlong *)(localBuffer_150._0_8_ + long_result) + uint_result);
         *ptr_float_var = float_result;
         ptr_float_var[1] = float_result;
-        ptr_float_var[2] = fStack_178;
-        ptr_float_var[3] = fStack_174;
+        ptr_float_var[2] = init_float_stack_178;
+        ptr_float_var[3] = init_float_stack_174;
         uint_result = uint_result - 1;
         uint_result = uint_result + 0xc;
         uint_result = uint_result + SYSTEM_DATA_COMPARE_SIZE;
@@ -55228,26 +55228,26 @@ void ConfigureSystemSettings(uint handleIdentifier,longlong resourceIdentifier,l
   float float_result;
   longlong *plstack_var;
   uint32_t uint_result;
-  float fStack_128;
-  float fStack_124;
-  float fStack_120;
-  float fStack_11c;
-  float fStack_118;
-  float fStack_114;
-  float fStack_110;
+  float init_float_stack_128;
+  float init_float_stack_124;
+  float init_float_stack_120;
+  float init_float_stack_11c;
+  float init_float_stack_118;
+  float init_float_stack_114;
+  float init_float_stack_110;
   uint32_t uintStack_10c;
-  float fStack_108;
-  float fStack_104;
-  float fStack_100;
-  float fStack_fc;
-  float fStack_f8;
-  float fStack_f4;
-  float fStack_f0;
-  float fStack_ec;
-  float fStack_e8;
-  float fStack_e4;
-  float fStack_e0;
-  float fStack_dc;
+  float init_float_stack_108;
+  float init_float_stack_104;
+  float init_float_stack_100;
+  float init_float_stack_fc;
+  float init_float_stack_f8;
+  float init_float_stack_f4;
+  float init_float_stack_f0;
+  float init_float_stack_ec;
+  float init_float_stack_e8;
+  float init_float_stack_e4;
+  float init_float_stack_e0;
+  float init_float_stack_dc;
 
   long_result = 0;
   if (handleIdentifier < 0xe) {
@@ -55841,44 +55841,44 @@ code_r0x00018007db1b:
       do {
         long_result = *(longlong *)(resourceIdentifier + 0x68);
         ptr_float_var = (float *)(long_result + 0x34 + long_result);
-        fStack_108 = *ptr_float_var;
-        fStack_104 = ptr_float_var[1];
-        fStack_100 = ptr_float_var[2];
-        fStack_fc = ptr_float_var[3];
+        init_float_stack_108 = *ptr_float_var;
+        init_float_stack_104 = ptr_float_var[1];
+        init_float_stack_100 = ptr_float_var[2];
+        init_float_stack_fc = ptr_float_var[3];
         ptr_float_var = (float *)(long_result + 0x14 + long_result);
-        fStack_f8 = *ptr_float_var;
-        fStack_f4 = ptr_float_var[1];
-        fStack_f0 = ptr_float_var[2];
-        fStack_ec = ptr_float_var[3];
+        init_float_stack_f8 = *ptr_float_var;
+        init_float_stack_f4 = ptr_float_var[1];
+        init_float_stack_f0 = ptr_float_var[2];
+        init_float_stack_ec = ptr_float_var[3];
         ptr_float_var = (float *)(long_result + 0x24 + long_result);
-        fStack_e8 = *ptr_float_var;
-        fStack_e4 = ptr_float_var[1];
-        fStack_e0 = ptr_float_var[2];
-        fStack_dc = ptr_float_var[3];
-        float_result = fStack_100 * fStack_f8 - fStack_f0 * fStack_108;
-        if ((fStack_f0 * fStack_104 - fStack_100 * fStack_f4) * fStack_e8 + fStack_e4 * float_result +
-            fStack_e0 * (fStack_f4 * fStack_108 - fStack_f8 * fStack_104) < 0.0) {
-          fStack_e0 = -fStack_e0;
-          fStack_118 = -fStack_e8;
-          fStack_114 = -fStack_e4;
+        init_float_stack_e8 = *ptr_float_var;
+        init_float_stack_e4 = ptr_float_var[1];
+        init_float_stack_e0 = ptr_float_var[2];
+        init_float_stack_dc = ptr_float_var[3];
+        float_result = init_float_stack_100 * init_float_stack_f8 - init_float_stack_f0 * init_float_stack_108;
+        if ((init_float_stack_f0 * init_float_stack_104 - init_float_stack_100 * init_float_stack_f4) * init_float_stack_e8 + init_float_stack_e4 * float_result +
+            init_float_stack_e0 * (init_float_stack_f4 * init_float_stack_108 - init_float_stack_f8 * init_float_stack_104) < 0.0) {
+          init_float_stack_e0 = -init_float_stack_e0;
+          init_float_stack_118 = -init_float_stack_e8;
+          init_float_stack_114 = -init_float_stack_e4;
           uintStack_10c = 0x7f7fffff;
-          fStack_e8 = -fStack_e8;
-          fStack_e4 = -fStack_e4;
-          fStack_dc = 3.4028235e+38;
-          fStack_110 = fStack_e0;
+          init_float_stack_e8 = -init_float_stack_e8;
+          init_float_stack_e4 = -init_float_stack_e4;
+          init_float_stack_dc = 3.4028235e+38;
+          init_float_stack_110 = init_float_stack_e0;
         }
-        UtilityFunction3b470(&fStack_128,&fStack_108,fStack_e0,float_result,uint_result);
-        SystemFunction_67_2(&fStack_128);
-        if (fStack_128 < 0.0) {
-          fStack_128 = -fStack_128;
-          fStack_124 = -fStack_124;
-          fStack_120 = -fStack_120;
-          fStack_11c = -fStack_11c;
+        UtilityFunction3b470(&init_float_stack_128,&init_float_stack_108,init_float_stack_e0,float_result,uint_result);
+        SystemFunction_67_2(&init_float_stack_128);
+        if (init_float_stack_128 < 0.0) {
+          init_float_stack_128 = -init_float_stack_128;
+          init_float_stack_124 = -init_float_stack_124;
+          init_float_stack_120 = -init_float_stack_120;
+          init_float_stack_11c = -init_float_stack_11c;
         }
-        float_result = fStack_11c;
-        float_result = fStack_120;
-        float_result = fStack_124;
-        float_result = fStack_128;
+        float_result = init_float_stack_11c;
+        float_result = init_float_stack_120;
+        float_result = init_float_stack_124;
+        float_result = init_float_stack_128;
         if (*(int *)(long_result + long_result) < iRam0000000180d49150) {
           CheckSystemInitialized(0x180d49150);
           if (iRam0000000180d49150 == -1) {
@@ -55890,13 +55890,13 @@ code_r0x00018007db1b:
         }
         if (float_result < 3.051851e-05) {
           float_result = 3.051851e-05;
-          fStack_128 = 3.051851e-05;
+          init_float_stack_128 = 3.051851e-05;
           float_result = float_result * float_result;
           float_result = float_result * float_result;
           float_result = float_result * float_result;
-          fStack_124 = float_result;
-          fStack_120 = float_result;
-          fStack_11c = float_result;
+          init_float_stack_124 = float_result;
+          init_float_stack_120 = float_result;
+          init_float_stack_11c = float_result;
         }
         float_result = *(float *)(long_result + 0x18 + long_result);
         float_result = *(float *)(long_result + 0x1c + long_result);
@@ -55912,10 +55912,10 @@ code_r0x00018007db1b:
           float_result = -float_result;
           float_result = -float_result;
           float_result = -float_result;
-          fStack_128 = float_result;
-          fStack_124 = float_result;
-          fStack_120 = float_result;
-          fStack_11c = float_result;
+          init_float_stack_128 = float_result;
+          init_float_stack_124 = float_result;
+          init_float_stack_120 = float_result;
+          init_float_stack_11c = float_result;
         }
         *(short *)ptr_float_var = (short)(int)(float_result * 32767.0);
         *(short *)((longlong)ptr_float_var + 2) = (short)(int)(float_result * 32767.0);
