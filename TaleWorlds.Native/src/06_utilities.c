@@ -1848,10 +1848,10 @@ dataValue g_memory_real_allocator;
 dataValue g_memory_float_allocator;
 dataValue g_memory_double_allocator;
 dataValue g_memory_long_double_allocator;
-dataValue g_memory_allocator_8bit;
-dataValue g_memory_allocator_16bit;
-dataValue g_memory_allocator_32bit;
-dataValue g_memory_allocator_64bit;
+dataValue g_memory_allocator_8bit;              // 8位内存分配器
+dataValue g_memory_allocator_16bit;             // 16位内存分配器
+dataValue g_memory_allocator_32bit;             // 32位内存分配器
+dataValue g_memory_allocator_64bit;             // 64位内存分配器
 dataValue g_memory_allocator_byte;
 dataValue g_memory_allocator_word;
 dataValue g_memory_allocator_dword;
@@ -1929,10 +1929,10 @@ dataValue g_memory_real_register_allocator;
 dataValue g_memory_float_register_allocator;
 dataValue g_memory_double_register_allocator;
 dataValue g_memory_long_double_register_allocator;
-dataValue g_memory_register_allocator_8bit;
-dataValue g_memory_register_allocator_16bit;
-dataValue g_memory_register_allocator_32bit;
-dataValue g_memory_register_allocator_64bit;
+dataValue g_memory_register_allocator_8bit;       // 8位寄存器内存分配器
+dataValue g_memory_register_allocator_16bit;      // 16位寄存器内存分配器
+dataValue g_memory_register_allocator_32bit;      // 32位寄存器内存分配器
+dataValue g_memory_register_allocator_64bit;      // 64位寄存器内存分配器
 dataValue g_memory_register_allocator_byte;
 dataValue g_memory_register_allocator_word;
 dataValue g_memory_register_allocator_dword;

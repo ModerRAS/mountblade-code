@@ -35396,8 +35396,8 @@ void InitializeSystemModule67(longlong *handleIdentifier,longlong resourceIdenti
   uint64_t *system_buffer_ptr_e0;
   uint64_t uintStack_d8;
   uint64_t *system_buffer_ptr_d0;
-  uint8_t uintStack_c8;
-  undefined7 uintStack_c7;
+  uint8_t init_stack_uint_c8;
+  uint8_t init_stack_uint_c7;
   uint64_t *system_buffer_ptr_b8;
   ulonglong uintStack_b0;
   uint uintStack_a8;
@@ -35406,8 +35406,8 @@ void InitializeSystemModule67(longlong *handleIdentifier,longlong resourceIdenti
   uint32_t uintStack_9c;
   ulonglong uintStack_98;
   ulonglong uintStack_90;
-  uint8_t uintStack_88;
-  undefined7 uintStack_87;
+  uint8_t init_stack_uint_88;
+  uint8_t init_stack_uint_87;
   longlong longStack_78;
   ulonglong uintStack_70;
   uint uintStack_68;
