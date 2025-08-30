@@ -6616,7 +6616,7 @@ system_handle_paramr_001:
   ;
   unregister_bx[2] = (((system_stack_float_param_74 - system_stack_float_control_param_8) * float_var +
                   system_stack_float_control_param_8) - float_var) * float_var + float_var;
-  unregister_bx[3] = 1.0;
+  unregister_bx[3] = SYSTEM_FLOAT_VALUE_ONE;
   system_execute_crypto_operation(*(ulong long *)(unreg_bp + SYSTEM_OFFSET_HANDLE_PARAM00) ^ (ulong long)&system_stack_zero);
 }
   g_data_crypto_flag = SYSTEM_ONE_VALUE;
@@ -6638,7 +6638,7 @@ system_handle_paramr_001:
   ;
   unregister_bx[2] = (((system_stack_float_param_74 - system_stack_float_control_param_8) * float_var +
                   system_stack_float_control_param_8) - float_var) * float_var + float_var;
-  unregister_bx[3] = 1.0;
+  unregister_bx[3] = SYSTEM_FLOAT_VALUE_ONE;
   system_execute_crypto_operation(*(ulong long *)(unreg_bp + SYSTEM_OFFSET_HANDLE_PARAM00) ^ (ulong long)&system_stack_zero);
 }
         g_data_crypto_flag_secondary = '\x01';
