@@ -2040,10 +2040,10 @@ void InitializeSystemListNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_VIDEO_DECODER_1;
-  node_previous[7] = SYSTEM_NODE_ID_VIDEO_DECODER_2;
-  node_previous[8] = &g_system_node_video;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_VIDEO_DECODER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_VIDEO_DECODER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_video;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -2086,10 +2086,10 @@ void InitializeMemoryNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_1;
-  node_previous[7] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_2;
-  node_previous[8] = &g_system_node_memory;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_memory;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -2132,10 +2132,10 @@ void InitializeBufferNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_INPUT_HANDLER_1;
-  node_previous[7] = SYSTEM_NODE_ID_INPUT_HANDLER_2;
-  node_previous[8] = &g_system_node_input;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_INPUT_HANDLER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_INPUT_HANDLER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_input;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -2178,10 +2178,10 @@ void InitializeResourceNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_NETWORK_MANAGER_1;
-  node_previous[7] = SYSTEM_NODE_ID_NETWORK_MANAGER_2;
-  node_previous[8] = &systemNode5;
-  node_previous[9] = 3;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_MANAGER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_MANAGER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &systemNode5;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -2224,10 +2224,10 @@ void InitializeResourceNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_1;
-  node_previous[7] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_2;
-  node_previous[8] = &g_system_node;
-  node_previous[9] = 3;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -2271,10 +2271,10 @@ void InitializeRenderNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_FILE_SYSTEM_1;
-  node_previous[7] = SYSTEM_NODE_ID_FILE_SYSTEM_2;
-  node_previous[8] = &g_system_node;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_FILE_SYSTEM_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_FILE_SYSTEM_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -2318,10 +2318,10 @@ void InitializeAudioNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_SECURITY_MODULE_1;
-  node_previous[7] = SYSTEM_NODE_ID_SECURITY_MODULE_2;
-  node_previous[8] = &g_system_node;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_SECURITY_MODULE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_SECURITY_MODULE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -2365,10 +2365,10 @@ void InitializeNetworkNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_THREAD_SCHEDULER_1;
-  node_previous[7] = SYSTEM_NODE_ID_THREAD_SCHEDULER_2;
-  node_previous[8] = &g_system_node;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_THREAD_SCHEDULER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_THREAD_SCHEDULER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -2432,10 +2432,10 @@ void InitializeEngineState(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_DATABASE_SYSTEM_1;
-  node_previous[7] = SYSTEM_NODE_ID_DATABASE_SYSTEM_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATABASE_SYSTEM_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATABASE_SYSTEM_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -2512,10 +2512,10 @@ void InitializeRenderingSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -2558,10 +2558,10 @@ void InitializeAudioSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_VIDEO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_VIDEO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 3;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_VIDEO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_VIDEO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -2634,10 +2634,10 @@ void InitializeNetworkSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_CORE_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -2681,10 +2681,10 @@ void initialize_system_phase1(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 4;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -2728,10 +2728,10 @@ void initialize_system_phase2(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -2775,10 +2775,10 @@ void initialize_system_phase3(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_IO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -2822,10 +2822,10 @@ void initialize_system_phase4(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_DATA_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_DATA_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -2869,10 +2869,10 @@ void initialize_system_phase5(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = pflag_initialized;
   return;
 }
@@ -2916,10 +2916,10 @@ void initialize_system_phase6(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UI_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UI_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -2963,10 +2963,10 @@ void initialize_system_phase7(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_PHYSICS_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_PHYSICS_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_PHYSICS_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_PHYSICS_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -3010,10 +3010,10 @@ void initialize_system_phase8(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_CONFIG_SYSTEM_1;
-  node_previous[7] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CONFIG_SYSTEM_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -3057,10 +3057,10 @@ void initialize_system_phase9(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -3104,10 +3104,10 @@ void initialize_system_phase10(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_VIDEO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_VIDEO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 3;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_VIDEO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_VIDEO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -3151,10 +3151,10 @@ void initialize_graphics_phase1(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_DATABASE_SYSTEM_1;
-  node_previous[7] = SYSTEM_NODE_ID_DATABASE_SYSTEM_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATABASE_SYSTEM_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATABASE_SYSTEM_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -3198,10 +3198,10 @@ void initialize_graphics_phase2(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_RESOURCE_MANAGER_1;
-  node_previous[7] = SYSTEM_NODE_ID_RESOURCE_MANAGER_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 4;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RESOURCE_MANAGER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RESOURCE_MANAGER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -3245,10 +3245,10 @@ void initialize_graphics_phase3(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_EVENT_HANDLER_1;
-  node_previous[7] = SYSTEM_NODE_ID_EVENT_HANDLER_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 3;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_EVENT_HANDLER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_EVENT_HANDLER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -3321,10 +3321,10 @@ void InitializeDataNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_CORE_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -3368,10 +3368,10 @@ void InitializeResourceNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 4;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -3415,10 +3415,10 @@ void InitializeMemoryNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -3462,10 +3462,10 @@ void InitializeThreadNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_IO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -3509,10 +3509,10 @@ void InitializeConfigNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_DATA_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_DATA_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -3556,10 +3556,10 @@ void InitializeStateNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = pflag_initialized;
   return;
 }
@@ -3603,10 +3603,10 @@ void InitializeBufferNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UI_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UI_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -3650,10 +3650,10 @@ void InitializeCacheNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_CONFIG_SYSTEM_1;
-  node_previous[7] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CONFIG_SYSTEM_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -3697,10 +3697,10 @@ void InitializePoolNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_CORE_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -3744,10 +3744,10 @@ void InitializeQueueNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 4;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -3791,10 +3791,10 @@ void InitializeStackNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -3838,10 +3838,10 @@ void InitializeSystemListNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_IO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -3885,10 +3885,10 @@ void InitializeTreeNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_DATA_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_DATA_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -3932,10 +3932,10 @@ void InitializeGraphNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = pflag_initialized;
   return;
 }
@@ -3979,10 +3979,10 @@ void InitializeMapNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UI_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UI_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -4026,10 +4026,10 @@ void InitializeSetNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_CORE_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -4073,10 +4073,10 @@ void InitializeArrayNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 4;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -4120,10 +4120,10 @@ void InitializeVectorNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -4167,10 +4167,10 @@ void InitializeMatrixNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_IO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -4214,10 +4214,10 @@ void InitializeHashNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_DATA_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_DATA_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -4261,10 +4261,10 @@ void InitializeTableNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = pflag_initialized;
   return;
 }
@@ -4308,10 +4308,10 @@ void InitializeRecordNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UI_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UI_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -4355,10 +4355,10 @@ void InitializeFieldNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_DATABASE_SYSTEM_1;
-  node_previous[7] = SYSTEM_NODE_ID_DATABASE_SYSTEM_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATABASE_SYSTEM_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATABASE_SYSTEM_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -4402,10 +4402,10 @@ void InitializeAttributeNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_CONFIG_SYSTEM_1;
-  node_previous[7] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CONFIG_SYSTEM_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -4449,10 +4449,10 @@ void InitializePropertyNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_CORE_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -4496,10 +4496,10 @@ void InitializeMethodNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 4;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -4543,10 +4543,10 @@ void InitializeEventNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -4590,10 +4590,10 @@ void InitializeDelegateNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_IO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -4637,10 +4637,10 @@ void InitializeCallbackNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_DATA_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_DATA_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -4684,10 +4684,10 @@ void InitializeHandlerNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = pflag_initialized;
   return;
 }
@@ -4731,10 +4731,10 @@ void InitializeListenerNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UI_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UI_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -4807,10 +4807,10 @@ void InitializeSystemObject1(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -4854,10 +4854,10 @@ void InitializeSystemObject2(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_VIDEO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_VIDEO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 3;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_VIDEO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_VIDEO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -4901,10 +4901,10 @@ void InitializeSystemObject3(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -4948,10 +4948,10 @@ void InitializeSystemObject4(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_VIDEO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_VIDEO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 3;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_VIDEO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_VIDEO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -4995,10 +4995,10 @@ void InitializeSystemObject5(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_CORE_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -5042,10 +5042,10 @@ void InitializeSystemObject6(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 4;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -5089,10 +5089,10 @@ void InitializeSystemObject7(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -5136,10 +5136,10 @@ void InitializeSystemObject8(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_IO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -5183,10 +5183,10 @@ void InitializeSystemObject9(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_DATA_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_DATA_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -5230,10 +5230,10 @@ void InitializeSystemObject10(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = pflag_initialized;
   return;
 }
@@ -5277,10 +5277,10 @@ void InitializeSystemObject11(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UI_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UI_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -5343,10 +5343,10 @@ void InitializeThreadConfig2(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_CORE_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -5390,10 +5390,10 @@ void InitializeSystemObject13(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 4;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -5437,10 +5437,10 @@ void InitializeSystemObject14(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -5484,10 +5484,10 @@ void InitializeSystemObject15(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_IO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -5531,10 +5531,10 @@ void InitializeSystemObject16(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_DATA_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_DATA_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -5578,10 +5578,10 @@ void InitializeSystemObject17(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = pflag_initialized;
   return;
 }
@@ -5625,10 +5625,10 @@ void InitializeSystemObject18(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UI_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UI_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -5796,10 +5796,10 @@ void InitializeSystemObject25(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_RESOURCE_MANAGER_1;
-  node_previous[7] = SYSTEM_NODE_ID_RESOURCE_MANAGER_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 4;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RESOURCE_MANAGER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RESOURCE_MANAGER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -5843,10 +5843,10 @@ void EnableInputDevice(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_EVENT_HANDLER_1;
-  node_previous[7] = SYSTEM_NODE_ID_EVENT_HANDLER_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 3;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_EVENT_HANDLER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_EVENT_HANDLER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -5890,10 +5890,10 @@ void DisableInputDevice(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_CORE_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -5937,10 +5937,10 @@ void InitializeNetworkSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 4;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -5984,10 +5984,10 @@ void CreateNetworkSocket(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -6031,10 +6031,10 @@ void DestroyNetworkSocket(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_IO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -6078,10 +6078,10 @@ void ConnectNetworkSocket(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_DATA_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_DATA_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -6125,10 +6125,10 @@ void DisconnectNetworkSocket(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = pflag_initialized;
   return;
 }
@@ -6172,10 +6172,10 @@ void SendNetworkData(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UI_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UI_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -6219,10 +6219,10 @@ void ReceiveNetworkData(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_CORE_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -6266,10 +6266,10 @@ void GetNetworkStatus(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 4;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -6313,10 +6313,10 @@ void SetNetworkTimeout(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -6360,10 +6360,10 @@ void FlushNetworkBuffer(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_IO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -6407,10 +6407,10 @@ void InitializeSystemModule18(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_DATA_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_DATA_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -6454,10 +6454,10 @@ void InitializeSystemModule19(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = pflag_initialized;
   return;
 }
@@ -6501,10 +6501,10 @@ void InitializeSystemModule20(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UI_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UI_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -6602,10 +6602,10 @@ void InitializeAudioSubsystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_CONFIG_SYSTEM_1;
-  node_previous[7] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CONFIG_SYSTEM_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -6649,10 +6649,10 @@ void InitializeVideoSubsystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_PHYSICS_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_PHYSICS_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_PHYSICS_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_PHYSICS_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -6696,10 +6696,10 @@ void InitializeInputSubsystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -6743,10 +6743,10 @@ void InitializeNetworkSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_VIDEO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_VIDEO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 3;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_VIDEO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_VIDEO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -6790,10 +6790,10 @@ void InitializeConfigSubsystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_CORE_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -6837,10 +6837,10 @@ void InitializeFontSubsystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 4;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -6884,10 +6884,10 @@ void InitializeShaderSubsystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -6931,10 +6931,10 @@ void InitializePhysicsSubsystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_IO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -6978,10 +6978,10 @@ void InitializeUISubsystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_DATA_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_DATA_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -7025,10 +7025,10 @@ void InitializeSecuritySubsystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = pflag_initialized;
   return;
 }
@@ -7072,10 +7072,10 @@ void ProcessSystemStringData(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UI_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UI_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -7119,10 +7119,10 @@ void ValidateSystemConfiguration(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_RESOURCE_MANAGER_1;
-  node_previous[7] = SYSTEM_NODE_ID_RESOURCE_MANAGER_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 4;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RESOURCE_MANAGER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RESOURCE_MANAGER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -7166,10 +7166,10 @@ void InitializeSystemTimer(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_EVENT_HANDLER_1;
-  node_previous[7] = SYSTEM_NODE_ID_EVENT_HANDLER_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 3;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_EVENT_HANDLER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_EVENT_HANDLER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -7213,10 +7213,10 @@ void InitializeSystemLogger(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_CORE_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -7260,10 +7260,10 @@ void InitializeSystemProfiler(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 4;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -7307,10 +7307,10 @@ void InitializeAudioSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -7354,10 +7354,10 @@ void InitializeVideoSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_IO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -7401,10 +7401,10 @@ void InitializeInputSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_DATA_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_DATA_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -7448,10 +7448,10 @@ void InitializeNetworkSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = pflag_initialized;
   return;
 }
@@ -7495,10 +7495,10 @@ void InitializeConfigSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UI_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UI_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -7542,10 +7542,10 @@ void InitializeSystemModule42(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_PHYSICS_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_PHYSICS_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_PHYSICS_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_PHYSICS_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -7589,10 +7589,10 @@ void InitializeSystemModule43(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_CONFIG_SYSTEM_1;
-  node_previous[7] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CONFIG_SYSTEM_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -7636,10 +7636,10 @@ void InitializeSystemModule44(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_RESOURCE_MANAGER_1;
-  node_previous[7] = SYSTEM_NODE_ID_RESOURCE_MANAGER_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 4;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RESOURCE_MANAGER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RESOURCE_MANAGER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -7683,10 +7683,10 @@ void InitializeSystemModule45(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_EVENT_HANDLER_1;
-  node_previous[7] = SYSTEM_NODE_ID_EVENT_HANDLER_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 3;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_EVENT_HANDLER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_EVENT_HANDLER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -7730,10 +7730,10 @@ void InitializeSystemModule46(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_DATABASE_SYSTEM_1;
-  node_previous[7] = SYSTEM_NODE_ID_DATABASE_SYSTEM_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATABASE_SYSTEM_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATABASE_SYSTEM_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -7777,10 +7777,10 @@ void UtilityModule1(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_CORE_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -7824,10 +7824,10 @@ void UtilityModule2(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 4;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -7871,10 +7871,10 @@ void UtilityModule3(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -7918,10 +7918,10 @@ void UtilityModule4(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_IO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -7965,10 +7965,10 @@ void UtilityModule5(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_DATA_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_DATA_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -8012,10 +8012,10 @@ void UtilityModule6(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = pflag_initialized;
   return;
 }
@@ -8059,10 +8059,10 @@ void UtilityModule7(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UI_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UI_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -8173,10 +8173,10 @@ void InitializeShaderSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_CORE_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -8220,10 +8220,10 @@ void InitializePhysicsSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 4;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -8267,10 +8267,10 @@ void ProcessGraphicsTexture(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -8314,10 +8314,10 @@ void InitializeUISystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_IO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -8361,10 +8361,10 @@ void InitializeSecuritySystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_DATA_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_DATA_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -8408,10 +8408,10 @@ void InitializeAuthenticationSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = pflag_initialized;
   return;
 }
@@ -8455,10 +8455,10 @@ void InitializeResourceSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UI_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UI_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -8502,10 +8502,10 @@ void InitializeTextureSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_DATABASE_SYSTEM_1;
-  node_previous[7] = SYSTEM_NODE_ID_DATABASE_SYSTEM_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATABASE_SYSTEM_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATABASE_SYSTEM_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -8568,10 +8568,10 @@ void InitializeSystemTimer(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = dataNodeSignaturePrimary;
-  node_previous[7] = dataNodeSignatureSecondary;
-  node_previous[8] = &defaultInitializationFunction;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = dataNodeSignaturePrimary;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = dataNodeSignatureSecondary;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &defaultInitializationFunction;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -8615,10 +8615,10 @@ void InitializeSystemLogger(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_1;
-  node_previous[7] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_2;
-  node_previous[8] = &g_system_node_audio;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_audio;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -8662,10 +8662,10 @@ void InitializeSystemProfiler(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_VIDEO_DECODER_1;
-  node_previous[7] = SYSTEM_NODE_ID_VIDEO_DECODER_2;
-  node_previous[8] = &g_system_node_video;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_VIDEO_DECODER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_VIDEO_DECODER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_video;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -8709,10 +8709,10 @@ void InitializeAudioSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_1;
-  node_previous[7] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_2;
-  node_previous[8] = &g_system_node_memory;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_memory;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -8756,10 +8756,10 @@ void InitializeVideoSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_INPUT_HANDLER_1;
-  node_previous[7] = SYSTEM_NODE_ID_INPUT_HANDLER_2;
-  node_previous[8] = &g_system_node_input;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_INPUT_HANDLER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_INPUT_HANDLER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_input;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -8803,10 +8803,10 @@ void InitializeInputSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_NETWORK_MANAGER_1;
-  node_previous[7] = SYSTEM_NODE_ID_NETWORK_MANAGER_2;
-  node_previous[8] = &systemNode5;
-  node_previous[9] = 3;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_MANAGER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_MANAGER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &systemNode5;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -8850,10 +8850,10 @@ void InitializeNetworkSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_1;
-  node_previous[7] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_2;
-  node_previous[8] = &g_system_node;
-  node_previous[9] = 3;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -8897,10 +8897,10 @@ void InitializeConfigSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_FILE_SYSTEM_1;
-  node_previous[7] = SYSTEM_NODE_ID_FILE_SYSTEM_2;
-  node_previous[8] = &g_system_node;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_FILE_SYSTEM_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_FILE_SYSTEM_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -8944,10 +8944,10 @@ void InitializeAudioSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_SECURITY_MODULE_1;
-  node_previous[7] = SYSTEM_NODE_ID_SECURITY_MODULE_2;
-  node_previous[8] = &g_system_node;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_SECURITY_MODULE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_SECURITY_MODULE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -8991,10 +8991,10 @@ void InitializeVideoSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_THREAD_SCHEDULER_1;
-  node_previous[7] = SYSTEM_NODE_ID_THREAD_SCHEDULER_2;
-  node_previous[8] = &g_system_node;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_THREAD_SCHEDULER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_THREAD_SCHEDULER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -9038,10 +9038,10 @@ void InitializeInputSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_CONFIG_SYSTEM_1;
-  node_previous[7] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CONFIG_SYSTEM_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -9256,10 +9256,10 @@ void InitializeResourceSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_CORE_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -9303,10 +9303,10 @@ void InitializeTextureSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 4;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -9350,10 +9350,10 @@ void InitializeStringManagerSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -9397,10 +9397,10 @@ void InitializeMemoryManagerSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_IO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -9444,10 +9444,10 @@ void InitializeThreadManagerSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_DATA_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_DATA_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -9491,10 +9491,10 @@ void InitializeEventSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = pflag_initialized;
   return;
 }
@@ -9538,10 +9538,10 @@ void InitializeFilesystemSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UI_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UI_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -9585,10 +9585,10 @@ void InitializeDatabaseSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_CORE_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -9632,10 +9632,10 @@ void SetupGraphicsDevice(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 4;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -9679,10 +9679,10 @@ void InitializeGraphicsSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -9726,10 +9726,10 @@ void InitializeAudioManagerSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_IO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -9773,10 +9773,10 @@ void InitializeNetworkManagerSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_DATA_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_DATA_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -9820,10 +9820,10 @@ void InitializeInputManagerSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = pflag_initialized;
   return;
 }
@@ -9867,10 +9867,10 @@ void InitializeGraphicsMemory(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UI_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UI_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -9914,10 +9914,10 @@ void InitializeRenderSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_CORE_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -9961,10 +9961,10 @@ void InitializeGameSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 4;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -10008,10 +10008,10 @@ void InitializeConditionInitNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -10055,10 +10055,10 @@ void ConfigureGraphicsShader(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_IO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -10102,10 +10102,10 @@ void InitializeAudioDataNode7(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_DATA_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_DATA_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -10149,10 +10149,10 @@ void InitializeNetworkMutex(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = pflag_initialized;
   return;
 }
@@ -10196,10 +10196,10 @@ void InitializeShaderSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UI_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UI_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -10243,10 +10243,10 @@ void InitializeNetworkInitNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_CORE_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -10290,10 +10290,10 @@ void InitializeMutexInitNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 4;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -10337,10 +10337,10 @@ void InitializeSystemModule58(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -10384,10 +10384,10 @@ void InitializeSystemModule40(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_IO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -10431,10 +10431,10 @@ void InitializeAudioDataNode8(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_DATA_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_DATA_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -10478,10 +10478,10 @@ void InitializeDataEngineNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = pflag_initialized;
   return;
 }
@@ -10525,10 +10525,10 @@ void InitializeUtilEngineNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UI_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UI_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -10572,10 +10572,10 @@ void InitializeResourceEngineNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = dataNodeSignaturePrimary;
-  node_previous[7] = dataNodeSignatureSecondary;
-  node_previous[8] = &defaultInitializationFunction;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = dataNodeSignaturePrimary;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = dataNodeSignatureSecondary;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &defaultInitializationFunction;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -10619,10 +10619,10 @@ void ConfigureGraphicsParameters(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_1;
-  node_previous[7] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_2;
-  node_previous[8] = &g_system_node_audio;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_audio;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -10666,10 +10666,10 @@ void InitializeSecuritySystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_VIDEO_DECODER_1;
-  node_previous[7] = SYSTEM_NODE_ID_VIDEO_DECODER_2;
-  node_previous[8] = &g_system_node_video;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_VIDEO_DECODER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_VIDEO_DECODER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_video;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -10713,10 +10713,10 @@ void InitializeInputEngineNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_1;
-  node_previous[7] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_2;
-  node_previous[8] = &g_system_node_memory;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_memory;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -10760,10 +10760,10 @@ void InitializeSystemModule41(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_INPUT_HANDLER_1;
-  node_previous[7] = SYSTEM_NODE_ID_INPUT_HANDLER_2;
-  node_previous[8] = &g_system_node_input;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_INPUT_HANDLER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_INPUT_HANDLER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_input;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -10807,10 +10807,10 @@ void InitializeSecurityEngineNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_NETWORK_MANAGER_1;
-  node_previous[7] = SYSTEM_NODE_ID_NETWORK_MANAGER_2;
-  node_previous[8] = &systemNode5;
-  node_previous[9] = 3;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_MANAGER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_MANAGER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &systemNode5;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -10854,10 +10854,10 @@ void InitializeSystemDataNode29(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_1;
-  node_previous[7] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_2;
-  node_previous[8] = &g_system_node;
-  node_previous[9] = 3;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -10901,10 +10901,10 @@ void InitializeFontSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_FILE_SYSTEM_1;
-  node_previous[7] = SYSTEM_NODE_ID_FILE_SYSTEM_2;
-  node_previous[8] = &g_system_node;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_FILE_SYSTEM_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_FILE_SYSTEM_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -10948,10 +10948,10 @@ void InitializeSystemDataNode30(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_SECURITY_MODULE_1;
-  node_previous[7] = SYSTEM_NODE_ID_SECURITY_MODULE_2;
-  node_previous[8] = &g_system_node;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_SECURITY_MODULE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_SECURITY_MODULE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -10995,10 +10995,10 @@ void InitializeSystemDataNode31(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_THREAD_SCHEDULER_1;
-  node_previous[7] = SYSTEM_NODE_ID_THREAD_SCHEDULER_2;
-  node_previous[8] = &g_system_node;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_THREAD_SCHEDULER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_THREAD_SCHEDULER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -11071,10 +11071,10 @@ void InitializeResourceEngineNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = dataNodeSignaturePrimary;
-  node_previous[7] = dataNodeSignatureSecondary;
-  node_previous[8] = &defaultInitializationFunction;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = dataNodeSignaturePrimary;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = dataNodeSignatureSecondary;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &defaultInitializationFunction;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -11118,10 +11118,10 @@ void ConfigureGraphicsParameters(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_1;
-  node_previous[7] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_2;
-  node_previous[8] = &g_system_node_audio;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_audio;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -11165,10 +11165,10 @@ void InitializeSecuritySystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_VIDEO_DECODER_1;
-  node_previous[7] = SYSTEM_NODE_ID_VIDEO_DECODER_2;
-  node_previous[8] = &g_system_node_video;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_VIDEO_DECODER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_VIDEO_DECODER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_video;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -11212,10 +11212,10 @@ void InitializeInputEngineNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_1;
-  node_previous[7] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_2;
-  node_previous[8] = &g_system_node_memory;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_memory;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -11259,10 +11259,10 @@ void InitializeSystemModule41(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_INPUT_HANDLER_1;
-  node_previous[7] = SYSTEM_NODE_ID_INPUT_HANDLER_2;
-  node_previous[8] = &g_system_node_input;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_INPUT_HANDLER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_INPUT_HANDLER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_input;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -11306,10 +11306,10 @@ void InitializeSecurityEngineNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_NETWORK_MANAGER_1;
-  node_previous[7] = SYSTEM_NODE_ID_NETWORK_MANAGER_2;
-  node_previous[8] = &systemNode5;
-  node_previous[9] = 3;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_MANAGER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_MANAGER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &systemNode5;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -11353,10 +11353,10 @@ void InitializeSystemDataNode29(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_1;
-  node_previous[7] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_2;
-  node_previous[8] = &g_system_node;
-  node_previous[9] = 3;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -11400,10 +11400,10 @@ void InitializeFontSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_FILE_SYSTEM_1;
-  node_previous[7] = SYSTEM_NODE_ID_FILE_SYSTEM_2;
-  node_previous[8] = &g_system_node;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_FILE_SYSTEM_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_FILE_SYSTEM_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -11447,10 +11447,10 @@ void InitializeSystemDataNode30(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_SECURITY_MODULE_1;
-  node_previous[7] = SYSTEM_NODE_ID_SECURITY_MODULE_2;
-  node_previous[8] = &g_system_node;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_SECURITY_MODULE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_SECURITY_MODULE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -11494,10 +11494,10 @@ void InitializeSystemDataNode31(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_THREAD_SCHEDULER_1;
-  node_previous[7] = SYSTEM_NODE_ID_THREAD_SCHEDULER_2;
-  node_previous[8] = &g_system_node;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_THREAD_SCHEDULER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_THREAD_SCHEDULER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -11579,10 +11579,10 @@ void ConfigureSystemHandles(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_CORE_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -11626,10 +11626,10 @@ void SetupSystemMemory(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 4;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -11673,10 +11673,10 @@ void InitializeSystemResources(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -11720,10 +11720,10 @@ void InitializeInputMutex(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_IO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -11767,10 +11767,10 @@ void ConfigureSystemParameters(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_DATA_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_DATA_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -11814,10 +11814,10 @@ void InitializeSystemComponents(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = pflag_initialized;
   return;
 }
@@ -11861,10 +11861,10 @@ void SetupSystemServices(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UI_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UI_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -11918,10 +11918,10 @@ void InitializeSystemProfiler(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_CONFIG_SYSTEM_1;
-  node_previous[7] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CONFIG_SYSTEM_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -11965,10 +11965,10 @@ void InitializeAudioSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_CORE_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -12012,10 +12012,10 @@ void InitializeVideoSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 4;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -12059,10 +12059,10 @@ void InitializeInputSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -12106,10 +12106,10 @@ void InitializeNetworkSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_IO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -12153,10 +12153,10 @@ void InitializeConfigSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_DATA_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_DATA_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -12200,10 +12200,10 @@ void InitializeAudioSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = pflag_initialized;
   return;
 }
@@ -12247,10 +12247,10 @@ void InitializeVideoSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UI_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UI_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -12294,10 +12294,10 @@ void InitializeInputSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_CORE_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -12341,10 +12341,10 @@ void InitializeNetworkSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 4;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -12388,10 +12388,10 @@ void InitializeSystemModule1(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -12435,10 +12435,10 @@ void InitializeSystemModule2(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_IO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -12482,10 +12482,10 @@ void InitializeSystemModule3(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_DATA_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_DATA_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -12529,10 +12529,10 @@ void InitializeSystemModule4(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = pflag_initialized;
   return;
 }
@@ -12576,10 +12576,10 @@ void InitializeSystemModule59(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UI_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UI_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -12695,10 +12695,10 @@ void InitializeAudioDataNode7(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = dataNodeSignaturePrimary;
-  node_previous[7] = dataNodeSignatureSecondary;
-  node_previous[8] = &defaultInitializationFunction;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = dataNodeSignaturePrimary;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = dataNodeSignatureSecondary;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &defaultInitializationFunction;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -12742,10 +12742,10 @@ void InitializeNetworkMutex(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_1;
-  node_previous[7] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_2;
-  node_previous[8] = &g_system_node_audio;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_audio;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -12789,10 +12789,10 @@ void InitializeShaderSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_VIDEO_DECODER_1;
-  node_previous[7] = SYSTEM_NODE_ID_VIDEO_DECODER_2;
-  node_previous[8] = &g_system_node_video;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_VIDEO_DECODER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_VIDEO_DECODER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_video;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -12836,10 +12836,10 @@ void InitializeFontSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_1;
-  node_previous[7] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_2;
-  node_previous[8] = &g_system_node_memory;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_memory;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -12883,10 +12883,10 @@ void InitializeSystemModule9(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_INPUT_HANDLER_1;
-  node_previous[7] = SYSTEM_NODE_ID_INPUT_HANDLER_2;
-  node_previous[8] = &g_system_node_input;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_INPUT_HANDLER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_INPUT_HANDLER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_input;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -12930,10 +12930,10 @@ void InitializeSystemModule38(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_NETWORK_MANAGER_1;
-  node_previous[7] = SYSTEM_NODE_ID_NETWORK_MANAGER_2;
-  node_previous[8] = &systemNode5;
-  node_previous[9] = 3;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_MANAGER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_MANAGER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &systemNode5;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -12977,10 +12977,10 @@ void InitializeSystemModule10(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_1;
-  node_previous[7] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_2;
-  node_previous[8] = &g_system_node;
-  node_previous[9] = 3;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -13024,10 +13024,10 @@ void InitializeSystemNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_FILE_SYSTEM_1;
-  node_previous[7] = SYSTEM_NODE_ID_FILE_SYSTEM_2;
-  node_previous[8] = &g_system_node;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_FILE_SYSTEM_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_FILE_SYSTEM_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -13071,10 +13071,10 @@ void InitializeSystemModule44(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_SECURITY_MODULE_1;
-  node_previous[7] = SYSTEM_NODE_ID_SECURITY_MODULE_2;
-  node_previous[8] = &g_system_node;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_SECURITY_MODULE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_SECURITY_MODULE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -13118,10 +13118,10 @@ void InitializeSystemModule36(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_THREAD_SCHEDULER_1;
-  node_previous[7] = SYSTEM_NODE_ID_THREAD_SCHEDULER_2;
-  node_previous[8] = &g_system_node;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_THREAD_SCHEDULER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_THREAD_SCHEDULER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -13251,10 +13251,10 @@ void InitializeSystemModule59(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
-  node_previous[8] = &g_global_system_config;
-  node_previous[9] = 2;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_global_system_config;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 2;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -13298,10 +13298,10 @@ void InitializeSystemModule6(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = INITIALIZATION_NODE_VALUE_1;
-  node_previous[7] = INITIALIZATION_NODE_VALUE_2;
-  node_previous[8] = &g_global_system_config;
-  node_previous[9] = 2;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = INITIALIZATION_NODE_VALUE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = INITIALIZATION_NODE_VALUE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_global_system_config;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 2;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -13345,10 +13345,10 @@ void InitializeSystemModule42(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = dataNodeSignaturePrimary;
-  node_previous[7] = dataNodeSignatureSecondary;
-  node_previous[8] = &defaultInitializationFunction;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = dataNodeSignaturePrimary;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = dataNodeSignatureSecondary;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &defaultInitializationFunction;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -13392,10 +13392,10 @@ void InitializeSystemModule35(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_1;
-  node_previous[7] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_2;
-  node_previous[8] = &g_system_node_audio;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_audio;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -13439,10 +13439,10 @@ void InitializeSystemModule13(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_VIDEO_DECODER_1;
-  node_previous[7] = SYSTEM_NODE_ID_VIDEO_DECODER_2;
-  node_previous[8] = &g_system_node_video;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_VIDEO_DECODER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_VIDEO_DECODER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_video;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -13486,10 +13486,10 @@ void InitializeSystemModule14(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_1;
-  node_previous[7] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_2;
-  node_previous[8] = &g_system_node_memory;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_memory;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -13533,10 +13533,10 @@ void ProcessSystemData(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_INPUT_HANDLER_1;
-  node_previous[7] = SYSTEM_NODE_ID_INPUT_HANDLER_2;
-  node_previous[8] = &g_system_node_input;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_INPUT_HANDLER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_INPUT_HANDLER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_input;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -13580,10 +13580,10 @@ void InitializeSystemModule37(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_NETWORK_MANAGER_1;
-  node_previous[7] = SYSTEM_NODE_ID_NETWORK_MANAGER_2;
-  node_previous[8] = &systemNode5;
-  node_previous[9] = 3;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_MANAGER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_MANAGER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &systemNode5;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -13627,10 +13627,10 @@ void InitializeSystemModule16(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_1;
-  node_previous[7] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_2;
-  node_previous[8] = &g_system_node;
-  node_previous[9] = 3;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -13674,10 +13674,10 @@ void InitializeSystemModule17(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_FILE_SYSTEM_1;
-  node_previous[7] = SYSTEM_NODE_ID_FILE_SYSTEM_2;
-  node_previous[8] = &g_system_node;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_FILE_SYSTEM_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_FILE_SYSTEM_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -13721,10 +13721,10 @@ void InitializeSystemModule18(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_SECURITY_MODULE_1;
-  node_previous[7] = SYSTEM_NODE_ID_SECURITY_MODULE_2;
-  node_previous[8] = &g_system_node;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_SECURITY_MODULE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_SECURITY_MODULE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -13768,10 +13768,10 @@ void InitializeSystemModule19(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_THREAD_SCHEDULER_1;
-  node_previous[7] = SYSTEM_NODE_ID_THREAD_SCHEDULER_2;
-  node_previous[8] = &g_system_node;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_THREAD_SCHEDULER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_THREAD_SCHEDULER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -13815,10 +13815,10 @@ void InitializeGraphicsMemory(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
-  node_previous[8] = &g_global_system_config;
-  node_previous[9] = 2;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_global_system_config;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 2;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -13862,10 +13862,10 @@ void InitializeRenderSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = INITIALIZATION_NODE_VALUE_1;
-  node_previous[7] = INITIALIZATION_NODE_VALUE_2;
-  node_previous[8] = &g_global_system_config;
-  node_previous[9] = 2;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = INITIALIZATION_NODE_VALUE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = INITIALIZATION_NODE_VALUE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_global_system_config;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 2;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -13909,10 +13909,10 @@ void InitializeAuthenticationSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_CONFIG_SYSTEM_1;
-  node_previous[7] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CONFIG_SYSTEM_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -13956,10 +13956,10 @@ void InitializeSystemModule39(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_PHYSICS_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_PHYSICS_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_PHYSICS_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_PHYSICS_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -14003,10 +14003,10 @@ void InitializeSystemModule21(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -14050,10 +14050,10 @@ void InitializeSystemModule43(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_VIDEO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_VIDEO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 3;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_VIDEO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_VIDEO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -14097,10 +14097,10 @@ void InitializeSystemModule23(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_CORE_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -14144,10 +14144,10 @@ void InitializeSystemModule24(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 4;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -14191,10 +14191,10 @@ void InitializeNetworkInitNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -14238,10 +14238,10 @@ void InitializeMutexInitNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_IO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -14285,10 +14285,10 @@ void InitializeSystemModule58(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_DATA_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_DATA_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -14332,10 +14332,10 @@ void InitializeSystemModule40(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = pflag_initialized;
   return;
 }
@@ -14379,10 +14379,10 @@ void InitializeAudioDataNode8(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UI_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UI_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -14426,10 +14426,10 @@ void InitializeDataEngineNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_DATABASE_SYSTEM_1;
-  node_previous[7] = SYSTEM_NODE_ID_DATABASE_SYSTEM_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATABASE_SYSTEM_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATABASE_SYSTEM_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -14473,10 +14473,10 @@ void InitializeUtilEngineNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
-  node_previous[8] = &g_global_system_config;
-  node_previous[9] = 2;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_global_system_config;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 2;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -14520,10 +14520,10 @@ void InitializeResourceEngineNode(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = INITIALIZATION_NODE_VALUE_1;
-  node_previous[7] = INITIALIZATION_NODE_VALUE_2;
-  node_previous[8] = &g_global_system_config;
-  node_previous[9] = 2;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = INITIALIZATION_NODE_VALUE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = INITIALIZATION_NODE_VALUE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_global_system_config;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 2;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -14604,10 +14604,10 @@ void InitializeSystemModule59(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
-  node_previous[8] = &g_global_system_config;
-  node_previous[9] = 2;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_global_system_config;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 2;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -14651,10 +14651,10 @@ void InitializeSystemModule6(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = INITIALIZATION_NODE_VALUE_1;
-  node_previous[7] = INITIALIZATION_NODE_VALUE_2;
-  node_previous[8] = &g_global_system_config;
-  node_previous[9] = 2;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = INITIALIZATION_NODE_VALUE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = INITIALIZATION_NODE_VALUE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_global_system_config;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 2;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -14698,10 +14698,10 @@ void InitializeStringManagerSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
-  node_previous[8] = &g_global_system_config;
-  node_previous[9] = 2;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_global_system_config;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 2;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -14745,10 +14745,10 @@ void InitializeMemoryManagerSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = INITIALIZATION_NODE_VALUE_1;
-  node_previous[7] = INITIALIZATION_NODE_VALUE_2;
-  node_previous[8] = &g_global_system_config;
-  node_previous[9] = 2;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = INITIALIZATION_NODE_VALUE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = INITIALIZATION_NODE_VALUE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_global_system_config;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 2;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -14821,10 +14821,10 @@ void InitializeResourceSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
-  node_previous[8] = &g_global_system_config;
-  node_previous[9] = 2;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_global_system_config;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 2;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -14868,10 +14868,10 @@ void InitializeTextureSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = INITIALIZATION_NODE_VALUE_1;
-  node_previous[7] = INITIALIZATION_NODE_VALUE_2;
-  node_previous[8] = &g_global_system_config;
-  node_previous[9] = 2;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = INITIALIZATION_NODE_VALUE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = INITIALIZATION_NODE_VALUE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_global_system_config;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 2;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -14915,10 +14915,10 @@ void InitializeStringManager(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -14962,10 +14962,10 @@ void InitializeSystemModule25(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_VIDEO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_VIDEO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 3;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_VIDEO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_VIDEO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -15009,10 +15009,10 @@ void InitializeSystemModule26(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_CORE_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CORE_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CORE_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -15056,10 +15056,10 @@ void InitializeSystemModule27(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 4;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -15103,10 +15103,10 @@ void InitializeSystemModule45(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -15150,10 +15150,10 @@ void InitializeSystemModule29(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_IO_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -15197,10 +15197,10 @@ void InitializePhysicsSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_DATA_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_DATA_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -15244,10 +15244,10 @@ void InitializeSystemModule30(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = pflag_initialized;
   return;
 }
@@ -15291,10 +15291,10 @@ void InitializeSystemModule31(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_UI_ENGINE_1;
-  node_previous[7] = SYSTEM_NODE_ID_UI_ENGINE_2;
-  node_previous[8] = &g_system_data_node_primary;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -15338,10 +15338,10 @@ void ConfigureSystemHandles(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = dataNodeSignaturePrimary;
-  node_previous[7] = dataNodeSignatureSecondary;
-  node_previous[8] = &defaultInitializationFunction;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = dataNodeSignaturePrimary;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = dataNodeSignatureSecondary;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &defaultInitializationFunction;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -15385,10 +15385,10 @@ void SetupSystemMemory(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_1;
-  node_previous[7] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_2;
-  node_previous[8] = &g_system_node_audio;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_audio;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -15432,10 +15432,10 @@ void InitializeSystemResources(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_VIDEO_DECODER_1;
-  node_previous[7] = SYSTEM_NODE_ID_VIDEO_DECODER_2;
-  node_previous[8] = &g_system_node_video;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_VIDEO_DECODER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_VIDEO_DECODER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_video;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -15479,10 +15479,10 @@ void InitializeInputMutex(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_1;
-  node_previous[7] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_2;
-  node_previous[8] = &g_system_node_memory;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_memory;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -15526,10 +15526,10 @@ void ConfigureSystemParameters(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_INPUT_HANDLER_1;
-  node_previous[7] = SYSTEM_NODE_ID_INPUT_HANDLER_2;
-  node_previous[8] = &g_system_node_input;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_INPUT_HANDLER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_INPUT_HANDLER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_input;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -15573,10 +15573,10 @@ void InitializeSystemComponents(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_NETWORK_MANAGER_1;
-  node_previous[7] = SYSTEM_NODE_ID_NETWORK_MANAGER_2;
-  node_previous[8] = &systemNode5;
-  node_previous[9] = 3;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_MANAGER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_MANAGER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &systemNode5;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -15620,10 +15620,10 @@ void SetupSystemServices(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_1;
-  node_previous[7] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_2;
-  node_previous[8] = &g_system_node;
-  node_previous[9] = 3;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_MEMORY_CONTROLLER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 3;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -15667,10 +15667,10 @@ void ConfigureSystemSettings(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_FILE_SYSTEM_1;
-  node_previous[7] = SYSTEM_NODE_ID_FILE_SYSTEM_2;
-  node_previous[8] = &g_system_node;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_FILE_SYSTEM_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_FILE_SYSTEM_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -15714,10 +15714,10 @@ void InitializeSystemModule32(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_SECURITY_MODULE_1;
-  node_previous[7] = SYSTEM_NODE_ID_SECURITY_MODULE_2;
-  node_previous[8] = &g_system_node;
-  node_previous[9] = 0;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_SECURITY_MODULE_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_SECURITY_MODULE_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
   node_previous[10] = init_function_pointer_temp;
   return;
 }
@@ -15761,10 +15761,10 @@ void InitializeSystemModule33(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = SYSTEM_NODE_ID_THREAD_SCHEDULER_1;
-  node_previous[7] = SYSTEM_NODE_ID_THREAD_SCHEDULER_2;
-  node_previous[8] = &g_system_node;
-  node_previous[9] = 1;
+  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_THREAD_SCHEDULER_1;
+  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_THREAD_SCHEDULER_2;
+  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = 1;
   node_previous[10] = flag_initialized;
   return;
 }
@@ -18208,7 +18208,7 @@ void InitializeSystemModule31(uint64_t handleIdentifier,uint64_t resourceIdentif
       }
       InitializeSystemModule(system_pointer_var,&g_system_global_variable4,&g_global_system_config,
                     (double)(float)(init_double_temp * 9.5367431640625e-07));
-      system_long_value = *(longlong *)(system_long_result + 0x58 + system_int_result_unsigned);
+      system_long_value = *(longlong *)(system_long_result + SYSTEM_DATA_OFFSET_58 + system_int_result_unsigned);
       init_double_temp = (double)system_long_value;
       if (system_long_result < 0) {
         init_double_temp = init_double_temp + 1.8446744073709552e+19;
@@ -19894,7 +19894,7 @@ InitializeSystemProfiler(uint64_t *handleIdentifier,uint64_t resourceIdentifier,
   *(uint16_t *)(system_pointer_var + 1) = SYSTEM_STRING_PATH_DOT_SLASH;
   *(uint8_t *)((longlong)system_pointer_var + 6) = 0;
   *(int *)(handleIdentifier + 2) = compare_result;
-  system_integer_result = system_int_result + 0x2a;
+  system_integer_result = system_int_result + SYSTEM_DATA_BLOCK_SIZE_2A;
   ConfigureSystemParameters(handleIdentifier,system_int_result);
   node_root = (uint64_t *)((ulonglong)*(uint *)(handleIdentifier + 2) + handleIdentifier[1]);
   *node_root = SYSTEM_STRING_Slot_path;
@@ -20460,23 +20460,23 @@ uint64_t * InitializeTextureSystem(uint64_t *handleIdentifier)
   *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_TYPE) = 3;
   handleIdentifier[SYSTEM_DATA_BLOCK_SIZE_7C] = 0;
   handleIdentifier[SYSTEM_DATA_BLOCK_SIZE_7D] = 0;
-  handleIdentifier[0x7e] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_7E] = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_STATE) = 3;
   handleIdentifier[SYSTEM_OFFSET_80] = 0;
-  handleIdentifier[0x81] = 0;
-  handleIdentifier[0x82] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_81] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_82] = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_VERSION) = 3;
-  handleIdentifier[0x84] = 0;
-  handleIdentifier[0x85] = 0;
-  handleIdentifier[0x86] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_84] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_85] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_86] = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_OWNER) = 3;
   handleIdentifier[SYSTEM_INIT_DATA_OFFSET_88] = 0;
-  handleIdentifier[0x89] = 0;
-  handleIdentifier[0x8a] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_89] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_8A] = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_ACCESS) = 3;
-  handleIdentifier[0x8c] = 0;
-  handleIdentifier[0x8d] = 0;
-  handleIdentifier[0x8e] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_8C] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_8D] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_8E] = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_SECURITY) = 3;
   return handleIdentifier;
 }
@@ -20926,11 +20926,11 @@ InitializeSystemResources(uint8_t *handleIdentifier,uint64_t resourceIdentifier,
   *(uint64_t *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_28) = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_OFFSET_30) = 0;
   handleIdentifier[SYSTEM_DATA_BLOCK_SIZE_7C] = 0;
-  handleIdentifier[0xc9] = 1;
+  handleIdentifier[SYSTEM_DATA_OFFSET_C9] = 1;
   (**(code **)(*system_memory_pointer + SYSTEM_DATA_COMPARE_SIZE))(system_memory_pointer,&g_system_configuration_data_ptr);
   (**(code **)(*system_memory_pointer + SYSTEM_DATA_COMPARE_SIZE))(system_memory_pointer,&g_system_data_variable3);
   *(uint32_t *)(handleIdentifier + SYSTEM_MEMORY_POOL_SIZE_LARGE) = SYSTEM_FLAG_BIT_461c4000;
-  *(uint32_t *)(handleIdentifier + 0xc4) = SYSTEM_FLAG_BIT_461c4000;
+  *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_FLAGS) = SYSTEM_FLAG_BIT_461c4000;
   handleIdentifier[200] = 0;
   *(uint64_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_STATUS0) = 0;
   return handleIdentifier;
@@ -20972,9 +20972,9 @@ uint64_t * InitializeFontSystem(uint64_t *handleIdentifier)
   handleIdentifier[SYSTEM_CONFIG_SIZE_NETWORK] = 0;
   handleIdentifier[SYSTEM_DATA_BLOCK_SIZE_1D] = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_1E) = 3;
-  system_memory_pointer = handleIdentifier + 0x21;
+  system_memory_pointer = handleIdentifier + SYSTEM_DATA_OFFSET_21;
   *system_memory_pointer = 0;
-  handleIdentifier[0x22] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_22] = 0;
   handleIdentifier[0x23] = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_NODE_OFFSET_NEXT) = 3;
   handleIdentifier[0x29] = &globalSystemPointerData;
@@ -20984,88 +20984,88 @@ uint64_t * InitializeFontSystem(uint64_t *handleIdentifier)
   handleIdentifier[0x2c] = 0;
   handleIdentifier[0x2a] = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_2B) = 0;
-  system_memory_pointer = handleIdentifier + 0x2e;
+  system_memory_pointer = handleIdentifier + SYSTEM_DATA_OFFSET_2E;
   *system_memory_pointer = (longlong)&globalSystemPointerData;
   handleIdentifier[0x2f] = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_OFFSET_30) = 0;
   *system_memory_pointer = (longlong)&resourcePoolPointer;
-  handleIdentifier[0x31] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_31] = 0;
   handleIdentifier[0x2f] = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_OFFSET_30) = 0;
-  system_memory_pointer = handleIdentifier + 0x32;
+  system_memory_pointer = handleIdentifier + SYSTEM_DATA_OFFSET_32;
   *system_memory_pointer = (longlong)&globalSystemPointerData;
-  handleIdentifier[0x33] = 0;
-  *(uint32_t *)(handleIdentifier + 0x34) = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_33] = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_ALLOC_SIZE) = 0;
   *system_memory_pointer = (longlong)&g_system_data_main;
-  handleIdentifier[0x33] = handleIdentifier + 0x35;
-  *(uint32_t *)(handleIdentifier + 0x34) = 0;
-  *(uint8_t *)(handleIdentifier + 0x35) = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_33] = handleIdentifier + SYSTEM_DATA_OFFSET_35;
+  *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_ALLOC_SIZE) = 0;
+  *(uint8_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_ALLOC_SIZE_1) = 0;
   system_memory_pointer = handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_39;
   *system_memory_pointer = (longlong)&globalSystemPointerData;
-  handleIdentifier[0x3a] = 0;
-  *(uint32_t *)(handleIdentifier + 0x3b) = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_3A] = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_ALLOC_TYPE) = 0;
   *system_memory_pointer = (longlong)&resourcePoolPointer;
-  handleIdentifier[0x3c] = 0;
-  handleIdentifier[0x3a] = 0;
-  *(uint32_t *)(handleIdentifier + 0x3b) = 0;
-  *(uint64_t *)((longlong)handleIdentifier + 0x254) = 0;
-  *(uint64_t *)((longlong)handleIdentifier + 0x25c) = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_3C] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_3A] = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_ALLOC_TYPE) = 0;
+  *(uint64_t *)((longlong)handleIdentifier + SYSTEM_HANDLE_OFFSET_EXT_DATA_1) = 0;
+  *(uint64_t *)((longlong)handleIdentifier + SYSTEM_HANDLE_OFFSET_EXT_DATA_2) = 0;
   handleIdentifier[SYSTEM_FLAG_BIT_4e] = &globalSystemPointerData;
   handleIdentifier[SYSTEM_FLAG_BIT_4f] = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_50) = 0;
   handleIdentifier[SYSTEM_FLAG_BIT_4e] = &resourcePoolPointer;
-  handleIdentifier[0x51] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_51] = 0;
   handleIdentifier[SYSTEM_FLAG_BIT_4f] = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_50) = 0;
-  handleIdentifier[0x52] = &globalSystemPointerData;
-  handleIdentifier[0x53] = 0;
-  *(uint32_t *)(handleIdentifier + 0x54) = 0;
-  handleIdentifier[0x52] = &resourcePoolPointer;
-  handleIdentifier[0x55] = 0;
-  handleIdentifier[0x53] = 0;
-  *(uint32_t *)(handleIdentifier + 0x54) = 0;
-  handleIdentifier[0x58] = &globalSystemPointerData;
+  handleIdentifier[SYSTEM_DATA_OFFSET_52] = &globalSystemPointerData;
+  handleIdentifier[SYSTEM_DATA_OFFSET_53] = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_COUNTER) = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_52] = &resourcePoolPointer;
+  handleIdentifier[SYSTEM_DATA_OFFSET_55] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_53] = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_COUNTER) = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_58] = &globalSystemPointerData;
   handleIdentifier[0x59] = 0;
-  *(uint32_t *)(handleIdentifier + 0x5a) = 0;
-  handleIdentifier[0x58] = &resourcePoolPointer;
-  handleIdentifier[0x5b] = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_COUNTER_1) = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_58] = &resourcePoolPointer;
+  handleIdentifier[SYSTEM_DATA_OFFSET_5B] = 0;
   handleIdentifier[0x59] = 0;
-  *(uint32_t *)(handleIdentifier + 0x5a) = 0;
-  node_current = handleIdentifier + 0x5c;
-  handleIdentifier[0x5f] = 0;
-  *(uint32_t *)(handleIdentifier + 0x61) = 3;
+  *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_COUNTER_1) = 0;
+  node_current = handleIdentifier + SYSTEM_DATA_OFFSET_5C;
+  handleIdentifier[SYSTEM_DATA_OFFSET_5F] = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_CONTROL) = 3;
   *node_current = node_current;
-  handleIdentifier[0x5d] = node_current;
-  handleIdentifier[0x5e] = 0;
-  *(uint8_t *)(handleIdentifier + 0x5f) = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_5D] = node_current;
+  handleIdentifier[SYSTEM_DATA_OFFSET_5E] = 0;
+  *(uint8_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_CONTROL_1) = 0;
   handleIdentifier[SYSTEM_OBJECT_OFFSET_60] = 0;
   handleIdentifier[100] = 0;
-  handleIdentifier[0x65] = 0;
-  handleIdentifier[0x66] = 0;
-  *(uint32_t *)(handleIdentifier + 0x67) = 3;
+  handleIdentifier[SYSTEM_DATA_OFFSET_65] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_66] = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_VALIDATION) = 3;
   handleIdentifier[0x69] = &globalSystemPointerData;
-  handleIdentifier[0x6a] = 0;
-  *(uint32_t *)(handleIdentifier + 0x6b) = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_6A] = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_VALIDATION_1) = 0;
   handleIdentifier[0x69] = &resourcePoolPointer;
-  handleIdentifier[0x6c] = 0;
-  handleIdentifier[0x6a] = 0;
-  *(uint32_t *)(handleIdentifier + 0x6b) = 0;
-  anode_new[0] = handleIdentifier + 0x6d;
+  handleIdentifier[SYSTEM_DATA_OFFSET_6C] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_6A] = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_VALIDATION_1) = 0;
+  anode_new[0] = handleIdentifier + SYSTEM_DATA_OFFSET_6D;
   *anode_new[0] = &globalSystemPointerData;
-  handleIdentifier[0x6e] = 0;
-  *(uint32_t *)(handleIdentifier + 0x6f) = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_6E] = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_VALIDATION_2) = 0;
   *anode_new[0] = &resourcePoolPointer;
   handleIdentifier[SYSTEM_MEMORY_POOL_SIZE_SMALL] = 0;
-  handleIdentifier[0x6e] = 0;
-  *(uint32_t *)(handleIdentifier + 0x6f) = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_6E] = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_VALIDATION_2) = 0;
   *(uint32_t *)(handleIdentifier + 4) = 0;
   *handleIdentifier = 0;
   *(uint32_t *)(handleIdentifier + 99) = 0;
   (**(code **)(*system_memory_pointer + SYSTEM_DATA_COMPARE_SIZE))
             (system_memory_pointer,&g_global_system_config,&resourcePoolPointer,&globalSystemPointerData,INVALID_HANDLE_VALUE);
-  *(uint32_t *)(handleIdentifier + 0x3d) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_TEMP) = 0;
   *(uint32_t *)((longlong)handleIdentifier + SYSTEM_FLAG_OFFSET_1ED) = SYSTEM_DATA_COMPARE_SIZE00001;
-  handleIdentifier[0x62] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_62] = 0;
   *(uint8_t *)(handleIdentifier + 0xc) = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_NODE_HEADER_SIZE) = SYSTEM_OFFSET_Ffffffff;
   *(uint8_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) = 0;
@@ -21084,9 +21084,9 @@ uint64_t * InitializeFontSystem(uint64_t *handleIdentifier)
   *(uint32_t *)((longlong)handleIdentifier + SYSTEM_DATA_COMPARE_SIZE4) = SYSTEM_OFFSET_Ffffffff;
   system_long_value = 8;
   do {
-    system_ptr_value = (uint32_t *)handleIdentifier[0x22];
+    system_ptr_value = (uint32_t *)handleIdentifier[SYSTEM_DATA_OFFSET_22];
     if (system_pointer_var < (uint32_t *)handleIdentifier[0x23]) {
-      handleIdentifier[0x22] = system_pointer_var + 1;
+      handleIdentifier[SYSTEM_DATA_OFFSET_22] = system_pointer_var + 1;
       *system_ptr_value = 0;
     }
     else {
@@ -21097,7 +21097,7 @@ uint64_t * InitializeFontSystem(uint64_t *handleIdentifier)
 INIT_LABEL_SYSTEM_4c7ef:
         system_ptr_value = (uint32_t *)
                  AllocateSystemResource(systemMemoryPool,system_long_result * 4,*(uint8_t *)(handleIdentifier + SYSTEM_NODE_OFFSET_NEXT));
-        system_ptr_value = (uint32_t *)handleIdentifier[0x22];
+        system_ptr_value = (uint32_t *)handleIdentifier[SYSTEM_DATA_OFFSET_22];
         node_next = (uint32_t *)*system_memory_pointer;
       }
       else {
@@ -21115,7 +21115,7 @@ INIT_LABEL_SYSTEM_4c7ef:
         ProcessSystemOperation();
       }
       *system_memory_pointer = (longlong)system_ptr_value;
-      handleIdentifier[0x22] = system_pointer_var + 1;
+      handleIdentifier[SYSTEM_DATA_OFFSET_22] = system_pointer_var + 1;
       handleIdentifier[0x23] = system_pointer_var + system_long_value;
     }
     system_long_value = system_long_result + -1;
@@ -21123,12 +21123,12 @@ INIT_LABEL_SYSTEM_4c7ef:
       *(uint32_t *)((longlong)handleIdentifier + SYSTEM_NODE_OFFSET_NEXT) = 0;
       *(uint32_t *)((longlong)handleIdentifier + 0x29) = SYSTEM_DATA_COMPARE_SIZE10101;
       *(uint8_t *)(handleIdentifier + 5) = 1;
-      *(uint32_t *)(handleIdentifier + 0x71) = SYSTEM_FLOAT_ONE;
-      *(uint8_t *)(handleIdentifier + 0x76) = 1;
-      *(uint32_t *)(handleIdentifier + 0x25) = 0;
-      handleIdentifier[0x56] = 0;
+      *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_71) = SYSTEM_FLOAT_ONE;
+      *(uint8_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_76) = 1;
+      *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_25) = 0;
+      handleIdentifier[SYSTEM_DATA_OFFSET_56] = 0;
       *(uint64_t *)((longlong)handleIdentifier + SYSTEM_CORE_DATA_OFFSET_224) = 0;
-      *(uint8_t *)((longlong)handleIdentifier + 0x22c) = 0;
+      *(uint8_t *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_22c) = 0;
       *(uint32_t *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE) = 0;
       handleIdentifier[SYSTEM_FLAG_BIT_41] = 0;
       node_current = system_configuration_data;
@@ -21138,21 +21138,21 @@ INIT_LABEL_SYSTEM_4c7ef:
       }
       handleIdentifier[SYSTEM_FLAG_BIT_42] = (double)((longlong)node_current - system_configuration_data) * systemCoreData;
       *(uint32_t *)(handleIdentifier + SYSTEM_FLAG_BIT_44) = 0;
-      *(uint8_t *)((longlong)handleIdentifier + 0x264) = 0;
+      *(uint8_t *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_264) = 0;
       *(uint32_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4d) = 0;
       *(uint64_t *)((longlong)handleIdentifier + 500) = 0;
       *(uint8_t *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_28) = 0;
       *(uint8_t *)((longlong)handleIdentifier + 0x1fc) = 0;
-      handleIdentifier[0x7b] = 0;
-      handleIdentifier[0x57] = 0;
+      handleIdentifier[SYSTEM_DATA_OFFSET_7B] = 0;
+      handleIdentifier[SYSTEM_DATA_OFFSET_57] = 0;
       system_long_value = AllocateSystemMemory(systemMemoryPool,0xc,4,3);
       *(uint8_t *)(system_long_result + 8) = 0;
       handleIdentifier[6] = system_long_value;
-      handleIdentifier[0x27] = 0;
+      handleIdentifier[SYSTEM_DATA_OFFSET_27] = 0;
       *(uint8_t *)(handleIdentifier + 7) = 0;
-      *(uint32_t *)((longlong)handleIdentifier + 0x3c) = SYSTEM_OFFSET_Ffffffff;
+      *(uint32_t *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_3C) = SYSTEM_OFFSET_Ffffffff;
       handleIdentifier[SYSTEM_FLAG_BIT_43] = 0;
-      *(uint32_t *)(handleIdentifier + 0x26) = SYSTEM_OFFSET_Ffffffff;
+      *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_26) = SYSTEM_OFFSET_Ffffffff;
       node_current = (uint64_t *)AllocateSystemMemory(systemMemoryPool,0x30,8,3);
       node_current[1] = 0;
       node_current[2] = 0;
@@ -21246,10 +21246,10 @@ void InitializeThreadManagerSystem(longlong handleIdentifier)
   system_float_value = system_result_float * 13.400001 + 19.800001 + system_float_value;
   *(float *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_39c) = system_result_float * system_float_value;
   system_float_value = system_result_float * 17.866667 + 26.400002 + system_float_value;
-  *(float *)(handleIdentifier + 0x3a0) = system_result_float * system_float_value;
-  *(float *)(handleIdentifier + 0x3a4) = system_result_float * system_float_value;
-  *(uint32_t *)(handleIdentifier + 0x3a8) = SYSTEM_FLOAT_MAX;
-  *(uint *)(handleIdentifier + 0x3ac) = (uint)(*(int *)(system_long_result + SYSTEM_CONFIG_SIZE_STATUS90) == 0);
+  *(float *)(handleIdentifier + SYSTEM_DATA_OFFSET_3A0) = system_result_float * system_float_value;
+  *(float *)(handleIdentifier + SYSTEM_DATA_OFFSET_3A4) = system_result_float * system_float_value;
+  *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_3A8) = SYSTEM_FLOAT_MAX;
+  *(uint *)(handleIdentifier + SYSTEM_DATA_OFFSET_3Ac) = (uint)(*(int *)(system_long_result + SYSTEM_CONFIG_SIZE_STATUS90) == 0);
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
@@ -21338,65 +21338,65 @@ void InitializeGraphicsMemory(longlong *handleIdentifier)
     ProcessSystemOperation();
   }
   handleIdentifier[6] = 0;
-  handleIdentifier[0x6d] = (longlong)&resourcePoolPointer;
-  if (handleIdentifier[0x6e] != 0) {
+  handleIdentifier[SYSTEM_DATA_OFFSET_6D] = (longlong)&resourcePoolPointer;
+  if (handleIdentifier[SYSTEM_DATA_OFFSET_6E] != 0) {
                     // WARNING: Subroutine does not return
     ProcessSystemOperation();
   }
-  handleIdentifier[0x6e] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_6E] = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_70) = 0;
-  handleIdentifier[0x6d] = (longlong)&globalSystemPointerData;
+  handleIdentifier[SYSTEM_DATA_OFFSET_6D] = (longlong)&globalSystemPointerData;
   handleIdentifier[0x69] = (longlong)&resourcePoolPointer;
-  if (handleIdentifier[0x6a] != 0) {
+  if (handleIdentifier[SYSTEM_DATA_OFFSET_6A] != 0) {
                     // WARNING: Subroutine does not return
     ProcessSystemOperation();
   }
-  handleIdentifier[0x6a] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_6A] = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_STATUS_CODE) = 0;
   handleIdentifier[0x69] = (longlong)&globalSystemPointerData;
   InitializeFontSystem();
-  InitializeSecurityEngineNode(handleIdentifier + 0x5c,handleIdentifier[0x5e]);
-  handleIdentifier[0x58] = (longlong)&resourcePoolPointer;
+  InitializeSecurityEngineNode(handleIdentifier + SYSTEM_DATA_OFFSET_5C,handleIdentifier[SYSTEM_DATA_OFFSET_5E]);
+  handleIdentifier[SYSTEM_DATA_OFFSET_58] = (longlong)&resourcePoolPointer;
   if (handleIdentifier[0x59] != 0) {
                     // WARNING: Subroutine does not return
     ProcessSystemOperation();
   }
   handleIdentifier[0x59] = 0;
-  *(uint32_t *)(handleIdentifier + 0x5b) = 0;
-  handleIdentifier[0x58] = (longlong)&globalSystemPointerData;
-  handleIdentifier[0x52] = (longlong)&resourcePoolPointer;
-  if (handleIdentifier[0x53] != 0) {
+  *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_5B) = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_58] = (longlong)&globalSystemPointerData;
+  handleIdentifier[SYSTEM_DATA_OFFSET_52] = (longlong)&resourcePoolPointer;
+  if (handleIdentifier[SYSTEM_DATA_OFFSET_53] != 0) {
                     // WARNING: Subroutine does not return
     ProcessSystemOperation();
   }
-  handleIdentifier[0x53] = 0;
-  *(uint32_t *)(handleIdentifier + 0x55) = 0;
-  handleIdentifier[0x52] = (longlong)&globalSystemPointerData;
+  handleIdentifier[SYSTEM_DATA_OFFSET_53] = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_55) = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_52] = (longlong)&globalSystemPointerData;
   handleIdentifier[SYSTEM_FLAG_BIT_4e] = (longlong)&resourcePoolPointer;
   if (handleIdentifier[SYSTEM_FLAG_BIT_4f] != 0) {
                     // WARNING: Subroutine does not return
     ProcessSystemOperation();
   }
   handleIdentifier[SYSTEM_FLAG_BIT_4f] = 0;
-  *(uint32_t *)(handleIdentifier + 0x51) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_51) = 0;
   handleIdentifier[SYSTEM_FLAG_BIT_4e] = (longlong)&globalSystemPointerData;
   handleIdentifier[0x39] = (longlong)&resourcePoolPointer;
-  if (handleIdentifier[0x3a] != 0) {
+  if (handleIdentifier[SYSTEM_DATA_OFFSET_3A] != 0) {
                     // WARNING: Subroutine does not return
     ProcessSystemOperation();
   }
-  handleIdentifier[0x3a] = 0;
-  *(uint32_t *)(handleIdentifier + 0x3c) = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_3A] = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_3C) = 0;
   handleIdentifier[0x39] = (longlong)&globalSystemPointerData;
-  handleIdentifier[0x32] = (longlong)&globalSystemPointerData;
-  handleIdentifier[0x2e] = (longlong)&resourcePoolPointer;
+  handleIdentifier[SYSTEM_DATA_OFFSET_32] = (longlong)&globalSystemPointerData;
+  handleIdentifier[SYSTEM_DATA_OFFSET_2E] = (longlong)&resourcePoolPointer;
   if (handleIdentifier[0x2f] != 0) {
                     // WARNING: Subroutine does not return
     ProcessSystemOperation();
   }
   handleIdentifier[0x2f] = 0;
-  *(uint32_t *)(handleIdentifier + 0x31) = 0;
-  handleIdentifier[0x2e] = (longlong)&globalSystemPointerData;
+  *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_31) = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_2E] = (longlong)&globalSystemPointerData;
   handleIdentifier[0x29] = (longlong)&resourcePoolPointer;
   if (handleIdentifier[0x2a] != 0) {
                     // WARNING: Subroutine does not return
@@ -21405,7 +21405,7 @@ void InitializeGraphicsMemory(longlong *handleIdentifier)
   handleIdentifier[0x2a] = 0;
   *(uint32_t *)(handleIdentifier + 0x2c) = 0;
   handleIdentifier[0x29] = (longlong)&globalSystemPointerData;
-  if (handleIdentifier[0x21] != 0) {
+  if (handleIdentifier[SYSTEM_DATA_OFFSET_21] != 0) {
                     // WARNING: Subroutine does not return
     ProcessSystemOperation();
   }
@@ -21610,7 +21610,7 @@ void ConfigureGraphicsShader(uint64_t handleIdentifier,longlong resourceIdentifi
       system_boolean_flag = system_pointer_var[uintStack_2f0];
       system_status_code = (uint)system_ptr_value;
       if ((system_bool_var & SYSTEM_CONFIG_SIZE_STATUSf) == 0) {
-        system_long_value = system_long_result + 0x2e0;
+        system_long_value = system_long_result + SYSTEM_DATA_OFFSET_2E0;
         system_long_value = AllocateSystemResource(systemMemoryPool,SYSTEM_DATA_BLOCK_SIZE,*(uint8_t *)(system_long_result + SYSTEM_CONFIG_OFFSET_308));
         ProcessResourceData(system_long_result + SYSTEM_NODE_HEADER_SIZE,&system_buffer_ptr_310);
         system_long_value = InitializeMutexInitNode(system_long_result,&cStack_337,system_long_result + SYSTEM_NODE_HEADER_SIZE);
@@ -21643,39 +21643,39 @@ void InitializePhysicsSystem(longlong handleIdentifier)
   uint64_t system_status_code;
   bool system_boolean_flag;
 
-  init_int_pointer_temp = (int *)(handleIdentifier + 0x3d0);
-  if (((int)*(float *)(systemCoreData + SYSTEM_CONFIG_SIZE_UTILITY_2ec) == *(int *)(handleIdentifier + 0x3cc)) &&
+  init_int_pointer_temp = (int *)(handleIdentifier + SYSTEM_DATA_OFFSET_3D0);
+  if (((int)*(float *)(systemCoreData + SYSTEM_CONFIG_SIZE_UTILITY_2ec) == *(int *)(handleIdentifier + SYSTEM_DATA_OFFSET_3Cc)) &&
      ((int)*(float *)(systemCoreData + SYSTEM_CONFIG_SIZE_UTILITY_2f0) == *init_int_pointer_temp)) {
     system_boolean_flag = false;
   }
   else {
     system_boolean_flag = true;
-    InitializeThreadManagerSystem(systemCoreData,*(int *)(handleIdentifier + 0x3cc),*init_int_pointer_temp);
+    InitializeThreadManagerSystem(systemCoreData,*(int *)(handleIdentifier + SYSTEM_DATA_OFFSET_3Cc),*init_int_pointer_temp);
   }
   if (*(int *)(*(longlong *)(handleIdentifier + 8) + SYSTEM_OBJECT_OFFSET_38) == 2) {
-    if ((*(char *)(handleIdentifier + 0x3d4) != '\0') || (*(char *)(handleIdentifier + 0x3d5) != '\0')) {
+    if ((*(char *)(handleIdentifier + SYSTEM_DATA_OFFSET_3D4) != '\0') || (*(char *)(handleIdentifier + SYSTEM_DATA_OFFSET_3D5) != '\0')) {
       system_status_code = *(uint32_t *)(systemCoreData + SYSTEM_OFFSET_1Ea0);
       ConfigureGraphicsShader(systemCoreData,0);
-      ProcessAudioConfiguration(*(uint64_t *)(handleIdentifier + 8),*(uint32_t *)(handleIdentifier + 0x3cc),*init_int_pointer_temp,
-                    *(uint8_t *)(handleIdentifier + 0x3d5));
-      InitializeSystemModule45(system_configuration_data,*(uint32_t *)(handleIdentifier + 0x3cc),*init_int_pointer_temp,1);
+      ProcessAudioConfiguration(*(uint64_t *)(handleIdentifier + 8),*(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_3Cc),*init_int_pointer_temp,
+                    *(uint8_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_3D5));
+      InitializeSystemModule45(system_configuration_data,*(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_3Cc),*init_int_pointer_temp,1);
       ConfigureGraphicsShader(systemCoreData,system_int_result_unsigned);
-      ProcessAudioConfiguration(*(uint64_t *)(handleIdentifier + 8),*(uint32_t *)(handleIdentifier + 0x3cc),*init_int_pointer_temp,
-                    *(uint8_t *)(handleIdentifier + 0x3d5));
+      ProcessAudioConfiguration(*(uint64_t *)(handleIdentifier + 8),*(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_3Cc),*init_int_pointer_temp,
+                    *(uint8_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_3D5));
       system_boolean_flag = true;
       goto INIT_LABEL_SYSTEM_4e721;
     }
   }
   else {
-    if (*(char *)(handleIdentifier + 0x3d4) != '\0') {
+    if (*(char *)(handleIdentifier + SYSTEM_DATA_OFFSET_3D4) != '\0') {
       compare_result = *(int *)(systemCoreData + SYSTEM_OFFSET_1Ea0);
-      if ((*(char *)(handleIdentifier + 0x3d5) != '\0') || (system_bool_var)) {
+      if ((*(char *)(handleIdentifier + SYSTEM_DATA_OFFSET_3D5) != '\0') || (system_bool_var)) {
         system_status_code = 1;
       }
       else {
         system_status_code = 0;
       }
-      ProcessAudioConfiguration(*(longlong *)(handleIdentifier + 8),*(uint32_t *)(handleIdentifier + 0x3cc),*init_int_pointer_temp,system_int_result_unsigned);
+      ProcessAudioConfiguration(*(longlong *)(handleIdentifier + 8),*(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_3Cc),*init_int_pointer_temp,system_int_result_unsigned);
       system_boolean_flag = compare_result == 2;
       goto INIT_LABEL_SYSTEM_4e721;
     }
@@ -21685,12 +21685,12 @@ void InitializePhysicsSystem(longlong handleIdentifier)
   }
   system_boolean_flag = false;
 INIT_LABEL_SYSTEM_4e721:
-  InitializeSystemModule45(system_configuration_data,*(uint32_t *)(handleIdentifier + 0x3cc),*init_int_pointer_temp,system_bool_var);
+  InitializeSystemModule45(system_configuration_data,*(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_3Cc),*init_int_pointer_temp,system_bool_var);
   if (!system_bool_var) {
     return;
   }
                     // WARNING: Subroutine does not return
-  ConfigureSystemModule17(g_system_context_1,&g_system_global_config,*(uint32_t *)(handleIdentifier + 0x3cc),*init_int_pointer_temp);
+  ConfigureSystemModule17(g_system_context_1,&g_system_global_config,*(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_3Cc),*init_int_pointer_temp);
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
@@ -21718,7 +21718,7 @@ uint32_t InitializeSystemModule21(void)
   system_long_value = g_system_base_1;
   init_stack_param_88 = INVALID_HANDLE_VALUE;
   audio_data_buffer = *(uint8_t (*) [16])
-            (*(longlong *)(g_system_base_1 + 8) + 0xcc +
+            (*(longlong *)(g_system_base_1 + 8) + SYSTEM_DATA_OFFSET_CC +
             (ulonglong)(*(uint *)(*(longlong *)(g_system_base_1 + 8) + SYSTEM_CONFIG_SIZE_PHYSICSc) & 1) * SYSTEM_FLAG_BIT_48);
   if ((audio_data_buffer._12_4_ != 0) && (audio_data_buffer._8_4_ != 0)) {
     system_buffer_ptr_thread_context = &resourcePoolPointer;
@@ -22005,8 +22005,8 @@ void ConfigureGraphicsShader(void)
   }
   system_long_value = systemCoreData;
   system_configuration_data = system_configuration_data ^ SYSTEM_FLAG_BIT_41c64e6d;
-  if ((*(longlong *)(systemCoreData + 0x7ab8) == 0) || (*(int *)(systemCoreData + 0x540) < 1)) {
-    if (*(int *)(systemCoreData + 0x2140) == 0) {
+  if ((*(longlong *)(systemCoreData + SYSTEM_DATA_OFFSET_7Ab8) == 0) || (*(int *)(systemCoreData + SYSTEM_DATA_OFFSET_540) < 1)) {
+    if (*(int *)(systemCoreData + SYSTEM_DATA_OFFSET_2140) == 0) {
       system_float_value = *(float *)(systemCoreData + SYSTEM_NODE_HEADER_SIZEd0);
     }
     else {
@@ -22041,22 +22041,22 @@ void ConfigureGraphicsShader(void)
     system_float_value = 1.0;
   }
   *(float *)(system_long_result + 0x238) = system_float_value;
-  *(uint8_t *)(system_long_result + 0x22d) = 0;
+  *(uint8_t *)(system_long_result + SYSTEM_DATA_OFFSET_22d) = 0;
   system_status_code = log2f();
   *(uint32_t *)(system_long_result + 0x230) = system_integer_result_unsigned;
   system_status_code = log2f();
-  *(uint32_t *)(system_long_result + 0x240) = system_integer_result_unsigned;
+  *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_240) = system_integer_result_unsigned;
   system_status_code = log2f();
-  *(uint32_t *)(system_long_result + 0x244) = system_integer_result_unsigned;
+  *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_244) = system_integer_result_unsigned;
   system_status_code = log2f();
-  *(uint32_t *)(system_long_result + 0x248) = system_integer_result_unsigned;
+  *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_248) = system_integer_result_unsigned;
   system_status_code = log2f();
-  *(uint32_t *)(system_long_result + 0x24c) = system_integer_result_unsigned;
-  system_status_code = log2f(*(float *)(systemCoreData + 0x2220) * 0.01);
+  *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_24c) = system_integer_result_unsigned;
+  system_status_code = log2f(*(float *)(systemCoreData + SYSTEM_DATA_OFFSET_2220) * 0.01);
   *(uint32_t *)(system_long_result + 0x23c) = system_integer_result_unsigned;
-  *(uint64_t *)(system_long_result + 0x254) = SYSTEM_FLOAT_CONSTANT_1;
+  *(uint64_t *)(system_long_result + SYSTEM_HANDLE_OFFSET_EXT_DATA_1) = SYSTEM_FLOAT_CONSTANT_1;
   longStack_1d8 = SYSTEM_FLOAT_CONSTANT_1;
-  *(uint64_t *)(system_long_result + 0x25c) = SYSTEM_FLOAT_CONSTANT_1;
+  *(uint64_t *)(system_long_result + SYSTEM_HANDLE_OFFSET_EXT_DATA_2) = SYSTEM_FLOAT_CONSTANT_1;
   system_long_value = systemCoreData;
   system_long_value = system_configuration_data;
   system_buffer_ptr_168 = &g_system_data_node_primary_config;
@@ -22067,7 +22067,7 @@ void ConfigureGraphicsShader(void)
   node_current = (uint64_t *)AllocateSystemMemory(systemMemoryPool,SYSTEM_NODE_HEADER_SIZE8,8,3);
   longStack_1e8 = system_long_result + SYSTEM_DATA_BLOCK_SIZE_70;
   asystem_buffer_ptr_1c8[0] = node_current;
-  InitializeGraphicsSystem(node_current,&system_buffer_ptr_168,3,system_long_result + 0x2e0);
+  InitializeGraphicsSystem(node_current,&system_buffer_ptr_168,3,system_long_result + SYSTEM_DATA_OFFSET_2E0);
   *node_current = &g_global_system_config;
   asystem_buffer_ptr_1c8[0] = node_current;
   ConfigureGraphicsDevice(node_current);
@@ -22075,11 +22075,11 @@ void ConfigureGraphicsShader(void)
   *(uint64_t **)(system_long_result + SYSTEM_OFFSET_18) = node_current;
   system_buffer_ptr_168 = &globalSystemPointerData;
   node_next = &g_system_data_variable3;
-  if (*(void **)(system_long_result + 0x278) != (void *)SYSTEM_NULL_POINTER) {
-    node_next = *(void **)(system_long_result + 0x278);
+  if (*(void **)(system_long_result + SYSTEM_DATA_OFFSET_278) != (void *)SYSTEM_NULL_POINTER) {
+    node_next = *(void **)(system_long_result + SYSTEM_DATA_OFFSET_278);
   }
-  (**(code **)(*(longlong *)(systemCoreData + 0x560) + SYSTEM_DATA_COMPARE_SIZE))
-            ((longlong *)(systemCoreData + 0x560),node_next);
+  (**(code **)(*(longlong *)(systemCoreData + SYSTEM_DATA_OFFSET_560) + SYSTEM_DATA_COMPARE_SIZE))
+            ((longlong *)(systemCoreData + SYSTEM_DATA_OFFSET_560),node_next);
   system_long_value = system_configuration_data;
   longStack_1d8 = AllocateSystemMemory(systemMemoryPool,0x30,8,3);
   *(uint64_t *)(longStack_1d8 + SYSTEM_OBJECT_OFFSET_28) = 3;
@@ -22459,10 +22459,10 @@ void InitializeSystemModule46(void)
   }
   *(uint64_t *)(systemCoreData + SYSTEM_OFFSET_18) = *(uint64_t *)(systemCoreData + SYSTEM_DATA_COMPARE_SIZE);
   *(uint8_t *)(*(longlong *)(*(longlong *)(system_long_result + 8) + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER0) + SYSTEM_NODE_HEADER_SIZE8) = 1;
-  if (*(char *)(system_long_result + 0x3c8) != '\0') {
+  if (*(char *)(system_long_result + SYSTEM_DATA_OFFSET_3C8) != '\0') {
     InitializePhysicsSystem(system_long_result);
     LOCK();
-    *(uint8_t *)(system_long_result + 0x3c8) = 0;
+    *(uint8_t *)(system_long_result + SYSTEM_DATA_OFFSET_3C8) = 0;
     UNLOCK();
   }
   system_long_value = system_configuration_data;
@@ -22475,7 +22475,7 @@ void InitializeSystemModule46(void)
   *(uint32_t *)(system_long_result + SYSTEM_OFFSET_80) = 0;
   UNLOCK();
   LOCK();
-  *(uint32_t *)(system_long_result + 0x84) = 0;
+  *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_84) = 0;
   UNLOCK();
   LOCK();
   *(uint32_t *)(system_long_result + SYSTEM_INIT_DATA_OFFSET_88) = 0;
@@ -22578,10 +22578,10 @@ void InitializeTextureSystem(longlong handleIdentifier)
   }
   *(uint64_t *)(systemCoreData + SYSTEM_OFFSET_18) = *(uint64_t *)(systemCoreData + SYSTEM_DATA_COMPARE_SIZE);
   *(uint8_t *)(*(longlong *)(*(longlong *)(handleIdentifier + 8) + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER0) + SYSTEM_NODE_HEADER_SIZE8) = 1;
-  if (*(char *)(handleIdentifier + 0x3c8) != '\0') {
+  if (*(char *)(handleIdentifier + SYSTEM_DATA_OFFSET_3C8) != '\0') {
     InitializePhysicsSystem(handleIdentifier);
     LOCK();
-    *(uint8_t *)(handleIdentifier + 0x3c8) = 0;
+    *(uint8_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_3C8) = 0;
     UNLOCK();
   }
   system_long_value = system_configuration_data;
@@ -22594,7 +22594,7 @@ void InitializeTextureSystem(longlong handleIdentifier)
   *(uint32_t *)(system_long_result + SYSTEM_OFFSET_80) = 0;
   UNLOCK();
   LOCK();
-  *(uint32_t *)(system_long_result + 0x84) = 0;
+  *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_84) = 0;
   UNLOCK();
   LOCK();
   *(uint32_t *)(system_long_result + SYSTEM_INIT_DATA_OFFSET_88) = 0;
@@ -22679,7 +22679,7 @@ void ConfigureSystemHandles(longlong handleIdentifier)
   longlong system_long_value;
   ulonglong system_status_code;
 
-  node_root = *(uint64_t **)(handleIdentifier + 0x218);
+  node_root = *(uint64_t **)(handleIdentifier + SYSTEM_DATA_OFFSET_218);
   if (node_root == (uint64_t *)0x0) {
     return;
   }
@@ -22735,7 +22735,7 @@ uint64_t * InitializeConditionInitNode(uint64_t *handleIdentifier,uint64_t *reso
   *(uint8_t *)((longlong)handleIdentifier + SYSTEM_NODE_HEADER_SIZEf) = *(uint8_t *)((longlong)resourceIdentifier + SYSTEM_NODE_HEADER_SIZEf);
   system_memory_pointer = handleIdentifier + SYSTEM_FLAG_BIT_43;
   *(uint8_t *)(handleIdentifier + SYSTEM_FLAG_BIT_42) = *(uint8_t *)(resourceIdentifier + SYSTEM_FLAG_BIT_42);
-  *(uint8_t *)((longlong)handleIdentifier + 0x211) = *(uint8_t *)((longlong)resourceIdentifier + 0x211);
+  *(uint8_t *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_211) = *(uint8_t *)((longlong)resourceIdentifier + SYSTEM_DATA_OFFSET_211);
   if (system_memory_pointer != resourceIdentifier + SYSTEM_FLAG_BIT_43) {
     system_long_value = *system_memory_pointer;
     system_long_value = resourceIdentifier[SYSTEM_FLAG_BIT_44];
@@ -22946,7 +22946,7 @@ bool InitializeSystemResources(longlong handleIdentifier)
   byte *pbStack_28;
   int intStack_20;
 
-  system_ptr_value = (uint64_t *)(handleIdentifier + 0x2e0);
+  system_ptr_value = (uint64_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_2E0);
   PrepareSystemBuffer(&system_buffer_ptr_30);
   node_next = *(uint64_t **)(handleIdentifier + 0x2f0);
   system_ptr_value = system_ptr_value;
@@ -23218,15 +23218,15 @@ void InitializeAudioMutex(longlong handleIdentifier,float resourceIdentifier,uin
   float fstack_varc;
 
   system_long_value = systemCoreData;
-  if ((*(longlong *)(systemCoreData + 0x7ab8) == 0) || (*(int *)(systemCoreData + 0x540) < 1)) {
-    network_initialization_flag = *(int *)(systemCoreData + 0x2140) != 0;
+  if ((*(longlong *)(systemCoreData + SYSTEM_DATA_OFFSET_7Ab8) == 0) || (*(int *)(systemCoreData + SYSTEM_DATA_OFFSET_540) < 1)) {
+    network_initialization_flag = *(int *)(systemCoreData + SYSTEM_DATA_OFFSET_2140) != 0;
   }
   else {
     network_initialization_flag = false;
   }
   if (network_initialization_flag) {
     system_float_value = (float)exp2f(systemCoreData,in_RDX,system_configuration,systemFlags,INVALID_HANDLE_VALUE);
-    if (*(char *)(handleIdentifier + 0x22d) == '\0') {
+    if (*(char *)(handleIdentifier + SYSTEM_DATA_OFFSET_22d) == '\0') {
       system_long_value = *(longlong *)((longlong)threadLocalStoragePointer + (ulonglong)__tls_index * 8);
       if ((*(int *)(system_long_result + SYSTEM_FLAG_BIT_48) < systemCoreData) &&
          (CheckSystemInitialized(&g_system_string_buffer), systemCoreData == -1)) {
@@ -23239,8 +23239,8 @@ void InitializeAudioMutex(longlong handleIdentifier,float resourceIdentifier,uin
       system_float_value = (float)exp2f();
       system_float_value = (float)exp2f();
       system_statusData = (1.0 - system_result_float) * system_statusData + system_result_float * resourceIdentifier;
-      system_float_value = (float)*(int *)(systemCoreData + 0x21b0);
-      if (*(float *)(g_system_base_1 + 0x1f8) <= (float)*(int *)(systemCoreData + 0x21b0)) {
+      system_float_value = (float)*(int *)(systemCoreData + SYSTEM_DATA_OFFSET_21b0);
+      if (*(float *)(g_system_base_1 + 0x1f8) <= (float)*(int *)(systemCoreData + SYSTEM_DATA_OFFSET_21b0)) {
         system_float_value = *(float *)(g_system_base_1 + 0x1f8);
       }
       system_float_value = *(float *)(systemCoreData + SYSTEM_OFFSET_1E30);
@@ -23271,8 +23271,8 @@ void InitializeAudioMutex(longlong handleIdentifier,float resourceIdentifier,uin
       }
       *(float *)(handleIdentifier + 0x238) = system_float_value;
       system_status_code = log2f();
-      *(uint32_t *)(handleIdentifier + 0x248) = system_integer_result_unsigned;
-      *(float *)(handleIdentifier + 0x250) = system_statusData;
+      *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_248) = system_integer_result_unsigned;
+      *(float *)(handleIdentifier + SYSTEM_DATA_OFFSET_250) = system_statusData;
       system_long_value = systemCoreData;
       *(uint8_t *)(systemCoreData + SYSTEM_CONFIG_SIZE_FONT2b) = 1;
       system_long_value = systemCoreData;
@@ -23287,8 +23287,8 @@ void InitializeAudioMutex(longlong handleIdentifier,float resourceIdentifier,uin
     *(uint32_t *)(handleIdentifier + 0x238) = 0x3f800000;
     system_long_value = systemCoreData;
   }
-  if ((*(longlong *)(systemCoreData + 0x7ab8) == 0) || (*(int *)(system_long_result + 0x540) < 1)) {
-    if (*(int *)(system_long_result + 0x2140) == 0) {
+  if ((*(longlong *)(systemCoreData + SYSTEM_DATA_OFFSET_7Ab8) == 0) || (*(int *)(system_long_result + SYSTEM_DATA_OFFSET_540) < 1)) {
+    if (*(int *)(system_long_result + SYSTEM_DATA_OFFSET_2140) == 0) {
       system_float_value = *(float *)(system_long_result + SYSTEM_NODE_HEADER_SIZEd0);
     }
     else {
@@ -23333,7 +23333,7 @@ INIT_LABEL_SYSTEM_52ce3:
     fstack_varc = (float)(int)system_int_result_unsigned / (float)(int)system_integer_result_unsigned;
     system_status_code = system_integer_result_unsigned;
   }
-  *(ulonglong *)(handleIdentifier + 0x254) = CONCAT44(fstack_varc,fstack_var);
+  *(ulonglong *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_EXT_DATA_1) = CONCAT44(fstack_varc,fstack_var);
   system_float_value = *(float *)(handleIdentifier + 0x238);
   if (1.0 <= system_result_float) {
     fstack_var = 1.0;
@@ -23367,7 +23367,7 @@ INIT_LABEL_SYSTEM_52de5:
     fstack_var = (float)(int)system_int_result_unsigned / (float)(int)system_integer_result_unsigned;
     fstack_varc = (float)(int)system_int_result_unsigned / (float)(int)system_integer_result_unsigned;
   }
-  *(ulonglong *)(handleIdentifier + 0x25c) = CONCAT44(fstack_varc,fstack_var);
+  *(ulonglong *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_EXT_DATA_2) = CONCAT44(fstack_varc,fstack_var);
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
@@ -23423,8 +23423,8 @@ void InitializeSystemModule43(longlong *handleIdentifier,uint64_t resourceIdenti
   }
   (**(code **)(**(longlong **)(system_long_result + SYSTEM_OFFSET_2B0) + SYSTEM_CONFIG_SIZE_STATUS0))();
   if (((*(int *)(systemCoreData + SYSTEM_FLAG_BIT_4d4) != *(int *)(systemCoreData + SYSTEM_FLAG_BIT_4d0)) ||
-      (*(int *)(systemCoreData + 0x314) != *(int *)(systemCoreData + 0x310))) ||
-     (*(int *)(systemCoreData + 0x544) != *(int *)(systemCoreData + 0x540))) {
+      (*(int *)(systemCoreData + SYSTEM_DATA_OFFSET_314) != *(int *)(systemCoreData + SYSTEM_DATA_OFFSET_310))) ||
+     (*(int *)(systemCoreData + SYSTEM_DATA_OFFSET_544) != *(int *)(systemCoreData + SYSTEM_DATA_OFFSET_540))) {
     stack_system_memory_pointer = alongStack_70;
     system_buffer_ptr_system_data = &g_system_func_10;
     system_buffer_ptr_58 = &g_system_func_9;
@@ -23432,7 +23432,7 @@ void InitializeSystemModule43(longlong *handleIdentifier,uint64_t resourceIdenti
   }
   if ((systemCoreData != 0) &&
      ((*(int *)(systemCoreData + 900) != *(int *)(systemCoreData + SYSTEM_OBJECT_OFFSET_380) ||
-      (*(int *)(systemCoreData + 0x3f4) != *(int *)(systemCoreData + 0x3f0))))) {
+      (*(int *)(systemCoreData + SYSTEM_DATA_OFFSET_3F4) != *(int *)(systemCoreData + SYSTEM_DATA_OFFSET_3F0))))) {
     system_status_code = AllocateSystemMemory(systemMemoryPool,SYSTEM_DATA_BLOCK_SIZE,8,3);
     stack_system_memory_pointer = alongStack_50;
     system_buffer_ptr_40 = &g_system_func_8;
@@ -23454,8 +23454,8 @@ void InitializeSystemModule43(longlong *handleIdentifier,uint64_t resourceIdenti
     }
   }
   system_long_value = systemCoreData;
-  if ((*(longlong *)(systemCoreData + 0x7ab8) == 0) || (*(int *)(systemCoreData + 0x540) < 1)) {
-    if (*(int *)(systemCoreData + 0x2140) == 0) {
+  if ((*(longlong *)(systemCoreData + SYSTEM_DATA_OFFSET_7Ab8) == 0) || (*(int *)(systemCoreData + SYSTEM_DATA_OFFSET_540) < 1)) {
+    if (*(int *)(systemCoreData + SYSTEM_DATA_OFFSET_2140) == 0) {
       system_float_value = *(float *)(systemCoreData + SYSTEM_NODE_HEADER_SIZEd0);
     }
     else {
@@ -24249,7 +24249,7 @@ void InitializeAuthenticationSystem(longlong *handleIdentifier,longlong resource
   system_buffer_ptr_168 = &globalSystemPointerData;
   if ((system_int_result < 0) ||
      (system_long_value = *(longlong *)(*handleIdentifier + SYSTEM_INIT_DATA_OFFSET_888),
-     (ulonglong)(*(longlong *)(*handleIdentifier + 0x890) - system_long_result >> 5) <= (ulonglong)(longlong)system_int_result)) {
+     (ulonglong)(*(longlong *)(*handleIdentifier + SYSTEM_DATA_OFFSET_890) - system_long_result >> 5) <= (ulonglong)(longlong)system_int_result)) {
     system_long_value = GetBufferData();
   }
   else {
@@ -24291,10 +24291,10 @@ void InitializeAuthenticationSystem(longlong *handleIdentifier,longlong resource
   init_stack_parameter_1c8._4_4_ = *(uint *)(system_long_result + SYSTEM_CONFIG_SIZE_NETWORK);
   ProcessSystemConfiguration(ptr_data,system_configuration_data,&system_buffer_ptr_1e0,&uintStack_148);
   UpdateConfiguration(ptr_data);
-  (**(code **)(*(longlong *)handleIdentifier[0x56] + SYSTEM_CONFIG_SIZE_PHYSICS8))((longlong *)handleIdentifier[0x56],ptr_data);
+  (**(code **)(*(longlong *)handleIdentifier[SYSTEM_DATA_OFFSET_56] + SYSTEM_CONFIG_SIZE_PHYSICS8))((longlong *)handleIdentifier[SYSTEM_DATA_OFFSET_56],ptr_data);
   ValidateConfiguration(ptr_data,0x3d072b02,1);
   ApplyConfiguration(ptr_data);
-  (**(code **)(*(longlong *)handleIdentifier[0x56] + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER0))((longlong *)handleIdentifier[0x56],ptr_data);
+  (**(code **)(*(longlong *)handleIdentifier[SYSTEM_DATA_OFFSET_56] + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER0))((longlong *)handleIdentifier[SYSTEM_DATA_OFFSET_56],ptr_data);
   Sleep(1000);
   system_buffer_ptr_1e0 = &resourcePoolPointer;
   if (longStack_1d8 != 0) {
@@ -24389,7 +24389,7 @@ void InitializeAuthenticationSystem(void)
   init_stack_uint_param_38 = INVALID_HANDLE_VALUE;
   uintStack_30 = system_configuration_data ^ (ulonglong)system_local_buffer_178;
   stack_system_memory_pointer = g_system_base_1;
-  system_long_value = *(longlong *)(*g_system_base_1 + 0x890) - *(longlong *)(*g_system_base_1 + SYSTEM_INIT_DATA_OFFSET_888) >> 5;
+  system_long_value = *(longlong *)(*g_system_base_1 + SYSTEM_DATA_OFFSET_890) - *(longlong *)(*g_system_base_1 + SYSTEM_INIT_DATA_OFFSET_888) >> 5;
   intStack_f8 = 0;
   longStack_a0 = system_long_value;
   if (0 < (int)system_long_result) {
@@ -24402,7 +24402,7 @@ INIT_LABEL_SYSTEM_5485e:
       }
       else {
         system_long_value = *(longlong *)(*g_system_base_1 + SYSTEM_INIT_DATA_OFFSET_888);
-        if ((ulonglong)(*(longlong *)(*g_system_base_1 + 0x890) - system_long_result >> 5) <=
+        if ((ulonglong)(*(longlong *)(*g_system_base_1 + SYSTEM_DATA_OFFSET_890) - system_long_result >> 5) <=
             (ulonglong)(longlong)intStack_f8) goto INIT_LABEL_SYSTEM_5485e;
         system_long_value = (longlong)intStack_f8 * SYSTEM_NODE_HEADER_SIZE + system_long_value;
       }
@@ -24427,8 +24427,8 @@ INIT_LABEL_SYSTEM_54912:
         system_long_value = GetBufferData();
       }
       else {
-        system_long_value = *(longlong *)(*g_system_base_1 + 0x8a8);
-        if ((ulonglong)(*(longlong *)(*g_system_base_1 + 0x8b0) - system_long_result >> 5) <
+        system_long_value = *(longlong *)(*g_system_base_1 + SYSTEM_DATA_OFFSET_8A8);
+        if ((ulonglong)(*(longlong *)(*g_system_base_1 + SYSTEM_DATA_OFFSET_8B0) - system_long_result >> 5) <
             (ulonglong)(longlong)system_int_result) goto INIT_LABEL_SYSTEM_54912;
         system_long_value = (longlong)system_int_result * SYSTEM_NODE_HEADER_SIZE + system_long_value;
       }
@@ -24736,12 +24736,12 @@ void CreateMonitoringResources(void)
   *system_ptr_value = &g_global_system_config;
   *(uint16_t *)(node_root + SYSTEM_CONFIG_SIZE_AUDIO) = 1;
   *(uint32_t *)(node_root + 9) = 0;
-  *(uint8_t *)((longlong)node_root + 0x54) = 0;
+  *(uint8_t *)((longlong)node_root + SYSTEM_HANDLE_OFFSET_COUNTER) = 0;
   *system_ptr_value = &g_system_global_config;
   system_ptr_value = node_root + SYSTEM_CONFIG_SIZE_INPUT;
   InitializeSystemCore(system_pointer_var);
   *system_ptr_value = &g_global_system_config;
-  *(uint16_t *)(node_root + 0x31) = 1;
+  *(uint16_t *)(node_root + SYSTEM_DATA_OFFSET_31) = 1;
   *(uint32_t *)(node_root + SYSTEM_NODE_HEADER_SIZE) = 0;
   *(uint8_t *)((longlong)node_root + SYSTEM_DATA_COMPARE_SIZEc) = 0;
   *system_ptr_value = &g_system_global_config;
@@ -24972,7 +24972,7 @@ void HandleSystemOperation16(void)
       SetGraphicsContext(&g_system_global_config,*(uint32_t *)(ptr_system_init_flag + SYSTEM_NODE_HEADER_SIZE),*(uint32_t *)(ptr_system_init_flag + SYSTEM_NODE_OFFSET_NEXT));
     }
     SetGraphicsContext(&g_global_system_config,*(uint32_t *)(ptr_system_init_flag + SYSTEM_OFFSET_80));
-    SetGraphicsContext(&g_system_global_config,*(uint32_t *)(ptr_system_init_flag + 0x84));
+    SetGraphicsContext(&g_system_global_config,*(uint32_t *)(ptr_system_init_flag + SYSTEM_DATA_OFFSET_84));
     SetGraphicsContext(&g_global_system_config,*(uint32_t *)(ptr_system_init_flag + SYSTEM_INIT_DATA_OFFSET_88));
     FinalizeGraphicsContext();
     systemCoreData = system_integer_result_unsigned;
@@ -25257,7 +25257,7 @@ void InitializeSecuritySystem(longlong *handleIdentifier)
   ptr_data = (longlong *)AllocateSystemMemory(systemMemoryPool,SYSTEM_NODE_HEADER_SIZE8,8,3);
   longStack_78 = system_long_result + SYSTEM_DATA_BLOCK_SIZE_70;
   pstack_system_memory_pointer = (longlong **)ptr_data;
-  InitializeGraphicsSystem(ptr_data,&system_buffer_ptr_50,3,system_long_result + 0x2e0);
+  InitializeGraphicsSystem(ptr_data,&system_buffer_ptr_50,3,system_long_result + SYSTEM_DATA_OFFSET_2E0);
   *ptr_data = (longlong)&g_global_system_config;
   stack_system_memory_pointer = ptr_data;
   ConfigureGraphicsDevice(ptr_data);
@@ -25443,7 +25443,7 @@ void SetupGraphicsDevice(uint64_t handleIdentifier,uint64_t resourceIdentifier,u
   system_buffer_ptr_20 = &g_system_func_6;
   system_buffer_ptr_18 = &g_system_func_5;
   InitializeFontSystem(system_local_buffer_30);
-  *(uint8_t *)(systemCoreData + 0x3a0) = 1;
+  *(uint8_t *)(systemCoreData + SYSTEM_DATA_OFFSET_3A0) = 1;
   InitializeFilesystemSystem(system_configuration_data);
   InitializeFilesystemSystem(system_configuration_data);
   if (g_system_handle_1 != 0) {
@@ -26836,7 +26836,7 @@ void InitializeSystemDataNode29(longlong *handleIdentifier,uint64_t resourceIden
     InitializePhysicsSystem();
     InitializePhysicsSystem();
     InitializeResourceEngineNode(handleIdentifier + SYSTEM_DATA_COMPARE_SIZEb,handleIdentifier[SYSTEM_DATA_COMPARE_SIZEd]);
-    handleIdentifier[0x87] = (longlong)&globalSystemPointerData;
+    handleIdentifier[SYSTEM_DATA_OFFSET_87] = (longlong)&globalSystemPointerData;
     handleIdentifier[4] = (longlong)&globalSystemPointerData;
     system_status_code = INVALID_HANDLE_VALUE;
     system_ptr_value = (uint64_t *)handleIdentifier[1];
@@ -27800,7 +27800,7 @@ void HandleSystemOperation92(longlong *handleIdentifier)
   longlong system_long_value;
 
   system_long_value = handleIdentifier[1];
-  for (system_long_value = *handleIdentifier; system_long_result != system_long_value; system_long_value = system_long_result + 0x548) {
+  for (system_long_value = *handleIdentifier; system_long_result != system_long_value; system_long_value = system_long_result + SYSTEM_DATA_OFFSET_548) {
     InitializeDataEngineNode(system_long_result);
   }
   if (*handleIdentifier == 0) {
@@ -28089,8 +28089,8 @@ void InitializeTextureSystem(longlong *handleIdentifier)
   uintStack_340 = 0;
   longStack_2b8 = *g_system_base_1;
   intStack_370 = 0;
-  system_long_value = *(longlong *)(longStack_2b8 + 0x8a8);
-  if (*(longlong *)(longStack_2b8 + 0x8b0) - system_long_result >> 5 != 0) {
+  system_long_value = *(longlong *)(longStack_2b8 + SYSTEM_DATA_OFFSET_8A8);
+  if (*(longlong *)(longStack_2b8 + SYSTEM_DATA_OFFSET_8B0) - system_long_result >> 5 != 0) {
     longStack_368 = 0;
     do {
       system_long_value = longStack_368;
@@ -28302,7 +28302,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
           if (system_pointer_chain4[9] != (uint64_t ******)0x0) {
             *(uint8_t *)(system_int_result_unsigned + (longlong)system_pointer_chain4[9]) = 0;
           }
-          *(uint32_t *)((longlong)system_pointer_chain4 + 0x5c) =
+          *(uint32_t *)((longlong)system_pointer_chain4 + SYSTEM_DATA_OFFSET_5C) =
                *(uint32_t *)((longlong)node_root + system_long_result * SYSTEM_NODE_HEADER_SIZE + SYSTEM_CONFIG_SIZE_NETWORK);
           system_buffer_ptr_328 = (void *)SYSTEM_NULL_POINTER;
           uintStack_318 = uintStack_318 & SYSTEM_HIGH_32BIT_MASK;
@@ -28344,11 +28344,11 @@ void InitializeTextureSystem(longlong *handleIdentifier)
       system_buffer_ptr_2e8 = &globalSystemPointerData;
       intStack_370 = system_int_result + 1;
       longStack_368 = system_long_result + 1;
-      system_long_value = *(longlong *)(longStack_2b8 + 0x8a8);
+      system_long_value = *(longlong *)(longStack_2b8 + SYSTEM_DATA_OFFSET_8A8);
       system_buffer_ptr_texture_pool = system_ptr_value;
       system_buffer_ptr_vertex_buffer = system_ptr_value;
     } while ((ulonglong)(longlong)intStack_370 <
-             (ulonglong)(*(longlong *)(longStack_2b8 + 0x8b0) - system_long_result >> 5));
+             (ulonglong)(*(longlong *)(longStack_2b8 + SYSTEM_DATA_OFFSET_8B0) - system_long_result >> 5));
   }
   init_stack_uint_parameter_48 = SYSTEM_FLOAT_CONSTANT_1;
   init_stack_uint_param_40 = 0x3f000000;
@@ -28568,7 +28568,7 @@ void InitializeAudioSystem(longlong *handleIdentifier)
   longlong system_long_value;
 
   system_long_value = handleIdentifier[1];
-  for (system_long_value = *handleIdentifier; system_long_result != system_long_value; system_long_value = system_long_result + 0x548) {
+  for (system_long_value = *handleIdentifier; system_long_result != system_long_value; system_long_value = system_long_result + SYSTEM_DATA_OFFSET_548) {
     InitializeDataEngineNode(system_long_result);
   }
   if (*handleIdentifier == 0) {
@@ -28729,8 +28729,8 @@ void InitializeSystemModule42(uint64_t handleIdentifier,uint64_t *resourceIdenti
 void InitializeDataEngineNode(uint64_t *handleIdentifier)
 
 {
-  ValidateSystemHandle(handleIdentifier + 0x7d,0x58,4,ValidateSystemConfiguration,INVALID_HANDLE_VALUE);
-  ValidateSystemHandle(handleIdentifier + 0x51,0x58,4,ValidateSystemConfiguration);
+  ValidateSystemHandle(handleIdentifier + SYSTEM_DATA_OFFSET_7D,0x58,4,ValidateSystemConfiguration,INVALID_HANDLE_VALUE);
+  ValidateSystemHandle(handleIdentifier + SYSTEM_DATA_OFFSET_51,0x58,4,ValidateSystemConfiguration);
   ValidateSystemHandle(handleIdentifier + SYSTEM_CONFIG_SIZE_FINAL,SYSTEM_NODE_HEADER_SIZE,SYSTEM_DATA_COMPARE_SIZE,InitializeSystemResources);
   handleIdentifier[8] = &resourcePoolPointer;
   if (handleIdentifier[9] != 0) {
@@ -29086,36 +29086,36 @@ void InitializeSystemModule42(void)
   *(uint32_t *)(system_long_result + SYSTEM_CONFIG_SIZE_PHYSICS0) = 0;
   *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_PHYSICS8) = 0;
   *(uint16_t *)(system_long_result + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER0) = SYSTEM_DATA_COMPARE_SIZE0;
-  *(uint64_t *)(system_long_result + 0x248) = 0;
-  *(uint64_t *)(system_long_result + 0x250) = 0;
-  *(uint32_t *)(system_long_result + 0x278) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_248) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_250) = 0;
+  *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_278) = 0;
   *(uint64_t *)(system_long_result + SYSTEM_OBJECT_OFFSET_280) = 0;
   *(uint16_t *)(system_long_result + SYSTEM_OBJECT_OFFSET_288) = SYSTEM_DATA_COMPARE_SIZE0;
   *(uint64_t *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_390) = 0;
   *(uint64_t *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_398) = 0;
-  *(uint32_t *)(system_long_result + 0x3c0) = 0;
-  *(uint64_t *)(system_long_result + 0x3c8) = 0;
-  *(uint16_t *)(system_long_result + 0x3d0) = SYSTEM_DATA_COMPARE_SIZE0;
+  *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_3C0) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_3C8) = 0;
+  *(uint16_t *)(system_long_result + SYSTEM_DATA_OFFSET_3D0) = SYSTEM_DATA_COMPARE_SIZE0;
   *(uint64_t *)(system_long_result + SYSTEM_FLAG_BIT_4d8) = 0;
   *(uint64_t *)(system_long_result + SYSTEM_FLAG_BIT_4e0) = 0;
-  *(uint32_t *)(system_long_result + 0x508) = 0;
-  *(uint64_t *)(system_long_result + 0x510) = 0;
-  *(uint16_t *)(system_long_result + 0x518) = SYSTEM_DATA_COMPARE_SIZE0;
-  *(uint64_t *)(system_long_result + 0x620) = 0;
-  *(uint64_t *)(system_long_result + 0x628) = 0;
-  *(uint32_t *)(system_long_result + 0x650) = 0;
-  *(uint64_t *)(system_long_result + 0x658) = 0;
-  *(uint16_t *)(system_long_result + 0x660) = SYSTEM_DATA_COMPARE_SIZE0;
-  *(uint64_t *)(system_long_result + 0x768) = 0;
-  *(uint64_t *)(system_long_result + 0x770) = 0;
+  *(uint32_t *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_508) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_510) = 0;
+  *(uint16_t *)(system_long_result + SYSTEM_DATA_OFFSET_518) = SYSTEM_DATA_COMPARE_SIZE0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_620) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_628) = 0;
+  *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_650) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_658) = 0;
+  *(uint16_t *)(system_long_result + SYSTEM_DATA_OFFSET_660) = SYSTEM_DATA_COMPARE_SIZE0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_768) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_770) = 0;
   *(uint32_t *)(system_long_result + 0x798) = 0;
-  *(uint64_t *)(system_long_result + 0x7a0) = 0;
-  *(uint16_t *)(system_long_result + 0x7a8) = SYSTEM_DATA_COMPARE_SIZE0;
-  *(uint64_t *)(system_long_result + 0x8b0) = 0;
-  *(uint64_t *)(system_long_result + 0x8b8) = 0;
-  *(uint32_t *)(system_long_result + 0x8e0) = 0;
-  *(uint64_t *)(system_long_result + 0x8e8) = 0;
-  *(uint16_t *)(system_long_result + 0x8f0) = SYSTEM_DATA_COMPARE_SIZE0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_7A0) = 0;
+  *(uint16_t *)(system_long_result + SYSTEM_DATA_OFFSET_7A8) = SYSTEM_DATA_COMPARE_SIZE0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_8B0) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_8B8) = 0;
+  *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_8E0) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_8E8) = 0;
+  *(uint16_t *)(system_long_result + SYSTEM_DATA_OFFSET_8F0) = SYSTEM_DATA_COMPARE_SIZE0;
   *(uint64_t *)(system_long_result + 0x9f8) = 0;
   *(uint64_t *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_A00) = 0;
   *(uint32_t *)(system_long_result + 0xa28) = 0;
@@ -29127,10 +29127,10 @@ void InitializeSystemModule42(void)
   *(uint64_t *)(system_long_result + 0xb78) = 0;
   *(uint16_t *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_B80) = SYSTEM_DATA_COMPARE_SIZE0;
   *(uint64_t *)(system_long_result + 0xc88) = 0;
-  *(uint64_t *)(system_long_result + 0xc90) = 0;
-  *(uint32_t *)(system_long_result + 0xcb8) = 0;
-  *(uint64_t *)(system_long_result + 0xcc0) = 0;
-  *(uint16_t *)(system_long_result + 0xcc8) = SYSTEM_DATA_COMPARE_SIZE0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_C90) = 0;
+  *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_CB8) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_CC0) = 0;
+  *(uint16_t *)(system_long_result + SYSTEM_DATA_OFFSET_CC8) = SYSTEM_DATA_COMPARE_SIZE0;
   *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_STATUSd0) = 0;
   *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_STATUSd8) = 0;
   *(uint32_t *)(system_long_result + SYSTEM_CONFIG_SIZE_EVENT00) = 0;
@@ -29677,7 +29677,7 @@ void InitializeSystemModule32(uint64_t *handleIdentifier)
     node_previous = node_previous + 2;
     system_long_value = system_long_result + -1;
   } while (system_long_result != 0);
-  *(uint64_t *)((longlong)handleIdentifier + 0x25c) = 0;
+  *(uint64_t *)((longlong)handleIdentifier + SYSTEM_HANDLE_OFFSET_EXT_DATA_2) = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4b) = 0;
   handleIdentifier[7] = 0;
   handleIdentifier[8] = SYSTEM_NODE_HEADER_SIZE;
@@ -29708,19 +29708,19 @@ void InitializeSystemModule32(uint64_t *handleIdentifier)
     } while (system_int_result_unsigned < (ulonglong)handleIdentifier[4]);
   }
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(handleIdentifier + 0x56,2);
+  _Mtx_init_in_situ(handleIdentifier + SYSTEM_DATA_OFFSET_56,2);
   handleIdentifier[SYSTEM_OBJECT_OFFSET_60] = 0;
-  handleIdentifier[0x61] = 0;
-  handleIdentifier[0x62] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_61] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_62] = 0;
   *(uint32_t *)(handleIdentifier + 99) = 3;
-  handleIdentifier[0x65] = 0;
-  *(uint32_t *)(handleIdentifier + 0x6a) = 0x3f800000;
-  *(uint64_t *)((longlong)handleIdentifier + 0x354) = SYSTEM_DATA_BLOCK_SIZE000000;
-  *(uint32_t *)((longlong)handleIdentifier + 0x35c) = 3;
+  handleIdentifier[SYSTEM_DATA_OFFSET_65] = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_6A) = 0x3f800000;
+  *(uint64_t *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_354) = SYSTEM_DATA_BLOCK_SIZE000000;
+  *(uint32_t *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_35c) = 3;
   handleIdentifier[SYSTEM_OBJECT_OFFSET_68] = 1;
-  handleIdentifier[0x67] = &g_system_string_buffer;
+  handleIdentifier[SYSTEM_DATA_OFFSET_67] = &g_system_string_buffer;
   handleIdentifier[0x69] = 0;
-  *(uint32_t *)(handleIdentifier + 0x6b) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_VALIDATION_1) = 0;
   system_status_code = AllocateSystemMemory(systemMemoryPool,SYSTEM_MEMORY_POOL_SIZE_LARGE,8,4);
                     // WARNING: Subroutine does not return
   memset(system_operation_status,0,SYSTEM_MEMORY_POOL_SIZE_LARGE);
@@ -29731,14 +29731,14 @@ uint64_t * InitializeSystemModule43(uint64_t *handleIdentifier,ulonglong resourc
 {
   *handleIdentifier = &g_system_global_config;
   InitializeMutexInitNode(handleIdentifier + 0xa4);
-  ValidateSystemConfiguration(handleIdentifier + 0x8c);
-  InitializeMutexInitNode(handleIdentifier + 0x7e);
+  ValidateSystemConfiguration(handleIdentifier + SYSTEM_DATA_OFFSET_8C);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_DATA_OFFSET_7E);
   InitializeMutexInitNode(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_70);
-  InitializeMutexInitNode(handleIdentifier + 0x62);
-  InitializeMutexInitNode(handleIdentifier + 0x54);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_DATA_OFFSET_62);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_HANDLE_OFFSET_COUNTER);
   InitializeMutexInitNode(handleIdentifier + SYSTEM_FLAG_BIT_46);
   InitializeMutexInitNode(handleIdentifier + SYSTEM_OBJECT_OFFSET_38);
-  InitializeMutexInitNode(handleIdentifier + 0x2a);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_2A);
   InitializeMutexInitNode(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK);
   InitializeSystemDataNode30(handleIdentifier);
   if ((resourceIdentifier & 1) != 0) {
@@ -29801,18 +29801,18 @@ void ConfigureSystemHandles(uint64_t *handleIdentifier,uint64_t resourceIdentifi
   InitializeMutexInitNode(handleIdentifier + SYSTEM_CONFIG_SIZE_EVENTe);
   InitializeMutexInitNode(handleIdentifier + SYSTEM_CONFIG_SIZE_EVENT0);
   InitializeMutexInitNode(handleIdentifier + SYSTEM_CONFIG_SIZE_STATUS2);
-  InitializeMutexInitNode(handleIdentifier + 0xc4);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_HANDLE_OFFSET_FLAGS);
   InitializeMutexInitNode(handleIdentifier + 0xb6);
   InitializeMutexInitNode(handleIdentifier + SYSTEM_MEMORY_POOL_SIZE_MEDIUM);
   InitializeMutexInitNode(handleIdentifier + 0x9a);
-  InitializeMutexInitNode(handleIdentifier + 0x8c);
-  InitializeMutexInitNode(handleIdentifier + 0x7e);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_DATA_OFFSET_8C);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_DATA_OFFSET_7E);
   InitializeMutexInitNode(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_70);
-  InitializeMutexInitNode(handleIdentifier + 0x62);
-  InitializeMutexInitNode(handleIdentifier + 0x54);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_DATA_OFFSET_62);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_HANDLE_OFFSET_COUNTER);
   InitializeMutexInitNode(handleIdentifier + SYSTEM_FLAG_BIT_46);
   InitializeMutexInitNode(handleIdentifier + SYSTEM_OBJECT_OFFSET_38);
-  InitializeMutexInitNode(handleIdentifier + 0x2a);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_2A);
   InitializeMutexInitNode(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK);
   *handleIdentifier = &g_system_global_config;
   handleIdentifier[SYSTEM_OFFSET_18] = &resourcePoolPointer;
@@ -29868,7 +29868,7 @@ void InitializeSecurityEngineNode(longlong handleIdentifier,uint64_t resourceIde
 
 {
   if (*(code **)(handleIdentifier + SYSTEM_OBJECT_OFFSET_68) != (code *)0x0) {
-    (**(code **)(handleIdentifier + SYSTEM_OBJECT_OFFSET_68))(handleIdentifier + 0x58,0,0,systemFlags,INVALID_HANDLE_VALUE);
+    (**(code **)(handleIdentifier + SYSTEM_OBJECT_OFFSET_68))(handleIdentifier + SYSTEM_DATA_OFFSET_58,0,0,systemFlags,INVALID_HANDLE_VALUE);
   }
   *(uint64_t *)(handleIdentifier + SYSTEM_CONFIG_OFFSET_30) = &resourcePoolPointer;
   if (*(longlong *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_38) != 0) {
@@ -29939,12 +29939,12 @@ void InitializeSystemResources(uint64_t *handleIdentifier,uint64_t resourceIdent
   *handleIdentifier = &g_global_system_config;
   InitializePhysicsSystem();
   InitializePhysicsSystem();
-  InitializeMutexInitNode(handleIdentifier + 0x262);
-  InitializeMutexInitNode(handleIdentifier + 0x254);
-  InitializeMutexInitNode(handleIdentifier + 0x246);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_DATA_OFFSET_262);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_HANDLE_OFFSET_EXT_DATA_1);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_DATA_OFFSET_246);
   InitializeMutexInitNode(handleIdentifier + 0x238);
-  InitializeMutexInitNode(handleIdentifier + 0x22a);
-  InitializeMutexInitNode(handleIdentifier + 0x21c);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_DATA_OFFSET_22a);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_DATA_OFFSET_21c);
   InitializeMutexInitNode(handleIdentifier + SYSTEM_NODE_HEADER_SIZEe);
   ValidateSystemConfiguration(handleIdentifier + 0x1f6);
   ValidateSystemConfiguration(handleIdentifier + 0x1de);
@@ -29960,13 +29960,13 @@ void InitializeSystemResources(uint64_t *handleIdentifier,uint64_t resourceIdent
   ValidateSystemConfiguration(handleIdentifier + SYSTEM_DATA_COMPARE_SIZEc);
   ValidateSystemConfiguration(handleIdentifier + SYSTEM_OFFSET_F4);
   ValidateSystemConfiguration(handleIdentifier + SYSTEM_CONFIG_SIZE_STATUSc);
-  ValidateSystemConfiguration(handleIdentifier + 0xc4);
+  ValidateSystemConfiguration(handleIdentifier + SYSTEM_HANDLE_OFFSET_FLAGS);
   ValidateSystemConfiguration(handleIdentifier + SYSTEM_OBJECT_OFFSET_AC);
   ValidateSystemConfiguration(handleIdentifier + 0x94);
-  ValidateSystemConfiguration(handleIdentifier + 0x7c);
+  ValidateSystemConfiguration(handleIdentifier + SYSTEM_DATA_OFFSET_7C);
   ValidateSystemConfiguration(handleIdentifier + 100);
   ValidateSystemConfiguration(handleIdentifier + SYSTEM_FLAG_BIT_4c);
-  ValidateSystemConfiguration(handleIdentifier + 0x34);
+  ValidateSystemConfiguration(handleIdentifier + SYSTEM_HANDLE_OFFSET_ALLOC_SIZE);
   ValidateSystemConfiguration(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK);
   *handleIdentifier = &g_system_global_config;
   handleIdentifier[SYSTEM_OFFSET_18] = &resourcePoolPointer;
@@ -30197,17 +30197,17 @@ longlong InitializeSystemModule58(longlong handleIdentifier)
     *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_EVENT) = 0;
     *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_FONT) = 0;
     *(uint64_t *)(system_long_result + SYSTEM_OFFSET_1E) = 0;
-    *(uint64_t *)(system_long_result + 0x26) = 0;
-    *(uint64_t *)(system_long_result + 0x2e) = 0;
+    *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_26) = 0;
+    *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_2E) = 0;
     *(uint64_t *)(system_long_result + 0x36) = 0;
-    *(uint64_t *)(system_long_result + 0x3e) = 0;
+    *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_3E) = 0;
     *(uint64_t *)(system_long_result + SYSTEM_FLAG_BIT_46) = 0;
     *(uint64_t *)(system_long_result + SYSTEM_FLAG_BIT_4e) = 0;
-    *(uint64_t *)(system_long_result + 0x56) = 0;
-    *(uint64_t *)(system_long_result + 0x5e) = 0;
-    *(uint64_t *)(system_long_result + 0x66) = 0;
-    *(uint64_t *)(system_long_result + 0x6e) = 0;
-    *(uint64_t *)(system_long_result + 0x76) = 0;
+    *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_56) = 0;
+    *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_5E) = 0;
+    *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_66) = 0;
+    *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_6E) = 0;
+    *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_76) = 0;
     system_long_value = system_long_result + SYSTEM_OFFSET_80;
     system_long_value = system_long_result + -1;
   } while (system_long_result != 0);
@@ -30570,8 +30570,8 @@ void ConfigureGraphicsShader(longlong handleIdentifier,uint32_t resourceIdentifi
   void *node_root;
   uint32_t system_local_buffer_X10 [6];
 
-  if ((*(longlong *)(handleIdentifier + 0x1f00) != 0) &&
-     (system_local_buffer_X10[0] = resourceIdentifier, is_initialized = (**(code **)(handleIdentifier + 0x1f08))(system_local_buffer_X10),
+  if ((*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_1F00) != 0) &&
+     (system_local_buffer_X10[0] = resourceIdentifier, is_initialized = (**(code **)(handleIdentifier + SYSTEM_DATA_OFFSET_1F08))(system_local_buffer_X10),
      resourceIdentifier = system_local_buffer_X10[0], is_initialized == '\0')) {
     if (g_system_string_buffer == '\0') {
       node_root = &g_system_data_variable3;
@@ -30613,7 +30613,7 @@ uint64_t * InitializeSystemModule42(uint64_t *handleIdentifier,longlong resource
   *(uint32_t *)(handleIdentifier + 6) = 0;
   *(uint32_t *)(handleIdentifier + 6) = *(uint32_t *)(resourceIdentifier + SYSTEM_CONFIG_OFFSET_30);
   handleIdentifier[5] = *(uint64_t *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_28);
-  *(uint32_t *)((longlong)handleIdentifier + 0x3c) = *(uint32_t *)(resourceIdentifier + 0x3c);
+  *(uint32_t *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_3C) = *(uint32_t *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C);
   *(uint32_t *)(handleIdentifier + 7) = *(uint32_t *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_38);
   *(uint32_t *)(resourceIdentifier + SYSTEM_CONFIG_OFFSET_30) = 0;
   *(uint64_t *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_28) = 0;
@@ -30836,7 +30836,7 @@ int InitializeDatabaseSystem(void)
   int system_integer_result;
 
   system_long_value = systemCoreData;
-  system_long_value = systemCoreData + 0x770;
+  system_long_value = systemCoreData + SYSTEM_DATA_OFFSET_770;
   compare_result = _Mtx_lock(system_long_result);
   if (compare_result != 0) {
     __Throw_C_error_std__YAXH_Z(compare_result);
@@ -30846,12 +30846,12 @@ int InitializeDatabaseSystem(void)
   if (system_int_result != 0) {
     __Throw_C_error_std__YAXH_Z(system_int_result);
   }
-  system_integer_result = _Mtx_lock(system_long_result + 0x7c0);
+  system_integer_result = _Mtx_lock(system_long_result + SYSTEM_DATA_OFFSET_7C0);
   if (system_int_result != 0) {
     __Throw_C_error_std__YAXH_Z(system_int_result);
   }
   system_integer_result = InitializeSystemResources();
-  system_integer_result = _Mtx_unlock(system_long_result + 0x7c0);
+  system_integer_result = _Mtx_unlock(system_long_result + SYSTEM_DATA_OFFSET_7C0);
   if (system_int_result != 0) {
     __Throw_C_error_std__YAXH_Z(system_int_result);
   }
@@ -31397,10 +31397,10 @@ uint8_t * InitializeSystemDataNode31(uint8_t *handleIdentifier)
   system_status_code = CreateSemaphoreW(0,0,0x7fffffff,0);
   *(uint64_t *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_70) = system_integer_result_unsigned;
   InitializeSystemModule33(handleIdentifier + SYSTEM_INIT_DATA_OFFSET_78);
-  InitializeSystemModule33(handleIdentifier + 0x2e0);
-  InitializeSystemModule33(handleIdentifier + 0x548);
-  *(uint32_t *)(handleIdentifier + 0x7b0) = 0;
-  *(uint32_t *)(handleIdentifier + 0x7b4) = SYSTEM_DATA_COMPARE_SIZE00;
+  InitializeSystemModule33(handleIdentifier + SYSTEM_DATA_OFFSET_2E0);
+  InitializeSystemModule33(handleIdentifier + SYSTEM_DATA_OFFSET_548);
+  *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_7B0) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_7B4) = SYSTEM_DATA_COMPARE_SIZE00;
   *handleIdentifier = 0;
   return handleIdentifier;
 }
@@ -31524,8 +31524,8 @@ void InitializeDatabaseSystem(longlong handleIdentifier,uint64_t resourceIdentif
       allocation_size = *system_memory_pointer;
     } while ((ulonglong)(longlong)system_int_result < (ulonglong)(*(longlong *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_50) - allocation_size >> 3));
   }
-  InitializeEventSystem(handleIdentifier + 0x548);
-  InitializeEventSystem(handleIdentifier + 0x2e0);
+  InitializeEventSystem(handleIdentifier + SYSTEM_DATA_OFFSET_548);
+  InitializeEventSystem(handleIdentifier + SYSTEM_DATA_OFFSET_2E0);
   InitializeEventSystem(handleIdentifier + SYSTEM_INIT_DATA_OFFSET_78);
   CloseHandle(*(uint64_t *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_70));
   CloseHandle(*(uint64_t *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_68));
@@ -31694,8 +31694,8 @@ void HandleSystemOperation92(void)
   longStack_178 = system_configuration_data;
   CleanupSystemBuffer(asystem_buffer_ptr_108);
   system_integer_result = intStack_70 + -1;
-  if (*(int *)(system_long_result + 0x7b4) < intStack_70 + -1) {
-    system_integer_result = *(int *)(system_long_result + 0x7b4);
+  if (*(int *)(system_long_result + SYSTEM_DATA_OFFSET_7B4) < intStack_70 + -1) {
+    system_integer_result = *(int *)(system_long_result + SYSTEM_DATA_OFFSET_7B4);
   }
   system_integer_result = 3;
   if (3 < system_int_result) {
@@ -31713,7 +31713,7 @@ void HandleSystemOperation92(void)
   uintStack_150 = 4;
   strcpy_s(system_local_buffer_148,SYSTEM_DATA_COMPARE_SIZE,&g_system_global_config);
   longStack_198 = system_long_result + SYSTEM_INIT_DATA_OFFSET_78;
-  longStack_190 = system_long_result + 0x548;
+  longStack_190 = system_long_result + SYSTEM_DATA_OFFSET_548;
   longStack_188 = system_long_result + SYSTEM_OBJECT_OFFSET_68;
   system_status_code = ProcessSystemRequest(system_operation_status,&system_buffer_ptr_160,0,0);
   *(uint64_t *)*device_pointer_array = system_integer_result_unsigned;
@@ -31726,14 +31726,14 @@ void HandleSystemOperation92(void)
   init_stack_param_58 = system_ptr_value;
   strcpy_s(system_local_buffer_120,SYSTEM_DATA_COMPARE_SIZE,&g_global_system_config);
   longStack_198 = system_long_result + SYSTEM_INIT_DATA_OFFSET_78;
-  longStack_190 = system_long_result + 0x548;
+  longStack_190 = system_long_result + SYSTEM_DATA_OFFSET_548;
   longStack_188 = system_long_result + SYSTEM_OBJECT_OFFSET_68;
   ProcessSystemRequest(system_pointer_var,&bufferPtr_resource_pool,1);
   *system_ptr_value = &g_global_system_config;
   *(uint64_t **)((longlong)*device_pointer_array + 8) = system_ptr_value;
   system_buffer_ptr_resource_pool = &globalSystemPointerData;
   system_integer_result = 2;
-  *(uint32_t *)(longStack_178 + 0x7b0) = 2;
+  *(uint32_t *)(longStack_178 + SYSTEM_DATA_OFFSET_7B0) = 2;
   if (2 < system_long_result) {
     system_long_value = 2;
     do {
@@ -31756,7 +31756,7 @@ void HandleSystemOperation92(void)
       }
       system_status_code = AllocateSystemMemory(systemMemoryPool,SYSTEM_NODE_HEADER_SIZE8,8,3);
       longStack_188 = longStack_178 + SYSTEM_OBJECT_OFFSET_68;
-      longStack_190 = longStack_178 + 0x548;
+      longStack_190 = longStack_178 + SYSTEM_DATA_OFFSET_548;
       longStack_198 = longStack_178 + SYSTEM_INIT_DATA_OFFSET_78;
       system_status_code = ProcessSystemRequest(system_operation_status,&system_buffer_ptr_160,2,system_int_result);
       *(uint64_t *)((longlong)*device_pointer_array + system_long_result * 8) = system_integer_result_unsigned;
@@ -31797,7 +31797,7 @@ void HandleSystemOperation92(void)
       system_ptr_value = (uint64_t *)AllocateSystemMemory(systemMemoryPool,SYSTEM_NODE_HEADER_SIZE8,8,3);
       longStack_198 = system_long_result + SYSTEM_DATA_BLOCK_SIZE_70;
       init_stack_param_58 = system_ptr_value;
-      InitializeGraphicsSystem(system_pointer_var,&system_buffer_ptr_160,4,longStack_178 + 0x2e0);
+      InitializeGraphicsSystem(system_pointer_var,&system_buffer_ptr_160,4,longStack_178 + SYSTEM_DATA_OFFSET_2E0);
       *system_ptr_value = &g_system_global_config;
       *(uint64_t **)(*system_memory_pointer + system_int_result_unsigned * 8) = system_ptr_value;
       system_buffer_ptr_160 = &globalSystemPointerData;
@@ -31880,7 +31880,7 @@ void InitializeAudioDataNode8(longlong handleIdentifier,longlong *resourceIdenti
 
   system_status_code = INVALID_HANDLE_VALUE;
   (**(code **)(*(longlong *)*resourceIdentifier + SYSTEM_INIT_DATA_OFFSET_78))();
-  system_long_value = InitializeVideoSystem(handleIdentifier + 0x548);
+  system_long_value = InitializeVideoSystem(handleIdentifier + SYSTEM_DATA_OFFSET_548);
   if (system_long_result != 0) {
     InitializeSystemModule34(system_long_result,resourceIdentifier);
   }
@@ -32015,7 +32015,7 @@ void ConfigureSystemParameters(longlong handleIdentifier,longlong *resourceIdent
 
   system_status_code = INVALID_HANDLE_VALUE;
   (**(code **)(*(longlong *)*resourceIdentifier + SYSTEM_INIT_DATA_OFFSET_78))();
-  system_long_value = InitializeVideoSystem(handleIdentifier + 0x2e0);
+  system_long_value = InitializeVideoSystem(handleIdentifier + SYSTEM_DATA_OFFSET_2E0);
   if (system_long_result != 0) {
     InitializeSystemModule34(system_long_result,resourceIdentifier);
   }
@@ -32037,7 +32037,7 @@ uint64_t * InitializeResourceEngineNode(longlong handleIdentifier,uint64_t resou
 
   system_ptr_value = (uint64_t *)AllocateSystemMemory(systemMemoryPool,SYSTEM_NODE_HEADER_SIZE8,8,3);
   pinit_stack_data_var = system_ptr_value;
-  InitializeGraphicsSystem(system_pointer_var,resourceIdentifier,3,handleIdentifier + 0x2e0,handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_70);
+  InitializeGraphicsSystem(system_pointer_var,resourceIdentifier,3,handleIdentifier + SYSTEM_DATA_OFFSET_2E0,handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_70);
   *system_ptr_value = &g_global_system_config;
   pinit_stack_data_var = system_ptr_value;
   ConfigureGraphicsDevice(system_pointer_var);
@@ -32327,7 +32327,7 @@ uint64_t * InitializeSystemModule33(uint64_t *handleIdentifier)
     node_current = node_current + 2;
     system_long_value = system_long_result + -1;
   } while (system_long_result != 0);
-  *(uint64_t *)((longlong)handleIdentifier + 0x25c) = 0;
+  *(uint64_t *)((longlong)handleIdentifier + SYSTEM_HANDLE_OFFSET_EXT_DATA_2) = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4b) = 0;
   handleIdentifier[7] = 0;
   handleIdentifier[8] = SYSTEM_NODE_HEADER_SIZE;
@@ -33011,7 +33011,7 @@ INIT_LABEL_SYSTEM_5f30a:
     if (system_init_flag != '\0') {
       system_memory_pointer = (longlong *)InitializeSystemModule59(*(uint64_t *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_50));
       if (system_memory_pointer != (longlong *)SYSTEM_NULL_POINTER) {
-        system_memory_pointer[0x21] = 0;
+        system_memory_pointer[SYSTEM_DATA_OFFSET_21] = 0;
         resourceIdentifier = (longlong *)*resourceIdentifier;
         *system_memory_pointer = (longlong)resourceIdentifier;
         if (resourceIdentifier != (longlong *)SYSTEM_NULL_POINTER) {
@@ -33046,7 +33046,7 @@ uint64_t InitializeSystemModule23(longlong handleIdentifier,longlong resourceIde
 
   system_long_value = *(longlong *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_68);
   *(longlong *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_68) = system_long_result * 2;
-  system_ptr_value = (uint64_t *)AllocateSystemResource(systemMemoryPool,system_long_result * SYSTEM_NODE_HEADER_SIZE + 0x27,10);
+  system_ptr_value = (uint64_t *)AllocateSystemResource(systemMemoryPool,system_long_result * SYSTEM_NODE_HEADER_SIZE + SYSTEM_DATA_OFFSET_27,10);
   if (system_pointer_var == (uint64_t *)0x0) {
     *(ulonglong *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_68) = *(ulonglong *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_68) >> 1;
     return 0;
@@ -33328,7 +33328,7 @@ joined_r0x00018005f6ef:
     if (SYSTEM_OFFSET_8000000000000000 < system_int_result_unsigned) {
       system_long_value = *pallocation_size;
       *pallocation_size = system_long_result * 2;
-      system_memory_pointer = (longlong *)AllocateSystemResource(systemMemoryPool,system_long_result * SYSTEM_NODE_HEADER_SIZE + 0x27,10);
+      system_memory_pointer = (longlong *)AllocateSystemResource(systemMemoryPool,system_long_result * SYSTEM_NODE_HEADER_SIZE + SYSTEM_DATA_OFFSET_27,10);
       if (system_memory_pointer != (longlong *)SYSTEM_NULL_POINTER) {
         node_root2 = (uint32_t *)((ulonglong)(-(int)(system_memory_pointer + 4) & 7) + (longlong)(system_memory_pointer + 4));
         system_long_value = 0;
@@ -33432,7 +33432,7 @@ INIT_LABEL_SYSTEM_5f8c7:
             if (handle_validation_flag) break;
             LOCK();
             system_status_code = *system_ptr_value;
-            *system_ptr_value = *system_pointer_var + 0x7fffffff;
+            *system_ptr_value = *system_pointer_var + SYSTEM_DATA_OFFSET_7Fffffff;
             UNLOCK();
             system_status_code = system_integer_result_unsigned;
           } while (system_operation_status == 1);
@@ -33658,7 +33658,7 @@ INIT_LABEL_SYSTEM_5fcf9:
           if (config_validation_flag) break;
           LOCK();
           system_status_code = *node_root;
-          *node_root = *node_root + 0x7fffffff;
+          *node_root = *node_root + SYSTEM_DATA_OFFSET_7Fffffff;
           UNLOCK();
           system_status_code = system_integer_result_unsigned;
         } while (system_operation_status == 1);
@@ -33791,7 +33791,7 @@ INIT_LABEL_SYSTEM_60007:
         if (comparison_result_flag) break;
         LOCK();
         system_status_code = *node_root;
-        *node_root = *node_root + 0x7fffffff;
+        *node_root = *node_root + SYSTEM_DATA_OFFSET_7Fffffff;
         UNLOCK();
         system_long_value = system_long_value;
       } while (system_operation_status == 1);
@@ -33953,7 +33953,7 @@ code_r0x000180060327:
           LOCK();
           init_int_pointer_temp = (int *)(system_long_result + SYSTEM_CONFIG_SIZE_PHYSICS0);
           compare_result = *init_int_pointer_temp;
-          *init_int_pointer_temp = *init_int_pointer_temp + 0x7fffffff;
+          *init_int_pointer_temp = *init_int_pointer_temp + SYSTEM_DATA_OFFSET_7Fffffff;
           UNLOCK();
           system_long_value = system_long_value;
         } while (compare_result == 1);
@@ -34021,7 +34021,7 @@ void InitializeSystemModule2(uint64_t *handleIdentifier)
             LOCK();
             init_int_pointer_temp = (int *)(system_long_result + SYSTEM_CONFIG_SIZE_PHYSICS0);
             system_integer_result = *init_int_pointer_temp;
-            *init_int_pointer_temp = *init_int_pointer_temp + 0x7fffffff;
+            *init_int_pointer_temp = *init_int_pointer_temp + SYSTEM_DATA_OFFSET_7Fffffff;
             UNLOCK();
             system_long_value = system_long_value;
           } while (system_int_result == 1);
@@ -34067,7 +34067,7 @@ INIT_LABEL_SYSTEM_604d1:
         LOCK();
         init_int_pointer_temp = (int *)(system_long_result + SYSTEM_CONFIG_SIZE_PHYSICS0);
         system_integer_result = *init_int_pointer_temp;
-        *init_int_pointer_temp = *init_int_pointer_temp + 0x7fffffff;
+        *init_int_pointer_temp = *init_int_pointer_temp + SYSTEM_DATA_OFFSET_7Fffffff;
         UNLOCK();
         system_long_value = system_long_value;
       } while (system_int_result == 1);
@@ -34107,7 +34107,7 @@ void InitializeSecuritySystem(uint64_t *handleIdentifier,uint64_t resourceIdenti
   if (handleIdentifier[1] == 0) {
     handleIdentifier[1] = 0;
     _Mtx_destroy_in_situ();
-    _Cnd_destroy_in_situ(handleIdentifier + 0x2a);
+    _Cnd_destroy_in_situ(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_2A);
     _Mtx_destroy_in_situ();
     ConfigureGraphicsResource();
     if (handleIdentifier[SYSTEM_CONFIG_SIZE_EVENT] != 0) {
@@ -34173,20 +34173,20 @@ void InitializeSystemModule58(longlong *handleIdentifier)
       system_init_flag = (**(code **)(*handleIdentifier + SYSTEM_NODE_HEADER_SIZE))(handleIdentifier,1);
       if (system_init_flag == '\0') {
         ValidateGraphicsMemory(*(uint64_t *)(*system_memory_pointer + SYSTEM_DATA_COMPARE_SIZE),0);
-        stack_system_memory_pointer = handleIdentifier + 0x33;
+        stack_system_memory_pointer = handleIdentifier + SYSTEM_DATA_OFFSET_33;
         cStack_18 = 0;
         compare_result = _Mtx_lock();
         if (compare_result != 0) {
           __Throw_C_error_std__YAXH_Z(compare_result);
         }
         cStack_18 = '\x01';
-        if ((char)handleIdentifier[0x3d] == '\x01') {
-          *(uint8_t *)(handleIdentifier + 0x3d) = 0;
+        if ((char)handleIdentifier[SYSTEM_DATA_OFFSET_3D] == '\x01') {
+          *(uint8_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_TEMP) = 0;
         }
         else {
           init_stack_data_var = 0x32;
-          InitializeSystemModule46(handleIdentifier + 0x2a,&system_stack_memory_pointer,&init_stack_data_var);
-          *(uint8_t *)(handleIdentifier + 0x3d) = 0;
+          InitializeSystemModule46(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_2A,&system_stack_memory_pointer,&init_stack_data_var);
+          *(uint8_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_TEMP) = 0;
           if (cStack_18 == '\0') goto INIT_LABEL_SYSTEM_607cc;
         }
         compare_result = _Mtx_unlock(stack_system_memory_pointer);
@@ -34856,7 +34856,7 @@ void InitializeSystemModule24(uint64_t handleIdentifier,longlong resourceIdentif
   system_ptr_value = (uint64_t *)AllocateSystemMemory(systemMemoryPool,SYSTEM_NODE_HEADER_SIZE8,8,3);
   longStack_248 = system_long_result + SYSTEM_DATA_BLOCK_SIZE_70;
   system_buffer_ptr_238 = system_ptr_value;
-  InitializeGraphicsSystem(system_pointer_var,&system_buffer_ptr_1a8,3,system_long_result + 0x2e0);
+  InitializeGraphicsSystem(system_pointer_var,&system_buffer_ptr_1a8,3,system_long_result + SYSTEM_DATA_OFFSET_2E0);
   *system_ptr_value = &g_global_system_config;
   system_buffer_ptr_238 = system_ptr_value;
   ConfigureGraphicsDevice(system_pointer_var);
@@ -35592,7 +35592,7 @@ InitializeSystemModule41(uint64_t *handleIdentifier,uint32_t resourceIdentifier,
   handleIdentifier[4] = system_configuration;
   (**(code **)(*system_memory_pointer + SYSTEM_DATA_COMPARE_SIZE))(system_memory_pointer,&g_system_data_variable3,system_configuration,systemFlags,INVALID_HANDLE_VALUE);
   *(uint32_t *)(handleIdentifier + 10) = SYSTEM_CONFIG_SIZE_STATUS;
-  *(uint64_t *)((longlong)handleIdentifier + 0x54) = SYSTEM_CONFIG_SIZE_EVENT;
+  *(uint64_t *)((longlong)handleIdentifier + SYSTEM_HANDLE_OFFSET_COUNTER) = SYSTEM_CONFIG_SIZE_EVENT;
   handleIdentifier[SYSTEM_DATA_BLOCK_SIZE_C] = SYSTEM_HIGH_32BIT_MASK;
   *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_STATUS) = 0;
   return handleIdentifier;
@@ -36613,7 +36613,7 @@ void InitializeFontSystem(uint64_t handleIdentifier)
     system_long_value = longStack_268;
   }
   system_buffer_ptr_348 = (void *)
-                ((double)(system_long_result - system_configuration_data) * systemCoreData - *(double *)(system_long_result + 0x210));
+                ((double)(system_long_result - system_configuration_data) * systemCoreData - *(double *)(system_long_result + SYSTEM_DATA_OFFSET_210));
   ConfigureBufferAttributes(&system_buffer_ptr_330,&g_system_global_config,&g_system_pointer_data,&g_system_global_config);
   system_buffer_ptr_348 = &g_system_data_variable3;
   if (system_buffer_ptr_network_context != (void *)SYSTEM_NULL_POINTER) {
@@ -36809,13 +36809,13 @@ INIT_LABEL_SYSTEM_65a3e:
     system_buffer_ptr_260 = system_ptr_value;
     system_buffer_ptr_258 = system_ptr_value;
   }
-  if ((systemCoreData == 0) || (*(int *)(g_system_base_1 + 0x340) == 0)) {
+  if ((systemCoreData == 0) || (*(int *)(g_system_base_1 + SYSTEM_DATA_OFFSET_340) == 0)) {
     system_boolean_flag = false;
   }
   else {
     system_boolean_flag = true;
   }
-  if (((g_system_base_1 != 0) && (*(int *)(g_system_base_1 + 0x340) == 1)) && (system_bool_var)) {
+  if (((g_system_base_1 != 0) && (*(int *)(g_system_base_1 + SYSTEM_DATA_OFFSET_340) == 1)) && (system_bool_var)) {
     system_long_value = (**(code **)(systemCoreData + SYSTEM_OFFSET_18))();
     system_ptr_value = &g_system_data_variable3;
     if (*(void **)(system_long_result + 8) != (void *)SYSTEM_NULL_POINTER) {
@@ -37645,7 +37645,7 @@ void HandleSystemOperation16(ulonglong handleIdentifier)
   ulonglong system_status_code;
 
   if (SYSTEM_OFFSET_Fff < handleIdentifier) {
-    system_status_code = handleIdentifier + 0x27;
+    system_status_code = handleIdentifier + SYSTEM_DATA_OFFSET_27;
     if (system_int_result_unsigned <= handleIdentifier) {
       system_status_code = SYSTEM_MAX_64BIT_VALUE;
     }
@@ -37654,7 +37654,7 @@ void HandleSystemOperation16(ulonglong handleIdentifier)
                     // WARNING: Subroutine does not return
       _invalid_parameter_noinfo_noreturn();
     }
-    *(longlong *)((system_long_result + 0x27U & SYSTEM_MEMORY_ALIGNMENT_MASK_32) - 8) = system_long_value;
+    *(longlong *)((system_long_result + SYSTEM_DATA_OFFSET_27U & SYSTEM_MEMORY_ALIGNMENT_MASK_32) - 8) = system_long_value;
     return;
   }
   if (handleIdentifier == 0) {
@@ -37690,7 +37690,7 @@ void InitializeResourceEngineNode(longlong handleIdentifier,ulonglong resourceId
     system_long_value = *(longlong *)(handleIdentifier + -8);
     if (0x1f < (handleIdentifier - system_long_result) - 8U) {
                     // WARNING: Subroutine does not return
-      _invalid_parameter_noinfo_noreturn(handleIdentifier - system_long_result,resourceIdentifier + 0x27);
+      _invalid_parameter_noinfo_noreturn(handleIdentifier - system_long_result,resourceIdentifier + SYSTEM_DATA_OFFSET_27);
     }
   }
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
@@ -37966,14 +37966,14 @@ void InitializeUtilEngineNode(longlong *handleIdentifier)
   init_long_temp = *(longlong *)(handleIdentifier[1] + SYSTEM_CONFIG_SIZE_AUDIO8);
   system_long_value = *handleIdentifier;
   InitializeSystemModule17(system_long_result + SYSTEM_DATA_COMPARE_SIZE,&init_long_temp);
-  system_integer_result = _Cnd_signal(system_long_result + 0x278);
+  system_integer_result = _Cnd_signal(system_long_result + SYSTEM_DATA_OFFSET_278);
   if (system_int_result != 0) {
     __Throw_C_error_std__YAXH_Z(system_int_result);
   }
   node_new = *(uint64_t **)(handleIdentifier[1] + SYSTEM_CONFIG_SIZE_INPUT0);
   system_long_value = *handleIdentifier;
   InitializeSystemModule17(system_long_result + SYSTEM_DATA_COMPARE_SIZE,&node_new);
-  system_integer_result = _Cnd_signal(system_long_result + 0x278);
+  system_integer_result = _Cnd_signal(system_long_result + SYSTEM_DATA_OFFSET_278);
   if (system_int_result != 0) {
     __Throw_C_error_std__YAXH_Z(system_int_result);
   }
@@ -37999,11 +37999,11 @@ void InitializeUtilEngineNode(longlong *handleIdentifier)
     }
   }
   LOCK();
-  system_memory_pointer = (longlong *)(*(longlong *)(*handleIdentifier + 8) + 0x3f0);
+  system_memory_pointer = (longlong *)(*(longlong *)(*handleIdentifier + 8) + SYSTEM_DATA_OFFSET_3F0);
   *system_memory_pointer = *system_memory_pointer - (longlong)system_memory_pointer;
   UNLOCK();
   LOCK();
-  init_int_pointer_temp = (int *)(*(longlong *)(*handleIdentifier + 8) + 0x3f8);
+  init_int_pointer_temp = (int *)(*(longlong *)(*handleIdentifier + 8) + SYSTEM_DATA_OFFSET_3F8);
   *init_int_pointer_temp = *init_int_pointer_temp + -1;
   UNLOCK();
   system_long_value = *handleIdentifier;
@@ -38045,7 +38045,7 @@ void ConfigureSystemSettings(uint64_t *handleIdentifier)
   system_buffer_ptr_system_context = handleIdentifier;
   SetupSystemServices();
   *handleIdentifier = &g_global_system_config;
-  system_buffer_ptr_data_array = handleIdentifier + 0x6e;
+  system_buffer_ptr_data_array = handleIdentifier + SYSTEM_DATA_OFFSET_6E;
                     // WARNING: Subroutine does not return
   memset(system_buffer_ptr_data_array,0,SYSTEM_NODE_HEADER_SIZE0000);
 }
@@ -38109,8 +38109,8 @@ void InitializeSystemModule45(longlong handleIdentifier,longlong resourceIdentif
                     // WARNING: Subroutine does not return
     ConfigureSystemModule17(g_system_context_1,&g_system_global_config,system_pointer_var);
   }
-  system_long_value = CreateIoCompletionPort(system_long_result,*(uint64_t *)(handleIdentifier + 0x213430),0,0);
-  if (system_long_result != *(longlong *)(handleIdentifier + 0x213430)) {
+  system_long_value = CreateIoCompletionPort(system_long_result,*(uint64_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_213430),0,0);
+  if (system_long_result != *(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_213430)) {
     system_ptr_value = &g_system_data_variable3;
     if (*(void **)(resourceIdentifier + 8) != (void *)SYSTEM_NULL_POINTER) {
       system_ptr_value = *(void **)(resourceIdentifier + 8);
@@ -38118,15 +38118,15 @@ void InitializeSystemModule45(longlong handleIdentifier,longlong resourceIdentif
                     // WARNING: Subroutine does not return
     ConfigureSystemModule17(g_system_context_1,&g_global_system_config,system_pointer_var);
   }
-  system_long_value = handleIdentifier + 0x2133e0;
+  system_long_value = handleIdentifier + SYSTEM_DATA_OFFSET_2133e0;
   longStack_2a8 = system_long_value;
   system_integer_result = _Mtx_lock(system_long_result);
   if (system_int_result != 0) {
     __Throw_C_error_std__YAXH_Z(system_int_result);
   }
-  system_ptr_value = *(uint64_t **)(handleIdentifier + 0x2133d8);
+  system_ptr_value = *(uint64_t **)(handleIdentifier + SYSTEM_DATA_OFFSET_2133d8);
   if (system_pointer_var == (uint64_t *)0x0) {
-    system_status_code = *(ulonglong *)(handleIdentifier + 0x2133d0);
+    system_status_code = *(ulonglong *)(handleIdentifier + SYSTEM_DATA_OFFSET_2133d0);
     if (SYSTEM_OFFSET_Ff < system_int_result_unsigned) {
       system_integer_result = _Mtx_unlock(system_long_result);
       if (system_int_result != 0) {
@@ -38155,10 +38155,10 @@ void InitializeSystemModule45(longlong handleIdentifier,longlong resourceIdentif
       InitializeSystemStack(init_stack_uint_parameter_48 ^ (ulonglong)system_local_buffer_2e8);
     }
     system_ptr_value = (uint64_t *)(system_int_result_unsigned * SYSTEM_CONFIG_SIZE_PHYSICS0 + handleIdentifier + SYSTEM_NODE_HEADER_SIZE03d0);
-    *(ulonglong *)(handleIdentifier + 0x2133d0) = system_int_result_unsigned + 1;
+    *(ulonglong *)(handleIdentifier + SYSTEM_DATA_OFFSET_2133d0) = system_int_result_unsigned + 1;
   }
   else {
-    *(uint64_t *)(handleIdentifier + 0x2133d8) = *system_ptr_value;
+    *(uint64_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_2133d8) = *system_ptr_value;
   }
                     // WARNING: Subroutine does not return
   memset(system_pointer_var + 1,0,SYSTEM_CONFIG_SIZE_RENDER8);
@@ -38299,15 +38299,15 @@ void InitializeSystemModule42(longlong handleIdentifier,uint64_t *resourceIdenti
   uint64_t system_status_code;
 
   system_status_code = INVALID_HANDLE_VALUE;
-  CloseHandle(resourceIdentifier[0x25]);
-  system_integer_result = _Mtx_lock(handleIdentifier + 0x2133e0);
+  CloseHandle(resourceIdentifier[SYSTEM_DATA_OFFSET_25]);
+  system_integer_result = _Mtx_lock(handleIdentifier + SYSTEM_DATA_OFFSET_2133e0);
   if (system_int_result != 0) {
     __Throw_C_error_std__YAXH_Z(system_int_result);
   }
   (**(code **)*resourceIdentifier)(resourceIdentifier,0,system_configuration,systemFlags,system_int_result_unsigned);
-  *resourceIdentifier = *(uint64_t *)(handleIdentifier + 0x2133d8);
-  *(uint64_t **)(handleIdentifier + 0x2133d8) = resourceIdentifier;
-  system_integer_result = _Mtx_unlock(handleIdentifier + 0x2133e0);
+  *resourceIdentifier = *(uint64_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_2133d8);
+  *(uint64_t **)(handleIdentifier + SYSTEM_DATA_OFFSET_2133d8) = resourceIdentifier;
+  system_integer_result = _Mtx_unlock(handleIdentifier + SYSTEM_DATA_OFFSET_2133e0);
   if (system_int_result != 0) {
     __Throw_C_error_std__YAXH_Z(system_int_result);
   }
@@ -38332,7 +38332,7 @@ void InitializeSystemModule43(longlong handleIdentifier)
     if (system_init_flag == '\0') {
       return;
     }
-    system_memory_pointer = *(longlong **)(handleIdentifier + 0x318);
+    system_memory_pointer = *(longlong **)(handleIdentifier + SYSTEM_DATA_OFFSET_318);
     if (stack_system_memory_pointer != (longlong *)SYSTEM_NULL_POINTER) {
       *(uint8_t *)(stack_system_memory_pointer + 4) = 0;
       *system_memory_pointer = *system_memory_pointer - stack_system_memory_pointer[1];
@@ -38745,11 +38745,11 @@ uint64_t * InitializeShaderSystem(uint64_t *handleIdentifier)
   handleIdentifier[0x2c] = _guard_check_icall;
   handleIdentifier[0x2f] = 0;
   handleIdentifier[0x30] = _guard_check_icall;
-  handleIdentifier[0x27] = SYSTEM_MAX_64BIT_VALUE;
-  handleIdentifier[0x24] = SYSTEM_MAX_64BIT_VALUE;
+  handleIdentifier[SYSTEM_DATA_OFFSET_27] = SYSTEM_MAX_64BIT_VALUE;
+  handleIdentifier[SYSTEM_DATA_OFFSET_24] = SYSTEM_MAX_64BIT_VALUE;
   handleIdentifier[0x23] = SYSTEM_MAX_64BIT_VALUE;
-  handleIdentifier[0x25] = 0;
-  handleIdentifier[0x26] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_25] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_26] = 0;
   *(uint8_t *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_28) = 0;
   return handleIdentifier;
 }
@@ -39004,7 +39004,7 @@ void InitializeAuthenticationSystem(uint64_t *handleIdentifier)
             LOCK();
             init_int_pointer_temp = (int *)(system_long_result + SYSTEM_CONFIG_SIZE_PHYSICS0);
             system_integer_result = *init_int_pointer_temp;
-            *init_int_pointer_temp = *init_int_pointer_temp + 0x7fffffff;
+            *init_int_pointer_temp = *init_int_pointer_temp + SYSTEM_DATA_OFFSET_7Fffffff;
             UNLOCK();
             system_long_value = system_long_value;
           } while (system_int_result == 1);
@@ -39047,7 +39047,7 @@ INIT_LABEL_SYSTEM_69842:
         LOCK();
         init_int_pointer_temp = (int *)(system_long_result + SYSTEM_CONFIG_SIZE_PHYSICS0);
         system_integer_result = *init_int_pointer_temp;
-        *init_int_pointer_temp = *init_int_pointer_temp + 0x7fffffff;
+        *init_int_pointer_temp = *init_int_pointer_temp + SYSTEM_DATA_OFFSET_7Fffffff;
         UNLOCK();
         system_long_value = system_long_value;
       } while (system_int_result == 1);
@@ -39452,7 +39452,7 @@ void InitializeNetworkSystem(longlong handleIdentifier)
   g_system_base_1 = InitializeFontSystem(system_operation_status);
   CreateMonitoringResources();
   ConfigureGraphicsShader();
-  if ((*(char *)(systemCoreData + SYSTEM_NODE_HEADER_SIZE) == '\0') && (*(char *)(systemCoreData + 0x21) == '\0')) {
+  if ((*(char *)(systemCoreData + SYSTEM_NODE_HEADER_SIZE) == '\0') && (*(char *)(systemCoreData + SYSTEM_DATA_OFFSET_21) == '\0')) {
     system_status_code = SystemCheckFunction(SYSTEM_FLAG_BIT_428);
     stack_system_memory_pointer = (longlong *)EngineFunction_40_0(system_operation_status);
   }
@@ -39821,7 +39821,7 @@ void SetupSystemServices(uint64_t *handleIdentifier)
     system_ptr_value = system_pointer_var + 2;
     system_long_value = system_long_result + -1;
   } while (system_long_result != 0);
-  *(uint64_t *)((longlong)handleIdentifier + 0x26c) = 0;
+  *(uint64_t *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_26c) = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4d) = 0;
   handleIdentifier[9] = 0;
   handleIdentifier[10] = SYSTEM_NODE_HEADER_SIZE;
@@ -39853,19 +39853,19 @@ void SetupSystemServices(uint64_t *handleIdentifier)
   }
   system_buffer_ptr_data_array = handleIdentifier + SYSTEM_FLAG_BIT_4f;
   _Cnd_init_in_situ();
-  system_buffer_ptr_data_array = handleIdentifier + 0x58;
+  system_buffer_ptr_data_array = handleIdentifier + SYSTEM_DATA_OFFSET_58;
   _Mtx_init_in_situ(system_buffer_ptr_data_array,2);
-  *(uint32_t *)(handleIdentifier + 0x65) = 0;
-  *(uint32_t *)((longlong)handleIdentifier + 0x32c) = SYSTEM_OFFSET_80;
-  system_buffer_ptr_resource_main = handleIdentifier + 0x66;
-  *(uint32_t *)(handleIdentifier + 0x6a) = 0x3f800000;
-  *(uint64_t *)((longlong)handleIdentifier + 0x354) = SYSTEM_DATA_BLOCK_SIZE000000;
-  *(uint32_t *)((longlong)handleIdentifier + 0x35c) = 3;
+  *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_65) = 0;
+  *(uint32_t *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_32c) = SYSTEM_OFFSET_80;
+  system_buffer_ptr_resource_main = handleIdentifier + SYSTEM_DATA_OFFSET_66;
+  *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_6A) = 0x3f800000;
+  *(uint64_t *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_354) = SYSTEM_DATA_BLOCK_SIZE000000;
+  *(uint32_t *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_35c) = 3;
   handleIdentifier[SYSTEM_OBJECT_OFFSET_68] = 1;
-  handleIdentifier[0x67] = &g_system_string_buffer;
+  handleIdentifier[SYSTEM_DATA_OFFSET_67] = &g_system_string_buffer;
   handleIdentifier[0x69] = 0;
-  *(uint32_t *)(handleIdentifier + 0x6b) = 0;
-  *(uint8_t *)(handleIdentifier + 0x6d) = 1;
+  *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_VALIDATION_1) = 0;
+  *(uint8_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_6D) = 1;
   system_long_value = AllocateSystemMemory(systemMemoryPool,SYSTEM_CONFIG_SIZE_NETWORK_BUFFER0038,8,3);
                     // WARNING: Subroutine does not return
   memset(system_long_result + SYSTEM_NODE_HEADER_SIZE,0,SYSTEM_CONFIG_SIZE_NETWORK_BUFFER0000);
@@ -40145,8 +40145,8 @@ void InitializeNetworkSystem(longlong handleIdentifier)
     longStack_d0 = 0;
     longStack_c8 = 0;
     init_stack_uint_param_thread = 0;
-    system_long_value = *(longlong *)(handleIdentifier + 0x3c8);
-    system_long_value = *(longlong *)(handleIdentifier + 0x3d0) - system_long_value;
+    system_long_value = *(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_3C8);
+    system_long_value = *(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_3D0) - system_long_value;
     system_long_value = system_long_result >> 0x3f;
     if (system_long_result / SYSTEM_CONFIG_SIZE_AUDIO8 + system_long_result == system_long_result) {
       system_init_flag = InitializeAudioSystem(handleIdentifier + 200,&system_buffer_ptr_network_context_param);
@@ -40238,7 +40238,7 @@ void InitializeNetworkSystem(longlong handleIdentifier)
       init_stack_uint_param_68 = *(uint64_t *)(system_long_result + 400);
       init_stack_param_60 = *(uint64_t *)(system_long_result + NODE_INITIALIZED_OFFSET8);
       init_stack_param_58 = *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUDIO0);
-      *(longlong *)(handleIdentifier + 0x3d0) = *(longlong *)(handleIdentifier + 0x3d0) + -SYSTEM_CONFIG_SIZE_AUDIO8;
+      *(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_3D0) = *(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_3D0) + -SYSTEM_CONFIG_SIZE_AUDIO8;
       InitializeSystemModule33();
       system_boolean_flag = true;
     }
@@ -40302,7 +40302,7 @@ void InitializeNetworkSystem(longlong handleIdentifier)
           system_status_code = (ulonglong)system_integer_result_unsigned;
         } while ((int)system_int_result_unsigned < intStack_1e8);
       }
-      system_memory_pointer = (longlong *)system_memory_pointer[0x67];
+      system_memory_pointer = (longlong *)system_memory_pointer[SYSTEM_DATA_OFFSET_67];
       for (system_long_value = system_memory_pointer[system_int_result_unsigned % (ulonglong)*(uint *)(system_memory_pointer + SYSTEM_OBJECT_OFFSET_68)]; system_long_result != 0;
           system_long_value = *(longlong *)(system_long_result + SYSTEM_CONFIG_SIZE_RENDER0)) {
         system_integer_result = *(int *)(system_long_result + SYSTEM_DATA_COMPARE_SIZE);
@@ -40345,17 +40345,17 @@ INIT_LABEL_SYSTEM_6c852:
           }
         }
         LOCK();
-        system_memory_pointer = (longlong *)(handleIdentifier + 0x3f0);
+        system_memory_pointer = (longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_3F0);
         system_long_value = *system_memory_pointer;
         *system_memory_pointer = *system_memory_pointer + system_integer_result_unsigned;
         UNLOCK();
         LOCK();
-        init_int_pointer_temp = (int *)(handleIdentifier + 0x3f8);
+        init_int_pointer_temp = (int *)(handleIdentifier + SYSTEM_DATA_OFFSET_3F8);
         system_integer_result = *init_int_pointer_temp;
         *init_int_pointer_temp = *init_int_pointer_temp + 1;
         UNLOCK();
         node_root0 = *(uint64_t **)(handleIdentifier + SYSTEM_MEMORY_POOL_SIZE_LARGE);
-        uintStack_258 = node_root0[0x6c];
+        uintStack_258 = node_root0[SYSTEM_DATA_OFFSET_6C];
         if (uintStack_258 < system_int_result_unsigned) {
           init_byte_pointer_temp = &g_system_data_variable3;
           if (pbStack_1f0 != (byte *)0x0) {
@@ -40365,15 +40365,15 @@ INIT_LABEL_SYSTEM_6c852:
           ConfigureSystemModule17(g_system_context_1,&g_global_system_config,system_operation_status,init_byte_pointer_temp);
         }
         if (((uintStack_258 < system_long_result + system_int_result_unsigned) ||
-            ((ulonglong)(longlong)*(int *)(handleIdentifier + 0x3fc) < (longlong)system_int_result + 1U)) ||
+            ((ulonglong)(longlong)*(int *)(handleIdentifier + SYSTEM_DATA_OFFSET_3Fc) < (longlong)system_int_result + 1U)) ||
            (system_init_flag = (**(code **)*node_root0)(node_root0,system_long_result,&system_buffer_ptr_network_context_param), system_init_flag == '\0')) {
           LOCK();
-          *(longlong *)(handleIdentifier + 0x3f0) = *(longlong *)(handleIdentifier + 0x3f0) - system_integer_result_unsigned;
+          *(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_3F0) = *(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_3F0) - system_integer_result_unsigned;
           UNLOCK();
           LOCK();
-          *(int *)(handleIdentifier + 0x3f8) = *(int *)(handleIdentifier + 0x3f8) + -1;
+          *(int *)(handleIdentifier + SYSTEM_DATA_OFFSET_3F8) = *(int *)(handleIdentifier + SYSTEM_DATA_OFFSET_3F8) + -1;
           UNLOCK();
-          InitializeUISystem(handleIdentifier + 0x3c8,&system_buffer_ptr_network_context_param);
+          InitializeUISystem(handleIdentifier + SYSTEM_DATA_OFFSET_3C8,&system_buffer_ptr_network_context_param);
 INIT_LABEL_SYSTEM_6ca44:
           ptr_system_init_flag = *(code **)(**(longlong **)(handleIdentifier + SYSTEM_MEMORY_POOL_SIZE_LARGE) + SYSTEM_OBJECT_OFFSET_28);
           if (ptr_system_init_flag != _guard_check_icall) {
@@ -40387,7 +40387,7 @@ INIT_LABEL_SYSTEM_6ca44:
         }
         goto INIT_LABEL_SYSTEM_6ca95;
       }
-      if (*(int *)((longlong)system_memory_pointer + 0x32c) < (int)system_memory_pointer[0x65]) {
+      if (*(int *)((longlong)system_memory_pointer + SYSTEM_DATA_OFFSET_32c) < (int)system_memory_pointer[SYSTEM_DATA_OFFSET_65]) {
         node_root0 = (uint64_t *)*system_memory_pointer;
         system_memory_pointer = system_memory_pointer;
         if (node_root0 == (uint64_t *)0x0) {
@@ -40405,45 +40405,45 @@ INIT_LABEL_SYSTEM_6ca44:
           do {
             if (*(int *)(node_root0[0x23] + SYSTEM_CONFIG_SIZE_RENDER0) == 0) {
               system_status_code = node_root0[0x23];
-              *(int *)(system_memory_pointer + 0x65) = (int)system_memory_pointer[0x65] + -1;
+              *(int *)(system_memory_pointer + SYSTEM_DATA_OFFSET_65) = (int)system_memory_pointer[SYSTEM_DATA_OFFSET_65] + -1;
               (**(code **)(*system_memory_pointer + SYSTEM_DATA_COMPARE_SIZE))(system_memory_pointer,system_int_result_unsigned);
-              system_long_value = node_root0[0x24];
+              system_long_value = node_root0[SYSTEM_DATA_OFFSET_24];
               system_memory_pointer = system_memory_pointer;
               while (system_long_result == 0) {
                 system_memory_pointer = system_memory_pointer + 1;
                 system_long_value = *system_memory_pointer;
               }
               system_ptr_value = (uint64_t *)*system_memory_pointer;
-              node_current = (uint64_t *)system_pointer_var[0x24];
+              node_current = (uint64_t *)system_pointer_var[SYSTEM_DATA_OFFSET_24];
               if (system_pointer_var == node_root0) {
                 *system_memory_pointer = (longlong)node_current;
               }
               else {
-                for (; node_current != node_root0; node_current = (uint64_t *)node_current[0x24]) {
+                for (; node_current != node_root0; node_current = (uint64_t *)node_current[SYSTEM_DATA_OFFSET_24]) {
                   system_ptr_value = node_current;
                 }
-                system_pointer_var[0x24] = node_current[0x24];
+                system_pointer_var[SYSTEM_DATA_OFFSET_24] = node_current[SYSTEM_DATA_OFFSET_24];
               }
               *node_root0 = &globalSystemPointerData;
               psystem_buffer_ptr_248 = (void **)node_root0;
                     // WARNING: Subroutine does not return
               ProcessSystemOperation(node_root0);
             }
-            node_root0 = (uint64_t *)node_root0[0x24];
+            node_root0 = (uint64_t *)node_root0[SYSTEM_DATA_OFFSET_24];
             while (node_root0 == (uint64_t *)0x0) {
               system_memory_pointer = system_memory_pointer + 1;
               node_root0 = (uint64_t *)*system_memory_pointer;
             }
-          } while (node_root0 != *(uint64_t **)(system_memory_pointer[0x67] + system_memory_pointer[SYSTEM_OBJECT_OFFSET_68] * 8));
+          } while (node_root0 != *(uint64_t **)(system_memory_pointer[SYSTEM_DATA_OFFSET_67] + system_memory_pointer[SYSTEM_OBJECT_OFFSET_68] * 8));
         }
       }
-      system_memory_pointer = (longlong *)(handleIdentifier + 0x3c8);
+      system_memory_pointer = (longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_3C8);
       system_long_value = 0;
       system_memory_pointer = *(longlong **)(handleIdentifier + SYSTEM_MEMORY_POOL_SIZE_LARGE);
-      if (*(int *)((longlong)system_memory_pointer + 0x32c) < (int)system_memory_pointer[0x65]) {
-        system_status_code = *(ulonglong *)(handleIdentifier + 0x3d0);
-        if (system_int_result_unsigned < *(ulonglong *)(handleIdentifier + 0x3d8)) {
-          *(ulonglong *)(handleIdentifier + 0x3d0) = system_int_result_unsigned + SYSTEM_CONFIG_SIZE_AUDIO8;
+      if (*(int *)((longlong)system_memory_pointer + SYSTEM_DATA_OFFSET_32c) < (int)system_memory_pointer[SYSTEM_DATA_OFFSET_65]) {
+        system_status_code = *(ulonglong *)(handleIdentifier + SYSTEM_DATA_OFFSET_3D0);
+        if (system_int_result_unsigned < *(ulonglong *)(handleIdentifier + SYSTEM_DATA_OFFSET_3D8)) {
+          *(ulonglong *)(handleIdentifier + SYSTEM_DATA_OFFSET_3D0) = system_int_result_unsigned + SYSTEM_CONFIG_SIZE_AUDIO8;
           InitializeSystemModule45(system_operation_status,&system_buffer_ptr_network_context_param);
           goto INIT_LABEL_SYSTEM_6ca44;
         }
@@ -40452,8 +40452,8 @@ INIT_LABEL_SYSTEM_6ca44:
         if (system_long_result == 0) {
           system_long_value = 1;
 INIT_LABEL_SYSTEM_6c9ac:
-          system_long_value = AllocateSystemResource(systemMemoryPool,system_long_result * SYSTEM_CONFIG_SIZE_AUDIO8,*(uint8_t *)(handleIdentifier + 0x3e0));
-          system_status_code = *(ulonglong *)(handleIdentifier + 0x3d0);
+          system_long_value = AllocateSystemResource(systemMemoryPool,system_long_result * SYSTEM_CONFIG_SIZE_AUDIO8,*(uint8_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_3E0));
+          system_status_code = *(ulonglong *)(handleIdentifier + SYSTEM_DATA_OFFSET_3D0);
           system_long_value = *system_memory_pointer;
         }
         else {
@@ -40463,7 +40463,7 @@ INIT_LABEL_SYSTEM_6c9ac:
         InitializeFontSystem(&longStack_238,system_long_result,system_operation_status,system_long_result);
         system_long_value = longStack_238;
         InitializeSystemModule45(longStack_238,&system_buffer_ptr_network_context_param);
-        system_long_value = *(longlong *)(handleIdentifier + 0x3d0);
+        system_long_value = *(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_3D0);
         system_long_value = *system_memory_pointer;
         if (system_long_result != system_long_result) {
           do {
@@ -40477,11 +40477,11 @@ INIT_LABEL_SYSTEM_6c9ac:
           ProcessSystemOperation(system_long_result);
         }
         *system_memory_pointer = system_long_value;
-        *(longlong *)(handleIdentifier + 0x3d0) = system_long_result + SYSTEM_CONFIG_SIZE_AUDIO8;
-        *(longlong *)(handleIdentifier + 0x3d8) = system_long_result * SYSTEM_CONFIG_SIZE_AUDIO8 + system_long_value;
+        *(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_3D0) = system_long_result + SYSTEM_CONFIG_SIZE_AUDIO8;
+        *(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_3D8) = system_long_result * SYSTEM_CONFIG_SIZE_AUDIO8 + system_long_value;
         goto INIT_LABEL_SYSTEM_6ca44;
       }
-      *(int *)(system_memory_pointer + 0x65) = (int)system_memory_pointer[0x65] + 1;
+      *(int *)(system_memory_pointer + SYSTEM_DATA_OFFSET_65) = (int)system_memory_pointer[SYSTEM_DATA_OFFSET_65] + 1;
       system_long_value = (**(code **)(*system_memory_pointer + 8))(system_memory_pointer,&system_buffer_ptr_network_context_param);
       if (system_long_result != 0) goto INIT_LABEL_SYSTEM_6c852;
       (*stack_char_ptr)(system_local_buffer_thread_config);
@@ -40765,15 +40765,15 @@ void InitializeSystemModule24(uint64_t *handleIdentifier)
       if (system_long_result != 0) {
         system_long_value = handleIdentifier[10];
         LOCK();
-        init_int_pointer_temp = (int *)(system_long_result + 0x3530);
+        init_int_pointer_temp = (int *)(system_long_result + SYSTEM_DATA_OFFSET_3530);
         system_integer_result = *init_int_pointer_temp;
         *init_int_pointer_temp = *init_int_pointer_temp + -SYSTEM_OFFSET_80000000;
         UNLOCK();
         if (system_int_result == 0) {
           system_long_value = *(longlong *)(system_long_result + SYSTEM_OBJECT_OFFSET_28);
           do {
-            *(longlong *)(system_long_result + 0x3538) = system_long_value;
-            *(uint32_t *)(system_long_result + 0x3530) = 1;
+            *(longlong *)(system_long_result + SYSTEM_DATA_OFFSET_3538) = system_long_value;
+            *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_3530) = 1;
             pallocation_size = (longlong *)(system_long_result + SYSTEM_OBJECT_OFFSET_28);
             LOCK();
             system_long_value = *pallocation_size;
@@ -40785,9 +40785,9 @@ void InitializeSystemModule24(uint64_t *handleIdentifier)
             UNLOCK();
             if (system_comparison_flag) break;
             LOCK();
-            init_int_pointer_temp = (int *)(system_long_result + 0x3530);
+            init_int_pointer_temp = (int *)(system_long_result + SYSTEM_DATA_OFFSET_3530);
             system_integer_result = *init_int_pointer_temp;
-            *init_int_pointer_temp = *init_int_pointer_temp + 0x7fffffff;
+            *init_int_pointer_temp = *init_int_pointer_temp + SYSTEM_DATA_OFFSET_7Fffffff;
             UNLOCK();
             system_long_value = system_long_value;
           } while (system_int_result == 1);
@@ -40808,15 +40808,15 @@ INIT_LABEL_SYSTEM_6cfb1:
   if ((system_long_result != 0) && ((system_int_result_unsigned != system_int_result_unsigned || ((system_int_result_unsigned & 0x1f) != 0)))) {
     system_long_value = handleIdentifier[10];
     LOCK();
-    init_int_pointer_temp = (int *)(system_long_result + 0x3530);
+    init_int_pointer_temp = (int *)(system_long_result + SYSTEM_DATA_OFFSET_3530);
     system_integer_result = *init_int_pointer_temp;
     *init_int_pointer_temp = *init_int_pointer_temp + -SYSTEM_OFFSET_80000000;
     UNLOCK();
     if (system_int_result == 0) {
       system_long_value = *(longlong *)(system_long_result + SYSTEM_OBJECT_OFFSET_28);
       do {
-        *(longlong *)(system_long_result + 0x3538) = system_long_value;
-        *(uint32_t *)(system_long_result + 0x3530) = 1;
+        *(longlong *)(system_long_result + SYSTEM_DATA_OFFSET_3538) = system_long_value;
+        *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_3530) = 1;
         pallocation_size = (longlong *)(system_long_result + SYSTEM_OBJECT_OFFSET_28);
         LOCK();
         system_long_value = *pallocation_size;
@@ -40828,9 +40828,9 @@ INIT_LABEL_SYSTEM_6cfb1:
         UNLOCK();
         if (system_comparison_flag) break;
         LOCK();
-        init_int_pointer_temp = (int *)(system_long_result + 0x3530);
+        init_int_pointer_temp = (int *)(system_long_result + SYSTEM_DATA_OFFSET_3530);
         system_integer_result = *init_int_pointer_temp;
-        *init_int_pointer_temp = *init_int_pointer_temp + 0x7fffffff;
+        *init_int_pointer_temp = *init_int_pointer_temp + SYSTEM_DATA_OFFSET_7Fffffff;
         UNLOCK();
         system_long_value = system_long_value;
       } while (system_int_result == 1);
@@ -41131,7 +41131,7 @@ uint64_t InitializeAudioSystem(ulonglong *handleIdentifier,uint64_t resourceIden
               system_long_value = system_int_result_unsigned * SYSTEM_CONFIG_SIZE_AUDIO8 + system_long_value;
               InitializeAudioSystem(resourceIdentifier,system_long_result);
               InitializeSystemModule33(system_long_result);
-              *(uint8_t *)((system_long_result - system_int_result_unsigned) + 0x352f) = 1;
+              *(uint8_t *)((system_long_result - system_int_result_unsigned) + SYSTEM_DATA_OFFSET_352f) = 1;
               system_init_flag = '\x01';
               goto INIT_LABEL_SYSTEM_6d67d;
             }
@@ -41195,7 +41195,7 @@ INIT_LABEL_SYSTEM_6d7fb:
     }
     system_status_code = InitializeStringManager(*(uint64_t *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_50));
     if (system_int_result_unsigned != 0) {
-      *(uint64_t *)(system_int_result_unsigned + 0x3508) = 0;
+      *(uint64_t *)(system_int_result_unsigned + SYSTEM_DATA_OFFSET_3508) = 0;
       InitializeSystemModule45(system_operation_status,resourceIdentifier,system_configuration,systemFlags,system_int_result_unsigned);
       system_pointer_var[1] = system_integer_result_unsigned;
       *(ulonglong *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE) = system_integer_result_unsigned;
@@ -41250,7 +41250,7 @@ uint64_t InitializeSystemModule3(longlong handleIdentifier,uint64_t resourceIden
         system_long_value = system_int_result_unsigned * SYSTEM_CONFIG_SIZE_AUDIO8 + system_long_value;
         InitializeAudioSystem(resourceIdentifier,system_long_result,system_memory_pointer,allocation_size,INVALID_HANDLE_VALUE,system_long_result,system_int_result_unsigned);
         InitializeSystemModule33(system_long_result);
-        *(uint8_t *)((system_long_result - system_int_result_unsigned) + 0x352f) = 1;
+        *(uint8_t *)((system_long_result - system_int_result_unsigned) + SYSTEM_DATA_OFFSET_352f) = 1;
         return 1;
       }
       LOCK();
@@ -41298,14 +41298,14 @@ INIT_LABEL_SYSTEM_6d9f6:
       if (system_long_result == 0) {
         return 0;
       }
-      *(uint64_t *)(system_long_result + 0x3500) = 0;
-      *(uint64_t *)(system_long_result + 0x3508) = 0;
-      *(uint32_t *)(system_long_result + 0x3530) = 0;
-      *(uint64_t *)(system_long_result + 0x3538) = 0;
-      *(uint16_t *)(system_long_result + 0x3540) = SYSTEM_DATA_COMPARE_SIZE0;
+      *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_3500) = 0;
+      *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_3508) = 0;
+      *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_3530) = 0;
+      *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_3538) = 0;
+      *(uint16_t *)(system_long_result + SYSTEM_DATA_OFFSET_3540) = SYSTEM_DATA_COMPARE_SIZE0;
       return system_long_value;
     }
-    node_root = (uint *)(system_long_result + 0x3530);
+    node_root = (uint *)(system_long_result + SYSTEM_DATA_OFFSET_3530);
     system_status_code = *node_root;
     if ((system_int_result_unsigned & 0x7fffffff) == 0) {
 INIT_LABEL_SYSTEM_6d9d7:
@@ -41323,7 +41323,7 @@ INIT_LABEL_SYSTEM_6d9d7:
     system_long_value = *(longlong *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_28);
     comparison_result_flag = system_long_result == system_long_value;
     if (comparison_result_flag) {
-      *(longlong *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_28) = *(longlong *)(system_long_result + 0x3538);
+      *(longlong *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_28) = *(longlong *)(system_long_result + SYSTEM_DATA_OFFSET_3538);
       system_long_value = system_long_value;
     }
     UNLOCK();
@@ -41343,7 +41343,7 @@ INIT_LABEL_SYSTEM_6d9d7:
     if (system_operation_status == SYSTEM_OFFSET_80000001) {
       system_long_value = *(longlong *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_28);
       do {
-        *(longlong *)(system_long_result + 0x3538) = system_long_value;
+        *(longlong *)(system_long_result + SYSTEM_DATA_OFFSET_3538) = system_long_value;
         *node_root = 1;
         LOCK();
         system_long_value = *(longlong *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_28);
@@ -41356,7 +41356,7 @@ INIT_LABEL_SYSTEM_6d9d7:
         if (comparison_result_flag) break;
         LOCK();
         system_status_code = *node_root;
-        *node_root = *node_root + 0x7fffffff;
+        *node_root = *node_root + SYSTEM_DATA_OFFSET_7Fffffff;
         UNLOCK();
         system_long_value = system_long_value;
       } while (system_operation_status == 1);
@@ -41369,7 +41369,7 @@ void ConfigureSystemHandles(longlong *handleIdentifier)
 
 {
   InitializeSystemModule33((ulonglong)(*(uint *)(handleIdentifier + 1) & 0x1f) * SYSTEM_CONFIG_SIZE_AUDIO8 + *handleIdentifier);
-  *(uint8_t *)((*handleIdentifier - (ulonglong)(*(uint *)(handleIdentifier + 1) & 0x1f)) + 0x352f) = 1;
+  *(uint8_t *)((*handleIdentifier - (ulonglong)(*(uint *)(handleIdentifier + 1) & 0x1f)) + SYSTEM_DATA_OFFSET_352f) = 1;
   return;
 }
 
@@ -41413,14 +41413,14 @@ ulonglong InitializeConditionInitNode(longlong handleIdentifier,uint64_t resourc
       InitializeAudioSystem(resourceIdentifier,system_long_result,system_operation_status,system_memory_pointer,INVALID_HANDLE_VALUE,system_operation_status,system_operation_status,allocation_size);
       InitializeSystemModule33(system_long_result);
       LOCK();
-      node_root = (ulonglong *)(system_int_result_unsigned + 0x3508);
+      node_root = (ulonglong *)(system_int_result_unsigned + SYSTEM_DATA_OFFSET_3508);
       system_status_code = *node_root;
       *node_root = *node_root + 1;
       UNLOCK();
       if (system_operation_status == 0x1f) {
         *(uint64_t *)(allocation_size + 8) = 0;
         LOCK();
-        system_ptr_value = (uint *)(system_int_result_unsigned + 0x3530);
+        system_ptr_value = (uint *)(system_int_result_unsigned + SYSTEM_DATA_OFFSET_3530);
         system_status_code = *system_ptr_value;
         *system_ptr_value = *system_pointer_var + SYSTEM_OFFSET_80000000;
         UNLOCK();
@@ -41428,8 +41428,8 @@ ulonglong InitializeConditionInitNode(longlong handleIdentifier,uint64_t resourc
         if (system_operation_status == 0) {
           system_status_code = *(ulonglong *)(system_long_result + SYSTEM_OBJECT_OFFSET_28);
           do {
-            *(ulonglong *)(system_int_result_unsigned + 0x3538) = system_integer_result_unsigned;
-            *(uint32_t *)(system_int_result_unsigned + 0x3530) = 1;
+            *(ulonglong *)(system_int_result_unsigned + SYSTEM_DATA_OFFSET_3538) = system_integer_result_unsigned;
+            *(uint32_t *)(system_int_result_unsigned + SYSTEM_DATA_OFFSET_3530) = 1;
             node_root = (ulonglong *)(system_long_result + SYSTEM_OBJECT_OFFSET_28);
             LOCK();
             system_status_code = *node_root;
@@ -41442,10 +41442,10 @@ ulonglong InitializeConditionInitNode(longlong handleIdentifier,uint64_t resourc
             system_status_code = system_integer_result_unsigned;
             if (node_initialization_flag) break;
             LOCK();
-            system_ptr_value = (uint *)(system_int_result_unsigned + 0x3530);
+            system_ptr_value = (uint *)(system_int_result_unsigned + SYSTEM_DATA_OFFSET_3530);
             system_status_code = *system_ptr_value;
             system_status_code = (ulonglong)system_integer_result_unsigned;
-            *system_ptr_value = *system_pointer_var + 0x7fffffff;
+            *system_ptr_value = *system_pointer_var + SYSTEM_DATA_OFFSET_7Fffffff;
             UNLOCK();
             system_status_code = system_integer_result_unsigned;
           } while (system_operation_status == 1);
@@ -41475,7 +41475,7 @@ void InitializeSystemModule42(longlong *handleIdentifier)
 
   InitializeSystemModule33((ulonglong)(*(uint *)(handleIdentifier + 1) & 0x1f) * SYSTEM_CONFIG_SIZE_AUDIO8 + *handleIdentifier);
   LOCK();
-  system_memory_pointer = (longlong *)(*handleIdentifier + 0x3508);
+  system_memory_pointer = (longlong *)(*handleIdentifier + SYSTEM_DATA_OFFSET_3508);
   system_long_value = *system_memory_pointer;
   *system_memory_pointer = *system_memory_pointer + 1;
   UNLOCK();
@@ -41484,15 +41484,15 @@ void InitializeSystemModule42(longlong *handleIdentifier)
     system_long_value = *handleIdentifier;
     allocation_size = handleIdentifier[3];
     LOCK();
-    init_int_pointer_temp = (int *)(system_long_result + 0x3530);
+    init_int_pointer_temp = (int *)(system_long_result + SYSTEM_DATA_OFFSET_3530);
     compare_result = *init_int_pointer_temp;
     *init_int_pointer_temp = *init_int_pointer_temp + -SYSTEM_OFFSET_80000000;
     UNLOCK();
     if (compare_result == 0) {
       system_long_value = *(longlong *)(allocation_size + SYSTEM_OBJECT_OFFSET_28);
       do {
-        *(longlong *)(system_long_result + 0x3538) = system_long_value;
-        *(uint32_t *)(system_long_result + 0x3530) = 1;
+        *(longlong *)(system_long_result + SYSTEM_DATA_OFFSET_3538) = system_long_value;
+        *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_3530) = 1;
         system_memory_pointer = (longlong *)(allocation_size + SYSTEM_OBJECT_OFFSET_28);
         LOCK();
         system_long_value = *system_memory_pointer;
@@ -41506,9 +41506,9 @@ void InitializeSystemModule42(longlong *handleIdentifier)
           return;
         }
         LOCK();
-        init_int_pointer_temp = (int *)(system_long_result + 0x3530);
+        init_int_pointer_temp = (int *)(system_long_result + SYSTEM_DATA_OFFSET_3530);
         compare_result = *init_int_pointer_temp;
-        *init_int_pointer_temp = *init_int_pointer_temp + 0x7fffffff;
+        *init_int_pointer_temp = *init_int_pointer_temp + SYSTEM_DATA_OFFSET_7Fffffff;
         UNLOCK();
         system_long_value = system_long_value;
       } while (compare_result == 1);
@@ -41583,10 +41583,10 @@ InitializeFontSystem(longlong *handleIdentifier,uint64_t *resourceIdentifier,uin
       }
       strcpy_s(systemFlags[1],SYSTEM_DATA_COMPARE_SIZE0,system_pointer_var);
       systemFlags[0x23] = system_pointer_var[-8];
-      systemFlags[0x24] = system_pointer_var[-7];
-      systemFlags[0x25] = system_pointer_var[-6];
-      systemFlags[0x26] = system_pointer_var[-5];
-      systemFlags[0x27] = system_pointer_var[-4];
+      systemFlags[SYSTEM_DATA_OFFSET_24] = system_pointer_var[-7];
+      systemFlags[SYSTEM_DATA_OFFSET_25] = system_pointer_var[-6];
+      systemFlags[SYSTEM_DATA_OFFSET_26] = system_pointer_var[-5];
+      systemFlags[SYSTEM_DATA_OFFSET_27] = system_pointer_var[-4];
       *(uint8_t *)(systemFlags + SYSTEM_OBJECT_OFFSET_28) = *(uint8_t *)(system_pointer_var + -3);
       systemFlags[SYSTEM_OBJECT_OFFSET_2B] = 0;
       systemFlags[0x2c] = _guard_check_icall;
@@ -41614,14 +41614,14 @@ InitializeFontSystem(longlong *handleIdentifier,uint64_t *resourceIdentifier,uin
         system_pointer_var[4] = 0;
         system_pointer_var[5] = _guard_check_icall;
       }
-      systemFlags[0x31] = system_pointer_var[6];
-      systemFlags[0x32] = system_pointer_var[7];
-      systemFlags[0x33] = system_pointer_var[8];
-      systemFlags[0x34] = system_pointer_var[9];
+      systemFlags[SYSTEM_DATA_OFFSET_31] = system_pointer_var[6];
+      systemFlags[SYSTEM_DATA_OFFSET_32] = system_pointer_var[7];
+      systemFlags[SYSTEM_DATA_OFFSET_33] = system_pointer_var[8];
+      systemFlags[SYSTEM_DATA_OFFSET_34] = system_pointer_var[9];
       *handleIdentifier = *handleIdentifier + SYSTEM_CONFIG_SIZE_AUDIO8;
       systemFlags = (uint64_t *)*handleIdentifier;
       system_ptr_value = system_pointer_var + 10;
-      system_ptr_value = system_pointer_var + 0x35;
+      system_ptr_value = system_pointer_var + SYSTEM_DATA_OFFSET_35;
     } while (system_pointer_var != system_configuration);
   }
   return handleIdentifier;
@@ -41636,7 +41636,7 @@ longlong * InitializeSystemDataNode31(longlong handleIdentifier,longlong resourc
   ulonglong system_status_code;
   longlong *pallocation_size;
 
-  pallocation_size = *(longlong **)(handleIdentifier + 0x318);
+  pallocation_size = *(longlong **)(handleIdentifier + SYSTEM_DATA_OFFSET_318);
   system_status_code = resourceIdentifier + SYSTEM_OFFSET_FU & SYSTEM_OFFSET_Fffffffffffffff0;
   system_memory_pointer = (longlong *)SYSTEM_NULL_POINTER;
   system_memory_pointer = (longlong *)pallocation_size[3];
@@ -41696,16 +41696,16 @@ void ProcessSystemData88(void)
   if (system_long_result == 0) {
     return;
   }
-  *(uint64_t *)(system_long_result + 0x3500) = 0;
-  *(uint64_t *)(system_long_result + 0x3508) = 0;
-  *(uint32_t *)(system_long_result + 0x3530) = 0;
-  *(uint64_t *)(system_long_result + 0x3538) = 0;
-  *(uint16_t *)(system_long_result + 0x3540) = SYSTEM_DATA_COMPARE_SIZE0;
-  *(uint64_t *)(system_long_result + 0x6a48) = 0;
-  *(uint64_t *)(system_long_result + 0x6a50) = 0;
-  *(uint32_t *)(system_long_result + 0x6a78) = 0;
-  *(uint64_t *)(system_long_result + 0x6a80) = 0;
-  *(uint16_t *)(system_long_result + 0x6a88) = SYSTEM_DATA_COMPARE_SIZE0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_3500) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_3508) = 0;
+  *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_3530) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_3538) = 0;
+  *(uint16_t *)(system_long_result + SYSTEM_DATA_OFFSET_3540) = SYSTEM_DATA_COMPARE_SIZE0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_6A48) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_6A50) = 0;
+  *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_6A78) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_6A80) = 0;
+  *(uint16_t *)(system_long_result + SYSTEM_DATA_OFFSET_6A88) = SYSTEM_DATA_COMPARE_SIZE0;
   *(uint64_t *)(system_long_result + 0x9f90) = 0;
   *(uint64_t *)(system_long_result + 0x9f98) = 0;
   *(uint32_t *)(system_long_result + 0x9fc0) = 0;
@@ -41741,56 +41741,56 @@ void ProcessSystemData88(void)
   *(uint32_t *)(system_long_result + 0x1df70) = 0;
   *(uint64_t *)(system_long_result + 0x1df78) = 0;
   *(uint16_t *)(system_long_result + 0x1df80) = SYSTEM_DATA_COMPARE_SIZE0;
-  *(uint64_t *)(system_long_result + 0x21488) = 0;
-  *(uint64_t *)(system_long_result + 0x21490) = 0;
-  *(uint32_t *)(system_long_result + 0x214b8) = 0;
-  *(uint64_t *)(system_long_result + 0x214c0) = 0;
-  *(uint16_t *)(system_long_result + 0x214c8) = SYSTEM_DATA_COMPARE_SIZE0;
-  *(uint64_t *)(system_long_result + 0x249d0) = 0;
-  *(uint64_t *)(system_long_result + 0x249d8) = 0;
-  *(uint32_t *)(system_long_result + 0x24a00) = 0;
-  *(uint64_t *)(system_long_result + 0x24a08) = 0;
-  *(uint16_t *)(system_long_result + 0x24a10) = SYSTEM_DATA_COMPARE_SIZE0;
-  *(uint64_t *)(system_long_result + 0x27f18) = 0;
-  *(uint64_t *)(system_long_result + 0x27f20) = 0;
-  *(uint32_t *)(system_long_result + 0x27f48) = 0;
-  *(uint64_t *)(system_long_result + 0x27f50) = 0;
-  *(uint16_t *)(system_long_result + 0x27f58) = SYSTEM_DATA_COMPARE_SIZE0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_21488) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_21490) = 0;
+  *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_214b8) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_214c0) = 0;
+  *(uint16_t *)(system_long_result + SYSTEM_DATA_OFFSET_214c8) = SYSTEM_DATA_COMPARE_SIZE0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_249d0) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_249d8) = 0;
+  *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_24a00) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_24a08) = 0;
+  *(uint16_t *)(system_long_result + SYSTEM_DATA_OFFSET_24a10) = SYSTEM_DATA_COMPARE_SIZE0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_27f18) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_27f20) = 0;
+  *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_27f48) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_27f50) = 0;
+  *(uint16_t *)(system_long_result + SYSTEM_DATA_OFFSET_27f58) = SYSTEM_DATA_COMPARE_SIZE0;
   *(uint64_t *)(system_long_result + SYSTEM_OBJECT_OFFSET_2B460) = 0;
   *(uint64_t *)(system_long_result + SYSTEM_OBJECT_OFFSET_2B468) = 0;
   *(uint32_t *)(system_long_result + SYSTEM_OBJECT_OFFSET_2B490) = 0;
   *(uint64_t *)(system_long_result + SYSTEM_OBJECT_OFFSET_2B498) = 0;
   *(uint16_t *)(system_long_result + SYSTEM_OBJECT_OFFSET_2B4a0) = SYSTEM_DATA_COMPARE_SIZE0;
-  *(uint64_t *)(system_long_result + 0x2e9a8) = 0;
-  *(uint64_t *)(system_long_result + 0x2e9b0) = 0;
-  *(uint32_t *)(system_long_result + 0x2e9d8) = 0;
-  *(uint64_t *)(system_long_result + 0x2e9e0) = 0;
-  *(uint16_t *)(system_long_result + 0x2e9e8) = SYSTEM_DATA_COMPARE_SIZE0;
-  *(uint64_t *)(system_long_result + 0x31ef0) = 0;
-  *(uint64_t *)(system_long_result + 0x31ef8) = 0;
-  *(uint32_t *)(system_long_result + 0x31f20) = 0;
-  *(uint64_t *)(system_long_result + 0x31f28) = 0;
-  *(uint16_t *)(system_long_result + 0x31f30) = SYSTEM_DATA_COMPARE_SIZE0;
-  *(uint64_t *)(system_long_result + 0x35438) = 0;
-  *(uint64_t *)(system_long_result + 0x35440) = 0;
-  *(uint32_t *)(system_long_result + 0x35468) = 0;
-  *(uint64_t *)(system_long_result + 0x35470) = 0;
-  *(uint16_t *)(system_long_result + 0x35478) = SYSTEM_DATA_COMPARE_SIZE0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_2E9a8) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_2E9b0) = 0;
+  *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_2E9d8) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_2E9e0) = 0;
+  *(uint16_t *)(system_long_result + SYSTEM_DATA_OFFSET_2E9e8) = SYSTEM_DATA_COMPARE_SIZE0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_31ef0) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_31ef8) = 0;
+  *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_31f20) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_31f28) = 0;
+  *(uint16_t *)(system_long_result + SYSTEM_DATA_OFFSET_31f30) = SYSTEM_DATA_COMPARE_SIZE0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_35438) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_35440) = 0;
+  *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_35468) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_35470) = 0;
+  *(uint16_t *)(system_long_result + SYSTEM_DATA_OFFSET_35478) = SYSTEM_DATA_COMPARE_SIZE0;
   *(uint64_t *)(system_long_result + SYSTEM_OBJECT_OFFSET_38980) = 0;
   *(uint64_t *)(system_long_result + SYSTEM_OBJECT_OFFSET_38988) = 0;
   *(uint32_t *)(system_long_result + SYSTEM_OBJECT_OFFSET_389b0) = 0;
   *(uint64_t *)(system_long_result + SYSTEM_OBJECT_OFFSET_389b8) = 0;
   *(uint16_t *)(system_long_result + SYSTEM_OBJECT_OFFSET_389c0) = SYSTEM_DATA_COMPARE_SIZE0;
-  *(uint64_t *)(system_long_result + 0x3bec8) = 0;
-  *(uint64_t *)(system_long_result + 0x3bed0) = 0;
-  *(uint32_t *)(system_long_result + 0x3bef8) = 0;
-  *(uint64_t *)(system_long_result + 0x3bf00) = 0;
-  *(uint16_t *)(system_long_result + 0x3bf08) = SYSTEM_DATA_COMPARE_SIZE0;
-  *(uint64_t *)(system_long_result + 0x3f410) = 0;
-  *(uint64_t *)(system_long_result + 0x3f418) = 0;
-  *(uint32_t *)(system_long_result + 0x3f440) = 0;
-  *(uint64_t *)(system_long_result + 0x3f448) = 0;
-  *(uint16_t *)(system_long_result + 0x3f450) = SYSTEM_DATA_COMPARE_SIZE0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_3Bec8) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_3Bed0) = 0;
+  *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_3Bef8) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_3Bf00) = 0;
+  *(uint16_t *)(system_long_result + SYSTEM_DATA_OFFSET_3Bf08) = SYSTEM_DATA_COMPARE_SIZE0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_3F410) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_3F418) = 0;
+  *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_3F440) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_3F448) = 0;
+  *(uint16_t *)(system_long_result + SYSTEM_DATA_OFFSET_3F450) = SYSTEM_DATA_COMPARE_SIZE0;
   *(uint64_t *)(system_long_result + SYSTEM_FLAG_BIT_42958) = 0;
   *(uint64_t *)(system_long_result + SYSTEM_FLAG_BIT_42960) = 0;
   *(uint32_t *)(system_long_result + SYSTEM_FLAG_BIT_42988) = 0;
@@ -41839,8 +41839,8 @@ void InitializeDataEngineNode(longlong *handleIdentifier)
   }
   system_long_value = handleIdentifier[5];
   while (system_long_result != 0) {
-    ptr_system_init_flag = (char *)(system_long_result + 0x3541);
-    system_long_value = *(longlong *)(system_long_result + 0x3538);
+    ptr_system_init_flag = (char *)(system_long_result + SYSTEM_DATA_OFFSET_3541);
+    system_long_value = *(longlong *)(system_long_result + SYSTEM_DATA_OFFSET_3538);
     if (*ptr_system_init_flag != '\0') {
                     // WARNING: Subroutine does not return
       ProcessSystemOperation();
@@ -41897,8 +41897,8 @@ void ProcessSystemData74(longlong *handleIdentifier)
   }
   system_long_value = handleIdentifier[5];
   while (system_long_result != 0) {
-    ptr_system_init_flag = (char *)(system_long_result + 0x3541);
-    system_long_value = *(longlong *)(system_long_result + 0x3538);
+    ptr_system_init_flag = (char *)(system_long_result + SYSTEM_DATA_OFFSET_3541);
+    system_long_value = *(longlong *)(system_long_result + SYSTEM_DATA_OFFSET_3538);
     if (*ptr_system_init_flag != '\0') {
                     // WARNING: Subroutine does not return
       ProcessSystemOperation();
@@ -41962,8 +41962,8 @@ void InitializeSystemModule85(void)
   }
   system_long_value = *(longlong *)(system_RSI + SYSTEM_OBJECT_OFFSET_28);
   while (system_long_result != 0) {
-    ptr_system_init_flag = (char *)(system_long_result + 0x3541);
-    system_long_value = *(longlong *)(system_long_result + 0x3538);
+    ptr_system_init_flag = (char *)(system_long_result + SYSTEM_DATA_OFFSET_3541);
+    system_long_value = *(longlong *)(system_long_result + SYSTEM_DATA_OFFSET_3538);
     if (*ptr_system_init_flag != '\0') {
                     // WARNING: Subroutine does not return
       ProcessSystemOperation();
@@ -42052,8 +42052,8 @@ void InitializeVideoSystem(longlong *handleIdentifier)
   }
   system_long_value = handleIdentifier[5];
   while (system_long_result != 0) {
-    ptr_system_init_flag = (char *)(system_long_result + 0x3541);
-    system_long_value = *(longlong *)(system_long_result + 0x3538);
+    ptr_system_init_flag = (char *)(system_long_result + SYSTEM_DATA_OFFSET_3541);
+    system_long_value = *(longlong *)(system_long_result + SYSTEM_DATA_OFFSET_3538);
     if (*ptr_system_init_flag != '\0') {
                     // WARNING: Subroutine does not return
       ProcessSystemOperation();
@@ -42138,7 +42138,7 @@ uint64_t * InitializeShaderSystem(uint64_t *handleIdentifier,uint64_t resourceId
   *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_AUDIO) = 0;
   handleIdentifier[SYSTEM_CONFIG_SIZE_INPUT] = 0;
   handleIdentifier[SYSTEM_OFFSET_1E] = 0;
-  node_current = handleIdentifier + 0x24;
+  node_current = handleIdentifier + SYSTEM_DATA_OFFSET_24;
   system_long_value = SYSTEM_NODE_HEADER_SIZE;
   system_long_value = SYSTEM_NODE_HEADER_SIZE;
   system_ptr_value = node_current;
@@ -42148,18 +42148,18 @@ uint64_t * InitializeShaderSystem(uint64_t *handleIdentifier,uint64_t resourceId
     system_long_value = system_long_result + -1;
   } while (system_long_result != 0);
   system_status_code = 0;
-  *(uint64_t *)((longlong)handleIdentifier + 0x324) = 0;
+  *(uint64_t *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_324) = 0;
   *(uint32_t *)(handleIdentifier + 100) = 0;
   handleIdentifier[SYSTEM_NODE_HEADER_SIZE] = 0;
-  handleIdentifier[0x21] = SYSTEM_NODE_HEADER_SIZE;
-  handleIdentifier[0x22] = node_current;
+  handleIdentifier[SYSTEM_DATA_OFFSET_21] = SYSTEM_NODE_HEADER_SIZE;
+  handleIdentifier[SYSTEM_DATA_OFFSET_22] = node_current;
   do {
     *(uint32_t *)node_current = 0;
     node_current = node_current + 2;
     system_long_value = system_long_result + -1;
   } while (system_long_result != 0);
   handleIdentifier[0x23] = 0;
-  handleIdentifier[0x1f] = handleIdentifier + 0x21;
+  handleIdentifier[0x1f] = handleIdentifier + SYSTEM_DATA_OFFSET_21;
   handleIdentifier[SYSTEM_DATA_BLOCK_SIZE_1D] = SYSTEM_CONFIG_SIZE_AUTH;
   system_long_value = ProcessSystemData88();
   handleIdentifier[SYSTEM_CONFIG_SIZE_NETWORK] = system_long_value;
@@ -42173,20 +42173,20 @@ uint64_t * InitializeShaderSystem(uint64_t *handleIdentifier,uint64_t resourceId
   system_status_code = system_integer_result_unsigned;
   if (system_int_result_unsigned != 0) {
     do {
-      *(uint8_t *)(system_int_result_unsigned + 0x3541 + handleIdentifier[SYSTEM_CONFIG_SIZE_NETWORK]) = 0;
+      *(uint8_t *)(system_int_result_unsigned + SYSTEM_DATA_OFFSET_3541 + handleIdentifier[SYSTEM_CONFIG_SIZE_NETWORK]) = 0;
       system_status_code = system_int_result_unsigned + 1;
-      system_status_code = system_int_result_unsigned + 0x3548;
+      system_status_code = system_int_result_unsigned + SYSTEM_DATA_OFFSET_3548;
     } while (system_int_result_unsigned < (ulonglong)handleIdentifier[SYSTEM_DATA_BLOCK_SIZE_1D]);
   }
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(handleIdentifier + 0x6f,2);
+  _Mtx_init_in_situ(handleIdentifier + SYSTEM_DATA_OFFSET_6F,2);
   handleIdentifier[SYSTEM_DATA_BLOCK_SIZE_79] = 0;
   handleIdentifier[SYSTEM_DATA_BLOCK_SIZE_7A] = 0;
-  handleIdentifier[0x7b] = 0;
-  *(uint32_t *)(handleIdentifier + 0x7c) = 3;
-  handleIdentifier[0x7e] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_7B] = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_7C) = 3;
+  handleIdentifier[SYSTEM_DATA_OFFSET_7E] = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_STATE) = 0;
-  *(uint32_t *)((longlong)handleIdentifier + 0x3fc) = 4000;
+  *(uint32_t *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_3Fc) = 4000;
   handleIdentifier[SYSTEM_OFFSET_18] = resourceIdentifier;
   handleIdentifier[SYSTEM_DATA_BLOCK_SIZE_7D] = system_configuration;
   *(uint8_t *)(handleIdentifier + SYSTEM_OFFSET_80) = 0;
@@ -42213,25 +42213,25 @@ InitializeMutexInitNode(uint32_t *handleIdentifier,uint64_t resourceIdentifier,u
   *system_ptr_value = 0;
   handleIdentifier[0x1f] = 0;
   handleIdentifier[SYSTEM_NODE_HEADER_SIZE] = 0;
-  handleIdentifier[0x21] = 0;
-  handleIdentifier[0x22] = 3;
+  handleIdentifier[SYSTEM_DATA_OFFSET_21] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_22] = 3;
   *(uint64_t *)(handleIdentifier + SYSTEM_NODE_OFFSET_NEXT) = 0;
   *(uint32_t **)system_ptr_value = system_ptr_value;
   *(uint32_t **)(handleIdentifier + SYSTEM_NODE_HEADER_SIZE) = system_ptr_value;
-  _Mtx_init_in_situ(handleIdentifier + 0x26,SYSTEM_DATA_COMPARE_SIZE2);
-  *(uint64_t *)(handleIdentifier + 0x3a) = 1;
-  system_ptr_value = handleIdentifier + 0x3c;
+  _Mtx_init_in_situ(handleIdentifier + SYSTEM_DATA_OFFSET_26,SYSTEM_DATA_COMPARE_SIZE2);
+  *(uint64_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_3A) = 1;
+  system_ptr_value = handleIdentifier + SYSTEM_DATA_OFFSET_3C;
   *system_ptr_value = 0;
-  handleIdentifier[0x3d] = 0;
-  handleIdentifier[0x3e] = 0;
-  handleIdentifier[0x3f] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_3D] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_3E] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_3F] = 0;
   handleIdentifier[SYSTEM_DATA_BLOCK_SIZE] = 3;
   *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_42) = 0;
   *(uint32_t **)system_ptr_value = system_ptr_value;
-  *(uint32_t **)(handleIdentifier + 0x3e) = system_ptr_value;
+  *(uint32_t **)(handleIdentifier + SYSTEM_DATA_OFFSET_3E) = system_ptr_value;
   _Mtx_init_in_situ(handleIdentifier + SYSTEM_FLAG_BIT_44,SYSTEM_DATA_COMPARE_SIZE2);
   *(uint64_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_RESOURCE_DATA) = 1;
-  handleIdentifier[0x5a] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_5A] = 0;
   return handleIdentifier;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
@@ -42836,8 +42836,8 @@ ulonglong InitializeInputEngineNode(uint64_t handleIdentifier,uint64_t resourceI
     OutputDebugStringA(system_pointer_var);
     InitializeSystemModule36(resourceIdentifier);
     if (((g_system_string_buffer != '\0') && (system_bool_var)) &&
-       ((*(char *)(g_system_base_1 + 0x25) != '\0' ||
-        ((system_configuration == '\0' || (*(int *)(g_system_base_1 + 0x340) == 2)))))) {
+       ((*(char *)(g_system_base_1 + SYSTEM_DATA_OFFSET_25) != '\0' ||
+        ((system_configuration == '\0' || (*(int *)(g_system_base_1 + SYSTEM_DATA_OFFSET_340) == 2)))))) {
       if (g_system_data_variable1 == '\0') {
         ptr_system_init_flag = (code *)swi(3);
         system_status_code = (*ptr_system_init_flag)();
@@ -42885,7 +42885,7 @@ ulonglong InitializeInputEngineNode(uint64_t handleIdentifier,uint64_t resourceI
       SystemNodeUpdateFunction(&g_global_system_config,resourceIdentifier);
     }
     system_integer_result = ConfigureSystemModule17(resourceIdentifier);
-    if (((!system_bool_var) && (system_int_result == 0)) && (*(char *)(g_system_base_1 + 0x2a) != '\0')) {
+    if (((!system_bool_var) && (system_int_result == 0)) && (*(char *)(g_system_base_1 + SYSTEM_DATA_BLOCK_SIZE_2A) != '\0')) {
       system_status_code = *(uint8_t *)(g_system_base_1 + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER1);
       system_status_code = ProcessResourceData(&system_buffer_ptr_80,g_system_base_1 + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER8);
       system_status_code = ProcessResourceData(&system_buffer_ptr_thread_buffer,system_int_result_unsigned);
@@ -42918,7 +42918,7 @@ ulonglong InitializeInputEngineNode(uint64_t handleIdentifier,uint64_t resourceI
     else {
       system_init_flag = *(char *)(g_system_base_1 + 0x29);
     }
-    if (*(char *)(g_system_base_1 + 0x25) != '\0') {
+    if (*(char *)(g_system_base_1 + SYSTEM_DATA_OFFSET_25) != '\0') {
       InitializeSystemResources(g_system_base_1,5);
       ptr_system_init_flag = (code *)swi(3);
       system_status_code = (*ptr_system_init_flag)();
@@ -43063,8 +43063,8 @@ ulonglong InitializeUISystem(uint64_t handleIdentifier,uint64_t resourceIdentifi
   OutputDebugStringA(system_pointer_var);
   InitializeSystemModule36(resourceIdentifier);
   if ((g_system_string_buffer != '\0') && (system_initialization_check)) {
-    if ((*(char *)(g_system_base_1 + 0x25) == '\0') &&
-       ((system_configuration != '\0' && (*(int *)(g_system_base_1 + 0x340) != 2)))) {
+    if ((*(char *)(g_system_base_1 + SYSTEM_DATA_OFFSET_25) == '\0') &&
+       ((system_configuration != '\0' && (*(int *)(g_system_base_1 + SYSTEM_DATA_OFFSET_340) != 2)))) {
       system_status_code = 1;
       bStack_d8 = 1;
       goto INIT_LABEL_SYSTEM_70230;
@@ -43176,7 +43176,7 @@ INIT_LABEL_SYSTEM_70230:
     else {
       system_init_flag = *(char *)(g_system_base_1 + 0x29);
     }
-    if (*(char *)(g_system_base_1 + 0x25) != '\0') {
+    if (*(char *)(g_system_base_1 + SYSTEM_DATA_OFFSET_25) != '\0') {
       InitializeSystemResources(g_system_base_1,5);
       pis_initialized = (code *)swi(3);
       system_status_code = (*pis_initialized)();
@@ -43784,7 +43784,7 @@ INIT_LABEL_SYSTEM_7113f:
   InitializeSystemModule36(system_long_result);
   if (g_system_string_buffer != '\0') {
     if (module_initialization_flag != 0) {
-      if (((cStack_147 == '\0') && (parameter_6 != '\0')) && (*(int *)(g_system_base_1 + 0x340) != 2)) {
+      if (((cStack_147 == '\0') && (parameter_6 != '\0')) && (*(int *)(g_system_base_1 + SYSTEM_DATA_OFFSET_340) != 2)) {
         uintStack_148 = 1;
       }
       else if (g_system_data_variable1 == '\0') {
@@ -43862,7 +43862,7 @@ INIT_LABEL_SYSTEM_7113f:
           InitializeEventSystem(g_system_context_1,3,SYSTEM_HIGH_32BIT_MASK,SYSTEM_CONFIG_SIZE_STATUS);
         }
       }
-      else if (((parameter_6 == '\0') || (*(int *)(g_system_base_1 + 0x340) == 2)) &&
+      else if (((parameter_6 == '\0') || (*(int *)(g_system_base_1 + SYSTEM_DATA_OFFSET_340) == 2)) &&
               (g_system_data_variable1 == '\0')) {
         pis_initialized = (code *)swi(3);
         (*pis_initialized)();
@@ -44424,7 +44424,7 @@ INIT_LABEL_SYSTEM_722f5:
         if ((bool)cStack_117) goto INIT_LABEL_SYSTEM_722f5;
       }
       if (system_init_flag != '\0') {
-        if ((parameter_6 == '\0') || (*(int *)(g_system_base_1 + 0x340) == 2)) {
+        if ((parameter_6 == '\0') || (*(int *)(g_system_base_1 + SYSTEM_DATA_OFFSET_340) == 2)) {
           pis_initialized = (code *)swi(3);
           (*pis_initialized)();
           return;
@@ -44653,8 +44653,8 @@ INIT_LABEL_SYSTEM_72934:
       *(uint16_t *)(system_buffer_ptr_130 + init_stack_uint_parameter_128) = 0xa0a;
       *(uint8_t *)((longlong)(system_buffer_ptr_130 + init_stack_uint_parameter_128) + 2) = 0;
       init_stack_uint_parameter_128 = system_integer_result_unsigned;
-      if (system_int_result_unsigned + 0x6d != 0) {
-        system_status_code = system_int_result_unsigned + 0x6e;
+      if (system_int_result_unsigned + SYSTEM_DATA_OFFSET_6D != 0) {
+        system_status_code = system_int_result_unsigned + SYSTEM_DATA_OFFSET_6E;
         if (system_buffer_ptr_130 == (uint8_t *)0x0) {
           if ((int)system_int_result_unsigned < SYSTEM_DATA_COMPARE_SIZE) {
             system_status_code = SYSTEM_DATA_COMPARE_SIZE;
@@ -44686,13 +44686,13 @@ INIT_LABEL_SYSTEM_729bd:
       *(uint32_t *)((longlong)system_pointer_var + SYSTEM_FLAG_BIT_4c) = 0x23232323;
       system_pointer_var[10] = SYSTEM_FILL_PATTERN_1;
       *(uint32_t *)(system_pointer_var + SYSTEM_NODE_STRIDE_SMALL) = 0x3e232323;
-      *(uint16_t *)((longlong)system_pointer_var + 0x5c) = 0xa0a;
-      *(uint8_t *)((longlong)system_pointer_var + 0x5e) = 0;
+      *(uint16_t *)((longlong)system_pointer_var + SYSTEM_DATA_OFFSET_5C) = 0xa0a;
+      *(uint8_t *)((longlong)system_pointer_var + SYSTEM_DATA_OFFSET_5E) = 0;
       system_buffer_ptr_148 = &g_system_data_variable3;
       if (system_buffer_ptr_130 != (uint8_t *)0x0) {
         system_buffer_ptr_148 = system_buffer_ptr_130;
       }
-      init_stack_uint_parameter_128 = system_int_result_unsigned + 0x6d;
+      init_stack_uint_parameter_128 = system_int_result_unsigned + SYSTEM_DATA_OFFSET_6D;
       InitializeSystemDataNode30(g_system_context_1,4,SYSTEM_HIGH_32BIT_MASK,&g_global_system_config);
       system_buffer_ptr_148 = &g_system_data_variable3;
       if (system_pointer_var != (void *)SYSTEM_NULL_POINTER) {
@@ -45257,16 +45257,16 @@ void get_audio_init_function(uint64_t handleIdentifier,uint64_t resourceIdentifi
 void InitializeStringManagerSystem(uint64_t *handleIdentifier)
 
 {
-  if (*(longlong *)((longlong)handleIdentifier + 0x52) != 0) {
+  if (*(longlong *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_52) != 0) {
                     // WARNING: Subroutine does not return
     ProcessSystemOperation();
   }
-  *(uint64_t *)((longlong)handleIdentifier + 0x52) = 0;
-  if (*(longlong *)((longlong)handleIdentifier + 0x5a) != 0) {
+  *(uint64_t *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_52) = 0;
+  if (*(longlong *)((longlong)handleIdentifier + SYSTEM_HANDLE_OFFSET_COUNTER_1) != 0) {
                     // WARNING: Subroutine does not return
     ProcessSystemOperation();
   }
-  *(uint64_t *)((longlong)handleIdentifier + 0x5a) = 0;
+  *(uint64_t *)((longlong)handleIdentifier + SYSTEM_HANDLE_OFFSET_COUNTER_1) = 0;
   if (handleIdentifier[8] != 0) {
                     // WARNING: Subroutine does not return
     ProcessSystemOperation();
@@ -45426,7 +45426,7 @@ void InitializeSystemModule35(longlong handleIdentifier,longlong *resourceIdenti
                     // WARNING: Subroutine does not return
         memcpy(system_pointer_var,system_operation_status,system_int_result_unsigned);
       }
-      system_long_value = system_long_result + 0x24;
+      system_long_value = system_long_result + SYSTEM_DATA_OFFSET_24;
       system_long_value = system_long_result + -1;
     } while (system_long_result != 0);
   }
@@ -45476,7 +45476,7 @@ void InitializeSystemModule35(longlong handleIdentifier,longlong *resourceIdenti
   *system_ptr_value = SYSTEM_DATA_COMPARE_SIZE;
   resourceIdentifier[1] = resourceIdentifier[1] + 4;
   system_ptr_value = (uint *)resourceIdentifier[1];
-  system_status_code = *(ushort *)(handleIdentifier + 0x62);
+  system_status_code = *(ushort *)(handleIdentifier + SYSTEM_DATA_OFFSET_62);
   if ((ulonglong)((*resourceIdentifier - (longlong)system_pointer_var) + resourceIdentifier[2]) < 5) {
     UtilityFunction39bf0(resourceIdentifier,(longlong)system_pointer_var + (4 - *resourceIdentifier));
     system_ptr_value = (uint *)resourceIdentifier[1];
@@ -45484,11 +45484,11 @@ void InitializeSystemModule35(longlong handleIdentifier,longlong *resourceIdenti
   *system_ptr_value = (uint)system_integer_result_unsigned;
   system_long_value = resourceIdentifier[1] + 4;
   resourceIdentifier[1] = system_long_value;
-  if (*(ushort *)(handleIdentifier + 0x62) == 0) {
+  if (*(ushort *)(handleIdentifier + SYSTEM_DATA_OFFSET_62) == 0) {
     return;
   }
-  system_status_code = *(uint64_t *)(handleIdentifier + 0x5a);
-  system_status_code = (ulonglong)*(ushort *)(handleIdentifier + 0x62) * 4;
+  system_status_code = *(uint64_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_COUNTER_1);
+  system_status_code = (ulonglong)*(ushort *)(handleIdentifier + SYSTEM_DATA_OFFSET_62) * 4;
   if ((ulonglong)((*resourceIdentifier - system_long_result) + resourceIdentifier[2]) <= system_int_result_unsigned) {
     UtilityFunction39bf0(resourceIdentifier,system_int_result_unsigned + (system_long_result - *resourceIdentifier));
     system_long_value = resourceIdentifier[1];
@@ -45595,7 +45595,7 @@ void ValidateSystemHandle82(longlong handleIdentifier)
                     // WARNING: Subroutine does not return
         memcpy(system_pointer_var,system_operation_status,system_int_result_unsigned);
       }
-      system_long_value = system_long_result + 0x24;
+      system_long_value = system_long_result + SYSTEM_DATA_OFFSET_24;
       system_long_value = system_long_result + -1;
     } while (system_long_result != 0);
   }
@@ -45645,7 +45645,7 @@ void ValidateSystemHandle82(longlong handleIdentifier)
   *system_ptr_value = SYSTEM_DATA_COMPARE_SIZE;
   system_register_rbx[1] = system_register_rbx[1] + 4;
   system_ptr_value = (uint *)system_register_rbx[1];
-  system_status_code = *(ushort *)(handleIdentifier + 0x62);
+  system_status_code = *(ushort *)(handleIdentifier + SYSTEM_DATA_OFFSET_62);
   if ((ulonglong)((*system_register_rbx - (longlong)system_pointer_var) + system_register_rbx[2]) < 5) {
     UtilityFunction39bf0();
     system_ptr_value = (uint *)system_register_rbx[1];
@@ -45653,11 +45653,11 @@ void ValidateSystemHandle82(longlong handleIdentifier)
   *system_ptr_value = (uint)system_integer_result_unsigned;
   system_long_value = system_register_rbx[1] + 4;
   system_register_rbx[1] = system_long_value;
-  if (*(ushort *)(handleIdentifier + 0x62) == 0) {
+  if (*(ushort *)(handleIdentifier + SYSTEM_DATA_OFFSET_62) == 0) {
     return;
   }
-  system_status_code = *(uint64_t *)(handleIdentifier + 0x5a);
-  system_status_code = (ulonglong)*(ushort *)(handleIdentifier + 0x62) * 4;
+  system_status_code = *(uint64_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_COUNTER_1);
+  system_status_code = (ulonglong)*(ushort *)(handleIdentifier + SYSTEM_DATA_OFFSET_62) * 4;
   if ((ulonglong)((*system_register_rbx - system_long_result) + system_register_rbx[2]) <= system_int_result_unsigned) {
     UtilityFunction39bf0();
     system_long_value = system_register_rbx[1];
@@ -45749,7 +45749,7 @@ void ProcessSystemOperation95(uint *handleIdentifier)
                     // WARNING: Subroutine does not return
       memcpy(handleIdentifier,system_operation_status,system_int_result_unsigned);
     }
-    system_status_code = system_int_result_unsigned + 0x24;
+    system_status_code = system_int_result_unsigned + SYSTEM_DATA_OFFSET_24;
     system_R12 = system_R12 + -1;
   } while (system_R12 != 0);
   if ((ulonglong)((*system_register_rbx - (longlong)handleIdentifier) + system_register_rbx[2]) < 5) {
@@ -45798,7 +45798,7 @@ void ProcessSystemOperation95(uint *handleIdentifier)
   *system_ptr_value = SYSTEM_DATA_COMPARE_SIZE;
   system_register_rbx[1] = system_register_rbx[1] + 4;
   system_ptr_value = (uint *)system_register_rbx[1];
-  system_status_code = *(ushort *)(system_R15 + 0x62);
+  system_status_code = *(ushort *)(system_R15 + SYSTEM_DATA_OFFSET_62);
   if ((ulonglong)((*system_register_rbx - (longlong)system_pointer_var) + system_register_rbx[2]) < 5) {
     UtilityFunction39bf0();
     system_ptr_value = (uint *)system_register_rbx[1];
@@ -45806,9 +45806,9 @@ void ProcessSystemOperation95(uint *handleIdentifier)
   *system_ptr_value = (uint)system_integer_result_unsigned;
   allocation_size = system_register_rbx[1] + 4;
   system_register_rbx[1] = allocation_size;
-  if (*(ushort *)(system_R15 + 0x62) != 0) {
-    system_status_code = *(uint64_t *)(system_R15 + 0x5a);
-    system_status_code = (ulonglong)*(ushort *)(system_R15 + 0x62) * 4;
+  if (*(ushort *)(system_R15 + SYSTEM_DATA_OFFSET_62) != 0) {
+    system_status_code = *(uint64_t *)(system_R15 + SYSTEM_HANDLE_OFFSET_COUNTER_1);
+    system_status_code = (ulonglong)*(ushort *)(system_R15 + SYSTEM_DATA_OFFSET_62) * 4;
     if ((ulonglong)((*system_register_rbx - allocation_size) + system_register_rbx[2]) <= system_int_result_unsigned) {
       UtilityFunction39bf0();
       allocation_size = system_register_rbx[1];
@@ -45879,7 +45879,7 @@ void HandleSystemResource63(uint32_t *handleIdentifier)
   *system_ptr_value = SYSTEM_DATA_COMPARE_SIZE;
   system_register_rbx[1] = system_register_rbx[1] + 4;
   system_ptr_value = (uint *)system_register_rbx[1];
-  system_status_code = *(ushort *)(system_R15 + 0x62);
+  system_status_code = *(ushort *)(system_R15 + SYSTEM_DATA_OFFSET_62);
   if ((ulonglong)((*system_register_rbx - (longlong)system_pointer_var) + system_register_rbx[2]) < 5) {
     UtilityFunction39bf0();
     system_ptr_value = (uint *)system_register_rbx[1];
@@ -45887,9 +45887,9 @@ void HandleSystemResource63(uint32_t *handleIdentifier)
   *system_ptr_value = (uint)system_integer_result_unsigned;
   allocation_size = system_register_rbx[1] + 4;
   system_register_rbx[1] = allocation_size;
-  if (*(ushort *)(system_R15 + 0x62) != 0) {
-    system_status_code = *(uint64_t *)(system_R15 + 0x5a);
-    system_status_code = (ulonglong)*(ushort *)(system_R15 + 0x62) * 4;
+  if (*(ushort *)(system_R15 + SYSTEM_DATA_OFFSET_62) != 0) {
+    system_status_code = *(uint64_t *)(system_R15 + SYSTEM_HANDLE_OFFSET_COUNTER_1);
+    system_status_code = (ulonglong)*(ushort *)(system_R15 + SYSTEM_DATA_OFFSET_62) * 4;
     if ((ulonglong)((*system_register_rbx - allocation_size) + system_register_rbx[2]) <= system_int_result_unsigned) {
       UtilityFunction39bf0();
       allocation_size = system_register_rbx[1];
@@ -45957,7 +45957,7 @@ void InitializeSystemModule65(void)
   *system_ptr_value = SYSTEM_DATA_COMPARE_SIZE;
   system_register_rbx[1] = system_register_rbx[1] + 4;
   system_ptr_value = (uint *)system_register_rbx[1];
-  system_status_code = *(ushort *)(system_R15 + 0x62);
+  system_status_code = *(ushort *)(system_R15 + SYSTEM_DATA_OFFSET_62);
   if ((ulonglong)((*system_register_rbx - (longlong)system_pointer_var) + system_register_rbx[2]) < 5) {
     UtilityFunction39bf0();
     system_ptr_value = (uint *)system_register_rbx[1];
@@ -45965,9 +45965,9 @@ void InitializeSystemModule65(void)
   *system_ptr_value = (uint)system_integer_result_unsigned;
   allocation_size = system_register_rbx[1] + 4;
   system_register_rbx[1] = allocation_size;
-  if (*(ushort *)(system_R15 + 0x62) != 0) {
-    system_status_code = *(uint64_t *)(system_R15 + 0x5a);
-    system_status_code = (ulonglong)*(ushort *)(system_R15 + 0x62) * 4;
+  if (*(ushort *)(system_R15 + SYSTEM_DATA_OFFSET_62) != 0) {
+    system_status_code = *(uint64_t *)(system_R15 + SYSTEM_HANDLE_OFFSET_COUNTER_1);
+    system_status_code = (ulonglong)*(ushort *)(system_R15 + SYSTEM_DATA_OFFSET_62) * 4;
     if ((ulonglong)((*system_register_rbx - allocation_size) + system_register_rbx[2]) <= system_int_result_unsigned) {
       UtilityFunction39bf0();
       allocation_size = system_register_rbx[1];
@@ -45994,7 +45994,7 @@ void InitializeInputEngineNode(void)
   *(uint32_t *)system_register_rbx[1] = SYSTEM_DATA_COMPARE_SIZE;
   system_register_rbx[1] = system_register_rbx[1] + 4;
   system_ptr_value = (uint *)system_register_rbx[1];
-  system_status_code = *(ushort *)(system_R15 + 0x62);
+  system_status_code = *(ushort *)(system_R15 + SYSTEM_DATA_OFFSET_62);
   if ((ulonglong)((*system_register_rbx - (longlong)system_pointer_var) + system_register_rbx[2]) < 5) {
     UtilityFunction39bf0();
     system_ptr_value = (uint *)system_register_rbx[1];
@@ -46002,9 +46002,9 @@ void InitializeInputEngineNode(void)
   *system_ptr_value = (uint)system_integer_result_unsigned;
   system_long_value = system_register_rbx[1] + 4;
   system_register_rbx[1] = system_long_value;
-  if (*(ushort *)(system_R15 + 0x62) != 0) {
-    system_status_code = *(uint64_t *)(system_R15 + 0x5a);
-    system_status_code = (ulonglong)*(ushort *)(system_R15 + 0x62) * 4;
+  if (*(ushort *)(system_R15 + SYSTEM_DATA_OFFSET_62) != 0) {
+    system_status_code = *(uint64_t *)(system_R15 + SYSTEM_HANDLE_OFFSET_COUNTER_1);
+    system_status_code = (ulonglong)*(ushort *)(system_R15 + SYSTEM_DATA_OFFSET_62) * 4;
     if ((ulonglong)((*system_register_rbx - system_long_result) + system_register_rbx[2]) <= system_int_result_unsigned) {
       UtilityFunction39bf0();
       system_long_value = system_register_rbx[1];
@@ -46118,7 +46118,7 @@ void InitializeSystemModule41(longlong *handleIdentifier,longlong resourceIdenti
         ProcessSystemOperation();
       }
       system_long_value = system_long_result + -1;
-      system_long_value = system_long_result + 0x24;
+      system_long_value = system_long_result + SYSTEM_DATA_OFFSET_24;
     } while (system_long_result != 0);
   }
   *(int **)(resourceIdentifier + 8) = (int *)(allocation_size + 8);
@@ -46131,27 +46131,27 @@ void InitializeSystemModule41(longlong *handleIdentifier,longlong resourceIdenti
     if (system_int_result < 1) {
       return;
     }
-    *(short *)((longlong)handleIdentifier + 0x62) = (short)system_integer_result;
-    if (*(longlong *)((longlong)handleIdentifier + 0x5a) == 0) {
-      *(uint64_t *)((longlong)handleIdentifier + 0x5a) = 0;
-      if (*(longlong *)((longlong)handleIdentifier + 0x52) == 0) {
-        *(uint64_t *)((longlong)handleIdentifier + 0x52) = 0;
-        if ((ulonglong)*(ushort *)((longlong)handleIdentifier + 0x62) == 0) {
+    *(short *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_62) = (short)system_integer_result;
+    if (*(longlong *)((longlong)handleIdentifier + SYSTEM_HANDLE_OFFSET_COUNTER_1) == 0) {
+      *(uint64_t *)((longlong)handleIdentifier + SYSTEM_HANDLE_OFFSET_COUNTER_1) = 0;
+      if (*(longlong *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_52) == 0) {
+        *(uint64_t *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_52) = 0;
+        if ((ulonglong)*(ushort *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_62) == 0) {
           system_status_code = 0;
           allocation_size = system_long_value;
         }
         else {
-          allocation_size = AllocateSystemResource(systemMemoryPool,(ulonglong)*(ushort *)((longlong)handleIdentifier + 0x62) * 4,
+          allocation_size = AllocateSystemResource(systemMemoryPool,(ulonglong)*(ushort *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_62) * 4,
                                 4);
-          system_status_code = (ulonglong)*(ushort *)((longlong)handleIdentifier + 0x62);
+          system_status_code = (ulonglong)*(ushort *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_62);
         }
-        *(longlong *)((longlong)handleIdentifier + 0x5a) = allocation_size;
+        *(longlong *)((longlong)handleIdentifier + SYSTEM_HANDLE_OFFSET_COUNTER_1) = allocation_size;
         if (system_int_result_unsigned != 0) {
           system_long_value = AllocateSystemResource(systemMemoryPool,system_int_result_unsigned << 4,4);
         }
-        *(longlong *)((longlong)handleIdentifier + 0x52) = system_long_value;
+        *(longlong *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_52) = system_long_value;
                     // WARNING: Subroutine does not return
-        memcpy(*(uint64_t *)((longlong)handleIdentifier + 0x5a),*(uint64_t *)(resourceIdentifier + 8),
+        memcpy(*(uint64_t *)((longlong)handleIdentifier + SYSTEM_HANDLE_OFFSET_COUNTER_1),*(uint64_t *)(resourceIdentifier + 8),
                (longlong)(system_int_result * 4));
       }
                     // WARNING: Subroutine does not return
@@ -46294,7 +46294,7 @@ void ProcessSystemData29(longlong *handleIdentifier)
         ProcessSystemOperation();
       }
       system_long_value = system_long_result + -1;
-      system_long_value = system_long_result + 0x24;
+      system_long_value = system_long_result + SYSTEM_DATA_OFFSET_24;
     } while (system_long_result != 0);
   }
   *(int **)(system_reg_rdi + 8) = (int *)(allocation_size + 8);
@@ -46307,27 +46307,27 @@ void ProcessSystemData29(longlong *handleIdentifier)
     if (system_int_result < 1) {
       return;
     }
-    *(short *)((longlong)handleIdentifier + 0x62) = (short)system_integer_result;
-    if (*(longlong *)((longlong)handleIdentifier + 0x5a) == 0) {
-      *(uint64_t *)((longlong)handleIdentifier + 0x5a) = 0;
-      if (*(longlong *)((longlong)handleIdentifier + 0x52) == 0) {
-        *(uint64_t *)((longlong)handleIdentifier + 0x52) = 0;
-        if ((ulonglong)*(ushort *)((longlong)handleIdentifier + 0x62) == 0) {
+    *(short *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_62) = (short)system_integer_result;
+    if (*(longlong *)((longlong)handleIdentifier + SYSTEM_HANDLE_OFFSET_COUNTER_1) == 0) {
+      *(uint64_t *)((longlong)handleIdentifier + SYSTEM_HANDLE_OFFSET_COUNTER_1) = 0;
+      if (*(longlong *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_52) == 0) {
+        *(uint64_t *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_52) = 0;
+        if ((ulonglong)*(ushort *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_62) == 0) {
           system_status_code = 0;
           allocation_size = system_long_value;
         }
         else {
-          allocation_size = AllocateSystemResource(systemMemoryPool,(ulonglong)*(ushort *)((longlong)handleIdentifier + 0x62) * 4,
+          allocation_size = AllocateSystemResource(systemMemoryPool,(ulonglong)*(ushort *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_62) * 4,
                                 4);
-          system_status_code = (ulonglong)*(ushort *)((longlong)handleIdentifier + 0x62);
+          system_status_code = (ulonglong)*(ushort *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_62);
         }
-        *(longlong *)((longlong)handleIdentifier + 0x5a) = allocation_size;
+        *(longlong *)((longlong)handleIdentifier + SYSTEM_HANDLE_OFFSET_COUNTER_1) = allocation_size;
         if (system_int_result_unsigned != 0) {
           system_long_value = AllocateSystemResource(systemMemoryPool,system_int_result_unsigned << 4,4);
         }
-        *(longlong *)((longlong)handleIdentifier + 0x52) = system_long_value;
+        *(longlong *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_52) = system_long_value;
                     // WARNING: Subroutine does not return
-        memcpy(*(uint64_t *)((longlong)handleIdentifier + 0x5a),*(uint64_t *)(system_reg_rdi + 8),
+        memcpy(*(uint64_t *)((longlong)handleIdentifier + SYSTEM_HANDLE_OFFSET_COUNTER_1),*(uint64_t *)(system_reg_rdi + 8),
                (longlong)(system_int_result * 4));
       }
                     // WARNING: Subroutine does not return
@@ -46449,13 +46449,13 @@ void ValidateSystemHandle38(longlong handleIdentifier)
                     // WARNING: Subroutine does not return
       ProcessSystemOperation();
     }
-    system_status_code = system_int_result_unsigned + 0x24;
+    system_status_code = system_int_result_unsigned + SYSTEM_DATA_OFFSET_24;
     system_R13 = system_R13 + -1;
     handleIdentifier = system_long_result + SYSTEM_OFFSET_18;
   } while (system_R13 != 0);
   *(int **)(system_reg_rdi + 8) = (int *)(system_long_result + SYSTEM_NODE_HEADER_SIZE);
   system_integer_result = *(int *)(system_long_result + SYSTEM_NODE_HEADER_SIZE);
-  *(longlong *)(system_reg_rdi + 8) = system_long_result + 0x24;
+  *(longlong *)(system_reg_rdi + 8) = system_long_result + SYSTEM_DATA_OFFSET_24;
   if (system_int_result < 1) {
     *(int **)(system_reg_rdi + 8) = (int *)(system_long_result + 0x2c);
     system_integer_result = *(int *)(system_long_result + 0x2c);
@@ -46463,26 +46463,26 @@ void ValidateSystemHandle38(longlong handleIdentifier)
     if (system_int_result < 1) {
       return;
     }
-    *(short *)(system_R15 + 0x62) = (short)system_integer_result;
-    if (*(longlong *)(system_R15 + 0x5a) == 0) {
-      *(ulonglong *)(system_R15 + 0x5a) = system_RSI;
-      if (*(longlong *)(system_R15 + 0x52) == 0) {
-        *(ulonglong *)(system_R15 + 0x52) = system_RSI;
-        if ((ulonglong)*(ushort *)(system_R15 + 0x62) == 0) {
+    *(short *)(system_R15 + SYSTEM_DATA_OFFSET_62) = (short)system_integer_result;
+    if (*(longlong *)(system_R15 + SYSTEM_HANDLE_OFFSET_COUNTER_1) == 0) {
+      *(ulonglong *)(system_R15 + SYSTEM_HANDLE_OFFSET_COUNTER_1) = system_RSI;
+      if (*(longlong *)(system_R15 + SYSTEM_DATA_OFFSET_52) == 0) {
+        *(ulonglong *)(system_R15 + SYSTEM_DATA_OFFSET_52) = system_RSI;
+        if ((ulonglong)*(ushort *)(system_R15 + SYSTEM_DATA_OFFSET_62) == 0) {
           system_status_code = 0;
           system_status_code = system_RSI;
         }
         else {
-          system_status_code = AllocateSystemResource(systemMemoryPool,(ulonglong)*(ushort *)(system_R15 + 0x62) * 4,4);
-          system_status_code = (ulonglong)*(ushort *)(system_R15 + 0x62);
+          system_status_code = AllocateSystemResource(systemMemoryPool,(ulonglong)*(ushort *)(system_R15 + SYSTEM_DATA_OFFSET_62) * 4,4);
+          system_status_code = (ulonglong)*(ushort *)(system_R15 + SYSTEM_DATA_OFFSET_62);
         }
-        *(ulonglong *)(system_R15 + 0x5a) = system_integer_result_unsigned;
+        *(ulonglong *)(system_R15 + SYSTEM_HANDLE_OFFSET_COUNTER_1) = system_integer_result_unsigned;
         if (system_int_result_unsigned != 0) {
           system_RSI = AllocateSystemResource(systemMemoryPool,system_int_result_unsigned << 4,4);
         }
-        *(ulonglong *)(system_R15 + 0x52) = system_RSI;
+        *(ulonglong *)(system_R15 + SYSTEM_DATA_OFFSET_52) = system_RSI;
                     // WARNING: Subroutine does not return
-        memcpy(*(uint64_t *)(system_R15 + 0x5a),*(uint64_t *)(system_reg_rdi + 8),
+        memcpy(*(uint64_t *)(system_R15 + SYSTEM_HANDLE_OFFSET_COUNTER_1),*(uint64_t *)(system_reg_rdi + 8),
                (longlong)(system_int_result * 4));
       }
                     // WARNING: Subroutine does not return
@@ -46540,26 +46540,26 @@ void HandleSystemOperation88(longlong handleIdentifier)
     if (system_int_result < 1) {
       return;
     }
-    *(short *)(system_R15 + 0x62) = (short)system_integer_result;
-    if (*(longlong *)(system_R15 + 0x5a) == 0) {
-      *(uint64_t *)(system_R15 + 0x5a) = system_RSI;
-      if (*(longlong *)(system_R15 + 0x52) == 0) {
-        *(uint64_t *)(system_R15 + 0x52) = system_RSI;
-        if ((ulonglong)*(ushort *)(system_R15 + 0x62) == 0) {
+    *(short *)(system_R15 + SYSTEM_DATA_OFFSET_62) = (short)system_integer_result;
+    if (*(longlong *)(system_R15 + SYSTEM_HANDLE_OFFSET_COUNTER_1) == 0) {
+      *(uint64_t *)(system_R15 + SYSTEM_HANDLE_OFFSET_COUNTER_1) = system_RSI;
+      if (*(longlong *)(system_R15 + SYSTEM_DATA_OFFSET_52) == 0) {
+        *(uint64_t *)(system_R15 + SYSTEM_DATA_OFFSET_52) = system_RSI;
+        if ((ulonglong)*(ushort *)(system_R15 + SYSTEM_DATA_OFFSET_62) == 0) {
           system_status_code = 0;
           system_status_code = system_RSI;
         }
         else {
-          system_status_code = AllocateSystemResource(systemMemoryPool,(ulonglong)*(ushort *)(system_R15 + 0x62) * 4,4);
-          system_status_code = (ulonglong)*(ushort *)(system_R15 + 0x62);
+          system_status_code = AllocateSystemResource(systemMemoryPool,(ulonglong)*(ushort *)(system_R15 + SYSTEM_DATA_OFFSET_62) * 4,4);
+          system_status_code = (ulonglong)*(ushort *)(system_R15 + SYSTEM_DATA_OFFSET_62);
         }
-        *(uint64_t *)(system_R15 + 0x5a) = system_integer_result_unsigned;
+        *(uint64_t *)(system_R15 + SYSTEM_HANDLE_OFFSET_COUNTER_1) = system_integer_result_unsigned;
         if (system_int_result_unsigned != 0) {
           system_RSI = AllocateSystemResource(systemMemoryPool,system_int_result_unsigned << 4,4);
         }
-        *(uint64_t *)(system_R15 + 0x52) = system_RSI;
+        *(uint64_t *)(system_R15 + SYSTEM_DATA_OFFSET_52) = system_RSI;
                     // WARNING: Subroutine does not return
-        memcpy(*(uint64_t *)(system_R15 + 0x5a),*(uint64_t *)(system_reg_rdi + 8),
+        memcpy(*(uint64_t *)(system_R15 + SYSTEM_HANDLE_OFFSET_COUNTER_1),*(uint64_t *)(system_reg_rdi + 8),
                (longlong)(system_int_result * 4));
       }
                     // WARNING: Subroutine does not return
@@ -46711,7 +46711,7 @@ void InitializePhysicsSystem(longlong handleIdentifier,longlong resourceIdentifi
   *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_OFFSET_30) = *system_ptr_value;
   system_ptr_value = (uint32_t *)(*(longlong *)(resourceIdentifier + 8) + 4);
   *(uint32_t **)(resourceIdentifier + 8) = system_ptr_value;
-  *(uint32_t *)(handleIdentifier + 0x34) = *system_ptr_value;
+  *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_ALLOC_SIZE) = *system_ptr_value;
   *(longlong *)(resourceIdentifier + 8) = *(longlong *)(resourceIdentifier + 8) + 4;
                     // WARNING: Subroutine does not return
   InitializeSystemStack(init_stack_parameter_28 ^ (ulonglong)system_local_buffer_f8);
@@ -46728,7 +46728,7 @@ uint64_t * InitializeRenderSystem(uint64_t handleIdentifier,longlong resourceIde
   *node_root = &g_system_global_config;
   *node_root = &g_system_global_config;
   *(uint64_t *)((longlong)node_root + 0x2c) = 0;
-  *(uint32_t *)((longlong)node_root + 0x34) = 0;
+  *(uint32_t *)((longlong)node_root + SYSTEM_HANDLE_OFFSET_ALLOC_SIZE) = 0;
   *(uint8_t *)(node_root + 5) = 0;
   node_root[3] = 0;
   node_root[4] = 0;
@@ -46744,7 +46744,7 @@ uint64_t * InitializeRenderSystem(uint64_t handleIdentifier,longlong resourceIde
     *(uint8_t *)(node_root + 5) = *(uint8_t *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_28);
     *(uint32_t *)((longlong)node_root + 0x2c) = *(uint32_t *)(resourceIdentifier + 0x2c);
     *(uint32_t *)(node_root + 6) = *(uint32_t *)(resourceIdentifier + SYSTEM_CONFIG_OFFSET_30);
-    *(uint32_t *)((longlong)node_root + 0x34) = *(uint32_t *)(resourceIdentifier + 0x34);
+    *(uint32_t *)((longlong)node_root + SYSTEM_HANDLE_OFFSET_ALLOC_SIZE) = *(uint32_t *)(resourceIdentifier + SYSTEM_HANDLE_OFFSET_ALLOC_SIZE);
   }
   return node_root;
 }
@@ -46898,7 +46898,7 @@ void HandleSystemResource39(longlong handleIdentifier,longlong *resourceIdentifi
   *system_ptr_value = system_integer_result_unsigned;
   system_ptr_value = (uint32_t *)(resourceIdentifier[1] + 4);
   resourceIdentifier[1] = (longlong)system_ptr_value;
-  system_status_code = *(uint32_t *)(handleIdentifier + 0x34);
+  system_status_code = *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_ALLOC_SIZE);
   if ((ulonglong)((*resourceIdentifier - (longlong)system_pointer_var) + resourceIdentifier[2]) < 5) {
     UtilityFunction39bf0(resourceIdentifier,(longlong)system_pointer_var + (4 - *resourceIdentifier));
     *(uint32_t *)resourceIdentifier[1] = system_integer_result_unsigned;
@@ -47245,26 +47245,26 @@ uint64_t * InitializeSystemModule41(uint64_t *handleIdentifier,char resourceIden
   handleIdentifier[0x36] = 0;
   handleIdentifier[0x37] = 0;
   handleIdentifier[SYSTEM_OBJECT_OFFSET_38] = 0;
-  handleIdentifier[0x3e] = handleIdentifier;
-  handleIdentifier[0x3d] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_3E] = handleIdentifier;
+  handleIdentifier[SYSTEM_DATA_OFFSET_3D] = 0;
   handleIdentifier[SYSTEM_FLAG_BIT_42] = 0;
   handleIdentifier[SYSTEM_FLAG_BIT_43] = 0;
   handleIdentifier[SYSTEM_FLAG_BIT_44] = 0;
   handleIdentifier[SYSTEM_FLAG_BIT_45] = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_FLAG_BIT_46) = 3;
   handleIdentifier[SYSTEM_FLAG_BIT_4d] = 0;
-  *(uint32_t *)((longlong)handleIdentifier + 0x2a4) = 0;
-  *(uint64_t *)((longlong)handleIdentifier + 0x274) = 0;
-  *(uint64_t *)((longlong)handleIdentifier + 0x27c) = 0;
+  *(uint32_t *)((longlong)handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_2A4) = 0;
+  *(uint64_t *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_274) = 0;
+  *(uint64_t *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_27c) = 0;
   *(uint64_t *)((longlong)handleIdentifier + SYSTEM_OBJECT_OFFSET_284) = 0;
   *(uint64_t *)((longlong)handleIdentifier + SYSTEM_OBJECT_OFFSET_28c) = 0;
   *(uint64_t *)((longlong)handleIdentifier + 0x294) = 0;
   *(uint64_t *)((longlong)handleIdentifier + 0x29c) = 0;
-  *(uint16_t *)(handleIdentifier + 0x5d) = 0;
-  handleIdentifier[0x5c] = 0;
-  *(uint32_t *)((longlong)handleIdentifier + 0x2ec) = SYSTEM_OFFSET_Ffffffff;
-  *(uint16_t *)(handleIdentifier + 0x5f) = 0;
-  handleIdentifier[0x5e] = 0;
+  *(uint16_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_5D) = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_5C] = 0;
+  *(uint32_t *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_2Ec) = SYSTEM_OFFSET_Ffffffff;
+  *(uint16_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_CONTROL_1) = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_5E] = 0;
   *(uint32_t *)((longlong)handleIdentifier + 0x2fc) = SYSTEM_OFFSET_Ffffffff;
   *(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fd) = *(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fd) & SYSTEM_OFFSET_Fb;
   *(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fd) = *(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fd) | resourceIdentifier << 2;
@@ -47272,7 +47272,7 @@ uint64_t * InitializeSystemModule41(uint64_t *handleIdentifier,char resourceIden
   *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_UTILITY_2) = 0;
   *(uint32_t *)((longlong)handleIdentifier + 0xbc) = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_18) = 0;
-  *(uint32_t *)((longlong)handleIdentifier + 0xc4) = 0;
+  *(uint32_t *)((longlong)handleIdentifier + SYSTEM_HANDLE_OFFSET_FLAGS) = 0;
   *(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fe) = *(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fe) & SYSTEM_OFFSET_Fe;
   *(uint8_t *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fc) = 0;
   ptr_data = (longlong *)handleIdentifier[0x36];
@@ -47281,7 +47281,7 @@ uint64_t * InitializeSystemModule41(uint64_t *handleIdentifier,char resourceIden
     (**(code **)(*ptr_data + SYSTEM_OBJECT_OFFSET_38))();
   }
   handleIdentifier[0x39] = 0;
-  handleIdentifier[0x3c] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_3C] = 0;
   if (system_configuration == '\0') {
     *(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fd) = *(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fd) & SYSTEM_CONFIG_SIZE_STATUSf;
   }
@@ -47311,22 +47311,22 @@ uint64_t * InitializeSystemModule41(uint64_t *handleIdentifier,char resourceIden
   handleIdentifier[SYSTEM_FLAG_BIT_49] = SYSTEM_FLOAT_CONSTANT_1;
   handleIdentifier[SYSTEM_FLAG_BIT_4a] = SYSTEM_FLOAT_CONSTANT_1;
   *(uint32_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4c) = 0x3f800000;
-  handleIdentifier[0x24] = 0x3f800000;
-  handleIdentifier[0x25] = 0;
-  handleIdentifier[0x26] = 0x3f80000000000000;
-  handleIdentifier[0x27] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_24] = 0x3f800000;
+  handleIdentifier[SYSTEM_DATA_OFFSET_25] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_26] = 0x3f80000000000000;
+  handleIdentifier[SYSTEM_DATA_OFFSET_27] = 0;
   handleIdentifier[SYSTEM_OBJECT_OFFSET_28] = 0;
   handleIdentifier[0x29] = 0x3f800000;
   handleIdentifier[0x2a] = 0;
   handleIdentifier[SYSTEM_OBJECT_OFFSET_2B] = 0x3f80000000000000;
   handleIdentifier[0x2c] = 0x3f800000;
   handleIdentifier[SYSTEM_OFFSET_2D] = 0;
-  handleIdentifier[0x2e] = 0x3f80000000000000;
+  handleIdentifier[SYSTEM_DATA_OFFSET_2E] = 0x3f80000000000000;
   handleIdentifier[0x2f] = 0;
   handleIdentifier[0x30] = 0;
-  handleIdentifier[0x31] = 0x3f800000;
-  handleIdentifier[0x32] = 0;
-  handleIdentifier[0x33] = 0x3f80000000000000;
+  handleIdentifier[SYSTEM_DATA_OFFSET_31] = 0x3f800000;
+  handleIdentifier[SYSTEM_DATA_OFFSET_32] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_33] = 0x3f80000000000000;
   *(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fd) = system_bool_var | 1;
   *(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fe) = *(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fe) | 2;
   *(uint32_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4e) = 0x21;
@@ -47334,14 +47334,14 @@ uint64_t * InitializeSystemModule41(uint64_t *handleIdentifier,char resourceIden
   *(uint8_t *)((longlong)handleIdentifier + SYSTEM_OFFSET_F6) = 0;
   *(uint16_t *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fa) = 0;
   *(uint64_t *)((longlong)handleIdentifier + SYSTEM_NODE_HEADER_SIZE4) = 0;
-  handleIdentifier[0x3f] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_3F] = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE) = 0;
-  *(uint32_t *)(handleIdentifier + 0x5b) = 0xbf800000;
+  *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_5B) = 0xbf800000;
   *(uint32_t *)((longlong)handleIdentifier + SYSTEM_OFFSET_2Dc) = 0xbf800000;
-  handleIdentifier[0x55] = 0;
-  handleIdentifier[0x56] = 0;
-  handleIdentifier[0x57] = 0;
-  handleIdentifier[0x58] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_55] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_56] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_57] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_58] = 0;
   *(uint32_t *)(handleIdentifier + NODE_INITIALIZED_OFFSET) = 0;
   *(uint32_t *)((longlong)handleIdentifier + SYSTEM_HANDLE_OFFSET_HEADER_3) = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_AUDIO) = 0;
@@ -47350,8 +47350,8 @@ uint64_t * InitializeSystemModule41(uint64_t *handleIdentifier,char resourceIden
   *(uint32_t *)((longlong)handleIdentifier + SYSTEM_CONFIG_SIZE_STATUSc) = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK) = 0;
   *(uint32_t *)((longlong)handleIdentifier + SYSTEM_CONFIG_SIZE_EVENT4) = 0x7f7fffff;
-  *(uint32_t *)(handleIdentifier + 0x21) = SYSTEM_OFFSET_Ffffffff;
-  handleIdentifier[0x5a] = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_21) = SYSTEM_OFFSET_Ffffffff;
+  handleIdentifier[SYSTEM_DATA_OFFSET_5A] = 0;
   if (resourceIdentifier == '\0') {
     system_memory_pointer = (longlong *)handleIdentifier[SYSTEM_FLAG_BIT_42];
     handleIdentifier[SYSTEM_FLAG_BIT_42] = 0;
@@ -47360,11 +47360,11 @@ uint64_t * InitializeSystemModule41(uint64_t *handleIdentifier,char resourceIden
     }
   }
   *(uint8_t *)(handleIdentifier + SYSTEM_CONFIG_OFFSET_TYPE) = 0;
-  *(uint32_t *)(handleIdentifier + 0x34) = 0x3f800000;
+  *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_ALLOC_SIZE) = 0x3f800000;
   *(uint32_t *)((longlong)handleIdentifier + SYSTEM_CONFIG_SIZE_AUDIO4) = 0x3f800000;
-  *(uint32_t *)(handleIdentifier + 0x35) = 0x3f800000;
+  *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_ALLOC_SIZE_1) = 0x3f800000;
   *(uint32_t *)((longlong)handleIdentifier + SYSTEM_CONFIG_SIZE_AUDIOc) = 0x7f7fffff;
-  *(uint32_t *)(handleIdentifier + 0x3a) = SYSTEM_OFFSET_Ffffffff;
+  *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_3A) = SYSTEM_OFFSET_Ffffffff;
   system_memory_pointer = (longlong *)AllocateSystemMemory(systemMemoryPool,SYSTEM_MEMORY_POOL_SIZE_SMALL,8,9,ptr_data,system_memory_pointer);
   *system_memory_pointer = (longlong)&g_global_system_config;
   *system_memory_pointer = (longlong)&g_global_system_config;
@@ -47382,9 +47382,9 @@ uint64_t * InitializeSystemModule41(uint64_t *handleIdentifier,char resourceIden
   *(uint32_t *)(system_memory_pointer + 9) = 0x3f000000;
   *(uint32_t *)((longlong)system_memory_pointer + SYSTEM_FLAG_BIT_4c) = 0x3f4ccccd;
   *(uint32_t *)(system_memory_pointer + 10) = 0x3f000000;
-  *(uint32_t *)((longlong)system_memory_pointer + 0x54) = 0x3e99999a;
+  *(uint32_t *)((longlong)system_memory_pointer + SYSTEM_HANDLE_OFFSET_COUNTER) = 0x3e99999a;
   *(uint32_t *)(system_memory_pointer + SYSTEM_NODE_STRIDE_SMALL) = SYSTEM_FLAG_BIT_411cf5c3;
-  *(uint32_t *)((longlong)system_memory_pointer + 0x5c) = 0x3f800000;
+  *(uint32_t *)((longlong)system_memory_pointer + SYSTEM_DATA_OFFSET_5C) = 0x3f800000;
   *(uint32_t *)(system_memory_pointer + 0xc) = 0xbf800000;
   *(uint32_t *)((longlong)system_memory_pointer + 100) = 0x3f800000;
   *(uint32_t *)(system_memory_pointer + SYSTEM_CONFIG_SIZE_STATUS) = 0x3f000000;
@@ -47400,7 +47400,7 @@ uint64_t * InitializeSystemModule41(uint64_t *handleIdentifier,char resourceIden
     (**(code **)(*ptr_data + SYSTEM_OBJECT_OFFSET_38))();
   }
   *(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fe) = *(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fe) & SYSTEM_OFFSET_F3;
-  handleIdentifier[0x3b] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_3B] = 0;
   LOCK();
   *(uint8_t *)((longlong)handleIdentifier + SYSTEM_OFFSET_F9) = 0;
   UNLOCK();
@@ -47430,7 +47430,7 @@ uint8_t InitializeSystemModule9(longlong handleIdentifier,uint64_t resourceIdent
 
   system_status_code = INVALID_HANDLE_VALUE;
   PrepareSystemBuffer(&system_buffer_ptr_30);
-  system_status_code = InitializeStringManager(handleIdentifier + 0x218,&system_buffer_ptr_30,system_configuration,systemFlags,system_int_result_unsigned);
+  system_status_code = InitializeStringManager(handleIdentifier + SYSTEM_DATA_OFFSET_218,&system_buffer_ptr_30,system_configuration,systemFlags,system_int_result_unsigned);
   system_buffer_ptr_30 = &resourcePoolPointer;
   if (longStack_28 != 0) {
                     // WARNING: Subroutine does not return
@@ -47485,34 +47485,34 @@ void InitializeSystemDataNode32(longlong handleIdentifier,uint64_t *resourceIden
   *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER4) = system_integer_result_unsigned;
   *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER8) = system_integer_result_unsigned;
   *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFERc) = system_integer_result_unsigned;
-  system_status_code = *(uint32_t *)((longlong)resourceIdentifier + 0x34);
+  system_status_code = *(uint32_t *)((longlong)resourceIdentifier + SYSTEM_HANDLE_OFFSET_ALLOC_SIZE);
   system_status_code = *(uint32_t *)(resourceIdentifier + 7);
-  system_status_code = *(uint32_t *)((longlong)resourceIdentifier + 0x3c);
+  system_status_code = *(uint32_t *)((longlong)resourceIdentifier + SYSTEM_DATA_OFFSET_3C);
   *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_AUTH0) = *(uint32_t *)(resourceIdentifier + 6);
   *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_AUTH4) = system_integer_result_unsigned;
   *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_AUTH8) = system_integer_result_unsigned;
   *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_AUTHc) = system_integer_result_unsigned;
   if (system_memory_pointer != (longlong *)SYSTEM_NULL_POINTER) {
     if (*(code **)(*system_memory_pointer + SYSTEM_CONFIG_SIZE_FONT0) == (code *)&g_system_call_8) {
-      system_ptr_value = (uint64_t *)((longlong)system_memory_pointer + 0x214);
-      *(uint32_t *)((longlong)system_memory_pointer + 0x244) = 0;
+      system_ptr_value = (uint64_t *)((longlong)system_memory_pointer + SYSTEM_DATA_OFFSET_214);
+      *(uint32_t *)((longlong)system_memory_pointer + SYSTEM_DATA_OFFSET_244) = 0;
       if (system_memory_pointer[8] - system_memory_pointer[7] >> 4 == 0) {
         *system_ptr_value = 0;
-        *(uint64_t *)((longlong)system_memory_pointer + 0x21c) = 0;
+        *(uint64_t *)((longlong)system_memory_pointer + SYSTEM_DATA_OFFSET_21c) = 0;
         *(uint64_t *)((longlong)system_memory_pointer + SYSTEM_CORE_DATA_OFFSET_224) = 0;
-        *(uint64_t *)((longlong)system_memory_pointer + 0x22c) = 0;
+        *(uint64_t *)((longlong)system_memory_pointer + SYSTEM_DATA_OFFSET_22c) = 0;
         *(uint64_t *)((longlong)system_memory_pointer + 0x234) = 0;
         *(uint64_t *)((longlong)system_memory_pointer + 0x23c) = 0;
       }
       else {
         *system_ptr_value = SYSTEM_FLOAT_VALUE_1;
-        *(uint64_t *)((longlong)system_memory_pointer + 0x21c) = 0x7f7fffff4cbebc20;
+        *(uint64_t *)((longlong)system_memory_pointer + SYSTEM_DATA_OFFSET_21c) = 0x7f7fffff4cbebc20;
         *(uint32_t *)((longlong)system_memory_pointer + 0x234) = 0;
         *(uint32_t *)(system_memory_pointer + SYSTEM_FLAG_BIT_47) = 0;
         *(uint32_t *)((longlong)system_memory_pointer + 0x23c) = 0;
         *(uint32_t *)(system_memory_pointer + SYSTEM_FLAG_BIT_48) = 0x7f7fffff;
         *(uint64_t *)((longlong)system_memory_pointer + SYSTEM_CORE_DATA_OFFSET_224) = SYSTEM_FLOAT_VALUE_2;
-        *(uint64_t *)((longlong)system_memory_pointer + 0x22c) = 0x7f7fffffccbebc20;
+        *(uint64_t *)((longlong)system_memory_pointer + SYSTEM_DATA_OFFSET_22c) = 0x7f7fffffccbebc20;
         system_memory_pointer = (longlong *)system_memory_pointer[7];
         if (system_memory_pointer < (longlong *)system_memory_pointer[8]) {
           do {
@@ -47523,7 +47523,7 @@ void InitializeSystemDataNode32(longlong handleIdentifier,uint64_t *resourceIden
             else {
               system_long_value = EngineFunction94940(system_long_result + SYSTEM_CONFIG_SIZE_RENDER0,system_local_buffer_e8,system_memory_pointer[5] + SYSTEM_DATA_BLOCK_SIZE_70);
             }
-            UtilityFunction3a240(system_pointer_var,system_long_result + 0x274,system_long_result);
+            UtilityFunction3a240(system_pointer_var,system_long_result + SYSTEM_DATA_OFFSET_274,system_long_result);
             system_memory_pointer = system_memory_pointer + 2;
           } while (system_memory_pointer < (longlong *)system_memory_pointer[8]);
         }
@@ -47532,8 +47532,8 @@ void InitializeSystemDataNode32(longlong handleIdentifier,uint64_t *resourceIden
           system_status_code = *(uint64_t *)(system_long_result + 0x29c);
           *(uint64_t *)((longlong)system_memory_pointer + 0x234) = *(uint64_t *)(system_long_result + 0x294);
           *(uint64_t *)((longlong)system_memory_pointer + 0x23c) = system_integer_result_unsigned;
-          *(uint32_t *)((longlong)system_memory_pointer + 0x244) =
-               *(uint32_t *)(*(longlong *)system_memory_pointer[7] + 0x2a4);
+          *(uint32_t *)((longlong)system_memory_pointer + SYSTEM_DATA_OFFSET_244) =
+               *(uint32_t *)(*(longlong *)system_memory_pointer[7] + SYSTEM_DATA_BLOCK_SIZE_2A4);
         }
         else {
           InitializeSystemModule43(system_pointer_var);
@@ -47546,7 +47546,7 @@ void InitializeSystemDataNode32(longlong handleIdentifier,uint64_t *resourceIden
                 system_float_value = *(float *)(system_long_result + 0x294);
                 system_float_value = *(float *)(system_long_result + 0x298);
                 system_float_value = *(float *)(system_long_result + 0x29c);
-                system_float_value = *(float *)(system_long_result + 0x2a4);
+                system_float_value = *(float *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2A4);
               }
               else {
                 system_float_value = *(float *)(system_long_result + 0x298);
@@ -47576,10 +47576,10 @@ void InitializeSystemDataNode32(longlong handleIdentifier,uint64_t *resourceIden
                   system_float_value = system_float_value;
                 }
                 if ((system_result_float - 1.0 <= -1e-06) || (1e-06 <= system_result_float - 1.0)) {
-                  system_float_value = SQRT(system_result_float) * *(float *)(system_long_result + 0x2a4);
+                  system_float_value = SQRT(system_result_float) * *(float *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2A4);
                 }
                 else {
-                  system_float_value = *(float *)(system_long_result + 0x2a4) * 1.0;
+                  system_float_value = *(float *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2A4) * 1.0;
                 }
               }
               system_float_value = *(float *)((longlong)system_memory_pointer + 0x23c) - system_float_value;
@@ -47596,9 +47596,9 @@ void InitializeSystemDataNode32(longlong handleIdentifier,uint64_t *resourceIden
               system_memory_pointer = system_memory_pointer + 2;
             } while (system_memory_pointer < (longlong *)system_memory_pointer[8]);
             if ((0.0 < system_result_float) &&
-               (system_result_float < *(float *)((longlong)system_memory_pointer + 0x244) ||
-                system_result_float == *(float *)((longlong)system_memory_pointer + 0x244))) {
-              *(float *)((longlong)system_memory_pointer + 0x244) = system_float_value;
+               (system_result_float < *(float *)((longlong)system_memory_pointer + SYSTEM_DATA_OFFSET_244) ||
+                system_result_float == *(float *)((longlong)system_memory_pointer + SYSTEM_DATA_OFFSET_244))) {
+              *(float *)((longlong)system_memory_pointer + SYSTEM_DATA_OFFSET_244) = system_float_value;
             }
           }
         }
@@ -47638,11 +47638,11 @@ void InitializeAudioSystem(uint64_t *handleIdentifier)
   if (system_memory_pointer != (longlong *)SYSTEM_NULL_POINTER) {
     (**(code **)(*system_memory_pointer + SYSTEM_OBJECT_OFFSET_38))();
   }
-  if (handleIdentifier[0x5a] != 0) {
+  if (handleIdentifier[SYSTEM_DATA_OFFSET_5A] != 0) {
                     // WARNING: Subroutine does not return
     ProcessSystemOperation();
   }
-  handleIdentifier[0x5a] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_5A] = 0;
   system_memory_pointer = (longlong *)handleIdentifier[SYSTEM_FLAG_BIT_4b];
   if (system_memory_pointer != (longlong *)SYSTEM_NULL_POINTER) {
     if (*system_memory_pointer != 0) {
@@ -47666,20 +47666,20 @@ void InitializeAudioSystem(uint64_t *handleIdentifier)
   }
   handleIdentifier[SYSTEM_FLAG_BIT_4b] = 0;
   if (*(char *)((longlong)handleIdentifier + SYSTEM_OFFSET_F9) != '\0') {
-    if (handleIdentifier[0x3b] != 0) {
+    if (handleIdentifier[SYSTEM_DATA_OFFSET_3B] != 0) {
                     // WARNING: Subroutine does not return
       ProcessSystemOperation();
     }
-    handleIdentifier[0x3b] = 0;
+    handleIdentifier[SYSTEM_DATA_OFFSET_3B] = 0;
     LOCK();
     *(uint8_t *)((longlong)handleIdentifier + SYSTEM_OFFSET_F9) = 0;
     UNLOCK();
   }
-  if (handleIdentifier[0x3d] != 0) {
+  if (handleIdentifier[SYSTEM_DATA_OFFSET_3D] != 0) {
     InitializeSystemComponents();
-    handleIdentifier[0x3d] = 0;
-    if (handleIdentifier[0x3e] != 0) {
-      init_byte_pointer_temp = (byte *)(handleIdentifier[0x3e] + SYSTEM_OFFSET_Fe);
+    handleIdentifier[SYSTEM_DATA_OFFSET_3D] = 0;
+    if (handleIdentifier[SYSTEM_DATA_OFFSET_3E] != 0) {
+      init_byte_pointer_temp = (byte *)(handleIdentifier[SYSTEM_DATA_OFFSET_3E] + SYSTEM_OFFSET_Fe);
       *init_byte_pointer_temp = *init_byte_pointer_temp & SYSTEM_OFFSET_Fb;
     }
   }
@@ -47688,15 +47688,15 @@ void InitializeAudioSystem(uint64_t *handleIdentifier)
   if (system_memory_pointer != (longlong *)SYSTEM_NULL_POINTER) {
     (**(code **)(*system_memory_pointer + SYSTEM_OBJECT_OFFSET_38))();
   }
-  system_long_value = handleIdentifier[0x3c];
+  system_long_value = handleIdentifier[SYSTEM_DATA_OFFSET_3C];
   if (system_long_result != 0) {
     ValidateSystemHandle(system_long_result,SYSTEM_OFFSET_18,SYSTEM_DATA_COMPARE_SIZE,InitializeConfigSystem,system_operation_status,system_long_result);
                     // WARNING: Subroutine does not return
     ProcessSystemOperation(system_long_result);
   }
-  handleIdentifier[0x3c] = 0;
-  InitializeFontSystem(handleIdentifier + 0x5e);
-  InitializeShaderSystem(handleIdentifier + 0x5c);
+  handleIdentifier[SYSTEM_DATA_OFFSET_3C] = 0;
+  InitializeFontSystem(handleIdentifier + SYSTEM_DATA_OFFSET_5E);
+  InitializeShaderSystem(handleIdentifier + SYSTEM_DATA_OFFSET_5C);
   if ((longlong *)handleIdentifier[SYSTEM_FLAG_BIT_4d] != (longlong *)SYSTEM_NULL_POINTER) {
     (**(code **)(*(longlong *)handleIdentifier[SYSTEM_FLAG_BIT_4d] + SYSTEM_OBJECT_OFFSET_38))();
   }
@@ -47704,7 +47704,7 @@ void InitializeAudioSystem(uint64_t *handleIdentifier)
   if ((longlong *)handleIdentifier[SYSTEM_FLAG_BIT_42] != (longlong *)SYSTEM_NULL_POINTER) {
     (**(code **)(*(longlong *)handleIdentifier[SYSTEM_FLAG_BIT_42] + SYSTEM_OBJECT_OFFSET_38))();
   }
-  if (handleIdentifier[0x3d] != 0) {
+  if (handleIdentifier[SYSTEM_DATA_OFFSET_3D] != 0) {
     InitializeSystemComponents();
   }
   if ((longlong *)handleIdentifier[SYSTEM_OBJECT_OFFSET_38] != (longlong *)SYSTEM_NULL_POINTER) {
@@ -47840,7 +47840,7 @@ float * HandleSystemOperation16(float *handleIdentifier)
   if ((*(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fd) & SYSTEM_NODE_HEADER_SIZE) == 0) {
     init_float_pointer_temp = (float *)GetSystemDataPointer(*(uint64_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_STATUS_CODE));
   }
-  if ((*(longlong *)(init_float_pointer_temp + 0x84) != 0) && (((uint)handleIdentifier[SYSTEM_DATA_BLOCK_SIZE] & SYSTEM_OFFSET_80) == 0)) {
+  if ((*(longlong *)(init_float_pointer_temp + SYSTEM_DATA_OFFSET_84) != 0) && (((uint)handleIdentifier[SYSTEM_DATA_BLOCK_SIZE] & SYSTEM_OFFSET_80) == 0)) {
     init_float_pointer_temp = handleIdentifier + 0x9d;
     init_float_pointer_temp[0] = 1e+08;
     init_float_pointer_temp[1] = 1e+08;
@@ -47893,32 +47893,32 @@ float * HandleSystemOperation16(float *handleIdentifier)
         system_status_code = system_int_result_unsigned + 1;
       } while (system_int_result_unsigned < *(uint *)(longStack_88 + SYSTEM_DATA_COMPARE_SIZE));
     }
-    init_float_pointer_temp = *(float **)(handleIdentifier + 0x6e);
+    init_float_pointer_temp = *(float **)(handleIdentifier + SYSTEM_DATA_OFFSET_6E);
     if ((init_float_pointer_temp != (float *)0x0) && (((uint)init_float_pointer_temp[SYSTEM_FLAG_BIT_4e] & 0x3000) != 0)) {
       init_stack_uint_param_data = *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_48);
       init_stack_uint_param_size = *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4a);
       init_stack_uint_param_68 = *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4c);
       init_stack_param_60 = *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4e);
       init_float_stack_58 = handleIdentifier[0x50];
-      init_float_stack_54 = handleIdentifier[0x51];
-      init_float_stack_50 = handleIdentifier[0x52];
-      init_float_stack_4c = handleIdentifier[0x53];
-      init_stack_uint_parameter_48 = *(uint64_t *)(handleIdentifier + 0x54);
-      init_stack_uint_param_40 = *(uint64_t *)(handleIdentifier + 0x56);
+      init_float_stack_54 = handleIdentifier[SYSTEM_DATA_OFFSET_51];
+      init_float_stack_50 = handleIdentifier[SYSTEM_DATA_OFFSET_52];
+      init_float_stack_4c = handleIdentifier[SYSTEM_DATA_OFFSET_53];
+      init_stack_uint_parameter_48 = *(uint64_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_COUNTER);
+      init_stack_uint_param_40 = *(uint64_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_56);
       InitializeSystemModule19(&init_stack_uint_param_data);
       UtilityFunction3a240(init_float_pointer_temp,init_float_pointer_temp,&init_stack_uint_param_data);
-      init_float_pointer_temp = *(float **)(handleIdentifier + 0x6e);
+      init_float_pointer_temp = *(float **)(handleIdentifier + SYSTEM_DATA_OFFSET_6E);
       if (((uint)init_float_pointer_temp[SYSTEM_FLAG_BIT_4e] & 0x3000) == SYSTEM_NODE_HEADER_SIZE00) {
         init_stack_uint_param_data = *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_48);
         init_stack_uint_param_size = *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4a);
         init_stack_uint_param_68 = *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4c);
         init_stack_param_60 = *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4e);
         init_float_stack_58 = handleIdentifier[0x50];
-        init_float_stack_54 = handleIdentifier[0x51];
-        init_float_stack_50 = handleIdentifier[0x52];
-        init_float_stack_4c = handleIdentifier[0x53];
-        init_stack_uint_parameter_48 = *(uint64_t *)(handleIdentifier + 0x54);
-        init_stack_uint_param_40 = *(uint64_t *)(handleIdentifier + 0x56);
+        init_float_stack_54 = handleIdentifier[SYSTEM_DATA_OFFSET_51];
+        init_float_stack_50 = handleIdentifier[SYSTEM_DATA_OFFSET_52];
+        init_float_stack_4c = handleIdentifier[SYSTEM_DATA_OFFSET_53];
+        init_stack_uint_parameter_48 = *(uint64_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_COUNTER);
+        init_stack_uint_param_40 = *(uint64_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_56);
         InitializeUISystem(&init_stack_uint_param_data,0x3fc90fdb);
         UtilityFunction3a240(init_float_pointer_temp,init_float_pointer_temp,&init_stack_uint_param_data);
         init_stack_uint_param_data = *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_48);
@@ -47926,11 +47926,11 @@ float * HandleSystemOperation16(float *handleIdentifier)
         init_stack_uint_param_68 = *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4c);
         init_stack_param_60 = *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4e);
         init_float_stack_58 = handleIdentifier[0x50];
-        init_float_stack_54 = handleIdentifier[0x51];
-        init_float_stack_50 = handleIdentifier[0x52];
-        init_float_stack_4c = handleIdentifier[0x53];
-        init_stack_uint_parameter_48 = *(uint64_t *)(handleIdentifier + 0x54);
-        init_stack_uint_param_40 = *(uint64_t *)(handleIdentifier + 0x56);
+        init_float_stack_54 = handleIdentifier[SYSTEM_DATA_OFFSET_51];
+        init_float_stack_50 = handleIdentifier[SYSTEM_DATA_OFFSET_52];
+        init_float_stack_4c = handleIdentifier[SYSTEM_DATA_OFFSET_53];
+        init_stack_uint_parameter_48 = *(uint64_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_COUNTER);
+        init_stack_uint_param_40 = *(uint64_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_56);
         InitializeSystemModule39(&init_stack_uint_param_data);
         init_float_pointer_temp = (float *)UtilityFunction3a240(init_float_pointer_temp,init_float_pointer_temp,&init_stack_uint_param_data);
       }
@@ -47978,42 +47978,42 @@ float * HandleSystemOperation16(float *handleIdentifier)
     if (init_float_ptr_stack_98 != (float *)0x0) {
       while( true ) {
         LOCK();
-        system_init_flag = *(char *)(init_float_pointer_temp + 0x3b);
+        system_init_flag = *(char *)(init_float_pointer_temp + SYSTEM_HANDLE_OFFSET_ALLOC_TYPE);
         system_boolean_flag = system_init_flag == '\0';
         if (system_bool_var) {
-          *(char *)(init_float_pointer_temp + 0x3b) = '\x01';
+          *(char *)(init_float_pointer_temp + SYSTEM_HANDLE_OFFSET_ALLOC_TYPE) = '\x01';
           system_init_flag = '\0';
         }
         UNLOCK();
         if (system_bool_var) break;
         system_float_value = (float)_Thrd_id();
-        if ((init_float_pointer_temp[0x3c] == system_result_float) || (init_float_pointer_temp[0x3c] != 0.0)) goto INIT_LABEL_SYSTEM_75f4f;
+        if ((init_float_pointer_temp[SYSTEM_DATA_OFFSET_3C] == system_result_float) || (init_float_pointer_temp[SYSTEM_DATA_OFFSET_3C] != 0.0)) goto INIT_LABEL_SYSTEM_75f4f;
         Sleep();
       }
       system_init_flag = '\0';
 INIT_LABEL_SYSTEM_75f4f:
       LOCK();
-      init_float_pointer_temp = init_float_pointer_temp + 0x3a;
+      init_float_pointer_temp = init_float_pointer_temp + SYSTEM_DATA_OFFSET_3A;
       system_float_value = *init_float_pointer_temp;
       init_float_pointer_temp = (float *)(ulonglong)(uint)system_float_value;
       *init_float_pointer_temp = (float)((int)*init_float_pointer_temp + -1);
       UNLOCK();
       if (system_init_flag == '\0') {
-        if ((((system_result_float == 1.4013e-45) && (*(longlong *)(init_float_ptr_stack_98 + 0x84) != 0)) &&
-            (init_float_pointer_temp = init_float_ptr_stack_98, InitializeAuthenticationSystem(init_float_ptr_stack_98), *(char *)(init_float_pointer_temp + 0x3f) == '\0')) &&
-           ((*(char *)(init_float_pointer_temp + 0x3d) == '\0' &&
+        if ((((system_result_float == 1.4013e-45) && (*(longlong *)(init_float_ptr_stack_98 + SYSTEM_DATA_OFFSET_84) != 0)) &&
+            (init_float_pointer_temp = init_float_ptr_stack_98, InitializeAuthenticationSystem(init_float_ptr_stack_98), *(char *)(init_float_pointer_temp + SYSTEM_DATA_OFFSET_3F) == '\0')) &&
+           ((*(char *)(init_float_pointer_temp + SYSTEM_HANDLE_OFFSET_TEMP) == '\0' &&
             (((*(byte *)((longlong)init_float_pointer_temp + SYSTEM_OFFSET_Fd) & SYSTEM_NODE_HEADER_SIZE) == 0 ||
              ((*(byte *)((longlong)init_float_pointer_temp + SYSTEM_OFFSET_Fe) & 1) == 0)))))) {
-          system_memory_pointer = *(longlong **)(init_float_pointer_temp + 0x84);
-          init_float_pointer_temp[0x84] = 0.0;
-          init_float_pointer_temp[0x85] = 0.0;
+          system_memory_pointer = *(longlong **)(init_float_pointer_temp + SYSTEM_DATA_OFFSET_84);
+          init_float_pointer_temp[SYSTEM_DATA_OFFSET_84] = 0.0;
+          init_float_pointer_temp[SYSTEM_DATA_OFFSET_85] = 0.0;
           if (system_memory_pointer != (longlong *)SYSTEM_NULL_POINTER) {
             (**(code **)(*system_memory_pointer + SYSTEM_OBJECT_OFFSET_38))();
           }
         }
         LOCK();
-        system_boolean_flag = *(byte *)(init_float_pointer_temp + 0x3b);
-        *(byte *)(init_float_pointer_temp + 0x3b) = 0;
+        system_boolean_flag = *(byte *)(init_float_pointer_temp + SYSTEM_HANDLE_OFFSET_ALLOC_TYPE);
+        *(byte *)(init_float_pointer_temp + SYSTEM_HANDLE_OFFSET_ALLOC_TYPE) = 0;
         init_float_pointer_temp = (float *)(ulonglong)system_boolean_flag;
         UNLOCK();
       }
@@ -48057,7 +48057,7 @@ void InitializeSystemModule26(longlong *handleIdentifier)
   init_stack_uint_size_90 = INVALID_HANDLE_VALUE;
   while( true ) {
     if (((int)handleIdentifier[SYSTEM_FLAG_BIT_41] != 0) &&
-       ((system_float_value = *(float *)(handleIdentifier + 0x5b) - *(float *)((longlong)handleIdentifier + SYSTEM_OFFSET_2Dc), system_result_float <= -0.01
+       ((system_float_value = *(float *)(handleIdentifier + SYSTEM_DATA_OFFSET_5B) - *(float *)((longlong)handleIdentifier + SYSTEM_OFFSET_2Dc), system_result_float <= -0.01
         || (0.01 <= system_result_float)))) {
       system_memory_pointer = handleIdentifier;
       if ((((*(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fd) & SYSTEM_DATA_BLOCK_SIZE) == 0) || (handleIdentifier[SYSTEM_FLAG_BIT_42] == 0)) &&
@@ -48183,7 +48183,7 @@ void InitializeSystemModule26(longlong *handleIdentifier)
         }
         InitializeSystemDataNode30(&system_stack_memory_pointer);
       }
-      *(uint32_t *)(handleIdentifier + 0x5b) = *(uint32_t *)((longlong)handleIdentifier + SYSTEM_OFFSET_2Dc);
+      *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_5B) = *(uint32_t *)((longlong)handleIdentifier + SYSTEM_OFFSET_2Dc);
     }
     if ((*(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fd) & SYSTEM_NODE_HEADER_SIZE) != 0) break;
     handleIdentifier = (longlong *)handleIdentifier[0x36];
@@ -48266,30 +48266,30 @@ longlong * InitializeResourceSystem(longlong *handleIdentifier,longlong *resourc
   system_long_value = handleIdentifier[SYSTEM_FLAG_BIT_48];
   system_long_value = *resourceIdentifier;
   *(longlong *)(system_long_result + 0x238) = handleIdentifier[SYSTEM_FLAG_BIT_47];
-  *(longlong *)(system_long_result + 0x240) = system_long_value;
+  *(longlong *)(system_long_result + SYSTEM_DATA_OFFSET_240) = system_long_value;
   system_long_value = handleIdentifier[SYSTEM_FLAG_BIT_4a];
   system_long_value = *resourceIdentifier;
-  *(longlong *)(system_long_result + 0x248) = handleIdentifier[SYSTEM_FLAG_BIT_49];
-  *(longlong *)(system_long_result + 0x250) = system_long_value;
-  system_status_code = *(uint32_t *)((longlong)handleIdentifier + 0x2ac);
-  system_long_value = handleIdentifier[0x56];
+  *(longlong *)(system_long_result + SYSTEM_DATA_OFFSET_248) = handleIdentifier[SYSTEM_FLAG_BIT_49];
+  *(longlong *)(system_long_result + SYSTEM_DATA_OFFSET_250) = system_long_value;
+  system_status_code = *(uint32_t *)((longlong)handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_2Ac);
+  system_long_value = handleIdentifier[SYSTEM_DATA_OFFSET_56];
   system_status_code = *(uint32_t *)((longlong)handleIdentifier + SYSTEM_OBJECT_OFFSET_2B4);
   system_long_value = *resourceIdentifier;
-  *(int *)(system_long_result + 0x2a8) = (int)handleIdentifier[0x55];
-  *(uint32_t *)(system_long_result + 0x2ac) = system_integer_result_unsigned;
+  *(int *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2A8) = (int)handleIdentifier[SYSTEM_DATA_OFFSET_55];
+  *(uint32_t *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2Ac) = system_integer_result_unsigned;
   *(int *)(system_long_result + SYSTEM_OFFSET_2B0) = (int)system_long_value;
   *(uint32_t *)(system_long_result + SYSTEM_OBJECT_OFFSET_2B4) = system_integer_result_unsigned;
   system_status_code = *(uint32_t *)((longlong)handleIdentifier + 700);
-  system_long_value = handleIdentifier[0x58];
+  system_long_value = handleIdentifier[SYSTEM_DATA_OFFSET_58];
   system_status_code = *(uint32_t *)((longlong)handleIdentifier + 0x2c4);
   system_long_value = *resourceIdentifier;
-  *(int *)(system_long_result + SYSTEM_OBJECT_OFFSET_2B8) = (int)handleIdentifier[0x57];
+  *(int *)(system_long_result + SYSTEM_OBJECT_OFFSET_2B8) = (int)handleIdentifier[SYSTEM_DATA_OFFSET_57];
   *(uint32_t *)(system_long_result + 700) = system_integer_result_unsigned;
   *(int *)(system_long_result + 0x2c0) = (int)system_long_value;
   *(uint32_t *)(system_long_result + 0x2c4) = system_integer_result_unsigned;
-  *(int *)(*resourceIdentifier + SYSTEM_DATA_COMPARE_SIZE8) = (int)handleIdentifier[0x21];
-  if ((longlong *)(*resourceIdentifier + 0x218) != handleIdentifier + SYSTEM_FLAG_BIT_43) {
-    ValidateSystemConfiguration((longlong *)(*resourceIdentifier + 0x218),handleIdentifier[SYSTEM_FLAG_BIT_43],handleIdentifier[SYSTEM_FLAG_BIT_44]);
+  *(int *)(*resourceIdentifier + SYSTEM_DATA_COMPARE_SIZE8) = (int)handleIdentifier[SYSTEM_DATA_OFFSET_21];
+  if ((longlong *)(*resourceIdentifier + SYSTEM_DATA_OFFSET_218) != handleIdentifier + SYSTEM_FLAG_BIT_43) {
+    ValidateSystemConfiguration((longlong *)(*resourceIdentifier + SYSTEM_DATA_OFFSET_218),handleIdentifier[SYSTEM_FLAG_BIT_43],handleIdentifier[SYSTEM_FLAG_BIT_44]);
   }
   node_root0 = &g_system_data_variable3;
   if ((void *)handleIdentifier[3] != (void *)SYSTEM_NULL_POINTER) {
@@ -48297,31 +48297,31 @@ longlong * InitializeResourceSystem(longlong *handleIdentifier,longlong *resourc
   }
   (**(code **)(*(longlong *)(*resourceIdentifier + SYSTEM_DATA_COMPARE_SIZE) + SYSTEM_DATA_COMPARE_SIZE))((longlong *)(*resourceIdentifier + SYSTEM_DATA_COMPARE_SIZE),node_root0);
   *(uint8_t *)(*resourceIdentifier + SYSTEM_OFFSET_F6) = *(uint8_t *)((longlong)handleIdentifier + SYSTEM_OFFSET_F6);
-  system_status_code = *(uint64_t *)((longlong)handleIdentifier + 0x27c);
+  system_status_code = *(uint64_t *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_27c);
   system_status_code = *(uint64_t *)((longlong)handleIdentifier + SYSTEM_OBJECT_OFFSET_284);
   system_status_code = *(uint64_t *)((longlong)handleIdentifier + SYSTEM_OBJECT_OFFSET_28c);
   system_status_code = *(uint64_t *)((longlong)handleIdentifier + 0x294);
   system_status_code = *(uint64_t *)((longlong)handleIdentifier + 0x29c);
-  system_status_code = *(uint32_t *)((longlong)handleIdentifier + 0x2a4);
+  system_status_code = *(uint32_t *)((longlong)handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_2A4);
   system_long_value = *resourceIdentifier;
-  *(uint64_t *)(system_long_result + 0x274) = *(uint64_t *)((longlong)handleIdentifier + 0x274);
-  *(uint64_t *)(system_long_result + 0x27c) = system_integer_result_unsigned;
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_274) = *(uint64_t *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_274);
+  *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_27c) = system_integer_result_unsigned;
   *(uint64_t *)(system_long_result + SYSTEM_OBJECT_OFFSET_284) = system_integer_result_unsigned;
   *(uint64_t *)(system_long_result + SYSTEM_OBJECT_OFFSET_28c) = system_integer_result_unsigned;
   *(uint64_t *)(system_long_result + 0x294) = system_integer_result_unsigned;
   *(uint64_t *)(system_long_result + 0x29c) = system_integer_result_unsigned;
-  *(uint32_t *)(system_long_result + 0x2a4) = system_integer_result_unsigned;
+  *(uint32_t *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2A4) = system_integer_result_unsigned;
   *(uint8_t *)(*resourceIdentifier + SYSTEM_OFFSET_Ff) = *(uint8_t *)((longlong)handleIdentifier + SYSTEM_OFFSET_Ff);
-  *(int *)(*resourceIdentifier + 0x270) = (int)handleIdentifier[SYSTEM_FLAG_BIT_4e];
-  system_long_value = handleIdentifier[0x25];
-  system_long_value = handleIdentifier[0x26];
-  system_long_value = handleIdentifier[0x27];
+  *(int *)(*resourceIdentifier + SYSTEM_DATA_OFFSET_270) = (int)handleIdentifier[SYSTEM_FLAG_BIT_4e];
+  system_long_value = handleIdentifier[SYSTEM_DATA_OFFSET_25];
+  system_long_value = handleIdentifier[SYSTEM_DATA_OFFSET_26];
+  system_long_value = handleIdentifier[SYSTEM_DATA_OFFSET_27];
   system_long_value = handleIdentifier[SYSTEM_OBJECT_OFFSET_28];
   system_long_value = handleIdentifier[0x29];
   system_long_value = handleIdentifier[0x2a];
   system_long_value = handleIdentifier[SYSTEM_OBJECT_OFFSET_2B];
   system_long_value = *resourceIdentifier;
-  *(longlong *)(system_long_result + SYSTEM_CONFIG_SIZE_RENDER0) = handleIdentifier[0x24];
+  *(longlong *)(system_long_result + SYSTEM_CONFIG_SIZE_RENDER0) = handleIdentifier[SYSTEM_DATA_OFFSET_24];
   *(longlong *)(system_long_result + SYSTEM_CONFIG_SIZE_RENDER8) = system_long_value;
   *(longlong *)(system_long_result + SYSTEM_CONFIG_SIZE_PHYSICS0) = system_long_value;
   *(longlong *)(system_long_result + SYSTEM_CONFIG_SIZE_PHYSICS8) = system_long_value;
@@ -48330,15 +48330,15 @@ longlong * InitializeResourceSystem(longlong *handleIdentifier,longlong *resourc
   *(longlong *)(system_long_result + SYSTEM_CONFIG_SIZE_AUTH0) = system_long_value;
   *(longlong *)(system_long_result + SYSTEM_CONFIG_SIZE_AUTH8) = system_long_value;
   system_long_value = handleIdentifier[SYSTEM_OFFSET_2D];
-  system_long_value = handleIdentifier[0x2e];
+  system_long_value = handleIdentifier[SYSTEM_DATA_OFFSET_2E];
   system_long_value = handleIdentifier[0x2f];
   system_long_value = handleIdentifier[0x30];
   system_status_code = *(uint32_t *)((longlong)handleIdentifier + SYSTEM_OFFSET_184);
-  system_long_value = handleIdentifier[0x31];
+  system_long_value = handleIdentifier[SYSTEM_DATA_OFFSET_31];
   system_status_code = *(uint32_t *)((longlong)handleIdentifier + SYSTEM_OFFSET_18c);
-  system_long_value = handleIdentifier[0x32];
+  system_long_value = handleIdentifier[SYSTEM_DATA_OFFSET_32];
   system_status_code = *(uint32_t *)((longlong)handleIdentifier + NODE_INITIALIZED_OFFSET4);
-  system_long_value = handleIdentifier[0x33];
+  system_long_value = handleIdentifier[SYSTEM_DATA_OFFSET_33];
   system_status_code = *(uint32_t *)((longlong)handleIdentifier + NODE_INITIALIZED_OFFSETc);
   system_long_value = *resourceIdentifier;
   *(longlong *)(system_long_result + SYSTEM_CONFIG_SIZE_FONT0) = handleIdentifier[0x2c];
@@ -48357,11 +48357,11 @@ longlong * InitializeResourceSystem(longlong *handleIdentifier,longlong *resourc
   *init_byte_pointer_temp = *init_byte_pointer_temp ^ (*(byte *)(*resourceIdentifier + SYSTEM_OFFSET_Fd) ^ *(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fd)) & 1;
   *(uint8_t *)(*resourceIdentifier + SYSTEM_OFFSET_F7) = *(uint8_t *)((longlong)handleIdentifier + SYSTEM_OFFSET_F7);
   *(int *)(*resourceIdentifier + SYSTEM_NODE_HEADER_SIZE8) = (int)handleIdentifier[SYSTEM_FLAG_BIT_41];
-  *(int *)(*resourceIdentifier + 0x1f8) = (int)handleIdentifier[0x3f];
+  *(int *)(*resourceIdentifier + 0x1f8) = (int)handleIdentifier[SYSTEM_DATA_OFFSET_3F];
   *(uint32_t *)(*resourceIdentifier + 0x1fc) = *(uint32_t *)((longlong)handleIdentifier + 0x1fc);
   *(int *)(*resourceIdentifier + SYSTEM_NODE_HEADER_SIZE0) = (int)handleIdentifier[SYSTEM_DATA_BLOCK_SIZE];
   *(uint32_t *)(*resourceIdentifier + SYSTEM_NODE_HEADER_SIZE4) = *(uint32_t *)((longlong)handleIdentifier + SYSTEM_NODE_HEADER_SIZE4);
-  *(int *)(*resourceIdentifier + SYSTEM_OFFSET_2D8) = (int)handleIdentifier[0x5b];
+  *(int *)(*resourceIdentifier + SYSTEM_OFFSET_2D8) = (int)handleIdentifier[SYSTEM_DATA_OFFSET_5B];
   system_status_code = *(uint32_t *)((longlong)handleIdentifier + SYSTEM_OFFSET_2Dc);
   *(uint32_t *)(*resourceIdentifier + SYSTEM_OFFSET_2Dc) = system_integer_result_unsigned;
   system_long_value = *resourceIdentifier;
@@ -48370,8 +48370,8 @@ longlong * InitializeResourceSystem(longlong *handleIdentifier,longlong *resourc
     system_stack_memory_pointer = system_memory_pointer;
     (**(code **)(*system_memory_pointer + SYSTEM_OBJECT_OFFSET_28))(system_memory_pointer,system_operation_status,(int)system_long_result,(int)system_long_result,system_int_result_unsigned);
   }
-  stack_system_memory_pointer = *(longlong **)(system_long_result + 0x268);
-  *(longlong **)(system_long_result + 0x268) = system_memory_pointer;
+  stack_system_memory_pointer = *(longlong **)(system_long_result + SYSTEM_DATA_OFFSET_268);
+  *(longlong **)(system_long_result + SYSTEM_DATA_OFFSET_268) = system_memory_pointer;
   if (stack_system_memory_pointer != (longlong *)SYSTEM_NULL_POINTER) {
     (**(code **)(*stack_system_memory_pointer + SYSTEM_OBJECT_OFFSET_38))();
   }
@@ -48395,7 +48395,7 @@ void InitializeSystemModule10(longlong *handleIdentifier,uint64_t resourceIdenti
 
   system_status_code = INVALID_HANDLE_VALUE;
   if (handleIdentifier[SYSTEM_FLAG_BIT_42] == 0) {
-    handleIdentifier[0x3f] = 0;
+    handleIdentifier[SYSTEM_DATA_OFFSET_3F] = 0;
     handleIdentifier[SYSTEM_DATA_BLOCK_SIZE] = 0;
     *(uint32_t *)(handleIdentifier + SYSTEM_FLAG_BIT_41) = 0;
     InitializeAuthenticationSystem();
@@ -48556,12 +48556,12 @@ void InitializeSystemModule1(longlong handleIdentifier)
     while (*(int *)(handleIdentifier + SYSTEM_CONFIG_SIZE_EVENT8) != 0) {
       Sleep(0);
     }
-    if ((((*(longlong *)(handleIdentifier + 0x210) != 0) &&
+    if ((((*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_210) != 0) &&
          (InitializeAuthenticationSystem(handleIdentifier), *(char *)(handleIdentifier + SYSTEM_OFFSET_Fc) == '\0')) &&
         (*(char *)(handleIdentifier + SYSTEM_OFFSET_F4) == '\0')) &&
        (((*(byte *)(handleIdentifier + SYSTEM_OFFSET_Fd) & SYSTEM_NODE_HEADER_SIZE) == 0 || ((*(byte *)(handleIdentifier + SYSTEM_OFFSET_Fe) & 1) == 0)))) {
-      system_memory_pointer = *(longlong **)(handleIdentifier + 0x210);
-      *(uint64_t *)(handleIdentifier + 0x210) = 0;
+      system_memory_pointer = *(longlong **)(handleIdentifier + SYSTEM_DATA_OFFSET_210);
+      *(uint64_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_210) = 0;
       if (system_memory_pointer != (longlong *)SYSTEM_NULL_POINTER) {
         (**(code **)(*system_memory_pointer + SYSTEM_OBJECT_OFFSET_38))();
       }
@@ -48810,16 +48810,16 @@ ulonglong InitializeAudioDataNode8(longlong handleIdentifier)
     allocation_size = g_system_base_1;
     do {
       system_long_value = *(longlong *)(system_long_result + *(longlong *)(handleIdentifier + SYSTEM_CONFIG_SIZE_INPUT8));
-      if ((((system_long_result != 0) && (*(longlong *)(*(longlong *)(handleIdentifier + SYSTEM_CONFIG_SIZE_INPUT8) + 0x328 + system_long_result) == 0)) &&
-          ((*(uint *)(system_long_result + 0x328) & SYSTEM_NODE_HEADER_SIZE000000) == 0)) && (*(longlong *)(system_long_result + 0x370) == 0)) {
+      if ((((system_long_result != 0) && (*(longlong *)(*(longlong *)(handleIdentifier + SYSTEM_CONFIG_SIZE_INPUT8) + SYSTEM_DATA_OFFSET_328 + system_long_result) == 0)) &&
+          ((*(uint *)(system_long_result + SYSTEM_DATA_OFFSET_328) & SYSTEM_NODE_HEADER_SIZE000000) == 0)) && (*(longlong *)(system_long_result + 0x370) == 0)) {
         if (*(longlong *)(system_long_result + 0x1d8) == 0) {
           CleanupSystemResources(system_long_result,0);
           allocation_size = g_system_base_1;
-          init_int_pointer_temp = (int *)(*(longlong *)(system_long_result + *(longlong *)(handleIdentifier + SYSTEM_CONFIG_SIZE_INPUT8)) + 0x3a8);
+          init_int_pointer_temp = (int *)(*(longlong *)(system_long_result + *(longlong *)(handleIdentifier + SYSTEM_CONFIG_SIZE_INPUT8)) + SYSTEM_DATA_OFFSET_3A8);
           *init_int_pointer_temp = *init_int_pointer_temp + 1;
         }
         else if (allocation_size != 0) {
-          *(longlong *)(system_long_result + 0x340) = (longlong)*(int *)(allocation_size + SYSTEM_CORE_DATA_OFFSET_224);
+          *(longlong *)(system_long_result + SYSTEM_DATA_OFFSET_340) = (longlong)*(int *)(allocation_size + SYSTEM_CORE_DATA_OFFSET_224);
         }
       }
       system_long_value = system_long_result + 8;
@@ -49031,23 +49031,23 @@ uint64_t InitializeNetworkSystem(longlong handleIdentifier,longlong resourceIden
              ((system_init_flag = CheckSystemReady(), system_init_flag != '\0' &&
               ((*(char *)(system_long_result + SYSTEM_CONFIG_SIZE_STATUSe) != '\0' &&
                (system_boolean_flag = true, (*(byte *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_INPUTd8) & SYSTEM_NODE_HEADER_SIZE) != 0)))))) {
-            ptr_system_init_flag = *(code **)(**(longlong **)(resourceIdentifier + 0x3580) + SYSTEM_DATA_BLOCK_SIZE_B8);
+            ptr_system_init_flag = *(code **)(**(longlong **)(resourceIdentifier + SYSTEM_DATA_OFFSET_3580) + SYSTEM_DATA_BLOCK_SIZE_B8);
             if (ptr_system_init_flag == pis_initialized5) {
-              system_long_value = (*(longlong **)(resourceIdentifier + 0x3580))[SYSTEM_CONFIG_SIZE_STATUSa];
+              system_long_value = (*(longlong **)(resourceIdentifier + SYSTEM_DATA_OFFSET_3580))[SYSTEM_CONFIG_SIZE_STATUSa];
             }
             else {
               system_long_value = (*ptr_system_init_flag)();
             }
-            system_ptr_value = (uint *)(system_long_result + 0x3f68);
+            system_ptr_value = (uint *)(system_long_result + SYSTEM_DATA_OFFSET_3F68);
             LOCK();
             system_status_code = *system_ptr_value;
             *system_ptr_value = *system_pointer_var + 1;
             UNLOCK();
             system_status_code = system_int_result_unsigned >> 10;
             system_status_code = (ulonglong)system_integer_result_unsigned;
-            if (*(longlong *)(system_long_result + 0x3f70 + (ulonglong)system_int_result_unsigned * 8) == 0) {
+            if (*(longlong *)(system_long_result + SYSTEM_DATA_OFFSET_3F70 + (ulonglong)system_int_result_unsigned * 8) == 0) {
               system_long_value = AllocateSystemResource(systemMemoryPool,SYSTEM_NODE_HEADER_SIZE00,0x25);
-              system_memory_pointer = (longlong *)(system_long_result + 0x3f70 + system_int_result_unsigned * 8);
+              system_memory_pointer = (longlong *)(system_long_result + SYSTEM_DATA_OFFSET_3F70 + system_int_result_unsigned * 8);
               LOCK();
               thread_operation_flag = *system_memory_pointer == 0;
               if (thread_operation_flag) {
@@ -49073,7 +49073,7 @@ uint64_t InitializeNetworkSystem(longlong handleIdentifier,longlong resourceIden
               } while (*(char *)(system_int_result_unsigned + SYSTEM_FLAG_BIT_48 + (longlong)system_pointer_var) != '\0');
             }
             *(longlong *)
-             (*(longlong *)(system_long_result + 0x3f70 + system_int_result_unsigned * 8) + (ulonglong)(system_int_result_unsigned + system_int_result_unsigned * -SYSTEM_DATA_BLOCK_SIZE0) * 8)
+             (*(longlong *)(system_long_result + SYSTEM_DATA_OFFSET_3F70 + system_int_result_unsigned * 8) + (ulonglong)(system_int_result_unsigned + system_int_result_unsigned * -SYSTEM_DATA_BLOCK_SIZE0) * 8)
                  = system_long_value;
             pis_initialized5 = (code *)&g_system_call_7;
           }
@@ -49217,18 +49217,18 @@ ulonglong InitializeSystemModule6(longlong handleIdentifier,uint *resourceIdenti
   if ((char)*(byte *)(handleIdentifier + SYSTEM_OFFSET_Fd) < '\0') {
     system_long_value = *(longlong *)(handleIdentifier + SYSTEM_CONFIG_SIZE_INPUT8);
     system_status_code = *(uint64_t *)(system_long_result + 0x290);
-    *(uint64_t *)(handleIdentifier + 0x2a8) = *(uint64_t *)(system_long_result + SYSTEM_OBJECT_OFFSET_288);
+    *(uint64_t *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_2A8) = *(uint64_t *)(system_long_result + SYSTEM_OBJECT_OFFSET_288);
     *(uint64_t *)(handleIdentifier + SYSTEM_OFFSET_2B0) = system_integer_result_unsigned;
     system_status_code = *(uint32_t *)(system_long_result + 0x29c);
-    system_status_code = *(uint32_t *)(system_long_result + 0x2a0);
-    system_status_code = *(uint32_t *)(system_long_result + 0x2a4);
+    system_status_code = *(uint32_t *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2A0);
+    system_status_code = *(uint32_t *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2A4);
     *(uint32_t *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_2B8) = *(uint32_t *)(system_long_result + 0x298);
     *(uint32_t *)(handleIdentifier + 700) = system_integer_result_unsigned;
     *(uint32_t *)(handleIdentifier + 0x2c0) = system_integer_result_unsigned;
     *(uint32_t *)(handleIdentifier + 0x2c4) = system_integer_result_unsigned;
   }
-  system_status_code = (ulonglong)*(uint *)(handleIdentifier + 0x270);
-  if ((*resourceIdentifier & *(uint *)(handleIdentifier + 0x270)) == 0) goto HandleSystemOperation25;
+  system_status_code = (ulonglong)*(uint *)(handleIdentifier + SYSTEM_DATA_OFFSET_270);
+  if ((*resourceIdentifier & *(uint *)(handleIdentifier + SYSTEM_DATA_OFFSET_270)) == 0) goto HandleSystemOperation25;
   system_initialization_flag = *(byte *)(handleIdentifier + SYSTEM_OFFSET_Fd) & SYSTEM_NODE_HEADER_SIZE;
   system_long_value = handleIdentifier;
   if (system_initialization_flag == 0) {
@@ -49296,8 +49296,8 @@ INIT_LABEL_SYSTEM_77879:
             if ((*(uint *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE0) & SYSTEM_OFFSET_800) != 0) {
               InitializeSystemDataNode29(handleIdentifier);
             }
-            longStack_118 = systemCoreData + 0x5868;
-            system_ptr_value = (uint *)((longlong)*(int *)(systemCoreData + 0x6a78) * SYSTEM_INIT_DATA_OFFSET_908 + longStack_118);
+            longStack_118 = systemCoreData + SYSTEM_DATA_OFFSET_5868;
+            system_ptr_value = (uint *)((longlong)*(int *)(systemCoreData + SYSTEM_DATA_OFFSET_6A78) * SYSTEM_INIT_DATA_OFFSET_908 + longStack_118);
             LOCK();
             system_status_code = *system_ptr_value;
             *system_ptr_value = *system_pointer_var + 1;
@@ -49399,7 +49399,7 @@ INIT_LABEL_SYSTEM_77879:
               *(uint32_t *)(asystem_buffer_ptr_128[0] + 5) = *node_root9;
               *(uint32_t *)((longlong)asystem_buffer_ptr_128[0] + 0x2c) = system_integer_result_unsigned;
               *(uint32_t *)(asystem_buffer_ptr_128[0] + 6) = system_integer_result_unsigned;
-              *(uint32_t *)((longlong)asystem_buffer_ptr_128[0] + 0x34) = system_integer_result_unsigned;
+              *(uint32_t *)((longlong)asystem_buffer_ptr_128[0] + SYSTEM_HANDLE_OFFSET_ALLOC_SIZE) = system_integer_result_unsigned;
               system_status_code = *(uint64_t *)(node_root9 + 6);
               asystem_buffer_ptr_128[0][7] = *(uint64_t *)(node_root9 + 4);
               asystem_buffer_ptr_128[0][8] = system_integer_result_unsigned;
@@ -49408,13 +49408,13 @@ INIT_LABEL_SYSTEM_77879:
                  *(uint8_t *)(*(longlong *)(handleIdentifier + 600) + SYSTEM_NODE_OFFSET_NEXT);
             system_long_value = *(longlong *)(handleIdentifier + 600);
             if (*(char *)(system_long_result + SYSTEM_NODE_OFFSET_NEXT) != '\0') {
-              system_status_code = *(uint32_t *)(handleIdentifier + 0x2ac);
+              system_status_code = *(uint32_t *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_2Ac);
               system_status_code = *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2B0);
               system_status_code = *(uint32_t *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_2B4);
-              *(uint32_t *)(asystem_buffer_ptr_128[0] + 10) = *(uint32_t *)(handleIdentifier + 0x2a8);
-              *(uint32_t *)((longlong)asystem_buffer_ptr_128[0] + 0x54) = system_integer_result_unsigned;
+              *(uint32_t *)(asystem_buffer_ptr_128[0] + 10) = *(uint32_t *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_2A8);
+              *(uint32_t *)((longlong)asystem_buffer_ptr_128[0] + SYSTEM_HANDLE_OFFSET_COUNTER) = system_integer_result_unsigned;
               *(uint32_t *)(asystem_buffer_ptr_128[0] + SYSTEM_NODE_STRIDE_SMALL) = system_integer_result_unsigned;
-              *(uint32_t *)((longlong)asystem_buffer_ptr_128[0] + 0x5c) = system_integer_result_unsigned;
+              *(uint32_t *)((longlong)asystem_buffer_ptr_128[0] + SYSTEM_DATA_OFFSET_5C) = system_integer_result_unsigned;
               system_long_value = *(longlong *)(handleIdentifier + 600);
             }
             *(bool *)((longlong)asystem_buffer_ptr_128[0] + SYSTEM_FLAG_BIT_4c) = *(longlong *)(system_long_result + SYSTEM_DATA_COMPARE_SIZE) != 0;
@@ -49617,8 +49617,8 @@ void InitializeSystemModule88(void)
   if (!in_ZF) {
     InitializeSystemDataNode29();
   }
-  init_input_stack_50 = systemCoreData + 0x5868;
-  system_ptr_value = (uint *)((longlong)*(int *)(systemCoreData + 0x6a78) * SYSTEM_INIT_DATA_OFFSET_908 + init_input_stack_50);
+  init_input_stack_50 = systemCoreData + SYSTEM_DATA_OFFSET_5868;
+  system_ptr_value = (uint *)((longlong)*(int *)(systemCoreData + SYSTEM_DATA_OFFSET_6A78) * SYSTEM_INIT_DATA_OFFSET_908 + init_input_stack_50);
   LOCK();
   system_status_code = *system_ptr_value;
   *system_ptr_value = *system_pointer_var + system_R12D;
@@ -49719,7 +49719,7 @@ void InitializeSystemModule88(void)
     *(uint32_t *)(init_stack_ptr_param_40 + 5) = *system_ptr_value;
     *(uint32_t *)((longlong)init_stack_ptr_param_40 + 0x2c) = system_integer_result_unsigned;
     *(uint32_t *)(init_stack_ptr_param_40 + 6) = system_integer_result_unsigned;
-    *(uint32_t *)((longlong)init_stack_ptr_param_40 + 0x34) = system_integer_result_unsigned;
+    *(uint32_t *)((longlong)init_stack_ptr_param_40 + SYSTEM_HANDLE_OFFSET_ALLOC_SIZE) = system_integer_result_unsigned;
     system_status_code = *(uint64_t *)(system_pointer_var + 6);
     init_stack_ptr_param_40[7] = *(uint64_t *)(system_pointer_var + 4);
     init_stack_ptr_param_40[8] = system_integer_result_unsigned;
@@ -49728,13 +49728,13 @@ void InitializeSystemModule88(void)
        *(uint8_t *)(*(longlong *)(system_register_rbx + 600) + SYSTEM_NODE_OFFSET_NEXT);
   system_long_value = *(longlong *)(system_register_rbx + 600);
   if (*(char *)(system_long_result + SYSTEM_NODE_OFFSET_NEXT) != '\0') {
-    system_status_code = *(uint32_t *)(system_register_rbx + 0x2ac);
+    system_status_code = *(uint32_t *)(system_register_rbx + SYSTEM_DATA_BLOCK_SIZE_2Ac);
     system_status_code = *(uint32_t *)(system_register_rbx + SYSTEM_OFFSET_2B0);
     system_status_code = *(uint32_t *)(system_register_rbx + SYSTEM_OBJECT_OFFSET_2B4);
-    *(uint32_t *)(init_stack_ptr_param_40 + 10) = *(uint32_t *)(system_register_rbx + 0x2a8);
-    *(uint32_t *)((longlong)init_stack_ptr_param_40 + 0x54) = system_integer_result_unsigned;
+    *(uint32_t *)(init_stack_ptr_param_40 + 10) = *(uint32_t *)(system_register_rbx + SYSTEM_DATA_BLOCK_SIZE_2A8);
+    *(uint32_t *)((longlong)init_stack_ptr_param_40 + SYSTEM_HANDLE_OFFSET_COUNTER) = system_integer_result_unsigned;
     *(uint32_t *)(init_stack_ptr_param_40 + SYSTEM_NODE_STRIDE_SMALL) = system_integer_result_unsigned;
-    *(uint32_t *)((longlong)init_stack_ptr_param_40 + 0x5c) = system_integer_result_unsigned;
+    *(uint32_t *)((longlong)init_stack_ptr_param_40 + SYSTEM_DATA_OFFSET_5C) = system_integer_result_unsigned;
     system_long_value = *(longlong *)(system_register_rbx + 600);
   }
   *(bool *)((longlong)init_stack_ptr_param_40 + SYSTEM_FLAG_BIT_4c) = *(longlong *)(system_long_result + SYSTEM_DATA_COMPARE_SIZE) != 0;
@@ -49753,7 +49753,7 @@ void InitializeSystemModule88(void)
     system_ptr_value = &init_stack_uint_170;
     system_long_value = *(longlong *)(init_input_stack_178 + SYSTEM_OBJECT_OFFSET_28);
   }
-  InitializeSystemModule1(system_long_result + 0x3388,system_pointer_var,&init_stack_uint_40);
+  InitializeSystemModule1(system_long_result + SYSTEM_DATA_OFFSET_3388,system_pointer_var,&init_stack_uint_40);
   init_float_pointer_temp = init_input_stack_180;
   if ((*(uint *)(system_register_rbx + SYSTEM_DATA_COMPARE_SIZE0) & SYSTEM_DATA_BLOCK_SIZE00000) != 0) {
     system_float_value = *init_input_stack_180;
@@ -49979,7 +49979,7 @@ void InitializeSystemLogger(void)
     *(uint32_t *)(init_stack_ptr_param_40 + SYSTEM_OBJECT_OFFSET_28) = *system_ptr_value;
     *(uint32_t *)(init_stack_ptr_param_40 + 0x2c) = system_integer_result_unsigned;
     *(uint32_t *)(init_stack_ptr_param_40 + SYSTEM_CONFIG_OFFSET_30) = system_integer_result_unsigned;
-    *(uint32_t *)(init_stack_ptr_param_40 + 0x34) = system_integer_result_unsigned;
+    *(uint32_t *)(init_stack_ptr_param_40 + SYSTEM_HANDLE_OFFSET_ALLOC_SIZE) = system_integer_result_unsigned;
     system_status_code = *(uint64_t *)(system_pointer_var + 6);
     *(uint64_t *)(init_stack_ptr_param_40 + SYSTEM_OBJECT_OFFSET_38) = *(uint64_t *)(system_pointer_var + 4);
     *(uint64_t *)(init_stack_ptr_param_40 + SYSTEM_DATA_BLOCK_SIZE) = system_integer_result_unsigned;
@@ -49988,13 +49988,13 @@ void InitializeSystemLogger(void)
   ;
   system_long_value = *(longlong *)(system_register_rbx + 600);
   if (*(char *)(system_long_result + SYSTEM_NODE_OFFSET_NEXT) != '\0') {
-    system_status_code = *(uint32_t *)(system_register_rbx + 0x2ac);
+    system_status_code = *(uint32_t *)(system_register_rbx + SYSTEM_DATA_BLOCK_SIZE_2Ac);
     system_status_code = *(uint32_t *)(system_register_rbx + SYSTEM_OFFSET_2B0);
     system_status_code = *(uint32_t *)(system_register_rbx + SYSTEM_OBJECT_OFFSET_2B4);
-    *(uint32_t *)(init_stack_ptr_param_40 + SYSTEM_DATA_BLOCK_SIZE_50) = *(uint32_t *)(system_register_rbx + 0x2a8);
-    *(uint32_t *)(init_stack_ptr_param_40 + 0x54) = system_integer_result_unsigned;
+    *(uint32_t *)(init_stack_ptr_param_40 + SYSTEM_DATA_BLOCK_SIZE_50) = *(uint32_t *)(system_register_rbx + SYSTEM_DATA_BLOCK_SIZE_2A8);
+    *(uint32_t *)(init_stack_ptr_param_40 + SYSTEM_HANDLE_OFFSET_COUNTER) = system_integer_result_unsigned;
     *(uint32_t *)(init_stack_ptr_param_40 + SYSTEM_HANDLE_OFFSET_RESOURCE_DATA) = system_integer_result_unsigned;
-    *(uint32_t *)(init_stack_ptr_param_40 + 0x5c) = system_integer_result_unsigned;
+    *(uint32_t *)(init_stack_ptr_param_40 + SYSTEM_DATA_OFFSET_5C) = system_integer_result_unsigned;
     system_long_value = *(longlong *)(system_register_rbx + 600);
   }
   *(bool *)(init_stack_ptr_param_40 + SYSTEM_FLAG_BIT_4c) = *(longlong *)(system_long_result + SYSTEM_DATA_COMPARE_SIZE) != 0;
@@ -50013,7 +50013,7 @@ void InitializeSystemLogger(void)
     system_ptr_value = &init_stack_uint_170;
     system_long_value = *(longlong *)(init_input_stack_178 + SYSTEM_OBJECT_OFFSET_28);
   }
-  InitializeSystemModule1(system_long_result + 0x3388,system_pointer_var,&init_stack_uint_40);
+  InitializeSystemModule1(system_long_result + SYSTEM_DATA_OFFSET_3388,system_pointer_var,&init_stack_uint_40);
   init_float_pointer_temp = init_input_stack_180;
   if ((*(uint *)(system_register_rbx + SYSTEM_DATA_COMPARE_SIZE0) & SYSTEM_DATA_BLOCK_SIZE00000) != 0) {
     system_float_value = *init_input_stack_180;
@@ -50329,7 +50329,7 @@ void ProcessSystemOperation95(void)
   uint64_t init_input_stack_188;
 
   init_stack_uint_30 = SYSTEM_OFFSET_Ffffffff;
-  InitializeSystemModule1(system_R13 + 0x3388,&init_stack_uint_30);
+  InitializeSystemModule1(system_R13 + SYSTEM_DATA_OFFSET_3388,&init_stack_uint_30);
   init_float_pointer_temp = init_input_stack_180;
   if ((*(uint *)(system_register_rbx + SYSTEM_DATA_COMPARE_SIZE0) & SYSTEM_DATA_BLOCK_SIZE00000) != 0) {
     system_float_value = *init_input_stack_180;
@@ -50732,7 +50732,7 @@ void InitializeSystemModule84(void)
   init_stack_uint_40 = system_reg_rdi[2];
   init_stack_uint_50 = system_reg_rdi[4];
   init_stack_uint_60 = *(uint32_t *)(system_reg_rdi + 6);
-  init_stack_uint_64 = *(uint32_t *)((longlong)system_reg_rdi + 0x34);
+  init_stack_uint_64 = *(uint32_t *)((longlong)system_reg_rdi + SYSTEM_HANDLE_OFFSET_ALLOC_SIZE);
   init_stack_uint_68 = *(uint32_t *)(system_reg_rdi + 7);
   init_stack_uint_28 = init_input_stack_e8;
   init_stack_uint_6c = 0x3f800000;
@@ -50763,11 +50763,11 @@ void InitializeUtilEngineNode(longlong handleIdentifier)
   if ((*(longlong *)(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK8) != 0) &&
      (system_long_value = *(longlong *)(*(longlong *)(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK8) + SYSTEM_OBJECT_OFFSET_28), system_long_result != 0)) {
     system_float_value = (*(float *)(system_long_result + 0x74) * *(float *)(system_long_result + SYSTEM_INIT_DATA_OFFSET_88) -
-             *(float *)(system_long_result + SYSTEM_INIT_DATA_OFFSET_78) * *(float *)(system_long_result + 0x84)) * *(float *)(system_long_result + SYSTEM_INIT_DATA_OFFSET_90);
+             *(float *)(system_long_result + SYSTEM_INIT_DATA_OFFSET_78) * *(float *)(system_long_result + SYSTEM_DATA_OFFSET_84)) * *(float *)(system_long_result + SYSTEM_INIT_DATA_OFFSET_90);
     CalculateSystemValue(system_result_float,(*(float *)(system_long_result + SYSTEM_INIT_DATA_OFFSET_78) * *(float *)(system_long_result + SYSTEM_OFFSET_80) -
                                *(float *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_70) * *(float *)(system_long_result + SYSTEM_INIT_DATA_OFFSET_88)) *
                                *(float *)(system_long_result + 0x94) + system_result_float +
-                               (*(float *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_70) * *(float *)(system_long_result + 0x84) -
+                               (*(float *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_70) * *(float *)(system_long_result + SYSTEM_DATA_OFFSET_84) -
                                *(float *)(system_long_result + 0x74) * *(float *)(system_long_result + SYSTEM_OFFSET_80)) *
                                *(float *)(system_long_result + SYSTEM_OFFSET_98) < 0.0);
   }
@@ -50804,22 +50804,22 @@ INIT_LABEL_SYSTEM_782e0:
     system_status_code = *(uint32_t *)(system_long_result + SYSTEM_OBJECT_OFFSET_28c);
     system_status_code = *(uint32_t *)(system_long_result + 0x290);
     system_status_code = *(uint32_t *)(system_long_result + 0x294);
-    *(uint32_t *)(handleIdentifier + 0x2a8) = *(uint32_t *)(system_long_result + SYSTEM_OBJECT_OFFSET_288);
-    *(uint32_t *)(handleIdentifier + 0x2ac) = system_integer_result_unsigned;
+    *(uint32_t *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_2A8) = *(uint32_t *)(system_long_result + SYSTEM_OBJECT_OFFSET_288);
+    *(uint32_t *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_2Ac) = system_integer_result_unsigned;
     *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2B0) = system_integer_result_unsigned;
     *(uint32_t *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_2B4) = system_integer_result_unsigned;
   }
   if (((*(float *)(system_long_result + 0x298) != 0.0) || (*(float *)(system_long_result + 0x29c) != 0.0)) ||
-     ((*(float *)(system_long_result + 0x2a0) != 0.0 || (*(float *)(system_long_result + 0x2a4) != 0.0)))) {
+     ((*(float *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2A0) != 0.0 || (*(float *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2A4) != 0.0)))) {
     system_status_code = *(uint32_t *)(system_long_result + 0x29c);
-    system_status_code = *(uint32_t *)(system_long_result + 0x2a0);
-    system_status_code = *(uint32_t *)(system_long_result + 0x2a4);
+    system_status_code = *(uint32_t *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2A0);
+    system_status_code = *(uint32_t *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2A4);
     *(uint32_t *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_2B8) = *(uint32_t *)(system_long_result + 0x298);
     *(uint32_t *)(handleIdentifier + 700) = system_integer_result_unsigned;
     *(uint32_t *)(handleIdentifier + 0x2c0) = system_integer_result_unsigned;
     *(uint32_t *)(handleIdentifier + 0x2c4) = system_integer_result_unsigned;
   }
-  *(uint16_t *)(system_long_result + 0x3c0) = SYSTEM_OFFSET_Ffff;
+  *(uint16_t *)(system_long_result + SYSTEM_DATA_OFFSET_3C0) = SYSTEM_OFFSET_Ffff;
   InitializeNetworkSystem(handleIdentifier);
   if ((*(longlong *)(handleIdentifier + 600) == 0) &&
      ((*(uint *)(*(longlong *)(handleIdentifier + SYSTEM_CONFIG_SIZE_INPUT8) + SYSTEM_OBJECT_OFFSET_388) >> NODE_INITIALIZED_OFFSET & 1) != 0)) {
@@ -50828,7 +50828,7 @@ INIT_LABEL_SYSTEM_782e0:
     *(uint32_t *)(node_previous + 9) = SYSTEM_OFFSET_Ffffffff;
     *node_previous = 0;
     node_previous[2] = 0;
-    node_previous[7] = 0;
+    node_previous[NODE_INDEX_ENGINE_ID_2] = 0;
     *(uint32_t *)(node_previous + 5) = SYSTEM_OFFSET_Ffffffff;
     *(uint32_t *)(node_previous + 4) = SYSTEM_OFFSET_Ffffffff;
     node_previous[3] = 0;
@@ -50860,11 +50860,11 @@ void ProcessSystemData2(longlong handleIdentifier)
 
   if ((in_RAX != 0) && (system_long_value = *(longlong *)(in_RAX + SYSTEM_OBJECT_OFFSET_28), system_long_result != 0)) {
     system_float_value = (*(float *)(system_long_result + 0x74) * *(float *)(system_long_result + SYSTEM_INIT_DATA_OFFSET_88) -
-             *(float *)(system_long_result + SYSTEM_INIT_DATA_OFFSET_78) * *(float *)(system_long_result + 0x84)) * *(float *)(system_long_result + SYSTEM_INIT_DATA_OFFSET_90);
+             *(float *)(system_long_result + SYSTEM_INIT_DATA_OFFSET_78) * *(float *)(system_long_result + SYSTEM_DATA_OFFSET_84)) * *(float *)(system_long_result + SYSTEM_INIT_DATA_OFFSET_90);
     CalculateSystemValue(system_result_float,(*(float *)(system_long_result + SYSTEM_INIT_DATA_OFFSET_78) * *(float *)(system_long_result + SYSTEM_OFFSET_80) -
                                *(float *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_70) * *(float *)(system_long_result + SYSTEM_INIT_DATA_OFFSET_88)) *
                                *(float *)(system_long_result + 0x94) + system_result_float +
-                               (*(float *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_70) * *(float *)(system_long_result + 0x84) -
+                               (*(float *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_70) * *(float *)(system_long_result + SYSTEM_DATA_OFFSET_84) -
                                *(float *)(system_long_result + 0x74) * *(float *)(system_long_result + SYSTEM_OFFSET_80)) *
                                *(float *)(system_long_result + SYSTEM_OFFSET_98) < 0.0);
   }
@@ -50901,22 +50901,22 @@ INIT_LABEL_SYSTEM_782e0:
     system_status_code = *(uint32_t *)(system_long_result + SYSTEM_OBJECT_OFFSET_28c);
     system_status_code = *(uint32_t *)(system_long_result + 0x290);
     system_status_code = *(uint32_t *)(system_long_result + 0x294);
-    *(uint32_t *)(system_register_rbx + 0x2a8) = *(uint32_t *)(system_long_result + SYSTEM_OBJECT_OFFSET_288);
-    *(uint32_t *)(system_register_rbx + 0x2ac) = system_integer_result_unsigned;
+    *(uint32_t *)(system_register_rbx + SYSTEM_DATA_BLOCK_SIZE_2A8) = *(uint32_t *)(system_long_result + SYSTEM_OBJECT_OFFSET_288);
+    *(uint32_t *)(system_register_rbx + SYSTEM_DATA_BLOCK_SIZE_2Ac) = system_integer_result_unsigned;
     *(uint32_t *)(system_register_rbx + SYSTEM_OFFSET_2B0) = system_integer_result_unsigned;
     *(uint32_t *)(system_register_rbx + SYSTEM_OBJECT_OFFSET_2B4) = system_integer_result_unsigned;
   }
   if (((*(float *)(system_long_result + 0x298) != 0.0) || (*(float *)(system_long_result + 0x29c) != 0.0)) ||
-     ((*(float *)(system_long_result + 0x2a0) != 0.0 || (*(float *)(system_long_result + 0x2a4) != 0.0)))) {
+     ((*(float *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2A0) != 0.0 || (*(float *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2A4) != 0.0)))) {
     system_status_code = *(uint32_t *)(system_long_result + 0x29c);
-    system_status_code = *(uint32_t *)(system_long_result + 0x2a0);
-    system_status_code = *(uint32_t *)(system_long_result + 0x2a4);
+    system_status_code = *(uint32_t *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2A0);
+    system_status_code = *(uint32_t *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2A4);
     *(uint32_t *)(system_register_rbx + SYSTEM_OBJECT_OFFSET_2B8) = *(uint32_t *)(system_long_result + 0x298);
     *(uint32_t *)(system_register_rbx + 700) = system_integer_result_unsigned;
     *(uint32_t *)(system_register_rbx + 0x2c0) = system_integer_result_unsigned;
     *(uint32_t *)(system_register_rbx + 0x2c4) = system_integer_result_unsigned;
   }
-  *(uint16_t *)(system_long_result + 0x3c0) = SYSTEM_OFFSET_Ffff;
+  *(uint16_t *)(system_long_result + SYSTEM_DATA_OFFSET_3C0) = SYSTEM_OFFSET_Ffff;
   InitializeNetworkSystem();
   if ((*(longlong *)(system_register_rbx + 600) == 0) &&
      ((*(uint *)(*(longlong *)(system_register_rbx + SYSTEM_CONFIG_SIZE_INPUT8) + SYSTEM_OBJECT_OFFSET_388) >> NODE_INITIALIZED_OFFSET & 1) != 0)) {
@@ -50925,7 +50925,7 @@ INIT_LABEL_SYSTEM_782e0:
     *(uint32_t *)(node_previous + 9) = SYSTEM_OFFSET_Ffffffff;
     *node_previous = 0;
     node_previous[2] = 0;
-    node_previous[7] = 0;
+    node_previous[NODE_INDEX_ENGINE_ID_2] = 0;
     *(uint32_t *)(node_previous + 5) = SYSTEM_OFFSET_Ffffffff;
     *(uint32_t *)(node_previous + 4) = SYSTEM_OFFSET_Ffffffff;
     node_previous[3] = 0;
@@ -50998,23 +50998,23 @@ INIT_LABEL_SYSTEM_782e0:
     system_status_code = *(uint32_t *)(system_long_result + SYSTEM_OBJECT_OFFSET_28c);
     system_status_code = *(uint32_t *)(system_long_result + 0x290);
     system_status_code = *(uint32_t *)(system_long_result + 0x294);
-    *(uint32_t *)(system_register_rbx + 0x2a8) = *(uint32_t *)(system_long_result + SYSTEM_OBJECT_OFFSET_288);
-    *(uint32_t *)(system_register_rbx + 0x2ac) = system_integer_result_unsigned;
+    *(uint32_t *)(system_register_rbx + SYSTEM_DATA_BLOCK_SIZE_2A8) = *(uint32_t *)(system_long_result + SYSTEM_OBJECT_OFFSET_288);
+    *(uint32_t *)(system_register_rbx + SYSTEM_DATA_BLOCK_SIZE_2Ac) = system_integer_result_unsigned;
     *(uint32_t *)(system_register_rbx + SYSTEM_OFFSET_2B0) = system_integer_result_unsigned;
     *(uint32_t *)(system_register_rbx + SYSTEM_OBJECT_OFFSET_2B4) = system_integer_result_unsigned;
   }
   if (((system_XMM8_Da != *(float *)(system_long_result + 0x298)) || (system_XMM8_Da != *(float *)(system_long_result + 0x29c)))
-     || ((system_XMM8_Da != *(float *)(system_long_result + 0x2a0) || (system_XMM8_Da != *(float *)(system_long_result + 0x2a4))
+     || ((system_XMM8_Da != *(float *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2A0) || (system_XMM8_Da != *(float *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2A4))
          ))) {
     system_status_code = *(uint32_t *)(system_long_result + 0x29c);
-    system_status_code = *(uint32_t *)(system_long_result + 0x2a0);
-    system_status_code = *(uint32_t *)(system_long_result + 0x2a4);
+    system_status_code = *(uint32_t *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2A0);
+    system_status_code = *(uint32_t *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2A4);
     *(uint32_t *)(system_register_rbx + SYSTEM_OBJECT_OFFSET_2B8) = *(uint32_t *)(system_long_result + 0x298);
     *(uint32_t *)(system_register_rbx + 700) = system_integer_result_unsigned;
     *(uint32_t *)(system_register_rbx + 0x2c0) = system_integer_result_unsigned;
     *(uint32_t *)(system_register_rbx + 0x2c4) = system_integer_result_unsigned;
   }
-  *(uint16_t *)(system_long_result + 0x3c0) = SYSTEM_OFFSET_Ffff;
+  *(uint16_t *)(system_long_result + SYSTEM_DATA_OFFSET_3C0) = SYSTEM_OFFSET_Ffff;
   InitializeNetworkSystem();
   if ((*(longlong *)(system_register_rbx + 600) == 0) &&
      ((*(uint *)(*(longlong *)(system_register_rbx + SYSTEM_CONFIG_SIZE_INPUT8) + SYSTEM_OBJECT_OFFSET_388) >> NODE_INITIALIZED_OFFSET & 1) != 0)) {
@@ -51023,7 +51023,7 @@ INIT_LABEL_SYSTEM_782e0:
     *(uint32_t *)(node_previous + 9) = SYSTEM_OFFSET_Ffffffff;
     *node_previous = 0;
     node_previous[2] = 0;
-    node_previous[7] = 0;
+    node_previous[NODE_INDEX_ENGINE_ID_2] = 0;
     *(uint32_t *)(node_previous + 5) = SYSTEM_OFFSET_Ffffffff;
     *(uint32_t *)(node_previous + 4) = SYSTEM_OFFSET_Ffffffff;
     node_previous[3] = 0;
@@ -51086,23 +51086,23 @@ INIT_LABEL_SYSTEM_782e0:
     system_status_code = *(uint32_t *)(system_long_result + SYSTEM_OBJECT_OFFSET_28c);
     system_status_code = *(uint32_t *)(system_long_result + 0x290);
     system_status_code = *(uint32_t *)(system_long_result + 0x294);
-    *(uint32_t *)(system_register_rbx + 0x2a8) = *(uint32_t *)(system_long_result + SYSTEM_OBJECT_OFFSET_288);
-    *(uint32_t *)(system_register_rbx + 0x2ac) = system_integer_result_unsigned;
+    *(uint32_t *)(system_register_rbx + SYSTEM_DATA_BLOCK_SIZE_2A8) = *(uint32_t *)(system_long_result + SYSTEM_OBJECT_OFFSET_288);
+    *(uint32_t *)(system_register_rbx + SYSTEM_DATA_BLOCK_SIZE_2Ac) = system_integer_result_unsigned;
     *(uint32_t *)(system_register_rbx + SYSTEM_OFFSET_2B0) = system_integer_result_unsigned;
     *(uint32_t *)(system_register_rbx + SYSTEM_OBJECT_OFFSET_2B4) = system_integer_result_unsigned;
   }
   if (((system_XMM8_Da != *(float *)(system_long_result + 0x298)) || (system_XMM8_Da != *(float *)(system_long_result + 0x29c)))
-     || ((system_XMM8_Da != *(float *)(system_long_result + 0x2a0) || (system_XMM8_Da != *(float *)(system_long_result + 0x2a4))
+     || ((system_XMM8_Da != *(float *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2A0) || (system_XMM8_Da != *(float *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2A4))
          ))) {
     system_status_code = *(uint32_t *)(system_long_result + 0x29c);
-    system_status_code = *(uint32_t *)(system_long_result + 0x2a0);
-    system_status_code = *(uint32_t *)(system_long_result + 0x2a4);
+    system_status_code = *(uint32_t *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2A0);
+    system_status_code = *(uint32_t *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2A4);
     *(uint32_t *)(system_register_rbx + SYSTEM_OBJECT_OFFSET_2B8) = *(uint32_t *)(system_long_result + 0x298);
     *(uint32_t *)(system_register_rbx + 700) = system_integer_result_unsigned;
     *(uint32_t *)(system_register_rbx + 0x2c0) = system_integer_result_unsigned;
     *(uint32_t *)(system_register_rbx + 0x2c4) = system_integer_result_unsigned;
   }
-  *(uint16_t *)(system_long_result + 0x3c0) = SYSTEM_OFFSET_Ffff;
+  *(uint16_t *)(system_long_result + SYSTEM_DATA_OFFSET_3C0) = SYSTEM_OFFSET_Ffff;
   InitializeNetworkSystem();
   if ((*(longlong *)(system_register_rbx + 600) == 0) &&
      ((*(uint *)(*(longlong *)(system_register_rbx + SYSTEM_CONFIG_SIZE_INPUT8) + SYSTEM_OBJECT_OFFSET_388) >> NODE_INITIALIZED_OFFSET & 1) != 0)) {
@@ -51111,7 +51111,7 @@ INIT_LABEL_SYSTEM_782e0:
     *(uint32_t *)(node_previous + 9) = SYSTEM_OFFSET_Ffffffff;
     *node_previous = 0;
     node_previous[2] = 0;
-    node_previous[7] = 0;
+    node_previous[NODE_INDEX_ENGINE_ID_2] = 0;
     *(uint32_t *)(node_previous + 5) = SYSTEM_OFFSET_Ffffffff;
     *(uint32_t *)(node_previous + 4) = SYSTEM_OFFSET_Ffffffff;
     node_previous[3] = 0;
@@ -51178,7 +51178,7 @@ void ProcessSystemData88(uint64_t *handleIdentifier,uint64_t resourceIdentifier,
 
   system_status_code = INVALID_HANDLE_VALUE;
   if (0 < *(int *)(systemCoreData + SYSTEM_DATA_BLOCK_SIZE)) {
-    handleIdentifier[0x26] = *(uint64_t *)(systemCoreData + SYSTEM_OBJECT_OFFSET_38);
+    handleIdentifier[SYSTEM_DATA_OFFSET_26] = *(uint64_t *)(systemCoreData + SYSTEM_OBJECT_OFFSET_38);
   }
   system_memory_pointer = handleIdentifier + 1;
   system_long_value = 7;
@@ -51192,19 +51192,19 @@ void ProcessSystemData88(uint64_t *handleIdentifier,uint64_t resourceIdentifier,
     system_long_value = system_long_result + -1;
   } while (system_long_result != 0);
   handleIdentifier[SYSTEM_NODE_HEADER_SIZE] = SYSTEM_FLOAT_CONSTANT_1;
-  handleIdentifier[0x21] = SYSTEM_FLOAT_CONSTANT_1;
-  handleIdentifier[0x22] = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_21] = SYSTEM_FLOAT_CONSTANT_1;
+  handleIdentifier[SYSTEM_DATA_OFFSET_22] = 0;
   *(uint32_t *)(handleIdentifier + 0x23) = 0;
   *(uint32_t *)((longlong)handleIdentifier + SYSTEM_CONFIG_SIZE_FINALc) = 0x3f800000;
-  handleIdentifier[0x24] = 0x3f800000;
-  *(uint32_t *)(handleIdentifier + 0x25) = 0;
+  handleIdentifier[SYSTEM_DATA_OFFSET_24] = 0x3f800000;
+  *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_25) = 0;
   *(uint64_t *)((longlong)handleIdentifier + SYSTEM_CONFIG_SIZE_PHYSICSc) = 0;
   *(uint32_t *)((longlong)handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER4) = 0;
   *(uint32_t *)(handleIdentifier + 0x29) = 0x3f800000;
   *(uint32_t *)((longlong)handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFERc) = 0x3f800000;
-  *(uint16_t *)(handleIdentifier + 0x2a) = 0;
+  *(uint16_t *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_2A) = 0;
   *(uint8_t *)((longlong)handleIdentifier + SYSTEM_CONFIG_SIZE_AUTH2) = 1;
-  *(uint32_t *)(handleIdentifier + 0x27) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_27) = 0;
   handleIdentifier[8] = 0x3f800000;
   handleIdentifier[9] = 0;
   handleIdentifier[10] = 0x3f80000000000000;
@@ -51216,7 +51216,7 @@ void ProcessSystemData88(uint64_t *handleIdentifier,uint64_t resourceIdentifier,
   *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_EVENT) = 0;
   *(uint32_t *)((longlong)handleIdentifier + 0x74) = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_F) = 0;
-  *(uint32_t *)((longlong)handleIdentifier + 0x7c) = 0x3f800000;
+  *(uint32_t *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_7C) = 0x3f800000;
   if ((void *)*handleIdentifier == &g_system_global_config) {
     handleIdentifier[SYSTEM_DATA_COMPARE_SIZE] = handleIdentifier[8];
     handleIdentifier[SYSTEM_CONFIG_SIZE_FINAL] = handleIdentifier[9];
@@ -51229,9 +51229,9 @@ void ProcessSystemData88(uint64_t *handleIdentifier,uint64_t resourceIdentifier,
     *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_FONT) = *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_EVENT);
     *(uint32_t *)((longlong)handleIdentifier + SYSTEM_INIT_DATA_OFFSET_B4) = *(uint32_t *)((longlong)handleIdentifier + 0x74);
     *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_UTILITY_2) = *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_F);
-    *(uint32_t *)((longlong)handleIdentifier + 0xbc) = *(uint32_t *)((longlong)handleIdentifier + 0x7c);
+    *(uint32_t *)((longlong)handleIdentifier + 0xbc) = *(uint32_t *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_7C);
     system_status_code = InitializeSystemProfiler();
-    *(uint32_t *)((longlong)handleIdentifier + 0x8c) = 0;
+    *(uint32_t *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_8C) = 0;
     *(uint32_t *)((longlong)handleIdentifier + SYSTEM_INIT_DATA_OFFSET_9C) = 0;
     *(uint32_t *)((longlong)handleIdentifier + SYSTEM_OBJECT_OFFSET_AC) = 0;
     *(uint32_t *)((longlong)handleIdentifier + 0xbc) = 0x3f800000;
@@ -51299,7 +51299,7 @@ void InitializeSystemModule41(uint64_t *handleIdentifier,longlong resourceIdenti
       (**(code **)(*stack_system_memory_pointer + SYSTEM_OBJECT_OFFSET_38))();
     }
     if ((((*(char *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_380) != '\0') && (*(char *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_381) == '\0')) &&
-        (system_long_value = *system_memory_pointer, system_long_result != 0)) && ((*(uint *)(system_long_result + 0x328) & SYSTEM_NODE_HEADER_SIZE0000) == 0)) {
+        (system_long_value = *system_memory_pointer, system_long_result != 0)) && ((*(uint *)(system_long_result + SYSTEM_DATA_OFFSET_328) & SYSTEM_NODE_HEADER_SIZE0000) == 0)) {
       node_current = &g_system_data_variable3;
       if (*(void **)(system_long_result + SYSTEM_OFFSET_18) != (void *)SYSTEM_NULL_POINTER) {
         node_current = *(void **)(system_long_result + SYSTEM_OFFSET_18);
@@ -51326,23 +51326,23 @@ void InitializeSystemModule41(uint64_t *handleIdentifier,longlong resourceIdenti
   if (system_long_result == 0) {
     system_long_value = *(longlong *)(systemCoreData + SYSTEM_OBJECT_OFFSET_38);
   }
-  handleIdentifier[0x26] = system_long_value;
-  if ((*(char *)(resourceIdentifier + 0x248) == '\0') && (*(longlong *)(resourceIdentifier + 0x3c8) != 0)) {
+  handleIdentifier[SYSTEM_DATA_OFFSET_26] = system_long_value;
+  if ((*(char *)(resourceIdentifier + SYSTEM_DATA_OFFSET_248) == '\0') && (*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8) != 0)) {
     system_status_code = InitializeModule1();
   }
   else {
-    system_status_code = *(uint32_t *)(resourceIdentifier + 0x240);
+    system_status_code = *(uint32_t *)(resourceIdentifier + SYSTEM_DATA_OFFSET_240);
   }
   *(uint32_t *)((longlong)handleIdentifier + SYSTEM_CONFIG_SIZE_FINAL4) = system_integer_result_unsigned;
-  if ((*(char *)(resourceIdentifier + 0x254) == '\0') && (*(longlong *)(resourceIdentifier + 0x3c8) != 0)) {
+  if ((*(char *)(resourceIdentifier + SYSTEM_HANDLE_OFFSET_EXT_DATA_1) == '\0') && (*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8) != 0)) {
     system_status_code = InitializeModule2();
   }
   else {
-    system_status_code = *(uint32_t *)(resourceIdentifier + 0x24c);
+    system_status_code = *(uint32_t *)(resourceIdentifier + SYSTEM_DATA_OFFSET_24c);
   }
   *(uint32_t *)(handleIdentifier + 0x23) = system_integer_result_unsigned;
-  if ((*(char *)(resourceIdentifier + 0x2f0) == '\0') && (*(longlong *)(resourceIdentifier + 0x3c8) != 0)) {
-    EngineFunctionfca40(*(longlong *)(resourceIdentifier + 0x3c8),&init_stack_param_58);
+  if ((*(char *)(resourceIdentifier + 0x2f0) == '\0') && (*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8) != 0)) {
+    EngineFunctionfca40(*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8),&init_stack_param_58);
     system_status_code = (uint32_t)init_stack_param_58;
     system_status_code = init_stack_param_58._4_4_;
     system_status_code = (uint32_t)init_stack_ulong_param_50;
@@ -51356,86 +51356,86 @@ void InitializeSystemModule41(uint64_t *handleIdentifier,longlong resourceIdenti
   }
   *(uint32_t *)(handleIdentifier + SYSTEM_NODE_HEADER_SIZE) = system_integer_result_unsigned;
   *(uint32_t *)((longlong)handleIdentifier + SYSTEM_DATA_COMPARE_SIZE4) = system_integer_result_unsigned;
-  *(uint32_t *)(handleIdentifier + 0x21) = system_integer_result_unsigned;
+  *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_21) = system_integer_result_unsigned;
   *(uint32_t *)((longlong)handleIdentifier + SYSTEM_DATA_COMPARE_SIZEc) = system_integer_result_unsigned;
-  if ((*(char *)(resourceIdentifier + 0x2fc) == '\0') && (*(longlong *)(resourceIdentifier + 0x3c8) != 0)) {
+  if ((*(char *)(resourceIdentifier + 0x2fc) == '\0') && (*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8) != 0)) {
     system_status_code = InitializeModule3();
   }
   else {
     system_status_code = *(uint32_t *)(resourceIdentifier + 0x2f4);
   }
   *(uint32_t *)(handleIdentifier + SYSTEM_CORE_OFFSET_CONFIG) = system_integer_result_unsigned;
-  if ((*(char *)(resourceIdentifier + 0x260) == '\0') && (*(longlong *)(resourceIdentifier + 0x3c8) != 0)) {
+  if ((*(char *)(resourceIdentifier + SYSTEM_DATA_OFFSET_260) == '\0') && (*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8) != 0)) {
     system_status_code = InitializeModule4();
   }
   else {
     system_status_code = *(uint32_t *)(resourceIdentifier + 600);
   }
   *(uint32_t *)((longlong)handleIdentifier + SYSTEM_CONFIG_SIZE_FINALc) = system_integer_result_unsigned;
-  if ((*(char *)(resourceIdentifier + 0x26c) == '\0') && (*(longlong *)(resourceIdentifier + 0x3c8) != 0)) {
+  if ((*(char *)(resourceIdentifier + SYSTEM_DATA_OFFSET_26c) == '\0') && (*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8) != 0)) {
     system_status_code = InitializeModule5();
   }
   else {
-    system_status_code = *(uint32_t *)(resourceIdentifier + 0x264);
+    system_status_code = *(uint32_t *)(resourceIdentifier + SYSTEM_DATA_OFFSET_264);
   }
   *(uint32_t *)(handleIdentifier + SYSTEM_NODE_OFFSET_NEXT) = system_integer_result_unsigned;
-  if ((*(char *)(resourceIdentifier + 0x278) == '\0') && (*(longlong *)(resourceIdentifier + 0x3c8) != 0)) {
+  if ((*(char *)(resourceIdentifier + SYSTEM_DATA_OFFSET_278) == '\0') && (*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8) != 0)) {
     system_status_code = InitializeModule6();
   }
   else {
-    system_status_code = *(uint32_t *)(resourceIdentifier + 0x270);
+    system_status_code = *(uint32_t *)(resourceIdentifier + SYSTEM_DATA_OFFSET_270);
   }
   *(uint32_t *)((longlong)handleIdentifier + SYSTEM_CONFIG_SIZE_RENDER4) = system_integer_result_unsigned;
-  if ((*(char *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_284) == '\0') && (*(longlong *)(resourceIdentifier + 0x3c8) != 0)) {
+  if ((*(char *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_284) == '\0') && (*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8) != 0)) {
     system_status_code = InitializeModule7();
   }
   else {
-    system_status_code = *(uint32_t *)(resourceIdentifier + 0x27c);
+    system_status_code = *(uint32_t *)(resourceIdentifier + SYSTEM_DATA_OFFSET_27c);
   }
-  *(uint32_t *)(handleIdentifier + 0x25) = system_integer_result_unsigned;
-  if ((*(char *)(resourceIdentifier + 0x290) == '\0') && (*(longlong *)(resourceIdentifier + 0x3c8) != 0)) {
+  *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_25) = system_integer_result_unsigned;
+  if ((*(char *)(resourceIdentifier + 0x290) == '\0') && (*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8) != 0)) {
     system_status_code = InitializeModule8();
   }
   else {
     system_status_code = *(uint32_t *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_288);
   }
-  *(uint32_t *)(handleIdentifier + 0x27) = system_integer_result_unsigned;
-  if ((*(char *)(resourceIdentifier + 0x29c) == '\0') && (*(longlong *)(resourceIdentifier + 0x3c8) != 0)) {
+  *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_27) = system_integer_result_unsigned;
+  if ((*(char *)(resourceIdentifier + 0x29c) == '\0') && (*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8) != 0)) {
     system_status_code = InitializeModule9();
   }
   else {
     system_status_code = *(uint32_t *)(resourceIdentifier + 0x294);
   }
   *(uint32_t *)((longlong)handleIdentifier + SYSTEM_CONFIG_SIZE_PHYSICSc) = system_integer_result_unsigned;
-  if ((*(char *)(resourceIdentifier + 0x2a8) == '\0') && (*(longlong *)(resourceIdentifier + 0x3c8) != 0)) {
+  if ((*(char *)(resourceIdentifier + SYSTEM_DATA_BLOCK_SIZE_2A8) == '\0') && (*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8) != 0)) {
     system_status_code = InitializeModule10();
   }
   else {
-    system_status_code = *(uint32_t *)(resourceIdentifier + 0x2a0);
+    system_status_code = *(uint32_t *)(resourceIdentifier + SYSTEM_DATA_BLOCK_SIZE_2A0);
   }
   *(uint32_t *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_28) = system_integer_result_unsigned;
-  if ((*(char *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_2B4) == '\0') && (*(longlong *)(resourceIdentifier + 0x3c8) != 0)) {
+  if ((*(char *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_2B4) == '\0') && (*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8) != 0)) {
     system_status_code = InitializeModule11();
   }
   else {
-    system_status_code = *(uint32_t *)(resourceIdentifier + 0x2ac);
+    system_status_code = *(uint32_t *)(resourceIdentifier + SYSTEM_DATA_BLOCK_SIZE_2Ac);
   }
   *(uint32_t *)((longlong)handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER4) = system_integer_result_unsigned;
-  if ((*(char *)(resourceIdentifier + 0x2c0) == '\0') && (*(longlong *)(resourceIdentifier + 0x3c8) != 0)) {
+  if ((*(char *)(resourceIdentifier + 0x2c0) == '\0') && (*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8) != 0)) {
     system_status_code = InitializeModule12();
   }
   else {
     system_status_code = *(uint32_t *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_2B8);
   }
   *(uint32_t *)(handleIdentifier + 0x29) = system_integer_result_unsigned;
-  if ((*(char *)(resourceIdentifier + 0x2cc) == '\0') && (*(longlong *)(resourceIdentifier + 0x3c8) != 0)) {
+  if ((*(char *)(resourceIdentifier + 0x2cc) == '\0') && (*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8) != 0)) {
     system_status_code = InitializeModule13();
   }
   else {
     system_status_code = *(uint32_t *)(resourceIdentifier + 0x2c4);
   }
   *(uint32_t *)((longlong)handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFERc) = system_integer_result_unsigned;
-  if ((*(char *)(resourceIdentifier + 0x29c) == '\0') && (*(longlong *)(resourceIdentifier + 0x3c8) != 0)) {
+  if ((*(char *)(resourceIdentifier + 0x29c) == '\0') && (*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8) != 0)) {
     system_status_code = InitializeModule9();
   }
   else {
@@ -51443,27 +51443,27 @@ void InitializeSystemModule41(uint64_t *handleIdentifier,longlong resourceIdenti
   }
   *(uint32_t *)((longlong)handleIdentifier + SYSTEM_CONFIG_SIZE_PHYSICSc) = system_integer_result_unsigned;
   *(uint8_t *)((longlong)handleIdentifier + SYSTEM_CONFIG_SIZE_AUTH2) = *(uint8_t *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_380);
-  *(uint8_t *)(handleIdentifier + 0x2a) = *(uint8_t *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_381);
-  if ((*(char *)(resourceIdentifier + 0x35c) == '\0') && (*(longlong *)(resourceIdentifier + 0x3c8) != 0)) {
-    EngineFunctionfc9f0(*(longlong *)(resourceIdentifier + 0x3c8),&system_stack_memory_pointer);
+  *(uint8_t *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_2A) = *(uint8_t *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_381);
+  if ((*(char *)(resourceIdentifier + SYSTEM_DATA_OFFSET_35c) == '\0') && (*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8) != 0)) {
+    EngineFunctionfc9f0(*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8),&system_stack_memory_pointer);
   }
   else {
-    stack_system_memory_pointer = *(longlong **)(resourceIdentifier + 0x34c);
+    stack_system_memory_pointer = *(longlong **)(resourceIdentifier + SYSTEM_DATA_OFFSET_34c);
   }
-  if ((*(char *)(resourceIdentifier + 0x348) == '\0') && (*(longlong *)(resourceIdentifier + 0x3c8) != 0)) {
-    EngineFunctionfc9a0(*(longlong *)(resourceIdentifier + 0x3c8),system_local_buffer_X10);
-  }
-  else {
-    system_local_buffer_X10[0] = *(uint64_t *)(resourceIdentifier + 0x338);
-  }
-  if ((*(char *)(resourceIdentifier + 0x334) == '\0') && (*(longlong *)(resourceIdentifier + 0x3c8) != 0)) {
-    EngineFunctionfc950(*(longlong *)(resourceIdentifier + 0x3c8),&init_stack_data_var);
+  if ((*(char *)(resourceIdentifier + SYSTEM_DATA_OFFSET_348) == '\0') && (*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8) != 0)) {
+    EngineFunctionfc9a0(*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8),system_local_buffer_X10);
   }
   else {
-    init_stack_data_var = *(uint64_t *)(resourceIdentifier + 0x324);
+    system_local_buffer_X10[0] = *(uint64_t *)(resourceIdentifier + SYSTEM_DATA_OFFSET_338);
   }
-  if ((*(char *)(resourceIdentifier + 800) == '\0') && (*(longlong *)(resourceIdentifier + 0x3c8) != 0)) {
-    EngineFunctionfc900(*(longlong *)(resourceIdentifier + 0x3c8),&init_stack_param_58);
+  if ((*(char *)(resourceIdentifier + SYSTEM_DATA_OFFSET_334) == '\0') && (*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8) != 0)) {
+    EngineFunctionfc950(*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8),&init_stack_data_var);
+  }
+  else {
+    init_stack_data_var = *(uint64_t *)(resourceIdentifier + SYSTEM_DATA_OFFSET_324);
+  }
+  if ((*(char *)(resourceIdentifier + 800) == '\0') && (*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8) != 0)) {
+    EngineFunctionfc900(*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8),&init_stack_param_58);
   }
   else {
     init_stack_param_58 = *(void **)(resourceIdentifier + SYSTEM_CONFIG_OFFSET_300);
@@ -51483,9 +51483,9 @@ void InitializeSystemModule41(uint64_t *handleIdentifier,longlong resourceIdenti
     *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_FONT) = *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_EVENT);
     *(uint32_t *)((longlong)handleIdentifier + SYSTEM_INIT_DATA_OFFSET_B4) = *(uint32_t *)((longlong)handleIdentifier + 0x74);
     *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_UTILITY_2) = *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_F);
-    *(uint32_t *)((longlong)handleIdentifier + 0xbc) = *(uint32_t *)((longlong)handleIdentifier + 0x7c);
+    *(uint32_t *)((longlong)handleIdentifier + 0xbc) = *(uint32_t *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_7C);
     InitializeSystemProfiler();
-    *(uint32_t *)((longlong)handleIdentifier + 0x8c) = 0;
+    *(uint32_t *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_8C) = 0;
     *(uint32_t *)((longlong)handleIdentifier + SYSTEM_INIT_DATA_OFFSET_9C) = 0;
     *(uint32_t *)((longlong)handleIdentifier + SYSTEM_OBJECT_OFFSET_AC) = 0;
     *(uint32_t *)((longlong)handleIdentifier + 0xbc) = 0x3f800000;
@@ -51505,7 +51505,7 @@ void InitializeSystemModule41(uint64_t *handleIdentifier,longlong resourceIdenti
     *(float *)(handleIdentifier + SYSTEM_OFFSET_18) = system_float_value;
     system_float_value = system_result_float * system_result_float - system_result_float * system_float_value;
     system_float_value = system_result_float * init_float_pointer_temp[9] - system_result_float * init_float_pointer_temp[1];
-    *(float *)((longlong)handleIdentifier + 0xc4) = system_float_value;
+    *(float *)((longlong)handleIdentifier + SYSTEM_HANDLE_OFFSET_FLAGS) = system_float_value;
     system_float_value = init_float_pointer_temp[5];
     system_float_value = init_float_pointer_temp[1];
     *(uint32_t *)((longlong)handleIdentifier + SYSTEM_HANDLE_OFFSET_HEADER_3) = 0;
@@ -51543,7 +51543,7 @@ void InitializeSystemModule41(uint64_t *handleIdentifier,longlong resourceIdenti
       *(float *)(handleIdentifier + SYSTEM_CONFIG_SIZE_AUDIO) = system_result_float * system_float_value;
       *(float *)(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK) = system_result_float * system_float_value;
       *(float *)(handleIdentifier + SYSTEM_OFFSET_18) = system_result_float * system_float_value;
-      *(float *)((longlong)handleIdentifier + 0xc4) = system_result_float * system_float_value;
+      *(float *)((longlong)handleIdentifier + SYSTEM_HANDLE_OFFSET_FLAGS) = system_result_float * system_float_value;
       *(float *)(handleIdentifier + NODE_INITIALIZED_OFFSET) = system_result_float * system_float_value;
       *(float *)((longlong)handleIdentifier + SYSTEM_CONFIG_SIZE_STATUS4) = system_result_float * system_float_value;
       *(float *)(handleIdentifier + SYSTEM_CONFIG_SIZE_INPUT) = system_result_float * system_float_value;
@@ -51597,10 +51597,10 @@ void InitializeFilesystemSystem(longlong handleIdentifier)
   *(uint32_t *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_B0) = *(uint32_t *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_70);
   *(uint32_t *)(handleIdentifier + SYSTEM_INIT_DATA_OFFSET_B4) = *(uint32_t *)(handleIdentifier + 0x74);
   *(uint32_t *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_B8) = *(uint32_t *)(handleIdentifier + SYSTEM_INIT_DATA_OFFSET_78);
-  *(uint32_t *)(handleIdentifier + 0xbc) = *(uint32_t *)(handleIdentifier + 0x7c);
+  *(uint32_t *)(handleIdentifier + 0xbc) = *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_7C);
   InitializeSystemProfiler();
   *(uint32_t *)(handleIdentifier + 0xbc) = 0x3f800000;
-  *(uint32_t *)(handleIdentifier + 0x8c) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_8C) = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_INIT_DATA_OFFSET_9C) = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_AC) = 0;
   system_float_value = init_float_pointer_temp[6];
@@ -51619,7 +51619,7 @@ void InitializeFilesystemSystem(longlong handleIdentifier)
   *(float *)(handleIdentifier + SYSTEM_MEMORY_POOL_SIZE_LARGE) = system_float_value;
   system_float_value = system_result_float * system_result_float - system_result_float * system_float_value;
   system_float_value = system_result_float * init_float_pointer_temp[9] - system_result_float * init_float_pointer_temp[1];
-  *(float *)(handleIdentifier + 0xc4) = system_float_value;
+  *(float *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_FLAGS) = system_float_value;
   system_float_value = init_float_pointer_temp[5];
   system_float_value = init_float_pointer_temp[1];
   *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_HEADER_3) = 0;
@@ -51657,7 +51657,7 @@ void InitializeFilesystemSystem(longlong handleIdentifier)
     *(float *)(handleIdentifier + SYSTEM_CONFIG_SIZE_STATUS0) = system_result_float * system_float_value;
     *(float *)(handleIdentifier + SYSTEM_CONFIG_SIZE_EVENT0) = system_result_float * system_float_value;
     *(float *)(handleIdentifier + SYSTEM_MEMORY_POOL_SIZE_LARGE) = system_result_float * system_float_value;
-    *(float *)(handleIdentifier + 0xc4) = system_result_float * system_float_value;
+    *(float *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_FLAGS) = system_result_float * system_float_value;
     *(float *)(handleIdentifier + 200) = system_result_float * system_float_value;
     *(float *)(handleIdentifier + SYSTEM_CONFIG_SIZE_STATUS4) = system_result_float * system_float_value;
     *(float *)(handleIdentifier + SYSTEM_CONFIG_SIZE_STATUS8) = system_result_float * system_float_value;
@@ -51871,7 +51871,7 @@ void InitializeAuthenticationSystem(longlong handleIdentifier)
   longlong system_long_value;
   byte system_boolean_flag;
 
-  system_long_value = *(longlong *)(handleIdentifier + 0x210);
+  system_long_value = *(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_210);
   *(uint32_t *)(handleIdentifier + 0x1f8) = *(uint32_t *)(system_long_result + SYSTEM_DATA_COMPARE_SIZE);
   *(uint32_t *)(handleIdentifier + 0x1fc) = *(uint32_t *)(system_long_result + SYSTEM_INIT_DATA_OFFSET_88);
   *(uint32_t *)(handleIdentifier + SYSTEM_NODE_HEADER_SIZE0) = *(uint32_t *)(system_long_result + SYSTEM_OBJECT_OFFSET_60);
@@ -52846,7 +52846,7 @@ void HandleSystemData39(longlong handleIdentifier,uint resourceIdentifier,uint64
   uint64_t init_stack_uint_50;
   uint64_t init_input_stack_58;
 
-  handleIdentifier = (longlong)*(int *)(handleIdentifier + 0x250) * SYSTEM_CONFIG_SIZE_RENDER8 + handleIdentifier;
+  handleIdentifier = (longlong)*(int *)(handleIdentifier + SYSTEM_DATA_OFFSET_250) * SYSTEM_CONFIG_SIZE_RENDER8 + handleIdentifier;
   system_long_value = *(longlong *)(handleIdentifier + 8 + (ulonglong)(resourceIdentifier >> SYSTEM_CONFIG_SIZE_STATUS) * 8);
   system_long_value = (ulonglong)(resourceIdentifier + (resourceIdentifier >> SYSTEM_CONFIG_SIZE_STATUS) * -SYSTEM_NODE_HEADER_SIZE00) * SYSTEM_DATA_BLOCK_SIZE;
   system_status_code = ((uint64_t *)(system_long_result + system_long_result))[1];
@@ -53440,13 +53440,13 @@ float * InitializeResourceSystem(float *handleIdentifier)
     init_stack_uint_param_80 = SYSTEM_OFFSET_180079605;
     system_float_value = (float)GetSystemTime(0);
     if ((10 < (int)system_result_float) ||
-       ((int)(*(int *)(*(longlong *)(handleIdentifier + 0x84) + SYSTEM_INIT_DATA_OFFSET_88) +
-             (*(int *)(*(longlong *)(handleIdentifier + 0x84) + SYSTEM_INIT_DATA_OFFSET_88) >> 0x1f & 3U)) >> 2 < (int)system_result_float)) {
+       ((int)(*(int *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_84) + SYSTEM_INIT_DATA_OFFSET_88) +
+             (*(int *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_84) + SYSTEM_INIT_DATA_OFFSET_88) >> 0x1f & 3U)) >> 2 < (int)system_result_float)) {
       system_buffer_ptr_48 = &g_system_data_variable3;
       if (*(void **)(handleIdentifier + 6) != (void *)SYSTEM_NULL_POINTER) {
         system_buffer_ptr_48 = *(void **)(handleIdentifier + 6);
       }
-      init_stack_uint_param_40 = CONCAT44(init_stack_uint_param_40._4_4_,*(uint32_t *)(*(longlong *)(handleIdentifier + 0x84) + SYSTEM_OBJECT_OFFSET_60));
+      init_stack_uint_param_40 = CONCAT44(init_stack_uint_param_40._4_4_,*(uint32_t *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_84) + SYSTEM_OBJECT_OFFSET_60));
       system_buffer_ptr_58 = &g_global_system_config;
       init_stack_uint_param_80 = SYSTEM_OFFSET_18007967a;
       init_float_stack_50 = system_float_value;
@@ -53461,7 +53461,7 @@ float * InitializeResourceSystem(float *handleIdentifier)
   if ((*(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fd) & SYSTEM_NODE_HEADER_SIZE) == 0) {
     init_float_pointer_temp = (float *)GetSystemDataPointer(*(uint64_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_STATUS_CODE));
   }
-  if ((*(longlong *)(init_float_pointer_temp + 0x84) != 0) && (((uint)handleIdentifier[SYSTEM_DATA_BLOCK_SIZE] & SYSTEM_OFFSET_80) == 0)) {
+  if ((*(longlong *)(init_float_pointer_temp + SYSTEM_DATA_OFFSET_84) != 0) && (((uint)handleIdentifier[SYSTEM_DATA_BLOCK_SIZE] & SYSTEM_OFFSET_80) == 0)) {
     init_float_pointer_temp = handleIdentifier + 0x9d;
     init_float_pointer_temp[0] = 1e+08;
     init_float_pointer_temp[1] = 1e+08;
@@ -53514,30 +53514,30 @@ float * InitializeResourceSystem(float *handleIdentifier)
         system_status_code = system_int_result_unsigned + 1;
       } while (system_int_result_unsigned < *(uint *)(longStack_88 + SYSTEM_DATA_COMPARE_SIZE));
     }
-    init_float_pointer_temp = *(float **)(handleIdentifier + 0x6e);
+    init_float_pointer_temp = *(float **)(handleIdentifier + SYSTEM_DATA_OFFSET_6E);
     if ((init_float_pointer_temp != (float *)0x0) && (((uint)init_float_pointer_temp[SYSTEM_FLAG_BIT_4e] & 0x3000) != 0)) {
       init_stack_uint_param_data = *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_48);
       init_stack_uint_param_size = *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4a);
       init_stack_uint_param_68 = *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4c);
       init_stack_param_60 = *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4e);
       system_buffer_ptr_58 = *(void **)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_50);
-      init_float_stack_50 = handleIdentifier[0x52];
-      init_float_stack_4c = handleIdentifier[0x53];
-      system_buffer_ptr_48 = *(void **)(handleIdentifier + 0x54);
-      init_stack_uint_param_40 = *(uint64_t *)(handleIdentifier + 0x56);
+      init_float_stack_50 = handleIdentifier[SYSTEM_DATA_OFFSET_52];
+      init_float_stack_4c = handleIdentifier[SYSTEM_DATA_OFFSET_53];
+      system_buffer_ptr_48 = *(void **)(handleIdentifier + SYSTEM_HANDLE_OFFSET_COUNTER);
+      init_stack_uint_param_40 = *(uint64_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_56);
       InitializeSystemModule19(&init_stack_uint_param_data);
       UtilityFunction3a240(init_float_pointer_temp,init_float_pointer_temp,&init_stack_uint_param_data);
-      init_float_pointer_temp = *(float **)(handleIdentifier + 0x6e);
+      init_float_pointer_temp = *(float **)(handleIdentifier + SYSTEM_DATA_OFFSET_6E);
       if (((uint)init_float_pointer_temp[SYSTEM_FLAG_BIT_4e] & 0x3000) == SYSTEM_NODE_HEADER_SIZE00) {
         init_stack_uint_param_data = *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_48);
         init_stack_uint_param_size = *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4a);
         init_stack_uint_param_68 = *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4c);
         init_stack_param_60 = *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4e);
         system_buffer_ptr_58 = *(void **)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_50);
-        init_float_stack_50 = handleIdentifier[0x52];
-        init_float_stack_4c = handleIdentifier[0x53];
-        system_buffer_ptr_48 = *(void **)(handleIdentifier + 0x54);
-        init_stack_uint_param_40 = *(uint64_t *)(handleIdentifier + 0x56);
+        init_float_stack_50 = handleIdentifier[SYSTEM_DATA_OFFSET_52];
+        init_float_stack_4c = handleIdentifier[SYSTEM_DATA_OFFSET_53];
+        system_buffer_ptr_48 = *(void **)(handleIdentifier + SYSTEM_HANDLE_OFFSET_COUNTER);
+        init_stack_uint_param_40 = *(uint64_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_56);
         InitializeUISystem(&init_stack_uint_param_data,0x3fc90fdb);
         UtilityFunction3a240(init_float_pointer_temp,init_float_pointer_temp,&init_stack_uint_param_data);
         init_stack_uint_param_data = *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_48);
@@ -53545,10 +53545,10 @@ float * InitializeResourceSystem(float *handleIdentifier)
         init_stack_uint_param_68 = *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4c);
         init_stack_param_60 = *(uint64_t *)(handleIdentifier + SYSTEM_FLAG_BIT_4e);
         system_buffer_ptr_58 = *(void **)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_50);
-        init_float_stack_50 = handleIdentifier[0x52];
-        init_float_stack_4c = handleIdentifier[0x53];
-        system_buffer_ptr_48 = *(void **)(handleIdentifier + 0x54);
-        init_stack_uint_param_40 = *(uint64_t *)(handleIdentifier + 0x56);
+        init_float_stack_50 = handleIdentifier[SYSTEM_DATA_OFFSET_52];
+        init_float_stack_4c = handleIdentifier[SYSTEM_DATA_OFFSET_53];
+        system_buffer_ptr_48 = *(void **)(handleIdentifier + SYSTEM_HANDLE_OFFSET_COUNTER);
+        init_stack_uint_param_40 = *(uint64_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_56);
         InitializeSystemModule39(&init_stack_uint_param_data);
         init_float_pointer_temp = (float *)UtilityFunction3a240(init_float_pointer_temp,init_float_pointer_temp,&init_stack_uint_param_data);
       }
@@ -53596,42 +53596,42 @@ float * InitializeResourceSystem(float *handleIdentifier)
     if (init_float_ptr_stack_98 != (float *)0x0) {
       while( true ) {
         LOCK();
-        system_init_flag = *(char *)(init_float_pointer_temp + 0x3b);
+        system_init_flag = *(char *)(init_float_pointer_temp + SYSTEM_HANDLE_OFFSET_ALLOC_TYPE);
         comparison_result_flag = system_init_flag == '\0';
         if (comparison_result_flag) {
-          *(char *)(init_float_pointer_temp + 0x3b) = '\x01';
+          *(char *)(init_float_pointer_temp + SYSTEM_HANDLE_OFFSET_ALLOC_TYPE) = '\x01';
           system_init_flag = '\0';
         }
         UNLOCK();
         if (comparison_result_flag) break;
         system_float_value = (float)_Thrd_id();
-        if ((init_float_pointer_temp[0x3c] == system_result_float) || (init_float_pointer_temp[0x3c] != 0.0)) goto INIT_LABEL_SYSTEM_75f4f;
+        if ((init_float_pointer_temp[SYSTEM_DATA_OFFSET_3C] == system_result_float) || (init_float_pointer_temp[SYSTEM_DATA_OFFSET_3C] != 0.0)) goto INIT_LABEL_SYSTEM_75f4f;
         Sleep();
       }
       system_init_flag = '\0';
 INIT_LABEL_SYSTEM_75f4f:
       LOCK();
-      init_float_pointer_temp = init_float_pointer_temp + 0x3a;
+      init_float_pointer_temp = init_float_pointer_temp + SYSTEM_DATA_OFFSET_3A;
       system_float_value = *init_float_pointer_temp;
       init_float_pointer_temp = (float *)(ulonglong)(uint)system_float_value;
       *init_float_pointer_temp = (float)((int)*init_float_pointer_temp + -1);
       UNLOCK();
       if (system_init_flag == '\0') {
-        if ((((system_result_float == 1.4013e-45) && (*(longlong *)(init_float_ptr_stack_98 + 0x84) != 0)) &&
-            (init_float_pointer_temp = init_float_ptr_stack_98, InitializeAuthenticationSystem(init_float_ptr_stack_98), *(char *)(init_float_pointer_temp + 0x3f) == '\0')) &&
-           ((*(char *)(init_float_pointer_temp + 0x3d) == '\0' &&
+        if ((((system_result_float == 1.4013e-45) && (*(longlong *)(init_float_ptr_stack_98 + SYSTEM_DATA_OFFSET_84) != 0)) &&
+            (init_float_pointer_temp = init_float_ptr_stack_98, InitializeAuthenticationSystem(init_float_ptr_stack_98), *(char *)(init_float_pointer_temp + SYSTEM_DATA_OFFSET_3F) == '\0')) &&
+           ((*(char *)(init_float_pointer_temp + SYSTEM_HANDLE_OFFSET_TEMP) == '\0' &&
             (((*(byte *)((longlong)init_float_pointer_temp + SYSTEM_OFFSET_Fd) & SYSTEM_NODE_HEADER_SIZE) == 0 ||
              ((*(byte *)((longlong)init_float_pointer_temp + SYSTEM_OFFSET_Fe) & 1) == 0)))))) {
-          system_memory_pointer = *(longlong **)(init_float_pointer_temp + 0x84);
-          init_float_pointer_temp[0x84] = 0.0;
-          init_float_pointer_temp[0x85] = 0.0;
+          system_memory_pointer = *(longlong **)(init_float_pointer_temp + SYSTEM_DATA_OFFSET_84);
+          init_float_pointer_temp[SYSTEM_DATA_OFFSET_84] = 0.0;
+          init_float_pointer_temp[SYSTEM_DATA_OFFSET_85] = 0.0;
           if (system_memory_pointer != (longlong *)SYSTEM_NULL_POINTER) {
             (**(code **)(*system_memory_pointer + SYSTEM_OBJECT_OFFSET_38))();
           }
         }
         LOCK();
-        system_boolean_flag = *(byte *)(init_float_pointer_temp + 0x3b);
-        *(byte *)(init_float_pointer_temp + 0x3b) = 0;
+        system_boolean_flag = *(byte *)(init_float_pointer_temp + SYSTEM_HANDLE_OFFSET_ALLOC_TYPE);
+        *(byte *)(init_float_pointer_temp + SYSTEM_HANDLE_OFFSET_ALLOC_TYPE) = 0;
         init_float_pointer_temp = (float *)(ulonglong)system_boolean_flag;
         UNLOCK();
       }
@@ -54076,8 +54076,8 @@ INIT_LABEL_SYSTEM_7a5ac:
                 *(uint64_t *)(system_long_result + 4) = *(uint64_t *)(system_long_result + *system_memory_pointer);
                 *(uint64_t *)(system_long_result + 0xc) = system_integer_result_unsigned;
                 system_status_code = ((uint64_t *)(system_long_result + *system_memory_pointer))[1];
-                *(uint64_t *)(system_long_result + 0x34) = *(uint64_t *)(system_long_result + *system_memory_pointer);
-                *(uint64_t *)(system_long_result + 0x3c) = system_integer_result_unsigned;
+                *(uint64_t *)(system_long_result + SYSTEM_HANDLE_OFFSET_ALLOC_SIZE) = *(uint64_t *)(system_long_result + *system_memory_pointer);
+                *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_3C) = system_integer_result_unsigned;
                 system_float_value = *(float *)(system_long_result + 8);
                 system_float_value = *(float *)(system_long_result + 4);
                 system_float_value = *(float *)(system_long_result + 0xc);
@@ -54089,15 +54089,15 @@ INIT_LABEL_SYSTEM_7a5ac:
                 *(float *)(system_long_result + 8) = system_result_float * system_float_value;
                 *(float *)(system_long_result + 0xc) = system_result_float * system_float_value;
                 system_float_value = *(float *)(system_long_result + SYSTEM_OBJECT_OFFSET_38);
-                system_float_value = *(float *)(system_long_result + 0x34);
-                system_float_value = *(float *)(system_long_result + 0x3c);
+                system_float_value = *(float *)(system_long_result + SYSTEM_HANDLE_OFFSET_ALLOC_SIZE);
+                system_float_value = *(float *)(system_long_result + SYSTEM_DATA_OFFSET_3C);
                 system_float_value = system_result_float * system_result_float + system_result_float * system_result_float + system_result_float * system_float_value;
                 system_float_union = rsqrtss(ZEXT416((uint)system_result_float),ZEXT416((uint)system_result_float));
                 system_float_value = system_float_union._0_4_;
                 system_float_value = system_result_float * 0.5 * (3.0 - system_result_float * system_result_float * system_result_float);
-                *(float *)(system_long_result + 0x34) = system_result_float * system_float_value;
+                *(float *)(system_long_result + SYSTEM_HANDLE_OFFSET_ALLOC_SIZE) = system_result_float * system_float_value;
                 *(float *)(system_long_result + SYSTEM_OBJECT_OFFSET_38) = system_result_float * system_float_value;
-                *(float *)(system_long_result + 0x3c) = system_result_float * system_float_value;
+                *(float *)(system_long_result + SYSTEM_DATA_OFFSET_3C) = system_result_float * system_float_value;
               }
               else {
                 system_status_code = ((uint64_t *)(system_long_result + *system_memory_pointer))[1];
@@ -54186,14 +54186,14 @@ INIT_LABEL_SYSTEM_7a5ac:
                          *(float *)(system_long_result + 0x2c + system_long_result) + *(float *)(system_long_result + system_long_result);
                     *(float *)(system_long_result + SYSTEM_CONFIG_OFFSET_30 + system_long_result) = system_result_float + *(float *)(system_long_result + SYSTEM_CONFIG_OFFSET_30 + system_long_result)
                     ;
-                    *(float *)(system_long_result + 0x34 + system_long_result) = system_result_float + *(float *)(system_long_result + 0x34 + system_long_result)
+                    *(float *)(system_long_result + SYSTEM_DATA_OFFSET_34 + system_long_result) = system_result_float + *(float *)(system_long_result + SYSTEM_DATA_OFFSET_34 + system_long_result)
                     ;
                     system_operation_flag = true;
                   }
-                  system_status_code = *(uint *)(system_long_result + 0x3c +
+                  system_status_code = *(uint *)(system_long_result + SYSTEM_DATA_OFFSET_3C +
                                     *(longlong *)(pintStack_218 + (ulonglong)*system_pointer_var * 8));
                   if ((system_int_result_unsigned & system_int_result_unsigned) != 0) {
-                    *(uint *)(*(longlong *)(pintStack_218 + (ulonglong)*system_pointer_var * 8) + 0x3c + system_long_result)
+                    *(uint *)(*(longlong *)(pintStack_218 + (ulonglong)*system_pointer_var * 8) + SYSTEM_DATA_OFFSET_3C + system_long_result)
                          = system_int_result_unsigned | system_integer_result_unsigned;
                     system_long_value = *system_memory_pointer;
                     system_float_value = *(float *)(system_long_result + 8 + system_long_result);
@@ -54367,7 +54367,7 @@ INIT_LABEL_SYSTEM_7ac04:
               system_ptr_value = (uint64_t *)(system_long_result + 4 + system_long_result * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER);
               system_status_code = system_pointer_var[1];
               system_ptr_value = (uint64_t *)
-                       ((longlong)*(int *)(system_long_result + system_long_result) * 0x5c + 0x34 +
+                       ((longlong)*(int *)(system_long_result + system_long_result) * 0x5c + SYSTEM_DATA_OFFSET_34 +
                        *(longlong *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_68));
               *system_ptr_value = *system_ptr_value;
               system_pointer_var[1] = system_integer_result_unsigned;
@@ -54407,7 +54407,7 @@ INIT_LABEL_SYSTEM_7ac04:
               system_ptr_value = (uint64_t *)(system_long_result + 4 + system_long_result * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER);
               system_status_code = system_pointer_var[1];
               system_ptr_value = (uint64_t *)
-                       ((longlong)*(int *)(system_long_result + 4 + system_long_result) * 0x5c + 0x34 +
+                       ((longlong)*(int *)(system_long_result + 4 + system_long_result) * 0x5c + SYSTEM_DATA_OFFSET_34 +
                        *(longlong *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_68));
               *system_ptr_value = *system_ptr_value;
               system_pointer_var[1] = system_integer_result_unsigned;
@@ -54444,7 +54444,7 @@ INIT_LABEL_SYSTEM_7ac04:
               system_ptr_value = (uint64_t *)(system_long_result + 4 + system_long_result * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER);
               system_status_code = system_pointer_var[1];
               system_ptr_value = (uint64_t *)
-                       ((longlong)*(int *)(system_long_result + 8 + system_long_result) * 0x5c + 0x34 +
+                       ((longlong)*(int *)(system_long_result + 8 + system_long_result) * 0x5c + SYSTEM_DATA_OFFSET_34 +
                        *(longlong *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_68));
               *system_ptr_value = *system_ptr_value;
               system_pointer_var[1] = system_integer_result_unsigned;
@@ -54752,7 +54752,7 @@ INIT_LABEL_SYSTEM_7a312:
     init_stack_uint_param_c8 = *system_ptr_value;
     init_stack_uint_param_c0 = system_pointer_var[1];
     init_stack_uint_param_thread = *(uint64_t *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_50 + system_long_result);
-    init_stack_uint_param_audio = *(uint32_t *)(system_long_result + 0x58 + system_long_result);
+    init_stack_uint_param_audio = *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_58 + system_long_result);
     InitializeGraphicsSystem(init_int_pointer_temp,&init_stack_uint_param_108);
     system_status_code = (longlong)init_int_pointer_temp - (longlong)init_int_pointer_temp >> 2;
     system_status_code = 0;
@@ -55008,7 +55008,7 @@ ulonglong InitializeSystemComponents(longlong handleIdentifier,longlong *resourc
   init_stack_param_88 = 1;
   init_stack_param_90 = handleIdentifier;
   InitializeThreadManagerSystem(&init_stack_param_90);
-  system_long_value = *(longlong *)(handleIdentifier + 0x210);
+  system_long_value = *(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_210);
   if (system_long_result == 0) {
 INIT_LABEL_SYSTEM_7b44a:
     if (*(longlong *)(handleIdentifier + SYSTEM_MEMORY_POOL_SIZE_MEDIUM) == 0) {
@@ -55073,7 +55073,7 @@ INIT_LABEL_SYSTEM_7b454:
   *(uint32_t *)((longlong)system_memory_pointer + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) = system_integer_result_unsigned;
   *(int *)(system_memory_pointer + 2) = system_int_result * 3;
   *(uint8_t *)(system_memory_pointer + 3) = *(uint8_t *)(handleIdentifier + SYSTEM_OFFSET_Fa);
-  if ((*(longlong *)(handleIdentifier + SYSTEM_MEMORY_POOL_SIZE_MEDIUM) == 0) || (*(longlong *)(handleIdentifier + 0x210) != 0)) {
+  if ((*(longlong *)(handleIdentifier + SYSTEM_MEMORY_POOL_SIZE_MEDIUM) == 0) || (*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_210) != 0)) {
     if (systemFlags == '\0') {
       system_status_code = AllocateSystemMemory(systemMemoryPool,SYSTEM_CONFIG_SIZE_EVENT0,8,3);
       (**(code **)(*system_memory_pointer + SYSTEM_OBJECT_OFFSET_28))(system_memory_pointer);
@@ -55289,32 +55289,32 @@ void InitializeStringManager(longlong handleIdentifier,longlong resourceIdentifi
   if ((resourceIdentifier == 0) ||
      (((*(float *)(handleIdentifier + 0x238) == *(float *)(resourceIdentifier + SYSTEM_FLAG_BIT_44) &&
        (*(float *)(handleIdentifier + 0x23c) == *(float *)(resourceIdentifier + SYSTEM_FLAG_BIT_48))) &&
-      (*(float *)(handleIdentifier + 0x240) == *(float *)(resourceIdentifier + SYSTEM_FLAG_BIT_4c))))) {
+      (*(float *)(handleIdentifier + SYSTEM_DATA_OFFSET_240) == *(float *)(resourceIdentifier + SYSTEM_FLAG_BIT_4c))))) {
     system_status_code = *(uint64_t *)(system_configuration + SYSTEM_FLAG_BIT_4c);
     *(uint64_t *)(handleIdentifier + 0x238) = *(uint64_t *)(system_configuration + SYSTEM_FLAG_BIT_44);
-    *(uint64_t *)(handleIdentifier + 0x240) = system_integer_result_unsigned;
+    *(uint64_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_240) = system_integer_result_unsigned;
   }
   if ((resourceIdentifier == 0) ||
-     (((*(float *)(handleIdentifier + 0x248) == *(float *)(resourceIdentifier + 0x54) &&
-       (*(float *)(handleIdentifier + 0x24c) == *(float *)(resourceIdentifier + SYSTEM_HANDLE_OFFSET_RESOURCE_DATA))) &&
-      (*(float *)(handleIdentifier + 0x250) == *(float *)(resourceIdentifier + 0x5c))))) {
-    system_status_code = *(uint64_t *)(system_configuration + 0x5c);
-    *(uint64_t *)(handleIdentifier + 0x248) = *(uint64_t *)(system_configuration + 0x54);
-    *(uint64_t *)(handleIdentifier + 0x250) = system_integer_result_unsigned;
+     (((*(float *)(handleIdentifier + SYSTEM_DATA_OFFSET_248) == *(float *)(resourceIdentifier + SYSTEM_HANDLE_OFFSET_COUNTER) &&
+       (*(float *)(handleIdentifier + SYSTEM_DATA_OFFSET_24c) == *(float *)(resourceIdentifier + SYSTEM_HANDLE_OFFSET_RESOURCE_DATA))) &&
+      (*(float *)(handleIdentifier + SYSTEM_DATA_OFFSET_250) == *(float *)(resourceIdentifier + SYSTEM_DATA_OFFSET_5C))))) {
+    system_status_code = *(uint64_t *)(system_configuration + SYSTEM_DATA_OFFSET_5C);
+    *(uint64_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_248) = *(uint64_t *)(system_configuration + SYSTEM_HANDLE_OFFSET_COUNTER);
+    *(uint64_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_250) = system_integer_result_unsigned;
   }
   if ((resourceIdentifier == 0) ||
-     (((*(float *)(handleIdentifier + 0x2a8) == *(float *)(resourceIdentifier + 100) &&
-       (*(float *)(handleIdentifier + 0x2ac) == *(float *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_68))) &&
+     (((*(float *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_2A8) == *(float *)(resourceIdentifier + 100) &&
+       (*(float *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_2Ac) == *(float *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_68))) &&
       (*(float *)(handleIdentifier + SYSTEM_OFFSET_2B0) == *(float *)(resourceIdentifier + SYSTEM_HANDLE_OFFSET_STATUS_CODE))))) {
     system_status_code = *(uint64_t *)(system_configuration + SYSTEM_HANDLE_OFFSET_STATUS_CODE);
-    *(uint64_t *)(handleIdentifier + 0x2a8) = *(uint64_t *)(system_configuration + 100);
+    *(uint64_t *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_2A8) = *(uint64_t *)(system_configuration + 100);
     *(uint64_t *)(handleIdentifier + SYSTEM_OFFSET_2B0) = system_integer_result_unsigned;
   }
   if ((resourceIdentifier == 0) ||
      (((*(float *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_2B8) == *(float *)(resourceIdentifier + 0x74) &&
        (*(float *)(handleIdentifier + 700) == *(float *)(resourceIdentifier + SYSTEM_INIT_DATA_OFFSET_78))) &&
-      (*(float *)(handleIdentifier + 0x2c0) == *(float *)(resourceIdentifier + 0x7c))))) {
-    system_status_code = *(uint64_t *)(system_configuration + 0x7c);
+      (*(float *)(handleIdentifier + 0x2c0) == *(float *)(resourceIdentifier + SYSTEM_DATA_OFFSET_7C))))) {
+    system_status_code = *(uint64_t *)(system_configuration + SYSTEM_DATA_OFFSET_7C);
     *(uint64_t *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_2B8) = *(uint64_t *)(system_configuration + 0x74);
     *(uint64_t *)(handleIdentifier + 0x2c0) = system_integer_result_unsigned;
   }
@@ -55516,31 +55516,31 @@ void InitializeStringManager(longlong handleIdentifier,longlong resourceIdentifi
       system_status_code = system_int_result_unsigned + SYSTEM_DATA_COMPARE_SIZE;
     } while (system_int_result < SYSTEM_NODE_HEADER_SIZE);
   }
-  *(uint32_t *)(handleIdentifier + SYSTEM_NODE_HEADER_SIZE8) = *(uint32_t *)(system_configuration + 0x84);
+  *(uint32_t *)(handleIdentifier + SYSTEM_NODE_HEADER_SIZE8) = *(uint32_t *)(system_configuration + SYSTEM_DATA_OFFSET_84);
   *(uint32_t *)(handleIdentifier + 0x1f8) = *(uint32_t *)(system_configuration + SYSTEM_INIT_DATA_OFFSET_88);
-  *(uint32_t *)(handleIdentifier + 0x1fc) = *(uint32_t *)(system_configuration + 0x8c);
+  *(uint32_t *)(handleIdentifier + 0x1fc) = *(uint32_t *)(system_configuration + SYSTEM_DATA_OFFSET_8C);
   *(uint32_t *)(handleIdentifier + SYSTEM_NODE_HEADER_SIZE0) = *(uint32_t *)(system_configuration + SYSTEM_INIT_DATA_OFFSET_90);
   *(uint32_t *)(handleIdentifier + SYSTEM_NODE_HEADER_SIZE4) = *(uint32_t *)(system_configuration + 0x94);
   system_status_code = *(uint64_t *)(system_configuration + SYSTEM_DATA_BLOCK_SIZE_A0);
-  *(uint64_t *)(handleIdentifier + 0x274) = *(uint64_t *)(system_configuration + SYSTEM_OFFSET_98);
-  *(uint64_t *)(handleIdentifier + 0x27c) = system_integer_result_unsigned;
+  *(uint64_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_274) = *(uint64_t *)(system_configuration + SYSTEM_OFFSET_98);
+  *(uint64_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_27c) = system_integer_result_unsigned;
   system_status_code = *(uint64_t *)(system_configuration + SYSTEM_DATA_BLOCK_SIZE_B0);
   *(uint64_t *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_284) = *(uint64_t *)(system_configuration + SYSTEM_MEMORY_POOL_SIZE_MEDIUM);
   *(uint64_t *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_28c) = system_integer_result_unsigned;
   system_status_code = *(uint32_t *)(system_configuration + 0xbc);
   system_status_code = *(uint32_t *)(system_configuration + SYSTEM_MEMORY_POOL_SIZE_LARGE);
-  system_status_code = *(uint32_t *)(system_configuration + 0xc4);
+  system_status_code = *(uint32_t *)(system_configuration + SYSTEM_HANDLE_OFFSET_FLAGS);
   *(uint32_t *)(handleIdentifier + 0x294) = *(uint32_t *)(system_configuration + SYSTEM_DATA_BLOCK_SIZE_B8);
   *(uint32_t *)(handleIdentifier + 0x298) = system_integer_result_unsigned;
   *(uint32_t *)(handleIdentifier + 0x29c) = system_integer_result_unsigned;
-  *(uint32_t *)(handleIdentifier + 0x2a0) = system_integer_result_unsigned;
-  *(uint32_t *)(handleIdentifier + 0x2a4) = *(uint32_t *)(system_configuration + 200);
+  *(uint32_t *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_2A0) = system_integer_result_unsigned;
+  *(uint32_t *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_2A4) = *(uint32_t *)(system_configuration + 200);
   stack_system_memory_pointer = (longlong *)SYSTEM_NULL_POINTER;
   longStack_28 = 0;
   if (resourceIdentifier != 0) {
     system_memory_pointer = (longlong *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_AUTH8);
     if ((*system_memory_pointer == 0) && (*(longlong *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_FONT0) == 0)) {
-      system_memory_pointer = (longlong *)(resourceIdentifier + 0x34);
+      system_memory_pointer = (longlong *)(resourceIdentifier + SYSTEM_HANDLE_OFFSET_ALLOC_SIZE);
     }
     stack_system_memory_pointer = (longlong *)*system_memory_pointer;
     longStack_28 = system_memory_pointer[1];
@@ -55554,7 +55554,7 @@ void InitializeStringManager(longlong handleIdentifier,longlong resourceIdentifi
   }
   system_memory_pointer = (longlong *)(system_configuration + SYSTEM_CONFIG_SIZE_AUTH8);
   if ((*system_memory_pointer == 0) && (*(longlong *)(system_configuration + SYSTEM_CONFIG_SIZE_FONT0) == 0)) {
-    system_memory_pointer = (longlong *)(system_configuration + 0x34);
+    system_memory_pointer = (longlong *)(system_configuration + SYSTEM_HANDLE_OFFSET_ALLOC_SIZE);
   }
   system_long_value = InitializeSystemData(*(uint64_t *)(handleIdentifier + SYSTEM_MEMORY_POOL_SIZE_MEDIUM),&g_system_string_buffer,system_memory_pointer);
   if (system_long_result != 0) {
@@ -55597,27 +55597,27 @@ void InitializeStringManager(longlong handleIdentifier,longlong resourceIdentifi
     *(uint64_t **)(handleIdentifier + 600) = system_ptr_value;
   }
   *(uint8_t *)(handleIdentifier + SYSTEM_OFFSET_F6) = *(uint8_t *)(system_configuration + SYSTEM_HANDLE_OFFSET_HEADER_3);
-  if ((uint64_t *)(handleIdentifier + 0x218) != (uint64_t *)(system_configuration + SYSTEM_CONFIG_SIZE_STATUS0)) {
-    ValidateSystemConfiguration((uint64_t *)(handleIdentifier + 0x218),*(uint64_t *)(system_configuration + SYSTEM_CONFIG_SIZE_STATUS0),
+  if ((uint64_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_218) != (uint64_t *)(system_configuration + SYSTEM_CONFIG_SIZE_STATUS0)) {
+    ValidateSystemConfiguration((uint64_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_218),*(uint64_t *)(system_configuration + SYSTEM_CONFIG_SIZE_STATUS0),
                   *(uint64_t *)(system_configuration + SYSTEM_CONFIG_SIZE_STATUS8));
   }
-  *(uint32_t *)(*(longlong *)(handleIdentifier + 0x268) + SYSTEM_DATA_COMPARE_SIZE) = *(uint32_t *)(system_configuration + SYSTEM_OFFSET_F0);
-  *(uint32_t *)(*(longlong *)(handleIdentifier + 0x268) + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) = *(uint32_t *)(system_configuration + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER4);
-  *(uint8_t *)(*(longlong *)(handleIdentifier + 0x268) + SYSTEM_OFFSET_18) = *(uint8_t *)(system_configuration + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER8);
-  *(uint8_t *)(*(longlong *)(handleIdentifier + 0x268) + NODE_INITIALIZED_OFFSET) = *(uint8_t *)(system_configuration + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER9);
-  *(uint8_t *)(*(longlong *)(handleIdentifier + 0x268) + SYSTEM_CONFIG_SIZE_AUDIO) = *(uint8_t *)(system_configuration + SYSTEM_CONFIG_SIZE_NETWORK_BUFFERa);
-  *(uint32_t *)(*(longlong *)(handleIdentifier + 0x268) + SYSTEM_FLAG_BIT_44) = *(uint32_t *)(system_configuration + SYSTEM_CONFIG_SIZE_FINAL8);
-  *(uint32_t *)(*(longlong *)(handleIdentifier + 0x268) + SYSTEM_FLAG_BIT_48) = *(uint32_t *)(system_configuration + SYSTEM_CONFIG_SIZE_FINALc);
-  *(uint32_t *)(*(longlong *)(handleIdentifier + 0x268) + SYSTEM_FLAG_BIT_4c) = *(uint32_t *)(system_configuration + SYSTEM_CONFIG_SIZE_RENDER0);
-  *(uint32_t *)(*(longlong *)(handleIdentifier + 0x268) + SYSTEM_DATA_BLOCK_SIZE_50) = *(uint32_t *)(system_configuration + SYSTEM_CONFIG_SIZE_RENDER4);
-  *(uint32_t *)(*(longlong *)(handleIdentifier + 0x268) + 0x54) = *(uint32_t *)(system_configuration + SYSTEM_CONFIG_SIZE_RENDER8);
-  *(uint32_t *)(*(longlong *)(handleIdentifier + 0x268) + SYSTEM_HANDLE_OFFSET_RESOURCE_DATA) = *(uint32_t *)(system_configuration + 300);
-  *(uint32_t *)(*(longlong *)(handleIdentifier + 0x268) + 0x5c) = *(uint32_t *)(system_configuration + SYSTEM_CONFIG_SIZE_PHYSICS0);
-  *(uint32_t *)(*(longlong *)(handleIdentifier + 0x268) + SYSTEM_OBJECT_OFFSET_60) = *(uint32_t *)(system_configuration + SYSTEM_CONFIG_SIZE_PHYSICS4);
-  *(uint32_t *)(*(longlong *)(handleIdentifier + 0x268) + 100) = *(uint32_t *)(system_configuration + SYSTEM_CONFIG_SIZE_PHYSICS8);
-  *(uint32_t *)(*(longlong *)(handleIdentifier + 0x268) + SYSTEM_OBJECT_OFFSET_68) = *(uint32_t *)(system_configuration + SYSTEM_CONFIG_SIZE_PHYSICSc);
-  *(uint32_t *)(*(longlong *)(handleIdentifier + 0x268) + SYSTEM_HANDLE_OFFSET_STATUS_CODE) = *(uint32_t *)(system_configuration + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER0);
-  system_long_value = *(longlong *)(handleIdentifier + 0x268);
+  *(uint32_t *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_268) + SYSTEM_DATA_COMPARE_SIZE) = *(uint32_t *)(system_configuration + SYSTEM_OFFSET_F0);
+  *(uint32_t *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_268) + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) = *(uint32_t *)(system_configuration + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER4);
+  *(uint8_t *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_268) + SYSTEM_OFFSET_18) = *(uint8_t *)(system_configuration + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER8);
+  *(uint8_t *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_268) + NODE_INITIALIZED_OFFSET) = *(uint8_t *)(system_configuration + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER9);
+  *(uint8_t *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_268) + SYSTEM_CONFIG_SIZE_AUDIO) = *(uint8_t *)(system_configuration + SYSTEM_CONFIG_SIZE_NETWORK_BUFFERa);
+  *(uint32_t *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_268) + SYSTEM_FLAG_BIT_44) = *(uint32_t *)(system_configuration + SYSTEM_CONFIG_SIZE_FINAL8);
+  *(uint32_t *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_268) + SYSTEM_FLAG_BIT_48) = *(uint32_t *)(system_configuration + SYSTEM_CONFIG_SIZE_FINALc);
+  *(uint32_t *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_268) + SYSTEM_FLAG_BIT_4c) = *(uint32_t *)(system_configuration + SYSTEM_CONFIG_SIZE_RENDER0);
+  *(uint32_t *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_268) + SYSTEM_DATA_BLOCK_SIZE_50) = *(uint32_t *)(system_configuration + SYSTEM_CONFIG_SIZE_RENDER4);
+  *(uint32_t *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_268) + SYSTEM_HANDLE_OFFSET_COUNTER) = *(uint32_t *)(system_configuration + SYSTEM_CONFIG_SIZE_RENDER8);
+  *(uint32_t *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_268) + SYSTEM_HANDLE_OFFSET_RESOURCE_DATA) = *(uint32_t *)(system_configuration + 300);
+  *(uint32_t *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_268) + SYSTEM_DATA_OFFSET_5C) = *(uint32_t *)(system_configuration + SYSTEM_CONFIG_SIZE_PHYSICS0);
+  *(uint32_t *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_268) + SYSTEM_OBJECT_OFFSET_60) = *(uint32_t *)(system_configuration + SYSTEM_CONFIG_SIZE_PHYSICS4);
+  *(uint32_t *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_268) + 100) = *(uint32_t *)(system_configuration + SYSTEM_CONFIG_SIZE_PHYSICS8);
+  *(uint32_t *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_268) + SYSTEM_OBJECT_OFFSET_68) = *(uint32_t *)(system_configuration + SYSTEM_CONFIG_SIZE_PHYSICSc);
+  *(uint32_t *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_268) + SYSTEM_HANDLE_OFFSET_STATUS_CODE) = *(uint32_t *)(system_configuration + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER0);
+  system_long_value = *(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_268);
   system_status_code = *(uint *)(system_configuration + SYSTEM_DATA_COMPARE_SIZE8);
   system_status_code = (ulonglong)system_integer_result_unsigned;
   if (*(longlong *)(system_configuration + SYSTEM_DATA_COMPARE_SIZE0) != 0) {
@@ -55631,7 +55631,7 @@ void InitializeStringManager(longlong handleIdentifier,longlong resourceIdentifi
   if (*(longlong *)(system_long_result + SYSTEM_OBJECT_OFFSET_28) != 0) {
     *(uint8_t *)(system_int_result_unsigned + *(longlong *)(system_long_result + SYSTEM_OBJECT_OFFSET_28)) = 0;
   }
-  *(uint32_t *)(system_long_result + 0x3c) = *(uint32_t *)(system_configuration + SYSTEM_CONFIG_SIZE_FINAL4);
+  *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_3C) = *(uint32_t *)(system_configuration + SYSTEM_CONFIG_SIZE_FINAL4);
                     // WARNING: Subroutine does not return
   InitializeSystemStack(init_stack_uint_parameter_20 ^ (ulonglong)system_local_buffer_thread_data);
 }
@@ -55743,7 +55743,7 @@ void InitializeResourceSystem(longlong *handleIdentifier,byte resourceIdentifier
         node_previous = (void *)handleIdentifier[3];
       }
       ProcessSystemDataHeader(&g_global_system_config,node_previous);
-      pis_initialized = (char *)(handleIdentifier[0x3c] + SYSTEM_CONFIG_SIZE_AUTH + (ulonglong)resourceIdentifier * SYSTEM_OFFSET_18);
+      pis_initialized = (char *)(handleIdentifier[SYSTEM_DATA_OFFSET_3C] + SYSTEM_CONFIG_SIZE_AUTH + (ulonglong)resourceIdentifier * SYSTEM_OFFSET_18);
       LOCK();
       if (*pis_initialized == '\x01') {
         *pis_initialized = '\x04';
@@ -56051,9 +56051,9 @@ void ConfigureSystemSettings(uint handleIdentifier,longlong resourceIdentifier,l
   case 0:
     if (0 < system_int_result) {
       do {
-        *init_float_pointer_temp = *(float *)(system_long_result + 0x54 + *(longlong *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_68));
+        *init_float_pointer_temp = *(float *)(system_long_result + SYSTEM_DATA_OFFSET_54 + *(longlong *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_68));
         init_float_pointer_temp = (float *)((longlong)init_float_pointer_temp + (longlong)system_int_result);
-        system_long_value = system_long_result + 0x5c;
+        system_long_value = system_long_result + SYSTEM_DATA_OFFSET_5C;
         system_long_value = system_long_result + -1;
       } while (system_long_result != 0);
     }
@@ -56061,9 +56061,9 @@ void ConfigureSystemSettings(uint handleIdentifier,longlong resourceIdentifier,l
   case 1:
     if (0 < system_int_result) {
       do {
-        *init_float_pointer_temp = *(float *)(system_long_result + 0x58 + *(longlong *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_68));
+        *init_float_pointer_temp = *(float *)(system_long_result + SYSTEM_DATA_OFFSET_58 + *(longlong *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_68));
         init_float_pointer_temp = (float *)((longlong)init_float_pointer_temp + (longlong)system_int_result);
-        system_long_value = system_long_result + 0x5c;
+        system_long_value = system_long_result + SYSTEM_DATA_OFFSET_5C;
         system_long_value = system_long_result + -1;
       } while (system_long_result != 0);
     }
@@ -56088,8 +56088,8 @@ void ConfigureSystemSettings(uint handleIdentifier,longlong resourceIdentifier,l
         *init_float_pointer_temp = init_float_pointer_temp[SYSTEM_CONFIG_SIZE_FONT];
         init_float_pointer_temp[1] = 1.0 - init_float_pointer_temp[SYSTEM_CONFIG_SIZE_UTILITY_2];
         init_float_pointer_temp = (float *)((longlong)init_float_pointer_temp + system_long_result);
-        init_float_pointer_temp = init_float_pointer_temp + 0x5c;
-        init_float_pointer_temp = init_float_pointer_temp + 0x5c;
+        init_float_pointer_temp = init_float_pointer_temp + SYSTEM_DATA_OFFSET_5C;
+        init_float_pointer_temp = init_float_pointer_temp + SYSTEM_DATA_OFFSET_5C;
         system_long_value = system_long_result + -1;
       } while (system_long_result != 0);
     }
@@ -56125,8 +56125,8 @@ void ConfigureSystemSettings(uint handleIdentifier,longlong resourceIdentifier,l
         *init_float_pointer_temp = init_float_pointer_temp[SYSTEM_CONFIG_SIZE_FONT];
         init_float_pointer_temp[1] = 1.0 - init_float_pointer_temp[SYSTEM_CONFIG_SIZE_UTILITY_2];
         init_float_pointer_temp = (float *)((longlong)init_float_pointer_temp + system_long_result);
-        init_float_pointer_temp = init_float_pointer_temp + 0x5c;
-        init_float_pointer_temp = init_float_pointer_temp + 0x5c;
+        init_float_pointer_temp = init_float_pointer_temp + SYSTEM_DATA_OFFSET_5C;
+        init_float_pointer_temp = init_float_pointer_temp + SYSTEM_DATA_OFFSET_5C;
         system_long_value = system_long_result + -1;
       } while (system_long_result != 0);
     }
@@ -56177,7 +56177,7 @@ void ConfigureSystemSettings(uint handleIdentifier,longlong resourceIdentifier,l
         system_pointer_var[1] = *(uint32_t *)(system_long_result + 4 + (longlong)init_int_pointer_temp[SYSTEM_CONFIG_SIZE_UTILITY_2] * SYSTEM_DATA_COMPARE_SIZE);
         system_pointer_var[2] = *(uint32_t *)(system_long_result + 8 + (longlong)init_int_pointer_temp[SYSTEM_CONFIG_SIZE_UTILITY_2] * SYSTEM_DATA_COMPARE_SIZE);
         init_float_pointer_temp = (float *)((longlong)system_pointer_var + system_long_result);
-        init_int_pointer_temp = init_int_pointer_temp + 0x5c;
+        init_int_pointer_temp = init_int_pointer_temp + SYSTEM_DATA_OFFSET_5C;
         system_long_value = system_long_result + -1;
       } while (system_long_result != 0);
     }
@@ -56220,8 +56220,8 @@ void ConfigureSystemSettings(uint handleIdentifier,longlong resourceIdentifier,l
         system_pointer_var[1] = system_pointer_var[SYSTEM_CONFIG_SIZE_UTILITY_2];
         system_pointer_var[2] = system_pointer_var[SYSTEM_OFFSET_18];
         init_float_pointer_temp = (float *)((longlong)system_pointer_var + system_long_result);
-        init_float_pointer_temp = init_float_pointer_temp + 0x5c;
-        system_ptr_value = system_pointer_var + 0x5c;
+        init_float_pointer_temp = init_float_pointer_temp + SYSTEM_DATA_OFFSET_5C;
+        system_ptr_value = system_pointer_var + SYSTEM_DATA_OFFSET_5C;
         system_long_value = system_long_result + -1;
       } while (system_long_result != 0);
     }
@@ -56301,8 +56301,8 @@ void ConfigureSystemSettings(uint handleIdentifier,longlong resourceIdentifier,l
         }
         init_float_pointer_temp[3] = system_float_value;
         init_float_pointer_temp = (float *)((longlong)init_float_pointer_temp + system_long_result);
-        init_float_pointer_temp = init_float_pointer_temp + 0x5c;
-        init_float_pointer_temp = init_float_pointer_temp + 0x5c;
+        init_float_pointer_temp = init_float_pointer_temp + SYSTEM_DATA_OFFSET_5C;
+        init_float_pointer_temp = init_float_pointer_temp + SYSTEM_DATA_OFFSET_5C;
         system_long_value = system_long_result + -1;
       } while (system_long_result != 0);
     }
@@ -56365,12 +56365,12 @@ code_r0x00018007db1b:
         init_byte_pointer_temp = (byte *)((longlong)init_float_pointer_temp + system_long_result);
         system_long_value = *(longlong *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_68);
         *init_byte_pointer_temp = (byte)(int)(*(float *)(*(longlong *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_STATUS0) +
-                                         (longlong)*(int *)(system_long_result + 0x5c + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) * 255.0);
+                                         (longlong)*(int *)(system_long_result + SYSTEM_DATA_OFFSET_5C + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) * 255.0);
         init_byte_pointer_temp[1] = (byte)(int)(*(float *)(*(longlong *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_STATUS0) + 4 +
-                                           (longlong)*(int *)(system_long_result + 0x5c + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) * 255.0
+                                           (longlong)*(int *)(system_long_result + SYSTEM_DATA_OFFSET_5C + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) * 255.0
                                 );
         system_status_code = (uint)(*(float *)(*(longlong *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_STATUS0) + 8 +
-                                 (longlong)*(int *)(system_long_result + 0x5c + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) * 255.0);
+                                 (longlong)*(int *)(system_long_result + SYSTEM_DATA_OFFSET_5C + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) * 255.0);
         init_byte_pointer_temp[2] = (byte)system_integer_result_unsigned;
         system_float_value = (float)((system_int_result_unsigned & SYSTEM_OFFSET_Ff) + (uint)init_byte_pointer_temp[1] + (uint)*init_byte_pointer_temp);
         if (0.0 <= system_result_float) {
@@ -56454,7 +56454,7 @@ code_r0x00018007db1b:
         }
         system_pointer_var[1] = (char)(int)(1.0 - system_result_float);
         system_ptr_value = system_pointer_var + system_integer_result;
-        system_long_value = system_long_result + 0x5c;
+        system_long_value = system_long_result + SYSTEM_DATA_OFFSET_5C;
         system_long_value = system_long_result + -1;
       } while (system_long_result != 0);
     }
@@ -56477,7 +56477,7 @@ code_r0x00018007db1b:
              *(uint8_t *)
               (*(longlong *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_STATUS0) + SYSTEM_CONFIG_SIZE_PHYSICS + (longlong)*(int *)(system_long_result + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER);
         init_float_pointer_temp = (float *)((longlong)init_float_pointer_temp + (longlong)system_int_result);
-        system_long_value = system_long_result + 0x5c;
+        system_long_value = system_long_result + SYSTEM_DATA_OFFSET_5C;
         system_long_value = system_long_result + -1;
       } while (system_long_result != 0);
     }
@@ -56486,9 +56486,9 @@ code_r0x00018007db1b:
     if (0 < system_int_result) {
       do {
         system_long_value = *(longlong *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_68);
-        system_float_value = *(float *)(system_long_result + 0x34 + system_long_result) * 0.5;
+        system_float_value = *(float *)(system_long_result + SYSTEM_DATA_OFFSET_34 + system_long_result) * 0.5;
         system_float_value = *(float *)(system_long_result + SYSTEM_OBJECT_OFFSET_38 + system_long_result) * 0.5;
-        system_float_value = *(float *)(system_long_result + 0x3c + system_long_result) * 0.5;
+        system_float_value = *(float *)(system_long_result + SYSTEM_DATA_OFFSET_3C + system_long_result) * 0.5;
         system_float_value = system_result_float + 0.5;
         system_float_value = system_result_float + 0.5;
         system_float_value = system_result_float + 0.5;
@@ -56520,7 +56520,7 @@ code_r0x00018007db1b:
                            (int)(longlong)(system_result_float * 2047.0) << 0xb) << 10 |
                           (uint)(longlong)(system_result_float * 1023.0) & 0x3ff);
         init_float_pointer_temp = (float *)((longlong)init_float_pointer_temp + (longlong)system_int_result);
-        system_long_value = system_long_result + 0x5c;
+        system_long_value = system_long_result + SYSTEM_DATA_OFFSET_5C;
         system_long_value = system_long_result + -1;
       } while (system_long_result != 0);
     }
@@ -56549,7 +56549,7 @@ code_r0x00018007db1b:
         *(uint16_t *)(init_float_pointer_temp + 1) = system_integer_result_unsigned;
         *(short *)((longlong)init_float_pointer_temp + 6) = (short)system_integer_result_unsigned;
         init_float_pointer_temp = (float *)((longlong)init_float_pointer_temp + (longlong)system_int_result);
-        system_long_value = system_long_result + 0x5c;
+        system_long_value = system_long_result + SYSTEM_DATA_OFFSET_5C;
         system_long_value = system_long_result + -1;
       } while (system_long_result != 0);
     }
@@ -56593,7 +56593,7 @@ code_r0x00018007db1b:
         if ((system_result_float * *(float *)(system_long_result + 0xc + system_long_result) - system_result_float * system_result_float) *
             *(float *)(system_long_result + SYSTEM_OBJECT_OFFSET_28 + system_long_result) +
             (system_result_float * *(float *)(system_long_result + 8 + system_long_result) - system_result_float * *(float *)(system_long_result + 0xc + system_long_result))
-            * *(float *)(system_long_result + 0x24 + system_long_result) +
+            * *(float *)(system_long_result + SYSTEM_DATA_OFFSET_24 + system_long_result) +
             (system_result_float * system_result_float - system_result_float * *(float *)(system_long_result + 8 + system_long_result)) *
             *(float *)(system_long_result + 0x2c + system_long_result) < 0.0) {
           system_status_code = SYSTEM_OFFSET_80000000;
@@ -56602,7 +56602,7 @@ code_r0x00018007db1b:
                            (uint)(longlong)(system_result_float * 2047.0) & 0x7ff) << 10 |
                            (uint)(longlong)(system_result_float * 1023.0) & 0x3ff | system_int_result_unsigned);
         init_float_pointer_temp = (float *)((longlong)init_float_pointer_temp + (longlong)system_int_result);
-        system_long_value = system_long_result + 0x5c;
+        system_long_value = system_long_result + SYSTEM_DATA_OFFSET_5C;
         system_long_value = system_long_result + -1;
       } while (system_long_result != 0);
     }
@@ -56614,7 +56614,7 @@ code_r0x00018007db1b:
       system_float_value = fRam0000000180d49154;
       do {
         system_long_value = *(longlong *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_68);
-        init_float_pointer_temp = (float *)(system_long_result + 0x34 + system_long_result);
+        init_float_pointer_temp = (float *)(system_long_result + SYSTEM_DATA_OFFSET_34 + system_long_result);
         init_float_stack_108 = *init_float_pointer_temp;
         init_float_stack_104 = init_float_pointer_temp[1];
         init_float_stack_100 = init_float_pointer_temp[2];
@@ -56624,7 +56624,7 @@ code_r0x00018007db1b:
         init_float_stack_f4 = init_float_pointer_temp[1];
         init_float_stack_f0 = init_float_pointer_temp[2];
         init_float_stack_ec = init_float_pointer_temp[3];
-        init_float_pointer_temp = (float *)(system_long_result + 0x24 + system_long_result);
+        init_float_pointer_temp = (float *)(system_long_result + SYSTEM_DATA_OFFSET_24 + system_long_result);
         init_float_stack_e8 = *init_float_pointer_temp;
         init_float_stack_e4 = init_float_pointer_temp[1];
         init_float_stack_e0 = init_float_pointer_temp[2];
@@ -56675,12 +56675,12 @@ code_r0x00018007db1b:
         system_float_value = *(float *)(system_long_result + SYSTEM_OFFSET_18 + system_long_result);
         system_float_value = *(float *)(system_long_result + SYSTEM_CONFIG_SIZE_NETWORK + system_long_result);
         system_float_value = *(float *)(system_long_result + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER + system_long_result);
-        if ((system_result_float * *(float *)(system_long_result + 0x34 + system_long_result) -
-            system_result_float * *(float *)(system_long_result + 0x3c + system_long_result)) * *(float *)(system_long_result + SYSTEM_OBJECT_OFFSET_28 + system_long_result) +
-            (system_result_float * *(float *)(system_long_result + 0x3c + system_long_result) -
-            system_result_float * *(float *)(system_long_result + SYSTEM_OBJECT_OFFSET_38 + system_long_result)) * *(float *)(system_long_result + 0x24 + system_long_result) +
+        if ((system_result_float * *(float *)(system_long_result + SYSTEM_DATA_OFFSET_34 + system_long_result) -
+            system_result_float * *(float *)(system_long_result + SYSTEM_DATA_OFFSET_3C + system_long_result)) * *(float *)(system_long_result + SYSTEM_OBJECT_OFFSET_28 + system_long_result) +
+            (system_result_float * *(float *)(system_long_result + SYSTEM_DATA_OFFSET_3C + system_long_result) -
+            system_result_float * *(float *)(system_long_result + SYSTEM_OBJECT_OFFSET_38 + system_long_result)) * *(float *)(system_long_result + SYSTEM_DATA_OFFSET_24 + system_long_result) +
             (system_result_float * *(float *)(system_long_result + SYSTEM_OBJECT_OFFSET_38 + system_long_result) -
-            system_result_float * *(float *)(system_long_result + 0x34 + system_long_result)) * *(float *)(system_long_result + 0x2c + system_long_result) <= 0.0
+            system_result_float * *(float *)(system_long_result + SYSTEM_DATA_OFFSET_34 + system_long_result)) * *(float *)(system_long_result + 0x2c + system_long_result) <= 0.0
            ) {
           system_float_value = -system_float_value;
           system_float_value = -system_float_value;
@@ -56696,7 +56696,7 @@ code_r0x00018007db1b:
         *(short *)(init_float_pointer_temp + 1) = (short)(int)(system_result_float * 32767.0);
         *(short *)((longlong)init_float_pointer_temp + 6) = (short)(int)(system_result_float * 32767.0);
         init_float_pointer_temp = (float *)((longlong)init_float_pointer_temp + (longlong)system_int_result);
-        system_long_value = system_long_result + 0x5c;
+        system_long_value = system_long_result + SYSTEM_DATA_OFFSET_5C;
         system_long_value = system_long_result + -1;
       } while (system_long_result != 0);
     }
@@ -56814,7 +56814,7 @@ void InitializeInputSystem(longlong handleIdentifier,ulonglong resourceIdentifie
         } while (system_long_result != 0);
         if (system_int_result != -1) {
           longStack_58 = handleIdentifier;
-          if ((((*(byte *)(handleIdentifier + SYSTEM_OFFSET_Fd) & SYSTEM_DATA_BLOCK_SIZE) == 0) || (*(longlong *)(handleIdentifier + 0x210) == 0))
+          if ((((*(byte *)(handleIdentifier + SYSTEM_OFFSET_Fd) & SYSTEM_DATA_BLOCK_SIZE) == 0) || (*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_210) == 0))
              && (*(longlong *)(handleIdentifier + SYSTEM_CONFIG_SIZE_INPUT0) != 0)) {
             longStack_58 = InitializeResourceSystem();
           }
@@ -57136,7 +57136,7 @@ code * InitializeSystemModule59(longlong handleIdentifier,char resourceIdentifie
   code *stack_char_ptr;
   code *stack_char_ptr;
 
-  ptr_system_init_flag = (code *)(handleIdentifier + 0x210);
+  ptr_system_init_flag = (code *)(handleIdentifier + SYSTEM_DATA_OFFSET_210);
   if (*(longlong *)ptr_system_init_flag == 0) {
     if ((*(byte *)(handleIdentifier + SYSTEM_OFFSET_Fd) & SYSTEM_NODE_HEADER_SIZE) == 0) {
       longStack_30 = GetSystemDataPointer(*(uint64_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_INPUT0));
@@ -57199,7 +57199,7 @@ void InitializeAudioManagerSystem(longlong handleIdentifier,char resourceIdentif
 {
   longlong *system_memory_pointer;
 
-  if (*(longlong *)(handleIdentifier + 0x210) != 0) {
+  if (*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_210) != 0) {
     InitializeAuthenticationSystem();
     if (resourceIdentifier != '\0') {
       *(byte *)(handleIdentifier + SYSTEM_OFFSET_Fd) = *(byte *)(handleIdentifier + SYSTEM_OFFSET_Fd) | SYSTEM_NODE_HEADER_SIZE;
@@ -57208,8 +57208,8 @@ void InitializeAudioManagerSystem(longlong handleIdentifier,char resourceIdentif
     }
     if (((*(char *)(handleIdentifier + SYSTEM_OFFSET_Fc) == '\0') && (*(char *)(handleIdentifier + SYSTEM_OFFSET_F4) == '\0')) &&
        (((*(byte *)(handleIdentifier + SYSTEM_OFFSET_Fd) & SYSTEM_NODE_HEADER_SIZE) == 0 || ((*(byte *)(handleIdentifier + SYSTEM_OFFSET_Fe) & 1) == 0)))) {
-      system_memory_pointer = *(longlong **)(handleIdentifier + 0x210);
-      *(uint64_t *)(handleIdentifier + 0x210) = 0;
+      system_memory_pointer = *(longlong **)(handleIdentifier + SYSTEM_DATA_OFFSET_210);
+      *(uint64_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_210) = 0;
       if (system_memory_pointer != (longlong *)SYSTEM_NULL_POINTER) {
                     // WARNING: Could not recover jumptable at 0x00018007ee5b. Too many branches
                     // WARNING: Treating indirect jump as call
@@ -57869,7 +57869,7 @@ INIT_LABEL_SYSTEM_7f5cb:
   if ((*(uint *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) & 1) == 0) {
     InitializeSystemModule59(*(uint64_t *)(handleIdentifier + 8),(byte)(*(uint *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) >> 2) & 1);
   }
-  system_memory_pointer = *(longlong **)(*(longlong *)(handleIdentifier + 8) + 0x210);
+  system_memory_pointer = *(longlong **)(*(longlong *)(handleIdentifier + 8) + SYSTEM_DATA_OFFSET_210);
   if (system_memory_pointer != (longlong *)SYSTEM_NULL_POINTER) {
     (**(code **)(*system_memory_pointer + SYSTEM_OBJECT_OFFSET_28))(system_memory_pointer);
   }
@@ -57909,8 +57909,8 @@ void InitializeNetworkManagerSystem(char *handleIdentifier,uint64_t resourceIden
     if (system_memory_pointer != (longlong *)SYSTEM_NULL_POINTER) {
       (**(code **)(*system_memory_pointer + SYSTEM_OBJECT_OFFSET_28))(system_memory_pointer);
     }
-    system_memory_pointer = *(longlong **)(system_long_result + 0x210);
-    *(longlong **)(system_long_result + 0x210) = system_memory_pointer;
+    system_memory_pointer = *(longlong **)(system_long_result + SYSTEM_DATA_OFFSET_210);
+    *(longlong **)(system_long_result + SYSTEM_DATA_OFFSET_210) = system_memory_pointer;
     if (system_memory_pointer != (longlong *)SYSTEM_NULL_POINTER) {
       (**(code **)(*system_memory_pointer + SYSTEM_OBJECT_OFFSET_38))();
     }
@@ -57989,7 +57989,7 @@ INIT_LABEL_SYSTEM_7f7cf:
     *(uint8_t *)(system_long_result + SYSTEM_CONFIG_SIZE_EVENTc) = 0;
     UNLOCK();
   }
-  handleIdentifier[2] = *(longlong *)(*handleIdentifier + 0x210);
+  handleIdentifier[2] = *(longlong *)(*handleIdentifier + SYSTEM_DATA_OFFSET_210);
   return;
 }
 // void InitializeSystemModule2(void)
@@ -58544,7 +58544,7 @@ void HandleSystemResource54(uint64_t handleIdentifier,longlong resourceIdentifie
   ulonglong system_status_code;
   bool long_comparison_flag;
 
-  resourceIdentifier = (longlong)*(int *)(resourceIdentifier + 0x250) * SYSTEM_CONFIG_SIZE_RENDER8 + resourceIdentifier;
+  resourceIdentifier = (longlong)*(int *)(resourceIdentifier + SYSTEM_DATA_OFFSET_250) * SYSTEM_CONFIG_SIZE_RENDER8 + resourceIdentifier;
   system_status_code = InitializeSystemModule39(resourceIdentifier,system_ESI);
   *(uint32_t *)(system_reg_rdi + SYSTEM_CONFIG_OFFSET_30) = system_integer_result_unsigned;
   InitializeInputEngineNode(resourceIdentifier,system_int_result_unsigned);
@@ -59410,8 +59410,8 @@ uint64_t ProcessFunction79434(void)
       } while (system_int_result != 0);
     }
     in_R10D = in_R10D + 1;
-    system_float_value = *(float *)(*(longlong *)(system_R14 + 0x218) + 4 + (longlong)(int)system_int_result_unsigned * 8);
-    system_float_value = *(float *)(*(longlong *)(system_R14 + 0x218) + (longlong)(int)system_int_result_unsigned * 8);
+    system_float_value = *(float *)(*(longlong *)(system_R14 + SYSTEM_DATA_OFFSET_218) + 4 + (longlong)(int)system_int_result_unsigned * 8);
+    system_float_value = *(float *)(*(longlong *)(system_R14 + SYSTEM_DATA_OFFSET_218) + (longlong)(int)system_int_result_unsigned * 8);
     system_float_value = SQRT(system_result_float * system_result_float + system_result_float * system_result_float) * 2.5;
     if (system_XMM9_Da <= system_result_float) {
       system_float_value = system_XMM9_Da;
@@ -60136,7 +60136,7 @@ uint64_t ProcessFunction797e0(longlong handleIdentifier,uint resourceIdentifier)
               system_integer_result = system_int_result + ((int)(((system_long_result + -3) - system_long_result) - 1U >> 2) + 1) * 4;
               do {
                 system_status_code = (ulonglong)system_integer_result_unsigned;
-                system_long_value = *(longlong *)(handleIdentifier + 0x218);
+                system_long_value = *(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_218);
                 system_status_code = (ulonglong)(system_int_result_unsigned - 1);
                 system_status_code = (ulonglong)(system_int_result_unsigned - 2);
                 system_status_code = system_int_result_unsigned - 3;
@@ -60147,11 +60147,11 @@ uint64_t ProcessFunction797e0(longlong handleIdentifier,uint resourceIdentifier)
                 system_float_value = system_result_float * system_result_float - system_result_float * system_float_value;
                 system_float_value = system_result_float * system_result_float + system_result_float * system_float_value;
                 *(float *)(system_long_result + system_long_result * 8) = system_result_float + system_float_value;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + system_long_result * 8) = system_result_float + system_float_value;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + (ulonglong)system_int_result_unsigned * 8) = system_result_float - system_float_value;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + (ulonglong)system_int_result_unsigned * 8) =
+                *(float *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_218) + 4 + system_long_result * 8) = system_result_float + system_float_value;
+                *(float *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_218) + (ulonglong)system_int_result_unsigned * 8) = system_result_float - system_float_value;
+                *(float *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_218) + 4 + (ulonglong)system_int_result_unsigned * 8) =
                      system_result_float - system_float_value;
-                system_long_value = *(longlong *)(handleIdentifier + 0x218);
+                system_long_value = *(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_218);
                 system_float_value = *(float *)(system_long_result + 4 + system_int_result_unsigned * 8);
                 system_float_value = *(float *)(system_long_result + system_int_result_unsigned * 8);
                 system_float_value = *(float *)(system_long_result + 8 + system_long_result * 8);
@@ -60159,10 +60159,10 @@ uint64_t ProcessFunction797e0(longlong handleIdentifier,uint resourceIdentifier)
                 system_float_value = system_result_float * system_result_float - system_result_float * system_float_value;
                 system_float_value = system_result_float * system_result_float + system_result_float * system_float_value;
                 *(float *)(system_long_result + 8 + system_long_result * 8) = system_result_float + system_float_value;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 0xc + system_long_result * 8) = system_result_float + system_float_value;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + system_int_result_unsigned * 8) = system_result_float - system_float_value;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + system_int_result_unsigned * 8) = system_result_float - system_float_value;
-                system_long_value = *(longlong *)(handleIdentifier + 0x218);
+                *(float *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_218) + 0xc + system_long_result * 8) = system_result_float + system_float_value;
+                *(float *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_218) + system_int_result_unsigned * 8) = system_result_float - system_float_value;
+                *(float *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_218) + 4 + system_int_result_unsigned * 8) = system_result_float - system_float_value;
+                system_long_value = *(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_218);
                 system_float_value = *(float *)(system_long_result + system_int_result_unsigned * 8);
                 system_float_value = *(float *)(system_long_result + 4 + system_int_result_unsigned * 8);
                 system_float_value = *(float *)(system_long_result + SYSTEM_DATA_COMPARE_SIZE + system_long_result * 8);
@@ -60170,10 +60170,10 @@ uint64_t ProcessFunction797e0(longlong handleIdentifier,uint resourceIdentifier)
                 system_float_value = system_result_float * system_result_float - system_result_float * system_float_value;
                 system_float_value = system_result_float * system_result_float + system_result_float * system_float_value;
                 *(float *)(system_long_result + SYSTEM_DATA_COMPARE_SIZE + system_long_result * 8) = system_result_float + system_float_value;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER + system_long_result * 8) = system_result_float + system_float_value;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + system_int_result_unsigned * 8) = system_result_float - system_float_value;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + system_int_result_unsigned * 8) = system_result_float - system_float_value;
-                system_long_value = *(longlong *)(handleIdentifier + 0x218);
+                *(float *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_218) + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER + system_long_result * 8) = system_result_float + system_float_value;
+                *(float *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_218) + system_int_result_unsigned * 8) = system_result_float - system_float_value;
+                *(float *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_218) + 4 + system_int_result_unsigned * 8) = system_result_float - system_float_value;
+                system_long_value = *(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_218);
                 system_float_value = *(float *)(system_long_result + system_int_result_unsigned * 8);
                 system_float_value = *(float *)(system_long_result + 4 + system_int_result_unsigned * 8);
                 system_float_value = *(float *)(system_long_result + SYSTEM_OFFSET_18 + system_long_result * 8);
@@ -60181,10 +60181,10 @@ uint64_t ProcessFunction797e0(longlong handleIdentifier,uint resourceIdentifier)
                 system_float_value = system_result_float * system_result_float - system_result_float * system_float_value;
                 system_float_value = system_result_float * system_result_float + system_result_float * system_float_value;
                 *(float *)(system_long_result + SYSTEM_OFFSET_18 + system_long_result * 8) = system_result_float + system_float_value;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + SYSTEM_CONFIG_SIZE_NETWORK + system_long_result * 8) = system_result_float + system_float_value;
+                *(float *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_218) + SYSTEM_CONFIG_SIZE_NETWORK + system_long_result * 8) = system_result_float + system_float_value;
                 system_long_value = system_long_result + 4;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + system_int_result_unsigned * 8) = system_result_float - system_float_value;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + system_int_result_unsigned * 8) = system_result_float - system_float_value;
+                *(float *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_218) + system_int_result_unsigned * 8) = system_result_float - system_float_value;
+                *(float *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_218) + 4 + system_int_result_unsigned * 8) = system_result_float - system_float_value;
                 system_status_code = system_int_result_unsigned + 4;
               } while (system_long_result < system_long_result + -3);
             }
@@ -60192,7 +60192,7 @@ uint64_t ProcessFunction797e0(longlong handleIdentifier,uint resourceIdentifier)
               system_status_code = system_int_result + system_integer_result_unsigned;
               do {
                 system_status_code = (ulonglong)system_integer_result_unsigned;
-                system_long_value = *(longlong *)(handleIdentifier + 0x218);
+                system_long_value = *(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_218);
                 system_float_value = *(float *)(system_long_result + system_int_result_unsigned * 8);
                 system_float_value = *(float *)(system_long_result + 4 + system_int_result_unsigned * 8);
                 system_float_value = *(float *)(system_long_result + system_long_result * 8);
@@ -60200,10 +60200,10 @@ uint64_t ProcessFunction797e0(longlong handleIdentifier,uint resourceIdentifier)
                 system_float_value = system_result_float * system_result_float - system_result_float * system_float_value;
                 system_float_value = system_result_float * system_result_float + system_result_float * system_float_value;
                 *(float *)(system_long_result + system_long_result * 8) = system_result_float + system_float_value;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + system_long_result * 8) = system_result_float + system_float_value;
+                *(float *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_218) + 4 + system_long_result * 8) = system_result_float + system_float_value;
                 system_long_value = system_long_result + 1;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + system_int_result_unsigned * 8) = system_result_float - system_float_value;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + system_int_result_unsigned * 8) = system_result_float - system_float_value;
+                *(float *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_218) + system_int_result_unsigned * 8) = system_result_float - system_float_value;
+                *(float *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_218) + 4 + system_int_result_unsigned * 8) = system_result_float - system_float_value;
                 system_status_code = system_int_result_unsigned + 1;
               } while (system_long_result < system_long_result);
             }
@@ -60318,7 +60318,7 @@ uint64_t ProcessFunction79832(uint64_t handleIdentifier,uint64_t resourceIdentif
             system_integer_result = system_int_result + ((int)(((system_long_result + -3) - system_long_result) - 1U >> 2) + 1) * 4;
             do {
               system_status_code = (ulonglong)system_integer_result_unsigned;
-              system_long_value = *(longlong *)(in_R11 + 0x218);
+              system_long_value = *(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218);
               system_status_code = (ulonglong)(system_int_result_unsigned - 1);
               system_status_code = (ulonglong)(system_int_result_unsigned - 2);
               system_status_code = system_int_result_unsigned - 3;
@@ -60329,10 +60329,10 @@ uint64_t ProcessFunction79832(uint64_t handleIdentifier,uint64_t resourceIdentif
               system_float_value = system_result_float * system_result_float - system_result_float * system_float_value;
               system_float_value = system_result_float * system_result_float + system_result_float * system_float_value;
               *(float *)(system_long_result + system_long_result * 8) = system_result_float + system_float_value;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + system_long_result * 8) = system_result_float + system_float_value;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + (ulonglong)system_int_result_unsigned * 8) = system_result_float - system_float_value;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + (ulonglong)system_int_result_unsigned * 8) = system_result_float - system_float_value;
-              system_long_value = *(longlong *)(in_R11 + 0x218);
+              *(float *)(*(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218) + 4 + system_long_result * 8) = system_result_float + system_float_value;
+              *(float *)(*(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218) + (ulonglong)system_int_result_unsigned * 8) = system_result_float - system_float_value;
+              *(float *)(*(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218) + 4 + (ulonglong)system_int_result_unsigned * 8) = system_result_float - system_float_value;
+              system_long_value = *(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218);
               system_float_value = *(float *)(system_long_result + 4 + system_int_result_unsigned * 8);
               system_float_value = *(float *)(system_long_result + system_int_result_unsigned * 8);
               system_float_value = *(float *)(system_long_result + 8 + system_long_result * 8);
@@ -60340,10 +60340,10 @@ uint64_t ProcessFunction79832(uint64_t handleIdentifier,uint64_t resourceIdentif
               system_float_value = system_result_float * system_result_float - system_result_float * system_float_value;
               system_float_value = system_result_float * system_result_float + system_result_float * system_float_value;
               *(float *)(system_long_result + 8 + system_long_result * 8) = system_result_float + system_float_value;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + 0xc + system_long_result * 8) = system_result_float + system_float_value;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + system_int_result_unsigned * 8) = system_result_float - system_float_value;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + system_int_result_unsigned * 8) = system_result_float - system_float_value;
-              system_long_value = *(longlong *)(in_R11 + 0x218);
+              *(float *)(*(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218) + 0xc + system_long_result * 8) = system_result_float + system_float_value;
+              *(float *)(*(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218) + system_int_result_unsigned * 8) = system_result_float - system_float_value;
+              *(float *)(*(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218) + 4 + system_int_result_unsigned * 8) = system_result_float - system_float_value;
+              system_long_value = *(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218);
               system_float_value = *(float *)(system_long_result + system_int_result_unsigned * 8);
               system_float_value = *(float *)(system_long_result + 4 + system_int_result_unsigned * 8);
               system_float_value = *(float *)(system_long_result + SYSTEM_DATA_COMPARE_SIZE + system_long_result * 8);
@@ -60351,10 +60351,10 @@ uint64_t ProcessFunction79832(uint64_t handleIdentifier,uint64_t resourceIdentif
               system_float_value = system_result_float * system_result_float - system_result_float * system_float_value;
               system_float_value = system_result_float * system_result_float + system_result_float * system_float_value;
               *(float *)(system_long_result + SYSTEM_DATA_COMPARE_SIZE + system_long_result * 8) = system_result_float + system_float_value;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER + system_long_result * 8) = system_result_float + system_float_value;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + system_int_result_unsigned * 8) = system_result_float - system_float_value;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + system_int_result_unsigned * 8) = system_result_float - system_float_value;
-              system_long_value = *(longlong *)(in_R11 + 0x218);
+              *(float *)(*(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218) + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER + system_long_result * 8) = system_result_float + system_float_value;
+              *(float *)(*(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218) + system_int_result_unsigned * 8) = system_result_float - system_float_value;
+              *(float *)(*(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218) + 4 + system_int_result_unsigned * 8) = system_result_float - system_float_value;
+              system_long_value = *(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218);
               system_float_value = *(float *)(system_long_result + system_int_result_unsigned * 8);
               system_float_value = *(float *)(system_long_result + 4 + system_int_result_unsigned * 8);
               system_float_value = *(float *)(system_long_result + SYSTEM_OFFSET_18 + system_long_result * 8);
@@ -60362,10 +60362,10 @@ uint64_t ProcessFunction79832(uint64_t handleIdentifier,uint64_t resourceIdentif
               system_float_value = system_result_float * system_result_float - system_result_float * system_float_value;
               system_float_value = system_result_float * system_result_float + system_result_float * system_float_value;
               *(float *)(system_long_result + SYSTEM_OFFSET_18 + system_long_result * 8) = system_result_float + system_float_value;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + SYSTEM_CONFIG_SIZE_NETWORK + system_long_result * 8) = system_result_float + system_float_value;
+              *(float *)(*(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218) + SYSTEM_CONFIG_SIZE_NETWORK + system_long_result * 8) = system_result_float + system_float_value;
               system_long_value = system_long_result + 4;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + system_int_result_unsigned * 8) = system_result_float - system_float_value;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + system_int_result_unsigned * 8) = system_result_float - system_float_value;
+              *(float *)(*(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218) + system_int_result_unsigned * 8) = system_result_float - system_float_value;
+              *(float *)(*(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218) + 4 + system_int_result_unsigned * 8) = system_result_float - system_float_value;
               system_status_code = system_int_result_unsigned + 4;
             } while (system_long_result < system_long_result + -3);
           }
@@ -60373,7 +60373,7 @@ uint64_t ProcessFunction79832(uint64_t handleIdentifier,uint64_t resourceIdentif
             system_status_code = system_int_result + system_reg_r14d_value;
             do {
               system_status_code = (ulonglong)system_integer_result_unsigned;
-              system_long_value = *(longlong *)(in_R11 + 0x218);
+              system_long_value = *(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218);
               system_float_value = *(float *)(system_long_result + system_int_result_unsigned * 8);
               system_float_value = *(float *)(system_long_result + 4 + system_int_result_unsigned * 8);
               system_float_value = *(float *)(system_long_result + system_long_result * 8);
@@ -60381,10 +60381,10 @@ uint64_t ProcessFunction79832(uint64_t handleIdentifier,uint64_t resourceIdentif
               system_float_value = system_result_float * system_result_float - system_result_float * system_float_value;
               system_float_value = system_result_float * system_result_float + system_result_float * system_float_value;
               *(float *)(system_long_result + system_long_result * 8) = system_result_float + system_float_value;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + system_long_result * 8) = system_result_float + system_float_value;
+              *(float *)(*(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218) + 4 + system_long_result * 8) = system_result_float + system_float_value;
               system_long_value = system_long_result + 1;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + system_int_result_unsigned * 8) = system_result_float - system_float_value;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + system_int_result_unsigned * 8) = system_result_float - system_float_value;
+              *(float *)(*(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218) + system_int_result_unsigned * 8) = system_result_float - system_float_value;
+              *(float *)(*(longlong *)(in_R11 + SYSTEM_DATA_OFFSET_218) + 4 + system_int_result_unsigned * 8) = system_result_float - system_float_value;
               system_status_code = system_int_result_unsigned + 1;
             } while (system_long_result < system_long_result);
           }
