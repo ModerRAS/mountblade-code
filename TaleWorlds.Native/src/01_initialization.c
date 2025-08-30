@@ -479,7 +479,7 @@
 #define SYSTEM_INIT_FLOAT_VALUE_PI_2        0x3fc90fdb  // 浮点数π/2的十六进制表示
 #define SYSTEM_INIT_FLOAT_VALUE_MAX         SYSTEM_INIT_FLOAT_MAX_VALUE  // 最大浮点数的十六进制表示
 #define SYSTEM_INIT_DOUBLE_VALUE_1_0        0x3ff0000000000000  // 双精度浮点数1.0的十六进制表示
-#define SYSTEM_INIT_DOUBLE_FLOAT_PAIR_1_0   0x0x10f8000000x10f800000  // 两个单精度1.0组合的十六进制表示
+#define SYSTEM_INIT_DOUBLE_FLOAT_PAIR_1_0   0x3f8000003f800000  // 两个单精度1.0组合的十六进制表示
 
 // 补充硬编码值语义化常量（2025年8月30日最终批次补充）
 // 栈值常量（2025年8月30日最终批次补充）
