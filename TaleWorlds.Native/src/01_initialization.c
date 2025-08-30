@@ -141,17 +141,17 @@
 #define MODULE_TYPE_STRING_MANAGER_INIT 0x1c
 
 // 更多位掩码常量定义
-#define SYSTEM_HIGH_32BIT_MASK SYSTEM_HIGH_32BIT_MASK
-#define SYSTEM_MAX_64BIT_VALUE SYSTEM_MAX_64BIT_VALUE
-#define SYSTEM_ADDRESS_ALIGNMENT_MASK SYSTEM_ADDRESS_ALIGNMENT_MASK
-#define SYSTEM_MODULE_FLAG_MASK SYSTEM_MODULE_FLAG_MASK
-#define SYSTEM_POWER_2_BIT_MASK SYSTEM_POWER_2_BIT_MASK
+#define SYSTEM_HIGH_32BIT_MASK 0xffffffff00000000
+#define SYSTEM_MAX_64BIT_VALUE 0xffffffffffffffff
+#define SYSTEM_ADDRESS_ALIGNMENT_MASK 0xffffffffffc00000
+#define SYSTEM_MODULE_FLAG_MASK 0xffff7fff
+#define SYSTEM_POWER_2_BIT_MASK 0x4000000000000000
 
 // 更多字符串常量定义
-#define SYSTEM_STRING_Slot_path SYSTEM_STRING_Slot_path  // "../Tools" backwards
-#define SYSTEM_STRING_Autostatus SYSTEM_STRING_Autostatus  // "/TestAut" backwards
-#define SYSTEM_STRING_Atomination SYSTEM_STRING_Atomination  // "omnation/" backwards
-#define SYSTEM_STRING_Attachment SYSTEM_STRING_Attachment  // "Attachme" backwards
+#define SYSTEM_STRING_Slot_path 0x736c6f6f542f2e2e  // "../Tools" backwards
+#define SYSTEM_STRING_Autostatus 0x747541747365542f  // "/TestAut" backwards
+#define SYSTEM_STRING_Atomination 0x2f6e6f6974616d6f  // "omnation/" backwards
+#define SYSTEM_STRING_Attachment 0x656d686361747441  // "Attachme" backwards
 
 void InitializeGameData(void);
 
@@ -12567,8 +12567,8 @@ void InitializeSystemModule59(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = 0x46c54bc98fc3fc2a;
-  node_previous[7] = 0x727b256e3af32585;
+  node_previous[6] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
+  node_previous[7] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
   node_previous[8] = &g_global_system_config;
   node_previous[9] = 2;
   node_previous[10] = flag_initialized;
@@ -12614,8 +12614,8 @@ void InitializeSystemModule6(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = 0x41ffd0b76c1e136f;
-  node_previous[7] = 0x25db30365f277abb;
+  node_previous[6] = INITIALIZATION_NODE_VALUE_1;
+  node_previous[7] = INITIALIZATION_NODE_VALUE_2;
   node_previous[8] = &g_global_system_config;
   node_previous[9] = 2;
   node_previous[10] = flag_initialized;
@@ -13131,8 +13131,8 @@ void InitializeGraphicsMemory(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = 0x46c54bc98fc3fc2a;
-  node_previous[7] = 0x727b256e3af32585;
+  node_previous[6] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
+  node_previous[7] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
   node_previous[8] = &g_global_system_config;
   node_previous[9] = 2;
   node_previous[10] = flag_initialized;
@@ -13178,8 +13178,8 @@ void InitializeRenderSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = 0x41ffd0b76c1e136f;
-  node_previous[7] = 0x25db30365f277abb;
+  node_previous[6] = INITIALIZATION_NODE_VALUE_1;
+  node_previous[7] = INITIALIZATION_NODE_VALUE_2;
   node_previous[8] = &g_global_system_config;
   node_previous[9] = 2;
   node_previous[10] = flag_initialized;
@@ -13789,8 +13789,8 @@ void InitializeSystemDataNode24(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = 0x46c54bc98fc3fc2a;
-  node_previous[7] = 0x727b256e3af32585;
+  node_previous[6] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
+  node_previous[7] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
   node_previous[8] = &g_global_system_config;
   node_previous[9] = 2;
   node_previous[10] = flag_initialized;
@@ -13836,8 +13836,8 @@ void InitializeSystemDataNode25(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = 0x41ffd0b76c1e136f;
-  node_previous[7] = 0x25db30365f277abb;
+  node_previous[6] = INITIALIZATION_NODE_VALUE_1;
+  node_previous[7] = INITIALIZATION_NODE_VALUE_2;
   node_previous[8] = &g_global_system_config;
   node_previous[9] = 2;
   node_previous[10] = flag_initialized;
@@ -13920,8 +13920,8 @@ void InitializeSystemModule59(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = 0x46c54bc98fc3fc2a;
-  node_previous[7] = 0x727b256e3af32585;
+  node_previous[6] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
+  node_previous[7] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
   node_previous[8] = &g_global_system_config;
   node_previous[9] = 2;
   node_previous[10] = flag_initialized;
@@ -13967,8 +13967,8 @@ void InitializeSystemModule6(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = 0x41ffd0b76c1e136f;
-  node_previous[7] = 0x25db30365f277abb;
+  node_previous[6] = INITIALIZATION_NODE_VALUE_1;
+  node_previous[7] = INITIALIZATION_NODE_VALUE_2;
   node_previous[8] = &g_global_system_config;
   node_previous[9] = 2;
   node_previous[10] = flag_initialized;
@@ -14014,8 +14014,8 @@ void InitializeStringManagerSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = 0x46c54bc98fc3fc2a;
-  node_previous[7] = 0x727b256e3af32585;
+  node_previous[6] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
+  node_previous[7] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
   node_previous[8] = &g_global_system_config;
   node_previous[9] = 2;
   node_previous[10] = flag_initialized;
@@ -14061,8 +14061,8 @@ void InitializeMemoryManagerSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = 0x41ffd0b76c1e136f;
-  node_previous[7] = 0x25db30365f277abb;
+  node_previous[6] = INITIALIZATION_NODE_VALUE_1;
+  node_previous[7] = INITIALIZATION_NODE_VALUE_2;
   node_previous[8] = &g_global_system_config;
   node_previous[9] = 2;
   node_previous[10] = flag_initialized;
@@ -14137,8 +14137,8 @@ void InitializeResourceSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = 0x46c54bc98fc3fc2a;
-  node_previous[7] = 0x727b256e3af32585;
+  node_previous[6] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
+  node_previous[7] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
   node_previous[8] = &g_global_system_config;
   node_previous[9] = 2;
   node_previous[10] = flag_initialized;
@@ -14184,8 +14184,8 @@ void InitializeTextureSystem(void)
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
-  node_previous[6] = 0x41ffd0b76c1e136f;
-  node_previous[7] = 0x25db30365f277abb;
+  node_previous[6] = INITIALIZATION_NODE_VALUE_1;
+  node_previous[7] = INITIALIZATION_NODE_VALUE_2;
   node_previous[8] = &g_global_system_config;
   node_previous[9] = 2;
   node_previous[10] = flag_initialized;
