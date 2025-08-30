@@ -7866,7 +7866,7 @@ uint64 utilityFinalizeResourceTask(longlong resource_handle_identifier,longlong 
       do {
         utility_operation_status = *(int *)((longlong)destination_float_ptr + utility_memory_offset);
         if (utility_operation_status != UTILITY_NEGATIVE_INTEGER_FLAG) {
-          *(float *)(*(longlong *)(validation_flag_primary + POINTER_DATA_OFFSET) + 4 + (longlong)resource_size_limit * RESOURCE_HANDLE_OFFSET) = *destination_float_ptr;
+          *(float *)(*(longlong *)(validation_flag_primary + POINTER_DATA_OFFSET) + UTILITY_FLOAT_COMPONENT_COUNT + (longlong)resource_size_limit * RESOURCE_HANDLE_OFFSET) = *destination_float_ptr;
         }
         utility_iteration_counter = (int)utility_iteration_index + UTILITY_INTEGER_INCREMENT_VALUE;
         utility_iteration_index = (ulonglong)utility_iteration_counter;
@@ -7942,7 +7942,7 @@ uint64 utilityCompleteResourceCycle(void)
       do {
         utility_operation_status = *(int *)((longlong)destination_float_ptr + utility_memory_offset);
         if (utility_operation_status != UTILITY_NEGATIVE_INTEGER_FLAG) {
-          *(float *)(*(longlong *)(validation_flag_primary + POINTER_DATA_OFFSET) + 4 + (longlong)utility_operation_status * RESOURCE_HANDLE_OFFSET) = *destination_float_ptr;
+          *(float *)(*(longlong *)(validation_flag_primary + POINTER_DATA_OFFSET) + UTILITY_FLOAT_COMPONENT_COUNT + (longlong)utility_operation_status * RESOURCE_HANDLE_OFFSET) = *destination_float_ptr;
         }
         utility_cpu_register_data_primary = utility_cpu_register_data_primary + UTILITY_INTEGER_INCREMENT_VALUE;
         destination_float_ptr = destination_float_ptr + UTILITY_INTEGER_INCREMENT_VALUE;

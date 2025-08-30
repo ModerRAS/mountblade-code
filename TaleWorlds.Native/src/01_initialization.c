@@ -252,6 +252,13 @@
 #define SYSTEM_NODE_INDEX_STATUS_FLAG 9
 #define SYSTEM_NODE_INDEX_INITIALIZATION_FUNCTION 10
 
+// 系统数据数组索引常量语义化定义
+#define SYSTEM_DATA_INDEX_RESOURCE_POOL_PTR 0x29
+#define SYSTEM_DATA_INDEX_RESOURCE_POOL_FLAG 0x2a
+#define SYSTEM_DATA_INDEX_HANDLE_IDENTIFIER 0x610
+#define SYSTEM_DATA_INDEX_CONFIG_HANDLER 0x2c0
+#define SYSTEM_DATA_INDEX_RENDER_CONFIG 0x23
+
 // 系统核心偏移量常量语义化定义
 #define SYSTEM_CORE_OFFSET_CONFIG 0x22
 #define SYSTEM_CORE_OFFSET_PATH SYSTEM_MAX_CONFIG_SIZE0
@@ -1051,21 +1058,21 @@ void* g_event_system;  // 事件系统指针
 
 void* g_message_queue;  // 消息队列指针
 
-void* g_thread_pool;
+void* g_thread_pool;  // 线程池指针
 
-void* g_task_scheduler;
+void* g_task_scheduler;  // 任务调度器指针
 
-void* g_file_system;
+void* g_file_system;  // 文件系统指针
 
-void* g_config_manager;
+void* g_config_manager;  // 配置管理器指针
 
-void* g_graphics_driver;
+void* g_graphics_driver;  // 图形驱动指针
 
-void* g_audio_driver;
+void* g_audio_driver;  // 音频驱动指针
 
-void* g_input_driver_system;
+void* g_input_driver_system;  // 输入驱动系统指针
 
-void* g_network_driver_system;
+void* g_network_driver_system;  // 网络驱动系统指针
 
 void* g_resource_manager;
 
