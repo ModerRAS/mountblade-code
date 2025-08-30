@@ -7984,7 +7984,7 @@ unsigned long long * system_execution_function(unsigned long long *handle_param,
   *handle_param = &g_system_handle_param_backup;
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_0D] = SYSTEM_ZERO_VALUE;
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_0E] = SYSTEM_ZERO_VALUE;
-  handle_param[0xf] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_0F] = SYSTEM_ZERO_VALUE;
   handle_param[STRING_BUFFER_SIZE] = SYSTEM_ZERO_VALUE;
   handle_param[0x11] = SYSTEM_ZERO_VALUE;
   handle_param[0x12] = SYSTEM_ZERO_VALUE;
