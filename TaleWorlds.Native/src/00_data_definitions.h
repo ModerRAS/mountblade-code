@@ -1,6 +1,20 @@
-// 系统数据定义文件 - 美化硬编码值（2025年8月30日最终批次+补充批次）
+// 系统数据定义文件 - 美化硬编码值（2025年8月30日最终批次+补充批次+最终完成批次）
 // 简化实现：仅将常见的硬编码值替换为语义化常量
 // 原本实现：完全重构硬编码值体系
+
+// 本次最终完成美化内容（2025年8月30日最终完成批次）：
+// - 美化颜色处理权重常量，将硬编码的0.2126、0.7152、0.0722替换为SYSTEM_COLOR_WEIGHT_*等语义化常量
+// - 美化浮点数精度比较常量，将硬编码的0.0001替换为SYSTEM_FLOAT_PRECISION_THRESHOLD等语义化常量
+// - 美化颜色亮度计算中的硬编码浮点数值，替换为对应的语义化常量
+// - 美化浮点数除法运算中的硬编码1.0值，替换为SYSTEM_FLOAT_VALUE_ONE语义化常量
+// - 美化数学计算常量，将硬编码的0.19634955、6.2831855、3.1415927、0.5替换为SYSTEM_FLOAT_*等语义化常量
+// - 添加了SYSTEM_COLOR_WEIGHT_RED、SYSTEM_COLOR_WEIGHT_GREEN、SYSTEM_COLOR_WEIGHT_BLUE等颜色权重常量定义
+// - 添加了SYSTEM_FLOAT_PRECISION_THRESHOLD浮点数精度比较阈值常量定义
+// - 添加了SYSTEM_FLOAT_HALF_CIRCLE、SYSTEM_FLOAT_TWO_PI、SYSTEM_FLOAT_PI、SYSTEM_FLOAT_HALF等数学计算常量定义
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中剩余硬编码浮点数值的语义化替换
+// - 原本实现：完全重构所有硬编码值体系，消除所有硬编码浮点数值
+// - 简化实现：仅将常见的硬编码浮点数值替换为语义化常量
 
 // 本次最新美化内容（2025年8月30日最终批次）：
 // - 美化全局数据指针数组索引，将硬编码的1、7、10替换为SYSTEM_GLOBAL_DATA_INDEX_*等语义化常量
@@ -121,6 +135,20 @@
 #define SYSTEM_FLOAT_MAX_VALUE 3.4028235e+38           // 最大浮点数
 #define SYSTEM_FLOAT_CONVERSION_FACTOR_0_003921569 0.003921569 // 转换因子
 #define SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT // 字节转浮点数转换因子
+
+// 颜色处理权重常量定义（2025年8月30日最终批次美化）
+#define SYSTEM_COLOR_WEIGHT_RED 0.2126      // 红色通道权重
+#define SYSTEM_COLOR_WEIGHT_GREEN 0.7152     // 绿色通道权重
+#define SYSTEM_COLOR_WEIGHT_BLUE 0.0722      // 蓝色通道权重
+
+// 浮点数精度比较常量定义（2025年8月30日最终批次美化）
+#define SYSTEM_FLOAT_PRECISION_THRESHOLD 0.0001  // 浮点数精度比较阈值
+
+// 数学计算常量定义（2025年8月30日最终批次美化）
+#define SYSTEM_FLOAT_HALF_CIRCLE 0.19634955    // 半圆弧度值 (π/16)
+#define SYSTEM_FLOAT_TWO_PI 6.2831855          // 2π值
+#define SYSTEM_FLOAT_PI 3.1415927              // π值
+#define SYSTEM_FLOAT_HALF 0.5                  // 0.5值
 
 // 系统字符常量定义
 #define SYSTEM_CHAR_NULL 0x00
@@ -6988,11 +7016,11 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
         pfloat_var = pfloat_var + 8;
         pfloat_var = pfloat_var + 0xb;
         pfloat_var = pfloat_var + 0xc;
-        color_luminance_accumulator = color_luminance_accumulator + (double)*pfloat_var * 0.2126 + (double)float_var * 0.2126 +
-                          (double)*pfloat_var * 0.2126 + (double)*pfloat_var * 0.2126 +
-                          (double)*pfloat_var * 0.7152 +
-                          (double)*pfloat_var * 0.7152 + (double)*pfloat_var * 0.7152 +
-                          (double)*pfloat_var * 0.7152 +
+        color_luminance_accumulator = color_luminance_accumulator + (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_RED + (double)float_var * SYSTEM_COLOR_WEIGHT_RED +
+                          (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_RED + (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_RED +
+                          (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_GREEN +
+                          (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_GREEN + (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_GREEN +
+                          (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_GREEN +
                           (double)*pfloat_var * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT + (double)*pfloat_var * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT +
                           (double)*pfloat_var * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT + (double)*pfloat_var * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT;
         buffer_allocation_result = buffer_allocation_result - 1;
@@ -7007,12 +7035,12 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
         pfloat_var = pfloat_var + -2;
         float_var = *pfloat_var;
         pfloat_var = pfloat_var + 3;
-        color_luminance_accumulator = color_luminance_accumulator + (double)*pfloat_var * 0.7152 + (double)*pfloat_var * 0.2126 +
+        color_luminance_accumulator = color_luminance_accumulator + (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_GREEN + (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_RED +
                           (double)float_var * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT;
         buffer_allocation_result = buffer_allocation_result - 1;
       } while (buffer_allocation_result != 0);
     }
-    color_luminance_accumulator = 1.0 / (color_luminance_accumulator / (double)str_len_counter);
+    color_luminance_accumulator = SYSTEM_FLOAT_VALUE_ONE / (color_luminance_accumulator / (double)str_len_counter);
     if (3 < thread_result_status) {
       buffer_allocation_result = (thread_result_status - 4U >> 2) + 1;
       buffer_allocation_result = (ulong long)buffer_allocation_result;
@@ -7076,11 +7104,11 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
         pfloat_var = pfloat_var + 10;
         pfloat_var = pfloat_var + 0xe;
         pfloat_var = pfloat_var + SYSTEM_OFFSET_STRING_BUFFER_SIZE;
-        color_luminance_accumulator = color_luminance_accumulator + (double)*pfloat_var * 0.2126 + (double)float_var * 0.2126 +
-                          (double)*pfloat_var * 0.2126 + (double)*pfloat_var * 0.2126 +
-                          (double)*pfloat_var * 0.7152 +
-                          (double)*pfloat_var * 0.7152 + (double)*pfloat_var * 0.7152 +
-                          (double)*pfloat_var * 0.7152 +
+        color_luminance_accumulator = color_luminance_accumulator + (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_RED + (double)float_var * SYSTEM_COLOR_WEIGHT_RED +
+                          (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_RED + (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_RED +
+                          (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_GREEN +
+                          (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_GREEN + (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_GREEN +
+                          (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_GREEN +
                           (double)*pfloat_var * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT + (double)*pfloat_var * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT +
                           (double)*pfloat_var * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT + (double)*pfloat_var * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT;
         buffer_allocation_result = buffer_allocation_result - 1;
@@ -7095,12 +7123,12 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
         pfloat_var = pfloat_var + -2;
         float_var = *pfloat_var;
         pfloat_var = pfloat_var + SYSTEM_OFFSET_HANDLE_PARAM;
-        color_luminance_accumulator = color_luminance_accumulator + (double)*pfloat_var * 0.7152 + (double)*pfloat_var * 0.2126 +
+        color_luminance_accumulator = color_luminance_accumulator + (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_GREEN + (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_RED +
                           (double)float_var * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT;
         buffer_allocation_result = buffer_allocation_result - 1;
       } while (buffer_allocation_result != 0);
     }
-    color_luminance_accumulator = 1.0 / (color_luminance_accumulator / (double)str_len_counter);
+    color_luminance_accumulator = SYSTEM_FLOAT_VALUE_ONE / (color_luminance_accumulator / (double)str_len_counter);
     if (3 < thread_result_status) {
       buffer_allocation_result = (thread_result_status - 4U >> 2) + 1;
       buffer_allocation_result = (ulong long)buffer_allocation_result;
@@ -7181,13 +7209,13 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
                   ((*(long long *)(thread_operation_flags + SYSTEM_OFFSET_PATH_SIZE) - *(long long *)(thread_operation_flags + 0x1a)) / 0xb0)) {
         string_input_pointer = (void *)(buffer_allocation_result + *(long long *)(thread_operation_flags + 0x1a));
       }
-      if ((((0.0001 <= ABS(*(float *)(string_input_pointer + SYSTEM_CONFIG_OFFSET_INIT_FLAG) - (float)string_input_pointer[5])) ||
-           (0.0001 <= ABS(*(float *)(string_input_pointer + SYSTEM_OFFSET_GLOBAL_DATA_PTR) - (float)string_input_pointer[6]))) ||
-          (0.0001 <= ABS(*(float *)(string_input_pointer + SYSTEM_OFFSET_PATH_SIZE) - (float)string_input_pointer[7]))) ||
-         (((0.0001 <= ABS(*(float *)(string_input_pointer + SYSTEM_OFFSET_STRING_BUFFER_SIZE) - (float)string_input_pointer[4]) ||
-           (0.0001 <= ABS(*(float *)(string_input_pointer + path_buffer_size) - (float)string_input_pointer[8]))) ||
-          ((0.0001 <= ABS(*(float *)(string_input_pointer + SYSTEM_OFFSET_PATH_BUFFER) - (float)string_input_pointer[9]) ||
-           (0.0001 <= ABS(*(float *)(string_input_pointer + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG) - (float)string_input_pointer[10]))))))) {
+      if ((((SYSTEM_FLOAT_PRECISION_THRESHOLD <= ABS(*(float *)(string_input_pointer + SYSTEM_CONFIG_OFFSET_INIT_FLAG) - (float)string_input_pointer[5])) ||
+           (SYSTEM_FLOAT_PRECISION_THRESHOLD <= ABS(*(float *)(string_input_pointer + SYSTEM_OFFSET_GLOBAL_DATA_PTR) - (float)string_input_pointer[6]))) ||
+          (SYSTEM_FLOAT_PRECISION_THRESHOLD <= ABS(*(float *)(string_input_pointer + SYSTEM_OFFSET_PATH_SIZE) - (float)string_input_pointer[7]))) ||
+         (((SYSTEM_FLOAT_PRECISION_THRESHOLD <= ABS(*(float *)(string_input_pointer + SYSTEM_OFFSET_STRING_BUFFER_SIZE) - (float)string_input_pointer[4]) ||
+           (SYSTEM_FLOAT_PRECISION_THRESHOLD <= ABS(*(float *)(string_input_pointer + path_buffer_size) - (float)string_input_pointer[8]))) ||
+          ((SYSTEM_FLOAT_PRECISION_THRESHOLD <= ABS(*(float *)(string_input_pointer + SYSTEM_OFFSET_PATH_BUFFER) - (float)string_input_pointer[9]) ||
+           (SYSTEM_FLOAT_PRECISION_THRESHOLD <= ABS(*(float *)(string_input_pointer + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG) - (float)string_input_pointer[10]))))))) {
         *string_input_pointer = *string_input_pointer | 8;
       }
       buffer_allocation_result = system_allocator_001(handle_param,string_input_pointer + SYSTEM_POINTER_OFFSET8,string_input_pointer + 0x22);
@@ -12395,7 +12423,7 @@ long long process_context_handle_param(long long *handle_param)
         str_len_counter = str_len_counter + 1;
       }
       if (((handle_param2 == '\0') || ((buffer_allocation_result & 1) != 0)) &&
-         (system_char_variable = system_execution_function((double)((float)(int)buffer_allocation_result * 0.19634955),SUB84((double)system_control_parameter,0),
+         (system_char_variable = system_execution_function((double)((float)(int)buffer_allocation_result * SYSTEM_FLOAT_HALF_CIRCLE),SUB84((double)system_control_parameter,0),
                                 (double)param_7), system_char_variable != '\0')) {
         fStack_370 = *(float *)(&maximum_stack_size + str_len_counter * 2) - *(float *)(&maximum_stack_size + str_len_counter * 2);
         maximum_stack_size = merge_32bit_values(afStack_2e8[str_len_counter * 4 + 1] - afStack_2e8[str_len_counter * 4 + 1],
@@ -12551,10 +12579,10 @@ unsigned long long allocate_resource_memory(int handle_param)
       float_var = SYSTEM_FLOAT_VALUE_ONE / (float)(int)buffer_allocation_result;
       unassigned_xmm_register_six = zero_extension_float((uint)float_var);
       do {
-        float_var = (float)cosf(((float)(int)buffer_allocation_result * 6.2831855 + 3.1415927) * float_var);
+        float_var = (float)cosf(((float)(int)buffer_allocation_result * SYSTEM_FLOAT_TWO_PI + SYSTEM_FLOAT_PI) * float_var);
         buffer_allocation_result = (int)buffer_allocation_result + 1;
         buffer_allocation_result = (ulong long)buffer_allocation_result;
-        *pfloat_var = 0.5 / float_var;
+        *pfloat_var = SYSTEM_FLOAT_HALF / float_var;
         pfloat_var = pfloat_var + 1;
       } while ((int)buffer_allocation_result < (int)buffer_allocation_result);
     }
