@@ -1750,10 +1750,10 @@ uint64 utility_execute_resource_handle_operation(longlong utility_resource_prima
   utility_operation_status_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + utility_resource_primary_handle_data_offset),utility_temporary_stack_buffer);
   if ((int)utility_operation_status_result == utility_zero) {
     if (utility_temporary_stack_buffer[utility_array_index_zero] == utility_zero) {
-      utility_temp_stack_buffer_buffer[utility_array_index_zero] = utility_zero;
+      utility_temporary_stack_buffer[utility_array_index_zero] = utility_zero;
     }
     else {
-      utility_temp_stack_buffer_buffer[utility_array_index_zero] = utility_temp_stack_buffer_buffer[utility_array_index_zero] + utility_stack_pointer_adjustment;
+      utility_temporary_stack_buffer[utility_array_index_zero] = utility_temporary_stack_buffer[utility_array_index_zero] + utility_stack_pointer_adjustment;
     }
     utility_stack_buffer_array[utility_array_index_first] = utility_zero;
     utility_operation_status_result = utility_process_resource_data(utility_temp_stack_buffer_buffer[utility_array_index_zero],utility_resource_primary_handle + utility_resource_operation_offset,utility_stack_buffer_array);
@@ -1781,10 +1781,10 @@ uint64 utility_manage_resource_handle_operation(longlong utility_resource_primar
   utility_operation_status_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + utility_resource_primary_handle_data_offset),utility_temporary_stack_buffer);
   if ((int)utility_operation_status_result == utility_zero) {
     if (utility_temporary_stack_buffer[utility_array_index_zero] == utility_zero) {
-      utility_temp_stack_buffer_buffer[utility_array_index_zero] = utility_zero;
+      utility_temporary_stack_buffer[utility_array_index_zero] = utility_zero;
     }
     else {
-      utility_temp_stack_buffer_buffer[utility_array_index_zero] = utility_temp_stack_buffer_buffer[utility_array_index_zero] + utility_stack_pointer_adjustment;
+      utility_temporary_stack_buffer[utility_array_index_zero] = utility_temporary_stack_buffer[utility_array_index_zero] + utility_stack_pointer_adjustment;
     }
     utility_stack_buffer_array[utility_array_index_first] = utility_zero;
     utility_operation_status_result = utility_process_resource_data(utility_temp_stack_buffer_buffer[utility_array_index_zero],utility_resource_primary_handle + utility_pointer_data_offset_extended_extended_extended,utility_stack_buffer_array);
