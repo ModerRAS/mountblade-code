@@ -1050,10 +1050,10 @@ dataValue framebufferStencilAttachment;
 
 // 函数: dataValueValue renderSyncInitialize;
 dataValue renderSyncInitialize;
-dataValue render_sync_fence;
-dataValue render_sync_fence;
-dataValue render_sync_semaphore;
-dataValue render_sync_semaphore;
+dataValue render_sync_fence_primary;
+dataValue render_sync_fence_secondary;
+dataValue render_sync_semaphore_primary;
+dataValue render_sync_semaphore_secondary;
 dataValue framebufferResolveTarget;
 
 // 函数: dataValueValue renderMemoryInitialize;
@@ -1061,18 +1061,18 @@ dataValue renderMemoryInitialize;
 
 // 函数: dataValueValue renderResourceInitialize;
 dataValue renderResourceInitialize;
-dataValue render_resource_buffer_pointer;
-dataValue render_resource_buffer_pointer;
-dataValue render_resource_buffer_pointer;
-dataValue render_resource_buffer_pointer;
+dataValue render_resource_buffer_pointer_vertex;
+dataValue render_resource_buffer_pointer_index;
+dataValue render_resource_buffer_pointer_uniform;
+dataValue render_resource_buffer_pointer_storage;
 dataValue framebufferClearColor;
 dataValue renderResourceHandle;
 
 // 函数: dataValueValue renderTextureInitialize;
 dataValue renderTextureInitialize;
-dataValue render_texture_buffer;
-dataValue render_texture_buffer;
-dataValue render_texture_buffer;
+dataValue render_texture_buffer_color;
+dataValue render_texture_buffer_depth;
+dataValue render_texture_buffer_stencil;
 dataValue computeShaderKernel;
 dataValue render_sampler_buffer_primary;
 dataValue render_sampler_buffer_secondary;
