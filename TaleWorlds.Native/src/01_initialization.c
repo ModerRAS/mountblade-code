@@ -48,6 +48,16 @@
 // - 添加了RENDER_DATA_END_ADDR等计算常量，提高代码可读性
 // - 保持了代码语义不变，仅提高可读性和维护性
 
+// 最新美化内容：
+// - 将system_buffer_ptr_468等数字后缀变量替换为语义化名称如system_buffer_ptr_data_config等
+// - 将system_buffer_ptr_80等替换为system_buffer_ptr_resource_primary等描述性名称
+// - 将system_buffer_ptr_138等替换为system_buffer_ptr_resource_pool等功能性名称
+// - 将system_buffer_ptr_618等替换为system_buffer_ptr_graphics_main等系统组件名称
+// - 将system_RSI等系统寄存器变量替换为system_register_rsi等描述性名称
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+// - 这是简化实现，主要处理了系统缓冲区指针变量和寄存器变量的语义化替换
+
 // 地址常量定义
 #define AUDIO_SYSTEM_BASE_ADDR 0x180c91700
 #define INPUT_SYSTEM_BASE_ADDR 0x180c91800
