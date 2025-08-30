@@ -20,6 +20,8 @@
 // - 将0x288替换为UTILITY_RESOURCE_CALLBACK_OFFSET_288等资源回调偏移量常量
 // - 将0x328替换为UTILITY_MEMORY_DATA_OFFSET_328等内存数据偏移量常量
 // - 将0x500替换为UTILITY_CONTEXT_MODULE_OFFSET_500等上下文模块偏移量常量
+// - 将0x168/0x1f8/0x298/0x310/0x3b8等替换为UTILITY_RESOURCE_BUFFER_OFFSET_*等资源缓冲区偏移量常量
+// - 将指针大小偏移量的硬编码值1替换为UTILITY_POINTER_SIZE_OFFSET_BYTE语义化常量
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了工具系统中十六进制常量的语义化替换
 // - 原本实现：完全重构常量定义体系
@@ -2142,8 +2144,8 @@ dataValue g_scene_manager_config_lighting;         // 场景管理器配置光�
 dataValue g_scene_manager_config_shadows;          // 场景管理器配置阴影;
 dataValue g_scene_manager_config_post_processing;    // 场景管理器配置后处理;
 dataValue g_scene_manager_config_rendering;       // 场景管理器配置渲染;
-dataValue materialShaderConfig;
-dataValue materialTextureConfig;
+dataValue g_material_shader_config;               // 材质着色器配置;
+dataValue g_material_texture_config;             // 材质纹理配置;
 dataValue materialPropertyConfig;
 dataValue materialRenderConfig;
 dataValue textureLoadingConfig;
