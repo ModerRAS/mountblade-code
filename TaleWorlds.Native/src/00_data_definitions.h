@@ -4856,7 +4856,7 @@ label_:
     *(unsigned long long *)(mutex_attr + 0x44) = 0;
     *(unsigned long long *)(mutex_attr + 0x4c) = 0;
     uint_var_ = func_0x000180220c90(*(unsigned int *)(mutex_attr + 0x54));
-    strcpy_s(mutex_attr + 0x14,系统配置缓冲区大小,uint_var_);
+    strcpy_s(mutex_attr + 0x14, SYSTEM_CONFIG_BUFFER_SIZE, uint_var_);
   }
 label_:
   system_processor_012(auStack_260);
