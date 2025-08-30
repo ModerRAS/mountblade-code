@@ -263,6 +263,21 @@
 #define SYSTEM_HASH_CONSTANT_1 0x7a143595
 #define SYSTEM_HASH_CONSTANT_2 0x3d4d51cb
 
+// 系统资源大小常量
+#define SYSTEM_RESOURCE_SIZE_SMALL_590 0x590
+#define SYSTEM_RESOURCE_SIZE_MEDIUM_A90 0xa90
+#define SYSTEM_RESOURCE_SIZE_LARGE_1428 0x1428
+
+// 系统配置大小常量
+#define SYSTEM_CONFIG_SIZE_PHYSICS 0x24
+#define SYSTEM_CONFIG_SIZE_STATUS 0x20
+#define SYSTEM_CONFIG_SIZE_MAX 0x1000
+
+// 系统字符串标识常量
+#define SYSTEM_STRING_IDENTIFIER_DIR_ROOT 0x6320726f74696445
+#define SYSTEM_STRING_IDENTIFIER_DIR_INFO 0x69666e6f
+#define SYSTEM_STRING_IDENTIFIER_OFFSET_67 0x67
+
 // 系统状态常量
 #define SYSTEM_STATUS_UNINITIALIZED 0
 #define SYSTEM_STATUS_INITIALIZED 1
@@ -15070,7 +15085,7 @@ void InitializeThreadManagerSystem(void)
   system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = 0;
   init_stack_uint_size_90 = SYSTEM_CONFIG_SIZE_STATUS;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_global_system_config,system_parameter,INVALID_HANDLE_VALUE);
-  g_system_object_26 = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
+  g_system_object_physics_context = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
   return;
 }
 
