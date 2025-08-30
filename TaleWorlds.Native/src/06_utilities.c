@@ -3509,8 +3509,8 @@ uint64 execute_resource_command(longlong resource_handle_identifier)
   uint utility_loop_counter;
   uint64 system_status_code;
   uint64 *validation_result_array;
-  int integer_var;
-  float float_result_variable_context;
+  int utility_temp_int_value;
+  float utility_temp_float_result;
   byte utility_float_process_buffer [16];
   longlong system_resource_handle_primary;
   
@@ -3520,7 +3520,7 @@ uint64 execute_resource_command(longlong resource_handle_identifier)
   }
   resource_buffer = *(longlong *)(systemMemoryHandle + 8);
   if (resource_buffer != 0) {
-    float_result_variable_context = *(float *)(resource_handle_identifier + POINTER_DATA_OFFSET);
+    utility_temp_float_result = *(float *)(resource_handle_identifier + POINTER_DATA_OFFSET);
     for (validation_result_array = *(uint64 **)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET);
         (*(uint64 **)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET) <= validation_result_array &&
         (validation_result_array < *(uint64 **)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET) + *(int *)(resource_buffer + list_head_offset))); validation_result_array = validation_result_array + 1) {

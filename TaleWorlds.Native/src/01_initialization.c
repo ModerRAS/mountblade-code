@@ -560,7 +560,8 @@ void* g_global_config_manager;
 
 void* g_global_touch_manager;
 
-uint8_t g_system_video_initialized;
+// 系统视频初始化状态（uint8_t类型，位于行563）
+uint8_t g_system_video_initialized_primary;
 void* g_global_settings_manager;
 
 void* g_global_options_manager;
@@ -689,7 +690,8 @@ void* g_global_system_reserved_2;
 void* g_global_system_reserved_3;
 void* g_global_system_reserved_4;
 
-char g_system_video_initialized;
+// 系统视频初始化状态（char类型，位于行692）
+char g_system_video_initialized_secondary;
 
 void* g_global_system_reserved_5;
 void* g_global_system_reserved_6;
@@ -930,12 +932,14 @@ void* g_global_data_event_config;
 
 void* g_global_data_physics_pool;
 
+// 屏幕宽度配置
 uint32_t g_config_screen_width;
-uint32_t g_config_screen_dimension;
-uint32_t g_config_screen_dimension;
+// 屏幕高度配置
+uint32_t g_config_screen_height;
 void* g_static_data_queue_primary;
 
-char g_system_data_status;
+// 系统数据状态（主状态，位于行938）
+char g_system_data_status_primary;
 
 void* g_global_data_mesh_cache;
 
@@ -957,7 +961,8 @@ void* g_global_data_file_buffer;
 
 void* g_global_data_security_buffer;
 
-char g_system_data_status;
+// 系统数据状态（次状态，位于行960）
+char g_system_data_status_secondary;
 void* g_global_data_render_config;
 
 void* g_global_data_audio_config;
@@ -972,7 +977,8 @@ void* g_global_data_buffer_secondary;
 
 void* g_global_data_buffer_tertiary;
 
-char g_system_data_status;
+// 系统数据状态（第三状态，位于行975）
+char g_system_data_status_tertiary;
 
 void* g_global_data_buffer_quaternary;
 
