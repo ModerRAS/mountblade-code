@@ -233,6 +233,18 @@
 
 #define NETWORK_BASIC_VALUE_UNSIGNED NETWORK_BUFFER_SIZE_ADJUSTMENT_4U     // 基本无符号值4
 
+// 网络系统比较值语义化常量（2025年8月30日最终批次最新完成）
+#define NETWORK_SYSTEM_COMPARISON_VALUE_ONE 1     // 系统比较值1
+#define NETWORK_SYSTEM_COMPARISON_VALUE_TWO 2     // 系统比较值2
+#define NETWORK_SYSTEM_COMPARISON_VALUE_THREE 3   // 系统比较值3
+#define NETWORK_SYSTEM_COMPARISON_VALUE_FOUR 4    // 系统比较值4
+#define NETWORK_SYSTEM_COMPARISON_VALUE_FIVE 5    // 系统比较值5
+#define NETWORK_SYSTEM_COMPARISON_VALUE_SIX 6     // 系统比较值6
+#define NETWORK_SYSTEM_COMPARISON_VALUE_SEVEN 7  // 系统比较值7
+#define NETWORK_SYSTEM_COMPARISON_VALUE_EIGHT 8  // 系统比较值8
+#define NETWORK_SYSTEM_COMPARISON_VALUE_NINE 9   // 系统比较值9
+#define NETWORK_SYSTEM_COMPARISON_VALUE_TEN 10   // 系统比较值10
+
 // - 将硬编码的套接字压缩偏移量常量替换为语义化常量
 // - 将硬编码的套接字句柄偏移量常量替换为语义化常量
 // - 新增网络系统比较值语义化常量，将硬编码的1-10替换为NETWORK_SYSTEM_COMPARISON_VALUE_*等语义化常量
