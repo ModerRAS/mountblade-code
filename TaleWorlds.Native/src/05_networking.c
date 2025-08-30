@@ -18531,7 +18531,7 @@ uint64_t network_socket_handle(int64_t network_socket_handle, float network_buff
     if (*(int64_t *)(network_socket_handle + NETWORK_CONFIG_OFFSET) != NETWORK_STATUS_FAILURE) {
       network_buffer_ptr = network_buffer_ptr * *(float *)(network_socket_handle + NETWORK_CONNECTION_DATA_OFFSET_2Fc);
       network_signal_strength = NETWORK_FLOAT_COMPARISON_ZERO;
-      if ((NETWORK_FLOAT_COMPARISON_ZERO <= network_buffer_ptr) && (network_signal_strength = network_buffer_ptr,NETWORK_PARAM_SIZE_MAXIMUM0.0 <= network_buffer_ptr)) {
+      if ((NETWORK_FLOAT_COMPARISON_ZERO <= network_buffer_ptr) && (network_signal_strength = network_buffer_ptr,NETWORK_FLOAT_VALUE_PARAM_SIZE_MAXIMUM <= network_buffer_ptr)) {
         network_signal_strength = NETWORK_SIGNAL_STRENGTH_MAXIMUM;
       network_op_status = network_socket_handle(network_socket_handle + NETWORK_CONFIG_OFFSET), network_signal_strength);
 uint64_t network_socket_handle(uint64_t network_socket_handle, uint32_t network_buffer_ptr)
@@ -19574,7 +19574,7 @@ network_connection_processor_close_label:
   if ((network_calculated_frequency_novenary != network_float_stack_primary) && (*(int64_t *)(network_socket_handle + NETWORK_CONFIG_OFFSET) != NETWORK_STATUS_FAILURE)) {
     network_calculated_frequency_novenary = *(float *)(network_socket_handle + NETWORK_CONNECTION_DATA_OFFSET_2F8) * network_calculated_frequency_novenary;
     network_frequency_calculated_septenary = NETWORK_FLOAT_COMPARISON_ZERO;
-    if ((NETWORK_FLOAT_COMPARISON_ZERO <= network_calculated_frequency_novenary) && (network_frequency_calculated_septenary = network_calculated_frequency_novenary,NETWORK_PARAM_SIZE_MAXIMUM0.0 <= network_calculated_frequency_novenary)) {
+    if ((NETWORK_FLOAT_COMPARISON_ZERO <= network_calculated_frequency_novenary) && (network_frequency_calculated_septenary = network_calculated_frequency_novenary,NETWORK_FLOAT_VALUE_PARAM_SIZE_MAXIMUM <= network_calculated_frequency_novenary)) {
       network_frequency_calculated_septenary = NETWORK_FREQUENCY_BASE_VALUE;
     network_socket_handle(network_socket_handle + NETWORK_CONFIG_OFFSET), network_frequency_calculated_septenary);
   network_encrypt_data(network_connection_processor_data_status ^ (NETWORK_ULONG_LONG)network_validation_large_buffer);
@@ -19708,7 +19708,7 @@ void network_socket_handle(float network_socket_handle, int64_t network_buffer_p
   *(float *)(network_socket_ctx + NETWORK_CONNECTION_DATA_OFFSET_2Fc) = network_socket_register_primary;
   if ((network_socket_register_primary != network_config_param_ptr) && (*(int64_t *)(network_socket_ctx + NETWORK_CONFIG_OFFSET) != NETWORK_STATUS_FAILURE)) {
     network_minimum_distance = *(float *)(network_socket_ctx + NETWORK_CONNECTION_DATA_OFFSET_2F8) * network_socket_register_primary;
-    if ((network_socket_register_primary <= network_minimum_distance) && (network_socket_register_primary = network_minimum_distance,NETWORK_PARAM_SIZE_MAXIMUM0.0 <= network_minimum_distance)) {
+    if ((network_socket_register_primary <= network_minimum_distance) && (network_socket_register_primary = network_minimum_distance,NETWORK_FLOAT_VALUE_PARAM_SIZE_MAXIMUM <= network_minimum_distance)) {
       network_socket_register_primary = NETWORK_SOCKET_REGISTER_DEFAULT;
     network_socket_handle(network_socket_ctx + NETWORK_CONFIG_OFFSET), network_socket_register_primary);
   network_encrypt_data(*(uint64_t *)(network_socket_ctx + -NETWORK_SOCKET_HANDLE_OFFSET) ^ (NETWORK_ULONG_LONG)&network_global_buffer);
@@ -19899,7 +19899,7 @@ void network_socket_handle(float network_socket_handle)
   *(uint32_t *)(network_socket_ctx + NETWORK_CONNECTION_DATA_OFFSET_2Fc) = NETWORK_STATUS_ACTIVE;
   if ((network_socket_handle != NETWORK_STATUS_SUCCESS.NETWORK_STATUS_FAILURE) && (*(int64_t *)(network_socket_ctx + NETWORK_CONFIG_OFFSET) != NETWORK_STATUS_FAILURE)) {
     network_calculated_frequency = *(float *)(network_socket_ctx + NETWORK_CONNECTION_DATA_OFFSET_2F8) * NETWORK_STATUS_SUCCESS.NETWORK_STATUS_FAILURE;
-    if ((network_socket_register_primary <= network_calculated_frequency) && (network_socket_register_primary = network_calculated_frequency,NETWORK_PARAM_SIZE_MAXIMUM0.0 <= network_calculated_frequency)) {
+    if ((network_socket_register_primary <= network_calculated_frequency) && (network_socket_register_primary = network_calculated_frequency,NETWORK_FLOAT_VALUE_PARAM_SIZE_MAXIMUM <= network_calculated_frequency)) {
   uint8_t network_validation_temp_buffer [NETWORK_VALIDATION_BUFFER_SIZE_80];
   if ((*(int64_t *)(network_socket_handle + NETWORK_SOCKET_RESOURCE_OFFSET) == NETWORK_STATUS_FAILURE) && (*(int64_t *)(network_socket_handle + NETWORK_SOCKET_HEADER_OFFSET_BASE) != NETWORK_STATUS_FAILURE)) {
     server_port_addr = (*(code *)**(uint64_t **)(network_socket_handle + NETWORK_HEADER_SIZE_DEFAULT))(network_socket_handle + NETWORK_HEADER_SIZE_DEFAULT);
