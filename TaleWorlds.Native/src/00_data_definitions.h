@@ -1910,14 +1910,14 @@ extern char system_flag_buffer_cleanup_handler;
 #define SYSTEM_OFFSET_FUNCTION_OFFSET_200 0x200 // 函数偏移量200
 
 // 系统指针偏移量常量定义（新增）
-#define SYSTEM_POINTER_OFFSET70 0x70
-#define SYSTEM_POINTER_OFFSET78 0x78
-#define SYSTEM_POINTER_OFFSET80 0x80
+#define SYSTEM_POINTER_OFFSET_REGISTER_CACHE 0x70  // 寄存器缓存指针偏移量
+#define SYSTEM_POINTER_OFFSET_STACK_FRAME 0x78    // 栈帧指针偏移量
+#define SYSTEM_POINTER_OFFSET_HEAP_BASE 0x80       // 堆基指针偏移量
 
 // 系统浮点数常量定义（新增）
-#define SYSTEM_FLOAT_CONSTANT_4CBEBC20 0x4cbebc20
-#define SYSTEM_FLOAT_CONSTANT_7F7FFFFF 0x7f7fffff
-#define SYSTEM_FLOAT_CONSTANT_CCBEBC20 0xccbebc20
+#define SYSTEM_FLOAT_CONSTANT_SINGLE_PRECISION_MAX 0x4cbebc20  // 单精度浮点数最大值
+#define SYSTEM_FLOAT_CONSTANT_DOUBLE_PRECISION_MAX 0x7f7fffff  // 双精度浮点数最大值
+#define SYSTEM_FLOAT_CONSTANT_NEGATIVE_PRECISION_MAX 0xccbebc20  // 负精度浮点数最大值
 
 // 系统内存分配大小常量定义（新增）
 #define SYSTEM_MEMORY_ALLOC_SIZE_SMALL 0xd
