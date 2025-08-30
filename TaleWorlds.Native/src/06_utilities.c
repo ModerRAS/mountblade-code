@@ -15021,10 +15021,10 @@ uint64 InitializeDataProcessor(uint64 *resource_handle_identifier,uint64 resourc
   uint64 utility_loop_counter;
   int utility_array_index;
   longlong utility_cpu_context;
-  int utility_stack_context_int_30;
+  int utility_stack_context_buffer_size;
   
   utility_operation_status = *(int *)(utility_cpu_context + RESOURCE_HANDLE_OFFSET);
-  utility_stack_context_int_30 = resource_size_limit;
+  utility_stack_context_buffer_size = resource_size_limit;
   utility_loop_counter = (**(code **)*resource_handle_identifier)(resource_handle_identifier,resource_buffer,4);
   if ((int)utility_loop_counter == 0) {
     utility_array_index = 0;
