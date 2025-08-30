@@ -1949,8 +1949,8 @@ void NetworkResetConnection(void)
 uint32_t NetworkGetConnectionData(uint32_t network_socket_descriptor,int64_t network_buffer_pointer,uint64_t *network_buffer_size) {
   uint64_t *network_processor_data_main;
   uint64_t *network_packet_size_ptr;
-  undefined *connection_data_pointer;
-  undefined *network_processor_index_ptr;
+  void *connection_data_pointer;
+  void *network_processor_index_ptr;
   int64_t network_validation_data_buffer [NETWORK_BUFFER_SIZE_MEDIUM];
   uint64_t network_socket_descriptor;
   uint64_t network_connection_processor_identifier;
@@ -1975,27 +1975,27 @@ uint32_t NetworkGetConnectionData(uint32_t network_socket_descriptor,int64_t net
   for (network_packet_size_ptr = (uint64_t *)*network_processor_data_main; network_packet_size_ptr != network_processor_data_main; network_packet_size_ptr = (uint64_t *)*network_packet_size_ptr) {
     if (*(int32_t *)(network_packet_size_ptr + NETWORK_ARRAY_INDEX_3) < NETWORK_OPERATION_SUCCESS) {
       network_processor_data_ptr = &g_networkEmptyString;
-      network_processor_data_ptr = (undefined *)network_packet_size_ptr[NETWORK_BUFFER_SIZE_MEDIUM];
+      network_processor_data_ptr = (void *)network_packet_size_ptr[NETWORK_BUFFER_SIZE_MEDIUM];
     status_return_code = networkValidateDataIntegrity(network_processor_data_ptr,network_buffer_pointer);
     if (status_return_code == NETWORK_OPERATION_FAILURE) {
       if (NETWORK_OPERATION_FAILURE < *(int32_t *)(network_packet_size_ptr + NETWORK_ARRAY_INDEX_3)) {
-        network_processor_index_ptr = (undefined *)network_packet_size_ptr[NETWORK_BUFFER_SIZE_MEDIUM];
+        network_processor_index_ptr = (void *)network_packet_size_ptr[NETWORK_BUFFER_SIZE_MEDIUM];
       *network_buffer_size = network_processor_index_ptr;
       *(uint32_t *)(network_buffer_size + NETWORK_OPERATION_SUCCESS) = NETWORK_BUFFER_SIZE_MEDIUM;
       *(uint32_t *)(network_buffer_size + NETWORK_BUFFER_SIZE_MEDIUM) = *(uint32_t *)(network_packet_size_ptr + NETWORK_STRUCTURE_SECOND_FIELD_OFFSET);
       goto network_timeout_value_ptr_label;
     if (network_packet_size_ptr == network_processor_data_main) goto network_timeout_value_ptr_label;
   network_processor_data_main = (uint64_t *)(network_session_data_context + NETWORK_SESSION_BUFFER_OFFSET);
-      connection_data_pointer = (undefined *)network_packet_size_ptr[NETWORK_BUFFER_SIZE_MEDIUM];
+      connection_data_pointer = (void *)network_packet_size_ptr[NETWORK_BUFFER_SIZE_MEDIUM];
     status_return_code = networkValidateDataIntegrity(connection_data_pointer,network_buffer_pointer);
       if (*(int32_t *)(network_packet_size_ptr + NETWORK_ARRAY_INDEX_3) < NETWORK_OPERATION_SUCCESS) {
         connection_data_pointer = &g_networkEmptyString;
       else {
-        connection_data_pointer = (undefined *)network_packet_size_ptr[NETWORK_BUFFER_SIZE_MEDIUM];
+        connection_data_pointer = (void *)network_packet_size_ptr[NETWORK_BUFFER_SIZE_MEDIUM];
       *network_buffer_size = connection_data_pointer;
       *(uint32_t *)(network_buffer_size + NETWORK_OPERATION_SUCCESS) = 3;
       if (NETWORK_OPERATION_FAILURE < *(int32_t *)(network_packet_size_ptr + NETWORK_ARRAY_INDEX_5)) {
-        network_processor_index_ptr = (undefined *)network_packet_size_ptr[4];
+        network_processor_index_ptr = (void *)network_packet_size_ptr[NETWORK_ARRAY_SIZE_4];
       network_buffer_size[NETWORK_BUFFER_SIZE_MEDIUM] = network_processor_index_ptr;
       break;
     if (network_packet_size_ptr == network_processor_data_main) break;
@@ -2024,7 +2024,7 @@ void NetworkSendDataWithTimeout(uint64_t network_socket_descriptor,uint64_t netw
       *(uint32_t *)(network_socket_context_ptr + NETWORK_BUFFER_SIZE_MEDIUM) = *(uint32_t *)(network_packet_size_ptr + NETWORK_ARRAY_INDEX_4);
   network_processor_data_main = (uint64_t *)(network_connection_processor_context + NETWORK_SESSION_BUFFER_OFFSET);
         network_processor_data_ptr = &g_networkEmptyString;
-        network_processor_data_ptr = (undefined *)network_packet_size_ptr[NETWORK_BUFFER_SIZE_MEDIUM];
+        network_processor_data_ptr = (void *)network_packet_size_ptr[NETWORK_BUFFER_SIZE_MEDIUM];
       *network_socket_context_ptr = network_processor_data_ptr;
       *(uint32_t *)(network_socket_context_ptr + NETWORK_OPERATION_SUCCESS) = 3;
       network_socket_context_ptr[NETWORK_BUFFER_SIZE_MEDIUM] = network_processor_index_ptr;
