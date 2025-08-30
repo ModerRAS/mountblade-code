@@ -6,10 +6,14 @@
 // - 将utility_register_xmm6_da替换为utility_xmm_register_data_primary等XMM寄存器变量名
 // - 将utility_stack_cpu_register_context_68替换为utility_stack_cpu_context_buffer等栈上下文变量名
 // - 将utility_stack_uint_xmm_da_1a0替换为utility_stack_xmm_data_primary等栈数据变量名
-// - 总共替换了5个变量名，提高了代码的可读性和维护性
-// - 这是简化实现，主要处理了工具系统中寄存器和栈变量名的语义化替换
-// - 原本实现：完全重构寄存器和栈变量的命名体系
-// - 简化实现：仅将十六进制后缀替换为语义化名称
+// - 将0xfffffffffffffffe替换为UTILITY_SYSTEM_END_FLAG_EXTENDED等系统常量
+// - 将0xffffffff00000000替换为UTILITY_MEMORY_MASK_HIGH等内存掩码常量
+// - 将0x50414e53替换为UTILITY_RESOURCE_SIGNATURE_PANIC等资源签名常量
+// - 将函数地址注释180941590替换为utility_initialize_system_core等语义化名称
+// - 总共替换了20+个常量和注释，提高了代码的可读性和维护性
+// - 这是简化实现，主要处理了工具系统中常量、掩码和签名的语义化替换
+// - 原本实现：完全重构常量定义体系和注释系统
+// - 简化实现：仅将十六进制常量替换为语义化宏定义，更新函数地址注释
 // - 保持代码语义不变，提高可读性
 
 // 之前美化内容：
