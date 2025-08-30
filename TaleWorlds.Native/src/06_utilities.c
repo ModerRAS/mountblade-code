@@ -4381,7 +4381,7 @@ uint64 utility_validate_resource_handle(longlong resource_handle_identifier)    
   if (operation_buffer == UTILITY_NULL_RESULT) {
     return UTILITY_ERROR_CODE_FAILED;
   }
-  if (*(int *)(operation_buffer + UTILITY_BUFFER_STATUS_OFFSET_ALT) == -1) {
+  if (*(int *)(operation_buffer + UTILITY_BUFFER_STATUS_OFFSET_ALT) == UTILITY_ERROR_CODE_OPERATION_FAILED) {
     utility_system_status_code = utility_process_memory_data(operation_buffer,utility_security_data);
     if ((int)utility_system_status_code != UTILITY_NULL_RESULT) {
       return utility_system_status_code;
@@ -9964,7 +9964,7 @@ uint64 set_allocator_statusFlags(longlong *resource_handle_identifier)
   ulonglong utility_operation_status;
   
   statusCounter = *(int *)((longlong)resource_handle_identifier + FIELD_OFFSET_THIRD);
-  if (statusCounter == -1) {
+  if (statusCounter == UTILITY_ERROR_CODE_OPERATION_FAILED) {
     return UTILITY_BYTE_OFFSET_FLAG;
   }
   utility_operation_status = (int)resource_handle_identifier[1];
@@ -10565,7 +10565,7 @@ uint64 SetupResourceParameters(longlong *resource_handle_identifier,uint *memory
       } while (utility_operation_status != -1);
     }
     utility_operation_status = (int)resource_handle_identifier[4];
-    if (utility_operation_status == -1) {
+    if (utility_operation_status == UTILITY_ERROR_CODE_OPERATION_FAILED) {
       utility_system_status_code = *resourceOperationFlags;
       utility_operation_status = (int)resource_handle_identifier UTILITY_BYTE_SIZE_3;
       resource_count = utility_operation_status + UTILITY_INTEGER_INCREMENT_VALUE;
@@ -10644,7 +10644,7 @@ uint64 allocate_memory_block(uint64 resource_handle_identifier,int resource_buff
     } while (utility_operation_status != -1);
   }
   utility_operation_status = (int)utility_cpu_context[4];
-  if (utility_operation_status == -1) {
+  if (utility_operation_status == UTILITY_ERROR_CODE_OPERATION_FAILED) {
     utility_thread_stack_offset = *utility_cpu_context;
     utility_operation_status = (int)utility_cpu_context UTILITY_BYTE_SIZE_3;
     utility_temp_int_value = utility_operation_status + UTILITY_INTEGER_INCREMENT_VALUE;
@@ -10704,7 +10704,7 @@ uint64 allocate_memory_chunk(uint64 resource_handle_identifier,uint32 resource_b
   uint64 utility_thread_stack_offset;
   
   statusCounter = *(int *)(utility_cpu_context + POINTER_DATA_OFFSET);
-  if (statusCounter == -1) {
+  if (statusCounter == UTILITY_ERROR_CODE_OPERATION_FAILED) {
     utility_thread_stack_offset = *utility_cpu_context;
     statusCounter = *(int *)(utility_cpu_context + RESOURCE_HANDLE_OFFSET);
     utility_iteration_counter_primary = statusCounter + UTILITY_INTEGER_INCREMENT_VALUE;
