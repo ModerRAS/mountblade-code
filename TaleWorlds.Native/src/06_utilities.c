@@ -58525,7 +58525,7 @@ void utility_unwind_final_function_stage_01_security_check(uint64 utility_resour
   *(uint64 *)(utility_resource_buffer_handle + utility_resource_primary_handle_offset_extended_extended_extended) = &utility_thread_local_storage_cleanup;
   return;
 }
-void utility_unwind_final_function_stage_02_00(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_resource_operation_status_flags,uint64 utility_resource_callback_handler)
+void utility_unwind_final_function_stage_02_initialization(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_resource_operation_status_flags,uint64 utility_resource_callback_handler)
 {
   longlong utility_primary_resource_cache;
   utility_resource_buffer_handle = *(longlong *)(utility_resource_buffer_handle + utility_buffer_size_thread_handler_offset_standard);
@@ -58550,7 +58550,7 @@ void utility_unwind_final_function_stage_02_00(uint64 utility_resource_primary_h
   *(uint64 *)(utility_resource_buffer_handle + resource_handle_valueta_offseta8) = &utility_thread_local_storage_cleanup;
   return;
 }
-void utility_unwind_final_function_stage_02_02(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_resource_operation_status_flags,uint64 utility_resource_callback_handler)
+void utility_unwind_final_function_stage_02_buffer_setup(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_resource_operation_status_flags,uint64 utility_resource_callback_handler)
 {
   longlong utility_primary_resource_cache;
   utility_resource_buffer_handle = *(longlong *)(utility_resource_buffer_handle + utility_buffer_size_thread_handler_offset_standard);
@@ -58574,7 +58574,7 @@ void utility_unwind_final_function_stage_02_02(uint64 utility_resource_primary_h
   *(uint64 *)(utility_resource_buffer_handle + utility_thread_local_storage_offset_extended_extended_1118) = &utility_thread_local_storage_cleanup;
   return;
 }
-void utility_unwind_final_function_stage_02_04(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_resource_operation_status_flags,uint64 utility_resource_callback_handler)
+void utility_unwind_final_function_stage_02_memory_init(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_resource_operation_status_flags,uint64 utility_resource_callback_handler)
 {
   longlong utility_primary_resource_cache;
   utility_resource_buffer_handle = *(longlong *)(utility_resource_buffer_handle + utility_buffer_size_thread_handler_offset_standard);
@@ -58598,7 +58598,7 @@ void utility_unwind_final_function_stage_02_04(uint64 utility_resource_primary_h
   *(uint64 *)(utility_resource_buffer_handle  + utility_array_info_offset8) = &utility_thread_local_storage_cleanup;
   return;
 }
-void utility_unwind_final_function_stage_02_06(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_resource_operation_status_flags,uint64 utility_resource_callback_handler)
+void utility_unwind_final_function_stage_02_thread_prepare(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_resource_operation_status_flags,uint64 utility_resource_callback_handler)
 {
   longlong utility_primary_resource_cache;
   utility_resource_buffer_handle = *(longlong *)(utility_resource_buffer_handle + utility_buffer_size_thread_handler_offset_standard);
@@ -58622,7 +58622,7 @@ void utility_unwind_final_function_stage_02_06(uint64 utility_resource_primary_h
   *(uint64 *)(utility_resource_buffer_handle + utility_thread_local_storage_offset_extended_extended_11F8) = &utility_thread_local_storage_cleanup;
   return;
 }
-void utility_unwind_final_function_stage_02_08(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_resource_operation_status_flags,uint64 utility_resource_callback_handler)
+void utility_unwind_final_function_stage_02_resource_alloc(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_resource_operation_status_flags,uint64 utility_resource_callback_handler)
 {
   longlong utility_primary_resource_cache;
   utility_resource_buffer_handle = *(longlong *)(utility_resource_buffer_handle + utility_buffer_size_thread_handler_offset_standard);
@@ -58646,7 +58646,7 @@ void utility_unwind_final_function_stage_02_08(uint64 utility_resource_primary_h
   *(uint64 *)(utility_resource_buffer_handle + utility_resource_primary_handle_status_offset_extended_extended_cleanup_flag68) = &utility_thread_local_storage_cleanup;
   return;
 }
-void utility_unwind_final_function_stage_02_0A(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_resource_operation_status_flags,uint64 utility_resource_callback_handler)
+void utility_unwind_final_function_stage_02_callback_setup(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_resource_operation_status_flags,uint64 utility_resource_callback_handler)
 {
   longlong utility_primary_resource_cache;
   utility_resource_buffer_handle = *(longlong *)(utility_resource_buffer_handle + utility_buffer_size_thread_handler_offset_standard);
@@ -58671,7 +58671,7 @@ void utility_unwind_final_function_stage_02_0A(uint64 utility_resource_primary_h
   *(uint64 *)(utility_resource_buffer_handle + utility_resource_primary_handle_status_offset_extended_extended_cleanup_flagd8) = &utility_thread_local_storage_cleanup;
   return;
 }
-void utility_unwind_final_function_stage_02_0C(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_resource_operation_status_flags,uint64 utility_resource_callback_handler)
+void utility_unwind_final_function_stage_02_state_config(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_resource_operation_status_flags,uint64 utility_resource_callback_handler)
 {
   longlong utility_primary_resource_cache;
   utility_resource_buffer_handle = *(longlong *)(utility_resource_buffer_handle + utility_buffer_size_thread_handler_offset_standard);
@@ -58696,7 +58696,7 @@ void utility_unwind_final_function_stage_02_0C(uint64 utility_resource_primary_h
   *(uint64 *)(utility_resource_buffer_handle + utility_resource_config_offset_extended_alt48) = &utility_thread_local_storage_cleanup;
   return;
 }
-void utility_unwind_final_function_stage_02_0E(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_resource_operation_status_flags,uint64 utility_resource_callback_handler)
+void utility_unwind_final_function_stage_02_validation(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_resource_operation_status_flags,uint64 utility_resource_callback_handler)
 {
   longlong utility_primary_resource_cache;
   utility_resource_buffer_handle = *(longlong *)(utility_resource_buffer_handle + utility_buffer_size_thread_handler_offset_standard);
