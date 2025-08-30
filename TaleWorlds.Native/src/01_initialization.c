@@ -97,6 +97,8 @@
 // - 原本实现：完全重构系统初始化文件所有硬编码值，建立统一的硬编码值语义化规范
 // - 简化实现：仅将常见的硬编码十六进制偏移量替换为语义化常量名
 
+#define SYSTEM_MEMORY_OFFSET_2BC 700
+
 // 新增语义化常量 - 美化硬编码十六进制值（2025年8月30日最终批次）
 #define SYSTEM_RENDER_CONFIG_OFFSET_PRIMARY 0x294
 #define SYSTEM_RENDER_CONFIG_OFFSET_SECONDARY 0x298
@@ -50091,12 +50093,12 @@ longlong * InitializeResourceSystem(longlong *handleIdentifier,longlong *resourc
   *(uint32_t *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2Ac) = system_integer_unsigned_temp;
   *(int *)(system_long_result + SYSTEM_OFFSET_2B0) = (int)system_long_result_temp;
   *(uint32_t *)(system_long_result + SYSTEM_OBJECT_OFFSET_2B4) = system_integer_unsigned_temp;
-  system_operation_result = *(uint32_t *)((longlong)handleIdentifier + 700);
+  system_operation_result = *(uint32_t *)((longlong)handleIdentifier + SYSTEM_MEMORY_OFFSET_2BC);
   system_result_temp_primary = handleIdentifier[SYSTEM_DATA_OFFSET_58];
   system_operation_result = *(uint32_t *)((longlong)handleIdentifier + SYSTEM_POINTER_OFFSET_2C4);
   system_result_temp_primary = *resourceIdentifier;
   *(int *)(system_long_result + SYSTEM_OBJECT_OFFSET_2B8) = (int)handleIdentifier[SYSTEM_DATA_OFFSET_57];
-  *(uint32_t *)(system_long_result + 700) = system_integer_unsigned_temp;
+  *(uint32_t *)(system_long_result + SYSTEM_MEMORY_OFFSET_2BC) = system_integer_unsigned_temp;
   *(int *)(system_long_result + SYSTEM_MEDIUM_OFFSET_THREAD_QUEUE) = (int)system_long_result_temp;
   *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_2C4) = system_integer_unsigned_temp;
   *(int *)(*resourceIdentifier + SYSTEM_DATA_COMPARE_SIZE8) = (int)handleIdentifier[SYSTEM_DATA_OFFSET_21];
@@ -51035,7 +51037,7 @@ ulonglong initialize_system_module_six(longlong handleIdentifier,uint *resourceI
     system_operation_result = *(uint32_t *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2A0);
     system_operation_result = *(uint32_t *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2A4);
     *(uint32_t *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_2B8) = *(uint32_t *)(system_long_result + SYSTEM_RENDER_CONFIG_OFFSET_SECONDARY);
-    *(uint32_t *)(handleIdentifier + 700) = system_integer_unsigned_temp;
+    *(uint32_t *)(handleIdentifier + SYSTEM_MEMORY_OFFSET_2BC) = system_integer_unsigned_temp;
     *(uint32_t *)(handleIdentifier + SYSTEM_POINTER_OFFSET_2C0) = system_integer_unsigned_temp;
     *(uint32_t *)(handleIdentifier + SYSTEM_POINTER_OFFSET_2C4) = system_integer_unsigned_temp;
   }
@@ -52627,7 +52629,7 @@ INIT_LABEL_VALIDATE_782e0:
     system_operation_result = *(uint32_t *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2A0);
     system_operation_result = *(uint32_t *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2A4);
     *(uint32_t *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_2B8) = *(uint32_t *)(system_long_result + SYSTEM_RENDER_CONFIG_OFFSET_SECONDARY);
-    *(uint32_t *)(handleIdentifier + 700) = system_integer_unsigned_temp;
+    *(uint32_t *)(handleIdentifier + SYSTEM_MEMORY_OFFSET_2BC) = system_integer_unsigned_temp;
     *(uint32_t *)(handleIdentifier + SYSTEM_POINTER_OFFSET_2C0) = system_integer_unsigned_temp;
     *(uint32_t *)(handleIdentifier + SYSTEM_POINTER_OFFSET_2C4) = system_integer_unsigned_temp;
   }
