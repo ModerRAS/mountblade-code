@@ -8617,9 +8617,9 @@ void UtilityModule33(void)
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_system_local_buffer_primary;
   system_system_local_buffer_primary[0] = 0;
-  init_stack_uint_size_90 = 0x15;
+  init_stack_auth_config_size = 0x15;
   strcpy_s(system_system_local_buffer_primary,0x80,&g_system_global_config,system_parameter,INVALID_HANDLE_VALUE);
-  g_system_data_variable_c_object_5 = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
+  g_system_auth_context_ptr_2 = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
@@ -8655,9 +8655,9 @@ void InitializeSecuritySystem(void)
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_system_local_buffer_primary;
   system_system_local_buffer_primary[0] = 0;
-  init_stack_uint_size_90 = 0x1a;
+  init_stack_audio_config_size = 0x1a;
   strcpy_s(system_system_local_buffer_primary,0x80,&g_system_global_config,system_parameter,INVALID_HANDLE_VALUE);
-  g_system_status_data_object_5 = create_system_object(&thread_parameter_ptr); // 原始名称: system_statusData
+  g_system_audio_context_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: system_statusData
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
@@ -10978,9 +10978,9 @@ void InitializeSystemDataNode32(void)
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_system_local_buffer_primary;
   system_system_local_buffer_primary[0] = 0;
-  init_stack_uint_size_90 = 0x12;
+  init_stack_render_config_size = 0x12;
   strcpy_s(system_system_local_buffer_primary,0x80,&g_global_system_config,system_parameter,INVALID_HANDLE_VALUE);
-  g_system_object_23 = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
+  g_system_render_context_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
