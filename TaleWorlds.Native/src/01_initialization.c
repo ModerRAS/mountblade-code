@@ -63335,7 +63335,7 @@ longlong *system_memory_pool_pointer;
 #define SYSTEM_INIT_CONTEXT_INDEX_RESOURCE_BASE8   SYSTEM_INIT_VALUE_CONTEXT_INDEX_RESOURCE_BASE8       // 资源基础索引8
 
 // 新增语义化常量定义（2025年8月30日最终批次最新完成）
-#define 0x10             2       // 互斥体对齐值
+#define SYSTEM_INIT_VALUE_MUTEX_ALIGNMENT            2       // 互斥体对齐值
 #define SYSTEM_INIT_VALUE_MEMORY_CHUNK_SIZE           SYSTEM_INIT_SIZE_MEMORY_CHUNK       // 内存块大小值
 #define SYSTEM_INIT_VALUE_DATA_OFFSET_INDEX           SYSTEM_INIT_SIZE_COMPARE       // 数据偏移量数组索引值
 #define SYSTEM_INIT_VALUE_FUNCTION_POINTER_INDEX      10      // 函数指针数组索引值
