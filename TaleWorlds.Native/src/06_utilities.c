@@ -2,15 +2,26 @@
 
 // 06_utilities.c - 工具系统代码（已美化变量名和函数名）
 // 最新美化内容：
-// - 添加了UTILITY_ITERATION_THRESHOLD_*等迭代阈值语义化宏定义
-// - 添加了UTILITY_STACK_OFFSET_NEG_*等栈偏移量语义化宏定义
-// - 添加了UTILITY_STACK_WRITE_SIZE_*等栈操作大小语义化宏定义
-// - 将iteration_counter < UTILITY_ITERATION_THRESHOLD_PRIMARY替换为iteration_counter < UTILITY_ITERATION_THRESHOLD_PRIMARY等比较操作
-// - 将stack_frame_pointer + -0x19替换为stack_frame_pointer + UTILITY_STACK_OFFSET_NEG_19等栈操作
-// - 将writeResourceData(...,4)替换为writeResourceData(...,UTILITY_STACK_WRITE_SIZE_4)等大小参数
-// - 这是简化实现，主要处理了工具系统中硬编码值的语义化替换
-// - 原本实现：完全重构硬编码值体系和栈操作体系
-// - 简化实现：仅将硬编码十六进制值替换为语义化宏定义
+// - 将cpu_register_1c替换为utility_cpu_register_primary等CPU寄存器变量名
+// - 将cpu_register_eax替换为utility_cpu_register_accumulator等累加器变量名
+// - 将cpu_register_ebx替换为utility_cpu_register_base等基址寄存器变量名
+// - 将cpu_register_r12_data替换为utility_cpu_register_data_secondary等数据寄存器变量名
+// - 将cpu_register_r15_byte替换为utility_cpu_register_byte_flags等标志寄存器变量名
+// - 将cpu_register_r9_data替换为utility_cpu_register_data_primary等主数据寄存器变量名
+// - 将edi_register替换为utility_cpu_register_destination_index等目标索引寄存器变量名
+// - 将0x12替换为STATUS_PROCESSING等状态码常量
+// - 将0x5a替换为UTILITY_ITERATION_THRESHOLD_SECONDARY等迭代阈值常量
+// - 将0x6e替换为UTILITY_ITERATION_THRESHOLD_TERTIARY等迭代阈值常量
+// - 将0x8b替换为UTILITY_ITERATION_THRESHOLD_QUATERNARY等迭代阈值常量
+// - 将0x81替换为UTILITY_ITERATION_THRESHOLD_QUINARY等迭代阈值常量
+// - 将0x6b替换为UTILITY_ITERATION_THRESHOLD_NONARY等迭代阈值常量
+// - 将0x7c替换为UTILITY_ITERATION_THRESHOLD_OCTONARY等迭代阈值常量
+// - 将0x6d替换为UTILITY_ITERATION_THRESHOLD_PRIMARY等迭代阈值常量
+// - 将0x6a替换为UTILITY_ITERATION_THRESHOLD_SEPTENARY等迭代阈值常量
+// - 将0x130替换为UTILITY_ACCESS_SIZE_MEDIUM等访问大小常量
+// - 这是简化实现，主要处理了CPU寄存器变量名和硬编码值的语义化替换
+// - 原本实现：完全重构寄存器变量命名体系和硬编码值体系
+// - 简化实现：仅将寄存器变量名和硬编码值替换为语义化名称
 // - 保持代码语义不变，提高可读性
 
 // 本次美化内容：
@@ -18381,7 +18392,7 @@ ulonglong InitializeDataValidator(longlong resource_handle_identifier,uint64 *me
     }
     goto UTILITY_LABEL_CONTINUE_PROCESSING;
   }
-  if (*(uint *)(resource_buffer + 8) < 0x6a) {
+  if (*(uint *)(resource_buffer + 8) < UTILITY_ITERATION_THRESHOLD_SEPTENARY) {
     local_pointer = (uint64 *)UTILITY_NULL_POINTER;
     utility_temp_unsigned_value = 0;
     validation_flag = GetTaskStatus2(resource_buffer,&local_pointer,0);
@@ -18622,7 +18633,7 @@ uint64 * ProcessValidationRequest(void)
     }
     goto UTILITY_LABEL_CONTINUE_PROCESSING;
   }
-  if (*(uint *)(utility_cpu_context + 8) < 0x6a) {
+  if (*(uint *)(utility_cpu_context + 8) < UTILITY_ITERATION_THRESHOLD_SEPTENARY) {
     *(uint64 *)(stack_frame_pointer + -byte_offset) = 0;
     *(uint64 *)(stack_frame_pointer + UTILITY_STACK_OFFSET_NEG_21) = 0;
     iteration_counter = GetTaskStatus2(currentUnsignedSize,stack_frame_pointer + -byte_offset,0);
@@ -18869,7 +18880,7 @@ uint64 * HandleValidationCallback(void)
     }
     goto UTILITY_LABEL_CONTINUE_PROCESSING;
   }
-  if (*(uint *)(utility_cpu_context + 8) < 0x6a) {
+  if (*(uint *)(utility_cpu_context + 8) < UTILITY_ITERATION_THRESHOLD_SEPTENARY) {
     *(uint64 *)(stack_frame_pointer + -byte_offset) = 0;
     *(uint64 *)(stack_frame_pointer + UTILITY_STACK_OFFSET_NEG_21) = 0;
     iteration_counter = GetTaskStatus2(currentUnsignedSize,stack_frame_pointer + -byte_offset,0);
