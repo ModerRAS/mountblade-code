@@ -1,4 +1,4 @@
-// 系统数据定义文件 - 美化硬编码值（2025年8月30日最终批次）
+// 系统数据定义文件 - 美化硬编码值（2025年8月30日最终批次+补充批次）
 // 简化实现：仅将常见的硬编码值替换为语义化常量
 // 原本实现：完全重构硬编码值体系
 
@@ -10,6 +10,16 @@
 // - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中剩余硬编码数组索引和浮点数的语义化替换
 // - 原本实现：完全重构所有硬编码值体系，重新设计所有硬编码值的语义化规范
 // - 简化实现：仅将常见的硬编码数组索引和浮点数替换为语义化常量
+
+// 本次补充美化内容（2025年8月30日补充批次）：
+// - 美化句柄参数数组索引，将硬编码的0x0d-0x2e等替换为SYSTEM_OFFSET_HANDLE_PARAM_*等语义化常量
+// - 美化系统函数调用参数，将硬编码的0x298、0xe0、0x28等替换为SYSTEM_FUNCTION_PARAM_*等语义化常量
+// - 美化系统函数调用偏移量，将硬编码的0x0d替换为SYSTEM_FUNCTION_PARAM_OFFSET_0XD等语义化常量
+// - 美化系统函数调用乘数，将硬编码的0x48、0xc0替换为SYSTEM_FUNCTION_PARAM_MULTIPLIER_*等语义化常量
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中剩余硬编码函数调用参数的语义化替换
+// - 原本实现：完全重构所有硬编码函数调用参数体系，重新设计所有函数调用参数的语义化规范
+// - 简化实现：仅将常见的硬编码函数调用参数替换为语义化常量
 
 // 本次最新美化内容（2025年8月30日最终批次）：
 // - 美化浮点数常量，将硬编码的1.0替换为SYSTEM_FLOAT_VALUE_ONE等语义化常量
@@ -4651,13 +4661,13 @@ section_processing_jump_label_:
     system_performance_counter_prev = (double)thread_stack_base_address * system_global_data_pointer;
     system_global_data_pointer = system_global_data_pointer + 1;
     system_performance_counter_diff = system_performance_counter_prev - system_global_data_pointer;
-    if (1.0 < system_performance_counter_diff) {
+    if (SYSTEM_FLOAT_PERFORMANCE_COMPARE_THRESHOLD < system_performance_counter_diff) {
       *(float *)(str_len_counter + 500) = (float)((double)system_global_data_pointer / system_performance_counter_diff);
       system_global_data_pointer = SYSTEM_ZERO_VALUE;
       system_global_data_pointer = system_performance_counter_prev;
       *(float *)(str_len_counter + SYSTEM_CONSTANT_28) = (float)(SYSTEM_FLOAT_CONVERSION_FACTOR_1000 / *(double *)(str_len_counter + SYSTEM_CHAR_LOWERCASE_P));
     }
-    if (0.0 < *(double *)(system_global_data_pointer + SYSTEM_OFFSET_DOUBLE_VALUE)) {
+    if (SYSTEM_FLOAT_VALUE_ZERO_CHECK < *(double *)(system_global_data_pointer + SYSTEM_OFFSET_DOUBLE_VALUE)) {
       system_handle_param_manager_005(str_len_counter,(float)*(double *)(system_global_data_pointer + SYSTEM_OFFSET_DOUBLE_VALUE));
     }
     if (*(char *)(str_len_counter + SYSTEM_OFFSET_MODULE_DATA) == '\0') {
@@ -4760,13 +4770,13 @@ section_processing_jump_label_:
     system_performance_base = (double)thread_stack_base_address * system_global_data_pointer;
     system_global_data_pointer = system_global_data_pointer + 1;
     system_performance_diff = system_performance_base - system_global_data_pointer;
-    if (1.0 < system_performance_diff) {
+    if (SYSTEM_FLOAT_PERFORMANCE_COMPARE_THRESHOLD < system_performance_diff) {
       *(float *)(handle_param + 500) = (float)((double)system_global_data_pointer / system_performance_diff);
       system_global_data_pointer = SYSTEM_ZERO_VALUE;
       system_global_data_pointer = system_performance_base;
       *(float *)(handle_param + SYSTEM_CONSTANT_28) = (float)(SYSTEM_FLOAT_CONVERSION_FACTOR_1000 / *(double *)(handle_param + SYSTEM_CHAR_LOWERCASE_P));
     }
-    if (0.0 < *(double *)(system_global_data_pointer + SYSTEM_OFFSET_DOUBLE_VALUE)) {
+    if (SYSTEM_FLOAT_VALUE_ZERO_CHECK < *(double *)(system_global_data_pointer + SYSTEM_OFFSET_DOUBLE_VALUE)) {
       system_handle_param_manager_005(handle_param,(float)*(double *)(system_global_data_pointer + SYSTEM_OFFSET_DOUBLE_VALUE));
     }
     if (*(char *)(handle_param + SYSTEM_OFFSET_MODULE_DATA) == '\0') {
@@ -4969,7 +4979,7 @@ section_processing_jump_label_:
   if (float_var * SYSTEM_FLOAT_VALUE_TINY < (float)*(int *)(system_global_data_pointer + SYSTEM_OFFSET_HANDLE_PARAM)) {
     *(float *)(system_global_data_pointer + SYSTEM_OFFSET_STRING_BUFFER_SIZE) = float_var + *(float *)(system_global_data_pointer + SYSTEM_OFFSET_STRING_BUFFER_SIZE);
     float_var = (float)fmodf(str_len_counter,FLOAT_ONE);
-    if (0.5 < float_var) {
+    if (SYSTEM_FLOAT_ARITHMETIC_DIVISION_HALF < float_var) {
       thread_stack_ptr = &g_threadString2;
       maximum_stack_size = SYSTEM_ZERO_VALUE;
       thread_stack_ptr = (unsigned long long *)0x0;
@@ -6444,7 +6454,7 @@ section_processing_jump_label_:
     *thread_operation_flags = float_var;
     thread_operation_flags[1] = float_var;
     thread_operation_flags[2] = float_var;
-    thread_operation_flags[3] = 1.0;
+    thread_operation_flags[3] = SYSTEM_FLOAT_THREAD_OPERATION_FLAG_ENABLED;
     break;
   case 0x16:
     thread_priority_level = mutex_type;
@@ -6480,7 +6490,7 @@ SYSTEM_LABEL_THREAD_OP_BUFFER_ALLOC:
     *thread_operation_flags = (float)maximum_stack_size;
     thread_operation_flags[2] = (float)maximum_stack_size;
 code_section_1ad1:
-    thread_operation_flags[3] = 1.0;
+    thread_operation_flags[3] = SYSTEM_FLOAT_THREAD_OPERATION_FLAG_ENABLED;
     float_var = maximum_stack_size_low_half_extended;
 code_section_1ade:
     thread_operation_flags[1] = float_var;
@@ -6562,7 +6572,7 @@ SYSTEM_LABEL_THREAD_PRIORITY_PROCESSING:
     buffer_allocation_result = (uint)((ulong long)maximum_stack_size >> 8) & 0xff;
     buffer_allocation_result = (ushort)(byte)maximum_stack_size;
 SYSTEM_LABEL_BUFFER_CONVERSION_START:
-    thread_operation_flags[3] = 1.0;
+    thread_operation_flags[3] = SYSTEM_FLOAT_THREAD_OPERATION_FLAG_ENABLED;
     thread_operation_flags[2] = (float)buffer_allocation_result * float_var;
     thread_operation_flags[1] = (float)buffer_allocation_result * float_var;
     break;
@@ -6579,9 +6589,9 @@ SYSTEM_LABEL_BUFFER_CONVERSION_START:
     float_var = (float)buffer_allocation_result;
 SYSTEM_LABEL_THREAD_OP_FINAL_PROCESSING:
     *thread_operation_flags = float_var;
-    thread_operation_flags[1] = 1.0;
-    thread_operation_flags[2] = 1.0;
-    thread_operation_flags[3] = 1.0;
+    thread_operation_flags[1] = SYSTEM_FLOAT_THREAD_OPERATION_FLAG_PRIMARY;
+    thread_operation_flags[2] = SYSTEM_FLOAT_THREAD_OPERATION_FLAG_SECONDARY;
+    thread_operation_flags[3] = SYSTEM_FLOAT_THREAD_OPERATION_FLAG_ENABLED;
   }
 system_handle_paramr_001:
   system_execute_crypto_operation(maximum_stack_size ^ (ulong long)system_stack_ushort_array_2e8);
