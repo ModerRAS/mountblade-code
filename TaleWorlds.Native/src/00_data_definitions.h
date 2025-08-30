@@ -763,9 +763,9 @@ int initialize_data_buffer_system(void)
   misc_resource_flag = FLAG_FONT_RESOURCE;
   strcpy_s(&misc_resource_data_buffer,SYSTEM_CONFIG_BUFFER_SIZE,&particle_resource_string);
   resource_template_ptr = &g_defaultDataTemplate;
-  global_data_ptr = &font_name_buffer;
+  font_name_buffer_ptr = &font_name_buffer;
   font_name_buffer = 0;
-  global_data_ptr = STRING_BUFFER_SIZE;
+  font_name_buffer_size = STRING_BUFFER_SIZE;
   strcpy_s(&font_name_buffer, SYSTEM_CONFIG_BUFFER_SIZE, &font_resource_name_string);
   resource_template_ptr = &g_defaultDataTemplate;
   global_data_ptr = &model_name_buffer;
