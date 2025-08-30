@@ -635,7 +635,7 @@
 #define NETWORK_HANDSHAKE_DATA_2 network_handshake_data_second  // 握手数据2
 #define NETWORK_HANDSHAKE_DATA_3 network_handshake_data_third  // 握手数据3
 #define NETWORK_PROTOCOL_HEADER_VARIANT_SECONDARY g_network_protocol_header_variant_secondary  // 协议头部变量第二版
-#define SOCKET_RESPONSE_OFFSET_EXTENDED SOCKET_RESPONSE_OFFSET_EXTENDED  // 扩展套接字响应偏移量
+#define SOCKET_RESPONSE_OFFSET_EXTENDED 0x1000  // 扩展套接字响应偏移量
 
 // 简化实现：网络系统模块
 // 原本实现：包含复杂的网络连接管理、数据传输、错误处理等功能
@@ -1015,7 +1015,6 @@
 #define NETWORK_CONNECTION_BUFFER_SIZE NETWORK_BUFFER_SIZE_1000  // 连接缓冲区大小
 #define NETWORK_CONNECTION_COUNT_INCR_OFFSET NETWORK_CONNECTION_COUNT_INCR_OFFSET  // Connection count increment offset
 #define NETWORK_CONNECTION_EXTENDED_OFFSET0 NETWORK_ZERO_OFFSET  // Connection extended base offset
-#define NETWORK_CONNECTION_EXTENDED_OFFSET0 NETWORK_ZERO_OFFSET  // Connection extended offset NETWORK_OPERATION_FAILURE
 #define NETWORK_CONNECTION_OFFSET NETWORK_PACKET_HEADER_SIZE  // 连接结构偏移量
 #define NETWORK_CONNECTION_STATE_CHECK_OFFSET NETWORK_CONNECTION_STATE_CHECK_OFFSET  // Connection state check offset
 #define NETWORK_CONNECTION_STATE_MINIMUM NETWORK_BUFFER_SIZE_MEDIUM  // 最小连接状态值
@@ -36856,7 +36855,7 @@ uint64_t networkProcessHandshake(uint64_t network_socket_handle, int64_t network
 #define NETWORK_HANDSHAKE_DATA_2 network_handshake_data_second  // 握手数据2
 #define NETWORK_HANDSHAKE_DATA_3 network_handshake_data_third  // 握手数据3
 #define NETWORK_PROTOCOL_HEADER_VARIANT_SECONDARY g_network_protocol_header_variant_secondary  // 协议头部变量第二版
-#define SOCKET_RESPONSE_OFFSET_EXTENDED SOCKET_RESPONSE_OFFSET_EXTENDED  // 扩展套接字响应偏移量
+// 已在前面定义SOCKET_RESPONSE_OFFSET_EXTENDED
 
 // 美化完成说明：
 // - 将g_network_handshake_data_0-3替换为g_network_handshake_data_0-3

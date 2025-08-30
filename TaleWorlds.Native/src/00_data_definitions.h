@@ -4050,8 +4050,8 @@ section_processing_jump_label_:
     handle_param_system_error(string_input_ptr);
   }
   system_ui_002(system_global_data_pointer,&thread_stack_ptr,&thread_stack_ptr);
-  str_len_counter = system_global_data_pointer + 0x90;
-  str_len_counter = system_execution_function(system_global_data_pointer, SYSTEM_CONFIG_BUFFER_SIZE,*(unsigned char *)(system_global_data_pointer + 0xb8));
+  str_len_counter = system_global_data_pointer + SYSTEM_INIT_OFFSET_MODULE_HANDLE;
+  str_len_counter = system_execution_function(system_global_data_pointer, SYSTEM_CONFIG_BUFFER_SIZE,*(unsigned char *)(system_global_data_pointer + SYSTEM_INIT_OFFSET_CONFIG_SIZE));
   system_thread_manager_003(str_len_counter + path_buffer_size,&thread_stack_ptr);
   str_len_counter = system_event_handle_paramr_005(str_len_counter,acStack_336,str_len_counter + path_buffer_size);
   if (acStack_336[0] == '\0') {
@@ -4059,12 +4059,12 @@ section_processing_jump_label_:
     goto section_processing_jump_label_;
   }
   if (str_len_counter != str_len_counter) {
-    if (*(int *)(str_len_counter + 0x30) == SYSTEM_ZERO_VALUE) {
+    if (*(int *)(str_len_counter + SYSTEM_DATA_OFFSET_STRING_BUFFER) == SYSTEM_ZERO_VALUE) {
 section_processing_jump_label_:
       thread_op_flags = SYSTEM_ONE_VALUE;
       goto section_processing_jump_label_;
     }
-    if (*(int *)(str_len_counter + 0x30) != 0) {
+    if (*(int *)(str_len_counter + SYSTEM_DATA_OFFSET_STRING_BUFFER) != 0) {
       byte_string_input_ptr = *(byte **)(str_len_counter + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG);
       system_initialization_result0 = *(long long *)(str_len_counter + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG) - (long long)byte_string_input_ptr;
       do {
@@ -4113,7 +4113,7 @@ section_processing_jump_label_:
     }
     else {
       *(unsigned int *)(str_len_counter + 0x220) = FLOAT_PI_OVER_4;
-      float_var = 0.033333335;
+      float_var = SYSTEM_FLOAT_VALUE_0_033333335;
     }
     system_handle_param_manager_004(str_len_counter,float_var);
     buffer_alloc_result = system_global_data_pointer;
@@ -4222,7 +4222,7 @@ section_processing_jump_label_:
     }
     else {
       *(unsigned int *)(handle_param + 0x220) = FLOAT_PI_OVER_4;
-      float_var = 0.033333335;
+      float_var = SYSTEM_FLOAT_VALUE_0_033333335;
     }
     system_handle_param_manager_004(handle_param,float_var);
     buffer_alloc_result = system_global_data_pointer;
