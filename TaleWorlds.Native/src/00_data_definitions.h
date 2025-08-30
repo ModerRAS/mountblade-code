@@ -12980,7 +12980,7 @@ unsigned long long allocate_resource_memory(int handle_param)
       if (*(int *)(unregister_bx + SYSTEM_OFFSET_PATH_SIZE4) == thread_result_status) {
         *(unsigned int *)(unregister_bx + SYSTEM_OFFSET_PATH_SIZE4) = 0x480;
       }
-      buffer_allocation_result = iStack0000000000000030 + 5U & 0xfffffffe;
+      buffer_allocation_result = iStack0000000000000030 + 5U & SYSTEM_BIT_MASK_ADDRESS_ALIGN;
       if (((unaffected_register_d & SYSTEM_CONFIG_BUFFER_SIZE_ZERO0) == 0) ||
          ((*(uint *)(*(long long *)(unregister_bx + SYSTEM_MODULE_OFFSET_1) + SYSTEM_CONFIG_OFFSET_STATUS_FLAG4) & 1) == 0)) {
         str_len_counter = *(long long *)(unregister_bx + 8);
@@ -12990,7 +12990,7 @@ unsigned long long allocate_resource_memory(int handle_param)
         else if (*(char *)(unregister_bx + SYSTEM_CONFIG_OFFSET_DATA_FLAGc) == (char)unaffected_register) {
           *(uint *)(str_len_counter + SYSTEM_OFFSET_GLOBAL_DATA_PTR) =
                ((*(int *)(str_len_counter + SYSTEM_CONFIG_OFFSET_INIT_FLAG) + -1 + buffer_allocation_result) / buffer_allocation_result + 1) * *(int *)(unregister_bx + SYSTEM_OFFSET_PATH_SIZE4);
-          *(uint *)(unregister_bx + 0x2c) = *(uint *)(unregister_bx + 0x2c) & 0xfffffffe;
+          *(uint *)(unregister_bx + 0x2c) = *(uint *)(unregister_bx + 0x2c) & SYSTEM_BIT_MASK_ADDRESS_ALIGN;
         }
         else {
           *(uint *)(str_len_counter + SYSTEM_OFFSET_GLOBAL_DATA_PTR) = *pthread_operation_flags * SYSTEM_OFFSET_MULTIPLIER_LARGE;
