@@ -131,9 +131,14 @@
 // - 添加了SYSTEM_NULL_POINTER宏定义，替换硬编码的0x0空指针常量
 // - 将所有类型化的0x0指针替换为对应的SYSTEM_NULL_POINTER类型化指针
 // - 为ProcessFunction79434、ProcessFunction794c5、ProcessFunction794dd、ProcessFunction79635、ProcessFunction797e0、ProcessFunction79832等函数添加了语义化注释
+// - 添加了SYSTEM_OBJECT_OFFSET_28、SYSTEM_OBJECT_OFFSET_38、SYSTEM_OBJECT_OFFSET_60等对象偏移量常量
+// - 添加了SYSTEM_MEMORY_POOL_SIZE_SMALL、SYSTEM_MEMORY_POOL_SIZE_MEDIUM、SYSTEM_MEMORY_POOL_SIZE_LARGE等内存池大小常量
+// - 添加了SYSTEM_NODE_HEADER_SIZE、SYSTEM_DATA_COMPARE_SIZE等数据结构大小常量
+// - 添加了SYSTEM_CONFIG_SIZE_PHYSICS、SYSTEM_CONFIG_SIZE_FONT、SYSTEM_CONFIG_SIZE_NETWORK等配置大小常量
+// - 替换了代码中的硬编码十六进制值为语义化常量
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
-// - 这是简化实现，主要处理了空指针常量和函数注释的语义化替换
+// - 这是简化实现，主要处理了空指针常量、函数注释和硬编码值的语义化替换
 
 // 之前的美化内容：
 // - 将system_buffer_ptr_68替换为system_buffer_ptr_system_context等系统上下文变量名

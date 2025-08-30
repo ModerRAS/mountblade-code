@@ -3,7 +3,7 @@
 // 美化工作记录 - 2025年8月30日
 // 1. 美化了资源属性偏移量常量，将RESOURCE_PROP_OFFSET后跟十六进制数字的常量替换为语义化名称
 // 2. 美化了系统状态偏移量常量，将UTILITY_SYS_STATUS_OFFSET后跟数字的常量替换为语义化名称
-// UTILITY_BYTE_SIZE_3 美化了掩码常量，将UTILITY_WORD_MASK后跟十六进制的常量替换为语义化名称
+// 3. 美化了掩码常量，将UTILITY_WORD_MASK后跟十六进制的常量替换为语义化名称
 // 4. 美化了指针偏移量常量，将POINTER_DATA_OFFSET替换为UTILITY_POINTER_DATA_OFFSET
 // 5. 美化了栈偏移量常量，将UTILITY_STACK_OFFSET后跟十六进制的常量替换为语义化名称
 // 6. 美化了剩余的资源属性偏移量常量，确保所有硬编码常量都有语义化名称
@@ -17457,7 +17457,7 @@ uint64 ProcessOperationRequest(longlong resource_handle_identifier,longlong *mem
     }
     resource_buffer = *memory_block_size;
     utility_iteration_counter = writeResourceData(resource_buffer,resource_handle_identifier + utility_data_offset_start,4);
-    if ((((int)utility_iteration_counter == 0) && (utility_iteration_counter = writeResourceData(resource_buffer,resource_handle_identifier + UTILITY_OPERATION_OFFSET_1002), (int)utility_iteration_counter == 0)) &&
+    if ((((int)utility_iteration_counter == 0) && (utility_iteration_counter = writeResourceData(resource_buffer,resource_handle_identifier + UTILITY_OPERATION_OFFSET_100, 2), (int)utility_iteration_counter == 0)) &&
        (utility_iteration_counter = writeResourceData(resource_buffer,resource_handle_identifier + UTILITY_STACK_DATA_OFFSET_2,2), (int)utility_iteration_counter == 0)) {
       utility_iteration_counter = writeResourceData(resource_buffer,resource_handle_identifier + UTILITY_LIST_HANDLE_OFFSET,8);
     }
@@ -17535,7 +17535,7 @@ uint64 InitializeOperationSystem(void)
     resource_buffer = *utility_register_context_base;
     _stack_char_variable_value = stack_frame_pointer;
     utility_iteration_counter = writeResourceData(resource_buffer,utility_cpu_context + utility_data_offset_start,4);
-    if ((((int)utility_iteration_counter == 0) && (utility_iteration_counter = writeResourceData(resource_buffer,utility_cpu_context + UTILITY_OPERATION_OFFSET_1002), (int)utility_iteration_counter == 0)) &&
+    if ((((int)utility_iteration_counter == 0) && (utility_iteration_counter = writeResourceData(resource_buffer,utility_cpu_context + UTILITY_OPERATION_OFFSET_100, 2), (int)utility_iteration_counter == 0)) &&
        (utility_iteration_counter = writeResourceData(resource_buffer,utility_cpu_context + UTILITY_STACK_DATA_OFFSET_2,2), (int)utility_iteration_counter == 0)) {
       utility_iteration_counter = writeResourceData(resource_buffer,utility_cpu_context + UTILITY_LIST_HANDLE_OFFSET,8);
     }
@@ -17605,7 +17605,7 @@ uint64 GetOperationStatus(void)
   
   resource_buffer = *utility_register_context_base;
   utility_iteration_counter = writeResourceData(resource_buffer,utility_cpu_context + utility_data_offset_start);
-  if ((((int)utility_iteration_counter == 0) && (utility_iteration_counter = writeResourceData(resource_buffer,utility_cpu_context + UTILITY_OPERATION_OFFSET_1002), (int)utility_iteration_counter == 0)) &&
+  if ((((int)utility_iteration_counter == 0) && (utility_iteration_counter = writeResourceData(resource_buffer,utility_cpu_context + UTILITY_OPERATION_OFFSET_100, 2), (int)utility_iteration_counter == 0)) &&
      (utility_iteration_counter = writeResourceData(resource_buffer,utility_cpu_context + UTILITY_STACK_DATA_OFFSET_2,2), (int)utility_iteration_counter == 0)) {
     utility_iteration_counter = writeResourceData(resource_buffer,utility_cpu_context + UTILITY_LIST_HANDLE_OFFSET,8);
   }
