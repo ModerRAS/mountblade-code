@@ -6,23 +6,15 @@
 
 INPUT_FILE="TaleWorlds.Native/src/01_initialization.c"
 
-# 创建临时脚本文件进行替换
-cat > /tmp/replace_ivars.sh << 'EOF'
-#!/bin/bash
-
-sed -i 's/\bpiVar6\b/system_init_pointer_6/g' "$1"
-sed -i 's/\biVar9\b/system_init_var_9/g' "$1"
-sed -i 's/\biVar13\b/system_init_var_13/g' "$1"
-sed -i 's/\bpiVar1\b/system_init_pointer_1/g' "$1"
-sed -i 's/\bpiVar5\b/system_init_pointer_5/g' "$1"
-sed -i 's/\bplStackX_8\b/system_stack_pointer_x_8/g' "$1"
-sed -i 's/\bplStackX_10\b/system_stack_pointer_x_10/g' "$1"
-EOF
-
-chmod +x /tmp/replace_ivars.sh
-/tmp/replace_ivars.sh "$INPUT_FILE"
-
-# 清理临时文件
-rm -f /tmp/replace_ivars.sh
+# 直接进行替换
+sed -i 's/\bpiVar6\b/system_init_pointer_6/g' "$INPUT_FILE"
+sed -i 's/\biVar9\b/system_init_var_9/g' "$INPUT_FILE"
+sed -i 's/\biVar13\b/system_init_var_13/g' "$INPUT_FILE"
+sed -i 's/\bpiVar1\b/system_init_pointer_1/g' "$INPUT_FILE"
+sed -i 's/\bpiVar5\b/system_init_pointer_5/g' "$INPUT_FILE"
+sed -i 's/\bplStackX_8\b/system_stack_pointer_x_8/g' "$INPUT_FILE"
+sed -i 's/\bplStackX_10\b/system_stack_pointer_x_10/g' "$INPUT_FILE"
+sed -i 's/\biVar15\b/system_init_var_15/g' "$INPUT_FILE"
+sed -i 's/\biVar20\b/system_init_var_20/g' "$INPUT_FILE"
 
 echo "iVar变量语义化替换完成"
