@@ -4157,16 +4157,16 @@ uint64 check_utility_operation_result(longlong resource_handle_identifier) # 资
   uint *utility_operation_result;
   longlong operation_buffer;
   uint64 iteration_counter;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong utility_stack_buffer_array [UTILITY_STACK_BUFFER_SIZE_4];
   
   iteration_counter = system_memory_operation(*(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),utility_stack_buffer_array);
   if ((int)iteration_counter == 0) {
-    long_ptr_buffer = *(longlong **)(utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] + POINTER_DATA_OFFSET);
+    utility_long_ptr_buffer = *(longlong **)(utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] + POINTER_DATA_OFFSET);
     while ((*(longlong **)(utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] + POINTER_DATA_OFFSET) <= long_ptr_buffer &&
            (long_ptr_buffer < *(longlong **)(utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] + POINTER_DATA_OFFSET) + *(int *)(utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] + UTILITY_SECONDARY_BYTE_OFFSET)))) {
       operation_buffer = *long_ptr_buffer;
-      long_ptr_buffer = long_ptr_buffer + 1;
+      utility_long_ptr_buffer = long_ptr_buffer + 1;
       if ((*(longlong *)(operation_buffer + RESOURCE_HANDLE_OFFSET) == *(longlong *)(utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] + UTILITY_OFFSET_ERROR_COUNTER)) &&
          (operation_buffer = *(longlong *)(operation_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET), operation_buffer != 0)) {
         utility_operation_result = (uint *)(operation_buffer + UTILITY_POINTER_OFFSET_CHECKSUM);
@@ -5669,7 +5669,7 @@ void set_file_attributes(longlong resource_handle_identifier,longlong resource_b
   longlong *resource_data_pointer;
   int utility_operation_status;
   longlong *array_handle_pointer;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong *long_pointer_temp;
   uint64 utility_stack_resource_data [2];
   
@@ -5677,9 +5677,9 @@ void set_file_attributes(longlong resource_handle_identifier,longlong resource_b
   utility_stack_resource_data[0] = 0;
   utility_operation_status = utility_initialize_resource(utility_stack_resource_data);
   if ((utility_operation_status == 0) && (utility_operation_status = validateMemoryAccess(*(uint64 *)(resource_buffer + UTILITY_MEMORY_SIZE_OFFSET)), utility_operation_status == 0)) {
-    long_ptr_buffer = (longlong *)(*(longlong *)(resource_buffer + UTILITY_LIST_HEAD_OFFSET) + -8);
+    utility_long_ptr_buffer = (longlong *)(*(longlong *)(resource_buffer + UTILITY_LIST_HEAD_OFFSET) + -8);
     if (*(longlong *)(resource_buffer + UTILITY_LIST_HEAD_OFFSET) == 0) {
-      long_ptr_buffer = long_pointer_temp;
+      utility_long_ptr_buffer = long_pointer_temp;
     }
     resource_data_pointer = long_pointer_temp;
     if (long_ptr_buffer != (longlong *)UTILITY_NULL_POINTER) {
@@ -5692,15 +5692,15 @@ void set_file_attributes(longlong resource_handle_identifier,longlong resource_b
         }
         break;
       }
-      long_ptr_buffer = resource_data_pointer;
+      utility_long_ptr_buffer = resource_data_pointer;
       if (resource_data_pointer != (longlong *)(resource_buffer + UTILITY_LIST_HEAD_OFFSET)) {
         array_handle_pointer = (longlong *)(*resource_data_pointer + -8);
         if (*resource_data_pointer == 0) {
           array_handle_pointer = long_pointer_temp;
         }
-        long_ptr_buffer = long_pointer_temp;
+        utility_long_ptr_buffer = long_pointer_temp;
         if (array_handle_pointer != (longlong *)UTILITY_NULL_POINTER) {
-          long_ptr_buffer = array_handle_pointer + 1;
+          utility_long_ptr_buffer = array_handle_pointer + 1;
         }
       }
       array_handle_pointer = resource_data_pointer + 2;
@@ -6713,7 +6713,7 @@ void utilityExecuteResourceCommand(longlong resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   byte UTILITY_LOCAL_SECURITY_BUFFER [32];
   longlong utility_local_stack_position;
   byte utility_encryption_data [40];
@@ -6733,7 +6733,7 @@ void utilityExecuteResourceCommand(longlong resource_handle_identifier,longlong 
                     // WARNING: Subroutine does not return
         copyMemoryData(resource_buffer,UTILITY_LOCAL_SECURITY_BUFFER);
       }
-      long_ptr_buffer = (longlong *)(utility_data_array_index + UTILITY_SYS_STATUS_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(utility_data_array_index + UTILITY_SYS_STATUS_OFFSET);
       if (((longlong *)*long_ptr_buffer != long_ptr_buffer) || (*(longlong **)(utility_data_array_index + utility_data_offset_start) != long_ptr_buffer)) {
                     // WARNING: Subroutine does not return
         utilityReleaseResourceHandle(*(uint64 *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),resource_handle_identifier);
@@ -6799,7 +6799,7 @@ uint64 utilityValidateResourceTransaction(longlong resource_handle_identifier,lo
   int utility_capacity;
   longlong resource_data_buffer_initial_ptr;
   longlong utility_stack_buffer_array [UTILITY_STACK_BUFFER_SIZE_2];
-  uint resource_stack_buffer_validation;
+  uint utility_stack_buffer_validation;
   float utility_stack_float_data;
   
   resource_data_buffer_initial_ptr = 0;
@@ -6850,8 +6850,8 @@ uint64 utilityValidateResourceTransaction(longlong resource_handle_identifier,lo
   }
   utility_temp_float_value = *(float *)(resource_handle_identifier + RESOURCE_CONFIG_OFFSET);
   statusCounter = 0;
-  resource_stack_buffer_validation = *(uint *)(resource_handle_identifier + UTILITY_BUFFER_SIZE_DATA_OFFSET);
-  float_stack_buffer_data = *(float *)(resource_handle_identifier + RESOURCE_PROP_OFFSET);
+  utility_stack_buffer_validation = *(uint *)(resource_handle_identifier + UTILITY_BUFFER_SIZE_DATA_OFFSET);
+  utility_stack_float_data = *(float *)(resource_handle_identifier + RESOURCE_PROP_OFFSET);
   utility_stack_buffer_array[0] = UTILITY_BIT_CONCAT_4_4(utility_stack_buffer_array[0]._4_4_,utility_temp_float_value);
   utility_capacity = statusCounter;
   if (((uint)utility_temp_float_value & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
@@ -6869,7 +6869,7 @@ uint64 utilityValidateResourceTransaction(longlong resource_handle_identifier,lo
        (*(float *)(resource_handle_identifier + UTILITY_STRUCTURE_SIZE_OFFSET) == UTILITY_NULL_POINTER)) {
       return UTILITY_ERROR_CODE_FAILED;
     }
-    if (((float_stack_buffer_data == UTILITY_NULL_POINTER) && (*(float *)(resource_handle_identifier + UTILITY_BUFFER_SIZE_DATA_OFFSET) == UTILITY_NULL_POINTER)) && (utility_temp_float_value == UTILITY_NULL_POINTER)) {
+    if (((utility_stack_float_data == UTILITY_NULL_POINTER) && (*(float *)(resource_handle_identifier + UTILITY_BUFFER_SIZE_DATA_OFFSET) == UTILITY_NULL_POINTER)) && (utility_temp_float_value == UTILITY_NULL_POINTER)) {
       return UTILITY_ERROR_CODE_FAILED;
     }
     validation_flag = system_memory_operation(*(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),utility_stack_buffer_array);
@@ -7381,7 +7381,7 @@ uint64 utilityFinalizeResourceTask(longlong resource_handle_identifier,longlong 
   int utility_operation_status;
   int utility_operation_status;
   uint64 iteration_counter;
-  float *source_float_ptr;
+  float *utility_source_float_ptr;
   longlong memory_offset_data;
   ulonglong validation_flag;
   float *destination_float_ptr;
@@ -7404,12 +7404,12 @@ uint64 utilityFinalizeResourceTask(longlong resource_handle_identifier,longlong 
   utility_operation_status = *(int *)(validation_flag + UTILITY_SECONDARY_BYTE_OFFSET);
   destination_float_ptr = (float *)(resource_handle_identifier + POINTER_DATA_OFFSET + (longlong)*(int *)(resource_handle_identifier + RESOURCE_HANDLE_OFFSET) * UTILITY_WORD_SIZE);
   if (0 < *(int *)(resource_handle_identifier + RESOURCE_HANDLE_OFFSET)) {
-    source_float_ptr = destination_float_ptr;
+    utility_source_float_ptr = destination_float_ptr;
     utility_operation_status = utility_iteration_index;
     do {
       utility_operation_status = *(int *)(((resource_handle_identifier + POINTER_DATA_OFFSET) - (longlong)destination_float_ptr) + (longlong)source_float_ptr);
       if (utility_operation_status != -1) {
-        float_stack_buffer_data = *source_float_ptr;
+        utility_stack_float_data = *utility_source_float_ptr;
         if (((uint)float_stack_buffer_data & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
           return UTILITY_ERROR_CODE_TIMEOUT;
         }
@@ -7432,11 +7432,11 @@ uint64 utilityFinalizeResourceTask(longlong resource_handle_identifier,longlong 
            (float_value = *(float *)(memory_offset_data + RESOURCE_PROP_OFFSET), float_stack_buffer_data <= *(float *)(memory_offset_data + RESOURCE_PROP_OFFSET))) {
           float_value = float_stack_buffer_data;
         }
-        *source_float_ptr = float_value;
+        *utility_source_float_ptr = float_value;
       }
       iteration_counter = (int)utility_operation_status + 1;
       utility_operation_status = (ulonglong)iteration_counter;
-      source_float_ptr = source_float_ptr + 1;
+      utility_source_float_ptr = source_float_ptr + 1;
     } while ((int)iteration_counter < *(int *)(resource_handle_identifier + RESOURCE_HANDLE_OFFSET));
     if (0 < *(int *)(resource_handle_identifier + RESOURCE_HANDLE_OFFSET)) {
       memory_offset_data = (resource_handle_identifier + POINTER_DATA_OFFSET) - (longlong)destination_float_ptr;
@@ -7464,7 +7464,7 @@ uint64 utilityCompleteResourceCycle(void)
   int utility_operation_status;
   int utility_data_array_index;
   longlong utility_register_input_value;
-  float *source_float_ptr;
+  float *utility_source_float_ptr;
   longlong utility_register_context_base;
   longlong memory_offset_data;
   ulonglong validation_flag;
@@ -7481,12 +7481,12 @@ uint64 utilityCompleteResourceCycle(void)
   utility_operation_status = *(int *)(validation_flag + UTILITY_SECONDARY_BYTE_OFFSET);
   destination_float_ptr = (float *)(utility_register_context_base + POINTER_DATA_OFFSET + (longlong)*(int *)(utility_register_context_base + RESOURCE_HANDLE_OFFSET) * UTILITY_WORD_SIZE);
   if (0 < *(int *)(utility_register_context_base + RESOURCE_HANDLE_OFFSET)) {
-    source_float_ptr = destination_float_ptr;
+    utility_source_float_ptr = destination_float_ptr;
     utility_iteration_index = utility_cpu_register_data_primary;
     do {
       utility_data_array_index = *(int *)(((utility_register_context_base + POINTER_DATA_OFFSET) - (longlong)destination_float_ptr) + (longlong)source_float_ptr);
       if (utility_data_array_index != -1) {
-        utility_temp_float_value = *source_float_ptr;
+        utility_temp_float_value = *utility_source_float_ptr;
         if (((uint)utility_temp_float_value & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
           return UTILITY_ERROR_CODE_TIMEOUT;
         }
@@ -7509,10 +7509,10 @@ uint64 utilityCompleteResourceCycle(void)
            (utility_temp_float_secondary = *(float *)(memory_offset_data + RESOURCE_PROP_OFFSET), utility_temp_float_value <= *(float *)(memory_offset_data + RESOURCE_PROP_OFFSET))) {
           utility_temp_float_secondary = utility_temp_float_value;
         }
-        *source_float_ptr = utility_temp_float_secondary;
+        *utility_source_float_ptr = utility_temp_float_secondary;
       }
       utility_iteration_index = utility_iteration_index + 1;
-      source_float_ptr = source_float_ptr + 1;
+      utility_source_float_ptr = source_float_ptr + 1;
     } while ((int)utility_iteration_index < *(int *)(utility_register_context_base + RESOURCE_HANDLE_OFFSET));
     if (0 < *(int *)(utility_register_context_base + RESOURCE_HANDLE_OFFSET)) {
       memory_offset_data = (utility_register_context_base + POINTER_DATA_OFFSET) - (longlong)destination_float_ptr;
@@ -9284,7 +9284,7 @@ uint32 utilityReadMemoryData(longlong resource_handle_identifier,uint64 resource
   longlong *resource_data_pointer;
   uint iteration_counter;
   int utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   int utility_iteration_counter_primary;
   uint validation_flag;
   uint64 utility_stack_validation_uint;
@@ -9305,10 +9305,10 @@ uint32 utilityReadMemoryData(longlong resource_handle_identifier,uint64 resource
     }
     utility_data_array_index = allocate_memory_resource(resource_handle_identifier,resource_buffer,validation_flag,&utility_stack_validation_uint);
     if ((utility_data_array_index == 0) && (resource_data_pointer = (longlong *)(resourceCallbackFunction + 8), resource_data_pointer != (longlong *)UTILITY_NULL_POINTER)) {
-      long_ptr_buffer = (longlong *)*resource_data_pointer;
+      utility_long_ptr_buffer = (longlong *)*resource_data_pointer;
       if (long_ptr_buffer != resource_data_pointer) {
         do {
-          long_ptr_buffer = (longlong *)*long_ptr_buffer;
+          utility_long_ptr_buffer = (longlong *)*long_ptr_buffer;
           utility_iteration_counter = utility_iteration_counter + 1;
         } while (long_ptr_buffer != resource_data_pointer);
         if (utility_iteration_counter != 0) goto validate_resource_status;
@@ -11984,7 +11984,7 @@ void ProcessResourceOperation(longlong resource_handle_identifier,longlong resou
           utility_temp_int_value = prepare_data_buffer(operation_buffer,&float_stack_buffer_data,0);
           if (utility_temp_int_value == 0) {
             if (float_stack_buffer_data != UTILITY_FLOAT_ONE) {
-              float_stack_buffer_data = float_stack_buffer_data;
+              utility_stack_float_data = float_stack_buffer_data;
               local_pointer = &g_system_data_memory_pointer_tertiary;
               utility_temp_unsigned_int = utility_temp_unsigned_int;
               utility_temp_unsigned_int = 0;
@@ -11994,7 +11994,7 @@ void ProcessResourceOperation(longlong resource_handle_identifier,longlong resou
             utility_temp_int_value = allocate_data_buffer(operation_buffer,utility_stack_float_array_buffer,0);
             if (utility_temp_int_value == 0) {
               if (utility_stack_float_array_buffer[0] != UTILITY_FLOAT_ONE) {
-                float_stack_buffer_data = utility_stack_float_array_buffer[0];
+                utility_stack_float_data = utility_stack_float_array_buffer[0];
                 local_pointer = &g_system_data_memory_pointer_fourth;
                 utility_temp_unsigned_int = utility_temp_unsigned_int;
                 utility_temp_unsigned_int = 0;
@@ -12008,8 +12008,8 @@ void ProcessResourceOperation(longlong resource_handle_identifier,longlong resou
                   utility_temp_unsigned_int = utility_temp_unsigned_int;
                   utility_temp_unsigned_int = 0;
                   local_pointer = &g_system_data_memory_pointer_fifth;
-                  float_stack_buffer_data = float_value;
-                  float_stack_buffer_data = *utility_float_pointer_temp;
+                  utility_stack_float_data = float_value;
+                  utility_stack_float_data = *utility_float_pointer_temp;
                   utility_temp_int_value = validate_resource_access(resource_handle_identifier,&local_pointer);
                   if (utility_temp_int_value != 0) goto TerminateResourceOperation;
                 }
@@ -12024,8 +12024,8 @@ void ProcessResourceOperation(longlong resource_handle_identifier,longlong resou
                   utility_temp_unsigned_int = utility_temp_unsigned_int;
                   utility_temp_unsigned_int = 0;
                   local_pointer = &g_system_data_memory_pointer_sixth;
-                  float_stack_buffer_data = float_value;
-                  float_stack_buffer_data = utility_temp_float_value;
+                  utility_stack_float_data = float_value;
+                  utility_stack_float_data = utility_temp_float_value;
                   utility_temp_int_value = validate_resource_access(resource_handle_identifier,&local_pointer);
                   if (utility_temp_int_value != 0) goto TerminateResourceOperation;
                 }
@@ -12037,7 +12037,7 @@ void ProcessResourceOperation(longlong resource_handle_identifier,longlong resou
                 local_pointer = &g_system_data_memory_pointer_seventh;
                 utility_temp_unsigned_int = utility_temp_unsigned_int;
                 utility_temp_unsigned_int = 0;
-                float_stack_buffer_data = (float)(systemFlagsData / UTILITY_FIELD_PRIMARY_OFFSET);
+                utility_stack_float_data = (float)(systemFlagsData / UTILITY_FIELD_PRIMARY_OFFSET);
                 utility_temp_int_value = validate_resource_access(resource_handle_identifier,&local_pointer);
                 if (utility_temp_int_value != 0) goto TerminateResourceOperation;
               }
@@ -12045,7 +12045,7 @@ void ProcessResourceOperation(longlong resource_handle_identifier,longlong resou
                 utility_temp_unsigned_int = 0;
                 local_pointer = &g_system_data_memory_pointer_eighth;
                 utility_temp_unsigned_int = utility_temp_unsigned_int;
-                float_stack_buffer_data = (float)CONCAT_BYTES(float_stack_buffer_data._1_3_,1);
+                utility_stack_float_data = (float)CONCAT_BYTES(float_stack_buffer_data._1_3_,1);
                 utility_temp_int_value = validate_resource_access(resource_handle_identifier,&local_pointer);
                 if (utility_temp_int_value != 0) goto TerminateResourceOperation;
               }
@@ -12062,7 +12062,7 @@ void ProcessResourceOperation(longlong resource_handle_identifier,longlong resou
                 utility_temp_unsigned_int = 0;
                 local_pointer = &g_system_memory_handler;
                 utility_temp_unsigned_int = utility_temp_unsigned_int;
-                float_stack_buffer_data = UTILITY_NULL_POINTER;
+                utility_stack_float_data = UTILITY_NULL_POINTER;
                 utility_temp_int_value = validate_resource_access(resource_handle_identifier,&local_pointer);
                 if (utility_temp_int_value != 0) goto TerminateResourceOperation;
               }
@@ -12268,7 +12268,7 @@ void ExecuteResourceCommand(void)
                 memory_pointer_parameter = &g_system_data_memory_pointer_fifth;
                 utility_utility_stack_param_ptr = utility_cpu_context;
                 float_stack_buffer_primary = float_value;
-                float_stack_buffer_data = utility_temp_float_value;
+                utility_stack_float_data = utility_temp_float_value;
                 utility_operation_status = validate_resource_access(utility_temp_float_value,&validation_buffer_data);
                 if (utility_operation_status != 0) goto finalize_resource_process;
               }
@@ -12284,7 +12284,7 @@ void ExecuteResourceCommand(void)
                 memory_pointer_parameter = &g_system_data_memory_pointer_sixth;
                 utility_utility_stack_param_ptr = utility_cpu_context;
                 float_stack_buffer_primary = float_value;
-                float_stack_buffer_data = utility_temp_float_value;
+                utility_stack_float_data = utility_temp_float_value;
                 utility_operation_status = validate_resource_access(utility_temp_float_value,&validation_buffer_data);
                 if (utility_operation_status != 0) goto finalize_resource_process;
               }
@@ -12514,7 +12514,7 @@ void HandleResourceCallback(void)
             memory_pointer_parameter = &g_system_data_memory_pointer_fifth;
             utility_utility_stack_param_ptr = utility_cpu_context;
             float_stack_buffer_primary = float_value;
-            float_stack_buffer_data = utility_temp_float_value;
+            utility_stack_float_data = utility_temp_float_value;
             utility_operation_status = validate_resource_access(utility_temp_float_value,&validation_buffer_data);
             if (utility_operation_status != 0) goto complete_resource_operation;
           }
@@ -12530,7 +12530,7 @@ void HandleResourceCallback(void)
             memory_pointer_parameter = &g_system_data_memory_pointer_sixth;
             utility_utility_stack_param_ptr = utility_cpu_context;
             float_stack_buffer_primary = float_value;
-            float_stack_buffer_data = utility_temp_float_value;
+            utility_stack_float_data = utility_temp_float_value;
             utility_operation_status = validate_resource_access(utility_temp_float_value,&validation_buffer_data);
             if (utility_operation_status != 0) goto complete_resource_operation;
           }
@@ -12648,7 +12648,7 @@ void ValidateResourceFloat(float resource_handle_identifier)
         memory_pointer_parameter = &g_system_data_memory_pointer_fifth;
         utility_utility_stack_param_ptr = utility_cpu_context;
         float_stack_buffer_primary = utility_temp_float_secondary;
-        float_stack_buffer_data = utility_temp_float_value;
+        utility_stack_float_data = utility_temp_float_value;
         utility_operation_status = validate_resource_access(utility_temp_float_value,&validation_buffer_data);
         if (utility_operation_status != 0) goto validate_memory_operation;
       }
@@ -12664,7 +12664,7 @@ void ValidateResourceFloat(float resource_handle_identifier)
         memory_pointer_parameter = &g_system_data_memory_pointer_sixth;
         utility_utility_stack_param_ptr = utility_cpu_context;
         float_stack_buffer_primary = utility_temp_float_secondary;
-        float_stack_buffer_data = utility_temp_float_value;
+        utility_stack_float_data = utility_temp_float_value;
         utility_operation_status = validate_resource_access(utility_temp_float_value,&validation_buffer_data);
         if (utility_operation_status != 0) goto validate_memory_operation;
       }
@@ -12872,7 +12872,7 @@ void InitializeResourceData(longlong *resource_handle_identifier,uint64 resource
   ulonglong utility_temp_buffer_size;
   
   utility_temp_unsigned_int = g_security_token_mask ^ (ulonglong)UTILITY_LOCAL_SECURITY_BUFFER;
-  resource_stack_buffer_validation = resourceOperationFlags;
+  utility_stack_buffer_validation = resourceOperationFlags;
   utility_stack_validation_uint = resourceCallbackFunction;
   copyMemoryBlock(UTILITY_LOCAL_PROCESS_BUFFER,RESOURCE_PROP_OFFSET00,resource_buffer,&resource_stack_buffer_validation);
   (**(code **)(*resource_handle_identifier + 8))(resource_handle_identifier,UTILITY_LOCAL_PROCESS_BUFFER);
@@ -13153,7 +13153,7 @@ void ProcessResourceRequest(longlong *resource_handle_identifier)
           }
           resource_data_buffer_data = resource_handle_identifier[4];
           utility_temp_unsigned_int = utility_resource_data_buffer == 0;
-          float_stack_buffer_data = resource_float_value;
+          utility_stack_float_data = resource_float_value;
           if (((char)resource_data_buffer_data == '\0') &&
              (utility_temp_int_value = ValidateResourceBuffer(resource_handle_identifier,UTILITY_BIT_CONCAT_8_1((uint7)(uint3)(utility_temp_unsigned_int >> UTILITY_BYTE_SHIFT_8),1)), utility_temp_int_value != 0
              )) goto handle_memory_error;
@@ -13184,7 +13184,7 @@ void ProcessResourceRequest(longlong *resource_handle_identifier)
           if ((char_value == '\0') && (utility_stack_float_array_large[0] != *(float *)(utility_resource_data_buffer + ERROR_CODE_INVALID_HANDLE))) {
             utility_temp_unsigned_int = UTILITY_LOCAL_PROCESS_BUFFER._0_4_;
             utility_temp_unsigned_int = UTILITY_LOCAL_PROCESS_BUFFER._4_4_;
-            float_stack_buffer_data = utility_stack_float_array_large[0];
+            utility_stack_float_data = utility_stack_float_array_large[0];
             utility_temp_unsigned_int = 0;
             local_pointer = &g_system_data_the_manager;
             utility_temp_unsigned_int = utility_temp_unsigned_int & UTILITY_WORD_MASK_FF00;
@@ -18870,12 +18870,12 @@ UTILITY_LABEL_VALIDATION_FAILED:
       }
       for (; (utility_operation_status = (int)utility_temp_unsigned_int, local_pointer <= return_value &&
              (return_value < local_pointer + (longlong)utility_operation_status * 3)); return_value = return_value + 3) {
-        presource_stack_buffer_validation = (uint64 *)UTILITY_NULL_POINTER;
+        putility_stack_buffer_validation = (uint64 *)UTILITY_NULL_POINTER;
         validation_flag = ProcessResourceRequest2(resource_handle_identifier + UTILITY_BUFFER_DATA_OFFSET,&presource_stack_buffer_validation);
         systemFlagsData = (ulonglong)validation_flag;
         if (validation_flag != 0) goto UTILITY_LABEL_VALIDATION_FAILED;
         utility_operation_status = return_value[1];
-        *presource_stack_buffer_validation = *return_value;
+        *putility_stack_buffer_validation = *return_value;
         presource_stack_buffer_validation[1] = utility_operation_status;
         *(uint32 *)(presource_stack_buffer_validation + 2) = *(uint32 *)(return_value + 2);
         *(float *)((longlong)presource_stack_buffer_validation + RESOURCE_DATA_IDX) =
@@ -30618,11 +30618,11 @@ void UtilityUnwindFunction460(uint64 resource_handle_identifier,longlong resourc
   int *utility_status_pointer;
   char *character_pointer_secondary;
   uint64 *generic_data_pointer;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   ulonglong validation_flag;
   
-  long_ptr_buffer = *(longlong **)(resource_buffer + UTILITY_BUFFER_SIZE_DATA_OFFSET);
+  utility_long_ptr_buffer = *(longlong **)(resource_buffer + UTILITY_BUFFER_SIZE_DATA_OFFSET);
   generic_data_pointer = (uint64 *)*long_ptr_buffer;
   if (UTILITY_RESOURCE_POINTER_PRIMARY != (uint64 *)UTILITY_NULL_POINTER) {
     if ((uint64 *)generic_data_pointer[3] != (uint64 *)UTILITY_NULL_POINTER) {
@@ -30917,11 +30917,11 @@ void UtilityUnwindFunction510(uint64 resource_handle_identifier,longlong resourc
   int *utility_status_pointer;
   char *character_pointer_secondary;
   uint64 *generic_data_pointer;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   ulonglong validation_flag;
   
-  long_ptr_buffer = *(longlong **)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET);
+  utility_long_ptr_buffer = *(longlong **)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET);
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
   generic_data_pointer = (uint64 *)*long_ptr_buffer;
@@ -31068,11 +31068,11 @@ void UtilityUnwindFunction580(uint64 resource_handle_identifier,longlong resourc
   int *utility_status_pointer;
   char *character_pointer_secondary;
   uint64 *generic_data_pointer;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   ulonglong validation_flag;
   
-  long_ptr_buffer = *(longlong **)(resource_buffer + utility_buffer_offset);
+  utility_long_ptr_buffer = *(longlong **)(resource_buffer + utility_buffer_offset);
   generic_data_pointer = (uint64 *)*long_ptr_buffer;
   if (UTILITY_RESOURCE_POINTER_PRIMARY != (uint64 *)UTILITY_NULL_POINTER) {
     if ((uint64 *)generic_data_pointer[3] != (uint64 *)UTILITY_NULL_POINTER) {
@@ -39663,7 +39663,7 @@ void UtilityFunctionHandler0(uint64 resource_handle_identifier,longlong resource
   longlong *resource_data_pointer;
   longlong *data_buffer;
   longlong *array_handle_pointer;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   uint64 *validation_result_array;
   int utility_temp_int_value;
   int *integer_pointer_variable;
@@ -39728,7 +39728,7 @@ LAB_POINTER_VALIDATION:
   resource_data_pointer = validation_result_array + 6;
   ProcessResourceData(resource_data_pointer);
   array_handle_pointer = validation_result_array + 0x2d;
-  long_ptr_buffer = (longlong *)validation_result_array[UTILITY_ERROR_CODE_INVALID_INPUT];
+  utility_long_ptr_buffer = (longlong *)validation_result_array[UTILITY_ERROR_CODE_INVALID_INPUT];
   utility_long_value_pointer = (longlong *)*array_handle_pointer;
   if (utility_long_value_pointer != long_ptr_buffer) {
     do {
@@ -40260,7 +40260,7 @@ void UtilityFunctionHandler950(uint64 resource_handle_identifier,longlong resour
   longlong *resource_data_pointer;
   longlong *data_buffer;
   longlong *array_handle_pointer;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   uint64 *validation_result_array;
   int utility_temp_int_value;
   int *integer_pointer_variable;
@@ -40325,7 +40325,7 @@ LAB_POINTER_VALIDATION:
   resource_data_pointer = validation_result_array + 6;
   ProcessResourceData(resource_data_pointer);
   array_handle_pointer = validation_result_array + 0x2d;
-  long_ptr_buffer = (longlong *)validation_result_array[UTILITY_ERROR_CODE_INVALID_INPUT];
+  utility_long_ptr_buffer = (longlong *)validation_result_array[UTILITY_ERROR_CODE_INVALID_INPUT];
   utility_long_value_pointer = (longlong *)*array_handle_pointer;
   if (utility_long_value_pointer != long_ptr_buffer) {
     do {
@@ -40828,11 +40828,11 @@ void UtilityFunctionHandler90(uint64 resource_handle_identifier,longlong resourc
   int *utility_status_pointer;
   char *character_pointer_secondary;
   uint64 *generic_data_pointer;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   ulonglong validation_flag;
   
-  long_ptr_buffer = *(longlong **)(resource_buffer + UTILITY_STRUCTURE_SIZE_OFFSET);
+  utility_long_ptr_buffer = *(longlong **)(resource_buffer + UTILITY_STRUCTURE_SIZE_OFFSET);
   generic_data_pointer = (uint64 *)*long_ptr_buffer;
   if (UTILITY_RESOURCE_POINTER_PRIMARY != (uint64 *)UTILITY_NULL_POINTER) {
     if ((uint64 *)generic_data_pointer[3] != (uint64 *)UTILITY_NULL_POINTER) {
@@ -41250,11 +41250,11 @@ void UtilityFunctionHandler0(uint64 resource_handle_identifier,longlong resource
   int *utility_status_pointer;
   char *character_pointer_secondary;
   uint64 *generic_data_pointer;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   ulonglong validation_flag;
   
-  long_ptr_buffer = *(longlong **)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET);
+  utility_long_ptr_buffer = *(longlong **)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET);
   generic_data_pointer = (uint64 *)*long_ptr_buffer;
   if (UTILITY_RESOURCE_POINTER_PRIMARY != (uint64 *)UTILITY_NULL_POINTER) {
     if ((uint64 *)generic_data_pointer[3] != (uint64 *)UTILITY_NULL_POINTER) {
@@ -41704,11 +41704,11 @@ void UtilityUnwindFunctionResourceHandleEF0(uint64 resource_handle_identifier,lo
   int *utility_status_pointer;
   char *character_pointer_secondary;
   uint64 *generic_data_pointer;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   ulonglong validation_flag;
   
-  long_ptr_buffer = *(longlong **)(resource_buffer + utility_data_offset_start);
+  utility_long_ptr_buffer = *(longlong **)(resource_buffer + utility_data_offset_start);
   generic_data_pointer = (uint64 *)*long_ptr_buffer;
   if (UTILITY_RESOURCE_POINTER_PRIMARY != (uint64 *)UTILITY_NULL_POINTER) {
     if ((uint64 *)generic_data_pointer[3] != (uint64 *)UTILITY_NULL_POINTER) {
@@ -41810,11 +41810,11 @@ void UtilityUnwindFunctionResourceHandleF70(uint64 resource_handle_identifier,lo
   int *utility_status_pointer;
   char *character_pointer_secondary;
   uint64 *generic_data_pointer;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   ulonglong validation_flag;
   
-  long_ptr_buffer = *(longlong **)(resource_buffer + UTILITY_BUFFER_SIZE_DATA_OFFSET);
+  utility_long_ptr_buffer = *(longlong **)(resource_buffer + UTILITY_BUFFER_SIZE_DATA_OFFSET);
   generic_data_pointer = (uint64 *)*long_ptr_buffer;
   if (UTILITY_RESOURCE_POINTER_PRIMARY != (uint64 *)UTILITY_NULL_POINTER) {
     if ((uint64 *)generic_data_pointer[3] != (uint64 *)UTILITY_NULL_POINTER) {
@@ -41994,11 +41994,11 @@ void UtilityUnwindFunctionResourceHandleFE0(uint64 resource_handle_identifier,lo
   int *utility_status_pointer;
   char *character_pointer_secondary;
   uint64 *generic_data_pointer;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   ulonglong validation_flag;
   
-  long_ptr_buffer = *(longlong **)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET);
+  utility_long_ptr_buffer = *(longlong **)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET);
   generic_data_pointer = (uint64 *)*long_ptr_buffer;
   if (UTILITY_RESOURCE_POINTER_PRIMARY != (uint64 *)UTILITY_NULL_POINTER) {
     if ((uint64 *)generic_data_pointer[3] != (uint64 *)UTILITY_NULL_POINTER) {
@@ -60354,14 +60354,14 @@ void UtilityUnwindSystemFunctionc490(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + UTILITY_RESOURCE_ACCESS_OFFSET)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -60577,14 +60577,14 @@ void UtilityUnwindSystemFunctionc540(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + UTILITY_SYS_STATUS_OFFSET1)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -60623,14 +60623,14 @@ void UtilityUnwindSystemFunctionc550(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + memory_offset)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -60699,14 +60699,14 @@ void UtilityUnwindSystemFunctionc590(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + SYSTEM_DATA_OFFSET)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -60766,14 +60766,14 @@ void UtilityUnwindSystemFunctionc5c0(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + UTILITY_RESOURCE_OFFSET_120)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -60812,14 +60812,14 @@ void UtilityUnwindSystemFunctionc5d0(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + UTILITY_RESOURCE_OFFSET_2A0)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -60870,14 +60870,14 @@ void UtilityUnwindSystemFunctionc5f0(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x300)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -60916,14 +60916,14 @@ void UtilityUnwindSystemFunctionc600(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x360)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -61605,14 +61605,14 @@ void UtilityUnwindSystemFunctionca20(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + UTILITY_STRUCT_OFFSET_1)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -61663,14 +61663,14 @@ void UtilityUnwindSystemFunctionca40(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + UTILITY_RESOURCE_CONFIG_OFFSET_ALT0)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -61733,14 +61733,14 @@ void UtilityUnwindSystemFunctionca70(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 400)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -61800,14 +61800,14 @@ void UtilityUnwindSystemFunctioncaa0(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x1f0)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -61867,14 +61867,14 @@ void UtilityUnwindSystemFunctioncad0(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x250)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -61934,14 +61934,14 @@ void UtilityUnwindSystemFunctioncb00(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + UTILITY_UTILITY_HANDLE_DATA_OFFSET)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -61989,14 +61989,14 @@ void UtilityUnwindSystemFunctioncb20(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x310)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -62044,14 +62044,14 @@ void UtilityUnwindSystemFunctioncb40(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + RESOURCE_PROP_OFFSETf0)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -62102,14 +62102,14 @@ void UtilityUnwindSystemFunctioncb60(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x370)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -62157,14 +62157,14 @@ void UtilityUnwindSystemFunctioncb80(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x3d0)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -62248,14 +62248,14 @@ void UtilityUnwindSystemFunctioncbd0(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + RESOURCE_PROP_OFFSET30)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -62315,14 +62315,14 @@ void UtilityUnwindSystemFunctioncc00(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + RESOURCE_PROP_OFFSET90)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -62481,14 +62481,14 @@ void UtilityUnwindSystemFunctioncce0(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + UTILITY_LIST_HEAD_OFFSET)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -67754,14 +67754,14 @@ void UtilityUnwindSystemFunctione760(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -67812,14 +67812,14 @@ void UtilityUnwindSystemFunctione7a0(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + SYSTEM_TABLE_OFFSET)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -67858,14 +67858,14 @@ void UtilityUnwindSystemFunctione7b0(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + UTILITY_RESOURCE_ACCESS_ID)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -67904,14 +67904,14 @@ void UtilityUnwindSystemFunctione7c0(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + UTILITY_RESOURCE_HANDLE_OFFSET_ZERO)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -67950,14 +67950,14 @@ void UtilityUnwindSystemFunctione7d0(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + utility_data_offset_start)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -67996,14 +67996,14 @@ void UtilityUnwindSystemFunctione7e0(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + UTILITY_MEMORY_SIZE_OFFSET)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -68042,14 +68042,14 @@ void UtilityUnwindSystemFunctione7f0(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + UTILITY_STACK_OFFSET_F0)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -68088,14 +68088,14 @@ void UtilityUnwindSystemFunctione800(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + UTILITY_DATA_OFFSET_1B0)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -68146,14 +68146,14 @@ void UtilityUnwindSystemFunctione820(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x210)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -68204,14 +68204,14 @@ void UtilityUnwindSystemFunctione840(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + UTILITY_BUFFER_SIZE0)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -68262,14 +68262,14 @@ void UtilityUnwindSystemFunctione860(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x2d0)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -68701,14 +68701,14 @@ void UtilityUnwindSystemFunctioneb00(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   int utility_operation_status;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + UTILITY_RESOURCE_OFFSET_140)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
-      long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
+      utility_long_ptr_buffer = (longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80D8 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * POINTER_DATA_OFFSET);
       resource_buffer = *long_ptr_buffer;
       resource_buffer = *(longlong *)(resource_buffer + ((longlong)(int)(long_ptr_buffer[1] - resource_buffer >> 3) + -1) * UTILITY_DOUBLE_WORD_SIZE);
       UtilityModule11();
@@ -69828,28 +69828,28 @@ void UtilityUnwindSystemFunctionf040(uint64 resource_handle_identifier,longlong 
   longlong *resource_data_pointer;
   longlong operation_buffer;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   
   resource_data_pointer = *(longlong **)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET);
   operation_buffer = resource_data_pointer[2];
   utility_data_array_index = resource_data_pointer[4];
-  long_ptr_buffer = (longlong *)resource_data_pointer[5];
+  utility_long_ptr_buffer = (longlong *)resource_data_pointer[5];
   if (operation_buffer != resource_data_pointer[6]) {
     do {
       setThreadLocalValue(operation_buffer);
       operation_buffer = operation_buffer + UTILITY_HANDLE_DATA_OFFSET;
       if (operation_buffer == utility_data_array_index) {
-        long_ptr_buffer = long_ptr_buffer + 1;
+        utility_long_ptr_buffer = long_ptr_buffer + 1;
         operation_buffer = *long_ptr_buffer;
         utility_data_array_index = operation_buffer + SYSTEM_DATA_OFFSET;
       }
     } while (operation_buffer != resource_data_pointer[6]);
   }
   if (*resource_data_pointer != 0) {
-    long_ptr_buffer = (longlong *)resource_data_pointer[5];
+    utility_long_ptr_buffer = (longlong *)resource_data_pointer[5];
     while (long_ptr_buffer < (longlong *)(resource_data_pointer[9] + 8)) {
       utility_data_array_index = *long_ptr_buffer;
-      long_ptr_buffer = long_ptr_buffer + 1;
+      utility_long_ptr_buffer = long_ptr_buffer + 1;
       if (utility_data_array_index != 0) {
                     // WARNING: Subroutine does not return
         HandleCriticalError();
@@ -69991,28 +69991,28 @@ void UtilityUnwindSystemFunctionf0c0(uint64 resource_handle_identifier,longlong 
   longlong *resource_data_pointer;
   longlong operation_buffer;
   longlong utility_data_array_index;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   
   resource_data_pointer = *(longlong **)(resource_buffer + UTILITY_BUFFER_SIZE_DATA_OFFSET);
   operation_buffer = resource_data_pointer[2];
   utility_data_array_index = resource_data_pointer[4];
-  long_ptr_buffer = (longlong *)resource_data_pointer[5];
+  utility_long_ptr_buffer = (longlong *)resource_data_pointer[5];
   if (operation_buffer != resource_data_pointer[6]) {
     do {
       setThreadLocalValue(operation_buffer);
       operation_buffer = operation_buffer + UTILITY_HANDLE_DATA_OFFSET;
       if (operation_buffer == utility_data_array_index) {
-        long_ptr_buffer = long_ptr_buffer + 1;
+        utility_long_ptr_buffer = long_ptr_buffer + 1;
         operation_buffer = *long_ptr_buffer;
         utility_data_array_index = operation_buffer + SYSTEM_DATA_OFFSET;
       }
     } while (operation_buffer != resource_data_pointer[6]);
   }
   if (*resource_data_pointer != 0) {
-    long_ptr_buffer = (longlong *)resource_data_pointer[5];
+    utility_long_ptr_buffer = (longlong *)resource_data_pointer[5];
     while (long_ptr_buffer < (longlong *)(resource_data_pointer[9] + 8)) {
       utility_data_array_index = *long_ptr_buffer;
-      long_ptr_buffer = long_ptr_buffer + 1;
+      utility_long_ptr_buffer = long_ptr_buffer + 1;
       if (utility_data_array_index != 0) {
                     // WARNING: Subroutine does not return
         HandleCriticalError();
@@ -70702,18 +70702,18 @@ void UtilityUnwindSystemFunctionf370(uint64 resource_handle_identifier,longlong 
   longlong resource_buffer;
   longlong operation_buffer;
   uint iteration_counter;
-  longlong *long_ptr_buffer;
+  longlong *utility_long_ptr_buffer;
   
   resource_buffer = *(longlong *)(resource_buffer + utility_data_offset_start);
   iteration_counter = 0;
-  long_ptr_buffer = (longlong *)(resource_buffer + 600);
+  utility_long_ptr_buffer = (longlong *)(resource_buffer + 600);
   do {
     if (*long_ptr_buffer != 0) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
     operation_buffer = (longlong)(int)iteration_counter;
-    long_ptr_buffer = long_ptr_buffer + 1;
+    utility_long_ptr_buffer = long_ptr_buffer + 1;
     iteration_counter = iteration_counter + 1;
     *(uint64 *)(resource_buffer + 600 + operation_buffer * UTILITY_DOUBLE_WORD_SIZE) = 0;
   } while (iteration_counter < 10);
