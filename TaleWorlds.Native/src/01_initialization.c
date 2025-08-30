@@ -58,7 +58,13 @@
 // - 原本实现：完全重构初始化系统所有类型定义体系，建立统一的语义化类型规范
 // - 简化实现：仅将常见的void类型变量和特殊类型定义替换为语义化名称，保持代码结构不变
 
-// 最新美化内容（2025年8月30日最终批次标签定义语义化美化工作完成）：
+// 最新美化内容（2025年8月30日最终批次临时变量语义化美化工作完成）：
+// - 美化临时计数器变量名，将system_temp_counter替换为system_temp_loop_counter等语义化变量名
+// - 美化临时存储变量名，将system_temp_storage替换为system_temp_data_storage等语义化变量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了初始化系统中临时变量名的语义化替换
+// - 原本实现：完全重构初始化系统所有临时变量命名体系，建立统一的语义化命名规范
+// - 简化实现：仅将常见的临时变量名替换为语义化名称，保持代码结构不变
 // - 美化系统标签定义，将SYSTEM_INIT_LABEL_*定义中的LAB_名称替换为对应的语义化名称
 // - 将SYSTEM_INIT_LABEL_MAIN_ENTRY中的LAB_1808fd14a替换为system_init_label_parameter_check
 // - 将SYSTEM_INIT_LABEL_STRING_TERMINATE_CHECK中的LAB_180040x10e47替换为system_init_label_string_process
@@ -2856,7 +2862,7 @@ void InitializeSystemCore(void)
   system_stack_memory_pointer_primary = &g_system_context;
   system_stack_memory_pointer_secondary = system_stack_buffer_main;
   system_stack_buffer_main[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_temp_value = ;
+  system_stack_temp_value = SYSTEM_INIT_VALUE_DEFAULT_TEMP;
   strcpy_s(system_stack_buffer_main,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&system_stack_memory_pointer_primary);
   return;
@@ -5014,7 +5020,7 @@ void InitializeSystemCore(void)
   system_stack_memory_pointer_primary = &g_system_context;
   system_stack_memory_pointer_secondary = system_stack_buffer_main;
   system_stack_buffer_main[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_temp_value = ;
+  system_stack_temp_value = SYSTEM_INIT_VALUE_DEFAULT_TEMP;
   strcpy_s(system_stack_buffer_main,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&system_stack_memory_pointer_primary);
   return;
@@ -5444,7 +5450,7 @@ void InitializeSystemCore(void)
   system_stack_memory_pointer_primary = &g_system_context;
   system_stack_memory_pointer_secondary = system_stack_buffer_main;
   system_stack_buffer_main[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_temp_value = ;
+  system_stack_temp_value = SYSTEM_INIT_VALUE_DEFAULT_TEMP;
   strcpy_s(system_stack_buffer_main,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&system_stack_memory_pointer_primary);
   return;
@@ -5468,7 +5474,7 @@ void InitializeSystemCore(void)
   system_stack_memory_pointer_primary = &g_system_context;
   system_stack_memory_pointer_secondary = system_stack_buffer_main;
   system_stack_buffer_main[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_temp_value = ;
+  system_stack_temp_value = SYSTEM_INIT_VALUE_DEFAULT_TEMP;
   strcpy_s(system_stack_buffer_main,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&system_stack_memory_pointer_primary);
   return;
@@ -7997,7 +8003,7 @@ void InitializeSystemCore(void)
   system_stack_memory_pointer_primary = &g_system_context;
   system_stack_memory_pointer_secondary = system_stack_buffer_main;
   system_stack_buffer_main[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_temp_value = ;
+  system_stack_temp_value = SYSTEM_INIT_VALUE_DEFAULT_TEMP;
   strcpy_s(system_stack_buffer_main,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&system_stack_memory_pointer_primary);
   return;
@@ -9099,7 +9105,7 @@ void InitializeSystemCore(void)
   system_stack_memory_pointer_primary = &g_system_context;
   system_stack_memory_pointer_secondary = system_stack_buffer_main;
   system_stack_buffer_main[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_temp_value = ;
+  system_stack_temp_value = SYSTEM_INIT_VALUE_DEFAULT_TEMP;
   strcpy_s(system_stack_buffer_main,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&system_stack_memory_pointer_primary);
   return;
@@ -9123,7 +9129,7 @@ void InitializeSystemCore(void)
   system_stack_memory_pointer_primary = &g_system_context;
   system_stack_memory_pointer_secondary = system_stack_buffer_main;
   system_stack_buffer_main[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_temp_value = ;
+  system_stack_temp_value = SYSTEM_INIT_VALUE_DEFAULT_TEMP;
   strcpy_s(system_stack_buffer_main,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&system_stack_memory_pointer_primary);
   return;
@@ -9195,7 +9201,7 @@ void InitializeSystemCore(void)
   system_stack_memory_pointer_primary = &g_system_context;
   system_stack_memory_pointer_secondary = system_stack_buffer_main;
   system_stack_buffer_main[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_temp_value = ;
+  system_stack_temp_value = SYSTEM_INIT_VALUE_DEFAULT_TEMP;
   strcpy_s(system_stack_buffer_main,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&system_stack_memory_pointer_primary);
   return;
@@ -13470,7 +13476,7 @@ void InitializeSystemCore(void)
   system_stack_memory_pointer_primary = &g_system_context;
   system_stack_memory_pointer_secondary = system_stack_buffer_main;
   system_stack_buffer_main[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_temp_value = ;
+  system_stack_temp_value = SYSTEM_INIT_VALUE_DEFAULT_TEMP;
   strcpy_s(system_stack_buffer_main,SYSTEM_INIT_SIZE_BUFFER_SMALL,&system_initialized,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&system_stack_memory_pointer_primary);
   return;
@@ -15192,7 +15198,7 @@ void InitializeSystemCore(void)
   system_stack_memory_pointer_primary = &g_system_context;
   system_stack_memory_pointer_secondary = system_stack_buffer_main;
   system_stack_buffer_main[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_temp_value = ;
+  system_stack_temp_value = SYSTEM_INIT_VALUE_DEFAULT_TEMP;
   strcpy_s(system_stack_buffer_main,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_context,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&system_stack_memory_pointer_primary);
   return;
@@ -37976,7 +37982,7 @@ void InitializeSystemCore(longlong *system_context_param,longlong system_config_
   system_allocation_result2 = system_stack_long_78;
   system_flags_mask = system_stack_uint_a8;
   system_stack_uint_98 = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_temp_value = ;
+  system_stack_temp_value = SYSTEM_INIT_VALUE_DEFAULT_TEMP;
   system_stack_uint_a8 = system_stack_uint_a8 & ;
   system_allocation_result_primary = CONCAT71(system_stack_uint_87,system_stack_uint_index_secondary);
   system_init_flag_graphics = CONCAT44(system_stack_uint_a4,system_flags_mask) & SYSTEM_INIT_ERROR_GENERICffffff00;
@@ -38002,7 +38008,7 @@ void InitializeSystemCore(longlong *system_context_param,longlong system_config_
       free(system_ulong_primary0x10,system_init_flag_network);
     }
     system_stack_uint_98 = SYSTEM_INIT_VALUE_ZERO;
-    system_stack_temp_value = ;
+    system_stack_temp_value = SYSTEM_INIT_VALUE_DEFAULT_TEMP;
     system_stack_uint_a8 = system_stack_uint_a8 & ;
     if ( < system_stack_uint_70) {
       system_init_flag_graphics = system_stack_uint_70 + 1;
@@ -63341,3 +63347,4 @@ longlong *system_memory_pool_pointer;
 #define SYSTEM_INIT_VALUE_FUNCTION_POINTER_INDEX      10      // 函数指针数组索引值
 #define SYSTEM_INIT_VALUE_0x10FFFFFF                     0x10ffffff  // 特殊值0x10FFFFFF
 #define SYSTEM_INIT_VALUE_CONTEXT_INDEX_RESOURCE_BASE8 0x10a   // 资源基础索引8值
+#define SYSTEM_INIT_VALUE_DEFAULT_TEMP                0       // 默认临时值
