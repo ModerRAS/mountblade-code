@@ -36,7 +36,7 @@
 // 系统初始化检查偏移量语义化常量
 #define SYSTEM_INIT_CHECK_OFFSET_9F 0x9f
 #define SYSTEM_INIT_CHECK_MASK_3F 0x3f
-#define SYSTEM_INIT_CHECK_BITMASK_87FFFFFE03FF SYSTEM_INIT_CHECK_BITMASK_87FFFFFE03FF
+#define SYSTEM_INIT_CHECK_BITMASK_87FFFFFE03FF 0x87FFFFFE03FF
 
 // 系统句柄偏移量语义化常量
 #define SYSTEM_HANDLE_OFFSET_29 0x29
@@ -253,6 +253,13 @@
 // 系统IO流常量语义化定义
 #define SYSTEM_IO_STREAM_STDOUT 1
 #define SYSTEM_IO_STREAM_STDERR 2
+
+// 系统存储指针偏移量语义化常量
+#define SYSTEM_STORAGE_PTR_OFFSET_DATA 2
+#define SYSTEM_STORAGE_PTR_OFFSET_NEXT 4
+
+// 系统句柄标识符偏移量语义化常量
+#define SYSTEM_HANDLE_ID_OFFSET_2 2
 
 // 本次美化内容：
 // - 添加了SYSTEM_TEMP_VARIABLE_18等临时变量语义化常量
@@ -16644,12 +16651,12 @@ uint64_t InitializeThreadLocalStorage(void)
     if (storage_ptr == (int *)SYSTEM_NULL_POINTER) {
       return SYSTEM_OFFSET_Ffffffff;
     }
-    *(uint64_t *)(storage_ptr + 2) = *(uint64_t *)(threadLocalStorageBase + SYSTEM_THREAD_LOCAL_STORAGE_OFFSET_50);
+    *(uint64_t *)(storage_ptr + SYSTEM_STORAGE_PTR_OFFSET_DATA) = *(uint64_t *)(threadLocalStorageBase + SYSTEM_THREAD_LOCAL_STORAGE_OFFSET_50);
   }
   *storage_ptr = 0;
   *(int **)(threadLocalStorageBase + SYSTEM_THREAD_LOCAL_STORAGE_OFFSET_50) = storage_ptr;
 INIT_LABEL_CHECK_STORAGE_VALUE:
-  *(code **)(storage_ptr + (longlong)*storage_ptr * 2 + 4) = InitializeErrorHandler;
+  *(code **)(storage_ptr + (longlong)*storage_ptr * 2 + SYSTEM_STORAGE_PTR_OFFSET_NEXT) = InitializeErrorHandler;
   *storage_ptr = *storage_ptr + 1;
   return 0;
 }
@@ -18679,7 +18686,7 @@ InitializeSystemModule24(uint64_t *handleIdentifier,uint64_t *resourceIdentifier
 {
   *handleIdentifier = *resourceIdentifier;
   *(uint32_t *)(handleIdentifier + 1) = *(uint32_t *)(resourceIdentifier + 1);
-  InitializeInputMutex(handleIdentifier + 2,resourceIdentifier + 2,system_configuration,systemFlags,INVALID_HANDLE_VALUE);
+  InitializeInputMutex(handleIdentifier + SYSTEM_HANDLE_ID_OFFSET_2,resourceIdentifier + SYSTEM_HANDLE_ID_OFFSET_2,system_configuration,systemFlags,INVALID_HANDLE_VALUE);
   *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_AUTH) = *(uint32_t *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_AUTH);
   *(uint32_t *)((longlong)handleIdentifier + SYSTEM_OBJECT_OFFSET_AC) = *(uint32_t *)((longlong)resourceIdentifier + SYSTEM_OBJECT_OFFSET_AC);
   handleIdentifier[SYSTEM_CONFIG_SIZE_FONT] = resourceIdentifier[SYSTEM_CONFIG_SIZE_FONT];
