@@ -13385,7 +13385,7 @@ uint64_t ManageNetworkBandwidth(int64_t network_socket_handle, uint32_t *network
           network_stack_unsigned_parameter = *(uint32_t *)(network_socket_handle + SOCKET_DATA_POINTER_OFFSET) + *(uint32_t *)(network_socket_handle + NETWORK_TIMEOUT_CONFIG_EXTENDED_OFFSET8);
         NetworkProcessConnectionQueue(network_socket_handle, &network_stack_unsigned_parameter, NETWORK_STATUS_FAILURE, NETWORK_STATUS_SUCCESS, network_config_param_ptr, network_stack_connection_array, 
                       network_config_param_ptr, network_stack_small_validation_char);
-        if ((network_stack_small_validation_char[NETWORK_STATUS_FAILURE] != '\NETWORK_STATUS_FAILURE') && (network_proc_index = network_stack_connection_arrayay[NETWORK_STATUS_FAILURE] - network_stack_unsigned_parameter, network_proc_index <= network_op_code_tertiary_extended)) {
+        if ((network_stack_small_validation_char[NETWORK_STATUS_FAILURE] != NETWORK_CHAR_NULL) && (network_proc_index = network_stack_connection_array[NETWORK_STATUS_FAILURE] - network_stack_unsigned_parameter, network_proc_index <= network_op_code_tertiary_extended)) {
           network_op_status = network_proc_index;
           if ((char)network_socket_handle_quinary == '\NETWORK_STATUS_FAILURE') {
             network_bool_connection_status = NETWORK_STATUS_SUCCESS;
@@ -14423,8 +14423,8 @@ uint64_t StartNetworkService(int64_t network_socket_handle)
           *(uint32_t *)(network_socket_handle + SOCKET_DATA_POINTER_OFFSET) = network_op_status - network_packet_size_ptr_incremental;
           *(uint32_t *)(network_socket_handle + NETWORK_TIMEOUT_CONFIG_EXTENDED_OFFSET8) = network_buffer_size;
           *(uint32_t *)(network_socket_handle + NETWORK_TIMEOUT_CONFIG_EXTENDED_OFFSETc) = network_buffer_size;
-        network_config_param_ptr = network_stack_connection_arrayay;
-        if ((network_stack_small_validation_char[NETWORK_STATUS_FAILURE] != '\NETWORK_STATUS_FAILURE') && (network_op_status = network_stack_connection_arrayay[NETWORK_STATUS_FAILURE] - network_stack_unsigned_parameter, network_op_status <= network_packet_size_ptr_orig)) {
+        network_config_param_ptr = network_stack_connection_array;
+        if ((network_stack_small_validation_char[NETWORK_STATUS_FAILURE] != NETWORK_CHAR_NULL) && (network_op_status = network_stack_connection_array[NETWORK_STATUS_FAILURE] - network_stack_unsigned_parameter, network_op_status <= network_packet_size_ptr_orig)) {
           network_buffer_size = network_op_status;
             if (network_op_status != network_packet_size_ptr_orig) {
       network_op_status = network_config_secondary_value;
