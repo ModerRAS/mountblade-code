@@ -3360,9 +3360,9 @@ void* * NetworkGetThreadLocalStorage(void)
     GetNetworkTimeout(&_networkConnectionLimit);
     if (_networkConnectionLimit == NETWORK_STATUS_ERROR) {
       _network_timeout_value_ptrMin = NETWORK_OPERATION_FAILURE;
-      network_timeout_value_ptr_reserved1 = NETWORK_OPERATION_FAILURE;
-      network_timeout_value_ptr_reserved2 = NETWORK_OPERATION_FAILURE;
-      network_timeout_value_ptr_reserved3 = NETWORK_OPERATION_FAILURE;
+      network_timeout_reserved_value_1 = NETWORK_OPERATION_FAILURE;
+      network_timeout_reserved_value_2 = NETWORK_OPERATION_FAILURE;
+      network_timeout_reserved_value_3 = NETWORK_OPERATION_FAILURE;
       SetNetworkTimeout(&_networkConnectionLimit);
   return &_network_timeout_value_ptrMin;
 // 函数: void NetworkHandleSecurity(uint64_t network_socket_descriptor, uint8_t *network_buffer_pointer)
