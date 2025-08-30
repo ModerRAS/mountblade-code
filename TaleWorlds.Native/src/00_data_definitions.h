@@ -1876,6 +1876,8 @@ extern char system_flag_buffer_cleanup_handler;
 #define SYSTEM_BUFFER_ALLOC_RESULT_STATUS_RESOURCE_BUSY 0x2b     // 缓冲区分配状态资源忙
 #define SYSTEM_BUFFER_ALLOC_RESULT_STATUS_MEMORY_FULL 0x2d       // 缓冲区分配状态内存满
 #define SYSTEM_BUFFER_ALLOC_RESULT_STATUS_ACCESS_DENIED 0x2e    // 缓冲区分配状态访问拒绝
+#define SYSTEM_BUFFER_ALLOC_BIT_MASK_VALIDATION 0xffdefffe      // 缓冲区分配验证位掩码
+#define SYSTEM_BUFFER_ALLOC_BIT_MASK_XOR_OPERATION 0xffffff      // 缓冲区分配异或操作位掩码
 
 // 系统字符串模式常量定义
 #define SYSTEM_STRING_PATTERN_DOT_DOT_L 0x2e2e6c  // "..l"
@@ -12274,7 +12276,7 @@ long long process_context_handle_param(long long *handle_param)
   }
   system_buffer_allocation_result = (ulong long)handle_param & INVALID_HANDLE_VALUEffc00000;
   if (system_buffer_allocation_result != SYSTEM_ZERO_VALUE) {
-    system_string_length_counter = system_buffer_allocation_result + SYSTEM_POINTER_OFFSET0 + ((long long)handle_param - system_buffer_allocation_result >> STRING_BUFFER_SIZE) * 0x50;
+    system_string_length_counter = system_buffer_allocation_result + SYSTEM_POINTER_OFFSET0 + ((long long)handle_param - system_buffer_allocation_result >> STRING_BUFFER_SIZE) * SYSTEM_MULTIPLIER_LARGE_SCALE;
     system_string_length_counter = system_string_length_counter - (ulong long)*(uint *)(system_string_length_counter + SYSTEM_OFFSET_HANDLE_PARAM);
     if ((*(void ***)(system_buffer_allocation_result + SYSTEM_CHAR_LOWERCASE_P) == &ExceptionList) && (*(char *)(system_string_length_counter + SYSTEM_POINTER_OFFSET_E) == '\0')) {
       system_string_length_counter = *(long long *)(system_string_length_counter + path_buffer_size);
@@ -12308,8 +12310,8 @@ long long process_context_handle_param(long long *handle_param)
       system_float_variable = system_operation_parameter * *(float *)(system_string_length_counter + SYSTEM_FLOAT_ARRAY_ADDR_3);
       system_float_variable = system_float_variable * *mutex_attr + system_float_variable * mutex_attr[SYSTEM_ARRAY_INDEX_FOURTH] + system_float_variable * mutex_attr[SYSTEM_ARRAY_INDEX_EIGHTH] + mutex_attr[SYSTEM_ARRAY_INDEX_TWELFTH];
       system_float_variable = system_float_variable * mutex_attr[SYSTEM_ARRAY_INDEX_1] + system_float_variable * mutex_attr[5] + system_float_variable * mutex_attr[9] + mutex_attr[SYSTEM_MEMORY_OFFSET_D];
-      system_float_variable = system_float_variable * mutex_attr[SYSTEM_ARRAY_INDEX_2] + system_float_variable * mutex_attr[6] + system_float_variable * mutex_attr[10] + mutex_attr[0xe];
-      system_float_variable = system_float_variable * mutex_attr[3] + system_float_variable * mutex_attr[7] + system_float_variable * mutex_attr[0xb] + mutex_attr[0xf];
+      system_float_variable = system_float_variable * mutex_attr[SYSTEM_ARRAY_INDEX_SECOND] + system_float_variable * mutex_attr[SYSTEM_ARRAY_INDEX_SIXTH] + system_float_variable * mutex_attr[SYSTEM_ARRAY_INDEX_TENTH] + mutex_attr[SYSTEM_ARRAY_INDEX_FOURTEENTH];
+      system_float_variable = system_float_variable * mutex_attr[SYSTEM_ARRAY_INDEX_THIRD] + system_float_variable * mutex_attr[SYSTEM_ARRAY_INDEX_SEVENTH] + system_float_variable * mutex_attr[SYSTEM_ARRAY_INDEX_ELEVENTH] + mutex_attr[SYSTEM_ARRAY_INDEX_FIFTEENTH];
       *(float *)((long long)afStack_2e8 + system_string_length_counter) = system_float_variable;
       *(float *)((long long)afStack_2e8 + system_string_length_counter + SYSTEM_OFFSET_HANDLE_PARAM) = system_float_variable;
       *(float *)((long long)&system_maximum_stack_size + system_string_length_counter) = system_float_variable;
@@ -12343,9 +12345,9 @@ long long process_context_handle_param(long long *handle_param)
       system_string_length_counter = system_string_length_counter + SYSTEM_OFFSET_STRING_BUFFER_SIZE;
       system_string_length_counter = system_string_length_counter + SYSTEM_DECREMENT_VALUE_1;
     } while (system_string_length_counter != 0);
-    system_float_variable = mutex_attr[0xe];
+    system_float_variable = mutex_attr[SYSTEM_ARRAY_INDEX_FOURTEENTH];
     system_float_variable = mutex_attr[SYSTEM_MEMORY_OFFSET_D];
-    system_float_variable = mutex_attr[0xc];
+    system_float_variable = mutex_attr[SYSTEM_ARRAY_INDEX_TWELFTH];
     system_float_variable = mutex_attr[9];
     system_float_variable = mutex_attr[8];
     system_float_variable = mutex_attr[10];
@@ -13231,7 +13233,7 @@ unsigned long long initialize_parameter_block(unsigned int handle_param,uint *sy
       system_char_variable = status_checker();
       system_buffer_allocation_result = *(uint *)(*(long long *)(stack_long_var + SYSTEM_OFFSET_CONNECTION_LIMIT) + SYSTEM_OFFSET_STACK_POINTER);
       if (system_char_variable == '\0') {
-        system_buffer_allocation_result = system_buffer_allocation_result & 0xffdefffe;
+        system_buffer_allocation_result = system_buffer_allocation_result & SYSTEM_BUFFER_ALLOC_BIT_MASK_VALIDATION;
       }
       *system_thread_operation_flags = system_buffer_allocation_result;
       *(unsigned char *)(system_thread_operation_flags + 1) = *(unsigned char *)(*(long long *)(stack_long_var + SYSTEM_OFFSET_CONNECTION_LIMIT) + SYSTEM_OFFSET_STRING_BUFFER_SIZE);

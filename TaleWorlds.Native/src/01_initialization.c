@@ -251,6 +251,23 @@
 #define SYSTEM_INIT_FLAG_ACTIVE                0x4     // 活动标志
 #define SYSTEM_INIT_FLAG_READY                 0x8     // 就绪标志
 
+// 系统标签语义化常量定义（2025年8月30日最终批次补充美化）
+#define SYSTEM_INIT_LABEL_MAIN_ENTRY              LAB_1808fd14a  // 主入口标签
+#define SYSTEM_INIT_LABEL_STRING_TERMINATE_CHECK   LAB_180043e47  // 字符串终止检查标签
+#define SYSTEM_INIT_LABEL_SIZE_VALIDATION         LAB_180044db8  // 大小验证标签
+#define SYSTEM_INIT_LABEL_MEMORY_CHECK            LAB_180044faf  // 内存检查标签
+#define SYSTEM_INIT_LABEL_FUNCTION_RESULT_CHECK  LAB_180044ee3  // 函数结果检查标签
+#define SYSTEM_INIT_LABEL_CONTINUE_PROCESS       LAB_180044f8f  // 继续处理标签
+#define SYSTEM_INIT_LABEL_INITIALIZE_COMPLETE    LAB_180046a90  // 初始化完成标签
+#define SYSTEM_INIT_LABEL_INITIALIZATION_CHECK   LAB_1800469fd  // 初始化检查标签
+#define SYSTEM_INIT_LABEL_LOOP_CONTINUE          LAB_180046c03  // 循环继续标签
+#define SYSTEM_INIT_LABEL_LOOP_CONDITION        LAB_180046c5e  // 循环条件标签
+#define SYSTEM_INIT_LABEL_LOOP_END              LAB_180046c90  // 循环结束标签
+#define SYSTEM_INIT_LABEL_DATA_PROCESS          LAB_180047f2c  // 数据处理标签
+#define SYSTEM_INIT_LABEL_ARRAY_CHECK           LAB_180047f93  // 数组检查标签
+#define SYSTEM_INIT_LABEL_VALIDATION_COMPLETE   LAB_180048dd7  // 验证完成标签
+#define SYSTEM_INIT_LABEL_CLEANUP_START         LAB_180048db7  // 清理开始标签
+
 // 系统错误码常量
 #define SYSTEM_INIT_ERROR_GENERIC              0xfffffffffffffff
 #define SYSTEM_INIT_ERROR_TIMEOUT              0xffffffffffffffe
@@ -375,7 +392,7 @@
 #define SYSTEM_INIT_MAGIC_COOKIE_ENGINE_3     0x69666e6f // 引擎魔法cookie 3
 #define SYSTEM_INIT_MAGIC_COOKIE_ENGINE_4     0x78742e67 // 引擎魔法cookie 4
 #define SYSTEM_INIT_MAGIC_COOKIE_ENGINE_5     0x74     // 引擎魔法cookie 5
-#define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_1     0x73676f6c // 预制体魔法cookie 1SYSTEM_INIT_MAGIC_COOKIE_PREFAB_1
+#define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_1     0x73676f6c // 预制体魔法cookie 1
 
 // 系统初始化浮点系数常量（2025年8月30日最终批次补充）
 #define SYSTEM_INIT_FLOAT_COEFFICIENT_1        1.6750001  // 系统初始化浮点系数1 - 用于计算system_offset_value
@@ -394,58 +411,86 @@
 #define SYSTEM_INIT_FLOAT_VALUE_0_75           0.75       // 0.75值
 #define SYSTEM_INIT_FLOAT_VALUE_ONE            1.0        // 1.0值
 #define SYSTEM_INIT_FLOAT_VALUE_RECIPROCAL    1.0        // 倒数基础值
-#define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_2     0x66726570 // 预制体魔法cookie 2SYSTEM_INIT_MAGIC_COOKIE_PREFAB_2
-#define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_3     0x616d726f // 预制体魔法cookie 3SYSTEM_INIT_MAGIC_COOKIE_PREFAB_3
-#define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_4     0x5f65636e // 预制体魔法cookie 4SYSTEM_INIT_MAGIC_COOKIE_PREFAB_4
-#define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_5     0x747874 // 预制体魔法cookie 5SYSTEM_INIT_MAGIC_COOKIE_ENGINE_57874
-#define                    // 偏移量
-#define                    // 偏移量
-#define                    // 偏移量
-#define                    // 偏移量
-#define                    // 偏移量
-#define                    // 偏移量
-#define                    // 偏移量
-#define                    // 偏移量
-#define                    // 偏移量
+#define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_2     0x66726570 // 预制体魔法cookie 2
+#define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_3     0x616d726f // 预制体魔法cookie 3
+#define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_4     0x5f65636e // 预制体魔法cookie 4
+#define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_5     0x747874 // 预制体魔法cookie 5
+// 偏移量常量（已移除）
+// #define SYSTEM_INIT_OFFSET_REMOVED
+// 偏移量常量（已移除）
+// #define SYSTEM_INIT_OFFSET_REMOVED
+// 偏移量常量（已移除）
+// #define SYSTEM_INIT_OFFSET_REMOVED
+// 偏移量常量（已移除）
+// #define SYSTEM_INIT_OFFSET_REMOVED
+// 偏移量常量（已移除）
+// #define SYSTEM_INIT_OFFSET_REMOVED
+// 偏移量常量（已移除）
+// #define SYSTEM_INIT_OFFSET_REMOVED
+// 偏移量常量（已移除）
+// #define SYSTEM_INIT_OFFSET_REMOVED
+// 偏移量常量（已移除）
+// #define SYSTEM_INIT_OFFSET_REMOVED
+// 偏移量常量（已移除）
+// #define SYSTEM_INIT_OFFSET_REMOVED
 #define SYSTEM_INIT_VALUE_STRING_TERMINATOR   SYSTEM_INIT_VALUE_STRING_TERMINATOR    // 字符串终止符SYSTEM_INIT_VALUE_STRING_TERMINATOR
-#define                    // 偏移量
+// 偏移量常量（已移除）
+// #define SYSTEM_INIT_OFFSET_REMOVED
 #define SYSTEM_INIT_SIZE_0X50                     // 大小
 #define                     // 偏移量_INIT_STACK_VALUE_LARGE
 #define SYSTEM_INIT_VALUE_CHAR_NULL           SYSTEM_INIT_VALUE_CHAR_NULL     // 空字符SYSTEM_INIT_VALUE_CHAR_NULL
 #define                  // 字符1
 #define                  // 偏移量
-#define                    // 偏移量
-#define                    // 偏移量
-#define                    // 偏移量
-#define                    // 偏移量
-#define                    // 偏移量
+// 偏移量常量（已移除）
+// #define SYSTEM_INIT_OFFSET_REMOVED
+// 偏移量常量（已移除）
+// #define SYSTEM_INIT_OFFSET_REMOVED
+// 偏移量常量（已移除）
+// #define SYSTEM_INIT_OFFSET_REMOVED
+// 偏移量常量（已移除）
+// #define SYSTEM_INIT_OFFSET_REMOVED
+// 偏移量常量（已移除）
+// #define SYSTEM_INIT_OFFSET_REMOVED
 #define SYSTEM_INIT_MAGIC_COOKIE_REVERSE_1    SYSTEM_INIT_MAGIC_COOKIE_REVERSE_1 // 反向魔法cookie 1SYSTEM_INIT_MAGIC_COOKIE_REVERSE_1
-#define                    // 偏移量
+// 偏移量常量（已移除）
+// #define SYSTEM_INIT_OFFSET_REMOVED
 #define                       // 偏移量
 #define                      // 偏移量
 #define                       // 偏移量_INIT_STACK_VALUE_SMALL
-#define                    // 偏移量
-#define                    // 偏移量
+// 偏移量常量（已移除）
+// #define SYSTEM_INIT_OFFSET_REMOVED
+// 偏移量常量（已移除）
+// #define SYSTEM_INIT_OFFSET_REMOVED
 #define                0x30    // 偏移量
 #define SYSTEM_INIT_VALUE_SPECIAL_BB80073     // 特殊值BB80073
 #define                  // 偏移量
-#define                    // 偏移量
+// 偏移量常量（已移除）
+// #define SYSTEM_INIT_OFFSET_REMOVED
 #define                  // 偏移量
 #define                  // 偏移量
 #define                  // 偏移量
 #define                  // 偏移量
 #define                  // 偏移量
-#define                    // 偏移量
-#define                    // 偏移量
-#define                    // 偏移量
-#define                    // 偏移量
-#define                    // 偏移量
+// 偏移量常量（已移除）
+// #define SYSTEM_INIT_OFFSET_REMOVED
+// 偏移量常量（已移除）
+// #define SYSTEM_INIT_OFFSET_REMOVED
+// 偏移量常量（已移除）
+// #define SYSTEM_INIT_OFFSET_REMOVED
+// 偏移量常量（已移除）
+// #define SYSTEM_INIT_OFFSET_REMOVED
+// 偏移量常量（已移除）
+// #define SYSTEM_INIT_OFFSET_REMOVED
 #define                0x60    // 偏移量
-#define                    // 偏移量
-#define                    // 偏移量
+// 偏移量常量（已移除）
+// #define SYSTEM_INIT_OFFSET_REMOVED
+// 偏移量常量（已移除）
+// #define SYSTEM_INIT_OFFSET_REMOVED
 #define                0x50    // 偏移量
-#define                    // 偏移量
-#define                    // 偏移量
+// 偏移量常量（已移除）
+// #define SYSTEM_INIT_OFFSET_REMOVED
+// 偏移量常量（已移除）
+// #define SYSTEM_INIT_OFFSET_REMOVED
 #define                0x30    // 偏移量
 #define                SYSTEM_INIT_SIZE_0X38    // 偏移量SYSTEM_INIT_SIZE_0X38SYSTEM_INIT_SIZE_0X38
 #define                       // 偏移量
@@ -16119,7 +16164,7 @@ system_uint64_t InitializeSystemCore(void)
     system_int_ptr_temp = (int *)(system_allocation_result + );
   }
   else {
-    if (*system_int_ptr_temp != SYSTEM_INIT_FLAG_INITIALIZED_QUATERNARY) goto LAB_1808fd14a;
+    if (*system_int_ptr_temp != SYSTEM_INIT_FLAG_INITIALIZED_QUATERNARY) goto SYSTEM_INIT_LABEL_MAIN_ENTRY;
     system_int_ptr_temp = (int *)malloc(SYSTEM_INIT_SIZE_COMPARE0);
     free(0);
     if (system_int_ptr_temp == (int *)SYSTEM_INIT_VALUE_CHAR_NULL) {
@@ -16504,7 +16549,7 @@ void InitializeSystemCore(longlong system_context_param)
     else {
       system_char_temp = (**(system_code **)((void* *)*_g_system_initialized + ))();
     }
-    if (system_char_temp == '\0') goto LAB_180043e47;
+    if (system_char_temp == '\0') goto SYSTEM_INIT_LABEL_STRING_TERMINATE_CHECK;
   }
   system_secondary_longptr = (longlong *)system_access_memory(_g_system_initialized,,8,3,system_temp_counter);
   system_longlong_pointer_stack_quaternary = system_secondary_longptr;
@@ -16679,7 +16724,7 @@ void InitializeSystemCore(void)
       system_initialize_context(&g_system_context);
     }
     else {
-      if ( < ((ulonglong)system_stack_param_size & SYSTEM_INIT_ERROR_GENERIC)) goto LAB_180044db8;
+      if ( < ((ulonglong)system_stack_param_size & SYSTEM_INIT_ERROR_GENERIC)) goto SYSTEM_INIT_LABEL_SIZE_VALIDATION;
       *(system_uint8_t *)((longlong)system_stack_application_param + ((ulonglong)system_stack_param_size & SYSTEM_INIT_ERROR_GENERIC)) = SYSTEM_INIT_VALUE_ZERO;
       (**(system_code **)(system_stack_pointer_application + SYSTEM_INIT_SIZE_COMPARE))(&system_stack_pointer_application,system_stack_application_param);
     }
@@ -16807,7 +16852,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
   system_memory_longptr[] = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint16_t *)system_memory_longptr = SYSTEM_INIT_VALUE_ZERO;
   _g_system_initialized = system_memory_longptr;
-  if ((char)*system_memory_longptr != '\0') goto LAB_180044faf;
+  if ((char)*system_memory_longptr != '\0') goto SYSTEM_INIT_LABEL_MEMORY_CHECK;
   system_longlong_pointer_pointer_stack_50 = system_longlong_pointer_pointer_var_1;
   system_loop_counter = _Mtx_lock(system_longlong_pointer_pointer_var_1);
   if (system_loop_counter != 0) {
@@ -16824,7 +16869,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
   if (system_function_result == 0) {
     system_function_result = LoadLibraryA(&g_system_context);
     system_memory_longptr[] = system_function_result;
-    if (system_function_result != 0) goto LAB_180044ee3;
+    if (system_function_result != 0) goto SYSTEM_INIT_LABEL_FUNCTION_RESULT_CHECK;
     system_stack_pointer_ternary = &g_system_context;
     if (system_void*_stack_pointer_b0 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
                     // WARNING: Subroutine does not return
@@ -16842,7 +16887,7 @@ system_init_label_thread_start:
                     // WARNING: Subroutine does not return
           system_execute_operation();
         }
-        goto LAB_180044f8f;
+        goto SYSTEM_INIT_LABEL_CONTINUE_PROCESS;
       }
     }
     psystem_ulong_var_13 = &g_system_initialized;
@@ -17910,7 +17955,7 @@ int InitializeSystemCore(longlong system_context_param,longlong system_config_pa
     *(ulonglong *)(system_context_param + SYSTEM_INIT_SIZE_COMPARE) = system_init_flag_network + SYSTEM_INIT_SIZE_COMPARE0;
     InitializeSystemCore(system_init_flag_network,&puStack_138);
     system_quadruple_pointer_ninth = *(system_uint64_t *****)(system_context_param + SYSTEM_INIT_SIZE_COMPARE);
-    goto LAB_180046a90;
+    goto SYSTEM_INIT_LABEL_INITIALIZE_COMPLETE;
   }
   system_buffer_pointer = *(longlong *)(system_context_param + 8);
   system_function_result = (longlong)(system_init_flag_network - system_buffer_pointer) >> 8;
@@ -17923,7 +17968,7 @@ system_init_label_system_init:
   }
   else {
     system_function_result = system_function_result * 2;
-    if (system_function_result != 0) goto LAB_1800469fd;
+    if (system_function_result != 0) goto SYSTEM_INIT_LABEL_INITIALIZATION_CHECK;
   }
   InitializeSystemCore(&system_triple_pointer_main,system_buffer_pointer,system_init_flag_network,system_loop_counter);
   system_primary_pointer_stack = system_triple_pointer_main;
@@ -18012,7 +18057,7 @@ ulonglong InitializeSystemCore(longlong system_context_param,longlong system_con
         } while (*system_byte_ptr_primary != 0);
       }
     }
-    else if (system_loop_counter != 0) goto LAB_180046c03;
+    else if (system_loop_counter != 0) goto SYSTEM_INIT_LABEL_LOOP_CONTINUE;
     if (system_int_status == 0) {
 system_init_label_audio_init:
       return system_init_flag_10 & SYSTEM_INIT_ERROR_GENERIC;
