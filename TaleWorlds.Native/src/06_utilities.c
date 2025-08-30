@@ -4512,11 +4512,11 @@ int delete_file(uint32 resource_handle_identifier)
   longlong utility_thread_stack_offset;
   uint32 utility_thread_param_offset;
   
-  process_buffer = 0;
+  utility_processing_buffer = 0;
   if (cpu_register_eax == 0) {
     utility_thread_stack_offset = *(longlong *)(utility_cpu_context + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
     utility_loop_counter = 1;
-    process_buffer = utility_thread_stack_offset;
+    utility_processing_buffer = utility_thread_stack_offset;
   }
   else {
     utility_thread_stack_offset = *(longlong *)(utility_cpu_context + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
@@ -4527,8 +4527,8 @@ int delete_file(uint32 resource_handle_identifier)
   if (utility_operation_status == 0) {
     utility_operation_status = 0;
   }
-  else if (process_buffer != 0) {
-    utilityAccessSystemMemory(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),process_buffer,&utilityMemoryDataBuffer,MEMORY_access_flag,utility_loop_counter);
+  else if (utility_processing_buffer != 0) {
+    utilityAccessSystemMemory(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),utility_processing_buffer,&utilityMemoryDataBuffer,MEMORY_access_flag,utility_loop_counter);
     return utility_operation_status;
   }
   return utility_operation_status;
