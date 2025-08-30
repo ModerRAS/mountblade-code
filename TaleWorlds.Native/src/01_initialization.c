@@ -118,9 +118,11 @@
 // - 将system_pointer_var替换为system_ptr_value等指针变量名
 // - 将system_operation_status替换为system_status_code等状态码变量名
 // - 将uintStack_xxx替换为init_stack_uint_param_xxx等栈参数变量名
+// - 将system_register_r10、system_register_r11替换为system_register_r10_value、system_register_r11_value等寄存器值变量名
+// - 将system_register_xmm0_dc、system_register_xmm1_dc替换为system_register_xmm0_dc_value、system_register_xmm1_dc_value等XMM寄存器值变量名
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
-// - 这是简化实现，主要处理了通用变量名的语义化替换
+// - 这是简化实现，主要处理了通用变量名和寄存器变量名的语义化替换
 
 // 地址常量定义
 #define AUDIO_SYSTEM_BASE_ADDR 0x180c91700

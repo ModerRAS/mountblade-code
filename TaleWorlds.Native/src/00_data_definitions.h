@@ -47,6 +47,10 @@
 // - 添加了系统操作码常量定义，如 SYSTEM_OPCODE_MEMORY_ALLOC、SYSTEM_OPCODE_NETWORK_INIT 等
 // - 添加了系统偏移量常量定义，如 SYSTEM_OFFSET_GLOBAL_DATA、SYSTEM_OFFSET_THREAD_STACK 等
 // - 删除了重复的线程池互斥锁地址定义
+// - 添加了资源类型常量定义，如 RESOURCE_TYPE_TEXTURE、RESOURCE_TYPE_SHADER 等
+// - 将初始化函数中的通用变量名替换为语义化名称，如 str_length -> base_resource_string_length
+// - 将硬编码的资源类型数值替换为语义化宏定义
+// - 修正了资源类型分配错误，如 initialize_font_resource_manager 中的 RESOURCE_TYPE_AUDIO -> RESOURCE_TYPE_FONT
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
 // 这是简化实现，主要处理了变量名的语义化替换和常量的语义化定义
