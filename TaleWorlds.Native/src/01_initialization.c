@@ -559,6 +559,8 @@
 #define SYSTEM_INIT_CONTEXT_INDEX_FRAME_ERROR 0x6f        // 帧错误偏移量
 #define SYSTEM_INIT_CONTEXT_INDEX_INIT_CHECK 0x71         // 初始化检查偏移量
 #define SYSTEM_INIT_CONTEXT_INDEX_MUTEX_CONFIG 0x6f       // 互斥体配置偏移量
+#define SYSTEM_INIT_CONTEXT_INDEX_VALIDATION_CONFIG 0x3d   // 验证配置偏移量
+#define SYSTEM_INIT_CONTEXT_INDEX_SHADER_CONFIG 0x65       // 着色器配置偏移量
 
 #include "TaleWorlds.Native.Split.h"
 
@@ -21897,7 +21899,7 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param)
   *(system_uint32_t *)(system_context_param + 99) = SYSTEM_INIT_VALUE_ZERO;
   (**(system_code **)(*system_tertiary_long_pointer + SYSTEM_INIT_SIZE_COMPARE))
             (system_tertiary_long_pointer,&g_system_context,&g_system_context,&g_system_context,SYSTEM_INIT_VALUE_HANDLE_INVALID);
-  *(system_uint32_t *)(system_context_param + 0x3d) = SYSTEM_INIT_VALUE_ZERO;
+  *(system_uint32_t *)(system_context_param + SYSTEM_INIT_CONTEXT_INDEX_VALIDATION_CONFIG) = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint32_t *)((longlong)system_context_param + SYSTEM_INIT_FLAG_INITIALIZED_QUATERNARYd) = SYSTEM_INIT_SIZE_COMPARE00001;
   system_context_param[SYSTEM_INIT_CONTEXT_INDEX_SHADER_CONFIG] = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint8_t *)(system_context_param + ) = SYSTEM_INIT_VALUE_ZERO;
