@@ -248,6 +248,7 @@ extern char system_flag_buffer_5;
 extern char system_flag_buffer_6;
 extern char system_flag_buffer_7;
 extern char thread_data_buffer_char;
+extern char system_data_buffer_ptr;
 #define MODULE_HANDLER_ADDR 0x180c95de0
 #define MODULE_CONFIG_ADDR 0x180c95fc8
 
@@ -6776,10 +6777,10 @@ unsigned long long initialize_graphics_context(unsigned long long handle_param,u
         global_data_ptr = 8;
         strcpy_s(&system_string_buffer, SYSTEM_CONFIG_BUFFER_SIZE, &system_180a353b8);
         system_crypto_initializer(system_execution_function);
-        system_crypto_module_initializer(&data_180d49f70);
+        system_crypto_module_initializer(&system_data_buffer_0);
       }
     }
-    (*UNRECOVERED_JUMPTABLE)(global_data_ptr,&data_180d49f80);
+    (*UNRECOVERED_JUMPTABLE)(global_data_ptr,&system_data_buffer_ptr);
     return;
   }
   if (-1 < handle_param) {
