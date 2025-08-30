@@ -8456,7 +8456,7 @@ goto section_processing_jump_label_52;
     }
   }
   else {
-    if (system_thread_priority_level == 0x15) {
+    if (system_thread_priority_level == SYSTEM_THREAD_PRIORITY_LEVEL_0X15) {
       system_thread_result_status = strcmp(system_thread_stack_base_address,&g_config_path_string);
       if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
         system_thread_result_status = SYSTEM_THREAD_STATUS_INITIALIZED;
@@ -8478,11 +8478,11 @@ section_processing_jump_label_50:
       system_string_input_pointer = &g_system_string_config;
 goto section_processing_jump_label_56;
     }
-    if (system_thread_priority_level == 0x1b) {
+    if (system_thread_priority_level == SYSTEM_THREAD_PRIORITY_LEVEL_0X1B) {
       system_string_input_pointer = &g_system_string_data;
 goto section_processing_jump_label_57;
     }
-    if (system_thread_priority_level == 0xd) {
+    if (system_thread_priority_level == SYSTEM_THREAD_PRIORITY_LEVEL_0X0D) {
       system_thread_result_status = strcmp(system_thread_stack_base_address,&g_system_string_save);
       if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
         system_thread_result_status = SYSTEM_FOUR_VALUE;
@@ -8492,7 +8492,7 @@ section_processing_jump_label_51:
       system_string_input_pointer = &g_system_string_log;
 goto section_processing_jump_label_59;
     }
-    if (system_thread_priority_level == 0x1a) {
+    if (system_thread_priority_level == SYSTEM_THREAD_PRIORITY_LEVEL_0X1A) {
       system_thread_result_status = strcmp(system_thread_stack_base_address,&g_log_path_string);
       if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
         system_thread_result_status = SYSTEM_THREAD_STATUS_WAITING;
@@ -8520,7 +8520,7 @@ goto section_processing_jump_label_64;
       }
 goto section_processing_jump_label_65;
     }
-    if (system_thread_priority_level == 0x24) {
+    if (system_thread_priority_level == SYSTEM_THREAD_PRIORITY_LEVEL_0X24) {
       system_thread_result_status = strcmp(system_thread_stack_base_address,&g_save_path_string_backup);
       if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
         system_thread_result_status = SYSTEM_THREAD_STATUS_ACTIVE;
@@ -8560,7 +8560,7 @@ section_processing_jump_label_56:
 goto section_processing_jump_label_74;
     }
 goto section_processing_jump_label_75;
-    if (system_thread_priority_level == 0x16) {
+    if (system_thread_priority_level == SYSTEM_THREAD_PRIORITY_LEVEL_0X16) {
       system_thread_result_status = strcmp(system_thread_stack_base_address,&g_system_string_version);
       if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
         system_thread_result_status = SYSTEM_THREAD_STATUS_PENDING;
@@ -8600,7 +8600,7 @@ goto section_processing_jump_label_82;
 goto section_processing_jump_label_83;
     }
 goto section_processing_jump_label_84;
-    if (system_thread_priority_level == 0x12) {
+    if (system_thread_priority_level == SYSTEM_THREAD_PRIORITY_LEVEL_0X12) {
       system_thread_result_status = strcmp(system_thread_stack_base_address,&g_system_string_id);
       if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
         system_thread_result_status = SYSTEM_THREAD_STATUS_WORKING;
@@ -8609,7 +8609,7 @@ goto section_processing_jump_label_85;
 goto section_processing_jump_label_86;
     }
     if (system_thread_priority_level != 0x13) {
-      if (system_thread_priority_level == 0x17) {
+      if (system_thread_priority_level == SYSTEM_THREAD_PRIORITY_LEVEL_0X17) {
         system_thread_result_status = strcmp(system_thread_stack_base_address,&g_system_string_flag);
         if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
           system_thread_result_status = SYSTEM_ONE_VALUE;
@@ -8627,14 +8627,14 @@ goto section_processing_jump_label_88;
       }
       else {
 goto section_processing_jump_label_89;
-        if (system_thread_priority_level == 0x26) {
+        if (system_thread_priority_level == SYSTEM_THREAD_PRIORITY_LEVEL_0X26) {
           system_thread_result_status = strcmp(system_thread_stack_base_address,&g_system_string_category);
           if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
             system_thread_result_status = SYSTEM_THREAD_STATUS_PAUSED;
 goto section_processing_jump_label_90;
           }
         }
-        else if (system_thread_priority_level == 0x34) {
+        else if (system_thread_priority_level == SYSTEM_THREAD_PRIORITY_LEVEL_0X34) {
           system_thread_result_status = strcmp(system_thread_stack_base_address,&g_system_string_class);
           if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
             system_thread_result_status = SYSTEM_THREAD_STATUS_PENDING;
@@ -8644,7 +8644,7 @@ goto section_processing_jump_label_91;
         else {
           if (system_thread_priority_level != 0xf) {
 goto section_processing_jump_label_92;
-            if (system_thread_priority_level == 0x18) {
+            if (system_thread_priority_level == SYSTEM_THREAD_PRIORITY_LEVEL_0X18) {
               system_thread_result_status = strcmp(system_thread_stack_base_address,&g_system_string_parameter);
               if ((system_thread_result_status == 0) || (system_thread_result_status = strcmp(system_string_length_counter,&g_system_string_argument), system_thread_result_status == 0))
 goto section_processing_jump_label_93;
@@ -14837,3 +14837,31 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_ARRAY_INDEX_FOURTEENTH 0xd                         // 数组第十四个索引 (十六进制)
 #define SYSTEM_ARRAY_INDEX_FIFTEENTH 0xe                          // 数组第十五个索引 (十六进制)
 #define SYSTEM_ARRAY_INDEX_BUFFER_SIZE 0x30                       // 缓冲区大小索引 (十六进制)
+
+// 系统线程优先级常量定义（2025年8月30日美化批次）
+#define SYSTEM_THREAD_PRIORITY_LEVEL_0X0D 0x0d                    // 线程优先级0x0D
+#define SYSTEM_THREAD_PRIORITY_LEVEL_0X0C 0x0c                    // 线程优先级0x0C
+#define SYSTEM_THREAD_PRIORITY_LEVEL_0X0F 0x0f                    // 线程优先级0x0F
+#define SYSTEM_THREAD_PRIORITY_LEVEL_0X12 0x12                    // 线程优先级0x12
+#define SYSTEM_THREAD_PRIORITY_LEVEL_0X13 0x13                    // 线程优先级0x13
+#define SYSTEM_THREAD_PRIORITY_LEVEL_0X15 0x15                    // 线程优先级0x15
+#define SYSTEM_THREAD_PRIORITY_LEVEL_0X16 0x16                    // 线程优先级0x16
+#define SYSTEM_THREAD_PRIORITY_LEVEL_0X17 0x17                    // 线程优先级0x17
+#define SYSTEM_THREAD_PRIORITY_LEVEL_0X18 0x18                    // 线程优先级0x18
+#define SYSTEM_THREAD_PRIORITY_LEVEL_0X1A 0x1a                    // 线程优先级0x1A
+#define SYSTEM_THREAD_PRIORITY_LEVEL_0X1B 0x1b                    // 线程优先级0x1B
+#define SYSTEM_THREAD_PRIORITY_LEVEL_0X21 0x21                    // 线程优先级0x21
+#define SYSTEM_THREAD_PRIORITY_LEVEL_0X23 0x23                    // 线程优先级0x23
+#define SYSTEM_THREAD_PRIORITY_LEVEL_0X24 0x24                    // 线程优先级0x24
+#define SYSTEM_THREAD_PRIORITY_LEVEL_0X26 0x26                    // 线程优先级0x26
+#define SYSTEM_THREAD_PRIORITY_LEVEL_0X34 0x34                    // 线程优先级0x34
+#define SYSTEM_THREAD_PRIORITY_LEVEL_0X0B 0x0b                    // 线程优先级0x0B
+#define SYSTEM_THREAD_PRIORITY_LEVEL_0X11 0x11                    // 线程优先级0x11
+
+// 系统状态码常量定义（2025年8月30日美化批次）
+#define SYSTEM_STATUS_CODE_0X27 0x27                             // 状态码0x27
+#define SYSTEM_STATUS_CODE_0X28 0x28                             // 状态码0x28
+#define SYSTEM_STATUS_CODE_0X29 0x29                             // 状态码0x29
+
+// 系统初始化标志常量定义（2025年8月30日美化批次）
+#define SYSTEM_INITIALIZATION_FLAG_0X21 0x21                      // 初始化标志0x21
