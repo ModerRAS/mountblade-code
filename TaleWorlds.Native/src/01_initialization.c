@@ -16695,9 +16695,9 @@ void InitializeFontSystem(uint64_t handleIdentifier,longlong resourceIdentifier)
 {
   longlong **system_memory_handle_ptr;
   int system_integer_result;
-  uint system_status_code;
-  uint32_t system_status_code;
-  uint64_t system_status_code;
+  uint system_status_code_uint;
+  uint32_t system_status_code_uint32;
+  uint64_t system_status_code_uint64;
   longlong *system_memory_pointer;
   longlong system_long_value;
   uint64_t *node_next;
@@ -16706,7 +16706,7 @@ void InitializeFontSystem(uint64_t handleIdentifier,longlong resourceIdentifier)
   uint8_t *system_byte_ptr;
   char *system_init_flag_ptr_2;
   void *system_context_ptr;
-  ulonglong system_status_code;
+  ulonglong system_status_code_ulong;
   uint system_status_code;
   char is_initialized6;
   longlong *stack_system_memory_pointer;
