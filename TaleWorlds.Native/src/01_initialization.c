@@ -13,7 +13,7 @@
 // - 美化AI系统变量名，将UNK_180a172e0等替换为g_ai_navigation等语义化变量名
 // - 美化系统配置变量名，将system_network_config等替换为system_network_config等语义化变量名
 // - 美化系统标志变量名，将system_flag_primary等替换为system_flag_primary等语义化变量名
-// - 美化FUN_函数名，将FUN_1808fc7d0等替换为AllocateSystemMemory等语义化函数名
+// - 美化FUN_函数名，将system_allocate_memory等替换为AllocateSystemMemory等语义化函数名
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了初始化系统中剩余FUN_函数名的语义化替换
 // - 原本实现：完全重构初始化系统所有函数命名体系，建立统一的语义化命名规范，消除所有FUN_函数名
@@ -35,85 +35,85 @@
 
 // 函数: void InitializeSystemCore;
 void InitializeSystemCore;
-void g_system_initialized;
-void g_system_context;
-void g_memory_pool_base;
-void g_memory_allocator;
-void g_thread_count;
-void g_thread_scheduler;
-void g_resource_manager;
-void g_resource_loader;
-void g_graphics_context;
-void g_graphics_renderer;
-void g_audio_device;
-void g_audio_mixer;
-void system_data_eighth;
-void g_network_socket;
-void system_data_ninth;
+uint8_t g_system_initialized;
+void* g_system_context;
+void* g_memory_pool_base;
+void* g_memory_allocator;
+uint32_t g_thread_count;
+void* g_thread_scheduler;
+void* g_resource_manager;
+void* g_resource_loader;
+void* g_graphics_context;
+void* g_graphics_renderer;
+void* g_audio_device;
+void* g_audio_mixer;
+void* system_data_eighth;
+int32_t g_network_socket;
+void* system_data_ninth;
 
 // 函数: void SetupMemoryManager;
 void SetupMemoryManager;
-void g_physics_simulator;
-void g_network_manager;
-void g_ui_renderer;
-void g_physics_world;
-void g_input_manager;
-void g_ui_system;
-void g_script_engine;
+void* g_physics_simulator;
+void* g_network_manager;
+void* g_ui_renderer;
+void* g_physics_world;
+void* g_input_manager;
+void* g_ui_system;
+void* g_script_engine;
 
 // 函数: void InitializeGraphicsSystem;
 void InitializeGraphicsSystem;
-void g_graphics_device;
+void* g_graphics_device;
 
 // 函数: void InitializeAudioSystem;
 void InitializeAudioSystem;
-void g_audio_context;
+void* g_audio_context;
 
 // 函数: void InitializeInputSystem;
 void InitializeInputSystem;
-void g_file_system;
+void* g_file_system;
 
 // 函数: void InitializeNetworkSystem;
 void InitializeNetworkSystem;
-void g_config_data;
-void g_error_code;
-void g_system_flags;
-void g_performance_counter;
-void g_debug_flags;
-void g_log_level;
-void g_memory_usage;
-void g_cpu_usage;
+void* g_config_data;
+int32_t g_error_code;
+uint32_t g_system_flags;
+uint64_t g_performance_counter;
+uint32_t g_debug_flags;
+uint32_t g_log_level;
+uint64_t g_memory_usage;
+float g_cpu_usage;
 void ValidateInitialization;
 void system_input_processing_context;
 void system_network_init_data;
 void* system_network_init_pointer;
-void g_gpu_usage;
-void g_frame_rate;
-void g_render_time;
-void g_physics_time;
+float g_gpu_usage;
+float g_frame_rate;
+float g_render_time;
+float g_physics_time;
 
 // 函数: void InitializePhysicsSystem;
 void InitializePhysicsSystem;
-void g_physics_scene;
+void* g_physics_scene;
 
 // 函数: void InitializeUISystem;
 void InitializeUISystem;
 
 // 函数: void InitializeScriptSystem;
 void InitializeScriptSystem;
-void system_script_data_pointer;
-void g_window_handle;
-void g_display_context;
-void g_input_device;
-void g_event_queue;
-void _guard_check_icall;
+void* system_script_data_pointer;
+void* g_window_handle;
+void* g_display_context;
+void* g_input_device;
+void* g_event_queue;
+void* _guard_check_icall;
 
 // 函数: void InitializeResourceManager;
 void InitializeResourceManager;
 
 // 函数: void InitializeThreadSystem;
 void InitializeThreadSystem;
-void g_thread_pool;
+void* g_thread_pool;
 void g_task_scheduler;
 void g_memory_cache;
 void g_resource_cache;
@@ -259,12 +259,12 @@ void g_configuration_manager;
 void g_log_system;
 void g_debug_system;
 void g_performance_monitor;
-void g_script_engine;
+void* g_script_engine;
 void g_ai_system;
 void g_physics_system;
 void g_animation_system;
 void g_input_system;
-void g_ui_system;
+void* g_ui_system;
 void g_scene_manager;
 void g_entity_manager;
 void g_component_system;
@@ -300,7 +300,7 @@ void CreateProcessManager;
 void SetupFileSystem;
 void g_resource_pool;
 void g_resource_cache;
-void g_resource_loader;
+void* g_resource_loader;
 void g_resource_handler;
 void g_resource_index;
 void g_module_registry;
@@ -310,10 +310,10 @@ void LoadSystemModules;
 void g_network_config;
 void g_network_state;
 void g_network_handler;
-void g_graphics_context;
+void* g_graphics_context;
 char system_char_flag;
-void g_audio_context;
-void g_audio_device;
+void* g_audio_context;
+void* g_audio_device;
 void system_config_data;
 void g_audio_buffer;
 void g_graphics_buffer;
@@ -325,7 +325,7 @@ void system_resource_data_3;
 void g_system_started;
 void g_initialization_failed;
 void g_system_error;
-void g_error_code;
+int32_t g_error_code;
 void g_error_message;
 void g_system_shutdown;
 void g_system_paused;
@@ -336,12 +336,12 @@ void g_system_updating;
 void g_system_rendering;
 void g_system_processing;
 void g_system_idle;
-void g_thread_pool;
+void* g_thread_pool;
 void g_network_connected;
 void g_network_listening;
 void g_network_sending;
 void g_network_receiving;
-void g_graphics_device;
+void* g_graphics_device;
 
 // 函数: void InitializeGraphicsSystem;
 void InitializeGraphicsSystem;
@@ -369,14 +369,14 @@ void g_music_manager;
 void g_voice_manager;
 void g_effect_manager;
 void g_audio_stream;
-void g_audio_mixer;
+void* g_audio_mixer;
 void g_audio_compressor;
-void g_network_socket;
+int32_t g_network_socket;
 void g_network_connection;
 void g_network_protocol;
 void g_network_security;
 void g_network_online;
-void g_input_device;
+void* g_input_device;
 void g_input_handler;
 void g_input_mapper;
 
@@ -401,7 +401,7 @@ void SetupUIComponents;
 
 // 函数: void InitializePhysicsSystem;
 void InitializePhysicsSystem;
-void g_physics_world;
+void* g_physics_world;
 void g_physics_enabled;
 void g_physics_debug;
 void g_collision_world;
@@ -426,203 +426,203 @@ void g_ai_world;
 
 // 函数: void InitializeAISystem;
 void InitializeAISystem;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
 char g_system_context;
 char g_system_initialized;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
 undefined1 g_system_initialized;
-void g_system_context;
-void g_system_initialized;
-void g_system_initialized;
-void g_system_context;
-void g_system_context;
-void g_system_context;
+void* g_system_context;
+uint8_t g_system_initialized;
+uint8_t g_system_initialized;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
 undefined4 g_system_context;
 undefined4 g_system_context;
 undefined4 g_system_context;
-void g_system_initialized;
+uint8_t g_system_initialized;
 char g_system_initialized;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_initialized;
-void g_system_initialized;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+uint8_t g_system_initialized;
+uint8_t g_system_initialized;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
 char g_system_initialized;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
 char g_system_initialized;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_initialized;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_initialized;
-void g_system_initialized;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_initialized;
-void g_system_initialized;
-void g_system_initialized;
-void g_system_initialized;
-void g_system_initialized;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+uint8_t g_system_initialized;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+uint8_t g_system_initialized;
+uint8_t g_system_initialized;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+uint8_t g_system_initialized;
+uint8_t g_system_initialized;
+uint8_t g_system_initialized;
+uint8_t g_system_initialized;
+uint8_t g_system_initialized;
 
 // 函数: void InitializeSystemCore;
 void InitializeSystemCore;
-void g_system_context;
-void g_system_initialized;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_initialized;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_initialized;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_initialized;
-void g_system_initialized;
-void g_system_initialized;
-void g_system_initialized;
-void g_system_context;
-void g_system_initialized;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_initialized;
-void g_system_initialized;
-void g_system_initialized;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
-void g_system_context;
+void* g_system_context;
+uint8_t g_system_initialized;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+uint8_t g_system_initialized;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+uint8_t g_system_initialized;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+uint8_t g_system_initialized;
+uint8_t g_system_initialized;
+uint8_t g_system_initialized;
+uint8_t g_system_initialized;
+void* g_system_context;
+uint8_t g_system_initialized;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+uint8_t g_system_initialized;
+uint8_t g_system_initialized;
+uint8_t g_system_initialized;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
+void* g_system_context;
 
 // 函数: void InitializeSystemCore;
 void InitializeSystemCore;
@@ -1200,8 +1200,8 @@ int InitializeSystemCore(void)
 {
   longlong lVar1;
   
-  FUN_1808fc838(0x180c91700,0x20,8,InitializeAudioSystem,InitializeGraphicsSystem);
-  lVar1 = FUN_1808fc7d0(&g_graphics_device);
+  system_register_function(0x180c91700,0x20,8,InitializeAudioSystem,InitializeGraphicsSystem);
+  lVar1 = system_allocate_memory(&g_graphics_device);
   return (lVar1 != 0) - 1;
 }
 
@@ -1212,8 +1212,8 @@ int InitializeSystemCore(void)
 {
   longlong lVar1;
   
-  FUN_1808fc838(0x180c91800,0x20,8,InitializeInputSystem,InitializeGraphicsSystem);
-  lVar1 = FUN_1808fc7d0(&g_audio_context);
+  system_register_function(0x180c91800,0x20,8,InitializeInputSystem,InitializeGraphicsSystem);
+  lVar1 = system_allocate_memory(&g_audio_context);
   return (lVar1 != 0) - 1;
 }
 
@@ -1227,7 +1227,7 @@ int InitializeSystemCore(void)
   longlong lVar1;
   
   _g_file_system = CreateSemaphoreW(0,1,0x7fffffff,0,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(GetGraphicsDevice);
+  lVar1 = system_allocate_memory(GetGraphicsDevice);
   return (lVar1 != 0) - 1;
 }
 
@@ -1339,7 +1339,7 @@ int InitializeSystemCore(undefined8 param_1,undefined8 param_2,undefined8 param_
   longlong lVar1;
   
   _Mtx_init_in_situ(0x180c91910,2,param_3,param_4,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(GetAudioDevice);
+  lVar1 = system_allocate_memory(GetAudioDevice);
   return (lVar1 != 0) - 1;
 }
 
@@ -12110,7 +12110,7 @@ int InitializeSystemCore(void)
   longlong lVar1;
   
   FUN_1804777d0();
-  lVar1 = FUN_1808fc7d0(GetSystemConfigA);
+  lVar1 = system_allocate_memory(GetSystemConfigA);
   return (lVar1 != 0) - 1;
 }
 
@@ -12124,7 +12124,7 @@ int InitializeSystemCore(void)
   
   auStackX_8[0] = 1;
   FUN_180477890(&g_system_initialized,auStackX_8);
-  lVar1 = FUN_1808fc7d0(GetSystemConfigB);
+  lVar1 = system_allocate_memory(GetSystemConfigB);
   return (lVar1 != 0) - 1;
 }
 
@@ -12138,7 +12138,7 @@ int InitializeSystemCore(void)
   
   auStackX_8[0] = 0;
   FUN_180477890(&g_system_initialized,auStackX_8);
-  lVar1 = FUN_1808fc7d0(GetSystemConfigC);
+  lVar1 = system_allocate_memory(GetSystemConfigC);
   return (lVar1 != 0) - 1;
 }
 
@@ -12149,7 +12149,7 @@ int InitializeSystemCore(void)
 {
   longlong lVar1;
   
-  lVar1 = FUN_1808fc7d0(GetSystemConfigD);
+  lVar1 = system_allocate_memory(GetSystemConfigD);
   return (lVar1 != 0) - 1;
 }
 
@@ -12161,7 +12161,7 @@ int InitializeSystemCore(void)
   longlong lVar1;
   
   FUN_1803f2eb0(0x180d49d50);
-  lVar1 = FUN_1808fc7d0(GetSystemConfigE);
+  lVar1 = system_allocate_memory(GetSystemConfigE);
   return (lVar1 != 0) - 1;
 }
 
@@ -14180,9 +14180,9 @@ int InitializeSystemCore(void)
 {
   longlong lVar1;
   
-  FUN_1808fc838(&system_data_processor_address,8,5,&ValidateInitialization,InitializeNetworkSystem);
-  FUN_1808fc838(0x180c96248,8,5,&ValidateInitialization,InitializeNetworkSystem);
-  FUN_1808fc838(0x180c96298,8,5,&ValidateInitialization,InitializeNetworkSystem);
+  system_register_function(&system_data_processor_address,8,5,&ValidateInitialization,InitializeNetworkSystem);
+  system_register_function(0x180c96248,8,5,&ValidateInitialization,InitializeNetworkSystem);
+  system_register_function(0x180c96298,8,5,&ValidateInitialization,InitializeNetworkSystem);
   _Mtx_init_in_situ(0x180c962c0,2);
   _g_system_initialized = 0;
   _g_memory_usage = 0;
@@ -14197,7 +14197,7 @@ int InitializeSystemCore(void)
   _g_debug_flags = 0;
   _g_log_level = 3;
   FUN_1804ac640();
-  lVar1 = FUN_1808fc7d0(&system_input_processing_context);
+  lVar1 = system_allocate_memory(&system_input_processing_context);
   return (lVar1 != 0) - 1;
 }
 
@@ -14443,7 +14443,7 @@ int InitializeSystemCore(undefined8 param_1,undefined8 param_2,undefined8 param_
   longlong lVar1;
   
   _Mtx_init_in_situ(0x180c96690,2,param_3,param_4,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(GetSystemConfigF);
+  lVar1 = system_allocate_memory(GetSystemConfigF);
   return (lVar1 != 0) - 1;
 }
 
@@ -15542,7 +15542,7 @@ int InitializeSystemCore(void)
   longlong lVar1;
   
   FUN_180629770();
-  lVar1 = FUN_1808fc7d0(&g_system_context);
+  lVar1 = system_allocate_memory(&g_system_context);
   return (lVar1 != 0) - 1;
 }
 
@@ -15554,7 +15554,7 @@ int InitializeSystemCore(undefined8 param_1,undefined8 param_2,undefined8 param_
   longlong lVar1;
   
   _Mtx_init_in_situ(0x180c966f0,2,param_3,param_4,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(GetSystemConfigG);
+  lVar1 = system_allocate_memory(GetSystemConfigG);
   return (lVar1 != 0) - 1;
 }
 
@@ -15566,7 +15566,7 @@ int InitializeSystemCore(undefined8 param_1,undefined8 param_2,undefined8 param_
   longlong lVar1;
   
   _Mtx_init_in_situ(0x180c96740,2,param_3,param_4,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(GetSystemConfigH);
+  lVar1 = system_allocate_memory(GetSystemConfigH);
   return (lVar1 != 0) - 1;
 }
 
@@ -15585,7 +15585,7 @@ int InitializeSystemCore(void)
   _g_system_initialized = 0;
   _g_system_initialized = 0;
   _g_system_initialized = 0;
-  lVar1 = FUN_1808fc7d0(GetSystemConfigI);
+  lVar1 = system_allocate_memory(GetSystemConfigI);
   return (lVar1 != 0) - 1;
 }
 
@@ -15716,7 +15716,7 @@ int InitializeSystemCore(void)
   _g_system_initialized = 0;
   _g_system_initialized = 0;
   _g_system_initialized = 0;
-  lVar1 = FUN_1808fc7d0(GetSystemConfigK);
+  lVar1 = system_allocate_memory(GetSystemConfigK);
   return (lVar1 != 0) - 1;
 }
 
@@ -15738,7 +15738,7 @@ int InitializeSystemCore(void)
   } while (iVar2 < 0xd);
   *(uint *)(_g_system_initialized + 0x330) = *(uint *)(_g_system_initialized + 0x330) | 4;
   _g_system_initialized = 0xffffffff;
-  lVar1 = FUN_1808fc7d0(&g_system_context);
+  lVar1 = system_allocate_memory(&g_system_context);
   return (lVar1 != 0) - 1;
 }
 
@@ -15750,7 +15750,7 @@ int InitializeSystemCore(void)
   longlong lVar1;
   
   func_0x000180741c80(0x180c0c340);
-  lVar1 = FUN_1808fc7d0(&g_system_context);
+  lVar1 = system_allocate_memory(&g_system_context);
   return (lVar1 != 0) - 1;
 }
 
@@ -15913,7 +15913,7 @@ int InitializeSystemCore(void)
     puVar1 = puVar1 + 0x2b;
     lVar2 = lVar2 + -1;
   } while (lVar2 != 0);
-  lVar2 = FUN_1808fc7d0(&g_system_context);
+  lVar2 = system_allocate_memory(&g_system_context);
   return (lVar2 != 0) - 1;
 }
 
@@ -15972,8 +15972,8 @@ int InitializeSystemCore(void)
 {
   longlong lVar1;
   
-  FUN_1808dbcd0(0x180c4f510);
-  lVar1 = FUN_1808fc7d0(&g_system_context);
+  system_setup_graphics(0x180c4f510);
+  lVar1 = system_allocate_memory(&g_system_context);
   return (lVar1 != 0) - 1;
 }
 
@@ -15985,7 +15985,7 @@ int InitializeSystemCore(void)
   longlong lVar1;
   
   _Mtx_init_in_situ(0x180c82170,2);
-  lVar1 = FUN_1808fc7d0(&g_system_context);
+  lVar1 = system_allocate_memory(&g_system_context);
   return (lVar1 != 0) - 1;
 }
 
@@ -16103,7 +16103,7 @@ void InitializeSystemCore(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  system_initialize_components();
 }
 
 
@@ -16208,9 +16208,9 @@ void InitializeSystemCore(void)
     }
     else {
       if (0x100 < ((ulonglong)plStack_208 & 0xffffffff)) {
-        FUN_1808fcdc8();
+        system_validate_components();
 LAB_180044db8:
-        FUN_1808fcdc8();
+        system_validate_components();
         pcVar2 = (code *)swi(3);
         (*pcVar2)();
         return;
@@ -16269,7 +16269,7 @@ LAB_180044db8:
   }
   uStack_200 = 0;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_248);
+  system_process_data(uStack_28 ^ (ulonglong)auStack_248);
 }
 
 
@@ -16717,7 +16717,7 @@ void InitializeSystemCore(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  system_initialize_components();
 }
 
 
@@ -16888,7 +16888,7 @@ void InitializeSystemCore(longlong param_1,longlong param_2,longlong param_3)
   }
   puStack_468 = &g_system_context;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_498);
+  system_process_data(uStack_48 ^ (ulonglong)auStack_498);
 }
 
 
@@ -17161,7 +17161,7 @@ void InitializeSystemCore(longlong param_1,longlong param_2,longlong param_3)
   }
   puStack_80 = &g_system_context;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_a8);
+  system_process_data(uStack_48 ^ (ulonglong)auStack_a8);
 }
 
 
@@ -17700,7 +17700,7 @@ void InitializeSystemCore(void)
   uStack_5b8 = 0;
   if (*(int *)(_g_system_initialized + 0x224) - _g_system_initialized < 0xfb) {
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_68 ^ (ulonglong)auStack_698);
+    system_process_data(uStack_68 ^ (ulonglong)auStack_698);
   }
   *(undefined1 *)(_g_system_initialized + 0x39) = 1;
   ppplVar4 = (longlong ***)FUN_18062b1e0(_g_system_initialized,200,8,3);
@@ -18994,7 +18994,7 @@ void InitializeSystemCore(undefined8 param_1,undefined8 *param_2,longlong *param
     __Throw_C_error_std__YAXH_Z(uVar2);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_58);
+  system_process_data(uStack_28 ^ (ulonglong)auStack_58);
 }
 
 
@@ -19225,7 +19225,7 @@ void InitializeSystemCore(longlong param_1,longlong param_2,longlong param_3)
   }
   puStack_e8 = &g_system_context;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_118);
+  system_process_data(uStack_48 ^ (ulonglong)auStack_118);
 }
 
 
@@ -19393,7 +19393,7 @@ void InitializeSystemCore(longlong param_1,longlong param_2,longlong param_3)
   }
   puStack_a8 = &g_system_context;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_d8);
+  system_process_data(uStack_48 ^ (ulonglong)auStack_d8);
 }
 
 
@@ -20231,7 +20231,7 @@ void InitializeSystemCore(undefined8 *param_1)
   uStack_68 = 1;
   puStack_50 = &g_system_context;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_88);
+  system_process_data(uStack_18 ^ (ulonglong)auStack_88);
 }
 
 
@@ -20479,7 +20479,7 @@ void InitializeSystemCore(longlong param_1,undefined8 param_2,undefined8 param_3
            (longlong)((int)lVar4 + 2));
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_78);
+  system_process_data(uStack_28 ^ (ulonglong)auStack_78);
 }
 
 
@@ -21157,7 +21157,7 @@ void InitializeSystemCore(void)
 {
   code *pcVar1;
   
-  FUN_1808fcdc8();
+  system_validate_components();
   pcVar1 = (code *)swi(3);
   (*pcVar1)();
   return;
@@ -23563,9 +23563,9 @@ void InitializeSystemCore(longlong param_1,float param_2,undefined8 param_3,unde
     if (*(char *)(param_1 + 0x22d) == '\0') {
       lVar8 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
       if ((*(int *)(lVar8 + 0x48) < _g_system_initialized) &&
-         (FUN_1808fcb90(&g_system_initialized), _g_system_initialized == -1)) {
+         (system_check_initialized(&g_system_initialized), _g_system_initialized == -1)) {
         _g_system_initialized = param_2;
-        FUN_1808fcb30(&g_system_initialized);
+        system_set_initialized(&g_system_initialized);
       }
       fVar16 = (float)exp2f();
       fVar17 = (float)exp2f();
@@ -23586,9 +23586,9 @@ void InitializeSystemCore(longlong param_1,float param_2,undefined8 param_3,unde
         fVar3 = fVar2;
       }
       if ((*(int *)(lVar8 + 0x48) < _g_system_initialized) &&
-         (FUN_1808fcb90(&g_system_initialized), _g_system_initialized == -1)) {
+         (system_check_initialized(&g_system_initialized), _g_system_initialized == -1)) {
         _g_system_initialized = fVar3;
-        FUN_1808fcb30(&g_system_initialized);
+        system_set_initialized(&g_system_initialized);
       }
       _g_system_initialized = (1.0 - fVar16) * _g_system_initialized + fVar3 * fVar16;
       fVar18 = ((float)(int)((_g_system_initialized / _g_system_initialized) / fVar17) * fVar17 - 1.0) * fVar18 *
@@ -23906,7 +23906,7 @@ void InitializeSystemCore(undefined8 param_1,longlong param_2)
   ppuStack_1a8 = &puStack_d8;
   puStack_d8 = &g_system_context;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_1c8);
+  system_process_data(uStack_18 ^ (ulonglong)auStack_1c8);
 }
 
 
@@ -24538,7 +24538,7 @@ void InitializeSystemCore(longlong *param_1,longlong param_2)
   uStack_1a8 = uStack_1a8 & 0xffffffff00000000;
   puStack_1c0 = &g_system_context;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_238);
+  system_process_data(uStack_48 ^ (ulonglong)auStack_238);
 }
 
 
@@ -24936,7 +24936,7 @@ LAB_180054ec9:
     } while (iStack_f8 < (int)lVar14);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (ulonglong)auStack_178);
+  system_process_data(uStack_30 ^ (ulonglong)auStack_178);
 }
 
 
@@ -25539,7 +25539,7 @@ void InitializeSystemCore(longlong *param_1)
   }
   (*pcVar2)(puVar1,&plStack_68);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_98);
+  system_process_data(uStack_28 ^ (ulonglong)auStack_98);
 }
 
 
@@ -25605,7 +25605,7 @@ void InitializeSystemCore(longlong param_1)
     do {
       if (*(int *)(param_1 + 0xcc) == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808fc050(uStack_50 ^ (ulonglong)auStack_c8);
+        system_process_data(uStack_50 ^ (ulonglong)auStack_c8);
       }
       Sleep(10);
       lVar4 = _g_system_initialized;
@@ -25806,7 +25806,7 @@ void InitializeSystemCore(undefined8 param_1,undefined8 *param_2,undefined4 para
   *(undefined4 *)(param_2 + 3) = 0;
   *param_2 = &g_system_context;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_158);
+  system_process_data(uStack_28 ^ (ulonglong)auStack_158);
 }
 
 
@@ -28975,7 +28975,7 @@ void InitializeSystemCore(longlong *param_1)
   }
   InitializeSystemCore(&ppppppuStack_360);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_3b8);
+  system_process_data(uStack_38 ^ (ulonglong)auStack_3b8);
 }
 
 
@@ -29244,9 +29244,9 @@ void InitializeSystemCore(undefined8 param_1,undefined8 *param_2,undefined8 para
 void InitializeSystemCore(undefined8 *param_1)
 
 {
-  FUN_1808fc8a8(param_1 + 0x7d,0x58,4,InitializeScriptSystem,0xfffffffffffffffe);
-  FUN_1808fc8a8(param_1 + 0x51,0x58,4,InitializeScriptSystem);
-  FUN_1808fc8a8(param_1 + 0x11,0x20,0x10,InitializeUISystem);
+  system_configure_module(param_1 + 0x7d,0x58,4,InitializeScriptSystem,0xfffffffffffffffe);
+  system_configure_module(param_1 + 0x51,0x58,4,InitializeScriptSystem);
+  system_configure_module(param_1 + 0x11,0x20,0x10,InitializeUISystem);
   param_1[8] = &g_system_context;
   if (param_1[9] != 0) {
                     // WARNING: Subroutine does not return
@@ -29591,7 +29591,7 @@ void InitializeSystemCore(longlong param_1,longlong param_2,longlong param_3)
   }
   puStack_70 = &g_system_context;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
+  system_process_data(uStack_48 ^ (ulonglong)auStack_98);
 }
 
 
@@ -30837,8 +30837,8 @@ longlong InitializeSystemCore(longlong param_1)
   longlong lVar1;
   longlong lVar2;
   
-  FUN_1808fc838(param_1,0x20,0x400,InitializeThreadSystem,InitializeResourceManager);
-  FUN_1808fc838(param_1 + 0x8000,0x20,0x400,InitializeThreadSystem,InitializeResourceManager);
+  system_register_function(param_1,0x20,0x400,InitializeThreadSystem,InitializeResourceManager);
+  system_register_function(param_1 + 0x8000,0x20,0x400,InitializeThreadSystem,InitializeResourceManager);
   *(undefined8 *)(param_1 + 0x10400) = 0;
   *(undefined8 *)(param_1 + 0x10408) = 0;
   *(undefined8 *)(param_1 + 0x10410) = 0;
@@ -31145,7 +31145,7 @@ void InitializeSystemCore(longlong *param_1)
     (*(code *)param_1[2])(param_1,0,0);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_128);
+  system_process_data(uStack_18 ^ (ulonglong)auStack_128);
 }
 
 
@@ -31670,7 +31670,7 @@ void InitializeSystemCore(ulonglong param_1,longlong param_2)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_478);
+  system_process_data(uStack_38 ^ (ulonglong)auStack_478);
 }
 
 
@@ -32624,7 +32624,7 @@ void InitializeSystemCore(void)
   ppuStack_170 = apuStack_108;
   apuStack_108[0] = &g_system_context;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_1b8);
+  system_process_data(uStack_38 ^ (ulonglong)auStack_1b8);
 }
 
 
@@ -36003,7 +36003,7 @@ void InitializeSystemCore(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  system_initialize_components();
 }
 
 
@@ -36182,7 +36182,7 @@ void InitializeSystemCore(int *param_1)
   *param_1 = *param_1 + 1;
   if ((*(longlong *)(param_1 + 4) != 0) && (*(longlong *)(param_1 + 2) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_1f8);
+    system_process_data(uStack_38 ^ (ulonglong)auStack_1f8);
   }
   lStack_168 = 0;
   lStack_160 = 0;
@@ -36841,7 +36841,7 @@ LAB_180063de9:
     uStack_278 = 0;
     puStack_290 = &g_system_context;
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_2f8);
+    system_process_data(uStack_38 ^ (ulonglong)auStack_2f8);
   }
   puStack_2a8 = puVar4;
                     // WARNING: Subroutine does not return
@@ -36993,7 +36993,7 @@ void InitializeSystemCore(undefined8 param_1)
     UNLOCK();
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_358);
+  system_process_data(uStack_38 ^ (ulonglong)auStack_358);
 }
 
 
@@ -37004,7 +37004,7 @@ void InitializeSystemCore(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  system_initialize_components();
 }
 
 
@@ -37275,7 +37275,7 @@ void InitializeSystemCore(longlong *param_1,longlong param_2,longlong param_3)
     uStack_b0 = 0xf;
     uStack_c8 = 0;
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_138);
+    system_process_data(uStack_48 ^ (ulonglong)auStack_138);
   }
   uStack_58 = 0;
   uStack_50 = 0xf;
@@ -37946,7 +37946,7 @@ LAB_180065a3e:
       uStack_168 = 0;
       puStack_180 = &g_system_context;
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_368);
+      system_process_data(uStack_38 ^ (ulonglong)auStack_368);
     }
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -38427,7 +38427,7 @@ LAB_18006650a:
   }
 LAB_180066971:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_1f8);
+  system_process_data(uStack_48 ^ (ulonglong)auStack_1f8);
 }
 
 
@@ -38753,7 +38753,7 @@ void InitializeSystemCore(ulonglong param_1)
     if (uVar4 <= param_1) {
       uVar4 = 0xffffffffffffffff;
     }
-    lVar3 = FUN_1808fc418(uVar4);
+    lVar3 = system_get_memory_info(uVar4);
     if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
       _invalid_parameter_noinfo_noreturn();
@@ -38772,12 +38772,12 @@ void InitializeSystemCore(ulonglong param_1)
     iVar2 = _callnewh(param_1);
   } while (iVar2 != 0);
   if (param_1 == 0xffffffffffffffff) {
-    FUN_1808fd8b4();
+    system_cleanup_resources();
     pcVar1 = (code *)swi(3);
     (*pcVar1)();
     return;
   }
-  FUN_1808fd894();
+  system_finalize_initialization();
   pcVar1 = (code *)swi(3);
   (*pcVar1)();
   return;
@@ -39308,7 +39308,7 @@ void InitializeSystemCore(longlong param_1,longlong param_2)
       *(undefined8 *)(alStack_288[0] + 0x118) = 0;
       puStack_268 = &g_system_context;
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_2e8);
+      system_process_data(uStack_48 ^ (ulonglong)auStack_2e8);
     }
     puVar5 = (undefined8 *)(uVar8 * 0x130 + param_1 + 0x2003d0);
     *(ulonglong *)(param_1 + 0x2133d0) = uVar8 + 1;
@@ -40066,7 +40066,7 @@ void InitializeSystemCore(longlong param_1,longlong param_2,longlong param_3)
   }
   puStack_168 = &g_system_context;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_198);
+  system_process_data(uStack_48 ^ (ulonglong)auStack_198);
 }
 
 
@@ -40703,7 +40703,7 @@ void InitializeSystemCore(longlong param_1)
   InitializeSystemCore();
   InitializeSystemCore();
   if ((*(char *)(_g_system_initialized + 0x20) == '\0') && (*(char *)(_g_system_initialized + 0x21) == '\0')) {
-    uVar3 = FUN_1808fc418(0x428);
+    uVar3 = system_get_memory_info(0x428);
     plStack_250 = (longlong *)FUN_18049d530(uVar3);
   }
   else {
@@ -41434,7 +41434,7 @@ void InitializeSystemCore(longlong param_1)
   do {
     if ((cVar9 == '\0') || (uVar19 = 0, *(char *)(param_1 + 0x400) != '\0')) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_278);
+      system_process_data(uStack_38 ^ (ulonglong)auStack_278);
     }
     puStack_1f8 = &thread_pool_block;
     pbStack_1f0 = abStack_1e0;
@@ -45380,7 +45380,7 @@ LAB_1800718e9:
     puStack_f0 = (undefined *)0x0;
     puStack_f8 = &g_system_context;
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_188);
+    system_process_data(uStack_48 ^ (ulonglong)auStack_188);
   }
 LAB_1800715eb:
   puVar18 = &g_system_initialized;
@@ -48246,7 +48246,7 @@ void InitializeSystemCore(longlong param_1,longlong param_2)
   *(undefined4 *)(param_1 + 0x34) = *puVar13;
   *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + 4;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_f8);
+  system_process_data(uStack_28 ^ (ulonglong)auStack_f8);
 }
 
 
@@ -49271,7 +49271,7 @@ void InitializeSystemCore(undefined8 *param_1)
   }
   lVar3 = param_1[0x3c];
   if (lVar3 != 0) {
-    FUN_1808fc8a8(lVar3,0x18,0x10,InitializeSystemCore,uVar4,lVar3);
+    system_configure_module(lVar3,0x18,0x10,InitializeSystemCore,uVar4,lVar3);
                     // WARNING: Subroutine does not return
     FUN_18064e900(lVar3);
   }
@@ -50071,7 +50071,7 @@ void InitializeSystemCore(longlong param_1,longlong *param_2)
   if (*param_2 != *(longlong *)(param_1 + 0x1b8)) {
     if (*(char *)(param_1 + 0xb1) != '\0') {
                     // WARNING: Subroutine does not return
-      FUN_1808fd200();
+      system_initialize_components();
     }
     InitializeSystemCore(param_1 + 0x1b8);
     lVar2 = *(longlong *)(param_1 + 0x1b8);
@@ -50569,7 +50569,7 @@ void InitializeSystemCore(longlong *param_1)
   }
 LAB_18007738d:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_20 ^ (ulonglong)auStack_88);
+  system_process_data(uStack_20 ^ (ulonglong)auStack_88);
 }
 
 
@@ -52852,7 +52852,7 @@ undefined8 * InitializeSystemCore(undefined8 *param_1,ulonglong param_2)
   uVar1 = 0xfffffffffffffffe;
   *param_1 = &g_dependency_injector;
   InitializeSystemCore();
-  FUN_1808fc8a8(param_1 + 1,8,7,InitializeNetworkSystem,uVar1);
+  system_configure_module(param_1 + 1,8,7,InitializeNetworkSystem,uVar1);
   if ((param_2 & 1) != 0) {
     free(param_1,0x158);
   }
@@ -55030,7 +55030,7 @@ undefined * InitializeSystemCore(longlong param_1,undefined8 param_2,undefined8 
   }
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
               0x48) < _system_undefined_data_4) {
-    FUN_1808fcb90(&system_undefined_data_4);
+    system_check_initialized(&system_undefined_data_4);
     if (_system_undefined_data_4 == -1) {
       _g_system_initialized = &g_system_context;
       _g_system_initialized = &g_system_initialized;
@@ -57408,7 +57408,7 @@ void InitializeSystemCore(longlong param_1,longlong param_2,longlong param_3)
   }
   *(undefined4 *)(lVar7 + 0x3c) = *(undefined4 *)(param_3 + 0x114);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_20 ^ (ulonglong)auStack_68);
+  system_process_data(uStack_20 ^ (ulonglong)auStack_68);
 }
 
 
@@ -58449,10 +58449,10 @@ code_r0x00018007db1b:
         fVar32 = fStack_124;
         fVar31 = fStack_128;
         if (*(int *)(lVar25 + lVar22) < iRam0000000180d49150) {
-          FUN_1808fcb90(0x180d49150);
+          system_check_initialized(0x180d49150);
           if (iRam0000000180d49150 == -1) {
             fRam0000000180d49154 = 1.0;
-            FUN_1808fcb30(0x180d49150);
+            system_set_initialized(0x180d49150);
           }
           lVar22 = 0x48;
           fVar28 = fRam0000000180d49154;
@@ -61307,8 +61307,8 @@ void InitializeSystemCore;
 // 函数: void InitializeSystemCore;
 void InitializeSystemCore;
 undefined4 g_system_context;
-void g_system_context;
-void g_system_context;
+void* g_system_context;
+void* g_system_context;
 
 undefined8 FUN_180779434(void)
 
@@ -62399,7 +62399,7 @@ void InitializeSystemCore;
 
 // 函数: void InitializeSystemCore;
 void InitializeSystemCore;
-void g_system_initialized;
+uint8_t g_system_initialized;
 undefined8 g_system_context;
 undefined4 g_system_context;
 undefined *g_system_context;
@@ -62411,11 +62411,11 @@ longlong g_system_context;
 longlong g_system_context;
 undefined4 g_system_context;
 undefined4 g_system_context;
-void g_system_initialized;
-void g_system_initialized;
-void g_system_initialized;
-void g_system_initialized;
-void g_system_context;
+uint8_t g_system_initialized;
+uint8_t g_system_initialized;
+uint8_t g_system_initialized;
+uint8_t g_system_initialized;
+void* g_system_context;
 longlong g_system_context;
 undefined8 g_system_context;
 longlong g_system_context;
