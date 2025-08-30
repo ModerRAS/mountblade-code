@@ -143,7 +143,7 @@
 // 26. 将utility_temp_var_4替换为utility_temp_validation_flag等标志变量名
 // 27. 将utility_signed_var_1替换为utility_temp_signed_value等有符号临时变量名
 // 28. 将char_stack_temp_20替换为utility_temp_status_char等状态字符变量名
-// 29. 将UtilityUnwind_1809023b0等十六进制地址函数名替换为UtilityUnwindExceptionHandlerBasic等语义化函数名
+// 29. 将UtilityUnwindCoreFunction23b0等十六进制地址函数名替换为UtilityUnwindExceptionHandlerBasic等语义化函数名
 // 30. 将float_array_stack_198替换为utility_stack_float_array_buffer等浮点数组变量名
 // 31. 将pointer_uint_stack_58替换为utility_stack_pointer_buffer等指针缓冲区变量名
 // 32. 将stack_float_value_primary_temp替换为utility_stack_float_primary_temp等浮点临时变量名
@@ -58117,7 +58117,7 @@ void UtilityUnwindSystemFunctionbb90(uint64 resource_handle_identifier,longlong 
 
 
 
-void UtilityUnwind_18090bbb0(uint64 resource_handle_identifier,longlong resource_buffer)
+void UtilityUnwindCoreFunctionbbb0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   longlong *utility_resource_data_pointer;
