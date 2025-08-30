@@ -2670,7 +2670,7 @@ int network_connection_handler_septenary(longlong param_1,longlong param_2,int p
 void network_data_transfer_init(longlong param_1,undefined8 param_2,undefined4 param_3)
 
 {
-  FUN_18083fa50(param_2,param_3,&UNK_180983828,*(undefined4 *)(param_1 + 0x10),
+  network_send_raw_packet(param_2,param_3,&UNK_180983828,*(undefined4 *)(param_1 + 0x10),
                 *(undefined4 *)(param_1 + 0x18));
   return;
 }
@@ -2763,7 +2763,7 @@ int network_data_transfer_complete(longlong param_1,longlong param_2,int param_3
 void network_data_transfer_cleanup(longlong param_1,undefined8 param_2,undefined4 param_3)
 
 {
-  FUN_18083fa50(param_2,param_3,&UNK_1809837a0,*(undefined4 *)(param_1 + 0x10),
+  network_send_raw_packet(param_2,param_3,&UNK_1809837a0,*(undefined4 *)(param_1 + 0x10),
                 *(undefined4 *)(param_1 + 0x18));
   return;
 }
@@ -2890,7 +2890,7 @@ int network_buffer_deallocate(longlong param_1,longlong param_2,int param_3)
 void network_buffer_flush(longlong param_1,undefined8 param_2,undefined4 param_3)
 
 {
-  FUN_18083f7b0(param_2,param_3,&UNK_1809828f8,*(undefined4 *)(param_1 + 0x10),
+  network_receive_raw_packet(param_2,param_3,&UNK_1809828f8,*(undefined4 *)(param_1 + 0x10),
                 *(undefined4 *)(param_1 + 0x14));
   return;
 }
@@ -3058,7 +3058,7 @@ int network_buffer_synchronize(longlong param_1,longlong param_2,int param_3)
 void network_error_handler_init(longlong param_1,undefined8 param_2,undefined4 param_3)
 
 {
-  FUN_18083f7b0(param_2,param_3,&UNK_180982a08,*(undefined4 *)(param_1 + 0x10),
+  network_receive_raw_packet(param_2,param_3,&UNK_180982a08,*(undefined4 *)(param_1 + 0x10),
                 *(undefined4 *)(param_1 + 0x14));
   return;
 }
@@ -5295,7 +5295,7 @@ void network_serialize_process(longlong param_1,longlong *param_2,byte *param_3)
       puStack_58 = &UNK_1809845c0;
       plStack_48 = param_2;
       iVar3 = network_buffer_validate_data(&puStack_58,param_1,param_2);
-      if ((iVar3 != 0) || (iVar3 = FUN_18084be00(&puStack_58,param_1,param_2), iVar3 != 0))
+      if ((iVar3 != 0) || (iVar3 = network_validate_buffer_data(&puStack_58,param_1,param_2), iVar3 != 0))
       goto LAB_180847c35;
       bVar2 = 1;
       if (cStack_50 != '\0') goto LAB_180847bfb;
@@ -5321,8 +5321,8 @@ LAB_180847c35:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180847c60(longlong param_1,longlong *param_2,byte *param_3)
-void FUN_180847c60(longlong param_1,longlong *param_2,byte *param_3)
+// 函数: void network_process_buffer_data(longlong param_1,longlong *param_2,byte *param_3)
+void network_process_buffer_data(longlong param_1,longlong *param_2,byte *param_3)
 
 {
   undefined8 *puVar1;
@@ -5396,8 +5396,8 @@ LAB_180847dc9:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180847df0(ulonglong param_1,undefined1 *param_2)
-void FUN_180847df0(ulonglong param_1,undefined1 *param_2)
+// 函数: void network_initialize_buffer_stream(ulonglong param_1,undefined1 *param_2)
+void network_initialize_buffer_stream(ulonglong param_1,undefined1 *param_2)
 
 {
   int iVar1;
@@ -5434,7 +5434,7 @@ void FUN_180847df0(ulonglong param_1,undefined1 *param_2)
                     // WARNING: Subroutine does not return
     network_system_connection_handler(&uStack_138);
   }
-  FUN_180847c60(uStack_128,*(undefined8 *)(lStack_130 + 800),param_2);
+  network_process_buffer_data(uStack_128,*(undefined8 *)(lStack_130 + 800),param_2);
                     // WARNING: Subroutine does not return
   network_system_connection_handler(&uStack_138);
 }
@@ -8208,7 +8208,7 @@ void FUN_18084b6c0(longlong param_1,longlong param_2)
                     // WARNING: Subroutine does not return
       network_copy_buffer_data(param_2 + 0xd8,auStack_38);
     }
-    FUN_180847c60(lVar1,*(undefined8 *)(param_1 + 0x10),param_1 + 8);
+    network_process_buffer_data(lVar1,*(undefined8 *)(param_1 + 0x10),param_1 + 8);
   }
                     // WARNING: Subroutine does not return
   network_data_encrypt_decrypt(uStack_10 ^ (ulonglong)auStack_58);
@@ -8581,8 +8581,8 @@ void FUN_18084bd22(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084be00(longlong *param_1,longlong param_2,longlong *param_3)
-void FUN_18084be00(longlong *param_1,longlong param_2,longlong *param_3)
+// 函数: void network_validate_buffer_data(longlong *param_1,longlong param_2,longlong *param_3)
+void network_validate_buffer_data(longlong *param_1,longlong param_2,longlong *param_3)
 
 {
   char cVar1;
