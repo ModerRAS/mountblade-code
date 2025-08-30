@@ -1,6 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 最新美化内容（2025年8月30日）：
+// - 修复了网络系统中的错误浮点数常量引用，将NETWORK_OPERATION_SUCCESS.1920929e-07等错误写法替换为NETWORK_FLOAT_EPSILON等正确的语义化常量
+// - 添加了NETWORK_FLOAT_HALF、NETWORK_FLOAT_4_4E_06、NETWORK_FLOAT_0_05、NETWORK_FLOAT_1_52E_07等网络浮点数语义化常量
 // - 添加了NETWORK_ARRAY_INDEX_3/4/5等网络数组索引语义化常量
 // - 添加了NETWORK_COMPRESSION_LEVEL_10等网络压缩级别语义化常量
 // - 添加了NETWORK_SIMPLE_NUMBER_1-9等网络简单数字语义化常量
@@ -193,6 +195,7 @@
 #define NETWORK_FLOAT_HALF 0.5f                     // 浮点数0.5
 #define NETWORK_FLOAT_4_4E_06 4.4e+06f             // 浮点数4.4E-06
 #define NETWORK_FLOAT_0_05 0.05f                   // 浮点数0.05
+#define NETWORK_FLOAT_1_52E_07 1.52e+07f  // 浮点数1.52E+07
 
 // 新增语义化常量定义 - 网络操作码常量
 #define NETWORK_OPERATION_CODE_INITIALIZE 0x01  // 网络操作码：初始化
@@ -9203,7 +9206,7 @@ NetworkProcessPacketQueue(int64_t network_socket_descriptor, int64_t network_buf
             network_data_ptr = movmskpd(NETWORK_OPERATION_FAILURE, network_error_buffer);
             network_double_time_factor = (double)(longlong)(client_port - (ulonglong)(network_data_ptr & NETWORK_OPERATION_SUCCESS));
           network_time_factor_stack = network_time_factor_stack - network_double_time_factor * network_double_time_calculation_buffer_38[NETWORK_OPERATION_FAILURE];
-          if ((network_time_factor_stack < NETWORK_OPERATION_SUCCESS.1920928955078125e-07) && (NETWORK_OPERATION_SUCCESS.1920928955078125e-07 < network_double_time_factor)) {
+          if ((network_time_factor_stack < NETWORK_FLOAT_EPSILON_PRECISE) && (NETWORK_FLOAT_EPSILON_PRECISE < network_double_time_factor)) {
             network_time_factor_stack = network_double_time_calculation_buffer_38[NETWORK_OPERATION_FAILURE];
           if ((*(uint32_t *)(network_buffer_pointer + NETWORK_ENCRYPTION_OFFSET) >> 3 & NETWORK_OPERATION_SUCCESS) != NETWORK_OPERATION_FAILURE) {
             network_time_factor_stack = network_double_time_calculation_buffer_38[NETWORK_OPERATION_FAILURE] - network_time_factor_stack;
@@ -9268,7 +9271,7 @@ uint64_t NetworkGetPacketQueueStatus(void)
         network_data_ptr = movmskpd(NETWORK_OPERATION_FAILURE, network_error_buffer);
         network_double_time_factor = (double)(longlong)(client_port - (ulonglong)(network_data_ptr & NETWORK_OPERATION_SUCCESS));
       network_double_time_buffer = network_double_time_buffer - network_double_time_factor * network_connection_processor_delay_stack;
-      if ((network_double_time_buffer < NETWORK_OPERATION_SUCCESS.1920928955078125e-07) && (NETWORK_OPERATION_SUCCESS.1920928955078125e-07 < network_double_time_factor)) {
+      if ((network_double_time_buffer < NETWORK_FLOAT_EPSILON_PRECISE) && (NETWORK_FLOAT_EPSILON_PRECISE < network_double_time_factor)) {
         network_double_time_buffer = network_connection_processor_delay_stack;
       if ((*(uint32_t *)(network_response_buffer_global + NETWORK_ENCRYPTION_OFFSET) >> 3 & NETWORK_OPERATION_SUCCESS) != NETWORK_OPERATION_FAILURE) {
         network_double_time_buffer = network_connection_processor_delay_stack - network_double_time_buffer;
@@ -9302,7 +9305,7 @@ uint64_t NetworkValidatePacketChecksum(uint64_t network_socket_descriptor, uint6
       processor_index = movmskpd(NETWORK_OPERATION_FAILURE, network_packet_size_ptr_buffer);
       network_double_precision_value = (double)(longlong)(client_port - (ulonglong)(processor_index & NETWORK_OPERATION_SUCCESS));
     network_double_time_buffer = network_double_time_buffer - network_double_precision_value * network_connection_processor_delay_stack;
-    if ((network_double_time_buffer < NETWORK_OPERATION_SUCCESS.1920928955078125e-07) && (NETWORK_OPERATION_SUCCESS.1920928955078125e-07 < network_double_precision_value)) {
+    if ((network_double_time_buffer < NETWORK_FLOAT_EPSILON_PRECISE) && (NETWORK_FLOAT_EPSILON_PRECISE < network_double_precision_value)) {
       network_double_time_buffer = network_connection_processor_delay_stack;
     if ((*(uint32_t *)(network_response_buffer_global + NETWORK_ENCRYPTION_OFFSET) >> 3 & NETWORK_OPERATION_SUCCESS) != NETWORK_OPERATION_FAILURE) {
       network_double_time_buffer = network_connection_processor_delay_stack - network_double_time_buffer;
@@ -12475,7 +12478,7 @@ uint64_t ConfigureNetworkPool(int64_t network_socket_descriptor, uint32_t *netwo
               network_status_code = network_status_code_third_calc;
             if (network_status_code <= network_data_ptr) {
               network_data_ptr = network_status_code;
-            network_signal_noise_ratio = NETWORK_OPERATION_SUCCESS.152e+07 / ((float)*(int32_t *)(network_timeout_value_ptr_tenth + SESSION_STRUCT_SIZE) * *(float *)(network_timeout_value_ptr_tenth + NETWORK_ERROR_INVALID_OFFSET));
+            network_signal_noise_ratio = NETWORK_FLOAT_1_52E_07 / ((float)*(int32_t *)(network_timeout_value_ptr_tenth + SESSION_STRUCT_SIZE) * *(float *)(network_timeout_value_ptr_tenth + NETWORK_ERROR_INVALID_OFFSET));
             network_status_tertiary = (int)((float)(network_status_code - network_status_code_third_calc) / network_signal_noise_ratio);
               network_status_code_third_calc = (int)((float)network_status_tertiary * network_signal_noise_ratio + NETWORK_FLOAT_HALF) + *(int32_t *)(network_timeout_value_ptr_tenth + SESSION_CONFIG_SIZE);
               if (network_status_code <= network_status_code_third_calc) {
