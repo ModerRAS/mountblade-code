@@ -4264,9 +4264,9 @@ uint64 manage_resource_resource_handle_identifier(longlong resource_handle_ident
 
 
 
-// WARNING: Removing unreachable block (ram,0x0001808d7494)
-// WARNING: Removing unreachable block (ram,0x0001808d74a4)
-// WARNING: Removing unreachable block (ram,0x0001808d74b1)
+// WARNING: Removing unreachable block (ram,UTILITY_UNWIND_FUNCTION_1808D7494)
+// WARNING: Removing unreachable block (ram,UTILITY_UNWIND_FUNCTION_1808D74A4)
+// WARNING: Removing unreachable block (ram,UTILITY_UNWIND_FUNCTION_1808D74B1)
 
 uint64 execute_resource_command(longlong resource_handle_identifier)
 
@@ -5121,9 +5121,9 @@ void seek_file_position(longlong resource_handle_identifier,uint64 resource_buff
 
 
 
-// WARNING: Removing unreachable block (ram,0x0001808d7494)
-// WARNING: Removing unreachable block (ram,0x0001808d74a4)
-// WARNING: Removing unreachable block (ram,0x0001808d74b1)
+// WARNING: Removing unreachable block (ram,UTILITY_UNWIND_FUNCTION_1808D7494)
+// WARNING: Removing unreachable block (ram,UTILITY_UNWIND_FUNCTION_1808D74A4)
+// WARNING: Removing unreachable block (ram,UTILITY_UNWIND_FUNCTION_1808D74B1)
 
 uint64 get_file_position(longlong resource_handle_identifier)
 
