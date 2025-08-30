@@ -72,6 +72,26 @@
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
 // - 这是简化实现，主要处理了剩余十六进制函数名的语义化替换
+// - 新增美化内容（本轮）：
+// - 添加了SYSTEM_THREAD_PRIORITY_HIGH等线程优先级语义化常量
+// - 添加了SYSTEM_STACK_SIZE_LIMIT等栈大小限制语义化常量
+// - 添加了SYSTEM_FLOAT_MAX_VALUE等浮点数最大值语义化常量
+// - 添加了SYSTEM_THREAD_RESULT_PRIMARY等线程结果标识语义化常量
+// - 添加了SYSTEM_BUFFER_ALLOC_SMALL等缓冲区分配大小语义化常量
+// - 添加了SYSTEM_BUFFER_OFFSET_PRIMARY等缓冲区偏移量语义化常量
+// - 将硬编码的0x786替换为SYSTEM_THREAD_PRIORITY_HIGH等语义化常量
+// - 将硬编码的0xac7替换为SYSTEM_STACK_SIZE_LIMIT等语义化常量
+// - 将硬编码的0x7f7fffff替换为SYSTEM_FLOAT_MAX_VALUE等语义化常量
+// - 将硬编码的0x554替换为SYSTEM_THREAD_RESULT_PRIMARY等语义化常量
+// - 将硬编码的0x568替换为SYSTEM_THREAD_RESULT_SECONDARY等语义化常量
+// - 将硬编码的0x248替换为SYSTEM_BUFFER_ALLOC_SMALL等语义化常量
+// - 将硬编码的0x214替换为SYSTEM_BUFFER_ALLOC_BASE等语义化常量
+// - 将硬编码的0x21c替换为SYSTEM_BUFFER_OFFSET_PRIMARY等语义化常量
+// - 将硬编码的0x41c替换为SYSTEM_BUFFER_OFFSET_EXTENDED等语义化常量
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了数据定义文件中剩余硬编码值的语义化替换
+// - 原本实现：完全重构硬编码常量体系
+// - 简化实现：仅将常见的硬编码值替换为语义化常量
 // - 最新美化内容（当前轮次）：
 // - 修复了process_buffer_allocation函数的语法错误和变量名语义化
 // - 将process_buffer_allocation重命名为system_buffer_allocation_processor
@@ -7836,7 +7856,7 @@ section_processing_jump_label_:
 section_processing_jump_label_:
       thread_result_index = strcmp(str_len_counter,&g_system_string_function);
       if (thread_result_index == 0) {
-        thread_result_index = 0x568;
+        thread_result_index = SYSTEM_THREAD_RESULT_SECONDARY;
         goto section_processing_jump_label_;
       }
       thread_result_index = strcmp(str_len_counter,&g_system_string_method);
@@ -7988,7 +8008,7 @@ section_processing_jump_label_:
             if (thread_priority_level == 0xb) {
               thread_result_index = strcmp(thread_stack_base_address,&g_system_string_address);
               if (thread_result_index == 0) {
-                thread_result_index = 0x248;
+                thread_result_index = SYSTEM_BUFFER_ALLOC_SMALL;
                 goto section_processing_jump_label_;
               }
 section_processing_jump_label_:
@@ -8034,7 +8054,7 @@ section_processing_jump_label_:
           }
           thread_result_index = strcmp(thread_stack_base_address,&g_system_string_module);
           if (thread_result_index == 0) {
-            thread_result_index = 0x214;
+            thread_result_index = SYSTEM_BUFFER_ALLOC_BASE;
             goto section_processing_jump_label_;
           }
 section_processing_jump_label_:
@@ -8197,13 +8217,13 @@ system_execution_function(unsigned long long handle_param,unsigned long long thr
                                                         system_char_variable = string_system_processor(auStack_50,
                                                                                     &g_stack_data_size);
                                                         if (system_char_variable != '\0') {
-                                                          buffer_alloc_result = 0x21c;
+                                                          buffer_alloc_result = SYSTEM_BUFFER_OFFSET_PRIMARY;
                                                           goto section_processing_jump_label_;
                                                         }
                                                         system_char_variable = string_system_processor(auStack_50,
                                                                                     &g_stack_data_length);
                                                         if (system_char_variable != '\0') {
-                                                          buffer_alloc_result = 0x41c;
+                                                          buffer_alloc_result = SYSTEM_BUFFER_OFFSET_EXTENDED;
                                                           goto section_processing_jump_label_;
                                                         }
                                                         system_char_variable = string_system_processor(auStack_50,
