@@ -8647,19 +8647,19 @@ section_processing_jump_label_:
     if (thread_priority_level == 0x15) {
       thread_result_status = strcmp(thread_stack_base_address,&g_config_path_string);
       if (thread_result_status == SYSTEM_ZERO_VALUE) {
-        thread_result_status = 0x30;
+        thread_result_status = SYSTEM_THREAD_STATUS_INITIALIZED;
         goto section_processing_jump_label_;
       }
 section_processing_jump_label_:
       thread_result_status = strcmp(str_len_counter,&g_system_path_string);
       if (thread_result_status == SYSTEM_ZERO_VALUE) {
-        thread_result_status = 0xb0;
+        thread_result_status = SYSTEM_THREAD_STATUS_READY;
         goto section_processing_jump_label_;
       }
 section_processing_jump_label_:
       thread_result_status = strcmp(str_len_counter,&g_temp_path_string);
       if (thread_result_status == SYSTEM_ZERO_VALUE) {
-        thread_result_status = 0xd4;
+        thread_result_status = SYSTEM_THREAD_STATUS_PROCESSING;
         goto section_processing_jump_label_;
       }
 section_processing_jump_label_:
@@ -8683,7 +8683,7 @@ section_processing_jump_label_:
     if (thread_priority_level == 0x1a) {
       thread_result_status = strcmp(thread_stack_base_address,&g_log_path_string);
       if (thread_result_status == SYSTEM_ZERO_VALUE) {
-        thread_result_status = 0x1c;
+        thread_result_status = SYSTEM_THREAD_STATUS_WAITING;
         goto section_processing_jump_label_;
       }
 section_processing_jump_label_:
@@ -8703,7 +8703,7 @@ section_processing_jump_label_:
     if (thread_priority_level == path_buffer_size) {
       thread_result_status = strcmp(thread_stack_base_address,&g_save_path_string);
       if (thread_result_status == SYSTEM_ZERO_VALUE) {
-        thread_result_status = 0x30;
+        thread_result_status = SYSTEM_THREAD_STATUS_INITIALIZED;
         goto section_processing_jump_label_;
       }
       goto section_processing_jump_label_;
