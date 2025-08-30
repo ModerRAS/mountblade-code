@@ -3540,7 +3540,7 @@ void InitializeCoreSystemData(void)
   }
   if ((core_system_node_previous == core_system_node_root) || (core_system_memory_comparison_result = memcmp(&system_data_pattern_audio,core_system_node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), core_system_memory_comparison_result < SYSTEM_COMPARE_RESULT_EQUAL)) {
     core_system_node_allocation_size = CalculateAllocationSize(core_system_data_pointer);
-    AllocateSystemMemory(core_system_data_pointer,&core_system_new_node,core_system_node_previous,core_system_node_system_node_allocation_size + SYSTEM_NODE_HEADER_SIZE,core_system_node_allocation_size);
+    AllocateSystemMemory(core_system_data_pointer,&core_system_new_node,core_system_node_previous,core_system_node_allocation_size + SYSTEM_NODE_HEADER_SIZE,core_system_node_allocation_size);
     core_system_node_previous = core_system_new_node;
   }
   core_system_node_previous[SYSTEM_NODE_INDEX_SIGNATURE_PRIMARY] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_PRIMARY;
@@ -4397,7 +4397,7 @@ void initialize_system_phase_resources(void)
   system_data_pointer = (longlong *)GetSystemPointerData();
   system_node_root = (uint64_t *)*system_data_pointer;
   system_flag_initialization = *(char *)((longlong)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT] + NODE_INITIALIZED_OFFSET);
-  pflag_initialized = &g_flag_initialized;
+  system_pointer_init_status = &g_flag_initialized;
   system_node_previous = system_node_root;
   system_node_current = (uint64_t *)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (system_flag_initialization == SYSTEM_CHAR_NULL_TERMINATOR) {
@@ -5082,7 +5082,7 @@ void InitializeStateNode(void)
   system_data_pointer = (longlong *)GetSystemPointerData();
   system_node_root = (uint64_t *)*system_data_pointer;
   system_flag_initialization = *(char *)((longlong)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT] + NODE_INITIALIZED_OFFSET);
-  pflag_initialized = &g_flag_initialized;
+  system_pointer_init_status = &g_flag_initialized;
   system_node_previous = system_node_root;
   system_node_current = (uint64_t *)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (system_flag_initialization == SYSTEM_CHAR_NULL_TERMINATOR) {
@@ -5457,7 +5457,7 @@ void initialize_graphics_node_system(void)
   system_data_pointer = (longlong *)GetSystemPointerData();
   system_node_root = (uint64_t *)*system_data_pointer;
   system_flag_initialization = *(char *)((longlong)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT] + NODE_INITIALIZED_OFFSET);
-  pflag_initialized = &g_flag_initialized;
+  system_pointer_init_status = &g_flag_initialized;
   system_node_previous = system_node_root;
   system_node_current = (uint64_t *)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (system_flag_initialization == SYSTEM_CHAR_NULL_TERMINATOR) {
@@ -5785,7 +5785,7 @@ void InitializeTableNode(void)
   system_data_pointer = (longlong *)GetSystemPointerData();
   system_node_root = (uint64_t *)*system_data_pointer;
   system_flag_initialization = *(char *)((longlong)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT] + NODE_INITIALIZED_OFFSET);
-  pflag_initialized = &g_flag_initialized;
+  system_pointer_init_status = &g_flag_initialized;
   system_node_previous = system_node_root;
   system_node_current = (uint64_t *)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (system_flag_initialization == SYSTEM_CHAR_NULL_TERMINATOR) {
@@ -6208,7 +6208,7 @@ void InitializeHandlerNode(void)
   system_data_pointer = (longlong *)GetSystemPointerData();
   system_node_root = (uint64_t *)*system_data_pointer;
   system_flag_initialization = *(char *)((longlong)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT] + NODE_INITIALIZED_OFFSET);
-  pflag_initialized = &g_flag_initialized;
+  system_pointer_init_status = &g_flag_initialized;
   system_node_previous = system_node_root;
   system_node_current = (uint64_t *)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (system_flag_initialization == SYSTEM_CHAR_NULL_TERMINATOR) {
@@ -6752,7 +6752,7 @@ void initialize_system_object_ten(void)
   system_data_pointer = (longlong *)GetSystemPointerData();
   system_node_root = (uint64_t *)*system_data_pointer;
   system_flag_initialization = *(char *)((longlong)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT] + NODE_INITIALIZED_OFFSET);
-  pflag_initialized = &g_flag_initialized;
+  system_pointer_init_status = &g_flag_initialized;
   system_node_previous = system_node_root;
   system_node_current = (uint64_t *)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (system_flag_initialization == SYSTEM_CHAR_NULL_TERMINATOR) {
@@ -7100,7 +7100,7 @@ void initialize_system_object_seventeen(void)
   system_data_pointer = (longlong *)GetSystemPointerData();
   system_node_root = (uint64_t *)*system_data_pointer;
   system_flag_initialization = *(char *)((longlong)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT] + NODE_INITIALIZED_OFFSET);
-  pflag_initialized = &g_flag_initialized;
+  system_pointer_init_status = &g_flag_initialized;
   system_node_previous = system_node_root;
   system_node_current = (uint64_t *)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (system_flag_initialization == SYSTEM_CHAR_NULL_TERMINATOR) {
@@ -7647,7 +7647,7 @@ void DisconnectNetworkSocket(void)
   system_data_pointer = (longlong *)GetSystemPointerData();
   system_node_root = (uint64_t *)*system_data_pointer;
   system_flag_initialization = *(char *)((longlong)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT] + NODE_INITIALIZED_OFFSET);
-  pflag_initialized = &g_flag_initialized;
+  system_pointer_init_status = &g_flag_initialized;
   system_node_previous = system_node_root;
   system_node_current = (uint64_t *)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (system_flag_initialization == SYSTEM_CHAR_NULL_TERMINATOR) {
@@ -7976,7 +7976,7 @@ void InitializeVideoDataNode(void)
   system_data_pointer = (longlong *)GetSystemPointerData();
   system_node_root = (uint64_t *)*system_data_pointer;
   system_flag_initialization = *(char *)((longlong)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT] + NODE_INITIALIZED_OFFSET);
-  pflag_initialized = &g_flag_initialized;
+  system_pointer_init_status = &g_flag_initialized;
   system_node_previous = system_node_root;
   system_node_current = (uint64_t *)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (system_flag_initialization == SYSTEM_CHAR_NULL_TERMINATOR) {
@@ -8547,7 +8547,7 @@ void InitializeSecuritySubsystem(void)
   system_data_pointer = (longlong *)GetSystemPointerData();
   system_node_root = (uint64_t *)*system_data_pointer;
   system_flag_initialization = *(char *)((longlong)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT] + NODE_INITIALIZED_OFFSET);
-  pflag_initialized = &g_flag_initialized;
+  system_pointer_init_status = &g_flag_initialized;
   system_node_previous = system_node_root;
   system_node_current = (uint64_t *)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (system_flag_initialization == SYSTEM_CHAR_NULL_TERMINATOR) {
@@ -8970,7 +8970,7 @@ void InitializeNetworkSystem(void)
   system_data_pointer = (longlong *)GetSystemPointerData();
   system_node_root = (uint64_t *)*system_data_pointer;
   system_flag_initialization = *(char *)((longlong)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT] + NODE_INITIALIZED_OFFSET);
-  pflag_initialized = &g_flag_initialized;
+  system_pointer_init_status = &g_flag_initialized;
   system_node_previous = system_node_root;
   system_node_current = (uint64_t *)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (system_flag_initialization == SYSTEM_CHAR_NULL_TERMINATOR) {
@@ -9534,7 +9534,7 @@ void InitializeThreadResourceNode(void)
   system_data_pointer = (longlong *)GetSystemPointerData();
   system_node_root = (uint64_t *)*system_data_pointer;
   system_flag_initialization = *(char *)((longlong)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT] + NODE_INITIALIZED_OFFSET);
-  pflag_initialized = &g_flag_initialized;
+  system_pointer_init_status = &g_flag_initialized;
   system_node_previous = system_node_root;
   system_node_current = (uint64_t *)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (system_flag_initialization == SYSTEM_CHAR_NULL_TERMINATOR) {
@@ -9930,7 +9930,7 @@ void InitializeAuthenticationSystem(void)
   system_data_pointer = (longlong *)GetSystemPointerData();
   system_node_root = (uint64_t *)*system_data_pointer;
   system_flag_initialization = *(char *)((longlong)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT] + NODE_INITIALIZED_OFFSET);
-  pflag_initialized = &g_flag_initialized;
+  system_pointer_init_status = &g_flag_initialized;
   system_node_previous = system_node_root;
   system_node_current = (uint64_t *)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (system_flag_initialization == SYSTEM_CHAR_NULL_TERMINATOR) {
@@ -11013,7 +11013,7 @@ void InitializeEventSystem(void)
   system_data_pointer = (longlong *)GetSystemPointerData();
   system_node_root = (uint64_t *)*system_data_pointer;
   system_flag_initialization = *(char *)((longlong)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT] + NODE_INITIALIZED_OFFSET);
-  pflag_initialized = &g_flag_initialized;
+  system_pointer_init_status = &g_flag_initialized;
   system_node_previous = system_node_root;
   system_node_current = (uint64_t *)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (system_flag_initialization == SYSTEM_CHAR_NULL_TERMINATOR) {
@@ -11342,7 +11342,7 @@ void InitializeInputManagerSystem(void)
   system_data_pointer = (longlong *)GetSystemPointerData();
   system_node_root = (uint64_t *)*system_data_pointer;
   system_flag_initialization = *(char *)((longlong)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT] + NODE_INITIALIZED_OFFSET);
-  pflag_initialized = &g_flag_initialized;
+  system_pointer_init_status = &g_flag_initialized;
   system_node_previous = system_node_root;
   system_node_current = (uint64_t *)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (system_flag_initialization == SYSTEM_CHAR_NULL_TERMINATOR) {
@@ -11671,7 +11671,7 @@ void InitializeNetworkMutex(void)
   system_data_pointer = (longlong *)GetSystemPointerData();
   system_node_root = (uint64_t *)*system_data_pointer;
   system_flag_initialization = *(char *)((longlong)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT] + NODE_INITIALIZED_OFFSET);
-  pflag_initialized = &g_flag_initialized;
+  system_pointer_init_status = &g_flag_initialized;
   system_node_previous = system_node_root;
   system_node_current = (uint64_t *)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (system_flag_initialization == SYSTEM_CHAR_NULL_TERMINATOR) {
@@ -12000,7 +12000,7 @@ void InitializeDataEngineNode(void)
   system_data_pointer = (longlong *)GetSystemPointerData();
   system_node_root = (uint64_t *)*system_data_pointer;
   system_flag_initialization = *(char *)((longlong)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT] + NODE_INITIALIZED_OFFSET);
-  pflag_initialized = &g_flag_initialized;
+  system_pointer_init_status = &g_flag_initialized;
   system_node_previous = system_node_root;
   system_node_current = (uint64_t *)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (system_flag_initialization == SYSTEM_CHAR_NULL_TERMINATOR) {
@@ -13336,7 +13336,7 @@ void InitializeSystemComponents(void)
   system_data_pointer = (longlong *)GetSystemPointerData();
   system_node_root = (uint64_t *)*system_data_pointer;
   system_flag_initialization = *(char *)((longlong)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT] + NODE_INITIALIZED_OFFSET);
-  pflag_initialized = &g_flag_initialized;
+  system_pointer_init_status = &g_flag_initialized;
   system_node_previous = system_node_root;
   system_node_current = (uint64_t *)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (system_flag_initialization == SYSTEM_CHAR_NULL_TERMINATOR) {
@@ -13722,7 +13722,7 @@ void InitializeAudioSystem(void)
   system_data_pointer = (longlong *)GetSystemPointerData();
   system_node_root = (uint64_t *)*system_data_pointer;
   system_flag_initialization = *(char *)((longlong)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT] + NODE_INITIALIZED_OFFSET);
-  pflag_initialized = &g_flag_initialized;
+  system_pointer_init_status = &g_flag_initialized;
   system_node_previous = system_node_root;
   system_node_current = (uint64_t *)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (system_flag_initialization == SYSTEM_CHAR_NULL_TERMINATOR) {
@@ -14051,7 +14051,7 @@ void InitializeEventDataNode(void)
   system_data_pointer = (longlong *)GetSystemPointerData();
   system_node_root = (uint64_t *)*system_data_pointer;
   system_flag_initialization = *(char *)((longlong)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT] + NODE_INITIALIZED_OFFSET);
-  pflag_initialized = &g_flag_initialized;
+  system_pointer_init_status = &g_flag_initialized;
   system_node_previous = system_node_root;
   system_node_current = (uint64_t *)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (system_flag_initialization == SYSTEM_CHAR_NULL_TERMINATOR) {
@@ -15854,7 +15854,7 @@ void InitializeRecordDataNode(void)
   system_data_pointer = (longlong *)GetSystemPointerData();
   system_node_root = (uint64_t *)*system_data_pointer;
   system_flag_initialization = *(char *)((longlong)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT] + NODE_INITIALIZED_OFFSET);
-  pflag_initialized = &g_flag_initialized;
+  system_pointer_init_status = &g_flag_initialized;
   system_node_previous = system_node_root;
   system_node_current = (uint64_t *)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (system_flag_initialization == SYSTEM_CHAR_NULL_TERMINATOR) {
@@ -16766,7 +16766,7 @@ void InitializeListDataNode(void)
   system_data_pointer = (longlong *)GetSystemPointerData();
   system_node_root = (uint64_t *)*system_data_pointer;
   system_flag_initialization = *(char *)((longlong)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT] + NODE_INITIALIZED_OFFSET);
-  pflag_initialized = &g_flag_initialized;
+  system_pointer_init_status = &g_flag_initialized;
   system_node_previous = system_node_root;
   system_node_current = (uint64_t *)system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (system_flag_initialization == SYSTEM_CHAR_NULL_TERMINATOR) {
