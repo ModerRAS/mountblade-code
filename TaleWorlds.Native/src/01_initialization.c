@@ -53470,7 +53470,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param,longlong system_
   }
   system_context_param[SYSTEM_INIT_FLAG_INITIALIZED6] = system_function_result;
   if ((*(char *)(system_config_param + SYSTEM_INIT_FLAG_INITIALIZED48) == '\0') && (*(longlong *)(system_config_param + SYSTEM_INIT_OFFSET_ARRAY_3C8) != 0)) {
-    system_config_value = func_SYSTEM_INIT_VALUE_CHAR_NULL001801fc730();
+    system_config_value = system_init_function_config_reader_1();
   }
   else {
     system_config_value = *(system_uint32_t *)(system_config_param + SYSTEM_INIT_FLAG_INITIALIZED40);
@@ -58765,19 +58765,19 @@ code_rSYSTEM_INIT_VALUE_CHAR_NULL0018007db1b:
       if (*(int *)(system_config_param + SYSTEM_INIT_SIZE_0X38) < 1) {
         system_loop_counter5 = SYSTEM_INIT_FLAG_OCTONARY_ENABLED;
       }
-      system_init_flag_6 = func_SYSTEM_INIT_VALUE_CHAR_NULL001800840d0(0x3f800000);
+      system_init_flag_6 = system_init_function_float_converter(0x3f800000);
       system_secondary_uint_var_6 = (ulonglong)system_init_flag_6;
       do {
         system_loop_counter2 = *(longlong *)(system_config_param + );
-        system_init_flag_audio = func_SYSTEM_INIT_VALUE_CHAR_NULL001800840d0(*(system_uint32_t *)
+        system_init_flag_audio = system_init_function_float_converter(*(system_uint32_t *)
                                      (*(longlong *)(system_loop_counter5 + system_config_param) +
                                      (longlong)*(int *)(system_loop_counter1 + system_loop_counter2) * SYSTEM_INIT_SIZE_COMPARE));
         *(system_uint16_t *)psystem_coefficient_b0 = system_init_flag_audio;
-        system_init_flag_audio = func_SYSTEM_INIT_VALUE_CHAR_NULL001800840d0(*(system_uint32_t *)
+        system_init_flag_audio = system_init_function_float_converter(*(system_uint32_t *)
                                      (*(longlong *)(system_loop_counter5 + system_config_param) + 4 +
                                      (longlong)*(int *)(system_loop_counter1 + system_loop_counter2) * SYSTEM_INIT_SIZE_COMPARE));
         *(system_uint16_t *)((longlong)psystem_coefficient_b0 + 2) = system_init_flag_audio;
-        system_init_flag_audio = func_SYSTEM_INIT_VALUE_CHAR_NULL001800840d0(*(system_uint32_t *)
+        system_init_flag_audio = system_init_function_float_converter(*(system_uint32_t *)
                                      (*(longlong *)(system_loop_counter5 + system_config_param) + 8 +
                                      (longlong)*(int *)(system_loop_counter1 + system_loop_counter2) * SYSTEM_INIT_SIZE_COMPARE));
         *(system_uint16_t *)(psystem_coefficient_b0 + 1) = system_init_flag_audio;
