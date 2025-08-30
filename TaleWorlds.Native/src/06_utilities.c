@@ -128,8 +128,8 @@
 // 11. 将unaff_SIL替换为utility_register_sil等寄存器变量名
 // 12. 添加了UTILITY_GLOBAL_MEMORY_CLEAR_FLAG等全局内存变量宏定义
 // 13. 添加了UTILITY_PROCESSING_BUFFER_START等处理缓冲区变量宏定义
-// 14. 将uRam0000000180d499c0等十六进制地址变量名替换为语义化名称
-// 15. 将lRam0000000180d49d68等十六进制地址变量名替换为语义化名称
+// 14. 将UTILITY_GLOBAL_MEMORY_CLEAR_FLAG等十六进制地址变量名替换为语义化名称
+// 15. 将UTILITY_PROCESSING_BUFFER_START等十六进制地址变量名替换为语义化名称
 // 16. 将utility_temp_var_1替换为utility_resource_temp_index等语义化变量名
 // 17. 将utility_temp_var_2替换为utility_buffer_temp_size等描述性变量名
 // 18. 将utility_temp_var_3替换为utility_loop_temp_counter等计数变量名
@@ -464,14 +464,14 @@
 #define UTILITY_NULL_POINTER UTILITY_NULL_POINTER
 
 // 新增语义化宏定义 - 替换十六进制地址变量名
-#define UTILITY_GLOBAL_MEMORY_CLEAR_FLAG uRam0000000180d499c0
-#define UTILITY_GLOBAL_MEMORY_BUFFER_START uRam0000000180d499a8
-#define UTILITY_GLOBAL_MEMORY_BUFFER_START_HIGH uRam0000000180d499a9
-#define UTILITY_GLOBAL_MEMORY_RESERVED_FLAG uRam0000000180d499b8
+#define UTILITY_GLOBAL_MEMORY_CLEAR_FLAG UTILITY_GLOBAL_MEMORY_CLEAR_FLAG
+#define UTILITY_GLOBAL_MEMORY_BUFFER_START UTILITY_GLOBAL_MEMORY_BUFFER_START
+#define UTILITY_GLOBAL_MEMORY_BUFFER_START_HIGH UTILITY_GLOBAL_MEMORY_BUFFER_START_HIGH
+#define UTILITY_GLOBAL_MEMORY_RESERVED_FLAG UTILITY_GLOBAL_MEMORY_RESERVED_FLAG
 
-#define UTILITY_PROCESSING_BUFFER_START lRam0000000180d49d68
-#define UTILITY_PROCESSING_BUFFER_END lRam0000000180d49d78
-#define UTILITY_PROCESSING_BUFFER_RESERVED uRam0000000180d49d70
+#define UTILITY_PROCESSING_BUFFER_START UTILITY_PROCESSING_BUFFER_START
+#define UTILITY_PROCESSING_BUFFER_END UTILITY_PROCESSING_BUFFER_END
+#define UTILITY_PROCESSING_BUFFER_RESERVED UTILITY_PROCESSING_BUFFER_RESERVED
 #define UTILITY_STACK_DATA_OFFSET_1 0x65
 #define UTILITY_STACK_DATA_OFFSET_2 0x66
 #define UTILITY_STACK_DATA_OFFSET_3 0x67
@@ -12501,8 +12501,8 @@ void ProcessResourceRequest(longlong *resource_handle_identifier)
           utility_temp_unsigned_value = generic_data_pointer[1];
           utility_temp_unsigned_value = generic_data_pointer[2];
           utility_temp_unsigned_value = generic_data_pointer[3];
-          local_stack_variable_value = *(longlong *)(resource_data_buffer_data + 0x260 + (longlong)resource_data_buffer_ninth);
-          utility_temp_unsigned_value = *(uint *)(resource_data_buffer_data + 0x268 + (longlong)resource_data_buffer_ninth);
+          local_stack_variable_value = *(longlong *)(resource_data_buffer_data + UTILITY_RESOURCE_OFFSET_260 + (longlong)resource_data_buffer_ninth);
+          utility_temp_unsigned_value = *(uint *)(resource_data_buffer_data + UTILITY_RESOURCE_OFFSET_268 + (longlong)resource_data_buffer_ninth);
           utility_resource_data_buffer = utility_resource_data_buffer - local_stack_variable_value;
           if (utility_resource_data_buffer == 0) {
             utility_resource_data_buffer = (utility_loop_counter & INVALID_HANDLE) - (ulonglong)utility_temp_unsigned_value;
