@@ -15512,7 +15512,7 @@ void orderUtilityLists(longlong resource_handle_identifier,int *memory_block_siz
   uint32_t validation_flag;
   int utility_iteration_counter_primary;
   uint32 utility_register_input_value_var;
-  uint unaff_EBP;
+  uint UTILITY_REGISTER_EBP;
   char in_CF;
   int *plocalInt;
   uint32 system_status_code;
@@ -24127,7 +24127,7 @@ void ValidateIntegrityData2(void)
   int utility_operation_status;
   int utility_operation_status;
   longlong *utility_register_context_base;
-  int unaff_EBP;
+  int UTILITY_REGISTER_EBP;
   longlong utility_cpu_context;
   uint32 resourceSecurityParam;
   
@@ -24167,10 +24167,10 @@ void ValidateIntegrityData2(void)
     }
     else if (*(int *)(utility_register_context_base[1] + RESOURCE_HANDLE_OFFSET) == 0) {
       resourceSecurityParam = CONCAT_BYTES(resourceSecurityParam._1_3_,*(byte *)(utility_cpu_context + UTILITY_RESOURCE_DATA_OFFSET));
-      unaff_EBP = (**(code **)**(uint64 **)(*utility_register_context_base + 8))
+      UTILITY_REGISTER_EBP = (**(code **)**(uint64 **)(*utility_register_context_base + 8))
                             (*(uint64 **)(*utility_register_context_base + 8),&context_buffer_data,1);
     }
-    if (unaff_EBP != 0) {
+    if (UTILITY_REGISTER_EBP != 0) {
       return;
     }
                     // WARNING: Subroutine does not return
