@@ -33302,7 +33302,7 @@ void FUN_180060610(undefined8 *param_1,undefined8 param_2,undefined8 param_3,und
   undefined8 uVar2;
 
   uVar2 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a10098;
+  *param_1 = &g_system_unknown_data_3;
   is_initialized = FUN_18020eba0(param_1,1,param_3,param_4,0xfffffffffffffffe);
   while (is_initialized != '\0') {
     is_initialized = FUN_18020eba0(param_1,1,param_3,param_4,uVar2);
@@ -33984,7 +33984,7 @@ void FUN_1800612b0(undefined8 *param_1)
     FUN_180639250();
   }
   _Mtx_destroy_in_situ();
-  *param_1 = &UNK_180a30778;
+  *param_1 = &g_system_unknown_data_4;
   param_1[7] = &g_resource_pool_ptr;
   if (param_1[8] != 0) {
                     // WARNING: Subroutine does not return
@@ -34055,7 +34055,7 @@ void FUN_180061380(undefined8 param_1,longlong param_2)
   puStack_1a0 = auStack_190;
   auStack_190[0] = 0;
   uStack_198 = 6;
-  strcpy_s(auStack_190,SYSTEM_DATA_COMPARE_SIZE,&UNK_1809fe2c0);
+  strcpy_s(auStack_190,SYSTEM_DATA_COMPARE_SIZE,&g_system_unknown_data_5);
   puVar3 = (undefined8 *)FUN_18062b1e0(_g_system_memory_pool_1,SYSTEM_NODE_HEADER_SIZE8,8,3);
   lStack_248 = lVar1 + 0x70;
   puStack_238 = puVar3;
@@ -34494,7 +34494,7 @@ uint64_t FUN_180062ee0(undefined8 param_1,undefined4 param_2)
   default:
     uVar1 = 0xf;
   }
-  iVar2 = SetConsoleTextAttribute(_DAT_180c912f0,uVar1);
+  iVar2 = SetConsoleTextAttribute(_g_system_stack_buffer;,uVar1);
   if (iVar2 == 0) {
     FUN_18005d3a0(&UNK_1809fe5a0);
     return 0;
@@ -34573,10 +34573,10 @@ code_r0x0001800630e9:
       FUN_180639250(*(longlong *)(param_1 + SYSTEM_NODE_HEADER_SIZE) + SYSTEM_NODE_HEADER_SIZE);
       if (((*(byte *)(*(longlong *)(param_1 + SYSTEM_NODE_HEADER_SIZE) + 8) & 2) != 0) &&
          (iRam0000000180c912e0 = iRam0000000180c912e0 + -1, iRam0000000180c912e0 == 0)) {
-        _DAT_180c912f0 = 0;
+        _g_system_stack_buffer; = 0;
         lRam0000000180c912e8 = 0;
         LOCK();
-        _DAT_180d48d28 = 0;
+        _g_system_io_buffer; = 0;
         UNLOCK();
         FreeConsole();
       }
@@ -34617,11 +34617,11 @@ code_r0x0001800630e9:
         if ((*(byte *)(puVar5 + 1) & 2) != 0) {
           FUN_180062ee0((ulonglong)*(uint *)(&DAT_180063480 + (longlong)(int)uVar1 * 4) +
                         0x180000000,*(undefined4 *)(param_1 + 0x50));
-          iVar4 = WriteConsoleA(_DAT_180c912f0,puVar9,uVar2,auStackX_20,0);
+          iVar4 = WriteConsoleA(_g_system_stack_buffer;,puVar9,uVar2,auStackX_20,0);
           if ((iVar4 == 0) || (auStackX_20[0] < uVar2)) {
             FUN_18005d3a0(&UNK_1809fe62c,puVar9);
           }
-          iVar4 = SetConsoleTextAttribute(_DAT_180c912f0,0xf);
+          iVar4 = SetConsoleTextAttribute(_g_system_stack_buffer;,0xf);
           if (iVar4 == 0) {
             FUN_18005d3a0(&UNK_1809fe5a0);
           }
@@ -34647,9 +34647,9 @@ code_r0x0001800630e9:
       *(undefined8 *)(*(longlong *)(param_1 + SYSTEM_NODE_HEADER_SIZE) + SYSTEM_DATA_COMPARE_SIZE) = *(undefined8 *)(param_1 + 0x60);
       break;
     case 8:
-      if ((_DAT_180c912f0 != 0) && (lRam0000000180c912e8 != 0)) {
+      if ((_g_system_stack_buffer; != 0) && (lRam0000000180c912e8 != 0)) {
         auStackX_8[0] = *(uint *)(param_1 + 0x68);
-        SetConsoleScreenBufferSize(_DAT_180c912f0,auStackX_8[0]);
+        SetConsoleScreenBufferSize(_g_system_stack_buffer;,auStackX_8[0]);
       }
     }
   }
@@ -34878,7 +34878,7 @@ void FUN_180063b30(undefined8 param_1,longlong param_2)
     lVar4 = lVar3;
   } while (*pis_initialized != '\0');
   if (lVar3 != 0) {
-    fwrite(&DAT_1809fe810,0x30,1,lVar6);
+    fwrite(&g_game_data_buffer;,0x30,1,lVar6);
     fwrite(&DAT_180c84870,lVar3,1,lVar6);
 // void FUN_180063cf0(void)
 
