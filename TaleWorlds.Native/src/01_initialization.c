@@ -509,6 +509,24 @@
 #define SYSTEM_INIT_CONTEXT_INDEX_VALIDATION_CONFIG 0x3d   // 验证配置偏移量
 #define SYSTEM_INIT_CONTEXT_INDEX_SHADER_CONFIG 0x65       // 着色器配置偏移量
 
+// 补充硬编码值语义化常量（2025年8月30日最终批次补充美化）
+#define SYSTEM_INIT_FLOAT_MAX_VALUE          0x7f7fffff    // 最大浮点数值
+#define SYSTEM_INIT_STRING_COLON_SUFFIX       0x3a757067    // 冒号后缀字符串
+#define SYSTEM_INIT_STRING_COLON_PREFIX       0x3a757063    // 冒号前缀字符串
+#define SYSTEM_INIT_STRING_SCENE_SUFFIX       0x6a624f656e656353  // 场景后缀字符串
+#define SYSTEM_INIT_STRING_SUFFIX_S           0x73656373    // 后缀S字符串
+#define SYSTEM_INIT_STRING_SUFFIX_E           0x65          // 后缀E字符
+#define SYSTEM_INIT_STRING_SCRIPT_PATH        0x6563732f    // 脚本路径字符串
+#define SYSTEM_INIT_STRING_SCRIPT_EXT         0x65637378    // 脚本扩展字符串
+#define SYSTEM_INIT_STRING_EN_SUFFIX          0x656e        // EN后缀字符串
+#define SYSTEM_INIT_STRING_POSSESSIVE         0x73736f50    // 所有格字符串
+#define SYSTEM_INIT_STRING_LIBRARY_BASE       0x656c6269    // 库基础字符串
+#define SYSTEM_INIT_STRING_DATA_PREFIX        0x61656420    // 数据前缀字符串
+#define SYSTEM_INIT_STRING_COLD_PREFIX        0x636f6c64    // 冷前缀字符串
+#define SYSTEM_INIT_STRING_DENSE_SUFFIX       0x6420656e    // 密集后缀字符串
+#define SYSTEM_INIT_STRING_IN_SUFFIX          0x6e206469    // IN后缀字符串
+#define SYSTEM_INIT_STRING_TO_SUFFIX          0x7220746f    // TO后缀字符串
+
 #include "TaleWorlds.Native.Split.h"
 
 // 01_initialization.c - 901 个函数
@@ -22043,7 +22061,7 @@ void InitializeSystemCore(longlong system_context_param)
   system_float_temp_secondary = system_multiplier * SYSTEM_INIT_FLOAT_COEFFICIENT_9 + SYSTEM_INIT_FLOAT_COEFFICIENT_10 + system_float_temp_primary;
   *(float *)(system_context_param + SYSTEM_INIT_CONTEXT_INDEX_RESOURCE_BASE0) = system_float_temp_primary * system_float_temp_primary;
   *(float *)(system_context_param + SYSTEM_INIT_CONTEXT_INDEX_RESOURCE_BASE4) = system_float_temp_secondary * system_float_temp_secondary;
-  *(system_uint32_t *)(system_context_param + SYSTEM_INIT_CONTEXT_INDEX_RESOURCE_BASE8) = 0x7f7fffff;
+  *(system_uint32_t *)(system_context_param + SYSTEM_INIT_CONTEXT_INDEX_RESOURCE_BASE8) = SYSTEM_INIT_FLOAT_MAX_VALUE;
   *(uint *)(system_context_param + SYSTEM_INIT_CONTEXT_INDEX_RESOURCE_BASEc) = (uint)(*(int *)(system_allocation_result + ) == 0);
   return;
 }
@@ -24364,7 +24382,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
   system_comparison_result = system_loop_counter + 5;
   system_call_service(system_config_param,system_comparison_result);
   system_context_pointer = (system_uint32_t *)((ulonglong)*(uint *)(system_config_param + SYSTEM_INIT_SIZE_COMPARE) + *(longlong *)(system_config_param + 8));
-  *system_context_pointer = 0x3a757067;
+  *system_context_pointer = SYSTEM_INIT_STRING_COLON_SUFFIX;
   *(system_uint16_t *)(system_context_pointer + 1) = SYSTEM_INIT_OFFSET_STACK_PARAM;
   *(int *)(system_config_param + SYSTEM_INIT_SIZE_COMPARE) = system_comparison_result;
   if (0 < iStack_c8) {
@@ -24379,7 +24397,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
   system_comparison_result = system_loop_counter + ;
   system_call_service(system_config_param,system_comparison_result);
   system_context_pointer = (system_uint32_t *)((ulonglong)*(uint *)(system_config_param + SYSTEM_INIT_SIZE_COMPARE) + *(longlong *)(system_config_param + 8));
-  *system_context_pointer = 0x3a757063;
+  *system_context_pointer = SYSTEM_INIT_STRING_COLON_PREFIX;
   *(system_uint16_t *)(system_context_pointer + 1) = SYSTEM_INIT_OFFSET_STACK_PARAM;
   *(int *)(system_config_param + SYSTEM_INIT_SIZE_COMPARE) = system_comparison_result;
   if (0 < iStack_188) {
@@ -25157,7 +25175,7 @@ LAB_180054912:
       }
       system_int_value = system_stack_uint_128 + 8;
       system_call_service(&system_stack_pointer_138,system_int_value);
-      *(system_uint64_t *)(psystem_stack_uint_130 + system_stack_uint_128) = 0x6a624f656e656353;
+      *(system_uint64_t *)(psystem_stack_uint_130 + system_stack_uint_128) = SYSTEM_INIT_STRING_SCENE_SUFFIX;
       *(system_uint8_t *)((longlong)(psystem_stack_uint_130 + system_stack_uint_128) + 8) = SYSTEM_INIT_VALUE_ZERO;
       system_stack_uint_128 = system_int_value;
       system_char_result = system_read_string(&system_stack_pointer_138);
