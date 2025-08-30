@@ -20690,7 +20690,7 @@ uint64_t networkEstablishConnection9(int64_t *network_socket_descriptor)
   network_operation_progress = GetConnectionTimeout(network_socket_descriptor + SOCKET_HANDLE_OFFSET);
   if ((network_operation_progress == 0) && (network_operation_progress = NetworkValidateConnectionSlot(network_socket_descriptor + NETWORK_SOCKET_DATA_OFFSET_7A), network_operation_progress == 0)) {
     *(uint32_t *)(network_socket_descriptor + NETWORK_SIGNATURE_OFFSET) = NETWORK_MAX_SIZE;
-    *(uint32_t *)((longlong)network_socket_descriptor + 0x3e4) = 0;
+    *(uint32_t *)((longlong)network_socket_descriptor + NETWORK_SOCKET_OFFSET_3E4) = 0;
   NetworkValidateConnectionSlot(network_socket_descriptor + NETWORK_SOCKET_DATA_OFFSET_7A);
   GetConnectionTimeout(network_socket_descriptor + SOCKET_HANDLE_OFFSET);
   network_operation_progress = GetConnectionTimeout(network_socket_descriptor + NETWORK_SOCKET_HEADER_OFFSET_73);
