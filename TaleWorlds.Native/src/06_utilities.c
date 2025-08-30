@@ -29,6 +29,26 @@
 
 
 // 06_utilities.c - 473 个函数
+
+// 新增语义化宏定义 - 替换事件回调变量名
+#define EVENT_CALLBACK_RESOURCE_INIT 0x6030
+#define EVENT_CALLBACK_SYSTEM_START 0x6050
+#define EVENT_CALLBACK_RESOURCE_PROCESS 0x6790
+
+// 新增语义化宏定义 - 替换地址常量
+#define ADDRESS_SECURITY_TOKEN_HANDLER ADDRESS_SECURITY_TOKEN_HANDLER
+#define ADDRESS_MUTEX_DESTROY_1 ADDRESS_MUTEX_DESTROY_1
+#define ADDRESS_MUTEX_DESTROY_2 ADDRESS_MUTEX_DESTROY_2
+#define ADDRESS_TIMER_DESTROY ADDRESS_TIMER_DESTROY
+#define ADDRESS_TIMER_SETUP ADDRESS_TIMER_SETUP
+#define ADDRESS_CLOCK_INIT ADDRESS_CLOCK_INIT
+#define ADDRESS_MUTEX_DESTROY_3 ADDRESS_MUTEX_DESTROY_3
+#define ADDRESS_MUTEX_DESTROY_4 ADDRESS_MUTEX_DESTROY_4
+#define ADDRESS_MUTEX_DESTROY_5 ADDRESS_MUTEX_DESTROY_5
+#define ADDRESS_MUTEX_DESTROY_6 ADDRESS_MUTEX_DESTROY_6
+#define ADDRESS_THREAD_LOCAL_CLEANUP ADDRESS_THREAD_LOCAL_CLEANUP
+#define ADDRESS_THREAD_LOCAL_STORAGE ADDRESS_THREAD_LOCAL_STORAGE
+#define ADDRESS_RESOURCE_CLEANUP ADDRESS_RESOURCE_CLEANUP
 // 
 // 美化修改说明：
 // 1. 将所有 g_systemData 十六进制地址变量名替换为语义化名称
@@ -24861,7 +24881,7 @@ void ResetSystemSecondaryCounterAndProcessEvent(void)
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
   (*(code *)((g_security_token_mask ^ g_systemFunctionPointer) >> boolean_result_flag |
-            (g_security_token_mask ^ g_systemFunctionPointer) << utility_buffer_size_data_offset - boolean_result_flag))(0x180c82238);
+            (g_security_token_mask ^ g_systemFunctionPointer) << utility_buffer_size_data_offset - boolean_result_flag))(ADDRESS_SECURITY_TOKEN_HANDLER);
   return;
 }
 
@@ -24890,7 +24910,7 @@ void ResetSystemTempCounterAndProcessEvent(void)
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
   (*(code *)((g_security_token_mask ^ g_systemFunctionPointer) >> boolean_result_flag |
-            (g_security_token_mask ^ g_systemFunctionPointer) << utility_buffer_size_data_offset - boolean_result_flag))(0x180c82238);
+            (g_security_token_mask ^ g_systemFunctionPointer) << utility_buffer_size_data_offset - boolean_result_flag))(ADDRESS_SECURITY_TOKEN_HANDLER);
   return;
 }
 
@@ -42000,7 +42020,7 @@ void Unwind_1809065c0(void)
 void Unwind_1809065d0(void)
 
 {
-  _Mtx_destroy_in_situ(0x180c91910);
+  _Mtx_destroy_in_situ(ADDRESS_MUTEX_DESTROY_1);
   return;
 }
 
@@ -43050,7 +43070,7 @@ void Unwind_180906c00(void)
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
   (*(code *)((g_security_token_mask ^ g_systemFunctionPointer) >> boolean_result_flag |
-            (g_security_token_mask ^ g_systemFunctionPointer) << utility_buffer_size_data_offset - boolean_result_flag))(0x180c82238);
+            (g_security_token_mask ^ g_systemFunctionPointer) << utility_buffer_size_data_offset - boolean_result_flag))(ADDRESS_SECURITY_TOKEN_HANDLER);
   return;
 }
 
@@ -44572,7 +44592,7 @@ void UtilityUnwindSystemPhase13(void)
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
   (*(code *)((g_security_token_mask ^ g_systemFunctionPointer) >> boolean_result_flag |
-            (g_security_token_mask ^ g_systemFunctionPointer) << utility_buffer_size_data_offset - boolean_result_flag))(0x180c82238);
+            (g_security_token_mask ^ g_systemFunctionPointer) << utility_buffer_size_data_offset - boolean_result_flag))(ADDRESS_SECURITY_TOKEN_HANDLER);
   return;
 }
 
@@ -47730,7 +47750,7 @@ void UtilityUnwindCleanupPhase04(void)
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
   (*(code *)((g_security_token_mask ^ g_systemFunctionPointer) >> boolean_result_flag |
-            (g_security_token_mask ^ g_systemFunctionPointer) << utility_buffer_size_data_offset - boolean_result_flag))(0x180c82238);
+            (g_security_token_mask ^ g_systemFunctionPointer) << utility_buffer_size_data_offset - boolean_result_flag))(ADDRESS_SECURITY_TOKEN_HANDLER);
   return;
 }
 
@@ -50078,7 +50098,7 @@ void UtilityUnwindCleanupPhased3(void)
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
   (*(code *)((g_security_token_mask ^ g_systemFunctionPointer) >> boolean_result_flag |
-            (g_security_token_mask ^ g_systemFunctionPointer) << utility_buffer_size_data_offset - boolean_result_flag))(0x180c82238);
+            (g_security_token_mask ^ g_systemFunctionPointer) << utility_buffer_size_data_offset - boolean_result_flag))(ADDRESS_SECURITY_TOKEN_HANDLER);
   return;
 }
 
@@ -54657,7 +54677,7 @@ void Unwind_18090a6e0(void)
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
   (*(code *)((g_security_token_mask ^ g_systemFunctionPointer) >> boolean_result_flag |
-            (g_security_token_mask ^ g_systemFunctionPointer) << utility_buffer_size_data_offset - boolean_result_flag))(0x180c82238);
+            (g_security_token_mask ^ g_systemFunctionPointer) << utility_buffer_size_data_offset - boolean_result_flag))(ADDRESS_SECURITY_TOKEN_HANDLER);
   return;
 }
 
@@ -80054,7 +80074,7 @@ void Unwind_1809127d0(void)
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
   (*(code *)((g_security_token_mask ^ g_systemFunctionPointer) >> boolean_result_flag |
-            (g_security_token_mask ^ g_systemFunctionPointer) << utility_buffer_size_data_offset - boolean_result_flag))(0x180c82238);
+            (g_security_token_mask ^ g_systemFunctionPointer) << utility_buffer_size_data_offset - boolean_result_flag))(ADDRESS_SECURITY_TOKEN_HANDLER);
   return;
 }
 
@@ -80629,7 +80649,7 @@ void systemConfigInitialize(void) # 系统配置初始化函数
 {
                     // WARNING: Could not recover jumptable at 0x0001809417d8. Too many branches
                     // WARNING: Treating indirect jump as call
-  _Mtx_destroy_in_situ(0x180c91910);
+  _Mtx_destroy_in_situ(ADDRESS_MUTEX_DESTROY_1);
   return;
 }
 
@@ -80988,7 +81008,7 @@ void resourceManagerReset(void)
     }
     _Mtx_destroy_in_situ();
     _Cnd_destroy_in_situ();
-    UtilityModule25(0x180c919f0);
+    UtilityModule25(ADDRESS_MUTEX_DESTROY_2);
 
 // 函数: void InitializeDatabaseConnection(void)
 void InitializeDatabaseConnection(void)
@@ -81040,7 +81060,7 @@ void systemInitializeWorkers(void)
 {
                     // WARNING: Could not recover jumptable at 0x000180941db8. Too many branches
                     // WARNING: Treating indirect jump as call
-  _Mtx_destroy_in_situ(0x180d49680);
+  _Mtx_destroy_in_situ(ADDRESS_TIMER_DESTROY);
   return;
 }
 
@@ -81066,7 +81086,7 @@ void systemInitializePools(void)
 void systemInitializeQueues(void)
 
 {
-  SetupSystemTimer(0x180d497e0);
+  SetupSystemTimer(ADDRESS_TIMER_SETUP);
   if (system_variable_value != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
@@ -81075,7 +81095,7 @@ void systemInitializeQueues(void)
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  InitializeSystemClock(0x180d498a0);
+  InitializeSystemClock(ADDRESS_CLOCK_INIT);
   system_tls_cleanup_9830 = &thread_local_storage_cleanup;
   return;
 }
@@ -81805,7 +81825,7 @@ void resourceDeallocateMemory(void)
 {
                     // WARNING: Could not recover jumptable at 0x0001809425f8. Too many branches
                     // WARNING: Treating indirect jump as call
-  _Mtx_destroy_in_situ(0x180c91f70);
+  _Mtx_destroy_in_situ(ADDRESS_MUTEX_DESTROY_3);
   return;
 }
 
@@ -82363,7 +82383,7 @@ void resourceCacheFlush(void)
 {
                     // WARNING: Could not recover jumptable at 0x000180942a58. Too many branches
                     // WARNING: Treating indirect jump as call
-  _Mtx_destroy_in_situ(0x180d49db0);
+  _Mtx_destroy_in_situ(ADDRESS_MUTEX_DESTROY_4);
   return;
 }
 
@@ -82447,16 +82467,16 @@ void resourceResumeTask(void)
 
 {
   if (event_system_flag_error != '\0') {
-    ProcessEventCallback0(event_system_callback_6030);
-    event_system_callback_6030 = 0;
+    ProcessEventCallback0(event_system_callback_resource_init);
+    event_system_callback_resource_init = 0;
 
 // 函数: void resourceQueryProgress(void)
 void resourceQueryProgress(void)
 
 {
   if (event_system_flag_warning != '\0') {
-    ProcessEventCallback0(event_system_callback_6050);
-    event_system_callback_6050 = 0;
+    ProcessEventCallback0(event_system_callback_system_start);
+    event_system_callback_system_start = 0;
 
 // 函数: void resourceQueryStatus(void)
 void resourceQueryStatus(void)
@@ -82584,7 +82604,7 @@ void resourceControlAccess(void)
 {
                     // WARNING: Could not recover jumptable at 0x000180943038. Too many branches
                     // WARNING: Treating indirect jump as call
-  _Mtx_destroy_in_situ(0x180d49e70);
+  _Mtx_destroy_in_situ(ADDRESS_MUTEX_DESTROY_5);
   return;
 }
 
@@ -82597,7 +82617,7 @@ void resourceTrackUsage(void)
 {
                     // WARNING: Could not recover jumptable at 0x000180943058. Too many branches
                     // WARNING: Treating indirect jump as call
-  _Mtx_destroy_in_situ(0x180d49f10);
+  _Mtx_destroy_in_situ(ADDRESS_MUTEX_DESTROY_6);
   return;
 }
 
@@ -82610,7 +82630,7 @@ void resourceOptimizePerformance(void)
 {
                     // WARNING: Could not recover jumptable at 0x000180943088. Too many branches
                     // WARNING: Treating indirect jump as call
-  _Mtx_destroy_in_situ(0x180c96690);
+  _Mtx_destroy_in_situ(ADDRESS_THREAD_LOCAL_CLEANUP);
   return;
 }
 
@@ -82669,7 +82689,7 @@ void resourceReportStatus(void)
 {
                     // WARNING: Could not recover jumptable at 0x000180943158. Too many branches
                     // WARNING: Treating indirect jump as call
-  _Mtx_destroy_in_situ(0x180c966f0);
+  _Mtx_destroy_in_situ(ADDRESS_THREAD_LOCAL_STORAGE);
   return;
 }
 
@@ -82682,7 +82702,7 @@ void resourceGenerateReport(void)
 {
                     // WARNING: Could not recover jumptable at 0x000180943178. Too many branches
                     // WARNING: Treating indirect jump as call
-  _Mtx_destroy_in_situ(0x180c96740);
+  _Mtx_destroy_in_situ(ADDRESS_RESOURCE_CLEANUP);
   return;
 }
 
@@ -82699,7 +82719,7 @@ void resourceBatchOperation(uint64 resource_handle_identifier,uint64 resource_bu
   
   resource_utility_operation_resultData = _event_handler_stack;;
   if (_event_handler_stack; != (uint64 *)zero_float) {
-    RegisterEventCallback0(&event_system_callback_6790,*_event_handler_stack;,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    RegisterEventCallback0(&event_system_callback_resource_process,*_event_handler_stack;,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
     ProcessEventResult0(resource_utility_operation_resultData + 5);
                     // WARNING: Subroutine does not return
     HandleCriticalError(resource_utility_operation_resultData);
