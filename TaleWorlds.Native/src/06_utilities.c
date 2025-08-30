@@ -5855,18 +5855,18 @@ void set_file_attributes(longlong resource_handle_identifier,longlong resource_b
   int utility_operation_status;
   longlong *array_handle_pointer;
   longlong *utility_long_ptr_buffer;
-  longlong *long_pointer_temp;
+  longlong *utility_utility_long_pointer_temp;
   uint64 utility_stack_resource_data [2];
   
-  long_pointer_temp = (longlong *)UTILITY_NULL_POINTER;
+  utility_long_pointer_temp = (longlong *)UTILITY_NULL_POINTER;
   utility_stack_resource_data[0] = 0;
   utility_operation_status = utility_initialize_resource(utility_stack_resource_data);
   if ((utility_operation_status == 0) && (utility_operation_status = validateMemoryAccess(*(uint64 *)(resource_buffer + UTILITY_MEMORY_SIZE_OFFSET)), utility_operation_status == 0)) {
     utility_long_ptr_buffer = (longlong *)(*(longlong *)(resource_buffer + UTILITY_LIST_HEAD_OFFSET) + -8);
     if (*(longlong *)(resource_buffer + UTILITY_LIST_HEAD_OFFSET) == 0) {
-      utility_long_ptr_buffer = long_pointer_temp;
+      utility_long_ptr_buffer = utility_long_pointer_temp;
     }
-    resource_data_pointer = long_pointer_temp;
+    resource_data_pointer = utility_long_pointer_temp;
     if (utility_long_ptr_buffer != (longlong *)UTILITY_NULL_POINTER) {
       resource_data_pointer = utility_long_ptr_buffer + 1;
     }
@@ -5881,9 +5881,9 @@ void set_file_attributes(longlong resource_handle_identifier,longlong resource_b
       if (resource_data_pointer != (longlong *)(resource_buffer + UTILITY_LIST_HEAD_OFFSET)) {
         array_handle_pointer = (longlong *)(*resource_data_pointer + -8);
         if (*resource_data_pointer == 0) {
-          array_handle_pointer = long_pointer_temp;
+          array_handle_pointer = utility_long_pointer_temp;
         }
-        utility_long_ptr_buffer = long_pointer_temp;
+        utility_long_ptr_buffer = utility_long_pointer_temp;
         if (array_handle_pointer != (longlong *)UTILITY_NULL_POINTER) {
           utility_long_ptr_buffer = array_handle_pointer + 1;
         }
@@ -69916,29 +69916,29 @@ void UtilityUnwindSystemFunctionefe0(uint64 resource_handle_identifier,longlong 
   longlong *data_buffer;
   longlong utility_data_array_index;
   longlong threadContextData;
-  longlong *long_pointer_temp;
+  longlong *utility_utility_long_pointer_temp;
   
   resource_buffer = *(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET);
   data_buffer = (longlong *)(resource_buffer + 0x300);
   utility_data_array_index = *(longlong *)(resource_buffer + 0x310);
   threadContextData = *(longlong *)(resource_buffer + RESOURCE_BUFFER_SIZE);
-  long_pointer_temp = *(longlong **)(resource_buffer + 0x328);
+  utility_long_pointer_temp = *(longlong **)(resource_buffer + 0x328);
   if (utility_data_array_index != *(longlong *)(resource_buffer + 0x330)) {
     do {
       setThreadLocalValue(utility_data_array_index);
       utility_data_array_index = utility_data_array_index + UTILITY_HANDLE_DATA_OFFSET;
       if (utility_data_array_index == threadContextData) {
-        long_pointer_temp = long_pointer_temp + 1;
-        utility_data_array_index = *long_pointer_temp;
+        utility_long_pointer_temp = utility_long_pointer_temp + 1;
+        utility_data_array_index = *utility_long_pointer_temp;
         threadContextData = utility_data_array_index + SYSTEM_DATA_OFFSET;
       }
     } while (utility_data_array_index != *(longlong *)(resource_buffer + 0x330));
   }
   if (*data_buffer != 0) {
-    long_pointer_temp = *(longlong **)(resource_buffer + 0x328);
-    while (long_pointer_temp < (longlong *)(*(longlong *)(resource_buffer + 0x348) + 8)) {
-      threadContextData = *long_pointer_temp;
-      long_pointer_temp = long_pointer_temp + 1;
+    utility_long_pointer_temp = *(longlong **)(resource_buffer + 0x328);
+    while (utility_long_pointer_temp < (longlong *)(*(longlong *)(resource_buffer + 0x348) + 8)) {
+      threadContextData = *utility_long_pointer_temp;
+      utility_long_pointer_temp = utility_long_pointer_temp + 1;
       if (threadContextData != 0) {
                     // WARNING: Subroutine does not return
         HandleCriticalError();
@@ -83475,9 +83475,9 @@ void resourceCreateBackup(void)
   int *operation_result_pointer;
   int utility_data_array_index;
   longlong threadContextData;
-  longlong *long_pointer_temp;
+  longlong *utility_utility_long_pointer_temp;
   
-  long_pointer_temp = event_system_resource_data;
+  utility_long_pointer_temp = event_system_resource_data;
   if (event_system_resource_data != (longlong *)UTILITY_NULL_POINTER) {
     LOCK();
     resource_data_pointer = event_system_resource_data + 1;
@@ -83485,14 +83485,14 @@ void resourceCreateBackup(void)
     *(int *)resource_data_pointer = (int)*resource_data_pointer + -1;
     UNLOCK();
     if ((int)threadContextData == 1) {
-      (**(code **)*long_pointer_temp)(long_pointer_temp);
+      (**(code **)*utility_long_pointer_temp)(utility_long_pointer_temp);
       LOCK();
-      operation_result_pointer = (int *)((longlong)long_pointer_temp + structure_multiplier);
+      operation_result_pointer = (int *)((longlong)utility_long_pointer_temp + structure_multiplier);
       utility_data_array_index = *operation_result_pointer;
       *operation_result_pointer = *operation_result_pointer + -1;
       UNLOCK();
       if (utility_data_array_index == 1) {
-        (**(code **)(*long_pointer_temp + 8))(long_pointer_temp);
+        (**(code **)(*utility_long_pointer_temp + 8))(utility_long_pointer_temp);
       }
     }
   }
@@ -83554,9 +83554,9 @@ void resourceOptimizeStorage(void)
   int *operation_result_pointer;
   int utility_data_array_index;
   longlong threadContextData;
-  longlong *long_pointer_temp;
+  longlong *utility_utility_long_pointer_temp;
   
-  long_pointer_temp = event_system_resource_data;
+  utility_long_pointer_temp = event_system_resource_data;
   if (event_system_resource_data != (longlong *)UTILITY_NULL_POINTER) {
     LOCK();
     resource_data_pointer = event_system_resource_data + 1;
@@ -83564,14 +83564,14 @@ void resourceOptimizeStorage(void)
     *(int *)resource_data_pointer = (int)*resource_data_pointer + -1;
     UNLOCK();
     if ((int)threadContextData == 1) {
-      (**(code **)*long_pointer_temp)(long_pointer_temp);
+      (**(code **)*utility_long_pointer_temp)(utility_long_pointer_temp);
       LOCK();
-      operation_result_pointer = (int *)((longlong)long_pointer_temp + structure_multiplier);
+      operation_result_pointer = (int *)((longlong)utility_long_pointer_temp + structure_multiplier);
       utility_data_array_index = *operation_result_pointer;
       *operation_result_pointer = *operation_result_pointer + -1;
       UNLOCK();
       if (utility_data_array_index == 1) {
-        (**(code **)(*long_pointer_temp + 8))(long_pointer_temp);
+        (**(code **)(*utility_long_pointer_temp + 8))(utility_long_pointer_temp);
       }
     }
   }
@@ -83633,9 +83633,9 @@ void resourceUpdateReferences(void)
   int *operation_result_pointer;
   int utility_data_array_index;
   longlong threadContextData;
-  longlong *long_pointer_temp;
+  longlong *utility_utility_long_pointer_temp;
   
-  long_pointer_temp = event_system_resource_data;
+  utility_long_pointer_temp = event_system_resource_data;
   if (event_system_resource_data != (longlong *)UTILITY_NULL_POINTER) {
     LOCK();
     resource_data_pointer = event_system_resource_data + 1;
@@ -83643,14 +83643,14 @@ void resourceUpdateReferences(void)
     *(int *)resource_data_pointer = (int)*resource_data_pointer + -1;
     UNLOCK();
     if ((int)threadContextData == 1) {
-      (**(code **)*long_pointer_temp)(long_pointer_temp);
+      (**(code **)*utility_long_pointer_temp)(utility_long_pointer_temp);
       LOCK();
-      operation_result_pointer = (int *)((longlong)long_pointer_temp + structure_multiplier);
+      operation_result_pointer = (int *)((longlong)utility_long_pointer_temp + structure_multiplier);
       utility_data_array_index = *operation_result_pointer;
       *operation_result_pointer = *operation_result_pointer + -1;
       UNLOCK();
       if (utility_data_array_index == 1) {
-        (**(code **)(*long_pointer_temp + 8))(long_pointer_temp);
+        (**(code **)(*utility_long_pointer_temp + 8))(utility_long_pointer_temp);
       }
     }
   }

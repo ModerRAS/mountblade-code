@@ -487,6 +487,23 @@
 #define SYSTEM_MEMORY_ALIGNMENT_MASK_32 0x1f
 #define SYSTEM_MEMORY_ALIGNMENT_MASK_64 0x3f
 
+// 线程本地存储偏移量
+#define SYSTEM_THREAD_LOCAL_STORAGE_OFFSET_30 0x30
+#define SYSTEM_THREAD_LOCAL_STORAGE_OFFSET_50 0x50
+
+// 系统指针偏移量
+#define SYSTEM_POINTER_OFFSET_2B 0x2b
+
+// 系统核心数据偏移量
+#define SYSTEM_CORE_DATA_OFFSET_22F0 0x22f0
+#define SYSTEM_CORE_DATA_OFFSET_22F8 0x22f8
+#define SYSTEM_CORE_DATA_OFFSET_22A0 0x22a0
+#define SYSTEM_CORE_DATA_OFFSET_2290 0x2290
+#define SYSTEM_CORE_DATA_OFFSET_22D8 0x22d8
+
+// 系统数据块大小
+#define SYSTEM_DATA_BLOCK_SIZE_50 0x50
+
 void InitializeGameData(void);
 
 void* g_game_data_structure;
@@ -15528,11 +15545,11 @@ uint64_t InitializeThreadLocalStorage(void)
   *(uint64_t *)(threadLocalStorageBase + SYSTEM_NODE_HEADER_SIZE) = 0;
   *(uint32_t *)(threadLocalStorageBase + SYSTEM_OBJECT_OFFSET_28) = 0;
   *(uint64_t *)(threadLocalStorageBase + SYSTEM_OFFSET_18) = &resourcePoolPointer;
-  *(uint64_t *)(threadLocalStorageBase + 0x30) = 0;
+  *(uint64_t *)(threadLocalStorageBase + SYSTEM_THREAD_LOCAL_STORAGE_OFFSET_30) = 0;
   *(uint64_t *)(threadLocalStorageBase + SYSTEM_NODE_HEADER_SIZE) = 0;
   *(uint32_t *)(threadLocalStorageBase + SYSTEM_OBJECT_OFFSET_28) = 0;
   threadLocalStorageBase = *(longlong *)((longlong)threadLocalStoragePointer + (ulonglong)__tls_index * 8);
-  storage_ptr = *(int **)(threadLocalStorageBase + 0x50);
+  storage_ptr = *(int **)(threadLocalStorageBase + SYSTEM_THREAD_LOCAL_STORAGE_OFFSET_50);
   if (storage_ptr == (int *)0x0) {
     storage_ptr = (int *)(threadLocalStorageBase + SYSTEM_OBJECT_OFFSET_60);
   }
@@ -15543,10 +15560,10 @@ uint64_t InitializeThreadLocalStorage(void)
     if (storage_ptr == (int *)0x0) {
       return SYSTEM_OFFSET_Ffffffff;
     }
-    *(uint64_t *)(storage_ptr + 2) = *(uint64_t *)(threadLocalStorageBase + 0x50);
+    *(uint64_t *)(storage_ptr + 2) = *(uint64_t *)(threadLocalStorageBase + SYSTEM_THREAD_LOCAL_STORAGE_OFFSET_50);
   }
   *storage_ptr = 0;
-  *(int **)(threadLocalStorageBase + 0x50) = storage_ptr;
+  *(int **)(threadLocalStorageBase + SYSTEM_THREAD_LOCAL_STORAGE_OFFSET_50) = storage_ptr;
 INIT_LABEL_CHECK_STORAGE_VALUE:
   *(code **)(storage_ptr + (longlong)*storage_ptr * 2 + 4) = InitializeErrorHandler;
   *storage_ptr = *storage_ptr + 1;
@@ -15755,7 +15772,7 @@ int InitializeSystemModule33(void)
   do {
     InitializeNetworkSystem(system_pointer_var);
     *system_ptr_value = &globalPointerData1;
-    system_ptr_value = system_pointer_var + 0x2b;
+    system_ptr_value = system_pointer_var + SYSTEM_POINTER_OFFSET_2B;
     system_long_value = system_long_result + -1;
   } while (system_long_result != 0);
   system_long_value = execute_system_init(&g_system_call_4);
@@ -16755,20 +16772,20 @@ void ConfigureGraphicsShader(uint64_t handleIdentifier,uint32_t resourceIdentifi
   uint32_t system_local_buffer_X10 [6];
 
   system_long_value = systemCoreData;
-  if ((*(longlong *)(systemCoreData + 0x22f0) != 0) &&
-     (system_local_buffer_X10[0] = resourceIdentifier, system_init_flag = (**(code **)(systemCoreData + 0x22f8))(system_local_buffer_X10),
+  if ((*(longlong *)(systemCoreData + SYSTEM_CORE_DATA_OFFSET_22F0) != 0) &&
+     (system_local_buffer_X10[0] = resourceIdentifier, system_init_flag = (**(code **)(systemCoreData + SYSTEM_CORE_DATA_OFFSET_22F8))(system_local_buffer_X10),
      resourceIdentifier = system_local_buffer_X10[0], system_init_flag == '\0')) {
     if (g_system_string_buffer == '\0') {
       system_ptr_value = &g_system_data_variable3;
-      if (*(void **)(system_long_result + 0x22a0) != (void *)0x0) {
-        system_ptr_value = *(void **)(system_long_result + 0x22a0);
+      if (*(void **)(system_long_result + SYSTEM_CORE_DATA_OFFSET_22A0) != (void *)0x0) {
+        system_ptr_value = *(void **)(system_long_result + SYSTEM_CORE_DATA_OFFSET_22A0);
       }
       ProcessSystemDataHeader(&g_system_data_config,system_pointer_var);
     }
-    *(uint32_t *)(system_long_result + 0x2290) = *(uint32_t *)(system_long_result + 0x22d8);
+    *(uint32_t *)(system_long_result + SYSTEM_CORE_DATA_OFFSET_2290) = *(uint32_t *)(system_long_result + SYSTEM_CORE_DATA_OFFSET_22D8);
     return;
   }
-  *(uint32_t *)(system_long_result + 0x2290) = resourceIdentifier;
+  *(uint32_t *)(system_long_result + SYSTEM_CORE_DATA_OFFSET_2290) = resourceIdentifier;
   return;
 }
 
