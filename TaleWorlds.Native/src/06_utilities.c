@@ -1675,7 +1675,7 @@ dataValue resourceCacheFlush;
 
 // 函数: dataValueValue resourceBatchProcess;
 dataValue resourceBatchProcess;
-dataValue aiSystemVarde40;
+dataValue ai_system_pathfinding_data;
 byte systemMemoryStatus;
 dataValue fluidSimulationData;
 dataValue fluidParticleData;
@@ -1689,20 +1689,20 @@ dataValue fluidViscosityData;
 dataValue clothSimulationData;
 dataValue eventSystemTimer;
 dataValue clothMeshData;
-dataValue eventSystemVar612c;
-dataValue eventSystemVar6410;
+dataValue event_system_pool;
+dataValue event_system_handle;
 dataValue clothConstraints;
 dataValue clothCollisionData;
-dataValue systemVar9ec0;
-dataValue systemVar9ec4;
-dataValue eventSystemVar642c;
-dataValue eventSystemVar6430;
+dataValue system_network_queue;
+dataValue system_network_pool;
+dataValue event_system_lock;
+dataValue event_system_flag;
 
 // 函数: dataValueValue resourceTrackUsage;
 dataValue resourceTrackUsage;
-dataValue eventSystemVar63e8;
-dataValue systemVar9f60;
-dataValue systemVar9f64;
+dataValue event_system_counter;
+dataValue system_memory_queue;
+dataValue system_memory_pool;
 dataValue clothWindData;
 dataValue clothGravityData;
 dataValue audioProcessingData;
@@ -1721,17 +1721,17 @@ dataValue renderingStateFlag9;
 dataValue renderingStateFlag10;
 dataValue renderingStateFlag11;
 dataValue renderingStateFlag12;
-dataValue eventSystemVar63d4;
-dataValue eventSystemVar63dc;
-dataValue eventSystemVar63d8;
-dataValue eventSystemVar644c;
-dataValue eventSystemVar6450;
+dataValue event_system_data;
+dataValue event_system_config;
+dataValue event_system_state;
+dataValue event_system_callback;
+dataValue event_system_timer;
 dataValue audioListenerData;
 dataValue audioSourceData;
 dataValue audioStreamData;
 dataValue audioBufferQueue;
 dataValue audioSampleData;
-dataValue systemVar9128;
+dataValue system_io_queue;
 dataValue systemInitializationFlag;
 dataValue resourceManagerState;
 dataValue audioBitrateData;
@@ -1967,15 +1967,15 @@ dataValue g_memory_qword_manager;
 dataValue g_memory_oword_manager;
 dataValue g_memory_yword_manager;
 dataValue g_memory_zword_manager;
-byte eventSystemVar1d14;
-dataValue eventSystemVar1d18;
+byte event_system_flag;
+dataValue event_system_counter;
 dataValue g_memory_vector_manager;
 dataValue g_memory_matrix_manager;
 dataValue g_memory_tensor_manager;
 
 // 函数: dataValueValue resourceBalanceLoad;
 dataValue resourceBalanceLoad;
-dataValue systemVar9ff8;
+dataValue system_debug_flag;
 
 // 函数: dataValueValue resourceScheduleMaintenance;
 dataValue resourceScheduleMaintenance;
@@ -2374,21 +2374,21 @@ dataValue g_memory_extern_validator;
 dataValue g_memory_cache_handler;
 dataValue g_memory_heap_handler;
 dataValue g_memory_stack_handler;
-dataValue eventSystemVar2510;
-char systemVaraa68;
+dataValue event_system_data;
+char systemDebugFlag;
 dataValue g_memory_pool_handler;
 
 // 函数: dataValueValue resourceExecuteMaintenance;
 dataValue resourceExecuteMaintenance;
-byte renderSystemVar66d8;
-dataValue eventSystemVar6858;
+byte render_buffer_state;
+dataValue event_system_config;
 dataValue resourceMaintenanceBuffer1;
 dataValue resourceMaintenanceBuffer2;
 dataValue resourceMaintenanceBuffer3;
 dataValue resourceMaintenanceBuffer4;
 dataValue resourceMaintenanceBuffer5;
 dataValue temp_bufferVarDataTable3;
-char systemVarefc8;
+char systemTraceFlag;
 dataValue g_memory_block_handler;
 dataValue g_memory_page_handler;
 dataValue g_memory_segment_handler;
@@ -27638,7 +27638,7 @@ void Unwind_180902d50(uint64 resource_handle_id,longlong resource_buffer)
   temp_buffer = *(longlong *)(resource_buffer + bufferSizeDataOffset);
   loop_counter = 0xfffffffffffffffe;
   *(longlong *)(temp_buffer + 0x15d8) =
-       *(longlong *)(&systemVared30 + (longlong)*(int *)(temp_buffer + 0x15e0) * 8) + -100000;
+       *(longlong *)(&systemResourceOffset + (longlong)*(int *)(temp_buffer + 0x15e0) * 8) + -100000;
   ProcessBufferDataStructure((longlong *)(temp_buffer + 0x8b0));
   *(uint32 *)(temp_buffer + 0x15e8) = 0;
   resource_data_buffer_pointer = *(longlong **)(temp_buffer + 0x15d0);
@@ -38268,7 +38268,7 @@ void Unwind_1809057b0(uint64 resource_handle_id,longlong resource_buffer)
       }
       ExecuteSystemFunction(validation_resultArray + 10,&plStackX_10,(ulonglong)*(uint *)(validation_resultArray + 8),
                     *(uint32 *)(validation_resultArray + 9),1);
-      pintVar7 = (int *)GetSystemFunctionPointer(_systemVared18,resource_handle_offset,*(byte *)((longlong)validation_resultArray + 0x5c));
+      pintVar7 = (int *)GetSystemFunctionPointer(systemFunctionTable,resource_handle_offset,*(byte *)((longlong)validation_resultArray + 0x5c));
       *pintVar7 = integer_value;
       pintVar7[2] = 0;
       pintVar7[3] = 0;
@@ -38865,7 +38865,7 @@ void Unwind_180905950(uint64 resource_handle_id,longlong resource_buffer)
       }
       ExecuteSystemFunction(validation_resultArray + 10,&plStackX_10,(ulonglong)*(uint *)(validation_resultArray + 8),
                     *(uint32 *)(validation_resultArray + 9),1);
-      pintVar7 = (int *)GetSystemFunctionPointer(_systemVared18,resource_handle_offset,*(byte *)((longlong)validation_resultArray + 0x5c));
+      pintVar7 = (int *)GetSystemFunctionPointer(systemFunctionTable,resource_handle_offset,*(byte *)((longlong)validation_resultArray + 0x5c));
       *pintVar7 = integer_value;
       pintVar7[2] = 0;
       pintVar7[3] = 0;
@@ -47532,7 +47532,7 @@ void Unwind_180908040(void)
   byte booleanResultVar1;
   
   EnterCriticalSection(0x180c82210);
-  _systemVar91f8 = 0;
+  systemMemoryCounter = 0;
   LeaveCriticalSection(0x180c82210);
   if (g_systemEventHandle != 0) {
     SetEvent();
@@ -47558,15 +47558,15 @@ void Unwind_180908050(uint64 resource_handle_id,uint64 resource_buffer,uint64 re
 {
   longlong *resource_data_buffer_pointer;
   
-  resource_data_buffer_pointer = _systemVar9200;
-  validateMemoryBlock(&systemVar9200,_systemVar9200[1],resourceOperationFlags,resourceCallbackFunction,0xfffffffffffffffe);
-  _systemVar9200[1] = (longlong)resource_data_buffer_pointer;
-  *_systemVar9200 = (longlong)resource_data_buffer_pointer;
-  _systemVar9200[2] = (longlong)resource_data_buffer_pointer;
-  _systemVar9208 = 0;
+  resource_data_buffer_pointer = systemMemoryBlock;
+  validateMemoryBlock(&systemMemoryBuffer,systemMemoryBlock[1],resourceOperationFlags,resourceCallbackFunction,0xfffffffffffffffe);
+  systemMemoryBlock[1] = (longlong)resource_data_buffer_pointer;
+  *systemMemoryBlock = (longlong)resource_data_buffer_pointer;
+  systemMemoryBlock[2] = (longlong)resource_data_buffer_pointer;
+  systemMemoryIndex = 0;
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
-  free(_systemVar9200,SYS_STATUS_OFFSET);
+  free(systemMemoryBlock,SYS_STATUS_OFFSET);
   return;
 }
 
@@ -47579,7 +47579,7 @@ void Unwind_180908060(void)
 {
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
-  free(_systemVar9200,SYS_STATUS_OFFSET);
+  free(systemMemoryBlock,SYS_STATUS_OFFSET);
   return;
 }
 
@@ -47592,7 +47592,7 @@ void Unwind_180908070(void)
 {
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
-  free(_systemVar9200,SYS_STATUS_OFFSET);
+  free(systemMemoryBlock,SYS_STATUS_OFFSET);
   return;
 }
 
@@ -48325,7 +48325,7 @@ void Unwind_180908670(uint64 resource_handle_id,longlong resource_buffer)
   temp_buffer = *(longlong *)(resource_buffer + listHeadOffset);
   loop_counter = 0xfffffffffffffffe;
   *(longlong *)(temp_buffer + 0x15d8) =
-       *(longlong *)(&systemVared30 + (longlong)*(int *)(temp_buffer + 0x15e0) * 8) + -100000;
+       *(longlong *)(&systemResourceOffset + (longlong)*(int *)(temp_buffer + 0x15e0) * 8) + -100000;
   ProcessBufferDataStructure((longlong *)(temp_buffer + 0x8b0));
   *(uint32 *)(temp_buffer + 0x15e8) = 0;
   resource_data_buffer_pointer = *(longlong **)(temp_buffer + 0x15d0);
@@ -49880,7 +49880,7 @@ void Unwind_180908d30(void)
   byte booleanResultVar1;
   
   EnterCriticalSection(0x180c82210);
-  _systemVar9210 = 0;
+  systemMemorySize = 0;
   LeaveCriticalSection(0x180c82210);
   if (g_systemEventHandle != 0) {
     SetEvent();
@@ -49904,7 +49904,7 @@ void Unwind_180908d30(void)
 void Unwind_180908d40(void)
 
 {
-  _systemVar9218 = &threadLocalStorageCleanup;
+  systemMemoryCleanup = &threadLocalStorageCleanup;
   return;
 }
 
@@ -53113,10 +53113,10 @@ void Unwind_180909c30(uint64 resource_handle_id,longlong resource_buffer)
   int operation_status;
   int operation_status;
   
-  operation_status = *(int *)(**(longlong **)(_systemVar2868 + 8) + BUFFER_DATA_OFFSET);
+  operation_status = *(int *)(**(longlong **)(_system_resource_pool + 8) + BUFFER_DATA_OFFSET);
   operation_status = _Thrd_id();
   if (operation_status != localStatus) {
-    _eventSystemVar105c = *(uint32 *)(resource_buffer + MEMORY_SIZE_OFFSET);
+    eventMemorySize = *(uint32 *)(resource_buffer + MEMORY_SIZE_OFFSET);
   }
   return;
 }
@@ -54409,7 +54409,7 @@ void Unwind_18090a6a0(uint64 resource_handle_id,longlong resource_buffer)
 void Unwind_18090a6d0(void)
 
 {
-  _systemVar9240 = &threadLocalStorageCleanup;
+  _system_process_manager = &threadLocalStorageCleanup;
   return;
 }
 
@@ -54423,7 +54423,7 @@ void Unwind_18090a6e0(void)
   byte booleanResultVar1;
   
   EnterCriticalSection(0x180c82210);
-  _systemVar9238 = 0;
+  _system_mutex_manager = 0;
   LeaveCriticalSection(0x180c82210);
   if (g_systemEventHandle != 0) {
     SetEvent();
@@ -58871,8 +58871,8 @@ void Unwind_18090c470(uint64 resource_handle_id,longlong resource_buffer)
 void Unwind_18090c480(void)
 
 {
-  _systemVar695c = _systemVar695c + -1;
-  (**(code **)(*_systemVar6968 + PTR_DATA_OFFSET))();
+  systemReferenceCount = systemReferenceCount + -1;
+  (**(code **)(*systemFunctionPointer + PTR_DATA_OFFSET))();
   return;
 }
 
@@ -58890,8 +58890,8 @@ void Unwind_18090c490(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x150)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -59113,8 +59113,8 @@ void Unwind_18090c540(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + SYS_STATUS_OFFSET1)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -59159,8 +59159,8 @@ void Unwind_18090c550(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + memoryOffsetBuffer)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -59207,8 +59207,8 @@ void Unwind_18090c560(uint64 resource_handle_id,longlong resource_buffer)
 void Unwind_18090c570(void)
 
 {
-  _systemVar695c = _systemVar695c + -1;
-  (**(code **)(*_systemVar6968 + PTR_DATA_OFFSET))();
+  systemReferenceCount = systemReferenceCount + -1;
+  (**(code **)(*systemFunctionPointer + PTR_DATA_OFFSET))();
   return;
 }
 
@@ -59235,8 +59235,8 @@ void Unwind_18090c590(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + SYSTEM_DATA_OFFSET)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -59283,8 +59283,8 @@ void Unwind_18090c5a0(uint64 resource_handle_id,longlong resource_buffer)
 void Unwind_18090c5b0(void)
 
 {
-  _systemVar695c = _systemVar695c + -1;
-  (**(code **)(*_systemVar6968 + PTR_DATA_OFFSET))();
+  systemReferenceCount = systemReferenceCount + -1;
+  (**(code **)(*systemFunctionPointer + PTR_DATA_OFFSET))();
   return;
 }
 
@@ -59302,8 +59302,8 @@ void Unwind_18090c5c0(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x120)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -59348,8 +59348,8 @@ void Unwind_18090c5d0(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x2a0)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -59387,8 +59387,8 @@ void Unwind_18090c5d0(uint64 resource_handle_id,longlong resource_buffer)
 void Unwind_18090c5e0(void)
 
 {
-  _systemVar695c = _systemVar695c + -1;
-  (**(code **)(*_systemVar6968 + PTR_DATA_OFFSET))();
+  systemReferenceCount = systemReferenceCount + -1;
+  (**(code **)(*systemFunctionPointer + PTR_DATA_OFFSET))();
   return;
 }
 
@@ -59406,8 +59406,8 @@ void Unwind_18090c5f0(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x300)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -59452,8 +59452,8 @@ void Unwind_18090c600(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x360)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -60110,8 +60110,8 @@ void Unwind_18090c9d0(uint64 resource_handle_id,longlong resource_buffer)
 void Unwind_18090ca00(void)
 
 {
-  _systemVar695c = _systemVar695c + -1;
-  (**(code **)(*_systemVar6968 + PTR_DATA_OFFSET))();
+  systemReferenceCount = systemReferenceCount + -1;
+  (**(code **)(*systemFunctionPointer + PTR_DATA_OFFSET))();
   return;
 }
 
@@ -60122,8 +60122,8 @@ void Unwind_18090ca00(void)
 void Unwind_18090ca10(void)
 
 {
-  _systemVar695c = _systemVar695c + -1;
-  (**(code **)(*_systemVar6968 + PTR_DATA_OFFSET))();
+  systemReferenceCount = systemReferenceCount + -1;
+  (**(code **)(*systemFunctionPointer + PTR_DATA_OFFSET))();
   return;
 }
 
@@ -60141,8 +60141,8 @@ void Unwind_18090ca20(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + struct_offset_1)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -60180,8 +60180,8 @@ void Unwind_18090ca20(uint64 resource_handle_id,longlong resource_buffer)
 void Unwind_18090ca30(void)
 
 {
-  _systemVar695c = _systemVar695c + -1;
-  (**(code **)(*_systemVar6968 + PTR_DATA_OFFSET))();
+  systemReferenceCount = systemReferenceCount + -1;
+  (**(code **)(*systemFunctionPointer + PTR_DATA_OFFSET))();
   return;
 }
 
@@ -60199,8 +60199,8 @@ void Unwind_18090ca40(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x130)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -60238,8 +60238,8 @@ void Unwind_18090ca40(uint64 resource_handle_id,longlong resource_buffer)
 void Unwind_18090ca50(void)
 
 {
-  _systemVar695c = _systemVar695c + -1;
-  (**(code **)(*_systemVar6968 + PTR_DATA_OFFSET))();
+  systemReferenceCount = systemReferenceCount + -1;
+  (**(code **)(*systemFunctionPointer + PTR_DATA_OFFSET))();
   return;
 }
 
@@ -60250,8 +60250,8 @@ void Unwind_18090ca50(void)
 void Unwind_18090ca60(void)
 
 {
-  _systemVar695c = _systemVar695c + -1;
-  (**(code **)(*_systemVar6968 + PTR_DATA_OFFSET))();
+  systemReferenceCount = systemReferenceCount + -1;
+  (**(code **)(*systemFunctionPointer + PTR_DATA_OFFSET))();
   return;
 }
 
@@ -60269,8 +60269,8 @@ void Unwind_18090ca70(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 400)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -60317,8 +60317,8 @@ void Unwind_18090ca80(uint64 resource_handle_id,longlong resource_buffer)
 void Unwind_18090ca90(void)
 
 {
-  _systemVar695c = _systemVar695c + -1;
-  (**(code **)(*_systemVar6968 + PTR_DATA_OFFSET))();
+  systemReferenceCount = systemReferenceCount + -1;
+  (**(code **)(*systemFunctionPointer + PTR_DATA_OFFSET))();
   return;
 }
 
@@ -60336,8 +60336,8 @@ void Unwind_18090caa0(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x1f0)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -60384,8 +60384,8 @@ void Unwind_18090cab0(uint64 resource_handle_id,longlong resource_buffer)
 void Unwind_18090cac0(void)
 
 {
-  _systemVar695c = _systemVar695c + -1;
-  (**(code **)(*_systemVar6968 + PTR_DATA_OFFSET))();
+  systemReferenceCount = systemReferenceCount + -1;
+  (**(code **)(*systemFunctionPointer + PTR_DATA_OFFSET))();
   return;
 }
 
@@ -60403,8 +60403,8 @@ void Unwind_18090cad0(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x250)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -60451,8 +60451,8 @@ void Unwind_18090cae0(uint64 resource_handle_id,longlong resource_buffer)
 void Unwind_18090caf0(void)
 
 {
-  _systemVar695c = _systemVar695c + -1;
-  (**(code **)(*_systemVar6968 + PTR_DATA_OFFSET))();
+  systemReferenceCount = systemReferenceCount + -1;
+  (**(code **)(*systemFunctionPointer + PTR_DATA_OFFSET))();
   return;
 }
 
@@ -60470,8 +60470,8 @@ void Unwind_18090cb00(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x2b0)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -60525,8 +60525,8 @@ void Unwind_18090cb20(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x310)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -60580,8 +60580,8 @@ void Unwind_18090cb40(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x4f0)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -60619,8 +60619,8 @@ void Unwind_18090cb40(uint64 resource_handle_id,longlong resource_buffer)
 void Unwind_18090cb50(void)
 
 {
-  _systemVar695c = _systemVar695c + -1;
-  (**(code **)(*_systemVar6968 + PTR_DATA_OFFSET))();
+  systemReferenceCount = systemReferenceCount + -1;
+  (**(code **)(*systemFunctionPointer + PTR_DATA_OFFSET))();
   return;
 }
 
@@ -60638,8 +60638,8 @@ void Unwind_18090cb60(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x370)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -60693,8 +60693,8 @@ void Unwind_18090cb80(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x3d0)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -60732,8 +60732,8 @@ void Unwind_18090cb80(uint64 resource_handle_id,longlong resource_buffer)
 void Unwind_18090cb90(void)
 
 {
-  _systemVar695c = _systemVar695c + -1;
-  (**(code **)(*_systemVar6968 + PTR_DATA_OFFSET))();
+  systemReferenceCount = systemReferenceCount + -1;
+  (**(code **)(*systemFunctionPointer + PTR_DATA_OFFSET))();
   return;
 }
 
@@ -60753,8 +60753,8 @@ void Unwind_18090cba0(uint64 resource_handle_id,longlong resource_buffer)
 void Unwind_18090cbb0(void)
 
 {
-  _systemVar695c = _systemVar695c + -1;
-  (**(code **)(*_systemVar6968 + PTR_DATA_OFFSET))();
+  systemReferenceCount = systemReferenceCount + -1;
+  (**(code **)(*systemFunctionPointer + PTR_DATA_OFFSET))();
   return;
 }
 
@@ -60765,8 +60765,8 @@ void Unwind_18090cbb0(void)
 void Unwind_18090cbc0(void)
 
 {
-  _systemVar695c = _systemVar695c + -1;
-  (**(code **)(*_systemVar6968 + PTR_DATA_OFFSET))();
+  systemReferenceCount = systemReferenceCount + -1;
+  (**(code **)(*systemFunctionPointer + PTR_DATA_OFFSET))();
   return;
 }
 
@@ -60784,8 +60784,8 @@ void Unwind_18090cbd0(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x430)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -60832,8 +60832,8 @@ void Unwind_18090cbe0(uint64 resource_handle_id,longlong resource_buffer)
 void Unwind_18090cbf0(void)
 
 {
-  _systemVar695c = _systemVar695c + -1;
-  (**(code **)(*_systemVar6968 + PTR_DATA_OFFSET))();
+  systemReferenceCount = systemReferenceCount + -1;
+  (**(code **)(*systemFunctionPointer + PTR_DATA_OFFSET))();
   return;
 }
 
@@ -60851,8 +60851,8 @@ void Unwind_18090cc00(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x490)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -60998,8 +60998,8 @@ void Unwind_18090ccc0(uint64 resource_handle_id,longlong resource_buffer)
 void Unwind_18090ccd0(void)
 
 {
-  _systemVar695c = _systemVar695c + -1;
-  (**(code **)(*_systemVar6968 + PTR_DATA_OFFSET))();
+  systemReferenceCount = systemReferenceCount + -1;
+  (**(code **)(*systemFunctionPointer + PTR_DATA_OFFSET))();
   return;
 }
 
@@ -61017,8 +61017,8 @@ void Unwind_18090cce0(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + listHeadOffset)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -66290,8 +66290,8 @@ void Unwind_18090e760(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x70)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -66348,8 +66348,8 @@ void Unwind_18090e7a0(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + SYSTEM_TABLE_OFFSET)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -66394,8 +66394,8 @@ void Unwind_18090e7b0(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0xa0)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -66440,8 +66440,8 @@ void Unwind_18090e7c0(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + resource_handle_data_off0)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -66486,8 +66486,8 @@ void Unwind_18090e7d0(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + DATA_OFFSET_START)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -66532,8 +66532,8 @@ void Unwind_18090e7e0(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + MEMORY_SIZE_OFFSET)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -66578,8 +66578,8 @@ void Unwind_18090e7f0(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0xf0)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -66624,8 +66624,8 @@ void Unwind_18090e800(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x1b0)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -66663,8 +66663,8 @@ void Unwind_18090e800(uint64 resource_handle_id,longlong resource_buffer)
 void Unwind_18090e810(void)
 
 {
-  _systemVar695c = _systemVar695c + -1;
-  (**(code **)(*_systemVar6968 + PTR_DATA_OFFSET))();
+  systemReferenceCount = systemReferenceCount + -1;
+  (**(code **)(*systemFunctionPointer + PTR_DATA_OFFSET))();
   return;
 }
 
@@ -66682,8 +66682,8 @@ void Unwind_18090e820(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x210)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -66721,8 +66721,8 @@ void Unwind_18090e820(uint64 resource_handle_id,longlong resource_buffer)
 void Unwind_18090e830(void)
 
 {
-  _systemVar695c = _systemVar695c + -1;
-  (**(code **)(*_systemVar6968 + PTR_DATA_OFFSET))();
+  systemReferenceCount = systemReferenceCount + -1;
+  (**(code **)(*systemFunctionPointer + PTR_DATA_OFFSET))();
   return;
 }
 
@@ -66740,8 +66740,8 @@ void Unwind_18090e840(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x270)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -66779,8 +66779,8 @@ void Unwind_18090e840(uint64 resource_handle_id,longlong resource_buffer)
 void Unwind_18090e850(void)
 
 {
-  _systemVar695c = _systemVar695c + -1;
-  (**(code **)(*_systemVar6968 + PTR_DATA_OFFSET))();
+  systemReferenceCount = systemReferenceCount + -1;
+  (**(code **)(*systemFunctionPointer + PTR_DATA_OFFSET))();
   return;
 }
 
@@ -66798,8 +66798,8 @@ void Unwind_18090e860(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x2d0)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -66837,8 +66837,8 @@ void Unwind_18090e860(uint64 resource_handle_id,longlong resource_buffer)
 void Unwind_18090e870(void)
 
 {
-  _systemVar695c = _systemVar695c + -1;
-  (**(code **)(*_systemVar6968 + PTR_DATA_OFFSET))();
+  systemReferenceCount = systemReferenceCount + -1;
+  (**(code **)(*systemFunctionPointer + PTR_DATA_OFFSET))();
   return;
 }
 
@@ -67104,8 +67104,8 @@ void Unwind_18090e9a0(uint64 resource_handle_id,longlong resource_buffer)
 void Unwind_18090e9b0(void)
 
 {
-  _systemVar695c = _systemVar695c + -1;
-  (**(code **)(*_systemVar6968 + PTR_DATA_OFFSET))();
+  systemReferenceCount = systemReferenceCount + -1;
+  (**(code **)(*systemFunctionPointer + PTR_DATA_OFFSET))();
   return;
 }
 
@@ -67237,8 +67237,8 @@ void Unwind_18090eb00(uint64 resource_handle_id,longlong resource_buffer)
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x140)) {
-    memory_offset_data = *(longlong *)(_systemVar6938 + 0x1cd8);
-    if ((*(char *)(_systemVar6890 + 0x12e3) != '\0') || (*(char *)(_systemVar6890 + 0x12dd) != '\0')
+    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       pointerLongVar4 = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * PTR_DATA_OFFSET);
       resource_buffer = *pointerLongVar4;
@@ -80552,15 +80552,15 @@ void systemInitializeModules(uint64 resource_handle_id,uint64 resource_buffer,ui
 {
   longlong *resource_data_buffer_pointer;
   
-  resource_data_buffer_pointer = _systemVar9200;
-  validateMemoryBlock(resource_handle_id,_systemVar9200[1],resourceOperationFlags,resourceCallbackFunction,0xfffffffffffffffe);
-  _systemVar9200[1] = (longlong)resource_data_buffer_pointer;
-  *_systemVar9200 = (longlong)resource_data_buffer_pointer;
-  _systemVar9200[2] = (longlong)resource_data_buffer_pointer;
-  _systemVar9208 = 0;
+  resource_data_buffer_pointer = systemMemoryBlock;
+  validateMemoryBlock(resource_handle_id,systemMemoryBlock[1],resourceOperationFlags,resourceCallbackFunction,0xfffffffffffffffe);
+  systemMemoryBlock[1] = (longlong)resource_data_buffer_pointer;
+  *systemMemoryBlock = (longlong)resource_data_buffer_pointer;
+  systemMemoryBlock[2] = (longlong)resource_data_buffer_pointer;
+  systemMemoryIndex = 0;
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
-  free(_systemVar9200,SYS_STATUS_OFFSET);
+  free(systemMemoryBlock,SYS_STATUS_OFFSET);
   return;
 }
 
@@ -80612,14 +80612,14 @@ void g_initialize_config_system(void)
 void systemInitializeServices(void)
 
 {
-  _systemVar9218 = &threadLocalStorageData;
+  systemMemoryCleanup = &threadLocalStorageData;
   if (_systemVar9220 != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   _systemVar9220 = 0;
   _systemVar9230 = 0;
-  _systemVar9218 = &threadLocalStorageCleanup;
+  systemMemoryCleanup = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80632,14 +80632,14 @@ void systemInitializeServices(void)
 void systemInitializePlugins(void)
 
 {
-  _systemVar9240 = &threadLocalStorageData;
-  if (_systemVar9248 != 0) {
+  _system_process_manager = &threadLocalStorageData;
+  if (_system_thread_manager != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  _systemVar9248 = 0;
-  _systemVar9258 = 0;
-  _systemVar9240 = &threadLocalStorageCleanup;
+  _system_thread_manager = 0;
+  _system_io_manager = 0;
+  _system_process_manager = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80757,8 +80757,8 @@ void resourceManagerReset(void)
                     // WARNING: Subroutine does not return
       HandleCriticalError();
     }
-    if (_eventSystemVar1d18 != (longlong *)0x0) {
-      (**(code **)(*_eventSystemVar1d18 + struct_size_offset))();
+    if (_event_system_counter != (longlong *)0x0) {
+      (**(code **)(*_event_system_counter + struct_size_offset))();
     }
     if (_eventSystemVar1cf0 != 0) {
                     // WARNING: Subroutine does not return
@@ -82475,9 +82475,9 @@ void resourceBatchOperation(uint64 resource_handle_id,uint64 resource_buffer,uin
 {
   uint64 *func_result_varData;
   
-  func_result_varData = _eventHandlerDataVar7a0;;
-  if (_eventHandlerDataVar7a0; != (uint64 *)0x0) {
-    RegisterEventCallback0(&eventSystemVar6790,*_eventHandlerDataVar7a0;,resourceOperationFlags,resourceCallbackFunction,0xfffffffffffffffe);
+  func_result_varData = _event_handler_stack;;
+  if (_event_handler_stack; != (uint64 *)0x0) {
+    RegisterEventCallback0(&eventSystemVar6790,*_event_handler_stack;,resourceOperationFlags,resourceCallbackFunction,0xfffffffffffffffe);
     ProcessEventResult0(func_result_varData + 5);
                     // WARNING: Subroutine does not return
     HandleCriticalError(func_result_varData);
