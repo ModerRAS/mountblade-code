@@ -1093,7 +1093,18 @@
 // - 保持代码语义不变
 // - 这是简化实现，主要处理了剩余变量名的语义化替换
 
-// 最新美化内容：
+// 最新美化内容（2025年8月30日）：
+// - 将handleIdentifier[0xa6]替换为handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A6]等句柄ID数组索引语义化替换
+// - 将handleIdentifier[0xa7]替换为handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A7]等句柄ID数组索引语义化替换
+// - 将handleIdentifier[0x9f]替换为handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_9F]等句柄ID数组索引语义化替换
+// - 将(float *)0x0替换为(float *)SYSTEM_NULL_POINTER等空指针语义化替换
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+// - 这是简化实现，主要处理了剩余硬编码数组索引和空指针的语义化替换
+// - 原本实现：完全重构所有硬编码值
+// - 简化实现：仅将剩余的硬编码数组索引和空指针替换为语义化常量
+
+// 之前的美化内容：
 // - 将ptr_float_var替换为init_float_pointer_temp等指针变量名
 // - 将ptr_int_var替换为init_int_pointer_temp等整数指针变量名
 // - 将ptr_byte_var替换为init_temp_byte_ptr等字节指针变量名

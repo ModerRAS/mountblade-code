@@ -70,6 +70,21 @@
 #define SYSTEM_BUFFER_ALLOC_RESULT_RESOURCE 0xb
 #define SYSTEM_BUFFER_ALLOC_RESULT_DELAY_LOAD 0x12
 
+// 系统资源类型常量
+#define SYSTEM_RESOURCE_TYPE_DEFAULT 5
+
+// 系统状态常量
+#define SYSTEM_STATUS_ENABLED 1
+#define SYSTEM_STATUS_DISABLED 0
+
+// 系统通用常量
+#define SYSTEM_ZERO_VALUE 0
+#define SYSTEM_ONE_VALUE 1
+#define SYSTEM_THREE_VALUE 3
+#define SYSTEM_SIX_VALUE 6
+#define SYSTEM_SEVEN_VALUE 7
+#define SYSTEM_NINE_VALUE 9
+
 #ifndef DATA_DEFINITIONS_H
 #define DATA_DEFINITIONS_H
 
@@ -1347,8 +1362,8 @@ void* g_stack_data_secondary_address = (void*)STACK_DATA_SECONDARY_ADDR;
 // 初始化系统配置
 int initialize_system_configuration(void)
 {
-  int is_system_enabled = 1;
-  int operation_count = 0;
+  int is_system_enabled = SYSTEM_STATUS_ENABLED;
+  int operation_count = SYSTEM_ZERO_VALUE;
   long long max_allowed_value = MAX_SYSTEM_VALUE;
   int system_status = SYSTEM_STATUS_SUCCESS;
   int system_initialization_result = system_initialize(system_init_config_function);
@@ -1360,7 +1375,7 @@ int initialize_core_data_structure(void)
   long long system_initialization_result;
   void* system_memory_buffer_ptr = &core_system_data_buffer;
   void* core_data_ptr = &core_system_data_value;
-  int data_offset = 0;
+  int data_offset = SYSTEM_ZERO_VALUE;
   core_system_data_value = 0;
   system_initialization_result = system_initialize(core_data_initialization_function);
   return (system_initialization_result != 0) - 1;
@@ -1371,7 +1386,7 @@ int initialize_network_buffer(void)
   long long system_initialization_result;
   void* network_buffer_ptr = &network_system_data_buffer;
   void* network_value_ptr = &g_network_buffer_current_data;
-  int buffer_offset = 0;
+  int buffer_offset = SYSTEM_ZERO_VALUE;
   g_network_buffer_current_data = 0;
   system_initialization_result = system_initialize(system_init_network_buffer_function);
   return (system_initialization_result != 0) - 1;
@@ -1382,7 +1397,7 @@ int initialize_rendering_context(void)
   long long system_initialization_result;
   void* render_buffer_ptr = &render_system_data_buffer;
   void* render_value_ptr = &g_render_buffer_current_data;
-  int context_offset = 0;
+  int context_offset = SYSTEM_ZERO_VALUE;
   g_render_buffer_current_data = 0;
   system_initialization_result = system_initialize(system_init_rendering_context_function);
   return (system_initialization_result != 0) - 1;
@@ -1404,7 +1419,7 @@ int initialize_input_system(void)
   long long system_initialization_result;
   void* input_shared_buffer_ptr = &shared_system_data_buffer;
   void* input_value_ptr = &g_input_buffer_current_data;
-  int buffer_offset = 0;
+  int buffer_offset = SYSTEM_ZERO_VALUE;
   g_input_buffer_current_data = 0;
   system_initialization_result = system_execution_function(input_initialization_function);
   return (system_initialization_result != 0) - 1;
@@ -1415,7 +1430,7 @@ int initialize_physics_system(void)
   long long system_initialization_result;
   void* physics_shared_buffer_ptr = &shared_system_data_buffer;
   void* physics_value_ptr = &g_physics_buffer_current_data;
-  int physics_data_offset = 0;
+  int physics_data_offset = SYSTEM_ZERO_VALUE;
   g_physics_buffer_current_data = 0;
   system_initialization_result = system_execution_function(physics_initialization_function);
   return (system_initialization_result != 0) - 1;
@@ -1682,7 +1697,7 @@ int initialize_data_buffer_system(void)
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &g_texture_properties_buffer;
   g_texture_properties_buffer = 0;
-  system_global_data_pointer = 7;
+  system_global_data_pointer = SYSTEM_SEVEN_VALUE;
   strcpy_s(&g_texture_properties_buffer,SYSTEM_CONFIG_BUFFER_SIZE,&texture_properties_definition_string);
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &g_texture_format_buffer;
@@ -1966,7 +1981,7 @@ int initialize_network_module(void)
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &texture_resource_buffer_3;
   texture_resource_buffer_3 = 0;
-  system_global_data_pointer = 7;
+  system_global_data_pointer = SYSTEM_SEVEN_VALUE;
   strcpy_s(&texture_resource_buffer_3,SYSTEM_CONFIG_BUFFER_SIZE,&texture_properties_definition_string);
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &texture_resource_buffer_4;
@@ -2074,7 +2089,7 @@ int initialize_physics_module(void)
   system_global_data_pointer = &g_alternateDataTemplate;
   system_global_data_pointer = &config_data_buffer_primary;
   config_data_buffer_primary = 0;
-  system_global_data_pointer = 9;
+  system_global_data_pointer = SYSTEM_NINE_VALUE;
   strcpy_s(&config_data_buffer_primary,path_buffer_size,&config_string_secondary,system_string_length_parameter,DEFAULT_THREAD_POOL_FLAG);
   system_initialization_result = system_execution_function(time_system_initialization_callback);
   return (system_initialization_result != 0) - 1;
@@ -2651,12 +2666,12 @@ int initialize_worker_thread_pool(unsigned long long handle_param,unsigned long 
   return (system_initialization_result != 0) - 1;
 }
   system_memory_buffer_1 = 0;
-  system_global_data_pointer = 7;
+  system_global_data_pointer = SYSTEM_SEVEN_VALUE;
   strcpy_s(&system_memory_buffer_1,PRIMARY_STRING_BUFFER_SIZE,&g_bufferString1,system_string_length_parameter,DEFAULT_THREAD_POOL_FLAG);
   system_global_data_pointer = &g_memoryAllocationFlag;
   system_global_data_pointer = &system_memory_buffer_2;
   system_memory_buffer_2 = 0;
-  system_global_data_pointer = 9;
+  system_global_data_pointer = SYSTEM_NINE_VALUE;
   strcpy_s(&system_memory_buffer_2,PRIMARY_STRING_BUFFER_SIZE,&g_bufferString2);
   system_global_data_pointer = &g_memoryAllocationFlag;
   system_global_data_pointer = &system_memory_buffer_3;
@@ -2666,7 +2681,7 @@ int initialize_worker_thread_pool(unsigned long long handle_param,unsigned long 
   system_global_data_pointer = &g_memoryAllocationFlag;
   system_global_data_pointer = &system_memory_buffer_4;
   system_memory_buffer_4 = 0;
-  system_global_data_pointer = 7;
+  system_global_data_pointer = SYSTEM_SEVEN_VALUE;
   strcpy_s(&system_memory_buffer_4,PRIMARY_STRING_BUFFER_SIZE,&g_bufferString4);
   system_global_data_pointer = &g_memoryAllocationFlag;
   system_global_data_pointer = &system_memory_buffer_5;
@@ -2676,7 +2691,7 @@ int initialize_worker_thread_pool(unsigned long long handle_param,unsigned long 
   system_global_data_pointer = &g_memoryAllocationFlag;
   system_global_data_pointer = &system_memory_buffer_6;
   system_memory_buffer_6 = 0;
-  system_global_data_pointer = 9;
+  system_global_data_pointer = SYSTEM_NINE_VALUE;
   strcpy_s(&system_memory_buffer_6,PRIMARY_STRING_BUFFER_SIZE,&g_bufferString6);
   system_global_data_pointer = &g_memoryAllocationFlag;
   system_global_data_pointer = &system_memory_buffer_7;
@@ -2774,7 +2789,7 @@ int initialize_backup_system(void)
 int initialize_recovery_system(void)
 {
   long long system_initialization_result;
-  system_global_data_pointer = 3;
+  system_global_data_pointer = SYSTEM_THREE_VALUE;
   system_global_data_pointer = &system_data_buffer;
   system_global_data_pointer = &system_data_buffer;
   system_global_data_pointer = 0;
@@ -2813,7 +2828,7 @@ int initialize_optimization_system(void)
   system_global_data_pointer = &shared_system_data_buffer;
   system_global_data_pointer = &system_large_string_2;
   system_large_string_2 = 0;
-  system_global_data_pointer = 3;
+  system_global_data_pointer = SYSTEM_THREE_VALUE;
   strcpy_s(&system_large_string_2,SYSTEM_CONFIG_BUFFER_SIZE,&g_largeString2,system_string_length_parameter,DEFAULT_THREAD_POOL_FLAG);
   system_initialization_result = system_execution_function(resource_manager_59_init_function);
   return (system_initialization_result != 0) - 1;
@@ -2843,7 +2858,7 @@ int initialize_load_balancer(void)
   system_global_data_pointer = &g_alternateDataTemplate;
   system_global_data_pointer = &config_texture_path_buffer;
   config_texture_path_buffer = 0;
-  system_global_data_pointer = 9;
+  system_global_data_pointer = SYSTEM_NINE_VALUE;
   strcpy_s(&config_texture_path_buffer,path_buffer_size,&config_string_secondary,system_string_length_parameter,DEFAULT_THREAD_POOL_FLAG);
   system_initialization_result = system_execution_function(resource_manager_62_init_function);
   return (system_initialization_result != 0) - 1;
@@ -2861,7 +2876,7 @@ int initialize_scaling_system(void)
   system_global_data_pointer = &g_alternateDataTemplate;
   system_global_data_pointer = &config_audio_path_buffer;
   config_audio_path_buffer = 0;
-  system_global_data_pointer = 9;
+  system_global_data_pointer = SYSTEM_NINE_VALUE;
   strcpy_s(&config_audio_path_buffer,path_buffer_size,&config_string_secondary,system_string_length_parameter,DEFAULT_THREAD_POOL_FLAG);
   system_initialization_result = system_execution_function(resource_manager_64_init_function);
   return (system_initialization_result != 0) - 1;
@@ -6430,7 +6445,7 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
         system_global_data_pointer = 0;
         system_global_data_pointer = 0;
         g_data_memory_flag = 0;
-        system_global_data_pointer = 3;
+        system_global_data_pointer = SYSTEM_THREE_VALUE;
         system_global_data_pointer = 0;
         system_crypto_initializer(&system_crypto_data);
         system_crypto_module_initializer(&crypto_module_data_buffer);
@@ -6449,7 +6464,7 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
         system_global_data_pointer = 0;
         system_global_data_pointer = 0;
         g_data_memory_flag = 0;
-        system_global_data_pointer = 3;
+        system_global_data_pointer = SYSTEM_THREE_VALUE;
         system_global_data_pointer = 0;
         system_crypto_initializer(&system_crypto_data);
         system_crypto_module_initializer(&crypto_module_data_buffer);
@@ -7125,7 +7140,7 @@ system_finalizer_tertiary(unsigned long long handle_param,unsigned long long thr
   system_global_data_pointer = SYSTEM_OPCODE_0FFDC;
   system_flag_buffer_10 = 1;
   system_finalizer_008(&module_finalizer_buffer);
-  system_global_data_pointer = 3;
+  system_global_data_pointer = SYSTEM_THREE_VALUE;
   system_global_data_pointer = 0;
   system_global_data_pointer = 0;
   system_global_data_pointer = 0;
@@ -7138,18 +7153,18 @@ system_finalizer_tertiary(unsigned long long handle_param,unsigned long long thr
   system_global_data_pointer = 0;
   system_global_data_pointer = 0;
   system_global_data_pointer = 0;
-  system_global_data_pointer = 3;
+  system_global_data_pointer = SYSTEM_THREE_VALUE;
   system_global_data_pointer = 0;
   system_global_data_pointer = 0;
   system_global_data_pointer = 0;
   system_global_data_pointer = 0;
   system_global_data_pointer = 0;
   system_global_data_pointer = 0;
-  system_global_data_pointer = 3;
+  system_global_data_pointer = SYSTEM_THREE_VALUE;
   audio_system_initialized = 1;
   system_execution_function(MODULE_HANDLER_ADDR);
   input_system_initialized = 1;
-  system_global_data_pointer = 3;
+  system_global_data_pointer = SYSTEM_THREE_VALUE;
   system_global_data_pointer = SYSTEM_CONFIG_BUFFER_SIZE_ZERO;
   system_global_data_pointer = FLOAT_ONE;
   system_global_data_pointer = 0;
@@ -7158,12 +7173,12 @@ system_finalizer_tertiary(unsigned long long handle_param,unsigned long long thr
   system_global_data_pointer = 0;
   physics_system_initialized = 1;
   system_global_data_pointer = 0;
-  system_global_data_pointer = 3;
+  system_global_data_pointer = SYSTEM_THREE_VALUE;
   system_global_data_pointer = 0;
   thread_pool_backup_flag = 0;
   system_global_data_pointer = 0;
   ui_system_initialized = 1;
-  system_global_data_pointer = 3;
+  system_global_data_pointer = SYSTEM_THREE_VALUE;
   system_global_data_pointer = SYSTEM_CONFIG_BUFFER_SIZE_ZERO;
   system_global_data_pointer = FLOAT_ONE;
   system_global_data_pointer = 0;
@@ -7173,7 +7188,7 @@ system_finalizer_tertiary(unsigned long long handle_param,unsigned long long thr
   system_global_data_pointer = 0;
   system_global_data_pointer = 0;
   system_global_data_pointer = 0;
-  system_global_data_pointer = 3;
+  system_global_data_pointer = SYSTEM_THREE_VALUE;
   system_global_data_pointer = 0;
   system_global_data_pointer = 0;
   system_global_data_pointer = 0;
@@ -7190,11 +7205,11 @@ system_finalizer_tertiary(unsigned long long handle_param,unsigned long long thr
   system_global_data_pointer = 0;
   system_global_data_pointer = 0;
   system_global_data_pointer = 0;
-  system_global_data_pointer = 3;
+  system_global_data_pointer = SYSTEM_THREE_VALUE;
   network_system_backup_flag = 0;
   system_global_data_pointer = 0;
   system_global_data_pointer = 0;
-  system_global_data_pointer = 3;
+  system_global_data_pointer = SYSTEM_THREE_VALUE;
   render_system_backup_flag = 0;
   system_global_data_pointer = 0;
   system_global_data_pointer = 0;
@@ -7205,7 +7220,7 @@ system_finalizer_tertiary(unsigned long long handle_param,unsigned long long thr
   system_global_data_pointer = 1;
   system_global_data_pointer = &system_data_buffer_secondary;
   script_system_initialized = 1;
-  system_global_data_pointer = 3;
+  system_global_data_pointer = SYSTEM_THREE_VALUE;
   system_global_data_pointer = 0;
   system_global_data_pointer = 0;
   system_global_data_pointer = 0;
