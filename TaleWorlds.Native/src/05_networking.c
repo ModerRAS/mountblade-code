@@ -453,6 +453,7 @@
 #define NETWORK_PROCESSOR_SIZE_INDEX_STATUS    5
 #define NETWORK_SERVER_ADDRESS_INDEX_STATUS    5
 #define NETWORK_TIMEOUT_CONFIG_INDEX_STATUS    NETWORK_ARRAY_SIZE_4
+#define NETWORK_TIMEOUT_CONFIG_INDEX_EXTENDED   3
 #define NETWORK_NETWORK_PROCESSOR_INDEX_STATUS 5
 #define NETWORK_MAX_SIZE_FFFFFFFF      NETWORK_MAX_SIZE_FFFFFFFF
 #define SOCKET_CHECKSUM_OFFSET_4        SOCKET_CHECKSUM_OFFSET_4
@@ -11351,7 +11352,7 @@ NetworkProcessConnectionQueue(int64_t network_socket_handle, uint32_t *network_b
             server_port_address_value = network_connection_parameter[NETWORK_BUFFER_CAPACITY_MEDIUM];
               network_server_address = (longlong)network_status_tertiary;
               if ((*(int64_t *)(server_port_address_value + network_server_address * SESSION_CONFIG_SIZE) == network_timeout_config_pointer_extended[NETWORK_BUFFER_CAPACITY_MEDIUM]) &&
-                 (*(int64_t *)(server_port_address_value + NETWORK_PACKET_HEADER_SIZE + network_server_address * SESSION_CONFIG_SIZE) == network_timeout_config_pointer_extended[3])) {
+                 (*(int64_t *)(server_port_address_value + NETWORK_PACKET_HEADER_SIZE + network_server_address * SESSION_CONFIG_SIZE) == network_timeout_config_pointer_extended[NETWORK_TIMEOUT_CONFIG_INDEX_EXTENDED])) {
                 network_status_tertiary = NETWORK_OPERATION_STATUS_FAILURE;
                 goto network_jump_target;
               network_status_tertiary = *(int32_t *)(server_port_address_value + MODULE_STATUS_OFFSET + network_server_address * SESSION_CONFIG_SIZE);
@@ -11371,7 +11372,7 @@ NetworkProcessConnectionQueue(int64_t network_socket_handle, uint32_t *network_b
               do {
                 server_port_address_value = (longlong)network_processor_count;
                 if ((*(int64_t *)(client_port_address_value + server_port_address_value * SESSION_CONFIG_SIZE) == network_timeout_config_pointer_extended[NETWORK_BUFFER_CAPACITY_MEDIUM]) &&
-                   (*(int64_t *)(client_port_address_value + NETWORK_PACKET_HEADER_SIZE + server_port_address_value * SESSION_CONFIG_SIZE) == network_timeout_config_pointer_extended[3])) {
+                   (*(int64_t *)(client_port_address_value + NETWORK_PACKET_HEADER_SIZE + server_port_address_value * SESSION_CONFIG_SIZE) == network_timeout_config_pointer_extended[NETWORK_TIMEOUT_CONFIG_INDEX_EXTENDED])) {
                   network_processor_count = *pnetwork_operation_status_code_tertiary;
                   network_status_tertiary = *(int32_t *)(client_port_address_value + MODULE_STATUS_OFFSET + (longlong)network_processor_count * SESSION_CONFIG_SIZE);
                   client_port_address_value = client_port_address_value + (longlong)network_processor_count * SESSION_CONFIG_SIZE;
