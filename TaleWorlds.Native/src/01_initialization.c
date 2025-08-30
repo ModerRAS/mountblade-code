@@ -49091,7 +49091,7 @@ void SystemFunction_88_4(void)
          float_result * float_result + float_result * float_result + float_result * float_result + init_input_stack_180[0xf];
     ptr_float_var = &stack0x000000a0;
   }
-  InitializeSystemDataNode15(&stack0x00000060,long_result + 0x30,*(uint8_t *)(system_RBX + 0xf7),ptr_float_var);
+  InitializeSystemDataNode15(&init_stack_uint_60,long_result + 0x30,*(uint8_t *)(system_RBX + 0xf7),ptr_float_var);
   uint_result = init_input_stack_98;
   uint_result = init_input_stack_90;
   uint_result = init_input_stack_88;
@@ -49351,7 +49351,7 @@ void InitializeSystemLogger(void)
          float_result * float_result + float_result * float_result + float_result * float_result + init_input_stack_180[0xf];
     ptr_float_var = &stack0x000000a0;
   }
-  InitializeSystemDataNode15(&stack0x00000060,long_result + 0x30,*(uint8_t *)(system_RBX + 0xf7),ptr_float_var);
+  InitializeSystemDataNode15(&init_stack_uint_60,long_result + 0x30,*(uint8_t *)(system_RBX + 0xf7),ptr_float_var);
   uint_result = init_input_stack_98;
   uint_result = init_input_stack_90;
   uint_result = init_input_stack_88;
@@ -49618,7 +49618,7 @@ void SystemFunction_95_0(void)
   uint64_t init_input_stack_188;
 
   init_uint_stack_30 = 0xffffffff;
-  InitializeSystemModule1(system_R13 + 0x3388,&stack0x00000030);
+  InitializeSystemModule1(system_R13 + 0x3388,&init_stack_uint_30);
   ptr_float_var = init_input_stack_180;
   if ((*(uint *)(system_RBX + SYSTEM_DATA_COMPARE_SIZE0) & 0x4000000) != 0) {
     float_result = *init_input_stack_180;
