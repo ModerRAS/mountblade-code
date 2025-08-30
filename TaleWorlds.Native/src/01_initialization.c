@@ -15411,15 +15411,15 @@ int ConfigureGraphicsParameters(void)
   _g_network_state_1 = 0; // 原始名称: systemCoreData
   g_network_buffer_size = SYSTEM_HANDLE_STATUS_INVALID;
   _g_network_state_2 = 0; // 原始名称: systemCoreData
-  _g_network_config_1 = 3; // 原始名称: system_configuration_data
+  _g_network_config_1 = SYSTEM_CONFIG_VALUE_TERTIARY; // 原始名称: system_configuration_data
   g_network_socket_handle = SYSTEM_HANDLE_STATUS_INVALID;
   g_network_packet_data = SYSTEM_HANDLE_STATUS_INVALID;
   g_network_buffer_data = SYSTEM_HANDLE_STATUS_INVALID;
-  g_network_config_data = 3;
+  g_network_config_data = SYSTEM_CONFIG_VALUE_TERTIARY;
   g_network_state_data = SYSTEM_HANDLE_STATUS_INVALID;
   system_memory_register_primary = 0;
   g_network_timeout_value = SYSTEM_HANDLE_STATUS_INVALID;
-  g_network_connection_data = 3;
+  g_network_connection_data = SYSTEM_CONFIG_VALUE_TERTIARY;
   EngineFunction_11_2();
   system_temp_long = execute_system_init(&g_system_reserved_data);
   return (system_long_result != SYSTEM_OPERATION_SUCCESS) + SYSTEM_RETURN_VALUE_SUCCESS_MINUS_1;

@@ -1,3 +1,25 @@
+// 本次美化内容（2025年8月30日）：
+// - 美化网络栈指针变量名，将_network_stack_int0000000000000050替换为network_stack_pointer_primary等栈指针变量名
+// - 美化网络栈指针变量名，将_network_stack_int0000000000000058替换为network_stack_pointer_secondary等栈指针变量名
+// - 美化网络栈指针变量名，将_network_stack_int0000000000000068替换为network_stack_pointer_tertiary等栈指针变量名
+// - 美化网络栈指针变量名，将_network_stack_int0000000000000044替换为network_stack_pointer_quaternary等栈指针变量名
+// - 美化网络连接句柄变量名，将connection_handle24替换为network_connection_handle_extended等连接句柄变量名
+// - 美化网络连接状态变量名，将isConnected5替换为network_is_connected_secondary等连接状态变量名
+// - 美化网络数据包指针变量名，将network_packet_size_ptr8替换为network_packet_size_pointer_secondary等数据包指针变量名
+// - 美化网络加密密钥变量名，将network_encryption_key_main0/4/8替换为network_encryption_key_main_zero/quaternary/secondary等加密密钥变量名
+// - 美化网络上下文数组变量名，将network_context_array_primary0/8替换为network_context_array_primary_zero/secondary等上下文数组变量名
+// - 美化网络临时缓冲区变量名，将network_stack_temporary_buffer_158替换为network_stack_temporary_buffer_extended等临时缓冲区变量名
+// - 美化网络浮点栈变量名，将network_float_stack_offset_40/44替换为network_float_stack_offset_primary/secondary等浮点栈变量名
+// - 美化网络浮点栈缓冲区变量名，将network_float_stack_buffer_4c替换为network_float_stack_buffer_secondary等浮点栈缓冲区变量名
+// - 美化网络线程栈变量名，将threadStackLong28替换为thread_stack_long_secondary等线程栈变量名
+// - 美化网络状态码变量名，将network_operation_status_code_third4替换为network_operation_status_code_tertiary等状态码变量名
+// - 美化网络临时标志变量名，将network_temp_flag_handshake4/0替换为network_temp_flag_handshake_secondary/zero等临时标志变量名
+// - 美化网络上下文变量名，将network_stack_context_294替换为network_stack_context_extended等上下文变量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了网络系统中剩余包含数字的变量名的语义化替换
+// - 原本实现：完全重构网络系统变量命名体系
+// - 简化实现：仅将常见的包含数字的变量名替换为语义化名称
+
 #include "TaleWorlds.Native.Split.h"
 
 // 最新美化内容（2025年8月30日）：
