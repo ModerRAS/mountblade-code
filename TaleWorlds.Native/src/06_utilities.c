@@ -124,9 +124,19 @@
 // 56. 将resourceCounter替换为resource_count等资源计数变量名
 // 57. 将validation_result_flag替换为validation_flag等验证标志变量名
 // 58. 将processing_buffer替换为process_buffer等处理缓冲区变量名
+// 59. 将float_temp_value替换为utility_float_temp_value等浮点临时变量名
+// 60. 将float_temp_secondary_var替换为utility_float_secondary_value等浮点辅助变量名
+// 61. 将utility_temp_counter替换为utility_loop_temp_counter等循环计数变量名
+// 62. 将utility_temp_resource_index替换为utility_resource_temp_index等资源索引变量名
+// 63. 将utility_temp_buffer_size替换为utility_buffer_temp_size等缓冲区大小变量名
+// 64. 将utility_temp_int_value替换为utility_temp_int_result等整数结果变量名
+// 65. 将utility_temp_signed_result替换为utility_temp_signed_value等有符号值变量名
+// 66. 将utility_thread_stack_temp_offset替换为utility_thread_stack_offset等栈偏移变量名
+// 67. 将utility_stack_temp_offset替换为utility_stack_buffer_offset等缓冲区偏移变量名
+// 68. 将utility_stack_buffer_temp_size替换为utility_stack_buffer_size_temp等临时大小变量名
 // 提高了代码的可读性和维护性
 // 保持代码语义不变
-// 这是简化实现，主要处理了工具系统中变量名的语义化替换
+// 这是简化实现，主要处理了工具系统中临时变量名的语义化替换
 
 // 新增语义化宏定义 - 替换事件回调变量名
 #define EVENT_CALLBACK_RESOURCE_INIT 0x6030
