@@ -25829,8 +25829,8 @@ void InitializeAuthenticationSystem(void)
   uint32_t init_stack_uint_param_e0_hex;
   ulonglong init_stack_uint_param_d8_hex;
   void *system_buffer_ptr_config;
-  longlong longStack_c8;
-  int intStack_c0;
+  longlong long_stack_data_buffer;
+  int int_stack_size_counter;
   uint32_t init_stack_uint_param_thread;
   longlong *stack_system_memory_pointer;
   longlong init_stack_memory_index_a0;
@@ -26073,9 +26073,9 @@ INIT_LABEL_SYSTEM_54d57:
                   ConfigureSystemParameters(&system_buffer_ptr_graphics_config,intStack_c0);
                   if (intStack_c0 != SYSTEM_COMPARISON_ZERO) {
                     // WARNING: Subroutine does not return
-                    memcpy(system_buffer_ptr_thread_param,longStack_c8,intStack_c0 + 1);
+                    memcpy(system_buffer_ptr_thread_param,long_stack_data_buffer,int_stack_size_counter + 1);
                   }
-                  if (longStack_c8 != SYSTEM_COMPARISON_ZERO) {
+                  if (long_stack_data_buffer != SYSTEM_COMPARISON_ZERO) {
                     init_stack_uint_param_e0_hex = 0;
                     if (system_buffer_ptr_thread_param != (uint8_t *)SYSTEM_NULL_POINTER) {
                       *system_buffer_ptr_thread_param = 0;
