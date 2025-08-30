@@ -375,7 +375,7 @@ int initialize_primary_shader_resource_manager(void)
   system_init_result = system_execute_function(shader_resource_manager_1_init_function);
   return (system_init_result != 0) - 1;
 }
-int initialize_shader_resource_manager_2(void)
+int initialize_secondary_shader_resource_manager(void)
 {
   long long system_init_result;
   unsigned long long str_length;
@@ -390,9 +390,9 @@ int initialize_shader_resource_manager_2(void)
 int initialize_audio_resource_manager(void)
 {
   long long initialization_result;
-  unsigned long long string_length_parameter;
-  void* resource_data_buffer_pointer = &g_resource_data_buffer;
-  void* resource_buffer_value_pointer = &resource_buffer_4;
+  unsigned long long string_length;
+  void* resource_buffer_ptr = &g_resource_data_buffer;
+  void* resource_buffer_pointer = &resource_buffer_4;
   resource_buffer_4 = 0;
   resource_type_4 = RESOURCE_TYPE_AUDIO;
   strcpy_s(&resource_buffer_4, RESOURCE_BUFFER_SIZE, &string_source_005, string_length_parameter, THREAD_POOL_DEFAULT_FLAG);
@@ -403,7 +403,7 @@ int initialize_font_resource_manager(void)
 {
   long long initialization_result;
   size_t string_length_parameter;
-  void* resource_data_buffer_pointer = &g_resource_data_buffer;
+  void* resource_buffer_ptr = &g_resource_data_buffer;
   void* resource_buffer_value_pointer = &resource_buffer_5;
   resource_buffer_5 = 0;
   resource_type_5 = RESOURCE_TYPE_AUDIO;
@@ -415,7 +415,7 @@ int initialize_model_resource_manager(void)
 {
   long long initialization_result;
   size_t string_length_parameter;
-  void* resource_data_buffer_pointer = &g_resource_data_buffer;
+  void* resource_buffer_ptr = &g_resource_data_buffer;
   void* resource_buffer_value_pointer = &resource_buffer_6;
   resource_buffer_6 = 0;
   resource_type_6 = 4;
@@ -427,7 +427,7 @@ int initialize_animation_resource_manager(void)
 {
   long long initialization_result;
   size_t string_length_parameter;
-  void* resource_data_buffer_pointer = &g_resource_data_buffer;
+  void* resource_buffer_ptr = &g_resource_data_buffer;
   void* system_data_pointer = &g_system_name_data;
   g_system_name_data = 0;
   int resource_type = 5;
@@ -486,7 +486,7 @@ int initialize_main_mutex(void* handle, void* system_flags, void* mutex_attr, in
 int initialize_data_buffer_system(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
+  unsigned long long string_length;
   g_system_config_buffer = 0;
   g_system_config_system_flags = FLAG_INITIALIZED;
   strcpy_s(&g_system_config_buffer,SYSTEM_CONFIG_BUFFER_SIZE,&g_systemConfigString,str_len_param,THREAD_POOL_DEFAULT_FLAG);
@@ -500,147 +500,147 @@ int initialize_data_buffer_system(void)
   shader_resource_data = 0;
   system_data_pointer = FLAG_SHADER_RESOURCE;
   strcpy_s(&shader_resource_data,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   g_audio_resource_ptr = &audio_resource_data;
   audio_resource_data = 0;
   system_data_pointer = FLAG_AUDIO_RESOURCE;
   strcpy_s(&audio_resource_data,SYSTEM_CONFIG_BUFFER_SIZE,&g_audio_resource_string);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   g_font_resource_ptr = &font_resource_data;
   font_resource_data = 0;
   system_data_pointer = FLAG_FONT_RESOURCE;
   strcpy_s(&font_resource_data,SYSTEM_CONFIG_BUFFER_SIZE,&g_font_resource_string);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &resource_data_5;
   resource_data_5 = 0;
   system_data_pointer = FLAG_FONT_RESOURCE;
   strcpy_s(&resource_data_5,SYSTEM_CONFIG_BUFFER_SIZE,&g_resourceString5);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &resource_font_name_buffer;
   resource_font_name_buffer = 0;
   system_data_pointer = STRING_BUFFER_SIZE;
   strcpy_s(&resource_font_name_buffer, SYSTEM_CONFIG_BUFFER_SIZE, &g_resourceString6);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &resource_model_name_buffer;
   resource_model_name_buffer = 0;
   system_data_pointer = FLAG_MODEL_RESOURCE;
   strcpy_s(&resource_model_name_buffer,SYSTEM_CONFIG_BUFFER_SIZE,&g_resourceString7);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &resource_animation_name_buffer;
   resource_animation_name_buffer = 0;
   system_data_pointer = FLAG_SHADER_RESOURCE;
   strcpy_s(&resource_animation_name_buffer,SYSTEM_CONFIG_BUFFER_SIZE,&g_resourceString8);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_resource_string_buffer_0;
   g_resource_string_buffer_0 = 0;
   system_data_pointer = FLAG_PARTICLE_RESOURCE;
   strcpy_s(&g_resource_string_buffer_0,SYSTEM_CONFIG_BUFFER_SIZE,&g_resourceString9);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_resource_string_buffer_1;
   g_resource_string_buffer_1 = 0;
   system_data_pointer = FLAG_CONFIG_RESOURCE;
   strcpy_s(&g_resource_string_buffer_1,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string0);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_resource_string_buffer_2;
   g_resource_string_buffer_2 = 0;
   system_data_pointer = 0;
   strcpy_s(&g_resource_string_buffer_2,SYSTEM_CONFIG_BUFFER_SIZE,&default_resource_string);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_resource_string_buffer_3;
   g_resource_string_buffer_3 = 0;
   system_data_pointer = FLAG_SAVE_GAME_RESOURCE;
   strcpy_s(&g_resource_string_buffer_3,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string1);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_resource_string_buffer_4;
   g_resource_string_buffer_4 = 0;
   system_data_pointer = 7;
   strcpy_s(&g_resource_string_buffer_4,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string2);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_resource_string_buffer_5;
   g_resource_string_buffer_5 = 0;
   system_data_pointer = FLAG_STRING_MANAGER_RESOURCE;
   strcpy_s(&g_resource_string_buffer_5,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string3);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_resource_string_buffer_6;
   g_resource_string_buffer_6 = 0;
   system_data_pointer = FLAG_PHYSICS_RESOURCE;
   strcpy_s(&g_resource_string_buffer_6,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string4);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_resource_string_buffer_7;
   g_resource_string_buffer_7 = 0;
   system_data_pointer = FLAG_PHYSICS_RESOURCE;
   strcpy_s(&g_resource_string_buffer_7,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string5);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_resource_string_buffer_8;
   g_resource_string_buffer_8 = 0;
   system_data_pointer = FLAG_STRING_MANAGER_RESOURCE;
   strcpy_s(&g_resource_string_buffer_8,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string6);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_resource_string_buffer_9;
   g_resource_string_buffer_9 = 0;
   system_data_pointer = FLAG_UI_RESOURCE;
   strcpy_s(&g_resource_string_buffer_9,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string7);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_resource_string_buffer_10;
   g_resource_string_buffer_10 = 0;
   system_data_pointer = FLAG_SCRIPT_RESOURCE;
   strcpy_s(&g_resource_string_buffer_10,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string8);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_resource_string_buffer_11;
   g_resource_string_buffer_11 = 0;
   system_data_pointer = FLAG_NETWORK_RESOURCE;
   strcpy_s(&g_resource_string_buffer_11,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string9);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_resource_string_buffer_12;
   g_resource_string_buffer_12 = 0;
   system_data_pointer = FLAG_STRING_MANAGER_RESOURCE;
   strcpy_s(&g_resource_string_buffer_12,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string0);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_resource_string_buffer_13;
   g_resource_string_buffer_13 = 0;
   system_data_pointer = STRING_BUFFER_SIZE;
   strcpy_s(&g_resource_string_buffer_13,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string1);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_resource_string_buffer_14;
   g_resource_string_buffer_14 = 0;
   system_data_pointer = FLAG_CONFIG_RESOURCE;
   strcpy_s(&g_resource_string_buffer_14,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string2);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf6fa8;
   data_180bf6fa8 = 0;
   system_data_pointer = FLAG_AUTH_RESOURCE;
   strcpy_s(&data_180bf6fa8,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string3);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_shader_string_buffer_0;
   g_shader_string_buffer_0 = 0;
   system_data_pointer = FLAG_SECURITY_RESOURCE;
   strcpy_s(&g_shader_string_buffer_0,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string4);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_shader_string_buffer_1;
   g_shader_string_buffer_1 = 0;
   system_data_pointer = FLAG_PHYSICS_RESOURCE;
   strcpy_s(&g_shader_string_buffer_1,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string5);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_shader_string_buffer_2;
   g_shader_string_buffer_2 = 0;
   system_data_pointer = FLAG_CONFIG_RESOURCE;
   strcpy_s(&g_shader_string_buffer_2,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string6);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_shader_string_buffer_3;
   g_shader_string_buffer_3 = 0;
   system_data_pointer = config_path_buffer_size;
   strcpy_s(&g_shader_string_buffer_3,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string7);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_shader_string_buffer_4;
   g_shader_string_buffer_4 = 0;
   system_data_pointer = FLAG_NETWORK_RESOURCE;
   strcpy_s(&g_shader_string_buffer_4,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string8);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_shader_string_buffer_5;
   g_shader_string_buffer_5 = 0;
   system_data_pointer = FLAG_SECURITY_RESOURCE;
   strcpy_s(&g_shader_string_buffer_5,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string9);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_shader_string_buffer_6;
   g_shader_string_buffer_6 = 0;
   system_data_pointer = 0xf;
@@ -651,8 +651,8 @@ int initialize_data_buffer_system(void)
 int initialize_audio_module(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_shader_string_buffer_7;
   g_shader_string_buffer_7 = 0;
   system_data_pointer = 0xb;
@@ -663,8 +663,8 @@ int initialize_audio_module(void)
 int initialize_video_module(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_system_string_buffer_0;
   g_system_string_buffer_0 = 0;
   system_data_pointer = 9;
@@ -675,8 +675,8 @@ int initialize_video_module(void)
 int initialize_input_module(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_system_string_buffer_1;
   g_system_string_buffer_1 = 0;
   system_data_pointer = 9;
@@ -687,7 +687,7 @@ int initialize_input_module(void)
 int initialize_network_module(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
+  unsigned long long string_length;
   system_data_pointer = &g_memoryAllocationFlag;
   system_data_pointer = &g_system_string_buffer_2;
   g_system_string_buffer_2 = 0;
@@ -774,157 +774,157 @@ int initialize_network_module(void)
   g_system_config_buffer = 0;
   system_data_pointer = 0x13;
   strcpy_s(&g_system_config_buffer,SYSTEM_CONFIG_BUFFER_SIZE,&g_systemConfigString,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_texture_resource_buffer;
   g_texture_resource_buffer = 0;
   system_data_pointer = 0xd;
   strcpy_s(&g_texture_resource_buffer,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_shader_resource_buffer;
   g_shader_resource_buffer = 0;
   system_data_pointer = 0x17;
   strcpy_s(&g_shader_resource_buffer,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_audio_resource_buffer;
   g_audio_resource_buffer = 0;
   system_data_pointer = 0xd;
   strcpy_s(&g_audio_resource_buffer,SYSTEM_CONFIG_BUFFER_SIZE,&g_audio_resource_string);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_font_resource_buffer;
   g_font_resource_buffer = 0;
   system_data_pointer = 0xc;
   strcpy_s(&g_font_resource_buffer,SYSTEM_CONFIG_BUFFER_SIZE,&g_font_resource_string);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_misc_resource_buffer_0;
   g_misc_resource_buffer_0 = 0;
   system_data_pointer = 0xc;
   strcpy_s(&g_misc_resource_buffer_0,SYSTEM_CONFIG_BUFFER_SIZE,&g_resourceString5);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_misc_resource_buffer_1;
   g_misc_resource_buffer_1 = 0;
   system_data_pointer = STRING_BUFFER_SIZE;
   strcpy_s(&g_misc_resource_buffer_1,SYSTEM_CONFIG_BUFFER_SIZE,&g_resourceString6);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_misc_resource_buffer_2;
   g_misc_resource_buffer_2 = 0;
   system_data_pointer = 0x1f;
   strcpy_s(&g_misc_resource_buffer_2,SYSTEM_CONFIG_BUFFER_SIZE,&g_resourceString7);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_misc_resource_buffer_3;
   g_misc_resource_buffer_3 = 0;
   system_data_pointer = 0x17;
   strcpy_s(&g_misc_resource_buffer_3,SYSTEM_CONFIG_BUFFER_SIZE,&g_resourceString8);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &g_misc_resource_buffer_4;
   g_misc_resource_buffer_4 = 0;
   system_data_pointer = 0x13;
   strcpy_s(&g_misc_resource_buffer_4,SYSTEM_CONFIG_BUFFER_SIZE,&g_resourceString9);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf8218;
   data_180bf8218 = 0;
   system_data_pointer = 0x14;
   strcpy_s(&data_180bf8218,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string0);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf8270;
   data_180bf8270 = 0;
   system_data_pointer = 0;
   strcpy_s(&data_180bf8270,SYSTEM_CONFIG_BUFFER_SIZE,&default_resource_string);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf82c8;
   data_180bf82c8 = 0;
   system_data_pointer = 0x1b;
   strcpy_s(&data_180bf82c8,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string1);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf8320;
   data_180bf8320 = 0;
   system_data_pointer = 7;
   strcpy_s(&data_180bf8320,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string2);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf8378;
   data_180bf8378 = 0;
   system_data_pointer = 0x19;
   strcpy_s(&data_180bf8378,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string3);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf83d0;
   data_180bf83d0 = 0;
   system_data_pointer = 0x12;
   strcpy_s(&data_180bf83d0,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string4);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf8428;
   data_180bf8428 = 0;
   system_data_pointer = 0x12;
   strcpy_s(&data_180bf8428,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string5);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf8480;
   data_180bf8480 = 0;
   system_data_pointer = 0x19;
   strcpy_s(&data_180bf8480,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string6);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf84d8;
   data_180bf84d8 = 0;
   system_data_pointer = 0x11;
   strcpy_s(&data_180bf84d8,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string7);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf8530;
   data_180bf8530 = 0;
   system_data_pointer = 0x18;
   strcpy_s(&data_180bf8530,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string8);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf8588;
   data_180bf8588 = 0;
   system_data_pointer = 0x13;
   strcpy_s(&data_180bf8588,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string9);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf85e0;
   data_180bf85e0 = 0;
   system_data_pointer = 0x19;
   strcpy_s(&data_180bf85e0,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string0);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf8638;
   data_180bf8638 = 0;
   system_data_pointer = STRING_BUFFER_SIZE;
   strcpy_s(&data_180bf8638,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string1);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf8690;
   data_180bf8690 = 0;
   system_data_pointer = 0x14;
   strcpy_s(&data_180bf8690,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string2);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf86e8;
   data_180bf86e8 = 0;
   system_data_pointer = 0xf;
   strcpy_s(&data_180bf86e8,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string3);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf8740;
   data_180bf8740 = 0;
   system_data_pointer = 0x16;
   strcpy_s(&data_180bf8740,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string4);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf8798;
   data_180bf8798 = 0;
   system_data_pointer = 0x12;
   strcpy_s(&data_180bf8798,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string5);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf87f0;
   data_180bf87f0 = 0;
   system_data_pointer = 0x14;
   strcpy_s(&data_180bf87f0,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string6);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf8848;
   data_180bf8848 = 0;
   system_data_pointer = config_path_buffer_size;
   strcpy_s(&data_180bf8848,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string7);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf88a0;
   data_180bf88a0 = 0;
   system_data_pointer = 0x13;
   strcpy_s(&data_180bf88a0,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string8);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf88f8;
   data_180bf88f8 = 0;
   system_data_pointer = 0x16;
   strcpy_s(&data_180bf88f8,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string9);
-  system_data_pointer = &g_defaultDataTemplate;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf8950;
   data_180bf8950 = 0;
   system_data_pointer = 0xf;
@@ -941,7 +941,7 @@ int initialize_network_module(void)
 int initialize_physics_module(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
+  unsigned long long string_length;
   system_data_pointer = &g_alternateDataTemplate;
   system_data_pointer = &data_180bf5ba0;
   data_180bf5ba0 = 0;
@@ -959,8 +959,8 @@ int initialize_physics_module(void)
 int initialize_ai_module(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf9228;
   data_180bf9228 = 0;
   system_data_pointer = 0x13;
@@ -971,8 +971,8 @@ int initialize_ai_module(void)
 int initialize_ui_module(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf9288;
   data_180bf9288 = 0;
   system_data_pointer = 0x12;
@@ -983,8 +983,8 @@ int initialize_ui_module(void)
 int initialize_scripting_module(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf92e8;
   data_180bf92e8 = 0;
   system_data_pointer = 0x12;
@@ -995,8 +995,8 @@ int initialize_scripting_module(void)
 int initialize_audio_engine(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf9348;
   data_180bf9348 = 0;
   system_data_pointer = 0xd;
@@ -1007,8 +1007,8 @@ int initialize_audio_engine(void)
 int initialize_video_subsystem(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf93a8;
   data_180bf93a8 = 0;
   system_data_pointer = STRING_BUFFER_SIZE;
@@ -1019,8 +1019,8 @@ int initialize_video_subsystem(void)
 int initialize_input_handler(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf9408;
   data_180bf9408 = 0;
   system_data_pointer = 0x17;
@@ -1031,8 +1031,8 @@ int initialize_input_handler(void)
 int initialize_network_stack(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf9468;
   data_180bf9468 = 0;
   system_data_pointer = STRING_BUFFER_SIZE;
@@ -1043,8 +1043,8 @@ int initialize_network_stack(void)
 int initialize_file_system(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf94c8;
   data_180bf94c8 = 0;
   system_data_pointer = 0xd;
@@ -1055,8 +1055,8 @@ int initialize_file_system(void)
 int initialize_memory_manager(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf9528;
   data_180bf9528 = 0;
   system_data_pointer = 0xc;
@@ -1067,8 +1067,8 @@ int initialize_memory_manager(void)
 int initialize_thread_manager(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf9588;
   data_180bf9588 = 0;
   system_data_pointer = 0x16;
@@ -1079,8 +1079,8 @@ int initialize_thread_manager(void)
 int initialize_event_system(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf95e8;
   data_180bf95e8 = 0;
   system_data_pointer = 0x13;
@@ -1091,8 +1091,8 @@ int initialize_event_system(void)
 int initialize_timer_service(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf9648;
   data_180bf9648 = 0;
   system_data_pointer = 0x14;
@@ -1103,8 +1103,8 @@ int initialize_timer_service(void)
 int initialize_logger_system(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf96a8;
   data_180bf96a8 = 0;
   system_data_pointer = 0x17;
@@ -1115,8 +1115,8 @@ int initialize_logger_system(void)
 int initialize_config_system(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf9708;
   data_180bf9708 = 0;
   system_data_pointer = 0x17;
@@ -1127,8 +1127,8 @@ int initialize_config_system(void)
 int initialize_resource_cache(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf9768;
   data_180bf9768 = 0;
   system_data_pointer = config_path_buffer_size;
@@ -1139,8 +1139,8 @@ int initialize_resource_cache(void)
 int initialize_asset_loader(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf97c8;
   data_180bf97c8 = 0;
   system_data_pointer = 0x13;
@@ -1151,8 +1151,8 @@ int initialize_asset_loader(void)
 int initialize_shader_system(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf9828;
   data_180bf9828 = 0;
   system_data_pointer = 0x1e;
@@ -1163,8 +1163,8 @@ int initialize_shader_system(void)
 int initialize_texture_manager(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf9888;
   data_180bf9888 = 0;
   system_data_pointer = 0x1b;
@@ -1175,8 +1175,8 @@ int initialize_texture_manager(void)
 int initialize_mesh_system(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf98e8;
   data_180bf98e8 = 0;
   system_data_pointer = 0x1b;
@@ -1187,8 +1187,8 @@ int initialize_mesh_system(void)
 int initialize_animation_system(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf9948;
   data_180bf9948 = 0;
   system_data_pointer = 0x1c;
@@ -1199,8 +1199,8 @@ int initialize_animation_system(void)
 int initialize_particle_system(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf99a8;
   data_180bf99a8 = 0;
   system_data_pointer = 0x1d;
@@ -1211,8 +1211,8 @@ int initialize_particle_system(void)
 int initialize_physics_engine(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf9a08;
   data_180bf9a08 = 0;
   system_data_pointer = config_path_buffer_size;
@@ -1223,8 +1223,8 @@ int initialize_physics_engine(void)
 int initialize_collision_system(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf9a68;
   data_180bf9a68 = 0;
   system_data_pointer = 0x1d;
@@ -1235,7 +1235,7 @@ int initialize_collision_system(void)
 int initialize_ai_system(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
+  unsigned long long string_length;
   g_string_manager_ptr_180bf9ab0 = &g_defaultDataTemplate;
   g_string_manager_ptr_180bf9ab8 = &g_string_buffer_180bf9ac8;
   g_string_buffer_180bf9ac8 = 0;
@@ -1247,8 +1247,8 @@ int initialize_ai_system(void)
 int initialize_navigation_system(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf9b28;
   data_180bf9b28 = 0;
   system_data_pointer = 0x17;
@@ -1259,8 +1259,8 @@ int initialize_navigation_system(void)
 int initialize_ui_framework(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf9b88;
   data_180bf9b88 = 0;
   system_data_pointer = 0x1f;
@@ -1271,8 +1271,8 @@ int initialize_ui_framework(void)
 int initialize_scripting_engine(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf9be8;
   data_180bf9be8 = 0;
   system_data_pointer = 0x21;
@@ -1283,8 +1283,8 @@ int initialize_scripting_engine(void)
 int initialize_database_system(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf9c48;
   data_180bf9c48 = 0;
   system_data_pointer = 0x25;
@@ -1295,8 +1295,8 @@ int initialize_database_system(void)
 int initialize_network_manager(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf9ca8;
   data_180bf9ca8 = 0;
   system_data_pointer = 0x23;
@@ -1307,8 +1307,8 @@ int initialize_network_manager(void)
 int initialize_security_system(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf9d08;
   data_180bf9d08 = 0;
   system_data_pointer = 0x1e;
@@ -1319,8 +1319,8 @@ int initialize_security_system(void)
 int initialize_encryption_service(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf9d68;
   data_180bf9d68 = 0;
   system_data_pointer = 0x1e;
@@ -1331,8 +1331,8 @@ int initialize_encryption_service(void)
 int initialize_authentication_system(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf9dc8;
   data_180bf9dc8 = 0;
   system_data_pointer = 0x12;
@@ -1343,8 +1343,8 @@ int initialize_authentication_system(void)
 int initialize_permission_manager(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf9e28;
   data_180bf9e28 = 0;
   system_data_pointer = 0x13;
@@ -1355,8 +1355,8 @@ int initialize_permission_manager(void)
 int initialize_session_manager(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf9e88;
   data_180bf9e88 = 0;
   system_data_pointer = 0x13;
@@ -1367,8 +1367,8 @@ int initialize_session_manager(void)
 int initialize_user_profile_system(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf9ee8;
   data_180bf9ee8 = 0;
   system_data_pointer = 0x16;
@@ -1379,8 +1379,8 @@ int initialize_user_profile_system(void)
 int initialize_save_system(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf9f48;
   data_180bf9f48 = 0;
   system_data_pointer = 0x1a;
@@ -1391,8 +1391,8 @@ int initialize_save_system(void)
 int initialize_achievement_system(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bf9fa8;
   data_180bf9fa8 = 0;
   system_data_pointer = 0x15;
@@ -1403,8 +1403,8 @@ int initialize_achievement_system(void)
 int initialize_statistics_system(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bfa008;
   data_180bfa008 = 0;
   system_data_pointer = 0x13;
@@ -1415,8 +1415,8 @@ int initialize_statistics_system(void)
 int initialize_analytics_service(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bfa068;
   data_180bfa068 = 0;
   system_data_pointer = 0x13;
@@ -1427,8 +1427,8 @@ int initialize_analytics_service(void)
 int initialize_debug_system(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bfa0c8;
   data_180bfa0c8 = 0;
   system_data_pointer = 0x1b;
@@ -1439,8 +1439,8 @@ int initialize_debug_system(void)
 int initialize_profiling_system(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bfa128;
   data_180bfa128 = 0;
   system_data_pointer = 0x19;
@@ -1451,8 +1451,8 @@ int initialize_profiling_system(void)
 int initialize_crash_handler(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bfa188;
   data_180bfa188 = 0;
   system_data_pointer = 0x15;
@@ -1463,8 +1463,8 @@ int initialize_crash_handler(void)
 int initialize_error_reporting(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bfa1e8;
   data_180bfa1e8 = 0;
   system_data_pointer = 0x28;
@@ -1475,8 +1475,8 @@ int initialize_error_reporting(void)
 int initialize_update_system(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bfa248;
   data_180bfa248 = 0;
   system_data_pointer = 0x23;
@@ -1487,8 +1487,8 @@ int initialize_update_system(void)
 int initialize_patch_manager(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
-  system_data_pointer = &g_defaultDataTemplate;
+  unsigned long long string_length;
+  resource_template_ptr = &g_defaultDataTemplate;
   system_data_pointer = &data_180bfa2a8;
   data_180bfa2a8 = 0;
   system_data_pointer = 0x17;
@@ -1560,7 +1560,7 @@ int initialize_worker_thread_pool(unsigned long long handle,unsigned long long s
 int initialize_io_thread_pool(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
+  unsigned long long string_length;
   system_data_pointer = &g_memoryAllocationFlag;
   system_data_pointer = &data_180bfa798;
   data_180bfa798 = 0;
@@ -1597,7 +1597,7 @@ int initialize_io_thread_pool(void)
 int initialize_background_thread_pool(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
+  unsigned long long string_length;
   system_data_pointer = &g_memoryAllocationFlag;
   system_data_pointer = &data_180bfab28;
   data_180bfab28 = 0;
@@ -1668,7 +1668,7 @@ int initialize_priority_thread_pool(unsigned long long handle,unsigned long long
 int initialize_maintenance_service(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
+  unsigned long long string_length;
   system_data_pointer = &g_shared_system_data_buffer;
   system_data_pointer = &data_180bfaf08;
   data_180bfaf08 = 0;
@@ -1680,7 +1680,7 @@ int initialize_maintenance_service(void)
 int initialize_optimization_system(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
+  unsigned long long string_length;
   system_data_pointer = &g_shared_system_data_buffer;
   system_data_pointer = &data_180bfb328;
   data_180bfb328 = 0;
@@ -1692,7 +1692,7 @@ int initialize_optimization_system(void)
 int initialize_performance_monitor(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
+  unsigned long long string_length;
   system_data_pointer = &g_shared_system_data_buffer;
   system_data_pointer = &data_180bfb748;
   data_180bfb748 = 0;
@@ -1710,7 +1710,7 @@ int initialize_performance_monitor(void)
 int initialize_load_balancer(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
+  unsigned long long string_length;
   system_data_pointer = &g_alternateDataTemplate;
   system_data_pointer = &data_180bf64b0;
   data_180bf64b0 = 0;
@@ -1728,7 +1728,7 @@ int initialize_load_balancer(void)
 int initialize_scaling_system(void)
 {
   long long system_init_result;
-  unsigned long long str_len_param;
+  unsigned long long string_length;
   system_data_pointer = &g_alternateDataTemplate;
   system_data_pointer = &data_180bf6570;
   data_180bf6570 = 0;
@@ -3750,17 +3750,17 @@ label_:
       data_180d492a8 = 0;
       system_data_pointer = 6;
       strcpy_s(&data_180d492a8, SYSTEM_CONFIG_BUFFER_SIZE, &data_180a06998, mutex_type, buffer_allocation_result);
-      system_data_pointer = &g_defaultDataTemplate;
+      resource_template_ptr = &g_defaultDataTemplate;
       system_data_pointer = &data_180d49300;
       data_180d49300 = 0;
       system_data_pointer = 4;
       strcpy_s(&data_180d49300, SYSTEM_CONFIG_BUFFER_SIZE, &data_180a06990);
-      system_data_pointer = &g_defaultDataTemplate;
+      resource_template_ptr = &g_defaultDataTemplate;
       system_data_pointer = &data_180d49358;
       data_180d49358 = 0;
       system_data_pointer = 6;
       strcpy_s(&data_180d49358, SYSTEM_CONFIG_BUFFER_SIZE, &data_180a069a8);
-      system_data_pointer = &g_defaultDataTemplate;
+      resource_template_ptr = &g_defaultDataTemplate;
       system_data_pointer = &data_180d493b0;
       data_180d493b0 = 0;
       system_data_pointer = 6;
@@ -5313,7 +5313,7 @@ unsigned long long handle_system_callback(unsigned long long *handle)
       }
       if ((*(int *)(system_init_result0 + 0x48) < system_data_pointer) &&
          (system_crypto_004(&data_180d48e24), system_data_pointer == -1)) {
-        system_data_pointer = &g_defaultDataTemplate;
+        resource_template_ptr = &g_defaultDataTemplate;
         system_data_pointer = &data_180d48e78;
         system_data_pointer = 0;
         data_180d48e78 = 0;
@@ -6693,7 +6693,7 @@ unsigned long long initialize_graphics_context(unsigned long long handle,ulong l
               0x48) < system_data_pointer) {
     system_crypto_004(&data_180d49fd8);
     if (system_data_pointer == -1) {
-      system_data_pointer = &g_defaultDataTemplate;
+      resource_template_ptr = &g_defaultDataTemplate;
       system_data_pointer = &data_180d49ff8;
       data_180d49ff8 = 0;
       system_data_pointer = 0;
