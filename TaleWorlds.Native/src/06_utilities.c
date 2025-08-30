@@ -23,24 +23,24 @@ dataValue g_bufferPermissionConfiguration; // 缓冲区权限配置
 dataValue g_bufferFlagConfiguration;       // 缓冲区标志配置
 dataValue g_bufferMemoryPointer;           // 缓冲区内存指针
 
-// 函数: dataValueValue 初始化内存池;
+// 函数: dataValueValue g_initialize_memory_pool;
 // 系统初始化函数180941590
-dataValue 初始化内存池;
+dataValue g_initialize_memory_pool;
 dataValue g_memoryPoolBaseAddress;            // 内存池基地址
 dataValue g_memoryPoolSize;                   // 内存池大小
 dataValue g_memoryPoolAlignment;              // 内存池对齐
 dataValue g_memoryPoolFlags;                  // 内存池标志
 
-// 函数: dataValueValue 设置内存管理器;
-dataValue 设置内存管理器;
+// 函数: dataValueValue g_setup_memory_manager;
+dataValue g_setup_memory_manager;
 dataValue g_memoryManagerControlFlags;        // 内存管理器控制标志
 dataValue g_memoryManagerStatus;              // 内存管理器状态
 dataValue g_memoryManagerConfiguration;       // 内存管理器配置
 dataValue g_memoryManagerHandle;              // 内存管理器句柄
 dataValue g_isMemoryPoolInitialized;          // 内存池初始化标志
 
-// 函数: dataValueValue 创建内存分配器;
-dataValue 创建内存分配器;
+// 函数: dataValueValue g_create_memory_allocator;
+dataValue g_create_memory_allocator;
 dataValue g_dataStructureRootNode;            // 数据结构根节点
 dataValue g_dataStructureNextNode;            // 数据结构下一节点
 dataValue g_dataStructurePreviousNode;        // 数据结构前一节点
@@ -80300,8 +80300,8 @@ void InitializeResourcePool(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void 初始化内存池(void)
-void 初始化内存池(void)
+// 函数: void g_initialize_memory_pool(void)
+void g_initialize_memory_pool(void)
 
 {
   _renderSystemVar5320 = &threadLocalStorageCleanup;
@@ -80313,8 +80313,8 @@ void 初始化内存池(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void 设置内存管理器(void)
-void 设置内存管理器(void)
+// 函数: void g_setup_memory_manager(void)
+void g_setup_memory_manager(void)
 
 {
   _memoryPoolBaseAddr = &threadLocalStorageCleanup;
@@ -80326,8 +80326,8 @@ void 设置内存管理器(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void 创建内存分配器(void)
-void 创建内存分配器(void)
+// 函数: void g_create_memory_allocator(void)
+void g_create_memory_allocator(void)
 
 {
   _g_bufferManagerControlFlags = &threadLocalStorageCleanup;
