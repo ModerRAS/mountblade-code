@@ -25242,8 +25242,8 @@ LAB_180054912:
             system_call_service(&psystem_stack_uint_158,system_init_temp);
             system_ptr_pool = (system_uint64_t *)(psystem_stack_uint_150 + system_stack_uint_148);
             *system_ptr_pool = e656e6563732f;
-            *(system_uint32_t *)(system_ptr_pool + 1) = 0x6e656373;
-            *(system_uint16_t *)((longlong)system_ptr_pool + ) = 0x65;
+            *(system_uint32_t *)(system_ptr_pool + 1) = SYSTEM_INIT_STRING_SUFFIX_S;
+            *(system_uint16_t *)((longlong)system_ptr_pool + ) = SYSTEM_INIT_STRING_SUFFIX_E;
             system_module_data_pointer = &g_system_initialized;
             if (psystem_stack_uint_150 != (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
               system_module_data_pointer = psystem_stack_uint_150;
