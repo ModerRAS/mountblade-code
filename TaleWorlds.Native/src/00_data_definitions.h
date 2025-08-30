@@ -3607,7 +3607,7 @@ void WotsMainNativeSDLL(unsigned long long handle_param)
   return;
 }
   system_status_flag_3 = SYSTEM_ZERO_VALUE;
-  buffer_allocation_result = system_execution_function(system_global_data_pointer,THREAD_STACK_SIZE,8,SYSTEM_FUNCTION_PARAM_DEFAULT);
+  buffer_allocation_result = system_execution_function(system_global_data_pointer,THREAD_STACK_SIZE,SYSTEM_BUFFER_SIZE_BYTE,SYSTEM_FUNCTION_PARAM_DEFAULT);
   system_global_data_pointer = create_event_handle_param(buffer_allocation_result);
   create_thread_context(&thread_stack_ptr,handle_param);
   buffer_allocation_result = allocate_thread_stack(&thread_stack_ptr,&g_threadString1);
@@ -14562,3 +14562,26 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_FLOAT_THREAD_OPERATION_FLAG_PRIMARY 1.0          // 线程操作标志主
 #define SYSTEM_FLOAT_THREAD_OPERATION_FLAG_SECONDARY 1.0        // 线程操作标志次
 #define SYSTEM_FLOAT_THREAD_OPERATION_FLAG_TERTIARY 1.0         // 线程操作标志第三
+
+// 新增系统操作常量 - 美化硬编码整数（2025年8月30日最终批次续）
+// 简化实现：仅将常见的硬编码整数替换为语义化常量
+// 原本实现：完全重构所有整数硬编码值体系，建立统一的整数命名规范
+
+// 系统线程管理常量
+#define SYSTEM_THREAD_MANAGE_FLAG_SINGLE 1                     // 单线程管理标志
+#define SYSTEM_THREAD_MANAGE_FLAG_DUAL 2                       // 双线程管理标志
+#define SYSTEM_THREAD_MANAGE_FLAG_TRIPLE 3                      // 三线程管理标志
+
+// 系统缓冲区大小常量
+#define SYSTEM_BUFFER_SIZE_BYTE 8                               // 字节大小常量
+#define SYSTEM_BUFFER_SIZE_WORD 4                               // 字大小常量
+
+// 系统网络常量
+#define SYSTEM_NETWORK_PARAM_SIZE 10                            // 网络参数大小
+
+// 系统偏移量常量
+#define SYSTEM_OFFSET_ZERO 0                                    // 零偏移量
+
+// 系统函数调用参数常量
+#define SYSTEM_FUNCTION_PARAM_SINGLE 1                         // 单参数函数调用
+#define SYSTEM_FUNCTION_PARAM_TRIPLE 3                          // 三参数函数调用
