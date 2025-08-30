@@ -34794,9 +34794,9 @@ uint64_t network_socket_handle(int64_t network_socket_handle, uint32_t *network_
           } while (network_operation_status_code < network_operation_status_code);
 uint64_t network_socket_handle(uint64_t *network_socket_handle, uint64_t network_buffer_ptr)
 {
-    int32_t network_stack_int0000000000000030;
+    int32_t network_stack_pointer_secondary;
   network_operation_status_code = *(int32_t *)(network_socket_context + SESSION_CONFIG_SIZE);
-  network_stack_int0000000000000030 = network_operation_status_code;
+  network_stack_pointer_secondary = network_operation_status_code;
   network_packet_size_temporary = (**(code **)*network_socket_handle)(network_socket_handle, network_buffer_ptr,NETWORK_PARAM_SIZE_4);
         network_packet_size_temporary = network_socket_handle();
       } while (network_operation_status_code < network_operation_status_code);
@@ -35781,7 +35781,7 @@ uint64_t * network_socket_handle(void)
       network_operation_status_code = network_operation_status_code + NETWORK_ERROR_INVALID_OFFSET) {
     network_signal_strength_primary = (float)NetworkThreadManager0(network_socket_context + CONNECTION_TIMEOUT_OFFSET);
   if ((NETWORK_SOCKET_STATUS_OFFSET < *(uint32_t *)(network_socket_context + NETWORK_PACKET_HEADER_SIZE)) &&
-     (isConnected9 = *(uint32_t *)(network_socket_context[NETWORK_OPERATION_SUCCESS] + SESSION_CONFIG_SIZE) == network_timeout_value, network_timeout_value = network_socket_context, isConnected9)) {
+     (network_is_connected_ternary = *(uint32_t *)(network_socket_context[NETWORK_OPERATION_SUCCESS] + SESSION_CONFIG_SIZE) == network_timeout_value, network_timeout_value = network_socket_context, network_is_connected_ternary)) {
     return (ulonglong)network_timeout_value;
   network_configuration_varureTimeout(network_signal_strength_primary, network_socket_context + -9);
   network_buffer_size_var = network_configuration_verifySecurity(network_buffer_ptr, network_validation_temp_buffer, NETWORK_OPERATION_SUCCESS, NETWORK_SECURITY_VERIFY_MRAP);
