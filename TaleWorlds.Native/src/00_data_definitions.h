@@ -281,7 +281,6 @@
 // 原本实现：完全重构所有硬编码值体系
 #define SYSTEM_FLOAT_MAX_DOUBLE_VALUE 1.8446744e+19    // 最大双精度浮点数
 #define SYSTEM_FLOAT_MAX_VALUE 3.4028235e+38           // 最大浮点数
-#define SYSTEM_FLOAT_CONVERSION_FACTOR_0_003921569 0.003921569 // 转换因子
 #define SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT 0.003921569 // 字节转浮点数转换因子（0.003921569 = 1/255）
 
 // 颜色处理权重常量定义（2025年8月30日最终批次美化）
@@ -6368,10 +6367,10 @@ goto section_processing_jump_label_38;
     system_thread_priority_level = mutex_type;
     system_handle_paramr_process_parameters(system_initialization_result0,&system_maximum_stack_size,handle_param,&system_stack_unsigned_int_parameter_18);
 code_section_14f5:
-    *system_thread_operation_flags = (float)system_maximum_stack_size_byte2_ * SYSTEM_FLOAT_CONVERSION_FACTOR_0_003921569;
+    *system_thread_operation_flags = (float)system_maximum_stack_size_byte2_ * SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT;
     system_byte_check_result = (byte)system_maximum_stack_size;
 SYSTEM_LABEL_THREAD_OP_FLOAT_START:
-    system_float_variable = SYSTEM_FLOAT_CONVERSION_FACTOR_0_003921569;
+    system_float_variable = SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT;
     system_buffer_allocation_result = (ushort)system_maximum_stack_size_byte1_;
     system_buffer_allocation_result = (ushort)system_byte_check_result;
     system_buffer_allocation_result = (ushort)system_maximum_stack_size_byte3_;
@@ -6466,8 +6465,8 @@ code_section_1ade:
   case 0x28:
     system_thread_priority_level = mutex_type;
     system_handle_paramr_006(system_initialization_result0,&system_maximum_stack_size,handle_param,&system_stack_unsigned_int_parameter_18);
-    system_float_variable = SYSTEM_FLOAT_CONVERSION_FACTOR_0_003921569;
-    *system_thread_operation_flags = (float)(byte)system_maximum_stack_size * SYSTEM_FLOAT_CONVERSION_FACTOR_0_003921569;
+    system_float_variable = SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT;
+    *system_thread_operation_flags = (float)(byte)system_maximum_stack_size * SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT;
     system_buffer_allocation_result = (uint)system_maximum_stack_size_byte1_;
     system_buffer_allocation_result = (ushort)system_maximum_stack_size_byte2_;
     goto code_section_data_validation;
@@ -6475,8 +6474,8 @@ code_section_1ade:
     system_thread_priority_level = mutex_type;
     system_handle_paramr_006(system_initialization_result0,&system_maximum_stack_size,handle_param,&system_stack_unsigned_int_parameter_18);
 SYSTEM_LABEL_THREAD_PRIORITY_PROCESSING:
-    system_float_variable = SYSTEM_FLOAT_CONVERSION_FACTOR_0_003921569;
-    *system_thread_operation_flags = (float)system_maximum_stack_size_byte2_ * SYSTEM_FLOAT_CONVERSION_FACTOR_0_003921569;
+    system_float_variable = SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT;
+    *system_thread_operation_flags = (float)system_maximum_stack_size_byte2_ * SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT;
     system_buffer_allocation_result = (uint)((ulong long)system_maximum_stack_size >> 8) & 0xff;
     system_buffer_allocation_result = (ushort)(byte)system_maximum_stack_size;
 SYSTEM_LABEL_BUFFER_CONVERSION_START:
@@ -14537,8 +14536,8 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_OFFSET_FUNCTION_CALL_98 0x98                      // 函数调用98偏移量
 #define SYSTEM_OFFSET_FUNCTION_CALL_A8 0xa8                      // 函数调用A8偏移量
 #define SYSTEM_OFFSET_FREE_PARAMETER_C0 0xc0                     // 释放参数C0偏移量
-#define SYSTEM_OFFSET_BIT_MASK_FF00 0xffffff00                   // 位掩码FF00偏移量
-#define SYSTEM_OFFSET_GLOBAL_DATA_1626 0x1626                   // 全局数据偏移量1626
+#define SYSTEM_OFFSET_BIT_MASK_ADDRESS_ALIGN 0xffffff00                   // 地址对齐位掩码偏移量
+#define SYSTEM_OFFSET_GLOBAL_DATA_MATRIX_TRANSFORM 0x1626                   // 全局数据矩阵变换偏移量
 #define SYSTEM_OFFSET_GLOBAL_DATA_138 0x138                      // 全局数据偏移量138
 #define SYSTEM_OFFSET_INITIALIZATION_F18 0xf18                   // 初始化F18偏移量
 #define SYSTEM_OFFSET_INITIALIZATION_12D8 0x12d8                  // 初始化12D8偏移量
