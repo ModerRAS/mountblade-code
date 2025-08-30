@@ -823,7 +823,7 @@ void InitializeSystemCore(void)
     puVar7 = puStackX_10;
   }
   puVar7[6] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_1;
-  puVar7[7] = SYSTEM_INIT_FLAG_ACTIVEe4b0d63a6ad1d8f;
+  puVar7[7] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_2;
   puVar7[8] = &g_memory_allocator;
   puVar7[9] = 0;
   puVar7[10] = uStackX_18;
@@ -7919,7 +7919,7 @@ void InitializeSystemCore(void)
     puVar7 = puStackX_10;
   }
   puVar7[6] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_1;
-  puVar7[7] = SYSTEM_INIT_FLAG_ACTIVEe4b0d63a6ad1d8f;
+  puVar7[7] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_2;
   puVar7[8] = &g_memory_allocator;
   puVar7[9] = 0;
   puVar7[10] = uStackX_18;
@@ -10085,7 +10085,7 @@ void InitializeSystemCore(void)
     puVar7 = puStackX_10;
   }
   puVar7[6] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_1;
-  puVar7[7] = SYSTEM_INIT_FLAG_ACTIVEe4b0d63a6ad1d8f;
+  puVar7[7] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_2;
   puVar7[8] = &g_memory_allocator;
   puVar7[9] = 0;
   puVar7[10] = uStackX_18;
@@ -10619,7 +10619,7 @@ void InitializeSystemCore(void)
     puVar7 = puStackX_10;
   }
   puVar7[6] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_1;
-  puVar7[7] = SYSTEM_INIT_FLAG_ACTIVEe4b0d63a6ad1d8f;
+  puVar7[7] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_2;
   puVar7[8] = &g_memory_allocator;
   puVar7[9] = 0;
   puVar7[10] = uStackX_18;
@@ -12364,7 +12364,7 @@ void InitializeSystemCore(void)
     puVar7 = puStackX_10;
   }
   puVar7[6] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_1;
-  puVar7[7] = SYSTEM_INIT_FLAG_ACTIVEe4b0d63a6ad1d8f;
+  puVar7[7] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_2;
   puVar7[8] = &g_memory_allocator;
   puVar7[9] = 0;
   puVar7[10] = uStackX_18;
@@ -13070,7 +13070,7 @@ void InitializeSystemCore(void)
     puVar7 = puStackX_10;
   }
   puVar7[6] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_1;
-  puVar7[7] = SYSTEM_INIT_FLAG_ACTIVEe4b0d63a6ad1d8f;
+  puVar7[7] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_2;
   puVar7[8] = &g_memory_allocator;
   puVar7[9] = 0;
   puVar7[10] = uStackX_18;
@@ -15196,7 +15196,7 @@ void InitializeSystemCore(void)
     puVar7 = puStackX_10;
   }
   puVar7[6] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_1;
-  puVar7[7] = SYSTEM_INIT_FLAG_ACTIVEe4b0d63a6ad1d8f;
+  puVar7[7] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_2;
   puVar7[8] = &g_memory_allocator;
   puVar7[9] = 0;
   puVar7[10] = uStackX_18;
