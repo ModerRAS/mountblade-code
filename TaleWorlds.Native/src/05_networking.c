@@ -65,6 +65,8 @@
 #define NETWORK_ARRAY_INDEX_3       3
 #define NETWORK_ARRAY_INDEX_4       4
 #define NETWORK_ARRAY_INDEX_5       5
+#define NETWORK_SOCKET_INDEX_3      3
+#define NETWORK_SOCKET_INDEX_7      7
 
 #define NETWORK_HARD_CODED_VALUES
 #define STRUCT_FIELD_BYTE_0    _byte_0_
@@ -7721,7 +7723,7 @@ uint64_t NetworkGetSocketStatus(void)
     error_detail_code = network_socket_context_pointer * NETWORK_BUFFER_SIZE_MEDIUM;
     if (error_detail_code < 4) {
       error_detail_code = NETWORK_DATA_SIZE_4;
-    if (((error_detail_code <= inputRegister) || ((int)network_socket_context_pointer[3] != inputRegister)) || ((int)network_socket_context_pointer[NETWORK_ARRAY_INDEX_4] != -NETWORK_OPERATION_SUCCESS)) {
+    if (((error_detail_code <= inputRegister) || ((int)network_socket_context_pointer[NETWORK_SOCKET_INDEX_3] != inputRegister)) || ((int)network_socket_context_pointer[NETWORK_ARRAY_INDEX_4] != -NETWORK_OPERATION_SUCCESS)) {
     network_operation_status_code = (int)*(uint32_t *)((longlong)network_socket_context_pointer + NETWORK_ERROR_INVALID_OFFSET) >> BIT_SHIFT_MASK;
     if (((int)((*(uint32_t *)((longlong)network_socket_context_pointer + NETWORK_ERROR_INVALID_OFFSET) ^ network_operation_status_code) - network_operation_status_code) < error_detail_code) &&
        (network_buffer_size_var = ProcessNetworkData(network_socket_context_pointer + NETWORK_BUFFER_SIZE_MEDIUM, error_detail_code), (int)network_buffer_size_var != NETWORK_OPERATION_FAILURE)) {
