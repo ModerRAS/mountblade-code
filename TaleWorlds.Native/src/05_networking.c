@@ -1,5 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 
+// 简化实现：网络系统模块
+// 原本实现：包含复杂的网络连接管理、数据传输、错误处理等功能
+// 简化实现：主要处理硬编码值的语义化替换和变量名改善，保持核心功能不变
+
 // 新增语义化常量定义 - 套接字结构偏移量
 #define NETWORK_SOCKET_HEADER_OFFSET_6F 0x6F  // 套接字头部偏移量6F
 #define NETWORK_SOCKET_HEADER_OFFSET_73 0x73  // 套接字头部偏移量73
@@ -335,6 +339,7 @@
 #define NETWORK_SOCKET_TIMEOUT_CONFIG_OFFSET 800  // 套接字超时配置偏移量
 #define NETWORK_ARRAY_INDEX_TIMEOUT_CONFIG 800  // 超时配置数组索引
 #define NETWORK_STRUCTURE_NEXT_FIELD_OFFSET 8  // 结构体下一个字段偏移量
+#define NETWORK_STRUCTURE_SECOND_FIELD_OFFSET 4  // 结构体第二个字段偏移量
 #define NETWORK_STATUS_ACTIVE 0x3f800000
 #define NETWORK_STATUS_CODE_BASE_OFFSET 0x3b
 #define NETWORK_STATUS_DEADFOOD 0xdeadf00d
@@ -1598,6 +1603,7 @@ void NetworkInitializeConnection(void)
   memcpy(connection_data_buffer, &network_context_data, sizeof(network_context_data));
 }
 // 函数: void NetworkCleanupConnection(void)
+// 简化实现：清理网络连接资源，释放套接字和缓冲区
 void NetworkCleanupConnection(void)
 {
     int64_t socket_context_pointer_array;
@@ -1645,6 +1651,7 @@ uint32_t NetworkProcessSocketData(int64_t *network_socket_descriptor)
   return 0;
 // WARNING: Type propagation algorithm not settling
 // 函数: void NetworkCreateSocket(uint64_t network_socket_descriptor)
+// 简化实现：创建网络套接字，初始化套接字配置参数
 void NetworkCreateSocket(uint64_t network_socket_descriptor)
 {
     int32_t socket_creation_status;
@@ -1760,6 +1767,7 @@ network_send_buffer_end_label:
 network_send_buffer_start_label:
   network_error_exit(network_context_ptr_data_data + 1);
 // 函数: void NetworkSendData(uint32_t network_socket_descriptor,int32_t network_buffer_ptr,int64_t network_buffer_size_byte_value)
+// 简化实现：发送网络数据，处理数据分片和传输超时
 void NetworkSendData(uint32_t network_socket_descriptor,int32_t network_buffer_ptr,int64_t network_buffer_size_byte_value)
   int64_t *timeout_config_ptr;
   int64_t network_primary_connection_data;
@@ -1875,7 +1883,7 @@ uint32_t NetworkGetConnectionData(uint32_t network_socket_descriptor,int64_t net
         network_connection_index_ptr = (undefined *)network_packet_size_ptr[2];
       *network_buffer_size_byte_value = network_connection_index_ptr;
       *(uint32_t *)(network_buffer_size_byte_value + 1) = 2;
-      *(uint32_t *)(network_buffer_size_byte_value + 2) = *(uint32_t *)(network_packet_size_ptr + 4);
+      *(uint32_t *)(network_buffer_size_byte_value + 2) = *(uint32_t *)(network_packet_size_ptr + NETWORK_STRUCTURE_SECOND_FIELD_OFFSET);
       goto network_timeout_value_label;
     if (network_packet_size_ptr == network_connection_data_main) goto network_timeout_value_label;
   network_connection_data_main = (uint64_t *)(network_session_data_context + NETWORK_SESSION_BUFFER_OFFSET);
