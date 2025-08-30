@@ -99,9 +99,9 @@
 #define SYSTEM_INIT_MAGIC_COOKIE_NETWORK_2      SYSTEM_INIT_MAGIC_COOKIE_NETWORK_2 // 网络系统魔法cookie 2
 #define SYSTEM_INIT_MAGIC_COOKIE_NETWORK_3      SYSTEM_INIT_MAGIC_COOKIE_NETWORK_3 // 网络系统魔法cookie 3
 #define SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_1       SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_1 // 系统魔法cookie 1
-#define SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_2       0xfab48faa65382fa5 // 系统魔法cookie 2
-#define SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_3       0xc160408bde99e59f // 系统魔法cookie 3
-#define SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1     0xdcfdc333a769ec93 // 资源系统魔法cookie 1
+#define SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_2       SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_2 // 系统魔法cookie 2
+#define SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_3       SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_3 // 系统魔法cookie 3
+#define SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1     SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1 // 资源系统魔法cookie 1
 #define SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_2     0xb97f048d2153e1b0 // 资源系统魔法cookie 2
 #define SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_3     0x9c552acd3ed5548d // 资源系统魔法cookie 3
 #define SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_4     0xa9191d34ad910696 // 资源系统魔法cookie 4
@@ -1492,7 +1492,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE3330a43fcdb3653;
-  system_pointer_var_7[7] = 0xdcfdc333a769ec93;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 1;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -1842,7 +1842,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE49bafe9b77ddd3c;
-  system_pointer_var_7[7] = 0xc160408bde99e59f;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_3;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 0;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -1892,7 +1892,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE5425dc186a5d575;
-  system_pointer_var_7[7] = 0xfab48faa65382fa5;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_2;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 0;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -2224,7 +2224,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE3330a43fcdb3653;
-  system_pointer_var_7[7] = 0xdcfdc333a769ec93;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 1;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -2574,7 +2574,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE5425dc186a5d575;
-  system_pointer_var_7[7] = 0xfab48faa65382fa5;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_2;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 0;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -2624,7 +2624,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE3330a43fcdb3653;
-  system_pointer_var_7[7] = 0xdcfdc333a769ec93;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 1;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -2974,7 +2974,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE3330a43fcdb3653;
-  system_pointer_var_7[7] = 0xdcfdc333a769ec93;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 1;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -3374,7 +3374,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE5425dc186a5d575;
-  system_pointer_var_7[7] = 0xfab48faa65382fa5;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_2;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 0;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -3424,7 +3424,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE3330a43fcdb3653;
-  system_pointer_var_7[7] = 0xdcfdc333a769ec93;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 1;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -4008,7 +4008,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE3330a43fcdb3653;
-  system_pointer_var_7[7] = 0xdcfdc333a769ec93;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 1;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -4382,7 +4382,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE3330a43fcdb3653;
-  system_pointer_var_7[7] = 0xdcfdc333a769ec93;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 1;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -4984,7 +4984,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE3330a43fcdb3653;
-  system_pointer_var_7[7] = 0xdcfdc333a769ec93;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 1;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -5334,7 +5334,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE3330a43fcdb3653;
-  system_pointer_var_7[7] = 0xdcfdc333a769ec93;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 1;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -5741,7 +5741,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE5425dc186a5d575;
-  system_pointer_var_7[7] = 0xfab48faa65382fa5;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_2;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 0;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -5791,7 +5791,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE49bafe9b77ddd3c;
-  system_pointer_var_7[7] = 0xc160408bde99e59f;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_3;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 0;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -5941,7 +5941,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE3330a43fcdb3653;
-  system_pointer_var_7[7] = 0xdcfdc333a769ec93;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 1;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -6391,7 +6391,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE3330a43fcdb3653;
-  system_pointer_var_7[7] = 0xdcfdc333a769ec93;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 1;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -6741,7 +6741,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE49bafe9b77ddd3c;
-  system_pointer_var_7[7] = 0xc160408bde99e59f;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_3;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 0;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -6791,7 +6791,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE5425dc186a5d575;
-  system_pointer_var_7[7] = 0xfab48faa65382fa5;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_2;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 0;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -6991,7 +6991,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE3330a43fcdb3653;
-  system_pointer_var_7[7] = 0xdcfdc333a769ec93;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 1;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -7421,7 +7421,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE3330a43fcdb3653;
-  system_pointer_var_7[7] = 0xdcfdc333a769ec93;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 1;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -8345,7 +8345,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE5425dc186a5d575;
-  system_pointer_var_7[7] = 0xfab48faa65382fa5;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_2;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 0;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -8611,7 +8611,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE3330a43fcdb3653;
-  system_pointer_var_7[7] = 0xdcfdc333a769ec93;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 1;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -8961,7 +8961,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE3330a43fcdb3653;
-  system_pointer_var_7[7] = 0xdcfdc333a769ec93;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 1;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -9311,7 +9311,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE3330a43fcdb3653;
-  system_pointer_var_7[7] = 0xdcfdc333a769ec93;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 1;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -9661,7 +9661,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE3330a43fcdb3653;
-  system_pointer_var_7[7] = 0xdcfdc333a769ec93;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 1;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -11093,7 +11093,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE3330a43fcdb3653;
-  system_pointer_var_7[7] = 0xdcfdc333a769ec93;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 1;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -11453,7 +11453,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE5425dc186a5d575;
-  system_pointer_var_7[7] = 0xfab48faa65382fa5;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_2;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 0;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -11503,7 +11503,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE3330a43fcdb3653;
-  system_pointer_var_7[7] = 0xdcfdc333a769ec93;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 1;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -11853,7 +11853,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE3330a43fcdb3653;
-  system_pointer_var_7[7] = 0xdcfdc333a769ec93;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 1;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -13596,7 +13596,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE5425dc186a5d575;
-  system_pointer_var_7[7] = 0xfab48faa65382fa5;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_2;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 0;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -13646,7 +13646,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE49bafe9b77ddd3c;
-  system_pointer_var_7[7] = 0xc160408bde99e59f;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_3;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 0;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -13796,7 +13796,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE3330a43fcdb3653;
-  system_pointer_var_7[7] = 0xdcfdc333a769ec93;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 1;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -14772,7 +14772,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_FLAG_ACTIVE3330a43fcdb3653;
-  system_pointer_var_7[7] = 0xdcfdc333a769ec93;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 1;
   system_pointer_var_7[10] = system_function_pointer_18;

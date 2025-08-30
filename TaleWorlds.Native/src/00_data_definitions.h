@@ -14897,3 +14897,13 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_BUFFER_ALLOC_RESULT_0XB0 0xb0                      // 缓冲区分配结果0xB0
 #define SYSTEM_BUFFER_ALLOC_RESULT_0XB4 0xb4                      // 缓冲区分配结果0xB4
 #define SYSTEM_BUFFER_ALLOC_RESULT_0XB5 0xb5                      // 缓冲区分配结果0xB5
+#define SYSTEM_BUFFER_ALLOC_RESULT_0XB8 0xb8                      // 缓冲区分配结果0xB8
+#define SYSTEM_BUFFER_ALLOC_RESULT_0XBC 0xbc                      // 缓冲区分配结果0xBC
+#define SYSTEM_BUFFER_ALLOC_RESULT_0XBD 0xbd                      // 缓冲区分配结果0xBD
+#define SYSTEM_BUFFER_ALLOC_RESULT_0XBE 0xbe                      // 缓冲区分配结果0xBE
+#define SYSTEM_BUFFER_ALLOC_RESULT_0XC0 0xc0                      // 缓冲区分配结果0xC0
+#define SYSTEM_BUFFER_ALLOC_RESULT_0X1D 0x1d                      // 缓冲区分配结果0x1D
+#define SYSTEM_BUFFER_ALLOC_RESULT_0X1E 0x1e                      // 缓冲区分配结果0x1E
+#define SYSTEM_BUFFER_ALLOC_RESULT_0X7C 0x7c                      // 缓冲区分配结果0x7C
+#define SYSTEM_BUFFER_ALLOC_RESULT_0X0D 0x0d                      // 缓冲区分配结果0x0D
+#define SYSTEM_BUFFER_ALLOC_RESULT_0X0E 0x0e                      // 缓冲区分配结果0x0E

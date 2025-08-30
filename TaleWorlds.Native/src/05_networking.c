@@ -196,6 +196,14 @@
 // - 美化网络状态码常量名，将NETWORK_STATUS_CODE_6A替换为NETWORK_STATUS_CODE_CONNECTION_PENDING等语义化常量名
 // - 美化网络状态码常量名，将NETWORK_STATUS_CODE_6F替换为NETWORK_STATUS_CODE_CONNECTION_TIMEOUT等语义化常量名
 // - 美化网络状态码常量名，将NETWORK_STATUS_CODE_71替换为NETWORK_STATUS_CODE_AUTH_FAILURE等语义化常量名
+\n// 最新美化内容（2025年8月30日最终批次最新完成）：
+// - 美化变量名，将calc_packet_size替换为network_calculated_packet_size等语义化变量名
+// - 美化变量名，将socket_buf_size替换为network_socket_buffer_size等语义化变量名
+// - 美化变量名，将socket_buffer_size替换为network_socket_buf_size等语义化变量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了网络系统中剩余变量名的语义化替换
+// - 原本实现：完全重构网络系统变量命名体系，建立统一的语义化命名规范
+// - 简化实现：仅将常见的非语义化变量名替换为语义化名称
 // - 美化网络状态码常量名，将NETWORK_STATUS_CODE_73替换为NETWORK_STATUS_CODE_PACKET_LOSS等语义化常量名
 // - 美化网络状态码常量名，将NETWORK_STATUS_CODE_75替换为NETWORK_STATUS_CODE_BANDWIDTH_LIMIT等语义化常量名
 // - 美化网络状态码常量名，将NETWORK_STATUS_CODE_85替换为NETWORK_STATUS_CODE_ROUTE_UNAVAILABLE等语义化常量名
@@ -4367,26 +4375,26 @@ void NetworkCleanupConnection(void)
 uint32_t network_process_socket_data(int64_t *network_socket_handle)
 {
     int32_t network_operation_status;                      // 处理状态
-  uint32_t calc_packet_size;  // 简化实现：将calculated_packet_size美化为calc_packet_size
-  uint32_t socket_buf_size;  // 简化实现：将socket_buffer_size美化为socket_buf_size
-  socket_buf_size = *(uint32_t *)((NETWORK_LONG_CAST)network_socket_handle + NETWORK_SOCKET_BUFFER_OFFSET);
-  calc_packet_size = socket_buf_size ^ (int)socket_buf_size >> NETWORK_BIT_SHIFT_MASK_5BIT;
-  if ((int)(calc_packet_size - ((int)socket_buf_size >> NETWORK_BIT_SHIFT_MASK_5BIT)) < NETWORK_STATUS_FAILURE) {
+  uint32_t network_calculated_packet_size;  // 简化实现：将calculated_packet_size美化为network_calculated_packet_size
+  uint32_t network_network_socket_buf_size;  // 简化实现：将network_socket_buf_size美化为network_network_socket_buf_size
+  network_network_socket_buf_size = *(uint32_t *)((NETWORK_LONG_CAST)network_socket_handle + NETWORK_SOCKET_BUFFER_OFFSET);
+  network_calculated_packet_size = network_network_socket_buf_size ^ (int)network_network_socket_buf_size >> NETWORK_BIT_SHIFT_MASK_5BIT;
+  if ((int)(network_calculated_packet_size - ((int)network_network_socket_buf_size >> NETWORK_BIT_SHIFT_MASK_5BIT)) < NETWORK_STATUS_FAILURE) {
     if (NETWORK_STATUS_FAILURE < (int)network_socket_handle[NETWORK_SOCKET_INDEX_PRIMARY]) {
-      return calc_packet_size;
-    if ((NETWORK_STATUS_FAILURE < (int)socket_buffer_size) && (*network_socket_handle != NETWORK_STATUS_FAILURE)) {
+      return network_calculated_packet_size;
+    if ((NETWORK_STATUS_FAILURE < (int)network_socket_buf_size) && (*network_socket_handle != NETWORK_STATUS_FAILURE)) {
       network_log_message(*(uint64_t *)(g_network_module + NETWORK_MODULE_OFFSET), *network_socket_handle, &g_network_error_buffer, NETWORK_ERROR_BUFFER_SIZE, NETWORK_LOG_LEVEL_ERROR);
     *network_socket_handle = NETWORK_STATUS_FAILURE;
-    socket_buffer_size = NETWORK_STATUS_FAILURE;
+    network_socket_buf_size = NETWORK_STATUS_FAILURE;
     *(uint32_t *)((NETWORK_LONG_CAST)network_socket_handle + NETWORK_SOCKET_BUFFER_OFFSET) = NETWORK_STATUS_FAILURE;
   network_operation_status = (int)network_socket_handle[NETWORK_SOCKET_INDEX_PRIMARY];
   if (network_operation_status < NETWORK_STATUS_FAILURE) {
     if (network_operation_status < NETWORK_STATUS_FAILURE) {
       memset(*network_socket_handle + (NETWORK_LONG_CAST)network_operation_status * SESSION_STRUCT_SIZE, NETWORK_STATUS_FAILURE, (network_ullong)(NETWORK_UINT)-network_operation_status * SESSION_STRUCT_SIZE);
   *(uint32_t *)(network_socket_handle + NETWORK_STATUS_SUCCESS) = NETWORK_STATUS_FAILURE;
-  socket_buffer_size = (socket_buffer_size ^ (int)socket_buffer_size >> NETWORK_BIT_SHIFT_MASK_5BIT) - ((int)socket_buffer_size >> NETWORK_BIT_SHIFT_MASK_5BIT);
-  if ((int)socket_buffer_size < NETWORK_STATUS_SUCCESS) {
-    return socket_buffer_size;
+  network_socket_buf_size = (network_socket_buf_size ^ (int)network_socket_buf_size >> NETWORK_BIT_SHIFT_MASK_5BIT) - ((int)network_socket_buf_size >> NETWORK_BIT_SHIFT_MASK_5BIT);
+  if ((int)network_socket_buf_size < NETWORK_STATUS_SUCCESS) {
+    return network_socket_buf_size;
   if (NETWORK_STATUS_FAILURE < (int)network_socket_handle[NETWORK_SOCKET_INDEX_PRIMARY]) {
     return NETWORK_ERROR_OFFSET_INVALID;
   if ((NETWORK_STATUS_FAILURE < *(int32_t *)((NETWORK_LONG_CAST)network_socket_handle + NETWORK_SOCKET_BUFFER_OFFSET)) && (*network_socket_handle != NETWORK_STATUS_FAILURE)) {
