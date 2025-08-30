@@ -180,57 +180,57 @@
 #define SYSTEM_STRING_Attachment 0x656d686361747441  // "Attachme" backwards
 
 // 浮点常量定义
-#define SYSTEM_FLOAT_CONSTANT_1 SYSTEM_FLOAT_CONSTANT_1
+#define SYSTEM_FLOAT_CONSTANT_1 1.0f
 
 // 更多字符串常量定义
-#define SYSTEM_STRING_Crash_path SYSTEM_STRING_Crash_path  // "crash/" backwards
-#define SYSTEM_STRING_MODULE_DOM SYSTEM_STRING_MODULE_DOM  // "_MOD_USE" backwards
-#define SYSTEM_STRING_MODULE_DOM_Asterisk SYSTEM_STRING_MODULE_DOM_Asterisk  // "*_MOD_USE" backwards
+#define SYSTEM_STRING_Crash_path 0x68736172632f  // "crash/" backwards
+#define SYSTEM_STRING_MODULE_DOM 0x455355444f4d5f  // "_MOD_USE" backwards
+#define SYSTEM_STRING_MODULE_DOM_Asterisk 0x2a455355444f4d5f  // "*_MOD_USE" backwards
 
 // 内存对齐掩码
-#define SYSTEM_MEMORY_ALIGNMENT_MASK_32 SYSTEM_MEMORY_ALIGNMENT_MASK_32
-#define SYSTEM_MEMORY_ALIGNMENT_MASK_64 SYSTEM_MEMORY_ALIGNMENT_MASK_64
+#define SYSTEM_MEMORY_ALIGNMENT_MASK_32 0x1f
+#define SYSTEM_MEMORY_ALIGNMENT_MASK_64 0x3f
 
 void InitializeGameData(void);
 
 void* g_game_data_structure;
 
-void* g_game_padding_data_1;
+void* g_game_data_reserved_1;
 
 void* g_game_config_data;
 
-void* g_game_padding_data_2;
+void* g_game_data_reserved_2;
 
 void* g_game_state_data;
 
-void* g_game_padding_data_3;
+void* g_game_data_reserved_3;
 
 void* g_game_memory_data;
 
-void* g_game_padding_data_4;
+void* g_game_data_reserved_4;
 
 void* g_game_render_data;
 
-void* g_game_padding_data_5;
+void* g_game_data_reserved_5;
 
 void* g_game_audio_data;
 
-void* g_game_padding_data_6;
+void* g_game_data_reserved_6;
 
 void* g_game_network_data;
 
-void* g_game_padding_data_7;
+void* g_game_data_reserved_7;
 
 void* g_game_input_data;
 // function_ptr InitializeGameEngine;
 
 void* InitializeGameEngine;
 
-void* g_engine_padding_data_1;
+void* g_engine_data_reserved_1;
 
 void* g_engine_config_data;
 
-void* g_engine_padding_data_2;
+void* g_engine_data_reserved_2;
 
 void* g_engine_state_data;
 
@@ -276,7 +276,7 @@ void* g_network_packet;
 
 void* InitializeSubSystemEngine;
 
-void* g_system_padding_data;
+void* g_system_data_reserved;
 
 void* g_system_memory_pool;
 
