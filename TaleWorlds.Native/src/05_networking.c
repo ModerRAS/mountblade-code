@@ -5636,44 +5636,46 @@ network_handle_data_processing_label:
 network_validate_data_processing_label:
   network_encrypt_data(network_encryption_result ^ (NETWORK_ULONG_LONG)network_validation_temp_buf);
 // 函数: void NetworkManageSecurity(int64_t network_socket_handle, int64_t *network_buffer_ptr, uint8_t *network_buffer_size)
+// 简化实现：美化NetworkManageSecurity函数的变量名，提高代码可读性
+// 原本实现：完全重构NetworkManageSecurity函数所有变量命名体系
 void NetworkManageSecurity(int64_t network_socket_handle, int64_t *network_buffer_ptr, uint8_t *network_buffer_size)
   int64_t *network_socket_ctx_array;
   int64_t network_server_addr;
-  uint8_t isEncrypted;
-  undefined *network_stack_cleanup_main_data_buffer;
+  bool is_encrypted;  // 简化实现：将isEncrypted美化为is_encrypted
+  undefined *network_stack_cleanup_buffer;  // 简化实现：将network_stack_cleanup_main_data_buffer美化为network_stack_cleanup_buffer
   uint16_t network_encryption_status_flag;
   int64_t *network_data_ptr_primary;
   uint8_t network_validation_temp_buf [NETWORK_BUFFER_SIZE_EXTRA_LARGE];
   if ((*(uint32_t *)(network_buffer_ptr + NETWORK_DATA_OFFSET_STANDARD) >> NETWORK_OFFSET_SEVEN & NETWORK_STATUS_SUCCESS) == NETWORK_STATUS_FAILURE) {
-    isEncrypted = ~(byte)(*(uint32_t *)(network_socket_handle + NETWORK_VALIDATION_OFFSET) >> NETWORK_STATUS_SUCCESS) & NETWORK_STATUS_SUCCESS;
-    if (isEncrypted != NETWORK_STATUS_FAILURE) {
+    is_encrypted = ~(byte)(*(uint32_t *)(network_socket_handle + NETWORK_VALIDATION_OFFSET) >> NETWORK_STATUS_SUCCESS) & NETWORK_STATUS_SUCCESS;
+    if (is_encrypted != NETWORK_STATUS_FAILURE) {
       network_encryption_status_flag = NETWORK_STATUS_SUCCESS;
       network_stack_temp_cleanup_buffer = &network_stack_seventh_pointer;
       network_data_ptr_pointer_primary = network_buffer_ptr;
-      network_operation_result = NetworkCleanupSocketData(&network_stack_temp_cleanup_buffer, network_socket_handle, network_buffer_ptr);
-      if (network_operation_result != NETWORK_STATUS_FAILURE) goto network_process_data_validation;
-      isEncrypted = (byte)network_encryption_status_flag;
+      network_op_result = NetworkCleanupSocketData(&network_stack_temp_cleanup_buffer, network_socket_handle, network_buffer_ptr);
+      if (network_op_result != NETWORK_STATUS_FAILURE) goto network_process_data_validation;
+      is_encrypted = (byte)network_encryption_status_flag;
       if ((byte)network_encryption_status_flag != NETWORK_STATUS_FAILURE) {
         network_buffer_ptr = (**(code **)(*network_buffer_ptr + NETWORK_VTABLE_OFFSET_PROCESS))(network_buffer_ptr, network_socket_handle + NETWORK_PACKET_DATA_PAYLOAD_OFFSET);
           network_send_raw_data(network_socket_handle + NETWORK_PACKET_DATA_PAYLOAD_OFFSET, network_validation_temp_buf);
         network_socket_ctx_array = (int64_t *)(network_buffer_ptr + CONNECTION_TIMEOUT_OFFSET);
         if (((int64_t *)*network_socket_ctx_array == network_socket_ctx_array) && (*(int64_t **)(network_buffer_ptr + NETWORK_SOCKET_HANDLE_OFFSET) == network_socket_ctx_array)) {
-          for (network_processor_data_array = *(uint64_t **)(network_buffer_ptr + NETWORK_PACKET_DATA_PAYLOAD_OFFSET); network_processor_data_array != (uint64_t *)(network_buffer_ptr + NETWORK_PACKET_DATA_PAYLOAD_OFFSET);
-              network_processor_data_array = (uint64_t *)*network_processor_data_array) {
-            if ((((*(int32_t *)(network_processor_data_array + NETWORK_DATA_OFFSET_STANDARD) != NETWORK_STATUS_FAILURE) || (*(int32_t *)((longlong)network_processor_data_array + SOCKET_FLAG_OFFSET) != NETWORK_STATUS_FAILURE)) ||
-                (*(int32_t *)(network_processor_data_array + NETWORK_PORT_INDEX_OFFSET) != NETWORK_STATUS_FAILURE)) || (*(int32_t *)((longlong)network_processor_data_array + SOCKET_PACKET_LENGTH_OFFSET) != NETWORK_STATUS_FAILURE)) {
+          for (network_proc_data_array = *(uint64_t **)(network_buffer_ptr + NETWORK_PACKET_DATA_PAYLOAD_OFFSET); network_proc_data_array != (uint64_t *)(network_buffer_ptr + NETWORK_PACKET_DATA_PAYLOAD_OFFSET);
+              network_proc_data_array = (uint64_t *)*network_proc_data_array) {
+            if ((((*(int32_t *)(network_proc_data_array + NETWORK_DATA_OFFSET_STANDARD) != NETWORK_STATUS_FAILURE) || (*(int32_t *)((longlong)network_proc_data_array + SOCKET_FLAG_OFFSET) != NETWORK_STATUS_FAILURE)) ||
+                (*(int32_t *)(network_proc_data_array + NETWORK_PORT_INDEX_OFFSET) != NETWORK_STATUS_FAILURE)) || (*(int32_t *)((longlong)network_proc_data_array + SOCKET_PACKET_LENGTH_OFFSET) != NETWORK_STATUS_FAILURE)) {
               network_server_addr = network_parse_address(network_buffer_ptr);
               if (network_server_addr == NETWORK_STATUS_FAILURE) goto network_process_data_validation;
-              if (*(uint32_t *)(network_server_addr + NETWORK_SOCKET_DESCRIPTOR_RESPONSE_OFFSET) < *(uint32_t *)((longlong)network_processor_data_array + NETWORK_PACKET_OFFSET_HEADER)) goto check_data_validation;
+              if (*(uint32_t *)(network_server_addr + NETWORK_SOCKET_DESCRIPTOR_RESPONSE_OFFSET) < *(uint32_t *)((longlong)network_proc_data_array + NETWORK_PACKET_OFFSET_HEADER)) goto check_data_validation;
             }
-            if (network_processor_data_array == (uint64_t *)(network_buffer_ptr + NETWORK_PACKET_DATA_PAYLOAD_OFFSET)) break;
-          isEncrypted = NETWORK_STATUS_SUCCESS;
+            if (network_proc_data_array == (uint64_t *)(network_buffer_ptr + NETWORK_PACKET_DATA_PAYLOAD_OFFSET)) break;
+          is_encrypted = NETWORK_STATUS_SUCCESS;
         else {
 network_check_data_validation_label:
-          isEncrypted = NETWORK_STATUS_FAILURE;
+          is_encrypted = NETWORK_STATUS_FAILURE;
     network_buffer_size = SOCKET_CHECKSUM_OFFSET;
       network_buffer_size = NETWORK_STATUS_FAILURE;
-         (-(NETWORK_UINT)(isEncrypted != NETWORK_STATUS_FAILURE) & SOCKET_CHECKSUM_MASK | *(uint32_t *)(*(int64_t *)(network_socket_handle + NETWORK_SOCKET_DATA_OFFSET) + NETWORK_DATA_OFFSET_STANDARD)) & ~network_buffer_size | NETWORK_STATUS_READY_MASK
+         (-(NETWORK_UINT)(is_encrypted != NETWORK_STATUS_FAILURE) & SOCKET_CHECKSUM_MASK | *(uint32_t *)(*(int64_t *)(network_socket_handle + NETWORK_SOCKET_DATA_OFFSET) + NETWORK_DATA_OFFSET_STANDARD)) & ~network_buffer_size | NETWORK_STATUS_READY_MASK
   *network_buffer_size = (byte)(*(uint32_t *)(network_buffer_ptr + NETWORK_DATA_OFFSET_STANDARD) >> NETWORK_BUFFER_SIZE_LARGE) & NETWORK_STATUS_SUCCESS;
 network_process_data_validation_label:
   network_encrypt_data(network_session_config_size ^ (NETWORK_ULONG_LONG)network_validation_temp_buf);
