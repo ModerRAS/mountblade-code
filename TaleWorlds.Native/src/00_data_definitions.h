@@ -5950,7 +5950,7 @@ long long process_memory_with_thread_operation_flags(unsigned long long handle_p
       *(unsigned int *)(system_initialization_result0 + SYSTEM_CONFIG_BUFFER_SIZE) = SYSTEM_FLOAT_VALUE_INITIALIZED;
     }
     if (*(int *)(reg_rcx + SYSTEM_FUNCTION_OFFSET_REGISTER_A3A) != 0) {
-      buffer_allocation_result = *(unsigned int *)(reg_rcx + 0xa3a);
+      buffer_allocation_result = *(unsigned int *)(reg_rcx + SYSTEM_FUNCTION_OFFSET_REGISTER_A3A);
       pppppsystem_initialization_result7 = reg_rcx + (long long)*(int *)(reg_rcx + 0xa39) + SYSTEM_OFFSET_MODULE_MULTIPLIER + SYSTEM_OFFSET_MODULE_BASE_EXTENDED;
       LOCK();
       *(unsigned int *)pppppsystem_initialization_result7 = SYSTEM_ZERO_VALUE;
