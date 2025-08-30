@@ -1,8 +1,15 @@
 
 
-// 最新美化内容（2025年8月30日最终批次最终完成续续续续续续续续续续续续续续续）：
+// 最新美化内容（2025年8月30日最终批次最终完成续续续续续续续续续续续续续续续续）：
 // - 美化网络连接缓冲区常量名，将NETWORK_CONNECTION_BUFFER_784替换为NETWORK_CONNECTION_BUFFER_SIZE_784等语义化常量名
 // - 美化网络连接缓冲区常量名，将NETWORK_CONNECTION_BUFFER_1128替换为NETWORK_CONNECTION_BUFFER_SIZE_1128等语义化常量名
+// - 美化网络系统变量名，将network_reg_ctx_value替换为network_reg_ctx等语义化变量名
+// - 美化网络系统变量名，将network_thread_ctx_value替换为network_thread_ctx等语义化变量名
+// - 美化网络系统变量名，将network_timeout_value替换为network_timeout等语义化变量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了网络系统中剩余包含_value后缀的变量名的语义化替换
+// - 原本实现：完全重构网络系统变量命名体系，建立统一的语义化命名规范，消除所有冗余后缀
+// - 简化实现：仅将常见的包含_value后缀的变量名替换为简洁的语义化名称，保持代码结构不变
 // - 美化变量名，将network_encryption_xor_global_value替换为g_network_encryption_xor_global等语义化变量名
 // - 美化变量名，将network_encryption_xor_value替换为network_encryption_xor等语义化变量名
 // - 美化变量名，将network_register_temp_value替换为network_register_temp等语义化变量名
@@ -36079,7 +36086,7 @@ void network_socket_handle(uint64_t *network_socket_handle, uint64_t network_buf
           if (NETWORK_STATUS_SUCCESS.NETWORK_STATUS_FAILURE <= network_bandwidth_usage) {
             network_bandwidth_usage = NETWORK_STATUS_SUCCESS.NETWORK_STATUS_FAILURE;
           network_bandwidth_usage = NETWORK_FLOAT_COMPARISON_ZERO;
-        network_processor_data_array[NETWORK_STATUS_FAILURE] = uint16_t)(int)(network_bandwidth_usage * 65535.NETWORK_STATUS_FAILURE);
+        network_processor_data_array[NETWORK_STATUS_FAILURE] = uint16_t)(int)(network_bandwidth_usage * NETWORK_BANDWIDTH_MULTIPLIER_65535.NETWORK_STATUS_FAILURE);
         network_op_status = (**(code **)**(uint64_t **)(network_socket_handle + NETWORK_HEADER_SIZE_DEFAULT))
                           (*(uint64_t **)(network_socket_handle + NETWORK_HEADER_SIZE_DEFAULT), network_processor_data_array, NETWORK_BUFFER_INDEX_CAPACITY);
         network_bandwidth_usage = *pnetwork_signal_strength * NETWORK_STATUS_FAILURE.25;
@@ -36093,7 +36100,7 @@ void network_socket_handle(uint64_t *network_socket_handle, uint64_t network_buf
         if (NETWORK_STATUS_SUCCESS.NETWORK_STATUS_FAILURE <= network_bandwidth_usage) {
           network_bandwidth_usage = NETWORK_STATUS_SUCCESS.NETWORK_STATUS_FAILURE;
         network_bandwidth_usage = NETWORK_FLOAT_COMPARISON_ZERO;
-      socket_options = uint16_t)(int)(network_bandwidth_usage * 65535.NETWORK_STATUS_FAILURE);
+      socket_options = uint16_t)(int)(network_bandwidth_usage * NETWORK_BANDWIDTH_MULTIPLIER_65535.NETWORK_STATUS_FAILURE);
       network_op_status = (**(code **)**(uint64_t **)(network_socket_ctx + NETWORK_HEADER_SIZE_DEFAULT))
                         (*(uint64_t **)(network_socket_ctx + NETWORK_HEADER_SIZE_DEFAULT), &network_global_buffer, NETWORK_BUFFER_INDEX_CAPACITY);
       network_bandwidth_usage = *pnetwork_signal_strength * NETWORK_STATUS_FAILURE.25;
