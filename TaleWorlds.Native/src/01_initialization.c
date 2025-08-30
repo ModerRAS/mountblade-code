@@ -17370,17 +17370,17 @@ uint64_t InitializeThreadLocalStorage(void)
   int *storage_ptr;
 
   thread_local_storage_base = *(longlong *)((longlong)threadLocalStoragePointer + (ulonglong)__tls_index * SYSTEM_INIT_PARAM_POINTER_SIZE);
-  *(uint64_t *)(threadLocalStorageBase + SYSTEM_OFFSET_18) = &globalSystemPointerData;
-  *(uint64_t *)(threadLocalStorageBase + SYSTEM_NODE_HEADER_SIZE) = 0;
-  *(uint32_t *)(threadLocalStorageBase + SYSTEM_OBJECT_OFFSET_28) = 0;
-  *(uint64_t *)(threadLocalStorageBase + SYSTEM_OFFSET_18) = &resourcePoolPointer;
-  *(uint64_t *)(threadLocalStorageBase + SYSTEM_THREAD_LOCAL_STORAGE_OFFSET_30) = 0;
-  *(uint64_t *)(threadLocalStorageBase + SYSTEM_NODE_HEADER_SIZE) = 0;
-  *(uint32_t *)(threadLocalStorageBase + SYSTEM_OBJECT_OFFSET_28) = 0;
-  threadLocalStorageBase = *(longlong *)((longlong)threadLocalStoragePointer + (ulonglong)__tls_index * SYSTEM_INIT_PARAM_POINTER_SIZE);
-  storage_ptr = *(int **)(threadLocalStorageBase + SYSTEM_THREAD_LOCAL_STORAGE_OFFSET_50);
+  *(uint64_t *)(thread_local_storage_base + SYSTEM_OFFSET_18) = &globalSystemPointerData;
+  *(uint64_t *)(thread_local_storage_base + SYSTEM_NODE_HEADER_SIZE) = 0;
+  *(uint32_t *)(thread_local_storage_base + SYSTEM_OBJECT_OFFSET_28) = 0;
+  *(uint64_t *)(thread_local_storage_base + SYSTEM_OFFSET_18) = &resourcePoolPointer;
+  *(uint64_t *)(thread_local_storage_base + SYSTEM_THREAD_LOCAL_STORAGE_OFFSET_30) = 0;
+  *(uint64_t *)(thread_local_storage_base + SYSTEM_NODE_HEADER_SIZE) = 0;
+  *(uint32_t *)(thread_local_storage_base + SYSTEM_OBJECT_OFFSET_28) = 0;
+  thread_local_storage_base = *(longlong *)((longlong)threadLocalStoragePointer + (ulonglong)__tls_index * SYSTEM_INIT_PARAM_POINTER_SIZE);
+  storage_ptr = *(int **)(thread_local_storage_base + SYSTEM_THREAD_LOCAL_STORAGE_OFFSET_50);
   if (storage_ptr == (int *)SYSTEM_NULL_POINTER) {
-    storage_ptr = (int *)(threadLocalStorageBase + SYSTEM_OBJECT_OFFSET_60);
+    storage_ptr = (int *)(thread_local_storage_base + SYSTEM_OBJECT_OFFSET_60);
   }
   else {
     if (*storage_ptr != SYSTEM_OFFSET_1E) goto INIT_LABEL_CHECK_STORAGE_VALUE;
@@ -17389,10 +17389,10 @@ uint64_t InitializeThreadLocalStorage(void)
     if (storage_ptr == (int *)SYSTEM_NULL_POINTER) {
       return SYSTEM_OFFSET_Ffffffff;
     }
-    *(uint64_t *)(storage_ptr + SYSTEM_STORAGE_PTR_OFFSET_DATA) = *(uint64_t *)(threadLocalStorageBase + SYSTEM_THREAD_LOCAL_STORAGE_OFFSET_50);
+    *(uint64_t *)(storage_ptr + SYSTEM_STORAGE_PTR_OFFSET_DATA) = *(uint64_t *)(thread_local_storage_base + SYSTEM_THREAD_LOCAL_STORAGE_OFFSET_50);
   }
   *storage_ptr = 0;
-  *(int **)(threadLocalStorageBase + SYSTEM_THREAD_LOCAL_STORAGE_OFFSET_50) = storage_ptr;
+  *(int **)(thread_local_storage_base + SYSTEM_THREAD_LOCAL_STORAGE_OFFSET_50) = storage_ptr;
 INIT_LABEL_CHECK_STORAGE_VALUE:
   *(code **)(storage_ptr + (longlong)*storage_ptr * 2 + SYSTEM_STORAGE_PTR_OFFSET_NEXT) = InitializeErrorHandler;
   *storage_ptr = *storage_ptr + 1;
