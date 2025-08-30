@@ -4467,7 +4467,7 @@ void NetworkSendToBuffer(int64_t *network_socket_handle, uint32_t network_buffer
 network_authenticate_client_label:
     network_operation_status_code = EncryptNetworkData(network_buffer_size_var, network_encryption_arrayay);
     if ((network_operation_status_code == NETWORK_OPERATION_STATUS_FAILURE) && (network_operation_status_code = EncryptNetworkData(network_encryption_arrayay, &connection_handle_tertiary), network_operation_status_code == NETWORK_OPERATION_STATUS_FAILURE)) {
-      network_operation_status_code = HandleNetworkAuthentication(connection_handle_tertiary, &network_global_auth_data_primary, (longlong)network_socket_handle + SESSION_STRUCT_SIZE, network_socket_handle + 3, 
+      network_operation_status_code = HandleNetworkAuthentication(connection_handle_tertiary, &network_global_auth_data_primary, (longlong)network_socket_handle + SESSION_STRUCT_SIZE, network_socket_handle + NETWORK_SOCKET_HANDLE_OFFSET_AUTH, 
                             (longlong)network_socket_handle + NETWORK_ERROR_INVALID_OFFSET);
       if (((network_operation_status_code == 3) ||
           (((network_operation_status_code = ReceiveNetworkPacket(&connection_handle_tertiary, (longlong)network_socket_handle + SESSION_STRUCT_SIZE), network_operation_status_code == NETWORK_OPERATION_STATUS_FAILURE &&
@@ -4931,7 +4931,7 @@ process_status_handling:
     *network_configuration_pointer_primary[NETWORK_OPERATION_STATUS_FAILURE] = &g_network_connection_processor_config;
     *(uint32_t *)(network_configuration_pointer_primary[NETWORK_OPERATION_STATUS_FAILURE] + NETWORK_OPERATION_SUCCESS) = NETWORK_NETWORK_ENCRYPTION_OFFSET;
     *(int32_t *)(network_configuration_pointer_primary[NETWORK_OPERATION_STATUS_FAILURE] + NETWORK_BUFFER_CAPACITY_MEDIUM) = (int)network_socket_handle;
-    memcpy(network_configuration_pointer_primary[NETWORK_OPERATION_STATUS_FAILURE] + 5, network_buffer_pointer, (longlong)(network_operation_status_code + NETWORK_OPERATION_SUCCESS));
+    memcpy(network_configuration_pointer_primary[NETWORK_OPERATION_STATUS_FAILURE] + NETWORK_CONFIG_DATA_OFFSET_5, network_buffer_pointer, (longlong)(network_operation_status_code + NETWORK_OPERATION_SUCCESS));
 network_handle_error_code_label:
   network_exit_on_error(&network_socket_handle_third);
 // 函数: void NetworkGetSocketTimeout(uint64_t network_socket_handle, int64_t network_buffer_pointer, uint32_t network_buffer_size_var)
@@ -36957,7 +36957,7 @@ uint64_t network_decrypt_data_three(int64_t network_socket_handle, uint64_t *net
   if (((int)network_packet_size_temporary == NETWORK_OPERATION_STATUS_FAILURE) && (network_packet_size_temporary = networkReceiveProtocolMessage(network_buffer_pointer, network_validation_temporary_bufferfer, NETWORK_OPERATION_STATUS_FAILURE, network_timeout_value, NETWORK_OPERATION_STATUS_FAILURE), (int)network_packet_size_temporary == NETWORK_OPERATION_STATUS_FAILURE))
          ((network_connection_parameter == '\NETWORK_OPERATION_STATUS_FAILURE' || (network_packet_size_temporary = networkGenerateKeyPair1(network_socket_handle + NETWORK_SOCKET_HEADER_OFFSET, network_buffer_pointer), (int)network_packet_size_temporary == NETWORK_OPERATION_STATUS_FAILURE)))) {
         networkTerminateConnection(network_buffer_pointer, network_validation_temporary_bufferfer);
-uint64_t networkDecryptData4(void)
+uint64_t network_decrypt_data_four(void)
   network_packet_size_temporary = networkReceiveProtocolMessage();
       network_operation_status_code = network_validate_connectionState(*network_socket_context, network_socket_context + MODULE_STATUS_OFFSET);
          ((network_config_parameter_pointer == '\NETWORK_OPERATION_STATUS_FAILURE' || (network_packet_size_temporary = networkGenerateKeyPair1(network_socket_context + NETWORK_SOCKET_HEADER_OFFSET), (int)network_packet_size_temporary == NETWORK_OPERATION_STATUS_FAILURE)))
