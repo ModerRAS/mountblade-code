@@ -19903,14 +19903,14 @@ void initialize_system_module_thirty_one(uint64_t handleIdentifier,uint64_t reso
       system_temp_double_value = *(double *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_B8 + system_counter_temp);
       system_temp_double_value = (double)*(uint *)(system_long_result + SYSTEM_OFFSET_200 + system_counter_temp);
       if (system_temp_double_value != SYSTEM_COMPARISON_ZERO.0) {
-        InitializeSystemModule(system_pointer_temp,&g_global_config_6,&g_global_config_8,system_temp_double_value);
+        InitializeSystemModule(system_pointer_temp,&g_global_config_SENARY,&g_global_config_OCTONARY,system_temp_double_value);
       }
       if (system_temp_double_value != SYSTEM_COMPARISON_ZERO.0) {
-        InitializeSystemModule(system_pointer_temp,&g_global_config_6,&g_global_config_9,system_temp_double_value);
+        InitializeSystemModule(system_pointer_temp,&g_global_config_SENARY,&g_global_config_NONARY,system_temp_double_value);
       }
       system_temp_double_value = *(double *)(system_long_result + SYSTEM_NODE_HEADER_SIZE + system_counter_temp);
       if (system_temp_double_value != SYSTEM_COMPARISON_ZERO.0) {
-        InitializeSystemModule(system_pointer_temp,&g_global_config_6,&g_global_config_10,system_temp_double_value);
+        InitializeSystemModule(system_pointer_temp,&g_global_config_SENARY,&g_global_config_DENARY,system_temp_double_value);
       }
       system_temp_double_value = *(double *)(system_long_result + SYSTEM_OBJECT_OFFSET_28 + system_counter_temp);
       if (system_temp_double_value != SYSTEM_COMPARISON_ZERO.0) {
