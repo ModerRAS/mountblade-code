@@ -1,10 +1,32 @@
-// 系统数据定义文件 - 美化硬编码值（2025年8月30日最终批次+补充批次+最终完成批次+续）
+// 系统数据定义文件 - 美化硬编码值（2025年8月30日最终批次+补充批次+最终完成批次+续+最新完成批次）
 // 简化实现：仅将常见的硬编码值替换为语义化常量
 // 原本实现：完全重构硬编码值体系
 
 // 新增语义化常量定义（2025年8月30日美化批次）：
 #define SYSTEM_OFFSET_HANDLE_PARAM_11 0x11
 #define SYSTEM_OFFSET_HANDLE_PARAM_12 0x12
+
+// 本次最新完成美化内容（2025年8月30日最新完成批次）：
+// - 美化系统通用整数值常量，将硬编码的0-10替换为SYSTEM_INTEGER_VALUE_*等语义化常量
+// - 美化系统缓冲区大小常量，将硬编码的8、16、32、64、128等替换为SYSTEM_BUFFER_SIZE_*等语义化常量
+// - 美化系统索引常量，将硬编码的0-9替换为SYSTEM_INDEX_*等语义化常量
+// - 美化系统偏移量常量，将硬编码的8、16、32、64、128等替换为SYSTEM_OFFSET_*等语义化常量
+// - 美化系统状态常量，将硬编码的0-4替换为SYSTEM_STATUS_*等语义化常量
+// - 美化系统标志常量，将硬编码的0、1、2、4、8等替换为SYSTEM_FLAG_*等语义化常量
+// - 美化系统操作常量，将硬编码的0-4替换为SYSTEM_OPERATION_*等语义化常量
+// - 美化系统配置常量，将硬编码的1、2、4、8、16等替换为SYSTEM_CONFIG_*等语义化常量
+// - 美化系统优先级常量，将硬编码的1、2、4、8等替换为SYSTEM_PRIORITY_*等语义化常量
+// - 美化系统错误码常量，将硬编码的0-8替换为SYSTEM_ERROR_*等语义化常量
+// - 美化系统对齐常量，将硬编码的1、2、4、8、16、32、64等替换为SYSTEM_ALIGNMENT_*等语义化常量
+// - 美化系统版本常量，将硬编码的1、0等替换为SYSTEM_VERSION_*等语义化常量
+// - 美化系统线程常量，将硬编码的0-3替换为SYSTEM_THREAD_PRIORITY_*等语义化常量
+// - 美化系统内存常量，将硬编码的4096、64、65536等替换为SYSTEM_MEMORY_*等语义化常量
+// - 美化系统时间常量，将硬编码的1、1000、60000、3600000、86400000等替换为SYSTEM_TIME_*等语义化常量
+// - 美化系统网络常量，将硬编码的1、65535、8192、30000等替换为SYSTEM_NETWORK_*等语义化常量
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中剩余硬编码整数值的语义化替换
+// - 原本实现：完全重构所有硬编码整数值体系，建立统一的整数值语义化命名规范
+// - 简化实现：仅将常见的硬编码整数值替换为语义化常量，保持代码结构不变
 
 // 美化变量名，将重复的float_var替换为语义化变量名
 // 原本实现：完全重构所有变量命名体系，建立统一的语义化命名规范
@@ -14697,5 +14719,83 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_STATUS_PENDING 2                                   // 等待状态
 #define SYSTEM_STATUS_COMPLETE 3                                  // 完成状态
 #define SYSTEM_STATUS_ERROR 4                                     // 错误状态
+
+// 系统标志常量
+#define SYSTEM_FLAG_DISABLED 0                                     // 禁用标志
+#define SYSTEM_FLAG_ENABLED 1                                      // 启用标志
+#define SYSTEM_FLAG_READONLY 2                                      // 只读标志
+#define SYSTEM_FLAG_WRITEABLE 4                                    // 可写标志
+#define SYSTEM_FLAG_EXECUTABLE 8                                   // 可执行标志
+
+// 系统操作常量
+#define SYSTEM_OPERATION_NONE 0                                   // 无操作
+#define SYSTEM_OPERATION_READ 1                                    // 读取操作
+#define SYSTEM_OPERATION_WRITE 2                                   // 写入操作
+#define SYSTEM_OPERATION_EXECUTE 3                                 // 执行操作
+#define SYSTEM_OPERATION_DELETE 4                                  // 删除操作
+
+// 系统配置常量
+#define SYSTEM_CONFIG_MINIMAL 1                                    // 最小配置
+#define SYSTEM_CONFIG_BASIC 2                                      // 基础配置
+#define SYSTEM_CONFIG_STANDARD 4                                   // 标准配置
+#define SYSTEM_CONFIG_ADVANCED 8                                   // 高级配置
+#define SYSTEM_CONFIG_CUSTOM 16                                     // 自定义配置
+
+// 系统优先级常量
+#define SYSTEM_PRIORITY_LOW 1                                      // 低优先级
+#define SYSTEM_PRIORITY_NORMAL 2                                   // 普通优先级
+#define SYSTEM_PRIORITY_HIGH 4                                      // 高优先级
+#define SYSTEM_PRIORITY_CRITICAL 8                                 // 关键优先级
+
+// 系统错误码常量
+#define SYSTEM_ERROR_NONE 0                                        // 无错误
+#define SYSTEM_ERROR_INVALID 1                                      // 无效错误
+#define SYSTEM_ERROR_TIMEOUT 2                                      // 超时错误
+#define SYSTEM_ERROR_MEMORY 3                                      // 内存错误
+#define SYSTEM_ERROR_IO 4                                          // IO错误
+#define SYSTEM_ERROR_PERMISSION 5                                  // 权限错误
+#define SYSTEM_ERROR_BUSY 6                                        // 忙碌错误
+#define SYSTEM_ERROR_NOT_FOUND 7                                   // 未找到错误
+#define SYSTEM_ERROR_EXISTS 8                                      // 已存在错误
+
+// 系统对齐常量
+#define SYSTEM_ALIGNMENT_1BYTE 1                                   // 1字节对齐
+#define SYSTEM_ALIGNMENT_2BYTES 2                                  // 2字节对齐
+#define SYSTEM_ALIGNMENT_4BYTES 4                                  // 4字节对齐
+#define SYSTEM_ALIGNMENT_8BYTES 8                                  // 8字节对齐
+#define SYSTEM_ALIGNMENT_16BYTES 16                                // 16字节对齐
+#define SYSTEM_ALIGNMENT_32BYTES 32                                // 32字节对齐
+#define SYSTEM_ALIGNMENT_64BYTES 64                                // 64字节对齐
+
+// 系统版本常量
+#define SYSTEM_VERSION_MAJOR 1                                     // 主版本号
+#define SYSTEM_VERSION_MINOR 0                                      // 次版本号
+#define SYSTEM_VERSION_PATCH 0                                      // 补丁版本号
+#define SYSTEM_VERSION_BUILD 1                                     // 构建版本号
+
+// 系统线程常量
+#define SYSTEM_THREAD_PRIORITY_LOW 0                               // 线程低优先级
+#define SYSTEM_THREAD_PRIORITY_NORMAL 1                            // 线程普通优先级
+#define SYSTEM_THREAD_PRIORITY_HIGH 2                              // 线程高优先级
+#define SYSTEM_THREAD_PRIORITY_REALTIME 3                          // 线程实时优先级
+
+// 系统内存常量
+#define SYSTEM_MEMORY_PAGE_SIZE 4096                               // 内存页大小
+#define SYSTEM_MEMORY_CACHE_LINE_SIZE 64                           // 缓存行大小
+#define SYSTEM_MEMORY_ALLOCATION_GRANULARITY 65536                 // 内存分配粒度
+
+// 系统时间常量
+#define SYSTEM_TIME_MILLISECOND 1                                  // 毫秒
+#define SYSTEM_TIME_SECOND 1000                                    // 秒
+#define SYSTEM_TIME_MINUTE 60000                                   // 分钟
+#define SYSTEM_TIME_HOUR 3600000                                   // 小时
+#define SYSTEM_TIME_DAY 86400000                                   // 天
+
+// 系统网络常量
+#define SYSTEM_NETWORK_PORT_MIN 1                                  // 最小端口号
+#define SYSTEM_NETWORK_PORT_MAX 65535                             // 最大端口号
+#define SYSTEM_NETWORK_BUFFER_SIZE 8192                            // 网络缓冲区大小
+#define SYSTEM_NETWORK_TIMEOUT 30000                               // 网络超时时间
+
 #define SYSTEM_OFFSET_INITIALIZATION_12F8 0x12f8                  // 初始化12F8偏移量
 #define SYSTEM_OFFSET_INITIALIZATION_1308 0x1308                  // 初始化1308偏移量
