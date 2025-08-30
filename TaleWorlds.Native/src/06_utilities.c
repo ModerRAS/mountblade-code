@@ -15090,7 +15090,7 @@ void recognizeUtilityPieces(longlong resource_handle_identifier,uint32 *memory_b
                       utility_operation_status = (**(code **)**(uint64 **)(resource_handle_identifier + 8))
                                         (*(uint64 **)(resource_handle_identifier + 8),&utility_stack_resource_buffer,4);
                       if (utility_operation_status == 0) {
-                        utility_stack_resource_buffer = UTILITY_BIT_CONCAT_4_4(utility_stack_resource_buffer._4_4_,resource_buffer[0x6f]);
+                        utility_stack_resource_buffer = UTILITY_BIT_CONCAT_4_4(utility_stack_resource_buffer._4_4_,resource_buffer[UTILITY_OFFSET_RESOURCE_HANDLE]);
                         utility_operation_status = (**(code **)**(uint64 **)(resource_handle_identifier + 8))
                                           (*(uint64 **)(resource_handle_identifier + 8),&utility_stack_resource_buffer,4);
                         if (utility_operation_status == 0) {
@@ -19218,7 +19218,7 @@ ulonglong ProcessIntegrityCheck(longlong resource_handle_identifier,longlong *me
   validation_flag = 0;
   utility_iteration_index = 0;
   iteration_counter = validation_flag;
-  if (0x6f < *(uint *)(resource_buffer + 8)) {
+  if (UTILITY_OFFSET_RESOURCE_HANDLE < *(uint *)(resource_buffer + UTILITY_OFFSET_ERROR_COUNTER)) {
     if (*(int *)(resource_buffer[1] + RESOURCE_HANDLE_OFFSET) == 0) {
       iteration_counter = writeResourceData(*memory_block_size,resource_handle_identifier + UTILITY_FIELD_SIZE_OFFSET,4);
     }
