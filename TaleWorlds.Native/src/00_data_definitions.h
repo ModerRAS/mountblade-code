@@ -5375,7 +5375,7 @@ unsigned long long allocate_system_memory(long long handle,long long *flags,unsi
   long long **pplStack_68;
   long long *plStack_60;
   unsigned char auStack_58 [32];
-  stack_var_ = 线程池默认标志;
+  stack_var_ = THREAD_POOL_DEFAULT_FLAG;
   uint_var_ = 0;
   bVar2 = *(byte *)(mutex_attr + 2);
   if ((mutex_type >> 1 & 1) != 0) {
@@ -5386,7 +5386,7 @@ unsigned long long allocate_system_memory(long long handle,long long *flags,unsi
       (**(code **)(*plStack_80 + 0x38))();
     }
     system_resource_003(plStackX_18,&plStack_78);
-    *(uint *)(plStackX_18 + CONFIG_PATH_BUFFER_SIZE) = *(uint *)(plStackX_18 + CONFIG_PATH_BUFFER_SIZE) | 系统配置缓冲区大小000000;
+    *(uint *)(plStackX_18 + CONFIG_PATH_BUFFER_SIZE) = *(uint *)(plStackX_18 + CONFIG_PATH_BUFFER_SIZE) | SYSTEM_CONFIG_BUFFER_SIZE_000000;
     auStackX_20[0] = *mutex_attr;
     pinit_result = (long long *)(handle + 0x3d8);
     plStack_80 = pinit_result;
@@ -5550,15 +5550,15 @@ long long allocate_system_buffer(unsigned long long handle,long long *flags,long
       global_data_ = system_memory_manager_002(uint_var_);
       ptr_var_ = (unsigned long long *)function_(global_data_,0xf8,8,3);
       system_memory_003(ptr_var_);
-      // 原始名称: unknown_180a1b368
-      *ptr_var_ = &g_句柄管理器地址_180a1b368;
+      // Original name: unknown_180a1b368
+      *ptr_var_ = &g_handle_manager_address_180a1b368;
       system_memory_manager_004(ptr_var_);
       global_data_ = ptr_var_;
       global_data_ = function_();
       ptr_var_ = (unsigned long long *)function_(global_data_,0xb0,8,3);
       system_memory_003(ptr_var_);
-      // 原始名称: unknown_180a1b3f0
-      *ptr_var_ = &g_内存管理器地址_180a1b3f0;
+      // Original name: unknown_180a1b3f0
+      *ptr_var_ = &g_memory_manager_address_180a1b3f0;
       global_data_ = ptr_var_;
       global_data_ = system_memory_manager_005();
       global_data_ = (*global_data_)(&data_180c918c0);
@@ -5880,8 +5880,8 @@ system_finalizer_005(unsigned long long handle,unsigned long long flags,unsigned
   undefined *stack_ptr_;
   long long stack_long_;
   char_ptr_var_ = *(code **)(*global_data_ + 0x70);
-  // 原始名称: unknown_180a02fc8
-      uint_var_ = system_ui_005(&stack_ptr_,&g_UI互斥锁属性地址_180a02fc8,mutex_attr,mutex_type,0,线程池默认标志);
+  // Original name: unknown_180a02fc8
+      uint_var_ = system_ui_005(&stack_ptr_, &g_ui_mutex_property_address_180a02fc8, mutex_attr, mutex_type, 0, THREAD_POOL_DEFAULT_FLAG);
   flags = (*char_ptr_var_)(global_data_,uint_var_,mutex_attr,mutex_type,1);
   stack_ptr_ = &g_threadString2;
   if (stack_long_ != 0) {
@@ -5898,8 +5898,8 @@ system_finalizer_006(unsigned long long handle,unsigned long long flags,unsigned
   undefined *stack_ptr_;
   long long stack_long_;
   char_ptr_var_ = *(code **)(*global_data_ + 0x70);
-  // 原始名称: unknown_180a02fa0
-      uint_var_ = system_ui_005(&stack_ptr_,&g_UI互斥锁类型地址_180a02fa0,mutex_attr,mutex_type,0,线程池默认标志);
+  // Original name: unknown_180a02fa0
+      uint_var_ = system_ui_005(&stack_ptr_, &g_ui_mutex_type_address_180a02fa0, mutex_attr, mutex_type, 0, THREAD_POOL_DEFAULT_FLAG);
   flags = (*char_ptr_var_)(global_data_,uint_var_,mutex_attr,mutex_type,1);
   stack_ptr_ = &g_threadString2;
   if (stack_long_ != 0) {
@@ -5940,8 +5940,8 @@ system_finalizer_007(unsigned long long handle,unsigned long long flags,unsigned
   }
   uint_var_ = function_(global_data_,0xe0,8,3,uint_var_);
   plStackX_10 = alStack_30;
-  // 原始名称: unknown_18045f210
-      stack_ptr_ = &g_栈数据地址_18045f210;
+  // Original name: unknown_18045f210
+      stack_ptr_ = &g_stack_data_address_18045f210;
   stack_ptr_ = &unknown_18045f200;
   pinit_result = (long long *)function_(uint_var_,alStack_30);
   plStackX_18 = pinit_result;
@@ -9022,7 +9022,7 @@ char * function_(unsigned int handle,unsigned long long flags,char *mutex_attr,u
   unsigned long long stack_var_;
   unsigned long long *stack_ptr_;
   ulong long uint_var_;
-  stack_var_ = 线程池默认标志;
+  stack_var_ = THREAD_POOL_DEFAULT_FLAG;
   plStack_120 = param_5;
   stack_long_ = param_6;
   stack_var_ = param_7;
@@ -9342,7 +9342,7 @@ char * function_(unsigned long long handle,unsigned long long flags,unsigned lon
   unsigned long long stack_var_;
   unsigned long long *stack_ptr_;
   unsigned long long *stack_ptr_;
-  stack_var_ = 线程池默认标志;
+  stack_var_ = THREAD_POOL_DEFAULT_FLAG;
   stack_ptr_ = param_7;
   char_ptr_var_ = (char *)0x0;
   stack_ptr_ = mutex_attr;
