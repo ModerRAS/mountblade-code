@@ -314,10 +314,10 @@
 #define SYSTEM_INIT_LABEL_MEMORY_CHECK            system_init_label_loop_exit  // 内存检查标签
 #define SYSTEM_INIT_LABEL_FUNCTION_RESULT_CHECK  system_init_label_loop_entry  // 函数结果检查标签
 #define SYSTEM_INIT_LABEL_CONTINUE_PROCESS       system_init_label_loop_continue  // 继续处理标签
-#define SYSTEM_INIT_LABEL_INITIALIZE_COMPLETE    LAB_180046a90  // 初始化完成标签
-#define SYSTEM_INIT_LABEL_INITIALIZATION_CHECK   LAB_1800469fd  // 初始化检查标签
-#define SYSTEM_INIT_LABEL_LOOP_CONTINUE          LAB_180046c00x10  // 循环继续标签
-#define SYSTEM_INIT_LABEL_LOOP_CONDITION        LAB_180046c5e  // 循环条件标签
+#define SYSTEM_INIT_LABEL_INITIALIZE_COMPLETE    system_init_label_connection_setup  // 初始化完成标签
+#define SYSTEM_INIT_LABEL_INITIALIZATION_CHECK   system_init_label_connection_retry  // 初始化检查标签
+#define SYSTEM_INIT_LABEL_LOOP_CONTINUE          system_init_label_data_prepare  // 循环继续标签
+#define SYSTEM_INIT_LABEL_LOOP_CONDITION        system_init_label_loop_condition  // 循环条件标签
 #define SYSTEM_INIT_LABEL_LOOP_END              LAB_180046c90  // 循环结束标签
 #define SYSTEM_INIT_LABEL_DATA_PROCESS          LAB_180047f2c  // 数据处理标签
 #define SYSTEM_INIT_LABEL_ARRAY_CHECK           LAB_180047f90x10  // 数组检查标签
