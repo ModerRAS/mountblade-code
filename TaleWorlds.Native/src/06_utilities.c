@@ -16,6 +16,7 @@
 // - 将0x7d替换为UTILITY_INTEGRITY_CHECK_OFFSET_7D等完整性检查偏移量常量
 // - 将0x31替换为UTILITY_SIZE_THRESHOLD_31等大小阈值常量
 // - 将0x3f替换为UTILITY_SECURITY_TOKEN_MASK_3F等安全令牌掩码常量
+// - 将0xe/0x19/0xd/0x12等替换为UTILITY_OPERATION_RESULT_INDEX_*等操作结果索引常量
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了工具系统中十六进制常量的语义化替换
 // - 原本实现：完全重构常量定义体系
@@ -23532,14 +23533,14 @@ ulonglong ValidateOperationData2(void)
   uint utility_stack_context_uint_b8;
   
   systemFlagsData = 0;
-  stackContextUIntB8 = 0;
+  utility_stack_context_validation_flags = 0;
   utility_iteration_counter = get_resource_size(*utility_register_context_base,&context_buffer_data);
   if ((int)utility_iteration_counter != 0) {
     return utility_iteration_counter;
   }
   resourceSecurityParam = 0;
-  utility_system_status_code = stackContextUIntB8 & 1 UTILITY_BIT_MASK_1;
-  validation_flag_primary = stackContextUIntB8 >> 1;
+  utility_system_status_code = utility_stack_context_validation_flags & 1 UTILITY_BIT_MASK_1;
+  validation_flag_primary = utility_stack_context_validation_flags >> 1;
   utility_iteration_counter = systemFlagsData;
   if (validation_flag_primary != 0) {
     do {
@@ -23590,9 +23591,9 @@ ulonglong ValidateOperationData2(void)
   }
 LAB_RESOURCE_DATA_VALIDATION:
   if ((int)utility_iteration_counter == 0) {
-    *(uint *)(utility_cpu_context + ERROR_CODE_INVALID_HANDLE) = stackContextUIntB8;
+    *(uint *)(utility_cpu_context + ERROR_CODE_INVALID_HANDLE) = utility_stack_context_validation_flags;
     utility_iteration_counter = STATUS_SUCCESS;
-    if (stackContextUIntB8 < 7) {
+    if (utility_stack_context_validation_flags < 7) {
       utility_iteration_counter = systemFlagsData;
     }
     if ((int)utility_iteration_counter == 0) {
