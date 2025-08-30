@@ -6791,15 +6791,15 @@ unsigned long long initialize_graphics_context(unsigned long long handle_param,u
   }
   if (*(int *)(*(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8) +
               0x48) < global_data_ptr) {
-    system_crypto_004(&data_180d49fd8);
+    system_crypto_004(&system_crypto_buffer);
     if (global_data_ptr == -1) {
       resource_template_ptr = &g_defaultDataTemplate;
-      global_data_ptr = &data_180d49ff8;
-      data_180d49ff8 = 0;
+      global_data_ptr = &resource_data_buffer;
+      resource_data_buffer = 0;
       global_data_ptr = 0;
-      strcpy_s(&data_180d49ff8, SYSTEM_CONFIG_BUFFER_SIZE, &default_resource_string);
+      strcpy_s(&resource_data_buffer, SYSTEM_CONFIG_BUFFER_SIZE, &default_resource_string);
       system_crypto_initializer(system_execution_function);
-      system_crypto_module_initializer(&data_180d49fd8);
+      system_crypto_module_initializer(&system_crypto_buffer);
     }
   }
   (*UNRECOVERED_JUMPTABLE)(global_data_ptr,&data_180d49fe0);
