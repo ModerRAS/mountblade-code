@@ -114,25 +114,25 @@ void InitializeResourceManager;
 // 函数: void InitializeThreadSystem;
 void InitializeThreadSystem;
 void* g_thread_pool;
-void g_task_scheduler;
-void g_memory_cache;
-void g_resource_cache;
-void g_texture_cache;
-void g_shader_cache;
-void g_model_cache;
-void g_audio_cache;
-void g_animation_cache;
-void g_ui_cache;
-void g_script_cache;
-void system_script_validation_callback;
-void system_script_execution_callback;
+void* g_task_scheduler;
+void* g_memory_cache;
+void* g_resource_cache;
+void* g_texture_cache;
+void* g_shader_cache;
+void* g_model_cache;
+void* g_audio_cache;
+void* g_animation_cache;
+void* g_ui_cache;
+void* g_script_cache;
+void* system_script_validation_callback;
+void* system_script_execution_callback;
 // 美化系统配置变量名（2025年8月30日最终批次补充美化）
 undefined system_network_config;              // 网络配置 - 替换system_network_config
 undefined system_graphics_config;             // 图形配置 - 替换system_graphics_config
 undefined system_audio_config;               // 音频配置 - 替换system_audio_config
-void system_config_pointer;
-void system_page_size;
-void system_memory_alignment;
+void* system_config_pointer;
+size_t system_page_size;
+size_t system_memory_alignment;
 void system_data_cache_config;
 undefined system_physics_config;             // 物理配置 - 替换system_physics_config
 void system_cache_address;
@@ -299,7 +299,7 @@ void CreateProcessManager;
 // 函数: void SetupFileSystem;
 void SetupFileSystem;
 void g_resource_pool;
-void g_resource_cache;
+void* g_resource_cache;
 void* g_resource_loader;
 void g_resource_handler;
 void g_resource_index;
