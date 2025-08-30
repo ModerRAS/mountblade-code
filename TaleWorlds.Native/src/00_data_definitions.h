@@ -216,7 +216,7 @@ void* g_stack_data_primary_address = (void*)0x18045f210;
 void* g_stack_data_secondary_address = (void*)0x18045f200;
 
 // 初始化系统配置
-int system_initialize_configuration(void)
+int initialize_system_configuration(void)
 {
   int is_system_enabled = 1;
   int operation_count = 0;
@@ -226,7 +226,7 @@ int system_initialize_configuration(void)
   return (system_init_result != 0) - 1;
 }
 // 初始化核心数据结构
-int initialize_core_system_data_structure(void)
+int initialize_core_data_structure(void)
 {
   long long system_init_result;
   void* system_buffer_ptr = &g_system_data_buffer;
@@ -237,7 +237,7 @@ int initialize_core_system_data_structure(void)
   return (system_init_result != 0) - 1;
 }
 // 初始化网络缓冲区系统
-int initialize_network_buffer_system(void)
+int initialize_network_buffer(void)
 {
   long long system_init_result;
   void* network_buffer_ptr = &g_network_system_data_buffer;
@@ -248,7 +248,7 @@ int initialize_network_buffer_system(void)
   return (system_init_result != 0) - 1;
 }
 // 初始化渲染上下文系统
-int initialize_rendering_context_system(void)
+int initialize_rendering_context(void)
 {
   long long system_init_result;
   void* render_buffer_ptr = &g_render_system_data_buffer;
@@ -363,7 +363,7 @@ int initialize_texture_resource_manager(void)
   system_init_result = system_execute_function(texture_resource_manager_init_function);
   return (system_init_result != 0) - 1;
 }
-int initialize_shader_resource_manager_1(void)
+int initialize_primary_shader_resource_manager(void)
 {
   long long system_init_result;
   unsigned long long str_length;
