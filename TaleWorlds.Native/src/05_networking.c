@@ -24120,13 +24120,13 @@ uint64_t networkExtractProtocolData4(void)
 int64_t networkExtractProtocolData5(int64_t network_socket_descriptor,uint32_t *network_buffer_ptr,char network_buffer_size_byte_value)
   network_timeout_value = *(int64_t *)(network_timeout_value_tenth + NETWORK_ENCRYPTION_OFFSET0);
   if ((*(int32_t *)(network_timeout_value_tenth + 0x37c) != 0) && (*(int32_t *)(network_timeout_value_tenth + 0x360) != 0)) {
-    network_status_code_third = *(int32_t *)(*(int64_t *)(network_timeout_value_tenth + 0x358) +
+    network_status_code_third = *(int32_t *)(*(int64_t *)(network_timeout_value_tenth + NETWORK_CONNECTION_EXTENDED_OFFSET_358) +
                      (int)((network_buffer_size_byte_value ^ network_packet_size_value ^ network_data_ptr ^ network_connection_index_value) & *(int32_t *)(network_timeout_value_tenth + 0x360) - 1U) * 4);
         long_pointer_primary = (int64_t *)((longlong)network_status_code_third * SOCKET_RESPONSE_OFFSET + *(int64_t *)(network_timeout_value_tenth + 0x368));
 int64_t networkExtractProtocolData6(int64_t network_socket_descriptor,uint64_t network_buffer_ptr,char network_buffer_size_byte_value)
   network_timeout_value = *(int64_t *)(network_socket_register_value + NETWORK_ENCRYPTION_OFFSET0);
   if ((*(int32_t *)(network_socket_register_value + 0x37c) != 0) && (*(int32_t *)(network_socket_register_value + 0x360) != 0)) {
-    network_connection_count_value = *(int32_t *)(*(int64_t *)(network_socket_register_value + 0x358) +
+    network_connection_count_value = *(int32_t *)(*(int64_t *)(network_socket_register_value + NETWORK_CONNECTION_EXTENDED_OFFSET_358) +
                           threadStackLong28._4_4_) & *(int32_t *)(network_socket_register_value + 0x360) - 1U) * 4);
         pprimary_connection_info = (int64_t *)((longlong)network_connection_count_value * SOCKET_RESPONSE_OFFSET + *(int64_t *)(network_socket_register_value + 0x368));
 // 函数: void networkExtractProtocolData7(void)

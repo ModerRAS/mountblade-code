@@ -4269,7 +4269,7 @@ void utility_process_memory_allocation(longlong resource_handle_identifier,longl
     allocation_status = allocate_system_memory(*(uint64 *)(resource_buffer + UTILITY_MEMORY_SIZE_OFFSET),*(longlong *)(resource_info_array[UTILITY_ARRAY_INDEX_PRIMARY] + UTILITY_POINTER_SIZE_OFFSET),
                           &utility_allocated_memory_pointer);
     if (allocation_status == UTILITY_NULL_RESULT) {
-      if (UTILITY_NULL_RESULT < memory_block_count) {
+      if (0 < memory_block_count) {
         utility_iteration_counter = UTILITY_NULL_RESULT;
         do {
           memory_block_handle = *(uint64 *)(utility_allocated_memory_pointer + utility_iteration_counter);
@@ -4320,7 +4320,7 @@ void utility_handle_resource_cleanup(void)
     utility_operation_status = allocate_system_memory(*(uint64 *)(utility_register_context_base + UTILITY_MEMORY_SIZE_OFFSET),*(longlong *)(UTILITY_REGISTER_INPUT_VALUE + UTILITY_POINTER_SIZE_OFFSET),
                           &utility_stack_buffer_primary);
     if (utility_operation_status == UTILITY_NULL_RESULT) {
-      if (UTILITY_NULL_RESULT < utility_stack_buffer_count) {
+      if (0 < utility_stack_buffer_count) {
         utility_data_array_index = UTILITY_NULL_RESULT;
         do {
           utility_memory_block_handle = *(uint64 *)(utility_stack_buffer_ptr + utility_data_array_index);
@@ -4420,7 +4420,7 @@ uint64 utility_validate_resource_handle(longlong resource_handle_identifier)    
         utility_data_ptr = (longlong *)(resource_buffer + RESOURCE_POINTER_OFFSET);
         utility_iteration_index = UTILITY_NULL_RESULT;
         resource_count = *(int *)(resource_buffer + utility_resource_index);
-        if (UTILITY_NULL_RESULT < resource_count) {
+        if (0 < resource_count) {
           utility_resource_array_ptr = (longlong *)*utility_resource_array_ptr;
           utility_operation_status = utility_iteration_index;
           do {
@@ -10012,7 +10012,7 @@ uint64 set_allocator_statusFlags(longlong *resource_handle_identifier)
     }
     utility_iteration_counter = UTILITY_NULL_RESULT;
     utility_system_status_code = utility_iteration_counter;
-    if (UTILITY_NULL_RESULT < statusCounter) {
+    if (0 < statusCounter) {
       do {
         *(uint32 *)(*resource_handle_identifier + utility_system_status_code * UTILITY_WORD_SIZE) = INVALID_HANDLE;
         utility_system_status_code = utility_system_status_code + UTILITY_INTEGER_INCREMENT_VALUE;
@@ -10081,7 +10081,7 @@ uint64 initialize_debug_system(void)
     }
     utility_iteration_index = UTILITY_NULL_RESULT;
     utility_iteration_counter = utility_iteration_index;
-    if (UTILITY_NULL_RESULT < resource_count) {
+    if (0 < resource_count) {
       do {
         *(uint32 *)(*utility_register_context_base + utility_iteration_counter * UTILITY_WORD_SIZE) = INVALID_HANDLE;
         utility_iteration_counter = utility_iteration_counter + UTILITY_INTEGER_INCREMENT_VALUE;
@@ -11294,7 +11294,7 @@ process_validation_flag:
       resource_size_limit_tertiary = -utility_iteration_counter_primary;
     }
     if (resource_size_limit_tertiary < 0) {
-      if (UTILITY_NULL_RESULT < utility_local_status_validation) goto validate_utility_operation_result;
+      if (0 < utility_local_status_validation) goto validate_utility_operation_result;
       if ((0 < utility_iteration_counter_primary) && (validation_flag_primary != UTILITY_NULL_RESULT)) {
                     // WARNING: Subroutine does not return
         utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),validation_flag_primary,&utilityMemoryDataBuffer,UTILITY_RESOURCE_HANDLE_OFFSET_ZERO,1);
@@ -11642,7 +11642,7 @@ process_resource_iteration:
     if (utility_data_array_index != UTILITY_NULL_RESULT) goto HandleResourceError;
     resource_count = UTILITY_NULL_RESULT;
     utility_data_array_index = *(int *)(*(longlong *)(resource_buffer + UTILITY_VALIDATION_OFFSET) + UTILITY_FIELD_PADDING_OFFSET);
-    if (UTILITY_NULL_RESULT < utility_data_array_index) {
+    if (0 < utility_data_array_index) {
       do {
         utility_local_signed_data = UTILITY_NULL_RESULT;
         utility_local_data_ptr = &g_system_data_the_pointer_primary;
@@ -12374,7 +12374,7 @@ void ProcessResourceOperation(longlong resource_handle_identifier,longlong resou
       if (utility_temp_int_value == UTILITY_NULL_RESULT) {
         utility_stack_offset_process_data = (longlong)*(int *)(operation_buffer + UTILITY_SECONDARY_BYTE_OFFSET);
         utility_long_value = utility_resource_data_buffer_primary;
-        if (UTILITY_NULL_RESULT < utility_stack_offset_process_data) {
+        if (0 < utility_stack_offset_process_data) {
           do {
             utility_long_value = *(longlong *)(operation_buffer + POINTER_DATA_OFFSET);
             utility_data_array_index = *(longlong *)(utility_resource_data_buffer_primary + RESOURCE_UTILITY_HANDLE_DATA_OFFSET + utility_long_value);
@@ -12611,7 +12611,7 @@ void ExecuteResourceCommand(void)
     utility_operation_status = validate_resource_access(float_parameter_zero,&context_buffer_data);
     if (utility_operation_status == UTILITY_NULL_RESULT) {
       utility_stack_security_context = (longlong)*(int *)(utility_cpu_context + UTILITY_SECONDARY_BYTE_OFFSET);
-      if (UTILITY_NULL_RESULT < utility_stack_security_context) {
+      if (0 < utility_stack_security_context) {
         utility_iteration_counter_primary_primary = (ulonglong)(uint)utility_cpu_context;
         currentUnsignedSize = (ulonglong)(uint)utility_cpu_context;
         do {
@@ -12857,7 +12857,7 @@ void HandleResourceCallback(void)
   uint32 utility_stack_xmm_data_primary;
   uint32 utility_stack_xmm_data_secondary;
   
-  if (UTILITY_NULL_RESULT < UTILITY_REGISTER_INPUT_VALUE) {
+  if (0 < UTILITY_REGISTER_INPUT_VALUE) {
     loop_counter_secondary = (ulonglong)(uint)utility_cpu_context;
     currentUnsignedSize = (ulonglong)(uint)utility_cpu_context;
     utility_stack_context_register = UTILITY_REGISTER_INPUT_VALUE;
@@ -13277,7 +13277,7 @@ process_memory_validation:
       utility_temp_int_value = UTILITY_NULL_RESULT;
       utility_iteration_counter_primary = resourceCountFunction(*(uint64 *)(resource_buffer + UTILITY_STRUCT_OFFSET_1));
       utility_iteration_counter_primary = utility_data_array_index;
-      if (UTILITY_NULL_RESULT < utility_iteration_counter_primary) {
+      if (0 < utility_iteration_counter_primary) {
         do {
           utility_temp_unsigned_int = UTILITY_NULL_RESULT;
           operation_buffer = resource_handle_identifier[4];
@@ -13575,7 +13575,7 @@ void ProcessResourceRequest(longlong *resource_handle_identifier)
       resource_data_buffer_secondary = resource_data_buffer_sixth;
       resource_data_buffer_ninth = resource_data_buffer_sixth;
       utility_local_array[0] = (longlong)utility_temp_int_value;
-      if (UTILITY_NULL_RESULT < utility_temp_int_value) {
+      if (0 < utility_temp_int_value) {
         do {
           resource_data_buffer_data = resource_handle_identifier[1];
           utility_temp_unsigned_int = UTILITY_NULL_RESULT;
@@ -13626,7 +13626,7 @@ void ProcessResourceRequest(longlong *resource_handle_identifier)
       resource_data_buffer_data = resource_handle_identifier[1] + utility_data_offset_start;
       utility_temp_int_value = resourceSetupFunction(resource_data_buffer_data);
       resource_data_buffer_dataourth = resource_data_buffer_sixth;
-      if (UTILITY_NULL_RESULT < utility_temp_int_value) {
+      if (0 < utility_temp_int_value) {
         do {
           utility_memory_init_function(resource_data_buffer_data,UTILITY_LOCAL_PROCESS_BUFFER,resource_data_buffer_dataourth);
           resourceConfigureFunction(resource_data_buffer_data,resource_data_buffer_dataourth,utility_stack_float_array_large,utility_local_array);
@@ -15261,7 +15261,7 @@ uint64 ProcessResourceData(longlong resource_handle_identifier,longlong *memory_
   utility_stack_context_data[0] = resource_size_limit;
   utility_iteration_counter = (**(code **)**(uint64 **)(resource_handle_identifier + UTILITY_POINTER_SIZE_OFFSET))(*(uint64 **)(resource_handle_identifier + UTILITY_POINTER_SIZE_OFFSET),utility_stack_context_data,4);
   if ((int)utility_iteration_counter == UTILITY_NULL_RESULT) {
-    if (UTILITY_NULL_RESULT < resource_size_limit) {
+    if (0 < resource_size_limit) {
       threadContextData = UTILITY_NULL_RESULT;
       utility_memory_offset = threadContextData;
       do {
@@ -15315,7 +15315,7 @@ void rankUtilityCapability(longlong resource_handle_identifier,uint32 *memory_bl
       validation_flag_primary = UTILITY_NULL_RESULT;
       if (utility_operation_status == UTILITY_NULL_RESULT) {
         utility_system_status_code = validation_flag_primary;
-        if (UTILITY_NULL_RESULT < resource_size_limit) {
+        if (0 < resource_size_limit) {
           do {
             utility_operation_status = searchUtilityItems(resource_handle_identifier,(longlong)(int)utility_system_status_code * UTILITY_RESOURCE_FLAG_OFFSET + *(longlong *)(resource_buffer + UTILITY_POINTER_SIZE_OFFSET));
             if (utility_operation_status != UTILITY_NULL_RESULT) {
@@ -15331,7 +15331,7 @@ void rankUtilityCapability(longlong resource_handle_identifier,uint32 *memory_bl
                           (*(uint64 **)(resource_handle_identifier + UTILITY_POINTER_SIZE_OFFSET),&utility_stack_resource_buffer,4);
         if (utility_operation_status == UTILITY_NULL_RESULT) {
           utility_system_status_code = validation_flag_primary;
-          if (UTILITY_NULL_RESULT < resource_size_limit) {
+          if (0 < resource_size_limit) {
             do {
               utility_operation_status = discoverUtilityComponents(resource_handle_identifier,(longlong)(int)utility_system_status_code * RESOURCE_UTILITY_HANDLE_DATA_OFFSET +
                                             *(longlong *)(resource_buffer + structure_multiplier));
@@ -15348,7 +15348,7 @@ void rankUtilityCapability(longlong resource_handle_identifier,uint32 *memory_bl
                             (*(uint64 **)(resource_handle_identifier + UTILITY_POINTER_SIZE_OFFSET),&utility_stack_resource_buffer,4);
           if (utility_operation_status == UTILITY_NULL_RESULT) {
             utility_system_status_code = validation_flag_primary;
-            if (UTILITY_NULL_RESULT < resource_size_limit) {
+            if (0 < resource_size_limit) {
               do {
                 utility_stack_resource_buffer = UTILITY_BIT_CONCAT_4_4(utility_stack_resource_buffer._4_4_,
                                      *(uint32 *)(*(longlong *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET) + utility_system_status_code * UTILITY_WORD_SIZE));
@@ -15367,7 +15367,7 @@ void rankUtilityCapability(longlong resource_handle_identifier,uint32 *memory_bl
             if (utility_operation_status == UTILITY_NULL_RESULT) {
               utility_system_status_code = validation_flag_primary;
               utility_iteration_index = validation_flag_primary;
-              if (UTILITY_NULL_RESULT < resource_size_limit) {
+              if (0 < resource_size_limit) {
                 do {
                   utility_memory_offset = *(longlong *)(resource_buffer + RESOURCE_DATA_IDX) + utility_system_status_code;
                   utility_operation_status = discoverUtilityComponents(resource_handle_identifier,utility_memory_offset);
@@ -15404,7 +15404,7 @@ void rankUtilityCapability(longlong resource_handle_identifier,uint32 *memory_bl
                 utility_operation_status = (**(code **)**(uint64 **)(resource_handle_identifier + UTILITY_POINTER_SIZE_OFFSET))
                                   (*(uint64 **)(resource_handle_identifier + UTILITY_POINTER_SIZE_OFFSET),&utility_stack_resource_buffer,4);
                 if (utility_operation_status == UTILITY_NULL_RESULT) {
-                  if (UTILITY_NULL_RESULT < resource_size_limit) {
+                  if (0 < resource_size_limit) {
                     do {
                       utility_memory_offset = *(longlong *)(resource_buffer + UTILITY_BYTE_OFFSET_FLAG);
                       utility_stack_resource_buffer.utility_float_component_low = *(uint32 *)(utility_memory_offset + validation_flag_primary * UTILITY_DOUBLE_WORD_SIZE);
@@ -15470,7 +15470,7 @@ void sortUtilityFeatures(uint64 *resource_handle_identifier,uint64 resource_buff
   if (utility_operation_status == UTILITY_NULL_RESULT) {
     validation_flag_primary = systemFlagsData;
     utility_iteration_counter = float_parameter_zero;
-    if (UTILITY_NULL_RESULT < utility_data_array_index) {
+    if (0 < utility_data_array_index) {
       do {
         utility_operation_status = searchUtilityItems(utility_iteration_counter,(longlong)(int)validation_flag_primary * UTILITY_RESOURCE_FLAG_OFFSET + *(longlong *)(utility_cpu_context + POINTER_DATA_OFFSET));
         if (utility_operation_status != UTILITY_NULL_RESULT) {
@@ -15488,7 +15488,7 @@ void sortUtilityFeatures(uint64 *resource_handle_identifier,uint64 resource_buff
     if (utility_operation_status == UTILITY_NULL_RESULT) {
       validation_flag_primary = systemFlagsData;
       utility_iteration_counter = utility_float_param_secondary;
-      if (UTILITY_NULL_RESULT < utility_data_array_index) {
+      if (0 < utility_data_array_index) {
         do {
           utility_operation_status = discoverUtilityComponents(utility_iteration_counter,(longlong)(int)validation_flag_primary * RESOURCE_UTILITY_HANDLE_DATA_OFFSET + *(longlong *)(utility_cpu_context + UTILITY_FIELD_PRIMARY_OFFSET))
         ;
@@ -15506,7 +15506,7 @@ void sortUtilityFeatures(uint64 *resource_handle_identifier,uint64 resource_buff
       utility_operation_status = (**(code **)*utility_operation_result)(utility_operation_result,stack_frame_pointer + POINTER_DATA_OFFSET,4);
       if (utility_operation_status == UTILITY_NULL_RESULT) {
         validation_flag_primary = systemFlagsData;
-        if (UTILITY_NULL_RESULT < utility_data_array_index) {
+        if (0 < utility_data_array_index) {
           do {
             utility_operation_result = *(uint64 **)(utility_register_context_base + UTILITY_POINTER_SIZE_OFFSET);
             *(uint32 *)(utility_stack_frame_pointer + POINTER_DATA_OFFSET) =
@@ -15526,7 +15526,7 @@ void sortUtilityFeatures(uint64 *resource_handle_identifier,uint64 resource_buff
           validation_flag_primary = systemFlagsData;
           utility_iteration_index = systemFlagsData;
           utility_iteration_counter = utility_float_param_quaternary;
-          if (UTILITY_NULL_RESULT < utility_data_array_index) {
+          if (0 < utility_data_array_index) {
             do {
               utility_long_value = *(longlong *)(utility_cpu_context + UTILITY_LIST_HEAD_OFFSET) + validation_flag_primary;
               utility_operation_status = discoverUtilityComponents(utility_iteration_counter,utility_long_value);
@@ -15563,7 +15563,7 @@ void sortUtilityFeatures(uint64 *resource_handle_identifier,uint64 resource_buff
             *(int *)(utility_stack_frame_pointer + POINTER_DATA_OFFSET) = utility_data_array_index;
             utility_operation_status = (**(code **)*utility_operation_result)(utility_operation_result,stack_frame_pointer + POINTER_DATA_OFFSET,4);
             if (utility_operation_status == UTILITY_NULL_RESULT) {
-              if (UTILITY_NULL_RESULT < utility_data_array_index) {
+              if (0 < utility_data_array_index) {
                 do {
                   utility_long_value = *(longlong *)(utility_cpu_context + UTILITY_MEMORY_DATA_OFFSET);
                   utility_operation_result = *(uint64 **)(utility_register_context_base + UTILITY_POINTER_SIZE_OFFSET);
@@ -15659,7 +15659,7 @@ void filterUtilityOptions(uint64 *resource_handle_identifier)
       *(int *)(utility_stack_frame_pointer + POINTER_DATA_OFFSET) = utility_data_array_index;
       utility_iteration_counter_primary = (**(code **)*utility_iteration_pointer)(iteration_pointer,stack_frame_pointer + POINTER_DATA_OFFSET,4);
       if (utility_iteration_counter_primary == UTILITY_NULL_RESULT) {
-        if (UTILITY_NULL_RESULT < utility_data_array_index) {
+        if (0 < utility_data_array_index) {
           do {
             utility_long_value = *(longlong *)(utility_cpu_context + UTILITY_MEMORY_DATA_OFFSET);
             utility_iteration_pointer = *(uint64 **)(utility_register_context_base + UTILITY_POINTER_SIZE_OFFSET);
@@ -16325,7 +16325,7 @@ uint64 ValidateResourceSize(longlong resource_handle_identifier,longlong resourc
               return utility_system_status_code;
             }
             utility_long_value = utility_long_value;
-            if (UTILITY_NULL_RESULT < utility_operation_status) {
+            if (0 < utility_operation_status) {
               do {
                 utility_long_value = *(longlong *)(resource_buffer + UTILITY_OPERATION_OFFSET_600 + utility_long_value;
                 short_validation_flag = *(short *)(utility_long_value + UTILITY_MEMORY_OFFSET_114);
@@ -16390,7 +16390,7 @@ uint64 InitializeResourceProcessor(void)
       return utility_iteration_counter;
     }
     threadContextData = utility_cpu_context;
-    if (UTILITY_NULL_RESULT < utility_operation_status) {
+    if (0 < utility_operation_status) {
       do {
         short_validation_flag = *(short *)(*(longlong *)(utility_cpu_context + UTILITY_OPERATION_OFFSET_600 + utility_cpu_context + UTILITY_MEMORY_OFFSET_114);
         utility_iteration_counter = discoverUtilityComponents();
@@ -16454,7 +16454,7 @@ uint64 ProcessDataBlock(longlong resource_handle_identifier,uint32 *memory_block
                         (*(uint64 **)(resource_handle_identifier + UTILITY_POINTER_SIZE_OFFSET),&utility_stack_resource_buffer,4);
       if ((int)utility_iteration_counter == UTILITY_NULL_RESULT) {
         utility_data_array_index = UTILITY_NULL_RESULT;
-        if (UTILITY_NULL_RESULT < resource_size_limit) {
+        if (0 < resource_size_limit) {
           do {
             utility_iteration_counter = ValidateResourceSize(resource_handle_identifier,(longlong)utility_data_array_index * UTILITY_RESOURCE_SIZE_UNIT + *(longlong *)(resource_buffer + 4));
             if ((int)utility_iteration_counter != UTILITY_NULL_RESULT) {
@@ -16486,7 +16486,7 @@ uint64 InitializeDataProcessor(uint64 *resource_handle_identifier,uint64 resourc
   utility_iteration_counter = (**(code **)*resource_handle_identifier)(resource_handle_identifier,resource_buffer,4);
   if ((int)utility_iteration_counter == UTILITY_NULL_RESULT) {
     utility_data_array_index = UTILITY_NULL_RESULT;
-    if (UTILITY_NULL_RESULT < resource_size_limit) {
+    if (0 < resource_size_limit) {
       do {
         utility_iteration_counter = ValidateResourceSize();
         if ((int)utility_iteration_counter != UTILITY_NULL_RESULT) {
@@ -16696,7 +16696,7 @@ ulonglong GetResourceStatus(void)
   uint utility_stack_resource_handle;
   uint utility_stack_float_buffer_status;
   
-  if (UTILITY_NULL_RESULT < utility_cpu_register_base) {
+  if (0 < utility_cpu_register_base) {
     do {
       utility_stack_context_primary_uint = *utility_cpu_context;
       utility_operation_status = (**(code **)**(uint64 **)(utility_cpu_context + UTILITY_POINTER_SIZE_OFFSET))
@@ -19342,7 +19342,7 @@ UTILITY_LABEL_VALIDATION_FAILED:
     }
     utility_iteration_counter = utility_temp_unsigned_int._4_4_;
     if ((int)validation_flag_primary < 0) {
-      if (UTILITY_NULL_RESULT < utility_operation_status) goto UTILITY_LABEL_CONTINUE_PROCESSING;
+      if (0 < utility_operation_status) goto UTILITY_LABEL_CONTINUE_PROCESSING;
       if ((0 < (int)utility_temp_unsigned_int._4_4_) && (utility_local_data_ptr != (uint64 *)UTILITY_NULL_POINTER)) {
                     // WARNING: Subroutine does not return
         utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),utility_local_data_ptr,&utilityMemoryDataBuffer,UTILITY_RESOURCE_HANDLE_OFFSET_ZERO,1);
@@ -19509,7 +19509,7 @@ UTILITY_LABEL_VALIDATION_FAILED:
       }
       utility_status_code_primary = *(int *)(utility_stack_frame_pointer + UTILITY_STACK_OFFSET_NEG_21);
       if ((int)utility_operation_status < 0) {
-        if (UTILITY_NULL_RESULT < utility_status_code_primary) {
+        if (0 < utility_status_code_primary) {
           return utility_operation_result3;
         }
         if ((0 < (int)utility_iteration_counter) && (*(longlong *)(utility_stack_frame_pointer + -byte_offset) != UTILITY_NULL_RESULT)) {
@@ -19593,7 +19593,7 @@ UTILITY_LABEL_VALIDATION_FAILED:
       utility_operation_status = -utility_iteration_counter;
     }
     if ((int)utility_operation_status < 0) {
-      if (UTILITY_NULL_RESULT < utility_status_code_primary) goto UTILITY_LABEL_CONTINUE_PROCESSING;
+      if (0 < utility_status_code_primary) goto UTILITY_LABEL_CONTINUE_PROCESSING;
       if ((0 < (int)utility_iteration_counter) && (utility_operation_result3 != (uint64 *)UTILITY_NULL_POINTER)) {
                     // WARNING: Subroutine does not return
         utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),utility_operation_result3,&utilityMemoryDataBuffer,UTILITY_RESOURCE_HANDLE_OFFSET_ZERO,1);
@@ -19756,7 +19756,7 @@ UTILITY_LABEL_VALIDATION_FAILED:
       }
       utility_status_code_primary = *(int *)(utility_stack_frame_pointer + UTILITY_STACK_OFFSET_NEG_21);
       if ((int)utility_operation_status < 0) {
-        if (UTILITY_NULL_RESULT < utility_status_code_primary) {
+        if (0 < utility_status_code_primary) {
           return utility_operation_result_secondary;
         }
         if ((0 < (int)utility_iteration_counter) && (*(longlong *)(utility_stack_frame_pointer + -byte_offset) != UTILITY_NULL_RESULT)) {
@@ -19840,7 +19840,7 @@ UTILITY_LABEL_VALIDATION_FAILED:
       utility_operation_status = -utility_iteration_counter;
     }
     if ((int)utility_operation_status < 0) {
-      if (UTILITY_NULL_RESULT < utility_status_code_primary) goto UTILITY_LABEL_CONTINUE_PROCESSING;
+      if (0 < utility_status_code_primary) goto UTILITY_LABEL_CONTINUE_PROCESSING;
       if ((0 < (int)utility_iteration_counter) && (utility_operation_result_secondary != (uint64 *)UTILITY_NULL_POINTER)) {
                     // WARNING: Subroutine does not return
         utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),utility_operation_result_secondary,&utilityMemoryDataBuffer,UTILITY_RESOURCE_HANDLE_OFFSET_ZERO,1);
@@ -19967,7 +19967,7 @@ UTILITY_LABEL_VALIDATION_FAILED:
       }
       utility_status_code_secondary = *(int *)(utility_stack_frame_pointer + UTILITY_STACK_OFFSET_NEG_21);
       if ((int)utility_operation_status < 0) {
-        if (UTILITY_NULL_RESULT < utility_status_code_secondary) {
+        if (0 < utility_status_code_secondary) {
           return utility_operation_result_var;
         }
         if ((0 < (int)utility_iteration_counter) && (*(longlong *)(utility_stack_frame_pointer + -byte_offset) != UTILITY_NULL_RESULT)) {
@@ -20052,7 +20052,7 @@ UTILITY_LABEL_VALIDATION_FAILED:
       utility_operation_status = -utility_iteration_counter;
     }
     if ((int)utility_operation_status < 0) {
-      if (UTILITY_NULL_RESULT < utility_status_code_secondary) goto UTILITY_LABEL_CONTINUE_PROCESSING;
+      if (0 < utility_status_code_secondary) goto UTILITY_LABEL_CONTINUE_PROCESSING;
       if ((0 < (int)utility_iteration_counter) && (utility_operation_result_quaternary != (uint64 *)UTILITY_NULL_POINTER)) {
                     // WARNING: Subroutine does not return
         utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),utility_operation_result_quaternary,&utilityMemoryDataBuffer,UTILITY_RESOURCE_HANDLE_OFFSET_ZERO,1);
