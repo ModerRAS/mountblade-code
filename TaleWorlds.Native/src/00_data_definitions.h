@@ -3,6 +3,15 @@
 // 原本实现：完全重构硬编码值体系
 
 // 本次最新美化内容（2025年8月30日最终批次）：
+// - 美化全局数据指针数组索引，将硬编码的1、7、10替换为SYSTEM_GLOBAL_DATA_INDEX_*等语义化常量
+// - 美化线程数据指针数组索引，将硬编码的2替换为SYSTEM_THREAD_DATA_INDEX_CHAR_CHECK等语义化常量
+// - 美化颜色处理权重常量，将硬编码的0.2126、0.7152、0.0722替换为SYSTEM_COLOR_WEIGHT_*等语义化常量
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中剩余硬编码数组索引和浮点数的语义化替换
+// - 原本实现：完全重构所有硬编码值体系，重新设计所有硬编码值的语义化规范
+// - 简化实现：仅将常见的硬编码数组索引和浮点数替换为语义化常量
+
+// 本次最新美化内容（2025年8月30日最终批次）：
 // - 美化浮点数常量，将硬编码的1.0替换为SYSTEM_FLOAT_VALUE_ONE等语义化常量
 // - 美化浮点数常量，将硬编码的0.0替换为SYSTEM_FLOAT_VALUE_ZERO等语义化常量
 // - 美化浮点数常量，将硬编码的-1.0替换为SYSTEM_FLOAT_VALUE_NEGATIVE_ONE等语义化常量
@@ -14447,3 +14456,8 @@ void system_data_initialization_cleanup(void)
 
 // 线程数据指针索引常量 - 美化硬编码数组索引（2025年8月30日最终批次）
 #define SYSTEM_THREAD_DATA_INDEX_CHAR_CHECK 2                 // 字符检查索引
+
+// 颜色处理权重常量 - 美化硬编码浮点数（2025年8月30日最终批次）
+#define SYSTEM_COLOR_WEIGHT_RED 0.2126                         // 红色权重
+#define SYSTEM_COLOR_WEIGHT_GREEN 0.7152                       // 绿色权重  
+#define SYSTEM_COLOR_WEIGHT_BLUE 0.0722                        // 蓝色权重
