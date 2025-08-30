@@ -143,11 +143,11 @@
 #define SYSTEM_CONTROL_VALUE_ACKNOWLEDGE 0x06
 #define SYSTEM_CONTROL_VALUE_BELL 0x07
 #define SYSTEM_CONTROL_VALUE_BACKSPACE 0x08
-#define SYSTEM_CONTROL_VALUE_HORIZONTAL_TAB SYSTEM_CONTROL_VALUE_HORIZONTAL_TAB
-#define SYSTEM_CONTROL_VALUE_LINE_FEED SYSTEM_CONTROL_VALUE_LINE_FEED
+#define SYSTEM_CONTROL_VALUE_HORIZONTAL_TAB 0x09
+#define SYSTEM_CONTROL_VALUE_LINE_FEED 0x0a
 #define SYSTEM_CONTROL_VALUE_VERTICAL_TAB 0x0b
 #define SYSTEM_CONTROL_VALUE_FORM_FEED 0x0c
-#define SYSTEM_CONTROL_VALUE_CARRIAGE_RETURN SYSTEM_CONTROL_VALUE_CARRIAGE_RETURN
+#define SYSTEM_CONTROL_VALUE_CARRIAGE_RETURN 0x0d
 #define SYSTEM_CONTROL_VALUE_SHIFT_OUT 0x0e
 #define SYSTEM_CONTROL_VALUE_SHIFT_IN 0x0f
 #define SYSTEM_CONTROL_VALUE_DATA_LINK_ESCAPE 0x10
@@ -215,11 +215,11 @@
 #define SYSTEM_OPCODE_MUL 0x06
 #define SYSTEM_OPCODE_DIV 0x07
 #define SYSTEM_OPCODE_AND 0x08
-#define SYSTEM_OPCODE_OR SYSTEM_CONTROL_VALUE_HORIZONTAL_TAB
-#define SYSTEM_OPCODE_XOR SYSTEM_CONTROL_VALUE_LINE_FEED
+#define SYSTEM_OPCODE_OR 0x09
+#define SYSTEM_OPCODE_XOR 0x0a
 #define SYSTEM_OPCODE_NOT 0x0b
 #define SYSTEM_OPCODE_SHL 0x0c
-#define SYSTEM_OPCODE_SHR SYSTEM_CONTROL_VALUE_CARRIAGE_RETURN
+#define SYSTEM_OPCODE_SHR 0x0d
 #define SYSTEM_OPCODE_CMP 0x0e
 #define SYSTEM_OPCODE_JMP 0x0f
 #define SYSTEM_OPCODE_CALL 0x10
@@ -239,11 +239,11 @@
 #define SYSTEM_ERROR_IO_ERROR 0x06
 #define SYSTEM_ERROR_TIMEOUT 0x07
 #define SYSTEM_ERROR_CONNECTION_FAILED 0x08
-#define SYSTEM_ERROR_AUTHENTICATION_FAILED SYSTEM_CONTROL_VALUE_HORIZONTAL_TAB
-#define SYSTEM_ERROR_PERMISSION_DENIED SYSTEM_CONTROL_VALUE_LINE_FEED
+#define SYSTEM_ERROR_AUTHENTICATION_FAILED 0x09
+#define SYSTEM_ERROR_PERMISSION_DENIED 0x0a
 #define SYSTEM_ERROR_RESOURCE_BUSY 0x0b
 #define SYSTEM_ERROR_BUFFER_OVERFLOW 0x0c
-#define SYSTEM_ERROR_BUFFER_UNDERFLOW SYSTEM_CONTROL_VALUE_CARRIAGE_RETURN
+#define SYSTEM_ERROR_BUFFER_UNDERFLOW 0x0d
 #define SYSTEM_ERROR_INVALID_HANDLE 0x0e
 #define SYSTEM_ERROR_NOT_SUPPORTED 0x0f
 
@@ -1280,7 +1280,7 @@
 #define SYSTEM_OFFSET_STRING_MAX 0x18c
 
 // 系统标志常量定义
-#define SYSTEM_FLAG_AUDIO_FORMAT SYSTEM_CHAR_LOWERCASE_F6e6f63
+#define SYSTEM_FLAG_AUDIO_FORMAT 0x436f6e666967
 #define SYSTEM_FLAG_CONFIG_GI 0x3a6769
 
 // 系统状态常量定义
@@ -1408,9 +1408,9 @@
 
 // 浮点数常量定义
 #define FLOAT_ONE SYSTEM_CONSTANT_3800000
-#define STRING_TERMINATOR_PATTERN_1 SYSTEM_CHAR_LOWERCASE_R6f662f
+#define STRING_TERMINATOR_PATTERN_1 0x526f662f
 #define STRING_TERMINATOR_PATTERN_2 0x5f646563
-#define STRING_TERMINATOR_PATTERN_3 SYSTEM_CHAR_LOWERCASE_F6e6363
+#define STRING_TERMINATOR_PATTERN_3 0x466f6e63
 #define INVALID_HANDLE_VALUE 0xffffffff
 #define STACK_ALIGNMENT_MASK 0xfffffffe
 #define MEMORY_ALIGNMENT_MASK 0xffffffffffffffe0U
@@ -1422,6 +1422,88 @@
 #define UINT64_MAX 0xffffffffffffffff
 #define INT32_MASK 0xffffffff
 #define INT64_MASK 0xffffffff00000000
+
+// 系统偏移量常量扩展 - 美化剩余的硬编码偏移量
+#define SYSTEM_OFFSET_PERFORMANCE_TIMEOUT 0x218  // 性能超时偏移量
+#define SYSTEM_OFFSET_CRYPTO_OPERATION_218 0x218   // 加密操作218偏移量
+#define SYSTEM_OFFSET_INITIALIZATION_CHECK 0xe    // 初始化检查偏移量
+#define SYSTEM_OFFSET_THREAD_PARAMETER_SETUP 0xf  // 线程参数设置偏移量
+#define SYSTEM_OFFSET_EXCEPTION_HANDLER 0xcc     // 异常处理程序偏移量
+#define SYSTEM_OFFSET_THREAD_STATUS 0xd8        // 线程状态偏移量
+#define SYSTEM_OFFSET_THREAD_CLEANUP_FLAG 0xdc   // 线程清理标志偏移量
+#define SYSTEM_OFFSET_THREAD_INIT 0xe8          // 线程初始化偏移量
+#define SYSTEM_OFFSET_RENDER_MODE 0x5e          // 渲染模式偏移量
+#define SYSTEM_OFFSET_MUTEX_LOCK 0x2c          // 互斥锁偏移量
+#define SYSTEM_OFFSET_MUTEX_DATA 0x3c          // 互斥锁数据偏移量
+#define SYSTEM_OFFSET_MUTEX_EXTRA 0x44          // 互斥锁额外数据偏移量
+#define SYSTEM_OFFSET_MUTEX_FLAG 0x4c          // 互斥锁标志偏移量
+#define SYSTEM_OFFSET_FLOAT_INCREMENT_B 0xb     // 浮点数增量B偏移量
+#define SYSTEM_OFFSET_FLOAT_INCREMENT_C 0xc     // 浮点数增量C偏移量
+#define SYSTEM_OFFSET_FLOAT_INCREMENT_D 0xd     // 浮点数增量D偏移量
+#define SYSTEM_OFFSET_FLOAT_INCREMENT_E 0xe     // 浮点数增量E偏移量
+#define SYSTEM_OFFSET_INITIALIZATION_FLAG_4C 0x4c // 初始化标志4C偏移量
+#define SYSTEM_OFFSET_CRYPTO_BUFFER_SECONDARY 0x58 // 加密缓冲区次要偏移量
+#define SYSTEM_OFFSET_EXCEPTION_FLAG 0xdd       // 异常标志偏移量
+#define SYSTEM_OFFSET_MODULE_CLEANUP 0x330      // 模块清理偏移量
+#define SYSTEM_OFFSET_SYSTEM_INITIALIZATION_D 0xd // 系统初始化D偏移量
+#define SYSTEM_OFFSET_STRING_LENGTH_G 0x47      // 字符串长度G偏移量
+#define SYSTEM_OFFSET_THREAD_LOCAL_STORAGE_G 0x47 // 线程本地存储G偏移量
+#define SYSTEM_OFFSET_MEMORY_ALLOCATION_LARGE 0x121 // 内存分配大偏移量
+#define SYSTEM_OFFSET_MODULE_BASE 0x7f7         // 模块基础偏移量
+#define SYSTEM_OFFSET_RESOURCE_ARRAY 0xb5b       // 资源数组偏移量
+#define SYSTEM_OFFSET_CRYPTO_OPERATION 0x4ab0  // 加密操作偏移量
+#define SYSTEM_OFFSET_EXCEPTION_HANDLER_BC 0xbc // 异常处理程序BC偏移量
+#define SYSTEM_OFFSET_SYSTEM_STATUS_BYTE 0x1a  // 系统状态字节偏移量
+#define SYSTEM_OFFSET_SYSTEM_INIT_BYTE 0xd      // 系统初始化字节偏移量
+#define SYSTEM_OFFSET_THREAD_HANDLE_EXTENDED 0x3e // 线程句柄扩展偏移量
+#define SYSTEM_OFFSET_MEMORY_NEGATIVE_EFC -0xefc // 内存负数EFC偏移量
+#define SYSTEM_OFFSET_MEMORY_NEGATIVE_1EF8 -0x1ef8 // 内存负数1EF8偏移量
+#define SYSTEM_OFFSET_VALIDATION_FLAG 0xfffffffe // 验证标志偏移量
+#define SYSTEM_OFFSET_SYSTEM_RESOURCE_1A0 0x1a0 // 系统资源1A0偏移量
+#define SYSTEM_OFFSET_SYSTEM_RESOURCE_1D0 0x1d0 // 系统资源1D0偏移量
+#define SYSTEM_OFFSET_EXCEPTION_HANDLER_7FF -0x7ffeffff // 异常处理程序7FF偏移量
+#define SYSTEM_OFFSET_STACK_LONG_VAR_4C 0x4c    // 栈长变量4C偏移量
+#define SYSTEM_OFFSET_STACK_OPERATION_SIZE 0x3088 // 栈操作大小偏移量
+#define SYSTEM_OFFSET_STRING_HEADER_EXTENDED 0x22 // 字符串头扩展偏移量
+#define SYSTEM_OFFSET_STRING_LENGTH_EXTENDED 0x16 // 字符串长度扩展偏移量
+#define SYSTEM_OFFSET_EXCEPTION_FLAG_15 -0x15    // 异常标志15偏移量
+#define SYSTEM_OFFSET_EXCEPTION_FLAG_18 -0x18    // 异常标志18偏移量
+#define SYSTEM_OFFSET_THREAD_OPERATION_EXTENDED 0x18 // 线程操作扩展偏移量
+#define SYSTEM_OFFSET_EXCEPTION_HANDLER_F -0xf    // 异常处理程序F偏移量
+#define SYSTEM_OFFSET_EXCEPTION_HANDLER_14 -0x14  // 异常处理程序14偏移量
+#define SYSTEM_OFFSET_STRING_BUFFER_EXTENDED 0x50 // 字符串缓冲区扩展偏移量
+#define SYSTEM_OFFSET_EXCEPTION_LIST 0xe         // 异常列表偏移量
+#define SYSTEM_OFFSET_CRYPTO_OPERATION_2908 0x2908 // 加密操作2908偏移量
+#define SYSTEM_OFFSET_MUTEX_FLAG_2908 0x2908     // 互斥锁标志2908偏移量
+#define SYSTEM_OFFSET_SYSTEM_TIMER_1A0 0x1a0     // 系统计时器1A0偏移量
+#define SYSTEM_OFFSET_MEMORY_ALLOCATION_48D0 0x48d0 // 内存分配48D0偏移量
+#define SYSTEM_OFFSET_SYSTEM_NEGATIVE_12 -0x12    // 系统负数12偏移量
+#define SYSTEM_OFFSET_MODULE_CLEANUP_2C0 0x2c0   // 模块清理2C0偏移量
+#define SYSTEM_OFFSET_THREAD_MANAGER_CREATE_D 0xd // 线程管理器创建D偏移量
+#define SYSTEM_OFFSET_THREAD_RESULT_EXTENDED 0xd // 线程结果扩展偏移量
+#define SYSTEM_OFFSET_HARDWARE_INIT_E8 0xe8      // 硬件初始化E8偏移量
+#define SYSTEM_OFFSET_RENDER_COUNTER_D8 0xd8     // 渲染计数器D8偏移量
+#define SYSTEM_OFFSET_RENDER_MODE_5E 0x5e        // 渲染模式5E偏移量
+#define SYSTEM_OFFSET_FLOAT_CALCULATION_354 0x354 // 浮点计算354偏移量
+#define SYSTEM_OFFSET_RENDER_FLAG_33C 0x33c     // 渲染标志33C偏移量
+#define SYSTEM_OFFSET_SYSTEM_DATA_260 0x260      // 系统数据260偏移量
+#define SYSTEM_OFFSET_MEMORY_ALLOCATION_30 0x30 // 内存分配30偏移量
+#define SYSTEM_OFFSET_CHARACTER_SCAN_2C 0x2c     // 字符扫描2C偏移量
+#define SYSTEM_OFFSET_MEMORY_ALLOCATION_C0 0xc0  // 内存分配C0偏移量
+#define SYSTEM_OFFSET_FLOAT_ARRAY_21C 0x21c      // 浮点数组21C偏移量
+#define SYSTEM_OFFSET_STRING_HEADER_E 0xe         // 字符串头E偏移量
+#define SYSTEM_OFFSET_EXCEPTION_FLAG_F -0xf       // 异常标志F偏移量
+#define SYSTEM_OFFSET_STRING_BUFFER_SECONDARY 0x16 // 字符串缓冲区次要偏移量
+#define SYSTEM_OFFSET_SYSTEM_CONFIG_POINTER_A8 0xa8 // 系统配置指针A8偏移量
+#define SYSTEM_OFFSET_MEMORY_ALLOCATION_58 0x58  // 内存分配58偏移量
+#define SYSTEM_OFFSET_VALIDATION_MASK 0xfffffffe // 验证掩码偏移量
+#define SYSTEM_OFFSET_MEMORY_MULTIPLIER_3088 0x3088 // 内存乘数3088偏移量
+#define SYSTEM_OFFSET_STRING_EXTENDED_22 0x22    // 字符串扩展22偏移量
+#define SYSTEM_OFFSET_SYSTEM_EXTENDED_18 0x18     // 系统扩展18偏移量
+#define SYSTEM_OFFSET_STRING_BUFFER_EXTENDED_50 0x50 // 字符串缓冲区扩展50偏移量
+#define SYSTEM_OFFSET_EXCEPTION_LIST_E 0xe        // 异常列表E偏移量
+#define SYSTEM_OFFSET_SYSTEM_CRYPTO_2908 0x2908    // 系统加密2908偏移量
+#define SYSTEM_OFFSET_MEMORY_MULTIPLIER_48D0 0x48d0 // 内存乘数48D0偏移量
 
 // 系统互斥锁和条件变量地址
 #define MAIN_MUTEX_ADDR 0x180c91970
@@ -4479,7 +4561,7 @@ section_processing_jump_label_:
     }
     if (*(char *)(str_len_counter + SYSTEM_OFFSET_MODULE_DATA) == '\0') {
       float_var = *(float *)(str_len_counter + path_buffer_size0);
-      system_performance_timeout = *(double *)(str_len_counter + 0x218);
+      system_performance_timeout = *(double *)(str_len_counter + SYSTEM_OFFSET_PERFORMANCE_TIMEOUT);
       do {
         QueryPerformanceCounter(&thread_stack_base_address);
       } while ((double)thread_stack_base_address * system_global_data_pointer < (double)float_var + system_performance_timeout);
@@ -4488,7 +4570,7 @@ section_processing_jump_label_:
       system_global_data_pointer = thread_stack_base_address;
       *(double *)(str_len_counter + path_buffer_size8) = (double)str_len_counter * system_global_data_pointer;
       QueryPerformanceCounter(&thread_stack_base_address);
-      *(double *)(str_len_counter + 0x218) = (double)thread_stack_base_address * system_global_data_pointer;
+      *(double *)(str_len_counter + SYSTEM_OFFSET_PERFORMANCE_TIMEOUT) = (double)thread_stack_base_address * system_global_data_pointer;
     }
   }
   return;
@@ -4588,7 +4670,7 @@ section_processing_jump_label_:
     }
     if (*(char *)(handle_param + SYSTEM_OFFSET_MODULE_DATA) == '\0') {
       float_var = *(float *)(handle_param + path_buffer_size0);
-      system_performance_timeout = *(double *)(handle_param + 0x218);
+      system_performance_timeout = *(double *)(handle_param + SYSTEM_OFFSET_PERFORMANCE_TIMEOUT);
       do {
         QueryPerformanceCounter(&thread_stack_base_address);
       } while ((double)thread_stack_base_address * system_global_data_pointer < (double)float_var + system_performance_timeout);
@@ -4597,7 +4679,7 @@ section_processing_jump_label_:
       system_global_data_pointer = thread_stack_base_address;
       *(double *)(handle_param + path_buffer_size8) = (double)str_len_counter * system_global_data_pointer;
       QueryPerformanceCounter(&thread_stack_base_address);
-      *(double *)(handle_param + 0x218) = (double)thread_stack_base_address * system_global_data_pointer;
+      *(double *)(handle_param + SYSTEM_OFFSET_PERFORMANCE_TIMEOUT) = (double)thread_stack_base_address * system_global_data_pointer;
     }
   }
   return;
