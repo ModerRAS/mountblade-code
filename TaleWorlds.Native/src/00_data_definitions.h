@@ -157,6 +157,96 @@
 #define MEMORY_POOL_ADDR_SECONDARY 0x180d497e0
 #define MODULE_DATA_ADDR 0x180c95bf8
 #define MODULE_MUTEX_ADDR 0x180c95d70
+
+// 系统数据缓冲区地址
+#define SYSTEM_CONFIG_DATA_BUFFER 0x180c91d08
+#define CRYPTO_MODULE_DATA_BUFFER 0x180d48e24
+#define CRYPTO_STRING_BUFFER 0x180d48e30
+#define AUTH_DATA_BUFFER 0x180d496d0
+#define NETWORK_DATA_BUFFER 0x180d497d0
+#define RENDER_DATA_BUFFER 0x180d49990
+#define MUTEX_ATTR_DATA_BUFFER 0x180d48de0
+#define SYSTEM_MUTEX_BUFFER 0x180c918c0
+#define PATH_BUFFER_0 0x180a3c074
+#define STRING_HANDLE_BUFFER 0x180d499c8
+#define THREAD_DATA_BUFFER 0x180d499d0
+#define CONFIG_DATA_BUFFER_0 0x180d499e8
+#define STRING_BUFFER_CONSTANT 0x180d49c08
+#define THREAD_DATA_BUFFER_0 0x180d49f68
+#define SYSTEM_STRING_BUFFER 0x180d49f98
+#define SYSTEM_DATA_BUFFER_0 0x180d49fd8
+#define RESOURCE_DATA_BUFFER 0x180d49ff8
+#define DEFAULT_RESOURCE_STRING 0x180a353b8
+#define SYSTEM_180A06A48 0x180a06a48
+#define SYSTEM_180A0BA58 0x180a0ba58
+#define THREAD_POOL_DATA_BUFFER 0x180bfbd80
+#define THREAD_OP_FLAGS_BUFFER 0x180bfbf60
+#define THREAD_OP_FLAGS_BUFFER_0 0x180bfbf78
+#define SYSTEM_CONTROL_FLAG_BUFFER 0x180c8efc8
+#define SYSTEM_INIT_FLAG_BUFFER 0x180c8eced
+#define CHARACTER_SCAN_BUFFER 0x180a04ee4
+#define SYSTEM_STRING_BUFFER_0 0x180a12e00
+#define SYSTEM_CONFIG_BUFFER 0x180a03a84
+#define PTHREAD_OP_FLAGS_BUFFER 0x180c8ed80
+#define MODULE_HANDLE_BUFFER 0x180c8f020
+#define SYSTEM_DATA_FLAG_BUFFER 0x180d49130
+#define SYSTEM_FLAG_BUFFER 0x180c8f000
+#define MODULE_FINALIZER_BUFFER 0x180c824d0
+#define SYSTEM_DATA_BUFFER_1 0x180be5740
+#define SYSTEM_FLAG_BUFFER_0 0x180c4f4f0
+#define SYSTEM_RETURN_BUFFER 0x180c4f4a0
+#define SYSTEM_FLAG_BUFFER_1 0x180c58840
+#define SYSTEM_FLAG_BUFFER_2 0x180c69e20
+#define SYSTEM_FLAG_BUFFER_3 0x180c69ef8
+#define SYSTEM_FLAG_BUFFER_4 0x180c6a14c
+#define SYSTEM_FLAG_BUFFER_5 0x180bf0080
+#define SYSTEM_FLAG_BUFFER_6 0x180bf0082
+#define SYSTEM_FLAG_BUFFER_7 0x180c91d50
+
+// 全局变量声明
+extern char system_config_data_buffer;
+extern char crypto_module_data_buffer;
+extern char crypto_string_buffer;
+extern char auth_data_buffer;
+extern char network_data_buffer;
+extern char render_data_buffer;
+extern char mutex_attr_data_buffer;
+extern char system_mutex_buffer;
+extern char path_buffer_0;
+extern char string_handle_buffer;
+extern char thread_data_buffer;
+extern char config_data_buffer_0;
+extern char string_buffer_constant;
+extern char thread_data_buffer_0;
+extern char system_string_buffer;
+extern char system_data_buffer_0;
+extern char resource_data_buffer;
+extern char default_resource_string;
+extern char system_180A06A48;
+extern char system_180A0BA58;
+extern char thread_pool_data_buffer;
+extern char thread_op_flags_buffer;
+extern char thread_op_flags_buffer_0;
+extern char system_control_flag_buffer;
+extern char system_init_flag_buffer;
+extern char character_scan_buffer;
+extern char system_string_buffer_0;
+extern char system_config_buffer;
+extern char pthread_op_flags_buffer;
+extern char module_handle_buffer;
+extern char system_data_flag_buffer;
+extern char system_flag_buffer;
+extern char module_finalizer_buffer;
+extern char system_data_buffer_1;
+extern char system_flag_buffer_0;
+extern char system_return_buffer;
+extern char system_flag_buffer_1;
+extern char system_flag_buffer_2;
+extern char system_flag_buffer_3;
+extern char system_flag_buffer_4;
+extern char system_flag_buffer_5;
+extern char system_flag_buffer_6;
+extern char system_flag_buffer_7;
 #define MODULE_HANDLER_ADDR 0x180c95de0
 #define MODULE_CONFIG_ADDR 0x180c95fc8
 
@@ -5312,9 +5402,9 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
         global_data_ptr = 3;
         global_data_ptr = 0;
         system_crypto_initializer(&system_crypto_data);
-        system_crypto_module_initializer(&data_180d48e24);
+        system_crypto_module_initializer(&crypto_module_data_buffer);
       }
-      string_input_ptr = (uint *)&data_180d48e30;
+      string_input_ptr = (uint *)&crypto_string_buffer;
       if (buffer_alloc_result < (ulong long)
                   ((*(long long *)(mutex_attr + 0x1c) - *(long long *)(mutex_attr + 0x1a)) / 0xb0)) {
         string_input_ptr = (uint *)(buffer_alloc_result + *(long long *)(mutex_attr + 0x1a));

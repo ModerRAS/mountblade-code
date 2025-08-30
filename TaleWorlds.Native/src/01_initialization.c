@@ -17050,15 +17050,15 @@ void InitializePhysicsSystem(void)
   uint64_t uintStack_570;
   uint32_t uintStack_568;
   uint64_t uintStack_560;
-  void *system_buffer_ptr_558;
+  void *system_buffer_ptr_graphics_context;
   longlong longStack_550;
   int intStack_548;
   uint32_t uintStack_540;
-  void *system_buffer_ptr_538;
+  void *system_buffer_ptr_graphics_state;
   longlong longStack_530;
   uint32_t uintStack_520;
   longlong ***appstack_system_memory_pointer [2];
-  void *system_buffer_ptr_508;
+  void *system_buffer_ptr_graphics_cache;
   code *stack_char_ptr;
   uint64_t uintStack_4f8;
   longlong **pstack_system_memory_pointer;
