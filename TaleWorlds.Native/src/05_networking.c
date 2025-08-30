@@ -36944,8 +36944,8 @@ void network_decrypt_data_zero(void)
     networkTerminateConnection();
   network_operation_status_code = networkGenerateKeyPair0();
   networkTerminateConnection();
-// 函数: void networkDecryptData1(void)
-void networkDecryptData1(void)
+// 函数: void network_decrypt_data_one(void)
+void network_decrypt_data_one(void)
 // 函数: void networkDecryptData2(void)
 void networkDecryptData2(void)
 uint64_t networkDecryptData3(int64_t network_socket_handle, uint64_t *network_buffer_pointer, uint32_t network_buffer_size_var, uint32_t network_timeout_value, 
