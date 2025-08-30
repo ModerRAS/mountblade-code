@@ -1750,7 +1750,7 @@
 // 网络连接信息变量名语义化替换
 #define network_primary_connection_buffer     network_primary_conn_data
 #define network_connection_info               network_connection_info_data
-#define network_extended_context              network_stack_extended_context_data
+#define network_extended_context              network_stack_context
 
 // 网络加密密钥变量名语义化替换
 #define network_encryption_key_tertiary        network_encryption_key
