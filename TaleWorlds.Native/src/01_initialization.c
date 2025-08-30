@@ -59662,7 +59662,7 @@ void InitializeSystemCore(longlong system_param_1,longlong system_param_2,int sy
   undefined8 *system_ptr_memory;
   undefined8 *system_ptr_data;
   uint system_ulong_var_5;
-  int *piVar7;
+  int *system_int_pointer_7;
   longlong system_long_var_8;
   ulonglong system_init_flag_9;
   longlong system_long_var_10;
@@ -59693,23 +59693,23 @@ void InitializeSystemCore(longlong system_param_1,longlong system_param_2,int sy
       system_long_var_10 = -8 - system_param_2;
       system_long_var_8 = (system_init_flag_9 - 4 >> 2) + 1;
       system_ptr_data = (undefined8 *)(system_long_var_8 * 4);
-      piVar7 = (int *)(system_param_2 + 8);
+      system_int_pointer_7 = (int *)(system_param_2 + 8);
       do {
-        system_int_pointer_1 = piVar7 + 8;
-        *(float *)((longlong)piVar7 + **(longlong **)(system_param_1 + SYSTEM_INIT_FLAG_INITIALIZEDd0) + system_long_var_10) = (float)piVar7[-2]
+        system_int_pointer_1 = system_int_pointer_7 + 8;
+        *(float *)((longlong)system_int_pointer_7 + **(longlong **)(system_param_1 + SYSTEM_INIT_FLAG_INITIALIZEDd0) + system_long_var_10) = (float)system_int_pointer_7[-2]
         ;
-        *(int *)((longlong)piVar7 + **(longlong **)(system_param_1 + SYSTEM_INIT_FLAG_INITIALIZEDd0) + 4 + system_long_var_10) = piVar7[-1];
-        *(float *)((longlong)piVar7 + **(longlong **)(system_param_1 + SYSTEM_INIT_FLAG_INITIALIZEDd0) + 8 + system_long_var_10) =
-             (float)*piVar7;
-        *(int *)((longlong)piVar7 + **(longlong **)(system_param_1 + SYSTEM_INIT_FLAG_INITIALIZEDd0) + SYSTEM_INIT_VALUE_STACK_12 + system_long_var_10) = piVar7[1];
+        *(int *)((longlong)system_int_pointer_7 + **(longlong **)(system_param_1 + SYSTEM_INIT_FLAG_INITIALIZEDd0) + 4 + system_long_var_10) = system_int_pointer_7[-1];
+        *(float *)((longlong)system_int_pointer_7 + **(longlong **)(system_param_1 + SYSTEM_INIT_FLAG_INITIALIZEDd0) + 8 + system_long_var_10) =
+             (float)*system_int_pointer_7;
+        *(int *)((longlong)system_int_pointer_7 + **(longlong **)(system_param_1 + SYSTEM_INIT_FLAG_INITIALIZEDd0) + SYSTEM_INIT_VALUE_STACK_12 + system_long_var_10) = system_int_pointer_7[1];
         *(float *)((**(longlong **)(system_param_1 + SYSTEM_INIT_FLAG_INITIALIZEDd0) - system_param_2) + -SYSTEM_INIT_FLAG_ENABLED8 + (longlong)system_int_pointer_1) =
-             (float)piVar7[2];
-        *(int *)((longlong)piVar7 + **(longlong **)(system_param_1 + SYSTEM_INIT_FLAG_INITIALIZEDd0) + SYSTEM_INIT_FLAG_ENABLED4 + system_long_var_10) = piVar7[3];
+             (float)system_int_pointer_7[2];
+        *(int *)((longlong)system_int_pointer_7 + **(longlong **)(system_param_1 + SYSTEM_INIT_FLAG_INITIALIZEDd0) + SYSTEM_INIT_FLAG_ENABLED4 + system_long_var_10) = system_int_pointer_7[3];
         *(float *)((**(longlong **)(system_param_1 + SYSTEM_INIT_FLAG_INITIALIZEDd0) - system_param_2) + -SYSTEM_INIT_SIZE_COMPARE + (longlong)system_int_pointer_1) =
-             (float)piVar7[4];
-        *(int *)((longlong)piVar7 + **(longlong **)(system_param_1 + SYSTEM_INIT_FLAG_INITIALIZEDd0) + SYSTEM_INIT_FLAG_ENABLEDc + system_long_var_10) = piVar7[5];
+             (float)system_int_pointer_7[4];
+        *(int *)((longlong)system_int_pointer_7 + **(longlong **)(system_param_1 + SYSTEM_INIT_FLAG_INITIALIZEDd0) + SYSTEM_INIT_FLAG_ENABLEDc + system_long_var_10) = system_int_pointer_7[5];
         system_long_var_8 = system_long_var_8 + -1;
-        piVar7 = system_int_pointer_1;
+        system_int_pointer_7 = system_int_pointer_1;
       } while (system_long_var_8 != 0);
     }
     for (; (longlong)system_ptr_data < (longlong)system_init_flag_9; system_ptr_data = (undefined8 *)((longlong)system_ptr_data + 1)) {
