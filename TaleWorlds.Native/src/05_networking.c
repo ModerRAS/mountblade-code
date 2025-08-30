@@ -3998,10 +3998,8 @@ NetworkPerformance* g_network_performance;
 NetworkMetrics* g_network_metrics;
 // 网络诊断信息
 NetworkDiagnostics* g_network_diagnostics;
-// 网络发送数据缓冲区指针
-void* g_network_send_buffer;
-// 网络接收数据缓冲区指针
-void* g_network_receive_buffer;
+// 网络发送数据缓冲区指针（已在前面定义）
+// 网络接收数据缓冲区指针（已在前面定义）
 // 网络数据缓冲区池
 void* g_network_data_buffer_pool;
 // 网络内存管理器
