@@ -22756,7 +22756,7 @@ void networkSendDataPacket3(void)
   *(uint32_t *)((longlong)network_socket_context_pointer + SOCKET_FLAG_OFFSET) = network_operation_status_code_third_prev;
   network_socket_context_pointer[NETWORK_ARRAY_INDEX_5] = network_socket_context_pointer;
   network_socket_context_pointer[NETWORK_BUFFER_SIZE_LARGE] = network_socket_context_pointer;
-  network_socket_context_pointer[7] = network_socket_context_pointer;
+  network_socket_context_pointer[NETWORK_SOCKET_INDEX_7] = network_socket_context_pointer;
   network_socket_context_pointer[NETWORK_PACKET_HEADER_SIZE] = network_socket_context_pointer;
   *(uint32_t *)(network_socket_context_pointer + NETWORK_STATUS_OFFSET) = NETWORK_MAX_SIZE;
   *(uint32_t *)((longlong)network_socket_context_pointer + NETWORK_SOCKET_PACKET_SIZE_OFFSET) = network_operation_status_code_third_prev;
@@ -32540,7 +32540,7 @@ void network_socket_handle(int64_t *network_socket_handle, int64_t *network_buff
   float *pnetwork_frequency_calculated_tertiary;
   uint8_t network_temp_validation_buffere8 [32];
   uint32_t network_packet_offset_header8;
-  char anetwork_stack_status_char4 [4];
+  char network_stack_security_char_array [4];
   undefined *network_stack_handler_buffer_pointer;
   float network_float_stack_buffer_primary;
   float network_float_stack_buffer_secondary;
@@ -33068,7 +33068,7 @@ void network_socket_handle(int64_t *network_socket_handle, uint64_t network_buff
         (network_packet_size_temporary = (**(code **)(*network_socket_context_pointer + NETWORK_PACKET_HEADER_SIZE))(), (int)network_packet_size_temporary == NETWORK_OPERATION_FAILURE)))) {
       if (((*(uint32_t *)(network_socket_context_pointer + NETWORK_DATA_OFFSET_3) & NETWORK_BUFFER_SIZE_MEDIUM) == NETWORK_OPERATION_FAILURE) && (network_packet_size_temporary = network_socket_handle(), (int)network_packet_size_temporary != NETWORK_OPERATION_FAILURE)) {
   bool network_is_available0;
-  float network_float_stack_348 [NETWORK_BUFFER_SIZE_MEDIUM];
+  float network_float_stack_buffer_large [NETWORK_BUFFER_SIZE_MEDIUM];
   int64_t *network_stack_context_pointer_config;
   int64_t *apnetwork_stack_context_330 [NETWORK_BUFFER_SIZE_MEDIUM];
   int64_t network_stack_context_connection;

@@ -120,6 +120,7 @@
 #define SYSTEM_STACK_OFFSET_SYSTEM_FLAG 0x48
 #define SYSTEM_STACK_OFFSET_STRING_BUFFER 0x30
 #define SYSTEM_STACK_OFFSET_STRING_HANDLE 0x38
+#define SYSTEM_STACK_OFFSET_RESULT_DATA 0x44
 
 // 系统字符串模式常量
 #define SYSTEM_STRING_PATTERN_1 0x666e6f63  // "conf"
@@ -3815,11 +3816,11 @@ section_processing_jump_label_:
                       if (buffer_alloc_result != 0) {
                         memcpy(*(unsigned long long *)(str_len_counter + SYSTEM_STACK_OFFSET_STRING_BUFFER),string_input_ptr,string_input_ptr);
                       }
-                      *(unsigned int *)(str_len_counter + 0x38) = SYSTEM_ZERO_VALUE;
-                      if (*(long long *)(str_len_counter + 0x30) != 0) {
-                        string_input_ptr[*(long long *)(str_len_counter + 0x30)] = SYSTEM_ZERO_VALUE;
+                      *(unsigned int *)(str_len_counter + SYSTEM_STACK_OFFSET_STRING_HANDLE) = SYSTEM_ZERO_VALUE;
+                      if (*(long long *)(str_len_counter + SYSTEM_STACK_OFFSET_STRING_BUFFER) != 0) {
+                        string_input_ptr[*(long long *)(str_len_counter + SYSTEM_STACK_OFFSET_STRING_BUFFER)] = SYSTEM_ZERO_VALUE;
                       }
-                      *(unsigned int *)(str_len_counter + 0x44) = stack_size_max._4_4_;
+                      *(unsigned int *)(str_len_counter + SYSTEM_STACK_OFFSET_RESULT_DATA) = stack_size_max._4_4_;
                     }
                   }
                 }
