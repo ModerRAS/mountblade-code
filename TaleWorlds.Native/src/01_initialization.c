@@ -44318,8 +44318,8 @@ INIT_LABEL_SYSTEM_70230:
         system_temp_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_STRING_RESOURCES_PROCESS;
         system_temp_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_PATH_Resources_3;
         *(uint32_t *)(system_temp_pointer + 4) = SYSTEM_STRING_PATH_PMU;
-        *(uint32_t *)((longlong)system_temp_pointer + SYSTEM_NODE_OFFSET_NEXT) = 0x65636f72;
-        *(uint32_t *)(system_temp_pointer + 5) = 0x6e697373;
+        *(uint32_t *)((longlong)system_temp_pointer + SYSTEM_NODE_OFFSET_NEXT) = SYSTEM_STRING_CORE;
+        *(uint32_t *)(system_temp_pointer + 5) = SYSTEM_STRING_MISS;
         *(uint32_t *)((longlong)system_temp_pointer + SYSTEM_POINTER_OFFSET_2C) = SYSTEM_STRING_FLAG_GOL;
         *(uint32_t *)(system_temp_pointer + 6) = 0x726564;
         init_stack_uint_param_80 = 0x33;
@@ -45929,8 +45929,8 @@ INIT_LABEL_SYSTEM_729bd:
           system_temp_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_STRING_RESOURCES_PROCESS;
           system_temp_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_PATH_Resources_3;
           *(uint32_t *)(system_temp_pointer + 4) = SYSTEM_STRING_PATH_PMU;
-          *(uint32_t *)((longlong)system_temp_pointer + SYSTEM_NODE_OFFSET_NEXT) = 0x65636f72;
-          *(uint32_t *)(system_temp_pointer + 5) = 0x6e697373;
+          *(uint32_t *)((longlong)system_temp_pointer + SYSTEM_NODE_OFFSET_NEXT) = SYSTEM_STRING_CORE;
+          *(uint32_t *)(system_temp_pointer + 5) = SYSTEM_STRING_MISS;
           *(uint32_t *)((longlong)system_temp_pointer + SYSTEM_POINTER_OFFSET_2C) = SYSTEM_STRING_FLAG_GOL;
           *(uint32_t *)(system_temp_pointer + 6) = 0x726564;
           init_stack_uint_param_c0 = 0x33;
