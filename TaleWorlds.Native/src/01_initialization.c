@@ -49224,7 +49224,7 @@ void InitializeSystemModule88(void)
          system_float_result * system_float_result + system_float_result * system_float_result + system_float_result * system_float_result + init_input_stack_180[0xe];
     init_float_stack_dc =
          system_float_result * system_float_result + system_float_result * system_float_result + system_float_result * system_float_result + init_input_stack_180[0xf];
-    ptr_float_var = &stack0x000000a0;
+    init_float_pointer_temp = &init_float_stack_a0;
   }
   InitializeSystemDataNode15(&init_stack_uint_60,system_long_result + 0x30,*(uint8_t *)(system_register_rbx + 0xf7),ptr_float_var);
   system_status_code = init_input_stack_98;
@@ -49484,7 +49484,7 @@ void InitializeSystemLogger(void)
          system_float_result * system_float_result + system_float_result * system_float_result + system_float_result * system_float_result + init_input_stack_180[0xe];
     init_float_stack_dc =
          system_float_result * system_float_result + system_float_result * system_float_result + system_float_result * system_float_result + init_input_stack_180[0xf];
-    ptr_float_var = &stack0x000000a0;
+    init_float_pointer_temp = &init_float_stack_a0;
   }
   InitializeSystemDataNode15(&init_stack_uint_60,system_long_result + 0x30,*(uint8_t *)(system_register_rbx + 0xf7),ptr_float_var);
   system_status_code = init_input_stack_98;
@@ -49635,7 +49635,7 @@ void HandleSystemConfiguration64(void)
     init_float_stack_d8 = system_float_result * system_float_result + system_float_result * system_float_result + system_float_result * system_float_result + system_RSI[0xe];
     init_float_stack_dc = system_float_result * system_float_result + system_float_result * system_float_result + system_float_result * system_float_result + system_RSI[0xf];
   }
-  InitializeSystemDataNode15(&stack0x00000060,system_R13 + 0x30,*(uint8_t *)(system_register_rbx + 0xf7));
+  InitializeSystemDataNode15(&init_stack_60,system_R13 + 0x30,*(uint8_t *)(system_register_rbx + 0xf7));
   system_status_code = init_input_stack_98;
   system_status_code = init_input_stack_90;
   system_status_code = init_input_stack_88;
@@ -49800,9 +49800,9 @@ void ProcessSystemOperation95(void)
          system_float_result * system_float_result + system_float_result * system_float_result + system_float_result * system_float_result + init_input_stack_180[0xe];
     init_float_stack_dc =
          system_float_result * system_float_result + system_float_result * system_float_result + system_float_result * system_float_result + init_input_stack_180[0xf];
-    ptr_float_var = &stack0x000000a0;
+    init_float_pointer_temp = &init_float_stack_a0;
   }
-  InitializeSystemDataNode15(&stack0x00000060,system_R13 + 0x30,*(uint8_t *)(system_register_rbx + 0xf7),ptr_float_var);
+  InitializeSystemDataNode15(&init_stack_60,system_R13 + 0x30,*(uint8_t *)(system_register_rbx + 0xf7),ptr_float_var);
   system_status_code = init_input_stack_98;
   system_status_code = init_input_stack_90;
   system_status_code = init_input_stack_88;
@@ -49874,7 +49874,7 @@ void HandleSystemResource98(void)
   uint64_t init_input_stack_90;
   uint64_t init_input_stack_98;
 
-  InitializeSystemDataNode15(&stack0x00000060,system_R13 + 0x30,*(uint8_t *)(system_register_rbx + 0xf7));
+  InitializeSystemDataNode15(&init_stack_60,system_R13 + 0x30,*(uint8_t *)(system_register_rbx + 0xf7));
   system_status_code = init_input_stack_98;
   system_status_code = init_input_stack_90;
   system_status_code = init_input_stack_88;
@@ -50128,7 +50128,7 @@ void ValidateSystemHandle60(uint64_t handleIdentifier,uint64_t resourceIdentifie
   init_uint_stack_5c = 0;
   init_uint_stack_4c = 0;
   init_uint_stack_3c = 0;
-  ConfigureSystemParameters(0x3f800000,system_float_result * system_float_result,system_register_r14d_value,&stack0x00000030,init_input_stack_e0);
+  ConfigureSystemParameters(0x3f800000,system_float_result * system_float_result,system_register_r14d_value,&init_stack_30,init_input_stack_e0);
   return;
 }
 // void InitializeSystemModule84(void)
@@ -50163,7 +50163,7 @@ void InitializeSystemModule84(void)
   init_ulonglong_stack_58 = system_register_rdi[5] & 0xffffffff;
   init_ulonglong_stack_48 = system_register_rdi[3] & 0xffffffff;
   init_ulonglong_stack_38 = system_register_rdi[1] & 0xffffffff;
-  ConfigureSystemParameters(0x3f800000,init_uint_stack_60,system_register_r14d_value,&stack0x00000030,init_input_stack_e0);
+  ConfigureSystemParameters(0x3f800000,init_uint_stack_60,system_register_r14d_value,&init_stack_30,init_input_stack_e0);
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
