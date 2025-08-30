@@ -29287,7 +29287,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
   uint64_t init_stack_texture_handle_340;
   uint32_t init_stack_texture_type_338;
   void *system_buffer_ptr_resource_pool_large;
-  void *system_buffer_ptr_328;
+  void *system_buffer_ptr_resource_context;
   uint32_t uinit_stack_temp_counter_320;
   ulonglong init_stack_data_size_318;
   longlong init_stack_graphics_base_310;
@@ -37086,9 +37086,9 @@ void InitializeSystemResources(uint64_t handleIdentifier)
   longlong init_stack_buffer_ptr_298;
   uint32_t init_stack_parameter_288;
   void *system_buffer_ptr_config_data_zero;
-  void *system_buffer_ptr_278;
+  void *system_buffer_ptr_data_aux;
   uint32_t initialization_stack_combined_register_268;
-  void *system_buffer_ptr_260;
+  void *system_buffer_ptr_shared_memory;
   void *system_buffer_ptr_data_transfer;
   uint32_t init_stack_uint_param_248;
   uint64_t init_stack_uint_param_240;
@@ -37171,7 +37171,7 @@ void InitializeSystemResources(uint64_t handleIdentifier)
   }
   uintStack_2e0 = 0;
   init_stack_buffer_start_2d8 = 0;
-  InitializeSharedMemory(handleIdentifier,&system_buffer_ptr_260,&g_system_config_module_data);
+  InitializeSharedMemory(handleIdentifier,&system_buffer_ptr_shared_memory,&g_system_config_module_data);
   system_ptr_value = &g_system_data_variable3;
   if (system_buffer_ptr_data_transfer != (void *)SYSTEM_NULL_POINTER) {
     system_ptr_value = system_buffer_ptr_data_transfer;
@@ -37185,14 +37185,14 @@ void InitializeSystemResources(uint64_t handleIdentifier)
     systemCoreData = systemCoreData + -1;
     UNLOCK();
   }
-  system_buffer_ptr_260 = &resourcePoolPointer;
+  system_buffer_ptr_shared_memory = &resourcePoolPointer;
   if (system_buffer_ptr_data_transfer != (void *)SYSTEM_NULL_POINTER) {
                     // WARNING: Subroutine does not return
     ProcessSystemOperation();
   }
   system_buffer_ptr_data_transfer = (void *)SYSTEM_NULL_POINTER;
   init_stack_uint_param_248 = 0;
-  system_buffer_ptr_260 = &globalSystemPointerData;
+  system_buffer_ptr_shared_memory = &globalSystemPointerData;
   if (init_stack_buffer_start_2d8 != SYSTEM_COMPARISON_ZERO) {
     fclose();
     init_stack_buffer_start_2d8 = 0;
@@ -37669,7 +37669,7 @@ void InitializeFontSystem(uint64_t handleIdentifier)
   uint64_t init_stack_parameter_280;
   longlong longStack_278;
   longlong longStack_268;
-  uint64_t *system_buffer_ptr_260;
+  uint64_t *system_buffer_ptr_shared_memory;
   uint64_t *system_buffer_ptr_data_transfer;
   uint64_t uintStack_250;
   uint32_t init_stack_uint_param_248;
@@ -37919,17 +37919,17 @@ void InitializeFontSystem(uint64_t handleIdentifier)
       }
     }
     UpdateSystemBuffer(&system_buffer_ptr_240,system_temp_pointer);
-    system_buffer_ptr_260 = (uint64_t *)SYSTEM_NULL_POINTER;
+    system_buffer_ptr_shared_memory = (uint64_t *)SYSTEM_NULL_POINTER;
     system_buffer_ptr_data_transfer = (uint64_t *)SYSTEM_NULL_POINTER;
     uintStack_250 = 0;
     init_stack_uint_param_248 = 3;
     system_local_buffer_338[SYSTEM_BUFFER_INDEX_FIRST] = SYSTEM_BOOLEAN_TRUE0;
     if (longStack_238 != SYSTEM_COMPARISON_ZERO) {
-      InitializeSystemModule4(&system_buffer_ptr_240,&system_buffer_ptr_260,system_local_buffer_338);
+      InitializeSystemModule4(&system_buffer_ptr_240,&system_buffer_ptr_shared_memory,system_local_buffer_338);
     }
-    system_operation_result = (longlong)system_buffer_ptr_data_transfer - (longlong)system_buffer_ptr_260 >> 5;
-    system_ptr_value = system_buffer_ptr_260;
-    system_ptr_value = system_buffer_ptr_260;
+    system_operation_result = (longlong)system_buffer_ptr_data_transfer - (longlong)system_buffer_ptr_shared_memory >> 5;
+    system_ptr_value = system_buffer_ptr_shared_memory;
+    system_ptr_value = system_buffer_ptr_shared_memory;
     system_ptr_value = system_buffer_ptr_data_transfer;
     if ((int)system_temp_counter != SYSTEM_COMPARISON_ZERO) {
       system_stack_buffer_index_2c8 = system_temp_counter & SYSTEM_OFFSET_Ffffffff;
@@ -38026,29 +38026,29 @@ INIT_LABEL_SYSTEM_65a3e:
         system_stack_buffer_index_2c8 = system_stack_buffer_index_2c8 - 1;
       } while (system_stack_buffer_index_2c8 != SYSTEM_COMPARISON_ZERO);
       system_stack_buffer_index_2c8 = 0;
-      system_ptr_value = system_buffer_ptr_260;
-      system_ptr_value = system_buffer_ptr_260;
+      system_ptr_value = system_buffer_ptr_shared_memory;
+      system_ptr_value = system_buffer_ptr_shared_memory;
       system_ptr_value = system_buffer_ptr_data_transfer;
     }
     for (; system_current_node = new_var, system_ptr_value = new_var, system_temp_pointer != system_buffer_ptr_data_transfer; system_ptr_value = system_temp_pointer + 4
         ) {
-      system_buffer_ptr_260 = system_ptr_value;
+      system_buffer_ptr_shared_memory = system_ptr_value;
       system_buffer_ptr_data_transfer = system_ptr_value;
       (**(code **)*system_temp_pointer)(system_temp_pointer,0);
-      system_ptr_value = system_buffer_ptr_260;
+      system_ptr_value = system_buffer_ptr_shared_memory;
       system_ptr_value = system_buffer_ptr_data_transfer;
       system_buffer_ptr_data_transfer = system_current_node;
-      system_buffer_ptr_260 = system_ptr_value;
+      system_buffer_ptr_shared_memory = system_ptr_value;
     }
-    if (system_buffer_ptr_260 != (uint64_t *)SYSTEM_NULL_POINTER) {
-      system_buffer_ptr_260 = system_ptr_value;
+    if (system_buffer_ptr_shared_memory != (uint64_t *)SYSTEM_NULL_POINTER) {
+      system_buffer_ptr_shared_memory = system_ptr_value;
       system_buffer_ptr_data_transfer = system_ptr_value;
                     // WARNING: Subroutine does not return
       ProcessSystemOperation(system_temp_pointer);
     }
     system_buffer_ptr_240 = &resourcePoolPointer;
     if (longStack_238 != SYSTEM_COMPARISON_ZERO) {
-      system_buffer_ptr_260 = system_ptr_value;
+      system_buffer_ptr_shared_memory = system_ptr_value;
       system_buffer_ptr_data_transfer = system_ptr_value;
                     // WARNING: Subroutine does not return
       ProcessSystemOperation();
@@ -38056,7 +38056,7 @@ INIT_LABEL_SYSTEM_65a3e:
     longStack_238 = 0;
     init_stack_uint_param_228 = 0;
     system_buffer_ptr_240 = &globalSystemPointerData;
-    system_buffer_ptr_260 = system_ptr_value;
+    system_buffer_ptr_shared_memory = system_ptr_value;
     system_buffer_ptr_data_transfer = system_ptr_value;
   }
   if ((systemCoreData == SYSTEM_COMPARISON_ZERO) || (*(int *)(g_system_base_1 + SYSTEM_DATA_OFFSET_340) == SYSTEM_COMPARISON_ZERO)) {
@@ -39335,7 +39335,7 @@ void InitializeSystemModule45(longlong handleIdentifier,longlong resourceIdentif
   uint64_t system_stack_data_handle_2a0;
   longlong asystem_stack_file_handle_288 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   void *system_buffer_ptr_global_context;
-  void *system_buffer_ptr_260;
+  void *system_buffer_ptr_shared_memory;
   ulonglong init_stack_system_handle;
   ulonglong system_operation_result;
 
@@ -39343,8 +39343,8 @@ void InitializeSystemModule45(longlong handleIdentifier,longlong resourceIdentif
   init_stack_system_handle = system_configuration_data ^ (ulonglong)system_local_buffer_config_key;
   ValidateModuleHandle(&system_buffer_ptr_global_context);
   system_ptr_value = &g_system_data_variable3;
-  if (system_buffer_ptr_260 != (void *)SYSTEM_NULL_POINTER) {
-    system_ptr_value = system_buffer_ptr_260;
+  if (system_buffer_ptr_shared_memory != (void *)SYSTEM_NULL_POINTER) {
+    system_ptr_value = system_buffer_ptr_shared_memory;
   }
   system_operation_result = 0;
   init_stack_uint_param_2b8 = 0;
