@@ -2441,13 +2441,13 @@ dataValue g_materialTextureWorkBuffer;
 dataValue g_materialTextureTempOffset;
 
 // 函数: resource_data materialTextureSamplerInitialize;
-dataValue materialTextureSamplerInitialize;
-dataValue g_material_texture_work_buffer_main;
-dataValue g_material_texture_temp_offset_main;
-dataValue materialTextureSampler;
-dataValue g_material_texture_work_buffer_secondary;
-dataValue g_material_texture_temp_offset_secondary;
-dataValue g_material_texture_temp_size_secondary;
+dataValue g_material_texture_sampler_initialize;       // 材质纹理采样器初始化
+dataValue g_material_texture_work_buffer_main;       // 材质纹理工作缓冲区主
+dataValue g_material_texture_temp_offset_main;        // 材质纹理临时偏移量主
+dataValue g_material_texture_sampler;                 // 材质纹理采样器
+dataValue g_material_texture_work_buffer_secondary;   // 材质纹理工作缓冲区次
+dataValue g_material_texture_temp_offset_secondary;  // 材质纹理临时偏移量次
+dataValue g_material_texture_temp_size_secondary;    // 材质纹理临时大小次
 
 // 函数: resource_data materialPropertyBufferInitialize;
 dataValue materialPropertyBufferInitialize;
