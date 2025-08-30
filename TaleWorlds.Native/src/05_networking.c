@@ -24368,10 +24368,10 @@ void networkExtractProtocolData3(void)
 uint64_t networkExtractProtocolData4(void)
 int64_t networkExtractProtocolData5(int64_t network_socket_descriptor,uint32_t *network_buffer_pointer,char network_buffer_size)
   network_timeout_ms = *(int64_t *)(network_timeout_value_ptr_tenth + NETWORK_ENCRYPTION_OFFSET0);
-  if ((*(int32_t *)(network_timeout_value_ptr_tenth + NETWORK_OFFSET_37C) != NETWORK_OPERATION_FAILURE) && (*(int32_t *)(network_timeout_value_ptr_tenth + 0x360) != NETWORK_OPERATION_FAILURE)) {
+  if ((*(int32_t *)(network_timeout_value_ptr_tenth + NETWORK_OFFSET_37C) != NETWORK_OPERATION_FAILURE) && (*(int32_t *)(network_timeout_value_ptr_tenth + NETWORK_DATA_PTR_OFFSET_360) != NETWORK_OPERATION_FAILURE)) {
     network_status_third = *(int32_t *)(*(int64_t *)(network_timeout_value_ptr_tenth + NETWORK_CONNECTION_EXTENDED_OFFSET_358) +
-                     (int)((network_buffer_size ^ network_packet_size_temp ^ network_data_ptr ^ processor_index) & *(int32_t *)(network_timeout_value_ptr_tenth + 0x360) - 1U) * 4);
-        long_ptr_primary = (int64_t *)((longlong)network_status_third * SOCKET_RESPONSE_OFFSET + *(int64_t *)(network_timeout_value_ptr_tenth + 0x368));
+                     (int)((network_buffer_size ^ network_packet_size_temp ^ network_data_ptr ^ processor_index) & *(int32_t *)(network_timeout_value_ptr_tenth + NETWORK_DATA_PTR_OFFSET_360) - 1U) * 4);
+        long_ptr_primary = (int64_t *)((longlong)network_status_third * SOCKET_RESPONSE_OFFSET + *(int64_t *)(network_timeout_value_ptr_tenth + NETWORK_DATA_PTR_OFFSET_368));
 int64_t networkExtractProtocolData6(int64_t network_socket_descriptor,uint64_t network_buffer_pointer,char network_buffer_size)
   network_timeout_ms = *(int64_t *)(network_socket_context_ptr + NETWORK_ENCRYPTION_OFFSET0);
   if ((*(int32_t *)(network_socket_context_ptr + NETWORK_OFFSET_37C) != NETWORK_OPERATION_FAILURE) && (*(int32_t *)(network_socket_context_ptr + 0x360) != NETWORK_OPERATION_FAILURE)) {
