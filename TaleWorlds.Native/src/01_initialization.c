@@ -313,7 +313,7 @@
 
 // 补充小数值常量（2025年8月30日最终批次）
 #define SYSTEM_INIT_VALUE_CHAR_0X65           0x65    // 字符值0x65
-#define SYSTEM_INIT_VALUE_CHAR_0X3E           SYSTEM_INIT_VALUE_CHAR_0X3E    // 字符值SYSTEM_INIT_VALUE_CHAR_0X3E
+#define SYSTEM_INIT_VALUE_CHAR_0X3E           0x3e    // 字符值0x3e
 #define SYSTEM_INIT_VALUE_CHAR_0X67           0x67    // 字符值0x67
 #define SYSTEM_INIT_VALUE_CHAR_0X32           0x32    // 字符值0x32
 #define SYSTEM_INIT_VALUE_CHAR_0X5C           0x5c    // 字符值0x5c
@@ -327,8 +327,8 @@
 #define SYSTEM_INIT_VALUE_STRING_MODULE_1   0x53454c55444f4d5f  // 字符串"SELDOM_"的十六进制表示
 #define SYSTEM_INIT_FLOAT_VALUE_1_0         0x3f800000  // 浮点数1.0的十六进制表示
 #define SYSTEM_INIT_FLOAT_VALUE_0_5         0x3f000000  // 浮点数0.5的十六进制表示
-#define SYSTEM_INIT_FLOAT_VALUE_0_2         SYSTEM_INIT_VALUE_CHAR_0X3E4ccccd  // 浮点数0.2的十六进制表示
-#define SYSTEM_INIT_FLOAT_VALUE_0_075       SYSTEM_INIT_VALUE_CHAR_0X3E99999a  // 浮点数0.075的十六进制表示
+#define SYSTEM_INIT_FLOAT_VALUE_0_2         0x3e4ccccd  // 浮点数0.2的十六进制表示
+#define SYSTEM_INIT_FLOAT_VALUE_0_075       0x3e99999a  // 浮点数0.075的十六进制表示
 #define SYSTEM_INIT_FLOAT_VALUE_PI_2        0x3fc90fdb  // 浮点数π/2的十六进制表示
 #define SYSTEM_INIT_FLOAT_VALUE_MAX         0x7f7fffff  // 最大浮点数的十六进制表示
 #define SYSTEM_INIT_DOUBLE_VALUE_1_0        0x3ff0000000000000  // 双精度浮点数1.0的十六进制表示
@@ -444,8 +444,8 @@
 #define SYSTEM_INIT_CONTEXT_INDEX_ARRAY_76 0x76    // 数组76上下文参数索引
 #define SYSTEM_INIT_CONTEXT_INDEX_ARRAY_7A 0x7a    // 数组7A上下文参数索引
 #define SYSTEM_INIT_CONTEXT_INDEX_ARRAY_7D 0x7d    // 数组7D上下文参数索引
-#define SYSTEM_INIT_CONTEXT_INDEX_ARRAY_51 SYSTEM_INIT_CONTEXT_INDEX_ARRAY_51    // 数组51上下文参数索引
-#define SYSTEM_INIT_CONTEXT_INDEX_ARRAY_52 SYSTEM_INIT_CONTEXT_INDEX_ARRAY_52    // 数组52上下文参数索引
+#define SYSTEM_INIT_CONTEXT_INDEX_ARRAY_51 0x51    // 数组51上下文参数索引
+#define SYSTEM_INIT_CONTEXT_INDEX_ARRAY_52 0x52    // 数组52上下文参数索引
 #define SYSTEM_INIT_CONTEXT_INDEX_ARRAY_53 0x53    // 数组53上下文参数索引
 #define SYSTEM_INIT_CONTEXT_INDEX_ARRAY_54 0x54    // 数组54上下文参数索引
 
