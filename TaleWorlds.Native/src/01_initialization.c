@@ -492,7 +492,7 @@
 #define SYSTEM_INIT_OFFSET_0X100               0x100    // 偏移量
 #define SYSTEM_INIT_OFFSET_0X50               0x50    // 偏移量
 #define SYSTEM_INIT_OFFSET_0X60               0x60    // 偏移量
-#define SYSTEM_INIT_SIZE_0X0x108                 0x0x108    // 大小0x0x108
+#define SYSTEM_INIT_SIZE_0X108                 0x108    // 大小0x108
 #define SYSTEM_INIT_OFFSET_0XD                0xd     // 偏移量
 #define SYSTEM_INIT_MAGIC_COOKIE_ENGINE_1     0x69676e65 // 引擎魔法cookie 1
 #define SYSTEM_INIT_MAGIC_COOKIE_ENGINE_2     0x60105f656e // 引擎魔法cookie 2
