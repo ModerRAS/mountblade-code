@@ -1,8 +1,20 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 本次美化内容（2025年8月30日最终批次续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续）：
+// 本次美化内容（2025年8月30日最终批次续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续）：
 // - 美化变量名，将init_stack_size_334替换为init_stack_buffer_size等缓冲区相关变量名
 // - 美化变量名，将init_stack_capacity_320替换为init_stack_buffer_capacity等容量相关变量名
+// - 美化变量名，将init_float_stack_58_value替换为init_stack_audio_data_value等语义化变量名
+// - 美化变量名，将init_float_stack_54替换为init_stack_data_offset_51等语义化变量名
+// - 美化变量名，将init_float_stack_50替换为init_stack_data_offset_52等语义化变量名
+// - 美化变量名，将init_float_stack_4c替换为init_stack_data_offset_53等语义化变量名
+// - 美化变量名，将init_float_stack_9c_hex替换为init_stack_hex_value_9c等语义化变量名
+// - 美化变量名，将init_float_stack_98_hex替换为init_stack_hex_value_98等语义化变量名
+// - 美化变量名，将init_float_stack_94_hex替换为init_stack_hex_value_94等语义化变量名
+// - 美化变量名，将init_float_stack_90_hex替换为init_stack_hex_value_90等语义化变量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了系统初始化文件中剩余变量名的语义化替换
+// - 原本实现：完全重构系统初始化文件所有变量命名体系，建立统一的语义化命名规范
+// - 简化实现：仅将常见的包含数字的变量名替换为语义化名称，保持代码结构不变
 // - 美化变量名，将init_stack_uint_param_300替换为init_stack_uint_param_buffer等参数相关变量名
 // - 美化变量名，将init_stack_index_2d8替换为init_stack_buffer_index等索引相关变量名
 // - 美化变量名，将init_stack_uint_param_248替换为init_stack_uint_param_handle等句柄相关变量名

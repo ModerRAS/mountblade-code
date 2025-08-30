@@ -5236,12 +5236,13 @@ int32_t NetworkReceivePacketWithValidation(int64_t network_socket_handle, int64_
 {
     int32_t network_operation_result;
   int32_t network_temp_status;
+  int32_t network_temp_checksum;
   network_operation_result = networkCopyData(network_operation_result + network_buffer_ptr, network_buffer_size - network_operation_result, &g_networkNullTerminator);
   network_operation_result = network_operation_result + network_operation_result;
   network_operation_result = networkCopyData(network_operation_result + network_buffer_ptr, network_buffer_size - network_operation_result, network_socket_handle + NETWORK_SOCKET_DESCRIPTOR_RESPONSE_OFFSET);
   network_operation_result = networkCopyData(network_operation_result + network_buffer_ptr, network_buffer_size - network_operation_result, network_socket_handle + NETWORK_SOCKET_SECURITY_OFFSET);
-  network_temp_code = networkValidateChecksum(network_operation_result + network_buffer_ptr, network_buffer_size - network_operation_result, network_operation_result);
-  return network_temp_code + network_operation_result;
+  network_temp_checksum = networkValidateChecksum(network_operation_result + network_buffer_ptr, network_buffer_size - network_operation_result, network_operation_result);
+  return network_temp_checksum + network_operation_result;
 int32_t NetworkCopySocketData(int64_t network_socket_handle, int64_t network_buffer_ptr, int32_t network_buffer_size)
   network_operation_result = networkCopyData(network_op_status + network_buffer_ptr, network_buffer_size - network_op_status, network_socket_handle + MODULE_STATUS_OFFSET);
 int32_t NetworkCopyPacketData(int64_t network_socket_handle, int64_t network_buffer_ptr, int32_t network_buffer_size)
