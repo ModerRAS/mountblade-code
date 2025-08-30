@@ -63,6 +63,12 @@
 // - 将硬编码的0x69666e6f替换为SYSTEM_STRING_NOCS等字符串常量
 // - 将硬编码的0x65766544替换为SYSTEM_STRING_DEV等字符串常量
 // - 将硬编码的0x3f000000替换为SYSTEM_FLOAT_VALUE_1_0F等浮点常量
+// - 将local_varvartemp_variable_10替换为system_temp_string_buffer等临时字符串缓冲区变量名
+// - 将uintStack_23c等变量名替换为init_stack_buffer_size_23c等栈缓冲区大小变量名
+// - 将uintStack_158等变量名替换为init_stack_data_size_158等栈数据大小变量名
+// - 将intStack_668等变量名替换为init_stack_counter_668等栈计数器变量名
+// - 将longStack_678等变量名替换为init_stack_resource_handle_678等资源句柄变量名
+// - 将system_buffer_ptr_60等变量名替换为system_buffer_ptr_thread_context等线程上下文变量名
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了硬编码十六进制值的语义化替换
 // - 原本实现：完全重构硬编码常量体系
