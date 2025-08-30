@@ -249,6 +249,18 @@ extern char system_flag_buffer_6;
 extern char system_flag_buffer_7;
 extern char thread_data_buffer_char;
 extern char system_data_buffer_ptr;
+extern char system_flag_buffer_8;
+extern char system_flag_buffer_9;
+extern char system_flag_buffer_10;
+extern char system_flag_buffer_11;
+extern char system_flag_buffer_12;
+extern char system_flag_buffer_13;
+extern char system_flag_buffer_14;
+extern char system_flag_buffer_15;
+extern char system_flag_buffer_16;
+extern char system_flag_buffer_17;
+extern char system_flag_buffer_18;
+extern char system_flag_buffer_19;
 #define MODULE_HANDLER_ADDR 0x180c95de0
 #define MODULE_CONFIG_ADDR 0x180c95fc8
 
@@ -6077,7 +6089,7 @@ system_finalizer_007(unsigned long long handle_param,unsigned long long thread_o
   global_data_ptr = 0;
   global_data_ptr = 0;
   global_data_ptr = 0;
-  data_180c92588 = 1;
+  system_flag_buffer_8 = 1;
   global_data_ptr = 0;
   global_data_ptr = 0;
   system_finalizer_009();
@@ -6088,14 +6100,14 @@ system_finalizer_007(unsigned long long handle_param,unsigned long long thread_o
     system_init_result = system_init_result + STRING_BUFFER_SIZE;
     str_len_counter = str_len_counter + -1;
   } while (str_len_counter != 0);
-  data_180c95bf0 = 0;
+  system_flag_buffer_9 = 0;
   _Mtx_init_in_situ(0x180c95d70,2,mutex_attr,mutex_type,buffer_alloc_result);
   global_data_ptr = UINT32_MAX;
   global_data_ptr = 0;
   global_data_ptr = 0;
   global_data_ptr = 0xffdc;
-  data_180c95dd8 = 1;
-  system_finalizer_008(&data_180c924d0);
+  system_flag_buffer_10 = 1;
+  system_finalizer_008(&module_finalizer_buffer);
   global_data_ptr = 3;
   global_data_ptr = 0;
   global_data_ptr = 0;
@@ -8793,12 +8805,12 @@ label_:
   system_execution_function(auStack_30);
   return buffer_alloc_result;
 }
-  data_180bf66d8 = 0;
+  system_flag_buffer_11 = 0;
   system_crypto_initializer(system_execution_function);
   system_execution_function(&system_18064ffc0);
   str_len_counter = 0;
   global_data_ptr = system_execution_function;
-  pthread_op_flags = (unsigned int *)&data_180bfbd80;
+  pthread_op_flags = (unsigned int *)&thread_pool_data_buffer;
   str_len_counter = 0x16;
   do {
     if (pthread_op_flags[1] == 0) {
@@ -8812,15 +8824,15 @@ label_:
     str_len_counter = str_len_counter + -1;
   } while (str_len_counter != 0);
   if (global_data_ptr == 0) {
-    system_execution_function(&data_180bfbf60);
+    system_execution_function(&thread_op_flags_buffer);
   }
   global_data_ptr = (long long)global_data_ptr;
   if (global_data_ptr == 0) {
-    system_execution_function(&data_180bfbf78);
+    system_execution_function(&thread_op_flags_buffer_0);
   }
   global_data_ptr = (long long)global_data_ptr;
   system_execution_function();
-  if (data_180c8efc8 != '\0') {
+  if (system_control_flag_buffer != '\0') {
     system_execution_function(&system_180a3d970);
   }
   return;
@@ -10352,7 +10364,7 @@ unsigned long long get_thread_handle_param(unsigned long long handle_param)
   unaffected_registerDI[1] = buffer_alloc_result;
   return buffer_alloc_result;
 }
-  data_180bf66d8 = 0;
+  system_flag_buffer_11 = 0;
   system_crypto_initializer(system_execution_function);
   system_execution_function(&system_18064ffc0);
   str_len_counter = 0;
@@ -10371,15 +10383,15 @@ unsigned long long get_thread_handle_param(unsigned long long handle_param)
     str_len_counter = str_len_counter + -1;
   } while (str_len_counter != 0);
   if (global_data_ptr == 0) {
-    system_execution_function(&data_180bfbf60);
+    system_execution_function(&thread_op_flags_buffer);
   }
   global_data_ptr = (long long)global_data_ptr;
   if (global_data_ptr == 0) {
-    system_execution_function(&data_180bfbf78);
+    system_execution_function(&thread_op_flags_buffer_0);
   }
   global_data_ptr = (long long)global_data_ptr;
   system_execution_function();
-  if (data_180c8efc8 != '\0') {
+  if (system_control_flag_buffer != '\0') {
     system_execution_function(&system_180a3d970);
   }
   return;
