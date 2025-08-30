@@ -36926,8 +36926,8 @@ uint64_t network_encrypt_data9(uint64_t network_socket_handle, uint64_t network_
                           (*(uint64_t **)(*network_socket_context + NETWORK_PACKET_HEADER_SIZE), &network_global_buffer,NETWORK_PARAM_SIZE_4);
         if (((int)network_operation_status_code == NETWORK_OPERATION_STATUS_FAILURE) && (network_operation_status_code = networkVerifySignature0(), (int)network_operation_status_code == NETWORK_OPERATION_STATUS_FAILURE)) {
           networkTerminateConnection();
-// 函数: void networkDecryptData0(void)
-void networkDecryptData0(void)
+// 函数: void network_decrypt_data_zero(void)
+void network_decrypt_data_zero(void)
     if (*(uint32_t *)(network_socket_context + NETWORK_PACKET_HEADER_SIZE) < NETWORK_COMPARE_VALUE_3B) {
       network_operation_status_code = networkVerifySignature5();
   else if ((inputRegister == NETWORK_LOG_MESSAGE_SIZE_MEDIUM) && (*(uint32_t *)(network_socket_context + NETWORK_PACKET_HEADER_SIZE) < SOCKET_CHECKSUM_OFFSET)) {
