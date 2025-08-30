@@ -471,6 +471,27 @@
 
 // 新增语义化常量定义 - 系统模块配置操作码
 #define SYSTEM_MODULE_CONFIG_OPCODE_14 0x14
+
+// 新增语义化常量定义 - 通用系统操作码
+#define SYSTEM_OPCODE_19 0x19
+#define SYSTEM_OPCODE_11 0x11
+#define SYSTEM_OPCODE_18 0x18
+#define SYSTEM_OPCODE_0F 0xf
+#define SYSTEM_OPCODE_16 0x16
+#define SYSTEM_OPCODE_12 0x12
+#define SYSTEM_OPCODE_1E 0x1e
+#define SYSTEM_OPCODE_1B 0x1b
+#define SYSTEM_OPCODE_1C 0x1c
+#define SYSTEM_OPCODE_1D 0x1d
+#define SYSTEM_OPCODE_21 0x21
+#define SYSTEM_OPCODE_25 0x25
+#define SYSTEM_OPCODE_23 0x23
+#define SYSTEM_OPCODE_1A 0x1a
+#define SYSTEM_OPCODE_15 0x15
+#define SYSTEM_OPCODE_28 0x28
+#define SYSTEM_OPCODE_0B 0xb
+#define SYSTEM_OPCODE_0E 0xe
+#define SYSTEM_OPCODE_0FFDC 0xffdc
 #define SYSTEM_RESOURCE_ID_PATCH 0x3b
 #define SYSTEM_RESOURCE_ID_DIAGNOSTICS 0x3c
 #define SYSTEM_RESOURCE_ID_MONITORING 0x3d
@@ -1611,17 +1632,17 @@ int initialize_network_module(void)
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &texture_resource_buffer_7;
   texture_resource_buffer_7 = 0;
-  system_global_data_pointer = 0x19;
+  system_global_data_pointer = SYSTEM_OPCODE_19;
   strcpy_s(&texture_resource_buffer_7,SYSTEM_CONFIG_BUFFER_SIZE,&texture_mipmap_definition_string);
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &texture_resource_buffer_8;
   texture_resource_buffer_8 = 0;
-  system_global_data_pointer = 0x11;
+  system_global_data_pointer = SYSTEM_OPCODE_11;
   strcpy_s(&texture_resource_buffer_8,SYSTEM_CONFIG_BUFFER_SIZE,&texture_wrap_definition_string);
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &texture_resource_buffer_9;
   texture_resource_buffer_9 = 0;
-  system_global_data_pointer = 0x18;
+  system_global_data_pointer = SYSTEM_OPCODE_18;
   strcpy_s(&texture_resource_buffer_9,SYSTEM_CONFIG_BUFFER_SIZE,&texture_shader_definition_string);
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &shader_resource_buffer_0;
@@ -1631,7 +1652,7 @@ int initialize_network_module(void)
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &shader_resource_buffer_1;
   shader_resource_buffer_1 = 0;
-  system_global_data_pointer = 0x19;
+  system_global_data_pointer = SYSTEM_OPCODE_19;
   strcpy_s(&shader_resource_buffer_1,SYSTEM_CONFIG_BUFFER_SIZE,&shader_vertex_definition_string);
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &shader_resource_buffer_2;
@@ -1646,17 +1667,17 @@ int initialize_network_module(void)
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &shader_resource_buffer_4;
   shader_resource_buffer_4 = 0;
-  system_global_data_pointer = 0xf;
+  system_global_data_pointer = SYSTEM_OPCODE_0F;
   strcpy_s(&shader_resource_buffer_4,SYSTEM_CONFIG_BUFFER_SIZE,&shader_compute_config_string);
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &shader_resource_buffer_5;
   shader_resource_buffer_5 = 0;
-  system_global_data_pointer = 0x16;
+  system_global_data_pointer = SYSTEM_OPCODE_16;
   strcpy_s(&shader_resource_buffer_5,SYSTEM_CONFIG_BUFFER_SIZE,&shader_tessellation_definition_string);
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &shader_resource_buffer_6;
   shader_resource_buffer_6 = 0;
-  system_global_data_pointer = 0x12;
+  system_global_data_pointer = SYSTEM_OPCODE_12;
   strcpy_s(&shader_resource_buffer_6,SYSTEM_CONFIG_BUFFER_SIZE,&shader_lighting_definition_string);
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &shader_resource_buffer_7;
@@ -1676,12 +1697,12 @@ int initialize_network_module(void)
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &audio_resource_buffer_0;
   audio_resource_buffer_0 = 0;
-  system_global_data_pointer = 0x16;
+  system_global_data_pointer = SYSTEM_OPCODE_16;
   strcpy_s(&audio_resource_buffer_0,SYSTEM_CONFIG_BUFFER_SIZE,&shader_water_definition_string);
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &audio_config_buffer;
   audio_config_buffer = 0;
-  system_global_data_pointer = 0xf;
+  system_global_data_pointer = SYSTEM_OPCODE_0F;
   strcpy_s(&audio_config_buffer,SYSTEM_CONFIG_BUFFER_SIZE,&audio_format_string);
   system_initialization_result = system_execution_function(&system_init_function_tertiary);
   return (system_initialization_result != 0) - 1;
@@ -1729,7 +1750,7 @@ int initialize_ui_module(void)
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &system_module_texture_buffer_2;
   system_module_texture_buffer_2 = 0;
-  system_global_data_pointer = 0x12;
+  system_global_data_pointer = SYSTEM_OPCODE_12;
   strcpy_s(&system_module_texture_buffer_2,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString3,system_string_length_parameter,DEFAULT_THREAD_POOL_FLAG);
   system_initialization_result = system_execution_function(resource_manager_7_initialization_function);
   return (system_initialization_result != 0) - 1;
@@ -1741,7 +1762,7 @@ int initialize_scripting_module(void)
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &system_module_texture_buffer_3;
   system_module_texture_buffer_3 = 0;
-  system_global_data_pointer = 0x12;
+  system_global_data_pointer = SYSTEM_OPCODE_12;
   strcpy_s(&system_module_texture_buffer_3,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString4,system_string_length_parameter,DEFAULT_THREAD_POOL_FLAG);
   system_initialization_result = system_execution_function(resource_manager_8_initialization_function);
   return (system_initialization_result != 0) - 1;
@@ -1825,7 +1846,7 @@ int initialize_thread_manager(void)
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &system_module_config_buffer_12;
   system_module_config_buffer_12 = 0;
-  system_global_data_pointer = 0x16;
+  system_global_data_pointer = SYSTEM_OPCODE_16;
   strcpy_s(&system_module_config_buffer_12,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString11,system_string_length_parameter,DEFAULT_THREAD_POOL_FLAG);
   system_initialization_result = system_execution_function(resource_manager_15_initialization_function);
   return (system_initialization_result != 0) - 1;
@@ -1909,7 +1930,7 @@ int initialize_shader_system(void)
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &system_module_config_buffer_19;
   system_module_config_buffer_19 = 0;
-  system_global_data_pointer = 0x1e;
+  system_global_data_pointer = SYSTEM_OPCODE_1E;
   strcpy_s(&system_module_config_buffer_19,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString17,system_string_length_parameter,DEFAULT_THREAD_POOL_FLAG);
   system_initialization_result = system_execution_function(resource_manager_22_initialization_function);
   return (system_initialization_result != 0) - 1;
@@ -1921,7 +1942,7 @@ int initialize_texture_manager(void)
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &system_module_config_buffer_20;
   system_module_config_buffer_20 = 0;
-  system_global_data_pointer = 0x1b;
+  system_global_data_pointer = SYSTEM_OPCODE_1B;
   strcpy_s(&system_module_config_buffer_20,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString18,system_string_length_parameter,DEFAULT_THREAD_POOL_FLAG);
   system_initialization_result = system_execution_function(resource_manager_23_initialization_function);
   return (system_initialization_result != 0) - 1;
@@ -1933,7 +1954,7 @@ int initialize_mesh_system(void)
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &system_module_config_buffer_21;
   system_module_config_buffer_21 = 0;
-  system_global_data_pointer = 0x1b;
+  system_global_data_pointer = SYSTEM_OPCODE_1B;
   strcpy_s(&system_module_config_buffer_21,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString19,system_string_length_parameter,DEFAULT_THREAD_POOL_FLAG);
   system_initialization_result = system_execution_function(resource_manager_24_initialization_function);
   return (system_initialization_result != 0) - 1;
@@ -2065,7 +2086,7 @@ int initialize_security_system(void)
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &system_module_texture_buffer_12;
   system_module_texture_buffer_12 = 0;
-  system_global_data_pointer = 0x1e;
+  system_global_data_pointer = SYSTEM_OPCODE_1E;
   strcpy_s(&system_module_texture_buffer_12,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString29,system_string_length_parameter,DEFAULT_THREAD_POOL_FLAG);
   system_initialization_result = system_execution_function(resource_manager_35_initialization_function);
   return (system_initialization_result != 0) - 1;
@@ -2077,7 +2098,7 @@ int initialize_encryption_service(void)
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &system_module_texture_buffer_13;
   system_module_texture_buffer_13 = 0;
-  system_global_data_pointer = 0x1e;
+  system_global_data_pointer = SYSTEM_OPCODE_1E;
   strcpy_s(&system_module_texture_buffer_13,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString30,system_string_length_parameter,DEFAULT_THREAD_POOL_FLAG);
   system_initialization_result = system_execution_function(resource_manager_36_initialization_function);
   return (system_initialization_result != 0) - 1;
@@ -2089,7 +2110,7 @@ int initialize_authentication_system(void)
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &system_module_texture_buffer_14;
   system_module_texture_buffer_14 = 0;
-  system_global_data_pointer = 0x12;
+  system_global_data_pointer = SYSTEM_OPCODE_12;
   strcpy_s(&system_module_texture_buffer_14,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString31,system_string_length_parameter,DEFAULT_THREAD_POOL_FLAG);
   system_initialization_result = system_execution_function(resource_manager_37_initialization_function);
   return (system_initialization_result != 0) - 1;
@@ -2125,7 +2146,7 @@ int initialize_user_profile_system(void)
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &system_module_texture_buffer_17;
   system_module_texture_buffer_17 = 0;
-  system_global_data_pointer = 0x16;
+  system_global_data_pointer = SYSTEM_OPCODE_16;
   strcpy_s(&system_module_texture_buffer_17,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString34,system_string_length_parameter,DEFAULT_THREAD_POOL_FLAG);
   system_initialization_result = system_execution_function(resource_manager_40_initialization_function);
   return (system_initialization_result != 0) - 1;
@@ -2185,7 +2206,7 @@ int initialize_debug_system(void)
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &system_module_texture_buffer_22;
   system_module_texture_buffer_22 = 0;
-  system_global_data_pointer = 0x1b;
+  system_global_data_pointer = SYSTEM_OPCODE_1B;
   strcpy_s(&system_module_texture_buffer_22,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString39,system_string_length_parameter,DEFAULT_THREAD_POOL_FLAG);
   system_initialization_result = system_execution_function(resource_manager_45_init_function);
   return (system_initialization_result != 0) - 1;
@@ -2197,7 +2218,7 @@ int initialize_profiling_system(void)
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &system_module_texture_buffer_23;
   system_module_texture_buffer_23 = 0;
-  system_global_data_pointer = 0x19;
+  system_global_data_pointer = SYSTEM_OPCODE_19;
   strcpy_s(&system_module_texture_buffer_23,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString40,system_string_length_parameter,DEFAULT_THREAD_POOL_FLAG);
   system_initialization_result = system_execution_function(resource_manager_46_init_function);
   return (system_initialization_result != 0) - 1;
@@ -2318,12 +2339,12 @@ int initialize_io_thread_pool(void)
   system_global_data_pointer = &g_memoryAllocationFlag;
   system_global_data_pointer = &system_memory_buffer_8;
   system_memory_buffer_8 = 0;
-  system_global_data_pointer = 0x1b;
+  system_global_data_pointer = SYSTEM_OPCODE_1B;
   strcpy_s(&system_memory_buffer_8,PRIMARY_STRING_BUFFER_SIZE,&g_bufferString8,system_string_length_parameter,DEFAULT_THREAD_POOL_FLAG);
   system_global_data_pointer = &g_memoryAllocationFlag;
   system_global_data_pointer = &system_memory_buffer_9;
   system_memory_buffer_9 = 0;
-  system_global_data_pointer = 0x19;
+  system_global_data_pointer = SYSTEM_OPCODE_19;
   strcpy_s(&system_memory_buffer_9,PRIMARY_STRING_BUFFER_SIZE,&g_bufferString9);
   system_global_data_pointer = &g_memoryAllocationFlag;
   system_global_data_pointer = &system_memory_buffer_10;
@@ -2333,7 +2354,7 @@ int initialize_io_thread_pool(void)
   system_global_data_pointer = &g_memoryAllocationFlag;
   system_global_data_pointer = &system_memory_buffer_11;
   system_memory_buffer_11 = 0;
-  system_global_data_pointer = 0x1b;
+  system_global_data_pointer = SYSTEM_OPCODE_1B;
   strcpy_s(&system_memory_buffer_11,PRIMARY_STRING_BUFFER_SIZE,&g_bufferString11);
   system_global_data_pointer = &g_memoryAllocationFlag;
   system_global_data_pointer = &system_memory_buffer_12;

@@ -30059,7 +30059,7 @@ uint64_t * InitializeSystemModule43(uint64_t *handleIdentifier,ulonglong resourc
   InitializeMutexInitNode(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK);
   InitializeSystemDataNode30(handleIdentifier);
   if ((resourceIdentifier & 1) != 0) {
-    free(handleIdentifier,0x590);
+    free(handleIdentifier,SYSTEM_RESOURCE_SIZE_SMALL_590);
   }
   return handleIdentifier;
 }
