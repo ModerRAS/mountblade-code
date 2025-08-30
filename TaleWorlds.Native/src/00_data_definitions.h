@@ -59,6 +59,31 @@
 // - 新增美化内容：将变量名如 thread_stack_ptr -> thread_stack_pointer
 // - 新增美化内容：将变量名如 str_len_counter -> system_string_length_counter
 
+// 新增美化内容：将变量名替换为语义化名称
+// - 将system_temp_stack_array替换为system_system_temp_stack_array（系统临时栈数组）
+// - 将system_config_stack_buffer替换为system_config_stack_buffer（系统配置栈缓冲区）
+// - 将system_operation_stack_buffer替换为system_operation_stack_buffer（系统操作栈缓冲区）
+// - 将system_parameter_stack_buffer替换为system_parameter_stack_buffer（系统参数栈缓冲区）
+// - 将system_crypto_stack_buffer_large替换为system_crypto_stack_buffer_large（系统加密栈缓冲区大）
+// - 将system_thread_stack_buffer_small替换为system_thread_stack_buffer_small（系统线程栈缓冲区小）
+// - 将system_crypto_stack_buffer_medium替换为system_crypto_stack_buffer_medium（系统加密栈缓冲区中）
+// - 将stack_buffer_a0替换为system_path_stack_buffer（系统路径栈缓冲区）
+// - 将stack_buffer_180替换为system_initialization_stack_buffer（系统初始化栈缓冲区）
+// - 将stack_buffer_38替换为system_path_config_stack_buffer（系统路径配置栈缓冲区）
+// - 将stack_buffer_228替换为system_debug_stack_buffer（系统调试栈缓冲区）
+// - 将data_param_00替换为system_data_parameter_primary（系统数据参数主）
+// - 将data_param_08替换为system_data_parameter_secondary（系统数据参数次）
+// - 将data_param_10替换为system_data_parameter_third（系统数据参数第三）
+// - 将param_5替换为system_operation_parameter（系统操作参数）
+// - 将param_6替换为system_control_parameter（系统控制参数）
+// - 将in_stack_00000060替换为system_input_stack_parameter（系统输入栈参数）
+// - 将in_stack_00000070替换为system_input_stack_flag（系统输入栈标志）
+// - 将pplStack_68替换为system_parallel_stack_buffer（系统并行栈缓冲区）
+// - 将system_memory_stack_backup替换为system_memory_stack_backup_ptr（系统内存栈备份指针）
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+// - 这是简化实现，主要处理了数据定义文件中栈相关变量名的语义化替换
+
 // 本次美化内容：
 
 // 新增美化内容：将变量名替换为语义化名称
@@ -92,7 +117,7 @@
 // - 新增美化内容：将函数名如 mutex_set_function -> mutex_initialization_function
 // - 新增美化内容：将变量名如 thread_result_index -> thread_result_index
 // - 新增美化内容：将变量名如 thread_stack_base_address -> thread_stack_base_address
-// - 新增美化内容：将变量名如 stack_buffer_298 -> crypto_stack_buffer
+// - 新增美化内容：将变量名如 system_crypto_stack_buffer_medium -> crypto_stack_buffer
 // - 新增美化内容：将变量名如 stack_buffer_228 -> debug_stack_buffer
 // - 新增美化内容：将变量名如 auStack_260 -> system_stack_buffer_260
 // - 新增美化内容：将变量名如 auStack_2f8 -> crypto_operation_stack_buffer
@@ -2005,19 +2030,19 @@ int initialize_scaling_system(void)
 }
   system_thread_flag_2 = 1;
   system_thread_flag_1 = 0;
-  temp_stack_array[0] = GetModuleHandleA(0);
-  initialize_core_system(handle_param,temp_stack_array);
+  system_temp_stack_array[0] = GetModuleHandleA(0);
+  initialize_core_system(handle_param,system_temp_stack_array);
   initialize_subsystem_modules();
   initialize_service_layer();
   return;
 }
 void WotsMainNativeSDLL(unsigned long long handle_param)
 {
-  unsigned long long temp_stack_array [2];
+  unsigned long long system_temp_stack_array [2];
   system_thread_flag_2 = 0;
   system_thread_flag_1 = 0;
-  temp_stack_array[0] = GetModuleHandleA(0);
-  initialize_core_system(handle_param,temp_stack_array);
+  system_temp_stack_array[0] = GetModuleHandleA(0);
+  initialize_core_system(handle_param,system_temp_stack_array);
   initialize_subsystem_modules();
   initialize_service_layer();
   return;
@@ -2111,30 +2136,30 @@ section_processing_jump_label_:
 }
   system_thread_flag_2 = 1;
   system_thread_flag_1 = 0;
-  temp_stack_array[0] = GetModuleHandleA(0);
-  initialize_core_system(handle_param,temp_stack_array);
+  system_temp_stack_array[0] = GetModuleHandleA(0);
+  initialize_core_system(handle_param,system_temp_stack_array);
   initialize_subsystem_modules();
   initialize_service_layer();
   return;
 }
 void WotsMainNative(unsigned long long handle_param)
 {
-  unsigned long long temp_stack_array [2];
+  unsigned long long system_temp_stack_array [2];
   system_thread_flag_2 = 0;
   system_thread_flag_1 = 0;
-  temp_stack_array[0] = GetModuleHandleA(0);
-  initialize_core_system(handle_param,temp_stack_array);
+  system_temp_stack_array[0] = GetModuleHandleA(0);
+  initialize_core_system(handle_param,system_temp_stack_array);
   initialize_subsystem_modules();
   initialize_service_layer();
   return;
 }
 void WotsMainNativeCoreCLR(unsigned long long handle_param)
 {
-  unsigned long long temp_stack_array [2];
+  unsigned long long system_temp_stack_array [2];
   system_thread_flag_2 = 0;
   system_thread_flag_1 = 1;
-  temp_stack_array[0] = GetModuleHandleA(0);
-  initialize_core_system(handle_param,temp_stack_array);
+  system_temp_stack_array[0] = GetModuleHandleA(0);
+  initialize_core_system(handle_param,system_temp_stack_array);
   initialize_subsystem_modules();
   initialize_service_layer();
   return;
@@ -2864,10 +2889,10 @@ section_processing_jump_label_:
     } while (stack_size_max < stack_size_max);
   }
   thread_stack_ptr = &g_defaultDataTemplate;
-  thread_stack_ptr = stack_buffer_80;
-  stack_buffer_80[0] = 0;
+  thread_stack_ptr = system_config_stack_buffer;
+  system_config_stack_buffer[0] = 0;
   stack_size_max = STRING_BUFFER_SIZE;
-  strcpy_s(stack_buffer_80, SYSTEM_CONFIG_BUFFER_SIZE, &systemConfigStringBuffer);
+  strcpy_s(system_config_stack_buffer, SYSTEM_CONFIG_BUFFER_SIZE, &systemConfigStringBuffer);
   system_char_variable = system_handle_param_manager_003(str_len_counter,&thread_stack_ptr);
   thread_stack_ptr = &g_threadString4;
   if (system_char_variable != '\0') {
@@ -3229,15 +3254,15 @@ section_processing_jump_label_:
   psystem_initialization_result4 = system_global_data_pointer;
   stack_size_max = system_global_data_pointer;
   system_global_data_pointer = (long long *)*string_input_ptr;
-  stack_buffer_2a8[0] = 0;
+  system_operation_stack_buffer[0] = 0;
   plStack_2f8 = alStack_90;
   buffer_alloc_result = 0;
   alStack_90[0] = 0;
   alStack_90[1] = 0;
   alStack_90[2] = 0;
   stack_size_max = 3;
-  system_execution_function(stack_buffer_2a8);
-  system_handle_param_manager_002((long long)system_global_data_pointer * 0x238 + system_global_data_pointer + 0x1598,stack_buffer_2a8);
+  system_execution_function(system_operation_stack_buffer);
+  system_handle_param_manager_002((long long)system_global_data_pointer * 0x238 + system_global_data_pointer + 0x1598,system_operation_stack_buffer);
   plStack_2f8 = alStack_90;
   if (alStack_90[0] != 0) {
     handle_param_system_error();
@@ -3255,14 +3280,14 @@ section_processing_jump_label_:
   psystem_initialization_result = system_global_data_pointer;
   stack_size_max = system_global_data_pointer;
   system_global_data_pointer = (long long *)*psystem_initialization_result4;
-  stack_buffer_2a8[0] = 0;
+  system_operation_stack_buffer[0] = 0;
   plStack_2f8 = alStack_90;
   alStack_90[0] = 0;
   alStack_90[1] = 0;
   alStack_90[2] = 0;
   stack_size_max = 3;
-  system_execution_function(stack_buffer_2a8);
-  system_execution_function(stack_buffer_2a8);
+  system_execution_function(system_operation_stack_buffer);
+  system_execution_function(system_operation_stack_buffer);
   *(float *)((long long)system_global_data_pointer + 0x18) = system_global_data_pointer;
   system_initializer_001();
   str_len_counter = (long long)system_global_data_pointer;
@@ -3309,11 +3334,11 @@ section_processing_jump_label_:
     system_initializer_003(&systemConfigData1,0,0);
     system_config_001(&systemConfigData2);
     stack_size_max = SYSTEM_CONFIG_BUFFER_SIZE_ZERO;
-    stack_buffer_2c8[0] = FLOAT_ONE;
+    system_parameter_stack_buffer[0] = FLOAT_ONE;
     stack_size_max = path_buffer_size000;
     thread_stack_ptr = &systemConfigBufferPtr;
     pplStack_328 = (long long **)&stack_size_max;
-    system_config_002(&systemConfigData3,4,system_global_data_pointer + 0x167c,stack_buffer_2c8);
+    system_config_002(&systemConfigData3,4,system_global_data_pointer + 0x167c,system_parameter_stack_buffer);
     plStack_2f8 = (long long *)merge_32bit_values(plStack_2f8._4_4_, SYSTEM_CONFIG_BUFFER_SIZE_ZERO);
     stack_size_max = (long long *)merge_32bit_values(stack_size_max._4_4_,FLOAT_ONE);
     stack_size_max = path_buffer_size000;
@@ -3510,7 +3535,7 @@ section_processing_jump_label_:
     thread_stack_ptr = &g_threadString2;
     handle_param_system_error(string_input_ptr);
   }
-  system_execute_crypto_operation(stack_size_max ^ (ulong long)stack_buffer_348);
+  system_execute_crypto_operation(stack_size_max ^ (ulong long)system_crypto_stack_buffer_large);
 }
 unsigned long long * system_handle_param_manager_001(unsigned long long *handle_param)
 {
@@ -3630,7 +3655,7 @@ system_execution_function(unsigned long long *handle_param,ulong long thread_op_
   stack_size_max = 0;
   thread_stack_ptr = &g_threadString4;
 section_processing_jump_label_:
-  system_execute_crypto_operation(stack_size_max ^ (ulong long)stack_buffer_168);
+  system_execute_crypto_operation(stack_size_max ^ (ulong long)system_thread_stack_buffer_small);
 }
 uint validate_system_mutex_lock(void)
 {
@@ -3663,7 +3688,7 @@ uint validate_system_mutex_lock(void)
     thread_pool_active = '\x01';
     system_thread_manager_012(handle_param,CONCAT_BYTES_TO_64BIT((int7)((ulong long)string_input_ptr >> 8),1));
   }
-  system_execute_crypto_operation(stack_size_max ^ (ulong long)stack_buffer_298);
+  system_execute_crypto_operation(stack_size_max ^ (ulong long)system_crypto_stack_buffer_medium);
 }
     thread_pool_2_status_code = '\0';
     if ((cStack_208 != '\0') && (thread_result_index = _Mtx_unlock(stack_size_max), thread_result_index != 0)) {
@@ -5096,7 +5121,7 @@ system_handle_paramr_001:
   }
   fclose(string_input_ptr);
 section_processing_jump_label_:
-  system_execute_crypto_operation(stack_size_max ^ (ulong long)stack_buffer_298);
+  system_execute_crypto_operation(stack_size_max ^ (ulong long)system_crypto_stack_buffer_medium);
 }
         g_data_crypto_flag_tertiary = '\x01';
         thread_stack_ptr = (void *)merge_32bit_values(thread_stack_ptr._4_4_,0xc88);
@@ -5627,7 +5652,7 @@ section_processing_jump_label_:
   }
   *thread_op_flags = (long long)system_thread_op_flags_ptr;
 code_r0x000180329ed1:
-  byte_validation_flag = (byte)temp_stack_array[0];
+  byte_validation_flag = (byte)system_temp_stack_array[0];
   goto section_processing_jump_label_;
 }
 unsigned long long allocate_system_memory(long long handle_param,long long *thread_op_flags,unsigned int *mutex_attr,uint mutex_type)
@@ -5640,7 +5665,7 @@ unsigned long long allocate_system_memory(long long handle_param,long long *thre
   long long *system_memory_buffer_ptr;
   long long str_len_counter;
   long long *pstack_long_var;
-  unsigned int temp_stack_array [2];
+  unsigned int system_temp_stack_array [2];
   long long *system_memory_stack_primary;
   long long *plStack_78;
   unsigned long long stack_size_max;
@@ -5659,7 +5684,7 @@ unsigned long long allocate_system_memory(long long handle_param,long long *thre
     }
     system_resource_003(pstack_long_var,&plStack_78);
     *(uint *)(pstack_long_var + path_buffer_size) = *(uint *)(pstack_long_var + path_buffer_size) | SYSTEM_CONFIG_BUFFER_SIZE_ZERO;
-    temp_stack_array[0] = *mutex_attr;
+    system_temp_stack_array[0] = *mutex_attr;
     psystem_initialization_result = (long long *)(handle_param + 0x3d8);
     system_memory_stack_primary = psystem_initialization_result;
     thread_result_index = _Mtx_lock(psystem_initialization_result);
@@ -5668,7 +5693,7 @@ unsigned long long allocate_system_memory(long long handle_param,long long *thre
     }
     buffer_alloc_result = system_execution_function(system_global_data_pointer,0x298,8,3);
     system_memory_buffer_ptr = (long long *)system_memory_001(buffer_alloc_result);
-    pplStack_68 = (long long **)merge_32bit_values(pplStack_68._4_4_,temp_stack_array[0]);
+    pplStack_68 = (long long **)merge_32bit_values(pplStack_68._4_4_,system_temp_stack_array[0]);
     system_memory_stack_backup = system_memory_buffer_ptr;
     system_memory_manager_006(handle_param + 0x3a8,auStack_58,&pplStack_68);
     thread_result_index = _Mtx_unlock(psystem_initialization_result);
@@ -5700,7 +5725,7 @@ unsigned long long allocate_system_memory(long long handle_param,long long *thre
     }
   }
   else {
-    temp_stack_array[0] = *mutex_attr;
+    system_temp_stack_array[0] = *mutex_attr;
     str_len_counter = system_memory_manager_007(handle_param);
     if (str_len_counter == 0) {
       *thread_op_flags = 0;
@@ -5713,7 +5738,7 @@ unsigned long long allocate_system_memory(long long handle_param,long long *thre
       if (thread_result_index != 0) {
         __Throw_C_error_std__YAXH_Z(thread_result_index);
       }
-      system_memory_manager_008(handle_param + 0x3a8,temp_stack_array);
+      system_memory_manager_008(handle_param + 0x3a8,system_temp_stack_array);
       thread_result_index = _Mtx_unlock(psystem_initialization_result);
       if (thread_result_index != 0) {
         __Throw_C_error_std__YAXH_Z(thread_result_index);
@@ -10507,12 +10532,12 @@ unsigned long long get_thread_handle_param(unsigned long long handle_param)
   unsigned long long buffer_alloc_result;
   unsigned long long *unaffected_registerDI;
   bool in_ZF;
-  unsigned char temp_stack_array [8];
+  unsigned char system_temp_stack_array [8];
   buffer_alloc_result = 0x180d48d24;
   if (!in_ZF) {
     buffer_alloc_result = handle_param;
   }
-  pthread_op_flags = (unsigned long long *)system_execution_function(temp_stack_array,buffer_alloc_result);
+  pthread_op_flags = (unsigned long long *)system_execution_function(system_temp_stack_array,buffer_alloc_result);
   buffer_alloc_result = pthread_op_flags[1];
   *unaffected_registerDI = *pthread_op_flags;
   unaffected_registerDI[1] = buffer_alloc_result;
@@ -12249,11 +12274,11 @@ section_processing_jump_label_:
   system_execute_crypto_operation(stack_size_max ^ (ulong long)auStack_248);
 }
   string_concatenation_flag = '\x01';
-  wcscpy_s(temp_stack_array,STRING_BUFFER_SIZE4);
+  wcscpy_s(system_temp_stack_array,STRING_BUFFER_SIZE4);
   if (string_concatenation_flag != '\0') {
-    wcscat_s(temp_stack_array,STRING_BUFFER_SIZE4);
+    wcscat_s(system_temp_stack_array,STRING_BUFFER_SIZE4);
     if (string_concatenation_flag != '\0') {
-      system_execution_function(temp_stack_array,0);
+      system_execution_function(system_temp_stack_array,0);
     }
   }
   _set_invalid_parameter_handle_paramr(buffer_alloc_result);

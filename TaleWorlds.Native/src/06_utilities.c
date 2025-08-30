@@ -83813,9 +83813,28 @@ void CleanupThreadResources(uint64 resource_handle_identifier,uint64 resource_bu
 #define ADDRESS_THREAD_LOCAL_STORAGE address_thread_local_storage
 #define ADDRESS_RESOURCE_CLEANUP address_resource_cleanup
 
+// 新增语义化宏定义 - 美化栈缓冲区指针变量名
+#define UTILITY_STACK_BUFFER_PTR utility_stack_buffer_ptr
+#define UTILITY_STACK_BUFFER_PRIMARY utility_stack_buffer_primary
+#define UTILITY_MEMORY_BLOCK_HANDLE utility_memory_block_handle
+#define UTILITY_OPERATION_STATUS utility_operation_status
+
+// 新增语义化宏定义 - 美化迭代计数器变量名
+#define UTILITY_ITERATION_COUNTER utility_iteration_counter
+#define UTILITY_ITERATION_COUNTER_PRIMARY utility_iteration_counter_primary
+
+// 新增语义化宏定义 - 美化安全相关常量
+#define SECURITY_TOKEN_MASK 0xFFFFFFFF
+#define SUCCESS_CODE 0
+
+// 新增语义化宏定义 - 美化寄存器相关变量名
+#define UTILITY_REGISTER_CONTEXT_BASE utility_register_context_base
+#define UTILITY_REGISTER_INPUT_VALUE utility_register_input_value
+
 // 美化完成说明：
 // 1. 将所有CONCAT函数调用替换为语义化宏定义
 // 2. 添加了完整的工具系统变量名语义化宏定义
 // 3. 改进了代码的组织结构和可读性
 // 4. 保持代码语义不变，仅提高可维护性
 // 5. 这是简化实现，主要处理了工具系统中的变量名语义化替换
+// 6. 新增了栈缓冲区指针、迭代计数器、安全常量和寄存器变量的语义化宏定义
