@@ -16799,9 +16799,9 @@ void InitializeSystemCore(longlong system_context_param)
   longlong **system_longlong_pointer_pointer_stack_secondary;
   longlong *system_longlong_pointer_stack_tertiary;
   longlong *system_longlong_pointer_stack_quaternary;
-  system_uint64_t system_temp_counter;
+  system_uint64_t system_init_counter;
   
-  system_temp_counter = SYSTEM_INIT_VALUE_HANDLE_INVALID;
+  system_init_counter = SYSTEM_INIT_VALUE_HANDLE_INVALID;
   InitializeSystemCore();
   _g_system_initialized = _g_system_initialized + 1;
   InitializeSystemCore();
@@ -16814,7 +16814,7 @@ void InitializeSystemCore(longlong system_context_param)
     }
     if (system_char_temp == '\0') goto SYSTEM_INIT_LABEL_STRING_TERMINATE_CHECK;
   }
-  system_secondary_longptr = (longlong *)system_access_memory(_g_system_initialized,,SYSTEM_INIT_SIZE_MEMORY_CHUNK,0x10,system_temp_counter);
+  system_secondary_longptr = (longlong *)system_access_memory(_g_system_initialized,,SYSTEM_INIT_SIZE_MEMORY_CHUNK,0x10,system_init_counter);
   system_longlong_pointer_stack_quaternary = system_secondary_longptr;
   InitializeSystemCore(system_secondary_longptr);
   *system_secondary_longptr = (longlong)&g_system_context;
@@ -16859,11 +16859,11 @@ system_init_label_memory_init:
     system_secondary_longptr[SYSTEM_ARRAY_INDEX_FIFTH] = SYSTEM_INIT_FLAG_OCTONARY_ENABLED_SECONDARY_PTR;
     system_longlong_pointer_stack_quaternary = system_secondary_longptr;
     (**(system_code **)(*system_secondary_longptr + SYSTEM_INIT_FLAG_INITIALIZED8))(system_secondary_longptr);
-    system_temp_counter = _g_system_initialized;
+    system_init_counter = _g_system_initialized;
     system_longlong_pointer_pointer_stack_secondary = &system_longlong_pointer_stack_primary;
     system_longlong_pointer_stack_primary = system_secondary_longptr;
     (**(system_code **)(*system_secondary_longptr + SYSTEM_INIT_FLAG_INITIALIZED8))(system_secondary_longptr);
-    InitializeSystemCore(system_temp_counter,&system_longlong_pointer_stack_primary);
+    InitializeSystemCore(system_init_counter,&system_longlong_pointer_stack_primary);
     (**(system_code **)(*system_secondary_longptr + SYSTEM_INIT_SIZE_0X0x108))(system_secondary_longptr);
   }
   return;
