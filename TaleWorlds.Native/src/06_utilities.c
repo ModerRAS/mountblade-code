@@ -25260,7 +25260,7 @@ void utilityunwindfunctionsevenfourzero(uint64 utility_resource_primary_handle,l
   *(uint64 *)(utility_resource_buffer_handle + utility_context_thread_storage_offset_primary) = &utility_thread_local_storage_cleanup;
   return;
 }
-void utilityunwindfunctionsevensixzero(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_resource_operation_status_flags,uint64 utility_resource_callback_handler)
+void utility_unwind_function_seven_six_zero(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_resource_operation_status_flags,uint64 utility_resource_callback_handler)
 {
   uint64 *utility_operation_result_ptr;
   utility_operation_result_ptr = *(uint64 **)(utility_resource_buffer_handle + utility_buffer_data_offset_standard);

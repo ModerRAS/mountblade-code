@@ -46510,7 +46510,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
   system_stack_uint_116 = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_b0 = system_memory_param;
   system_stack_long_88 = system_thread_param;
-  if ((g_system_initialized != '\0') || (system_flag_secondary != '\0')) goto LAB_180072d7b;
+  if ((g_system_initialized != '\0') || (system_flag_secondary != '\0')) goto system_init_label_global_check;
   system_stack_value_secondary = SYSTEM_INIT_VALUE_ZERO;
   system_stack_value_ternary = SYSTEM_INIT_VALUE_ZERO;
   InitializeSystemCore(&system_stack_uint_size_field,SYSTEM_INIT_SIZE_COMPARE,&g_system_context,system_memory_param);
