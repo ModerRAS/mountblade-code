@@ -1150,6 +1150,18 @@
 #define network_data_pointer network_connection_data_pointer  // 网络连接数据指针
 #define network_secondary_socket_descriptor network_secondary_socket_handle  // 网络辅助套接字描述符
 #define network_buffer_main network_primary_buffer  // 网络主缓冲区
+#define network_connection_info_data network_connection_info_buffer  // 网络连接信息数据
+#define network_primary_connection_data network_main_connection_data  // 网络主连接数据
+#define network_stack_extended_context_data network_stack_extended_context  // 网络栈扩展上下文数据
+#define network_processor_data_temp network_processor_data_temp_value  // 网络处理器数据临时值
+#define network_integer_stack_primary network_integer_stack_primary_value  // 网络整型栈主值
+#define network_stack_pointer_arrayay_primary network_stack_pointer_array_primary  // 网络栈指针数组主
+#define network_stack_pointer_arrayay_secondary network_stack_pointer_array_secondary  // 网络栈指针数组次
+#define network_data_pointer_offsetset_primary network_data_pointer_offset_primary  // 网络数据指针偏移主
+#define network_stack_unsigned_connection_iteration_count_primary network_stack_unsigned_connection_iteration_primary  // 网络栈无符号连接迭代计数主
+#define network_packet_size_pointer_orig network_packet_size_pointer_original  // 网络数据包指针原始值
+#define network_packet_size_pointer_incremental network_packet_size_pointer_increment  // 网络数据包指针增量
+#define network_loop_iteration_counter network_loop_iteration_count  // 网络循环迭代计数器
 
 // 新增语义化常量定义 - 扩展偏移量
 
