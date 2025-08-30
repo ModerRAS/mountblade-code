@@ -52217,10 +52217,10 @@ void ValidateSystemHandle_profiling(uint64_t handleIdentifier,uint64_t resourceI
   uint32_t system_reg_r14d_value_value;
   float system_register_xmm0_dc_value;
   float system_register_xmm1_dc_value;
-  float system_register_xmm4_da;
-  float system_register_xmm4_db;
-  float system_register_xmm4_dc;
-  float system_register_xmm5_da;
+  float system_register_xmm4_da_value;
+  float system_register_xmm4_db_value;
+  float system_register_xmm4_dc_value;
+  float system_register_xmm5_da_value;
   uint32_t init_stack_uint_28;
   float init_float_stack_30;
   float init_float_stack_34;
@@ -52249,25 +52249,25 @@ void ValidateSystemHandle_profiling(uint64_t handleIdentifier,uint64_t resourceI
   system_temp_float_value = system_register_input_value[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   system_temp_float_value = *(float *)(system_register_buffer_ptr + SYSTEM_CONFIG_SIZE_RENDER4);
   system_temp_float_value = *(float *)(system_register_buffer_ptr + SYSTEM_CONFIG_SIZE_PHYSICS0);
-  init_float_stack_30 = system_float_result_value * system_register_xmm4_da + (float)handleIdentifier * system_float_result_value + (float)resourceIdentifier * system_temp_float_value;
+  init_float_stack_30 = system_float_result_value * system_register_xmm4_da_value + (float)handleIdentifier * system_float_result_value + (float)resourceIdentifier * system_temp_float_value;
   init_float_stack_34 =
-       system_float_result_value * system_register_xmm4_db + (float)((ulonglong)handleIdentifier >> SYSTEM_NODE_HEADER_SIZE) * system_float_result_value +
+       system_float_result_value * system_register_xmm4_db_value + (float)((ulonglong)handleIdentifier >> SYSTEM_NODE_HEADER_SIZE) * system_float_result_value +
        (float)((ulonglong)resourceIdentifier >> SYSTEM_NODE_HEADER_SIZE) * system_temp_float_value;
-  init_float_stack_38 = system_float_result_value * system_register_xmm4_dc + system_register_xmm0_dc * system_float_result_value + system_register_xmm1_dc * system_temp_float_value;
+  init_float_stack_38 = system_float_result_value * system_register_xmm4_dc_value + system_register_xmm0_dc * system_float_result_value + system_register_xmm1_dc * system_temp_float_value;
   system_temp_float_value = *(float *)(system_register_buffer_ptr + SYSTEM_CONFIG_SIZE_PHYSICS8);
   system_temp_float_value = *(float *)(system_register_buffer_ptr + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER0);
-  init_float_stack_40 = system_register_xmm5_da * system_register_xmm4_da + system_float_result_value * system_float_result_value + system_float_result_value * system_temp_float_value;
-  init_float_stack_44 = system_register_xmm5_da * system_register_xmm4_db + system_float_result_value * system_float_result_value + system_float_result_value * system_temp_float_value;
-  init_float_stack_48 = system_register_xmm5_da * system_register_xmm4_dc + system_float_result_value * system_float_result_value + system_float_result_value * system_temp_float_value;
+  init_float_stack_40 = system_register_xmm5_da_value * system_register_xmm4_da_value + system_float_result_value * system_float_result_value + system_float_result_value * system_temp_float_value;
+  init_float_stack_44 = system_register_xmm5_da_value * system_register_xmm4_db_value + system_float_result_value * system_float_result_value + system_float_result_value * system_temp_float_value;
+  init_float_stack_48 = system_register_xmm5_da_value * system_register_xmm4_dc_value + system_float_result_value * system_float_result_value + system_float_result_value * system_temp_float_value;
   system_temp_float_value = *(float *)(system_register_buffer_ptr + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER8);
   system_temp_float_value = *(float *)(system_register_buffer_ptr + SYSTEM_CONFIG_SIZE_AUTH0);
-  init_float_stack_50 = systemFlags * system_register_xmm4_da + system_float_result_value * system_float_result_value + system_float_result_value * system_temp_float_value;
-  init_float_stack_54 = systemFlags * system_register_xmm4_db + system_float_result_value * system_float_result_value + system_float_result_value * system_temp_float_value;
-  init_float_stack_58 = systemFlags * system_register_xmm4_dc + system_float_result_value * system_float_result_value + system_float_result_value * system_temp_float_value;
+  init_float_stack_50 = systemFlags * system_register_xmm4_da_value + system_float_result_value * system_float_result_value + system_float_result_value * system_temp_float_value;
+  init_float_stack_54 = systemFlags * system_register_xmm4_db_value + system_float_result_value * system_float_result_value + system_float_result_value * system_temp_float_value;
+  init_float_stack_58 = systemFlags * system_register_xmm4_dc_value + system_float_result_value * system_float_result_value + system_float_result_value * system_temp_float_value;
   system_temp_float_value = *(float *)(system_register_buffer_ptr + SYSTEM_CONFIG_SIZE_AUTH8);
-  init_float_stack_60 = system_configuration * system_register_xmm4_da + system_float_result_value * system_float_result_value + system_float_result_value * system_float_result_value + system_register_input_value[SYSTEM_DATA_BLOCK_SIZE_C];
-  init_float_stack_64 = system_configuration * system_register_xmm4_db + system_float_result_value * system_float_result_value + system_float_result_value * system_float_result_value + system_register_input_value[SYSTEM_CONFIG_SIZE_STATUS];
-  init_float_stack_68 = system_configuration * system_register_xmm4_dc + system_float_result_value * system_float_result_value + system_float_result_value * system_float_result_value + system_register_input_value[SYSTEM_CONFIG_SIZE_EVENT];
+  init_float_stack_60 = system_configuration * system_register_xmm4_da_value + system_float_result_value * system_float_result_value + system_float_result_value * system_float_result_value + system_register_input_value[SYSTEM_DATA_BLOCK_SIZE_C];
+  init_float_stack_64 = system_configuration * system_register_xmm4_db_value + system_float_result_value * system_float_result_value + system_float_result_value * system_float_result_value + system_register_input_value[SYSTEM_CONFIG_SIZE_STATUS];
+  init_float_stack_68 = system_configuration * system_register_xmm4_dc_value + system_float_result_value * system_float_result_value + system_float_result_value * system_float_result_value + system_register_input_value[SYSTEM_CONFIG_SIZE_EVENT];
   init_stack_uint_28 = init_input_stack_e8;
   init_stack_uint_6c = SYSTEM_FLOAT_1_0;
   init_stack_uint_5c = 0;
@@ -52524,14 +52524,14 @@ void HandleSystemOperation_error_reporting(float handleIdentifier,float resource
   longlong system_register_buffer_ptr;
   bool system_boolean_flag;
   float system_temp_float_value;
-  float system_register_xmm4_da;
-  float system_register_xmm5_da;
+  float system_register_xmm4_da_value;
+  float system_register_xmm5_da_value;
   float system_xmm8_da_value;
 
   system_temp_float_value = (*(float *)(system_register_result_value + SYSTEM_MEMORY_OFFSET_STRING_TERMINATOR) * resourceIdentifier - system_configuration * systemFlags) * *(float *)(system_register_result_value + SYSTEM_INIT_DATA_OFFSET_90);
-  CalculateSystemValue(system_float_result_value,(system_configuration * system_register_xmm4_da - handleIdentifier * resourceIdentifier) * *(float *)(system_register_result_value + 0x94)
+  CalculateSystemValue(system_float_result_value,(system_configuration * system_register_xmm4_da_value - handleIdentifier * resourceIdentifier) * *(float *)(system_register_result_value + 0x94)
                              + system_float_result_value +
-                             (system_register_xmm5_da * systemFlags - *(float *)(system_register_result_value + SYSTEM_MEMORY_OFFSET_STRING_TERMINATOR) * system_register_xmm4_da) *
+                             (system_register_xmm5_da_value * systemFlags - *(float *)(system_register_result_value + SYSTEM_MEMORY_OFFSET_STRING_TERMINATOR) * system_register_xmm4_da_value) *
                              *(float *)(system_register_result_value + SYSTEM_OFFSET_98) < system_xmm8_da_value);
   if (*(longlong *)(system_register_rcx + SYSTEM_CONFIG_SIZE_INPUT8) == SYSTEM_COMPARISON_ZERO) {
 INIT_LABEL_SYSTEM_782d4:
@@ -60934,13 +60934,13 @@ uint64_t ProcessFunction_memory_allocation(void)
   float system_temp_float_value;
   uint8_t audio_data_buffer_math [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   float system_temp_float_value;
-  int system_register_xmm5_da;
+  int system_register_xmm5_da_value;
   float system_temp_float_value;
-  int system_register_xmm5_db;
+  int system_register_xmm5_db_value;
   float system_temp_float_value;
-  int system_register_xmm5_dc;
+  int system_register_xmm5_dc_value;
   float system_temp_float_value;
-  int system_register_xmm5_dd;
+  int system_register_xmm5_dd_value;
   uint8_t audio_calc_buffer [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   float system_temp_float_value;
   float system_xmm6_register_value;
@@ -60997,10 +60997,10 @@ uint64_t ProcessFunction_memory_allocation(void)
         if ((int)system_counter_temp < SYSTEM_COMPARISON_ZERO) {
           system_result_operation = (system_counter_temp - 1 | SYSTEM_OFFSET_Fffffff8) + 1;
         }
-        system_math_union._0_4_ = system_register_xmm5_da + -1;
-        system_math_union._4_4_ = system_register_xmm5_db + -1;
-        system_math_union._8_4_ = system_register_xmm5_dc + -1;
-        system_math_union._12_4_ = system_register_xmm5_dd + -1;
+        system_math_union._0_4_ = system_register_xmm5_da_value + -1;
+        system_math_union._4_4_ = system_register_xmm5_db_value + -1;
+        system_math_union._8_4_ = system_register_xmm5_dc_value + -1;
+        system_math_union._12_4_ = system_register_xmm5_dd_value + -1;
         audio_data_buffer_math._0_4_ = (float)system_math_union._0_4_;
         audio_data_buffer_math._4_4_ = (float)system_math_union._4_4_;
         audio_data_buffer_math._8_4_ = (float)system_math_union._8_4_;
@@ -61162,13 +61162,13 @@ uint64_t ProcessFunction_thread_management(void)
   uint system_result_operation;
   uint8_t audio_data_buffer_vector [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   float system_temp_float_value;
-  int system_register_xmm5_da;
+  int system_register_xmm5_da_value;
   float system_temp_float_value;
-  int system_register_xmm5_db;
+  int system_register_xmm5_db_value;
   float system_temp_float_value;
-  int system_register_xmm5_dc;
+  int system_register_xmm5_dc_value;
   float system_temp_float_value;
-  int system_register_xmm5_dd;
+  int system_register_xmm5_dd_value;
   uint8_t audio_vector_buffer [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   float system_temp_float_value;
   float system_xmm6_register_value;
@@ -61200,10 +61200,10 @@ uint64_t ProcessFunction_thread_management(void)
       if ((int)system_counter_temp < SYSTEM_COMPARISON_ZERO) {
         system_result_operation = (system_counter_temp - 1 | SYSTEM_OFFSET_Fffffff8) + 1;
       }
-      system_vector_union._0_4_ = system_register_xmm5_da + -1;
-      system_vector_union._4_4_ = system_register_xmm5_db + -1;
-      system_vector_union._8_4_ = system_register_xmm5_dc + -1;
-      system_vector_union._12_4_ = system_register_xmm5_dd + -1;
+      system_vector_union._0_4_ = system_register_xmm5_da_value + -1;
+      system_vector_union._4_4_ = system_register_xmm5_db_value + -1;
+      system_vector_union._8_4_ = system_register_xmm5_dc_value + -1;
+      system_vector_union._12_4_ = system_register_xmm5_dd_value + -1;
       audio_data_buffer_vector._0_4_ = (float)system_vector_union._0_4_;
       audio_data_buffer_vector._4_4_ = (float)system_vector_union._4_4_;
       audio_data_buffer_vector._8_4_ = (float)system_vector_union._8_4_;
@@ -61362,13 +61362,13 @@ uint64_t ProcessFunction_resource_tracking(int handleIdentifier,uint64_t resourc
   uint system_result_operation;
   uint8_t audio_data_buffer_temp [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   float system_temp_float_value;
-  int system_register_xmm5_da;
+  int system_register_xmm5_da_value;
   float system_temp_float_value;
-  int system_register_xmm5_db;
+  int system_register_xmm5_db_value;
   float system_temp_float_value;
-  int system_register_xmm5_dc;
+  int system_register_xmm5_dc_value;
   float system_temp_float_value;
-  int system_register_xmm5_dd;
+  int system_register_xmm5_dd_value;
   uint8_t audio_data_buffer_calc [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   float system_temp_float_value;
   float system_temp_float_value;
@@ -61395,10 +61395,10 @@ uint64_t ProcessFunction_resource_tracking(int handleIdentifier,uint64_t resourc
   if ((int)system_counter_temp < SYSTEM_COMPARISON_ZERO) {
     system_result_operation = (system_counter_temp - 1 | SYSTEM_OFFSET_Fffffff8) + 1;
   }
-  audio_data_buffer_calc._0_4_ = system_register_xmm5_da + -1;
-  audio_data_buffer_calc._4_4_ = system_register_xmm5_db + -1;
-  audio_data_buffer_calc._8_4_ = system_register_xmm5_dc + -1;
-  audio_data_buffer_calc._12_4_ = system_register_xmm5_dd + -1;
+  audio_data_buffer_calc._0_4_ = system_register_xmm5_da_value + -1;
+  audio_data_buffer_calc._4_4_ = system_register_xmm5_db_value + -1;
+  audio_data_buffer_calc._8_4_ = system_register_xmm5_dc_value + -1;
+  audio_data_buffer_calc._12_4_ = system_register_xmm5_dd_value + -1;
   audio_data_buffer_temp._0_4_ = (float)audio_data_buffer_calc._0_4_;
   audio_data_buffer_temp._4_4_ = (float)audio_data_buffer_calc._4_4_;
   audio_data_buffer_temp._8_4_ = (float)audio_data_buffer_calc._8_4_;
