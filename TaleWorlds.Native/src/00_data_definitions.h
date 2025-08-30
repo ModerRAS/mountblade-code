@@ -361,9 +361,9 @@
 #define SYSTEM_MUTEX_BUFFER_SIZE 0x240                  // 互斥锁缓冲区大小
 #define SYSTEM_FUNCTION_PARAM_SIZE_LARGE_EXTENDED 0x19 // 函数参数大小大
 #define SYSTEM_OFFSET_HANDLE_PARAM_CALCULATION 0x50    // 句柄参数计算偏移量
-#define SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_FIRST 0xefc // 字符串计算负偏移量1
-#define SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_SECOND 0x1ef8 // 字符串计算负偏移量2
-#define SYSTEM_FUNCTION_OFFSET_VALIDATION_STANDARD 0x113     // 验证函数偏移量113
+#define SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_FIRST 0xefc // 字符串计算负偏移量主要
+#define SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_SECOND 0x1ef8 // 字符串计算负偏移量次要
+#define SYSTEM_FUNCTION_OFFSET_VALIDATION_STANDARD 0x113     // 标准验证函数偏移量
 #define SYSTEM_STRING_BUFFER_SIZE_LARGE 0x330           // 大字符串缓冲区大小
 #define SYSTEM_RETURN_CODE_SUCCESS 0x1c                 // 成功返回码
 #define SYSTEM_OFFSET_THREAD_DATA_EXTENDED 0x3e        // 扩展线程数据偏移量
@@ -1898,7 +1898,7 @@ extern char system_cleanup_handler_flag_buffer;                            // �
 #define SYSTEM_OFFSET_GLOBAL_DATA_1340 0x1340  // 全局数据1340偏移量
 #define SYSTEM_OFFSET_GLOBAL_DATA_1500 0x1500  // 全局数据1500偏移量
 #define SYSTEM_OFFSET_GLOBAL_DATA_13B0 0x13b0  // 全局数据13B0偏移量
-#define SYSTEM_OFFSET_FUNCTION_OFFSET_200 0x200 // 函数偏移量200
+#define SYSTEM_OFFSET_FUNCTION_OFFSET_200 0x200 // 标准函数偏移量
 
 // 系统指针偏移量常量定义（新增）
 #define SYSTEM_POINTER_OFFSET_REGISTER_CACHE 0x70  // 寄存器缓存指针偏移量
