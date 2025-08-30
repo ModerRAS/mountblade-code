@@ -568,7 +568,6 @@
 #define UTILITY_RESOURCE_OFFSET_148 0x148
 #define UTILITY_RESOURCE_OFFSET_189 0x189
 #define UTILITY_RESOURCE_OFFSET_110 0x110
-#define UTILITY_RESOURCE_OFFSET_2A0 0x2a0
 #define UTILITY_RESOURCE_OFFSET_8B0 0x8b0
 #define UTILITY_RESOURCE_OFFSET_160 0x160
 #define UTILITY_RESOURCE_OFFSET_858 0x858
@@ -10953,7 +10952,7 @@ ulonglong validate_memory_address(longlong resource_handle_identifier)
               utility_temp_unsigned_int = 0;
               utility_temp_unsigned_int = 0;
               decompress_file(&local_pointer,*(uint64 *)(resource_handle_identifier + UTILITY_SYS_STATUS_OFFSET));
-              local_pointer = &g_system_resource_handle_primaryr;
+              local_pointer = &g_system_resource_handle_primary;
               utility_temp_unsigned_int = *(uint32 *)(utility_memory_offset + structure_multiplier + resource_data_buffer_data * RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
               utility_temp_unsigned_int = 0;
               utility_temp_unsigned_int = utility_temp_unsigned_int & UTILITY_WORD_MASK_FF00;
@@ -11501,7 +11500,7 @@ process_resource_iteration:
         utility_iteration_counter_primary = utility_iteration_counter_primary;
         if (*(char *)(operation_buffer + byte_offset) != '\0') {
           utility_local_signed_data = 0;
-          local_pointer = &g_system_resource_handle_primaryr;
+          local_pointer = &g_system_resource_handle_primary;
           utility_temp_unsigned_int = UTILITY_BIT_CONCAT_4_4(utility_temp_unsigned_int._4_4_,utility_temp_unsigned_int);
           utility_temp_unsigned_int = UTILITY_BIT_CONCAT_8_1(utility_temp_unsigned_int._1_7_,1);
           resource_count = validate_resource_access(resource_handle_identifier,&local_pointer);
@@ -11552,7 +11551,7 @@ process_resource_iteration:
         utility_iteration_counter_primary = utility_iteration_counter_primary;
         if (*(char *)(operation_buffer + byte_offset) != '\0') {
           utility_local_signed_data = 0;
-          local_pointer = &g_system_resource_handle_primaryr;
+          local_pointer = &g_system_resource_handle_primary;
           utility_temp_unsigned_int = UTILITY_BIT_CONCAT_4_4(utility_temp_unsigned_int._4_4_,utility_temp_unsigned_int);
           utility_temp_unsigned_int = UTILITY_BIT_CONCAT_8_1(utility_temp_unsigned_int._1_7_,1);
           resource_count = validate_resource_access(resource_handle_identifier,&local_pointer);
@@ -11603,7 +11602,7 @@ process_resource_iteration:
         utility_iteration_counter_primary = utility_iteration_counter_primary;
         if (*(char *)(operation_buffer + byte_offset) != '\0') {
           utility_local_signed_data = 0;
-          local_pointer = &g_system_resource_handle_primaryr;
+          local_pointer = &g_system_resource_handle_primary;
           utility_temp_unsigned_int = UTILITY_BIT_CONCAT_4_4(utility_temp_unsigned_int._4_4_,utility_temp_unsigned_int);
           utility_temp_unsigned_int = UTILITY_BIT_CONCAT_8_1(utility_temp_unsigned_int._1_7_,1);
           resource_count = validate_resource_access(resource_handle_identifier,&local_pointer);
@@ -11654,7 +11653,7 @@ process_resource_iteration:
         utility_iteration_counter_primary = utility_iteration_counter_primary;
         if (*(char *)(operation_buffer + byte_offset) != '\0') {
           utility_local_signed_data = 0;
-          local_pointer = &g_system_resource_handle_primaryr;
+          local_pointer = &g_system_resource_handle_primary;
           utility_temp_unsigned_int = UTILITY_BIT_CONCAT_4_4(utility_temp_unsigned_int._4_4_,utility_temp_unsigned_int);
           utility_temp_unsigned_int = UTILITY_BIT_CONCAT_8_1(utility_temp_unsigned_int._1_7_,1);
           resource_count = validate_resource_access(resource_handle_identifier,&local_pointer);
@@ -11790,7 +11789,7 @@ void ProcessResourceQueue(void)
         }
         if (*(char *)(operation_buffer + byte_offset) != '\0') {
           utility_stack_int_primary = 0;
-          utility_stack_param_ptr = &g_system_resource_handle_primaryr;
+          utility_stack_param_ptr = &g_system_resource_handle_primary;
           utility_stack_uint_context = utility_stack_validation_uint;
           utility_stack_float_secondary = (float)CONCAT_BYTES(utility_stack_float_secondary._1_3_,1);
           statusCounter = validate_resource_access(utility_temp_float_value,&utility_stack_utility_working_buffer);
@@ -11843,7 +11842,7 @@ void ProcessResourceQueue(void)
         }
         if (*(char *)(operation_buffer + byte_offset) != '\0') {
           utility_stack_int_primary = 0;
-          utility_stack_param_ptr = &g_system_resource_handle_primaryr;
+          utility_stack_param_ptr = &g_system_resource_handle_primary;
           utility_stack_uint_context = utility_stack_validation_uint;
           utility_stack_float_secondary = (float)CONCAT_BYTES(utility_stack_float_secondary._1_3_,1);
           statusCounter = validate_resource_access(utility_temp_float_value,&utility_stack_utility_working_buffer);
@@ -11896,7 +11895,7 @@ void ProcessResourceQueue(void)
         }
         if (*(char *)(operation_buffer + byte_offset) != '\0') {
           utility_stack_int_primary = 0;
-          utility_stack_param_ptr = &g_system_resource_handle_primaryr;
+          utility_stack_param_ptr = &g_system_resource_handle_primary;
           utility_stack_uint_context = utility_stack_validation_uint;
           utility_stack_float_secondary = (float)CONCAT_BYTES(utility_stack_float_secondary._1_3_,1);
           statusCounter = validate_resource_access(utility_temp_float_value,&utility_stack_utility_working_buffer);
@@ -11949,7 +11948,7 @@ void ProcessResourceQueue(void)
         }
         if (*(char *)(operation_buffer + byte_offset) != '\0') {
           utility_stack_int_primary = 0;
-          utility_stack_param_ptr = &g_system_resource_handle_primaryr;
+          utility_stack_param_ptr = &g_system_resource_handle_primary;
           utility_stack_uint_context = utility_stack_validation_uint;
           utility_stack_float_secondary = (float)CONCAT_BYTES(utility_stack_float_secondary._1_3_,1);
           statusCounter = validate_resource_access(utility_temp_float_value,&utility_stack_utility_working_buffer);
