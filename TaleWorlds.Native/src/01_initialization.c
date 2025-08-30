@@ -341,9 +341,25 @@
 // 魔法数字常量（用于系统标识）
 #define SYSTEM_INIT_MAGIC_COOKIE_BASIC_PRIMARY             0xfc124d2010d41985f // 系统魔法cookie 1
 #define SYSTEM_INIT_MAGIC_COOKIE_BASIC_SECONDARY             0x0 // 系统魔法cookie 2（待定义）
-#define SYSTEM_INIT_MAGIC_COOKIE_0x10             0xfbb1df897 // 系统魔法cookie 0x10
-#define SYSTEM_INIT_MAGIC_COOKIE_BASIC_QUATERNARY             0xf249e4010f66f2ab // 系统魔法cookie SYSTEM_INIT_SIZE_COMPARE
-#define SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_0x10      SYSTEM_INIT_CONFIG_INDEX_SECONDARYcbd4daf41610x10e // 系统活动魔法cookie 0x10
+#define SYSTEM_INIT_MAGIC_COOKIE_TERTIARY             0xfbb1df897 // 系统魔法cookie 3
+#define SYSTEM_INIT_MAGIC_COOKIE_BASIC_QUATERNARY             0xf249e4010f66f2ab // 系统魔法cookie 4
+#define SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_PRIMARY      SYSTEM_INIT_CONFIG_INDEX_SECONDARYcbd4daf41610x10e // 系统活动魔法cookie 1
+
+// 系统错误码常量（2025年8月30日最终批次补充美化）
+#define SYSTEM_INIT_ERROR_GENERIC              0xfffffffffffffff      // 通用错误码
+#define SYSTEM_INIT_ERROR_TIMEOUT              0xffffffffffffffe      // 超时错误码
+#define SYSTEM_INIT_ERROR_BUSY                 0xffffffffffffffd      // 忙碌错误码
+#define SYSTEM_INIT_ERROR_INVALID_PARAM        0xffffffffffffffc      // 无效参数错误码
+
+// 系统字符串常量（2025年8月30日最终批次补充美化）
+#define SYSTEM_INIT_STRING_COLON_PREFIX        0x10a75706010          // 冒号前缀字符串
+#define SYSTEM_INIT_STRING_SUFFIX_S            0x70106560107010       // 后缀S字符串
+#define SYSTEM_INIT_STRING_SCRIPT_EXT          0x656010701078         // 脚本扩展字符串
+#define SYSTEM_INIT_STRING_EN_SUFFIX           0x656e                 // EN后缀字符串
+
+// 系统双精度浮点常量（2025年8月30日最终批次补充美化）
+#define SYSTEM_INIT_DOUBLE_FLOAT_PAIR_1_0     0x10f800000010f800000  // 双精度浮点数对 1.0
+#define SYSTEM_INIT_DOUBLE_VALUE_1_0           0x10ff0000000000000    // 双精度浮点数值 1.0
 
 // 系统标志位常量
 #define SYSTEM_INIT_FLAG_ENABLED               0x1     // 启用标志
@@ -16767,7 +16783,7 @@ void InitializeSystemCore(void)
   longlong system_stack_long_counter_primary;
   system_uint0x102_t system_stack_value_buffer_complete;
   system_uint64_t system_stack_value_data_chunk;
-  longlong *system_stack_long_pointer_190;
+  longlong *system_stack_long_pointer_primary;
   void* *system_stack_context_extended_primary;
   void* *system_stack_context_extended_secondary;
   system_uint0x102_t system_stack_value_buffer_final;
@@ -16787,7 +16803,7 @@ void InitializeSystemCore(void)
     system_temp_storage = _g_system_initialized;
     system_calculation_result = system_access_memory(_g_system_initialized,,SYSTEM_INIT_SIZE_MEMORY_CHUNK,0x10);
     system_memory_longptr = (longlong *)InitializeSystemCore(system_calculation_result,SYSTEM_INIT_SIZE_MEMORY_CHUNK,system_temp_storage);
-    system_stack_long_pointer_190 = system_memory_longptr;
+    system_stack_long_pointer_primary = system_memory_longptr;
     if (system_memory_longptr != (longlong *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       (**(system_code **)(*system_memory_longptr + SYSTEM_INIT_FLAG_INITIALIZED8))(system_memory_longptr);
     }

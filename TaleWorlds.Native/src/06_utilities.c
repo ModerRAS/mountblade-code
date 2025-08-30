@@ -165,6 +165,12 @@
 #define UTILITY_BIT_SHIFT_THREAD_STATE 0x260
 #define UTILITY_BIT_SHIFT_THREAD_STORAGE 0x268
 #define UTILITY_BIT_SHIFT_EVENT_STORAGE 0x2B8
+// 新增资源操作偏移量语义化常量定义（2025年8月30日最终批次最新完成）：
+#define UTILITY_RESOURCE_OPERATION_OFFSET_EXTENDED 0x94B4E42  // 扩展资源操作偏移量
+#define UTILITY_RESOURCE_PROPERTY_OFFSET_EXTENDED 0x8000  // 扩展资源属性偏移量
+#define UTILITY_RESOURCE_OP_OFFSET_EXTENDED 0x7000  // 扩展资源操作偏移量
+#define UTILITY_MEMORY_ACCESS_OFFSET_EXTENDED 0x4000  // 扩展内存访问偏移量
+#define UTILITY_STACK_ARRAY_OFFSET_EXTENDED 0x1C  // 扩展栈数组偏移量
 // - 美化指针偏移量常量，将utility_pointer_offset_extended_1108替换为utility_pointer_offset_extended_extended_primary等语义化常量
 // - 美化指针偏移量常量，将utility_pointer_offset_extended_1100替换为utility_pointer_offset_main等语义化常量
 // - 美化内存地址偏移量常量，将utility_memory_address_offset_extended_1130替换为utility_memory_address_offset_extended_extended_secondary等语义化常量
