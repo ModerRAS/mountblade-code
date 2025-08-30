@@ -29138,7 +29138,7 @@ void NetworkValidateConnectionResponse(int64_t network_socket_descriptor)
         *(uint64_t *)(network_socket_descriptor + NETWORK_CONNECTION_EXTENDED_OFFSET8) = NETWORK_OPERATION_FAILURE;
         *(uint64_t *)(network_socket_descriptor + NETWORK_TIMEOUT_CONFIG_EXTENDED_OFFSET8) = NETWORK_OPERATION_FAILURE;
         ValidateNetworkData(network_status_code);
-        NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),network_status_code,&g_network_log_buffer_tertiary,0x83,NETWORK_OPERATION_SUCCESS);
+        NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),network_status_code,&g_network_log_buffer_tertiary,NETWORK_OPERATION_OFFSET_83,NETWORK_OPERATION_SUCCESS);
 // 函数: void networkResetBuffers5(void)
 void networkResetBuffers5(void)
   if (*(char *)(network_socket_context_ptr + NETWORK_SOCKET_DATA_OFFSET88) != '\NETWORK_OPERATION_FAILURE') {
@@ -29152,14 +29152,14 @@ void networkResetBuffers5(void)
       *(uint64_t *)(network_socket_context_ptr + NETWORK_CONNECTION_EXTENDED_OFFSET8) = NETWORK_OPERATION_FAILURE;
       *(uint64_t *)(network_socket_context_ptr + NETWORK_TIMEOUT_CONFIG_EXTENDED_OFFSET8) = NETWORK_OPERATION_FAILURE;
       ValidateNetworkData(network_status_code);
-      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),network_status_code,&g_network_log_buffer_tertiary,0x83,NETWORK_OPERATION_SUCCESS);
+      NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),network_status_code,&g_network_log_buffer_tertiary,NETWORK_OPERATION_OFFSET_83,NETWORK_OPERATION_SUCCESS);
 // 函数: void networkResetBuffers6(void)
 void networkResetBuffers6(void)
   network_status_code = *(uint64_t *)(network_socket_context_ptr + NETWORK_SOCKET_DATA_OFFSETe0);
   *(uint64_t *)(network_socket_context_ptr + NETWORK_CONNECTION_EXTENDED_OFFSET8) = network_socket_context_ptr;
   *(uint64_t *)(network_socket_context_ptr + NETWORK_TIMEOUT_CONFIG_EXTENDED_OFFSET8) = network_socket_context_ptr;
   ValidateNetworkData(network_status_code);
-  NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),network_status_code,&g_network_log_buffer_tertiary,0x83,NETWORK_OPERATION_SUCCESS);
+  NetworkLogMessage(*(uint64_t *)(g_networkModule + NETWORK_MODULE_OFFSET),network_status_code,&g_network_log_buffer_tertiary,NETWORK_OPERATION_OFFSET_83,NETWORK_OPERATION_SUCCESS);
 // 函数: void networkResetBuffers7(void)
 void networkResetBuffers7(void)
   ValidateNetworkData();
@@ -29540,7 +29540,7 @@ int32_t networkParsePacket(int64_t network_socket_descriptor,uint64_t network_bu
   network_result_code = networkProcessBufferData(network_status_code + network_socket_descriptor,network_status_code - network_status_code,network_buffer_size[NETWORK_OPERATION_SUCCESS]);
 uint32_t networkDeallocateBuffer9(uint8_t *network_socket_descriptor,int32_t network_buffer_pointer,int64_t network_buffer_size,int32_t network_timeout_ms)
   network_processor_count = NETWORK_OPERATION_SUCCESS;
-    *network_socket_descriptor = 0x7b;
+    *network_socket_descriptor = NETWORK_SOCKET_VALID_OFFSET_7B;
   network_packet_size_temp = (uint)(NETWORK_OPERATION_FAILURE < network_buffer_pointer);
     if (network_buffer_pointer <= (int)network_packet_size_temp) {
     network_status_code = networkParsePacket(network_socket_descriptor + network_packet_size_temp,network_buffer_pointer - network_packet_size_temp);
@@ -29823,7 +29823,7 @@ uint64_t EncryptNetworkData(uint64_t *network_socket_descriptor,uint64_t *networ
     if ((network_status_code == NETWORK_OPERATION_FAILURE) && (!network_is_available)) {
       *pisValid = NETWORK_OPERATION_FAILURE;
       pisValid = pisValid + NETWORK_OPERATION_SUCCESS;
-      if ((*pisEncrypted == 0x7b) && (bytePointer != (uint8_t *)ZERO_OFFSET)) {
+      if ((*pisEncrypted == NETWORK_SOCKET_VALID_OFFSET_7B) && (bytePointer != (uint8_t *)ZERO_OFFSET)) {
         pisEncrypted = pisEncrypted + NETWORK_OPERATION_SUCCESS;
         *bytePointer = NETWORK_OPERATION_FAILURE;
       *network_socket_descriptor = pisValid;
@@ -29836,7 +29836,7 @@ uint64_t EncryptNetworkData(uint64_t *network_socket_descriptor,uint64_t *networ
     pisValid = pisValid + NETWORK_OPERATION_SUCCESS;
     network_is_available = isAuthenticated;
   if (!network_is_available) {
-    if (*pisValid == 0x7b) {
+    if (*pisValid == NETWORK_SOCKET_VALID_OFFSET_7B) {
       network_status_code = (ulonglong)pisValid[NETWORK_OPERATION_SUCCESS];
     if (*pisValid != NETWORK_MIN_PACKET_SIZE_ALT) goto network_jump_label;
     bytePointer = pisValid;
