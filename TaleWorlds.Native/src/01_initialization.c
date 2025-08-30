@@ -136,30 +136,30 @@
 // - 简化实现：仅将剩余的硬编码值替换为语义化常量
 
 // 系统偏移量语义化常量
-#define SYSTEM_OFFSET_72 SYSTEM_OFFSET_72
-#define SYSTEM_OFFSET_1DD0 SYSTEM_OFFSET_1DD0
-#define SYSTEM_OFFSET_1DC0 SYSTEM_OFFSET_1DC0
-#define SYSTEM_OFFSET_1DB0 SYSTEM_OFFSET_1DB0
-#define SYSTEM_OFFSET_1D60 SYSTEM_OFFSET_1D60
-#define SYSTEM_OFFSET_29 SYSTEM_OFFSET_29
-#define SYSTEM_OFFSET_9F90 SYSTEM_OFFSET_9F90
-#define SYSTEM_OFFSET_9F98 SYSTEM_OFFSET_9F98
-#define SYSTEM_OFFSET_9FC0 SYSTEM_OFFSET_9FC0
-#define SYSTEM_OFFSET_9FC8 SYSTEM_OFFSET_9FC8
-#define SYSTEM_OFFSET_9FD0 SYSTEM_OFFSET_9FD0
-#define SYSTEM_OFFSET_74 SYSTEM_OFFSET_74
-#define SYSTEM_OFFSET_1D8 SYSTEM_OFFSET_1D8
-#define SYSTEM_OFFSET_2C SYSTEM_OFFSET_2C
-#define SYSTEM_OFFSET_B2 SYSTEM_OFFSET_B2
-#define SYSTEM_OFFSET_B1 SYSTEM_OFFSET_B1
-#define SYSTEM_OFFSET_24 SYSTEM_OFFSET_24
-#define SYSTEM_OFFSET_23C SYSTEM_OFFSET_23C
+#define SYSTEM_OFFSET_72 0x72
+#define SYSTEM_OFFSET_1DD0 0x1dd0
+#define SYSTEM_OFFSET_1DC0 0x1dc0
+#define SYSTEM_OFFSET_1DB0 0x1db0
+#define SYSTEM_OFFSET_1D60 0x1d60
+#define SYSTEM_OFFSET_29 0x29
+#define SYSTEM_OFFSET_9F90 0x9f90
+#define SYSTEM_OFFSET_9F98 0x9f98
+#define SYSTEM_OFFSET_9FC0 0x9fc0
+#define SYSTEM_OFFSET_9FC8 0x9fc8
+#define SYSTEM_OFFSET_9FD0 0x9fd0
+#define SYSTEM_OFFSET_74 0x74
+#define SYSTEM_OFFSET_1D8 0x1d8
+#define SYSTEM_OFFSET_2C 0x2c
+#define SYSTEM_OFFSET_B2 0xb2
+#define SYSTEM_OFFSET_B1 0xb1
+#define SYSTEM_OFFSET_24 0x24
+#define SYSTEM_OFFSET_23C 0x23c
 
 // 系统乘数语义化常量
-#define SYSTEM_MULTIPLIER_3548 SYSTEM_MULTIPLIER_3548
+#define SYSTEM_MULTIPLIER_3548 0x3548
 
 // 字符串语义化常量
-#define SYSTEM_STRING_FLAG_GOL SYSTEM_STRING_FLAG_GOL
+#define SYSTEM_STRING_FLAG_GOL 0x6c6f4667
 
 // 算术常量
 #define SYSTEM_OFFSET_NEGATIVE_2 -2
@@ -575,18 +575,18 @@
 #define SYSTEM_MEMORY_OFFSET_798 0x798
 #define SYSTEM_MEMORY_OFFSET_9F8 0x9f8
 #define SYSTEM_MEMORY_OFFSET_A28 0xa28
-#define SYSTEM_MEMORY_OFFSET_A30 SYSTEM_MEMORY_OFFSET_A30
-#define SYSTEM_MEMORY_OFFSET_A38 SYSTEM_MEMORY_OFFSET_A38
-#define SYSTEM_MEMORY_OFFSET_B70 SYSTEM_MEMORY_OFFSET_B70
-#define SYSTEM_MEMORY_OFFSET_B78 SYSTEM_MEMORY_OFFSET_B78
+#define SYSTEM_MEMORY_OFFSET_A30 0xa30
+#define SYSTEM_MEMORY_OFFSET_A38 0xa38
+#define SYSTEM_MEMORY_OFFSET_B70 0xb70
+#define SYSTEM_MEMORY_OFFSET_B78 0xb78
 #define SYSTEM_MEMORY_OFFSET_C88 SYSTEM_CONFIG_SIZE_C88
 
 // 新增互斥锁偏移量语义化常量
 #define SYSTEM_MUTEX_OFFSET_A4 0xa4
-#define SYSTEM_MUTEX_OFFSET_950 SYSTEM_MUTEX_OFFSET_950
+#define SYSTEM_MUTEX_OFFSET_950 0x950
 
 // 新增资源偏移量语义化常量
-#define SYSTEM_RESOURCE_OFFSET_7B0 SYSTEM_RESOURCE_SIZE_7B0
+#define SYSTEM_RESOURCE_OFFSET_7B0 0x7b0
 
 // 新增数据偏移量语义化常量
 #define SYSTEM_DATA_OFFSET_36 SYSTEM_MEMORY_OFFSET_36
@@ -684,7 +684,7 @@
 #define SYSTEM_INIT_SIZE_15 0x15
 #define SYSTEM_INIT_SIZE_16 0x16
 #define SYSTEM_INIT_SIZE_17 0x17
-#define SYSTEM_INIT_SIZE_19 SYSTEM_INIT_SIZE_19
+#define SYSTEM_INIT_SIZE_19 0x19
 #define SYSTEM_INIT_SIZE_1A 0x1a
 #define SYSTEM_INIT_SIZE_1B 0x1b
 #define SYSTEM_INIT_SIZE_1C 0x1c
@@ -806,16 +806,16 @@
 #define SYSTEM_HANDLE_INVALID_2 0x3ffffffb
 
 // 系统浮点常量
-#define SYSTEM_FLOAT_1_0 SYSTEM_FLOAT_1_0
+#define SYSTEM_FLOAT_1_0 0x3f000000
 #define SYSTEM_OFFSET_234 0x234
 #define SYSTEM_OFFSET_238 0x238
 #define SYSTEM_OFFSET_230 0x230
-#define SYSTEM_OFFSET_23c SYSTEM_OFFSET_23C
+#define SYSTEM_OFFSET_23c 0x23c
 #define SYSTEM_OFFSET_1d50 0x1d50
-#define SYSTEM_OFFSET_1fc SYSTEM_MAX_CONFIG_SIZEc
+#define SYSTEM_OFFSET_1fc 0x1fc
 #define SYSTEM_OFFSET_2c0 0x2c0
-#define SYSTEM_OFFSET_2f0 SYSTEM_PATH_SEPARATOR_2F0
-#define SYSTEM_OFFSET_1f8 SYSTEM_MAX_CONFIG_SIZE8
+#define SYSTEM_OFFSET_2f0 0x2f0
+#define SYSTEM_OFFSET_1f8 0x1f8
 #define SYSTEM_DATA_OFFSET_21b0 0x21b0
 #define SYSTEM_DATA_OFFSET_1f80 SYSTEM_MAX_CONFIG_SIZE80
 // 系统数据比较大小常量定义
@@ -1667,10 +1667,10 @@
 #define MODULE_TYPE_STRING_MANAGER_INIT SYSTEM_CONFIG_SIZE_NETWORK
 
 // 更多位掩码常量定义
-#define SYSTEM_HIGH_32BIT_MASK SYSTEM_OFFSET_Ffffffff00000000
-#define SYSTEM_MAX_64BIT_VALUE SYSTEM_OFFSET_Ffffffffffffffff
-#define SYSTEM_ADDRESS_ALIGNMENT_MASK SYSTEM_OFFSET_Ffffffffffc00000
-#define SYSTEM_MODULE_FLAG_MASK SYSTEM_OFFSET_Ffff7fff
+#define SYSTEM_HIGH_32BIT_MASK 0xffffffff00000000
+#define SYSTEM_MAX_64BIT_VALUE 0xffffffffffffffff
+#define SYSTEM_ADDRESS_ALIGNMENT_MASK 0xfffffffffc00000
+#define SYSTEM_MODULE_FLAG_MASK 0xffff7fff
 #define SYSTEM_POWER_2_BIT_MASK 0x1000000000000000
 
 // 字符常量语义化定义
@@ -20997,10 +20997,10 @@ void InitializeSystemModule24(uint64_t *handleIdentifier)
   uint32_t init_stack_uint_param_68;
   uint64_t init_stack_buffer_size;
   uint64_t *system_buffer_ptr_resource_data;
-  void *system_buffer_ptr_50;
-  void *system_buffer_ptr_48;
+  void *system_buffer_ptr_primary_config;
+  void *system_buffer_ptr_temp_buffer;
   uint32_t initialization_stack_unsigned_param_40;
-  undefined system_local_buffer_38 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
+  undefined system_local_buffer_init_data [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   ulonglong init_stack_system_hash;
 
   init_stack_buffer_size = INVALID_HANDLE_VALUE;
@@ -21023,16 +21023,16 @@ void InitializeSystemModule24(uint64_t *handleIdentifier)
     *(uint16_t *)((ulonglong)system_temp_counter + handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER]) = SYSTEM_STRING_DOT_TOKEN;
     *(uint *)(handleIdentifier + 2) = system_temp_counter + 1;
   }
-  system_buffer_ptr_50 = &g_system_data_main;
-  system_buffer_ptr_48 = system_local_buffer_38;
+  system_buffer_ptr_primary_config = &g_system_data_main;
+  system_buffer_ptr_temp_buffer = system_local_buffer_init_data;
   initialization_stack_unsigned_param_40 = 0;
-  system_local_buffer_38[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0;
+  system_local_buffer_init_data[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0;
   init_stack_uint_param_68 = 3;
   system_buffer_ptr_resource_data = handleIdentifier;
-  InitializeSystemModule17(&system_buffer_ptr_50,&g_global_system_config,SYSTEM_CONFIG_SIZE_PHYSICS0a7);
+  InitializeSystemModule17(&system_buffer_ptr_primary_config,&g_global_system_config,SYSTEM_CONFIG_SIZE_PHYSICS0a7);
   system_ptr_value = &g_system_data_variable3;
-  if (system_buffer_ptr_48 != (void *)SYSTEM_NULL_POINTER) {
-    system_ptr_value = system_buffer_ptr_48;
+  if (system_buffer_ptr_temp_buffer != (void *)SYSTEM_NULL_POINTER) {
+    system_ptr_value = system_buffer_ptr_temp_buffer;
   }
   system_temp_long_result = -1;
   do {
@@ -21044,7 +21044,7 @@ void InitializeSystemModule24(uint64_t *handleIdentifier)
     memcpy((ulonglong)*(uint *)(handleIdentifier + 2) + handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER],system_temp_pointer,(longlong)(system_temp_integer_temp + 1));
   }
   init_stack_uint_param_68 = 1;
-  system_buffer_ptr_50 = &globalSystemPointerData;
+  system_buffer_ptr_primary_config = &globalSystemPointerData;
                     // WARNING: Subroutine does not return
   InitializeSystemStack(init_stack_system_hash ^ (ulonglong)system_local_buffer_primary);
 }
