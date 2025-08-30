@@ -2738,10 +2738,10 @@ void HandleResourceCleanup(void)
           utility_array_handle_pointer = utility_array_handle_pointer + 8;
         } while (utility_iteration_counter < utility_stack_parameter_secondary);
       }
-      FreeMemoryBuffer(&utility_stack_working_buffer_30);
+      FreeMemoryBuffer(&utility_stack_working_buffer_primary);
     }
     else {
-      FreeMemoryBuffer(&utility_stack_working_buffer_30);
+      FreeMemoryBuffer(&utility_stack_working_buffer_primary);
     }
   }
                     // WARNING: Subroutine does not return
@@ -2775,7 +2775,7 @@ void memoryBlock_pool_initializer(void)          // 内存池初始化函数
                     // WARNING: Subroutine does not return
     utilityFreeMemoryBlock(); # 内存块释放函数
   }
-  FreeMemoryBuffer(&utility_stack_working_buffer_30);
+  FreeMemoryBuffer(&utility_stack_working_buffer_primary);
                     // WARNING: Subroutine does not return
   execute_security_check(utility_security_parameter ^ (ulonglong)&security_check_stack_base);
 }
