@@ -3872,7 +3872,7 @@ goto section_processing_jump_label_6;
               } while (system_thread_operation_flags < system_maximum_stack_size);
             }
             system_thread_operation_flags = UINT32_MAX;
-section_processing_jump_label_5:
+system_thread_allocation_primary_label:
             if (system_thread_result_status != SYSTEM_THREAD_RESULT_INVALID) {
               setup_thread_parameters(&system_thread_stack_pointer_variable,&system_thread_stack_pointer_variable,system_buffer_allocation_result,system_thread_operation_flags);
               system_thread_result_status = system_thread_priority_level;
