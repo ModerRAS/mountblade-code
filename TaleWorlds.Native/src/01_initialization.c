@@ -166,6 +166,14 @@
 #define SYSTEM_INIT_VALUE_CHAR_0X33           0x33    // 字符值0x33 - 替换0x33
 #define SYSTEM_INIT_VALUE_CHAR_0X3A           0x3a    // 字符值0x3a - 替换0x3a
 
+// 新增硬编码值语义化常量（2025年8月30日最终批次）：
+#define SYSTEM_INIT_VALUE_STRING_RARO_1     0x7261726f  // 字符串"raro"的十六进制表示
+#define SYSTEM_INIT_VALUE_STRING_SERE_1     0x73655279  // 字符串"seRe"的十六进制表示
+#define SYSTEM_INIT_VALUE_STRING_CRUO_1     0x6372756f  // 字符串"cruo"的十六进制表示
+#define SYSTEM_INIT_VALUE_STRING_MODULE_1   0x53454c55444f4d5f  // 字符串"SELDOM_"的十六进制表示
+#define SYSTEM_INIT_FLOAT_VALUE_1_0         0x3f800000  // 浮点数1.0的十六进制表示
+#define SYSTEM_INIT_FLOAT_VALUE_MAX         0x7f7fffff  // 最大浮点数的十六进制表示
+#define SYSTEM_INIT_DOUBLE_VALUE_1_0        0x3f8000003f800000  // 双精度浮点数1.0的十六进制表示
 
 // 补充硬编码值语义化常量（2025年8月30日最终批次补充）
 #define SYSTEM_INIT_VALUE_STACK_11            SYSTEM_INIT_VALUE_STACK_11     // 栈值11 - 替换SYSTEM_INIT_VALUE_STACK_11
