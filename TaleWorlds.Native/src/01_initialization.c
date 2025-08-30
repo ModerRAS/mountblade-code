@@ -151,18 +151,18 @@
 // - 美化系统缓冲区指针变量名，将system_buffer_ptr_328替换为system_buffer_ptr_allocation_temp等分配临时变量名
 // - 美化系统缓冲区指针变量名，将system_buffer_ptr_160替换为system_buffer_ptr_graphics_primary等主图形变量名
 // - 美化系统缓冲区指针变量名，将system_buffer_ptr_200替换为system_buffer_ptr_config_secondary等辅助配置变量名
-// - 美化系统缓冲区指针变量名，将system_buffer_ptr_220替换为system_buffer_ptr_data_secondary等辅助数据变量名
+// - 美化系统缓冲区指针变量名，将system_buffer_ptr_resource_secondary替换为system_buffer_ptr_data_secondary等辅助数据变量名
 // - 美化系统缓冲区指针变量名，将system_buffer_ptr_240替换为system_buffer_ptr_shared_memory等共享内存变量名
 // - 美化系统缓冲区指针变量名，将system_buffer_ptr_1a0替换为system_buffer_ptr_local_primary等主本地变量名
 // - 美化系统缓冲区指针变量名，将system_buffer_ptr_318替换为system_buffer_ptr_process_data等进程数据变量名
 // - 美化系统缓冲区指针变量名，将system_buffer_ptr_2b8替换为system_buffer_ptr_root_node等根节点变量名
 // - 美化系统缓冲区指针变量名，将system_buffer_ptr_278替换为system_buffer_ptr_network_temp等网络临时变量名
-// - 美化系统缓冲区指针变量名，将system_buffer_ptr_98替换为system_buffer_ptr_global_primary等主全局变量名
+// - 美化系统缓冲区指针变量名，将system_buffer_ptr_data_main替换为system_buffer_ptr_global_primary等主全局变量名
 // - 美化系统缓冲区指针变量名，将system_buffer_ptr_348替换为system_buffer_ptr_system_config等系统配置变量名
-// - 美化系统缓冲区指针变量名，将system_buffer_ptr_1b8替换为system_buffer_ptr_graphics_context等图形上下文变量名
-// - 美化系统缓冲区指针变量名，将system_buffer_ptr_1d8替换为system_buffer_ptr_resource_config等资源配置变量名
-// - 美化系统缓冲区指针变量名，将system_buffer_ptr_1f8替换为system_buffer_ptr_network_context等网络上下文变量名
-// - 美化系统缓冲区指针变量名，将system_buffer_ptr_218替换为system_buffer_ptr_data_config等数据配置变量名
+// - 美化系统缓冲区指针变量名，将system_buffer_ptr_context_primary替换为system_buffer_ptr_graphics_context等图形上下文变量名
+// - 美化系统缓冲区指针变量名，将system_buffer_ptr_shared_memory替换为system_buffer_ptr_resource_config等资源配置变量名
+// - 美化系统缓冲区指针变量名，将system_buffer_ptr_data_primary替换为system_buffer_ptr_network_context等网络上下文变量名
+// - 美化系统缓冲区指针变量名，将system_buffer_ptr_config_primary替换为system_buffer_ptr_data_config等数据配置变量名
 // - 美化系统临时变量名，将system_temp_integer_temp替换为system_temp_integer_result等整数临时变量名
 // - 美化系统临时变量名，将system_temp_counter替换为system_counter_temp等计数器临时变量名
 // - 美化系统临时变量名，将system_temp_pointer替换为system_pointer_temp等指针临时变量名
@@ -247,21 +247,21 @@
 // - 原本实现：完全重构系统初始化文件函数命名体系，建立统一的函数命名规范
 // - 简化实现：仅将常见的包含数字的函数名替换为语义化名称
 
-// - 美化本地缓冲区变量名，将system_local_buffer_4d0替换为system_local_buffer_graphics_config等图形配置缓冲区变量名
-// - 美化本地缓冲区变量名，将system_local_buffer_470替换为system_local_buffer_render_context等渲染上下文缓冲区变量名
-// - 美化本地缓冲区变量名，将system_local_buffer_410替换为system_local_buffer_shader_context等着色器上下文缓冲区变量名
-// - 美化本地缓冲区变量名，将system_local_buffer_3b0替换为system_local_buffer_texture_data等纹理数据缓冲区变量名
-// - 美化本地缓冲区变量名，将system_local_buffer_350替换为system_local_buffer_vertex_data等顶点数据缓冲区变量名
-// - 美化本地缓冲区变量名，将system_local_buffer_2f0替换为system_local_buffer_resource_data等资源数据缓冲区变量名
+// - 美化本地缓冲区变量名，将system_local_buffer_render_context替换为system_local_buffer_graphics_config等图形配置缓冲区变量名
+// - 美化本地缓冲区变量名，将system_local_buffer_shader_context替换为system_local_buffer_render_context等渲染上下文缓冲区变量名
+// - 美化本地缓冲区变量名，将system_local_buffer_texture_data替换为system_local_buffer_shader_context等着色器上下文缓冲区变量名
+// - 美化本地缓冲区变量名，将system_local_buffer_vertex_data替换为system_local_buffer_texture_data等纹理数据缓冲区变量名
+// - 美化本地缓冲区变量名，将system_local_buffer_resource_pool替换为system_local_buffer_vertex_data等顶点数据缓冲区变量名
+// - 美化本地缓冲区变量名，将system_local_buffer_system_config替换为system_local_buffer_resource_data等资源数据缓冲区变量名
 // - 美化本地缓冲区变量名，将system_local_buffer_20替换为system_local_buffer_module_handler等模块处理缓冲区变量名
 // - 美化本地缓冲区变量名，将system_local_buffer_150替换为system_local_buffer_username等用户名缓冲区变量名
 // - 美化本地缓冲区变量名，将system_local_buffer_38替换为system_local_buffer_audio等音频缓冲区变量名
 // - 美化本地缓冲区变量名，将system_local_buffer_278替换为system_local_buffer_network等网络缓冲区变量名
 // - 美化本地缓冲区变量名，将system_local_buffer_58替换为system_local_buffer_input等输入缓冲区变量名
-// - 美化本地缓冲区变量名，将system_local_buffer_148替换为system_local_buffer_file_system等文件系统缓冲区变量名
+// - 美化本地缓冲区变量名，将system_local_buffer_audio_storage替换为system_local_buffer_file_system等文件系统缓冲区变量名
 // - 美化本地缓冲区变量名，将system_local_buffer_120替换为system_local_buffer_security等安全缓冲区变量名
 // - 美化本地缓冲区变量名，将system_local_buffer_f0替换为system_local_buffer_graphics等图形缓冲区变量名
-// - 美化数组指针变量名，将asystem_buffer_ptr_108替换为system_buffer_ptr_array_main等主数组指针变量名
+// - 美化数组指针变量名，将asystem_buffer_ptr_config_primary替换为system_buffer_ptr_array_main等主数组指针变量名
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了系统初始化文件中剩余本地缓冲区变量名的语义化替换
 // - 原本实现：完全重构系统初始化文件变量命名体系，建立统一的变量命名规范
@@ -285,7 +285,7 @@
 // - 美化系统乘数常量名，将SYSTEM_MULTIPLIER_3548替换为SYSTEM_MULTIPLIER_MEMORY_ALLOCATION等内存分配乘数常量名
 // - 美化临时字符串常量名，将SYSTEM_STRING_TEMP_0x33替换为SYSTEM_STRING_TEMP_DIGIT_THREE等数字三临时字符串常量名
 // - 美化临时字符串常量名，将SYSTEM_STRING_TEMP_0x3a替换为SYSTEM_STRING_TEMP_COLON等冒号临时字符串常量名
-// - 美化缓冲区变量名，将system_buffer_ptr_138替换为system_buffer_ptr_username_buffer等用户名缓冲区变量名
+// - 美化缓冲区变量名，将system_buffer_ptr_system_secondary替换为system_buffer_ptr_username_buffer等用户名缓冲区变量名
 // - 美化缓冲区变量名，将system_buffer_ptr_140替换为system_buffer_ptr_audio_primary等音频缓冲区变量名
 // - 美化本地缓冲区变量名，将system_local_buffer_334替换为system_local_buffer_resource_comment等资源注释缓冲区变量名
 // - 美化缓冲区大小变量名，将init_stack_buffer_size_one_hundred_thirty替换为init_stack_buffer_size_username_offset等用户名偏移量变量名
@@ -295,7 +295,7 @@
 // - 简化实现：仅将常见的硬编码十六进制值替换为语义化常量
 
 // 本次美化内容（2025年8月30日）第二十批次：
-// - 美化变量名，将system_buffer_ptr_320替换为system_buffer_ptr_graphics_buffer等图形缓冲区指针变量名
+// - 美化变量名，将system_buffer_ptr_network_secondary替换为system_buffer_ptr_graphics_buffer等图形缓冲区指针变量名
 // - 美化变量名，将system_buffer_ptr_40替换为system_buffer_ptr_function_handler等函数处理指针变量名
 // - 美化变量名，将system_buffer_ptr_1a8替换为system_buffer_ptr_thread_parameter等线程参数指针变量名
 // - 美化变量名，将system_buffer_ptr_d8替换为system_buffer_ptr_global_data等全局数据指针变量名
@@ -304,7 +304,7 @@
 // - 美化变量名，将system_buffer_ptr_1e0替换为system_buffer_ptr_shader_context等着色器上下文指针变量名
 // - 美化变量名，将system_buffer_ptr_1c0替换为system_buffer_ptr_texture_data等纹理数据指针变量名
 // - 美化变量名，将system_buffer_ptr_170替换为system_buffer_ptr_vertex_data等顶点数据指针变量名
-// - 美化变量名，将system_buffer_ptr_80替换为system_buffer_ptr_resource_data等资源数据指针变量名
+// - 美化变量名，将system_buffer_ptr_system_primary替换为system_buffer_ptr_resource_data等资源数据指针变量名
 // - 美化变量名，将system_buffer_ptr_1c8替换为system_buffer_ptr_module_handler等模块处理指针变量名
 // - 美化变量名，将system_buffer_ptr_config_data8替换为system_buffer_ptr_config_data_eight等配置数据指针变量名
 // - 美化变量名，将system_buffer_ptr_config_data0替换为system_buffer_ptr_config_data_zero等配置数据指针变量名
@@ -321,24 +321,24 @@
 // - 简化实现：仅将常见的包含十六进制后缀的变量名和包含数字的系统模块初始化函数名替换为语义化名称
 
 // 本次美化内容（2025年8月30日）第十九批次：
-// - 美化变量名，将system_buffer_ptr_50替换为system_buffer_ptr_thread_context等线程上下文指针变量名
-// - 美化变量名，将system_buffer_ptr_48替换为system_buffer_ptr_thread_data等线程数据指针变量名
-// - 美化变量名，将system_buffer_ptr_310替换为system_buffer_ptr_resource_pool_medium等中型资源池指针变量名
-// - 美化变量名，将system_buffer_ptr_2e8替换为system_buffer_ptr_resource_pool_small等小型资源池指针变量名
-// - 美化变量名，将system_buffer_ptr_2e0替换为system_buffer_ptr_resource_pool_micro等微型资源池指针变量名
-// - 美化变量名，将system_buffer_ptr_2c8替换为system_buffer_ptr_resource_pool_nano等纳米资源池指针变量名
-// - 美化变量名，将system_buffer_ptr_2c0替换为system_buffer_ptr_resource_pool_pico等皮科资源池指针变量名
-// - 美化变量名，将system_buffer_ptr_2a0替换为system_buffer_ptr_resource_data等资源数据指针变量名
-// - 美化变量名，将system_buffer_ptr_258替换为system_buffer_ptr_data_transfer等数据传输指针变量名
-// - 美化变量名，将system_buffer_ptr_238替换为system_buffer_ptr_temp_storage等临时存储指针变量名
-// - 美化变量名，将system_buffer_ptr_1b0替换为system_buffer_ptr_config_main等主配置指针变量名
-// - 美化变量名，将system_buffer_ptr_198替换为system_buffer_ptr_operation_handle等操作句柄指针变量名
-// - 美化变量名，将system_buffer_ptr_190替换为system_buffer_ptr_thread_main等主线程指针变量名
-// - 美化变量名，将system_buffer_ptr_178替换为system_buffer_ptr_resource_main等主资源指针变量名
+// - 美化变量名，将system_buffer_ptr_graphics_primary替换为system_buffer_ptr_thread_context等线程上下文指针变量名
+// - 美化变量名，将system_buffer_ptr_graphics_secondary替换为system_buffer_ptr_thread_data等线程数据指针变量名
+// - 美化变量名，将system_buffer_ptr_thread_secondary替换为system_buffer_ptr_resource_pool_medium等中型资源池指针变量名
+// - 美化变量名，将system_buffer_ptr_network_secondary替换为system_buffer_ptr_resource_pool_small等小型资源池指针变量名
+// - 美化变量名，将system_buffer_ptr_system_primary替换为system_buffer_ptr_resource_pool_micro等微型资源池指针变量名
+// - 美化变量名，将system_buffer_ptr_system_secondary替换为system_buffer_ptr_resource_pool_nano等纳米资源池指针变量名
+// - 美化变量名，将system_buffer_ptr_config_primary替换为system_buffer_ptr_resource_pool_pico等皮科资源池指针变量名
+// - 美化变量名，将system_buffer_ptr_resource_primary替换为system_buffer_ptr_resource_data等资源数据指针变量名
+// - 美化变量名，将system_buffer_ptr_shared_primary替换为system_buffer_ptr_data_transfer等数据传输指针变量名
+// - 美化变量名，将system_buffer_ptr_shared_secondary替换为system_buffer_ptr_temp_storage等临时存储指针变量名
+// - 美化变量名，将system_buffer_ptr_thread_primary替换为system_buffer_ptr_config_main等主配置指针变量名
+// - 美化变量名，将system_buffer_ptr_thread_secondary替换为system_buffer_ptr_operation_handle等操作句柄指针变量名
+// - 美化变量名，将system_buffer_ptr_network_primary替换为system_buffer_ptr_thread_main等主线程指针变量名
+// - 美化变量名，将system_buffer_ptr_network_secondary替换为system_buffer_ptr_resource_main等主资源指针变量名
 // - 美化变量名，将system_buffer_ptr_168替换为system_buffer_ptr_resource_main等主资源指针变量名
-// - 美化变量名，将system_buffer_ptr_148替换为system_buffer_ptr_data_main等主数据指针变量名
-// - 美化变量名，将system_buffer_ptr_128替换为system_buffer_ptr_function_main等主函数指针变量名
-// - 美化变量名，将system_buffer_ptr_108替换为system_buffer_ptr_context_main等主上下文指针变量名
+// - 美化变量名，将system_buffer_ptr_system_primary替换为system_buffer_ptr_data_main等主数据指针变量名
+// - 美化变量名，将system_buffer_ptr_system_secondary替换为system_buffer_ptr_function_main等主函数指针变量名
+// - 美化变量名，将system_buffer_ptr_config_primary替换为system_buffer_ptr_context_main等主上下文指针变量名
 // - 美化资源初始化函数名，将get_resource_init_function_1替换为get_resource_init_function_primary等语义化函数名
 // - 美化资源初始化函数名，将get_resource_init_function_2替换为get_resource_init_function_secondary等语义化函数名
 // - 美化资源初始化函数名，将get_resource_init_function_3替换为get_resource_init_function_tertiary等语义化函数名
@@ -410,23 +410,23 @@
 // - 保持代码语义不变，这是简化实现，主要处理了系统配置常量名的语义化替换
 // - 原本实现：完全重构系统配置常量命名体系，建立统一的常量命名规范
 // - 简化实现：仅将常见的包含十六进制数字的常量名替换为语义化名称// 本次美化内容（2025年8月30日）第十六批次：
-// - 美化变量名，将system_buffer_ptr_50替换为system_buffer_ptr_thread_context等线程上下文指针变量名
-// - 美化变量名，将system_buffer_ptr_48替换为system_buffer_ptr_thread_data等线程数据指针变量名
-// - 美化变量名，将system_buffer_ptr_2e8替换为system_buffer_ptr_resource_pool_small等小型资源池指针变量名
-// - 美化变量名，将system_buffer_ptr_2e0替换为system_buffer_ptr_resource_pool_micro等微型资源池指针变量名
-// - 美化变量名，将system_buffer_ptr_2c8替换为system_buffer_ptr_resource_pool_nano等纳米资源池指针变量名
-// - 美化变量名，将system_buffer_ptr_2c0替换为system_buffer_ptr_resource_pool_pico等皮科资源池指针变量名
-// - 美化变量名，将system_buffer_ptr_2a0替换为system_buffer_ptr_resource_data等资源数据指针变量名
-// - 美化变量名，将system_buffer_ptr_258替换为system_buffer_ptr_data_transfer等数据传输指针变量名
-// - 美化变量名，将system_buffer_ptr_238替换为system_buffer_ptr_temp_storage等临时存储指针变量名
-// - 美化变量名，将system_buffer_ptr_1b0替换为system_buffer_ptr_config_main等主配置指针变量名
-// - 美化变量名，将system_buffer_ptr_198替换为system_buffer_ptr_operation_handle等操作句柄指针变量名
-// - 美化变量名，将system_buffer_ptr_190替换为system_buffer_ptr_thread_main等主线程指针变量名
-// - 美化变量名，将system_buffer_ptr_178替换为system_buffer_ptr_resource_main等主资源指针变量名
-// - 美化变量名，将system_buffer_ptr_148替换为system_buffer_ptr_data_main等主数据指针变量名
-// - 美化变量名，将system_buffer_ptr_128替换为system_buffer_ptr_function_main等主函数指针变量名
-// - 美化变量名，将system_buffer_ptr_108替换为system_buffer_ptr_context_main等主上下文指针变量名
-// - 美化变量名，将system_buffer_ptr_310替换为system_buffer_ptr_resource_pool_medium等中型资源池指针变量名
+// - 美化变量名，将system_buffer_ptr_graphics_primary替换为system_buffer_ptr_thread_context等线程上下文指针变量名
+// - 美化变量名，将system_buffer_ptr_graphics_secondary替换为system_buffer_ptr_thread_data等线程数据指针变量名
+// - 美化变量名，将system_buffer_ptr_network_secondary替换为system_buffer_ptr_resource_pool_small等小型资源池指针变量名
+// - 美化变量名，将system_buffer_ptr_system_primary替换为system_buffer_ptr_resource_pool_micro等微型资源池指针变量名
+// - 美化变量名，将system_buffer_ptr_system_secondary替换为system_buffer_ptr_resource_pool_nano等纳米资源池指针变量名
+// - 美化变量名，将system_buffer_ptr_config_primary替换为system_buffer_ptr_resource_pool_pico等皮科资源池指针变量名
+// - 美化变量名，将system_buffer_ptr_resource_primary替换为system_buffer_ptr_resource_data等资源数据指针变量名
+// - 美化变量名，将system_buffer_ptr_shared_primary替换为system_buffer_ptr_data_transfer等数据传输指针变量名
+// - 美化变量名，将system_buffer_ptr_shared_secondary替换为system_buffer_ptr_temp_storage等临时存储指针变量名
+// - 美化变量名，将system_buffer_ptr_thread_primary替换为system_buffer_ptr_config_main等主配置指针变量名
+// - 美化变量名，将system_buffer_ptr_thread_secondary替换为system_buffer_ptr_operation_handle等操作句柄指针变量名
+// - 美化变量名，将system_buffer_ptr_network_primary替换为system_buffer_ptr_thread_main等主线程指针变量名
+// - 美化变量名，将system_buffer_ptr_network_secondary替换为system_buffer_ptr_resource_main等主资源指针变量名
+// - 美化变量名，将system_buffer_ptr_system_primary替换为system_buffer_ptr_data_main等主数据指针变量名
+// - 美化变量名，将system_buffer_ptr_system_secondary替换为system_buffer_ptr_function_main等主函数指针变量名
+// - 美化变量名，将system_buffer_ptr_config_primary替换为system_buffer_ptr_context_main等主上下文指针变量名
+// - 美化变量名，将system_buffer_ptr_thread_secondary替换为system_buffer_ptr_resource_pool_medium等中型资源池指针变量名
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了系统初始化文件中剩余变量名的语义化替换
 // - 原本实现：完全重构系统初始化文件变量命名体系，建立统一的变量命名规范
@@ -445,20 +445,20 @@
 
 // 本次美化内容（2025年8月30日）第十四批次：
 // - 美化变量名，将system_buffer_ptr_resource_pool_large替换为system_buffer_ptr_resource_pool_large等大型资源池指针变量名
-// - 美化变量名，将system_buffer_ptr_310替换为system_buffer_ptr_resource_pool_medium等中型资源池指针变量名
-// - 美化变量名，将system_buffer_ptr_2e8替换为system_buffer_ptr_resource_pool_small等小型资源池指针变量名
-// - 美化变量名，将system_buffer_ptr_2e0替换为system_buffer_ptr_resource_pool_micro等微型资源池指针变量名
-// - 美化变量名，将system_buffer_ptr_2c8替换为system_buffer_ptr_resource_pool_nano等纳米资源池指针变量名
-// - 美化变量名，将system_buffer_ptr_2c0替换为system_buffer_ptr_resource_pool_pico等皮科资源池指针变量名
-// - 美化变量名，将system_buffer_ptr_258替换为system_buffer_ptr_data_transfer等数据传输指针变量名
-// - 美化变量名，将system_buffer_ptr_238替换为system_buffer_ptr_temp_storage等临时存储指针变量名
-// - 美化变量名，将system_buffer_ptr_1b0替换为system_buffer_ptr_config_main等主配置指针变量名
-// - 美化变量名，将system_buffer_ptr_198替换为system_buffer_ptr_operation_handle等操作句柄指针变量名
-// - 美化变量名，将system_buffer_ptr_190替换为system_buffer_ptr_thread_main等主线程指针变量名
-// - 美化变量名，将system_buffer_ptr_178替换为system_buffer_ptr_resource_main等主资源指针变量名
-// - 美化变量名，将system_buffer_ptr_148替换为system_buffer_ptr_data_main等主数据指针变量名
-// - 美化变量名，将system_buffer_ptr_128替换为system_buffer_ptr_function_main等主函数指针变量名
-// - 美化变量名，将system_buffer_ptr_108替换为system_buffer_ptr_context_main等主上下文指针变量名
+// - 美化变量名，将system_buffer_ptr_thread_secondary替换为system_buffer_ptr_resource_pool_medium等中型资源池指针变量名
+// - 美化变量名，将system_buffer_ptr_network_secondary替换为system_buffer_ptr_resource_pool_small等小型资源池指针变量名
+// - 美化变量名，将system_buffer_ptr_system_primary替换为system_buffer_ptr_resource_pool_micro等微型资源池指针变量名
+// - 美化变量名，将system_buffer_ptr_system_secondary替换为system_buffer_ptr_resource_pool_nano等纳米资源池指针变量名
+// - 美化变量名，将system_buffer_ptr_config_primary替换为system_buffer_ptr_resource_pool_pico等皮科资源池指针变量名
+// - 美化变量名，将system_buffer_ptr_shared_primary替换为system_buffer_ptr_data_transfer等数据传输指针变量名
+// - 美化变量名，将system_buffer_ptr_shared_secondary替换为system_buffer_ptr_temp_storage等临时存储指针变量名
+// - 美化变量名，将system_buffer_ptr_thread_primary替换为system_buffer_ptr_config_main等主配置指针变量名
+// - 美化变量名，将system_buffer_ptr_thread_secondary替换为system_buffer_ptr_operation_handle等操作句柄指针变量名
+// - 美化变量名，将system_buffer_ptr_network_primary替换为system_buffer_ptr_thread_main等主线程指针变量名
+// - 美化变量名，将system_buffer_ptr_network_secondary替换为system_buffer_ptr_resource_main等主资源指针变量名
+// - 美化变量名，将system_buffer_ptr_system_primary替换为system_buffer_ptr_data_main等主数据指针变量名
+// - 美化变量名，将system_buffer_ptr_system_secondary替换为system_buffer_ptr_function_main等主函数指针变量名
+// - 美化变量名，将system_buffer_ptr_config_primary替换为system_buffer_ptr_context_main等主上下文指针变量名
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了系统初始化文件中剩余变量名的语义化替换
 // - 原本实现：完全重构系统初始化文件变量命名体系，建立统一的变量命名规范
@@ -501,7 +501,7 @@
 // - 美化常量名，将SYSTEM_CONFIG_SIZE_STATUSd0替换为SYSTEM_CONFIG_SIZE_STATUS_D_ZERO等状态常量名
 // - 美化常量名，将SYSTEM_CONFIG_SIZE_STATUSd8替换为SYSTEM_CONFIG_SIZE_STATUS_D_EIGHT等状态常量名
 // - 美化常量名，将SYSTEM_CONFIG_SIZE_C_EIGHTY_EIGHT替换为SYSTEM_CONFIG_SIZE_C_EIGHT_EIGHT等配置常量名
-// - 美化变量名，将system_buffer_ptr_50替换为system_buffer_ptr_thread_context等线程上下文变量名
+// - 美化变量名，将system_buffer_ptr_graphics_primary替换为system_buffer_ptr_thread_context等线程上下文变量名
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了常量名和变量名的语义化替换
 // - 原本实现：完全重构所有常量命名体系和变量命名体系
@@ -539,11 +539,11 @@
 // - 将system_buffer_ptr_2d8替换为system_buffer_ptr_data_list等数据列表指针变量名
 // - 将system_buffer_ptr_2d0替换为system_buffer_ptr_data_end等数据结束指针变量名
 // - 将system_buffer_ptr_2b0替换为system_buffer_ptr_resource_pool_small等资源池指针变量名
-// - 将system_buffer_ptr_2a8替换为system_buffer_ptr_resource_data_aux等资源数据指针变量名
+// - 将system_buffer_ptr_config_secondary替换为system_buffer_ptr_resource_data_aux等资源数据指针变量名
 // - 将system_buffer_ptr_290替换为system_buffer_ptr_resource_context_primary等资源上下文指针变量名
 // - 将system_local_buffer_2f8替换为system_local_buffer_config_key等配置键缓冲区变量名
-// - 将system_local_buffer_268替换为system_local_buffer_file_info_primary等文件信息缓冲区变量名
-// - 将system_local_buffer_238替换为system_local_buffer_temp_data_238等临时数据缓冲区变量名
+// - 将system_local_buffer_system_data替换为system_local_buffer_file_info_primary等文件信息缓冲区变量名
+// - 将system_local_buffer_temp_storage替换为system_local_buffer_temp_data_238等临时数据缓冲区变量名
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了InitializeSystemDataNode32函数中变量名的语义化替换
 // - 原本实现：完全重构InitializeSystemDataNode32函数的变量命名体系
@@ -768,7 +768,7 @@
 // - 将uintStack_158等变量名替换为init_stack_data_size_158等栈数据大小变量名
 // - 将intStack_668等变量名替换为init_stack_counter_668等栈计数器变量名
 // - 将longStack_678等变量名替换为init_stack_resource_handle_678等资源句柄变量名
-// - 将system_buffer_ptr_60等变量名替换为system_buffer_ptr_thread_context等线程上下文变量名
+// - 将system_buffer_ptr_network_secondary等变量名替换为system_buffer_ptr_thread_context等线程上下文变量名
 // - 添加了SYSTEM_OFFSET_1/2/3/SYSTEM_OFFSET_4/5/6/7/SYSTEM_OFFSET_8/9/10/18/50/80/100/200等通用偏移量语义化常量
 // - 将硬编码的+1替换为+SYSTEM_OFFSET_1等通用偏移量常量
 // - 将硬编码的+2替换为+SYSTEM_OFFSET_2等通用偏移量常量
@@ -1040,8 +1040,8 @@
 // - 将system_stack_buffer_index_primary替换为system_stack_buffer_size等栈缓冲区大小变量名
 // - 将ainit_stack_resource_ptr_70替换为system_stack_performance_counter等性能计数器变量名
 // - 将along_stack_fifty替换为system_stack_input_buffer等输入缓冲区变量名
-// - 将system_buffer_ptr_268替换为system_buffer_ptr_global_context等全局上下文变量名
-// - 将system_local_buffer_2e8替换为system_local_buffer_config_key等配置密钥变量名
+// - 将system_buffer_ptr_data_secondary替换为system_buffer_ptr_global_context等全局上下文变量名
+// - 将system_local_buffer_network_context替换为system_local_buffer_config_key等配置密钥变量名
 // - 将init_stack_uint_param_38替换为system_init_stack_config_handle等配置句柄变量名
 // - 将init_stack_uint_parameter_48替换为init_stack_system_handle等系统句柄变量名
 // - 提高了代码的可读性和维护性
@@ -1775,22 +1775,22 @@
 // - 这是简化实现，主要处理了空指针常量、函数注释和硬编码值的语义化替换
 
 // 之前的美化内容：
-// - 将system_buffer_ptr_68替换为system_buffer_ptr_system_context等系统上下文变量名
-// - 将system_buffer_ptr_b8替换为system_buffer_ptr_input_context等输入上下文变量名
-// - 将system_buffer_ptr_420替换为system_buffer_ptr_graphics_aux等图形辅助变量名
-// - 将system_buffer_ptr_3c0替换为system_buffer_ptr_render_state等渲染状态变量名
-// - 将system_buffer_ptr_360替换为system_buffer_ptr_shader_data等着色器数据变量名
+// - 将system_buffer_ptr_network_primary替换为system_buffer_ptr_system_context等系统上下文变量名
+// - 将system_buffer_ptr_thread_primary替换为system_buffer_ptr_input_context等输入上下文变量名
+// - 将system_buffer_ptr_graphics_secondary替换为system_buffer_ptr_graphics_aux等图形辅助变量名
+// - 将system_buffer_ptr_thread_secondary替换为system_buffer_ptr_render_state等渲染状态变量名
+// - 将system_buffer_ptr_network_secondary替换为system_buffer_ptr_shader_data等着色器数据变量名
 // - 将system_buffer_ptr_small_data8替换为system_buffer_ptr_texture_data等纹理池变量名
 // - 将system_buffer_ptr_small_data0替换为system_buffer_ptr_vertex_data等顶点缓冲区变量名
-// - 将system_buffer_ptr_90替换为system_buffer_ptr_small_buffer等小缓冲区变量名
-// - 将system_buffer_ptr_88替换为system_buffer_ptr_data_primary等数据数组变量名
-// - 将system_buffer_ptr_4e8替换为system_buffer_ptr_network_manager等网络管理器变量名
-// - 将system_buffer_ptr_4e0替换为system_buffer_ptr_network_buffer等网络缓冲区变量名
-// - 将system_buffer_ptr_488替换为system_buffer_ptr_network_config等网络配置变量名
-// - 将system_buffer_ptr_480替换为system_buffer_ptr_network_data等网络数据变量名
-// - 将system_buffer_ptr_428替换为system_buffer_ptr_profiler等性能分析器变量名
+// - 将system_buffer_ptr_data_secondary替换为system_buffer_ptr_small_buffer等小缓冲区变量名
+// - 将system_buffer_ptr_resource_secondary替换为system_buffer_ptr_data_primary等数据数组变量名
+// - 将system_buffer_ptr_shared_primary替换为system_buffer_ptr_network_manager等网络管理器变量名
+// - 将system_buffer_ptr_shared_secondary替换为system_buffer_ptr_network_buffer等网络缓冲区变量名
+// - 将system_buffer_ptr_context_primary替换为system_buffer_ptr_network_config等网络配置变量名
+// - 将system_buffer_ptr_context_secondary替换为system_buffer_ptr_network_data等网络数据变量名
+// - 将system_buffer_ptr_graphics_primary替换为system_buffer_ptr_profiler等性能分析器变量名
 // - 将system_local_buffer_248替换为system_local_buffer_key等密钥缓冲区变量名
-// - 将system_local_buffer_170替换为system_local_buffer_graphics等图形缓冲区变量名
+// - 将system_local_buffer_graphics_data替换为system_local_buffer_graphics等图形缓冲区变量名
 
 // 本次美化内容（2025年8月30日）第十八批次：
 // - 美化硬编码十六进制值，将0xb替换为SYSTEM_CASE_VALUE_B等switch case值
@@ -1849,9 +1849,9 @@
 #define SYSTEM_STRING_PROCESS_PATH 0x6973736572707845
 #define SYSTEM_STRING_ACCESS 0x65737341
 #define SYSTEM_STRING_TRAIT 0x6f697472
-// - 将system_local_buffer_138替换为system_local_buffer_username等用户名缓冲区变量名
+// - 将system_local_buffer_config_data替换为system_local_buffer_username等用户名缓冲区变量名
 // - 将system_local_buffer_498替换为system_local_buffer_info_key等信息密钥变量名
-// - 将system_local_buffer_450替换为system_local_buffer_info_data等信息数据变量名
+// - 将system_local_buffer_resource_data替换为system_local_buffer_info_data等信息数据变量名
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
 // - 这是简化实现，主要处理了剩余变量名的语义化替换
@@ -1884,8 +1884,8 @@
 
 // 本次美化内容：
 // - 将system_buffer_ptr_graphics_contextsystem_buffer_ptr_graphics_context替换为system_buffer_ptr_graphics_context
-// - 将system_buffer_ptr_1f0替换为system_buffer_ptr_system_info
-// - 将system_buffer_ptr_1d0替换为system_buffer_ptr_resource_config
+// - 将system_buffer_ptr_data_secondary替换为system_buffer_ptr_system_info
+// - 将system_buffer_ptr_temp_primary替换为system_buffer_ptr_resource_config
 // - 将system_buffer_ptr_function_secondary0替换为system_buffer_ptr_primary_config
 // - 将system_buffer_ptr_function_secondarysystem_buffer_ptr_graphics_primary替换为system_buffer_ptr_graphics_primary
 // - 提高了代码的可读性和维护性
@@ -1941,8 +1941,8 @@
 
 // 本次美化内容：
 // - 将system_buffer_ptr_graphics_contextsystem_buffer_ptr_graphics_context替换为system_buffer_ptr_graphics_context
-// - 将system_buffer_ptr_1f0替换为system_buffer_ptr_system_info
-// - 将system_buffer_ptr_1d0替换为system_buffer_ptr_resource_config
+// - 将system_buffer_ptr_data_secondary替换为system_buffer_ptr_system_info
+// - 将system_buffer_ptr_temp_primary替换为system_buffer_ptr_resource_config
 // - 将system_buffer_ptr_function_secondary0替换为system_buffer_ptr_primary_config
 // - 将system_buffer_ptr_function_secondarysystem_buffer_ptr_graphics_primary替换为system_buffer_ptr_graphics_primary
 // - 提高了代码的可读性和维护性
@@ -1950,8 +1950,8 @@
 // - 这是简化实现，主要处理了剩余变量名的语义化替换
 
 // 最新美化内容：
-// - 将system_buffer_ptr_468等数字后缀变量替换为语义化名称如system_buffer_ptr_data_config等
-// - 将system_buffer_ptr_80等替换为system_buffer_ptr_resource_primary等描述性名称
+// - 将system_buffer_ptr_graphics_primary等数字后缀变量替换为语义化名称如system_buffer_ptr_data_config等
+// - 将system_buffer_ptr_system_primary等替换为system_buffer_ptr_resource_primary等描述性名称
 // - 将system_buffer_ptr_username_buffer等替换为system_buffer_ptr_resource_pool等功能性名称
 // - 将system_buffer_ptr_graphics_main等替换为system_buffer_ptr_graphics_main等系统组件名称
 // - 将system_RSI等系统寄存器变量替换为system_register_rsi等描述性名称
@@ -2028,8 +2028,8 @@
 
 // 本次美化内容：
 // - 将system_buffer_ptr_graphics_contextsystem_buffer_ptr_graphics_context替换为system_buffer_ptr_graphics_context
-// - 将system_buffer_ptr_1f0替换为system_buffer_ptr_system_info
-// - 将system_buffer_ptr_1d0替换为system_buffer_ptr_resource_config
+// - 将system_buffer_ptr_data_secondary替换为system_buffer_ptr_system_info
+// - 将system_buffer_ptr_temp_primary替换为system_buffer_ptr_resource_config
 // - 将system_buffer_ptr_function_secondary0替换为system_buffer_ptr_primary_config
 // - 将system_buffer_ptr_function_secondarysystem_buffer_ptr_graphics_primary替换为system_buffer_ptr_graphics_primary
 // - 提高了代码的可读性和维护性
@@ -2083,8 +2083,8 @@
 
 // 本次美化内容：
 // - 将system_buffer_ptr_graphics_contextsystem_buffer_ptr_graphics_context替换为system_buffer_ptr_graphics_context
-// - 将system_buffer_ptr_1f0替换为system_buffer_ptr_system_info
-// - 将system_buffer_ptr_1d0替换为system_buffer_ptr_resource_config
+// - 将system_buffer_ptr_data_secondary替换为system_buffer_ptr_system_info
+// - 将system_buffer_ptr_temp_primary替换为system_buffer_ptr_resource_config
 // - 将system_buffer_ptr_function_secondary0替换为system_buffer_ptr_primary_config
 // - 将system_buffer_ptr_function_secondarysystem_buffer_ptr_graphics_primary替换为system_buffer_ptr_graphics_primary
 // - 提高了代码的可读性和维护性
@@ -2139,8 +2139,8 @@
 
 // 本次美化内容：
 // - 将system_buffer_ptr_graphics_contextsystem_buffer_ptr_graphics_context替换为system_buffer_ptr_graphics_context
-// - 将system_buffer_ptr_1f0替换为system_buffer_ptr_system_info
-// - 将system_buffer_ptr_1d0替换为system_buffer_ptr_resource_config
+// - 将system_buffer_ptr_data_secondary替换为system_buffer_ptr_system_info
+// - 将system_buffer_ptr_temp_primary替换为system_buffer_ptr_resource_config
 // - 将system_buffer_ptr_function_secondary0替换为system_buffer_ptr_primary_config
 // - 将system_buffer_ptr_function_secondarysystem_buffer_ptr_graphics_primary替换为system_buffer_ptr_graphics_primary
 // - 提高了代码的可读性和维护性
@@ -2171,26 +2171,26 @@
 // 本次美化内容：
 // - 将HandleSystemOperation_resource_management_4替换为HandleSystemResourceOperation等语义化函数名
 // - 将GetSystemData11_3替换为GetSystemMemoryData等数据获取函数名
-// - 将system_buffer_ptr_c8替换为system_buffer_ptr_thread_context等线程上下文变量名
-// - 将system_buffer_ptr_c0替换为system_buffer_ptr_thread_data等线程数据变量名
-// - 将system_buffer_ptr_a8替换为system_buffer_ptr_audio_primary等音频缓冲区变量名
-// - 将system_buffer_ptr_e8替换为system_buffer_ptr_thread_param等线程参数变量名
-// - 将system_buffer_ptr_e0替换为system_buffer_ptr_thread_buffer等线程缓冲区变量名
-// - 将system_buffer_ptr_3c8替换为system_buffer_ptr_profiler_context等性能分析上下文变量名
-// - 将system_buffer_ptr_368替换为system_buffer_ptr_shader_context等着色器上下文变量名
-// - 将system_buffer_ptr_558替换为system_buffer_ptr_resource_primary等主要资源变量名
-// - 将system_buffer_ptr_538替换为system_buffer_ptr_resource_secondary等次要资源变量名
-// - 将system_buffer_ptr_508替换为system_buffer_ptr_function_table等函数表变量名
-// - 将system_buffer_ptr_578替换为system_buffer_ptr_graphics_primary等主要图形变量名
-// - 将system_buffer_ptr_618替换为system_buffer_ptr_graphics_main等主要图形变量名
-// - 将system_buffer_ptr_610替换为system_buffer_ptr_graphics_primary等图形数据变量名
+// - 将system_buffer_ptr_config_primary替换为system_buffer_ptr_thread_context等线程上下文变量名
+// - 将system_buffer_ptr_config_secondary替换为system_buffer_ptr_thread_data等线程数据变量名
+// - 将system_buffer_ptr_resource_primary替换为system_buffer_ptr_audio_primary等音频缓冲区变量名
+// - 将system_buffer_ptr_data_primary替换为system_buffer_ptr_thread_param等线程参数变量名
+// - 将system_buffer_ptr_data_secondary替换为system_buffer_ptr_thread_buffer等线程缓冲区变量名
+// - 将system_buffer_ptr_thread_primary替换为system_buffer_ptr_profiler_context等性能分析上下文变量名
+// - 将system_buffer_ptr_network_primary替换为system_buffer_ptr_shader_context等着色器上下文变量名
+// - 将system_buffer_ptr_resource_secondary替换为system_buffer_ptr_resource_primary等主要资源变量名
+// - 将system_buffer_ptr_data_primary替换为system_buffer_ptr_resource_secondary等次要资源变量名
+// - 将system_buffer_ptr_data_secondary替换为system_buffer_ptr_function_table等函数表变量名
+// - 将system_buffer_ptr_resource_primary替换为system_buffer_ptr_graphics_primary等主要图形变量名
+// - 将system_buffer_ptr_config_primary替换为system_buffer_ptr_graphics_main等主要图形变量名
+// - 将system_buffer_ptr_config_secondary替换为system_buffer_ptr_graphics_primary等图形数据变量名
 // - 将init_stack_uint_param_b8替换为init_stack_uint_param_thread等线程参数变量名
 // - 将init_stack_uint_param_b0替换为init_stack_audio_parameter等音频参数变量名
 // - 将init_stack_uint_param_98替换为init_stack_uint_param_buffer等缓冲区参数变量名
 // - 将init_stack_uint_param_78替换为init_stack_uint_param_data等数据参数变量名
 // - 将init_stack_uint_param_70替换为init_stack_uint_param_size等大小参数变量名
 // - 将system_local_buffer_a8替换为system_local_buffer_thread_key等线程密钥变量名
-// - 将system_local_buffer_68替换为system_local_buffer_thread_data等线程数据变量名
+// - 将system_local_buffer_audio_data替换为system_local_buffer_thread_data等线程数据变量名
 // - 将system_local_buffer_118替换为system_local_buffer_thread_context等线程上下文变量名
 // - 将system_local_buffer_d0替换为system_local_buffer_thread_buffer等线程缓冲区变量名
 // - 将system_local_buffer_d8替换为system_local_buffer_thread_param等线程参数变量名
@@ -21369,7 +21369,7 @@ void InitializeMemoryDataNode(void)
   int system_temp_integer;
   uint8_t system_local_buffer_primary [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   uint32_t init_stack_uint_param_68;
-  uint8_t system_local_buffer_60 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
+  uint8_t system_local_buffer_network_data [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   void *system_buffer_ptr_resource_data;
   uint init_stack_ulong_param_audio;
   uint64_t initialization_stack_unsigned_param_handle;
@@ -21393,11 +21393,11 @@ void InitializeMemoryDataNode(void)
   init_stack_parameter_28 = 6;
   strcpy_s(system_local_buffer_module_handler,SYSTEM_DATA_COMPARE_SIZE,&g_system_global_variablec);
   init_stack_uint_param_68 = 1;
-  PrepareSystemBuffer(system_local_buffer_60,&system_buffer_ptr_temp_data);
+  PrepareSystemBuffer(system_local_buffer_network_data,&system_buffer_ptr_temp_data);
   init_stack_uint_param_68 = 0;
   system_buffer_ptr_temp_data = &globalSystemPointerData;
   system_temp_integer = init_stack_ulong_param_audio + SYSTEM_OFFSET_F;
-  ConfigureSystemParameters(system_local_buffer_60,system_temp_integer_result);
+  ConfigureSystemParameters(system_local_buffer_network_data,system_temp_integer_result);
   system_node_root = (uint32_t *)(system_buffer_ptr_resource_data + init_stack_ulong_param_audio);
   *system_node_root = SYSTEM_STRING_RESU_TOKEN;
   system_node_root[SYSTEM_NODE_INDEX_ROOT_NEXT] = SYSTEM_STRING_CONF_TOKEN;
@@ -23418,7 +23418,7 @@ uint32_t initialize_system_module_twenty_one(void)
   uint64_t init_stack_buffer_size;
   uint64_t init_stack_thread_count;
   uint8_t system_local_buffer_80 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-  uint8_t system_local_buffer_60 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
+  uint8_t system_local_buffer_network_data [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
 
   system_long_result_temp = g_system_base_1;
   init_stack_thread_count = SYSTEM_HANDLE_INVALID;
@@ -23488,7 +23488,7 @@ uint32_t initialize_system_module_twenty_one(void)
     *(uint16_t *)((ulonglong)init_stack_uint_param_buffer + init_stack_memory_index_a0) = SYSTEM_STACK_UInt_SIZE;
     init_stack_uint_param_buffer = system_temp_integer;
     ExtractAudioData(&system_buffer_ptr_audio_primary,audio_data_buffer._8_8_ >> SYSTEM_NODE_HEADER_SIZE);
-    system_pointer_value = (uint64_t *)ProcessResourceData(system_local_buffer_60,&system_buffer_ptr_audio_primary);
+    system_pointer_value = (uint64_t *)ProcessResourceData(system_local_buffer_network_data,&system_buffer_ptr_audio_primary);
     initialize_system_module_fifty_nine(systemCoreData + SYSTEM_CONFIG_SIZE_EVENT_F_TWO_FOUR_ZERO,system_pointer_temp);
     *system_pointer_value = &resourcePoolPointer;
     if (system_pointer_temp[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != SYSTEM_COMPARISON_ZERO) {
@@ -24350,10 +24350,10 @@ void InitializeEffectSystem(longlong handleIdentifier,uint64_t resourceIdentifie
   uint64_t *system_buffer_ptr_resource_pool_micro;
   uint32_t system_init_stack_config_offset;
   uint64_t init_stack_ulong_param_2d0;
-  uint32_t system_local_buffer_2c8 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
+  uint32_t system_local_buffer_graphics_context [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   longlong *stack_system_memory_pointer;
   uint64_t init_stack_uint_param_2b8;
-  uint64_t system_local_buffer_2a8 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
+  uint64_t system_local_buffer_audio_context [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   longlong ainit_stack_config_data [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   uint32_t init_stack_uint_param_data;
   ulonglong init_stack_uint_param_68;
@@ -24729,7 +24729,7 @@ void initialize_system_module_global_setup(longlong handleIdentifier)
 {
   uint64_t *system_pointer_value;
   int system_temp_integer;
-  uint8_t system_local_buffer_108 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
+  uint8_t system_local_buffer_data_storage [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   uint32_t init_stack_uint_param_buffer_flag;
   uint64_t init_stack_uint_param_thread;
   longlong init_stack_buffer_handle_b0;
@@ -24737,7 +24737,7 @@ void initialize_system_module_global_setup(longlong handleIdentifier)
   ulonglong init_stack_parameter_28;
 
   init_stack_uint_param_thread = SYSTEM_HANDLE_INVALID;
-  init_stack_parameter_28 = system_configuration_data ^ (ulonglong)system_local_buffer_108;
+  init_stack_parameter_28 = system_configuration_data ^ (ulonglong)system_local_buffer_data_storage;
   init_stack_uint_param_buffer_flag = 0;
   init_stack_buffer_handle_b0 = handleIdentifier;
   ProcessResourceData(handleIdentifier,g_system_base_1 + SYSTEM_CONFIG_SIZE_UTILITY_20);
@@ -26054,7 +26054,7 @@ void InitializeAuthenticationSystem(void)
   uint *system_pointer_value;
   void *system_pointer_value;
   uint32_t system_result_operation;
-  uint8_t system_local_buffer_178 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
+  uint8_t system_local_buffer_network_storage [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   void *system_buffer_ptr_data_buffer;
   uint8_t *system_buffer_ptr_byte_buffer;
   uint initialization_stack_float_register_148;
@@ -26092,7 +26092,7 @@ void InitializeAuthenticationSystem(void)
   ulonglong init_stack_uint_param_30;
 
   system_init_stack_config_handle = SYSTEM_HANDLE_INVALID;
-  init_stack_uint_param_30 = system_configuration_data ^ (ulonglong)system_local_buffer_178;
+  init_stack_uint_param_30 = system_configuration_data ^ (ulonglong)system_local_buffer_network_storage;
   stack_system_memory_pointer = g_system_base_1;
   system_long_result_temp = *(longlong *)(*g_system_base_1 + SYSTEM_DATA_OFFSET_890) - *(longlong *)(*g_system_base_1 + SYSTEM_INIT_DATA_OFFSET_888) >> 5;
   int_stack_loop_counter = 0;
@@ -26423,7 +26423,7 @@ INIT_LABEL_THREAD_LOOP_START:
     } while (int_stack_loop_counter < (int)system_long_result);
   }
                     // WARNING: Subroutine does not return
-  InitializeSystemStack(init_stack_uint_param_30 ^ (ulonglong)system_local_buffer_178);
+  InitializeSystemStack(init_stack_uint_param_30 ^ (ulonglong)system_local_buffer_network_storage);
 }
 // WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void CreateMonitoringResources(void)
@@ -32105,7 +32105,7 @@ void InitializeFontSystem(longlong *handleIdentifier)
   uint64_t system_result_operation;
   longlong *pallocation_size;
   code *ptr_system_init_status_flag;
-  uint8_t system_local_buffer_128 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
+  uint8_t system_local_buffer_input_storage [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   longlong *stack_system_memory_pointer;
   longlong **pstack_system_memory_pointer;
   longlong init_stack_long_buffer_f8 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
@@ -32120,7 +32120,7 @@ void InitializeFontSystem(longlong *handleIdentifier)
   ulonglong init_stack_system_hash;
 
   init_stack_uint_param_buffer_size = SYSTEM_HANDLE_INVALID;
-  init_stack_system_hash = system_configuration_data ^ (ulonglong)system_local_buffer_128;
+  init_stack_system_hash = system_configuration_data ^ (ulonglong)system_local_buffer_input_storage;
   system_temp_integer = *(int *)(*(longlong *)(*(longlong *)(system_configuration_data + SYSTEM_OFFSET_8) + SYSTEM_OFFSET_8) + SYSTEM_FLAG_BIT_48);
   stack_system_memory_pointer = handleIdentifier;
   system_memory_comparison_result = _Thrd_id();
@@ -32171,7 +32171,7 @@ void InitializeFontSystem(longlong *handleIdentifier)
     (*(code *)handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER])(handleIdentifier,0,0);
   }
                     // WARNING: Subroutine does not return
-  InitializeSystemStack(init_stack_system_hash ^ (ulonglong)system_local_buffer_128);
+  InitializeSystemStack(init_stack_system_hash ^ (ulonglong)system_local_buffer_input_storage);
 }
 // WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeAuthenticationSystem(uint *handleIdentifier)
@@ -33371,7 +33371,7 @@ void HandleSystemOperation_data_validation(void)
   uint system_result_operation;
   ulonglong system_result_operation;
   void **device_pointer_array;
-  uint8_t system_local_buffer_1b8 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
+  uint8_t system_local_buffer_context_storage [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   longlong long_stack_config_data;
   longlong long_stack_memory_offset;
   longlong long_stack_texture_aux;
@@ -33395,7 +33395,7 @@ void HandleSystemOperation_data_validation(void)
 
   system_long_result_temp = system_configuration_data;
   uint_stack_resource_handle = SYSTEM_HANDLE_INVALID;
-  system_init_stack_config_handle = system_configuration_data ^ (ulonglong)system_local_buffer_1b8;
+  system_init_stack_config_handle = system_configuration_data ^ (ulonglong)system_local_buffer_context_storage;
   long_stack_thread_primary = system_configuration_data;
   CleanupSystemBuffer(system_buffer_ptr_array_main);
   system_temp_integer = int_stack_loop_index + -1;
@@ -33535,7 +33535,7 @@ void HandleSystemOperation_data_validation(void)
   system_buffer_ptr_pointer_texture = system_buffer_ptr_array_main;
   system_buffer_ptr_array_main[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = &globalSystemPointerData;
                     // WARNING: Subroutine does not return
-  InitializeSystemStack(system_init_stack_config_handle ^ (ulonglong)system_local_buffer_1b8);
+  InitializeSystemStack(system_init_stack_config_handle ^ (ulonglong)system_local_buffer_context_storage);
 }
 // WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void initialize_system_module_six(longlong handleIdentifier,longlong *resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
@@ -36544,7 +36544,7 @@ void initialize_system_module_twenty_four(uint64_t handleIdentifier,longlong res
   void *system_buffer_ptr_thread_parameter;
   uint8_t *system_buffer_ptr_local_primary;
   uint32_t init_stack_parameter_198;
-  uint8_t system_local_buffer_190 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
+  uint8_t system_local_buffer_thread_storage [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   uint8_t system_local_buffer_username [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   ulonglong system_init_stack_config_handle;
 
@@ -36554,10 +36554,10 @@ void initialize_system_module_twenty_four(uint64_t handleIdentifier,longlong res
   system_init_stack_config_handle = system_configuration_data ^ (ulonglong)system_local_buffer_file_info_primary;
   system_init_stack_memory_ptr = g_system_context_1;
   system_buffer_ptr_thread_parameter = &g_system_data_node_primary_config;
-  system_buffer_ptr_local_primary = system_local_buffer_190;
-  system_local_buffer_190[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0;
+  system_buffer_ptr_local_primary = system_local_buffer_thread_storage;
+  system_local_buffer_thread_storage[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0;
   init_stack_parameter_198 = 6;
-  strcpy_s(system_local_buffer_190,SYSTEM_DATA_COMPARE_SIZE,&g_system_input_config_data);
+  strcpy_s(system_local_buffer_thread_storage,SYSTEM_DATA_COMPARE_SIZE,&g_system_input_config_data);
   system_pointer_value = (uint64_t *)AllocateSystemMemory(systemMemoryPool,SYSTEM_NODE_HEADER_SIZE8,SYSTEM_OFFSET_8,3);
   system_stack_max_size_primary = system_long_result + SYSTEM_DATA_BLOCK_SIZE_70;
   system_buffer_ptr_temp_storage = system_pointer_value;
@@ -36861,8 +36861,8 @@ void InitializeDataEngineNode(int *handleIdentifier)
   uint64_t *system_node_previous;
   int system_temp_integer;
   ulonglong system_result_operation;
-  uint8_t system_local_buffer_1f8 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-  uint16_t system_local_buffer_1b8 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
+  uint8_t system_local_buffer_data_storage [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
+  uint16_t system_local_buffer_context_storage [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   void *system_buffer_ptr_config_main;
   uint32_t *system_buffer_ptr_thread_parameter;
   uint32_t init_stack_parameter_1a0;
@@ -36879,13 +36879,13 @@ void InitializeDataEngineNode(int *handleIdentifier)
   ulonglong system_init_stack_config_handle;
 
   initialization_stack_float_register_148 = SYSTEM_HANDLE_INVALID;
-  system_init_stack_config_handle = system_configuration_data ^ (ulonglong)system_local_buffer_1f8;
+  system_init_stack_config_handle = system_configuration_data ^ (ulonglong)system_local_buffer_data_storage;
   system_temp_integer = SYSTEM_INIT_VALUE_ZERO;
   uint_stack_buffer_size = 0;
   *handleIdentifier = *handleIdentifier + 1;
   if ((*(longlong *)(handleIdentifier + SYSTEM_OFFSET_4) != SYSTEM_COMPARISON_ZERO) && (*(longlong *)(handleIdentifier + 2) != SYSTEM_COMPARISON_ZERO)) {
                     // WARNING: Subroutine does not return
-    InitializeSystemStack(system_init_stack_config_handle ^ (ulonglong)system_local_buffer_1f8);
+    InitializeSystemStack(system_init_stack_config_handle ^ (ulonglong)system_local_buffer_data_storage);
   }
   init_stack_thread_handle_168 = 0;
   init_stack_thread_id_160 = 0;
@@ -36893,9 +36893,9 @@ void InitializeDataEngineNode(int *handleIdentifier)
   init_stack_data_size_150 = 3;
   system_long_result_temp = ProcessResourceData(&system_buffer_ptr_graphics_primary,g_system_base_1 + SYSTEM_MEDIUM_OFFSET_THREAD_QUEUE);
   uint_stack_buffer_size = 1;
-  system_local_buffer_1b8[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NODE_HEADER_SIZE;
+  system_local_buffer_context_storage[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NODE_HEADER_SIZE;
   if (*(longlong *)(system_long_result + SYSTEM_OFFSET_8) != SYSTEM_COMPARISON_ZERO) {
-    InitializeSystemModule_input_handling(system_long_result,&init_stack_thread_handle_168,system_local_buffer_1b8);
+    InitializeSystemModule_input_handling(system_long_result,&init_stack_thread_handle_168,system_local_buffer_context_storage);
   }
   uint_stack_buffer_size = 0;
   system_buffer_ptr_graphics_primary = &resourcePoolPointer;
@@ -38609,7 +38609,7 @@ INIT_LABEL_INIT_65a3e:
 void ConfigureSystemHandles(void)
 
 {
-  uint8_t system_local_buffer_2c8 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
+  uint8_t system_local_buffer_graphics_context [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   uint64_t uintStack_260;
   uint64_t uintStack_258;
   uint32_t uintStack_250;
@@ -38625,7 +38625,7 @@ void ConfigureSystemHandles(void)
   uint8_t system_local_buffer_228 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   ulonglong init_stack_parameter_28;
 
-  init_stack_parameter_28 = system_configuration_data ^ (ulonglong)system_local_buffer_2c8;
+  init_stack_parameter_28 = system_configuration_data ^ (ulonglong)system_local_buffer_graphics_context;
   init_stack_path_exe_suffix = SYSTEM_PATH_EXE_SUFFIX;
   uintStack_260 = SYSTEM_PATH_String_1;
   uintStack_258 = SYSTEM_PATH_String_2;
@@ -38823,7 +38823,7 @@ void InitializeSystemModule_save_system(uint64_t handleIdentifier,uint64_t resou
   int system_temp_integer;
   uint64_t system_result_operation;
   ulonglong system_result_operation;
-  uint8_t system_local_buffer_1f8 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
+  uint8_t system_local_buffer_data_storage [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   void *system_buffer_ptr_audio_context;
   void *system_buffer_ptr_audio_data;
   void *system_buffer_ptr_module_handler;
@@ -38861,7 +38861,7 @@ void InitializeSystemModule_save_system(uint64_t handleIdentifier,uint64_t resou
   ulonglong init_stack_system_handle;
 
   init_stack_audio_parameter = SYSTEM_HANDLE_INVALID;
-  init_stack_system_handle = system_configuration_data ^ (ulonglong)system_local_buffer_1f8;
+  init_stack_system_handle = system_configuration_data ^ (ulonglong)system_local_buffer_data_storage;
   system_flag_initialization = (**(code **)**(uint64_t **)(system_configuration_data + SYSTEM_OFFSET_18))();
   system_temp_integer = SYSTEM_INIT_VALUE_ZERO;
   if (is_initialized != SYSTEM_CHAR_NULL_TERMINATOR) {
@@ -39058,7 +39058,7 @@ INIT_LABEL_INIT_6650a:
   }
 INIT_LABEL_APPLICATION_READY:
                     // WARNING: Subroutine does not return
-  InitializeSystemStack(init_stack_system_handle ^ (ulonglong)system_local_buffer_1f8);
+  InitializeSystemStack(init_stack_system_handle ^ (ulonglong)system_local_buffer_data_storage);
 }
 // WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeResourceSystem(uint64_t handleIdentifier,uint64_t resourceIdentifier,char system_configuration,uint64_t systemFlags,
@@ -40537,7 +40537,7 @@ void InitializeMutexInitNode(longlong handleIdentifier,longlong resourceIdentifi
   longlong system_long_result_temp;
   longlong system_long_result_temp;
   longlong system_long_result_temp;
-  uint8_t system_local_buffer_198 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
+  uint8_t system_local_buffer_local_storage [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   uint64_t init_stack_parameter_handle;
   void *system_buffer_ptr_graphics_config;
   uint8_t *system_buffer_ptr_graphics_primary;
@@ -40546,7 +40546,7 @@ void InitializeMutexInitNode(longlong handleIdentifier,longlong resourceIdentifi
   ulonglong init_stack_system_handle;
 
   init_stack_parameter_handle = SYSTEM_HANDLE_INVALID;
-  init_stack_system_handle = system_configuration_data ^ (ulonglong)system_local_buffer_198;
+  init_stack_system_handle = system_configuration_data ^ (ulonglong)system_local_buffer_local_storage;
   system_buffer_ptr_graphics_config = &g_system_global_config;
   system_buffer_ptr_graphics_primary = system_local_buffer_username;
   init_stack_data_size_158 = 0;
@@ -40566,7 +40566,7 @@ void InitializeMutexInitNode(longlong handleIdentifier,longlong resourceIdentifi
   }
   system_buffer_ptr_graphics_config = &globalSystemPointerData;
                     // WARNING: Subroutine does not return
-  InitializeSystemStack(init_stack_system_handle ^ (ulonglong)system_local_buffer_198);
+  InitializeSystemStack(init_stack_system_handle ^ (ulonglong)system_local_buffer_local_storage);
 }
 // void InitializeSystemModule_basic6(longlong handleIdentifier,longlong resourceIdentifier)
 
@@ -57373,7 +57373,7 @@ void InitializeResourceSystem(longlong *handleIdentifier,byte resourceIdentifier
   longlong **pstack_system_memory_pointer;
   uint8_t system_local_buffer_80 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   code *stack_char_ptr;
-  uint8_t system_local_buffer_60 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
+  uint8_t system_local_buffer_network_data [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   code *stack_char_ptr;
 
   init_stack_buffer_size = SYSTEM_HANDLE_INVALID;
@@ -57414,10 +57414,10 @@ void InitializeResourceSystem(longlong *handleIdentifier,byte resourceIdentifier
     if (system_memory_pointer != (longlong *)SYSTEM_NULL_POINTER) {
       (**(code **)(*system_memory_pointer + SYSTEM_OBJECT_OFFSET_28))(system_memory_pointer);
     }
-    initialize_system_module_sixty_seven(system_local_buffer_60,&system_stack_memory_pointer);
-    (*ptr_system_init_status_flag)(ptr_data,&system_data_pattern_audio,handleIdentifier + SYSTEM_CONFIG_SIZE_UTILITY_2,0,system_local_buffer_60,&init_stack_uint_param_one_hundred);
+    initialize_system_module_sixty_seven(system_local_buffer_network_data,&system_stack_memory_pointer);
+    (*ptr_system_init_status_flag)(ptr_data,&system_data_pattern_audio,handleIdentifier + SYSTEM_CONFIG_SIZE_UTILITY_2,0,system_local_buffer_network_data,&init_stack_uint_param_one_hundred);
     if (stack_char_ptr != (code *)SYSTEM_NULL_POINTER_0) {
-      (*stack_char_ptr)(system_local_buffer_60,0,0);
+      (*stack_char_ptr)(system_local_buffer_network_data,0,0);
     }
     if (stack_char_ptr != (code *)SYSTEM_NULL_POINTER_0) {
       (*stack_char_ptr)(&init_stack_uint_param_one_hundred,0,0);
