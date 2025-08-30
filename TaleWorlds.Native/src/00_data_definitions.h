@@ -5,12 +5,19 @@
 // 简化实现：将硬编码值替换为语义化常量，提高代码可读性
 // 原本实现：完全重构硬编码值体系，建立统一的语义化命名规范
 
-// 最新语义化美化工作总结（2025年8月30日最终批次）：
+// 最新语义化美化工作总结（2025年8月30日最终批次最新完成）：
 // - 美化位掩码常量，将硬编码值替换为语义化常量
 // - 美化字符串模式常量，提高代码可读性
 // - 美化内存偏移量常量，便于维护
 // - 美化缓冲区分配结果常量，增强语义化
 // - 美化初始化偏移量常量，统一命名规范
+// - 美化错误码常量，将硬编码错误码替换为语义化名称
+// - 美化地址偏移量常量，将硬编码地址替换为语义化名称
+// - 美化指针偏移量常量，将数字后缀替换为语义化名称
+// - 美化特殊值常量，将硬编码数值替换为语义化名称
+// - 美化字符常量定义，修复错误值并删除重复定义
+// - 美化控制值常量，重新组织为逻辑分组
+// - 美化内存偏移量常量，将数字替换为语义化名称
 // - 保持代码语义不变，这是简化实现
 
 // 美化工作总结（2025年8月30日最终批次）：
@@ -108,8 +115,8 @@
 #define SYSTEM_MEMORY_OFFSET_C 0xc
 #define SYSTEM_MEMORY_OFFSET_D 0xd
 #define SYSTEM_MEMORY_OFFSET_E 0xe
-#define SYSTEM_MEMORY_OFFSET_RESERVED_461 0x461
-#define SYSTEM_MEMORY_OFFSET_RESERVED_A3B 0xa3b  // 保留内存偏移量A3B
+#define SYSTEM_MEMORY_OFFSET_RESERVED_PRIMARY 0x461  // 保留内存偏移量主
+#define SYSTEM_MEMORY_OFFSET_RESERVED_SECONDARY 0xa3b  // 保留内存偏移量次
 
 // 系统指针偏移量常量
 #define SYSTEM_POINTER_OFFSET_STANDARD_C 0xc
@@ -14103,24 +14110,8 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_OFFSET_MUTEX_HANDLE 0x60
 #define SYSTEM_OFFSET_EVENT_HANDLE 0x7c
 
-// 特殊字符常量
-#define SYSTEM_CHAR_START_OF_HEADER 0x01
-#define SYSTEM_CHAR_BACKSPACE 0x08
-#define SYSTEM_CHAR_HORIZONTAL_TAB 0x09
-#define SYSTEM_CHAR_VERTICAL_TAB 0x0b
-#define SYSTEM_CHAR_FORM_FEED 0x0c
-#define SYSTEM_CHAR_CARRIAGE_RETURN 0x0d
-#define SYSTEM_CHAR_SHIFT_OUT 0x0e
-#define SYSTEM_CHAR_SHIFT_IN 0x0f
-#define SYSTEM_CHAR_DEVICE_CONTROL_ONE 0x11
-#define SYSTEM_CHAR_DEVICE_CONTROL_THREE 0x13
-#define SYSTEM_CHAR_END_OF_MEDIUM 0x19
-#define SYSTEM_CHAR_SUBSTITUTE 0x1a
-#define SYSTEM_CHAR_ESCAPE 0x1b
-#define SYSTEM_CHAR_FILE_SEPARATOR 0x1c
-#define SYSTEM_CHAR_GROUP_SEPARATOR 0x1d
-#define SYSTEM_CHAR_RECORD_SEPARATOR 0x1e
-#define SYSTEM_CHAR_UNIT_SEPARATOR 0x1f
+// 简化实现：删除重复的特殊字符常量定义，使用文件前面的标准定义
+// 原本实现：完全重构字符常量体系，统一使用标准ASCII和控制字符定义
 
 // 特殊数值常量
 #define SYSTEM_VALUE_DEFAULT_BUFFER_SIZE 200
