@@ -14461,3 +14461,30 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_COLOR_WEIGHT_RED 0.2126                         // 红色权重
 #define SYSTEM_COLOR_WEIGHT_GREEN 0.7152                       // 绿色权重  
 #define SYSTEM_COLOR_WEIGHT_BLUE 0.0722                        // 蓝色权重
+
+
+// 新增浮点数值常量 - 美化硬编码浮点数（2025年8月30日最终批次续）
+// 简化实现：仅将常见的硬编码浮点数值替换为语义化常量
+// 原本实现：完全重构所有浮点数值体系，建立统一的浮点数命名规范
+
+// 系统性能阈值常量
+#define SYSTEM_FLOAT_PERFORMANCE_THRESHOLD_ONE 1.0            // 性能阈值1.0
+#define SYSTEM_FLOAT_PERFORMANCE_THRESHOLD_ZERO 0.0           // 性能阈值0.0
+#define SYSTEM_FLOAT_PERFORMANCE_THRESHOLD_HALF 0.5           // 性能阈值0.5
+
+// 系统操作标志常量
+#define SYSTEM_FLOAT_OPERATION_FLAG_ENABLED 1.0               // 操作标志启用
+#define SYSTEM_FLOAT_OPERATION_FLAG_DISABLED 0.0              // 操作标志禁用
+
+// 系统线程操作标志常量
+#define SYSTEM_FLOAT_THREAD_OP_FLAG_PRIMARY 1.0               // 线程操作标志主
+#define SYSTEM_FLOAT_THREAD_OP_FLAG_SECONDARY 1.0             // 线程操作标志次
+#define SYSTEM_FLOAT_THREAD_OP_FLAG_TERTIARY 1.0              // 线程操作标志第三
+
+// 系统浮点转换常量
+#define SYSTEM_FLOAT_BYTE_TO_FLOAT_CONVERSION 0.007843138     // 字节到浮点转换因子
+#define SYSTEM_FLOAT_CONVERSION_NORMALIZATION_OFFSET 1.0       // 归一化偏移量
+
+// 系统寄存器操作常量
+#define SYSTEM_FLOAT_REGISTER_OP_VALUE 1.0                     // 寄存器操作值
+#define SYSTEM_FLOAT_REGISTER_RESET_VALUE 1.0                  // 寄存器重置值
