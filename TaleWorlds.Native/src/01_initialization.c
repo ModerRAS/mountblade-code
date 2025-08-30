@@ -489,7 +489,7 @@
 #define SYSTEM_INIT_STACK_VALUE_14            0xe     // 栈值14
 #define SYSTEM_INIT_STACK_VALUE_15            0xf     // 栈值15
 // 偏移量常量（2025年8月30日最终批次补充）
-#define SYSTEM_INIT_OFFSET_0X0x100               0x0x100    // 偏移量
+#define SYSTEM_INIT_OFFSET_0X100               0x100    // 偏移量
 #define SYSTEM_INIT_OFFSET_0X50               0x50    // 偏移量
 #define SYSTEM_INIT_OFFSET_0X60               0x60    // 偏移量
 #define SYSTEM_INIT_SIZE_0X0x108                 0x0x108    // 大小0x0x108
