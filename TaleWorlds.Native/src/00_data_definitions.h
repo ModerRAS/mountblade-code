@@ -522,10 +522,10 @@
 #define SYSTEM_BIT_MASK_BYTE_SECOND 0x200                               // 字节第二位掩码
 #define SYSTEM_BIT_MASK_BYTE_THIRD 0x400                               // 字节第三位掩码
 #define SYSTEM_BIT_MASK_BYTE_MOST_SIGNIFICANT 0x800                               // 字节最高有效位掩码
-#define SYSTEM_BIT_MASK_WORD_LEAST_SIGNIFICANT 0x1000                              // 字位0掩码
-#define SYSTEM_BIT_MASK_WORD_SECOND 0x2000                              // 字位1掩码
-#define SYSTEM_BIT_MASK_WORD_THIRD 0x4000                              // 字位2掩码
-#define SYSTEM_BIT_MASK_WORD_MOST_SIGNIFICANT 0x8000                              // 字位3掩码
+#define SYSTEM_BIT_MASK_WORD_LEAST_SIGNIFICANT 0x1000                              // 字最低有效位掩码
+#define SYSTEM_BIT_MASK_WORD_SECOND 0x2000                              // 字第二位掩码
+#define SYSTEM_BIT_MASK_WORD_THIRD 0x4000                              // 字第三位掩码
+#define SYSTEM_BIT_MASK_WORD_MOST_SIGNIFICANT 0x8000                              // 字最高有效位掩码
 
 // 位掩码语义化常量定义
 #define SYSTEM_BIT_MASK_BYTE_ALIGNMENT 0x100                    // 字节对齐掩码
@@ -537,10 +537,10 @@
 #define SYSTEM_BIT_MASK_SEGMENT_ALIGNMENT 0x4000                // 段对齐掩码
 #define SYSTEM_BIT_MASK_BLOCK_ALIGNMENT 0x8000                   // 块对齐掩码
 // 段级位掩码常量定义（2025年8月30日语义化美化）
-#define SYSTEM_BIT_MASK_DWORD_LEAST_SIGNIFICANT 0x10000                             // 双字位0掩码
-#define SYSTEM_BIT_MASK_DWORD_SECOND 0x20000                             // 双字位1掩码
-#define SYSTEM_BIT_MASK_DWORD_THIRD 0x40000                             // 双字位2掩码
-#define SYSTEM_BIT_MASK_DWORD_MOST_SIGNIFICANT 0x80000                             // 双字位3掩码
+#define SYSTEM_BIT_MASK_DWORD_LEAST_SIGNIFICANT 0x10000                             // 双字最低有效位掩码
+#define SYSTEM_BIT_MASK_DWORD_SECOND 0x20000                             // 双字第二位掩码
+#define SYSTEM_BIT_MASK_DWORD_THIRD 0x40000                             // 双字第三位掩码
+#define SYSTEM_BIT_MASK_DWORD_MOST_SIGNIFICANT 0x80000                             // 双字最高有效位掩码
 
 // 段级位掩码常量定义（2025年8月30日语义化美化）
 #define SYSTEM_BIT_MASK_LARGE_SECTION_ALIGNMENT 0x10000            // 大节对齐掩码
