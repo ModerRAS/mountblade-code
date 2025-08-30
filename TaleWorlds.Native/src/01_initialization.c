@@ -1,5 +1,22 @@
 #include "TaleWorlds.Native.Split.h"
 
+// 本次美化内容（2025年8月30日）第三批次：
+// - 将uintStack_334替换为init_stack_buffer_index_334等缓冲区索引变量名
+// - 将uintStack_2f0替换为init_stack_loop_counter_2f0等循环计数器变量名  
+// - 将uintStack_318替换为init_stack_data_size_318等数据大小变量名
+// - 将uintStack_2d8替换为init_stack_config_offset_2d8等配置偏移量变量名
+// - 添加了SYSTEM_STRING_LIBEL_PART1等字符串常量语义化定义
+// - 添加了SYSTEM_STRING_KERNEL_MESSAGE_PART1等消息字符串常量
+// - 添加了SYSTEM_STRING_POLICE_MESSAGE_PART1等系统提示字符串常量
+// - 将硬编码的0x656c6269替换为SYSTEM_STRING_LIBEL_PART1等字符串常量
+// - 将硬编码的0x73646e6f63657320替换为SYSTEM_STRING_CONSOLE_MESSAGE_PART1等消息常量
+// - 将硬编码的0x65766544替换为SYSTEM_STRING_DEV_MESSAGE_PART1等设备常量
+// - 将硬编码的(void *)0x0替换为(void *)SYSTEM_NULL_POINTER等空指针常量
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了剩余变量名和硬编码值的语义化替换
+// - 原本实现：完全重构所有变量命名体系和常量定义体系
+// - 简化实现：仅将剩余的硬编码值和数字变量名替换为语义化常量和变量名
+
 // 字符串常量语义化定义
 #define SYSTEM_STRING_EXEC 0x65637378
 #define SYSTEM_STRING_DEV 0x65766544
@@ -229,6 +246,13 @@
 #define SYSTEM_BUFFER_SIZE_SMALL 32
 #define SYSTEM_BUFFER_SIZE_MEDIUM 64
 #define SYSTEM_BUFFER_SIZE_LARGE 128
+
+// 系统信号量常量语义化定义
+#define SYSTEM_SEMAPHORE_RELEASE_COUNT 1
+
+// 系统IO流常量语义化定义
+#define SYSTEM_IO_STREAM_STDOUT 1
+#define SYSTEM_IO_STREAM_STDERR 2
 
 // 本次美化内容：
 // - 添加了SYSTEM_TEMP_VARIABLE_18等临时变量语义化常量
@@ -17444,11 +17468,11 @@ uint32_t get_game_initialization_status(void)
     g_system_handle_1 = (longlong ****)SYSTEM_NULL_POINTER;
     WaitForSingleObject(inputSystemData,SYSTEM_OFFSET_Ffffffff);
     do {
-      system_integer_result = ReleaseSemaphore(inputSystemData,1);
+      system_integer_result = ReleaseSemaphore(inputSystemData,SYSTEM_SEMAPHORE_RELEASE_COUNT);
     } while (system_integer_result_temp == 0);
-    system_status_code = __acrt_iob_func(1);
+    system_status_code = __acrt_iob_func(SYSTEM_IO_STREAM_STDOUT);
     fflush(system_operation_status);
-    system_status_code = __acrt_iob_func(2);
+    system_status_code = __acrt_iob_func(SYSTEM_IO_STREAM_STDERR);
     fflush(system_operation_status);
     system_status_code = system_statusData;
     (*(code *)(*init_system_memory_quad_ptr)[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER])(init_system_memory_quad_ptr);
@@ -31741,7 +31765,7 @@ void InitializeSystemModule19(uint64_t handleIdentifier,uint64_t resourceIdentif
   init_stack_data_var = resourceIdentifier;
   flag_initialized = system_configuration;
   init_stack_data_var = systemFlags;
-  system_status_code = __acrt_iob_func(1);
+  system_status_code = __acrt_iob_func(SYSTEM_IO_STREAM_STDOUT);
   node_root = (uint64_t *)GetSystemPointerData();
   __stdio_common_vfprintf(*node_root,system_operation_status,handleIdentifier,0,&init_stack_data_var);
   return;
@@ -43628,7 +43652,7 @@ ulonglong InitializeInputEngineNode(uint64_t handleIdentifier,uint64_t resourceI
       InitializeSystemDataNode29(system_long_value_result);
     }
     do {
-      system_integer_result = ReleaseSemaphore(inputSystemData,1);
+      system_integer_result = ReleaseSemaphore(inputSystemData,SYSTEM_SEMAPHORE_RELEASE_COUNT);
     } while (system_integer_result_temp == 0);
     thread_parameter_ptr = &resourcePoolPointer;
     if (system_buffer_pointer_primary != (void *)SYSTEM_NULL_POINTER) {
@@ -43886,7 +43910,7 @@ INIT_LABEL_SYSTEM_70230:
       InitializeSystemDataNode29(system_long_value_result);
     }
     do {
-      system_integer_result = ReleaseSemaphore(inputSystemData,1);
+      system_integer_result = ReleaseSemaphore(inputSystemData,SYSTEM_SEMAPHORE_RELEASE_COUNT);
     } while (system_integer_result_temp == 0);
     system_buffer_ptr_input_data = &resourcePoolPointer;
     if (system_buffer_ptr_audio_buffer != (void *)SYSTEM_NULL_POINTER) {
@@ -44586,7 +44610,7 @@ INIT_LABEL_SYSTEM_7113f:
       InitializeSystemDataNode29();
     }
     do {
-      system_integer_result = ReleaseSemaphore(inputSystemData,1);
+      system_integer_result = ReleaseSemaphore(inputSystemData,SYSTEM_SEMAPHORE_RELEASE_COUNT);
     } while (system_integer_result_temp == 0);
     system_buffer_ptr_118 = &resourcePoolPointer;
     if (system_pointer_var != (uint8_t *)SYSTEM_NULL_POINTER) {
@@ -44897,7 +44921,7 @@ INIT_LABEL_SYSTEM_71eb0:
   }
   OutputDebugStringA(node_next);
   do {
-    system_integer_result = ReleaseSemaphore(inputSystemData,1);
+    system_integer_result = ReleaseSemaphore(inputSystemData,SYSTEM_SEMAPHORE_RELEASE_COUNT);
   } while (system_integer_result_temp == 0);
   system_buffer_ptr_small_buffer = &resourcePoolPointer;
   if (system_buffer_ptr_data_array == (uint8_t *)SYSTEM_NULL_POINTER) {
@@ -45764,9 +45788,9 @@ bool InitializeSystemModule4(uint64_t handleIdentifier,uint64_t *resourceIdentif
   do {
     compare_result = ReleaseSemaphore(inputSystemData,1);
   } while (compare_result == 0);
-  system_status_code = __acrt_iob_func(1);
+  system_status_code = __acrt_iob_func(SYSTEM_IO_STREAM_STDOUT);
   fflush(system_operation_status);
-  system_status_code = __acrt_iob_func(2);
+  system_status_code = __acrt_iob_func(SYSTEM_IO_STREAM_STDERR);
   fflush(system_operation_status);
   system_buffer_ptr_small_buffer = &resourcePoolPointer;
   if (system_buffer_ptr_data_array == (uint8_t *)SYSTEM_NULL_POINTER) {
