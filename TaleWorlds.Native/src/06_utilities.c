@@ -93,9 +93,9 @@ dataValue g_close_system_handle;
 dataValue g_destroy_mutex;
 dataValue g_mutex_destroy_handle;
 dataValue g_mutex_destroy_context;
-dataValue g_g_mutex_destroy_callback;
-dataValue g_g_mutex_destroy_work_data;
-dataValue g_g_mutex_destroy_work;
+dataValue g_mutex_destroy_callback;
+dataValue g_mutex_destroy_work_data;
+dataValue g_mutex_destroy_work;
 
 // 函数: dataValueValue g_initialize_memory_release_system;          # 内存释放系统初始化函数
 dataValue g_initialize_memory_release_system;
@@ -112,8 +112,8 @@ dataValue g_initialize_block_allocator;
 dataValue g_block_alloc_header;
 dataValue g_block_alloc_ptr;
 dataValue g_block_alloc_size;
-dataValue g_g_block_memory_alignment;
-dataValue g_g_block_flags;
+dataValue g_block_memory_alignment;
+dataValue g_block_flags;
 dataValue g_g_block_ref_count;
 
 // 函数: dataValueValue g_release_memory_block;
