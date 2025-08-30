@@ -13391,26 +13391,26 @@ int process_parameter_validation(unsigned int handle_param,byte *thread_operatio
   int thread_result_status;
   long long str_len_counter;
   if (crypto_initialized_flag == '\0') {
-    return -0x7f6dfffb;
+    return SYSTEM_ERROR_CODE_SPECIAL_1;
   }
   if (thread_operation_flags == (byte *)0x0) {
-    return -0x7f6dffff;
+    return SYSTEM_ERROR_CODE_SPECIAL_2;
   }
   thread_result_status = system_execution_function();
   if (thread_result_status != 0) {
-    return -0x7f6dff01;
+    return SYSTEM_ERROR_CODE_SPECIAL_3;
   }
   thread_result_status = handle_processor(handle_param);
   if (thread_result_status < 0) {
     system_synchronization_handler();
-    return -0x7f6dfffd;
+    return SYSTEM_ERROR_CODE_SPECIAL_4;
   }
   str_len_counter = data_processor(handle_param,0);
   if (str_len_counter != 0) {
     system_char_variable = string_comparator(*(unsigned short *)(str_len_counter + 2),*(unsigned short *)(str_len_counter + SYSTEM_OFFSET_HANDLE_PARAM));
     if ((((system_char_variable == '\0') && (*thread_operation_flags < 0xd)) && (thread_operation_flags[1] < 0xd)) && (thread_operation_flags[2] < 0xd)) {
       system_synchronization_handler();
-      return -0x7f6dfffa;
+      return SYSTEM_ERROR_CODE_SPECIAL_5;
     }
     thread_result_status = system_execution_function(handle_param,thread_operation_flags);
     if (-1 < thread_result_status) {
@@ -13425,7 +13425,7 @@ int process_parameter_validation(unsigned int handle_param,byte *thread_operatio
     }
   }
   system_synchronization_handler();
-  return -0x7f6dff01;
+  return SYSTEM_ERROR_CODE_SPECIAL_3;
 }
 int check_system_readiness(void)
 {
@@ -13439,7 +13439,7 @@ int check_system_readiness(void)
     system_char_variable = string_comparator(*(unsigned short *)(str_len_counter + 2),*(unsigned short *)(str_len_counter + SYSTEM_OFFSET_HANDLE_PARAM));
     if ((((system_char_variable == '\0') && (*unregister_bx < 0xd)) && (unregister_bx[1] < 0xd)) && (unregister_bx[2] < 0xd)) {
       system_synchronization_handler();
-      return -0x7f6dfffa;
+      return SYSTEM_ERROR_CODE_SPECIAL_5;
     }
     thread_result_status = system_execution_function(unaff_ESI);
     if (-1 < thread_result_status) {
