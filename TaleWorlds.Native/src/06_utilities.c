@@ -2261,14 +2261,14 @@ dataValue g_shader_uniform_config_matrix;             // 着色器统一变量�
 dataValue g_shader_uniform_config_vector;             // 着色器统一变量配置向量
 dataValue g_shader_uniform_config_scalar;             // 着色器统一变量配置标量
 dataValue g_shader_uniform_config_sampler;            // 着色器统一变量配置采样器
-dataValue shaderAttributeConfigPosition;
-dataValue shaderAttributeConfigNormal;
-dataValue shaderAttributeConfigTexCoord;
-dataValue g_shaderAttributeTempFlags;
-dataValue shaderConstantConfigGlobal;
-dataValue shaderConstantConfigMaterial;
-dataValue shaderConstantConfigObject;
-dataValue shaderConstantConfigLighting;
+dataValue g_shader_attribute_config_position;          // 着色器属性配置位置
+dataValue g_shader_attribute_config_normal;            // 着色器属性配置法线
+dataValue g_shader_attribute_config_tex_coord;         // 着色器属性配置纹理坐标
+dataValue g_shader_attribute_temp_flags;               // 着色器属性临时标志
+dataValue g_shader_constant_config_global;             // 着色器常量配置全局
+dataValue g_shader_constant_config_material;           // 着色器常量配置材质
+dataValue g_shader_constant_config_object;             // 着色器常量配置对象
+dataValue g_shader_constant_config_lighting;           // 着色器常量配置光照
 dataValue render_pass_config_geometry;
 dataValue render_pass_config_shadow;
 dataValue render_pass_config_transparent;
