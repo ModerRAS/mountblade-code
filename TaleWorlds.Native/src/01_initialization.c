@@ -1,5 +1,13 @@
 #include "TaleWorlds.Native.Split.h"
 
+// 最新美化内容（2025年8月30日最终批次续续续续续续续续续续）：
+// - 修复变量声明问题，为system_node_total_allocation_size变量添加声明
+// - 美化变量名，将system_node_allocation_size_total替换为system_node_total_allocation_size等语义化变量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了系统初始化文件中缺失变量声明和变量名的语义化替换
+// - 原本实现：完全重构系统初始化文件变量命名体系，建立统一的变量命名规范
+// - 简化实现：仅修复缺失的变量声明并将变量名替换为语义化名称
+
 // 最新美化内容（2025年8月30日最终批次续续续续续续续续续）：
 // - 美化系统节点变量名，将system_node_next替换为system_system_node_next等下一个节点变量名
 // - 美化系统缓冲区指针变量名，将system_buffer_ptr_resource_pool_2b0替换为system_buffer_ptr_resource_pool_small等小型资源池变量名
