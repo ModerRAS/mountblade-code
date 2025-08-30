@@ -4223,17 +4223,18 @@ uint64_t network_process_socket_data(int64_t *network_socket_handle)
      (network_packet_temp_size = networkGetPacketSize(network_socket_handle, NETWORK_STATUS_FAILURE), (int)network_packet_temp_size != NETWORK_STATUS_FAILURE)) {
     return network_packet_temp_size;
 // 函数: void NetworkBindSocket(uint64_t *network_socket_handle, int32_t network_buffer_ptr)
+// 简化实现：绑定网络套接字到指定地址和端口
 void NetworkBindSocket(uint64_t *network_socket_handle, int32_t network_buffer_ptr)
 {
-    int32_t socket_bind_status;
-  int32_t connection_binding_status;
-  uint8_t socket_validation_cache [NETWORK_BUFFER_SIZE_WORD];
-  uint8_t *buffer_data_ptr;
-  int32_t packet_info_array [NETWORK_BUFFER_INDEX_CAPACITY];
-  int64_t socket_desc_cache;
-  uint32_t socket_config_params [NETWORK_BASIC_VALUE_QUAD];
-  uint8_t socket_send_cache [NETWORK_BUFFER_SIZE_256];
-  uint64_t network_encryption_xor_value;
+    int32_t socket_bind_result;                    // 套接字绑定结果
+  int32_t connection_binding_state;               // 连接绑定状态
+  uint8_t socket_validation_buffer [NETWORK_BUFFER_SIZE_WORD];  // 套接字验证缓冲区
+  uint8_t *network_data_ptr;                      // 网络数据指针
+  int32_t packet_info_array [NETWORK_BUFFER_INDEX_CAPACITY];   // 数据包信息数组
+  int64_t socket_descriptor;                      // 套接字描述符
+  uint32_t socket_config_array [NETWORK_BASIC_VALUE_QUAD];    // 套接字配置数组
+  uint8_t socket_send_buffer [NETWORK_BUFFER_SIZE_256];       // 套接字发送缓冲区
+  uint64_t network_encryption_mask;               // 网络加密掩码
   network_encryption_key_main = network_encryption_xor_global_value ^ (NETWORK_ULONG_LONG)socket_validation_cache;
   networkInitializeSystem(&g_networkInitData);
   if (network_socket_handle == (uint64_t *)MEMORY_MEMORY_ZERO_OFFSET) {

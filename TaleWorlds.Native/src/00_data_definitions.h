@@ -9396,61 +9396,61 @@ section_processing_jump_label_:
                                                       system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_state);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x178;
+                                                        buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_EXTENDED_11;
                                                         goto section_processing_jump_label_;
                                                       }
                                                       system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_flag_primary);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x188;
+                                                        buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_EXTENDED_12;
                                                         goto section_processing_jump_label_;
                                                       }
                                                       system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_flag_secondary);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x198;
+                                                        buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_EXTENDED_13;
                                                         goto section_processing_jump_label_;
                                                       }
                                                       system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_flag_temp);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x19c;
+                                                        buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_EXTENDED_14;
                                                         goto section_processing_jump_label_;
                                                       }
                                                       system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_flag_data);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x1a0;
+                                                        buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_EXTENDED_15;
                                                         goto section_processing_jump_label_;
                                                       }
                                                       system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_flag_value);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x220;
+                                                        buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_EXTENDED_16;
                                                         goto section_processing_jump_label_;
                                                       }
                                                       system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_flag_result);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x230;
+                                                        buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_EXTENDED_17;
                                                         goto section_processing_jump_label_;
                                                       }
                                                       system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_flag_code);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x234;
+                                                        buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_EXTENDED_18;
                                                         goto section_processing_jump_label_;
                                                       }
                                                       system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_flag_error);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x238;
+                                                        buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_EXTENDED_19;
                                                         goto section_processing_jump_label_;
                                                       }
                                                       system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_flag_info);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x23c;
+                                                        buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_EXTENDED_20;
                                                         goto section_processing_jump_label_;
                                                       }
                                                       system_char_variable = string_system_processor(auStack_50,
@@ -14345,6 +14345,16 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_BUFFER_ALLOC_RESULT_EXTENDED_8 0x120
 #define SYSTEM_BUFFER_ALLOC_RESULT_EXTENDED_9 0x130
 #define SYSTEM_BUFFER_ALLOC_RESULT_EXTENDED_10 0x174
+#define SYSTEM_BUFFER_ALLOC_RESULT_EXTENDED_11 0x178
+#define SYSTEM_BUFFER_ALLOC_RESULT_EXTENDED_12 0x188
+#define SYSTEM_BUFFER_ALLOC_RESULT_EXTENDED_13 0x198
+#define SYSTEM_BUFFER_ALLOC_RESULT_EXTENDED_14 0x19c
+#define SYSTEM_BUFFER_ALLOC_RESULT_EXTENDED_15 0x1a0
+#define SYSTEM_BUFFER_ALLOC_RESULT_EXTENDED_16 0x220
+#define SYSTEM_BUFFER_ALLOC_RESULT_EXTENDED_17 0x230
+#define SYSTEM_BUFFER_ALLOC_RESULT_EXTENDED_18 0x234
+#define SYSTEM_BUFFER_ALLOC_RESULT_EXTENDED_19 0x238
+#define SYSTEM_BUFFER_ALLOC_RESULT_EXTENDED_20 0x23c
 
 #define SYSTEM_OFFSET_FLOAT_ARRAY_EXTENDED 0x354
 #define SYSTEM_OFFSET_FLOAT_ARRAY_BASE 0x33c
