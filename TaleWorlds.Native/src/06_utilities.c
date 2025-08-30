@@ -1479,16 +1479,16 @@ dataValue cameraBufferPool52;
 dataValue cameraBufferPool53;
 dataValue cameraBufferPool54;
 dataValue cameraBufferPool55;
-dataValue unknown_180a076d8;
-dataValue unknown_180a076f8;
-dataValue unknown_180a07720;
-dataValue unknown_180a07748;
-dataValue unknown_180a07760;
-dataValue unknown_180a07cd0;
-dataValue unknown_180a1afb8;
-dataValue unknown_180a079c0;
-dataValue unknown_180a07b48;
-dataValue unknown_180a3c313;
+dataValue g_system_data_6d8;
+dataValue g_system_data_6f8;
+dataValue g_system_data_720;
+dataValue g_system_data_748;
+dataValue g_system_data_760;
+dataValue g_system_data_cd0;
+dataValue g_system_data_fb8;
+dataValue g_system_data_9c0;
+dataValue g_system_data_b48;
+dataValue g_system_data_313;
 dataValue eventCallbackTable;
 dataValue unknown_180a078fc;
 dataValue unknown_180a07804;
@@ -38291,7 +38291,7 @@ void Unwind_1809057b0(uint64 resourceHandleIdentifier,longlong resourceDataBuffe
   ulonglong functionResultVar;
   
   validationResultArray = *(uint64 **)(resourceDataBuffer + bufferSizeDataOffset);
-  *validationResultArray = &unknown_180a07cd0;
+  *validationResultArray = &g_system_data_cd0;
   *(byte *)((longlong)validationResultArray + 0x162) = 1;
   pdataBuffer = validationResultArray + 0x1a;
   plStackX_20 = pdataBuffer;
@@ -38888,7 +38888,7 @@ void Unwind_180905950(uint64 resourceHandleIdentifier,longlong resourceDataBuffe
   ulonglong functionResultVar;
   
   validationResultArray = *(uint64 **)(resourceDataBuffer + 0x2e8);
-  *validationResultArray = &unknown_180a07cd0;
+  *validationResultArray = &g_system_data_cd0;
   *(byte *)((longlong)validationResultArray + 0x162) = 1;
   pdataBuffer = validationResultArray + 0x1a;
   plStackX_20 = pdataBuffer;
