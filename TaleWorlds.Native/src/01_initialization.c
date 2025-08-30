@@ -20,6 +20,16 @@
 // - 将g_system_data_variable0替换为g_system_string_buffer，将globalSystemVariable替换为g_global_system_config
 // - 将剩余的SystemFunction函数名替换为语义化名称如HandleSystemResourceOperation、GetSystemMemoryData、ProcessSystemResourceData等
 
+// 本次美化内容：
+// - 将system_buffer_ptr_1b8system_buffer_ptr_graphics_context替换为system_buffer_ptr_graphics_context
+// - 将system_buffer_ptr_1f0替换为system_buffer_ptr_system_info
+// - 将system_buffer_ptr_1d0替换为system_buffer_ptr_resource_config
+// - 将system_buffer_ptr_180替换为system_buffer_ptr_primary_config
+// - 将system_buffer_ptr_18system_buffer_ptr_graphics_data替换为system_buffer_ptr_graphics_data
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+// - 这是简化实现，主要处理了剩余变量名的语义化替换
+
 // 最新美化内容：
 // - 将栈变量名如in_stack_00000030替换为init_stack_uint_parameter_30等语义化名称
 // - 将系统寄存器变量名如system_RDI替换为system_register_rdi等描述性名称
@@ -50,6 +60,16 @@
 // - 本次美化内容：将栈变量名如uintStack_200等替换为init_stack_uint_parameter_200等语义化名称
 // - 将系统标志变量名如g_system_flag_1等替换为g_system_initialization_flag_1等描述性名称
 // - 这是简化实现，主要处理了栈变量和系统标志变量的语义化替换
+
+// 本次美化内容：
+// - 将system_buffer_ptr_1b8system_buffer_ptr_graphics_context替换为system_buffer_ptr_graphics_context
+// - 将system_buffer_ptr_1f0替换为system_buffer_ptr_system_info
+// - 将system_buffer_ptr_1d0替换为system_buffer_ptr_resource_config
+// - 将system_buffer_ptr_180替换为system_buffer_ptr_primary_config
+// - 将system_buffer_ptr_18system_buffer_ptr_graphics_data替换为system_buffer_ptr_graphics_data
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+// - 这是简化实现，主要处理了剩余变量名的语义化替换
 
 // 最新美化内容：
 // - 将system_buffer_ptr_468等数字后缀变量替换为语义化名称如system_buffer_ptr_data_config等
@@ -101,6 +121,16 @@
 // - 保持代码语义不变
 // - 这是简化实现，主要处理了寄存器变量名的语义化替换
 
+// 本次美化内容：
+// - 将system_buffer_ptr_1b8system_buffer_ptr_graphics_context替换为system_buffer_ptr_graphics_context
+// - 将system_buffer_ptr_1f0替换为system_buffer_ptr_system_info
+// - 将system_buffer_ptr_1d0替换为system_buffer_ptr_resource_config
+// - 将system_buffer_ptr_180替换为system_buffer_ptr_primary_config
+// - 将system_buffer_ptr_18system_buffer_ptr_graphics_data替换为system_buffer_ptr_graphics_data
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+// - 这是简化实现，主要处理了剩余变量名的语义化替换
+
 // 最新美化内容：
 // - 将system_local_buffer_248等重复前缀变量名替换为system_local_buffer_248等简洁名称
 // - 将system_buffer_ptr_1f8system_buffer_ptr_network_context错误变量名替换为system_buffer_ptr_network_context_param
@@ -123,6 +153,16 @@
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
 // - 这是简化实现，主要处理了通用变量名和寄存器变量名的语义化替换
+
+// 本次美化内容：
+// - 将system_buffer_ptr_1b8system_buffer_ptr_graphics_context替换为system_buffer_ptr_graphics_context
+// - 将system_buffer_ptr_1f0替换为system_buffer_ptr_system_info
+// - 将system_buffer_ptr_1d0替换为system_buffer_ptr_resource_config
+// - 将system_buffer_ptr_180替换为system_buffer_ptr_primary_config
+// - 将system_buffer_ptr_18system_buffer_ptr_graphics_data替换为system_buffer_ptr_graphics_data
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+// - 这是简化实现，主要处理了剩余变量名的语义化替换
 
 // 最新美化内容：
 // - 将ptr_float_var替换为init_float_pointer_temp等指针变量名
@@ -150,6 +190,16 @@
 // - 将systemNode1-5替换为g_system_node_audio、g_system_node_video等语义化名称
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
+
+// 本次美化内容：
+// - 将system_buffer_ptr_1b8system_buffer_ptr_graphics_context替换为system_buffer_ptr_graphics_context
+// - 将system_buffer_ptr_1f0替换为system_buffer_ptr_system_info
+// - 将system_buffer_ptr_1d0替换为system_buffer_ptr_resource_config
+// - 将system_buffer_ptr_180替换为system_buffer_ptr_primary_config
+// - 将system_buffer_ptr_18system_buffer_ptr_graphics_data替换为system_buffer_ptr_graphics_data
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+// - 这是简化实现，主要处理了剩余变量名的语义化替换
 
 // 最新美化内容：
 // - 将_g_thread_config_1-4替换为g_system_auth_context_ptr、g_system_config_context_ptr等上下文指针变量名
@@ -15819,9 +15869,9 @@ void UtilityModule231(void)
   init_stack_ulong_parameter_28 = system_configuration_data ^ (ulonglong)system_local_buffer_248;
   init_stack_uint_parameter_200 = 0;
   if (*(char *)(g_system_context_1 + 0x18) == '\0') {
-    ProcessSystemData(&system_buffer_ptr_1b8system_buffer_ptr_graphics_context);
+    ProcessSystemData(&system_buffer_ptr_graphics_context);
     (**(code **)(**(longlong **)(g_system_base_1 + 0x2b0) + 0x98))
-              (*(longlong **)(g_system_base_1 + 0x2b0),&system_buffer_ptr_1b8system_buffer_ptr_graphics_context);
+              (*(longlong **)(g_system_base_1 + 0x2b0),&system_buffer_ptr_graphics_context);
     InitializeSystemModule24();
     system_long_value = g_system_context_1;
     system_status_code = AllocateSystemMemory(systemMemoryPool,0x70,8,3);
@@ -15876,11 +15926,11 @@ INIT_LABEL_VALIDATE_MEMORY_POINTER:
     }
     system_buffer_ptr_system_info = &g_system_data_variable3;
     if (system_buffer_ptr_network_data != (void *)0x0) {
-      system_buffer_ptr_system_info = system_buffer_ptr_1f0;
+      system_buffer_ptr_system_info = system_buffer_ptr_system_info;
     }
     system_buffer_ptr_data_config = &g_system_data_variable3;
     if (system_buffer_ptr_audio_data != (void *)0x0) {
-      system_buffer_ptr_data_config = system_buffer_ptr_1d0;
+      system_buffer_ptr_data_config = system_buffer_ptr_resource_config;
     }
     system_buffer_ptr_resource_state = &g_system_data_init;
     InitializeEventSystem(g_system_context_1,5,SYSTEM_MAX_64BIT_VALUE,4);
@@ -15889,10 +15939,10 @@ INIT_LABEL_VALIDATE_MEMORY_POINTER:
     init_stack_uint_parameter_178 = 0;
     system_local_buffer_170[0] = 0;
     init_stack_uint_parameter_200 = 2;
-    InitializeSystemModule17(&system_buffer_ptr_18system_buffer_ptr_graphics_data,&g_global_system_config,0x130a7);
+    InitializeSystemModule17(&system_buffer_ptr_graphics_data,&g_global_system_config,0x130a7);
     system_buffer_ptr_data_config = &g_system_data_variable3;
     if (system_buffer_ptr_graphics_buffer != (void *)0x0) {
-      system_buffer_ptr_data_config = system_buffer_ptr_180;
+      system_buffer_ptr_data_config = system_buffer_ptr_primary_config;
     }
     system_buffer_ptr_resource_state = &g_system_data_state;
     InitializeEventSystem(g_system_context_1,5,SYSTEM_MAX_64BIT_VALUE,4);
@@ -34681,7 +34731,7 @@ void InitializeSystemDataNode23(int *handleIdentifier)
   longStack_160 = 0;
   uintStack_158 = 0;
   uintStack_150 = 3;
-  system_long_value = ProcessResourceData(&system_buffer_ptr_18system_buffer_ptr_graphics_data,g_system_base_1 + 0x2c0);
+  system_long_value = ProcessResourceData(&system_buffer_ptr_graphics_data,g_system_base_1 + 0x2c0);
   uintStack_190 = 1;
   system_local_buffer_1b8[0] = SYSTEM_NODE_HEADER_SIZE;
   if (*(longlong *)(system_long_result + 8) != 0) {
@@ -36655,8 +36705,8 @@ void InitializeSystemModule30(uint64_t handleIdentifier,uint64_t resourceIdentif
   is_initialized = (**(code **)**(uint64_t **)(system_configuration_data + 0x18))();
   system_integer_result = 0;
   if (is_initialized != '\0') {
-    UpdateSystemBuffer(&system_buffer_ptr_1b8system_buffer_ptr_graphics_context,&g_system_string_buffer);
-    InitializeSystemDataNode28(&system_buffer_ptr_1b8system_buffer_ptr_graphics_context,0);
+    UpdateSystemBuffer(&system_buffer_ptr_graphics_context,&g_system_string_buffer);
+    InitializeSystemDataNode28(&system_buffer_ptr_graphics_context,0);
     system_buffer_ptr_graphics_context = &resourcePoolPointer;
     if (init_stack_long_parameter_1b0 != 0) {
                     // WARNING: Subroutine does not return

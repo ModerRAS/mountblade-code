@@ -469,10 +469,11 @@
 #define PARAM_SEARCH_FLAGS param4  
 #define PARAM_SEARCH_CONTEXT param5
 
-// 新增语义化宏定义 - 替换文件中的十六进制常量
+// 新增语义化宏定义 - 替换更多十六进制常量
 #define UTILITY_BUFFER_OFFSET 0x94
 #define UTILITY_ITERATION_COUNTER_OFFSET 0xb0
 #define UTILITY_FLOAT_VALUE_OFFSET 0xb4
+#define UTILITY_DATA_OPERATION_BUFFER_SIZE 0x278
 
 // 局部变量语义化宏定义
 #define LOCAL_STACK_VARIABLE_VALUE local_stack_variable_value
@@ -10454,7 +10455,7 @@ uint64 validate_memory_system(longlong resource_handle_identifier)
       }
     }
     pdataLength = (int *)utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),utility_iteration_counter + UTILITY_RESOURCE_DATA_OFFSET_ALT,
-                                  &g_systemDataOperationBuffer,0x278,UTILITY_NULL_POINTER,1);
+                                  &g_systemDataOperationBuffer,UTILITY_DATA_OPERATION_BUFFER_SIZE,UTILITY_NULL_POINTER,1);
   if ((utility_array_index < 0) || (*(int *)(resource_buffer + 200) <= utility_array_index)) break;
   resource_buffer = *(longlong *)(*(longlong *)(resource_buffer + RESOURCE_BUFFER_ARRAY_OFFSET) + (longlong)utility_array_index * UTILITY_DOUBLE_WORD_SIZE);
   utility_temp_long_value = *(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET);
