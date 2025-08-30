@@ -13907,8 +13907,8 @@ networkEstablishConnection(uint64_t *network_socket_handle, uint64_t network_buf
   network_socket_handle[NETWORK_ARRAY_INDEX_ERROR_ALT] = NETWORK_OPERATION_FAILURE;
   network_socket_handle[NETWORK_ARRAY_INDEX_STATE_SIZE] = NETWORK_OPERATION_FAILURE;
   network_socket_handle[NETWORK_ARRAY_INDEX_CONTEXT_DATA] = NETWORK_OPERATION_FAILURE;
-  network_socket_handle[99] = NETWORK_OPERATION_FAILURE;
-  network_socket_handle[100] = NETWORK_OPERATION_FAILURE;
+  network_socket_handle[NETWORK_SOCKET_HANDLE_INDEX_EXTENDED_99] = NETWORK_OPERATION_FAILURE;
+  network_socket_handle[NETWORK_SOCKET_HANDLE_INDEX_EXTENDED_100] = NETWORK_OPERATION_FAILURE;
   if (network_socket_handle[SOCKET_CONNECTION_OFFSET] == NETWORK_OPERATION_FAILURE) {
     network_socket_handle[SOCKET_CONNECTION_OFFSET] = network_socket_handle;
   *(uint32_t *)(network_socket_handle + NETWORK_SOCKET_CONTROL_OFFSET) = *(uint32_t *)(network_socket_handle + NETWORK_SOCKET_CONTROL_OFFSET) | SOCKET_RESPONSE_OFFSET;
@@ -21220,8 +21220,8 @@ NetworkEstablishConnectionBasic(uint64_t *network_socket_handle, uint64_t networ
   network_socket_handle[NETWORK_SOCKET_OFFSET_C4] = NETWORK_OPERATION_FAILURE;
   network_socket_handle[NETWORK_SOCKET_OFFSET_C5] = NETWORK_OPERATION_FAILURE;
   network_socket_handle[NETWORK_LOG_TYPE_ERROR] = NETWORK_OPERATION_FAILURE;
-  network_socket_handle[199] = NETWORK_OPERATION_FAILURE;
-  network_socket_handle[200] = NETWORK_OPERATION_FAILURE;
+  network_socket_handle[NETWORK_SOCKET_HANDLE_INDEX_EXTENDED_199] = NETWORK_OPERATION_FAILURE;
+  network_socket_handle[NETWORK_SOCKET_HANDLE_INDEX_EXTENDED_200] = NETWORK_OPERATION_FAILURE;
   *(uint32_t *)(network_socket_handle + NETWORK_SOCKET_CONFIG_OFFSET_C9) = NETWORK_MAX_SIZE;
   *(uint32_t *)((longlong)network_socket_handle + NETWORK_SOCKET_EXTENDED_OFFSET_64C) = NETWORK_OPERATION_FAILURE;
   network_socket_handle[NETWORK_SOCKET_OFFSET_CA] = NETWORK_OPERATION_FAILURE;
