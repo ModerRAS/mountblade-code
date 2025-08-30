@@ -39956,7 +39956,7 @@ void SystemFunction_58_1(uint64_t handleIdentifier,uint64_t resourceIdentifier,l
   systemConfig = system_RDI[1];
   in_R10 = *system_RDI;
 LAB_18006ccef:
-  InitializeFontSystem(&stack0x00000050,in_R10,systemConfig,long_result);
+  InitializeFontSystem(&init_stack_uint_50,in_R10,systemConfig,long_result);
   long_result = init_input_stack_50;
   InitializeSystemModule45(init_input_stack_50);
   long_result = system_RDI[1];
