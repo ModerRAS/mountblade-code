@@ -1,11 +1,13 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 最新美化内容（2025年8月30日最终批次续续续续续续续续续续续）：
+// 最新美化内容（2025年8月30日最终批次续续续续续续续续续续续续）：
 // - 美化变量名，将system_configurationData_1/2替换为system_config_data_primary/secondary等配置数据变量名
 // - 美化变量名，将_g_thread_config_5/6替换为system_thread_config_primary/secondary等线程配置变量名
 // - 美化变量名，将_g_thread_parameter_1/2替换为system_thread_param_primary/secondary等线程参数变量名
 // - 美化变量名，将init_stack_uint_size_90替换为init_stack_buffer_size等初始化栈缓冲区变量名
-// - 美化变量名，将_g_network_system_object_1/2替换为system_network_object_primary/secondary等网络系统对象变量名
+// - 美化变量名，将_g_network_system_object_1/2/3替换为system_network_object_primary/secondary/tertiary等网络系统对象变量名
+// - 美化变量名，将_g_network_system_config_1/2替换为system_network_config_primary/secondary等网络系统配置变量名
+// - 美化变量名，将_g_network_state_1替换为system_network_state_primary等网络状态变量名
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了系统初始化文件中剩余包含数字的变量名的语义化替换
 // - 原本实现：完全重构系统初始化文件所有变量命名体系，建立统一的语义化命名规范
@@ -16130,8 +16132,8 @@ int ConfigureGraphicsParameters(void)
   _Mtx_init_in_situ(NETWORK_SYSTEM_MUTEX_ADDR,2);
   system_network_state_primary = SYSTEM_INIT_STATUS_DISABLED; // 原始名称: systemCoreData
   g_network_buffer_size = SYSTEM_HANDLE_STATUS_INVALID;
-  _g_network_state_2 = SYSTEM_INIT_STATUS_DISABLED; // 原始名称: systemCoreData
-  _g_network_config_1 = SYSTEM_CONFIG_VALUE_TERTIARY; // 原始名称: system_configuration_data
+  system_network_state_secondary = SYSTEM_INIT_STATUS_DISABLED; // 原始名称: systemCoreData
+  system_network_config_value_primary = SYSTEM_CONFIG_VALUE_TERTIARY; // 原始名称: system_configuration_data
   g_network_socket_handle = SYSTEM_HANDLE_STATUS_INVALID;
   g_network_packet_data = SYSTEM_HANDLE_STATUS_INVALID;
   g_network_buffer_data = SYSTEM_HANDLE_STATUS_INVALID;
@@ -17502,7 +17504,7 @@ void CleanupThreadLocalStorage(void)
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_local_buffer_primary;
   system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
-  init_stack_utility_config_size_2 = SYSTEM_CONFIG_SIZE_UTILITY_2;
+  init_stack_utility_config_size_secondary = SYSTEM_CONFIG_SIZE_UTILITY_2;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_system_global_config,system_config_parameter,SYSTEM_HANDLE_INVALID);
   g_system_utility_status_ptr = create_system_object(&thread_parameter_ptr);
   return;
