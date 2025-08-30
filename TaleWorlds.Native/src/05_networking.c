@@ -566,6 +566,12 @@
 // 网络系统服务器地址值指针数组索引语义化常量（本次美化内容）
 #define NETWORK_SERVER_ADDRESS_PTR_INDEX_CONFIG    5
 
+// 网络系统数据包大小指针数组索引语义化常量（本次美化内容）
+#define NETWORK_PACKET_SIZE_PTR_INDEX_CONFIG      5
+
+// 网络系统整数栈数组索引语义化常量（本次美化内容）
+#define NETWORK_INTEGER_STACK_INDEX_STATUS       3
+
 // 网络系统套接字初始化缓冲区大小语义化常量（本次美化内容）
 #define NETWORK_SOCKET_INIT_BUFFER_SIZE           3
 
@@ -17552,7 +17558,7 @@ uint64_t RegisterNetworkClient(int64_t network_socket_handle, uint64_t network_b
   network_packet_size_pointer = network_socket_context;
     network_operation_status_code = *(uint32_t *)((longlong)network_packet_size_pointer + NETWORK_ERROR_INVALID_OFFSET);
     if ((network_operation_status_code >> NETWORK_BUFFER_CAPACITY_MEDIUM & NETWORK_OPERATION_SUCCESS) != NETWORK_OPERATION_STATUS_FAILURE) {
-      network_packet_size_pointer[5] = network_packet_size_pointer[NETWORK_ARRAY_SIZE_4];
+      network_packet_size_pointer[NETWORK_PACKET_SIZE_PTR_INDEX_CONFIG] = network_packet_size_pointer[NETWORK_ARRAY_SIZE_4];
       *(uint32_t *)((longlong)network_packet_size_pointer + NETWORK_ERROR_INVALID_OFFSET) = network_operation_status_code & NETWORK_SOCKET_MAGIC_OFFSETffffffb | NETWORK_PACKET_HEADER_SIZE;
       network_packet_size_pointer[NETWORK_ARRAY_SIZE_4] = NETWORK_OPERATION_STATUS_FAILURE;
       if ((network_operation_status_code & NETWORK_BUFFER_CAPACITY_MEDIUM) == NETWORK_OPERATION_STATUS_FAILURE) {
@@ -23572,10 +23578,10 @@ networkSendDataPacketFifth:
               } while (network_timeout_config_pointer_alt != network_buffer_main);
               if (dataLength != NETWORK_OPERATION_STATUS_FAILURE) goto networkSendDataPacketFifth;
             network_timeout_value_pointer_tenth = *(int64_t *)(network_socket_handle + NETWORK_SOCKET_CONFIG_OFFSET_AA8);
-            network_packet_size_pointer[5] = (int64_t *)(network_socket_handle + NETWORK_SOCKET_CONFIG_OFFSET_AA8);
+            network_packet_size_pointer[NETWORK_PACKET_SIZE_PTR_INDEX_CONFIG] = (int64_t *)(network_socket_handle + NETWORK_SOCKET_CONFIG_OFFSET_AA8);
             *network_buffer_main = network_timeout_value_pointer_tenth;
             *(int64_t **)(network_timeout_value_pointer_tenth + NETWORK_PACKET_HEADER_SIZE) = network_buffer_main;
-            *(int64_t **)network_packet_size_pointer[5] = network_buffer_main;
+            *(int64_t **)network_packet_size_pointer[NETWORK_PACKET_SIZE_PTR_INDEX_CONFIG] = network_buffer_main;
           dataLength = networkTestReliability(*(uint64_t *)(network_socket_handle + NETWORK_SOCKET_CONFIG_OFFSET_AA0), network_packet_size_pointer);
           if (dataLength == NETWORK_OPERATION_STATUS_FAILURE) {
             if (*(char *)(network_packet_size_pointer + NETWORK_SOCKET_DATA_OFFSET) != '\NETWORK_OPERATION_STATUS_FAILURE') {

@@ -19626,7 +19626,7 @@ INIT_LABEL_VALIDATE_BOOLEAN_RESULT:
     system_memory_ptr = ptr_data;
     if ((int)ptr_data[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] == SYSTEM_COMPARISON_ZERO) {
       system_boolean_flag = false;
-INIT_LABEL_SYSTEM_48e00:
+INIT_LABEL_SYSTEM_MEMORY_CLEANUP_START:
       ptr_data = (longlong *)*ptr_data;
     }
     else {
@@ -19652,12 +19652,12 @@ INIT_LABEL_SYSTEM_48e00:
   if (system_boolean_result) {
     if (system_memory_ptr != (longlong *)handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER]) {
       ptr_data = (longlong *)InitializeSystemHandle(system_memory_ptr);
-      goto INIT_LABEL_SYSTEM_48e20;
+      goto INIT_LABEL_SYSTEM_MEMORY_CLEANUP_CONTINUE;
     }
   }
   else {
-INIT_LABEL_SYSTEM_48e20:
-    if (*(int *)(system_config_parameter_handle_fifth + SYSTEM_DATA_COMPARE_SIZE) == SYSTEM_COMPARISON_ZERO) goto INIT_LABEL_SYSTEM_48e74;
+INIT_LABEL_SYSTEM_MEMORY_CLEANUP_CONTINUE:
+    if (*(int *)(system_config_parameter_handle_fifth + SYSTEM_DATA_COMPARE_SIZE) == SYSTEM_COMPARISON_ZERO) goto INIT_LABEL_SYSTEM_VALIDATION_CHECK;
     if ((int)ptr_data[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != SYSTEM_COMPARISON_ZERO) {
       init_temp_byte_ptr = *(byte **)(system_config_parameter_handle_fifth + 8);
       system_temp_long_result = ptr_data[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] - (longlong)init_temp_byte_ptr;
