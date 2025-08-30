@@ -1504,10 +1504,10 @@ dataValue systemConfigSettings;
 dataValue systemVar9638;
 dataValue systemConfigCache;
 dataValue resourceManagerBuffer;
-dataValue resourceManagerPool;  /* 原: g_resourceManagerData7e0 */;
-dataValue systemConfigFlags;  /* 原: g_systemConfigData640 */;
-dataValue systemConfigLimits;  /* 原: g_systemConfigData660 */;
-dataValue systemConfigThresholds;  /* 原: g_systemConfigData670 */;
+dataValue resourceManagerPool;
+dataValue systemConfigFlags;
+dataValue systemConfigLimits;
+dataValue systemConfigThresholds;
 dataValue g_system_resource_handler;
 dataValue g_system_validation_handler;
 dataValue g_system_authentication_handler;
@@ -10527,7 +10527,7 @@ void ProcessResourceOperation(longlong resourceHandleIdentifier,longlong resourc
     integer_value = validate_resource_handle_identifier(*(uint64 *)(long_value + struct_offset_1),&unsigned_local_var);
     if (integer_value == 0) {
       unsigned_local_var = 0;
-      local_pointer = &systemGlobalDataBuffer;  /* 原: g_system_data_9832b8 */;
+      local_pointer = &systemGlobalDataBuffer;
       unsigned_local_var = unsigned_local_var;
       unsigned_local_var = unsigned_local_var;
       integer_value = validate_resource_access(resourceHandleIdentifier,&local_pointer);
@@ -10764,7 +10764,7 @@ void ExecuteResourceCommand(void)
   resource_data_buffer_5 = (*(code *)*input_register)(local_uint_pointer_22);
   operation_status = validate_resource_handle_identifier(*(uint64 *)(resource_data_buffer_5 + struct_offset_1),&data_buffer_48);
   if (operation_status == 0) {
-    in_stack_70 = &systemGlobalDataBuffer;  /* 原: g_system_data_9832b8 */;
+    in_stack_70 = &systemGlobalDataBuffer;
     *(uint32 *)(stack_frame_pointer + -ALIGNMENT_MASK) = stack_var_uint_20;
     *(float *)(stack_frame_pointer + -resource_handle_data_offset) = float_stack_var_48;
     in_stack_78 = cpu_register;
