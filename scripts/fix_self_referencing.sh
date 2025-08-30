@@ -1,0 +1,76 @@
+#!/bin/bash
+
+# 修复自引用常量定义的脚本
+# 这是简化实现，主要处理了网络系统中自引用常量定义的修复
+# 原本实现：完全重构常量定义体系
+# 简化实现：仅修复自引用问题，将常量名替换为对应的十六进制值
+
+# 文件路径
+NETWORK_FILE="/dev/shm/mountblade-code/TaleWorlds.Native/src/05_networking.c"
+
+# 备份原文件
+cp "$NETWORK_FILE" "$NETWORK_FILE.backup.fix.$(date +%s)"
+
+# 修复自引用的常量定义
+# 格式: "常量名|十六进制值"
+
+FIXES=(
+    "NETWORK_CONNECTION_TABLE_OFFSET|0x248"
+    "NETWORK_SOCKET_RESOURCE_OFFSET|0x328"
+    "NETWORK_SOCKET_TERMINATE_OFFSET|0x3d0"
+    "NETWORK_SOCKET_TIMEOUT_DATA_OFFSET|0x3d8"
+    "NETWORK_SOCKET_HANDLE_OFFSET_5D|0x5d"
+    "NETWORK_SOCKET_CLEANUP_OFFSET|0x69"
+    "NETWORK_SOCKET_DATA_OFFSET_7A|0x7a"
+    "NETWORK_CONFIGURE_CONNECTION_OFFSET|0x7a5"
+    "NETWORK_LOG_CONNECTION_OFFSET|0x8a4"
+    "NETWORK_BUFFER_OFFSET_8D|0x8d"
+    "NETWORK_SOCKET_ERROR_OFFSET_ALT|0x9d"
+    "NETWORK_LOG_EVENT_OFFSET|0xa2c"
+    "NETWORK_SOCKET_STATUS_OFFSET_AC|0xac"
+    "NETWORK_SOCKET_DATA_OFFSET_AD|0xad"
+    "NETWORK_LOG_SERVER_OFFSET|0xadc"
+    "NETWORK_SOCKET_CONFIG_OFFSET_CB|0xcb"
+    "NETWORK_ADDRESS_OFFSET_21|0x21"
+    "NETWORK_SOCKET_DATA_OFFSET_36|0x36"
+    "NETWORK_SOCKET_DATA_OFFSET_37|0x37"
+    "NETWORK_SOCKET_DATA_OFFSET_39|0x39"
+    "NETWORK_SOCKET_DATA_OFFSET_52|0x52"
+    "NETWORK_SOCKET_DATA_OFFSET_59|0x59"
+    "NETWORK_SOCKET_DATA_OFFSET_5A|0x5a"
+    "NETWORK_SOCKET_DATA_OFFSET_61|0x61"
+    "NETWORK_SOCKET_DATA_OFFSET_66|0x66"
+    "NETWORK_SOCKET_DATA_OFFSET_6D|0x6d"
+    "NETWORK_SOCKET_DATA_OFFSET_6E|0x6e"
+    "NETWORK_SOCKET_DATA_OFFSET_72|0x72"
+    "NETWORK_SOCKET_DATA_OFFSET_77|0x77"
+    "NETWORK_SOCKET_DATA_OFFSET_81|0x81"
+    "NETWORK_SOCKET_DATA_OFFSET_86|0x86"
+    "NETWORK_SOCKET_DATA_OFFSET_89|0x89"
+    "NETWORK_NEGATIVE_OFFSET_24C|-0x24c"
+    "NETWORK_NEGATIVE_OFFSET_244|-0x244"
+    "NETWORK_NEGATIVE_OFFSET_23C|-0x23c"
+    "NETWORK_LOG_CLIENT_OFFSET|0x55d"
+    "NETWORK_LOG_BUFFER_OFFSET|0xc2f"
+    "NETWORK_HANDSHAKE_OFFSET|0x249"
+    "NETWORK_COMPRESSION_OFFSET|0x2af"
+    "NETWORK_VALIDATION_OFFSET|0x322"
+    "NETWORK_CONTROL_OFFSET|0x32"
+)
+
+echo "开始修复自引用的常量定义..."
+
+for fix in "${FIXES[@]}"; do
+    IFS='|' read -r constant_name hex_value <<< "$fix"
+    
+    echo "修复 $constant_name 为 $hex_value"
+    
+    # 修复自引用的定义，例如：#define NETWORK_CONNECTION_TABLE_OFFSET NETWORK_CONNECTION_TABLE_OFFSET
+    # 替换为：#define NETWORK_CONNECTION_TABLE_OFFSET 0x248
+    sed -i "s/^#define $constant_name $constant_name /#define $constant_name $hex_value /" "$NETWORK_FILE"
+done
+
+echo "自引用常量定义修复完成！"
+
+# 删除备份的脚本文件
+rm -f /dev/shm/mountblade-code/scripts/beautify_network_hardcoded_values.sh

@@ -9328,7 +9328,7 @@ void utilityExtractResourceInfo(longlong resource_handle_identifier,uint32 *memo
   resource_data_pointer = *(longlong **)(resource_handle_identifier + RESOURCE_BUFFER_SIZE);
   if (resource_data_pointer != (longlong *)UTILITY_NULL_POINTER) {
     utility_temp_unsigned_int = *memory_block_size;
-    utility_temp_unsigned_int = resource_buffer[1];
+    utility_temp_unsigned_int = resource_buffer[UTILITY_SECURITY_TOKEN_SECONDARY_OFFSET];
     utility_temp_unsigned_int = resource_buffer[2];
     utility_temp_unsigned_int = resource_buffer UTILITY_BYTE_SIZE_3;
     utility_data_array_index = (**(code **)(*resource_data_pointer + UTILITY_RESOURCE_ACCESS_OFFSET))(resource_data_pointer,&utility_temp_unsigned_int,1);
@@ -9414,7 +9414,7 @@ void utilityAnalyzeResourceData(longlong resource_handle_identifier,uint32 *memo
   resource_data_pointer = *(longlong **)(resource_handle_identifier + RESOURCE_BUFFER_SIZE);
   if (resource_data_pointer != (longlong *)UTILITY_NULL_POINTER) {
     utility_temp_unsigned_int = *memory_block_size;
-    utility_temp_unsigned_int = resource_buffer[1];
+    utility_temp_unsigned_int = resource_buffer[UTILITY_SECURITY_TOKEN_SECONDARY_OFFSET];
     utility_temp_unsigned_int = resource_buffer[2];
     utility_temp_unsigned_int = resource_buffer UTILITY_BYTE_SIZE_3;
     utility_data_array_index = (**(code **)(*resource_data_pointer + UTILITY_DATA_PROCESS_OFFSET))(resource_data_pointer,&utility_temp_unsigned_int,1);
@@ -9521,7 +9521,7 @@ void utilityGenerateResourceReport(longlong resource_handle_identifier,uint32 *m
   resource_data_pointer = *(longlong **)(resource_handle_identifier + RESOURCE_BUFFER_SIZE);
   if (resource_data_pointer != (longlong *)UTILITY_NULL_POINTER) {
     utility_temp_unsigned_int = *memory_block_size;
-    utility_temp_unsigned_int = resource_buffer[1];
+    utility_temp_unsigned_int = resource_buffer[UTILITY_SECURITY_TOKEN_SECONDARY_OFFSET];
     utility_temp_unsigned_int = resource_buffer[2];
     utility_temp_unsigned_int = resource_buffer UTILITY_BYTE_SIZE_3;
     utility_data_array_index = (**(code **)(*resource_data_pointer + UTILITY_FUNCTION_POINTER_OFFSET))(resource_data_pointer,&utility_temp_unsigned_int,1);
@@ -9770,7 +9770,7 @@ uint get_pool_allocator(longlong *resource_handle_identifier)
   utility_iteration_counter = *(uint *)((longlong)resource_handle_identifier + structure_multiplier);
   utility_iteration_counter = utility_iteration_counter ^ (int)utility_iteration_counter >> UTILITY_ERROR_CODE_FAILED;
   if ((int)(utility_iteration_counter - ((int)utility_iteration_counter >> UTILITY_ERROR_CODE_FAILED)) < 0) {
-    if (0 < (int)resource_handle_identifier[1]) {
+    if (0 < (int)resource_handle_identifier[UTILITY_SECURITY_TOKEN_SECONDARY_OFFSET]) {
       return utility_iteration_counter;
     }
     if ((0 < (int)utility_iteration_counter) && (*resource_handle_identifier != UTILITY_NULL_RESULT)) {
@@ -9793,7 +9793,7 @@ uint get_pool_allocator(longlong *resource_handle_identifier)
   if ((int)utility_iteration_counter < 1) {
     return utility_iteration_counter;
   }
-  if (0 < (int)resource_handle_identifier[1]) {
+  if (0 < (int)resource_handle_identifier[UTILITY_SECURITY_TOKEN_SECONDARY_OFFSET]) {
     return UTILITY_BYTE_OFFSET_FLAG;
   }
   if ((0 < *(int *)((longlong)resource_handle_identifier + structure_multiplier)) && (*resource_handle_identifier != UTILITY_NULL_RESULT)) {
@@ -9874,7 +9874,7 @@ uint64 free_from_allocator(longlong *resource_handle_identifier)
   
   utility_iteration_counter = *(uint *)((longlong)resource_handle_identifier + structure_multiplier);
   if ((int)((utility_iteration_counter ^ (int)utility_iteration_counter >> UTILITY_ERROR_CODE_FAILED) - ((int)utility_iteration_counter >> UTILITY_ERROR_CODE_FAILED)) < 0) {
-    if (0 < (int)resource_handle_identifier[1]) {
+    if (0 < (int)resource_handle_identifier[UTILITY_SECURITY_TOKEN_SECONDARY_OFFSET]) {
       return UTILITY_BYTE_OFFSET_FLAG;
     }
     if ((0 < (int)utility_iteration_counter) && (*resource_handle_identifier != UTILITY_NULL_RESULT)) {
@@ -9913,7 +9913,7 @@ uint64 configure_system_parameters(longlong *resource_handle_identifier)
   
   validation_flag_primary = *(uint *)((longlong)resource_handle_identifier + structure_multiplier);
   if ((int)((validation_flag_primary ^ (int)validation_flag_primary >> UTILITY_ERROR_CODE_FAILED) - ((int)validation_flag_primary >> UTILITY_ERROR_CODE_FAILED)) < 0) {
-    if (0 < (int)resource_handle_identifier[1]) {
+    if (0 < (int)resource_handle_identifier[UTILITY_SECURITY_TOKEN_SECONDARY_OFFSET]) {
       return UTILITY_BYTE_OFFSET_FLAG;
     }
     if ((0 < (int)validation_flag_primary) && (*resource_handle_identifier != UTILITY_NULL_RESULT)) {
