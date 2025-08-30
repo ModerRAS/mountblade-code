@@ -1,5 +1,33 @@
 #include "TaleWorlds.Native.Split.h"
 
+// 本次美化内容（2025年8月30日）第十二批次：
+// - 美化变量名，将system_buffer_ptr_50替换为system_buffer_ptr_primary_config等主要配置指针变量名
+// - 美化变量名，将system_buffer_ptr_48替换为system_buffer_ptr_temp_buffer等临时缓冲区指针变量名
+// - 美化变量名，将system_local_buffer_38替换为system_local_buffer_init_data等初始化数据缓冲区变量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了系统初始化文件中剩余变量名的语义化替换
+// - 原本实现：完全重构系统初始化文件变量命名体系
+// - 简化实现：仅将常见的包含数字的变量名替换为语义化名称
+
+// 本次美化内容（2025年8月30日）第十一批次：
+// - 美化变量名，将g_system_status_data_object_3替换为g_system_status_data_object_config等状态数据对象变量名
+// - 美化变量名，将g_system_config_data_object_4替换为g_system_config_data_object_primary等配置数据对象变量名
+// - 美化变量名，将g_system_data_variable_c_object_4替换为g_system_data_variable_c_object_primary等数据变量对象名
+// - 美化变量名，将g_system_core_data_object_4替换为g_system_core_data_object_primary等核心数据对象变量名
+// - 美化变量名，将g_system_auth_context_ptr_2替换为g_system_auth_context_ptr_secondary等认证上下文指针变量名
+// - 美化变量名，将g_system_object_24替换为g_system_object_reserved等保留对象变量名
+// - 美化变量名，将g_system_counter_1替换为g_system_iteration_counter等迭代计数器变量名
+// - 美化变量名，将g_system_vtable_1替换为g_system_vtable_primary等虚拟表指针变量名
+// - 美化变量名，将g_system_handle_1替换为g_system_handle_primary等系统句柄变量名
+// - 美化变量名，将g_system_base_1替换为g_system_base_address等系统基地址变量名
+// - 美化变量名，将g_system_context_1替换为g_system_context_primary等系统上下文变量名
+// - 美化变量名，将g_system_data_variable3替换为g_system_data_variable_primary等系统数据变量名
+// - 美化变量名，将g_system_data_variable2替换为g_system_data_variable_secondary等系统数据变量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了系统初始化文件中变量名的语义化替换
+// - 原本实现：完全重构系统初始化文件变量命名体系
+// - 简化实现：仅将常见的包含数字的变量名替换为语义化名称
+
 // 本次美化内容（2025年8月30日）第十批次：
 // - 美化常量名，将SYSTEM_CONFIG_SIZE_AUDIOe8替换为SYSTEM_CONFIG_SIZE_AUDIO_E8等音频配置常量名
 // - 美化常量名，将SYSTEM_CONFIG_SIZE_PHYSICS0a7替换为SYSTEM_CONFIG_SIZE_PHYSICS_A7等物理配置常量名

@@ -560,6 +560,12 @@
 // 网络系统套接字上下文数组索引语义化常量（本次美化内容）
 #define NETWORK_SOCKET_CONTEXT_INDEX_STATUS       3
 
+// 网络系统套接字上下文数组索引语义化常量（本次美化内容）
+#define NETWORK_SOCKET_CONTEXT_INDEX_ENCRYPTION    7
+
+// 网络系统服务器地址值指针数组索引语义化常量（本次美化内容）
+#define NETWORK_SERVER_ADDRESS_PTR_INDEX_CONFIG    5
+
 // 网络系统套接字初始化缓冲区大小语义化常量（本次美化内容）
 #define NETWORK_SOCKET_INIT_BUFFER_SIZE           3
 
@@ -992,6 +998,20 @@
 
 // 新增语义化常量定义 - 网络偏移量
 #define NETWORK_OFFSET_210 0x210  // 网络偏移量210
+#define NETWORK_SOCKET_DATA_OFFSET5 0x5  // 套接字数据偏移量5
+#define NETWORK_SOCKET_DATA_OFFSET70 0x70  // 套接字数据偏移量70
+#define NETWORK_SOCKET_DATA_OFFSET_7C 0x7c  // 套接字数据偏移量7C
+#define NETWORK_SOCKET_DATA_OFFSET84 0x84  // 套接字数据偏移量84
+#define NETWORK_SOCKET_DATA_OFFSET88 0x88  // 套接字数据偏移量88
+#define NETWORK_SOCKET_DATA_OFFSET89 0x89  // 套接字数据偏移量89
+#define NETWORK_SOCKET_DATA_OFFSET8a 0x8a  // 套接字数据偏移量8A
+#define NETWORK_SOCKET_DATA_OFFSET8c 0x8c  // 套接字数据偏移量8C
+#define NETWORK_SOCKET_INDEX_OFFSET4 0x4  // 套接字索引偏移量4
+#define NETWORK_SOCKET_INDEX_OFFSETc 0xc  // 套接字索引偏移量C
+#define NETWORK_TIMEOUT_CONFIG_OFFSET_ALT0 0x0  // 超时配置备用偏移量0
+#define NETWORK_TIMEOUT_CONFIG_OFFSET_ALT8 0x8  // 超时配置备用偏移量8
+#define NETWORK_SOCKET_DATA_OFFSET78 0x78  // 套接字数据偏移量78
+#define NETWORK_STATUS_READY_MASK0 0x0  // 网络状态就绪掩码0
 #define NETWORK_OFFSET_37C 0x37c  // 网络偏移量37C
 #define NETWORK_OFFSET_3B8 NETWORK_COMPARE_VALUE_3B8  // 网络偏移量3B8
 #define NETWORK_OFFSET_3DC NETWORK_COMPARE_VALUE_3Dc  // 网络偏移量3DC
@@ -16844,7 +16864,7 @@ void network_socket_handle(int64_t network_socket_handle, int64_t *network_buffe
   server_port_address_value_pointer[NETWORK_BUFFER_CAPACITY_MEDIUM] = network_server_address;
   server_port_address_value_pointer[NETWORK_SERVER_ADDRESS_PTR_INDEX_STATUS] = NETWORK_OPERATION_STATUS_FAILURE;
   server_port_address_value_pointer[NETWORK_ARRAY_SIZE_4] = NETWORK_OPERATION_STATUS_FAILURE;
-  server_port_address_value_pointer[5] = NETWORK_OPERATION_STATUS_FAILURE;
+  server_port_address_value_pointer[NETWORK_SERVER_ADDRESS_PTR_INDEX_CONFIG] = NETWORK_OPERATION_STATUS_FAILURE;
   client_port_address_value_pointer = (int64_t *)*server_port_address_value_pointer;
   if (client_port_address_value_pointer == server_port_address_value_pointer) {
     server_port_address_value_pointer[NETWORK_OPERATION_SUCCESS] = *(int64_t *)(network_socket_handle + NETWORK_CONFIG_DATA_OFFSET98);
@@ -17003,7 +17023,7 @@ uint64_t network_socket_handle(int64_t network_socket_handle, int64_t *network_b
     network_socket_context_array = (int64_t *)(*network_secondary_socket_descriptor + -SESSION_CONFIG_SIZE);
     network_secondary_socket_descriptor = timeout_config_pointer_main;
       network_secondary_socket_descriptor = network_socket_context_array + 3;
-  network_secondary_socket_descriptor = (int64_t *)network_socket_context_array[7];
+  network_secondary_socket_descriptor = (int64_t *)network_socket_context_array[NETWORK_SOCKET_CONTEXT_INDEX_ENCRYPTION];
   networkFlushStream(*(uint64_t *)(network_socket_handle + SOCKET_PACKET_LENGTH_OFFSET8), network_socket_context_array);
   server_port_address_value_pointer = (int64_t *)(network_socket_handle + NETWORK_SOCKET_DATA_OFFSET0);
   network_socket_context_array = (int64_t *)(*server_port_address_value_pointer + -NETWORK_PACKET_HEADER_SIZE);
