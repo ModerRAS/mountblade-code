@@ -704,6 +704,12 @@
 // 系统初始化结果表达式常量
 #define SYSTEM_INITIALIZATION_RESULT_NEGATE(result) ((result) != 0) - 1
 
+// 系统增量操作常量（2025年8月30日最终批次美化）
+#define SYSTEM_INCREMENT_VALUE_1 1                    // 增量值1
+#define SYSTEM_INCREMENT_VALUE_2 2                    // 增量值2
+#define SYSTEM_INCREMENT_VALUE_1U 1U                   // 无符号增量值1
+#define SYSTEM_DECREMENT_VALUE_1 -1                   // 减量值-1
+
 // 系统缓冲区大小比较常量
 #define SYSTEM_BUFFER_SIZE_MINIMUM_COMPARE 3
 
