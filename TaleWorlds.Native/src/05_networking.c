@@ -18307,7 +18307,7 @@ void UpdateNetworkState(int64_t network_socket_handle, uint64_t network_buffer_p
       network_data_ptr_offsetset_senary = (NETWORK_UINT)network_bool_data_offsetset_senary;
       network_data_ptr_offsetset_quinary = (NETWORK_UINT)network_bool_data_offsetset_quinary;
       network_stack_max_count = (NETWORK_UINT)network_bool_unsigned_iteration_counter_max;
-      network_stack_unsigned_parameter = (NETWORK_UINT)network_bool_stack_uint_var;
+      network_stack_unsigned_parameter = (NETWORK_UINT)network_bool_stack_unsigned_var;
       network_processor_data_array_size = (NETWORK_UINT)network_stack_unsigned_parameter;
       network_connection_processor_data_status = (NETWORK_UINT)network_stack_unsigned_max_connections_primary;
       SendNetworkPacket(network_validation_buffer_medium, NETWORK_HEADER_SIZE_DEFAULT, &networkPacketHeader, network_data_ptr_offsetset_secondary);
