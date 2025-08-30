@@ -25297,11 +25297,11 @@ LAB_180054912:
                 system_stack_uint_148 = system_loop_counter;
                 system_call_service(&psystem_stack_uint_158,SYSTEM_INIT_FLAG_SECONDARY_ENABLED);
                 system_config_data_pointer = (system_uint32_t *)(psystem_stack_uint_150 + system_stack_uint_148);
-                *system_config_data_pointer = 0x6563732f;
+                *system_config_data_pointer = SYSTEM_INIT_STRING_SCRIPT_PATH;
                 system_config_data_pointer[SYSTEM_ARRAY_INDEX_SECOND] = e656e;
                 system_config_data_pointer[SYSTEM_ARRAY_INDEX_THIRD] = SYSTEM_INIT_FLAG_INITIALIZEDe6f6373;
-                system_config_data_pointer[SYSTEM_ARRAY_INDEX_FOURTH] = 0x65637378;
-                *(system_uint16_t *)(system_config_data_pointer + 4) = 0x656e;
+                system_config_data_pointer[SYSTEM_ARRAY_INDEX_FOURTH] = SYSTEM_INIT_STRING_SCRIPT_EXT;
+                *(system_uint16_t *)(system_config_data_pointer + 4) = SYSTEM_INIT_STRING_EN_SUFFIX;
                 *(system_uint8_t *)((longlong)system_config_data_pointer + SYSTEM_INIT_FLAG_SECONDARY_ENABLED) = SYSTEM_INIT_VALUE_ZERO;
                 system_stack_uint_148 = SYSTEM_INIT_FLAG_SECONDARY_ENABLED;
                 system_char_result = system_generic_function_(&psystem_stack_uint_158);
