@@ -4055,11 +4055,80 @@ void* g_network_endpoint;
 void* g_network_event_queue;
 void* g_network_recv_buffer;
 void* g_network_send_buffer;
-void* g_network_socket;
-void* g_network_address;
-void* g_network_protocol;
-void* g_network_security;
-void* g_network_timeout;
+void* g_network_socket;                       // 网络套接字
+void* g_network_address;                      // 网络地址
+void* g_network_protocol;                     // 网络协议
+void* g_network_security;                    // 网络安全
+void* g_network_timeout;                      // 网络超时
+char g_networkNullTerminator = '\0';          // 网络空终止符
+
+// 网络握手请求数据结构
+typedef struct {
+    uint32_t protocol_version;
+    uint32_t client_id;
+    uint8_t  handshake_type;
+    uint8_t  reserved[3];
+} NetworkHandshakeRequest;
+
+// 网络心跳请求数据结构
+typedef struct {
+    uint32_t timestamp;
+    uint32_t sequence_number;
+    uint8_t  heartbeat_type;
+    uint8_t  reserved[3];
+} NetworkKeepAliveRequest;
+
+// 网络数据请求数据结构
+typedef struct {
+    uint32_t data_id;
+    uint32_t data_size;
+    uint8_t  data_type;
+    uint8_t  reserved[3];
+} NetworkDataRequest;
+
+// 网络全局变量实例
+NetworkHandshakeRequest networkHandshakeRequest;
+NetworkKeepAliveRequest networkKeepAliveRequest;
+NetworkDataRequest networkDataRequest;
+
+// 网络握手响应数据结构
+typedef struct {
+    uint32_t response_code;
+    uint32_t server_id;
+    uint8_t  handshake_type;
+    uint8_t  reserved[3];
+} NetworkHandshakeResponse;
+
+// 网络心跳响应数据结构
+typedef struct {
+    uint32_t timestamp;
+    uint32_t sequence_number;
+    uint8_t  response_type;
+    uint8_t  reserved[3];
+} NetworkKeepAliveResponse;
+
+// 网络握手数据请求数据结构（扩展版）
+typedef struct {
+    uint32_t extended_protocol_version;
+    uint32_t extended_client_id;
+    uint8_t  extended_handshake_type;
+    uint8_t  reserved[3];
+} NetworkHandshakeDataRequest;
+
+// 网络握手数据响应数据结构
+typedef struct {
+    uint32_t extended_response_code;
+    uint32_t extended_server_id;
+    uint8_t  extended_response_type;
+    uint8_t  reserved[3];
+} NetworkHandshakeDataResponse;
+
+// 网络响应变量实例
+NetworkHandshakeResponse networkHandshakeResponse;
+NetworkKeepAliveResponse networkKeepAliveResponse;
+NetworkHandshakeDataRequest network_handshake_dataRequest;
+NetworkHandshakeDataResponse network_handshake_response;
+
 void* g_network_packet_size_ptr;          // 网络包大小指针
 void* g_network_max_packet_size;           // 网络最大包大小
 void* g_network_compression_object;        // 网络压缩对象
@@ -4098,6 +4167,14 @@ NetworkReceiveDataFunc NetworkReceiveData;
 // 网络数据包处理函数指针 - 处理接收到的数据包
 typedef void (*NetworkProcessPacketFunc)(void* packet);
 NetworkProcessPacketFunc NetworkProcessPacket;
+
+// 网络缓冲区管理函数指针 - 管理网络缓冲区
+typedef void* (*NetworkAllocateBufferFunc)(size_t size);
+NetworkAllocateBufferFunc NetworkAllocateBuffer;
+
+// 网络缓冲区释放函数指针 - 释放网络缓冲区
+typedef void (*NetworkFreeBufferFunc)(void* buffer);
+NetworkFreeBufferFunc NetworkFreeBuffer;
 // 网络断开处理函数指针 - 处理连接断开事件
 typedef void (*NetworkHandleDisconnectFunc)(void* network_connection_processor);
 NetworkHandleDisconnectFunc NetworkHandleDisconnect;
