@@ -17528,10 +17528,10 @@ void InitializeDelegateDataNode(void)
 void InitializeCallbackDataNode(uint8_t *handleIdentifier)
 
 {
-  longlong system_reg_rdi;
+  longlong system_handle_offset;
 
   *handleIdentifier = 0;
-  *(uint32_t *)(system_reg_rdi + SYSTEM_DATA_COMPARE_SIZE) = 0;
+  *(uint32_t *)(system_handle_offset + SYSTEM_DATA_COMPARE_SIZE) = 0;
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
@@ -17539,9 +17539,9 @@ void InitializeCallbackDataNode(uint8_t *handleIdentifier)
 void InitializeRenderSystem(longlong handleIdentifier,longlong resourceIdentifier,longlong system_configuration)
 
 {
-  longlong system_long_value;
-  longlong system_long_value;
-  longlong system_long_value;
+  longlong system_string_length_result;
+  longlong system_string_search_result;
+  longlong system_string_copy_result;
   uint8_t system_local_buffer_info_key [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   uint64_t init_stack_ulong_param_478;
   void *system_buffer_ptr_data_info;
@@ -17556,18 +17556,18 @@ void InitializeRenderSystem(longlong handleIdentifier,longlong resourceIdentifie
   system_buffer_ptr_local_buffer = system_local_buffer_info_data;
   init_stack_uint_param_458 = 0;
   system_local_buffer_info_data[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0;
-  system_long_value = strstr(*(uint64_t *)(handleIdentifier + 8));
-  if (system_long_result != 0) {
-    system_long_value = -1;
-    system_long_value = -1;
+  system_string_search_result = strstr(*(uint64_t *)(handleIdentifier + 8));
+  if (system_string_search_result != 0) {
+    system_string_length_result = -1;
+    system_string_copy_result = -1;
     do {
-      system_long_value = system_long_result + 1;
-    } while (*(char *)(resourceIdentifier + system_long_result) != '\0');
+      system_string_length_result = system_string_search_result + 1;
+    } while (*(char *)(resourceIdentifier + system_string_search_result) != '\0');
     do {
-      system_long_value = system_long_result + 1;
-    } while (*(char *)(system_long_result + system_configuration) != '\0');
+      system_string_copy_result = system_string_search_result + 1;
+    } while (*(char *)(system_string_search_result + system_configuration) != '\0');
                     // WARNING: Subroutine does not return
-    memcpy(system_buffer_ptr_local_buffer,*(longlong *)(handleIdentifier + 8),system_long_result - *(longlong *)(handleIdentifier + 8));
+    memcpy(system_buffer_ptr_local_buffer,*(longlong *)(handleIdentifier + 8),system_string_search_result - *(longlong *)(handleIdentifier + 8));
   }
   system_buffer_ptr_data_info = &globalSystemPointerData;
                     // WARNING: Subroutine does not return
@@ -17578,11 +17578,11 @@ void InitializeRenderSystem(longlong handleIdentifier,longlong resourceIdentifie
 void InitializeInputEngineNode(uint64_t *handleIdentifier,uint32_t resourceIdentifier)
 
 {
-  int system_integer_result;
+  int system_semaphore_result;
 
   do {
-    system_integer_result = ReleaseSemaphore(*handleIdentifier,resourceIdentifier,0);
-  } while (system_int_result == 0);
+    system_semaphore_result = ReleaseSemaphore(*handleIdentifier,resourceIdentifier,0);
+  } while (system_semaphore_result == 0);
   return;
 }
 // void InitializeResourceSystem(uint64_t *handleIdentifier)
@@ -17590,12 +17590,12 @@ void InitializeInputEngineNode(uint64_t *handleIdentifier,uint32_t resourceIdent
 void InitializeResourceSystem(uint64_t *handleIdentifier)
 
 {
-  int system_integer_result;
+  int system_mutex_result;
 
   if (*(char *)(handleIdentifier + 1) != '\0') {
-    system_integer_result = _Mtx_unlock(*handleIdentifier);
-    if (system_int_result != 0) {
-      __Throw_C_error_std__YAXH_Z(system_int_result);
+    system_mutex_result = _Mtx_unlock(*handleIdentifier);
+    if (system_mutex_result != 0) {
+      __Throw_C_error_std__YAXH_Z(system_mutex_result);
     }
   }
   return;
@@ -17605,32 +17605,32 @@ uint64_t SetupGraphicsDevice(longlong handleIdentifier,uint64_t resourceIdentifi
 
 {
   char is_initialized;
-  int system_integer_result;
-  longlong system_long_value;
+  int system_mutex_result;
+  longlong system_mutex_handle;
   uint64_t system_status_code;
-  uint8_t system_integer_result_unsigned;
+  uint8_t system_wait_result;
 
   system_status_code = INVALID_HANDLE_VALUE;
-  system_long_value = handleIdentifier + SYSTEM_FLAG_BIT_48;
-  system_integer_result = _Mtx_lock();
-  if (system_int_result != 0) {
-    __Throw_C_error_std__YAXH_Z(system_int_result);
+  system_mutex_handle = handleIdentifier + SYSTEM_FLAG_BIT_48;
+  system_mutex_result = _Mtx_lock();
+  if (system_mutex_result != 0) {
+    __Throw_C_error_std__YAXH_Z(system_mutex_result);
   }
   system_status_code = 1;
   if (*(char *)(handleIdentifier + SYSTEM_OFFSET_98) != '\x01') {
     is_initialized = *(char *)(handleIdentifier + SYSTEM_OFFSET_98);
     while (is_initialized == '\0') {
-      system_integer_result = _Cnd_wait(handleIdentifier,system_long_result,system_configuration,systemFlags,system_operation_status,system_long_result,system_int_result_unsigned);
-      if (system_int_result != 0) {
-        __Throw_C_error_std__YAXH_Z(system_int_result);
+      system_mutex_result = _Cnd_wait(handleIdentifier,system_mutex_handle,system_configuration,systemFlags,system_operation_status,system_mutex_handle,system_wait_result);
+      if (system_mutex_result != 0) {
+        __Throw_C_error_std__YAXH_Z(system_mutex_result);
       }
       is_initialized = *(char *)(handleIdentifier + SYSTEM_OFFSET_98);
     }
   }
   *(uint8_t *)(handleIdentifier + SYSTEM_OFFSET_98) = 0;
-  system_integer_result = _Mtx_unlock(system_long_result);
-  if (system_int_result != 0) {
-    __Throw_C_error_std__YAXH_Z(system_int_result);
+  system_mutex_result = _Mtx_unlock(system_mutex_handle);
+  if (system_mutex_result != 0) {
+    __Throw_C_error_std__YAXH_Z(system_mutex_result);
   }
   return 1;
 }
