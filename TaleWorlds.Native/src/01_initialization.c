@@ -51324,7 +51324,7 @@ InitializeSystemCore:
     }
     if (*(int *)(system_loop_counter7 + SYSTEM_INIT_FLAG_ENABLEDfc) * 3 == 0) goto LAB_180077847;
 LAB_180077879:
-    system_char_var_thread_result = func_SYSTEM_INIT_VALUE_CHAR_NULL001800854e0(system_context_param);
+    system_char_var_thread_result = system_init_function_context_handler(system_context_param);
     if ((system_char_var_thread_result == '\0') || (system_thread_param == 0)) {
       InitializeSystemCore(system_context_param,0);
       if ((*(byte *)(system_context_param + ) & 4) == 0) {
@@ -52874,7 +52874,7 @@ void InitializeSystemCore(longlong system_context_param)
      (system_allocation_result = *(longlong *)(*(longlong *)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED_SECONDARY8) + SYSTEM_INIT_FLAG_INITIALIZED8), system_allocation_result != 0)) {
     system_coefficient_a1 = (*(float *)(system_allocation_result + SYSTEM_INIT_MAGIC_COOKIE_ENGINE_5) * *(float *)(system_allocation_result + SYSTEM_INIT_SIZE_POINTER8) -
              *(float *)(system_allocation_result + ) * *(float *)(system_allocation_result + SYSTEM_INIT_SIZE_POINTER4)) * *(float *)(system_allocation_result + SYSTEM_INIT_OFFSET_DATA_90);
-    func_SYSTEM_INIT_VALUE_CHAR_NULL001800773c0(system_coefficient_a1,(*(float *)(system_allocation_result + ) * *(float *)(system_allocation_result + SYSTEM_INIT_SIZE_BUFFER_SMALL) -
+    system_init_function_math_calculator(system_coefficient_a1,(*(float *)(system_allocation_result + ) * *(float *)(system_allocation_result + SYSTEM_INIT_SIZE_BUFFER_SMALL) -
                                *(float *)(system_allocation_result + ) * *(float *)(system_allocation_result + SYSTEM_INIT_SIZE_POINTER8)) *
                                *(float *)(system_allocation_result + 0x94) + system_coefficient_a1 +
                                (*(float *)(system_allocation_result + ) * *(float *)(system_allocation_result + SYSTEM_INIT_SIZE_POINTER4) -
@@ -52976,7 +52976,7 @@ void InitializeSystemCore(longlong system_context_param)
   if ((in_RAX != 0) && (system_allocation_result = *(longlong *)(in_RAX + SYSTEM_INIT_FLAG_INITIALIZED8), system_allocation_result != 0)) {
     system_coefficient_a0 = (*(float *)(system_allocation_result + SYSTEM_INIT_MAGIC_COOKIE_ENGINE_5) * *(float *)(system_allocation_result + SYSTEM_INIT_SIZE_POINTER8) -
              *(float *)(system_allocation_result + ) * *(float *)(system_allocation_result + SYSTEM_INIT_SIZE_POINTER4)) * *(float *)(system_allocation_result + SYSTEM_INIT_OFFSET_DATA_90);
-    func_SYSTEM_INIT_VALUE_CHAR_NULL001800773c0(system_coefficient_a0,(*(float *)(system_allocation_result + ) * *(float *)(system_allocation_result + SYSTEM_INIT_SIZE_BUFFER_SMALL) -
+    system_init_function_math_calculator(system_coefficient_a0,(*(float *)(system_allocation_result + ) * *(float *)(system_allocation_result + SYSTEM_INIT_SIZE_BUFFER_SMALL) -
                                *(float *)(system_allocation_result + ) * *(float *)(system_allocation_result + SYSTEM_INIT_SIZE_POINTER8)) *
                                *(float *)(system_allocation_result + 0x94) + system_coefficient_a0 +
                                (*(float *)(system_allocation_result + ) * *(float *)(system_allocation_result + SYSTEM_INIT_SIZE_POINTER4) -
@@ -53080,7 +53080,7 @@ void InitializeSystemCore(float system_context_param,float system_config_param,f
   float unaff_XMM8_Da;
   
   system_coefficient_a0 = (*(float *)(in_RAX + SYSTEM_INIT_MAGIC_COOKIE_ENGINE_5) * system_config_param - system_memory_param * system_thread_param) * *(float *)(in_RAX + SYSTEM_INIT_OFFSET_DATA_90);
-  func_SYSTEM_INIT_VALUE_CHAR_NULL001800773c0(system_coefficient_a0,(system_memory_param * in_XMM4_Da - system_context_param * system_config_param) * *(float *)(in_RAX + 0x94)
+  system_init_function_math_calculator(system_coefficient_a0,(system_memory_param * in_XMM4_Da - system_context_param * system_config_param) * *(float *)(in_RAX + 0x94)
                              + system_coefficient_a0 +
                              (in_XMM5_Da * system_thread_param - *(float *)(in_RAX + SYSTEM_INIT_MAGIC_COOKIE_ENGINE_5) * in_XMM4_Da) *
                              *(float *)(in_RAX + ) < unaff_XMM8_Da);
@@ -58259,7 +58259,7 @@ void InitializeSystemCore(uint system_context_param,longlong system_config_param
   
   system_loop_counter1 = SYSTEM_INIT_VALUE_ZERO;
   if (system_context_param < ) {
-    system_int_value = func_SYSTEM_INIT_VALUE_CHAR_NULL00180204ae0(system_context_param,system_config_param,system_memory_param,system_thread_param,0,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+    system_int_value = system_init_function_system_configurator(system_context_param,system_config_param,system_memory_param,system_thread_param,0,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   }
   else {
     system_int_value = -1;
