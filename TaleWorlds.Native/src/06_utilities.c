@@ -10405,7 +10405,7 @@ void ProcessResourceQueue(void)
   float utility_float_param_seventh;
   float temp_variable_float;
   uint32 utility_stack_validation_uint;
-  float stack_float_value_primary_temp;
+  float utility_stack_float_primary_temp;
   data_value *utility_utility_stack_parameter_ptr;
   int utility_stack_int_primary;
   uint32 utility_stack_uint_context;
@@ -10435,15 +10435,15 @@ void ProcessResourceQueue(void)
         *(uint32 *)(stack_frame_pointer + -RESOURCE_UTILITY_HANDLE_DATA_OFFSET) = validation_result_flag;
         *(uint32 *)(stack_frame_pointer + -UTILITY_SYS_STATUS_OFFSET) = validation_result_flag;
         statusCounter = validate_resource_access(loop_counter,stack_frame_pointer + -utility_buffer_offset);
-        if ((statusCounter != 0) || (statusCounter = checkResourceAvailability(processing_buffer,&stack_float_value_primary_temp), statusCounter != 0))
+        if ((statusCounter != 0) || (statusCounter = checkResourceAvailability(processing_buffer,&utility_stack_float_primary_temp), statusCounter != 0))
         goto handle_resource_iteration;
-        temp_variable_float = stack_float_value_primary_temp;
-        if (stack_float_value_primary_temp != UTILITY_FLOAT_ONE) {
-          utility_stack_float_secondary = stack_float_value_primary_temp;
+        temp_variable_float = utility_stack_float_primary_temp;
+        if (utility_stack_float_primary_temp != UTILITY_FLOAT_ONE) {
+          utility_stack_float_secondary = utility_stack_float_primary_temp;
           utility_utility_stack_parameter_ptr = &g_system_io_handler;
           utility_stack_uint_context = utility_stack_validation_uint;
           utility_stack_int_primary = statusCounter;
-          statusCounter = validate_resource_access(stack_float_value_primary_temp,&utility_stack_working_buffer_30);
+          statusCounter = validate_resource_access(utility_stack_float_primary_temp,&utility_stack_working_buffer_30);
           temp_variable_float = float_parameter_zero;
           if (statusCounter != 0) goto handle_resource_iteration;
         }
@@ -10488,15 +10488,15 @@ void ProcessResourceQueue(void)
         *(uint32 *)(stack_frame_pointer + -RESOURCE_UTILITY_HANDLE_DATA_OFFSET) = validation_result_flag;
         *(uint32 *)(stack_frame_pointer + -UTILITY_SYS_STATUS_OFFSET) = validation_result_flag;
         statusCounter = validate_resource_access(loop_counter,stack_frame_pointer + -utility_buffer_offset);
-        if ((statusCounter != 0) || (statusCounter = checkResourceAvailability(processing_buffer,&stack_float_value_primary_temp), statusCounter != 0))
+        if ((statusCounter != 0) || (statusCounter = checkResourceAvailability(processing_buffer,&utility_stack_float_primary_temp), statusCounter != 0))
         goto handle_resource_iteration;
-        temp_variable_float = stack_float_value_primary_temp;
-        if (stack_float_value_primary_temp != UTILITY_FLOAT_ONE) {
-          utility_stack_float_secondary = stack_float_value_primary_temp;
+        temp_variable_float = utility_stack_float_primary_temp;
+        if (utility_stack_float_primary_temp != UTILITY_FLOAT_ONE) {
+          utility_stack_float_secondary = utility_stack_float_primary_temp;
           utility_utility_stack_parameter_ptr = &g_system_io_handler;
           utility_stack_uint_context = utility_stack_validation_uint;
           utility_stack_int_primary = statusCounter;
-          statusCounter = validate_resource_access(stack_float_value_primary_temp,&utility_stack_working_buffer_30);
+          statusCounter = validate_resource_access(utility_stack_float_primary_temp,&utility_stack_working_buffer_30);
           temp_variable_float = utility_float_param_secondary;
           if (statusCounter != 0) goto handle_resource_iteration;
         }
@@ -10541,15 +10541,15 @@ void ProcessResourceQueue(void)
         *(uint32 *)(stack_frame_pointer + -RESOURCE_UTILITY_HANDLE_DATA_OFFSET) = validation_result_flag;
         *(uint32 *)(stack_frame_pointer + -UTILITY_SYS_STATUS_OFFSET) = validation_result_flag;
         statusCounter = validate_resource_access(loop_counter,stack_frame_pointer + -utility_buffer_offset);
-        if ((statusCounter != 0) || (statusCounter = checkResourceAvailability(processing_buffer,&stack_float_value_primary_temp), statusCounter != 0))
+        if ((statusCounter != 0) || (statusCounter = checkResourceAvailability(processing_buffer,&utility_stack_float_primary_temp), statusCounter != 0))
         goto handle_resource_iteration;
-        temp_variable_float = stack_float_value_primary_temp;
-        if (stack_float_value_primary_temp != UTILITY_FLOAT_ONE) {
-          utility_stack_float_secondary = stack_float_value_primary_temp;
+        temp_variable_float = utility_stack_float_primary_temp;
+        if (utility_stack_float_primary_temp != UTILITY_FLOAT_ONE) {
+          utility_stack_float_secondary = utility_stack_float_primary_temp;
           utility_utility_stack_parameter_ptr = &g_system_io_handler;
           utility_stack_uint_context = utility_stack_validation_uint;
           utility_stack_int_primary = statusCounter;
-          statusCounter = validate_resource_access(stack_float_value_primary_temp,&utility_stack_working_buffer_30);
+          statusCounter = validate_resource_access(utility_stack_float_primary_temp,&utility_stack_working_buffer_30);
           temp_variable_float = utility_float_param_quaternary;
           if (statusCounter != 0) goto handle_resource_iteration;
         }
@@ -10594,15 +10594,15 @@ void ProcessResourceQueue(void)
         *(uint32 *)(stack_frame_pointer + -RESOURCE_UTILITY_HANDLE_DATA_OFFSET) = validation_result_flag;
         *(uint32 *)(stack_frame_pointer + -UTILITY_SYS_STATUS_OFFSET) = validation_result_flag;
         statusCounter = validate_resource_access(loop_counter,stack_frame_pointer + -utility_buffer_offset);
-        if ((statusCounter != 0) || (statusCounter = checkResourceAvailability(processing_buffer,&stack_float_value_primary_temp), statusCounter != 0))
+        if ((statusCounter != 0) || (statusCounter = checkResourceAvailability(processing_buffer,&utility_stack_float_primary_temp), statusCounter != 0))
         goto handle_resource_iteration;
-        temp_variable_float = stack_float_value_primary_temp;
-        if (stack_float_value_primary_temp != UTILITY_FLOAT_ONE) {
-          utility_stack_float_secondary = stack_float_value_primary_temp;
+        temp_variable_float = utility_stack_float_primary_temp;
+        if (utility_stack_float_primary_temp != UTILITY_FLOAT_ONE) {
+          utility_stack_float_secondary = utility_stack_float_primary_temp;
           utility_utility_stack_parameter_ptr = &g_system_io_handler;
           utility_stack_uint_context = utility_stack_validation_uint;
           utility_stack_int_primary = statusCounter;
-          statusCounter = validate_resource_access(stack_float_value_primary_temp,&utility_stack_working_buffer_30);
+          statusCounter = validate_resource_access(utility_stack_float_primary_temp,&utility_stack_working_buffer_30);
           temp_variable_float = utility_float_param_sixth;
           if (statusCounter != 0) goto handle_resource_iteration;
         }
@@ -10650,13 +10650,13 @@ void ProcessResourceQueue(void)
         *(uint32 *)(stack_frame_pointer + -RESOURCE_UTILITY_HANDLE_DATA_OFFSET) = validation_result_flag;
         *(uint32 *)(stack_frame_pointer + -UTILITY_SYS_STATUS_OFFSET) = validation_result_flag;
         utility_capacity_value = validate_resource_access(loop_counter,stack_frame_pointer + -utility_buffer_offset);
-        if ((utility_capacity_value != 0) || (utility_capacity_value = validateResourceAccess(processing_buffer,&stack_float_value_primary_temp,0), utility_capacity_value != 0)) break;
-        if (stack_float_value_primary_temp != UTILITY_FLOAT_ONE) {
-          utility_stack_float_secondary = stack_float_value_primary_temp;
+        if ((utility_capacity_value != 0) || (utility_capacity_value = validateResourceAccess(processing_buffer,&utility_stack_float_primary_temp,0), utility_capacity_value != 0)) break;
+        if (utility_stack_float_primary_temp != UTILITY_FLOAT_ONE) {
+          utility_stack_float_secondary = utility_stack_float_primary_temp;
           utility_utility_stack_parameter_ptr = &g_system_validation_handler;
           utility_stack_uint_context = utility_stack_validation_uint;
           utility_stack_int_primary = utility_capacity_value;
-          utility_capacity_value = validate_resource_access(stack_float_value_primary_temp,&utility_stack_working_buffer_30);
+          utility_capacity_value = validate_resource_access(utility_stack_float_primary_temp,&utility_stack_working_buffer_30);
           if (utility_capacity_value != 0) break;
         }
       }
