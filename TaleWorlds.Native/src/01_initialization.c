@@ -48252,12 +48252,12 @@ float * HandleSystemOperation16(float *handleIdentifier)
           init_float_stack_b8 = handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A1];
         }
         init_float_stack_b4 = init_float_pointer_temp[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-        if (init_float_stack_b4 < handleIdentifier[0xa2]) {
-          init_float_stack_b4 = handleIdentifier[0xa2];
+        if (init_float_stack_b4 < handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A2]) {
+          init_float_stack_b4 = handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A2];
         }
         init_float_stack_b0 = init_float_pointer_temp[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-        if (init_float_stack_b0 < handleIdentifier[0xa3]) {
-          init_float_stack_b0 = handleIdentifier[0xa3];
+        if (init_float_stack_b0 < handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A3]) {
+          init_float_stack_b0 = handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A3];
         }
         *(ulonglong *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_A1) = CONCAT44(init_float_stack_b4,init_float_stack_b8);
         *(ulonglong *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_A3) = CONCAT44(uintStack_ac,init_float_stack_b0);
@@ -48308,14 +48308,14 @@ float * HandleSystemOperation16(float *handleIdentifier)
     }
     init_float_pointer_temp = init_float_ptr_stack_98;
     if (handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A1] < *init_float_pointer_temp) {
-      handleIdentifier[0xa9] = 0.0;
+      handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A9] = 0.0;
       init_float_pointer_temp[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0.0;
       init_float_pointer_temp[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0.0;
       handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_9F] = 0.0;
-      handleIdentifier[0xa0] = 0.0;
+      handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A0] = 0.0;
       handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A1] = 0.0;
-      handleIdentifier[0xa2] = 0.0;
-      handleIdentifier[0xa3] = 0.0;
+      handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A2] = 0.0;
+      handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A3] = 0.0;
       handleIdentifier[0xa4] = 0.0;
       handleIdentifier[0xa5] = 0.0;
       handleIdentifier[0xa6] = 0.0;
@@ -48324,8 +48324,8 @@ float * HandleSystemOperation16(float *handleIdentifier)
     }
     else {
       handleIdentifier[0xa5] = (handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A1] + *init_float_pointer_temp) * 0.5;
-      handleIdentifier[0xa6] = (handleIdentifier[0xa2] + handleIdentifier[SYSTEM_AUDIO_DATA_OFFSET_9E]) * 0.5;
-      handleIdentifier[0xa7] = (handleIdentifier[0xa3] + handleIdentifier[0x9f]) * 0.5;
+      handleIdentifier[0xa6] = (handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A2] + handleIdentifier[SYSTEM_AUDIO_DATA_OFFSET_9E]) * 0.5;
+      handleIdentifier[0xa7] = (handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A3] + handleIdentifier[0x9f]) * 0.5;
       handleIdentifier[SYSTEM_MEMORY_POOL_SIZE_MEDIUM] = SYSTEM_FLOAT_MAX_VALUE;
       system_float_value = 0.0;
       system_status_code = (ulonglong)*(uint *)(longStack_88 + SYSTEM_DATA_COMPARE_SIZE);
@@ -48344,7 +48344,7 @@ float * HandleSystemOperation16(float *handleIdentifier)
           system_float_value = system_float_value;
         } while (system_int_result_unsigned != 0);
       }
-      handleIdentifier[0xa9] = SQRT(system_result_float);
+      handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A9] = SQRT(system_result_float);
     }
     if (init_float_ptr_stack_98 != (float *)0x0) {
       while( true ) {
@@ -53873,12 +53873,12 @@ float * InitializeResourceSystem(float *handleIdentifier)
           init_float_stack_b8 = handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A1];
         }
         init_float_stack_b4 = init_float_pointer_temp[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-        if (init_float_stack_b4 < handleIdentifier[0xa2]) {
-          init_float_stack_b4 = handleIdentifier[0xa2];
+        if (init_float_stack_b4 < handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A2]) {
+          init_float_stack_b4 = handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A2];
         }
         init_float_stack_b0 = init_float_pointer_temp[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-        if (init_float_stack_b0 < handleIdentifier[0xa3]) {
-          init_float_stack_b0 = handleIdentifier[0xa3];
+        if (init_float_stack_b0 < handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A3]) {
+          init_float_stack_b0 = handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A3];
         }
         *(ulonglong *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_A1) = CONCAT44(init_float_stack_b4,init_float_stack_b8);
         *(ulonglong *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_A3) = CONCAT44(uintStack_ac,init_float_stack_b0);
@@ -53926,14 +53926,14 @@ float * InitializeResourceSystem(float *handleIdentifier)
     }
     init_float_pointer_temp = init_float_ptr_stack_98;
     if (handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A1] < *init_float_pointer_temp) {
-      handleIdentifier[0xa9] = 0.0;
+      handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A9] = 0.0;
       init_float_pointer_temp[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0.0;
       init_float_pointer_temp[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0.0;
       handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_9F] = 0.0;
-      handleIdentifier[0xa0] = 0.0;
+      handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A0] = 0.0;
       handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A1] = 0.0;
-      handleIdentifier[0xa2] = 0.0;
-      handleIdentifier[0xa3] = 0.0;
+      handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A2] = 0.0;
+      handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A3] = 0.0;
       handleIdentifier[0xa4] = 0.0;
       handleIdentifier[0xa5] = 0.0;
       handleIdentifier[0xa6] = 0.0;
@@ -53942,8 +53942,8 @@ float * InitializeResourceSystem(float *handleIdentifier)
     }
     else {
       handleIdentifier[0xa5] = (handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A1] + *init_float_pointer_temp) * 0.5;
-      handleIdentifier[0xa6] = (handleIdentifier[0xa2] + handleIdentifier[SYSTEM_AUDIO_DATA_OFFSET_9E]) * 0.5;
-      handleIdentifier[0xa7] = (handleIdentifier[0xa3] + handleIdentifier[0x9f]) * 0.5;
+      handleIdentifier[0xa6] = (handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A2] + handleIdentifier[SYSTEM_AUDIO_DATA_OFFSET_9E]) * 0.5;
+      handleIdentifier[0xa7] = (handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A3] + handleIdentifier[0x9f]) * 0.5;
       handleIdentifier[SYSTEM_MEMORY_POOL_SIZE_MEDIUM] = SYSTEM_FLOAT_MAX_VALUE;
       system_float_value = 0.0;
       system_status_code = (ulonglong)*(uint *)(longStack_88 + SYSTEM_DATA_COMPARE_SIZE);
@@ -53962,7 +53962,7 @@ float * InitializeResourceSystem(float *handleIdentifier)
           system_float_value = system_float_value;
         } while (system_int_result_unsigned != 0);
       }
-      handleIdentifier[0xa9] = SQRT(system_result_float);
+      handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A9] = SQRT(system_result_float);
     }
     if (init_float_ptr_stack_98 != (float *)0x0) {
       while( true ) {
