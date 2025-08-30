@@ -3648,7 +3648,7 @@ int initialize_scaling_system(void)
 }
   system_thread_flag_2 = SYSTEM_THREAD_FLAG_ENABLED;
   system_thread_flag_1 = SYSTEM_ZERO_VALUE;
-  system_temporary_stack_array[0] = GetModuleHandleA(SYSTEM_MODULE_HANDLE_NULL);
+  SYSTEM_TEMP_STACK_ARRAY[0] = GetModuleHandleA(SYSTEM_MODULE_HANDLE_NULL);
   initialize_core_system(handle_param,system_temporary_stack_array);
   initialize_subsystem_modules();
   initialize_service_layer();
@@ -3656,10 +3656,10 @@ int initialize_scaling_system(void)
 }
 void WotsMainNativeSDLL(unsigned long long handle_param)
 {
-  unsigned long long system_temporary_stack_array [2];
+  unsigned long long SYSTEM_TEMP_STACK_ARRAY [2];
   system_thread_flag_2 = SYSTEM_ZERO_VALUE;
   system_thread_flag_1 = SYSTEM_ZERO_VALUE;
-  system_temporary_stack_array[0] = GetModuleHandleA(SYSTEM_MODULE_HANDLE_NULL);
+  SYSTEM_TEMP_STACK_ARRAY[0] = GetModuleHandleA(SYSTEM_MODULE_HANDLE_NULL);
   initialize_core_system(handle_param,system_temporary_stack_array);
   initialize_subsystem_modules();
   initialize_service_layer();
@@ -3754,7 +3754,7 @@ section_processing_jump_label_:
 }
   system_thread_flag_2 = SYSTEM_THREAD_FLAG_ENABLED;
   system_thread_flag_1 = SYSTEM_ZERO_VALUE;
-  system_temporary_stack_array[0] = GetModuleHandleA(SYSTEM_MODULE_HANDLE_NULL);
+  SYSTEM_TEMP_STACK_ARRAY[0] = GetModuleHandleA(SYSTEM_MODULE_HANDLE_NULL);
   initialize_core_system(handle_param,system_temporary_stack_array);
   initialize_subsystem_modules();
   initialize_service_layer();
@@ -3762,10 +3762,10 @@ section_processing_jump_label_:
 }
 void WotsMainNative(unsigned long long handle_param)
 {
-  unsigned long long system_temporary_stack_array [2];
+  unsigned long long SYSTEM_TEMP_STACK_ARRAY [2];
   system_thread_flag_2 = SYSTEM_ZERO_VALUE;
   system_thread_flag_1 = SYSTEM_ZERO_VALUE;
-  system_temporary_stack_array[0] = GetModuleHandleA(SYSTEM_MODULE_HANDLE_NULL);
+  SYSTEM_TEMP_STACK_ARRAY[0] = GetModuleHandleA(SYSTEM_MODULE_HANDLE_NULL);
   initialize_core_system(handle_param,system_temporary_stack_array);
   initialize_subsystem_modules();
   initialize_service_layer();
@@ -3773,10 +3773,10 @@ void WotsMainNative(unsigned long long handle_param)
 }
 void WotsMainNativeCoreCLR(unsigned long long handle_param)
 {
-  unsigned long long system_temporary_stack_array [2];
+  unsigned long long SYSTEM_TEMP_STACK_ARRAY [2];
   system_thread_flag_2 = SYSTEM_ZERO_VALUE;
   system_thread_flag_1 = SYSTEM_THREAD_FLAG_ENABLED;
-  system_temporary_stack_array[0] = GetModuleHandleA(SYSTEM_MODULE_HANDLE_NULL);
+  SYSTEM_TEMP_STACK_ARRAY[0] = GetModuleHandleA(SYSTEM_MODULE_HANDLE_NULL);
   initialize_core_system(handle_param,system_temporary_stack_array);
   initialize_subsystem_modules();
   initialize_service_layer();
@@ -14879,3 +14879,10 @@ void system_data_initialization_cleanup(void)
 
 #define SYSTEM_OFFSET_INITIALIZATION_12F8 0x12f8                  // 初始化12F8偏移量
 #define SYSTEM_OFFSET_INITIALIZATION_1308 0x1308                  // 初始化1308偏移量
+
+// 系统变量名语义化定义（2025年8月30日补充批次）
+#define SYSTEM_TEMP_STACK_ARRAY system_temporary_stack_array         // 临时栈数组
+#define SYSTEM_CONFIG_STACK_BUFFER system_config_stack_buffer       // 配置栈缓冲区
+#define SYSTEM_OPERATION_STACK_BUFFER system_operation_stack_buffer // 操作栈缓冲区
+#define SYSTEM_STRING_INPUT_POINTER string_input_pointer            // 字符串输入指针
+#define SYSTEM_INITIALIZATION_RESULT psystem_initialization_result   // 初始化结果指针
