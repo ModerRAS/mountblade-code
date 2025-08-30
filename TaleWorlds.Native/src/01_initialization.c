@@ -25332,7 +25332,7 @@ void InitializeSystemTimer(uint64_t handleIdentifier,uint64_t resourceIdentifier
   uint8_t system_local_buffer_228 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   uint8_t init_stack_uint_parameter_208;
   uint32_t uint_stack_system_aux;
-  uint32_t uintStack_1f4;
+  uint32_t uint_stack_network_size;
   void *system_buffer_ptr_config_main;
   uint8_t *system_buffer_ptr_thread_parameter;
   uint init_stack_parameter_1a0;

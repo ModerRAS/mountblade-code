@@ -6953,8 +6953,8 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
                           (double)*pfloat_var * 0.7152 +
                           (double)*pfloat_var * 0.7152 + (double)*pfloat_var * 0.7152 +
                           (double)*pfloat_var * 0.7152 +
-                          (double)*pfloat_var * 0.0722 + (double)*pfloat_var * 0.0722 +
-                          (double)*pfloat_var * 0.0722 + (double)*pfloat_var * 0.0722;
+                          (double)*pfloat_var * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT + (double)*pfloat_var * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT +
+                          (double)*pfloat_var * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT + (double)*pfloat_var * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT;
         buffer_allocation_result = buffer_allocation_result - 1;
       } while (buffer_allocation_result != 0);
     }
@@ -6968,7 +6968,7 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
         float_var = *pfloat_var;
         pfloat_var = pfloat_var + 3;
         color_luminance_accumulator = color_luminance_accumulator + (double)*pfloat_var * 0.7152 + (double)*pfloat_var * 0.2126 +
-                          (double)float_var * 0.0722;
+                          (double)float_var * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT;
         buffer_allocation_result = buffer_allocation_result - 1;
       } while (buffer_allocation_result != 0);
     }
@@ -7041,8 +7041,8 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
                           (double)*pfloat_var * 0.7152 +
                           (double)*pfloat_var * 0.7152 + (double)*pfloat_var * 0.7152 +
                           (double)*pfloat_var * 0.7152 +
-                          (double)*pfloat_var * 0.0722 + (double)*pfloat_var * 0.0722 +
-                          (double)*pfloat_var * 0.0722 + (double)*pfloat_var * 0.0722;
+                          (double)*pfloat_var * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT + (double)*pfloat_var * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT +
+                          (double)*pfloat_var * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT + (double)*pfloat_var * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT;
         buffer_allocation_result = buffer_allocation_result - 1;
       } while (buffer_allocation_result != 0);
     }
@@ -7056,7 +7056,7 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
         float_var = *pfloat_var;
         pfloat_var = pfloat_var + SYSTEM_OFFSET_HANDLE_PARAM;
         color_luminance_accumulator = color_luminance_accumulator + (double)*pfloat_var * 0.7152 + (double)*pfloat_var * 0.2126 +
-                          (double)float_var * 0.0722;
+                          (double)float_var * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT;
         buffer_allocation_result = buffer_allocation_result - 1;
       } while (buffer_allocation_result != 0);
     }
