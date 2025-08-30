@@ -17784,11 +17784,11 @@ void utilityTripTarget(void)
   uint validation_flag;
   uint utility_stack_context_primary;
   
-  stackContextUInt88 = 0;
+  utility_stack_context_primary = 0;
   utility_iteration_counter = get_resource_size();
-  iteration_counter = stackContextUInt88;
+  iteration_counter = utility_stack_context_primary;
   if (utility_iteration_counter == 0) {
-    validation_flag = stackContextUInt88 >> 1;
+    validation_flag = utility_stack_context_primary >> 1;
     utility_iteration_counter = ValidateSystemData2((longlong *)(utility_register_context_base + POINTER_DATA_OFFSET),validation_flag);
     if (utility_iteration_counter == 0) {
       utility_iteration_counter = 0;
