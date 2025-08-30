@@ -5689,7 +5689,7 @@ long long process_memory_with_system_thread_operation_flags(unsigned long long h
        ((*(long long *)(system_alternative_stack_long[0] + SYSTEM_OFFSET_MODULE_DATA_3580) != 0 &&
         (*(int *)(*(long long *)(system_alternative_stack_long[0] + SYSTEM_OFFSET_MODULE_DATA_3580) + SYSTEM_OFFSET_MODULE_SECONDARY) != 0)))) {
       system_maximum_stack_size = &ppsystem_double_pointer_stack_long;
-      ppsystem_double_pointer_stack_long = (long long ****)reg_rcx[SYSTEM_OFFSET_POINTER_9][0x461];
+      ppsystem_double_pointer_stack_long = (long long ****)reg_rcx[SYSTEM_OFFSET_POINTER_9][SYSTEM_MEMORY_OFFSET_461];
       if (ppsystem_double_pointer_stack_long != (long long ****)0x0) {
         (*(code *)(*ppsystem_double_pointer_stack_long)[5])();
       }
@@ -5704,7 +5704,7 @@ long long process_memory_with_system_thread_operation_flags(unsigned long long h
           system_char_variable = *(char *)(reg_rcx[SYSTEM_OFFSET_THREAD_MANAGER] + 2) != '\0';
         }
         else {
-          system_char_variable = (*(code *)system_thread_manager_ptr[0xd])();
+          system_char_variable = (*(code *)system_thread_manager_ptr[SYSTEM_MEMORY_OFFSET_D])();
         }
         system_buffer_allocation_result = system_global_data_pointer_variable;
         if (system_char_variable != SYSTEM_ZERO_VALUE) break;
@@ -5751,7 +5751,7 @@ long long process_memory_with_system_thread_operation_flags(unsigned long long h
         system_thread_result_status = (*(int *)(reg_rcx + SYSTEM_FUNCTION_OFFSET_REGISTER_A3A) - 1U >> 0xc) + 1;
       }
       if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
-        memcpy(pppppsystem_initialization_result7[1], reg_rcx[0xa3b], path_buffer_size_000);
+        memcpy(pppppsystem_initialization_result7[1], reg_rcx[SYSTEM_MEMORY_OFFSET_A3B], path_buffer_size_000);
       }
       system_initialization_result0 = *(long long *)(*(long long *)(system_alternative_stack_long[0] + SYSTEM_OFFSET_MODULE_DATA_3580) + SYSTEM_POINTER_OFFSET_118);
       if (system_initialization_result0 != 0) {
@@ -12213,7 +12213,7 @@ long long process_context_handle_param(long long *handle_param)
       system_float_variable = system_operation_parameter * *(float *)(system_string_length_counter + SYSTEM_FLOAT_ARRAY_ADDR_2);
       system_float_variable = system_operation_parameter * *(float *)(system_string_length_counter + SYSTEM_FLOAT_ARRAY_ADDR_3);
       system_float_variable = system_float_variable * *mutex_attr + system_float_variable * mutex_attr[4] + system_float_variable * mutex_attr[8] + mutex_attr[0xc];
-      system_float_variable = system_float_variable * mutex_attr[SYSTEM_ARRAY_INDEX_1] + system_float_variable * mutex_attr[5] + system_float_variable * mutex_attr[9] + mutex_attr[0xd];
+      system_float_variable = system_float_variable * mutex_attr[SYSTEM_ARRAY_INDEX_1] + system_float_variable * mutex_attr[5] + system_float_variable * mutex_attr[9] + mutex_attr[SYSTEM_MEMORY_OFFSET_D];
       system_float_variable = system_float_variable * mutex_attr[SYSTEM_ARRAY_INDEX_2] + system_float_variable * mutex_attr[6] + system_float_variable * mutex_attr[10] + mutex_attr[0xe];
       system_float_variable = system_float_variable * mutex_attr[3] + system_float_variable * mutex_attr[7] + system_float_variable * mutex_attr[0xb] + mutex_attr[0xf];
       *(float *)((long long)afStack_2e8 + system_string_length_counter) = system_float_variable;
@@ -12250,7 +12250,7 @@ long long process_context_handle_param(long long *handle_param)
       system_string_length_counter = system_string_length_counter + SYSTEM_DECREMENT_VALUE_1;
     } while (system_string_length_counter != 0);
     system_float_variable = mutex_attr[0xe];
-    system_float_variable = mutex_attr[0xd];
+    system_float_variable = mutex_attr[SYSTEM_MEMORY_OFFSET_D];
     system_float_variable = mutex_attr[0xc];
     system_float_variable = mutex_attr[9];
     system_float_variable = mutex_attr[8];
