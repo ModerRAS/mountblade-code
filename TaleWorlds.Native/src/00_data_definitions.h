@@ -9,7 +9,7 @@
 #define RESOURCE_TYPE_SHADER 15
 #define RESOURCE_TYPE_AUDIO 12
 
-// 新增常量定义
+// 资源类型常量定义
 #define RESOURCE_TYPE_FONT 12
 #define RESOURCE_TYPE_MODEL 28
 #define RESOURCE_TYPE_ANIMATION 19
