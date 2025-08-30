@@ -1110,7 +1110,7 @@ void* g_global_data_180a25a6c;
 // undefined g_function_unlock_memory;
 
 void* g_function_unlock_memory;
-// 数据结构初始化函数 - 原名：FUN_18002c340
+// 数据结构初始化函数 - 原名：InitializeSystemStateManager
 
 void InitializeDataStructure(void)
 
