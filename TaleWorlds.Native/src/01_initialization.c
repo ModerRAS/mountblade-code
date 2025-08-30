@@ -27,14 +27,14 @@
 // - 美化系统初始化中的临时变量名，将system_temp_config_value替换为system_temp_config_value等语义化变量名
 // - 美化系统初始化中的临时变量名，将system_long_result_temp替换为system_long_result_temp等语义化变量名
 // - 美化系统初始化中的临时变量名，将system_temp_integer_result替换为system_temp_integer_result等语义化变量名
-// - 美化系统初始化中的临时变量名，将system_long_result_temp_1-4替换为system_long_result_temp_primary等语义化变量名
+// - 美化系统初始化中的临时变量名，将system_long_result_temp_primary-4替换为system_long_result_temp_primary等语义化变量名
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了系统初始化中剩余临时变量名的语义化替换
 // - 原本实现：完全重构所有临时变量命名体系，建立统一的变量命名规范
 // - 美化系统初始化中的临时变量名，将system_temp_config_value替换为system_temp_config_value等语义化变量名
 // - 美化系统初始化中的临时变量名，将system_long_result_temp替换为system_long_result_temp等语义化变量名
 // - 美化系统初始化中的临时变量名，将system_temp_integer_result替换为system_temp_integer_result等语义化变量名
-// - 美化系统初始化中的临时变量名，将system_long_result_temp_1-4替换为system_long_result_temp_primary等语义化变量名
+// - 美化系统初始化中的临时变量名，将system_long_result_temp_primary-4替换为system_long_result_temp_primary等语义化变量名
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了系统初始化中剩余临时变量名的语义化替换
 // - 原本实现：完全重构所有临时变量命名体系，建立统一的变量命名规范
@@ -471,7 +471,7 @@
 // - 简化实现：仅将InitializeSystemDataNode32函数中常见的包含数字的变量名替换为语义化名称
 
 // 本次美化内容（2025年8月30日）第五批次：
-// - 美化临时变量名，将system_long_result_temp_1-4替换为system_long_result_temp_primary等语义化变量名
+// - 美化临时变量名，将system_long_result_temp_primary-4替换为system_long_result_temp_primary等语义化变量名
 // - 美化临时整数变量名，将system_temp_integer_1-3替换为system_temp_integer_result等语义化变量名
 // - 美化栈变量名，将long_stack_fifty/118替换为long_stack_fifty等语义化变量名
 // - 美化缓冲区大小变量名，将init_stack_buffer_size_username_offset替换为init_stack_buffer_size_username_offset等语义化变量名
@@ -18893,12 +18893,12 @@ int InitializeGameSystem(longlong handleIdentifier,longlong resourceIdentifier)
 
 {
   uint64_t ***ptr_init_system_ptr_temp;
-  longlong system_long_result_temp_1;
+  longlong system_long_result_temp_primary;
   void *system_pointer_value;
-  longlong system_long_result_temp_2;
+  longlong system_long_result_temp_secondary;
   int system_temp_integer;
-  longlong system_long_result_temp_3;
-  longlong system_long_result_temp_4;
+  longlong system_long_result_temp_tertiary;
+  longlong system_long_result_temp_quaternary;
   ulonglong system_result_operation;
   uint64_t ****init_system_quad_ptr_temp;
   uint64_t ***init_stack_quad_ptr;
@@ -61730,9 +61730,9 @@ uint64_t ProcessFunction_system_cleanup(uint64_t handleIdentifier,uint64_t resou
   float system_float_value_3;
   float system_float_value_4;
   float system_float_value_5;
-  longlong system_long_result_temp_1;
-  longlong system_long_result_temp_2;
-  longlong system_long_result_temp_3;
+  longlong system_long_result_temp_primary;
+  longlong system_long_result_temp_secondary;
+  longlong system_long_result_temp_tertiary;
   ulonglong system_result_operation_1;
   ulonglong system_result_operation_2;
   ulonglong system_result_operation_3;
