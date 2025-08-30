@@ -29061,7 +29061,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
             memcpy(system_pointer_chain4[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER],node_root[system_long_value_result * 4 + 1],system_unsigned_integer_result_temp);
           }
           *(uint32_t *)(system_pointer_chain4 + 10) = 0;
-          if (system_pointer_chain4[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != (uint64_t ******)0x0) {
+          if (system_pointer_chain4[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != (uint64_t *******)0x0) {
             *(uint8_t *)(system_unsigned_integer_result_temp + (longlong)system_pointer_chain4[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER]) = 0;
           }
           *(uint32_t *)((longlong)system_pointer_chain4 + SYSTEM_DATA_OFFSET_5C) =
@@ -29210,7 +29210,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
           PrepareSystemBuffer(&system_buffer_ptr_330,system_unsigned_integer_result_temp);
           uintStack_268 = &globalSystemPointerData;
           system_pointer_root = (uint64_t ******)&g_system_data_variable3;
-          if (system_pointer_chain4[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != (uint64_t ******)0x0) {
+          if (system_pointer_chain4[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != (uint64_t *******)0x0) {
             system_pointer_root = system_pointer_chain4[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
           }
           UpdateSystemBuffer(&system_buffer_ptr_texture_pool,system_pointer_root);
