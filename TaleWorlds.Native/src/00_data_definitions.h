@@ -1669,26 +1669,26 @@ extern char system_thread_operation_flags_primary;                        // 系
 extern char system_thread_operation_flags_secondary;                      // 系统线程操作标志次缓冲区
 extern char system_control_flag_buffer;                                   // 系统控制标志缓冲区
 extern char system_initialization_flag_buffer;                            // 系统初始化标志缓冲区
-extern char character_scan_buffer;
-extern char system_string_buffer_secondary;
-extern char system_config_buffer_secondary;
-extern char psystem_thread_operation_flags;
-extern char module_handle_buffer;
-extern char system_data_flag_buffer;
-extern char system_flag_buffer;
-extern char module_finalizer_buffer;
-extern char system_data_buffer_secondary;
-extern char system_flag_buffer_primary;
-extern char system_return_buffer;
-extern char system_flag_buffer_secondary;
-extern char system_flag_buffer_ternary;
-extern char system_flag_buffer_quaternary;
-extern char system_flag_buffer_operation_control;
-extern char system_flag_buffer_module_status;
-extern char system_flag_buffer_thread_state;
-extern char system_flag_buffer_memory_pool;
-extern char system_system_thread_data_buffer_global_encoding;
-extern char system_data_buffer_pointer;
+extern char character_encoding_scan_buffer;                             // 字符编码扫描缓冲区
+extern char system_string_secondary_buffer;                              // 系统字符串次缓冲区
+extern char system_configuration_secondary_buffer;                        // 系统配置次缓冲区
+extern char system_thread_operation_flags_pointer;                         // 系统线程操作标志指针
+extern char module_handle_manager_buffer;                                // 模块句柄管理器缓冲区
+extern char system_data_flags_buffer;                                    // 系统数据标志缓冲区
+extern char system_global_flag_buffer;                                    // 系统全局标志缓冲区
+extern char module_cleanup_finalizer_buffer;                             // 模块清理终结器缓冲区
+extern char system_data_secondary_buffer;                                 // 系统数据次缓冲区
+extern char system_flag_primary_buffer;                                   // 系统标志主缓冲区
+extern char system_function_return_buffer;                               // 系统函数返回缓冲区
+extern char system_flag_secondary_buffer;                                 // 系统标志次缓冲区
+extern char system_flag_ternary_buffer;                                   // 系统标志第三缓冲区
+extern char system_flag_quaternary_buffer;                                // 系统标志第四缓冲区
+extern char system_operation_control_flag_buffer;                         // 系统操作控制标志缓冲区
+extern char system_module_status_flag_buffer;                             // 系统模块状态标志缓冲区
+extern char system_thread_state_flag_buffer;                              // 系统线程状态标志缓冲区
+extern char system_memory_pool_flag_buffer;                              // 系统内存池标志缓冲区
+extern char system_thread_data_global_encoding_buffer;                     // 系统线程数据全局编码缓冲区
+extern char system_data_buffer_pointer;                                   // 系统数据缓冲区指针
 extern char system_flag_buffer_network_config;
 extern char system_flag_buffer_render_context;
 extern char system_flag_buffer_input_handler;
