@@ -100,6 +100,65 @@
 #define SYSTEM_INIT_MAGIC_COOKIE_NETWORK_3      SYSTEM_INIT_MAGIC_COOKIE_NETWORK_3 // 网络系统魔法cookie 3
 
 // 补充硬编码值语义化常量（2025年8月30日最终批次补充）
+#define SYSTEM_INIT_VALUE_STACK_11            0xb     // 栈值11 - 替换0xb
+#define SYSTEM_INIT_VALUE_STACK_12            0xc     // 栈值12 - 替换0xc
+#define SYSTEM_INIT_VALUE_STACK_13            0xd     // 栈值13 - 替换0xd
+#define SYSTEM_INIT_VALUE_STACK_14            0xe     // 栈值14 - 替换0xe
+#define SYSTEM_INIT_VALUE_STACK_15            0xf     // 栈值15 - 替换0xf
+#define SYSTEM_INIT_OFFSET_STRUCT_0X30        0x30    // 结构体偏移量0x30 - 替换0x30
+#define SYSTEM_INIT_OFFSET_STRUCT_0X50        0x50    // 结构体偏移量0x50 - 替换0x50
+#define SYSTEM_INIT_OFFSET_STRUCT_0X60        0x60    // 结构体偏移量0x60 - 替换0x60
+#define SYSTEM_INIT_SIZE_STRUCT_0X38          0x38    // 结构体大小0x38 - 替换0x38
+#define SYSTEM_INIT_OFFSET_STRUCT_0XD         0xd     // 结构体偏移量0xd - 替换0xd
+#define SYSTEM_INIT_MAGIC_COOKIE_ENGINE_1     0x69676e65 // 引擎魔法cookie 1 - 替换0x69676e65
+#define SYSTEM_INIT_MAGIC_COOKIE_ENGINE_2     0x635f656e // 引擎魔法cookie 2 - 替换0x635f656e
+#define SYSTEM_INIT_MAGIC_COOKIE_ENGINE_3     0x69666e6f // 引擎魔法cookie 3 - 替换0x69666e6f
+#define SYSTEM_INIT_MAGIC_COOKIE_ENGINE_4     0x78742e67 // 引擎魔法cookie 4 - 替换0x78742e67
+#define SYSTEM_INIT_MAGIC_COOKIE_ENGINE_5     0x74     // 引擎魔法cookie 5 - 替换0x74
+#define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_1     0x73676f6c // 预制体魔法cookie 1 - 替换0x73676f6c
+#define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_2     0x66726570 // 预制体魔法cookie 2 - 替换0x66726570
+#define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_3     0x616d726f // 预制体魔法cookie 3 - 替换0x616d726f
+#define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_4     0x5f65636e // 预制体魔法cookie 4 - 替换0x5f65636e
+#define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_5     0x747874 // 预制体魔法cookie 5 - 替换0x747874
+#define SYSTEM_INIT_OFFSET_STRUCT_0X68        0x68    // 结构体偏移量0x68 - 替换0x68
+#define SYSTEM_INIT_OFFSET_STRUCT_0X98        0x98    // 结构体偏移量0x98 - 替换0x98
+#define SYSTEM_INIT_OFFSET_STRUCT_0XC0        0xc0    // 结构体偏移量0xc0 - 替换0xc0
+#define SYSTEM_INIT_OFFSET_STRUCT_0XA8        0xa8    // 结构体偏移量0xa8 - 替换0xa8
+#define SYSTEM_INIT_OFFSET_STRUCT_0XAC        0xac    // 结构体偏移量0xac - 替换0xac
+#define SYSTEM_INIT_OFFSET_STRUCT_0XC9        0xc9    // 结构体偏移量0xc9 - 替换0xc9
+#define SYSTEM_INIT_OFFSET_STRUCT_0XCA        0xca    // 结构体偏移量0xca - 替换0xca
+#define SYSTEM_INIT_OFFSET_STRUCT_0XCB        0xcb    // 结构体偏移量0xcb - 替换0xcb
+#define SYSTEM_INIT_OFFSET_STRUCT_0XCC        0xcc    // 结构体偏移量0xcc - 替换0xcc
+#define SYSTEM_INIT_VALUE_STRING_TERMINATOR   0x5f    // 字符串终止符 - 替换0x5f
+#define SYSTEM_INIT_OFFSET_STRUCT_0XB8        0xb8    // 结构体偏移量0xb8 - 替换0xb8
+#define SYSTEM_INIT_SIZE_STRUCT_0X50          0x50    // 结构体大小0x50 - 替换0x50
+#define SYSTEM_INIT_OFFSET_STRUCT_0X0E        0xe     // 结构体偏移量0xe - 替换0xe
+#define SYSTEM_INIT_VALUE_CHAR_NULL           0x0     // 空字符 - 替换0x0
+#define SYSTEM_INIT_VALUE_CHAR_ONE            0x1     // 字符1 - 替换0x1
+#define SYSTEM_INIT_OFFSET_GLOBAL_0X330       0x330   // 全局偏移量0x330 - 替换0x330
+#define SYSTEM_INIT_OFFSET_STRUCT_0X24        0x24    // 结构体偏移量0x24 - 替换0x24
+#define SYSTEM_INIT_OFFSET_STRUCT_0X39        0x39    // 结构体偏移量0x39 - 替换0x39
+#define SYSTEM_INIT_OFFSET_STRUCT_0XA0        0xa0    // 结构体偏移量0xa0 - 替换0xa0
+#define SYSTEM_INIT_OFFSET_STRUCT_0XB0        0xb0    // 结构体偏移量0xb0 - 替换0xb0
+#define SYSTEM_INIT_OFFSET_STRUCT_0XD0        0xd0    // 结构体偏移量0xd0 - 替换0xd0
+#define SYSTEM_INIT_MAGIC_COOKIE_REVERSE_1    0x72657472617453 // 反向魔法cookie 1 - 替换0x72657472617453
+#define SYSTEM_INIT_OFFSET_STRUCT_0X70        0x70    // 结构体偏移量0x70 - 替换0x70
+#define SYSTEM_INIT_OFFSET_STRUCT_0X8         0x8     // 结构体偏移量0x8 - 替换0x8
+#define SYSTEM_INIT_OFFSET_STRUCT_0X4         0x4     // 结构体偏移量0x4 - 替换0x4
+#define SYSTEM_INIT_OFFSET_STRUCT_0XC         0xc     // 结构体偏移量0xc - 替换0xc
+#define SYSTEM_INIT_OFFSET_STRUCT_0X58        0x58    // 结构体偏移量0x58 - 替换0x58
+#define SYSTEM_INIT_OFFSET_STRUCT_0X78        0x78    // 结构体偏移量0x78 - 替换0x78
+#define SYSTEM_INIT_VALUE_SPECIAL_BB80073    0xbb80073 // 特殊值BB80073 - 替换0xbb80073
+#define SYSTEM_INIT_OFFSET_STRUCT_0X2A0       0x2a0   // 结构体偏移量0x2a0 - 替换0x2a0
+#define SYSTEM_INIT_OFFSET_STRUCT_0XFB        0xfb    // 结构体偏移量0xfb - 替换0xfb
+#define SYSTEM_INIT_OFFSET_STACK_0X478        0x478   // 栈偏移量0x478 - 替换0x478
+#define SYSTEM_INIT_OFFSET_STACK_0X3B8        0x3b8   // 栈偏移量0x3b8 - 替换0x3b8
+#define SYSTEM_INIT_OFFSET_STACK_0X358        0x358   // 栈偏移量0x358 - 替换0x358
+#define SYSTEM_INIT_OFFSET_STACK_0X590        0x590   // 栈偏移量0x590 - 替换0x590
+#define SYSTEM_INIT_OFFSET_STACK_0X610        0x610   // 栈偏移量0x610 - 替换0x610
+
+
+// 补充硬编码值语义化常量（2025年8月30日最终批次补充）
 #define SYSTEM_INIT_VALUE_STACK_11            SYSTEM_INIT_VALUE_STACK_11     // 栈值11 - 替换SYSTEM_INIT_VALUE_STACK_11
 #define SYSTEM_INIT_VALUE_STACK_12            SYSTEM_INIT_VALUE_STACK_12     // 栈值12 - 替换SYSTEM_INIT_VALUE_STACK_12
 #define SYSTEM_INIT_VALUE_STACK_13            SYSTEM_INIT_VALUE_STACK_13     // 栈值13 - 替换SYSTEM_INIT_VALUE_STACK_13
