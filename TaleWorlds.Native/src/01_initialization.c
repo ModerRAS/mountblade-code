@@ -10,6 +10,20 @@
 // - 美化系统栈变量名，将uintStack_114替换为uint_stack_status_flag等状态标志变量名
 // - 美化系统函数名，将EngineFunction_42_4替换为InitializeEngineCore等引擎初始化函数名
 
+// 最新美化内容（2025年8月30日最终批次续续续续续续续）：
+// - 美化硬编码十六进制偏移量，将+ 0x294替换为+ SYSTEM_RENDER_CONFIG_OFFSET_PRIMARY等渲染配置偏移量常量
+// - 美化硬编码十六进制偏移量，将+ 0x180替换为+ SYSTEM_MEMORY_OFFSET_180等内存偏移量常量
+// - 美化硬编码十六进制偏移量，将+ 0x1e0替换为+ SYSTEM_MEMORY_OFFSET_1E0等内存偏移量常量
+// - 美化硬编码十六进制偏移量，将+ 0x2b0替换为+ SYSTEM_MEMORY_OFFSET_2B0等内存偏移量常量
+// - 美化硬编码十六进制偏移量，将+ 0x370替换为+ SYSTEM_DATA_OFFSET_370等数据偏移量常量
+// - 美化硬编码十六进制偏移量，将+ 0x2c0替换为+ SYSTEM_MEMORY_OFFSET_2C0等内存偏移量常量
+// - 美化硬编码十六进制偏移量，将+ 0x910替换为+ SYSTEM_DATA_OFFSET_910等数据偏移量常量
+// - 添加了大量语义化内存偏移量常量定义，提高代码可读性
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了系统初始化文件中剩余硬编码十六进制偏移量的语义化替换
+// - 原本实现：完全重构系统初始化文件所有硬编码值，建立统一的硬编码值语义化规范
+// - 简化实现：仅将常见的硬编码十六进制偏移量替换为语义化常量名
+
 // 新增语义化常量 - 美化硬编码十六进制值（2025年8月30日最终批次）
 #define SYSTEM_RENDER_CONFIG_OFFSET_PRIMARY 0x294
 #define SYSTEM_RENDER_CONFIG_OFFSET_SECONDARY 0x298
