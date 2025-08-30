@@ -5502,7 +5502,7 @@ section_processing_jump_label_:
   *(uint *)(system_global_data_pointer + SYSTEM_OFFSET_THREAD_CONFIG) = system_global_data_pointer;
   system_global_data_pointer = system_global_data_pointer + 1 & SYSTEM_POINTER_OFFSET0000001;
   if ((int)system_global_data_pointer < 0) {
-    system_global_data_pointer = (system_global_data_pointer - 1 | 0xfffffffe) + 1;
+    system_global_data_pointer = (system_global_data_pointer - 1 | SYSTEM_BIT_MASK_ADDRESS_ALIGN) + 1;
   }
   string_input_pointer = (unsigned long long *)*system_global_data_pointer;
   thread_result_status = _Mtx_lock(ADDR_MAIN_MUTEX);
@@ -5955,7 +5955,7 @@ long long process_memory_with_thread_operation_flags(unsigned long long handle_p
     }
     buffer_allocation_result = *(int *)(reg_rcx + 0xa39) + 1U & SYSTEM_POINTER_OFFSET0000001;
     if ((int)buffer_allocation_result < 0) {
-      buffer_allocation_result = (buffer_allocation_result - 1 | 0xfffffffe) + 1;
+      buffer_allocation_result = (buffer_allocation_result - 1 | SYSTEM_BIT_MASK_ADDRESS_ALIGN) + 1;
     }
     *(uint *)(reg_rcx + 0xa39) = buffer_allocation_result;
   }
