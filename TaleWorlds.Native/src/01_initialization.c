@@ -41232,9 +41232,9 @@ void HandleSystemOperation76(void)
                     // WARNING: Subroutine does not return
   ProcessSystemOperation();
 }
-// void SystemFunction_85_5(void)
+// void InitializeSystemModule85(void)
 
-void SystemFunction_85_5(void)
+void InitializeSystemModule85(void)
 
 {
   int *ptr_int_var;
