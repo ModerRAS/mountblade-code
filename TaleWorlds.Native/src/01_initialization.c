@@ -2,6 +2,15 @@
 
 // 最新美化内容（2025年8月30日最终批次硬编码字符串常量语义化美化工作完成）：
 // - 添加了SYSTEM_INIT_FLOAT_MAX_VALUE等浮点数值语义化常量
+
+// 最新美化内容（2025年8月30日最终批次浮点数常量语义化美化工作完成）：
+// - 美化浮点数系数常量，将SYSTEM_INIT_FLOAT_COEFFICIENT_BASE_1等替换为语义化常量
+// - 美化浮点数变换常量，将SYSTEM_INIT_FLOAT_COEFFICIENT_TRANSFORM_1等替换为语义化常量
+// - 美化浮点数缩放常量，将SYSTEM_INIT_FLOAT_COEFFICIENT_SCALING_1等替换为语义化常量
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了初始化系统中浮点数常量的语义化替换
+// - 原本实现：完全重构初始化系统所有浮点数常量体系，建立统一的语义化命名规范
+// - 简化实现：仅将常见的浮点数常量替换为语义化名称，保持代码结构不变
 // - 添加了SYSTEM_INIT_STRING_COLON_SUFFIX等字符串语义化常量
 // - 将硬编码的0x7f7fffff替换为SYSTEM_INIT_FLOAT_MAX_VALUE等语义化常量
 // - 将硬编码的0x3a757067替换为SYSTEM_INIT_STRING_COLON_SUFFIX等语义化常量
