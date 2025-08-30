@@ -55612,7 +55612,7 @@ INIT_LABEL_SYSTEM_7a5ac:
           system_result_operation = system_buffer_ptr_temp_buffer[(longlong)pintStack_1f0];
           if (system_flag_status == SYSTEM_COMPARISON_ZERO) {
             do {
-              if (flag_initialized == -1) {
+              if (system_init_status_flag == -1) {
                 system_long_result_temp = (longlong)*(int *)(system_init_stack_buffer_size + system_long_result * SYSTEM_OFFSET_4) * 0x5c +
                          *(longlong *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_68);
                 system_result_operation = ((uint64_t *)(system_long_result + *system_memory_pointer))[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
@@ -55903,7 +55903,7 @@ INIT_LABEL_SYSTEM_7ac04:
             system_pointer_value = (uint64_t *)(system_long_result + SYSTEM_OFFSET_4 + system_long_result * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER);
             system_result_operation = *system_pointer_value;
             system_result_operation = system_pointer_temp[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-            if (flag_initialized == -1) {
+            if (system_init_status_flag == -1) {
               system_pointer_value = (uint64_t *)(*(longlong *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_68) + SYSTEM_OFFSET_4 + system_long_result);
               *system_pointer_value = system_integer_unsigned_temp;
               system_pointer_temp[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = system_integer_unsigned_temp;
@@ -55943,7 +55943,7 @@ INIT_LABEL_SYSTEM_7ac04:
             system_pointer_value = (uint64_t *)(system_long_result + SYSTEM_OFFSET_4 + system_long_result * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER);
             system_result_operation = *system_pointer_value;
             system_result_operation = system_pointer_temp[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-            if (flag_initialized == -1) {
+            if (system_init_status_flag == -1) {
               system_pointer_value = (uint64_t *)(*(longlong *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_68) + SYSTEM_OFFSET_4 + system_long_result);
               *system_pointer_value = system_integer_unsigned_temp;
               system_pointer_temp[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = system_integer_unsigned_temp;
@@ -55982,7 +55982,7 @@ INIT_LABEL_SYSTEM_7ac04:
             }
             system_long_result_temp = *(longlong *)(pintStack_218 + system_long_result * SYSTEM_OFFSET_8);
             system_float_union = *(uint8_t (*) [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER])(system_long_result + SYSTEM_OFFSET_4 + system_long_result * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER);
-            if (flag_initialized == -1) {
+            if (system_init_status_flag == -1) {
               *(uint8_t (*) [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER])(system_long_result + SYSTEM_OFFSET_4 + *(longlong *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_68)) = system_float_union;
               system_pointer_value = (uint64_t *)(system_long_result + SYSTEM_OFFSET_4 + system_long_result * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER);
               system_result_operation = system_pointer_temp[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
@@ -56005,7 +56005,7 @@ INIT_LABEL_SYSTEM_7ac04:
       }
       initialize_system_data_node_thirty_one(&pintStack_218);
       system_init_status_flag = flag_initialized + 1;
-      if ((longlong)uintStack_1d8 <= (longlong)flag_initialized) {
+      if ((longlong)uintStack_1d8 <= (longlong)system_init_status_flag) {
         InitializeResourceSystem(system_local_buffer_username);
         if (system_buffer_ptr_temp_buffer != (uint32_t *)SYSTEM_NULL_POINTER) {
                     // WARNING: Subroutine does not return
