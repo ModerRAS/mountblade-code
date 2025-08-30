@@ -286,6 +286,16 @@
 // 新增语义化宏定义 - 替换常用数字常量
 #define UTILITY_MIN_CAPACITY 8
 #define UTILITY_RESOURCE_HANDLE_OFFSET 8
+
+// 新增语义化宏定义 - 替换dataValue变量名
+#define UTILITY_DATA_VALUE_ITERATION_MASK 7
+#define UTILITY_DATA_VALUE_ITERATION utility_data_value_iteration
+
+// 新增语义化宏定义 - 替换其他变量名
+#define UTILITY_LIST_HEAD_OFFSET list_head_offset
+#define UTILITY_BUFFER_SIZE_DATA_OFFSET utility_buffer_size_data_offset
+#define UTILITY_ACCESS_FLAG utility_access_flag
+#define UTILITY_DATA_PROCESS_FUNCTION utility_data_process_function
 #define UTILITY_RESOURCE_INFO_ARRAY_SIZE 2
 #define UTILITY_SECURITY_BUFFER_SIZE_32 32
 #define UTILITY_SECURITY_BUFFER_SIZE_16 16
@@ -19935,7 +19945,7 @@ ulonglong GetIntegrityStatus(void)
   if ((int)validation_flag != 0) {
     return validation_flag;
   }
-  iteration_counter = (dataValue7)(utility_cpu_context >> UTILITY_BYTE_SHIFT_8);
+  iteration_counter = (UTILITY_DATA_VALUE_ITERATION)(utility_cpu_context >> UTILITY_BYTE_SHIFT_8);
   resource_count = 0;
   float_value = float_parameter_zero;
   resource_size_limit_tertiary = resource_count;
@@ -20185,7 +20195,7 @@ ulonglong ValidateIntegrityData(void)
   if ((int)validation_flag != 0) {
     return validation_flag;
   }
-  iteration_counter = (dataValue7)(utility_cpu_context >> UTILITY_BYTE_SHIFT_8);
+  iteration_counter = (UTILITY_DATA_VALUE_ITERATION)(utility_cpu_context >> UTILITY_BYTE_SHIFT_8);
   resource_count = 0;
   float_value = float_parameter_zero;
   resource_size_limit_tertiary = resource_count;
@@ -20390,7 +20400,7 @@ ulonglong ProcessIntegrityRequest(float resource_handle_identifier)
   float utility_xmm0_register_result;
   
   utility_capacity = (int)utility_cpu_context;
-  iteration_counter = (dataValue7)(utility_cpu_context >> UTILITY_BYTE_SHIFT_8);
+  iteration_counter = (UTILITY_DATA_VALUE_ITERATION)(utility_cpu_context >> UTILITY_BYTE_SHIFT_8);
   resource_size_limit_secondary = utility_capacity;
   resource_size_limit_tertiary = utility_cpu_context;
   if (in_CF) {
