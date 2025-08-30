@@ -2383,22 +2383,22 @@ dataValue g_ai_behavior_work_buffer;                // AI行为工作缓冲区
 dataValue g_ai_behavior_work_offset;                // AI行为工作偏移量
 dataValue g_ai_behavior_work_size;                  // AI行为工作大小
 dataValue g_ai_behavior_work_flags;                 // AI行为工作标志
-dataValue g_aiBehaviorReserved;
-dataValue g_ai_behavior_tree;
-dataValue g_aiDecisionWorkBuffer;
-dataValue g_ai_pathfinding_data;
-dataValue g_aiDecisionTempOffset;
-dataValue aiDecisionMaking;
-dataValue g_aiDecisionTempSize;
-dataValue aiStateVariables;
-dataValue g_aiDecisionTempFlags;
-dataValue resourceLoadingQueue;
-dataValue g_resourceWorkBuffer;
-dataValue resourceCacheManager;
-dataValue g_resourceTempOffset;
-dataValue resourceMemoryPool;
-dataValue g_resourceTempSize;
-dataValue referenceCountTable;
+dataValue g_ai_behavior_reserved;                    // AI行为保留数据
+dataValue g_ai_behavior_tree;                        // AI行为树
+dataValue g_ai_decision_work_buffer;                // AI决策工作缓冲区
+dataValue g_ai_pathfinding_data;                     // AI寻路数据
+dataValue g_ai_decision_temp_offset;                 // AI决策临时偏移量
+dataValue g_ai_decision_making;                      // AI决策制定
+dataValue g_ai_decision_temp_size;                   // AI决策临时大小
+dataValue g_ai_state_variables;                      // AI状态变量
+dataValue g_ai_decision_temp_flags;                  // AI决策临时标志
+dataValue g_resource_loading_queue;                  // 资源加载队列
+dataValue g_resource_work_buffer;                    // 资源工作缓冲区
+dataValue g_resource_cache_manager;                  // 资源缓存管理器
+dataValue g_resource_temp_offset;                    // 资源临时偏移量
+dataValue g_resource_memory_pool;                    // 资源内存池
+dataValue g_resource_temp_size;                      // 资源临时大小
+dataValue g_reference_count_table;                    // 引用计数表
 dataValue g_resourceTempFlags;
 dataValue resourceGarbageCollector;
 dataValue g_resource_reserved_memory;

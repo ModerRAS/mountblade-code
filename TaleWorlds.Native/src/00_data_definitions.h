@@ -157,6 +157,14 @@
 
 // 本次美化内容：
 
+// 新增美化内容：将硬编码十六进制常量替换为语义化宏定义
+// - 添加了SYSTEM_THREAD_LOCAL_STORAGE_OFFSET（线程本地存储偏移量）常量定义
+// - 添加了SYSTEM_STRING_BUFFER_BASE_ADDR（字符串缓冲区基地址）常量定义
+// - 将代码中的0x48硬编码偏移量替换为SYSTEM_THREAD_LOCAL_STORAGE_OFFSET
+// - 将代码中的0x180bf4000硬编码地址替换为SYSTEM_STRING_BUFFER_BASE_ADDR
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了硬编码十六进制常量的语义化替换
+
 // 新增美化内容：将变量名替换为语义化名称
 // - 将global_data_ptr替换为system_global_data_pointer等全局数据指针变量名
 // - 将resource_template_ptr替换为system_resource_template_pointer等资源模板指针变量名
