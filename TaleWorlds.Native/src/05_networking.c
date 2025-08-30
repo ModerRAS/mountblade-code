@@ -1955,10 +1955,14 @@ void* g_network_connection_pool_initializer;
 void* g_network_connection_pool_finalizer;
 // 网络连接池验证器对象 - 负责连接池的验证
 void* g_network_connection_pool_validator;
-void* g_networkConnectionPoolCleanerObject;
-void* g_networkConnectionPoolResizerObject;
-void* g_networkConnectionPoolIteratorObject;
-void* g_networkConnectionPoolAccessorObject;
+// 网络连接池清理器对象 - 负责连接池的清理
+void* g_network_connection_pool_cleaner;
+// 网络连接池调整器对象 - 负责连接池大小的调整
+void* g_network_connection_pool_resizer;
+// 网络连接池迭代器对象 - 用于遍历连接池
+void* g_network_connection_pool_iterator;
+// 网络连接池访问器对象 - 用于访问连接池元素
+void* g_network_connection_pool_accessor;
 void* g_networkConnectionPoolModifierObject;
 void* g_networkConnectionPoolSearcherObject;
 void* g_networkConnectionPoolFinderObject;
@@ -10483,9 +10487,9 @@ void NetworkProcessQueueItem(int64_t network_socket_handle, uint64_t *network_bu
     int32_t network_operation_status_code_third_timeout_value;
   int64_t *network_timeout_config_pointer;
   int64_t *network_timeout_config_secondary_ptr;
-  int32_t network_operation_status0;
+  int32_t network_operation_status_primary;
   int64_t *socket_descriptor_var_secondary;
-  int32_t *pnetwork_operation_status2;
+  int32_t *network_operation_status_secondary_ptr;
   int64_t *socket_descriptor_var_secondary3;
   int32_t network_operation_status4;
   uint8_t network_stack_main_data_buffer [32];
