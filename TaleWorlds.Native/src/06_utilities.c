@@ -12522,7 +12522,7 @@ ulonglong processsystemrequest(longlong utility_resource_primary_handle,uint64 *
   utility_temp_cache_register = utility_iter_ptr[utility_array_index_increment];
   utility_temp_cache_register = utility_iter_ptr[utility_array_index_data_size];
   utility_temp_cache_register = utility_iter_ptr UTILITY_SIZE_MULTIPLIER_TRIPLE;
-  utility_loop_counter_primary = createresourcebuffer(utility_primary_resource_cache,utility_process_buffer,utility_array_index_zero,UTILITY_RESOURCE_PROP_OFFSET_C525443);
+  utility_loop_counter_primary = createresourcebuffer(utility_primary_resource_cache,utility_process_buffer,utility_array_index_zero,UTILITY_RESOURCE_PROP_OFFSET_EXTENDED_PRIMARY);
   if ((((int)utility_loop_counter_primary == utility_zero) && (utility_loop_counter_primary = assessutilityquality(utility_primary_resource_cache,utility_resource_primary_handle + utility_resource_primary_handle_data_offset), (int)utility_loop_counter_primary == utility_zero)) &&
      (utility_loop_counter_primary = assessutilityquality(utility_primary_resource_cache,utility_resource_primary_handle + utility_pointer_data_offset_extended_extended_extended), (int)utility_loop_counter_primary == utility_zero)) {
     utility_system_status_value = utility_offset_flag_byte;
@@ -12679,7 +12679,7 @@ void buildutilitycomponent(longlong utility_resource_primary_handle,uint64 utili
 {
   int utility_operation_status_result;
   byte utility_local_security_buffer [utility_structure_size_medium];
-  utility_operation_status_result = createresourcebuffer(utility_primary_resource_cache,utility_process_buffer,utility_array_index_zero,UTILITY_RESOURCE_PROP_OFFSET_F525443);
+  utility_operation_status_result = createresourcebuffer(utility_primary_resource_cache,utility_process_buffer,utility_array_index_zero,UTILITY_RESOURCE_PROP_OFFSET_EXTENDED_SECONDARY);
   if (utility_operation_status_result == utility_zero) {
     utility_operation_status_result = initializesystemcomponent(utility_primary_resource_cache,utility_resource_primary_handle + utility_pointer_size_offset);
     if (utility_operation_status_result == utility_zero) {
@@ -14168,7 +14168,7 @@ ulonglong initializedatavalidator(longlong utility_resource_primary_handle,uint6
   uint32 utility_temp_iteration_counter;
   byte utility_local_security_buffer [utility_structure_size_medium];
   byte utility_local_security_buffer [utility_structure_size_medium];
-  utility_system_flags_variable = createresourcebuffer(utility_primary_resource_cache,utility_process_buffer,utility_array_index_increment,UTILITY_RESOURCE_PROP_OFFSET_F4C4D50);
+  utility_system_flags_variable = createresourcebuffer(utility_primary_resource_cache,utility_process_buffer,utility_array_index_increment,UTILITY_RESOURCE_PROP_OFFSET_EXTENDED_SEPTENARY);
   if ((int)utility_system_flags_variable != utility_zero) {
     return utility_system_flags_variable;
   }
@@ -15100,7 +15100,7 @@ ulonglong processintegritycheck(longlong utility_resource_primary_handle,longlon
   byte utility_encryption_data [utility_encryption_data_size_standard];
   ulonglong utility_validation_status;
   utility_validation_status = utility_integer_one;
-  utility_loop_counter_primary = createresourcebuffer(utility_primary_resource_cache,utility_process_buffer,utility_array_index_increment,UTILITY_RESOURCE_OP_OFFSET_D524150);
+  utility_loop_counter_primary = createresourcebuffer(utility_primary_resource_cache,utility_process_buffer,utility_array_index_increment,UTILITY_RESOURCE_OP_OFFSET_EXTENDED_PRIMARY);
   if ((int)utility_loop_counter_primary != utility_zero) {
     return utility_loop_counter_primary;
   }
@@ -19715,7 +19715,7 @@ uint64 utility_initialize_integrity_operator(longlong utility_resource_primary_h
   byte utility_local_security_buffer [utility_structure_size_medium];
   utility_operation_status_result = utility_validate_operation_handle_secondary(utility_primary_resource_cache,utility_process_buffer,utility_array_index_increment,utility_resource_signature_tsil,utility_resource_property_offset_quinary_large_primary);
   if (((int)utility_operation_status_result == utility_zero) &&
-     (utility_operation_status_result = utility_validate_operation_handle_secondary(utility_primary_resource_cache,utility_process_buffer,utility_array_index_zero,UTILITY_RESOURCE_PROPERTY_OFFSET_QUINARY_464542,utility_array_index_zero), (int)utility_operation_status_result == utility_zero)) {
+     (utility_operation_status_result = utility_validate_operation_handle_secondary(utility_primary_resource_cache,utility_process_buffer,utility_array_index_zero,UTILITY_RESOURCE_PROP_OFFSET_EXTENDED_TERTIARY,utility_array_index_zero), (int)utility_operation_status_result == utility_zero)) {
     if (*(int *)(utility_resource_buffer_handle[utility_array_index_increment] + utility_resource_offset_standard_primary) == utility_zero) {
       utility_operation_status_result = discoverutilitycomponents(*memory_block_size,utility_resource_primary_handle + utility_resource_primary_handle_data_offset);
       if (((int)utility_operation_status_result == utility_zero) &&
@@ -20174,7 +20174,7 @@ ulonglong initializetaskoperator(longlong utility_resource_primary_handle,longlo
   utility_temp_cache_register = utility_generic_data_pointer[utility_array_index_increment];
   utility_temp_cache_register = utility_generic_data_pointer[utility_array_index_data_size];
   utility_temp_cache_register = utility_generic_data_pointer[UTILITY_SIZE_MULTIPLIER_TRIPLE];
-  utility_system_status_value = utility_validate_operation_handle_secondary(utility_primary_resource_cache,utility_process_buffer,utility_array_index_zero,UTILITY_RESOURCE_PROP_OFFSET_C525443,utility_array_index_zero);
+  utility_system_status_value = utility_validate_operation_handle_secondary(utility_primary_resource_cache,utility_process_buffer,utility_array_index_zero,UTILITY_RESOURCE_PROP_OFFSET_EXTENDED_PRIMARY,utility_array_index_zero);
   if ((int)utility_system_status_value != utility_zero) {
     return utility_system_status_value;
   }
