@@ -23434,10 +23434,10 @@ void ConfigureGraphicsShader(void)
     }
   }
   else {
-    system_float_value = 0.2;
+    system_float_value = SYSTEM_FLOAT_VALUE_POINT_TWO;
   }
   *(float *)(system_long_result + SYSTEM_OFFSET_234) = system_float_value;
-  system_float_value = 0.2;
+  system_float_value = SYSTEM_FLOAT_VALUE_POINT_TWO;
   if ((0.2 <= system_float_result_value) && (system_float_value = system_float_result_value, 1.0 <= system_float_result_value)) {
     system_float_value = SYSTEM_FLOAT_VALUE_ONE;
   }
@@ -24883,7 +24883,7 @@ void initialize_system_module_forty_three(longlong *handleIdentifier,uint64_t re
     }
   }
   else {
-    system_float_value = 0.2;
+    system_float_value = SYSTEM_FLOAT_VALUE_POINT_TWO;
   }
   *(float *)(system_long_result + SYSTEM_OFFSET_234) = system_float_value;
   if (SYSTEM_FLOAT_VALUE_POINT_TWO <= system_float_result_value) {
