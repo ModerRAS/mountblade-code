@@ -14119,7 +14119,7 @@ int initialize_system_module_twenty_one(void)
 
   InitializeEngineCore();
   system_long_result_temp = execute_system_init(InitializeCoreSystem);
-  return (system_long_result != SYSTEM_OPERATION_SUCCESS) + SYSTEM_RETURN_VALUE_FAILURE_OFFSET;
+  return (system_long_result_temp != SYSTEM_OPERATION_SUCCESS) + SYSTEM_RETURN_VALUE_FAILURE_OFFSET;
 }
 
 int GetSystemFunctionPointer(void)
@@ -14131,7 +14131,7 @@ int GetSystemFunctionPointer(void)
   system_local_buffer_small[SYSTEM_BUFFER_INDEX_FIRST] = SYSTEM_BOOLEAN_TRUE;
   ConfigureSystemBuffers(&g_system_string_buffer,system_local_buffer_small);
   system_long_result_temp = execute_system_init(InitializeMemoryManager);
-  return (system_long_result != SYSTEM_OPERATION_SUCCESS) + SYSTEM_RETURN_VALUE_FAILURE_OFFSET;
+  return (system_long_result_temp != SYSTEM_OPERATION_SUCCESS) + SYSTEM_RETURN_VALUE_FAILURE_OFFSET;
 }
 
 int InitializeUISystem(void)
@@ -14143,7 +14143,7 @@ int InitializeUISystem(void)
   system_local_buffer_small[SYSTEM_BUFFER_INDEX_FIRST] = SYSTEM_BOOLEAN_FALSE;
   ConfigureSystemBuffers(&g_system_string_buffer,system_local_buffer_small);
   system_long_result_temp = execute_system_init(InitializeProcessManager);
-  return (system_long_result != SYSTEM_OPERATION_SUCCESS) + SYSTEM_RETURN_VALUE_FAILURE_OFFSET;
+  return (system_long_result_temp != SYSTEM_OPERATION_SUCCESS) + SYSTEM_RETURN_VALUE_FAILURE_OFFSET;
 }
 
 int InitializeSystemModule_audio_processing(void)
@@ -14152,7 +14152,7 @@ int InitializeSystemModule_audio_processing(void)
   longlong system_long_result_temp;
 
   system_long_result_temp = execute_system_init(InitializeThreadManager);
-  return (system_long_result != SYSTEM_OPERATION_SUCCESS) + SYSTEM_RETURN_VALUE_FAILURE_OFFSET;
+  return (system_long_result_temp != SYSTEM_OPERATION_SUCCESS) + SYSTEM_RETURN_VALUE_FAILURE_OFFSET;
 }
 
 int initialize_system_module_eighteen(void)
@@ -14162,7 +14162,7 @@ int initialize_system_module_eighteen(void)
 
   InitializeAudioSystem(AUDIO_SYSTEM_INIT_ADDR);
   system_long_result_temp = execute_system_init(InitializeSecurityManager);
-  return (system_long_result != SYSTEM_OPERATION_SUCCESS) + SYSTEM_RETURN_VALUE_FAILURE_OFFSET;
+  return (system_long_result_temp != SYSTEM_OPERATION_SUCCESS) + SYSTEM_RETURN_VALUE_FAILURE_OFFSET;
 }
 // void InitializeAudioDataNode_primary(void)
 
