@@ -200,6 +200,14 @@
 // - 原本实现：完全重构系统初始化参数体系，重新设计所有参数的命名规范
 // - 简化实现：仅将常见的硬编码初始化参数值替换为语义化常量
 
+// 本次美化内容（2025年8月30日）：
+// - 将g_reserved_memory_1替换为g_reserved_memory_primary等保留内存变量名
+// - 将g_reserved_memory_2替换为g_reserved_memory_secondary等保留内存变量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了保留内存变量名的语义化替换
+// - 原本实现：完全重构保留内存变量命名体系
+// - 简化实现：仅将数字后缀的保留内存变量名替换为语义化名称
+
 // 系统临时变量语义化常量
 #define SYSTEM_TEMP_VARIABLE_18 18
 #define SYSTEM_TEMP_VARIABLE_00 0
@@ -3053,11 +3061,11 @@ int InitializeEngineBaseStructures(void)
   // 初始化引擎基础数据结构指针
   g_engine_data_pointer = SYSTEM_NULL_POINTER;
   g_memory_base_address = SYSTEM_NULL_POINTER;
-  g_reserved_memory_1 = SYSTEM_NULL_POINTER;
+  g_reserved_memory_primary = SYSTEM_NULL_POINTER;
   g_render_context_state = ENGINE_STATUS_RENDER_INITIALIZED;
   g_audio_context_state = ENGINE_STATUS_UNINITIALIZED;
   g_system_audio_initialization_flag = SYSTEM_STATUS_UNINITIALIZED;
-  g_reserved_memory_2 = SYSTEM_NULL_POINTER;
+  g_reserved_memory_secondary = SYSTEM_NULL_POINTER;
   g_system_render_initialization_flag = ENGINE_STATUS_RENDER_INITIALIZED;
   g_resource_pool_pointer = &resourcePoolPointer;
   g_resource_pool_size = RESOURCE_POOL_EMPTY;
