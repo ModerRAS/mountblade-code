@@ -2081,7 +2081,7 @@ char system_pool_flag;
 dataValue allocatorControlFlag;
 dataValue system_allocator_data;
 void *ExceptionList;
-dataValue dataValuebaseSchemaData;
+dataValue utility_data_base_schema;
 dataValue allocatorMemoryPool;
 dataValue system_heap_data;
 dataValue allocator_chunk_primary;
