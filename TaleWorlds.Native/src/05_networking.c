@@ -263,17 +263,17 @@
 #define NETWORK_SOCKET_NEG_OFFSET_79 -0x79
 #define NETWORK_SOCKET_NEXT_OFFSET_NEG -0x10
 #define NETWORK_SOCKET_PACKET_SIZE_OFFSET 0x2
-#define NETWORK_SOCKET_PACKET_SIZE_OFFSET NETWORK_SOCKET_STATE_OFFSETc  // Socket packet size offset
+#define NETWORK_SOCKET_PACKET_SIZE_OFFSET NETWORK_SOCKET_STATE_OFFSETc  // 套接字数据包大小偏移量
 #define NETWORK_SOCKET_PROCESSOR_OFFSET 0x3f0
 #define NETWORK_SOCKET_REGISTER_OFFSET 0xC
 #define NETWORK_SOCKET_REGISTER_OFFSET_EXTENDED NETWORK_LOG_MESSAGE_SIZE_SMALL  // Secondary socket register offset
 #define NETWORK_SOCKET_REGISTER_OFFSET NETWORK_LOG_MESSAGE_SIZE_MEDIUM  // Socket register offset
 #define NETWORK_SOCKET_RETRY_OFFSET 0x9c
 #define NETWORK_SOCKET_SELF_PTR_OFFSET_NEG -NETWORK_CONNECTION_EXTENDED_OFFSET8
-#define NETWORK_SOCKET_SESSION_OFFSET 0x94  // Socket session offset
+#define NETWORK_SOCKET_SESSION_OFFSET 0x94  // 套接字会话偏移量
 #define NETWORK_SOCKET_SESSION_POINTER_OFFSET 0x95
 #define NETWORK_SOCKET_STATE_OFFSET_ALT 0x65
-#define NETWORK_SOCKET_STATE_OFFSET 0x60  // Socket state offset
+#define NETWORK_SOCKET_STATE_OFFSET 0x60  // 套接字状态偏移量
 #define NETWORK_SOCKET_STATUS_FLAG_OFFSET 0x49
 #define NETWORK_SOCKET_STREAM_OFFSET 0x97
 #define NETWORK_SOCKET_TIMEOUT_OFFSET_ALT 0x9b
@@ -307,7 +307,7 @@
 #define NETWORK_BUFFER_PRIMARY_OFFSET 0x590
 #define NETWORK_BUFFER_SECONDARY_OFFSET 0x560
 #define NETWORK_BUFFER_THRESHOLD 0x400
-#define NETWORK_BUFFER_THRESHOLD NETWORK_CONTROL_PACKET_DATA100    // Buffer validation threshold
+#define NETWORK_BUFFER_THRESHOLD NETWORK_CONTROL_PACKET_DATA100    // 缓冲区验证阈值
 #define NETWORK_CHECKSUM_OFFSET_BYTES 0x4
 #define NETWORK_CONFIG_OFFSET_24 0x24
 #define NETWORK_CONFIG_OFFSET NETWORK_MODULE_CONFIG_OFFSET        // Configuration data offset
@@ -5007,9 +5007,9 @@ uint32_t * ConfigureSocketOptions(int64_t network_socket_descriptor,uint32_t *ne
             network_buffer_size_byte_value = network_buffer_ptr;
           *network_buffer_ptr = *network_buffer_size_byte_value;
 network_handle_capacity_validation_label:
-do {
-      if (network_timeout_value_ptr != network_packet_size_ptr) {
-        network_timeout_value_ptr = (uint64_t *)*network_timeout_value_ptr;
+  do {
+    if (network_timeout_value_ptr != network_packet_size_ptr) {
+      network_timeout_value_ptr = (uint64_t *)*network_timeout_value_ptr;
   } while (network_timeout_value_ptr != network_packet_size_ptr);
   for (network_status_code_third = *(uint64_t *)(network_socket_descriptor + SOCKET_HANDLE_OFFSET);
       (*(uint64_t *)(network_socket_descriptor + SOCKET_HANDLE_OFFSET) <= network_status_code_third &&
