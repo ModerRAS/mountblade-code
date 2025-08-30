@@ -116,7 +116,7 @@
 
 // 最新美化内容：
 // - 将栈变量名替换为语义化名称：
-//   * utility_stack_resource_handle_70 -> utility_stack_resource_primary_handle
+//   * utility_stack_resource_primary_handle -> utility_stack_resource_primary_handle
 //   * utility_stack_float_parameter_48 -> utility_stack_float_param_value
 //   * utility_stack_context_uint_68 -> utility_stack_context_primary_uint
 //   * utility_stack_context_uint_34 -> utility_stack_context_secondary_uint
