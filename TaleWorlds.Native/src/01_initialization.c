@@ -607,6 +607,15 @@ void* g_audio_context;
 void InitializeInputSystem;
 void* g_file_system;
 
+// 系统内部变量语义化定义（2025年8月30日最终批次最新完成）
+void* system_internal_physics_world;        // 内部物理世界指针
+void* system_internal_input_manager;        // 内部输入管理器指针
+void* system_internal_ui_system;            // 内部UI系统指针
+void* system_internal_script_engine;        // 内部脚本引擎指针
+void* system_internal_file_system;          // 内部文件系统指针
+void* system_internal_config_data;          // 内部配置数据指针
+void* system_internal_system_initialized;   // 内部系统初始化状态指针
+
 // 函数: void InitializeNetworkSystem;
 void InitializeNetworkSystem;
 void* g_config_data;
@@ -970,33 +979,23 @@ void g_ai_world;
 
 // 函数: void InitializeAISystem;
 void InitializeAISystem;
-void* g_system_context;
-void* g_system_context;
-void* g_system_context;
-void* g_system_context;
-void* g_system_context;
-void* g_system_context;
-char g_system_context;
-char g_system_initialized;
-void* g_system_context;
-void* g_system_context;
-void* g_system_context;
-void* g_system_context;
-void* g_system_context;
-system_uint8_t system_initialization_status;
-void* g_system_context;
-uint8_t system_initialization_status;
-uint8_t system_initialization_status;
-void* g_system_context;
-void* g_system_context;
-void* g_system_context;
-system_uint32_t g_system_context;
-system_uint32_t g_system_context;
-system_uint32_t g_system_context;
-uint8_t system_initialization_status;
-char g_system_initialized;
-void* g_system_context;
-void* g_system_context;
+// 系统上下文和状态变量统一声明（2025年8月30日最终批次美化）
+// 原本实现：完全重构重复变量声明体系，建立统一的语义化命名规范
+// 简化实现：整理重复的变量声明，保持代码结构不变，提高可读性
+void* system_context_primary_array[6];         // 主系统上下文指针数组（替代重复的g_system_context声明）
+char system_context_type;                   // 系统上下文类型（替代重复的char g_system_context声明）
+char system_initialized_flag;                // 系统初始化标志（替代重复的g_system_initialized声明）
+void* system_context_secondary_array[5];     // 次要系统上下文指针数组（替代重复的g_system_context声明）
+// 系统初始化状态和上下文数组（替代重复的声明）
+system_uint8_t system_init_status_primary;    // 主系统初始化状态
+uint8_t system_init_status_secondary_array[2]; // 次要系统初始化状态数组
+void* system_context_tertiary_array[3];      // 第三系统上下文指针数组
+// 系统上下文数据数组（替代重复的system_uint32_t类型声明）
+system_uint32_t system_context_data_array[3];  // 系统上下文数据数组
+// 系统初始化状态和上下文变量（替代重复的声明）
+uint8_t system_init_status_tertiary;         // 第三系统初始化状态
+char system_initialized_secondary;            // 次要系统初始化标志
+void* system_context_quaternary_array[2];    // 第四系统上下文指针数组
 void* g_system_context;
 uint8_t system_initialization_status;
 uint8_t system_initialization_status;
@@ -1677,12 +1676,12 @@ int InitializeSystemCore(void)
 {
   longlong system_allocation_result;
   
-  _g_physics_world = SYSTEM_INIT_VALUE_ZERO;
-  _g_input_manager = SYSTEM_INIT_VALUE_ZERO;
+  system_internal_physics_world = SYSTEM_INIT_VALUE_ZERO;
+  system_internal_input_manager = SYSTEM_INIT_VALUE_ZERO;
   system_memory_address_primary = SYSTEM_INIT_VALUE_ZERO;
-  _g_ui_system = SYSTEM_INIT_VALUE_THREE;
-  _g_script_engine = SYSTEM_INIT_VALUE_ZERO;
-  _g_system_initialized = SYSTEM_INIT_VALUE_ZERO;
+  system_internal_ui_system = SYSTEM_INIT_VALUE_THREE;
+  system_internal_script_engine = SYSTEM_INIT_VALUE_ZERO;
+  system_internal_system_initialized = SYSTEM_INIT_VALUE_ZERO;
   system_memory_address_secondary = SYSTEM_INIT_VALUE_ZERO;
   _g_system_initialized = SYSTEM_INIT_VALUE_THREE;
   _g_system_initialized = &g_system_context;
@@ -51361,22 +51360,22 @@ ulonglong InitializeSystemCore(longlong system_context_param,uint *system_config
   system_uint64_t system_stack_uint_e0;
   system_uint64_t system_stack_uint_d8;
   system_uint64_t system_stack_uint_d0;
-  float fStack_c8;
-  float fStack_c4;
-  float fStack_c0;
-  float fStack_bc;
+  float system_stack_float_matrix_result_0;
+  float system_stack_float_matrix_result_1;
+  float system_stack_float_matrix_result_2;
+  float system_stack_float_matrix_result_3;
   float system_stack_float_bound_max_x;
   float system_stack_float_bound_max_y;
   float system_stack_float_bound_max_z;
-  float fStack_ac;
+  float system_stack_float_matrix_partial_0;
   float system_stack_float_bound_min_x;
   float system_stack_float_bound_min_y;
   float system_stack_float_bound_min_z;
-  float fStack_9c;
-  float fStack_98;
-  float fStack_94;
-  float fStack_90;
-  float fStack_8c;
+  float system_stack_float_matrix_partial_1;
+  float system_stack_float_matrix_final_0;
+  float system_stack_float_matrix_final_1;
+  float system_stack_float_matrix_final_2;
+  float system_stack_float_matrix_final_3;
   
   system_stack_frame_pointer = system_config_param;
   pfStackX_18 = system_memory_param;
@@ -51633,30 +51632,30 @@ LAB_180077879:
       system_coefficient_c = *(float *)(system_context_param + SYSTEM_INIT_FLAG_SECONDARY_ENABLED8);
       system_float_4 = *(float *)(system_context_param + SYSTEM_INIT_FLAG_ENABLED_BASE4);
       system_float_5 = *(float *)(system_context_param + SYSTEM_INIT_FLAG_ENABLED_BASE0);
-      fStack_c8 = system_coefficient_a * system_coefficient_a3 + system_coefficient_b * system_divider + system_coefficient_c * system_coefficient_a7;
-      fStack_c4 = system_coefficient_a * system_coefficient_a4 + system_coefficient_b * system_coefficient_a0 + system_coefficient_c * system_coefficient_a8;
-      fStack_c0 = system_coefficient_a * system_coefficient_a5 + system_coefficient_b * system_coefficient_a1 + system_coefficient_c * system_coefficient_a9;
-      fStack_bc = system_coefficient_a * system_coefficient_a6 + system_coefficient_b * system_coefficient_a2 + system_coefficient_c * system_coefficient_b0;
+      system_stack_float_matrix_result_0 = system_coefficient_a * system_coefficient_a3 + system_coefficient_b * system_divider + system_coefficient_c * system_coefficient_a7;
+      system_stack_float_matrix_result_1 = system_coefficient_a * system_coefficient_a4 + system_coefficient_b * system_coefficient_a0 + system_coefficient_c * system_coefficient_a8;
+      system_stack_float_matrix_result_2 = system_coefficient_a * system_coefficient_a5 + system_coefficient_b * system_coefficient_a1 + system_coefficient_c * system_coefficient_a9;
+      system_stack_float_matrix_result_3 = system_coefficient_a * system_coefficient_a6 + system_coefficient_b * system_coefficient_a2 + system_coefficient_c * system_coefficient_b0;
       system_coefficient_a = *(float *)(system_context_param + SYSTEM_INIT_FLAG_ENABLED_BASE8);
       system_coefficient_b = *(float *)(system_context_param + SYSTEM_INIT_FLAG_QUATERNARY_ENABLED0);
       system_coefficient_c = *(float *)(system_context_param + SYSTEM_INIT_FLAG_QUATERNARY_ENABLED4);
       system_stack_float_bound_max_x = system_float_4 * system_coefficient_a3 + system_float_5 * system_divider + system_coefficient_a * system_coefficient_a7;
       system_stack_float_bound_max_y = system_float_4 * system_coefficient_a4 + system_float_5 * system_coefficient_a0 + system_coefficient_a * system_coefficient_a8;
       system_stack_float_bound_max_z = system_float_4 * system_coefficient_a5 + system_float_5 * system_coefficient_a1 + system_coefficient_a * system_coefficient_a9;
-      fStack_ac = system_float_4 * system_coefficient_a6 + system_float_5 * system_coefficient_a2 + system_coefficient_a * system_coefficient_b0;
+      system_stack_float_matrix_partial_0 = system_float_4 * system_coefficient_a6 + system_float_5 * system_coefficient_a2 + system_coefficient_a * system_coefficient_b0;
       system_coefficient_a = *(float *)(system_context_param + SYSTEM_INIT_FLAG_QUATERNARY_ENABLED8);
       system_float_4 = *(float *)(system_context_param + SYSTEM_INIT_FLAG_QUINARY_ENABLED4);
       system_float_5 = *(float *)(system_context_param + SYSTEM_INIT_FLAG_QUINARY_ENABLED0);
       system_stack_float_bound_min_x = system_coefficient_c * system_coefficient_a3 + system_coefficient_b * system_divider + system_coefficient_a * system_coefficient_a7;
       system_stack_float_bound_min_y = system_coefficient_c * system_coefficient_a4 + system_coefficient_b * system_coefficient_a0 + system_coefficient_a * system_coefficient_a8;
       system_stack_float_bound_min_z = system_coefficient_c * system_coefficient_a5 + system_coefficient_b * system_coefficient_a1 + system_coefficient_a * system_coefficient_a9;
-      fStack_9c = system_coefficient_c * system_coefficient_a6 + system_coefficient_b * system_coefficient_a2 + system_coefficient_a * system_coefficient_b0;
+      system_stack_float_matrix_partial_1 = system_coefficient_c * system_coefficient_a6 + system_coefficient_b * system_coefficient_a2 + system_coefficient_a * system_coefficient_b0;
       system_coefficient_a = *(float *)(system_context_param + SYSTEM_INIT_FLAG_QUINARY_ENABLED8);
-      fStack_98 = system_float_4 * system_coefficient_a3 + system_float_5 * system_divider + system_coefficient_a * system_coefficient_a7 + system_memory_param[];
-      fStack_94 = system_float_4 * system_coefficient_a4 + system_float_5 * system_coefficient_a0 + system_coefficient_a * system_coefficient_a8 + system_memory_param[];
-      fStack_90 = system_float_4 * system_coefficient_a5 + system_float_5 * system_coefficient_a1 + system_coefficient_a * system_coefficient_a9 + system_memory_param[];
-      fStack_8c = system_float_4 * system_coefficient_a6 + system_float_5 * system_coefficient_a2 + system_coefficient_a * system_coefficient_b0 + system_memory_param[];
-      system_memory_param = &fStack_c8;
+      system_stack_float_matrix_final_0 = system_float_4 * system_coefficient_a3 + system_float_5 * system_divider + system_coefficient_a * system_coefficient_a7 + system_memory_param[];
+      system_stack_float_matrix_final_1 = system_float_4 * system_coefficient_a4 + system_float_5 * system_coefficient_a0 + system_coefficient_a * system_coefficient_a8 + system_memory_param[];
+      system_stack_float_matrix_final_2 = system_float_4 * system_coefficient_a5 + system_float_5 * system_coefficient_a1 + system_coefficient_a * system_coefficient_a9 + system_memory_param[];
+      system_stack_float_matrix_final_3 = system_float_4 * system_coefficient_a6 + system_float_5 * system_coefficient_a2 + system_coefficient_a * system_coefficient_b0 + system_memory_param[];
+      system_memory_param = &system_stack_float_matrix_result_0;
     }
     InitializeSystemCore(&system_stack_uint_108,system_config_param + ,*(system_uint8_t *)(system_context_param + ),system_memory_param);
     system_initialization_flag_primary = system_config_param[0x6f6];
