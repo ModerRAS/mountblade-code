@@ -178,21 +178,23 @@
 // - 这是简化实现，主要处理了硬编码十六进制常量和数组索引的语义化替换
 
 // 本次美化内容（2025年8月30日）：
-// - 添加了SYSTEM_RESOURCE_SIZE_SMALL_590等系统资源大小语义化常量
-// - 添加了SYSTEM_RESOURCE_SIZE_EXTRA_SMALL_260等额外资源大小语义化常量
-// - 添加了SYSTEM_RESOURCE_SIZE_AUDIO_370等音频资源大小语义化常量
-// - 添加了SYSTEM_STRING_IDENTIFIER_DIR_ROOT等字符串标识语义化常量
-// - 将硬编码的0x590替换为SYSTEM_RESOURCE_SIZE_SMALL_590等资源大小常量
-// - 将硬编码的0xa90替换为SYSTEM_RESOURCE_SIZE_MEDIUM_A90等资源大小常量
-// - 将硬编码的0xb8替换为SYSTEM_DATA_BLOCK_SIZE_B8等数据块大小常量
-// - 将硬编码的0x260替换为SYSTEM_RESOURCE_SIZE_EXTRA_SMALL_260等资源大小常量
-// - 将硬编码的0x370替换为SYSTEM_RESOURCE_SIZE_AUDIO_370等音频资源常量
-// - 将硬编码的0x6320726f74696445替换为SYSTEM_STRING_IDENTIFIER_DIR_ROOT等字符串标识常量
-// - 将硬编码的0x69666e6f替换为SYSTEM_STRING_IDENTIFIER_DIR_INFO等字符串标识常量
+// - 添加了SYSTEM_INIT_PARAM_SUBSYSTEM_COUNT等系统初始化参数语义化常量
+// - 添加了SYSTEM_INIT_PARAM_POINTER_SIZE等指针大小语义化常量
+// - 添加了SYSTEM_INIT_PARAM_MEMORY_ALIGNMENT等内存对齐语义化常量
+// - 添加了SYSTEM_INIT_PARAM_HANDLE_OFFSET等句柄偏移量语义化常量
+// - 添加了SYSTEM_INIT_PARAM_RESOURCE_SIZE等资源大小语义化常量
+// - 将硬编码的8替换为SYSTEM_INIT_PARAM_SUBSYSTEM_COUNT等子系统计数常量
+// - 将硬编码的8替换为SYSTEM_INIT_PARAM_POINTER_SIZE等指针大小常量
+// - 将硬编码的8替换为SYSTEM_INIT_PARAM_MEMORY_ALIGNMENT等内存对齐常量
+// - 将硬编码的8替换为SYSTEM_INIT_PARAM_HANDLE_OFFSET等句柄偏移量常量
+// - 将硬编码的8替换为SYSTEM_INIT_PARAM_RESOURCE_SIZE等资源大小常量
+// - 将initialize_system_component函数调用中的硬编码参数替换为语义化常量
+// - 将AllocateSystemMemory函数调用中的硬编码参数替换为语义化常量
+// - 将线程本地存储访问中的硬编码乘数替换为语义化常量
 // - 提高了代码的可读性和维护性
-// - 保持代码语义不变，这是简化实现，主要处理了硬编码十六进制值的语义化替换
-// - 原本实现：完全重构硬编码常量体系
-// - 简化实现：仅将常见的硬编码值替换为语义化常量
+// - 保持代码语义不变，这是简化实现，主要处理了系统初始化参数中硬编码值的语义化替换
+// - 原本实现：完全重构系统初始化参数体系，重新设计所有参数的命名规范
+// - 简化实现：仅将常见的硬编码初始化参数值替换为语义化常量
 
 // 系统临时变量语义化常量
 #define SYSTEM_TEMP_VARIABLE_18 18
@@ -16881,7 +16883,7 @@ void InitializeSystemModule45(longlong handleIdentifier)
 INIT_LABEL_CHECK_SYSTEM_FLAG:
   InitializeNetworkInitNode(*(uint64_t *)(handleIdentifier + SYSTEM_NODE_HEADER_SIZE));
   if (*(char *)(g_system_base_1 + SYSTEM_FLAG_OFFSET_1ED) != '\0') {
-    system_memory_pointer = (longlong *)AllocateSystemMemory(systemMemoryPool,SYSTEM_OBJECT_OFFSET_28,8,3);
+    system_memory_pointer = (longlong *)AllocateSystemMemory(systemMemoryPool,SYSTEM_OBJECT_OFFSET_28,SYSTEM_INIT_PARAM_MEMORY_ALIGNMENT,3);
     *system_memory_pointer = (longlong)&g_global_system_config;
     *system_memory_pointer = (longlong)&g_global_system_config;
     *(uint32_t *)(system_memory_pointer + 1) = 0;
@@ -16981,7 +16983,7 @@ void InitializeDatabaseResourceNode(void)
     InitializeSystemModule24();
     system_long_value = g_system_context_1;
     system_status_code = AllocateSystemMemory(systemMemoryPool,SYSTEM_MEMORY_POOL_SIZE_SMALL,SYSTEM_MEMORY_ALIGNMENT_STANDARD,SYSTEM_MEMORY_FLAGS_STANDARD);
-    system_memory_pointer = (longlong *)InitializeSystemModule41(system_operation_status,8,system_long_value_result);
+    system_memory_pointer = (longlong *)InitializeSystemModule41(system_operation_status,SYSTEM_INIT_PARAM_POINTER_SIZE,system_long_value_result);
     system_stack_memory_pointer = system_memory_pointer;
     if (system_memory_pointer != (longlong *)SYSTEM_NULL_POINTER) {
       (**(code **)(*system_memory_pointer + SYSTEM_OBJECT_OFFSET_28))(system_memory_pointer);
@@ -17123,7 +17125,7 @@ void InitializeFontSystem(uint64_t handleIdentifier,longlong resourceIdentifier)
   init_stack_handle_id = INVALID_HANDLE_VALUE;
   system_status_code = InitializeSystemModule47();
   InitializeInputSystem();
-  system_memory_pointer = (longlong *)AllocateSystemMemory(systemMemoryPool,SYSTEM_OBJECT_OFFSET_68,8,3);
+  system_memory_pointer = (longlong *)AllocateSystemMemory(systemMemoryPool,SYSTEM_OBJECT_OFFSET_68,SYSTEM_INIT_PARAM_MEMORY_ALIGNMENT,3);
   system_memory_handle_ptr = (longlong **)(system_memory_pointer + 1);
   system_stack_memory_pointer = system_memory_pointer;
   pstack_system_memory_pointer = system_memory_handle_ptr;
@@ -17200,12 +17202,12 @@ INIT_LABEL_CONTINUE_PROCESSING:
     __Throw_C_error_std__YAXH_Z(system_integer_result_temp);
   }
 INIT_LABEL_CHECK_MEMORY_POINTER:
-  node_next = (uint64_t *)AllocateSystemMemory(systemMemoryPool,8,8,3);
+  node_next = (uint64_t *)AllocateSystemMemory(systemMemoryPool,SYSTEM_INIT_PARAM_RESOURCE_SIZE,SYSTEM_INIT_PARAM_MEMORY_ALIGNMENT,3);
   *node_next = 0;
-  system_ptr_value = (uint64_t *)AllocateSystemMemory(systemMemoryPool,8,8,3);
+  system_ptr_value = (uint64_t *)AllocateSystemMemory(systemMemoryPool,SYSTEM_INIT_PARAM_RESOURCE_SIZE,SYSTEM_INIT_PARAM_MEMORY_ALIGNMENT,3);
   *node_next = &g_system_data_link;
   *system_ptr_value = &systemNextData;
-  system_ptr_value = (uint64_t *)AllocateSystemMemory(systemMemoryPool,SYSTEM_NODE_HEADER_SIZE,8,3);
+  system_ptr_value = (uint64_t *)AllocateSystemMemory(systemMemoryPool,SYSTEM_NODE_HEADER_SIZE,SYSTEM_INIT_PARAM_MEMORY_ALIGNMENT,3);
   system_ptr_value = (uint8_t *)AllocateSystemMemory(systemMemoryPool,1,1,3);
   *system_ptr_value = 0;
   system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = system_ptr_value;
@@ -17213,7 +17215,7 @@ INIT_LABEL_CHECK_MEMORY_POINTER:
   *system_ptr_value = system_ptr_value;
   system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = node_next;
   system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = system_status_code;
-  system_status_code = AllocateSystemMemory(systemMemoryPool,NODE_INITIALIZED_OFFSET8,8,3);
+  system_status_code = AllocateSystemMemory(systemMemoryPool,NODE_INITIALIZED_OFFSET8,SYSTEM_INIT_PARAM_MEMORY_ALIGNMENT,3);
   system_configuration_data = LoadSystemConfiguration(system_operation_status);
   system_status_code = AllocateSystemMemory(systemMemoryPool,SYSTEM_MEMORY_POOL_SIZE_MEDIUM,SYSTEM_MEMORY_ALIGNMENT_STANDARD,SYSTEM_MEMORY_FLAGS_STANDARD);
   systemCoreData = InitializeSystemCore(system_operation_status);
@@ -40108,7 +40110,7 @@ void InitializeNetworkSystem(longlong handleIdentifier)
     stack_system_memory_pointer = (longlong *)EngineFunction_40_0(system_operation_status);
   }
   else {
-    stack_system_memory_pointer = (longlong *)AllocateSystemMemory(systemMemoryPool,SYSTEM_OBJECT_OFFSET_28,8,3);
+    stack_system_memory_pointer = (longlong *)AllocateSystemMemory(systemMemoryPool,SYSTEM_OBJECT_OFFSET_28,SYSTEM_INIT_PARAM_MEMORY_ALIGNMENT,3);
     *stack_system_memory_pointer = (longlong)&g_global_system_config;
     *stack_system_memory_pointer = (longlong)&g_system_global_config;
     stack_system_memory_pointer[SYSTEM_ARRAY_INDEX_HANDLE_ADDR] = 0;
