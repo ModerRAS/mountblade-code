@@ -2403,13 +2403,13 @@ dataValue g_resource_temp_flags;                     // 资源临时标志
 dataValue g_resource_garbage_collector;               // 资源垃圾收集器
 dataValue g_resource_reserved_memory;                // 资源保留内存
 dataValue g_scene_object_database;                   // 场景对象数据库
-dataValue g_resource_reserved_texture;
-dataValue sceneTransformData;
-dataValue g_sceneWorkBuffer;
-dataValue g_sceneTempOffset;
-dataValue g_sceneTempSize;
-dataValue g_sceneTempFlags;
-dataValue sceneLightingSystem;
+dataValue g_resource_reserved_texture;               // 资源保留纹理
+dataValue g_scene_transform_data;                    // 场景变换数据
+dataValue g_scene_work_buffer;                       // 场景工作缓冲区
+dataValue g_scene_temp_offset;                       // 场景临时偏移量
+dataValue g_scene_temp_size;                         // 场景临时大小
+dataValue g_scene_temp_flags;                        // 场景临时标志
+dataValue g_scene_lighting_system;                   // 场景光照系统
 
 // 函数: resource_data CreateFileSystemHandler;
 dataValue CreateFileSystemHandler;
