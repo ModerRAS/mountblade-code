@@ -61,6 +61,7 @@
 #define UTILITY_MASK_0XC000 0xc000
 #define UTILITY_LOOP_MAX_COUNT 0x20214
 #define UTILITY_SYSTEM_END_FLAG 0xffffff
+#define UTILITY_SYSTEM_END_FLAG_EXTENDED 0xfffffffffffffffe
 
 
 // 06_utilities.c - 473 个函数
@@ -24755,7 +24756,7 @@ void ExceptionHandlerCleanup9(uint64 resource_handle_identifier,longlong resourc
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -24791,7 +24792,7 @@ void ExceptionHandlerCleanup10(uint64 resource_handle_identifier,longlong resour
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -24844,7 +24845,7 @@ void ExceptionHandlerCleanup12(uint64 resource_handle_identifier,longlong resour
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -24880,7 +24881,7 @@ void ExceptionHandlerCleanup13(uint64 resource_handle_identifier,longlong resour
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -25040,7 +25041,7 @@ void ProcessResourceHandleCallback(uint64 resource_handle_identifier,longlong re
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + UTILITY_RESOURCE_ACCESS_ID) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_RESOURCE_ACCESS_ID),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_RESOURCE_ACCESS_ID),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -25069,7 +25070,7 @@ void InvokeResourceHandleCallback(uint64 resource_handle_identifier,longlong res
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + UTILITY_RESOURCE_ACCESS_ID) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_RESOURCE_ACCESS_ID),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_RESOURCE_ACCESS_ID),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -25368,7 +25369,7 @@ void Unwind_1809023d0(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + list_head_offset);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -25389,7 +25390,7 @@ void Unwind_1809023e0(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + list_head_offset);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -25431,7 +25432,7 @@ void Unwind_1809023f0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -25578,7 +25579,7 @@ void Unwind_1809024d0(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + 0x128);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + 0x120); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -25631,7 +25632,7 @@ void Unwind_180902500(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + 0x128);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + 0x120); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -25673,7 +25674,7 @@ void Unwind_180902510(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -25831,7 +25832,7 @@ void Unwind_180902590(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   UtilityModule15(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -25841,7 +25842,7 @@ void Unwind_1809025a0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   UtilityModule15(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -25851,7 +25852,7 @@ void Unwind_1809025b0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   UtilityModule15(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -25926,7 +25927,7 @@ void Unwind_180902600(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -26144,7 +26145,7 @@ void Unwind_1809026c0(uint64 resource_handle_identifier,longlong resource_buffer
 {
   InitializeResourceSystem(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET,
                 *(uint64 *)(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + RESOURCE_CONFIG_ID),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -26163,7 +26164,7 @@ void Unwind_180902700(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   InitializeResourceSystem(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -26173,7 +26174,7 @@ void Unwind_180902710(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   InitializeResourceSystem(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -26188,7 +26189,7 @@ void Unwind_180902720(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 system_status_code;
   
   data_buffer = *(longlong **)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET);
-  system_status_code = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  system_status_code = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = (uint64 *)data_buffer[1];
   for (unsigned_pointer_var3 = (uint64 *)*data_buffer; generic_data_pointer != utility_resource_operation_resultData; generic_data_pointer = generic_data_pointer + 4) {
     (**(code **)*generic_data_pointer)(unsigned_pointer_var3,0,resourceOperationFlags,resourceCallbackFunction,system_status_code);
@@ -26209,7 +26210,7 @@ void Unwind_180902730(uint64 resource_handle_identifier,longlong resource_buffer
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -26234,7 +26235,7 @@ void Unwind_180902750(uint64 resource_handle_identifier,longlong resource_buffer
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -26250,7 +26251,7 @@ void Unwind_180902760(uint64 resource_handle_identifier,longlong resource_buffer
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -26263,7 +26264,7 @@ void Unwind_180902770(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   UtilityModule13(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -26273,7 +26274,7 @@ void Unwind_180902780(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   UtilityModule13(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -26283,7 +26284,7 @@ void Unwind_180902790(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   UtilityModule13(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -26296,7 +26297,7 @@ void Unwind_1809027a0(uint64 resource_handle_identifier,longlong resource_buffer
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + field_offset_primary);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + POINTER_DATA_OFFSET,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + POINTER_DATA_OFFSET,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -26312,7 +26313,7 @@ void Unwind_1809027b0(uint64 resource_handle_identifier,longlong resource_buffer
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + utility_data_offset_start);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + list_head_offset,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + list_head_offset,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -26366,7 +26367,7 @@ void Unwind_1809027e0(uint64 resource_handle_identifier,longlong resource_buffer
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + utility_buffer_offset);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule18(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + UTILITY_MEMORY_DATA_OFFSET,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule18(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + UTILITY_MEMORY_DATA_OFFSET,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     ProcessResourceCleanup(utility_resource_operation_resultData);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
@@ -26383,7 +26384,7 @@ void Unwind_1809027f0(uint64 resource_handle_identifier,longlong resource_buffer
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule18(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule18(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     ProcessResourceCleanup(utility_resource_operation_resultData);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
@@ -26400,7 +26401,7 @@ void Unwind_180902800(uint64 resource_handle_identifier,longlong resource_buffer
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule18(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule18(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     ProcessResourceCleanup(utility_resource_operation_resultData);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
@@ -26415,7 +26416,7 @@ void Unwind_180902810(uint64 resource_handle_identifier,longlong resource_buffer
 {
   UtilityModule15(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + RESOURCE_HANDLE_OFFSET,
                 *(uint64 *)(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + UTILITY_SECONDARY_BYTE_OFFSET),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -26425,7 +26426,7 @@ void Unwind_180902820(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   ConfigureResourceSystem(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -26435,7 +26436,7 @@ void Unwind_180902830(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   ConfigureResourceSystem(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -26445,7 +26446,7 @@ void Unwind_180902840(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   ConfigureResourceSystem(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -26455,7 +26456,7 @@ void Unwind_180902850(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   UtilityModule15(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -26465,7 +26466,7 @@ void Unwind_180902860(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   UtilityModule15(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -26513,7 +26514,7 @@ void Unwind_180902880(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -26526,7 +26527,7 @@ void Unwind_180902890(uint64 resource_handle_identifier,longlong resource_buffer
 {
   UtilityModule14(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + utility_buffer_size_data_offset,
                 *(uint64 *)(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + list_head_offset),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -26560,7 +26561,7 @@ void Unwind_1809028a0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -26572,7 +26573,7 @@ void Unwind_1809028c0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   UtilityModule14(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -26582,7 +26583,7 @@ void Unwind_1809028d0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   UtilityModule14(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -26635,7 +26636,7 @@ void Unwind_1809028f0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -26671,7 +26672,7 @@ void Unwind_180902900(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -26684,7 +26685,7 @@ void Unwind_180902920(uint64 resource_handle_identifier,longlong resource_buffer
 {
   ValidateResourceSystem(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + UTILITY_SECONDARY_BYTE_OFFSET,
                 *(uint64 *)(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + UTILITY_STRUCTURE_SIZE_OFFSET),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -26694,7 +26695,7 @@ void Unwind_180902930(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   ValidateResourceSystem(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -26704,7 +26705,7 @@ void Unwind_180902940(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   ValidateResourceSystem(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -26755,7 +26756,7 @@ void Unwind_180902950(uint64 resource_handle_identifier,longlong resource_buffer
       }
       else {
         exceptionHandleFunction(systemFlagsData,CONCAT71(0xff000000,*(void ***)(systemFlagsData + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                            unsigned_pointer_var3,systemFlagsData,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                            unsigned_pointer_var3,systemFlagsData,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
     return;
@@ -26810,7 +26811,7 @@ void Unwind_180902960(uint64 resource_handle_identifier,longlong resource_buffer
       }
       else {
         exceptionHandleFunction(systemFlagsData,CONCAT71(0xff000000,*(void ***)(systemFlagsData + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                            unsigned_pointer_var3,systemFlagsData,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                            unsigned_pointer_var3,systemFlagsData,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
     return;
@@ -26913,7 +26914,7 @@ void Unwind_180902a40(uint64 resource_handle_identifier,longlong resource_buffer
       }
       else {
         exceptionHandleFunction(systemFlagsData,CONCAT71(0xff000000,*(void ***)(systemFlagsData + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                            unsigned_pointer_var3,systemFlagsData,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                            unsigned_pointer_var3,systemFlagsData,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
     return;
@@ -26968,7 +26969,7 @@ void Unwind_180902a50(uint64 resource_handle_identifier,longlong resource_buffer
       }
       else {
         exceptionHandleFunction(systemFlagsData,CONCAT71(0xff000000,*(void ***)(systemFlagsData + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                            unsigned_pointer_var3,systemFlagsData,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                            unsigned_pointer_var3,systemFlagsData,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
     return;
@@ -27117,7 +27118,7 @@ void Unwind_180902aa0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   UtilityModule16(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -27151,7 +27152,7 @@ void Unwind_180902ab0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -27164,7 +27165,7 @@ void Unwind_180902ac0(uint64 resource_handle_identifier,longlong resource_buffer
 {
   UtilityModule15(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + list_head_offset,
                 *(uint64 *)(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + utility_data_offset_start),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -27174,7 +27175,7 @@ void Unwind_180902ad0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   UtilityModule16(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -27184,7 +27185,7 @@ void Unwind_180902ae0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   UtilityModule16(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -27238,7 +27239,7 @@ void Unwind_180902b40(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   UtilityModule13(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -27248,7 +27249,7 @@ void Unwind_180902b50(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   UtilityModule13(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -27415,7 +27416,7 @@ void Unwind_180902bb0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -27498,7 +27499,7 @@ void Unwind_180902bf0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -27534,7 +27535,7 @@ void Unwind_180902c00(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -27570,7 +27571,7 @@ void Unwind_180902c10(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -27615,7 +27616,7 @@ void Unwind_180902c30(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -27651,7 +27652,7 @@ void Unwind_180902c40(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -27684,9 +27685,9 @@ void Unwind_180902c60(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 loop_counter;
   
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + UTILITY_STRUCTURE_SIZE_OFFSET);
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   *utility_resource_operation_resultData = &g_system_data_shader_buffer;
-  char_value = UtilityModule1(utility_resource_operation_resultData,1,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  char_value = UtilityModule1(utility_resource_operation_resultData,1,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   while (char_value != '\0') {
     char_value = UtilityModule1(utility_resource_operation_resultData,1,resourceOperationFlags,resourceCallbackFunction,loop_counter);
   }
@@ -27720,7 +27721,7 @@ void Unwind_180902c70(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + utility_data_offset_start) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + utility_data_offset_start),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + utility_data_offset_start),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -27734,7 +27735,7 @@ void Unwind_180902c80(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + utility_data_offset_start) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + utility_data_offset_start),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + utility_data_offset_start),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -27817,7 +27818,7 @@ void Unwind_180902cd0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -27853,7 +27854,7 @@ void Unwind_180902ce0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -27937,7 +27938,7 @@ void Unwind_180902d40(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 loop_counter;
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   _Mtx_destroy_in_situ();
   RegisterResourceCallback(resource_buffer + 0x3e0,POINTER_DATA_OFFSET,POINTER_DATA_OFFSET,ReleaseSystemResource,loop_counter);
   InitializeSystemData();
@@ -27956,7 +27957,7 @@ void Unwind_180902d50(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 loop_counter;
   
   processing_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   *(longlong *)(processing_buffer + 0x15d8) =
        *(longlong *)(&systemResourceOffset + (longlong)*(int *)(processing_buffer + 0x15e0) * UTILITY_DOUBLE_WORD_SIZE) + -100000;
   ProcessBufferDataStructure((longlong *)(processing_buffer + 0x8b0));
@@ -28138,7 +28139,7 @@ void Unwind_180902e50(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -28174,7 +28175,7 @@ void Unwind_180902e60(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -28210,7 +28211,7 @@ void Unwind_180902e70(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -28251,7 +28252,7 @@ void Unwind_180902e80(uint64 resource_handle_identifier,longlong resource_buffer
       }
       else {
         exceptionHandleFunction(validation_result_flag,CONCAT71(0xff000000,*(void ***)(validation_result_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                            loop_counter_pointer,validation_result_flag,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                            loop_counter_pointer,validation_result_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
     return;
@@ -28313,7 +28314,7 @@ void Unwind_180902eb0(uint64 resource_handle_identifier,longlong resource_buffer
       }
       else {
         exceptionHandleFunction(validation_result_flag,CONCAT71(0xff000000,*(void ***)(validation_result_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                            loop_counter_pointer,validation_result_flag,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                            loop_counter_pointer,validation_result_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
     return;
@@ -28356,7 +28357,7 @@ void Unwind_180902ec0(uint64 resource_handle_identifier,longlong resource_buffer
       }
       else {
         exceptionHandleFunction(validation_result_flag,CONCAT71(0xff000000,*(void ***)(validation_result_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                            loop_counter_pointer,validation_result_flag,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                            loop_counter_pointer,validation_result_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
     return;
@@ -28389,7 +28390,7 @@ void Unwind_180902f00(uint64 resource_handle_identifier,longlong resource_buffer
 {
   UtilityModule17(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x858,
                 *(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x868),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -28404,7 +28405,7 @@ void Unwind_180902f20(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 system_status_code;
   
   data_buffer = (longlong *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x888);
-  system_status_code = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  system_status_code = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x890);
   for (unsigned_pointer_var3 = (uint64 *)*data_buffer; generic_data_pointer != utility_resource_operation_resultData; generic_data_pointer = generic_data_pointer + 4) {
     (**(code **)*generic_data_pointer)(unsigned_pointer_var3,0,resourceOperationFlags,resourceCallbackFunction,system_status_code);
@@ -28427,7 +28428,7 @@ void Unwind_180902f40(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 system_status_code;
   
   data_buffer = (longlong *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x8a8);
-  system_status_code = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  system_status_code = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x8b0);
   for (unsigned_pointer_var3 = (uint64 *)*data_buffer; generic_data_pointer != utility_resource_operation_resultData; generic_data_pointer = generic_data_pointer + 4) {
     (**(code **)*generic_data_pointer)(unsigned_pointer_var3,0,resourceOperationFlags,resourceCallbackFunction,system_status_code);
@@ -28469,7 +28470,7 @@ void Unwind_180902f60(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -28482,7 +28483,7 @@ void Unwind_180902f80(uint64 resource_handle_identifier,longlong resource_buffer
 {
   UtilityModule15(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x8e8,
                 *(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x8f8),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -28514,7 +28515,7 @@ void Unwind_180902fc0(uint64 resource_handle_identifier,longlong resource_buffer
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x948);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule18(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x938,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule18(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x938,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     ProcessResourceCleanup(utility_resource_operation_resultData);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
@@ -28531,7 +28532,7 @@ void Unwind_180902fe0(uint64 resource_handle_identifier,longlong resource_buffer
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x978);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule18(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x968,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule18(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x968,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     ProcessResourceCleanup(utility_resource_operation_resultData);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
@@ -28548,7 +28549,7 @@ void Unwind_180903000(uint64 resource_handle_identifier,longlong resource_buffer
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule18(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule18(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     ProcessResourceCleanup(utility_resource_operation_resultData);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
@@ -28565,7 +28566,7 @@ void Unwind_180903010(uint64 resource_handle_identifier,longlong resource_buffer
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule18(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule18(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     ProcessResourceCleanup(utility_resource_operation_resultData);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
@@ -28579,7 +28580,7 @@ void Unwind_180903020(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   UtilityModule15(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -28589,7 +28590,7 @@ void Unwind_180903030(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   UtilityModule15(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -28599,7 +28600,7 @@ void Unwind_180903040(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   UtilityModule17(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -28609,7 +28610,7 @@ void Unwind_180903050(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   UtilityModule17(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -28619,7 +28620,7 @@ void Unwind_180903060(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   UtilityModule17(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -28629,7 +28630,7 @@ void Unwind_180903070(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   UtilityModule17(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -28642,7 +28643,7 @@ void Unwind_180903080(uint64 resource_handle_identifier,longlong resource_buffer
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule18(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule18(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     ProcessResourceCleanup(utility_resource_operation_resultData);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
@@ -28659,7 +28660,7 @@ void Unwind_180903090(uint64 resource_handle_identifier,longlong resource_buffer
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule18(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule18(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     ProcessResourceCleanup(utility_resource_operation_resultData);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
@@ -28676,7 +28677,7 @@ void Unwind_1809030a0(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + field_offset_primary);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -28757,7 +28758,7 @@ void Unwind_180903100(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 loop_counter;
   
   resource_buffer = *(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET);
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   _Mtx_destroy_in_situ();
   UtilityModule15(resource_buffer + 0x110,*(uint64 *)(resource_buffer + 0x120),resourceOperationFlags,resourceCallbackFunction,loop_counter);
   UtilityModule15(resource_buffer + UTILITY_STACK_OFFSET_E0,*(uint64 *)(resource_buffer + UTILITY_STACK_OFFSET_F0));
@@ -28840,7 +28841,7 @@ void Unwind_180903130(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -28876,7 +28877,7 @@ void Unwind_180903140(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -28935,7 +28936,7 @@ void Unwind_180903160(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -29013,7 +29014,7 @@ void Unwind_180903190(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -29084,7 +29085,7 @@ void Unwind_1809031e0(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 loop_counter;
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   _Mtx_destroy_in_situ();
   UtilityModule15(resource_buffer + 0x110,*(uint64 *)(resource_buffer + 0x120),resourceOperationFlags,resourceCallbackFunction,loop_counter);
   UtilityModule15(resource_buffer + UTILITY_STACK_OFFSET_E0,*(uint64 *)(resource_buffer + UTILITY_STACK_OFFSET_F0));
@@ -29125,7 +29126,7 @@ void Unwind_1809031f0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -29161,7 +29162,7 @@ void Unwind_180903200(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -29194,7 +29195,7 @@ void Unwind_180903220(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   UtilityModule21(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -29205,7 +29206,7 @@ void Unwind_180903230(uint64 resource_handle_identifier,longlong resource_buffer
 {
   UtilityModule17(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + field_offset_primary,
                 *(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + utility_buffer_size_data_offset),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -29216,7 +29217,7 @@ void Unwind_180903240(uint64 resource_handle_identifier,longlong resource_buffer
 {
   UtilityModule21(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + utility_data_offset_start,
                 *(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + UTILITY_MEMORY_DATA_OFFSET),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -29227,7 +29228,7 @@ void Unwind_180903250(uint64 resource_handle_identifier,longlong resource_buffer
 {
   UtilityModule15(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + UTILITY_MEMORY_SIZE_OFFSET,
                 *(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + UTILITY_RESOURCE_ACCESS_ID),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -29238,7 +29239,7 @@ void Unwind_180903270(uint64 resource_handle_identifier,longlong resource_buffer
 {
   UtilityModule15(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_BUFFER_ARRAY_OFFSET,
                 *(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + UTILITY_STRUCT_OFFSET_1),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -29249,7 +29250,7 @@ void Unwind_180903290(uint64 resource_handle_identifier,longlong resource_buffer
 {
   UtilityModule15(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + UTILITY_STACK_OFFSET_F0,
                 *(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + resource_handle_offset_zero),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -29268,7 +29269,7 @@ void Unwind_1809032d0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   UtilityModule21(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -29278,7 +29279,7 @@ void Unwind_1809032e0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   UtilityModule21(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -29288,7 +29289,7 @@ void Unwind_1809032f0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   UtilityModule21(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -29298,7 +29299,7 @@ void Unwind_180903300(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   UtilityModule21(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -29332,7 +29333,7 @@ void Unwind_180903310(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -29367,7 +29368,7 @@ void Unwind_180903330(uint64 resource_handle_identifier,longlong resource_buffer
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + utility_buffer_offset) + field_offset_primary);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(*(longlong *)(resource_buffer + utility_buffer_offset) + POINTER_DATA_OFFSET,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(*(longlong *)(resource_buffer + utility_buffer_offset) + POINTER_DATA_OFFSET,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -29383,7 +29384,7 @@ void Unwind_180903340(uint64 resource_handle_identifier,longlong resource_buffer
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + UTILITY_BUFFER_HANDLE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(*(longlong *)(resource_buffer + UTILITY_BUFFER_HANDLE_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(*(longlong *)(resource_buffer + UTILITY_BUFFER_HANDLE_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -29399,7 +29400,7 @@ void Unwind_180903350(uint64 resource_handle_identifier,longlong resource_buffer
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + UTILITY_BUFFER_HANDLE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(*(longlong *)(resource_buffer + UTILITY_BUFFER_HANDLE_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(*(longlong *)(resource_buffer + UTILITY_BUFFER_HANDLE_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -29461,7 +29462,7 @@ void Unwind_180903430(uint64 resource_handle_identifier,longlong resource_buffer
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + field_offset_primary);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + POINTER_DATA_OFFSET,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + POINTER_DATA_OFFSET,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -29553,7 +29554,7 @@ void Unwind_180903460(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(validation_result_flag,CONCAT71(0xff000000,*(void ***)(validation_result_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -29607,7 +29608,7 @@ void Unwind_1809034b0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -29643,7 +29644,7 @@ void Unwind_1809034c0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -29679,7 +29680,7 @@ void Unwind_1809034d0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -29715,7 +29716,7 @@ void Unwind_1809034e0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -29751,7 +29752,7 @@ void Unwind_1809034f0(uint64 resource_handle_identifier,longlong resource_buffer
       }
       else {
         exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                            loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                            loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
     return;
@@ -29789,7 +29790,7 @@ void Unwind_180903500(uint64 resource_handle_identifier,longlong resource_buffer
       }
       else {
         exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                            loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                            loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
     return;
@@ -29854,7 +29855,7 @@ void Unwind_180903510(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(validation_result_flag,CONCAT71(0xff000000,*(void ***)(validation_result_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -29890,7 +29891,7 @@ void Unwind_180903520(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -29940,7 +29941,7 @@ void Unwind_180903560(uint64 resource_handle_identifier,longlong resource_buffer
       }
       else {
         exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                            loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                            loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
     return;
@@ -30003,7 +30004,7 @@ void Unwind_180903580(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(validation_result_flag,CONCAT71(0xff000000,*(void ***)(validation_result_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -30066,7 +30067,7 @@ void Unwind_1809035e0(uint64 resource_handle_identifier,longlong resource_buffer
       }
       else {
         exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                            loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                            loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
     return;
@@ -30104,7 +30105,7 @@ void Unwind_1809035f0(uint64 resource_handle_identifier,longlong resource_buffer
       }
       else {
         exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                            loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                            loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
     return;
@@ -30140,7 +30141,7 @@ void Unwind_180903610(uint64 resource_handle_identifier,longlong resource_buffer
   utility_resource_operation_resultData[0x19] = 0;
   *(uint32 *)(utility_resource_operation_resultData + 0x1b) = 0;
   utility_resource_operation_resultData[RESOURCE_HANDLE_OFFSET] = &thread_local_storage_cleanup;
-  RegisterResourceFunction(utility_resource_operation_resultData + 0x12,utility_resource_operation_resultData[RESOURCE_DATA_IDX],resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceFunction(utility_resource_operation_resultData + 0x12,utility_resource_operation_resultData[RESOURCE_DATA_IDX],resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   if (utility_resource_operation_resultData[0xd] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
@@ -30169,7 +30170,7 @@ void Unwind_180903620(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x140) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x140))(resource_buffer + 0x130,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x140))(resource_buffer + 0x130,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + resource_handle_valueta_offset_8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x110) != 0) {
@@ -30199,7 +30200,7 @@ void Unwind_180903640(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1b0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1b0))(resource_buffer + SYSTEM_TABLE_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1b0))(resource_buffer + SYSTEM_TABLE_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x178) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + UTILITY_SYS_STATUS_OFFSET1) != 0) {
@@ -30229,7 +30230,7 @@ void Unwind_180903660(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x220) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x220))(resource_buffer + 0x210,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x220))(resource_buffer + 0x210,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1e8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1f0) != 0) {
@@ -30259,7 +30260,7 @@ void Unwind_180903680(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x290) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x290))(resource_buffer + 0x280,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x290))(resource_buffer + 0x280,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 600) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x260) != 0) {
@@ -30289,7 +30290,7 @@ void Unwind_1809036a0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x300) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x300))(resource_buffer + 0x2f0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x300))(resource_buffer + 0x2f0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x2c8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x2d0) != 0) {
@@ -30319,7 +30320,7 @@ void Unwind_1809036c0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x370) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x370))(resource_buffer + 0x360,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x370))(resource_buffer + 0x360,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x338) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x340) != 0) {
@@ -30349,7 +30350,7 @@ void Unwind_1809036e0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x3e0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x3e0))(resource_buffer + 0x3d0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x3e0))(resource_buffer + 0x3d0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x3a8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x3b0) != 0) {
@@ -30379,7 +30380,7 @@ void Unwind_180903700(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + RESOURCE_PROP_OFFSET50) != (code *)zero_float) {
-    (**(code **)(resource_buffer + RESOURCE_PROP_OFFSET50))(resource_buffer + RESOURCE_PROP_OFFSET40,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + RESOURCE_PROP_OFFSET50))(resource_buffer + RESOURCE_PROP_OFFSET40,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + RESOURCE_PROP_OFFSET18) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + RESOURCE_PROP_OFFSET20) != 0) {
@@ -30409,7 +30410,7 @@ void Unwind_180903720(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x510) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x510))(resource_buffer + 0x500,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x510))(resource_buffer + 0x500,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + RESOURCE_COUNTER_OFFSET) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + RESOURCE_OFFSET_CAPACITY) != 0) {
@@ -30463,7 +30464,7 @@ void Unwind_180903740(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x580) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x580))(resource_buffer + 0x570,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x580))(resource_buffer + 0x570,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x548) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x550) != 0) {
@@ -30501,7 +30502,7 @@ void Unwind_180903760(uint64 resource_handle_identifier,longlong resource_buffer
   utility_resource_operation_resultData[0x19] = 0;
   *(uint32 *)(utility_resource_operation_resultData + 0x1b) = 0;
   utility_resource_operation_resultData[RESOURCE_HANDLE_OFFSET] = &thread_local_storage_cleanup;
-  RegisterResourceFunction(utility_resource_operation_resultData + 0x12,utility_resource_operation_resultData[RESOURCE_DATA_IDX],resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceFunction(utility_resource_operation_resultData + 0x12,utility_resource_operation_resultData[RESOURCE_DATA_IDX],resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   if (utility_resource_operation_resultData[0xd] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
@@ -30530,7 +30531,7 @@ void Unwind_180903770(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x140) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x140))(resource_buffer + 0x130,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x140))(resource_buffer + 0x130,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + resource_handle_valueta_offset_8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x110) != 0) {
@@ -30560,7 +30561,7 @@ void Unwind_180903790(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1b0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1b0))(resource_buffer + SYSTEM_TABLE_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1b0))(resource_buffer + SYSTEM_TABLE_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x178) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + UTILITY_SYS_STATUS_OFFSET1) != 0) {
@@ -30590,7 +30591,7 @@ void Unwind_1809037b0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x220) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x220))(resource_buffer + 0x210,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x220))(resource_buffer + 0x210,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1e8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1f0) != 0) {
@@ -30620,7 +30621,7 @@ void Unwind_1809037d0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x290) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x290))(resource_buffer + 0x280,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x290))(resource_buffer + 0x280,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 600) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x260) != 0) {
@@ -30650,7 +30651,7 @@ void Unwind_1809037f0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x300) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x300))(resource_buffer + 0x2f0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x300))(resource_buffer + 0x2f0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x2c8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x2d0) != 0) {
@@ -30680,7 +30681,7 @@ void Unwind_180903810(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x370) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x370))(resource_buffer + 0x360,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x370))(resource_buffer + 0x360,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x338) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x340) != 0) {
@@ -30710,7 +30711,7 @@ void Unwind_180903830(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x3e0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x3e0))(resource_buffer + 0x3d0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x3e0))(resource_buffer + 0x3d0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x3a8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x3b0) != 0) {
@@ -30740,7 +30741,7 @@ void Unwind_180903850(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + RESOURCE_PROP_OFFSET50) != (code *)zero_float) {
-    (**(code **)(resource_buffer + RESOURCE_PROP_OFFSET50))(resource_buffer + RESOURCE_PROP_OFFSET40,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + RESOURCE_PROP_OFFSET50))(resource_buffer + RESOURCE_PROP_OFFSET40,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + RESOURCE_PROP_OFFSET18) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + RESOURCE_PROP_OFFSET20) != 0) {
@@ -30770,7 +30771,7 @@ void Unwind_180903870(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x510) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x510))(resource_buffer + 0x500,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x510))(resource_buffer + 0x500,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + RESOURCE_COUNTER_OFFSET) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + RESOURCE_OFFSET_CAPACITY) != 0) {
@@ -30824,7 +30825,7 @@ void Unwind_180903890(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x580) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x580))(resource_buffer + 0x570,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x580))(resource_buffer + 0x570,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x548) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x550) != 0) {
@@ -30892,7 +30893,7 @@ void Unwind_1809038d0(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + UTILITY_BUFFER_HANDLE_OFFSET) + utility_data_offset_start);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_BUFFER_HANDLE_OFFSET) + list_head_offset,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_BUFFER_HANDLE_OFFSET) + list_head_offset,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -30906,7 +30907,7 @@ void Unwind_1809038e0(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + UTILITY_MEMORY_SIZE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_MEMORY_SIZE_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_MEMORY_SIZE_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -30920,7 +30921,7 @@ void Unwind_1809038f0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + RESOURCE_PROP_OFFSETc0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + RESOURCE_PROP_OFFSETc0))(resource_buffer + RESOURCE_PROP_OFFSETb0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + RESOURCE_PROP_OFFSETc0))(resource_buffer + RESOURCE_PROP_OFFSETb0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + RESOURCE_PROP_OFFSET88) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + RESOURCE_PROP_OFFSET90) != 0) {
@@ -30950,7 +30951,7 @@ void Unwind_180903910(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x530) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x530))(resource_buffer + 0x520,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x530))(resource_buffer + 0x520,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + RESOURCE_PROP_OFFSETf8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x500) != 0) {
@@ -30980,7 +30981,7 @@ void Unwind_180903930(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x5a0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x5a0))(resource_buffer + 0x590,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x5a0))(resource_buffer + 0x590,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x568) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x570) != 0) {
@@ -31010,7 +31011,7 @@ void Unwind_180903950(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x610) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x610))(resource_buffer + 0x600,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x610))(resource_buffer + 0x600,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x5d8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x5e0) != 0) {
@@ -31040,7 +31041,7 @@ void Unwind_180903970(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET0))(resource_buffer + 0x670,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET0))(resource_buffer + 0x670,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x648) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x650) != 0) {
@@ -31070,7 +31071,7 @@ void Unwind_180903990(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + UTILITY_STACK_OFFSET_6F0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + UTILITY_STACK_OFFSET_6F0))(resource_buffer + UTILITY_STACK_OFFSET_6E0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + UTILITY_STACK_OFFSET_6F0))(resource_buffer + UTILITY_STACK_OFFSET_6E0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x6b8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_FLAG_OFFSET0) != 0) {
@@ -31100,7 +31101,7 @@ void Unwind_1809039b0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x760) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x760))(resource_buffer + 0x750,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x760))(resource_buffer + 0x750,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x728) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x730) != 0) {
@@ -31130,7 +31131,7 @@ void Unwind_1809039d0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 2000) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 2000))(resource_buffer + 0x7c0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 2000))(resource_buffer + 0x7c0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x798) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x7a0) != 0) {
@@ -31160,7 +31161,7 @@ void Unwind_1809039f0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x840) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x840))(resource_buffer + 0x830,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x840))(resource_buffer + 0x830,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x808) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x810) != 0) {
@@ -31190,7 +31191,7 @@ void Unwind_180903a10(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x8b0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x8b0))(resource_buffer + 0x8a0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x8b0))(resource_buffer + 0x8a0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x878) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x880) != 0) {
@@ -31220,7 +31221,7 @@ void Unwind_180903a30(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x920) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x920))(resource_buffer + 0x910,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x920))(resource_buffer + 0x910,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x8e8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x8f0) != 0) {
@@ -31250,7 +31251,7 @@ void Unwind_180903a50(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x990) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x990))(resource_buffer + 0x980,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x990))(resource_buffer + 0x980,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x958) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x960) != 0) {
@@ -31280,7 +31281,7 @@ void Unwind_180903a70(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0xa08) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xa08))(resource_buffer + 0x9f8,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xa08))(resource_buffer + 0x9f8,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x9d0) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x9d8) != 0) {
@@ -31310,7 +31311,7 @@ void Unwind_180903a90(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0xa80) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xa80))(resource_buffer + 0xa70,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xa80))(resource_buffer + 0xa70,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xa48) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xa50) != 0) {
@@ -31340,7 +31341,7 @@ void Unwind_180903ab0(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -31392,7 +31393,7 @@ void Unwind_180903ae0(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + list_head_offset) + UTILITY_LIST_HANDLE_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + list_head_offset) + UTILITY_SYS_STATUS_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + list_head_offset) + UTILITY_SYS_STATUS_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -31406,7 +31407,7 @@ void Unwind_180903af0(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + UTILITY_SYS_STATUS_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_SYS_STATUS_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_SYS_STATUS_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -31420,7 +31421,7 @@ void Unwind_180903b00(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + RESOURCE_PROP_OFFSETc0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + RESOURCE_PROP_OFFSETc0))(resource_buffer + RESOURCE_PROP_OFFSETb0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + RESOURCE_PROP_OFFSETc0))(resource_buffer + RESOURCE_PROP_OFFSETb0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + RESOURCE_PROP_OFFSET88) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + RESOURCE_PROP_OFFSET90) != 0) {
@@ -31450,7 +31451,7 @@ void Unwind_180903b20(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x530) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x530))(resource_buffer + 0x520,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x530))(resource_buffer + 0x520,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + RESOURCE_PROP_OFFSETf8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x500) != 0) {
@@ -31480,7 +31481,7 @@ void Unwind_180903b40(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x5a0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x5a0))(resource_buffer + 0x590,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x5a0))(resource_buffer + 0x590,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x568) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x570) != 0) {
@@ -31510,7 +31511,7 @@ void Unwind_180903b60(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x610) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x610))(resource_buffer + 0x600,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x610))(resource_buffer + 0x600,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x5d8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x5e0) != 0) {
@@ -31540,7 +31541,7 @@ void Unwind_180903b80(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET0))(resource_buffer + 0x670,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET0))(resource_buffer + 0x670,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x648) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x650) != 0) {
@@ -31570,7 +31571,7 @@ void Unwind_180903ba0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + UTILITY_STACK_OFFSET_6F0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + UTILITY_STACK_OFFSET_6F0))(resource_buffer + UTILITY_STACK_OFFSET_6E0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + UTILITY_STACK_OFFSET_6F0))(resource_buffer + UTILITY_STACK_OFFSET_6E0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x6b8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_FLAG_OFFSET0) != 0) {
@@ -31600,7 +31601,7 @@ void Unwind_180903bc0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x760) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x760))(resource_buffer + 0x750,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x760))(resource_buffer + 0x750,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x728) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x730) != 0) {
@@ -31630,7 +31631,7 @@ void Unwind_180903be0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 2000) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 2000))(resource_buffer + 0x7c0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 2000))(resource_buffer + 0x7c0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x798) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x7a0) != 0) {
@@ -31660,7 +31661,7 @@ void Unwind_180903c00(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x840) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x840))(resource_buffer + 0x830,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x840))(resource_buffer + 0x830,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x808) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x810) != 0) {
@@ -31690,7 +31691,7 @@ void Unwind_180903c20(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x8b0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x8b0))(resource_buffer + 0x8a0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x8b0))(resource_buffer + 0x8a0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x878) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x880) != 0) {
@@ -31720,7 +31721,7 @@ void Unwind_180903c40(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x920) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x920))(resource_buffer + 0x910,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x920))(resource_buffer + 0x910,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x8e8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x8f0) != 0) {
@@ -31750,7 +31751,7 @@ void Unwind_180903c60(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x990) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x990))(resource_buffer + 0x980,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x990))(resource_buffer + 0x980,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x958) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x960) != 0) {
@@ -31780,7 +31781,7 @@ void Unwind_180903c80(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0xa08) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xa08))(resource_buffer + 0x9f8,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xa08))(resource_buffer + 0x9f8,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x9d0) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x9d8) != 0) {
@@ -31810,7 +31811,7 @@ void Unwind_180903ca0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0xa80) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xa80))(resource_buffer + 0xa70,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xa80))(resource_buffer + 0xa70,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xa48) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xa50) != 0) {
@@ -31878,7 +31879,7 @@ void Unwind_180903ce0(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + UTILITY_BUFFER_HANDLE_OFFSET) + UTILITY_LIST_HANDLE_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_BUFFER_HANDLE_OFFSET) + UTILITY_SYS_STATUS_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_BUFFER_HANDLE_OFFSET) + UTILITY_SYS_STATUS_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -31892,7 +31893,7 @@ void Unwind_180903cf0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 400) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 400))(resource_buffer + UTILITY_SYS_STATUS_OFFSET1,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 400))(resource_buffer + UTILITY_SYS_STATUS_OFFSET1,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x160) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x168) != 0) {
@@ -31946,7 +31947,7 @@ void Unwind_180903d10(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x250) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x250))(resource_buffer + memory_offset,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x250))(resource_buffer + memory_offset,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x220) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_DATA_OFFSET) != 0) {
@@ -32000,7 +32001,7 @@ void Unwind_180903d30(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x310) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x310))(resource_buffer + 0x300,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x310))(resource_buffer + 0x300,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x2e0) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + UTILITY_VALIDATION_OFFSET) != 0) {
@@ -32054,7 +32055,7 @@ void Unwind_180903d50(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x3d0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x3d0))(resource_buffer + 0x3c0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x3d0))(resource_buffer + 0x3c0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x3a0) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x3a8) != 0) {
@@ -32108,7 +32109,7 @@ void Unwind_180903d70(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + RESOURCE_PROP_OFFSET90) != (code *)zero_float) {
-    (**(code **)(resource_buffer + RESOURCE_PROP_OFFSET90))(resource_buffer + RESOURCE_PROP_OFFSET80,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + RESOURCE_PROP_OFFSET90))(resource_buffer + RESOURCE_PROP_OFFSET80,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + RESOURCE_PROP_OFFSET60) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + RESOURCE_PROP_OFFSET68) != 0) {
@@ -32162,7 +32163,7 @@ void Unwind_180903d90(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x550) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x550))(resource_buffer + 0x540,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x550))(resource_buffer + 0x540,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x520) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x528) != 0) {
@@ -32216,7 +32217,7 @@ void Unwind_180903db0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x610) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x610))(resource_buffer + 0x600,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x610))(resource_buffer + 0x600,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x5e0) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x5e8) != 0) {
@@ -32270,7 +32271,7 @@ void Unwind_180903dd0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + UTILITY_STACK_OFFSET_6D0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + UTILITY_STACK_OFFSET_6D0))(resource_buffer + UTILITY_RESOURCE_FLAG_OFFSET0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + UTILITY_STACK_OFFSET_6D0))(resource_buffer + UTILITY_RESOURCE_FLAG_OFFSET0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x6a0) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x6a8) != 0) {
@@ -32324,7 +32325,7 @@ void Unwind_180903df0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x790) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x790))(resource_buffer + 0x780,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x790))(resource_buffer + 0x780,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x760) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x768) != 0) {
@@ -32378,7 +32379,7 @@ void Unwind_180903e10(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x850) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x850))(resource_buffer + 0x840,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x850))(resource_buffer + 0x840,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x820) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x828) != 0) {
@@ -32432,7 +32433,7 @@ void Unwind_180903e30(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x910) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x910))(resource_buffer + UTILITY_MEMORY_SIZE_OFFSET0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x910))(resource_buffer + UTILITY_MEMORY_SIZE_OFFSET0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x8e0) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x8e8) != 0) {
@@ -32486,7 +32487,7 @@ void Unwind_180903e50(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x9d0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x9d0))(resource_buffer + 0x9c0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x9d0))(resource_buffer + 0x9c0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x9a0) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x9a8) != 0) {
@@ -32540,7 +32541,7 @@ void Unwind_180903e70(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0xa90) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xa90))(resource_buffer + 0xa80,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xa90))(resource_buffer + 0xa80,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xa60) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xa68) != 0) {
@@ -32594,7 +32595,7 @@ void Unwind_180903e90(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0xb50) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xb50))(resource_buffer + 0xb40,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xb50))(resource_buffer + 0xb40,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xb20) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xb28) != 0) {
@@ -32648,7 +32649,7 @@ void Unwind_180903eb0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0xc10) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xc10))(resource_buffer + 0xc00,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xc10))(resource_buffer + 0xc00,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xbe0) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xbe8) != 0) {
@@ -32702,7 +32703,7 @@ void Unwind_180903ed0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0xcd0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xcd0))(resource_buffer + 0xcc0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xcd0))(resource_buffer + 0xcc0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xca0) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xca8) != 0) {
@@ -32756,7 +32757,7 @@ void Unwind_180903ef0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0xd40) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xd40))(resource_buffer + 0xd30,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xd40))(resource_buffer + 0xd30,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xd08) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xd10) != 0) {
@@ -32786,7 +32787,7 @@ void Unwind_180903f10(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0xdb0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xdb0))(resource_buffer + 0xda0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xdb0))(resource_buffer + 0xda0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xd78) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xd80) != 0) {
@@ -32816,7 +32817,7 @@ void Unwind_180903f30(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0xe20) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xe20))(resource_buffer + 0xe10,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xe20))(resource_buffer + 0xe10,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xde8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xdf0) != 0) {
@@ -32846,7 +32847,7 @@ void Unwind_180903f50(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0xee0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xee0))(resource_buffer + 0xed0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xee0))(resource_buffer + 0xed0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xeb0) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xeb8) != 0) {
@@ -32900,7 +32901,7 @@ void Unwind_180903f70(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 4000) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 4000))(resource_buffer + 0xf90,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 4000))(resource_buffer + 0xf90,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xf70) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xf78) != 0) {
@@ -32954,7 +32955,7 @@ void Unwind_180903f90(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + resource_handle_valueta_offset60) != (code *)zero_float) {
-    (**(code **)(resource_buffer + resource_handle_valueta_offset60))(resource_buffer + resource_handle_valueta_offset50,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + resource_handle_valueta_offset60))(resource_buffer + resource_handle_valueta_offset50,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + resource_handle_valueta_offset30) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + resource_handle_valueta_offset38) != 0) {
@@ -33008,7 +33009,7 @@ void Unwind_180903fb0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + resource_handle_valueta_offsetd0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + resource_handle_valueta_offsetd0))(resource_buffer + resource_handle_valueta_offsetc0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + resource_handle_valueta_offsetd0))(resource_buffer + resource_handle_valueta_offsetc0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + resource_handle_valueta_offset98) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + resource_handle_valueta_offseta0) != 0) {
@@ -33038,7 +33039,7 @@ void Unwind_180903fd0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1140) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1140))(resource_buffer + 0x1130,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1140))(resource_buffer + 0x1130,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1108) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1110) != 0) {
@@ -33068,7 +33069,7 @@ void Unwind_180903ff0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x11b0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x11b0))(resource_buffer + 0x11a0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x11b0))(resource_buffer + 0x11a0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1178) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1180) != 0) {
@@ -33098,7 +33099,7 @@ void Unwind_180904010(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1220) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1220))(resource_buffer + 0x1210,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1220))(resource_buffer + 0x1210,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x11e8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x11f0) != 0) {
@@ -33128,7 +33129,7 @@ void Unwind_180904030(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1290) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1290))(resource_buffer + 0x1280,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1290))(resource_buffer + 0x1280,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1258) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1260) != 0) {
@@ -33158,7 +33159,7 @@ void Unwind_180904050(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1300) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1300))(resource_buffer + 0x12f0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1300))(resource_buffer + 0x12f0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x12c8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x12d0) != 0) {
@@ -33188,7 +33189,7 @@ void Unwind_180904070(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1370) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1370))(resource_buffer + 0x1360,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1370))(resource_buffer + 0x1360,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1338) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1340) != 0) {
@@ -33220,7 +33221,7 @@ void Unwind_180904090(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 system_status_code;
   
   data_buffer = (longlong *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x1380);
-  system_status_code = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  system_status_code = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 5000);
   for (unsigned_pointer_var3 = (uint64 *)*data_buffer; generic_data_pointer != utility_resource_operation_resultData; generic_data_pointer = generic_data_pointer + 4) {
     (**(code **)*generic_data_pointer)(unsigned_pointer_var3,0,resourceOperationFlags,resourceCallbackFunction,system_status_code);
@@ -33243,7 +33244,7 @@ void Unwind_1809040b0(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 system_status_code;
   
   data_buffer = (longlong *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x13a0);
-  system_status_code = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  system_status_code = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x13a8);
   for (unsigned_pointer_var3 = (uint64 *)*data_buffer; generic_data_pointer != utility_resource_operation_resultData; generic_data_pointer = generic_data_pointer + 4) {
     (**(code **)*generic_data_pointer)(unsigned_pointer_var3,0,resourceOperationFlags,resourceCallbackFunction,system_status_code);
@@ -33283,7 +33284,7 @@ void Unwind_1809040e0(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + utility_data_offset_start);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + list_head_offset,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + list_head_offset,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -33297,7 +33298,7 @@ void Unwind_1809040f0(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -33330,7 +33331,7 @@ void Unwind_180904110(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + list_head_offset) + utility_data_offset_start);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + list_head_offset) + list_head_offset,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + list_head_offset) + list_head_offset,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -33439,7 +33440,7 @@ void Unwind_180904180(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + 0xb0);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + UTILITY_RESOURCE_ACCESS_ID,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + UTILITY_RESOURCE_ACCESS_ID,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -33472,7 +33473,7 @@ void Unwind_1809041b0(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + list_head_offset) + 0xb0);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + list_head_offset) + UTILITY_RESOURCE_ACCESS_ID,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + list_head_offset) + UTILITY_RESOURCE_ACCESS_ID,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -33486,7 +33487,7 @@ void Unwind_1809041d0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 400) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 400))(resource_buffer + UTILITY_SYS_STATUS_OFFSET1,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 400))(resource_buffer + UTILITY_SYS_STATUS_OFFSET1,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x160) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x168) != 0) {
@@ -33540,7 +33541,7 @@ void Unwind_1809041f0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x250) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x250))(resource_buffer + memory_offset,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x250))(resource_buffer + memory_offset,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x220) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_DATA_OFFSET) != 0) {
@@ -33594,7 +33595,7 @@ void Unwind_180904210(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x310) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x310))(resource_buffer + 0x300,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x310))(resource_buffer + 0x300,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x2e0) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + UTILITY_VALIDATION_OFFSET) != 0) {
@@ -33648,7 +33649,7 @@ void Unwind_180904230(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x3d0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x3d0))(resource_buffer + 0x3c0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x3d0))(resource_buffer + 0x3c0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x3a0) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x3a8) != 0) {
@@ -33702,7 +33703,7 @@ void Unwind_180904250(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + RESOURCE_PROP_OFFSET90) != (code *)zero_float) {
-    (**(code **)(resource_buffer + RESOURCE_PROP_OFFSET90))(resource_buffer + RESOURCE_PROP_OFFSET80,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + RESOURCE_PROP_OFFSET90))(resource_buffer + RESOURCE_PROP_OFFSET80,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + RESOURCE_PROP_OFFSET60) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + RESOURCE_PROP_OFFSET68) != 0) {
@@ -33756,7 +33757,7 @@ void Unwind_180904270(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x550) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x550))(resource_buffer + 0x540,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x550))(resource_buffer + 0x540,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x520) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x528) != 0) {
@@ -33810,7 +33811,7 @@ void Unwind_180904290(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x610) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x610))(resource_buffer + 0x600,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x610))(resource_buffer + 0x600,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x5e0) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x5e8) != 0) {
@@ -33864,7 +33865,7 @@ void Unwind_1809042b0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + UTILITY_STACK_OFFSET_6D0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + UTILITY_STACK_OFFSET_6D0))(resource_buffer + UTILITY_RESOURCE_FLAG_OFFSET0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + UTILITY_STACK_OFFSET_6D0))(resource_buffer + UTILITY_RESOURCE_FLAG_OFFSET0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x6a0) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x6a8) != 0) {
@@ -33918,7 +33919,7 @@ void Unwind_1809042d0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x790) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x790))(resource_buffer + 0x780,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x790))(resource_buffer + 0x780,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x760) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x768) != 0) {
@@ -33972,7 +33973,7 @@ void Unwind_1809042f0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x850) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x850))(resource_buffer + 0x840,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x850))(resource_buffer + 0x840,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x820) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x828) != 0) {
@@ -34026,7 +34027,7 @@ void Unwind_180904310(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x910) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x910))(resource_buffer + UTILITY_MEMORY_SIZE_OFFSET0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x910))(resource_buffer + UTILITY_MEMORY_SIZE_OFFSET0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x8e0) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x8e8) != 0) {
@@ -34080,7 +34081,7 @@ void Unwind_180904330(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x9d0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x9d0))(resource_buffer + 0x9c0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x9d0))(resource_buffer + 0x9c0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x9a0) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x9a8) != 0) {
@@ -34134,7 +34135,7 @@ void Unwind_180904350(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0xa90) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xa90))(resource_buffer + 0xa80,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xa90))(resource_buffer + 0xa80,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xa60) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xa68) != 0) {
@@ -34188,7 +34189,7 @@ void Unwind_180904370(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0xb50) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xb50))(resource_buffer + 0xb40,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xb50))(resource_buffer + 0xb40,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xb20) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xb28) != 0) {
@@ -34242,7 +34243,7 @@ void Unwind_180904390(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0xc10) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xc10))(resource_buffer + 0xc00,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xc10))(resource_buffer + 0xc00,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xbe0) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xbe8) != 0) {
@@ -34296,7 +34297,7 @@ void Unwind_1809043b0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0xcd0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xcd0))(resource_buffer + 0xcc0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xcd0))(resource_buffer + 0xcc0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xca0) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xca8) != 0) {
@@ -34350,7 +34351,7 @@ void Unwind_1809043d0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0xd40) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xd40))(resource_buffer + 0xd30,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xd40))(resource_buffer + 0xd30,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xd08) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xd10) != 0) {
@@ -34380,7 +34381,7 @@ void Unwind_1809043f0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0xdb0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xdb0))(resource_buffer + 0xda0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xdb0))(resource_buffer + 0xda0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xd78) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xd80) != 0) {
@@ -34410,7 +34411,7 @@ void Unwind_180904410(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0xe20) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xe20))(resource_buffer + 0xe10,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xe20))(resource_buffer + 0xe10,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xde8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xdf0) != 0) {
@@ -34440,7 +34441,7 @@ void Unwind_180904430(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0xee0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xee0))(resource_buffer + 0xed0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xee0))(resource_buffer + 0xed0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xeb0) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xeb8) != 0) {
@@ -34494,7 +34495,7 @@ void Unwind_180904450(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 4000) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 4000))(resource_buffer + 0xf90,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 4000))(resource_buffer + 0xf90,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xf70) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xf78) != 0) {
@@ -34548,7 +34549,7 @@ void Unwind_180904470(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + resource_handle_valueta_offset60) != (code *)zero_float) {
-    (**(code **)(resource_buffer + resource_handle_valueta_offset60))(resource_buffer + resource_handle_valueta_offset50,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + resource_handle_valueta_offset60))(resource_buffer + resource_handle_valueta_offset50,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + resource_handle_valueta_offset30) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + resource_handle_valueta_offset38) != 0) {
@@ -34602,7 +34603,7 @@ void Unwind_180904490(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + resource_handle_valueta_offsetd0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + resource_handle_valueta_offsetd0))(resource_buffer + resource_handle_valueta_offsetc0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + resource_handle_valueta_offsetd0))(resource_buffer + resource_handle_valueta_offsetc0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + resource_handle_valueta_offset98) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + resource_handle_valueta_offseta0) != 0) {
@@ -34632,7 +34633,7 @@ void Unwind_1809044b0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1140) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1140))(resource_buffer + 0x1130,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1140))(resource_buffer + 0x1130,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1108) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1110) != 0) {
@@ -34662,7 +34663,7 @@ void Unwind_1809044d0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x11b0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x11b0))(resource_buffer + 0x11a0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x11b0))(resource_buffer + 0x11a0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1178) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1180) != 0) {
@@ -34692,7 +34693,7 @@ void Unwind_1809044f0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1220) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1220))(resource_buffer + 0x1210,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1220))(resource_buffer + 0x1210,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x11e8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x11f0) != 0) {
@@ -34722,7 +34723,7 @@ void Unwind_180904510(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1290) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1290))(resource_buffer + 0x1280,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1290))(resource_buffer + 0x1280,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1258) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1260) != 0) {
@@ -34752,7 +34753,7 @@ void Unwind_180904530(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1300) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1300))(resource_buffer + 0x12f0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1300))(resource_buffer + 0x12f0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x12c8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x12d0) != 0) {
@@ -34782,7 +34783,7 @@ void Unwind_180904550(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1370) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1370))(resource_buffer + 0x1360,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1370))(resource_buffer + 0x1360,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1338) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1340) != 0) {
@@ -34814,7 +34815,7 @@ void Unwind_180904570(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 system_status_code;
   
   data_buffer = (longlong *)(*(longlong *)(resource_buffer + utility_buffer_offset) + 0x1380);
-  system_status_code = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  system_status_code = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + utility_buffer_offset) + 5000);
   for (unsigned_pointer_var3 = (uint64 *)*data_buffer; generic_data_pointer != utility_resource_operation_resultData; generic_data_pointer = generic_data_pointer + 4) {
     (**(code **)*generic_data_pointer)(unsigned_pointer_var3,0,resourceOperationFlags,resourceCallbackFunction,system_status_code);
@@ -34837,7 +34838,7 @@ void Unwind_180904590(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 system_status_code;
   
   data_buffer = (longlong *)(*(longlong *)(resource_buffer + utility_buffer_offset) + 0x13a0);
-  system_status_code = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  system_status_code = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + utility_buffer_offset) + 0x13a8);
   for (unsigned_pointer_var3 = (uint64 *)*data_buffer; generic_data_pointer != utility_resource_operation_resultData; generic_data_pointer = generic_data_pointer + 4) {
     (**(code **)*generic_data_pointer)(unsigned_pointer_var3,0,resourceOperationFlags,resourceCallbackFunction,system_status_code);
@@ -34860,7 +34861,7 @@ void Unwind_1809045b0(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 system_status_code;
   
   data_buffer = *(longlong **)(resource_buffer + UTILITY_BUFFER_HANDLE_OFFSET);
-  system_status_code = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  system_status_code = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = (uint64 *)data_buffer[1];
   for (unsigned_pointer_var3 = (uint64 *)*data_buffer; generic_data_pointer != utility_resource_operation_resultData; generic_data_pointer = generic_data_pointer + 4) {
     (**(code **)*generic_data_pointer)(unsigned_pointer_var3,0,resourceOperationFlags,resourceCallbackFunction,system_status_code);
@@ -34920,7 +34921,7 @@ void Unwind_180904630(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -34935,7 +34936,7 @@ void Unwind_180904650(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + field_offset_primary);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + POINTER_DATA_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + POINTER_DATA_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -34949,7 +34950,7 @@ void Unwind_180904660(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + list_head_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + list_head_offset),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + list_head_offset),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -34963,7 +34964,7 @@ void Unwind_180904670(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + UTILITY_SYS_STATUS_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_SYS_STATUS_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_SYS_STATUS_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -34991,7 +34992,7 @@ void Unwind_180904690(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + list_head_offset) + field_offset_primary);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + list_head_offset) + POINTER_DATA_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + list_head_offset) + POINTER_DATA_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -35065,7 +35066,7 @@ void Unwind_1809046e0(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + UTILITY_STRUCT_OFFSET_1);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_BUFFER_ARRAY_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_BUFFER_ARRAY_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -35079,7 +35080,7 @@ void Unwind_180904700(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -35093,7 +35094,7 @@ void Unwind_180904710(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + utility_data_offset_start) + UTILITY_STRUCT_OFFSET_1);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + utility_data_offset_start) + RESOURCE_BUFFER_ARRAY_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + utility_data_offset_start) + RESOURCE_BUFFER_ARRAY_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -35107,7 +35108,7 @@ void Unwind_180904730(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -35121,7 +35122,7 @@ void Unwind_180904740(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -35145,7 +35146,7 @@ void Unwind_180904760(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -35215,7 +35216,7 @@ void Unwind_1809047d0(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -35438,7 +35439,7 @@ void Unwind_180904900(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   RegisterResourceFunction(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -35448,7 +35449,7 @@ void Unwind_180904910(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   RegisterResourceFunction(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -35482,7 +35483,7 @@ void Unwind_180904920(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -35518,7 +35519,7 @@ void Unwind_180904930(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -35598,7 +35599,7 @@ void Unwind_180904960(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(validation_result_flag,CONCAT71(0xff000000,*(void ***)(validation_result_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -35660,7 +35661,7 @@ void Unwind_180904970(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(validation_result_flag,CONCAT71(0xff000000,*(void ***)(validation_result_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -35722,7 +35723,7 @@ void Unwind_180904990(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(validation_result_flag,CONCAT71(0xff000000,*(void ***)(validation_result_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -35776,7 +35777,7 @@ void Unwind_1809049d0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -35812,7 +35813,7 @@ void Unwind_1809049e0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -35848,7 +35849,7 @@ void Unwind_1809049f0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -35928,7 +35929,7 @@ void Unwind_180904a20(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(validation_result_flag,CONCAT71(0xff000000,*(void ***)(validation_result_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -35990,7 +35991,7 @@ void Unwind_180904a30(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(validation_result_flag,CONCAT71(0xff000000,*(void ***)(validation_result_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -36052,7 +36053,7 @@ void Unwind_180904a50(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(validation_result_flag,CONCAT71(0xff000000,*(void ***)(validation_result_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -36097,7 +36098,7 @@ void Unwind_180904a80(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -36133,7 +36134,7 @@ void Unwind_180904a90(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -36158,9 +36159,9 @@ void Unwind_180904ab0(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 loop_counter;
   
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + 0x160);
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   *utility_resource_operation_resultData = &g_system_data_shader_buffer;
-  char_value = UtilityModule1(utility_resource_operation_resultData,1,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  char_value = UtilityModule1(utility_resource_operation_resultData,1,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   while (char_value != '\0') {
     char_value = UtilityModule1(utility_resource_operation_resultData,1,resourceOperationFlags,resourceCallbackFunction,loop_counter);
   }
@@ -36226,9 +36227,9 @@ void Unwind_180904af0(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 loop_counter;
   
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + list_head_offset);
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   *utility_resource_operation_resultData = &g_system_data_shader_buffer;
-  char_value = UtilityModule1(utility_resource_operation_resultData,1,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  char_value = UtilityModule1(utility_resource_operation_resultData,1,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   while (char_value != '\0') {
     char_value = UtilityModule1(utility_resource_operation_resultData,1,resourceOperationFlags,resourceCallbackFunction,loop_counter);
   }
@@ -36574,9 +36575,9 @@ void Unwind_180904e40(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 loop_counter;
   
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + field_offset_primary);
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   *utility_resource_operation_resultData = &g_system_data_shader_buffer;
-  char_value = UtilityModule1(utility_resource_operation_resultData,1,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  char_value = UtilityModule1(utility_resource_operation_resultData,1,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   while (char_value != '\0') {
     char_value = UtilityModule1(utility_resource_operation_resultData,1,resourceOperationFlags,resourceCallbackFunction,loop_counter);
   }
@@ -36610,7 +36611,7 @@ void Unwind_180904e50(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + 200);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + RESOURCE_BUFFER_ARRAY_OFFSET); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -36631,7 +36632,7 @@ void Unwind_180904e60(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + 200);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + RESOURCE_BUFFER_ARRAY_OFFSET); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -36673,7 +36674,7 @@ void Unwind_180904e70(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -36724,7 +36725,7 @@ void Unwind_180904f10(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + UTILITY_MEMORY_SIZE_OFFSET); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -36745,7 +36746,7 @@ void Unwind_180904f20(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + UTILITY_MEMORY_SIZE_OFFSET); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -36787,7 +36788,7 @@ void Unwind_180904f30(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -36852,7 +36853,7 @@ void Unwind_180904f90(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + POINTER_DATA_OFFSET); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -36873,7 +36874,7 @@ void Unwind_180904fa0(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + POINTER_DATA_OFFSET); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -36915,7 +36916,7 @@ void Unwind_180904fb0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -36946,7 +36947,7 @@ void Unwind_180904fd0(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + UTILITY_RESOURCE_ACCESS_ID);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -37033,7 +37034,7 @@ void Unwind_180905020(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + utility_buffer_size_data_offset); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -37075,7 +37076,7 @@ void Unwind_180905030(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -37090,7 +37091,7 @@ void Unwind_180905040(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + UTILITY_RESOURCE_ACCESS_ID);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -37132,7 +37133,7 @@ void Unwind_180905050(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -37267,7 +37268,7 @@ void Unwind_180905110(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + UTILITY_RESOURCE_ACCESS_OFFSET);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + 0x148); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -37288,7 +37289,7 @@ void Unwind_180905120(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + 0x210);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + 0x208); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -37343,7 +37344,7 @@ void Unwind_180905160(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + 0x110);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + resource_handle_valueta_offset_8); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -37364,7 +37365,7 @@ void Unwind_180905170(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + 0x230);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + UTILITY_RESOURCE_DATA_OFFSET); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -37447,7 +37448,7 @@ void Unwind_1809051f0(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + UTILITY_RESOURCE_ACCESS_OFFSET);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + 0x148); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -37489,7 +37490,7 @@ void Unwind_180905200(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -37504,7 +37505,7 @@ void Unwind_180905210(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + 0x210);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + 0x208); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -37546,7 +37547,7 @@ void Unwind_180905220(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -37579,7 +37580,7 @@ void Unwind_180905250(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + 0x110);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + resource_handle_valueta_offset_8); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -37621,7 +37622,7 @@ void Unwind_180905260(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -37636,7 +37637,7 @@ void Unwind_180905270(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + 0x230);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + UTILITY_RESOURCE_DATA_OFFSET); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -37678,7 +37679,7 @@ void Unwind_180905280(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -37821,7 +37822,7 @@ void Unwind_180905380(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -37836,7 +37837,7 @@ void Unwind_180905390(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + 0xd8) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + 0xd8),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + 0xd8),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -37850,7 +37851,7 @@ void Unwind_1809053a0(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + 0xd8) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + 0xd8),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + 0xd8),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -37861,7 +37862,7 @@ void Unwind_1809053b0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   if (*(code **)(resource_buffer + list_head_offset) != (code *)zero_float) {
-    (**(code **)(resource_buffer + list_head_offset))(resource_buffer + utility_buffer_size_data_offset,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + list_head_offset))(resource_buffer + utility_buffer_size_data_offset,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -37875,7 +37876,7 @@ void Unwind_1809053c0(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + UTILITY_STACK_OFFSET_F0) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_STACK_OFFSET_F0),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_STACK_OFFSET_F0),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -37897,7 +37898,7 @@ void Unwind_1809053e0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   if (*(code **)(resource_buffer + list_head_offset) != (code *)zero_float) {
-    (**(code **)(resource_buffer + list_head_offset))(resource_buffer + utility_buffer_size_data_offset,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + list_head_offset))(resource_buffer + utility_buffer_size_data_offset,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -37911,7 +37912,7 @@ void Unwind_1809053f0(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + SYSTEM_FLAGS_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + SYSTEM_FLAGS_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + SYSTEM_FLAGS_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -37925,7 +37926,7 @@ void Unwind_180905400(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + resource_handle_offset_zero) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + resource_handle_offset_zero),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + resource_handle_offset_zero),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -37939,7 +37940,7 @@ void Unwind_180905410(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + SYSTEM_FLAGS_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + SYSTEM_FLAGS_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + SYSTEM_FLAGS_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -37953,7 +37954,7 @@ void Unwind_180905420(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + UTILITY_STACK_OFFSET_F0) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_STACK_OFFSET_F0),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_STACK_OFFSET_F0),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -37967,7 +37968,7 @@ void Unwind_180905430(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + resource_handle_offset_zero) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + resource_handle_offset_zero),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + resource_handle_offset_zero),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -37981,7 +37982,7 @@ void Unwind_180905440(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + resource_handle_valueta_offset_8) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + resource_handle_valueta_offset_8),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + resource_handle_valueta_offset_8),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -37995,7 +37996,7 @@ void Unwind_180905450(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + resource_handle_offset_zero) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + resource_handle_offset_zero),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + resource_handle_offset_zero),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -38009,7 +38010,7 @@ void Unwind_180905460(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + resource_handle_valueta_offset_8) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + resource_handle_valueta_offset_8),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + resource_handle_valueta_offset_8),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -38023,7 +38024,7 @@ void Unwind_180905470(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + RESOURCE_CONFIG_ID) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + RESOURCE_CONFIG_ID),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + RESOURCE_CONFIG_ID),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -38037,7 +38038,7 @@ void Unwind_180905480(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + SYSTEM_FLAGS_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + SYSTEM_FLAGS_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + SYSTEM_FLAGS_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -38051,7 +38052,7 @@ void Unwind_180905490(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -38188,7 +38189,7 @@ void Unwind_180905540(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -38251,7 +38252,7 @@ void Unwind_1809055b0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -38287,7 +38288,7 @@ void Unwind_1809055c0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -38352,7 +38353,7 @@ void Unwind_180905640(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + RESOURCE_CONFIG_ID);
   if (*(code **)(resource_buffer + 0x198) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x198))(resource_buffer + 0x188,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x198))(resource_buffer + 0x188,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   if (*(code **)(resource_buffer + 0x178) != (code *)zero_float) {
     (**(code **)(resource_buffer + 0x178))(resource_buffer + 0x168,zero_float);
@@ -38370,7 +38371,7 @@ void Unwind_180905650(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET);
   if (*(code **)(resource_buffer + 0x198) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x198))(resource_buffer + 0x188,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x198))(resource_buffer + 0x188,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   if (*(code **)(resource_buffer + 0x178) != (code *)zero_float) {
     (**(code **)(resource_buffer + 0x178))(resource_buffer + 0x168,zero_float);
@@ -38388,7 +38389,7 @@ void Unwind_180905660(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + 0x158);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + 0x148,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + 0x148,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -38402,7 +38403,7 @@ void Unwind_180905680(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + 0x178);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + 0x168,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + 0x168,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -38434,7 +38435,7 @@ void Unwind_1809056c0(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x158);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x148,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x148,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -38448,7 +38449,7 @@ void Unwind_1809056e0(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x178);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x168,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x168,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -38462,7 +38463,7 @@ void Unwind_180905700(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -38517,7 +38518,7 @@ void Unwind_180905770(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 system_status_code;
   
   data_buffer = *(longlong **)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET);
-  system_status_code = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  system_status_code = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = (uint64 *)data_buffer[1];
   for (unsigned_pointer_var3 = (uint64 *)*data_buffer; generic_data_pointer != utility_resource_operation_resultData; generic_data_pointer = generic_data_pointer + 0x13) {
     (**(code **)*generic_data_pointer)(unsigned_pointer_var3,0,resourceOperationFlags,resourceCallbackFunction,system_status_code);
@@ -38744,7 +38745,7 @@ void Unwind_1809057f0(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + UTILITY_VALIDATION_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_VALIDATION_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_VALIDATION_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -38814,7 +38815,7 @@ void Unwind_180905860(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 system_status_code;
   
   data_buffer = (longlong *)(*(longlong *)(resource_buffer + 0x2e0) + 8);
-  system_status_code = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  system_status_code = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + 0x2e0) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   for (unsigned_pointer_var3 = (uint64 *)*data_buffer; generic_data_pointer != utility_resource_operation_resultData; generic_data_pointer = generic_data_pointer + 4) {
     (**(code **)*generic_data_pointer)(unsigned_pointer_var3,0,resourceOperationFlags,resourceCallbackFunction,system_status_code);
@@ -38837,7 +38838,7 @@ void Unwind_180905870(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 system_status_code;
   
   data_buffer = *(longlong **)(resource_buffer + UTILITY_VALIDATION_OFFSET);
-  system_status_code = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  system_status_code = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = (uint64 *)data_buffer[1];
   for (unsigned_pointer_var3 = (uint64 *)*data_buffer; generic_data_pointer != utility_resource_operation_resultData; generic_data_pointer = generic_data_pointer + 4) {
     (**(code **)*generic_data_pointer)(unsigned_pointer_var3,0,resourceOperationFlags,resourceCallbackFunction,system_status_code);
@@ -38879,7 +38880,7 @@ void Unwind_180905880(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -38924,7 +38925,7 @@ void Unwind_1809058a0(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 system_status_code;
   
   data_buffer = (longlong *)(*(longlong *)(resource_buffer + 0x2e0) + POINTER_DATA_OFFSET);
-  system_status_code = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  system_status_code = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + 0x2e0) + UTILITY_SECONDARY_BYTE_OFFSET);
   for (unsigned_pointer_var3 = (uint64 *)*data_buffer; generic_data_pointer != utility_resource_operation_resultData; generic_data_pointer = generic_data_pointer + 4) {
     (**(code **)*generic_data_pointer)(unsigned_pointer_var3,0,resourceOperationFlags,resourceCallbackFunction,system_status_code);
@@ -38947,7 +38948,7 @@ void Unwind_1809058b0(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 system_status_code;
   
   data_buffer = (longlong *)(*(longlong *)(resource_buffer + 0x2e0) + utility_buffer_size_data_offset);
-  system_status_code = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  system_status_code = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + 0x2e0) + UTILITY_BUFFER_DATA_OFFSET);
   for (unsigned_pointer_var3 = (uint64 *)*data_buffer; generic_data_pointer != utility_resource_operation_resultData; generic_data_pointer = generic_data_pointer + 4) {
     (**(code **)*generic_data_pointer)(unsigned_pointer_var3,0,resourceOperationFlags,resourceCallbackFunction,system_status_code);
@@ -39049,7 +39050,7 @@ void Unwind_180905910(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 system_status_code;
   
   data_buffer = (longlong *)(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET) + 8);
-  system_status_code = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  system_status_code = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   for (unsigned_pointer_var3 = (uint64 *)*data_buffer; generic_data_pointer != utility_resource_operation_resultData; generic_data_pointer = generic_data_pointer + 4) {
     (**(code **)*generic_data_pointer)(unsigned_pointer_var3,0,resourceOperationFlags,resourceCallbackFunction,system_status_code);
@@ -39130,7 +39131,7 @@ void Unwind_180905940(uint64 resource_handle_identifier,longlong resource_buffer
       }
       else {
         exceptionHandleFunction(validation_result_flag,CONCAT71(0xff000000,*(void ***)(validation_result_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                            loop_counter_pointer,validation_result_flag,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                            loop_counter_pointer,validation_result_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
     return;
@@ -39276,7 +39277,7 @@ void Unwind_180905960(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 system_status_code;
   
   data_buffer = (longlong *)(*(longlong *)(resource_buffer + UTILITY_VALIDATION_OFFSET) + 0x260);
-  system_status_code = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  system_status_code = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + UTILITY_VALIDATION_OFFSET) + 0x268);
   for (unsigned_pointer_var3 = (uint64 *)*data_buffer; generic_data_pointer != utility_resource_operation_resultData; generic_data_pointer = generic_data_pointer + 0x13) {
     (**(code **)*generic_data_pointer)(unsigned_pointer_var3,0,resourceOperationFlags,resourceCallbackFunction,system_status_code);
@@ -39327,7 +39328,7 @@ void Unwind_1809059a0(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 system_status_code;
   
   data_buffer = *(longlong **)(resource_buffer + utility_buffer_size_data_offset);
-  system_status_code = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  system_status_code = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = (uint64 *)data_buffer[1];
   for (unsigned_pointer_var3 = (uint64 *)*data_buffer; generic_data_pointer != utility_resource_operation_resultData; generic_data_pointer = generic_data_pointer + 0x13) {
     (**(code **)*generic_data_pointer)(unsigned_pointer_var3,0,resourceOperationFlags,resourceCallbackFunction,system_status_code);
@@ -39348,7 +39349,7 @@ void Unwind_1809059b0(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + UTILITY_VALIDATION_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_VALIDATION_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_VALIDATION_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -39561,7 +39562,7 @@ void Unwind_180905b10(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + list_head_offset) + UTILITY_STRUCT_OFFSET_1);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + list_head_offset) + RESOURCE_BUFFER_ARRAY_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + list_head_offset) + RESOURCE_BUFFER_ARRAY_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -39666,7 +39667,7 @@ void Unwind_180905b60(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(validation_result_flag,CONCAT71(0xff000000,*(void ***)(validation_result_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -39763,7 +39764,7 @@ void Unwind_180905b90(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(validation_result_flag,CONCAT71(0xff000000,*(void ***)(validation_result_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -40016,7 +40017,7 @@ void Unwind_180905c50(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(validation_result_flag,CONCAT71(0xff000000,*(void ***)(validation_result_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -40185,7 +40186,7 @@ void Unwind_180905ca0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(validation_result_flag,CONCAT71(0xff000000,*(void ***)(validation_result_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -40215,7 +40216,7 @@ void Unwind_180905cf0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   if (*(code **)(resource_buffer + 0x1f8) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1f8))(resource_buffer + 0x1e8,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1f8))(resource_buffer + 0x1e8,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   if (*(code **)(resource_buffer + 0x1d8) != (code *)zero_float) {
     (**(code **)(resource_buffer + 0x1d8))(resource_buffer + 0x1c8,zero_float);
@@ -40230,7 +40231,7 @@ void Unwind_180905d00(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   if (*(code **)(resource_buffer + 0x1d8) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1d8))(resource_buffer + 0x1c8,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1d8))(resource_buffer + 0x1c8,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -40241,7 +40242,7 @@ void Unwind_180905d20(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   if (*(code **)(resource_buffer + 0x1f8) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1f8))(resource_buffer + 0x1e8,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1f8))(resource_buffer + 0x1e8,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -40255,7 +40256,7 @@ void Unwind_180905d40(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + field_offset_primary) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + field_offset_primary),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + field_offset_primary),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -40312,7 +40313,7 @@ void Unwind_180905d90(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + list_head_offset) + 0x158);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + list_head_offset) + 0x148,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + list_head_offset) + 0x148,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -40326,7 +40327,7 @@ void Unwind_180905db0(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + list_head_offset) + 0x178);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + list_head_offset) + 0x168,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + list_head_offset) + 0x168,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -40445,7 +40446,7 @@ void Unwind_180905e50(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + 0x158);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + 0x148,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + 0x148,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -40459,7 +40460,7 @@ void Unwind_180905e70(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + 0x178);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + 0x168,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + 0x168,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -40473,7 +40474,7 @@ void Unwind_180905e90(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -40536,7 +40537,7 @@ void Unwind_180905ea0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(validation_result_flag,CONCAT71(0xff000000,*(void ***)(validation_result_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -40639,7 +40640,7 @@ void Unwind_180905ef0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(validation_result_flag,CONCAT71(0xff000000,*(void ***)(validation_result_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -40745,7 +40746,7 @@ void Unwind_180905f70(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(validation_result_flag,CONCAT71(0xff000000,*(void ***)(validation_result_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -40847,7 +40848,7 @@ void Unwind_180905fa0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(validation_result_flag,CONCAT71(0xff000000,*(void ***)(validation_result_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -40929,7 +40930,7 @@ void Unwind_180905fe0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(validation_result_flag,CONCAT71(0xff000000,*(void ***)(validation_result_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          unsigned_pointer_var3,validation_result_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -41209,7 +41210,7 @@ void Unwind_180906160(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -41245,7 +41246,7 @@ void Unwind_180906180(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -41281,7 +41282,7 @@ void Unwind_180906190(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -41373,7 +41374,7 @@ void ResourceUnwindHandler5(uint64 resource_handle_identifier,longlong resource_
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -41532,7 +41533,7 @@ void Unwind_1809063f0(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + 0xe8);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + UTILITY_STACK_OFFSET_E0); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -41577,7 +41578,7 @@ void Unwind_180906460(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + 0xe8);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + UTILITY_STACK_OFFSET_E0); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -41619,7 +41620,7 @@ void Unwind_180906470(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -42276,7 +42277,7 @@ void Unwind_180906700(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 system_status_code;
   
   data_buffer = (longlong *)(*(longlong *)(resource_buffer + UTILITY_RESOURCE_ACCESS_ID) + 0x218);
-  system_status_code = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  system_status_code = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + UTILITY_RESOURCE_ACCESS_ID) + 0x220);
   for (unsigned_pointer_var3 = (uint64 *)*data_buffer; generic_data_pointer != utility_resource_operation_resultData; generic_data_pointer = generic_data_pointer + 4) {
     (**(code **)*generic_data_pointer)(unsigned_pointer_var3,0,resourceOperationFlags,resourceCallbackFunction,system_status_code);
@@ -42477,7 +42478,7 @@ void Unwind_180906890(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 system_status_code;
   
   data_buffer = (longlong *)(*(longlong *)(resource_buffer + list_head_offset) + 0x218);
-  system_status_code = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  system_status_code = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + list_head_offset) + 0x220);
   for (unsigned_pointer_var3 = (uint64 *)*data_buffer; generic_data_pointer != utility_resource_operation_resultData; generic_data_pointer = generic_data_pointer + 4) {
     (**(code **)*generic_data_pointer)(unsigned_pointer_var3,0,resourceOperationFlags,resourceCallbackFunction,system_status_code);
@@ -42541,7 +42542,7 @@ void Unwind_180906940(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 system_status_code;
   
   data_buffer = *(longlong **)(resource_buffer + UTILITY_SYS_STATUS_OFFSET);
-  system_status_code = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  system_status_code = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = (uint64 *)data_buffer[1];
   for (unsigned_pointer_var3 = (uint64 *)*data_buffer; generic_data_pointer != utility_resource_operation_resultData; generic_data_pointer = generic_data_pointer + 4) {
     (**(code **)*generic_data_pointer)(unsigned_pointer_var3,0,resourceOperationFlags,resourceCallbackFunction,system_status_code);
@@ -42877,7 +42878,7 @@ void Unwind_180906b00(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   if (*(code **)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET) != (code *)zero_float) {
-    (**(code **)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET))(resource_buffer + UTILITY_LIST_HANDLE_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET))(resource_buffer + UTILITY_LIST_HANDLE_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -42925,7 +42926,7 @@ void Unwind_180906b30(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   if (*(code **)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET) != (code *)zero_float) {
-    (**(code **)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET))(resource_buffer + UTILITY_LIST_HANDLE_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET))(resource_buffer + UTILITY_LIST_HANDLE_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -42986,7 +42987,7 @@ void Unwind_180906b50(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -43111,7 +43112,7 @@ void Unwind_180906bb0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -43147,7 +43148,7 @@ void Unwind_180906bc0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -43264,7 +43265,7 @@ void Unwind_180906c50(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -43342,7 +43343,7 @@ void Unwind_180906c80(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -43378,7 +43379,7 @@ void Unwind_180906c90(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -43414,7 +43415,7 @@ void Unwind_180906ca0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -43471,7 +43472,7 @@ void Unwind_180906cc0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -43507,7 +43508,7 @@ void Unwind_180906cd0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -43564,7 +43565,7 @@ void Unwind_180906cf0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -43600,7 +43601,7 @@ void Unwind_180906d00(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -43636,7 +43637,7 @@ void Unwind_180906d10(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -43693,7 +43694,7 @@ void Unwind_180906d30(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -43729,7 +43730,7 @@ void Unwind_180906d40(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -43765,7 +43766,7 @@ void Unwind_180906d50(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -43801,7 +43802,7 @@ void Unwind_180906d60(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -43837,7 +43838,7 @@ void Unwind_180906d70(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -43873,7 +43874,7 @@ void Unwind_180906d80(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -43909,7 +43910,7 @@ void Unwind_180906d90(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -43945,7 +43946,7 @@ void Unwind_180906da0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -44002,7 +44003,7 @@ void Unwind_180906dc0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -44126,7 +44127,7 @@ void Unwind_180906e50(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + 0x170) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + 0x170),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + 0x170),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -44257,7 +44258,7 @@ void Unwind_180906ef0(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + 0x170) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + 0x170),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + 0x170),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -44444,7 +44445,7 @@ void UtilityUnwindSystemPhase01(uint64 resource_handle_identifier,longlong resou
 
 {
   if (*(code **)(resource_buffer + 0xe8) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xe8))(resource_buffer + 0xd8,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xe8))(resource_buffer + 0xd8,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -44455,7 +44456,7 @@ void UtilityUnwindSystemPhase02(uint64 resource_handle_identifier,longlong resou
 
 {
   if (*(code **)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET) != (code *)zero_float) {
-    (**(code **)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET))(resource_buffer + UTILITY_SYS_STATUS_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET))(resource_buffer + UTILITY_SYS_STATUS_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -44486,7 +44487,7 @@ void UtilityUnwindSystemPhase04(uint64 resource_handle_identifier,longlong resou
 
 {
   if (*(code **)(resource_buffer + resource_handle_valueta_offset_8) != (code *)zero_float) {
-    (**(code **)(resource_buffer + resource_handle_valueta_offset_8))(resource_buffer + SYSTEM_FLAGS_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + resource_handle_valueta_offset_8))(resource_buffer + SYSTEM_FLAGS_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -44547,7 +44548,7 @@ void UtilityUnwindSystemPhase09(uint64 resource_handle_identifier,longlong resou
 
 {
   if (*(code **)(resource_buffer + 0xe8) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xe8))(resource_buffer + 0xd8,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xe8))(resource_buffer + 0xd8,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -44558,7 +44559,7 @@ void UtilityUnwindSystemPhase0a(uint64 resource_handle_identifier,longlong resou
 
 {
   if (*(code **)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET) != (code *)zero_float) {
-    (**(code **)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET))(resource_buffer + UTILITY_SYS_STATUS_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET))(resource_buffer + UTILITY_SYS_STATUS_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -44597,7 +44598,7 @@ void UtilityUnwindSystemPhase0d(uint64 resource_handle_identifier,longlong resou
 
 {
   if (*(code **)(resource_buffer + resource_handle_valueta_offset_8) != (code *)zero_float) {
-    (**(code **)(resource_buffer + resource_handle_valueta_offset_8))(resource_buffer + SYSTEM_FLAGS_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + resource_handle_valueta_offset_8))(resource_buffer + SYSTEM_FLAGS_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -44783,7 +44784,7 @@ void UtilityUnwindSystemPhase1c(uint64 resource_handle_identifier,longlong resou
 
 {
   if (*(code **)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET) != (code *)zero_float) {
-    (**(code **)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET))(resource_buffer + UTILITY_STRUCTURE_SIZE_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET))(resource_buffer + UTILITY_STRUCTURE_SIZE_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -44794,7 +44795,7 @@ void UtilityUnwindSystemPhase1d(uint64 resource_handle_identifier,longlong resou
 
 {
   if (*(code **)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET) != (code *)zero_float) {
-    (**(code **)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET))(resource_buffer + UTILITY_STRUCTURE_SIZE_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET))(resource_buffer + UTILITY_STRUCTURE_SIZE_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -45036,7 +45037,7 @@ void UtilityUnwindSystemPhase35(uint64 resource_handle_identifier,longlong resou
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -45072,7 +45073,7 @@ void UtilityUnwindSystemPhase36(uint64 resource_handle_identifier,longlong resou
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -45108,7 +45109,7 @@ void UtilityUnwindSystemPhase37(uint64 resource_handle_identifier,longlong resou
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -45325,7 +45326,7 @@ void UtilityUnwindSystemPhase4d(uint64 resource_handle_identifier,longlong resou
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -45361,7 +45362,7 @@ void UtilityUnwindSystemPhase4e(uint64 resource_handle_identifier,longlong resou
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -45397,7 +45398,7 @@ void UtilityUnwindSystemPhase4f(uint64 resource_handle_identifier,longlong resou
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -45984,7 +45985,7 @@ void UtilityUnwindSystemPhase81(uint64 resource_handle_identifier,longlong resou
   uint64 system_status_code;
   
   data_buffer = (longlong *)(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + UTILITY_SECONDARY_BYTE_OFFSET);
-  system_status_code = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  system_status_code = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + field_offset_primary);
   for (unsigned_pointer_var3 = (uint64 *)*data_buffer; generic_data_pointer != utility_resource_operation_resultData; generic_data_pointer = generic_data_pointer + 4) {
     (**(code **)*generic_data_pointer)(unsigned_pointer_var3,0,resourceOperationFlags,resourceCallbackFunction,system_status_code);
@@ -46003,7 +46004,7 @@ void UtilityUnwindSystemPhase82(uint64 resource_handle_identifier,longlong resou
 {
   RegisterResourceFunction(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + UTILITY_BUFFER_DATA_OFFSET,
                 *(uint64 *)(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + UTILITY_SYS_STATUS_OFFSET),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -46014,7 +46015,7 @@ void UtilityUnwindSystemPhase83(uint64 resource_handle_identifier,longlong resou
 {
   getMemoryBlockSize(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + UTILITY_HANDLE_DATA_OFFSET,
                 *(uint64 *)(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + UTILITY_BUFFER_HANDLE_OFFSET),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -46027,7 +46028,7 @@ void UtilityUnwindSystemPhase84(uint64 resource_handle_identifier,longlong resou
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + RESOURCE_BUFFER_ARRAY_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + 0xb0,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + 0xb0,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -46043,7 +46044,7 @@ void UtilityUnwindSystemPhase86(uint64 resource_handle_identifier,longlong resou
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + UTILITY_STACK_OFFSET_F0);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + UTILITY_STACK_OFFSET_E0,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + UTILITY_STACK_OFFSET_E0,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -46080,7 +46081,7 @@ void UtilityUnwindSystemPhase88(uint64 resource_handle_identifier,longlong resou
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -46118,7 +46119,7 @@ void UtilityUnwindSystemPhase8b(uint64 resource_handle_identifier,longlong resou
   uint64 system_status_code;
   
   data_buffer = *(longlong **)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET);
-  system_status_code = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  system_status_code = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = (uint64 *)data_buffer[1];
   for (unsigned_pointer_var3 = (uint64 *)*data_buffer; generic_data_pointer != utility_resource_operation_resultData; generic_data_pointer = generic_data_pointer + 4) {
     (**(code **)*generic_data_pointer)(unsigned_pointer_var3,0,resourceOperationFlags,resourceCallbackFunction,system_status_code);
@@ -46136,7 +46137,7 @@ void UtilityUnwindSystemPhase8c(uint64 resource_handle_identifier,longlong resou
 
 {
   RegisterResourceFunction(*(longlong *)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -46146,7 +46147,7 @@ void UtilityUnwindSystemPhase8d(uint64 resource_handle_identifier,longlong resou
 
 {
   RegisterResourceFunction(*(longlong *)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -46156,7 +46157,7 @@ void UtilityUnwindSystemPhase8e(uint64 resource_handle_identifier,longlong resou
 
 {
   getMemoryBlockSize(*(longlong *)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -46166,7 +46167,7 @@ void UtilityUnwindSystemPhase8f(uint64 resource_handle_identifier,longlong resou
 
 {
   getMemoryBlockSize(*(longlong *)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -46179,7 +46180,7 @@ void UtilityUnwindSystemPhase90(uint64 resource_handle_identifier,longlong resou
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(*(longlong *)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(*(longlong *)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -46195,7 +46196,7 @@ void UtilityUnwindSystemPhase91(uint64 resource_handle_identifier,longlong resou
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(*(longlong *)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(*(longlong *)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -46229,7 +46230,7 @@ void UtilityUnwindSystemPhase93(uint64 resource_handle_identifier,longlong resou
 
 {
   getMemoryBlockSize(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -46239,7 +46240,7 @@ void UtilityUnwindSystemPhase94(uint64 resource_handle_identifier,longlong resou
 
 {
   getMemoryBlockSize(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -46411,7 +46412,7 @@ void UtilityUnwindSystemPhase9d(uint64 resource_handle_identifier,longlong resou
       }
       else {
         exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                            loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                            loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
     return;
@@ -46449,7 +46450,7 @@ void UtilityUnwindSystemPhase9e(uint64 resource_handle_identifier,longlong resou
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -46503,7 +46504,7 @@ void UtilityUnwindSystemPhasea1(uint64 resource_handle_identifier,longlong resou
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -46514,7 +46515,7 @@ void UtilityUnwindSystemPhasea1(uint64 resource_handle_identifier,longlong resou
 void UtilityUnwindSystemPhasea2(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
 
 {
-  RegisterResourceFunction(resource_buffer + 0xe8,*(uint64 *)(resource_buffer + SYSTEM_FLAGS_OFFSET),resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceFunction(resource_buffer + 0xe8,*(uint64 *)(resource_buffer + SYSTEM_FLAGS_OFFSET),resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -46524,7 +46525,7 @@ void UtilityUnwindSystemPhasea3(uint64 resource_handle_identifier,longlong resou
 
 {
   if (*(code **)(resource_buffer + BUFFER_SIZE_CONSTANT) != (code *)zero_float) {
-    (**(code **)(resource_buffer + BUFFER_SIZE_CONSTANT))(resource_buffer + 0x1f0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + BUFFER_SIZE_CONSTANT))(resource_buffer + 0x1f0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   if (*(code **)(resource_buffer + SYSTEM_DATA_OFFSET) != (code *)zero_float) {
     (**(code **)(resource_buffer + SYSTEM_DATA_OFFSET))(resource_buffer + 0x1d0,zero_float);
@@ -46541,7 +46542,7 @@ void UtilityUnwindSystemPhasea4(uint64 resource_handle_identifier,longlong resou
 
 {
   if (*(code **)(resource_buffer + 0x2a0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x2a0))(resource_buffer + 0x290,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x2a0))(resource_buffer + 0x290,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   if (*(code **)(resource_buffer + 0x280) != (code *)zero_float) {
     (**(code **)(resource_buffer + 0x280))(resource_buffer + 0x270,zero_float);
@@ -46582,7 +46583,7 @@ void UtilityUnwindSystemPhasea5(uint64 resource_handle_identifier,longlong resou
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -46618,7 +46619,7 @@ void UtilityUnwindSystemPhasea6(uint64 resource_handle_identifier,longlong resou
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -46629,7 +46630,7 @@ void UtilityUnwindSystemPhasea6(uint64 resource_handle_identifier,longlong resou
 void UtilityUnwindSystemPhasea7(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
 
 {
-  RegisterResourceFunction(resource_buffer + 0xe8,*(uint64 *)(resource_buffer + SYSTEM_FLAGS_OFFSET),resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceFunction(resource_buffer + 0xe8,*(uint64 *)(resource_buffer + SYSTEM_FLAGS_OFFSET),resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -46638,7 +46639,7 @@ void UtilityUnwindSystemPhasea7(uint64 resource_handle_identifier,longlong resou
 void UtilityUnwindSystemPhasea8(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
 
 {
-  RegisterResourceFunction(resource_buffer + 0xe8,*(uint64 *)(resource_buffer + SYSTEM_FLAGS_OFFSET),resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceFunction(resource_buffer + 0xe8,*(uint64 *)(resource_buffer + SYSTEM_FLAGS_OFFSET),resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -46676,7 +46677,7 @@ void UtilityUnwindSystemPhaseab(uint64 resource_handle_identifier,longlong resou
 
 {
   if (*(code **)(resource_buffer + 0x1c0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1c0))(resource_buffer + 0x1b0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1c0))(resource_buffer + 0x1b0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -46687,7 +46688,7 @@ void UtilityUnwindSystemPhaseac(uint64 resource_handle_identifier,longlong resou
 
 {
   if (*(code **)(resource_buffer + SYSTEM_DATA_OFFSET) != (code *)zero_float) {
-    (**(code **)(resource_buffer + SYSTEM_DATA_OFFSET))(resource_buffer + 0x1d0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + SYSTEM_DATA_OFFSET))(resource_buffer + 0x1d0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -46698,7 +46699,7 @@ void UtilityUnwindSystemPhasead(uint64 resource_handle_identifier,longlong resou
 
 {
   if (*(code **)(resource_buffer + BUFFER_SIZE_CONSTANT) != (code *)zero_float) {
-    (**(code **)(resource_buffer + BUFFER_SIZE_CONSTANT))(resource_buffer + 0x1f0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + BUFFER_SIZE_CONSTANT))(resource_buffer + 0x1f0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -46718,7 +46719,7 @@ void UtilityUnwindSystemPhaseaf(uint64 resource_handle_identifier,longlong resou
 
 {
   if (*(code **)(resource_buffer + 0x260) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x260))(resource_buffer + 0x250,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x260))(resource_buffer + 0x250,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -46729,7 +46730,7 @@ void UtilityUnwindSystemPhaseb0(uint64 resource_handle_identifier,longlong resou
 
 {
   if (*(code **)(resource_buffer + 0x280) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x280))(resource_buffer + 0x270,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x280))(resource_buffer + 0x270,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -46740,7 +46741,7 @@ void UtilityUnwindSystemPhaseb1(uint64 resource_handle_identifier,longlong resou
 
 {
   if (*(code **)(resource_buffer + 0x2a0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x2a0))(resource_buffer + 0x290,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x2a0))(resource_buffer + 0x290,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -46781,7 +46782,7 @@ void UtilityUnwindSystemPhaseb5(uint64 resource_handle_identifier,longlong resou
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + list_head_offset);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + utility_buffer_size_data_offset,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + utility_buffer_size_data_offset,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -46795,7 +46796,7 @@ void UtilityUnwindSystemPhaseb6(uint64 resource_handle_identifier,longlong resou
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + UTILITY_MEMORY_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + utility_data_offset_start,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + utility_data_offset_start,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -46917,7 +46918,7 @@ void UtilityUnwindSystemPhasec2(uint64 resource_handle_identifier,longlong resou
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -46929,7 +46930,7 @@ void UtilityUnwindSystemPhasec3(uint64 resource_handle_identifier,longlong resou
 
 {
   if (*(code **)(resource_buffer + 0x210) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x210))(resource_buffer + BUFFER_SIZE_CONSTANT,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x210))(resource_buffer + BUFFER_SIZE_CONSTANT,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   if (*(code **)(resource_buffer + 0x1f0) != (code *)zero_float) {
     (**(code **)(resource_buffer + 0x1f0))(resource_buffer + SYSTEM_DATA_OFFSET,zero_float);
@@ -46997,7 +46998,7 @@ void UtilityUnwindSystemPhasec7(uint64 resource_handle_identifier,longlong resou
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -47033,7 +47034,7 @@ void UtilityUnwindSystemPhasec8(uint64 resource_handle_identifier,longlong resou
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -47045,7 +47046,7 @@ void UtilityUnwindSystemPhasec9(uint64 resource_handle_identifier,longlong resou
 
 {
   if (*(code **)(resource_buffer + 0x1d0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1d0))(resource_buffer + 0x1c0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1d0))(resource_buffer + 0x1c0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -47056,7 +47057,7 @@ void UtilityUnwindSystemPhaseca(uint64 resource_handle_identifier,longlong resou
 
 {
   if (*(code **)(resource_buffer + 0x1f0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1f0))(resource_buffer + SYSTEM_DATA_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1f0))(resource_buffer + SYSTEM_DATA_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -47067,7 +47068,7 @@ void UtilityUnwindSystemPhasecb(uint64 resource_handle_identifier,longlong resou
 
 {
   if (*(code **)(resource_buffer + 0x210) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x210))(resource_buffer + BUFFER_SIZE_CONSTANT,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x210))(resource_buffer + BUFFER_SIZE_CONSTANT,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -47081,7 +47082,7 @@ void UtilityUnwindSystemPhasecc(uint64 resource_handle_identifier,longlong resou
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + 0x170);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + 0x168); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -47152,7 +47153,7 @@ void UtilityUnwindSystemPhased1(uint64 resource_handle_identifier,longlong resou
 
 {
   if (*(code **)(resource_buffer + UTILITY_RESOURCE_ACCESS_OFFSET) != (code *)zero_float) {
-    (**(code **)(resource_buffer + UTILITY_RESOURCE_ACCESS_OFFSET))(resource_buffer + 0x140,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + UTILITY_RESOURCE_ACCESS_OFFSET))(resource_buffer + 0x140,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   if (*(code **)(resource_buffer + 0x130) != (code *)zero_float) {
     (**(code **)(resource_buffer + 0x130))(resource_buffer + 0x120,zero_float);
@@ -47172,7 +47173,7 @@ void Unwind_180907d20(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + 0x170);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + 0x168); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -47214,7 +47215,7 @@ void UtilityUnwindSystemPhased3(uint64 resource_handle_identifier,longlong resou
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -47319,7 +47320,7 @@ void UtilityUnwindSystemPhasee5(uint64 resource_handle_identifier,longlong resou
 
 {
   if (*(code **)(resource_buffer + 0x110) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x110))(resource_buffer + resource_handle_offset_zero,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x110))(resource_buffer + resource_handle_offset_zero,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -47330,7 +47331,7 @@ void UtilityUnwindSystemPhasee6(uint64 resource_handle_identifier,longlong resou
 
 {
   if (*(code **)(resource_buffer + 0x130) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x130))(resource_buffer + 0x120,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x130))(resource_buffer + 0x120,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -47341,7 +47342,7 @@ void UtilityUnwindSystemPhasee7(uint64 resource_handle_identifier,longlong resou
 
 {
   if (*(code **)(resource_buffer + UTILITY_RESOURCE_ACCESS_OFFSET) != (code *)zero_float) {
-    (**(code **)(resource_buffer + UTILITY_RESOURCE_ACCESS_OFFSET))(resource_buffer + 0x140,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + UTILITY_RESOURCE_ACCESS_OFFSET))(resource_buffer + 0x140,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -47355,7 +47356,7 @@ void UtilityUnwindSystemPhasee8(uint64 resource_handle_identifier,longlong resou
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + field_offset_primary);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -47397,7 +47398,7 @@ void UtilityUnwindSystemPhasee9(uint64 resource_handle_identifier,longlong resou
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -47433,7 +47434,7 @@ void UtilityUnwindSystemPhaseea(uint64 resource_handle_identifier,longlong resou
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -47469,7 +47470,7 @@ void UtilityUnwindSystemPhaseeb(uint64 resource_handle_identifier,longlong resou
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -47505,7 +47506,7 @@ void UtilityUnwindSystemPhaseec(uint64 resource_handle_identifier,longlong resou
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -47541,7 +47542,7 @@ void UtilityUnwindSystemPhaseed(uint64 resource_handle_identifier,longlong resou
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -47553,7 +47554,7 @@ void UtilityUnwindSystemPhaseee(uint64 resource_handle_identifier,longlong resou
 
 {
   if (*(code **)(resource_buffer + utility_data_offset_start) != (code *)zero_float) {
-    (**(code **)(resource_buffer + utility_data_offset_start))(resource_buffer + list_head_offset,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + utility_data_offset_start))(resource_buffer + list_head_offset,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -47564,7 +47565,7 @@ void UtilityUnwindSystemPhaseef(uint64 resource_handle_identifier,longlong resou
 
 {
   if (*(code **)(resource_buffer + 0x208) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x208))(resource_buffer + 0x1f8,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x208))(resource_buffer + 0x1f8,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   if (*(code **)(resource_buffer + 0x1e8) != (code *)zero_float) {
     (**(code **)(resource_buffer + 0x1e8))(resource_buffer + 0x1d8,zero_float);
@@ -47579,7 +47580,7 @@ void UtilityUnwindSystemPhasef0(uint64 resource_handle_identifier,longlong resou
 
 {
   if (*(code **)(resource_buffer + utility_data_offset_start) != (code *)zero_float) {
-    (**(code **)(resource_buffer + utility_data_offset_start))(resource_buffer + list_head_offset,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + utility_data_offset_start))(resource_buffer + list_head_offset,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -47599,7 +47600,7 @@ void UtilityUnwindSystemPhasef2(uint64 resource_handle_identifier,longlong resou
 
 {
   if (*(code **)(resource_buffer + 0x1e8) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1e8))(resource_buffer + 0x1d8,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1e8))(resource_buffer + 0x1d8,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -47610,7 +47611,7 @@ void UtilityUnwindSystemPhasef4(uint64 resource_handle_identifier,longlong resou
 
 {
   if (*(code **)(resource_buffer + 0x208) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x208))(resource_buffer + 0x1f8,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x208))(resource_buffer + 0x1f8,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -47624,7 +47625,7 @@ void UtilityUnwindSystemPhasef6(uint64 resource_handle_identifier,longlong resou
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_HANDLE_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 8,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 8,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -47731,7 +47732,7 @@ void UtilityUnwindSystemPhaseff(uint64 resource_handle_identifier,longlong resou
   
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(resource_buffer + UTILITY_LIST_HANDLE_OFFSET,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(resource_buffer + UTILITY_LIST_HANDLE_OFFSET,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -47768,7 +47769,7 @@ void UtilityUnwindCleanupPhase00(uint64 resource_handle_identifier,longlong reso
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -47783,7 +47784,7 @@ void UtilityUnwindCleanupPhase01(uint64 resource_handle_identifier,longlong reso
   
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(resource_buffer + UTILITY_LIST_HANDLE_OFFSET,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(resource_buffer + UTILITY_LIST_HANDLE_OFFSET,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -47799,7 +47800,7 @@ void UtilityUnwindCleanupPhase02(uint64 resource_handle_identifier,longlong reso
   
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(resource_buffer + UTILITY_LIST_HANDLE_OFFSET,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(resource_buffer + UTILITY_LIST_HANDLE_OFFSET,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -47836,7 +47837,7 @@ void UtilityUnwindCleanupPhase03(uint64 resource_handle_identifier,longlong reso
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -47879,7 +47880,7 @@ void UtilityUnwindCleanupPhase05(uint64 resource_handle_identifier,uint64 resour
   longlong *utility_resource_data_pointer;
   
   utility_resource_data_pointer = systemMemoryBlock;
-  validateMemoryBlock(&systemMemoryBuffer,systemMemoryBlock[1],resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  validateMemoryBlock(&systemMemoryBuffer,systemMemoryBlock[1],resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   systemMemoryBlock[1] = (longlong)utility_resource_data_pointer;
   *systemMemoryBlock = (longlong)utility_resource_data_pointer;
   systemMemoryBlock[2] = (longlong)utility_resource_data_pointer;
@@ -47936,12 +47937,12 @@ void UtilityUnwindCleanupPhase0a(uint64 resource_handle_identifier,longlong reso
   uint64 loop_counter;
   
   processing_buffer = *(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET);
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   UtilityModule7();
   UtilityModule15(processing_buffer + utility_data_offset_start,*(uint64 *)(processing_buffer + UTILITY_MEMORY_DATA_OFFSET),resourceOperationFlags,resourceCallbackFunction,loop_counter);
   utility_resource_operation_resultData = *(uint64 **)(processing_buffer + utility_buffer_size_data_offset);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(processing_buffer + field_offset_primary,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(processing_buffer + field_offset_primary,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -47958,12 +47959,12 @@ void UtilityUnwindCleanupPhase0b(uint64 resource_handle_identifier,longlong reso
   uint64 loop_counter;
   
   processing_buffer = *(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET);
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   UtilityModule7();
   UtilityModule15(processing_buffer + utility_buffer_size_data_offset,*(uint64 *)(processing_buffer + list_head_offset),resourceOperationFlags,resourceCallbackFunction,loop_counter);
   utility_resource_operation_resultData = *(uint64 **)(processing_buffer + POINTER_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(processing_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(processing_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -47979,7 +47980,7 @@ void UtilityUnwindCleanupPhase0c(uint64 resource_handle_identifier,longlong reso
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -47993,7 +47994,7 @@ void UtilityUnwindCleanupPhase0d(uint64 resource_handle_identifier,longlong reso
 {
   UtilityModule15(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET) + field_offset_primary,
                 *(uint64 *)(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET) + utility_buffer_size_data_offset),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -48006,7 +48007,7 @@ void UtilityUnwindCleanupPhase0e(uint64 resource_handle_identifier,longlong reso
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET) + UTILITY_MEMORY_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET) + utility_data_offset_start,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET) + utility_data_offset_start,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -48019,7 +48020,7 @@ void UtilityUnwindCleanupPhase0f(uint64 resource_handle_identifier,longlong reso
 
 {
   UtilityModule15(*(longlong *)(resource_buffer + field_offset_primary),*(uint64 *)(*(longlong *)(resource_buffer + field_offset_primary) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -48029,7 +48030,7 @@ void UtilityUnwindCleanupPhase10(uint64 resource_handle_identifier,longlong reso
 
 {
   UtilityModule15(*(longlong *)(resource_buffer + field_offset_primary),*(uint64 *)(*(longlong *)(resource_buffer + field_offset_primary) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -48042,7 +48043,7 @@ void UtilityUnwindCleanupPhase11(uint64 resource_handle_identifier,longlong reso
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -48058,7 +48059,7 @@ void UtilityUnwindCleanupPhase12(uint64 resource_handle_identifier,longlong reso
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -48112,12 +48113,12 @@ void UtilityUnwindCleanupPhase16(uint64 resource_handle_identifier,longlong reso
   uint64 loop_counter;
   
   processing_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   UtilityModule7();
   UtilityModule15(processing_buffer + utility_buffer_size_data_offset,*(uint64 *)(processing_buffer + list_head_offset),resourceOperationFlags,resourceCallbackFunction,loop_counter);
   utility_resource_operation_resultData = *(uint64 **)(processing_buffer + POINTER_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(processing_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(processing_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -48133,7 +48134,7 @@ void UtilityUnwindCleanupPhase17(uint64 resource_handle_identifier,longlong reso
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + utility_data_offset_start) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(*(longlong *)(resource_buffer + utility_data_offset_start),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(*(longlong *)(resource_buffer + utility_data_offset_start),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -48147,7 +48148,7 @@ void UtilityUnwindCleanupPhase18(uint64 resource_handle_identifier,longlong reso
 {
   UtilityModule15(*(longlong *)(resource_buffer + utility_data_offset_start) + field_offset_primary,
                 *(uint64 *)(*(longlong *)(resource_buffer + utility_data_offset_start) + utility_buffer_size_data_offset),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -48160,7 +48161,7 @@ void UtilityUnwindCleanupPhase19(uint64 resource_handle_identifier,longlong reso
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + utility_data_offset_start) + UTILITY_MEMORY_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(*(longlong *)(resource_buffer + utility_data_offset_start) + utility_data_offset_start,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(*(longlong *)(resource_buffer + utility_data_offset_start) + utility_data_offset_start,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -48173,7 +48174,7 @@ void UtilityUnwindCleanupPhase1a(uint64 resource_handle_identifier,longlong reso
 
 {
   UtilityModule15(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -48183,7 +48184,7 @@ void UtilityUnwindCleanupPhase1b(uint64 resource_handle_identifier,longlong reso
 
 {
   UtilityModule15(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -48197,12 +48198,12 @@ void UtilityUnwindCleanupPhase1c(uint64 resource_handle_identifier,longlong reso
   uint64 loop_counter;
   
   processing_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   UtilityModule7();
   UtilityModule15(processing_buffer + utility_buffer_size_data_offset,*(uint64 *)(processing_buffer + list_head_offset),resourceOperationFlags,resourceCallbackFunction,loop_counter);
   utility_resource_operation_resultData = *(uint64 **)(processing_buffer + POINTER_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(processing_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(processing_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -48218,7 +48219,7 @@ void UtilityUnwindCleanupPhase1d(uint64 resource_handle_identifier,longlong reso
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -48232,7 +48233,7 @@ void UtilityUnwindCleanupPhase1e(uint64 resource_handle_identifier,longlong reso
 {
   UtilityModule15(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + field_offset_primary,
                 *(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + utility_buffer_size_data_offset),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -48245,7 +48246,7 @@ void UtilityUnwindCleanupPhase1f(uint64 resource_handle_identifier,longlong reso
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + UTILITY_MEMORY_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + utility_data_offset_start,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + utility_data_offset_start,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -48261,7 +48262,7 @@ void UtilityUnwindCleanupPhase20(uint64 resource_handle_identifier,longlong reso
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + UTILITY_SYS_STATUS_OFFSET) + RESOURCE_HANDLE_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_SYS_STATUS_OFFSET) + 8,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_SYS_STATUS_OFFSET) + 8,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -48275,7 +48276,7 @@ void UtilityUnwindCleanupPhase21(uint64 resource_handle_identifier,longlong reso
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + list_head_offset) + RESOURCE_HANDLE_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + list_head_offset) + 8,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + list_head_offset) + 8,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -48349,7 +48350,7 @@ void UtilityUnwindCleanupPhase34(uint64 resource_handle_identifier,longlong reso
   uint64 system_status_code;
   
   data_buffer = (longlong *)(*(longlong *)(resource_buffer + utility_buffer_offset) + 0x388);
-  system_status_code = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  system_status_code = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + utility_buffer_offset) + 0x390);
   for (unsigned_pointer_var3 = (uint64 *)*data_buffer; generic_data_pointer != utility_resource_operation_resultData; generic_data_pointer = generic_data_pointer + 4) {
     (**(code **)*generic_data_pointer)(unsigned_pointer_var3,0,resourceOperationFlags,resourceCallbackFunction,system_status_code);
@@ -48366,7 +48367,7 @@ void UtilityUnwindCleanupPhase34(uint64 resource_handle_identifier,longlong reso
 void UtilityUnwindCleanupPhase36(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_offset) + 0x3b0,POINTER_DATA_OFFSET,POINTER_DATA_OFFSET,ReleaseSystemResource,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_offset) + 0x3b0,POINTER_DATA_OFFSET,POINTER_DATA_OFFSET,ReleaseSystemResource,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -48431,7 +48432,7 @@ void UtilityUnwindCleanupPhase46(uint64 resource_handle_identifier,longlong reso
   uint64 system_status_code;
   
   data_buffer = (longlong *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x388);
-  system_status_code = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  system_status_code = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x390);
   for (unsigned_pointer_var3 = (uint64 *)*data_buffer; generic_data_pointer != utility_resource_operation_resultData; generic_data_pointer = generic_data_pointer + 4) {
     (**(code **)*generic_data_pointer)(unsigned_pointer_var3,0,resourceOperationFlags,resourceCallbackFunction,system_status_code);
@@ -48448,7 +48449,7 @@ void UtilityUnwindCleanupPhase46(uint64 resource_handle_identifier,longlong reso
 void UtilityUnwindCleanupPhase48(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x3b0,POINTER_DATA_OFFSET,POINTER_DATA_OFFSET,ReleaseSystemResource,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x3b0,POINTER_DATA_OFFSET,POINTER_DATA_OFFSET,ReleaseSystemResource,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -48609,7 +48610,7 @@ void UtilityUnwindCleanupPhase65(uint64 resource_handle_identifier,longlong reso
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -48624,7 +48625,7 @@ void UtilityUnwindCleanupPhase66(uint64 resource_handle_identifier,longlong reso
   uint64 loop_counter;
   
   resource_buffer = *(longlong *)(resource_buffer + list_head_offset);
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   _Mtx_destroy_in_situ();
   RegisterResourceCallback(resource_buffer + 0x3e0,POINTER_DATA_OFFSET,POINTER_DATA_OFFSET,ReleaseSystemResource,loop_counter);
   InitializeSystemData();
@@ -48643,7 +48644,7 @@ void UtilityUnwindCleanupPhase67(uint64 resource_handle_identifier,longlong reso
   uint64 loop_counter;
   
   processing_buffer = *(longlong *)(resource_buffer + list_head_offset);
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   *(longlong *)(processing_buffer + 0x15d8) =
        *(longlong *)(&systemResourceOffset + (longlong)*(int *)(processing_buffer + 0x15e0) * UTILITY_DOUBLE_WORD_SIZE) + -100000;
   ProcessBufferDataStructure((longlong *)(processing_buffer + 0x8b0));
@@ -48864,7 +48865,7 @@ void UtilityUnwindCleanupPhase7c(uint64 resource_handle_identifier,longlong reso
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -48974,7 +48975,7 @@ void UtilityUnwindCleanupPhase83(uint64 resource_handle_identifier,longlong reso
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -49010,7 +49011,7 @@ void UtilityUnwindCleanupPhase84(uint64 resource_handle_identifier,longlong reso
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -49078,7 +49079,7 @@ void UtilityUnwindCleanupPhase87(uint64 resource_handle_identifier,longlong reso
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -49390,7 +49391,7 @@ void UtilityUnwindCleanupPhasea2(uint64 resource_handle_identifier,longlong reso
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -49426,7 +49427,7 @@ void UtilityUnwindCleanupPhasea3(uint64 resource_handle_identifier,longlong reso
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -49462,7 +49463,7 @@ void UtilityUnwindCleanupPhasea4(uint64 resource_handle_identifier,longlong reso
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -49498,7 +49499,7 @@ void UtilityUnwindCleanupPhasea5(uint64 resource_handle_identifier,longlong reso
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -49534,7 +49535,7 @@ void UtilityUnwindCleanupPhasea6(uint64 resource_handle_identifier,longlong reso
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -49570,7 +49571,7 @@ void UtilityUnwindCleanupPhasea7(uint64 resource_handle_identifier,longlong reso
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -49606,7 +49607,7 @@ void UtilityUnwindCleanupPhasea8(uint64 resource_handle_identifier,longlong reso
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -49642,7 +49643,7 @@ void UtilityUnwindCleanupPhasea9(uint64 resource_handle_identifier,longlong reso
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -49687,7 +49688,7 @@ void UtilityUnwindCleanupPhaseab(uint64 resource_handle_identifier,longlong reso
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -49723,7 +49724,7 @@ void UtilityUnwindCleanupPhaseac(uint64 resource_handle_identifier,longlong reso
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -49759,7 +49760,7 @@ void UtilityUnwindCleanupPhasead(uint64 resource_handle_identifier,longlong reso
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -49832,7 +49833,7 @@ void UtilityUnwindCleanupPhaseb1(uint64 resource_handle_identifier,longlong reso
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -50159,7 +50160,7 @@ void UtilityUnwindCleanupPhasec8(uint64 resource_handle_identifier,longlong reso
 void UtilityUnwindCleanupPhasec9(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(resource_buffer + RESOURCE_BUFFER_ARRAY_OFFSET,8,RESOURCE_UTILITY_HANDLE_DATA_OFFSET,UtilityModule3,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(resource_buffer + RESOURCE_BUFFER_ARRAY_OFFSET,8,RESOURCE_UTILITY_HANDLE_DATA_OFFSET,UtilityModule3,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -50339,7 +50340,7 @@ void InitializeThreadLocalStorageDD0(uint64 resource_handle_identifier,longlong 
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -50388,7 +50389,7 @@ void ProcessThreadLocalStorageDF0(uint64 resource_handle_identifier,longlong res
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -50426,7 +50427,7 @@ void ValidateThreadLocalStorageE00(uint64 resource_handle_identifier,longlong re
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -50457,7 +50458,7 @@ void HandleThreadLocalStorageCallbackE40(uint64 resource_handle_identifier,longl
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + utility_data_offset_start) + field_offset_primary);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(*(longlong *)(resource_buffer + utility_data_offset_start) + POINTER_DATA_OFFSET,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(*(longlong *)(resource_buffer + utility_data_offset_start) + POINTER_DATA_OFFSET,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -50496,7 +50497,7 @@ void ResetThreadLocalStorageE50(uint64 resource_handle_identifier,longlong resou
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -50534,7 +50535,7 @@ void AllocateThreadLocalStorageE60(uint64 resource_handle_identifier,longlong re
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -50572,7 +50573,7 @@ void FreeThreadLocalStorageE70(uint64 resource_handle_identifier,longlong resour
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -50589,7 +50590,7 @@ void ProcessThreadLocalStorageOperationE80(uint64 resource_handle_identifier,lon
   uint64 loop_counter;
   
   resource_buffer = *(longlong *)(resource_buffer + utility_data_offset_start);
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   _Mtx_destroy_in_situ();
   UtilityModule15(resource_buffer + 0x110,*(uint64 *)(resource_buffer + 0x120),resourceOperationFlags,resourceCallbackFunction,loop_counter);
   UtilityModule15(resource_buffer + UTILITY_STACK_OFFSET_E0,*(uint64 *)(resource_buffer + UTILITY_STACK_OFFSET_F0));
@@ -50972,7 +50973,7 @@ void UtilityUnwindHandler09Cleanup(uint64 resource_handle_identifier,longlong re
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -51063,7 +51064,7 @@ void UtilityUnwindHandler0bCleanup(uint64 resource_handle_identifier,longlong re
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -51300,7 +51301,7 @@ void UtilityUnwindHandler29Cleanup(uint64 resource_handle_identifier,longlong re
       }
       else {
         exceptionHandleFunction(validation_result_flag,CONCAT71(0xff000000,*(void ***)(validation_result_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                            loop_counter_pointer,validation_result_flag,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                            loop_counter_pointer,validation_result_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
     return;
@@ -51357,7 +51358,7 @@ void UtilityUnwindHandler2dCleanup(uint64 resource_handle_identifier,longlong re
       }
       else {
         exceptionHandleFunction(validation_result_flag,CONCAT71(0xff000000,*(void ***)(validation_result_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                            loop_counter_pointer,validation_result_flag,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                            loop_counter_pointer,validation_result_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
     return;
@@ -51400,7 +51401,7 @@ void UtilityUnwindHandler2eCleanup(uint64 resource_handle_identifier,longlong re
       }
       else {
         exceptionHandleFunction(validation_result_flag,CONCAT71(0xff000000,*(void ***)(validation_result_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                            loop_counter_pointer,validation_result_flag,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                            loop_counter_pointer,validation_result_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
     return;
@@ -51564,7 +51565,7 @@ void UtilityUnwindHandler39Cleanup(uint64 resource_handle_identifier,longlong re
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -51578,7 +51579,7 @@ void UtilityUnwindHandler3aCleanup(uint64 resource_handle_identifier,longlong re
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -51721,7 +51722,7 @@ void UtilityUnwindHandler3cCleanup(uint64 resource_handle_identifier,longlong re
                     // WARNING: Subroutine does not return
     HandleCriticalError(loop_counter_pointer);
   }
-  UtilityModule15(utility_array_handle_pointer + 0x81d8,*(uint64 *)(utility_array_handle_pointer + 0x81e8),resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  UtilityModule15(utility_array_handle_pointer + 0x81d8,*(uint64 *)(utility_array_handle_pointer + 0x81e8),resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   UtilityModule15(utility_array_handle_pointer + 0x81a8,*(uint64 *)(utility_array_handle_pointer + 0x81b8));
   UtilityModule15(utility_array_handle_pointer + 0x8178,*(uint64 *)(utility_array_handle_pointer + 0x8188));
   RegisterResourceCallback(utility_array_handle_pointer + 0x80d8,POINTER_DATA_OFFSET,5,ResourceCallbackHandler1);
@@ -51764,7 +51765,7 @@ void UtilityUnwindHandler40Cleanup(uint64 resource_handle_identifier,longlong re
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -51850,7 +51851,7 @@ void UtilityUnwindHandler47Cleanup(uint64 resource_handle_identifier,longlong re
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -52276,7 +52277,7 @@ void Unwind_180909660(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -52312,7 +52313,7 @@ void Unwind_180909670(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -52348,7 +52349,7 @@ void Unwind_180909680(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -52384,7 +52385,7 @@ void Unwind_180909690(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -52420,7 +52421,7 @@ void Unwind_1809096a0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -52564,7 +52565,7 @@ void Unwind_1809096c0(uint64 resource_handle_identifier,longlong resource_buffer
                     // WARNING: Subroutine does not return
     HandleCriticalError(loop_counter_pointer);
   }
-  UtilityModule15(utility_array_handle_pointer + 0x81d8,*(uint64 *)(utility_array_handle_pointer + 0x81e8),resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  UtilityModule15(utility_array_handle_pointer + 0x81d8,*(uint64 *)(utility_array_handle_pointer + 0x81e8),resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   UtilityModule15(utility_array_handle_pointer + 0x81a8,*(uint64 *)(utility_array_handle_pointer + 0x81b8));
   UtilityModule15(utility_array_handle_pointer + 0x8178,*(uint64 *)(utility_array_handle_pointer + 0x8188));
   RegisterResourceCallback(utility_array_handle_pointer + 0x80d8,POINTER_DATA_OFFSET,5,ResourceCallbackHandler1);
@@ -52722,7 +52723,7 @@ void Unwind_180909790(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   unmapSharedMemory(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -52732,7 +52733,7 @@ void Unwind_1809097a0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   unmapSharedMemory(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -52745,7 +52746,7 @@ void Unwind_1809097b0(uint64 resource_handle_identifier,longlong resource_buffer
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -52761,7 +52762,7 @@ void Unwind_1809097c0(uint64 resource_handle_identifier,longlong resource_buffer
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -52774,7 +52775,7 @@ void Unwind_1809097d0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   UtilityModule15(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -52785,7 +52786,7 @@ void Unwind_1809097e0(uint64 resource_handle_identifier,longlong resource_buffer
 {
   unmapSharedMemory(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + field_offset_primary,
                 *(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + utility_buffer_size_data_offset),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -52807,7 +52808,7 @@ void Unwind_180909800(uint64 resource_handle_identifier,longlong resource_buffer
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 200);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + standardBufferSize,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + standardBufferSize,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -52823,7 +52824,7 @@ void Unwind_180909820(uint64 resource_handle_identifier,longlong resource_buffer
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + SYSTEM_FLAGS_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    UtilityModule8(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0xe8,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule8(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0xe8,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -52836,7 +52837,7 @@ void Unwind_180909840(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   unmapSharedMemory(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -52846,7 +52847,7 @@ void Unwind_180909850(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   unmapSharedMemory(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -52880,7 +52881,7 @@ void Unwind_180909860(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -52893,7 +52894,7 @@ void Unwind_180909870(uint64 resource_handle_identifier,longlong resource_buffer
 {
   RegisterResourceFunction(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + UTILITY_MEMORY_SIZE_OFFSET,
                 *(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + UTILITY_RESOURCE_ACCESS_ID),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -52903,7 +52904,7 @@ void Unwind_180909890(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   RegisterResourceFunction(*(longlong *)(resource_buffer + list_head_offset),*(uint64 *)(*(longlong *)(resource_buffer + list_head_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -52913,7 +52914,7 @@ void Unwind_1809098a0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   RegisterResourceFunction(*(longlong *)(resource_buffer + list_head_offset),*(uint64 *)(*(longlong *)(resource_buffer + list_head_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -52923,7 +52924,7 @@ void Unwind_1809098b0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   RegisterResourceFunction(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -52933,7 +52934,7 @@ void Unwind_1809098c0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   RegisterResourceFunction(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -53087,7 +53088,7 @@ void Unwind_180909a00(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -53155,7 +53156,7 @@ void Unwind_180909a40(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -53191,7 +53192,7 @@ void Unwind_180909a50(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -53453,7 +53454,7 @@ void Unwind_180909c20(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -53706,7 +53707,7 @@ void Unwind_180909de0(uint64 resource_handle_identifier,longlong resource_buffer
 {
   createBufferPool(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x740,
                 *(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x750),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -53809,7 +53810,7 @@ void Unwind_180909f40(uint64 resource_handle_identifier,longlong resource_buffer
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0xaa0);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    destroyBufferPool(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0xa90,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    destroyBufferPool(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0xa90,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     freeBufferToPool(utility_resource_operation_resultData);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
@@ -53852,7 +53853,7 @@ void Unwind_180909f60(uint64 resource_handle_identifier,longlong resource_buffer
       }
       else {
         exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                            loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                            loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
     return;
@@ -53876,7 +53877,7 @@ void Unwind_180909fa0(uint64 resource_handle_identifier,longlong resource_buffer
 {
   allocateBufferFromPool(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0xba8,
                 *(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 3000),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -53887,7 +53888,7 @@ void Unwind_180909fc0(uint64 resource_handle_identifier,longlong resource_buffer
 {
   UtilityModule15(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0xbd8,
                 *(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0xbe8),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -53896,7 +53897,7 @@ void Unwind_180909fc0(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_180909fe0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0xc08,8,10,UtilityModule3,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0xc08,8,10,UtilityModule3,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -53961,7 +53962,7 @@ void Unwind_18090a0b0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   allocateBufferFromPool(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -53971,7 +53972,7 @@ void Unwind_18090a0c0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   allocateBufferFromPool(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -53984,7 +53985,7 @@ void Unwind_18090a0d0(uint64 resource_handle_identifier,longlong resource_buffer
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    destroyBufferPool(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    destroyBufferPool(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     freeBufferToPool(utility_resource_operation_resultData);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
@@ -54001,7 +54002,7 @@ void Unwind_18090a0e0(uint64 resource_handle_identifier,longlong resource_buffer
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    destroyBufferPool(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    destroyBufferPool(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     freeBufferToPool(utility_resource_operation_resultData);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
@@ -54015,7 +54016,7 @@ void Unwind_18090a0f0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   createBufferPool(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -54025,7 +54026,7 @@ void Unwind_18090a100(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   createBufferPool(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -54035,7 +54036,7 @@ void Unwind_18090a110(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   createBufferPool(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -54045,7 +54046,7 @@ void Unwind_18090a120(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   createBufferPool(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -54058,7 +54059,7 @@ void Unwind_18090a130(uint64 resource_handle_identifier,longlong resource_buffer
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    destroyBufferPool(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    destroyBufferPool(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     freeBufferToPool(utility_resource_operation_resultData);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
@@ -54075,7 +54076,7 @@ void Unwind_18090a140(uint64 resource_handle_identifier,longlong resource_buffer
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    destroyBufferPool(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    destroyBufferPool(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     freeBufferToPool(utility_resource_operation_resultData);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
@@ -54089,7 +54090,7 @@ void Unwind_18090a150(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   allocateBufferFromPool(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -54099,7 +54100,7 @@ void Unwind_18090a160(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   allocateBufferFromPool(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -54271,7 +54272,7 @@ void Unwind_18090a2d0(uint64 resource_handle_identifier,longlong resource_buffer
 {
   createBufferPool(*(longlong *)(resource_buffer + utility_data_offset_start) + 0x740,
                 *(uint64 *)(*(longlong *)(resource_buffer + utility_data_offset_start) + 0x750),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -54374,7 +54375,7 @@ void Unwind_18090a430(uint64 resource_handle_identifier,longlong resource_buffer
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + utility_data_offset_start) + 0xaa0);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    destroyBufferPool(*(longlong *)(resource_buffer + utility_data_offset_start) + 0xa90,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    destroyBufferPool(*(longlong *)(resource_buffer + utility_data_offset_start) + 0xa90,*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     freeBufferToPool(utility_resource_operation_resultData);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
@@ -54417,7 +54418,7 @@ void Unwind_18090a450(uint64 resource_handle_identifier,longlong resource_buffer
       }
       else {
         exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                            loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                            loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
     return;
@@ -54441,7 +54442,7 @@ void Unwind_18090a490(uint64 resource_handle_identifier,longlong resource_buffer
 {
   allocateBufferFromPool(*(longlong *)(resource_buffer + utility_data_offset_start) + 0xba8,
                 *(uint64 *)(*(longlong *)(resource_buffer + utility_data_offset_start) + 3000),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -54452,7 +54453,7 @@ void Unwind_18090a4b0(uint64 resource_handle_identifier,longlong resource_buffer
 {
   UtilityModule15(*(longlong *)(resource_buffer + utility_data_offset_start) + 0xbd8,
                 *(uint64 *)(*(longlong *)(resource_buffer + utility_data_offset_start) + 0xbe8),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -54461,7 +54462,7 @@ void Unwind_18090a4b0(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090a4d0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_data_offset_start) + 0xc08,8,10,UtilityModule3,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_data_offset_start) + 0xc08,8,10,UtilityModule3,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -54540,7 +54541,7 @@ void Unwind_18090a580(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   createBufferPool(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -54550,7 +54551,7 @@ void Unwind_18090a590(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   createBufferPool(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -54563,7 +54564,7 @@ void Unwind_18090a5a0(uint64 resource_handle_identifier,longlong resource_buffer
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    destroyBufferPool(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    destroyBufferPool(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     freeBufferToPool(utility_resource_operation_resultData);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
@@ -54580,7 +54581,7 @@ void Unwind_18090a5b0(uint64 resource_handle_identifier,longlong resource_buffer
   
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (utility_resource_operation_resultData != (uint64 *)zero_float) {
-    destroyBufferPool(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    destroyBufferPool(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),*utility_resource_operation_resultData,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     freeBufferToPool(utility_resource_operation_resultData);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
@@ -54618,7 +54619,7 @@ void Unwind_18090a5c0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -54654,7 +54655,7 @@ void Unwind_18090a5d0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -54675,7 +54676,7 @@ void Unwind_18090a5f0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   allocateBufferFromPool(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -54685,7 +54686,7 @@ void Unwind_18090a600(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   allocateBufferFromPool(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -54704,7 +54705,7 @@ void Unwind_18090a640(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   if (*(code **)(resource_buffer + UTILITY_STRUCTURE_SIZE_OFFSET) != (code *)zero_float) {
-    (**(code **)(resource_buffer + UTILITY_STRUCTURE_SIZE_OFFSET))(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + UTILITY_STRUCTURE_SIZE_OFFSET))(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -54715,7 +54716,7 @@ void Unwind_18090a650(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   if (*(code **)(resource_buffer + UTILITY_STRUCTURE_SIZE_OFFSET) != (code *)zero_float) {
-    (**(code **)(resource_buffer + UTILITY_STRUCTURE_SIZE_OFFSET))(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + UTILITY_STRUCTURE_SIZE_OFFSET))(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -54862,7 +54863,7 @@ void Unwind_18090a780(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -54912,7 +54913,7 @@ void Unwind_18090a7a0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -55091,7 +55092,7 @@ void Unwind_18090a880(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -55127,7 +55128,7 @@ void Unwind_18090a890(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -55351,7 +55352,7 @@ void Unwind_18090a930(uint64 resource_handle_identifier,longlong resource_buffer
       }
       else {
         exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                            loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                            loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
     return;
@@ -55389,7 +55390,7 @@ void Unwind_18090a940(uint64 resource_handle_identifier,longlong resource_buffer
       }
       else {
         exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                            loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                            loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
     return;
@@ -55427,7 +55428,7 @@ void Unwind_18090a950(uint64 resource_handle_identifier,longlong resource_buffer
       }
       else {
         exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                            loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                            loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
     return;
@@ -55465,7 +55466,7 @@ void Unwind_18090a960(uint64 resource_handle_identifier,longlong resource_buffer
       }
       else {
         exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                            loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                            loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
     return;
@@ -55503,7 +55504,7 @@ void Unwind_18090a970(uint64 resource_handle_identifier,longlong resource_buffer
       }
       else {
         exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                            loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                            loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
     return;
@@ -57878,7 +57879,7 @@ void Unwind_18090bd30(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   if (*(code **)(resource_buffer + UTILITY_SYS_STATUS_OFFSET) != (code *)zero_float) {
-    (**(code **)(resource_buffer + UTILITY_SYS_STATUS_OFFSET))(resource_buffer + UTILITY_BUFFER_DATA_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + UTILITY_SYS_STATUS_OFFSET))(resource_buffer + UTILITY_BUFFER_DATA_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -57889,7 +57890,7 @@ void Unwind_18090bd40(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   if (*(code **)(resource_buffer + UTILITY_SYS_STATUS_OFFSET) != (code *)zero_float) {
-    (**(code **)(resource_buffer + UTILITY_SYS_STATUS_OFFSET))(resource_buffer + UTILITY_BUFFER_DATA_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + UTILITY_SYS_STATUS_OFFSET))(resource_buffer + UTILITY_BUFFER_DATA_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -58230,7 +58231,7 @@ void Unwind_18090bfb0(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 system_status_code;
   
   data_buffer = *(longlong **)(resource_buffer + POINTER_DATA_OFFSET);
-  system_status_code = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  system_status_code = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = (uint64 *)data_buffer[1];
   for (unsigned_pointer_var3 = (uint64 *)*data_buffer; generic_data_pointer != utility_resource_operation_resultData; generic_data_pointer = generic_data_pointer + 4) {
     (**(code **)*generic_data_pointer)(unsigned_pointer_var3,0,resourceOperationFlags,resourceCallbackFunction,system_status_code);
@@ -58249,7 +58250,7 @@ void Unwind_18090bfc0(uint64 resource_handle_identifier,longlong resource_buffer
 {
   validateBufferPool(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + POINTER_DATA_OFFSET,
                 *(uint64 *)(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + field_offset_primary),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -58260,7 +58261,7 @@ void Unwind_18090bfd0(uint64 resource_handle_identifier,longlong resource_buffer
 {
   cleanupBufferPool(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + list_head_offset,
                 *(uint64 *)(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + utility_data_offset_start),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -58294,7 +58295,7 @@ void Unwind_18090c000(uint64 resource_handle_identifier,longlong resource_buffer
 {
   UtilityModule15(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + UTILITY_RESOURCE_ACCESS_ID,
                 *(uint64 *)(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + 0xb0),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -58304,7 +58305,7 @@ void Unwind_18090c020(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   validateBufferPool(*(longlong *)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -58314,7 +58315,7 @@ void Unwind_18090c030(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   validateBufferPool(*(longlong *)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -58324,7 +58325,7 @@ void Unwind_18090c040(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   cleanupBufferPool(*(longlong *)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -58334,7 +58335,7 @@ void Unwind_18090c050(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   cleanupBufferPool(*(longlong *)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -58367,7 +58368,7 @@ void Unwind_18090c070(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   validateBufferPool(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -58377,7 +58378,7 @@ void Unwind_18090c080(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   validateBufferPool(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -58387,7 +58388,7 @@ void Unwind_18090c090(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   cleanupBufferPool(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -58397,7 +58398,7 @@ void Unwind_18090c0a0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   cleanupBufferPool(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -58536,7 +58537,7 @@ void Unwind_18090c140(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -58681,7 +58682,7 @@ void Unwind_18090c1c0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -58793,7 +58794,7 @@ void Unwind_18090c240(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090c260(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
 
 {
-  RegisterResourceFunction(resource_buffer + UTILITY_BUFFER_DATA_OFFSET,*(uint64 *)(resource_buffer + UTILITY_SYS_STATUS_OFFSET),resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceFunction(resource_buffer + UTILITY_BUFFER_DATA_OFFSET,*(uint64 *)(resource_buffer + UTILITY_SYS_STATUS_OFFSET),resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -58836,7 +58837,7 @@ void Unwind_18090c280(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -58847,7 +58848,7 @@ void Unwind_18090c280(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090c290(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
 
 {
-  RegisterResourceFunction(resource_buffer + UTILITY_BUFFER_DATA_OFFSET,*(uint64 *)(resource_buffer + UTILITY_SYS_STATUS_OFFSET),resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceFunction(resource_buffer + UTILITY_BUFFER_DATA_OFFSET,*(uint64 *)(resource_buffer + UTILITY_SYS_STATUS_OFFSET),resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -58856,7 +58857,7 @@ void Unwind_18090c290(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090c2a0(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
 
 {
-  RegisterResourceFunction(resource_buffer + UTILITY_BUFFER_DATA_OFFSET,*(uint64 *)(resource_buffer + UTILITY_SYS_STATUS_OFFSET),resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceFunction(resource_buffer + UTILITY_BUFFER_DATA_OFFSET,*(uint64 *)(resource_buffer + UTILITY_SYS_STATUS_OFFSET),resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -58908,7 +58909,7 @@ void Unwind_18090c2d0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -58944,7 +58945,7 @@ void Unwind_18090c2e0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -59092,7 +59093,7 @@ void Unwind_18090c3b0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -59151,7 +59152,7 @@ void Unwind_18090c400(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -59449,7 +59450,7 @@ void Unwind_18090c530(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -59870,7 +59871,7 @@ void Unwind_18090c610(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -59906,7 +59907,7 @@ void Unwind_18090c620(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -60086,7 +60087,7 @@ void Unwind_18090c760(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   if (*(code **)(resource_buffer + 0x110) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x110))(resource_buffer + resource_handle_offset_zero,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x110))(resource_buffer + resource_handle_offset_zero,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -60108,7 +60109,7 @@ void Unwind_18090c780(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   if (*(code **)(resource_buffer + 0x110) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x110))(resource_buffer + resource_handle_offset_zero,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x110))(resource_buffer + resource_handle_offset_zero,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -62031,7 +62032,7 @@ void Unwind_18090d000(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -62067,7 +62068,7 @@ void Unwind_18090d010(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -62103,7 +62104,7 @@ void Unwind_18090d020(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -62139,7 +62140,7 @@ void Unwind_18090d030(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -62175,7 +62176,7 @@ void Unwind_18090d040(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -62211,7 +62212,7 @@ void Unwind_18090d050(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -62247,7 +62248,7 @@ void Unwind_18090d060(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -62283,7 +62284,7 @@ void Unwind_18090d070(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -62319,7 +62320,7 @@ void Unwind_18090d080(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -62355,7 +62356,7 @@ void Unwind_18090d090(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -62391,7 +62392,7 @@ void Unwind_18090d0a0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -62427,7 +62428,7 @@ void Unwind_18090d0b0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -62463,7 +62464,7 @@ void Unwind_18090d0c0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -62499,7 +62500,7 @@ void Unwind_18090d0d0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -62535,7 +62536,7 @@ void Unwind_18090d0e0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -62571,7 +62572,7 @@ void Unwind_18090d0f0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -62607,7 +62608,7 @@ void Unwind_18090d100(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -62643,7 +62644,7 @@ void Unwind_18090d110(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -62679,7 +62680,7 @@ void Unwind_18090d120(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -62715,7 +62716,7 @@ void Unwind_18090d130(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -62751,7 +62752,7 @@ void Unwind_18090d140(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -62787,7 +62788,7 @@ void Unwind_18090d150(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -62823,7 +62824,7 @@ void Unwind_18090d160(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -62859,7 +62860,7 @@ void Unwind_18090d170(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -62895,7 +62896,7 @@ void Unwind_18090d180(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -62942,7 +62943,7 @@ void Unwind_18090d1a0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -62978,7 +62979,7 @@ void Unwind_18090d1b0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -63014,7 +63015,7 @@ void Unwind_18090d1c0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -63050,7 +63051,7 @@ void Unwind_18090d1d0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -63086,7 +63087,7 @@ void Unwind_18090d1e0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -63122,7 +63123,7 @@ void Unwind_18090d1f0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -63158,7 +63159,7 @@ void Unwind_18090d200(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -63194,7 +63195,7 @@ void Unwind_18090d210(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -63230,7 +63231,7 @@ void Unwind_18090d220(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -63266,7 +63267,7 @@ void Unwind_18090d230(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -63302,7 +63303,7 @@ void Unwind_18090d240(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -63338,7 +63339,7 @@ void Unwind_18090d250(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -63374,7 +63375,7 @@ void Unwind_18090d260(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -63410,7 +63411,7 @@ void Unwind_18090d270(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -63446,7 +63447,7 @@ void Unwind_18090d280(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -63482,7 +63483,7 @@ void Unwind_18090d290(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -63518,7 +63519,7 @@ void Unwind_18090d2a0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -63554,7 +63555,7 @@ void Unwind_18090d2b0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -63590,7 +63591,7 @@ void Unwind_18090d2c0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -63626,7 +63627,7 @@ void Unwind_18090d2d0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -63662,7 +63663,7 @@ void Unwind_18090d2e0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -63698,7 +63699,7 @@ void Unwind_18090d2f0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -63734,7 +63735,7 @@ void Unwind_18090d300(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -63770,7 +63771,7 @@ void Unwind_18090d310(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -63785,7 +63786,7 @@ void Unwind_18090d320(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + 0xa88) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + 0xa88),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + 0xa88),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -63799,7 +63800,7 @@ void Unwind_18090d330(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + 0xa88) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + 0xa88),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + 0xa88),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -63813,7 +63814,7 @@ void Unwind_18090d340(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + 0xa80) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + 0xa80),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + 0xa80),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -63827,7 +63828,7 @@ void Unwind_18090d350(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + 0xa80) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + 0xa80),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + 0xa80),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -63862,7 +63863,7 @@ void Unwind_18090d360(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -63898,7 +63899,7 @@ void Unwind_18090d370(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -63934,7 +63935,7 @@ void Unwind_18090d380(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -63970,7 +63971,7 @@ void Unwind_18090d390(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -64006,7 +64007,7 @@ void Unwind_18090d3a0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -64042,7 +64043,7 @@ void Unwind_18090d3b0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -64078,7 +64079,7 @@ void Unwind_18090d3c0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -64114,7 +64115,7 @@ void Unwind_18090d3d0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -64150,7 +64151,7 @@ void Unwind_18090d3e0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -64186,7 +64187,7 @@ void Unwind_18090d3f0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -64222,7 +64223,7 @@ void Unwind_18090d400(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -64258,7 +64259,7 @@ void Unwind_18090d410(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -64294,7 +64295,7 @@ void Unwind_18090d420(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -64330,7 +64331,7 @@ void Unwind_18090d430(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -64366,7 +64367,7 @@ void Unwind_18090d440(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -64402,7 +64403,7 @@ void Unwind_18090d450(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -64438,7 +64439,7 @@ void Unwind_18090d460(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -64474,7 +64475,7 @@ void Unwind_18090d470(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -64510,7 +64511,7 @@ void Unwind_18090d480(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -64546,7 +64547,7 @@ void Unwind_18090d490(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -64582,7 +64583,7 @@ void Unwind_18090d4a0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -64618,7 +64619,7 @@ void Unwind_18090d4b0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -64654,7 +64655,7 @@ void Unwind_18090d4c0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -64690,7 +64691,7 @@ void Unwind_18090d4d0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -64726,7 +64727,7 @@ void Unwind_18090d4e0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -64762,7 +64763,7 @@ void Unwind_18090d4f0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -64777,7 +64778,7 @@ void Unwind_18090d500(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_SECONDARY_BYTE_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -64791,7 +64792,7 @@ void Unwind_18090d510(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + 0xe8) + UTILITY_STRUCT_OFFSET_1);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + 0xe8) + RESOURCE_BUFFER_ARRAY_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + 0xe8) + RESOURCE_BUFFER_ARRAY_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -65066,7 +65067,7 @@ void Unwind_18090d660(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 loop_counter;
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   if (*(longlong **)(resource_buffer + 0xed0) != (longlong *)zero_float) {
     (**(code **)(**(longlong **)(resource_buffer + 0xed0) + UTILITY_STRUCTURE_SIZE_OFFSET))();
   }
@@ -65091,7 +65092,7 @@ void Unwind_18090d660(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090d680(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0xee8,RESOURCE_HANDLE_OFFSET,2,resetBufferPool,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0xee8,RESOURCE_HANDLE_OFFSET,2,resetBufferPool,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -65256,7 +65257,7 @@ void Unwind_18090d7e0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -65429,7 +65430,7 @@ void Unwind_18090d9e0(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090da20(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x1a18,RESOURCE_PROP_OFFSET88,2,signalBufferAvailable,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x1a18,RESOURCE_PROP_OFFSET88,2,signalBufferAvailable,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -65438,7 +65439,7 @@ void Unwind_18090da20(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090da40(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x2378,0x248,2,lockBufferPool,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x2378,0x248,2,lockBufferPool,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -65447,7 +65448,7 @@ void Unwind_18090da40(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090da60(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x2810,0x248,2,lockBufferPool,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x2810,0x248,2,lockBufferPool,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -65470,7 +65471,7 @@ void Unwind_18090da80(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090daa0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x3d38,RESOURCE_PROP_OFFSET88,2,signalBufferAvailable,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x3d38,RESOURCE_PROP_OFFSET88,2,signalBufferAvailable,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -65479,7 +65480,7 @@ void Unwind_18090daa0(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090dac0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 18000,UTILITY_MEMORY_SIZE_OFFSET8,2,flushBufferPool0,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 18000,UTILITY_MEMORY_SIZE_OFFSET8,2,flushBufferPool0,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -65488,7 +65489,7 @@ void Unwind_18090dac0(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090dae0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x5868,UTILITY_MEMORY_SIZE_OFFSET8,2,flushBufferPool0,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x5868,UTILITY_MEMORY_SIZE_OFFSET8,2,flushBufferPool0,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -65497,7 +65498,7 @@ void Unwind_18090dae0(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090db00(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x6a80,list_head_offset,2,ProcessListOperation,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x6a80,list_head_offset,2,ProcessListOperation,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -65506,7 +65507,7 @@ void Unwind_18090db00(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090db20(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x6b28,RESOURCE_PROP_OFFSET88,2,signalBufferAvailable,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x6b28,RESOURCE_PROP_OFFSET88,2,signalBufferAvailable,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -65515,7 +65516,7 @@ void Unwind_18090db20(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090db40(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x7440,list_head_offset,2,ProcessListOperation,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x7440,list_head_offset,2,ProcessListOperation,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -65524,7 +65525,7 @@ void Unwind_18090db40(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090db60(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x74e8,RESOURCE_UTILITY_HANDLE_DATA_OFFSET,2,unlockBufferPool,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x74e8,RESOURCE_UTILITY_HANDLE_DATA_OFFSET,2,unlockBufferPool,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -65533,7 +65534,7 @@ void Unwind_18090db60(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090db80(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x7620,0x248,2,lockBufferPool,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x7620,0x248,2,lockBufferPool,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -65779,7 +65780,7 @@ void Unwind_18090de40(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -65840,7 +65841,7 @@ void Unwind_18090de80(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 loop_counter;
   
   resource_buffer = *(longlong *)(resource_buffer + UTILITY_STACK_OFFSET_E0);
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   if (*(longlong **)(resource_buffer + 0xed0) != (longlong *)zero_float) {
     (**(code **)(**(longlong **)(resource_buffer + 0xed0) + UTILITY_STRUCTURE_SIZE_OFFSET))();
   }
@@ -65865,7 +65866,7 @@ void Unwind_18090de80(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090dea0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + UTILITY_STACK_OFFSET_E0) + 0xee8,RESOURCE_HANDLE_OFFSET,2,resetBufferPool,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + UTILITY_STACK_OFFSET_E0) + 0xee8,RESOURCE_HANDLE_OFFSET,2,resetBufferPool,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -66030,7 +66031,7 @@ void Unwind_18090e000(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -66203,7 +66204,7 @@ void Unwind_18090e200(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090e240(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + UTILITY_STACK_OFFSET_E0) + 0x1a18,RESOURCE_PROP_OFFSET88,2,signalBufferAvailable,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + UTILITY_STACK_OFFSET_E0) + 0x1a18,RESOURCE_PROP_OFFSET88,2,signalBufferAvailable,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -66212,7 +66213,7 @@ void Unwind_18090e240(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090e260(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + UTILITY_STACK_OFFSET_E0) + 0x2378,0x248,2,lockBufferPool,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + UTILITY_STACK_OFFSET_E0) + 0x2378,0x248,2,lockBufferPool,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -66221,7 +66222,7 @@ void Unwind_18090e260(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090e280(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + UTILITY_STACK_OFFSET_E0) + 0x2810,0x248,2,lockBufferPool,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + UTILITY_STACK_OFFSET_E0) + 0x2810,0x248,2,lockBufferPool,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -66244,7 +66245,7 @@ void Unwind_18090e2a0(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090e2c0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + UTILITY_STACK_OFFSET_E0) + 0x3d38,RESOURCE_PROP_OFFSET88,2,signalBufferAvailable,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + UTILITY_STACK_OFFSET_E0) + 0x3d38,RESOURCE_PROP_OFFSET88,2,signalBufferAvailable,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -66253,7 +66254,7 @@ void Unwind_18090e2c0(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090e2e0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + UTILITY_STACK_OFFSET_E0) + 18000,UTILITY_MEMORY_SIZE_OFFSET8,2,flushBufferPool0,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + UTILITY_STACK_OFFSET_E0) + 18000,UTILITY_MEMORY_SIZE_OFFSET8,2,flushBufferPool0,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -66262,7 +66263,7 @@ void Unwind_18090e2e0(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090e300(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + UTILITY_STACK_OFFSET_E0) + 0x5868,UTILITY_MEMORY_SIZE_OFFSET8,2,flushBufferPool0,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + UTILITY_STACK_OFFSET_E0) + 0x5868,UTILITY_MEMORY_SIZE_OFFSET8,2,flushBufferPool0,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -66271,7 +66272,7 @@ void Unwind_18090e300(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090e320(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + UTILITY_STACK_OFFSET_E0) + 0x6a80,list_head_offset,2,ProcessListOperation,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + UTILITY_STACK_OFFSET_E0) + 0x6a80,list_head_offset,2,ProcessListOperation,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -66280,7 +66281,7 @@ void Unwind_18090e320(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090e340(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + UTILITY_STACK_OFFSET_E0) + 0x6b28,RESOURCE_PROP_OFFSET88,2,signalBufferAvailable,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + UTILITY_STACK_OFFSET_E0) + 0x6b28,RESOURCE_PROP_OFFSET88,2,signalBufferAvailable,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -66289,7 +66290,7 @@ void Unwind_18090e340(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090e360(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + UTILITY_STACK_OFFSET_E0) + 0x7440,list_head_offset,2,ProcessListOperation,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + UTILITY_STACK_OFFSET_E0) + 0x7440,list_head_offset,2,ProcessListOperation,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -66298,7 +66299,7 @@ void Unwind_18090e360(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090e380(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + UTILITY_STACK_OFFSET_E0) + 0x74e8,RESOURCE_UTILITY_HANDLE_DATA_OFFSET,2,unlockBufferPool,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + UTILITY_STACK_OFFSET_E0) + 0x74e8,RESOURCE_UTILITY_HANDLE_DATA_OFFSET,2,unlockBufferPool,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -66307,7 +66308,7 @@ void Unwind_18090e380(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090e3a0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + UTILITY_STACK_OFFSET_E0) + 0x7620,0x248,2,lockBufferPool,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + UTILITY_STACK_OFFSET_E0) + 0x7620,0x248,2,lockBufferPool,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -66341,7 +66342,7 @@ void Unwind_18090e3c0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -66377,7 +66378,7 @@ void Unwind_18090e3d0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -66429,7 +66430,7 @@ void Unwind_18090e400(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090e410(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(uint64 *)(resource_buffer + field_offset_primary),RESOURCE_PROP_OFFSET88,2,signalBufferAvailable,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(uint64 *)(resource_buffer + field_offset_primary),RESOURCE_PROP_OFFSET88,2,signalBufferAvailable,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -66438,7 +66439,7 @@ void Unwind_18090e410(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090e420(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + field_offset_primary) + 0x918,0x128,2,monitorFileChanges,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + field_offset_primary) + 0x918,0x128,2,monitorFileChanges,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -66447,7 +66448,7 @@ void Unwind_18090e420(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090e440(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + field_offset_primary) + 0xb70,0x128,2,monitorFileChanges,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + field_offset_primary) + 0xb70,0x128,2,monitorFileChanges,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -67474,7 +67475,7 @@ void Unwind_18090e9c0(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + utility_buffer_size_data_offset);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + UTILITY_STRUCTURE_SIZE_OFFSET); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -67495,7 +67496,7 @@ void Unwind_18090e9d0(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + utility_buffer_size_data_offset);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + UTILITY_STRUCTURE_SIZE_OFFSET); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -67720,7 +67721,7 @@ void Unwind_18090eb60(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090eb70(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(resource_buffer + UTILITY_RESOURCE_ACCESS_ID,8,RESOURCE_UTILITY_HANDLE_DATA_OFFSET,UtilityModule3,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(resource_buffer + UTILITY_RESOURCE_ACCESS_ID,8,RESOURCE_UTILITY_HANDLE_DATA_OFFSET,UtilityModule3,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -67970,7 +67971,7 @@ void Unwind_18090ed00(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + utility_buffer_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + utility_buffer_offset),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + utility_buffer_offset),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -67984,7 +67985,7 @@ void Unwind_18090ed10(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + utility_buffer_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + utility_buffer_offset),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + utility_buffer_offset),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -68116,7 +68117,7 @@ void Unwind_18090ed90(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + 0x178) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + 0x178),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + 0x178),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -68130,7 +68131,7 @@ void Unwind_18090eda0(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + UTILITY_RESOURCE_ACCESS_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_RESOURCE_ACCESS_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_RESOURCE_ACCESS_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -68180,7 +68181,7 @@ void Unwind_18090ede0(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + UTILITY_BUFFER_HANDLE_OFFSET) + field_offset_primary);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_BUFFER_HANDLE_OFFSET) + POINTER_DATA_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_BUFFER_HANDLE_OFFSET) + POINTER_DATA_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -68230,7 +68231,7 @@ void Unwind_18090ee20(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + UTILITY_RESOURCE_ACCESS_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_RESOURCE_ACCESS_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_RESOURCE_ACCESS_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -68258,7 +68259,7 @@ void Unwind_18090ee40(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET) + field_offset_primary);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET) + POINTER_DATA_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET) + POINTER_DATA_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -68308,7 +68309,7 @@ void Unwind_18090ee80(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + 0xe8) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + 0xe8),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + 0xe8),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -68322,7 +68323,7 @@ void Unwind_18090ee90(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + 0x178) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + 0x178),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + 0x178),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -68375,7 +68376,7 @@ void Unwind_18090eeb0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -68420,7 +68421,7 @@ void Unwind_18090eee0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -68470,7 +68471,7 @@ void Unwind_18090ef20(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -68520,7 +68521,7 @@ void Unwind_18090ef50(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -68556,7 +68557,7 @@ void Unwind_18090ef60(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -68585,7 +68586,7 @@ void Unwind_18090ef80(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET),zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -68606,7 +68607,7 @@ void Unwind_18090efc0(uint64 resource_handle_identifier,longlong resource_buffer
 {
   cleanupThreadLocal(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + 0x2d0,
                 *(uint64 *)(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + 0x2e0),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -68694,7 +68695,7 @@ void Unwind_18090f020(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   cleanupThreadLocal(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -68704,7 +68705,7 @@ void Unwind_18090f030(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   cleanupThreadLocal(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -68837,7 +68838,7 @@ void Unwind_18090f080(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   deleteThreadLocal(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -68847,7 +68848,7 @@ void Unwind_18090f090(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   deleteThreadLocal(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -68857,7 +68858,7 @@ void Unwind_18090f0a0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   cleanupThreadLocal(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -68867,7 +68868,7 @@ void Unwind_18090f0b0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   cleanupThreadLocal(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -68956,7 +68957,7 @@ void Unwind_18090f0e0(uint64 resource_handle_identifier,longlong resource_buffer
   
   character_value_pointer = *(code **)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + UTILITY_LIST_HANDLE_OFFSET);
   if (character_value_pointer != (code *)zero_float) {
-    (*character_value_pointer)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + UTILITY_SYS_STATUS_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (*character_value_pointer)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + UTILITY_SYS_STATUS_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -68967,7 +68968,7 @@ void Unwind_18090f0f0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   deleteThreadLocal(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -68977,7 +68978,7 @@ void Unwind_18090f100(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   deleteThreadLocal(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + POINTER_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -69190,7 +69191,7 @@ void Unwind_18090f1b0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -69226,7 +69227,7 @@ void Unwind_18090f1d0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -69284,7 +69285,7 @@ void Unwind_18090f210(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -69320,7 +69321,7 @@ void Unwind_18090f230(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -69356,7 +69357,7 @@ void Unwind_18090f250(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -69392,7 +69393,7 @@ void Unwind_18090f270(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -69428,7 +69429,7 @@ void Unwind_18090f290(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -69464,7 +69465,7 @@ void Unwind_18090f2b0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -69521,7 +69522,7 @@ void Unwind_18090f2f0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -69615,7 +69616,7 @@ void Unwind_18090f390(uint64 resource_handle_identifier,longlong resource_buffer
 {
   createThreadEvent(*(longlong *)(resource_buffer + utility_data_offset_start) + 0x2c8,
                 *(uint64 *)(*(longlong *)(resource_buffer + utility_data_offset_start) + UTILITY_POINTER_OFFSET_CHECKSUM),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -69833,7 +69834,7 @@ void Unwind_18090f590(uint64 resource_handle_identifier,longlong resource_buffer
 {
   waitForThreadEvent(*(longlong *)(resource_buffer + utility_data_offset_start) + RESOURCE_PROP_OFFSET70,
                 *(uint64 *)(*(longlong *)(resource_buffer + utility_data_offset_start) + RESOURCE_PROP_OFFSET80),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -69886,7 +69887,7 @@ void Unwind_18090f610(uint64 resource_handle_identifier,longlong resource_buffer
 {
   ValidateResourceSystem(*(longlong *)(resource_buffer + utility_data_offset_start) + RESOURCE_PROP_OFFSET0e0,
                 *(uint64 *)(*(longlong *)(resource_buffer + utility_data_offset_start) + RESOURCE_PROP_OFFSET0f0),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -69897,7 +69898,7 @@ void Unwind_18090f630(uint64 resource_handle_identifier,longlong resource_buffer
 {
   UtilityModule13(*(longlong *)(resource_buffer + utility_data_offset_start) + RESOURCE_PROP_OFFSET110,
                 *(uint64 *)(*(longlong *)(resource_buffer + utility_data_offset_start) + RESOURCE_PROP_OFFSET120),resourceOperationFlags,resourceCallbackFunction,
-                UTILITY_SYSTEM_END_FLAGfffffffffe);
+                UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -69966,7 +69967,7 @@ void Unwind_18090f6a0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   createThreadEvent(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -69976,7 +69977,7 @@ void Unwind_18090f6b0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   createThreadEvent(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -70079,7 +70080,7 @@ void Unwind_18090f780(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   waitForThreadEvent(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -70089,7 +70090,7 @@ void Unwind_18090f790(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   waitForThreadEvent(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -70099,7 +70100,7 @@ void Unwind_18090f7a0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   ValidateResourceSystem(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -70109,7 +70110,7 @@ void Unwind_18090f7b0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   ValidateResourceSystem(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -70119,7 +70120,7 @@ void Unwind_18090f7c0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   UtilityModule13(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -70129,7 +70130,7 @@ void Unwind_18090f7d0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   UtilityModule13(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -70160,7 +70161,7 @@ void Unwind_18090f7f0(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   createThreadEvent(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -70170,7 +70171,7 @@ void Unwind_18090f800(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   createThreadEvent(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -70189,7 +70190,7 @@ void Unwind_18090f840(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   waitForThreadEvent(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -70199,7 +70200,7 @@ void Unwind_18090f850(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   waitForThreadEvent(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -70209,7 +70210,7 @@ void Unwind_18090f860(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   ValidateResourceSystem(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -70219,7 +70220,7 @@ void Unwind_18090f870(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   ValidateResourceSystem(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
-                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -70696,7 +70697,7 @@ void Unwind_18090fb00(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090fb10(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
 
 {
-  ValidateResourceSystem(resource_buffer + UTILITY_SYS_STATUS_OFFSET,*(uint64 *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  ValidateResourceSystem(resource_buffer + UTILITY_SYS_STATUS_OFFSET,*(uint64 *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -70714,7 +70715,7 @@ void Unwind_18090fb20(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090fb30(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
 
 {
-  ValidateResourceSystem(resource_buffer + UTILITY_SYS_STATUS_OFFSET,*(uint64 *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  ValidateResourceSystem(resource_buffer + UTILITY_SYS_STATUS_OFFSET,*(uint64 *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -70723,7 +70724,7 @@ void Unwind_18090fb30(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_18090fb40(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
 
 {
-  ValidateResourceSystem(resource_buffer + UTILITY_SYS_STATUS_OFFSET,*(uint64 *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  ValidateResourceSystem(resource_buffer + UTILITY_SYS_STATUS_OFFSET,*(uint64 *)(resource_buffer + UTILITY_LIST_HANDLE_OFFSET),resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -71319,7 +71320,7 @@ void Unwind_18090ff90(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -72080,7 +72081,7 @@ void Unwind_1809102e0(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + UTILITY_STACK_OFFSET_F0);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + 0xe8); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -72101,7 +72102,7 @@ void Unwind_1809102f0(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + UTILITY_STRUCT_OFFSET_1);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + 200); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -72122,7 +72123,7 @@ void Unwind_180910300(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + UTILITY_STACK_OFFSET_F0);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + 0xe8); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -72145,7 +72146,7 @@ void Unwind_180910310(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 system_status_code;
   
   data_buffer = *(longlong **)(resource_buffer + UTILITY_RESOURCE_ACCESS_OFFSET);
-  system_status_code = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  system_status_code = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = (uint64 *)data_buffer[1];
   for (unsigned_pointer_var3 = (uint64 *)*data_buffer; generic_data_pointer != utility_resource_operation_resultData; generic_data_pointer = generic_data_pointer + 4) {
     (**(code **)*generic_data_pointer)(unsigned_pointer_var3,0,resourceOperationFlags,resourceCallbackFunction,system_status_code);
@@ -72187,7 +72188,7 @@ void Unwind_180910320(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -72202,7 +72203,7 @@ void Unwind_180910330(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + UTILITY_STRUCT_OFFSET_1);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + 200); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -72244,7 +72245,7 @@ void Unwind_180910340(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -72280,7 +72281,7 @@ void Unwind_180910350(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -72355,7 +72356,7 @@ void Unwind_1809103c0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -72560,7 +72561,7 @@ void Unwind_1809104f0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -72596,7 +72597,7 @@ void Unwind_180910510(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -72781,7 +72782,7 @@ void Unwind_180910640(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -72817,7 +72818,7 @@ void Unwind_180910660(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -72915,7 +72916,7 @@ void Unwind_1809106e0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -72975,7 +72976,7 @@ void Unwind_180910750(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -73033,7 +73034,7 @@ void Unwind_180910770(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -73069,7 +73070,7 @@ void Unwind_180910780(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -73105,7 +73106,7 @@ void Unwind_180910790(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -73120,7 +73121,7 @@ void Unwind_1809107a0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0xa00) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xa00))(resource_buffer + 0x9f0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xa00))(resource_buffer + 0x9f0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x9c8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x9d0) != 0) {
@@ -73150,7 +73151,7 @@ void Unwind_1809107c0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0xa70) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xa70))(resource_buffer + 0xa60,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xa70))(resource_buffer + 0xa60,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xa38) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xa40) != 0) {
@@ -73180,7 +73181,7 @@ void Unwind_1809107e0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0xae0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xae0))(resource_buffer + 0xad0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xae0))(resource_buffer + 0xad0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xaa8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xab0) != 0) {
@@ -73210,7 +73211,7 @@ void Unwind_180910800(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0xb50) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xb50))(resource_buffer + 0xb40,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xb50))(resource_buffer + 0xb40,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xb18) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xb20) != 0) {
@@ -73240,7 +73241,7 @@ void Unwind_180910820(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0xbc0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xbc0))(resource_buffer + 0xbb0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xbc0))(resource_buffer + 0xbb0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xb88) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xb90) != 0) {
@@ -73270,7 +73271,7 @@ void Unwind_180910840(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0xc30) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xc30))(resource_buffer + 0xc20,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xc30))(resource_buffer + 0xc20,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xbf8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xc00) != 0) {
@@ -73300,7 +73301,7 @@ void Unwind_180910860(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0xca0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xca0))(resource_buffer + 0xc90,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xca0))(resource_buffer + 0xc90,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xc68) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xc70) != 0) {
@@ -73330,7 +73331,7 @@ void Unwind_180910880(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0xd10) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xd10))(resource_buffer + 0xd00,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xd10))(resource_buffer + 0xd00,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xcd8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xce0) != 0) {
@@ -73360,7 +73361,7 @@ void Unwind_1809108a0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0xd80) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xd80))(resource_buffer + 0xd70,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xd80))(resource_buffer + 0xd70,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xd48) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xd50) != 0) {
@@ -73390,7 +73391,7 @@ void Unwind_1809108c0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0xdf0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xdf0))(resource_buffer + 0xde0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xdf0))(resource_buffer + 0xde0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xdb8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xdc0) != 0) {
@@ -73420,7 +73421,7 @@ void Unwind_1809108e0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0xe60) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xe60))(resource_buffer + 0xe50,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xe60))(resource_buffer + 0xe50,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xe28) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xe30) != 0) {
@@ -73450,7 +73451,7 @@ void Unwind_180910900(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0xed0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xed0))(resource_buffer + 0xec0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xed0))(resource_buffer + 0xec0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xe98) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xea0) != 0) {
@@ -73480,7 +73481,7 @@ void Unwind_180910920(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0xf40) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xf40))(resource_buffer + 0xf30,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xf40))(resource_buffer + 0xf30,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + UTILITY_STACK_OFFSET_F08) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xf10) != 0) {
@@ -73510,7 +73511,7 @@ void Unwind_180910940(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0xfb0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xfb0))(resource_buffer + 4000,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xfb0))(resource_buffer + 4000,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xf78) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xf80) != 0) {
@@ -73540,7 +73541,7 @@ void Unwind_180910960(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + resource_handle_valueta_offset20) != (code *)zero_float) {
-    (**(code **)(resource_buffer + resource_handle_valueta_offset20))(resource_buffer + resource_handle_valueta_offset10,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + resource_handle_valueta_offset20))(resource_buffer + resource_handle_valueta_offset10,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xfe8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xff0) != 0) {
@@ -73570,7 +73571,7 @@ void Unwind_180910980(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + resource_handle_valueta_offset90) != (code *)zero_float) {
-    (**(code **)(resource_buffer + resource_handle_valueta_offset90))(resource_buffer + resource_handle_valueta_offset80,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + resource_handle_valueta_offset90))(resource_buffer + resource_handle_valueta_offset80,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + resource_handle_valueta_offset58) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + resource_handle_valueta_offset60) != 0) {
@@ -73600,7 +73601,7 @@ void Unwind_1809109a0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1100) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1100))(resource_buffer + resource_handle_valueta_offsetf0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1100))(resource_buffer + resource_handle_valueta_offsetf0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + resource_handle_valueta_offsetc8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + resource_handle_valueta_offsetd0) != 0) {
@@ -73630,7 +73631,7 @@ void Unwind_1809109c0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1170) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1170))(resource_buffer + 0x1160,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1170))(resource_buffer + 0x1160,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1138) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1140) != 0) {
@@ -73660,7 +73661,7 @@ void Unwind_1809109e0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x11e0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x11e0))(resource_buffer + 0x11d0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x11e0))(resource_buffer + 0x11d0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x11a8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x11b0) != 0) {
@@ -73690,7 +73691,7 @@ void Unwind_180910a00(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1250) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1250))(resource_buffer + 0x1240,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1250))(resource_buffer + 0x1240,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1218) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1220) != 0) {
@@ -73720,7 +73721,7 @@ void Unwind_180910a20(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x12c0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x12c0))(resource_buffer + 0x12b0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x12c0))(resource_buffer + 0x12b0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1288) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1290) != 0) {
@@ -73750,7 +73751,7 @@ void Unwind_180910a40(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1330) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1330))(resource_buffer + 0x1320,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1330))(resource_buffer + 0x1320,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x12f8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1300) != 0) {
@@ -73780,7 +73781,7 @@ void Unwind_180910a60(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x13a0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x13a0))(resource_buffer + 0x1390,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x13a0))(resource_buffer + 0x1390,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1368) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1370) != 0) {
@@ -73810,7 +73811,7 @@ void Unwind_180910a80(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1410) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1410))(resource_buffer + 0x1400,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1410))(resource_buffer + 0x1400,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x13d8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x13e0) != 0) {
@@ -73840,7 +73841,7 @@ void Unwind_180910aa0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1480) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1480))(resource_buffer + 0x1470,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1480))(resource_buffer + 0x1470,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1448) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1450) != 0) {
@@ -73870,7 +73871,7 @@ void Unwind_180910ac0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x14f0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x14f0))(resource_buffer + 0x14e0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x14f0))(resource_buffer + 0x14e0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x14b8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x14c0) != 0) {
@@ -73900,7 +73901,7 @@ void Unwind_180910ae0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1560) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1560))(resource_buffer + 0x1550,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1560))(resource_buffer + 0x1550,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1528) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1530) != 0) {
@@ -73930,7 +73931,7 @@ void Unwind_180910b00(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x15d0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x15d0))(resource_buffer + 0x15c0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x15d0))(resource_buffer + 0x15c0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1598) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x15a0) != 0) {
@@ -73960,7 +73961,7 @@ void Unwind_180910b20(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1640) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1640))(resource_buffer + 0x1630,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1640))(resource_buffer + 0x1630,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1608) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1610) != 0) {
@@ -73990,7 +73991,7 @@ void Unwind_180910b40(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x16b0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x16b0))(resource_buffer + 0x16a0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x16b0))(resource_buffer + 0x16a0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1678) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1680) != 0) {
@@ -74020,7 +74021,7 @@ void Unwind_180910b60(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1720) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1720))(resource_buffer + 0x1710,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1720))(resource_buffer + 0x1710,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x16e8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x16f0) != 0) {
@@ -74050,7 +74051,7 @@ void Unwind_180910b80(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1790) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1790))(resource_buffer + 0x1780,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1790))(resource_buffer + 0x1780,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1758) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1760) != 0) {
@@ -74080,7 +74081,7 @@ void Unwind_180910ba0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1800) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1800))(resource_buffer + 0x17f0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1800))(resource_buffer + 0x17f0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x17c8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x17d0) != 0) {
@@ -74110,7 +74111,7 @@ void Unwind_180910bc0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1870) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1870))(resource_buffer + 0x1860,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1870))(resource_buffer + 0x1860,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1838) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1840) != 0) {
@@ -74140,7 +74141,7 @@ void Unwind_180910be0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x18e0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x18e0))(resource_buffer + 0x18d0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x18e0))(resource_buffer + 0x18d0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x18a8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x18b0) != 0) {
@@ -74170,7 +74171,7 @@ void Unwind_180910c00(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1950) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1950))(resource_buffer + 0x1940,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1950))(resource_buffer + 0x1940,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1918) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1920) != 0) {
@@ -74200,7 +74201,7 @@ void Unwind_180910c20(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x19c0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x19c0))(resource_buffer + 0x19b0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x19c0))(resource_buffer + 0x19b0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1988) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1990) != 0) {
@@ -74230,7 +74231,7 @@ void Unwind_180910c40(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1a30) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1a30))(resource_buffer + 0x1a20,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1a30))(resource_buffer + 0x1a20,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x19f8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1a00) != 0) {
@@ -74260,7 +74261,7 @@ void Unwind_180910c60(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1aa0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1aa0))(resource_buffer + 0x1a90,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1aa0))(resource_buffer + 0x1a90,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1a68) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1a70) != 0) {
@@ -74290,7 +74291,7 @@ void Unwind_180910c80(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1b10) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1b10))(resource_buffer + 0x1b00,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1b10))(resource_buffer + 0x1b00,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1ad8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1ae0) != 0) {
@@ -74320,7 +74321,7 @@ void Unwind_180910ca0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1b80) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1b80))(resource_buffer + 0x1b70,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1b80))(resource_buffer + 0x1b70,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1b48) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1b50) != 0) {
@@ -74350,7 +74351,7 @@ void Unwind_180910cc0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1bf0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1bf0))(resource_buffer + 0x1be0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1bf0))(resource_buffer + 0x1be0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1bb8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1bc0) != 0) {
@@ -74380,7 +74381,7 @@ void Unwind_180910ce0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1c60) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1c60))(resource_buffer + 0x1c50,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1c60))(resource_buffer + 0x1c50,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1c28) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1c30) != 0) {
@@ -74410,7 +74411,7 @@ void Unwind_180910d00(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1cd0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1cd0))(resource_buffer + 0x1cc0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1cd0))(resource_buffer + 0x1cc0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1c98) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1ca0) != 0) {
@@ -74440,7 +74441,7 @@ void Unwind_180910d20(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1d40) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1d40))(resource_buffer + 0x1d30,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1d40))(resource_buffer + 0x1d30,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1d08) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1d10) != 0) {
@@ -74470,7 +74471,7 @@ void Unwind_180910d40(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1db0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1db0))(resource_buffer + 0x1da0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1db0))(resource_buffer + 0x1da0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1d78) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1d80) != 0) {
@@ -74500,7 +74501,7 @@ void Unwind_180910d60(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1e20) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1e20))(resource_buffer + 0x1e10,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1e20))(resource_buffer + 0x1e10,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1de8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1df0) != 0) {
@@ -74530,7 +74531,7 @@ void Unwind_180910d80(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1e90) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1e90))(resource_buffer + 0x1e80,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1e90))(resource_buffer + 0x1e80,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1e58) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1e60) != 0) {
@@ -74560,7 +74561,7 @@ void Unwind_180910da0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1f00) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1f00))(resource_buffer + 0x1ef0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1f00))(resource_buffer + 0x1ef0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1ec8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1ed0) != 0) {
@@ -74590,7 +74591,7 @@ void Unwind_180910dc0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1f70) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1f70))(resource_buffer + 0x1f60,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1f70))(resource_buffer + 0x1f60,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1f38) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 8000) != 0) {
@@ -74620,7 +74621,7 @@ void Unwind_180910de0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x1fe0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1fe0))(resource_buffer + 0x1fd0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1fe0))(resource_buffer + 0x1fd0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1fa8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1fb0) != 0) {
@@ -74650,7 +74651,7 @@ void Unwind_180910e00(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x2050) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x2050))(resource_buffer + 0x2040,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x2050))(resource_buffer + 0x2040,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x2018) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x2020) != 0) {
@@ -74680,7 +74681,7 @@ void Unwind_180910e20(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x20c0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x20c0))(resource_buffer + 0x20b0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x20c0))(resource_buffer + 0x20b0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x2088) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x2090) != 0) {
@@ -74710,7 +74711,7 @@ void Unwind_180910e40(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x2130) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x2130))(resource_buffer + 0x2120,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x2130))(resource_buffer + 0x2120,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x20f8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x2100) != 0) {
@@ -74740,7 +74741,7 @@ void Unwind_180910e60(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x21a0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x21a0))(resource_buffer + 0x2190,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x21a0))(resource_buffer + 0x2190,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x2168) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x2170) != 0) {
@@ -74770,7 +74771,7 @@ void Unwind_180910e80(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x2210) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x2210))(resource_buffer + 0x2200,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x2210))(resource_buffer + 0x2200,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x21d8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x21e0) != 0) {
@@ -74800,7 +74801,7 @@ void Unwind_180910ea0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + UTILITY_RESOURCE_DATA_OFFSET0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + UTILITY_RESOURCE_DATA_OFFSET0))(resource_buffer + 0x2270,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + UTILITY_RESOURCE_DATA_OFFSET0))(resource_buffer + 0x2270,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x2248) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x2250) != 0) {
@@ -74830,7 +74831,7 @@ void Unwind_180910ec0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x22f0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x22f0))(resource_buffer + 0x22e0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x22f0))(resource_buffer + 0x22e0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x22b8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x22c0) != 0) {
@@ -74860,7 +74861,7 @@ void Unwind_180910ee0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x2360) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x2360))(resource_buffer + 0x2350,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x2360))(resource_buffer + 0x2350,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 9000) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x2330) != 0) {
@@ -74890,7 +74891,7 @@ void Unwind_180910f00(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x23d0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x23d0))(resource_buffer + 0x23c0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x23d0))(resource_buffer + 0x23c0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x2398) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x23a0) != 0) {
@@ -74920,7 +74921,7 @@ void Unwind_180910f20(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x2440) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x2440))(resource_buffer + 0x2430,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x2440))(resource_buffer + 0x2430,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x2408) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x2410) != 0) {
@@ -74950,7 +74951,7 @@ void Unwind_180910f40(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x24b0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x24b0))(resource_buffer + 0x24a0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x24b0))(resource_buffer + 0x24a0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x2478) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x2480) != 0) {
@@ -74980,7 +74981,7 @@ void Unwind_180910f60(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x2520) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x2520))(resource_buffer + 0x2510,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x2520))(resource_buffer + 0x2510,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x24e8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x24f0) != 0) {
@@ -75010,7 +75011,7 @@ void Unwind_180910f80(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x2590) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x2590))(resource_buffer + 0x2580,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x2590))(resource_buffer + 0x2580,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x2558) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x2560) != 0) {
@@ -75040,7 +75041,7 @@ void Unwind_180910fa0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
   if (*(code **)(resource_buffer + 0x2600) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x2600))(resource_buffer + 0x25f0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x2600))(resource_buffer + 0x25f0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x25c8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x25d0) != 0) {
@@ -75072,7 +75073,7 @@ void Unwind_180910fc0(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 system_status_code;
   
   data_buffer = (longlong *)(*(longlong *)(resource_buffer + utility_buffer_offset) + 0x2610);
-  system_status_code = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  system_status_code = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + utility_buffer_offset) + 0x2618);
   for (unsigned_pointer_var3 = (uint64 *)*data_buffer; generic_data_pointer != utility_resource_operation_resultData; generic_data_pointer = generic_data_pointer + 4) {
     (**(code **)*generic_data_pointer)(unsigned_pointer_var3,0,resourceOperationFlags,resourceCallbackFunction,system_status_code);
@@ -75095,7 +75096,7 @@ void Unwind_180910fe0(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 system_status_code;
   
   data_buffer = (longlong *)(*(longlong *)(resource_buffer + utility_buffer_offset) + 0x2630);
-  system_status_code = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  system_status_code = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + utility_buffer_offset) + 0x2638);
   for (unsigned_pointer_var3 = (uint64 *)*data_buffer; generic_data_pointer != utility_resource_operation_resultData; generic_data_pointer = generic_data_pointer + 4) {
     (**(code **)*generic_data_pointer)(unsigned_pointer_var3,0,resourceOperationFlags,resourceCallbackFunction,system_status_code);
@@ -75116,7 +75117,7 @@ void Unwind_180911000(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0xa00) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xa00))(resource_buffer + 0x9f0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xa00))(resource_buffer + 0x9f0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x9c8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x9d0) != 0) {
@@ -75146,7 +75147,7 @@ void Unwind_180911020(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0xa70) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xa70))(resource_buffer + 0xa60,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xa70))(resource_buffer + 0xa60,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xa38) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xa40) != 0) {
@@ -75176,7 +75177,7 @@ void Unwind_180911040(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0xae0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xae0))(resource_buffer + 0xad0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xae0))(resource_buffer + 0xad0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xaa8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xab0) != 0) {
@@ -75206,7 +75207,7 @@ void Unwind_180911060(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0xb50) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xb50))(resource_buffer + 0xb40,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xb50))(resource_buffer + 0xb40,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xb18) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xb20) != 0) {
@@ -75236,7 +75237,7 @@ void Unwind_180911080(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0xbc0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xbc0))(resource_buffer + 0xbb0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xbc0))(resource_buffer + 0xbb0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xb88) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xb90) != 0) {
@@ -75266,7 +75267,7 @@ void Unwind_1809110a0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0xc30) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xc30))(resource_buffer + 0xc20,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xc30))(resource_buffer + 0xc20,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xbf8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xc00) != 0) {
@@ -75296,7 +75297,7 @@ void Unwind_1809110c0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0xca0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xca0))(resource_buffer + 0xc90,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xca0))(resource_buffer + 0xc90,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xc68) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xc70) != 0) {
@@ -75326,7 +75327,7 @@ void Unwind_1809110e0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0xd10) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xd10))(resource_buffer + 0xd00,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xd10))(resource_buffer + 0xd00,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xcd8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xce0) != 0) {
@@ -75356,7 +75357,7 @@ void Unwind_180911100(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0xd80) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xd80))(resource_buffer + 0xd70,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xd80))(resource_buffer + 0xd70,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xd48) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xd50) != 0) {
@@ -75386,7 +75387,7 @@ void Unwind_180911120(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0xdf0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xdf0))(resource_buffer + 0xde0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xdf0))(resource_buffer + 0xde0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xdb8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xdc0) != 0) {
@@ -75416,7 +75417,7 @@ void Unwind_180911140(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0xe60) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xe60))(resource_buffer + 0xe50,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xe60))(resource_buffer + 0xe50,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xe28) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xe30) != 0) {
@@ -75446,7 +75447,7 @@ void Unwind_180911160(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0xed0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xed0))(resource_buffer + 0xec0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xed0))(resource_buffer + 0xec0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xe98) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xea0) != 0) {
@@ -75476,7 +75477,7 @@ void Unwind_180911180(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0xf40) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xf40))(resource_buffer + 0xf30,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xf40))(resource_buffer + 0xf30,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + UTILITY_STACK_OFFSET_F08) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xf10) != 0) {
@@ -75506,7 +75507,7 @@ void Unwind_1809111a0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0xfb0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xfb0))(resource_buffer + 4000,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xfb0))(resource_buffer + 4000,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xf78) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xf80) != 0) {
@@ -75536,7 +75537,7 @@ void Unwind_1809111c0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + resource_handle_valueta_offset20) != (code *)zero_float) {
-    (**(code **)(resource_buffer + resource_handle_valueta_offset20))(resource_buffer + resource_handle_valueta_offset10,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + resource_handle_valueta_offset20))(resource_buffer + resource_handle_valueta_offset10,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0xfe8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0xff0) != 0) {
@@ -75566,7 +75567,7 @@ void Unwind_1809111e0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + resource_handle_valueta_offset90) != (code *)zero_float) {
-    (**(code **)(resource_buffer + resource_handle_valueta_offset90))(resource_buffer + resource_handle_valueta_offset80,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + resource_handle_valueta_offset90))(resource_buffer + resource_handle_valueta_offset80,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + resource_handle_valueta_offset58) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + resource_handle_valueta_offset60) != 0) {
@@ -75596,7 +75597,7 @@ void Unwind_180911200(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1100) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1100))(resource_buffer + resource_handle_valueta_offsetf0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1100))(resource_buffer + resource_handle_valueta_offsetf0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + resource_handle_valueta_offsetc8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + resource_handle_valueta_offsetd0) != 0) {
@@ -75626,7 +75627,7 @@ void Unwind_180911220(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1170) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1170))(resource_buffer + 0x1160,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1170))(resource_buffer + 0x1160,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1138) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1140) != 0) {
@@ -75656,7 +75657,7 @@ void Unwind_180911240(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x11e0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x11e0))(resource_buffer + 0x11d0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x11e0))(resource_buffer + 0x11d0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x11a8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x11b0) != 0) {
@@ -75686,7 +75687,7 @@ void Unwind_180911260(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1250) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1250))(resource_buffer + 0x1240,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1250))(resource_buffer + 0x1240,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1218) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1220) != 0) {
@@ -75716,7 +75717,7 @@ void Unwind_180911280(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x12c0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x12c0))(resource_buffer + 0x12b0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x12c0))(resource_buffer + 0x12b0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1288) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1290) != 0) {
@@ -75746,7 +75747,7 @@ void Unwind_1809112a0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1330) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1330))(resource_buffer + 0x1320,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1330))(resource_buffer + 0x1320,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x12f8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1300) != 0) {
@@ -75776,7 +75777,7 @@ void Unwind_1809112c0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x13a0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x13a0))(resource_buffer + 0x1390,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x13a0))(resource_buffer + 0x1390,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1368) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1370) != 0) {
@@ -75806,7 +75807,7 @@ void Unwind_1809112e0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1410) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1410))(resource_buffer + 0x1400,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1410))(resource_buffer + 0x1400,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x13d8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x13e0) != 0) {
@@ -75836,7 +75837,7 @@ void Unwind_180911300(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1480) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1480))(resource_buffer + 0x1470,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1480))(resource_buffer + 0x1470,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1448) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1450) != 0) {
@@ -75866,7 +75867,7 @@ void Unwind_180911320(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x14f0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x14f0))(resource_buffer + 0x14e0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x14f0))(resource_buffer + 0x14e0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x14b8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x14c0) != 0) {
@@ -75896,7 +75897,7 @@ void Unwind_180911340(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1560) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1560))(resource_buffer + 0x1550,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1560))(resource_buffer + 0x1550,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1528) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1530) != 0) {
@@ -75926,7 +75927,7 @@ void Unwind_180911360(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x15d0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x15d0))(resource_buffer + 0x15c0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x15d0))(resource_buffer + 0x15c0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1598) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x15a0) != 0) {
@@ -75956,7 +75957,7 @@ void Unwind_180911380(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1640) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1640))(resource_buffer + 0x1630,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1640))(resource_buffer + 0x1630,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1608) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1610) != 0) {
@@ -75986,7 +75987,7 @@ void Unwind_1809113a0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x16b0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x16b0))(resource_buffer + 0x16a0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x16b0))(resource_buffer + 0x16a0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1678) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1680) != 0) {
@@ -76016,7 +76017,7 @@ void Unwind_1809113c0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1720) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1720))(resource_buffer + 0x1710,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1720))(resource_buffer + 0x1710,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x16e8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x16f0) != 0) {
@@ -76046,7 +76047,7 @@ void Unwind_1809113e0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1790) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1790))(resource_buffer + 0x1780,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1790))(resource_buffer + 0x1780,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1758) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1760) != 0) {
@@ -76076,7 +76077,7 @@ void Unwind_180911400(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1800) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1800))(resource_buffer + 0x17f0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1800))(resource_buffer + 0x17f0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x17c8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x17d0) != 0) {
@@ -76106,7 +76107,7 @@ void Unwind_180911420(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1870) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1870))(resource_buffer + 0x1860,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1870))(resource_buffer + 0x1860,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1838) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1840) != 0) {
@@ -76136,7 +76137,7 @@ void Unwind_180911440(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x18e0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x18e0))(resource_buffer + 0x18d0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x18e0))(resource_buffer + 0x18d0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x18a8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x18b0) != 0) {
@@ -76166,7 +76167,7 @@ void Unwind_180911460(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1950) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1950))(resource_buffer + 0x1940,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1950))(resource_buffer + 0x1940,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1918) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1920) != 0) {
@@ -76196,7 +76197,7 @@ void Unwind_180911480(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x19c0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x19c0))(resource_buffer + 0x19b0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x19c0))(resource_buffer + 0x19b0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1988) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1990) != 0) {
@@ -76226,7 +76227,7 @@ void Unwind_1809114a0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1a30) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1a30))(resource_buffer + 0x1a20,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1a30))(resource_buffer + 0x1a20,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x19f8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1a00) != 0) {
@@ -76256,7 +76257,7 @@ void Unwind_1809114c0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1aa0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1aa0))(resource_buffer + 0x1a90,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1aa0))(resource_buffer + 0x1a90,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1a68) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1a70) != 0) {
@@ -76286,7 +76287,7 @@ void Unwind_1809114e0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1b10) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1b10))(resource_buffer + 0x1b00,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1b10))(resource_buffer + 0x1b00,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1ad8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1ae0) != 0) {
@@ -76316,7 +76317,7 @@ void Unwind_180911500(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1b80) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1b80))(resource_buffer + 0x1b70,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1b80))(resource_buffer + 0x1b70,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1b48) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1b50) != 0) {
@@ -76346,7 +76347,7 @@ void Unwind_180911520(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1bf0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1bf0))(resource_buffer + 0x1be0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1bf0))(resource_buffer + 0x1be0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1bb8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1bc0) != 0) {
@@ -76376,7 +76377,7 @@ void Unwind_180911540(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1c60) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1c60))(resource_buffer + 0x1c50,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1c60))(resource_buffer + 0x1c50,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1c28) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1c30) != 0) {
@@ -76406,7 +76407,7 @@ void Unwind_180911560(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1cd0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1cd0))(resource_buffer + 0x1cc0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1cd0))(resource_buffer + 0x1cc0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1c98) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1ca0) != 0) {
@@ -76436,7 +76437,7 @@ void Unwind_180911580(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1d40) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1d40))(resource_buffer + 0x1d30,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1d40))(resource_buffer + 0x1d30,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1d08) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1d10) != 0) {
@@ -76466,7 +76467,7 @@ void Unwind_1809115a0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1db0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1db0))(resource_buffer + 0x1da0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1db0))(resource_buffer + 0x1da0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1d78) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1d80) != 0) {
@@ -76496,7 +76497,7 @@ void Unwind_1809115c0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1e20) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1e20))(resource_buffer + 0x1e10,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1e20))(resource_buffer + 0x1e10,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1de8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1df0) != 0) {
@@ -76526,7 +76527,7 @@ void Unwind_1809115e0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1e90) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1e90))(resource_buffer + 0x1e80,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1e90))(resource_buffer + 0x1e80,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1e58) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1e60) != 0) {
@@ -76556,7 +76557,7 @@ void Unwind_180911600(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1f00) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1f00))(resource_buffer + 0x1ef0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1f00))(resource_buffer + 0x1ef0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1ec8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1ed0) != 0) {
@@ -76586,7 +76587,7 @@ void Unwind_180911620(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1f70) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1f70))(resource_buffer + 0x1f60,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1f70))(resource_buffer + 0x1f60,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1f38) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 8000) != 0) {
@@ -76616,7 +76617,7 @@ void Unwind_180911640(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x1fe0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x1fe0))(resource_buffer + 0x1fd0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x1fe0))(resource_buffer + 0x1fd0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1fa8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1fb0) != 0) {
@@ -76646,7 +76647,7 @@ void Unwind_180911660(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x2050) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x2050))(resource_buffer + 0x2040,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x2050))(resource_buffer + 0x2040,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x2018) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x2020) != 0) {
@@ -76676,7 +76677,7 @@ void Unwind_180911680(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x20c0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x20c0))(resource_buffer + 0x20b0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x20c0))(resource_buffer + 0x20b0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x2088) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x2090) != 0) {
@@ -76706,7 +76707,7 @@ void Unwind_1809116a0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x2130) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x2130))(resource_buffer + 0x2120,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x2130))(resource_buffer + 0x2120,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x20f8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x2100) != 0) {
@@ -76736,7 +76737,7 @@ void Unwind_1809116c0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x21a0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x21a0))(resource_buffer + 0x2190,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x21a0))(resource_buffer + 0x2190,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x2168) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x2170) != 0) {
@@ -76766,7 +76767,7 @@ void Unwind_1809116e0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x2210) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x2210))(resource_buffer + 0x2200,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x2210))(resource_buffer + 0x2200,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x21d8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x21e0) != 0) {
@@ -76796,7 +76797,7 @@ void Unwind_180911700(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + UTILITY_RESOURCE_DATA_OFFSET0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + UTILITY_RESOURCE_DATA_OFFSET0))(resource_buffer + 0x2270,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + UTILITY_RESOURCE_DATA_OFFSET0))(resource_buffer + 0x2270,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x2248) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x2250) != 0) {
@@ -76826,7 +76827,7 @@ void Unwind_180911720(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x22f0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x22f0))(resource_buffer + 0x22e0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x22f0))(resource_buffer + 0x22e0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x22b8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x22c0) != 0) {
@@ -76856,7 +76857,7 @@ void Unwind_180911740(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x2360) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x2360))(resource_buffer + 0x2350,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x2360))(resource_buffer + 0x2350,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 9000) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x2330) != 0) {
@@ -76886,7 +76887,7 @@ void Unwind_180911760(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x23d0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x23d0))(resource_buffer + 0x23c0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x23d0))(resource_buffer + 0x23c0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x2398) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x23a0) != 0) {
@@ -76916,7 +76917,7 @@ void Unwind_180911780(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x2440) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x2440))(resource_buffer + 0x2430,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x2440))(resource_buffer + 0x2430,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x2408) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x2410) != 0) {
@@ -76946,7 +76947,7 @@ void Unwind_1809117a0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x24b0) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x24b0))(resource_buffer + 0x24a0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x24b0))(resource_buffer + 0x24a0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x2478) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x2480) != 0) {
@@ -76976,7 +76977,7 @@ void Unwind_1809117c0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x2520) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x2520))(resource_buffer + 0x2510,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x2520))(resource_buffer + 0x2510,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x24e8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x24f0) != 0) {
@@ -77006,7 +77007,7 @@ void Unwind_1809117e0(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x2590) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x2590))(resource_buffer + 0x2580,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x2590))(resource_buffer + 0x2580,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x2558) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x2560) != 0) {
@@ -77036,7 +77037,7 @@ void Unwind_180911800(uint64 resource_handle_identifier,longlong resource_buffer
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
   if (*(code **)(resource_buffer + 0x2600) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x2600))(resource_buffer + 0x25f0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x2600))(resource_buffer + 0x25f0,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x25c8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x25d0) != 0) {
@@ -77068,7 +77069,7 @@ void Unwind_180911820(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 system_status_code;
   
   data_buffer = (longlong *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x2610);
-  system_status_code = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  system_status_code = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x2618);
   for (unsigned_pointer_var3 = (uint64 *)*data_buffer; generic_data_pointer != utility_resource_operation_resultData; generic_data_pointer = generic_data_pointer + 4) {
     (**(code **)*generic_data_pointer)(unsigned_pointer_var3,0,resourceOperationFlags,resourceCallbackFunction,system_status_code);
@@ -77091,7 +77092,7 @@ void Unwind_180911840(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 system_status_code;
   
   data_buffer = (longlong *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x2630);
-  system_status_code = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  system_status_code = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + 0x2638);
   for (unsigned_pointer_var3 = (uint64 *)*data_buffer; generic_data_pointer != utility_resource_operation_resultData; generic_data_pointer = generic_data_pointer + 4) {
     (**(code **)*generic_data_pointer)(unsigned_pointer_var3,0,resourceOperationFlags,resourceCallbackFunction,system_status_code);
@@ -77112,7 +77113,7 @@ void Unwind_180911860(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -77133,7 +77134,7 @@ void Unwind_180911870(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + 0x118);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + 0x110); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -77154,7 +77155,7 @@ void Unwind_180911880(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + SYSTEM_FLAGS_OFFSET);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + UTILITY_STACK_OFFSET_F0); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -77175,7 +77176,7 @@ void Unwind_180911890(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + 0xd8);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + UTILITY_STRUCT_OFFSET_1); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -77196,7 +77197,7 @@ void Unwind_1809118a0(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + standardBufferSize);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + 0xb0); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -77217,7 +77218,7 @@ void Unwind_1809118b0(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + 0x138);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + 0x130); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -77259,7 +77260,7 @@ void Unwind_1809118c0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -77283,7 +77284,7 @@ void Unwind_1809118e0(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + UTILITY_HANDLE_DATA_OFFSET);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -77325,7 +77326,7 @@ void Unwind_1809118f0(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -77340,7 +77341,7 @@ void Unwind_180911900(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + 0x118);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + 0x110); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -77361,7 +77362,7 @@ void Unwind_180911910(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + SYSTEM_FLAGS_OFFSET);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + UTILITY_STACK_OFFSET_F0); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -77382,7 +77383,7 @@ void Unwind_180911920(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + 0xd8);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + UTILITY_STRUCT_OFFSET_1); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -77403,7 +77404,7 @@ void Unwind_180911930(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + standardBufferSize);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + 0xb0); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -77424,7 +77425,7 @@ void Unwind_180911940(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 *loop_counter_pointer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_resource_operation_resultData = *(uint64 **)(resource_buffer + 0x138);
   for (loop_counter_pointer = *(uint64 **)(resource_buffer + 0x130); loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 4) {
     (**(code **)*loop_counter_pointer)(loop_counter_pointer,0,resourceOperationFlags,resourceCallbackFunction,loop_counter);
@@ -77466,7 +77467,7 @@ void Unwind_180911950(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -77526,7 +77527,7 @@ void Unwind_180911a20(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   if (*(code **)(resource_buffer + field_offset_primary) != (code *)zero_float) {
-    (**(code **)(resource_buffer + field_offset_primary))(resource_buffer + POINTER_DATA_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + field_offset_primary))(resource_buffer + POINTER_DATA_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -77537,7 +77538,7 @@ void Unwind_180911a30(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   if (*(code **)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET) != (code *)zero_float) {
-    (**(code **)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET))(resource_buffer + 0x88,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET))(resource_buffer + 0x88,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -77548,7 +77549,7 @@ void Unwind_180911a40(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   if (*(code **)(resource_buffer + standardBufferSize) != (code *)zero_float) {
-    (**(code **)(resource_buffer + standardBufferSize))(resource_buffer + RESOURCE_CONFIG_ID,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + standardBufferSize))(resource_buffer + RESOURCE_CONFIG_ID,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -77559,7 +77560,7 @@ void Unwind_180911a50(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   if (*(code **)(resource_buffer + 0xd8) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0xd8))(resource_buffer + 200,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0xd8))(resource_buffer + 200,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -77570,7 +77571,7 @@ void Unwind_180911a60(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   if (*(code **)(resource_buffer + SYSTEM_FLAGS_OFFSET) != (code *)zero_float) {
-    (**(code **)(resource_buffer + SYSTEM_FLAGS_OFFSET))(resource_buffer + 0xe8,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + SYSTEM_FLAGS_OFFSET))(resource_buffer + 0xe8,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -77581,7 +77582,7 @@ void Unwind_180911a70(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   if (*(code **)(resource_buffer + 0x118) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x118))(resource_buffer + resource_handle_valueta_offset_8,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x118))(resource_buffer + resource_handle_valueta_offset_8,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -77592,7 +77593,7 @@ void Unwind_180911a80(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   if (*(code **)(resource_buffer + 0x138) != (code *)zero_float) {
-    (**(code **)(resource_buffer + 0x138))(resource_buffer + 0x128,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + 0x138))(resource_buffer + 0x128,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -77603,7 +77604,7 @@ void Unwind_180911a90(uint64 resource_handle_identifier,longlong resource_buffer
 
 {
   if (*(code **)(resource_buffer + field_offset_primary) != (code *)zero_float) {
-    (**(code **)(resource_buffer + field_offset_primary))(resource_buffer + POINTER_DATA_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    (**(code **)(resource_buffer + field_offset_primary))(resource_buffer + POINTER_DATA_OFFSET,zero_float,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -77647,7 +77648,7 @@ void Unwind_180911b00(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -77667,7 +77668,7 @@ void Unwind_180911b10(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -77687,7 +77688,7 @@ void Unwind_180911b20(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -77707,7 +77708,7 @@ void Unwind_180911b30(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -77727,7 +77728,7 @@ void Unwind_180911b40(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -77747,7 +77748,7 @@ void Unwind_180911b50(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -77767,7 +77768,7 @@ void Unwind_180911b70(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -77794,7 +77795,7 @@ void Unwind_180911b90(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_180911bb0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + list_head_offset) + standardBufferSize,RESOURCE_UTILITY_HANDLE_DATA_OFFSET,2,createFileSystemWatcher,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + list_head_offset) + standardBufferSize,RESOURCE_UTILITY_HANDLE_DATA_OFFSET,2,createFileSystemWatcher,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -77831,7 +77832,7 @@ void Unwind_180911c30(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -77851,7 +77852,7 @@ void Unwind_180911c40(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   resource_buffer = *(longlong *)(*(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET) + 0x1608);
   if (resource_buffer != 0) {
@@ -77859,7 +77860,7 @@ void Unwind_180911c40(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -77879,7 +77880,7 @@ void Unwind_180911c60(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -77899,7 +77900,7 @@ void Unwind_180911c80(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -77919,7 +77920,7 @@ void Unwind_180911ca0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -77939,7 +77940,7 @@ void Unwind_180911cc0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -77959,7 +77960,7 @@ void Unwind_180911ce0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -77979,7 +77980,7 @@ void Unwind_180911d00(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -77999,7 +78000,7 @@ void Unwind_180911d20(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78019,7 +78020,7 @@ void Unwind_180911d40(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78039,7 +78040,7 @@ void Unwind_180911d60(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78059,7 +78060,7 @@ void Unwind_180911d80(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78079,7 +78080,7 @@ void Unwind_180911da0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78099,7 +78100,7 @@ void Unwind_180911dc0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78133,7 +78134,7 @@ void Unwind_180911de0(uint64 resource_handle_identifier,longlong resource_buffer
           *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
         }
                     // WARNING: Subroutine does not return
-        UtilityModule24(utility_array_handle_pointer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+        UtilityModule24(utility_array_handle_pointer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
       validation_result_flag = (int)systemFlagsData + 1;
       validation_result_flag = validation_result_flag + RESOURCE_UTILITY_HANDLE_DATA_OFFSET;
@@ -78148,7 +78149,7 @@ void Unwind_180911de0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(utility_array_handle_pointer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(utility_array_handle_pointer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   utility_array_handle_pointer = *(longlong *)(threadContextData + 0x1e68);
   if (utility_array_handle_pointer == 0) {
@@ -78159,7 +78160,7 @@ void Unwind_180911de0(uint64 resource_handle_identifier,longlong resource_buffer
         *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
       }
                     // WARNING: Subroutine does not return
-      UtilityModule24(utility_array_handle_pointer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+      UtilityModule24(utility_array_handle_pointer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
     threadContextData = *(longlong *)(threadContextData + 0x1e68);
     if (threadContextData == 0) {
@@ -78169,14 +78170,14 @@ void Unwind_180911de0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(threadContextData,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(threadContextData,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(threadContextData + 0x1e60) = 0;
   if (g_system_global_counter_primary != 0) {
     *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
   }
                     // WARNING: Subroutine does not return
-  UtilityModule24(utility_array_handle_pointer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  UtilityModule24(utility_array_handle_pointer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
 }
 
 
@@ -78194,7 +78195,7 @@ void Unwind_180911e00(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78214,7 +78215,7 @@ void Unwind_180911e20(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78236,7 +78237,7 @@ void Unwind_180911e40(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   resource_buffer = *(longlong *)(processing_buffer + 0x1ec8);
   if (resource_buffer != 0) {
@@ -78244,7 +78245,7 @@ void Unwind_180911e40(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   resource_buffer = *(longlong *)(processing_buffer + 0x1eb8);
   if (resource_buffer != 0) {
@@ -78252,7 +78253,7 @@ void Unwind_180911e40(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78269,7 +78270,7 @@ void Unwind_180911e60(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 loop_counter;
   
   processing_buffer = *(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET);
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   InitializeSystemModules();
   resource_buffer = *(longlong *)(processing_buffer + 0x2d68);
   if (resource_buffer != 0) {
@@ -78313,7 +78314,7 @@ void Unwind_180911e80(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78333,7 +78334,7 @@ void Unwind_180911ea0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78353,7 +78354,7 @@ void Unwind_180911ec0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78373,7 +78374,7 @@ void Unwind_180911ee0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78393,7 +78394,7 @@ void Unwind_180911f00(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78423,7 +78424,7 @@ void Unwind_180911f50(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78443,7 +78444,7 @@ void Unwind_180911f70(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78463,7 +78464,7 @@ void Unwind_180911f90(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78483,7 +78484,7 @@ void Unwind_180911fa0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78503,7 +78504,7 @@ void Unwind_180911fb0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78523,7 +78524,7 @@ void Unwind_180911fc0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78543,7 +78544,7 @@ void Unwind_180911fd0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78563,7 +78564,7 @@ void Unwind_180911fe0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78583,7 +78584,7 @@ void Unwind_180911ff0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78603,7 +78604,7 @@ void Unwind_180912000(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78623,7 +78624,7 @@ void Unwind_180912010(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78643,7 +78644,7 @@ void Unwind_180912020(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78663,7 +78664,7 @@ void Unwind_180912040(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78683,7 +78684,7 @@ void Unwind_180912060(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78703,7 +78704,7 @@ void Unwind_180912080(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78723,7 +78724,7 @@ void Unwind_180912090(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78743,7 +78744,7 @@ void Unwind_1809120a0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78763,7 +78764,7 @@ void Unwind_1809120b0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78783,7 +78784,7 @@ void Unwind_1809120d0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78803,7 +78804,7 @@ void Unwind_1809120f0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78823,7 +78824,7 @@ void Unwind_180912110(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78843,7 +78844,7 @@ void Unwind_180912130(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78863,7 +78864,7 @@ void Unwind_180912150(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78883,7 +78884,7 @@ void Unwind_180912170(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78905,7 +78906,7 @@ void Unwind_180912180(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   resource_buffer = *(longlong *)(processing_buffer + SYSTEM_DATA_OFFSET);
   if (resource_buffer != 0) {
@@ -78913,7 +78914,7 @@ void Unwind_180912180(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   resource_buffer = *(longlong *)(processing_buffer + 0x1d0);
   if (resource_buffer != 0) {
@@ -78921,7 +78922,7 @@ void Unwind_180912180(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   resource_buffer = *(longlong *)(processing_buffer + 0x1c0);
   if (resource_buffer != 0) {
@@ -78929,7 +78930,7 @@ void Unwind_180912180(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   resource_buffer = *(longlong *)(processing_buffer + 400);
   if (resource_buffer != 0) {
@@ -78937,7 +78938,7 @@ void Unwind_180912180(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78957,7 +78958,7 @@ void Unwind_1809121a0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78977,7 +78978,7 @@ void Unwind_1809121c0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -78997,7 +78998,7 @@ void Unwind_1809121e0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79014,7 +79015,7 @@ void Unwind_180912200(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 loop_counter;
   
   processing_buffer = *(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET);
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   processFileNotification();
   resource_buffer = *(longlong *)(processing_buffer + 0x390);
   if (resource_buffer != 0) {
@@ -79090,7 +79091,7 @@ void Unwind_180912220(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79110,7 +79111,7 @@ void Unwind_180912240(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79130,7 +79131,7 @@ void Unwind_180912260(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79150,7 +79151,7 @@ void Unwind_180912280(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79172,7 +79173,7 @@ void Unwind_1809122a0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   resource_buffer = *(longlong *)(processing_buffer + SYSTEM_DATA_OFFSET);
   if (resource_buffer != 0) {
@@ -79180,7 +79181,7 @@ void Unwind_1809122a0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   resource_buffer = *(longlong *)(processing_buffer + 0x1d0);
   if (resource_buffer != 0) {
@@ -79188,7 +79189,7 @@ void Unwind_1809122a0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   resource_buffer = *(longlong *)(processing_buffer + 0x1c0);
   if (resource_buffer != 0) {
@@ -79196,7 +79197,7 @@ void Unwind_1809122a0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   resource_buffer = *(longlong *)(processing_buffer + 400);
   if (resource_buffer != 0) {
@@ -79204,7 +79205,7 @@ void Unwind_1809122a0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79224,7 +79225,7 @@ void Unwind_1809122c0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79244,7 +79245,7 @@ void Unwind_1809122e0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79264,7 +79265,7 @@ void Unwind_180912300(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79281,7 +79282,7 @@ void Unwind_180912320(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 loop_counter;
   
   processing_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   processFileNotification();
   resource_buffer = *(longlong *)(processing_buffer + 0x390);
   if (resource_buffer != 0) {
@@ -79357,7 +79358,7 @@ void Unwind_180912340(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79377,7 +79378,7 @@ void Unwind_180912350(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79397,7 +79398,7 @@ void Unwind_180912360(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79447,7 +79448,7 @@ void Unwind_180912400(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79467,7 +79468,7 @@ void Unwind_180912410(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79487,7 +79488,7 @@ void Unwind_180912420(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79507,7 +79508,7 @@ void Unwind_180912430(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79527,7 +79528,7 @@ void Unwind_180912440(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79547,7 +79548,7 @@ void Unwind_180912450(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79567,7 +79568,7 @@ void Unwind_180912460(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79607,7 +79608,7 @@ void Unwind_1809124d0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79627,7 +79628,7 @@ void Unwind_1809124e0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79643,7 +79644,7 @@ void Unwind_1809124f0(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 loop_counter;
   
   resource_buffer = *(longlong *)(resource_buffer + list_head_offset);
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   readDirectoryContents(*(uint64 *)(resource_buffer + field_offset_primary));
   *(uint64 *)(resource_buffer + field_offset_primary) = 0;
   *(uint64 *)(resource_buffer + RESOURCE_HANDLE_OFFSET) = 0;
@@ -79674,7 +79675,7 @@ void Unwind_180912500(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79694,7 +79695,7 @@ void Unwind_180912510(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79714,7 +79715,7 @@ void Unwind_180912520(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79734,7 +79735,7 @@ void Unwind_180912530(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79754,7 +79755,7 @@ void Unwind_180912540(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79784,7 +79785,7 @@ void Unwind_180912580(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79805,7 +79806,7 @@ void Unwind_180912590(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   resource_buffer = *(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET);
   if (resource_buffer != 0) {
@@ -79814,7 +79815,7 @@ void Unwind_180912590(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint32 *)(resource_buffer + utility_data_offset_start) = 0;
   resource_buffer = *(longlong *)(resource_buffer + UTILITY_SYS_STATUS_OFFSET);
@@ -79823,7 +79824,7 @@ void Unwind_180912590(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   resource_buffer = *(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET);
   if (resource_buffer != 0) {
@@ -79831,7 +79832,7 @@ void Unwind_180912590(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79851,7 +79852,7 @@ void Unwind_1809125a0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79871,7 +79872,7 @@ void Unwind_1809125b0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79891,7 +79892,7 @@ void Unwind_1809125c0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79941,7 +79942,7 @@ void Unwind_180912660(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -79971,7 +79972,7 @@ void Unwind_1809126a0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -80030,7 +80031,7 @@ void Unwind_180912770(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -80045,7 +80046,7 @@ void Unwind_180912780(uint64 resource_handle_identifier,longlong resource_buffer
   longlong resource_buffer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   readDirectoryContents(*(uint64 *)(resource_buffer + 0x1d0));
   *(uint64 *)(resource_buffer + 0x1d0) = 0;
   *(uint64 *)(resource_buffer + 0x1b8) = 0;
@@ -80071,7 +80072,7 @@ void Unwind_180912790(uint64 resource_handle_identifier,longlong resource_buffer
   longlong resource_buffer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   readDirectoryContents(*(uint64 *)(resource_buffer + RESOURCE_BUFFER_ARRAY_OFFSET));
   *(uint64 *)(resource_buffer + RESOURCE_BUFFER_ARRAY_OFFSET) = 0;
   *(uint64 *)(resource_buffer + RESOURCE_CONFIG_ID) = 0;
@@ -80097,7 +80098,7 @@ void Unwind_1809127a0(uint64 resource_handle_identifier,longlong resource_buffer
   longlong resource_buffer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   readDirectoryContents(*(uint64 *)(resource_buffer + RESOURCE_BUFFER_ARRAY_OFFSET));
   *(uint64 *)(resource_buffer + RESOURCE_BUFFER_ARRAY_OFFSET) = 0;
   *(uint64 *)(resource_buffer + RESOURCE_CONFIG_ID) = 0;
@@ -80123,7 +80124,7 @@ void Unwind_1809127b0(uint64 resource_handle_identifier,longlong resource_buffer
   longlong resource_buffer;
   uint64 loop_counter;
   
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   readDirectoryContents(*(uint64 *)(resource_buffer + 0x1d0));
   *(uint64 *)(resource_buffer + 0x1d0) = 0;
   *(uint64 *)(resource_buffer + 0x1b8) = 0;
@@ -80150,7 +80151,7 @@ void Unwind_1809127c0(uint64 resource_handle_identifier,longlong resource_buffer
   uint64 loop_counter;
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_size_data_offset);
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   readDirectoryContents(*(uint64 *)(resource_buffer + field_offset_primary));
   *(uint64 *)(resource_buffer + field_offset_primary) = 0;
   *(uint64 *)(resource_buffer + RESOURCE_HANDLE_OFFSET) = 0;
@@ -80208,7 +80209,7 @@ void Unwind_1809127e0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -80228,7 +80229,7 @@ void Unwind_1809127f0(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -80248,7 +80249,7 @@ void Unwind_180912800(uint64 resource_handle_identifier,longlong resource_buffer
       *(int *)(g_system_global_counter_primary + 0x3a8) = *(int *)(g_system_global_counter_primary + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    UtilityModule24(resource_buffer,_systemVara9a8,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -80275,7 +80276,7 @@ void Unwind_180912810(uint64 resource_handle_identifier,longlong resource_buffer
 void Unwind_180912830(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + standardBufferSize,RESOURCE_UTILITY_HANDLE_DATA_OFFSET,2,createFileSystemWatcher,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceCallback(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + standardBufferSize,RESOURCE_UTILITY_HANDLE_DATA_OFFSET,2,createFileSystemWatcher,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
 
@@ -80393,7 +80394,7 @@ void Unwind_180912930(uint64 resource_handle_identifier,longlong resource_buffer
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          loop_counter_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -80910,7 +80911,7 @@ void systemInitializeModules(uint64 resource_handle_identifier,uint64 resource_b
   longlong *utility_resource_data_pointer;
   
   utility_resource_data_pointer = systemMemoryBlock;
-  validateMemoryBlock(resource_handle_identifier,systemMemoryBlock[1],resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  validateMemoryBlock(resource_handle_identifier,systemMemoryBlock[1],resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   systemMemoryBlock[1] = (longlong)utility_resource_data_pointer;
   *systemMemoryBlock = (longlong)utility_resource_data_pointer;
   systemMemoryBlock[2] = (longlong)utility_resource_data_pointer;
@@ -81034,7 +81035,7 @@ void systemInitializeExtensions(void)
     }
     else {
       exceptionHandleFunction(system_status_code,CONCAT71(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
-                          system_loop_counter_ptr_main,system_status_code,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                          system_loop_counter_ptr_main,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
   return;
@@ -81858,7 +81859,7 @@ void updateRenderState(uint64 resource_handle_identifier,uint64 resource_buffer,
   uint64 loop_counter;
   
   utility_resource_operation_resultData = utility_render_system_operation_data_2f0;
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   loop_counter_pointer = utility_render_system_loop_counter_2e8;
   if (utility_render_system_loop_counter_2e8 != utility_render_system_operation_data_2f0) {
     do {
@@ -81887,7 +81888,7 @@ void resourceReleaseHandle(uint64 resource_handle_identifier,uint64 resource_buf
   uint64 loop_counter;
   
   utility_resource_operation_resultData = utility_render_system_operation_data_310;
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   loop_counter_pointer = utility_render_system_loop_counter_308;
   if (utility_render_system_loop_counter_308 != utility_render_system_operation_data_310) {
     do {
@@ -81916,7 +81917,7 @@ void resourceAllocateMemory(uint64 resource_handle_identifier,uint64 resource_bu
   uint64 loop_counter;
   
   utility_resource_operation_resultData = utility_render_system_operation_data_330;
-  loop_counter = UTILITY_SYSTEM_END_FLAGfffffffffe;
+  loop_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   loop_counter_pointer = utility_render_system_loop_counter_328;
   if (utility_render_system_loop_counter_328 != utility_render_system_operation_data_330) {
     do {
@@ -82065,7 +82066,7 @@ void resourceDecompressData(uint64 resource_handle_identifier,uint64 resource_bu
   uint64 *utility_resource_operation_resultData;
   uint64 *loop_counter_pointer;
   
-  RegisterResourceFunction(&resourceReflectionBufferPrimary,_resourceReflectionBufferTertiary,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  RegisterResourceFunction(&resourceReflectionBufferPrimary,_resourceReflectionBufferTertiary,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   utility_resource_operation_resultData = resourceListEnd;
   for (loop_counter_pointer = resourceListStart; loop_counter_pointer != utility_resource_operation_resultData; loop_counter_pointer = loop_counter_pointer + 7) {
     *loop_counter_pointer = &thread_local_storage_data;
@@ -82445,7 +82446,7 @@ void resourceCachePrefetch(void)
       if (UTILITY_ERROR_CODE_FAILED < (lRam0000000180d49d68 - processing_buffer) - 8U) {
                     // WARNING: Subroutine does not return
         _invalid_parameter_noinfo_noreturn
-                  (lRam0000000180d49d68 - processing_buffer,utility_resource_operation_result + 0x27,processing_buffer,cpu_register_r9,UTILITY_SYSTEM_END_FLAGfffffffffe);
+                  (lRam0000000180d49d68 - processing_buffer,utility_resource_operation_result + 0x27,processing_buffer,cpu_register_r9,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
     free(processing_buffer);
@@ -82541,7 +82542,7 @@ void resourceBatchProcess(uint64 resource_handle_identifier,uint64 resource_buff
   
   utility_resource_operation_resultData = system_event_handler_ptr_main;
   if (system_event_handler_ptr_main != (uint64 *)zero_float) {
-    RegisterEventHandler0(resource_handle_identifier,*system_event_handler_ptr_main,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    RegisterEventHandler0(resource_handle_identifier,*system_event_handler_ptr_main,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
   }
@@ -82633,7 +82634,7 @@ void resourceSetPriority(void)
     }
     event_system_resource_6120 = 0;
     if (event_system_resource_6138 != 0) {
-      RegisterResourceCallback(event_system_resource_6138 + 0x360,0xcc8,8,HandleEventCallback,UTILITY_SYSTEM_END_FLAGfffffffffe);
+      RegisterResourceCallback(event_system_resource_6138 + 0x360,0xcc8,8,HandleEventCallback,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       _Mtx_destroy_in_situ();
       _Cnd_destroy_in_situ();
       ProcessEventData(resource_buffer + utility_data_offset_start);
@@ -82834,7 +82835,7 @@ void resourceBatchOperation(uint64 resource_handle_identifier,uint64 resource_bu
   
   utility_resource_operation_resultData = _event_handler_stack;;
   if (_event_handler_stack; != (uint64 *)zero_float) {
-    RegisterEventCallback0(&event_system_callback_resource_process,*_event_handler_stack;,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+    RegisterEventCallback0(&event_system_callback_resource_process,*_event_handler_stack;,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     ProcessEventResult0(utility_resource_operation_resultData + 5);
                     // WARNING: Subroutine does not return
     HandleCriticalError(utility_resource_operation_resultData);
@@ -82880,7 +82881,7 @@ void CleanupThreadResources(uint64 resource_handle_identifier,uint64 resource_bu
   if (globalResourcePointer == (uint64 *)zero_float) {
     return;
   }
-  ProcessSystemCall(&systemCallData,*globalResourcePointer,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAGfffffffffe);
+  ProcessSystemCall(&systemCallData,*globalResourcePointer,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   utility_resource_operation_resultData[4] = &thread_local_storage_data;
   if (utility_resource_operation_resultData[5] != 0) {
                     // WARNING: Subroutine does not return
