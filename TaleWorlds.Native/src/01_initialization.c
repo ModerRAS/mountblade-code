@@ -22535,11 +22535,11 @@ void ConfigureGraphicsShader(uint64_t handleIdentifier,longlong resourceIdentifi
   uint init_stack_index_2d8;
   ulonglong init_stack_ulong_param_2d0;
   void *system_buffer_ptr_resource_pool_nano;
-  uint8_t *system_buffer_ptr_2c0;
+  uint8_t *system_buffer_ptr_resource_pool_pico;
   uint32_t init_stack_uint_param_2b8;
   ulonglong init_stack_ulong_param_2b0;
   void *system_buffer_ptr_resource_data_2a8;
-  void *system_buffer_ptr_2a0;
+  void *system_buffer_ptr_resource_data;
   uint init_stack_uint_param_298;
   uint32_t init_stack_uint_param_290;
   uint32_t init_stack_parameter_28c;
@@ -29081,7 +29081,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
   longlong init_stack_graphics_ptr_2b8;
   uint64_t *system_buffer_ptr_resource_pool_2b0;
   uint64_t *system_buffer_ptr_resource_data_2a8;
-  uint64_t *system_buffer_ptr_2a0;
+  uint64_t *system_buffer_ptr_resource_data;
   uint64_t init_stack_uint_param_298;
   void *system_buffer_ptr_resource_context_290;
   uint8_t *system_buffer_ptr_config_data8;
@@ -36856,11 +36856,11 @@ void InitializeSystemResources(uint64_t handleIdentifier)
   longlong init_stack_buffer_end_2f0;
   uint64_t uintStack_2e0;
   longlong init_stack_buffer_start_2d8;
-  uint64_t *system_buffer_ptr_2c0;
+  uint64_t *system_buffer_ptr_resource_pool_pico;
   uint64_t *system_buffer_ptr_2b8;
   uint64_t init_stack_ulong_param_2b0;
   uint32_t uintStack_2a8;
-  void *system_buffer_ptr_2a0;
+  void *system_buffer_ptr_resource_data;
   longlong init_stack_buffer_ptr_298;
   uint32_t init_stack_parameter_288;
   void *system_buffer_ptr_config_data0;
@@ -36880,7 +36880,7 @@ void InitializeSystemResources(uint64_t handleIdentifier)
   system_buffer_ptr_310 = (uint64_t *)SYSTEM_NULL_POINTER;
   init_stack_uint_param_308 = 0;
   init_stack_uint_param_300 = 3;
-  system_buffer_ptr_2c0 = (uint64_t *)SYSTEM_NULL_POINTER;
+  system_buffer_ptr_resource_pool_pico = (uint64_t *)SYSTEM_NULL_POINTER;
   system_buffer_ptr_2b8 = (uint64_t *)SYSTEM_NULL_POINTER;
   init_stack_ulong_param_2b0 = 0;
   uintStack_2a8 = 3;
@@ -36900,7 +36900,7 @@ void InitializeSystemResources(uint64_t handleIdentifier)
                     // WARNING: Subroutine does not return
     ProcessSystemOperation();
   }
-  system_buffer_ptr_2c0 = (uint64_t *)SYSTEM_NULL_POINTER;
+  system_buffer_ptr_resource_pool_pico = (uint64_t *)SYSTEM_NULL_POINTER;
   for (system_ptr_value = system_buffer_ptr_318; system_temp_pointer != system_ptr_value; system_ptr_value = system_temp_pointer + 4) {
     (**(code **)*system_temp_pointer)(system_temp_pointer,0);
   }
@@ -37440,7 +37440,7 @@ void InitializeFontSystem(uint64_t handleIdentifier)
   uint64_t init_stack_uint_param_2b8;
   uint32_t init_stack_ulong_param_2b0;
   ulonglong uintStack_2a8;
-  void *system_buffer_ptr_2a0;
+  void *system_buffer_ptr_resource_data;
   char *stack_char_ptr;
   int intStack_290;
   uint32_t init_stack_parameter_288;
@@ -37581,7 +37581,7 @@ void InitializeFontSystem(uint64_t handleIdentifier)
   system_buffer_ptr_graphics_context = (void *)SYSTEM_NULL_POINTER;
   uintStack_1a8 = 0;
   system_buffer_ptr_1c0 = &globalSystemPointerData;
-  system_buffer_ptr_2c0 = &resourcePoolPointer;
+  system_buffer_ptr_resource_pool_pico = &resourcePoolPointer;
   uintStack_2a8 = 0;
   init_stack_uint_param_2b8 = 0;
   init_stack_ulong_param_2b0 = 0;
@@ -37634,7 +37634,7 @@ void InitializeFontSystem(uint64_t handleIdentifier)
   system_buffer_ptr_resource_pool_small = &globalSystemPointerData;
   init_stack_uint_param_2b8 = 0;
   uintStack_2a8 = uintStack_2a8 & SYSTEM_HIGH_32BIT_MASK;
-  system_buffer_ptr_2c0 = &globalSystemPointerData;
+  system_buffer_ptr_resource_pool_pico = &globalSystemPointerData;
   system_temp_long_result = system_configuration_data;
   if (system_configuration_data == SYSTEM_COMPARISON_ZERO) {
     QueryPerformanceCounter(&longStack_268);
