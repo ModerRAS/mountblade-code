@@ -31067,9 +31067,9 @@ uint64_t networkQueuePacket6(void)
     *(uint64_t *)(network_socket_context_ptr + SESSION_CONFIG_SIZE) = *network_processor_data_ptr;
 // 函数: void networkQueuePacket7(void)
 void networkQueuePacket7(void)
-  network_bandwidth_usage = *(float *)(CONCAT44(in_register_00000004,inputRegister) + NETWORK_ENCRYPTION_OFFSET);
+  network_bandwidth_usage = *(float *)(CONCAT44(network_input_register_value,inputRegister) + NETWORK_ENCRYPTION_OFFSET);
   if ((network_bandwidth_usage <= network_calculated_frequency) &&
-     (network_bandwidth_usage = *(float *)(CONCAT44(in_register_00000004,inputRegister) + SOCKET_COMPRESSION_OFFSET), network_calculated_frequency <= network_bandwidth_usage)) {
+     (network_bandwidth_usage = *(float *)(CONCAT44(network_input_register_value,inputRegister) + SOCKET_COMPRESSION_OFFSET), network_calculated_frequency <= network_bandwidth_usage)) {
   *(float *)(network_socket_context_ptr + MODULE_STATUS_OFFSET) = network_bandwidth_usage;
     *(uint64_t *)(network_socket_context_ptr + SESSION_CONFIG_SIZE) = *network_packet_size_ptr_ptr;
 // 函数: void networkQueuePacket8(void)
