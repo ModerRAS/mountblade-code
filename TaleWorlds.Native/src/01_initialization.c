@@ -2037,14 +2037,14 @@ void InitializeCoreSystemData(void)
 
   core_system_data_pointer = (longlong *)GetSystemPointerData();
   core_system_root_node = (uint64_t *)*core_system_data_pointer;
-  core_system_initialized_flag = *(char *)((longlong)core_system_root_node[NODE_INDEX_ROOT_NEXT] + NODE_INITIALIZED_OFFSET);
+  core_system_initialized_flag = *(char *)((longlong)core_system_root_node[SYSTEM_NODE_INDEX_ROOT_NEXT] + NODE_INITIALIZED_OFFSET);
   core_system_initialization_flag = 0;
   core_system_previous_node = core_system_root_node;
-  core_system_current_node = (uint64_t *)core_system_root_node[NODE_INDEX_ROOT_NEXT];
+  core_system_current_node = (uint64_t *)core_system_root_node[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (core_system_initialized_flag == '\0') {
     core_memory_compare_result = memcmp(core_system_current_node + 4,&system_data_pattern_audio,SYSTEM_DATA_COMPARE_SIZE);
     if (core_memory_compare_result < 0) {
-      core_system_next_node = (uint64_t *)core_system_current_node[2];
+      core_system_next_node = (uint64_t *)core_system_current_node[SYSTEM_NODE_INDEX_CURRENT_PREV];
       core_system_current_node = core_system_previous_node;
     }
     else {
@@ -2059,11 +2059,11 @@ void InitializeCoreSystemData(void)
     AllocateSystemMemory(core_system_data_pointer,&core_system_new_node,core_system_previous_node,core_node_allocation_size + SYSTEM_NODE_HEADER_SIZE,core_node_allocation_size);
     core_system_previous_node = core_system_new_node;
   }
-  core_system_previous_node[6] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_1;
-  core_system_previous_node[7] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_2;
-  core_system_previous_node[8] = &g_system_node_audio;
-  core_system_previous_node[9] = 1;
-  core_system_previous_node[10] = core_system_initialization_flag;
+  core_system_previous_node[SYSTEM_NODE_INDEX_SIGNATURE_PRIMARY] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_1;
+  core_system_previous_node[SYSTEM_NODE_INDEX_SIGNATURE_SECONDARY] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_2;
+  core_system_previous_node[SYSTEM_NODE_INDEX_DEFAULT_FUNCTION] = &g_system_node_audio;
+  core_system_previous_node[SYSTEM_NODE_INDEX_STATUS_FLAG] = 1;
+  core_system_previous_node[SYSTEM_NODE_INDEX_INITIALIZATION_FUNCTION] = core_system_initialization_flag;
   return;
 }
 // 初始化系统链表节点 - 用于视频解码器节点管理
@@ -16739,14 +16739,14 @@ uint32_t get_game_initialization_status(void)
   system_status_code = AllocateSystemMemory(systemMemoryPool,SYSTEM_MEMORY_POOL_SIZE_SMALL,SYSTEM_MEMORY_ALIGNMENT_STANDARD,SYSTEM_MEMORY_FLAGS_STANDARD);
   init_system_memory_quad_ptr = (longlong ****)InitializeSystemModule41(system_operation_status,2,system_long_result);
   system_memory_pointer_chain_four = init_system_memory_quad_ptr;
-  if (init_system_memory_quad_ptr != (longlong ****)0x0) {
+  if (init_system_memory_quad_ptr != (longlong ****)SYSTEM_NULL_POINTER) {
     (*(code *)(*init_system_memory_quad_ptr)[5])(init_system_memory_quad_ptr);
   }
   system_ptr_value = *(uint64_t **)(system_long_result + 400);
   ptr_system_init_flag = *(code **)*system_ptr_value;
   system_memory_context_ptr = &ppstack_system_memory_pointer;
   ppstack_system_memory_pointer = (longlong ***)init_system_memory_quad_ptr;
-  if (init_system_memory_quad_ptr != (longlong ****)0x0) {
+  if (init_system_memory_quad_ptr != (longlong ****)SYSTEM_NULL_POINTER) {
     (*(code *)(*init_system_memory_quad_ptr)[5])(init_system_memory_quad_ptr);
   }
   (*ptr_system_init_flag)(system_pointer_var,&ppstack_system_memory_pointer);
@@ -16767,7 +16767,7 @@ uint32_t get_game_initialization_status(void)
   if (ptr_system_memory_handle_ptr != (longlong ***)0x0) {
     (*(code *)(*ptr_system_memory_handle_ptr)[7])(ptr_system_memory_handle_ptr);
   }
-  if (init_system_memory_quad_ptr != (longlong ****)0x0) {
+  if (init_system_memory_quad_ptr != (longlong ****)SYSTEM_NULL_POINTER) {
     (*(code *)(*init_system_memory_quad_ptr)[7])(init_system_memory_quad_ptr);
   }
   system_memory_pointer_chain_four = systemCoreData;
@@ -16785,7 +16785,7 @@ uint32_t get_game_initialization_status(void)
     Sleep(1);
   }
   system_memory_context_ptr = systemCoreData;
-  if (systemCoreData != (longlong ****)0x0) {
+  if (systemCoreData != (longlong ****)SYSTEM_NULL_POINTER) {
     system_long_value = __RTCastToVoid(systemCoreData);
     *init_system_memory_quad_ptr = (longlong ***)&g_global_system_config;
     PostQueuedCompletionStatus(init_system_memory_quad_ptr[SYSTEM_HANDLE_OFFSET_42686],0,SYSTEM_MAX_64BIT_VALUE);
@@ -16807,7 +16807,7 @@ uint32_t get_game_initialization_status(void)
   }
   system_memory_pointer_chain_four = g_system_handle_1;
   system_long_value = system_configuration_data;
-  systemCoreData = (longlong ****)0x0;
+  systemCoreData = (longlong ****)SYSTEM_NULL_POINTER;
   if (system_configuration_data != 0) {
     InitializeDatabaseSystem(system_configuration_data);
                     // WARNING: Subroutine does not return
@@ -16816,8 +16816,8 @@ uint32_t get_game_initialization_status(void)
   system_configuration_data = 0;
   *(uint32_t *)(g_system_handle_1 + SYSTEM_OFFSET_2D) = 2;
   system_memory_context_ptr = system_memory_config_ptr;
-  if (system_memory_pointer_chain_four == (longlong ****)0x0) {
-    g_system_handle_1 = (longlong ****)0x0;
+  if (system_memory_pointer_chain_four == (longlong ****)SYSTEM_NULL_POINTER) {
+    g_system_handle_1 = (longlong ****)SYSTEM_NULL_POINTER;
     WaitForSingleObject(inputSystemData,SYSTEM_OFFSET_Ffffffff);
     do {
       system_integer_result = ReleaseSemaphore(inputSystemData,1);
