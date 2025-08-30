@@ -6,9 +6,10 @@
 // - 将通用变量名如auVar1、bVar31等替换为语义化名称如audio_data_buffer、system_initialization_flag等
 // - 将指针变量名如pppppppuVar1替换为语义化名称如system_pointer_chain等
 // - 将bVar13-50、audio_buffer_temp-47、resource_process_pointer、pauVar35-42等变量替换为语义化名称如module_initialization_flag、system_validation_flag等
-// - 本次美化：将SystemFunction_xx_xx函数替换为语义化名称如InitializeSystemDataNode15、InitializeSystemModule1等
+// - 将SystemFunction_xx_xx函数替换为语义化名称如InitializeSystemDataNode15、InitializeSystemModule1等
 // - 将系统初始化相关函数按功能分类为数据节点初始化、模块初始化、系统配置等
-// - 最新美化：将剩余的SystemFunction函数名替换为语义化名称如GetSystemPointerData、InitializeAudioHardware、HandleSystemException等
+// - 将剩余的SystemFunction函数名替换为语义化名称如GetSystemPointerData、InitializeAudioHardware、HandleSystemException等
+// - 将栈变量名如fStack_b8、uStack0000000000000030等替换为语义化名称如init_float_stack_b8、init_uint_stack_30等
 // - 保持代码语义不变，仅提高可读性和维护性
 // void InitializeGameData(void)
 
