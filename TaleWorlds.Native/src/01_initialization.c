@@ -18747,7 +18747,7 @@ void InitializeRenderSystem(longlong handleIdentifier,longlong resourceIdentifie
   system_local_buffer_info_data[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_INIT_VALUE_ZERO;
   system_string_search_result = strstr(*(uint64_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_STRING_BUFFER));
   if (system_string_search_result != SYSTEM_COMPARISON_ZERO) {
-    system_string_length_result = -1;
+    system_string_length_result = SYSTEM_INIT_VALUE_NEGATIVE_ONE;
     system_string_copy_result = -1;
     do {
       system_string_length_result = system_string_search_result + 1;
