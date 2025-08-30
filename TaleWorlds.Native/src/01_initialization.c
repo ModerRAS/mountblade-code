@@ -22001,7 +22001,7 @@ uint64_t * InitializeFontSystem(uint64_t *handleIdentifier)
   uint32_t *node_next;
   uint32_t *system_ptr_value;
   longlong system_temp_long_result;
-  uint64_t *anode_new [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
+  uint64_t *system_node_function_pointer [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
 
   *(uint8_t *)((longlong)handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK) = 0;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0;
@@ -22101,11 +22101,11 @@ uint64_t * InitializeFontSystem(uint64_t *handleIdentifier)
   handleIdentifier[SYSTEM_DATA_OFFSET_6C] = 0;
   handleIdentifier[SYSTEM_DATA_OFFSET_6A] = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_VALIDATION_1) = 0;
-  anode_new[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = handleIdentifier + SYSTEM_DATA_OFFSET_6D;
-  *anode_new[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = &globalSystemPointerData;
+  system_node_function_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = handleIdentifier + SYSTEM_DATA_OFFSET_6D;
+  *system_node_function_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = &globalSystemPointerData;
   handleIdentifier[SYSTEM_DATA_OFFSET_6E] = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_VALIDATION_2) = 0;
-  *anode_new[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = &resourcePoolPointer;
+  *system_node_function_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = &resourcePoolPointer;
   handleIdentifier[SYSTEM_MEMORY_POOL_SIZE_SMALL] = 0;
   handleIdentifier[SYSTEM_DATA_OFFSET_6E] = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_VALIDATION_2) = 0;
@@ -22184,8 +22184,8 @@ INIT_LABEL_SYSTEM_4c7ef:
       handleIdentifier[SYSTEM_FLAG_BIT_41] = 0;
       system_current_node = system_configuration_data;
       if (system_configuration_data == (uint64_t *)SYSTEM_NULL_POINTER) {
-        QueryPerformanceCounter(anode_new);
-        system_current_node = anode_new[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
+        QueryPerformanceCounter(system_node_function_pointer);
+        system_current_node = system_node_function_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
       }
       handleIdentifier[SYSTEM_FLAG_BIT_42] = (double)((longlong)system_current_node - system_configuration_data) * systemCoreData;
       *(uint32_t *)(handleIdentifier + SYSTEM_FLAG_BIT_44) = 0;
@@ -23030,7 +23030,7 @@ void ConfigureGraphicsShader(void)
   longlong init_stack_time_result_1e8;
   longlong init_stack_time_struct_1d8;
   longlong init_stack_time_ptr_1d0;
-  uint64_t *asystem_buffer_ptr_1c8 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
+  uint64_t *system_buffer_function_pointer [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   uint64_t init_stack_parameter_handle;
   uint8_t system_local_buffer_graphics [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   void *system_buffer_ptr_graphics_config;
