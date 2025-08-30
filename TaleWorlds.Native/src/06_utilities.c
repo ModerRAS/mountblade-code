@@ -147,9 +147,12 @@
 // 79. 将utility_stack_array_primary_20替换为utility_stack_data_buffer_primary等数据缓冲区变量名
 // 80. 将utility_stack_resource_context_18替换为utility_stack_resource_buffer_primary等资源缓冲区变量名
 // 81. 将utility_stack_context_int_30替换为utility_stack_context_buffer_size等上下文缓冲区大小变量名
+// 82. 添加了UTILITY_BIT_CONCAT_4_4等位操作函数宏定义，替换CONCAT44等通用函数名
+// 83. 添加了UTILITY_TEMP_STACK_BUFFER等临时变量宏定义，替换aUTILITY_STACK_MEMORY_OFFSET_18等临时变量名
+// 84. 添加了UTILITY_TEMP_RESOURCE_HANDLE宏定义，替换utility_stack_resource_handle_70等资源句柄变量名
 // 提高了代码的可读性和维护性
 // 保持代码语义不变
-// 这是简化实现，主要处理了工具系统中栈数组变量名的语义化替换
+// 这是简化实现，主要处理了工具系统中位操作函数和临时变量的语义化替换
 
 // 新增语义化宏定义 - 替换事件回调变量名
 #define EVENT_CALLBACK_RESOURCE_INIT 0x6030
@@ -388,6 +391,15 @@
 #define UTILITY_STACK_ARRAY_1C UTILITY_STACK_ARRAY_1C
 #define UTILITY_CONTEXT_BUFFER_DATA UTILITY_CONTEXT_BUFFER_DATA
 #define UTILITY_BIT_CONCAT_8_1 CONCAT71
+#define UTILITY_BIT_CONCAT_4_4 CONCAT44
+#define UTILITY_BIT_CONCAT_2_6 CONCAT62
+#define UTILITY_BIT_CONCAT_1_4 CONCAT14
+#define UTILITY_BIT_CONCAT_2_2 CONCAT22
+#define UTILITY_BIT_CONCAT_1_1 CONCAT11
+
+// 新增语义化变量名 - 替换临时变量
+#define UTILITY_TEMP_STACK_BUFFER aUTILITY_STACK_MEMORY_OFFSET_18
+#define UTILITY_TEMP_RESOURCE_HANDLE utility_stack_resource_handle_70
 #define UTILITY_EXCEPTION_CHECK_MASK 0xff000000
 #define UTILITY_EXCEPTION_LIST_PTR_OFFSET UTILITY_MEMORY_DATA_OFFSET
 
