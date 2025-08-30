@@ -5933,15 +5933,15 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  ulonglong system_unsigned_var_loop_counter;
-  float *system_float_pointer_array_iterator;
+  ulonglong system_loop_counter;
+  float *system_float_array_iterator;
   int system_compare_result;
-  ulonglong system_unsigned_var_max_count;
-  uint system_ulong_var_calculation_result;
+  ulonglong system_max_iterations;
+  uint system_calculation_result;
   ulonglong system_init_flag_6;
   int system_int_offset;
-  float *system_float_pointer_buffer;
-  float system_float_var_calculation_result;
+  float *system_float_buffer;
+  float system_float_result;
   
   system_float_pointer_buffer = (float *)SYSTEM_INIT_FLAG_ENABLED_MEMORY_1;
   system_init_flag_6 = SYSTEM_INIT_VALUE_ZERO;
@@ -21784,7 +21784,7 @@ LAB_18004c7ef:
       *(system_uint32_t *)((longlong)system_context_param + SYSTEM_INIT_FLAG_INITIALIZED9) = SYSTEM_INIT_SIZE_COMPARE10101;
       *(system_uint8_t *)(system_context_param + 5) = 1;
       *(system_uint32_t *)(system_context_param + 0x71) = SYSTEM_INIT_FLOAT_VALUE_1_0;
-      *(system_uint8_t *)(system_context_param + 0x76) = 1;
+      *(system_uint8_t *)(system_context_param + SYSTEM_INIT_CONTEXT_INDEX_ARRAY_76) = 1;
       *(system_uint32_t *)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED5) = SYSTEM_INIT_VALUE_ZERO;
       system_context_param[SYSTEM_INIT_CONTEXT_INDEX_SECURITY_CONFIG] = SYSTEM_INIT_VALUE_ZERO;
       *(system_uint64_t *)((longlong)system_context_param + SYSTEM_INIT_FLAG_INITIALIZED24) = SYSTEM_INIT_VALUE_ZERO;
@@ -22056,7 +22056,7 @@ void InitializeSystemCore(longlong *system_context_param)
     system_execute_operation();
   }
   system_context_param[SYSTEM_INIT_FLAG_ACTIVEf] = SYSTEM_INIT_VALUE_ZERO;
-  *(system_uint32_t *)(system_context_param + 0x51) = SYSTEM_INIT_VALUE_ZERO;
+  *(system_uint32_t *)(system_context_param + SYSTEM_INIT_CONTEXT_INDEX_ARRAY_51) = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_FLAG_ACTIVEe] = (longlong)&g_system_context;
   system_context_param[SYSTEM_INIT_OFFSET_0X39] = (longlong)&g_system_context;
   if (system_context_param[SYSTEM_INIT_OFFSET_ARRAY_3A] != 0) {
@@ -49179,7 +49179,7 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,cha
   *(system_uint32_t *)(system_context_param + SYSTEM_INIT_FLAG_ENABLEDe) = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_FLAG_INITIALIZED3] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_CONTEXT_INDEX_MISC_CONFIG_0X36] = SYSTEM_INIT_VALUE_ZERO;
-  system_context_param[0x37] = SYSTEM_INIT_VALUE_ZERO;
+  system_context_param[SYSTEM_INIT_CONTEXT_INDEX_MISC_CONFIG_0X37] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_SIZE_0X38] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_CONTEXT_INDEX_MISC_CONFIG_0X3E] = system_context_param;
   system_context_param[SYSTEM_INIT_CONTEXT_INDEX_MISC_CONFIG_0X3D] = SYSTEM_INIT_VALUE_ZERO;
@@ -49226,8 +49226,8 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,cha
   }
   *(byte *)((longlong)system_context_param + SYSTEM_INIT_VALUE_STACK_15d) = *(byte *)((longlong)system_context_param + SYSTEM_INIT_VALUE_STACK_15d) & SYSTEM_INIT_VALUE_STACK_11f;
   *(system_uint8_t *)((longlong)system_context_param + SYSTEM_INIT_VALUE_STACK_15f) = 1;
-  system_context_base_pointer = (longlong *)system_context_param[0x37];
-  system_context_param[0x37] = SYSTEM_INIT_VALUE_ZERO;
+  system_context_base_pointer = (longlong *)system_context_param[SYSTEM_INIT_CONTEXT_INDEX_MISC_CONFIG_0X37];
+  system_context_param[SYSTEM_INIT_CONTEXT_INDEX_MISC_CONFIG_0X37] = SYSTEM_INIT_VALUE_ZERO;
   if (system_context_base_pointer != (longlong *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     (**(system_code **)(*system_context_base_pointer + SYSTEM_INIT_SIZE_0X38))();
   }
@@ -49576,8 +49576,8 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
     system_execute_operation();
   }
   system_context_param[SYSTEM_INIT_CONTEXT_INDEX_PERFORMANCE_CONFIG] = SYSTEM_INIT_VALUE_ZERO;
-  system_longlong_pointer_var_2 = (longlong *)system_context_param[0x37];
-  system_context_param[0x37] = SYSTEM_INIT_VALUE_ZERO;
+  system_longlong_pointer_var_2 = (longlong *)system_context_param[SYSTEM_INIT_CONTEXT_INDEX_MISC_CONFIG_0X37];
+  system_context_param[SYSTEM_INIT_CONTEXT_INDEX_MISC_CONFIG_0X37] = SYSTEM_INIT_VALUE_ZERO;
   if (system_longlong_pointer_var_2 != (longlong *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     (**(system_code **)(*system_longlong_pointer_var_2 + SYSTEM_INIT_SIZE_0X38))();
   }
@@ -49658,8 +49658,8 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
   if ((longlong *)system_context_param[SYSTEM_INIT_SIZE_0X38] != (longlong *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     (**(system_code **)(*(longlong *)system_context_param[SYSTEM_INIT_SIZE_0X38] + SYSTEM_INIT_SIZE_0X38))();
   }
-  if ((longlong *)system_context_param[0x37] != (longlong *)SYSTEM_INIT_VALUE_CHAR_NULL) {
-    (**(system_code **)(*(longlong *)system_context_param[0x37] + SYSTEM_INIT_SIZE_0X38))();
+  if ((longlong *)system_context_param[SYSTEM_INIT_CONTEXT_INDEX_MISC_CONFIG_0X37] != (longlong *)SYSTEM_INIT_VALUE_CHAR_NULL) {
+    (**(system_code **)(*(longlong *)system_context_param[SYSTEM_INIT_CONTEXT_INDEX_MISC_CONFIG_0X37] + SYSTEM_INIT_SIZE_0X38))();
   }
   if ((longlong *)system_context_param[SYSTEM_INIT_CONTEXT_INDEX_MISC_CONFIG_0X36] != (longlong *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     (**(system_code **)(*(longlong *)system_context_param[SYSTEM_INIT_CONTEXT_INDEX_MISC_CONFIG_0X36] + SYSTEM_INIT_SIZE_0X38))();
@@ -49799,17 +49799,17 @@ float * InitializeSystemCore(float *system_context_param)
     psystem_float_var_1 = system_context_param + 0x9d;
     psystem_float_var_1[SYSTEM_ARRAY_INDEX_FIRST] = 1e+08;
     psystem_float_var_1[SYSTEM_ARRAY_INDEX_SECOND] = 1e+08;
-    system_context_param[0x9f] = 1e+08;
+    system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MIN_Y] = 1e+08;
     system_context_param[SYSTEM_INIT_OFFSET_0XA0] = 3.4028235e+38;
-    system_context_param[0xa1] = -1e+08;
-    system_context_param[0xa2] = -1e+08;
-    system_context_param[0xa3] = -1e+08;
-    system_context_param[0xa4] = 3.4028235e+38;
+    system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_X] = -1e+08;
+    system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_Y] = -1e+08;
+    system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_Z] = -1e+08;
+    system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_W] = 3.4028235e+38;
     system_init_flag_audio = SYSTEM_INIT_VALUE_ZERO;
     system_context_param[0xa9] = 0.0;
-    system_context_param[0xa5] = 0.0;
-    system_context_param[0xa6] = 0.0;
-    system_context_param[0xa7] = 0.0;
+    system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_X] = 0.0;
+    system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_Y] = 0.0;
+    system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_Z] = 0.0;
     system_context_param[SYSTEM_INIT_OFFSET_0XA8] = 3.4028235e+38;
     system_stack_temp_value = SYSTEM_INIT_VALUE_ZERO;
     pfStack_98 = psystem_float_var_6;
@@ -49822,26 +49822,26 @@ float * InitializeSystemCore(float *system_context_param)
           fStack_a8 = *psystem_float_var_1;
         }
         fStack_a4 = psystem_float_var_6[SYSTEM_ARRAY_INDEX_SECOND];
-        if (system_context_param[0x9e] < fStack_a4) {
-          fStack_a4 = system_context_param[0x9e];
+        if (system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MIN_X] < fStack_a4) {
+          fStack_a4 = system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MIN_X];
         }
         fStack_a0 = psystem_float_var_6[SYSTEM_ARRAY_INDEX_THIRD];
-        if (system_context_param[0x9f] < fStack_a0) {
-          fStack_a0 = system_context_param[0x9f];
+        if (system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MIN_Y] < fStack_a0) {
+          fStack_a0 = system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MIN_Y];
         }
         *(ulonglong *)psystem_float_var_1 = CONCAT44(fStack_a4,fStack_a8);
         *(ulonglong *)(system_context_param + 0x9f) = CONCAT44(uStack_9c,fStack_a0);
         fStack_b8 = *psystem_float_var_6;
-        if (fStack_b8 < system_context_param[0xa1]) {
-          fStack_b8 = system_context_param[0xa1];
+        if (fStack_b8 < system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_X]) {
+          fStack_b8 = system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_X];
         }
         fStack_b4 = psystem_float_var_6[SYSTEM_ARRAY_INDEX_SECOND];
-        if (fStack_b4 < system_context_param[0xa2]) {
-          fStack_b4 = system_context_param[0xa2];
+        if (fStack_b4 < system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_Y]) {
+          fStack_b4 = system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_Y];
         }
         fStack_b0 = psystem_float_var_6[SYSTEM_ARRAY_INDEX_THIRD];
-        if (fStack_b0 < system_context_param[0xa3]) {
-          fStack_b0 = system_context_param[0xa3];
+        if (fStack_b0 < system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_Z]) {
+          fStack_b0 = system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_Z];
         }
         *(ulonglong *)(system_context_param + 0xa1) = CONCAT44(fStack_b4,fStack_b8);
         *(ulonglong *)(system_context_param + 0xa3) = CONCAT44(uStack_ac,fStack_b0);
@@ -49891,25 +49891,25 @@ float * InitializeSystemCore(float *system_context_param)
       }
     }
     system_float_pointer_4 = pfStack_98;
-    if (system_context_param[0xa1] < *psystem_float_var_1) {
+    if (system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_X] < *psystem_float_var_1) {
       system_context_param[0xa9] = 0.0;
       psystem_float_var_1[SYSTEM_ARRAY_INDEX_FIRST] = 0.0;
       psystem_float_var_1[SYSTEM_ARRAY_INDEX_SECOND] = 0.0;
-      system_context_param[0x9f] = 0.0;
+      system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MIN_Y] = 0.0;
       system_context_param[SYSTEM_INIT_OFFSET_0XA0] = 0.0;
-      system_context_param[0xa1] = 0.0;
-      system_context_param[0xa2] = 0.0;
-      system_context_param[0xa3] = 0.0;
-      system_context_param[0xa4] = 0.0;
-      system_context_param[0xa5] = 0.0;
-      system_context_param[0xa6] = 0.0;
-      system_context_param[0xa7] = 0.0;
+      system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_X] = 0.0;
+      system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_Y] = 0.0;
+      system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_Z] = 0.0;
+      system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_W] = 0.0;
+      system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_X] = 0.0;
+      system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_Y] = 0.0;
+      system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_Z] = 0.0;
       system_context_param[SYSTEM_INIT_OFFSET_0XA8] = 0.0;
     }
     else {
-      system_context_param[0xa5] = (system_context_param[0xa1] + *psystem_float_var_1) * 0.5;
-      system_context_param[0xa6] = (system_context_param[0xa2] + system_context_param[0x9e]) * 0.5;
-      system_context_param[0xa7] = (system_context_param[0xa3] + system_context_param[0x9f]) * 0.5;
+      system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_X] = (system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_X] + *psystem_float_var_1) * 0.5;
+      system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_Y] = (system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_Y] + system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MIN_X]) * 0.5;
+      system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_Z] = (system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_Z] + system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MIN_Y]) * 0.5;
       system_context_param[SYSTEM_INIT_OFFSET_0XA8] = 3.4028235e+38;
       system_float_var_10 = 0.0;
       system_init_flag_network = (ulonglong)*(uint *)(lStack_88 + SYSTEM_INIT_SIZE_COMPARE);
@@ -49917,9 +49917,9 @@ float * InitializeSystemCore(float *system_context_param)
         psystem_float_var_6 = *(float **)(lStack_88 + SYSTEM_INIT_FLAG_ENABLED8);
         system_float_var_11 = system_float_var_10;
         do {
-          system_float_var_10 = (*psystem_float_var_6 - system_context_param[0xa5]) * (*psystem_float_var_6 - system_context_param[0xa5]) +
-                   (psystem_float_var_6[SYSTEM_ARRAY_INDEX_SECOND] - system_context_param[0xa6]) * (psystem_float_var_6[SYSTEM_ARRAY_INDEX_SECOND] - system_context_param[0xa6]) +
-                   (psystem_float_var_6[SYSTEM_ARRAY_INDEX_THIRD] - system_context_param[0xa7]) * (psystem_float_var_6[SYSTEM_ARRAY_INDEX_THIRD] - system_context_param[0xa7]);
+          system_float_var_10 = (*psystem_float_var_6 - system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_X]) * (*psystem_float_var_6 - system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_X]) +
+                   (psystem_float_var_6[SYSTEM_ARRAY_INDEX_SECOND] - system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_Y]) * (psystem_float_var_6[SYSTEM_ARRAY_INDEX_SECOND] - system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_Y]) +
+                   (psystem_float_var_6[SYSTEM_ARRAY_INDEX_THIRD] - system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_Z]) * (psystem_float_var_6[SYSTEM_ARRAY_INDEX_THIRD] - system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_Z]);
           if (system_float_var_10 <= system_float_var_11) {
             system_float_var_10 = system_float_var_11;
           }
@@ -50863,7 +50863,7 @@ void InitializeSystemCore(longlong *system_context_param)
   
   uStack_60 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
   uStack_20 = _g_system_initialized ^ (ulonglong)asystem_stack_uint_88;
-  system_unsigned_var_1 = *(system_uint64_t *)(system_context_param[0x37] + SYSTEM_INIT_FLAG_ENABLEDe0);
+  system_unsigned_var_1 = *(system_uint64_t *)(system_context_param[SYSTEM_INIT_CONTEXT_INDEX_MISC_CONFIG_0X37] + SYSTEM_INIT_FLAG_ENABLEDe0);
   puStack_58 = &g_system_context;
   puStack_50 = auStack_40;
   auStack_40[SYSTEM_ARRAY_INDEX_FIRST] = auStack_40[SYSTEM_ARRAY_INDEX_FIRST] & SYSTEM_INIT_ERROR_GENERICffffff00;
@@ -50872,7 +50872,7 @@ void InitializeSystemCore(longlong *system_context_param)
   system_unsigned_var_3 = system_generic_function_(system_unsigned_var_1,&puStack_58,0);
   puStack_58 = &g_system_context;
   if (system_unsigned_var_3 != 0) {
-    system_initialization_result = system_context_param[0x37];
+    system_initialization_result = system_context_param[SYSTEM_INIT_CONTEXT_INDEX_MISC_CONFIG_0X37];
     if ((*(ulonglong *)(system_initialization_result + SYSTEM_INIT_FLAG_ENABLED40) & system_unsigned_var_3) != 0) {
       system_validation_flag_6 = *(byte *)((longlong)system_context_param + SYSTEM_INIT_VALUE_STACK_15d) & SYSTEM_INIT_OFFSET_STACK_PARAM;
       system_context_base_pointer = system_context_param;
@@ -50893,7 +50893,7 @@ void InitializeSystemCore(longlong *system_context_param)
         system_generic_function_(&puStack_58);
         system_generic_function_(&puStack_58);
         system_generic_function_(&puStack_58);
-        system_initialization_result = system_context_param[0x37];
+        system_initialization_result = system_context_param[SYSTEM_INIT_CONTEXT_INDEX_MISC_CONFIG_0X37];
       }
       if ((*(ulonglong *)(system_initialization_result + SYSTEM_INIT_FLAG_ENABLED40) & system_unsigned_var_3) != 0) goto LAB_18007738d;
     }
@@ -55581,17 +55581,17 @@ float * InitializeSystemCore(float *system_context_param)
     psystem_float_var_1 = system_context_param + 0x9d;
     psystem_float_var_1[SYSTEM_ARRAY_INDEX_FIRST] = 1e+08;
     psystem_float_var_1[SYSTEM_ARRAY_INDEX_SECOND] = 1e+08;
-    system_context_param[0x9f] = 1e+08;
+    system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MIN_Y] = 1e+08;
     system_context_param[SYSTEM_INIT_OFFSET_0XA0] = 3.4028235e+38;
-    system_context_param[0xa1] = -1e+08;
-    system_context_param[0xa2] = -1e+08;
-    system_context_param[0xa3] = -1e+08;
-    system_context_param[0xa4] = 3.4028235e+38;
+    system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_X] = -1e+08;
+    system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_Y] = -1e+08;
+    system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_Z] = -1e+08;
+    system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_W] = 3.4028235e+38;
     system_init_flag_network = SYSTEM_INIT_VALUE_ZERO;
     system_context_param[0xa9] = 0.0;
-    system_context_param[0xa5] = 0.0;
-    system_context_param[0xa6] = 0.0;
-    system_context_param[0xa7] = 0.0;
+    system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_X] = 0.0;
+    system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_Y] = 0.0;
+    system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_Z] = 0.0;
     system_context_param[SYSTEM_INIT_OFFSET_0XA8] = 3.4028235e+38;
     system_stack_temp_value = SYSTEM_INIT_VALUE_ZERO;
     pfStack_98 = psystem_float_var_7;
@@ -55604,26 +55604,26 @@ float * InitializeSystemCore(float *system_context_param)
           fStack_a8 = *psystem_float_var_1;
         }
         fStack_a4 = psystem_float_var_7[SYSTEM_ARRAY_INDEX_SECOND];
-        if (system_context_param[0x9e] < fStack_a4) {
-          fStack_a4 = system_context_param[0x9e];
+        if (system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MIN_X] < fStack_a4) {
+          fStack_a4 = system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MIN_X];
         }
         fStack_a0 = psystem_float_var_7[SYSTEM_ARRAY_INDEX_THIRD];
-        if (system_context_param[0x9f] < fStack_a0) {
-          fStack_a0 = system_context_param[0x9f];
+        if (system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MIN_Y] < fStack_a0) {
+          fStack_a0 = system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MIN_Y];
         }
         *(ulonglong *)psystem_float_var_1 = CONCAT44(fStack_a4,fStack_a8);
         *(ulonglong *)(system_context_param + 0x9f) = CONCAT44(uStack_9c,fStack_a0);
         fStack_b8 = *psystem_float_var_7;
-        if (fStack_b8 < system_context_param[0xa1]) {
-          fStack_b8 = system_context_param[0xa1];
+        if (fStack_b8 < system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_X]) {
+          fStack_b8 = system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_X];
         }
         fStack_b4 = psystem_float_var_7[SYSTEM_ARRAY_INDEX_SECOND];
-        if (fStack_b4 < system_context_param[0xa2]) {
-          fStack_b4 = system_context_param[0xa2];
+        if (fStack_b4 < system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_Y]) {
+          fStack_b4 = system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_Y];
         }
         fStack_b0 = psystem_float_var_7[SYSTEM_ARRAY_INDEX_THIRD];
-        if (fStack_b0 < system_context_param[0xa3]) {
-          fStack_b0 = system_context_param[0xa3];
+        if (fStack_b0 < system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_Z]) {
+          fStack_b0 = system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_Z];
         }
         *(ulonglong *)(system_context_param + 0xa1) = CONCAT44(fStack_b4,fStack_b8);
         *(ulonglong *)(system_context_param + 0xa3) = CONCAT44(uStack_ac,fStack_b0);
@@ -55670,25 +55670,25 @@ float * InitializeSystemCore(float *system_context_param)
       }
     }
     system_float_pointer_4 = pfStack_98;
-    if (system_context_param[0xa1] < *psystem_float_var_1) {
+    if (system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_X] < *psystem_float_var_1) {
       system_context_param[0xa9] = 0.0;
       psystem_float_var_1[SYSTEM_ARRAY_INDEX_FIRST] = 0.0;
       psystem_float_var_1[SYSTEM_ARRAY_INDEX_SECOND] = 0.0;
-      system_context_param[0x9f] = 0.0;
+      system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MIN_Y] = 0.0;
       system_context_param[SYSTEM_INIT_OFFSET_0XA0] = 0.0;
-      system_context_param[0xa1] = 0.0;
-      system_context_param[0xa2] = 0.0;
-      system_context_param[0xa3] = 0.0;
-      system_context_param[0xa4] = 0.0;
-      system_context_param[0xa5] = 0.0;
-      system_context_param[0xa6] = 0.0;
-      system_context_param[0xa7] = 0.0;
+      system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_X] = 0.0;
+      system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_Y] = 0.0;
+      system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_Z] = 0.0;
+      system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_W] = 0.0;
+      system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_X] = 0.0;
+      system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_Y] = 0.0;
+      system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_Z] = 0.0;
       system_context_param[SYSTEM_INIT_OFFSET_0XA8] = 0.0;
     }
     else {
-      system_context_param[0xa5] = (system_context_param[0xa1] + *psystem_float_var_1) * 0.5;
-      system_context_param[0xa6] = (system_context_param[0xa2] + system_context_param[0x9e]) * 0.5;
-      system_context_param[0xa7] = (system_context_param[0xa3] + system_context_param[0x9f]) * 0.5;
+      system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_X] = (system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_X] + *psystem_float_var_1) * 0.5;
+      system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_Y] = (system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_Y] + system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MIN_X]) * 0.5;
+      system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_Z] = (system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_Z] + system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MIN_Y]) * 0.5;
       system_context_param[SYSTEM_INIT_OFFSET_0XA8] = 3.4028235e+38;
       system_float_var_6 = 0.0;
       system_init_flag_graphics = (ulonglong)*(uint *)(lStack_88 + SYSTEM_INIT_SIZE_COMPARE);
@@ -55696,9 +55696,9 @@ float * InitializeSystemCore(float *system_context_param)
         psystem_float_var_7 = *(float **)(lStack_88 + SYSTEM_INIT_FLAG_ENABLED8);
         system_float_var_11 = system_float_var_6;
         do {
-          system_float_var_6 = (*psystem_float_var_7 - system_context_param[0xa5]) * (*psystem_float_var_7 - system_context_param[0xa5]) +
-                  (psystem_float_var_7[SYSTEM_ARRAY_INDEX_SECOND] - system_context_param[0xa6]) * (psystem_float_var_7[SYSTEM_ARRAY_INDEX_SECOND] - system_context_param[0xa6]) +
-                  (psystem_float_var_7[SYSTEM_ARRAY_INDEX_THIRD] - system_context_param[0xa7]) * (psystem_float_var_7[SYSTEM_ARRAY_INDEX_THIRD] - system_context_param[0xa7]);
+          system_float_var_6 = (*psystem_float_var_7 - system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_X]) * (*psystem_float_var_7 - system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_X]) +
+                  (psystem_float_var_7[SYSTEM_ARRAY_INDEX_SECOND] - system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_Y]) * (psystem_float_var_7[SYSTEM_ARRAY_INDEX_SECOND] - system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_Y]) +
+                  (psystem_float_var_7[SYSTEM_ARRAY_INDEX_THIRD] - system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_Z]) * (psystem_float_var_7[SYSTEM_ARRAY_INDEX_THIRD] - system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_Z]);
           if (system_float_var_6 <= system_float_var_11) {
             system_float_var_6 = system_float_var_11;
           }
