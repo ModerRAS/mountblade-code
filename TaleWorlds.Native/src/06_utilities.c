@@ -4278,7 +4278,7 @@ int get_file_dataSize(longlong resource_handle_identifier)
   int utility_operation_result;
   longlong processing_buffer;
   byte array_unsigned_stack_primary_8 [8];
-  byte local_variableonfig_buffer [72];
+  byte utility_config_buffer [72];
   
   processing_buffer = 0;
   if (0 < *(int *)(resource_handle_identifier + POINTER_DATA_OFFSET)) {
@@ -5547,7 +5547,7 @@ void utilityExecuteResourceCommand(longlong resource_handle_identifier,longlong 
   longlong *long_pointer_buffer;
   byte local_security_buffer [32];
   longlong local_stack_offset_48;
-  byte local_variablencryption_buffer [40];
+  byte utility_encryption_buffer [40];
   ulonglong utility_unsigned_variable;
   
   utility_unsigned_variable = g_security_token_mask ^ (ulonglong)local_security_buffer;
@@ -7729,7 +7729,7 @@ void utilityExtractResourceInfo(longlong resource_handle_identifier,uint32 *memo
   uint utility_unsigned_variable;
   uint utility_unsigned_variable;
   longlong local_stack_offset_48;
-  byte local_variablencryption_buffer [40];
+  byte utility_encryption_buffer [40];
   ulonglong utility_unsigned_variable;
   
   utility_unsigned_variable = g_security_token_mask ^ (ulonglong)local_security_buffer;
@@ -7815,7 +7815,7 @@ void utilityAnalyzeResourceData(longlong resource_handle_identifier,uint32 *memo
   uint utility_unsigned_variable;
   uint utility_unsigned_variable;
   uint utility_unsigned_variable;
-  byte local_variablencryption_buffer [40];
+  byte utility_encryption_buffer [40];
   ulonglong utility_unsigned_variable;
   
   utility_unsigned_variable = g_security_token_mask ^ (ulonglong)local_security_buffer;
@@ -7922,7 +7922,7 @@ void utilityGenerateResourceReport(longlong resource_handle_identifier,uint32 *m
   uint utility_unsigned_variable;
   uint utility_unsigned_variable;
   longlong local_stack_offset_48;
-  byte local_variablencryption_buffer [40];
+  byte utility_encryption_buffer [40];
   ulonglong utility_unsigned_variable;
   
   utility_unsigned_variable = g_security_token_mask ^ (ulonglong)local_security_buffer;
@@ -9460,7 +9460,7 @@ ulonglong validate_memory_address(longlong resource_handle_identifier)
   byte utility_unsigned_variable;
   byte local_processing_buffer [8];
   byte local_processing_buffer [8];
-  byte local_variablencryption_buffer [40];
+  byte utility_encryption_buffer [40];
   
   iteration_index_var = *(uint *)(resource_handle_identifier + UTILITY_RESOURCE_FLAG_OFFSET);
   validation_result_flag = 0;
@@ -18544,7 +18544,7 @@ ulonglong ProcessIntegrityCheck(longlong resource_handle_identifier,longlong *me
   uint utility_unsigned_variable;
   uint utility_unsigned_variable;
   byte local_security_buffer [32];
-  byte local_variablencryption_buffer [40];
+  byte utility_encryption_buffer [40];
   ulonglong validation_result_flag;
   
   validation_result_flag = 1;
@@ -21032,7 +21032,7 @@ ulonglong ProcessValidationRequest(longlong resource_handle_identifier,uint64 *m
   ulonglong loop_counter;
   ulonglong system_status_code;
   byte utility_stack_resource_context_18 [4];
-  byte unsignedStackArrayX1c [12];
+  byte unsigned_stack_array_1c [12];
   byte local_security_buffer [32];
   byte local_security_buffer [32];
   
@@ -22415,7 +22415,7 @@ ulonglong InitializeSystemChecker(longlong resource_handle_identifier,longlong *
   char charStackX20;
   char stackCharArrayA8[4];
   uint utility_unsigned_variable;
-  byte local_variablencryption_buffer [40];
+  byte utility_encryption_buffer [40];
   byte local_security_buffer [32];
   byte local_security_buffer [32];
   
@@ -23885,7 +23885,7 @@ ulonglong ProcessSystemTask(longlong resource_handle_identifier,uint64 *memory_b
   uint resource_utility_operation_result;
   ulonglong loop_counter;
   byte local_processing_buffer [64];
-  byte local_variablencryption_buffer [40];
+  byte utility_encryption_buffer [40];
   
   loop_counter = ValidateOperationHandle2(resource_buffer,local_processing_buffer,1,0x5453494c,resourceOperationFlags);
   if (((int)loop_counter == 0) && (loop_counter = ValidateOperationHandle2(resource_buffer,local_processing_buffer,0,resourceCallbackFunction,0), (int)loop_counter == 0))
@@ -24002,7 +24002,7 @@ ulonglong InitializeTaskOperator(longlong resource_handle_identifier,longlong *m
   uint32 utility_unsigned_variable;
   uint32 utility_unsigned_variable;
   uint32 utility_unsigned_variable;
-  byte local_variablencryption_buffer [40];
+  byte utility_encryption_buffer [40];
   
   generic_data_pointer = (uint32 *)allocate_memory_block();
   utility_unsigned_variable = *generic_data_pointer;
