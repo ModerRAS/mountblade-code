@@ -47343,7 +47343,7 @@ uint64_t * InitializeSystemModule41(uint64_t *handleIdentifier,char resourceIden
   UNLOCK();
   *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_1E) = 0;
   handleIdentifier[SYSTEM_HANDLE_INDEX_23] = 0;
-  handleIdentifier[0x36] = 0;
+  handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_1] = 0;
   handleIdentifier[0x37] = 0;
   handleIdentifier[SYSTEM_OBJECT_OFFSET_38] = 0;
   handleIdentifier[SYSTEM_DATA_OFFSET_3E] = handleIdentifier;
@@ -47376,8 +47376,8 @@ uint64_t * InitializeSystemModule41(uint64_t *handleIdentifier,char resourceIden
   *(uint32_t *)((longlong)handleIdentifier + SYSTEM_HANDLE_OFFSET_FLAGS) = 0;
   *(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fe) = *(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fe) & SYSTEM_OFFSET_Fe;
   *(uint8_t *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fc) = 0;
-  ptr_data = (longlong *)handleIdentifier[0x36];
-  handleIdentifier[0x36] = 0;
+  ptr_data = (longlong *)handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_1];
+  handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_1] = 0;
   if (ptr_data != (longlong *)SYSTEM_NULL_POINTER) {
     (**(code **)(*ptr_data + SYSTEM_OBJECT_OFFSET_38))();
   }
@@ -47811,11 +47811,11 @@ void InitializeAudioSystem(uint64_t *handleIdentifier)
   if ((longlong *)handleIdentifier[SYSTEM_OBJECT_OFFSET_38] != (longlong *)SYSTEM_NULL_POINTER) {
     (**(code **)(*(longlong *)handleIdentifier[SYSTEM_OBJECT_OFFSET_38] + SYSTEM_OBJECT_OFFSET_38))();
   }
-  if ((longlong *)handleIdentifier[0x37] != (longlong *)SYSTEM_NULL_POINTER) {
-    (**(code **)(*(longlong *)handleIdentifier[0x37] + SYSTEM_OBJECT_OFFSET_38))();
+  if ((longlong *)handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_2] != (longlong *)SYSTEM_NULL_POINTER) {
+    (**(code **)(*(longlong *)handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_2] + SYSTEM_OBJECT_OFFSET_38))();
   }
-  if ((longlong *)handleIdentifier[0x36] != (longlong *)SYSTEM_NULL_POINTER) {
-    (**(code **)(*(longlong *)handleIdentifier[0x36] + SYSTEM_OBJECT_OFFSET_38))();
+  if ((longlong *)handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_1] != (longlong *)SYSTEM_NULL_POINTER) {
+    (**(code **)(*(longlong *)handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_1] + SYSTEM_OBJECT_OFFSET_38))();
   }
   if ((longlong *)handleIdentifier[SYSTEM_HANDLE_INDEX_23] != (longlong *)SYSTEM_NULL_POINTER) {
     (**(code **)(*(longlong *)handleIdentifier[SYSTEM_HANDLE_INDEX_23] + SYSTEM_OBJECT_OFFSET_38))();
@@ -48162,7 +48162,7 @@ void InitializeSystemModule26(longlong *handleIdentifier)
         || (0.01 <= system_result_float)))) {
       system_memory_pointer = handleIdentifier;
       if ((((*(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fd) & SYSTEM_DATA_BLOCK_SIZE) == 0) || (handleIdentifier[SYSTEM_FLAG_BIT_42] == 0)) &&
-         (handleIdentifier[0x36] != 0)) {
+         (handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_1] != 0)) {
         system_memory_pointer = (longlong *)InitializeResourceSystem();
       }
       system_integer_result = 0;
@@ -48287,7 +48287,7 @@ void InitializeSystemModule26(longlong *handleIdentifier)
       *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_5B) = *(uint32_t *)((longlong)handleIdentifier + SYSTEM_OFFSET_2Dc);
     }
     if ((*(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fd) & SYSTEM_NODE_HEADER_SIZE) != 0) break;
-    handleIdentifier = (longlong *)handleIdentifier[0x36];
+    handleIdentifier = (longlong *)handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_1];
   }
   return;
 }
@@ -48989,7 +48989,7 @@ void InitializeNetworkSystem(longlong *handleIdentifier)
       system_boolean_flag = *(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fd) & SYSTEM_NODE_HEADER_SIZE;
       ptr_data = handleIdentifier;
       if (system_bool_var == 0) {
-        ptr_data = (longlong *)GetSystemDataPointer(handleIdentifier[0x36]);
+        ptr_data = (longlong *)GetSystemDataPointer(handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_1]);
       }
       if (((*(uint *)(ptr_data + SYSTEM_NODE_HEADER_SIZE) & SYSTEM_OFFSET_8000000) == 0) && (system_bool_var != 0)) {
         system_buffer_ptr_system_context = (ulonglong *)handleIdentifier;
@@ -49011,7 +49011,7 @@ void InitializeNetworkSystem(longlong *handleIdentifier)
     }
     ptr_data = handleIdentifier;
     if ((*(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fd) & SYSTEM_NODE_HEADER_SIZE) == 0) {
-      ptr_data = (longlong *)GetSystemDataPointer(handleIdentifier[0x36]);
+      ptr_data = (longlong *)GetSystemDataPointer(handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_1]);
     }
     if ((*(uint *)(ptr_data + SYSTEM_NODE_HEADER_SIZE) & SYSTEM_OFFSET_8000000) != 0) {
       system_buffer_ptr_system_context = (ulonglong *)handleIdentifier;

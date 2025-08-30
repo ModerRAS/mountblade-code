@@ -13126,7 +13126,7 @@ void ValidateResourceFloat(float resource_handle_identifier)
     }
     utility_operation_status = utility_allocate_memory();
     validation_flag_primary = utility_float_param_quaternary;
-    if (utility_operation_status == 4) {
+    if (utility_operation_status == UTILITY_PARAMETER_COUNT_FOUR) {
       memory_pointer_parameter = &g_system_memory_handler;
       utility_stack_int_primary = utility_stack_validation_uint;
       UTILITY_STACK_PARAM_ptr = utility_cpu_context;
