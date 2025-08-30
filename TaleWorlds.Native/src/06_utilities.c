@@ -274,9 +274,14 @@
 // 109. 将_systemVara080替换为utility_system_tls_flag_secondary等TLS次级标志变量名
 // 110. 将_systemVara9a8替换为utility_system_module_context等模块上下文变量名
 // 111. 将其他systemVar变量替换为utility_system_reserved_var等保留变量名
+// 112. 将dataValue7替换为UTILITY_DATA_VALUE_ITERATION等数据值变量名
+// 113. 将list_head_offset替换为UTILITY_LIST_HEAD_OFFSET等链表偏移量变量名
+// 114. 将utility_buffer_size_data_offset替换为UTILITY_BUFFER_SIZE_DATA_OFFSET等缓冲区大小变量名
+// 115. 将access_flag替换为UTILITY_ACCESS_FLAG等访问标志变量名
+// 116. 将data_process_function替换为UTILITY_DATA_PROCESS_FUNCTION等数据处理函数名
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
-// - 这是简化实现，主要处理了工具系统中TLS相关变量名的语义化替换
+// - 这是简化实现，主要处理了工具系统中剩余变量名的语义化替换
 
 // 新增语义化宏定义 - 替换事件回调变量名
 #define EVENT_CALLBACK_RESOURCE_INIT 0x6030
