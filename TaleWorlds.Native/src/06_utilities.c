@@ -15232,7 +15232,7 @@ uint64 ValidateResourceSize(longlong resource_handle_identifier,longlong resourc
             if (0 < utility_operation_status) {
               do {
                 utility_long_value = *(longlong *)(resource_buffer + 600) + utility_long_value;
-                short_validation_flag = *(short *)(utility_long_value + 0x114);
+                short_validation_flag = *(short *)(utility_long_value + UTILITY_MEMORY_OFFSET_114);
                 system_status_code = discoverUtilityComponents(resource_handle_identifier,utility_long_value);
                 if ((int)system_status_code != 0) {
                   return system_status_code;
@@ -15296,7 +15296,7 @@ uint64 InitializeResourceProcessor(void)
     threadContextData = utility_cpu_context;
     if (0 < utility_operation_status) {
       do {
-        short_validation_flag = *(short *)(*(longlong *)(utility_cpu_context + 600) + utility_cpu_context + 0x114);
+        short_validation_flag = *(short *)(*(longlong *)(utility_cpu_context + 600) + utility_cpu_context + UTILITY_MEMORY_OFFSET_114);
         utility_loop_counter = discoverUtilityComponents();
         if ((int)utility_loop_counter != 0) {
           return utility_loop_counter;
@@ -15949,7 +15949,7 @@ uint64 GetCallbackStatus(void)
             utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),UTILITY_RESOURCE_POINTER_PRIMARY,&g_system_data_validation_handler,0x130,1);
           }
           generic_data_pointer = (uint64 *)
-                   utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),POINTER_DATA_OFFSET,&g_system_data_validation_handler,0x119);
+                   utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),POINTER_DATA_OFFSET,&g_system_data_validation_handler,UTILITY_SYSTEM_TABLE_OFFSET);
           if (UTILITY_RESOURCE_POINTER_PRIMARY == (uint64 *)UTILITY_NULL_POINTER) {
             return ERROR_CODE_RESOURCE_ACCESS_FAILED;
           }
@@ -29026,7 +29026,7 @@ void UtilityProcessResourceOperations(uint64 resource_handle_identifier,longlong
 
 
 
-void UtilityUnwind_180903010(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
+void UtilityExecuteResourceCommands(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
 
 {
   uint64 *utility_operation_resultData;
@@ -29043,7 +29043,7 @@ void UtilityUnwind_180903010(uint64 resource_handle_identifier,longlong resource
 
 
 
-void UtilityUnwind_180903020(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
+void UtilityManageResourceLifecycle(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
 
 {
   UtilityModule15(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
@@ -29053,7 +29053,7 @@ void UtilityUnwind_180903020(uint64 resource_handle_identifier,longlong resource
 
 
 
-void UtilityUnwind_180903030(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
+void UtilityHandleResourceCallbacks(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
 
 {
   UtilityModule15(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
@@ -29063,7 +29063,7 @@ void UtilityUnwind_180903030(uint64 resource_handle_identifier,longlong resource
 
 
 
-void UtilityUnwind_180903040(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
+void UtilityValidateResourceStates(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
 
 {
   UtilityModule17(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
@@ -29073,7 +29073,7 @@ void UtilityUnwind_180903040(uint64 resource_handle_identifier,longlong resource
 
 
 
-void UtilityUnwind_180903050(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
+void UtilityOptimizeResourceLayout(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
 
 {
   UtilityModule17(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET),*(uint64 *)(*(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
@@ -29083,7 +29083,7 @@ void UtilityUnwind_180903050(uint64 resource_handle_identifier,longlong resource
 
 
 
-void UtilityUnwind_180903060(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
+void UtilityFinalizeResourceInit(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
 
 {
   UtilityModule17(*(longlong *)(resource_buffer + utility_buffer_size_data_offset),*(uint64 *)(*(longlong *)(resource_buffer + utility_buffer_size_data_offset) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),
