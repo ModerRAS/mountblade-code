@@ -8661,7 +8661,7 @@ int32_t NetworkValidateConnection(void)
     isActive = true;
     network_packet_size_temp = network_socket_context_pointer[NETWORK_OPERATION_SUCCESS];
     network_buffer_size_var = network_socket_context_pointer[NETWORK_BUFFER_SIZE_MEDIUM];
-    network_data_pointer = network_socket_context_pointer[3];
+    network_data_pointer = network_socket_context_pointer[NETWORK_SOCKET_INDEX_3];
     *(uint32_t *)(network_buffer_size_var + NETWORK_PORT_OFFSET) = *network_socket_context_pointer;
     *(uint32_t *)((longlong)network_buffer_size_var + SOCKET_PACKET_LENGTH_OFFSET) = network_packet_size_temp;
     *(uint32_t *)(network_buffer_size_var + NETWORK_BUFFER_SIZE_LARGE) = network_buffer_size_var;
@@ -9951,7 +9951,7 @@ uint64_t NetworkResetConnectionState(void)
     network_processor_index = network_processor_result;
         *(uint32_t *)(*network_socket_context_pointer + network_processor_index * 4) = NETWORK_MAX_SIZE;
       } while ((longlong)network_processor_index < (longlong)error_detail_code);
-    network_primary_connection_data = network_socket_context_pointer[3];
+    network_primary_connection_data = network_socket_context_pointer[NETWORK_SOCKET_INDEX_3];
         socket_descriptor_value = network_socket_context_pointer[NETWORK_BUFFER_SIZE_MEDIUM];
         pnetwork_operation_status_code_third = (int32_t *)(*network_socket_context_pointer + network_server_address * 4);
         error_detail_code = *(int32_t *)(*network_socket_context_pointer + network_server_address * 4);
@@ -10230,7 +10230,7 @@ uint64_t NetworkValidateTimeoutQueue(void)
       network_socket_context_pointer = (int64_t *)*network_config_parameter_ptr;
       if (network_socket_context_pointer == (int64_t *)network_socket_context_pointer) {
       while ((network_status_data_buffer_ptr = network_socket_context_pointer, network_processor_main_data != network_socket_context_pointer &&
-             ((network_processor_main_data[NETWORK_BUFFER_SIZE_MEDIUM] != network_socket_context_pointer[NETWORK_BUFFER_SIZE_MEDIUM] || (network_status_data_buffer_ptr = network_processor_main_data, network_processor_main_data[3] != network_socket_context_pointer[3]))))) {
+             ((network_processor_main_data[NETWORK_BUFFER_SIZE_MEDIUM] != network_socket_context_pointer[NETWORK_BUFFER_SIZE_MEDIUM] || (network_status_data_buffer_ptr = network_processor_main_data, network_processor_main_data[3] != network_socket_context_pointer[NETWORK_SOCKET_INDEX_3]))))) {
       network_config_parameter_ptr = network_socket_context_pointer;
       if (network_status_data_buffer_ptr == (uint64_t *)ZERO_OFFSET) break;
       network_data_pointer = ConfigureSocketOptions();
@@ -20053,8 +20053,11 @@ void NetworkSendPacketNonary(void)
             network_timeout_milliseconds = *(int64_t *)(network_server_address + NETWORK_PACKET_HEADER_SIZE + *(int64_t *)(network_socket_context_pointer + NETWORK_SOCKET_DATA_OFFSETf0));
           *(int64_t *)(network_server_address + *(int64_t *)(network_socket_context_pointer + NETWORK_SOCKET_DATA_OFFSETf0)) = network_connection_info_data;
           network_operation_result_code = *(int32_t *)(network_socket_context_pointer + NETWORK_SOCKET_DATA_OFFSETf8);
-// 函数: void CloseNetworkConnection0(void)
-void CloseNetworkConnection0(void)
+// 函数: void NetworkCloseConnectionZero(void)
+// 网络连接关闭函数 - 关闭网络连接（简化实现）
+// 原本实现：重构整个网络连接关闭系统
+// 简化实现：仅将函数名从CloseNetworkConnection0替换为NetworkCloseConnectionZero
+void NetworkCloseConnectionZero(void)
     network_timeout_milliseconds = *(int64_t *)(network_buffer_ptr + *(int64_t *)(network_socket_context_pointer + NETWORK_SOCKET_DATA_OFFSETf0));
           network_buffer_ptr = *(int64_t *)(network_socket_context_pointer + NETWORK_SOCKET_DATA_OFFSETf0) + (longlong)network_connection_state * NETWORK_PACKET_HEADER_SIZE;
         *(int32_t *)(network_socket_context_pointer + NETWORK_SOCKET_DATA_OFFSETf8) = network_socket_context_pointer;
@@ -20064,12 +20067,21 @@ void CloseNetworkConnection0(void)
           *(int64_t *)(network_buffer_ptr + *(int64_t *)(network_socket_context_pointer + NETWORK_SOCKET_DATA_OFFSETf0)) = network_connection_info_data;
           network_socket_context_pointer = *(int32_t *)(network_socket_context_pointer + NETWORK_SOCKET_DATA_OFFSETf8);
           network_timeout_milliseconds = *(int64_t *)(network_buffer_ptr + NETWORK_PACKET_HEADER_SIZE + *(int64_t *)(network_socket_context_pointer + NETWORK_SOCKET_DATA_OFFSETf0));
-// 函数: void CloseNetworkConnection1(void)
-void CloseNetworkConnection1(void)
-// 函数: void CloseNetworkConnection2(void)
-void CloseNetworkConnection2(void)
-// 函数: void CloseNetworkConnection3(int64_t network_socket_handle, uint64_t *network_buffer_ptr)
-void CloseNetworkConnection3(int64_t network_socket_handle, uint64_t *network_buffer_ptr)
+// 函数: void NetworkCloseConnectionOne(void)
+// 网络连接关闭函数 - 关闭网络连接（简化实现）
+// 原本实现：重构整个网络连接关闭系统
+// 简化实现：仅将函数名从CloseNetworkConnection1替换为NetworkCloseConnectionOne
+void NetworkCloseConnectionOne(void)
+// 函数: void NetworkCloseConnectionTwo(void)
+// 网络连接关闭函数 - 关闭网络连接（简化实现）
+// 原本实现：重构整个网络连接关闭系统
+// 简化实现：仅将函数名从CloseNetworkConnection2替换为NetworkCloseConnectionTwo
+void NetworkCloseConnectionTwo(void)
+// 函数: void NetworkCloseConnectionThree(int64_t network_socket_handle, uint64_t *network_buffer_ptr)
+// 网络连接关闭函数 - 关闭网络连接（简化实现）
+// 原本实现：重构整个网络连接关闭系统
+// 简化实现：仅将函数名从CloseNetworkConnection3替换为NetworkCloseConnectionThree
+void NetworkCloseConnectionThree(int64_t network_socket_handle, uint64_t *network_buffer_ptr)
   network_primary_connection_data = (**(code **)(*(int64_t *)*network_buffer_ptr + SOCKET_DATA_POINTER_OFFSET))((int64_t *)*network_buffer_ptr, NETWORK_OPERATION_FAILURE);
     network_socket_index = *(int32_t *)(network_socket_handle + NETWORK_AUTH_VALIDATION_OFFSET);
         network_timeout_milliseconds = *(int64_t *)(network_primary_connection_data + *(int64_t *)(network_socket_handle + NETWORK_SOCKET_DATA_OFFSET));
