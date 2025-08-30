@@ -44837,7 +44837,7 @@ INIT_LABEL_VALIDATE_70230:
         init_stack_uint_param_data = 0;
         system_buffer_ptr_data_primary = (uint64_t *)SYSTEM_NULL_POINTER;
         init_stack_uint_param_80 = 0;
-        system_pointer_value = (uint64_t *)AllocateSystemResource(systemMemoryPool,0x34,SYSTEM_CONFIG_SIZE_PHYSICS);
+        system_pointer_value = (uint64_t *)AllocateSystemResource(systemMemoryPool,SYSTEM_RESOURCE_ALLOCATION_SIZE_BASIC,SYSTEM_CONFIG_SIZE_PHYSICS);
         *(uint8_t *)system_pointer_value = SYSTEM_INIT_VALUE_ZERO;
         system_buffer_ptr_data_primary = system_pointer_value;
         system_result_operation = ValidateResourceAllocation(system_pointer_temp);
@@ -46448,7 +46448,7 @@ INIT_LABEL_VALIDATE_729bd:
           init_stack_uint_param_thread = 0;
           system_buffer_ptr_thread_context = (uint64_t *)SYSTEM_NULL_POINTER;
           init_stack_uint_param_temp_flag = 0;
-          system_pointer_value = (uint64_t *)AllocateSystemResource(systemMemoryPool,0x34,SYSTEM_CONFIG_SIZE_PHYSICS);
+          system_pointer_value = (uint64_t *)AllocateSystemResource(systemMemoryPool,SYSTEM_RESOURCE_ALLOCATION_SIZE_BASIC,SYSTEM_CONFIG_SIZE_PHYSICS);
           *(uint8_t *)system_pointer_value = SYSTEM_INIT_VALUE_ZERO;
           system_buffer_ptr_thread_context = system_pointer_value;
           system_result_operation = ValidateResourceAllocation(system_pointer_temp);
@@ -46692,7 +46692,7 @@ bool InitializeSystemModule_input_handling(uint64_t handleIdentifier,uint64_t *r
     init_stack_uint_param_f8_hex = 0;
     system_buffer_ptr_context_main = (uint64_t *)SYSTEM_NULL_POINTER;
     intStack_100 = 0;
-    system_node_current = (uint64_t *)AllocateSystemResource(systemMemoryPool,0x34,SYSTEM_CONFIG_SIZE_PHYSICS);
+    system_node_current = (uint64_t *)AllocateSystemResource(systemMemoryPool,SYSTEM_RESOURCE_ALLOCATION_SIZE_BASIC,SYSTEM_CONFIG_SIZE_PHYSICS);
     *(uint8_t *)system_node_current = 0;
     system_buffer_ptr_context_main = system_node_current;
     system_result_operation = ValidateResourceAllocation(system_node_current);
@@ -62255,10 +62255,10 @@ longlong *g_global_system_flags;
 // - 简化实现：仅将常见的硬编码浮点数值替换为语义化常量名
 
 // 浮点数值语义化常量
-#define SYSTEM_FLOAT_VALUE_ZERO SYSTEM_FLOAT_VALUE_ZERO
+#define SYSTEM_FLOAT_VALUE_ZERO 0.0
 #define SYSTEM_FLOAT_VALUE_POINT_TWO SYSTEM_FLOAT_VALUE_FIFTH
 #define SYSTEM_FLOAT_VALUE_POINT_SEVENTY_FIVE SYSTEM_FLOAT_VALUE_THREE_QUARTERS
-#define SYSTEM_FLOAT_VALUE_ONE SYSTEM_FLOAT_VALUE_ONE
+#define SYSTEM_FLOAT_VALUE_ONE 1.0
 #define SYSTEM_FLOAT_VALUE_ONE_HUNDRED SYSTEM_FLOAT_VALUE_HUNDRED
 
 // 浮点运算语义化常量
