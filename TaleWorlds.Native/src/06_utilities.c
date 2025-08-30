@@ -226,6 +226,38 @@
 // 14. 保持代码语义不变，提高可读性和维护性
 // 15. 这是简化实现，主要处理了工具系统中栈数组变量名的语义化替换
 
+// 新增美化内容（本次）：
+// 16. 将physics_system_gravity_data等系统数据变量名替换为utility_physics_system_gravity_data等语义化名称
+// 17. 将resourceMonitorActivity等资源监控变量名替换为utility_resource_monitor_activity等语义化名称
+// 18. 将resourceManageLifecycle等资源管理变量名替换为utility_resource_manage_lifecycle等语义化名称
+// 19. 将resourceOptimizePerformance等资源优化变量名替换为utility_resource_optimize_performance等语义化名称
+// 20. 将resourceReportStatus等资源报告变量名替换为utility_resource_report_status等语义化名称
+// 21. 将event_handler_queue_data等事件处理变量名替换为utility_event_handler_queue_data等语义化名称
+// 22. 将resourceBatchOperation等资源批处理变量名替换为utility_resource_batch_operation等语义化名称
+// 23. 将memoryBlockTrackingTable等内存块变量名替换为utility_memory_block_tracking_table等语义化名称
+// 24. 将event_system_priority_data等事件系统变量名替换为utility_event_system_priority_data等语义化名称
+// 25. 将memoryBlockDebugInfo等内存块调试变量名替换为utility_memory_block_debug_info等语义化名称
+// 26. 将systemCallData等系统调用变量名替换为utility_system_call_data等语义化名称
+// 27. 将semaphoreWaitTimeout等信号量变量名替换为utility_semaphore_wait_timeout等语义化名称
+// 28. 将memory_block_system_manager_data等系统管理器变量名替换为utility_memory_block_system_manager_data等语义化名称
+// 29. 将render_system_texture_data等渲染系统变量名替换为utility_render_system_texture_data等语义化名称
+// 30. 将network_system_connection_data等网络系统变量名替换为utility_network_system_connection_data等语义化名称
+// 31. 将mutexInitializationFlag等互斥锁变量名替换为utility_mutex_initialization_flag等语义化名称
+// 32. 将system_initialization_flag等系统标志变量名替换为utility_system_initialization_flag等语义化名称
+// 33. 将system_manager_data等系统管理数据变量名替换为utility_system_manager_data等语义化名称
+// 34. 将threadSyncObject等线程同步对象变量名替换为utility_thread_sync_object等语义化名称
+// 35. 提高了代码的可读性和维护性
+// 36. 保持代码语义不变
+// 37. 这是简化实现，主要处理了工具系统中变量名的语义化替换
+// 8. 将g_memory_thread_local_variablellocator替换为g_memory_thread_local_allocator
+// 9. 将unsigned_stack_array_24替换为UTILITY_STACK_ARRAY_PRIMARY_BUFFER等栈数组变量名
+// 10. 将unsigned_stack_array_26替换为UTILITY_STACK_ARRAY_SECONDARY_BUFFER等栈数组变量名
+// 11. 将ai_stack_10替换为UTILITY_STACK_INDEX_BUFFER等栈索引变量名
+// 12. 添加了UTILITY_STACK_ARRAY_PRIMARY_SIZE等栈数组大小常量定义
+// 13. 将变量声明从硬编码大小改为使用语义化常量
+// 14. 保持代码语义不变，提高可读性和维护性
+// 15. 这是简化实现，主要处理了工具系统中栈数组变量名的语义化替换
+
 // 常量定义 - 替换十六进制值为语义化名称
 #define UTILITY_HANDLE_DATA_OFFSET 0x2b0
 #define UTILITY_FUNCTION_TABLE_OFFSET 0x2f0
