@@ -4059,7 +4059,7 @@ network_check_data_validation_label:
       network_buffer_size_var = NETWORK_OPERATION_STATUS_FAILURE;
          (-(uint)(isEncrypted != NETWORK_OPERATION_STATUS_FAILURE) & SOCKET_CHECKSUM_MASK | *(uint32_t *)(*(int64_t *)(network_socket_handle + NETWORK_SOCKET_DATA_OFFSET) + NETWORK_DATA_OFFSET)) & ~network_buffer_size_var | NETWORK_STATUS_READY_MASK
   *network_buffer_size_var = (byte)(*(uint32_t *)(network_buffer_ptr + NETWORK_DATA_OFFSET) >> NETWORK_BUFFER_SIZE_LARGE) & NETWORK_OPERATION_SUCCESS;
-network_network_network_process_data_validation_label:
+network_process_data_validation_label:
   network_encrypt_data(network_session_config_array_data_size ^ (ulonglong)network_validation_temp_buffer);
 // 函数: void NetworkCheckSecurity(uint64_t network_socket_handle, uint8_t *network_buffer_ptr)
 void NetworkCheckSecurity(uint64_t network_socket_handle, uint8_t *network_buffer_ptr)
