@@ -43,6 +43,65 @@
 // - 简化实现：仅将常见的硬编码值替换为语义化常量，保持代码结构不变
 
 // 新增语义化常量定义（2025年8月30日美化批次）：
+// 新增语义化常量定义（2025年8月30日最终批次美化）
+// 系统缓冲区分配结果常量
+#define SYSTEM_BUFFER_ALLOC_RESULT_B8 0xb8
+#define SYSTEM_BUFFER_ALLOC_RESULT_BC 0xbc
+#define SYSTEM_BUFFER_ALLOC_RESULT_BD 0xbd
+#define SYSTEM_BUFFER_ALLOC_RESULT_BE 0xbe
+#define SYSTEM_BUFFER_ALLOC_RESULT_C0 0xc0
+
+// 系统初始化偏移量常量
+#define SYSTEM_OFFSET_INITIALIZATION_1D 0x1d
+#define SYSTEM_OFFSET_INITIALIZATION_1E 0x1e
+#define SYSTEM_OFFSET_INITIALIZATION_7C 0x7c
+
+// 系统模块偏移量常量
+#define SYSTEM_MODULE_OFFSET_17 0x17
+#define SYSTEM_MODULE_OFFSET_21 0x21
+#define SYSTEM_MODULE_OFFSET_22 0x22
+#define SYSTEM_MODULE_OFFSET_23 0x23
+#define SYSTEM_MODULE_OFFSET_25 0x25
+#define SYSTEM_MODULE_OFFSET_26 0x26
+#define SYSTEM_MODULE_OFFSET_27 0x27
+#define SYSTEM_MODULE_OFFSET_29 0x29
+#define SYSTEM_MODULE_OFFSET_2A 0x2a
+#define SYSTEM_MODULE_OFFSET_2B 0x2b
+#define SYSTEM_MODULE_OFFSET_2D 0x2d
+#define SYSTEM_MODULE_OFFSET_2E 0x2e
+
+// 系统句柄参数常量
+#define SYSTEM_HANDLE_PARAM_11 0x11
+#define SYSTEM_HANDLE_PARAM_12 0x12
+#define SYSTEM_HANDLE_PARAM_13 0x13
+#define SYSTEM_HANDLE_PARAM_15 0x15
+#define SYSTEM_HANDLE_PARAM_16 0x16
+#define SYSTEM_HANDLE_PARAM_1A 0x1a
+#define SYSTEM_HANDLE_PARAM_1B 0x1b
+
+// 系统配置偏移量常量
+#define SYSTEM_CONFIG_OFFSET_54 0x54
+#define SYSTEM_CONFIG_OFFSET_18 0x18
+#define SYSTEM_CONFIG_OFFSET_28 0x28
+
+// 系统字符串长度常量
+#define SYSTEM_STRING_LENGTH_16 0x16
+
+// 系统字符串模式常量
+#define SYSTEM_STRING_PATTERN_ERROR_MSG 0x3a726f72
+#define SYSTEM_STRING_PATTERN_TERMINATOR 0x2720
+#define SYSTEM_STRING_PATTERN_MESSAGE 0x2220656d
+#define SYSTEM_STRING_PATTERN_EXCLAMATION 0x21
+
+// 系统缓冲区大小常量
+#define SYSTEM_BUFFER_SIZE_13 0x13
+#define SYSTEM_BUFFER_SIZE_14 0x14
+#define SYSTEM_BUFFER_SIZE_15 0x15
+#define SYSTEM_BUFFER_SIZE_22 0x22
+
+// 系统浮点数常量
+#define SYSTEM_FLOAT_MAX_SAFE_VALUE 0x7f7fffff3f800000
+
 #define SYSTEM_OFFSET_HANDLE_PARAM_11 0x11
 #define SYSTEM_OFFSET_HANDLE_PARAM_12 0x12
 #define SYSTEM_OFFSET_STACK_POINTER 0xc                              // 栈指针偏移量
@@ -10587,7 +10646,7 @@ unsigned long long * setup_thread_parameters(long long handle_param,unsigned lon
   system_buffer_allocation_result = allocate_temporary_buffer(system_string_input_pointer);
   *system_string_input_pointer = SYSTEM_CHAR_LOWERCASE_R65206573726150;
   *(unsigned int *)(system_string_input_pointer + 1) = 0x3a726f72;
-  *(unsigned short *)((long long)system_string_input_pointer + SYSTEM_OFFSET_STACK_POINTER) = 0x2720;
+  *(unsigned short *)((long long)system_string_input_pointer + SYSTEM_OFFSET_STACK_POINTER) = SYSTEM_MODULE_OFFSET_270;
   *(unsigned char *)((long long)system_string_input_pointer + SYSTEM_POINTER_OFFSET_E) = SYSTEM_ZERO_VALUE;
   system_maximum_stack_size = 0xe;
   system_initialization_result0 = -1;
@@ -10909,7 +10968,7 @@ section_processing_jump_label_133:
           system_string_input_pointer[1] = SYSTEM_CHAR_LOWERCASE_E646f6e;
           system_string_input_pointer[2] = SYSTEM_CHAR_LOWERCASE_T697720;
           system_string_input_pointer[3] = SYSTEM_CHAR_LOWERCASE_A6e2068;
-          system_string_input_pointer[4] = 0x2220656d;
+          system_string_input_pointer[4] = SYSTEM_BUFFER_SIZE_220656d;
           *(unsigned char *)(system_string_input_pointer + 5) = SYSTEM_ZERO_VALUE;
           system_maximum_stack_size = 0x14;
           system_thread_stack_pointer_variable = &system_global_thread_string_2;
@@ -11130,7 +11189,7 @@ section_processing_jump_label_135:
       system_string_input_pointer[1] = SYSTEM_CHAR_LOWERCASE_E646f6e;
       system_string_input_pointer[2] = SYSTEM_CHAR_LOWERCASE_T697720;
       system_string_input_pointer[3] = SYSTEM_CHAR_LOWERCASE_A6e2068;
-      system_string_input_pointer[4] = 0x2220656d;
+      system_string_input_pointer[4] = SYSTEM_BUFFER_SIZE_220656d;
       *(unsigned char *)(system_string_input_pointer + 5) = SYSTEM_ZERO_VALUE;
       system_maximum_stack_size = 0x14;
       system_thread_stack_pointer_variable = &system_global_thread_string_2;
@@ -13430,7 +13489,7 @@ section_processing_jump_label_155:
               system_string_length_counter = SYSTEM_ZERO_VALUE;
               if (((system_string_length_counter == 0) || (system_short_char_value = *(short *)(system_string_length_counter + system_string_length_counter * 2), system_string_length_counter = 0, system_short_char_value == SYSTEM_CHAR_SLASH)
 goto section_processing_jump_label_524;
-              if (system_short_char_value == 0x2e) break;
+              if (system_short_char_value == SYSTEM_MODULE_OFFSET_2E break;
               system_string_length_counter = system_string_length_counter + SYSTEM_DECREMENT_VALUE_1;
             }
             *(unsigned short *)(system_string_length_counter + system_string_length_counter * 2) = SYSTEM_ZERO_VALUE;
@@ -13546,7 +13605,7 @@ bool check_system_availability(void)
               system_string_length_counter = system_unaffected_register;
               if (((system_string_length_counter == 0) || (system_short_char_value = *(short *)(system_string_length_counter + system_string_length_counter * 2), system_short_char_value == SYSTEM_CHAR_SLASH)) ||
 goto section_processing_jump_label_526;
-              if (system_short_char_value == 0x2e) break;
+              if (system_short_char_value == SYSTEM_MODULE_OFFSET_2E break;
               system_string_length_counter = system_string_length_counter + SYSTEM_DECREMENT_VALUE_1;
             }
             *(short *)(system_string_length_counter + system_string_length_counter * 2) = system_short_char_value_zero;
@@ -13624,7 +13683,7 @@ bool validate_system_resources(void)
       system_string_length_counter = system_unaffected_register;
       if (((system_string_length_counter == 0) || (system_short_char_value = *(short *)(system_string_length_counter + system_string_length_counter * 2), system_short_char_value == SYSTEM_CHAR_SLASH)) ||
 goto section_processing_jump_label_528;
-      if (system_short_char_value == 0x2e) break;
+      if (system_short_char_value == SYSTEM_MODULE_OFFSET_2E break;
       system_string_length_counter = system_string_length_counter + SYSTEM_DECREMENT_VALUE_1;
     }
     *(short *)(system_string_length_counter + system_string_length_counter * 2) = (short)system_unaffected_register;
