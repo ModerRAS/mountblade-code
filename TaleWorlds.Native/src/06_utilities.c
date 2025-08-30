@@ -114,15 +114,15 @@ dataValue g_block_alloc_ptr;
 dataValue g_block_alloc_size;
 dataValue g_block_memory_alignment;
 dataValue g_block_flags;
-dataValue g_g_block_ref_count;
+dataValue g_block_ref_count;
 
 // 函数: dataValueValue g_release_memory_block;
 dataValue g_release_memory_block;
-dataValue g_g_block_release_list_ptr;
-dataValue g_g_block_release_size;
-dataValue g_g_block_release_offset;
-dataValue g_g_block_release_flags;
-dataValue g_g_block_release_reserved;
+dataValue g_block_release_list_ptr;
+dataValue g_block_release_size;
+dataValue g_block_release_offset;
+dataValue g_block_release_flags;
+dataValue g_block_release_reserved;
 
 // 函数: dataValueValue g_get_memory_block_size;
 dataValue g_get_memory_block_size;
@@ -45573,7 +45573,7 @@ void Unwind_180907790(void)
 void Unwind_1809077a0(void)
 
 {
-  _g_g_block_release_size = &threadLocalStorageCleanup;
+  _g_block_release_size = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80472,7 +80472,7 @@ void g_release_memory_block(void)
 void g_get_memory_block_size(void)
 
 {
-  _g_g_block_release_size = &threadLocalStorageCleanup;
+  _g_block_release_size = &threadLocalStorageCleanup;
   return;
 }
 
