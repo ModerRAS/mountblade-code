@@ -8008,8 +8008,8 @@ uint64_t NetworkValidateSocket(int64_t *network_socket_handle)
                 (int)((*(uint32_t *)(network_processor_index + NETWORK_SOCKET_BUFFER_OFFSET + socket_descriptor_value) ^ *(uint32_t *)(network_processor_index + NETWORK_PACKET_HEADER_SIZE + socket_descriptor_value) ^
                        *(uint32_t *)(network_processor_index + 4 + socket_descriptor_value) ^ *(uint32_t *)(network_processor_index + socket_descriptor_value)) &
                      (int)network_socket_handle[NETWORK_OPERATION_SUCCESS] - 1U);
-        pnetwork_error_detail = (int32_t *)(*network_socket_handle + network_server_address * 4);
-        network_loop_counter = *(int32_t *)(*network_socket_handle + network_server_address * 4);
+        pnetwork_error_detail = (int32_t *)(*network_socket_handle + network_server_address * NETWORK_MULTIPLY_SIZE_4);
+        network_loop_counter = *(int32_t *)(*network_socket_handle + network_server_address * NETWORK_MULTIPLY_SIZE_4);
         while (network_loop_counter != -NETWORK_OPERATION_SUCCESS) {
           pnetwork_error_detail = (int32_t *)(socket_descriptor_value + MODULE_STATUS_OFFSET + (longlong)network_loop_counter * SOCKET_RESPONSE_OFFSET);
           network_loop_counter = *pnetwork_error_detail;
