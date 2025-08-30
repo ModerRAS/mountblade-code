@@ -23155,7 +23155,7 @@ void InitializeSystemComponents(longlong handleIdentifier,longlong resourceIdent
   *(uint16_t *)(system_pointer_var + 1) = SYSTEM_CONFIG_VALUE_2A5F;
   *(uint8_t *)((longlong)system_pointer_var + 10) = 0;
   init_stack_param_60 = 10;
-  compare_result = CompareSystemBuffers(handleIdentifier + 0x2c0,&system_buffer_ptr_config_data);
+  compare_result = CompareSystemBuffers(handleIdentifier + SYSTEM_OFFSET_2c0,&system_buffer_ptr_config_data);
   if (-1 < compare_result) {
     system_buffer_ptr_small_buffer = &resourcePoolPointer;
     init_stack_uint_param_data = 0;

@@ -2217,26 +2217,26 @@ dataValue g_texture_upload_main_config;               // 纹理上传主配置
 dataValue g_texture_upload_mipmap_config;             // 纹理上传多级渐远纹理配置
 dataValue g_texture_upload_compression_config;        // 纹理上传压缩配置
 dataValue g_texture_upload_filtering_config;           // 纹理上传过滤配置
-dataValue texture_compression_config_format;
-dataValue texture_compression_config_quality;
-dataValue texture_compression_config_method;
-dataValue texture_compression_config;
-dataValue textureFilterConfigNearest;
-dataValue textureFilterConfigLinear;
-dataValue textureFilterConfigMipmap;
-dataValue textureFilterConfigAnisotropic;
-dataValue textureWrapConfigRepeat;
-dataValue textureWrapConfigClamp;
-dataValue textureWrapConfigMirror;
-dataValue textureWrapConfigBorder;
-dataValue meshVertexConfigPosition;
-dataValue meshVertexConfigNormal;
-dataValue meshVertexConfigUV;
-dataValue meshVertexConfigColor;
-dataValue meshIndexConfigTriangles;
-dataValue meshIndexConfigLines;
-dataValue meshIndexConfigPoints;
-dataValue meshIndexConfigPatches;
+dataValue g_texture_compression_config_format;      // 纹理压缩配置格式
+dataValue g_texture_compression_config_quality;      // 纹理压缩配置质量
+dataValue g_texture_compression_config_method;       // 纹理压缩配置方法
+dataValue g_texture_compression_config;              // 纹理压缩配置
+dataValue g_texture_filter_config_nearest;            // 纹理过滤配置最近邻
+dataValue g_texture_filter_config_linear;             // 纹理过滤配置线性
+dataValue g_texture_filter_config_mipmap;             // 纹理过滤配置多级渐远纹理
+dataValue g_texture_filter_config_anisotropic;        // 纹理过滤配置各向异性
+dataValue g_texture_wrap_config_repeat;               // 纹理包装配置重复
+dataValue g_texture_wrap_config_clamp;                // 纹理包装配置钳制
+dataValue g_texture_wrap_config_mirror;               // 纹理包装配置镜像
+dataValue g_texture_wrap_config_border;               // 纹理包装配置边框
+dataValue g_mesh_vertex_config_position;              // 网格顶点配置位置
+dataValue g_mesh_vertex_config_normal;                // 网格顶点配置法线
+dataValue g_mesh_vertex_config_uv;                    // 网格顶点配置UV
+dataValue g_mesh_vertex_config_color;                 // 网格顶点配置颜色
+dataValue g_mesh_index_config_triangles;              // 网格索引配置三角形
+dataValue g_mesh_index_config_lines;                  // 网格索引配置线条
+dataValue g_mesh_index_config_points;                 // 网格索引配置点
+dataValue g_mesh_index_config_patches;                // 网格索引配置补丁
 dataValue meshLayoutConfigInterleaved;
 dataValue meshLayoutConfigSeparated;
 dataValue meshLayoutConfigCompressed;
