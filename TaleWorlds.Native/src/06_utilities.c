@@ -29951,7 +29951,7 @@ void exceptionhandlercatchmemorybuffer(uint64 utility_resource_primary_handle,lo
   }
   *(ulonglong *)(utility_resource_buffer_handle + utility_pointer_data_offset_extended_extended_extended) = utility_validation_status;
   while( true ) {
-    utility_iteration_index = (utility_validation_status & UTILITY_MASK_FFFFFFFFFFFE0) + utility_pointer_data_offset_extended_extended_extended;
+    utility_iteration_index = (utility_validation_status & UTILITY_MASK_CLEAR_LOW_FIVE_BITS) + utility_pointer_data_offset_extended_extended_extended;
     if (utility_int64_min_value < utility_operation_status_result - utility_iteration_index) {
       utility_iteration_index = utility_operation_status_result;
     }
@@ -29993,7 +29993,7 @@ void exceptionhandlercatchsystembuffer(uint64 utility_resource_primary_handle,lo
   }
   *(ulonglong *)(utility_resource_buffer_handle + utility_pointer_data_offset_extended_extended_extended) = utility_system_status_value;
   while( true ) {
-    utility_system_flags_variable = (utility_system_status_value & UTILITY_MASK_FFFFFFFFFFFE0) + utility_pointer_data_offset_extended_extended_extended;
+    utility_system_flags_variable = (utility_system_status_value & UTILITY_MASK_CLEAR_LOW_FIVE_BITS) + utility_pointer_data_offset_extended_extended_extended;
     if (utility_int64_min_value < utility_iteration_index - utility_system_flags_variable) {
       utility_system_flags_variable = utility_iteration_index;
     }
@@ -30010,7 +30010,7 @@ void exceptionhandlercatchsystembuffer(uint64 utility_resource_primary_handle,lo
     utility_temp_long_storage = *(longlong *)(utility_temp_long_storage + utility_resource_offset_standard_primary_zero);
     utility_system_status_value = utility_validation_status;
   }
-  utility_iteration_index = *(longlong *)(utility_resource_buffer_handle + utility_field_primary_offset) - UTILITY_INTEGER_DECREMENT_ONE & UTILITY_MASK_FFFFFFFFFFFE0;
+  utility_iteration_index = *(longlong *)(utility_resource_buffer_handle + utility_field_primary_offset) - UTILITY_INTEGER_DECREMENT_ONE & UTILITY_MASK_CLEAR_LOW_FIVE_BITS;
   *(ulonglong *)(utility_resource_buffer_handle + utility_pointer_data_offset_extended_extended_extended) = utility_iteration_index;
   utility_temp_long_storage = utility_data_pointer_primary_extended_primary;
   if (utility_data_pointer_primary_extended != utility_zero) {
@@ -30020,7 +30020,7 @@ void exceptionhandlercatchsystembuffer(uint64 utility_resource_primary_handle,lo
       *(uint64 *)
        (*(longlong *)
          (utility_array_handle_pointer UTILITY_SIZE_MULTIPLIER_TRIPLE +
-         (((utility_iteration_index + utility_pointer_data_offset_extended_extended_extended & UTILITY_MASK_FFFFFFFFFFFE0) - **(longlong **)(utility_array_handle_pointer UTILITY_SIZE_MULTIPLIER_TRIPLE + utility_array_handle_pointer[utility_array_index_increment] * utility_memory_size_standard) >> utility_five_unit) +
+         (((utility_iteration_index + utility_pointer_data_offset_extended_extended_extended & UTILITY_MASK_CLEAR_LOW_FIVE_BITS) - **(longlong **)(utility_array_handle_pointer UTILITY_SIZE_MULTIPLIER_TRIPLE + utility_array_handle_pointer[utility_array_index_increment] * utility_memory_size_standard) >> utility_five_unit) +
           utility_array_handle_pointer[utility_array_index_increment] & *utility_array_handle_pointer - UTILITY_INTEGER_DECREMENT_ONE) * utility_memory_size_standard) + utility_pointer_size_offset) = utility_zero;
       utility_array_handle_pointer = *(longlong **)(utility_resource_buffer_handle + utility_data_start_offset_extended_extended);
       utility_array_handle_pointer[utility_array_index_increment] = utility_array_handle_pointer[utility_array_index_increment] - UTILITY_INTEGER_DECREMENT_ONE & *utility_array_handle_pointer - UTILITY_INTEGER_DECREMENT_ONE;
