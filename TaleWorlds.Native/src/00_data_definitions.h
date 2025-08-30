@@ -2255,7 +2255,7 @@ int initialize_video_subsystem(void)
   system_initialization_result = system_execution_function(resource_manager_10_initialization_function);
   return (system_initialization_result != 0) - 1;
 }
-int initialize_input_handle_paramr(void)
+int initialize_input_handler(void)
 {
   long long system_initialization_result;
   unsigned long long system_string_length;
@@ -2687,7 +2687,7 @@ int initialize_profiling_system(void)
   system_initialization_result = system_execution_function(resource_manager_46_init_function);
   return (system_initialization_result != 0) - 1;
 }
-int initialize_crash_handle_paramr(void)
+int initialize_crash_handler(void)
 {
   long long system_initialization_result;
   unsigned long long system_string_length;
