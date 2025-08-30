@@ -145,6 +145,12 @@
 // 62. 将utility_temp_resource_index替换为utility_resource_temp_index等资源索引变量名
 // 63. 将stack_float_48替换为utility_stack_float_parameter_48等浮点参数变量名
 // 64. 将stack_validation_security_buffer_60替换为utility_stack_security_buffer_60等安全缓冲区变量名
+// 101. 将0x213438替换为UTILITY_SYSTEM_TABLE_BASE等系统表基址常量
+// 102. 将0x121c0替换为UTILITY_RESOURCE_TABLE_OFFSET等资源表偏移量常量
+// 103. 将0x121e0替换为UTILITY_RESOURCE_DATA_OFFSET等资源数据偏移量常量
+// 104. 将0xffffffff00000000替换为UTILITY_MEMORY_MASK_HIGH等内存掩码常量
+// 105. 将-0x3ffffffb替换为UTILITY_HANDLE_CHECK_VALUE等句柄检查值常量
+// 106. 将-0x565dff77替换为UTILITY_RESOURCE_MASK_OFFSET等资源掩码偏移量常量
 // 65. 将utility_stack_working_buffer_30替换为utility_stack_working_buffer_primary_30等工作缓冲区变量名
 // 66. 将float_array_stack_348替换为utility_stack_float_array_buffer_348等浮点数组变量名
 // 67. 将float_array_stack_308替换为utility_stack_float_array_buffer_308等浮点数组变量名
@@ -38430,7 +38436,7 @@ void UtilityUnwind_180905540(uint64 resource_handle_identifier,longlong resource
   longlong utility_array_index;
   ulonglong system_status_code;
   
-  loop_counter_pointer = *(uint64 **)(*(longlong *)(resource_buffer + list_head_offset) + 0x213438);
+  loop_counter_pointer = *(uint64 **)(*(longlong *)(resource_buffer + list_head_offset) + UTILITY_SYSTEM_TABLE_BASE);
   if (loop_counter_pointer == (uint64 *)UTILITY_NULL_POINTER) {
     return;
   }
