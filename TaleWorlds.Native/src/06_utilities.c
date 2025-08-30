@@ -4656,7 +4656,7 @@ uint64 utility_query_resource_handle(longlong resource_handle_identifier) # иµДж
   if (utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] != UTILITY_NULL_RESULT) {
     utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] = utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] + UTILITY_POINTER_DECREMENT;
   }
-  resource_buffer = *(longlong *)(utility_stack_buffer_array[0] + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
+  resource_buffer = *(longlong *)(utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (resource_buffer != UTILITY_NULL_RESULT) {
     *(int *)(resource_buffer + UTILITY_RESOURCE_BUFFER_OFFSET_500) = *(int *)(resource_buffer + UTILITY_RESOURCE_BUFFER_OFFSET_500) + UTILITY_INTEGER_INCREMENT_VALUE;
     if ((*(char *)(resource_buffer + SYSTEM_OFFSET_INITIALIZED) != '\0') && (utility_iteration_counter = utilityGetSystemStatus(), (int)utility_iteration_counter != UTILITY_NULL_RESULT)) {
