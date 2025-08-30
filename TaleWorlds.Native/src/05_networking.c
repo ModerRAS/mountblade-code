@@ -3805,26 +3805,26 @@ NetworkInitializeSystemFunc NetworkInitializeSystem;
 
 void* g_network_session_identifier;
 void* g_network_client_identifier;
-void* g_network_data_ptr_buffer;
-void* g_network_connection_processor_timeout_duration_config_pointer;
-void* g_network_socket_timeout_config_pointer;
-void* g_network_connection_processor_pool_manager;
+void* g_network_data_buffer;
+void* g_network_connection_processor_timeout_config;
+void* g_network_socket_timeout_config;
+void* g_network_conn_pool_manager;
 void* g_network_socket_table;
 void* g_network_packet_queue;
-void* g_network_thread_manager;
-void* g_network_configuration;
-void* g_network_server_port_address_value;
-void* g_network_client_port_addr_current;
-void* g_network_connection_processor_handle;
-void* g_network_endpoint_address;
+void* g_network_thread_mgr;
+void* g_network_config;
+void* g_network_server_port_addr;
+void* g_network_client_port_addr;
+void* g_network_conn_processor_handle;
+void* g_network_endpoint;
 void* g_network_event_queue;
-void* g_network_receive_buffer;
-void* g_network_buffer_send_data;
-void* g_network_socket_object;
-void* g_network_address_object;
-void* g_network_protocol_object;
-void* g_network_security_object;
-void* g_network_timeout_pointer;
+void* g_network_recv_buffer;
+void* g_network_send_buffer;
+void* g_network_socket;
+void* g_network_address;
+void* g_network_protocol;
+void* g_network_security;
+void* g_network_timeout;
 void* g_network_packet_size_ptr;
 void* g_network_max_packet_size;
 void* g_network_compression_object;
@@ -3895,7 +3895,7 @@ NetworkMetrics* g_networkMetrics;
 // 网络诊断信息
 NetworkDiagnostics* g_networkDiagnostics;
 // 网络发送数据缓冲区指针
-void* g_network_buffer_send_data_ptr;
+void* g_network_send_buffer_ptr;
 // 网络接收数据缓冲区指针
 void* g_network_receive_data_buffer_ptr;
 // 网络数据缓冲区池
@@ -4347,7 +4347,7 @@ void network_send_data_chunk(uint64_t network_socket_handle, uint64_t network_bu
   uint32_t network_socket_id;            // 网络套接字ID
   int64_t network_data_index;            // 网络数据索引
   int64_t network_send_buffer_pointer;   // 网络发送缓冲区指针
-  uint64_t network_global_buffer;        // 网络全局缓冲区
+  uint64_t network_global_buf;           // 网络全局缓冲区
   network_operation_result = network_initialize_socket(NETWORK_STATUS_FAILURE, &network_ctx_array_ptr, network_buffer_size, network_timeout, NETWORK_STATUS_FAILURE);
   if (((network_operation_result == NETWORK_STATUS_FAILURE) && (network_operation_result = network_init_connection(&network_global_buffer, network_ctx_array_ptr), network_operation_result == NETWORK_STATUS_FAILURE)) &&
      (network_operation_result = network_validate_socket(network_socket_id, &network_processor_handler), network_operation_result == NETWORK_STATUS_FAILURE)) {
@@ -4972,9 +4972,9 @@ int32_t NetworkVerifySocketIntegrity(int64_t network_socket_handle, int64_t netw
 void NetworkHandleSocketData(int64_t network_socket_handle, uint64_t network_buffer_ptr, uint32_t network_buffer_size)
   networkProcessKeepAlive(network_buffer_ptr, network_buffer_size, &networkQosData, *(uint32_t *)(network_socket_handle + MODULE_STATUS_OFFSET), 
 int32_t NetworkProcessSocketInput(int64_t network_socket_handle, int64_t network_buffer_ptr, int32_t network_buffer_size)
-  network_operation_result = networkCopyData(network_buffer_ptr, network_buffer_size, &g_network_buffer_send_data);
+  network_operation_result = networkCopyData(network_buffer_ptr, network_buffer_size, &g_network_send_buffer);
 int32_t NetworkManageSocketOutput(int64_t network_socket_handle, int64_t network_buffer_ptr, int32_t network_buffer_size)
-  network_op_status = networkCopyData(network_buffer_ptr, network_buffer_size, &g_network_receive_buffer);
+  network_op_status = networkCopyData(network_buffer_ptr, network_buffer_size, &g_network_recv_buffer);
 int32_t NetworkControlSocketFlow(int64_t network_socket_handle, int64_t network_buffer_ptr, int32_t network_buffer_size)
   network_operation_result = networkCopyData(network_buffer_ptr, network_buffer_size, &network_session_config_data);
   network_op_status = networkCalculateChecksum(network_operation_result + network_buffer_ptr, network_buffer_size - network_operation_result, &network_encryption_key_main);
