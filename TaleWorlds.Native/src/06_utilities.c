@@ -11327,7 +11327,7 @@ void ProcessResourceOperation(longlong resource_handle_identifier,longlong resou
   uint64 *utility_return_pointer_primary;
   byte UTILITY_LOCAL_SECURITY_BUFFER [32];
   uint32 utility_loop_temp_counter;
-  char stackCharArray1c4 [4];
+  char utility_stack_char_array_small [4];
   resource_data *local_pointer;
   uint32 utility_loop_temp_counter;
   uint32 utility_loop_temp_counter;
@@ -11422,7 +11422,7 @@ void ProcessResourceOperation(longlong resource_handle_identifier,longlong resou
         }
         utility_operation_result_var = *(uint64 *)(*(longlong *)(resource_handle_identifier + 8) + RESOURCE_BUFFER_SIZE);
         utility_operation_status = (**(code **)*utility_return_pointer_primary)(utility_return_pointer_primary);
-        utility_temp_int_result = execute_data_operation(utility_operation_status,utility_operation_result_var,stackCharArray1c4);
+        utility_temp_int_result = execute_data_operation(utility_operation_status,utility_operation_result_var,utility_stack_char_array_small);
         if (utility_temp_int_result == 0) {
           if (stackCharArray1c4[0] != '\0') {
             utility_operation_result_var = systemQueryFunction();
@@ -13043,11 +13043,11 @@ ProcessResourceBatch(longlong *resource_handle_identifier,int resource_buffer,ui
 
 {
   uint32 *utility_operation_result;
-  byte iteration_counter;
-  uint iteration_counter;
+  byte iteration_counter_byte;
+  uint iteration_counter_uint;
   uint3 system_status_code;
-  uint32 validation_flag;
-  uint32 validation_flag;
+  uint32 validation_flag_primary;
+  uint32 validation_flag_secondary;
   uint systemFlagsData;
   int statusCounter;
   int utility_capacity;
