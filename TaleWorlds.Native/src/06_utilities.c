@@ -3618,7 +3618,7 @@ uint64 manage_resource_memoryBlock(longlong resource_handle_identifier,longlong 
   *(int *)(utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] + ERROR_CODE_INVALID_HANDLE) = *(int *)(utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] + ERROR_CODE_INVALID_HANDLE) + 1;
   if (*(int *)(utility_stack_buffer_array[0] + UTILITY_SYS_STATUS_OFFSET) + *(int *)(utility_stack_buffer_array[0] + UTILITY_SYSTEM_STATUS_OFFSET_2) +
       *(int *)(utility_stack_buffer_array[0] + ERROR_CODE_INVALID_HANDLE) == 1) {
-    utility_stack_buffer_array[0] = 0;
+    utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] = 0;
     utility_operation_status = utility_initialize_resource(utility_stack_buffer_array);
     if (utility_operation_status == 0) {
       utility_operation_status = utilityCreateResourceHandle(resource_buffer,*(uint64 *)(resource_buffer + 8),*(uint64 *)(resource_buffer + UTILITY_MEMORY_SIZE_OFFSET),
@@ -3686,7 +3686,7 @@ uint64 validate_memory_dataSize(longlong resource_handle_identifier,uint64 resou
   if (*(int *)(utility_stack_buffer_array[0] + UTILITY_SYS_STATUS_OFFSET) + *(int *)(utility_stack_buffer_array[0] + UTILITY_SYSTEM_STATUS_OFFSET_2) + utility_array_index != 0) {
     return 0;
   }
-  utility_stack_buffer_array[0] = 0;
+  utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] = 0;
   utility_array_index = utility_initialize_resource(utility_stack_buffer_array);
   if (utility_array_index == 0) {
     utility_array_index = utilityReleaseResourceHandle(resource_buffer,0);
@@ -3948,7 +3948,7 @@ uint64 resource_handle_identifier_resource_operation(longlong resource_handle_id
     else {
       utility_temp_stack_buffer[0] = utility_temp_stack_buffer[0] + -8;
     }
-    utility_stack_buffer_array[0] = 0;
+    utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] = 0;
     utility_operation_status = utilityProcessResourceData(utility_temp_stack_buffer[0],resource_handle_identifier + RESOURCE_HANDLE_OFFSET,utility_stack_buffer_array);
     if ((int)utility_operation_status == 0) {
       if (utility_stack_buffer_array[0] != 0) {
@@ -3984,7 +3984,7 @@ uint64 manage_resource_resource_handle_identifier(longlong resource_handle_ident
     else {
       utility_temp_stack_buffer[0] = utility_temp_stack_buffer[0] + -8;
     }
-    utility_stack_buffer_array[0] = 0;
+    utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] = 0;
     utility_operation_status = utilityProcessResourceData(utility_temp_stack_buffer[0],resource_handle_identifier + POINTER_DATA_OFFSET,utility_stack_buffer_array);
     if ((int)utility_operation_status == 0) {
       if (utility_stack_buffer_array[0] != 0) {
@@ -6383,7 +6383,7 @@ uint64 utilityValidateResourceTransaction(longlong resource_handle_identifier,lo
     *(uint32 *)(resource_data_buffer_initial_ptr + 100) = system_status_code;
     resource_data_buffer_initial_ptr = *(longlong *)(resource_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
     if ((*(int *)(resource_data_buffer_initial_ptr + UTILITY_SYS_STATUS_OFFSET1) != 0) || (*(int *)(resource_data_buffer_initial_ptr + UTILITY_SYS_STATUS_OFFSET2) != 0)) {
-      utility_stack_buffer_array[0] = 0;
+      utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] = 0;
       utilityPrepareResourceOperation(utility_stack_buffer_array);
       if (utility_stack_buffer_array[0] == *(longlong *)((longlong)*(int *)(resource_data_buffer_initial_ptr + SYSTEM_INDEX_OFFSET) * UTILITY_DOUBLE_WORD_SIZE + SYSTEM_RESOURCE_TABLE_BASE)) {
         validation_flag = utilityExecuteResourceOperation(resource_data_buffer_initial_ptr,resource_handle_identifier);
