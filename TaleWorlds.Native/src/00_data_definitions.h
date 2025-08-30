@@ -3156,7 +3156,7 @@ void WotsMainNativeCoreCLR(unsigned long long handle_param)
   thread_stack_size_max88 = SYSTEM_ZERO_VALUE;
   thread_stack_size_max80 = SYSTEM_ZERO_VALUE;
   thread_stack_size_max78 = SYSTEM_ZERO_VALUE;
-  thread_stack_size_max70 = 3;
+  thread_stack_size_max70 = SYSTEM_STACK_SIZE_MINIMUM;
   system_execution_function(&thread_stack_size_max88,&thread_stack_size_max68);
   system_execution_function(&thread_stack_size_max88,thread_stack_array_a8);
   if (MAX_THREAD_STACK_SIZE < thread_stack_size_max98) {
