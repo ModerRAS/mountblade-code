@@ -32,6 +32,7 @@
 
 // 最新美化内容（2025年8月30日最终批次特殊类型和栈变量名语义化美化工作完成）：
 // - 美化特殊无符号整数类型，将system_uint0x102_t替换为system_uint258_t等语义化类型
+// - 完成system_uint0x102_t类型的全面替换为system_uint258_t
 // - 美化栈变量名，将system_stack_array_184等替换为system_stack_array_context等语义化变量名
 // - 美化栈缓冲区变量名，将system_stack_buffer_460等替换为system_stack_buffer_temporary等语义化变量名
 // - 美化栈值变量名，将system_stack_value_112等替换为system_stack_value_temporary等语义化变量名
@@ -1402,8 +1403,8 @@ void* system_context_secondary_array[5];     // 次要系统上下文指针数�
 system_uint8_t system_init_status_primary;    // 主系统初始化状态
 uint8_t system_init_status_secondary_array[2]; // 次要系统初始化状态数组
 void* system_context_tertiary_array[0x10];      // 第三系统上下文指针数组
-// 系统上下文数据数组（替代重复的system_uint0x102_t类型声明）
-system_uint0x102_t system_context_data_array[0x10];  // 系统上下文数据数组
+// 系统上下文数据数组（替代重复的system_uint258_t类型声明）
+system_uint258_t system_context_data_array[0x10];  // 系统上下文数据数组
 // 系统初始化状态和上下文变量（替代重复的声明）
 uint8_t system_init_status_tertiary;         // 第三系统初始化状态
 char system_initialized_secondary;            // 次要系统初始化标志
@@ -2145,7 +2146,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -2877,7 +2878,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -4451,7 +4452,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -5035,7 +5036,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -5409,7 +5410,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -5441,7 +5442,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -5465,7 +5466,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -5489,7 +5490,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -5513,7 +5514,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -5537,7 +5538,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -8018,7 +8019,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -8050,7 +8051,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -8074,7 +8075,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -8498,7 +8499,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -9072,7 +9073,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -9096,7 +9097,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -9120,7 +9121,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -9144,7 +9145,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -9168,7 +9169,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -9192,7 +9193,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -9216,7 +9217,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -9240,7 +9241,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -9264,7 +9265,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -11188,7 +11189,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -11722,7 +11723,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -11746,7 +11747,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -12880,7 +12881,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -13467,7 +13468,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -13491,7 +13492,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -13515,7 +13516,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -13539,7 +13540,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -15213,7 +15214,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -16299,7 +16300,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -16391,7 +16392,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -16455,7 +16456,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -16479,7 +16480,7 @@ void InitializeSystemCore(void)
   void* register_r9_value;
   void* *system_stack_memory_pointer_primary;
   system_uint8_t *system_stack_memory_pointer_secondary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint8_t system_stack_buffer_main [SYSTEM_INIT_SIZE_ARRAY_EXTRA_LARGE];
   
   system_stack_memory_pointer_primary = &g_system_context;
@@ -39239,7 +39240,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
   longlong system_function_result;
   void* *system_stack_memory_pointer_primary;
   system_uint64_t *psystem_stack_uint_98;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   system_uint64_t system_stack_uint_index_secondary;
   system_uint8_t asystem_stack_uint_80 [72];
   
@@ -44993,7 +44994,7 @@ ulonglong InitializeSystemCore(system_uint64_t system_context_param,system_uint6
   system_uint64_t system_stack_uint_a8;
   void* *system_stack_memory_pointer_primary;
   void* *psystem_stack_uint_98;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   ulonglong system_stack_uint_index_secondary;
   void* *system_stack_context_quinary;
   longlong system_stack_long_78;
@@ -46529,7 +46530,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
   system_uint0x102_t system_stack_uint_b0;
   void* *psystem_stack_uint_a8;
   void* *system_stack_memory_pointer_primary;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   longlong system_stack_long_88;
   void* *system_stack_context_quinary;
   longlong system_stack_long_78;
@@ -50199,7 +50200,7 @@ float * InitializeSystemCore(float *system_context_param)
   float system_stack_float_bound_min_z;
   system_uint0x102_t system_stack_uint_9c;
   float *system_stack_float_pointer_98;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   longlong system_stack_long_88;
   system_uint64_t system_stack_uint_78;
   system_uint64_t system_stack_uint_70;
@@ -55952,7 +55953,7 @@ float * InitializeSystemCore(float *system_context_param)
   float system_stack_float_bound_min_z;
   system_uint0x102_t system_stack_uint_9c;
   float *system_stack_float_pointer_98;
-  system_uint0x102_t system_stack_value_primary;
+  system_uint258_t system_stack_value_primary;
   longlong system_stack_long_88;
   system_uint64_t system_stack_uint_80;
   system_uint64_t system_stack_uint_78;
