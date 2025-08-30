@@ -22818,8 +22818,8 @@ void networkSendDataPacket2(int64_t network_socket_handle, int64_t *network_buff
   int64_t *network_stack_context_pointer_large;
   uint64_t network_current_connections_zero;
   uint64_t network_stack_session_context;
-  uint64_t network_connection_processor_timeout8;
-  uint64_t network_connection_processor_timeout0;
+  uint64_t network_connection_processor_timeout_octal;
+  uint64_t network_connection_processor_timeout_primary;
   uint32_t network_stack_session_context;
   uint32_t network_stack_timeout_offset;
   uint32_t network_keepalive_intervalc;
@@ -22863,7 +22863,7 @@ void networkSendDataPacket2(int64_t network_socket_handle, int64_t *network_buff
   network_stack_buffer_size = NETWORK_OPERATION_FAILURE;
   network_stack_buffer_size = NETWORK_MAX_SIZE;
   network_stack_uint_paramc = NETWORK_OPERATION_FAILURE;
-  network_connection_processor_timeout8 = NETWORK_OPERATION_FAILURE;
+  network_connection_processor_timeout_octal = NETWORK_OPERATION_FAILURE;
   network_connection_processor_timeout0 = NETWORK_OPERATION_FAILURE;
   network_stack_session_context = NETWORK_MAX_SIZE;
   network_stack_timeout_offset = NETWORK_OPERATION_FAILURE;
