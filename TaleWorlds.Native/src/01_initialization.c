@@ -589,6 +589,29 @@
 #define SYSTEM_STRING_INFO 0x696e666f
 #define SYSTEM_STRING_CONFIG 0x636f6e666967
 
+// 系统初始化值语义化常量（2025年8月30日最终批次）
+#define SYSTEM_INIT_VALUE_ZERO 0
+#define SYSTEM_INIT_VALUE_ONE 1
+#define SYSTEM_INIT_VALUE_TWO 2
+#define SYSTEM_INIT_VALUE_NULL 0
+
+// 系统状态语义化常量
+#define SYSTEM_STATUS_DISABLED 0
+#define SYSTEM_STATUS_ENABLED 1
+#define SYSTEM_STATUS_READY 0
+#define SYSTEM_STATUS_BUSY 1
+
+// 系统空指针语义化常量
+#define SYSTEM_NULL_POINTER 0
+#define SYSTEM_NULL_HANDLE 0
+#define SYSTEM_NULL_SIZE 0
+
+// 系统数组索引语义化常量
+#define SYSTEM_ARRAY_INDEX_FIRST 0
+#define SYSTEM_ARRAY_INDEX_SECOND 1
+#define SYSTEM_ARRAY_INDEX_THIRD 2
+#define SYSTEM_ARRAY_INDEX_FUNCTION_POINTER 0
+
 // 本次美化内容（2025年8月30日）：
 // - 添加了SYSTEM_MEMORY_OFFSET_THREAD_STACK等系统偏移量语义化常量
 // - 添加了SYSTEM_MULTIPLIER_3548等系统乘数语义化常量
@@ -19031,15 +19054,15 @@ int InitializeGameSystem(longlong handleIdentifier,longlong resourceIdentifier)
   uint64_t ****init_system_quad_ptr_temp;
   uint64_t ***init_stack_quad_ptr;
   uint64_t *system_buffer_ptr_resource_pool;
-  longlong system_init_stack_temp_130;
-  uint32_t init_stack_uint_parameter_128;
+  longlong system_init_stack_temp_validation;
+  uint32_t init_stack_uint_parameter_max_size;
   uint64_t system_init_stack_param_primary;
   uint64_t system_init_stack_param_secondary;
   uint64_t system_init_stack_param_tertiary;
   uint64_t init_stack_uint_param_one_hundred_eight;
   uint64_t init_stack_uint_param_one_hundred;
-  uint64_t init_stack_uint_param_f8_hex;
-  uint64_t init_stack_uint_param_f0_hex;
+  uint64_t init_stack_uint_param_f8_offset;
+  uint64_t init_stack_uint_param_f0_offset;
   uint64_t init_stack_uint_param_buffer_flag;
   uint64_t init_stack_uint_param_data_offset;
   uint64_t init_stack_uint_param_buffer_size;
@@ -19308,14 +19331,14 @@ void InitializePhysicsSystem(void)
   uint32_t system_result_operation;
   float system_temp_float_value;
   float system_temp_float_value;
-  uint8_t system_local_buffer_698 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-  longlong init_stack_resource_data_678;
-  longlong init_stack_resource_config_670;
-  int init_stack_resource_status_668;
+  uint8_t system_local_buffer_function_table [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
+  longlong init_stack_resource_data_pointer;
+  longlong init_stack_resource_config_pointer;
+  int init_stack_resource_status_code;
   void *system_buffer_ptr_graphics_main;
   uint8_t *system_buffer_ptr_graphics_config;
-  uint init_stack_buffer_size8;
-  ulonglong init_stack_buffer_size0;
+  uint init_stack_buffer_size_small;
+  ulonglong init_stack_buffer_size_base;
   uint32_t init_stack_uint_param_5b8;
   longlong ***ppstack_system_memory_pointer;
   longlong **pstack_system_memory_pointer;
@@ -19325,8 +19348,8 @@ void InitializePhysicsSystem(void)
   uint32_t init_stack_uint_param_568;
   uint64_t init_stack_uint_param_560;
   void *system_buffer_ptr_graphics_context;
-  longlong init_stack_path_data_550;
-  int init_stack_path_index_548;
+  longlong init_stack_path_data_pointer;
+  int init_stack_path_index_value;
   uint32_t init_stack_uint_param_540;
   void *system_buffer_ptr_graphics_state;
   longlong init_stack_path_length_530;
