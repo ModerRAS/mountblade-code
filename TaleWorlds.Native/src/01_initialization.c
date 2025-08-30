@@ -37641,7 +37641,7 @@ void InitializeFontSystem(uint64_t handleIdentifier)
   uint64_t *system_ptr_value;
   uint32_t system_operation_result;
   uint8_t system_local_buffer_368 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-  void *system_buffer_ptr_348;
+  void *system_buffer_ptr_texture_aux;
   uint16_t system_local_buffer_338 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   uint16_t system_local_buffer_334 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   void *system_buffer_ptr_resource_pool_large;
@@ -37673,14 +37673,14 @@ void InitializeFontSystem(uint64_t handleIdentifier)
   uint64_t *system_buffer_ptr_data_transfer;
   uint64_t uintStack_250;
   uint32_t init_stack_uint_param_248;
-  void *system_buffer_ptr_240;
+  void *system_buffer_ptr_vertex_aux;
   longlong longStack_238;
   uint32_t init_stack_uint_param_228;
   uint64_t *system_buffer_ptr_data_config;
   uint64_t *system_buffer_ptr_system_info;
   uint64_t uinit_stack_nano_seconds_210;
   uint32_t init_stack_uint_parameter_208;
-  void *system_buffer_ptr_200;
+  void *system_buffer_ptr_network_aux;
   void *system_buffer_ptr_network_context;
   uint32_t init_stack_parameter_1e8;
   void *system_buffer_ptr_shader_context;
@@ -37689,7 +37689,7 @@ void InitializeFontSystem(uint64_t handleIdentifier)
   void *system_buffer_ptr_texture_data;
   void *system_buffer_ptr_graphics_context;
   uint32_t uintStack_1a8;
-  void *system_buffer_ptr_1a0;
+  void *system_buffer_ptr_graphics_aux;
   void *system_buffer_ptr_operation_handle;
   uint32_t uintStack_188;
   void *system_buffer_ptr_graphics_buffer;
