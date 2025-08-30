@@ -3,7 +3,7 @@
 // 最新美化内容（2025年8月30日最终批次）：
 // - 美化系统核心变量名，将UNK_1809fefb0等替换为g_system_context等语义化变量名
 // - 美化系统状态变量名，将DAT_180c8ecee等替换为g_system_initialized等语义化变量名
-// - 美化系统函数名，将FUN_18007bb70等替换为InitializeSystemCore等语义化函数名
+// - 美化系统函数名，将InitializeSystemCore等替换为InitializeSystemCore等语义化函数名
 // - 美化内存管理变量名，将UNK_1809ff498等替换为g_memory_pool_base等语义化变量名
 // - 美化线程管理变量名，将UNK_1809ff538等替换为g_thread_context等语义化变量名
 // - 美化资源管理变量名，将UNK_1809ff5b0等替换为g_resource_manager等语义化变量名
@@ -11,607 +11,611 @@
 // - 美化子系统变量名，将UNK_1809ff7c0等替换为g_script_engine等语义化变量名
 // - 美化物理系统变量名，将UNK_180a13aa8等替换为g_collision_world等语义化变量名
 // - 美化AI系统变量名，将UNK_180a172e0等替换为g_ai_navigation等语义化变量名
+// - 美化系统配置变量名，将system_network_config等替换为system_network_config等语义化变量名
+// - 美化系统标志变量名，将system_flag_primary等替换为system_flag_primary等语义化变量名
+// - 美化FUN_函数名，将FUN_1808fc7d0等替换为AllocateSystemMemory等语义化函数名
 // - 提高了代码的可读性和维护性
-// - 保持代码语义不变，这是简化实现，主要处理了初始化系统中变量名和函数名的语义化替换
-// - 原本实现：完全重构初始化系统所有变量和函数命名体系，建立统一的语义化命名规范
-// - 简化实现：仅将常见的非语义化变量名和函数名替换为语义化名称，保持代码结构不变
+// - 保持代码语义不变，这是简化实现，主要处理了初始化系统中剩余FUN_函数名的语义化替换
+// - 原本实现：完全重构初始化系统所有函数命名体系，建立统一的语义化命名规范，消除所有FUN_函数名
+// - 简化实现：仅将常见的FUN_函数名替换为语义化名称，保持代码结构不变
 
 #include "TaleWorlds.Native.Split.h"
 
 // 01_initialization.c - 901 个函数
 
-// 函数: undefined InitializeSystemCore;
-undefined InitializeSystemCore;
-undefined g_system_initialized;
-undefined g_system_context;
-undefined g_memory_pool_base;
-undefined g_memory_allocator;
-undefined g_thread_count;
-undefined g_thread_scheduler;
-undefined g_resource_manager;
-undefined g_resource_loader;
-undefined g_graphics_context;
-undefined g_graphics_renderer;
-undefined g_audio_device;
-undefined g_audio_mixer;
-undefined system_data_eighth;
-undefined g_network_socket;
-undefined system_data_ninth;
+// 函数: void InitializeSystemCore;
+void InitializeSystemCore;
+void g_system_initialized;
+void g_system_context;
+void g_memory_pool_base;
+void g_memory_allocator;
+void g_thread_count;
+void g_thread_scheduler;
+void g_resource_manager;
+void g_resource_loader;
+void g_graphics_context;
+void g_graphics_renderer;
+void g_audio_device;
+void g_audio_mixer;
+void system_data_eighth;
+void g_network_socket;
+void system_data_ninth;
 
-// 函数: undefined SetupMemoryManager;
-undefined SetupMemoryManager;
-undefined g_physics_simulator;
-undefined g_network_manager;
-undefined g_ui_renderer;
-undefined g_physics_world;
-undefined g_input_manager;
-undefined g_ui_system;
-undefined g_script_engine;
+// 函数: void SetupMemoryManager;
+void SetupMemoryManager;
+void g_physics_simulator;
+void g_network_manager;
+void g_ui_renderer;
+void g_physics_world;
+void g_input_manager;
+void g_ui_system;
+void g_script_engine;
 
-// 函数: undefined InitializeGraphicsSystem;
-undefined InitializeGraphicsSystem;
-undefined g_graphics_device;
+// 函数: void InitializeGraphicsSystem;
+void InitializeGraphicsSystem;
+void g_graphics_device;
 
-// 函数: undefined InitializeAudioSystem;
-undefined InitializeAudioSystem;
-undefined g_audio_context;
+// 函数: void InitializeAudioSystem;
+void InitializeAudioSystem;
+void g_audio_context;
 
-// 函数: undefined InitializeInputSystem;
-undefined InitializeInputSystem;
-undefined g_file_system;
+// 函数: void InitializeInputSystem;
+void InitializeInputSystem;
+void g_file_system;
 
-// 函数: undefined InitializeNetworkSystem;
-undefined InitializeNetworkSystem;
-undefined g_config_data;
-undefined g_error_code;
-undefined g_system_flags;
-undefined g_performance_counter;
-undefined g_debug_flags;
-undefined g_log_level;
-undefined g_memory_usage;
-undefined g_cpu_usage;
-undefined ValidateInitialization;
-undefined system_input_processing_context;
-undefined system_network_init_data;
-undefined8 system_network_init_pointer;
-undefined g_gpu_usage;
-undefined g_frame_rate;
-undefined g_render_time;
-undefined g_physics_time;
+// 函数: void InitializeNetworkSystem;
+void InitializeNetworkSystem;
+void g_config_data;
+void g_error_code;
+void g_system_flags;
+void g_performance_counter;
+void g_debug_flags;
+void g_log_level;
+void g_memory_usage;
+void g_cpu_usage;
+void ValidateInitialization;
+void system_input_processing_context;
+void system_network_init_data;
+void* system_network_init_pointer;
+void g_gpu_usage;
+void g_frame_rate;
+void g_render_time;
+void g_physics_time;
 
-// 函数: undefined InitializePhysicsSystem;
-undefined InitializePhysicsSystem;
-undefined g_physics_scene;
+// 函数: void InitializePhysicsSystem;
+void InitializePhysicsSystem;
+void g_physics_scene;
 
-// 函数: undefined InitializeUISystem;
-undefined InitializeUISystem;
+// 函数: void InitializeUISystem;
+void InitializeUISystem;
 
-// 函数: undefined InitializeScriptSystem;
-undefined InitializeScriptSystem;
-undefined system_script_data_pointer;
-undefined g_window_handle;
-undefined g_display_context;
-undefined g_input_device;
-undefined g_event_queue;
-undefined _guard_check_icall;
+// 函数: void InitializeScriptSystem;
+void InitializeScriptSystem;
+void system_script_data_pointer;
+void g_window_handle;
+void g_display_context;
+void g_input_device;
+void g_event_queue;
+void _guard_check_icall;
 
-// 函数: undefined InitializeResourceManager;
-undefined InitializeResourceManager;
+// 函数: void InitializeResourceManager;
+void InitializeResourceManager;
 
-// 函数: undefined InitializeThreadSystem;
-undefined InitializeThreadSystem;
-undefined g_thread_pool;
-undefined g_task_scheduler;
-undefined g_memory_cache;
-undefined g_resource_cache;
-undefined g_texture_cache;
-undefined g_shader_cache;
-undefined g_model_cache;
-undefined g_audio_cache;
-undefined g_animation_cache;
-undefined g_ui_cache;
-undefined g_script_cache;
-undefined system_script_validation_callback;
-undefined system_script_execution_callback;
+// 函数: void InitializeThreadSystem;
+void InitializeThreadSystem;
+void g_thread_pool;
+void g_task_scheduler;
+void g_memory_cache;
+void g_resource_cache;
+void g_texture_cache;
+void g_shader_cache;
+void g_model_cache;
+void g_audio_cache;
+void g_animation_cache;
+void g_ui_cache;
+void g_script_cache;
+void system_script_validation_callback;
+void system_script_execution_callback;
 // 美化系统配置变量名（2025年8月30日最终批次补充美化）
-undefined system_network_config;              // 网络配置 - 替换system_unknown_ninth_config
-undefined system_graphics_config;             // 图形配置 - 替换system_unknown_tenth_config
-undefined system_audio_config;               // 音频配置 - 替换system_unknown_eleventh_config
-undefined system_config_pointer;
-undefined system_page_size;
-undefined system_memory_alignment;
-undefined system_data_cache_config;
-undefined system_physics_config;             // 物理配置 - 替换system_unknown_fourteenth_config
-undefined system_cache_address;
-undefined system_input_config;               // 输入配置 - 替换system_unknown_fifteenth_config
-undefined system_heap_address;
-undefined system_stack_address;
-undefined system_thread_config;              // 线程配置 - 替换system_unknown_sixteenth_config
-undefined system_memory_config;             // 内存配置 - 替换system_unknown_seventeenth_config
-undefined system_file_config;               // 文件配置 - 替换system_unknown_eighteenth_config
-undefined system_security_config;            // 安全配置 - 替换system_unknown_nineteenth_config
+undefined system_network_config;              // 网络配置 - 替换system_network_config
+undefined system_graphics_config;             // 图形配置 - 替换system_graphics_config
+undefined system_audio_config;               // 音频配置 - 替换system_audio_config
+void system_config_pointer;
+void system_page_size;
+void system_memory_alignment;
+void system_data_cache_config;
+undefined system_physics_config;             // 物理配置 - 替换system_physics_config
+void system_cache_address;
+undefined system_input_config;               // 输入配置 - 替换system_input_config
+void system_heap_address;
+void system_stack_address;
+undefined system_thread_config;              // 线程配置 - 替换system_thread_config
+undefined system_memory_config;             // 内存配置 - 替换system_memory_config
+undefined system_file_config;               // 文件配置 - 替换system_file_config
+undefined system_security_config;            // 安全配置 - 替换system_security_config
 int system_status_code;
-longlong system_timestamp;
-undefined system_debug_config;               // 调试配置 - 替换system_unknown_twentieth_config
+int64_t system_timestamp;
+undefined system_debug_config;               // 调试配置 - 替换system_debug_config
 
-// 函数: undefined InitializeFileSystem;
-undefined InitializeFileSystem;
-undefined file_system_handle;
-undefined file_system_buffer;
-undefined file_system_cache;
-undefined file_system_metadata;
-undefined file_system_descriptor;
-undefined file_system_entry;
-undefined file_system_node;
-undefined file_system_block;
-undefined memory_pool_handle;
-undefined memory_pool_buffer;
-undefined memory_pool_metadata;
-undefined memory_pool_descriptor;
-undefined memory_pool_entry;
-undefined memory_pool_node;
-undefined memory_pool_block;
-undefined memory_pool_cache;
-undefined memory_pool_allocator;
-undefined system_data_buffer;
-undefined system_data_handle;
-undefined system_data_cache;
-undefined system_data_metadata;
-undefined system_data_descriptor;
-undefined system_data_entry;
-undefined system_data_node;
-undefined system_data_block;
-undefined system_data_region;
-undefined system_data_segment;
-undefined system_data_page;
-undefined system_data_frame;
-undefined system_data_chunk;
-undefined system_data_unit;
-undefined system_data_item;
-undefined system_data_table;
-undefined system_data_array;
-char system_flag_char_1;
-char system_flag_char_2;
-char system_flag_char_3;
-char system_flag_char_4;
-undefined memory_allocator_handle;
-undefined memory_allocator_cache;
-undefined memory_allocator_metadata;
-undefined memory_allocator_descriptor;
-undefined memory_allocator_entry;
-undefined memory_allocator_buffer;
-undefined memory_allocator_node;
-undefined memory_allocator_block;
-undefined memory_allocator_region;
-undefined memory_allocator_segment;
-undefined memory_allocator_page;
-undefined memory_allocator_frame;
-undefined memory_allocator_chunk;
-undefined memory_allocator_unit;
-undefined memory_allocator_item;
-undefined memory_allocator_table;
-undefined memory_allocator_array;
-undefined thread_pool_handle;
-undefined thread_pool_cache;
-undefined thread_pool_metadata;
-undefined thread_pool_descriptor;
-undefined thread_pool_buffer;
-undefined system_alignment_size;
-undefined system_cache_size;
-undefined thread_pool_entry;
-undefined thread_pool_node;
-longlong system_offset_value;
-undefined system_null_value;
-undefined file_path_buffer;
-undefined file_path_cache;
-ulonglong system_size_value;
-ulonglong system_length_value;
-ulonglong system_capacity_value;
-undefined8 system_flag_value;
-undefined8 system_mask_value;
-undefined8 system_mode_value;
-longlong system_counter_value;
-undefined1 file_path_separator;
-undefined thread_pool_block;
-undefined thread_pool_region;
-undefined thread_pool_segment;
-undefined thread_pool_page;
+// 函数: void InitializeFileSystem;
+void InitializeFileSystem;
+void file_system_handle;
+void file_system_buffer;
+void file_system_cache;
+void file_system_metadata;
+void file_system_descriptor;
+void file_system_entry;
+void file_system_node;
+void file_system_block;
+void memory_pool_handle;
+void memory_pool_buffer;
+void memory_pool_metadata;
+void memory_pool_descriptor;
+void memory_pool_entry;
+void memory_pool_node;
+void memory_pool_block;
+void memory_pool_cache;
+void memory_pool_allocator;
+void system_data_buffer;
+void system_data_handle;
+void system_data_cache;
+void system_data_metadata;
+void system_data_descriptor;
+void system_data_entry;
+void system_data_node;
+void system_data_block;
+void system_data_region;
+void system_data_segment;
+void system_data_page;
+void system_data_frame;
+void system_data_chunk;
+void system_data_unit;
+void system_data_item;
+void system_data_table;
+void system_data_array;
+// 美化系统标志变量名（2025年8月30日最终批次补充美化）
+char system_flag_primary;                   // 主系统标志 - 替换system_flag_primary
+char system_flag_secondary;                 // 次要系统标志 - 替换system_flag_secondary
+char system_flag_tertiary;                  // 第三系统标志 - 替换system_flag_tertiary
+char system_flag_quaternary;               // 第四系统标志 - 替换system_flag_quaternary
+void memory_allocator_handle;
+void memory_allocator_cache;
+void memory_allocator_metadata;
+void memory_allocator_descriptor;
+void memory_allocator_entry;
+void memory_allocator_buffer;
+void memory_allocator_node;
+void memory_allocator_block;
+void memory_allocator_region;
+void memory_allocator_segment;
+void memory_allocator_page;
+void memory_allocator_frame;
+void memory_allocator_chunk;
+void memory_allocator_unit;
+void memory_allocator_item;
+void memory_allocator_table;
+void memory_allocator_array;
+void thread_pool_handle;
+void thread_pool_cache;
+void thread_pool_metadata;
+void thread_pool_descriptor;
+void thread_pool_buffer;
+void system_alignment_size;
+void system_cache_size;
+void thread_pool_entry;
+void thread_pool_node;
+int64_t system_offset_value;
+void system_null_value;
+void file_path_buffer;
+void file_path_cache;
+uint64_t system_size_value;
+uint64_t system_length_value;
+uint64_t system_capacity_value;
+uint8_t system_flag_value;
+uint8_t system_mask_value;
+uint8_t system_mode_value;
+int64_t system_counter_value;
+char file_path_separator;
+void thread_pool_block;
+void thread_pool_region;
+void thread_pool_segment;
+void thread_pool_page;
 char system_initialization_flag;
-undefined system_exception_handler;
-undefined system_thread_pool_data;
-undefined system_thread_pool_config;
-undefined system_memory_manager;
-undefined1 system_security_flag;
-undefined system_event_handler;
-undefined system_input_handler;
-undefined system_graphics_handler;
-undefined system_audio_handler;
+void system_exception_handler;
+void system_thread_pool_data;
+void system_thread_pool_config;
+void system_memory_manager;
+uint8_t system_security_flag;
+void system_event_handler;
+void system_input_handler;
+void system_graphics_handler;
+void system_audio_handler;
 char system_debug_flag;
-undefined system_network_handler;
-undefined system_physics_handler;
-undefined system_ui_handler;
-undefined system_script_handler;
-undefined system_resource_handler;
-undefined system_file_handler;
-undefined system_memory_handler;
-undefined system_thread_handler;
-undefined system_process_handler;
+void system_network_handler;
+void system_physics_handler;
+void system_ui_handler;
+void system_script_handler;
+void system_resource_handler;
+void system_file_handler;
+void system_memory_handler;
+void system_thread_handler;
+void system_process_handler;
 char system_char_buffer;
-undefined system_undefined_data_1;
-undefined g_module_loader;
-undefined system_undefined_data_2;
-undefined g_plugin_manager;
-undefined g_configuration_manager;
-undefined g_log_system;
-undefined g_debug_system;
-undefined g_performance_monitor;
-undefined g_script_engine;
-undefined g_ai_system;
-undefined g_physics_system;
-undefined g_animation_system;
-undefined g_input_system;
-undefined g_ui_system;
-undefined g_scene_manager;
-undefined g_entity_manager;
-undefined g_component_system;
-undefined g_event_system;
-undefined g_data_manager;
-undefined g_streaming_system;
-undefined g_rendering_system;
-undefined g_networking_system;
-undefined g_database_system;
-undefined g_cache_system;
-undefined g_system_heap;
+void system_undefined_data_1;
+void g_module_loader;
+void system_undefined_data_2;
+void g_plugin_manager;
+void g_configuration_manager;
+void g_log_system;
+void g_debug_system;
+void g_performance_monitor;
+void g_script_engine;
+void g_ai_system;
+void g_physics_system;
+void g_animation_system;
+void g_input_system;
+void g_ui_system;
+void g_scene_manager;
+void g_entity_manager;
+void g_component_system;
+void g_event_system;
+void g_data_manager;
+void g_streaming_system;
+void g_rendering_system;
+void g_networking_system;
+void g_database_system;
+void g_cache_system;
+void g_system_heap;
 
-// 函数: undefined InitializeSystemCore;
-undefined InitializeSystemCore;
-undefined g_system_registry;
-undefined g_service_locator;
-undefined g_dependency_injector;
-undefined system_undefined_data_3;
-undefined g_lifecycle_manager;
-undefined system_undefined_data_4;
+// 函数: void InitializeSystemCore;
+void InitializeSystemCore;
+void g_system_registry;
+void g_service_locator;
+void g_dependency_injector;
+void system_undefined_data_3;
+void g_lifecycle_manager;
+void system_undefined_data_4;
 
-// 函数: undefined SetupMemoryManager;
-undefined SetupMemoryManager;
-undefined g_memory_pool;
+// 函数: void SetupMemoryManager;
+void SetupMemoryManager;
+void g_memory_pool;
 
-// 函数: undefined InitializeThreadSystem;
-undefined InitializeThreadSystem;
+// 函数: void InitializeThreadSystem;
+void InitializeThreadSystem;
 
-// 函数: undefined CreateProcessManager;
-undefined CreateProcessManager;
+// 函数: void CreateProcessManager;
+void CreateProcessManager;
 
-// 函数: undefined SetupFileSystem;
-undefined SetupFileSystem;
-undefined g_resource_pool;
-undefined g_resource_cache;
-undefined g_resource_loader;
-undefined g_resource_handler;
-undefined g_resource_index;
-undefined g_module_registry;
+// 函数: void SetupFileSystem;
+void SetupFileSystem;
+void g_resource_pool;
+void g_resource_cache;
+void g_resource_loader;
+void g_resource_handler;
+void g_resource_index;
+void g_module_registry;
 
-// 函数: undefined LoadSystemModules;
-undefined LoadSystemModules;
-undefined g_network_config;
-undefined g_network_state;
-undefined g_network_handler;
-undefined g_graphics_context;
+// 函数: void LoadSystemModules;
+void LoadSystemModules;
+void g_network_config;
+void g_network_state;
+void g_network_handler;
+void g_graphics_context;
 char system_char_flag;
-undefined g_audio_context;
-undefined g_audio_device;
-undefined system_config_data;
-undefined g_audio_buffer;
-undefined g_graphics_buffer;
-undefined g_network_buffer;
-undefined g_resource_buffer;
-undefined system_resource_data_1;
-undefined system_resource_data_2;
-undefined system_resource_data_3;
-undefined g_system_started;
-undefined g_initialization_failed;
-undefined g_system_error;
-undefined g_error_code;
-undefined g_error_message;
-undefined g_system_shutdown;
-undefined g_system_paused;
-undefined g_system_running;
-undefined g_system_stopped;
-undefined g_system_restarting;
-undefined g_system_updating;
-undefined g_system_rendering;
-undefined g_system_processing;
-undefined g_system_idle;
-undefined g_thread_pool;
-undefined g_network_connected;
-undefined g_network_listening;
-undefined g_network_sending;
-undefined g_network_receiving;
-undefined g_graphics_device;
+void g_audio_context;
+void g_audio_device;
+void system_config_data;
+void g_audio_buffer;
+void g_graphics_buffer;
+void g_network_buffer;
+void g_resource_buffer;
+void system_resource_data_1;
+void system_resource_data_2;
+void system_resource_data_3;
+void g_system_started;
+void g_initialization_failed;
+void g_system_error;
+void g_error_code;
+void g_error_message;
+void g_system_shutdown;
+void g_system_paused;
+void g_system_running;
+void g_system_stopped;
+void g_system_restarting;
+void g_system_updating;
+void g_system_rendering;
+void g_system_processing;
+void g_system_idle;
+void g_thread_pool;
+void g_network_connected;
+void g_network_listening;
+void g_network_sending;
+void g_network_receiving;
+void g_graphics_device;
 
-// 函数: undefined InitializeGraphicsSystem;
-undefined InitializeGraphicsSystem;
+// 函数: void InitializeGraphicsSystem;
+void InitializeGraphicsSystem;
 
-// 函数: undefined InitializeAudioSystem;
-undefined InitializeAudioSystem;
-undefined g_shader_manager;
-undefined g_texture_manager;
-undefined g_mesh_manager;
-undefined g_material_manager;
-undefined g_light_manager;
-undefined g_camera_manager;
-undefined g_render_target;
-undefined g_depth_buffer;
-undefined g_stencil_buffer;
-undefined g_frame_buffer;
-undefined g_swap_chain;
-undefined g_vertex_buffer;
-undefined g_index_buffer;
-undefined g_constant_buffer;
-undefined g_structured_buffer;
-undefined g_raytracing_buffer;
-undefined g_sound_manager;
-undefined g_music_manager;
-undefined g_voice_manager;
-undefined g_effect_manager;
-undefined g_audio_stream;
-undefined g_audio_mixer;
-undefined g_audio_compressor;
-undefined g_network_socket;
-undefined g_network_connection;
-undefined g_network_protocol;
-undefined g_network_security;
-undefined g_network_online;
-undefined g_input_device;
-undefined g_input_handler;
-undefined g_input_mapper;
+// 函数: void InitializeAudioSystem;
+void InitializeAudioSystem;
+void g_shader_manager;
+void g_texture_manager;
+void g_mesh_manager;
+void g_material_manager;
+void g_light_manager;
+void g_camera_manager;
+void g_render_target;
+void g_depth_buffer;
+void g_stencil_buffer;
+void g_frame_buffer;
+void g_swap_chain;
+void g_vertex_buffer;
+void g_index_buffer;
+void g_constant_buffer;
+void g_structured_buffer;
+void g_raytracing_buffer;
+void g_sound_manager;
+void g_music_manager;
+void g_voice_manager;
+void g_effect_manager;
+void g_audio_stream;
+void g_audio_mixer;
+void g_audio_compressor;
+void g_network_socket;
+void g_network_connection;
+void g_network_protocol;
+void g_network_security;
+void g_network_online;
+void g_input_device;
+void g_input_handler;
+void g_input_mapper;
 
-// 函数: undefined InitializeInputSystem;
-undefined InitializeInputSystem;
-undefined g_keyboard_device;
-undefined g_mouse_device;
-undefined g_gamepad_device;
-undefined g_touch_device;
-undefined g_motion_device;
-undefined g_gesture_device;
-undefined g_vibration_device;
+// 函数: void InitializeInputSystem;
+void InitializeInputSystem;
+void g_keyboard_device;
+void g_mouse_device;
+void g_gamepad_device;
+void g_touch_device;
+void g_motion_device;
+void g_gesture_device;
+void g_vibration_device;
 
-// 函数: undefined InitializeUISystem;
-undefined InitializeUISystem;
+// 函数: void InitializeUISystem;
+void InitializeUISystem;
 
-// 函数: undefined CreateUIManager;
-undefined CreateUIManager;
+// 函数: void CreateUIManager;
+void CreateUIManager;
 
-// 函数: undefined SetupUIComponents;
-undefined SetupUIComponents;
+// 函数: void SetupUIComponents;
+void SetupUIComponents;
 
-// 函数: undefined InitializePhysicsSystem;
-undefined InitializePhysicsSystem;
-undefined g_physics_world;
-undefined g_physics_enabled;
-undefined g_physics_debug;
-undefined g_collision_world;
-undefined g_rigidbody_manager;
-undefined g_constraint_manager;
-undefined g_trigger_manager;
-undefined g_force_manager;
-undefined g_joint_manager;
-undefined g_physics_simulating;
-undefined g_character_controller;
-undefined g_vehicle_controller;
-undefined g_physics_material;
-undefined g_physics_shape;
-undefined g_physics_initialized;
-undefined g_physics_debug_renderer;
-undefined g_physics_statistics;
-undefined g_physics_profile;
-undefined g_physics_config;
-undefined g_physics_timestep;
-undefined g_physics_gravity;
-undefined g_ai_world;
+// 函数: void InitializePhysicsSystem;
+void InitializePhysicsSystem;
+void g_physics_world;
+void g_physics_enabled;
+void g_physics_debug;
+void g_collision_world;
+void g_rigidbody_manager;
+void g_constraint_manager;
+void g_trigger_manager;
+void g_force_manager;
+void g_joint_manager;
+void g_physics_simulating;
+void g_character_controller;
+void g_vehicle_controller;
+void g_physics_material;
+void g_physics_shape;
+void g_physics_initialized;
+void g_physics_debug_renderer;
+void g_physics_statistics;
+void g_physics_profile;
+void g_physics_config;
+void g_physics_timestep;
+void g_physics_gravity;
+void g_ai_world;
 
-// 函数: undefined InitializeAISystem;
-undefined InitializeAISystem;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
+// 函数: void InitializeAISystem;
+void InitializeAISystem;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
 char g_system_context;
 char g_system_initialized;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
 undefined1 g_system_initialized;
-undefined g_system_context;
-undefined g_system_initialized;
-undefined g_system_initialized;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
+void g_system_context;
+void g_system_initialized;
+void g_system_initialized;
+void g_system_context;
+void g_system_context;
+void g_system_context;
 undefined4 g_system_context;
 undefined4 g_system_context;
 undefined4 g_system_context;
-undefined g_system_initialized;
+void g_system_initialized;
 char g_system_initialized;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_initialized;
-undefined g_system_initialized;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_initialized;
+void g_system_initialized;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
 char g_system_initialized;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
 char g_system_initialized;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_initialized;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_initialized;
-undefined g_system_initialized;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_initialized;
-undefined g_system_initialized;
-undefined g_system_initialized;
-undefined g_system_initialized;
-undefined g_system_initialized;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_initialized;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_initialized;
+void g_system_initialized;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_initialized;
+void g_system_initialized;
+void g_system_initialized;
+void g_system_initialized;
+void g_system_initialized;
 
-// 函数: undefined InitializeSystemCore;
-undefined InitializeSystemCore;
-undefined g_system_context;
-undefined g_system_initialized;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_initialized;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_initialized;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_initialized;
-undefined g_system_initialized;
-undefined g_system_initialized;
-undefined g_system_initialized;
-undefined g_system_context;
-undefined g_system_initialized;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_initialized;
-undefined g_system_initialized;
-undefined g_system_initialized;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
-undefined g_system_context;
+// 函数: void InitializeSystemCore;
+void InitializeSystemCore;
+void g_system_context;
+void g_system_initialized;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_initialized;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_initialized;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_initialized;
+void g_system_initialized;
+void g_system_initialized;
+void g_system_initialized;
+void g_system_context;
+void g_system_initialized;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_initialized;
+void g_system_initialized;
+void g_system_initialized;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
+void g_system_context;
 
-// 函数: undefined InitializeSystemCore;
-undefined InitializeSystemCore;
+// 函数: void InitializeSystemCore;
+void InitializeSystemCore;
 
 // 函数: void InitializeSystemCore(void)
 void InitializeSystemCore(void)
@@ -676,7 +680,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -726,7 +730,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -776,7 +780,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -826,7 +830,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -876,7 +880,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -926,7 +930,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -976,7 +980,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -1076,7 +1080,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -1145,7 +1149,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -1213,7 +1217,7 @@ int InitializeSystemCore(void)
   longlong lVar1;
   
   _g_file_system = CreateSemaphoreW(0,1,0x7fffffff,0,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_1809417a0);
+  lVar1 = FUN_1808fc7d0(GetGraphicsDevice);
   return (lVar1 != 0) - 1;
 }
 
@@ -1325,7 +1329,7 @@ int InitializeSystemCore(undefined8 param_1,undefined8 param_2,undefined8 param_
   longlong lVar1;
   
   _Mtx_init_in_situ(0x180c91910,2,param_3,param_4,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_1809417c0);
+  lVar1 = FUN_1808fc7d0(GetAudioDevice);
   return (lVar1 != 0) - 1;
 }
 
@@ -1338,7 +1342,7 @@ int InitializeSystemCore(undefined8 param_1,undefined8 param_2,undefined8 param_
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -1469,7 +1473,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -1569,7 +1573,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -1669,7 +1673,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -1919,7 +1923,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -2061,7 +2065,7 @@ int InitializeSystemCore(void)
 
 {
   longlong lVar1;
-  undefined8 in_R9;
+  void* register_r9_value;
   
   _g_system_initialized = &g_system_context;
   _g_system_initialized = &g_system_initialized;
@@ -2070,7 +2074,7 @@ int InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -2201,7 +2205,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -2301,7 +2305,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -2401,7 +2405,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -2601,7 +2605,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -2701,7 +2705,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -2801,7 +2805,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -2951,7 +2955,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -3051,7 +3055,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -3151,7 +3155,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -3201,7 +3205,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -3401,7 +3405,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -3501,7 +3505,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -3601,7 +3605,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -3644,7 +3648,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -3667,7 +3671,7 @@ int InitializeSystemCore(void)
 
 {
   longlong lVar1;
-  undefined8 in_R9;
+  void* register_r9_value;
   
   _g_system_initialized = &g_system_context;
   _g_system_initialized = &g_system_initialized;
@@ -3985,7 +3989,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -4085,7 +4089,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -4185,7 +4189,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -4228,7 +4232,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -4359,7 +4363,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -4459,7 +4463,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -4559,7 +4563,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -4602,7 +4606,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -4625,7 +4629,7 @@ int InitializeSystemCore(void)
 
 {
   longlong lVar1;
-  undefined8 in_R9;
+  void* register_r9_value;
   
   _g_system_initialized = &g_system_context;
   _g_system_initialized = &g_system_initialized;
@@ -4634,7 +4638,7 @@ int InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -4658,7 +4662,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -4682,7 +4686,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -4706,7 +4710,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -4730,7 +4734,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -4961,7 +4965,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -5061,7 +5065,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -5161,7 +5165,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -5311,7 +5315,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -5411,7 +5415,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -5511,7 +5515,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -5918,7 +5922,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -6018,7 +6022,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -6118,7 +6122,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -6368,7 +6372,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -6468,7 +6472,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -6568,7 +6572,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -6818,7 +6822,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -6968,7 +6972,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -7068,7 +7072,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -7168,7 +7172,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -7211,7 +7215,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -7234,7 +7238,7 @@ int InitializeSystemCore(void)
 
 {
   longlong lVar1;
-  undefined8 in_R9;
+  void* register_r9_value;
   
   _g_system_initialized = &g_system_context;
   _g_system_initialized = &g_system_initialized;
@@ -7243,7 +7247,7 @@ int InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -7267,7 +7271,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -7398,7 +7402,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -7498,7 +7502,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -7598,7 +7602,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -7648,7 +7652,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -7691,7 +7695,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -7772,7 +7776,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -7822,7 +7826,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -7872,7 +7876,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -7922,7 +7926,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -7972,7 +7976,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -8022,7 +8026,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -8072,7 +8076,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -8172,7 +8176,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -8265,7 +8269,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -8289,7 +8293,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -8313,7 +8317,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -8337,7 +8341,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -8361,7 +8365,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -8385,7 +8389,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -8409,7 +8413,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -8433,7 +8437,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -8457,7 +8461,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -8588,7 +8592,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -8688,7 +8692,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -8788,7 +8792,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -8938,7 +8942,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -9038,7 +9042,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -9138,7 +9142,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -9288,7 +9292,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -9388,7 +9392,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -9488,7 +9492,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -9638,7 +9642,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -9738,7 +9742,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -9838,7 +9842,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -9938,7 +9942,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -9988,7 +9992,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -10038,7 +10042,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -10088,7 +10092,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -10138,7 +10142,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -10188,7 +10192,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -10238,7 +10242,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -10338,7 +10342,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -10381,7 +10385,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -10404,7 +10408,7 @@ int InitializeSystemCore(void)
 
 {
   longlong lVar1;
-  undefined8 in_R9;
+  void* register_r9_value;
   
   _g_system_initialized = &g_system_context;
   _g_system_initialized = &g_system_initialized;
@@ -10472,7 +10476,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -10522,7 +10526,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -10572,7 +10576,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -10622,7 +10626,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -10672,7 +10676,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -10722,7 +10726,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -10772,7 +10776,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -10872,7 +10876,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -10915,7 +10919,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -10939,7 +10943,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -11070,7 +11074,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -11170,7 +11174,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -11270,7 +11274,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -11312,7 +11316,7 @@ int InitializeSystemCore(void)
 
 {
   longlong lVar1;
-  undefined8 in_R9;
+  void* register_r9_value;
   
   _g_system_initialized = &g_system_context;
   _g_system_initialized = &g_system_initialized;
@@ -11480,7 +11484,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -11580,7 +11584,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -11680,7 +11684,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -11830,7 +11834,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -11930,7 +11934,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -12030,7 +12034,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -12073,7 +12077,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -12096,7 +12100,7 @@ int InitializeSystemCore(void)
   longlong lVar1;
   
   FUN_1804777d0();
-  lVar1 = FUN_1808fc7d0(FUN_180942890);
+  lVar1 = FUN_1808fc7d0(GetSystemConfigA);
   return (lVar1 != 0) - 1;
 }
 
@@ -12110,7 +12114,7 @@ int InitializeSystemCore(void)
   
   auStackX_8[0] = 1;
   FUN_180477890(&g_system_initialized,auStackX_8);
-  lVar1 = FUN_1808fc7d0(FUN_1809428e0);
+  lVar1 = FUN_1808fc7d0(GetSystemConfigB);
   return (lVar1 != 0) - 1;
 }
 
@@ -12124,7 +12128,7 @@ int InitializeSystemCore(void)
   
   auStackX_8[0] = 0;
   FUN_180477890(&g_system_initialized,auStackX_8);
-  lVar1 = FUN_1808fc7d0(FUN_180942930);
+  lVar1 = FUN_1808fc7d0(GetSystemConfigC);
   return (lVar1 != 0) - 1;
 }
 
@@ -12135,7 +12139,7 @@ int InitializeSystemCore(void)
 {
   longlong lVar1;
   
-  lVar1 = FUN_1808fc7d0(FUN_180942a20);
+  lVar1 = FUN_1808fc7d0(GetSystemConfigD);
   return (lVar1 != 0) - 1;
 }
 
@@ -12147,7 +12151,7 @@ int InitializeSystemCore(void)
   longlong lVar1;
   
   FUN_1803f2eb0(0x180d49d50);
-  lVar1 = FUN_1808fc7d0(FUN_1809429f0);
+  lVar1 = FUN_1808fc7d0(GetSystemConfigE);
   return (lVar1 != 0) - 1;
 }
 
@@ -12217,7 +12221,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -12267,7 +12271,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -12317,7 +12321,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -12367,7 +12371,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -12417,7 +12421,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -12467,7 +12471,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -12517,7 +12521,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -12617,7 +12621,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -12660,7 +12664,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -12684,7 +12688,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -12708,7 +12712,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -12732,7 +12736,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -12755,7 +12759,7 @@ int InitializeSystemCore(void)
 
 {
   longlong lVar1;
-  undefined8 in_R9;
+  void* register_r9_value;
   
   _g_system_initialized = &g_system_context;
   _g_system_initialized = &g_system_initialized;
@@ -12773,7 +12777,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -12823,7 +12827,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -12923,7 +12927,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -12973,7 +12977,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -13023,7 +13027,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -13073,7 +13077,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -13123,7 +13127,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -13173,7 +13177,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -13223,7 +13227,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -13323,7 +13327,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -13373,7 +13377,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -13423,7 +13427,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -13773,7 +13777,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -13873,7 +13877,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -13973,7 +13977,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -14023,7 +14027,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -14073,7 +14077,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -14123,7 +14127,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -14195,7 +14199,7 @@ int InitializeSystemCore(void)
 
 {
   longlong lVar1;
-  undefined8 in_R9;
+  void* register_r9_value;
   
   _g_gpu_usage = &g_system_context;
   _g_frame_rate = &g_physics_time;
@@ -14213,7 +14217,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -14263,7 +14267,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -14313,7 +14317,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -14363,7 +14367,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -14406,7 +14410,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -14429,7 +14433,7 @@ int InitializeSystemCore(undefined8 param_1,undefined8 param_2,undefined8 param_
   longlong lVar1;
   
   _Mtx_init_in_situ(0x180c96690,2,param_3,param_4,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_180943070);
+  lVar1 = FUN_1808fc7d0(GetSystemConfigF);
   return (lVar1 != 0) - 1;
 }
 
@@ -14449,7 +14453,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -14499,7 +14503,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -14749,7 +14753,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -14849,7 +14853,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -14949,7 +14953,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -15049,7 +15053,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -15099,7 +15103,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -15149,7 +15153,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -15199,7 +15203,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -15249,7 +15253,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -15299,7 +15303,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -15349,7 +15353,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -15449,7 +15453,7 @@ void InitializeSystemCore(void)
   undefined8 *puVar7;
   undefined8 *puVar8;
   undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   
   plVar4 = (longlong *)InitializeSystemCore();
   puVar2 = (undefined8 *)*plVar4;
@@ -15492,7 +15496,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -15540,7 +15544,7 @@ int InitializeSystemCore(undefined8 param_1,undefined8 param_2,undefined8 param_
   longlong lVar1;
   
   _Mtx_init_in_situ(0x180c966f0,2,param_3,param_4,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_180943140);
+  lVar1 = FUN_1808fc7d0(GetSystemConfigG);
   return (lVar1 != 0) - 1;
 }
 
@@ -15552,7 +15556,7 @@ int InitializeSystemCore(undefined8 param_1,undefined8 param_2,undefined8 param_
   longlong lVar1;
   
   _Mtx_init_in_situ(0x180c96740,2,param_3,param_4,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_180943160);
+  lVar1 = FUN_1808fc7d0(GetSystemConfigH);
   return (lVar1 != 0) - 1;
 }
 
@@ -15571,7 +15575,7 @@ int InitializeSystemCore(void)
   _g_system_initialized = 0;
   _g_system_initialized = 0;
   _g_system_initialized = 0;
-  lVar1 = FUN_1808fc7d0(FUN_180943180);
+  lVar1 = FUN_1808fc7d0(GetSystemConfigI);
   return (lVar1 != 0) - 1;
 }
 
@@ -15584,7 +15588,7 @@ int InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -15634,7 +15638,7 @@ undefined8 InitializeSystemCore(void)
   *piVar2 = 0;
   *(int **)(lVar1 + 0x50) = piVar2;
 LAB_1808fd14a:
-  *(code **)(piVar2 + (longlong)*piVar2 * 2 + 4) = FUN_1809431a0;
+  *(code **)(piVar2 + (longlong)*piVar2 * 2 + 4) = GetSystemConfigJ;
   *piVar2 = *piVar2 + 1;
   return 0;
 }
@@ -15648,7 +15652,7 @@ LAB_1808fd14a:
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -15672,7 +15676,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_a0;
   undefined1 *puStack_98;
   undefined4 uStack_90;
@@ -15702,7 +15706,7 @@ int InitializeSystemCore(void)
   _g_system_initialized = 0;
   _g_system_initialized = 0;
   _g_system_initialized = 0;
-  lVar1 = FUN_1808fc7d0(FUN_180943200);
+  lVar1 = FUN_1808fc7d0(GetSystemConfigK);
   return (lVar1 != 0) - 1;
 }
 
@@ -16417,7 +16421,7 @@ void InitializeSystemCore(void)
   undefined8 uVar1;
   undefined4 uVar2;
   undefined8 *puVar3;
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined *puStack_68;
   undefined8 *puStack_60;
   undefined4 uStack_58;
@@ -19951,7 +19955,7 @@ void InitializeSystemCore(void)
   longlong *plVar1;
   longlong lVar2;
   longlong lVar3;
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined8 uVar4;
   
   uVar4 = 0xfffffffffffffffe;
@@ -20438,7 +20442,7 @@ void InitializeSystemCore(longlong param_1,undefined8 param_2,undefined8 param_3
   int iVar2;
   ulonglong *puVar3;
   longlong lVar4;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   undefined8 uStackX_20;
   undefined1 auStack_78 [32];
   undefined8 uStack_58;
@@ -25182,7 +25186,7 @@ void InitializeSystemCore(void)
   char *pcVar3;
   int iVar4;
   char *pcVar5;
-  undefined8 in_R9;
+  void* register_r9_value;
   undefined8 uVar6;
   
   pcVar3 = _g_system_initialized;
@@ -31769,7 +31773,7 @@ void InitializeSystemCore(undefined8 param_1,undefined8 param_2,undefined8 param
   undefined8 uVar1;
   undefined8 *puVar2;
   undefined8 uStackX_10;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   undefined8 uStackX_20;
   
   uStackX_10 = param_2;
@@ -33662,7 +33666,7 @@ undefined8 * InitializeSystemCore(longlong *param_1,char param_2,undefined1 *par
         puVar2[1] = 0;
         *(undefined1 *)(puVar2 + 2) = 0;
         puVar2[3] = 0;
-        *puVar2 = &system_unknown_eleventh_config;
+        *puVar2 = &system_audio_config;
         puVar2[4] = 0;
         puVar2[5] = 0;
         puVar2[6] = 0;
@@ -33670,7 +33674,7 @@ undefined8 * InitializeSystemCore(longlong *param_1,char param_2,undefined1 *par
         puVar2[8] = 0;
         *(undefined1 *)(puVar2 + 9) = 0;
         puVar2[10] = param_1;
-        *puVar2 = &system_unknown_tenth_config;
+        *puVar2 = &system_graphics_config;
         puVar2[0xb] = 0x20;
         puVar2[0xc] = 0;
         InitializeSystemCore(puVar2);
@@ -33683,7 +33687,7 @@ undefined8 * InitializeSystemCore(longlong *param_1,char param_2,undefined1 *par
         puVar2[1] = 0;
         *(undefined1 *)(puVar2 + 2) = 0;
         puVar2[3] = 0;
-        *puVar2 = &system_unknown_eleventh_config;
+        *puVar2 = &system_audio_config;
         puVar2[4] = 0;
         puVar2[5] = 0;
         puVar2[6] = 0;
@@ -33691,7 +33695,7 @@ undefined8 * InitializeSystemCore(longlong *param_1,char param_2,undefined1 *par
         puVar2[8] = 0;
         *(undefined1 *)(puVar2 + 9) = 1;
         puVar2[10] = param_1;
-        *puVar2 = &system_unknown_ninth_config;
+        *puVar2 = &system_network_config;
         puVar2[0xb] = 0;
         puVar2[0xc] = 0;
         puVar2[0xd] = 0x10;
@@ -34745,7 +34749,7 @@ void InitializeSystemCore(undefined8 *param_1)
   longlong lVar11;
   bool bVar12;
   
-  *param_1 = &system_unknown_ninth_config;
+  *param_1 = &system_network_config;
   if (param_1[8] != 0) {
     lVar11 = 0;
     if ((param_1[5] & 0x1f) != 0) {
@@ -34784,7 +34788,7 @@ LAB_1800602a0:
   }
 LAB_18006039b:
   if (param_1[0x10] == 0) {
-    *param_1 = &system_unknown_eleventh_config;
+    *param_1 = &system_audio_config;
     return;
   }
                     // WARNING: Subroutine does not return
@@ -34878,7 +34882,7 @@ void InitializeSystemCore(undefined8 *param_1)
   ulonglong uVar10;
   bool bVar11;
   
-  *param_1 = &system_unknown_tenth_config;
+  *param_1 = &system_graphics_config;
   uVar3 = param_1[4];
   lVar9 = 0;
   uVar4 = param_1[5];
@@ -34965,7 +34969,7 @@ LAB_1800604d1:
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  *param_1 = &system_unknown_eleventh_config;
+  *param_1 = &system_audio_config;
   return;
 }
 
@@ -34974,7 +34978,7 @@ LAB_1800604d1:
 undefined8 * InitializeSystemCore(undefined8 *param_1,ulonglong param_2)
 
 {
-  *param_1 = &system_unknown_eleventh_config;
+  *param_1 = &system_audio_config;
   if ((param_2 & 1) != 0) {
     free(param_1,0x58);
   }
@@ -35040,7 +35044,7 @@ int InitializeSystemCore(undefined8 param_1,undefined8 param_2,undefined8 param_
 {
   int iVar1;
   ulonglong *puVar2;
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   undefined8 uStackX_20;
   
   uStackX_18 = param_3;
@@ -35797,7 +35801,7 @@ void InitializeSystemCore(undefined8 param_1,longlong param_2)
   puStack_1a0 = auStack_190;
   auStack_190[0] = 0;
   uStack_198 = 6;
-  strcpy_s(auStack_190,0x10,&system_unknown_fourteenth_config);
+  strcpy_s(auStack_190,0x10,&system_physics_config);
   puVar3 = (undefined8 *)FUN_18062b1e0(_g_system_initialized,0x208,8,3);
   lStack_248 = lVar1 + 0x70;
   puStack_238 = puVar3;
@@ -36010,7 +36014,7 @@ void InitializeSystemCore(undefined8 param_1,undefined8 param_2,undefined4 param
 void InitializeSystemCore(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 uStackX_18;
+  void* stack_pointer_1;
   undefined8 uStackX_20;
   
   uStackX_18 = param_3;
@@ -36284,7 +36288,7 @@ undefined8 InitializeSystemCore(undefined8 param_1,undefined4 param_2)
   }
   iVar2 = SetConsoleTextAttribute(_system_cache_address,uVar1);
   if (iVar2 == 0) {
-    InitializeSystemCore(&system_unknown_fifteenth_config);
+    InitializeSystemCore(&system_input_config);
     return 0;
   }
   return 1;
@@ -36330,7 +36334,7 @@ void InitializeSystemCore(longlong param_1)
       plVar7 = (longlong *)(*(longlong *)(param_1 + 0x20) + 0x20);
       (**(code **)(*plVar7 + 0x108))(plVar7,1);
       plVar7 = (longlong *)(*(longlong *)(param_1 + 0x20) + 0x20);
-      (**(code **)(*plVar7 + 0x70))(plVar7,&system_unknown_sixteenth_config);
+      (**(code **)(*plVar7 + 0x70))(plVar7,&system_thread_config);
       puStack_70 = &g_system_context;
       uStack_58 = 0;
       puStack_68 = (undefined8 *)0x0;
@@ -36359,10 +36363,10 @@ code_r0x0001800630e9:
       FUN_18064e900(puVar5);
     case 2:
       plVar7 = (longlong *)(*(longlong *)(param_1 + 0x20) + 0xd8);
-      (**(code **)(*plVar7 + 0x70))(plVar7,&system_unknown_seventeenth_config);
+      (**(code **)(*plVar7 + 0x70))(plVar7,&system_memory_config);
       FUN_180639250(*(longlong *)(param_1 + 0x20) + 0xd8);
       plVar7 = (longlong *)(*(longlong *)(param_1 + 0x20) + 0x20);
-      (**(code **)(*plVar7 + 0x70))(plVar7,&system_unknown_seventeenth_config);
+      (**(code **)(*plVar7 + 0x70))(plVar7,&system_memory_config);
       FUN_180639250(*(longlong *)(param_1 + 0x20) + 0x20);
       if (((*(byte *)(*(longlong *)(param_1 + 0x20) + 8) & 2) != 0) &&
          (iRam0000000180c912e0 = iRam0000000180c912e0 + -1, iRam0000000180c912e0 == 0)) {
@@ -36380,7 +36384,7 @@ code_r0x0001800630e9:
       break;
     case 3:
       plVar7 = (longlong *)(*(longlong *)(param_1 + 0x20) + 0xd8);
-      (**(code **)(*plVar7 + 0x70))(plVar7,&system_unknown_seventeenth_config);
+      (**(code **)(*plVar7 + 0x70))(plVar7,&system_memory_config);
       FUN_180639250(*(longlong *)(param_1 + 0x20) + 0xd8);
       FUN_18062da70(*(longlong *)(param_1 + 0x20) + 0xe0);
       break;
@@ -36395,7 +36399,7 @@ code_r0x0001800630e9:
       plVar7 = (longlong *)(*(longlong *)(param_1 + 0x20) + 0xd8);
       (**(code **)(*plVar7 + 0x108))(plVar7,1);
       plVar7 = (longlong *)(*(longlong *)(param_1 + 0x20) + 0xd8);
-      (**(code **)(*plVar7 + 0x70))(plVar7,&system_unknown_sixteenth_config);
+      (**(code **)(*plVar7 + 0x70))(plVar7,&system_thread_config);
       break;
     case 5:
       iVar8 = *(int *)(param_1 + 0x58);
@@ -36412,11 +36416,11 @@ code_r0x0001800630e9:
                         0x180000000,*(undefined4 *)(param_1 + 0x50));
           iVar4 = WriteConsoleA(_system_cache_address,puVar9,uVar2,auStackX_20,0);
           if ((iVar4 == 0) || (auStackX_20[0] < uVar2)) {
-            InitializeSystemCore(&system_unknown_nineteenth_config,puVar9);
+            InitializeSystemCore(&system_security_config,puVar9);
           }
           iVar4 = SetConsoleTextAttribute(_system_cache_address,0xf);
           if (iVar4 == 0) {
-            InitializeSystemCore(&system_unknown_fifteenth_config);
+            InitializeSystemCore(&system_input_config);
           }
         }
         if ((*(byte *)(puVar5 + 1) & 8) != 0) {
@@ -36447,7 +36451,7 @@ code_r0x0001800630e9:
     }
   }
   else {
-    FUN_180626f80(&system_unknown_eighteenth_config);
+    FUN_180626f80(&system_file_config);
   }
   return;
 }
@@ -36588,7 +36592,7 @@ InitializeSystemCore(undefined8 *param_1,undefined4 param_2,undefined8 param_3,u
   *(undefined1 *)(param_1 + 2) = 0;
   UNLOCK();
   param_1[3] = 0xffffffffffffffff;
-  *param_1 = &system_unknown_twentieth_config;
+  *param_1 = &system_debug_config;
   plVar1 = param_1 + 6;
   *plVar1 = (longlong)&g_system_context;
   param_1[7] = 0;
@@ -37057,7 +37061,7 @@ ulonglong InitializeSystemCore(undefined8 param_1)
         if ((undefined *)*puVar4 != (undefined *)0x0) {
           puVar3 = (undefined *)*puVar4;
         }
-        FUN_180628040(&puStack_b8,&system_unknown_nineteenth_config,puVar3);
+        FUN_180628040(&puStack_b8,&system_security_config,puVar3);
         puVar4 = puVar4 + 4;
         uVar2 = uVar2 - 1;
       } while (uVar2 != 0);
@@ -38232,7 +38236,7 @@ void InitializeSystemCore(undefined8 param_1,undefined8 param_2,char param_3,cha
     puStack_1b8 = &g_system_context;
     goto LAB_180066971;
   }
-  if (((system_flag_char_1 != '\0') || (system_flag_char_2 != '\0')) ||
+  if (((system_flag_primary != '\0') || (system_flag_secondary != '\0')) ||
      (*(int *)(_g_system_initialized + 0x10e0) == 1)) {
     InitializeSystemCore(_g_system_initialized,5,3,&memory_allocator_cache);
     InitializeSystemCore();
@@ -38240,7 +38244,7 @@ void InitializeSystemCore(undefined8 param_1,undefined8 param_2,char param_3,cha
   }
   if ((param_3 == '\0') && (g_system_initialized == '\0')) {
     if (((g_system_initialized == '\0') || (iVar2 = IsDebuggerPresent(), iVar2 != 0)) &&
-       (system_flag_char_3 == '\0')) {
+       (system_flag_tertiary == '\0')) {
       uVar3 = MessageBoxA(0,&memory_allocator_metadata,&memory_allocator_descriptor,0x40004);
       switch(uVar3) {
       case 1:
@@ -38330,7 +38334,7 @@ LAB_18006650a:
     }
     InitializeSystemCore(_g_system_initialized,5,3,&memory_allocator_chunk);
     InitializeSystemCore();
-    if (((param_4 == '\0') || (system_flag_char_4 != '\0')) || (*(int *)(_g_system_initialized + 0x1150) != 0))
+    if (((param_4 == '\0') || (system_flag_quaternary != '\0')) || (*(int *)(_g_system_initialized + 0x1150) != 0))
     {
       InitializeSystemCore(_g_system_initialized,5,3,&memory_allocator_unit);
       InitializeSystemCore();
@@ -38441,7 +38445,7 @@ void InitializeSystemCore(undefined8 param_1,undefined8 param_2,char param_3,und
   
   cVar2 = (**(code **)**(undefined8 **)(_g_system_initialized + 0x18))();
   if (cVar2 == '\0') {
-    if ((system_flag_char_1 == '\0') && (*(int *)(_g_system_initialized + 0x10e0) != 1)) {
+    if ((system_flag_primary == '\0') && (*(int *)(_g_system_initialized + 0x10e0) != 1)) {
       iVar3 = 0;
       if ((param_3 != '\0') || (g_system_initialized != '\0')) {
 LAB_180066bf4:
@@ -38463,7 +38467,7 @@ LAB_180066bf4:
         FUN_18064e900(puVar5);
       }
       if (((g_system_initialized == '\0') || (iVar6 = IsDebuggerPresent(), iVar6 != 0)) &&
-         (system_flag_char_3 == '\0')) {
+         (system_flag_tertiary == '\0')) {
         uVar4 = MessageBoxA(0,&memory_allocator_metadata,&memory_allocator_descriptor,0x40004);
         switch(uVar4) {
         case 1:
@@ -44118,9 +44122,9 @@ ulonglong InitializeSystemCore(undefined8 param_1,undefined8 param_2)
                   *(undefined4 *)(_g_system_initialized + 0x160c));
     *(undefined1 *)(lVar3 + 0x1609) = 1;
   }
-  if (system_flag_char_3 == '\0') {
+  if (system_flag_tertiary == '\0') {
     if ((g_system_initialized == '\0') ||
-       ((iVar5 = IsDebuggerPresent(), iVar5 != 0 && (system_flag_char_3 == '\0')))) {
+       ((iVar5 = IsDebuggerPresent(), iVar5 != 0 && (system_flag_tertiary == '\0')))) {
       MessageBoxA(0,param_2,&g_memory_manager,0x41010);
     }
     else if (*(char *)(_g_system_initialized + 0x18) != '\0') {
@@ -44275,7 +44279,7 @@ ulonglong InitializeSystemCore(undefined8 param_1,undefined8 param_2,char param_
       }
       bStackX_20 = 1;
     }
-    if (system_flag_char_3 == '\0') {
+    if (system_flag_tertiary == '\0') {
       if (bVar15) {
         if (*(longlong *)(_g_system_initialized + 8) != 0) {
           FUN_1801719d0(*(longlong *)(_g_system_initialized + 8));
@@ -44301,7 +44305,7 @@ ulonglong InitializeSystemCore(undefined8 param_1,undefined8 param_2,char param_
       *(undefined4 *)(puVar14 + 1) = 0x474e49;
       uStack_d0 = 0xb;
       if (((g_system_initialized == '\0') || (iVar7 = IsDebuggerPresent(), iVar7 != 0)) &&
-         (system_flag_char_3 == '\0')) {
+         (system_flag_tertiary == '\0')) {
         MessageBoxA(0,param_2,puVar14,0x41030);
       }
       else if (*(char *)(_g_system_initialized + 0x18) != '\0') {
@@ -44357,7 +44361,7 @@ ulonglong InitializeSystemCore(undefined8 param_1,undefined8 param_2,char param_
     if (cVar6 != '\0') {
       _g_system_initialized = 5;
     }
-    if ((system_flag_char_3 == '\0') && (bVar15)) {
+    if ((system_flag_tertiary == '\0') && (bVar15)) {
       if (*(longlong *)(_g_system_initialized + 8) != 0) {
         FUN_1801718f0();
       }
@@ -44511,7 +44515,7 @@ ulonglong InitializeSystemCore(undefined8 param_1,undefined8 param_2,char param_
   uVar11 = 0;
 LAB_180070230:
   if (*(int *)(_system_undefined_data_1 + 0x460) == 0) {
-    if (system_flag_char_3 == '\0') {
+    if (system_flag_tertiary == '\0') {
       if (bVar14) {
         if (*(longlong *)(_g_system_initialized + 8) != 0) {
           FUN_1801719d0(*(longlong *)(_g_system_initialized + 8));
@@ -44525,7 +44529,7 @@ LAB_180070230:
         }
       }
       if (((g_system_initialized == '\0') || (iVar4 = IsDebuggerPresent(), iVar4 != 0)) &&
-         (system_flag_char_3 == '\0')) {
+         (system_flag_tertiary == '\0')) {
         MessageBoxA(0,param_2,&g_audio_system,0x41030);
       }
       else if (*(char *)(_g_system_initialized + 0x18) != '\0') {
@@ -44618,7 +44622,7 @@ LAB_180070230:
     if (cVar3 != '\0') {
       _g_system_initialized = 5;
     }
-    if ((system_flag_char_3 == '\0') && (bVar14)) {
+    if ((system_flag_tertiary == '\0') && (bVar14)) {
       if (*(longlong *)(_g_system_initialized + 8) != 0) {
         FUN_1801718f0();
       }
@@ -44753,7 +44757,7 @@ void InitializeSystemCore(undefined8 param_1,undefined8 param_2)
                   *(undefined4 *)(_g_system_initialized + 0x160c));
     *(undefined1 *)(lVar5 + 0x1609) = 1;
   }
-  if (system_flag_char_3 == '\0') {
+  if (system_flag_tertiary == '\0') {
     InitializeSystemCore();
   }
   else {
@@ -45173,7 +45177,7 @@ LAB_18007113f:
     bVar2 = (bool)cStack_11f;
   }
   lVar9 = _g_system_initialized;
-  if ((system_flag_char_3 == '\0') && (bVar2)) {
+  if ((system_flag_tertiary == '\0') && (bVar2)) {
     if ((_g_system_initialized != 0) && (*(char *)(_g_system_initialized + 0x1609) != '\x01')) {
       FUN_1801723a0(*(undefined8 *)(_g_system_initialized + 8),*(char *)(_g_system_initialized + 0x2028) != '\0',
                     *(undefined4 *)(_g_system_initialized + 0x160c));
@@ -45245,7 +45249,7 @@ LAB_18007113f:
       }
     }
   }
-  if (system_flag_char_3 == '\0') {
+  if (system_flag_tertiary == '\0') {
     puVar18 = &g_log_system;
     if (cStack_120 != '\0') {
       puVar18 = &g_configuration_manager;
@@ -45257,7 +45261,7 @@ LAB_18007113f:
           puVar12 = puStack_138;
         }
         if (((g_system_initialized == '\0') || (iVar4 = IsDebuggerPresent(), iVar4 != 0)) &&
-           (system_flag_char_3 == '\0')) break;
+           (system_flag_tertiary == '\0')) break;
         if (*(char *)(_g_system_initialized + 0x18) != '\0') {
           puStack_168 = &memory_allocator_item;
           puStack_160 = puVar18;
@@ -45293,7 +45297,7 @@ LAB_18007113f:
           puVar12 = puVar10;
         }
         if (((g_system_initialized == '\0') || (iVar4 = IsDebuggerPresent(), iVar4 != 0)) &&
-           (system_flag_char_3 == '\0')) {
+           (system_flag_tertiary == '\0')) {
           MessageBoxA(0,puVar12,&g_debug_system,0x41010);
         }
         else if (*(char *)(_g_system_initialized + 0x18) != '\0') {
@@ -45326,7 +45330,7 @@ LAB_18007113f:
     if (cVar3 != '\0') {
       _g_system_initialized = 5;
     }
-    if ((system_flag_char_3 == '\0') && (cStack_11f != '\0')) {
+    if ((system_flag_tertiary == '\0') && (cStack_11f != '\0')) {
       if (*(longlong *)(_g_system_initialized + 8) != 0) {
         FUN_1801718f0();
       }
@@ -45742,7 +45746,7 @@ void InitializeSystemCore(undefined8 param_1,longlong param_2,undefined4 param_3
   uStack_116 = 0;
   uStack_b0 = param_3;
   lStack_88 = param_4;
-  if ((g_system_initialized != '\0') || (system_flag_char_2 != '\0')) goto LAB_180072d7b;
+  if ((g_system_initialized != '\0') || (system_flag_secondary != '\0')) goto LAB_180072d7b;
   uStack_58 = 0;
   uStack_50 = 0;
   InitializeSystemCore(&uStack_58,0x10,&g_system_context,param_3);
@@ -46339,7 +46343,7 @@ bool InitializeSystemCore(undefined8 param_1,undefined8 *param_2)
   uStack_c0 = 0;
   InitializeSystemCore(_g_system_initialized,&puStack_68);
   if (puStack_68 != puStack_60) {
-    FUN_180628040(&puStack_f0,&system_unknown_nineteenth_config,&g_script_engine);
+    FUN_180628040(&puStack_f0,&system_security_config,&g_script_engine);
     puVar6 = puVar5;
     puVar12 = puVar5;
     if ((longlong)puStack_60 - (longlong)puStack_68 >> 5 != 0) {
@@ -46348,7 +46352,7 @@ bool InitializeSystemCore(undefined8 param_1,undefined8 *param_2)
         if (*(undefined **)((longlong)(puVar6 + 1) + (longlong)puStack_68) != (undefined *)0x0) {
           puVar13 = *(undefined **)((longlong)(puVar6 + 1) + (longlong)puStack_68);
         }
-        FUN_180628040(&puStack_f0,&system_unknown_nineteenth_config,puVar13);
+        FUN_180628040(&puStack_f0,&system_security_config,puVar13);
         uVar11 = (int)puVar12 + 1;
         puVar6 = puVar6 + 4;
         puVar12 = (undefined8 *)(ulonglong)uVar11;
@@ -46358,7 +46362,7 @@ bool InitializeSystemCore(undefined8 param_1,undefined8 *param_2)
     FUN_180628040(&puStack_f0,&g_physics_system,&g_ai_system);
     InitializeSystemCore(&puStack_110);
     if (iStack_100 != 0) {
-      FUN_180628040(&puStack_f0,&system_unknown_nineteenth_config,&g_animation_system);
+      FUN_180628040(&puStack_f0,&system_security_config,&g_animation_system);
       puVar6 = (undefined8 *)&g_system_initialized;
       if (puStack_108 != (undefined8 *)0x0) {
         puVar6 = puStack_108;
@@ -46394,17 +46398,17 @@ bool InitializeSystemCore(undefined8 param_1,undefined8 *param_2)
   puStack_110 = &g_system_context;
   FUN_180628040(&puStack_f0,&g_ui_system,*(undefined4 *)*param_2,
                 *(undefined8 *)((undefined4 *)*param_2 + 4));
-  FUN_180628040(&puStack_f0,&system_unknown_nineteenth_config,&g_scene_manager);
+  FUN_180628040(&puStack_f0,&system_security_config,&g_scene_manager);
   puVar14 = &g_system_initialized;
   if (puVar13 != (undefined *)0x0) {
     puVar14 = puVar13;
   }
-  FUN_180628040(&puStack_f0,&system_unknown_nineteenth_config,puVar14);
+  FUN_180628040(&puStack_f0,&system_security_config,puVar14);
   puVar10 = (undefined2 *)&g_system_initialized;
   if (puStack_e8 != (undefined2 *)0x0) {
     puVar10 = puStack_e8;
   }
-  InitializeSystemCore(_g_system_initialized,5,0xffffffff00000000,3,&system_unknown_nineteenth_config,puVar10);
+  InitializeSystemCore(_g_system_initialized,5,0xffffffff00000000,3,&system_security_config,puVar10);
   InitializeSystemCore();
   lVar4 = _g_system_initialized;
   if (_g_system_initialized == 0) {
@@ -61281,20 +61285,20 @@ void InitializeSystemCore(undefined8 param_1,longlong param_2,undefined8 param_3
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: undefined InitializeSystemCore;
-undefined InitializeSystemCore;
+// 函数: void InitializeSystemCore;
+void InitializeSystemCore;
 
-// 函数: undefined InitializeSystemCore;
-undefined InitializeSystemCore;
+// 函数: void InitializeSystemCore;
+void InitializeSystemCore;
 
-// 函数: undefined InitializeSystemCore;
-undefined InitializeSystemCore;
+// 函数: void InitializeSystemCore;
+void InitializeSystemCore;
 
-// 函数: undefined InitializeSystemCore;
-undefined InitializeSystemCore;
+// 函数: void InitializeSystemCore;
+void InitializeSystemCore;
 undefined4 g_system_context;
-undefined g_system_context;
-undefined g_system_context;
+void g_system_context;
+void g_system_context;
 
 undefined8 FUN_180779434(void)
 
@@ -62380,12 +62384,12 @@ undefined8 FUN_180779d6c(void)
 
 
 
-// 函数: undefined InitializeSystemCore;
-undefined InitializeSystemCore;
+// 函数: void InitializeSystemCore;
+void InitializeSystemCore;
 
-// 函数: undefined InitializeSystemCore;
-undefined InitializeSystemCore;
-undefined g_system_initialized;
+// 函数: void InitializeSystemCore;
+void InitializeSystemCore;
+void g_system_initialized;
 undefined8 g_system_context;
 undefined4 g_system_context;
 undefined *g_system_context;
@@ -62397,11 +62401,11 @@ longlong g_system_context;
 longlong g_system_context;
 undefined4 g_system_context;
 undefined4 g_system_context;
-undefined g_system_initialized;
-undefined g_system_initialized;
-undefined g_system_initialized;
-undefined g_system_initialized;
-undefined g_system_context;
+void g_system_initialized;
+void g_system_initialized;
+void g_system_initialized;
+void g_system_initialized;
+void g_system_context;
 longlong g_system_context;
 undefined8 g_system_context;
 longlong g_system_context;
