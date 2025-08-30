@@ -402,40 +402,40 @@ void* g_bufferMemoryPointer;           // 缓冲区内存指针
 // 函数: data_value g_initialize_memory_pool;
 // 系统初始化函数180941590
 dataValue g_initialize_memory_pool;
-dataValue g_memoryPoolBaseAddress;            // 内存池基地址
-dataValue g_memoryPoolSize;                   // 内存池大小
-dataValue g_memoryPoolAlignment;              // 内存池对齐
-dataValue g_memoryPoolFlags;                  // 内存池标志
+void* g_memoryPoolBaseAddress;            // 内存池基地址
+uint64 g_memoryPoolSize;                   // 内存池大小
+uint64 g_memoryPoolAlignment;              // 内存池对齐
+uint32 g_memoryPoolFlags;                  // 内存池标志
 
 // 函数: data_value g_setup_memory_manager;
 dataValue g_setup_memory_manager;
-dataValue g_memoryManagerControlFlags;        // 内存管理器控制标志
-dataValue g_memoryManagerStatus;              // 内存管理器状态
-dataValue g_memoryManagerConfiguration;       // 内存管理器配置
-dataValue g_memoryManagerHandle;              // 内存管理器句柄
-dataValue g_isMemoryPoolInitialized;          // 内存池初始化标志
+uint32 g_memoryManagerControlFlags;        // 内存管理器控制标志
+uint32 g_memoryManagerStatus;              // 内存管理器状态
+uint64 g_memoryManagerConfiguration;       // 内存管理器配置
+uint64 g_memoryManagerHandle;              // 内存管理器句柄
+uint32 g_isMemoryPoolInitialized;          // 内存池初始化标志
 
 // 函数: data_value g_create_memory_allocator;
 dataValue g_create_memory_allocator;
-dataValue g_dataStructureRootNode;            // 数据结构根节点
-dataValue g_dataStructureNextNode;            // 数据结构下一节点
-dataValue g_dataStructurePreviousNode;        // 数据结构前一节点
-dataValue g_dataStructureParentNode;          // 数据结构父节点
-dataValue g_memoryAllocatorStatusFlag;        // 内存分配器状态标志
+void* g_dataStructureRootNode;            // 数据结构根节点
+void* g_dataStructureNextNode;            // 数据结构下一节点
+void* g_dataStructurePreviousNode;        // 数据结构前一节点
+void* g_dataStructureParentNode;          // 数据结构父节点
+uint32 g_memoryAllocatorStatusFlag;        // 内存分配器状态标志
 
 // 函数: data_value g_register_memory_handler;
 dataValue g_register_memory_handler;
-dataValue g_systemCPUStatus;                  // 系统CPU状态
-dataValue g_systemMemoryStatus;               // 系统内存状态
-dataValue g_systemIOStatus;                   // 系统IO状态
-dataValue g_systemNetworkStatus;              // 系统网络状态
+uint32 g_systemCPUStatus;                  // 系统CPU状态
+uint32 g_systemMemoryStatus;               // 系统内存状态
+uint32 g_systemIOStatus;                   // 系统IO状态
+uint32 g_systemNetworkStatus;              // 系统网络状态
 
 // 函数: data_value g_configure_memory_settings;
 dataValue g_configure_memory_settings;
-dataValue g_errorHandlerSeverityLevel;        // 错误处理器严重程度
-dataValue g_errorHandlerCategory;              // 错误处理器类别
-dataValue g_errorHandlerRecoveryMode;         // 错误处理器恢复
-dataValue g_errorHandlerLoggingEnabled;       // 错误处理器日志
+uint32 g_errorHandlerSeverityLevel;        // 错误处理器严重程度
+uint32 g_errorHandlerCategory;              // 错误处理器类别
+uint32 g_errorHandlerRecoveryMode;         // 错误处理器恢复
+uint32 g_errorHandlerLoggingEnabled;       // 错误处理器日志
 
 // 函数: data_value g_validate_memory_config;
 // 内存配置验证函数180941630
@@ -459,25 +459,25 @@ byte g_semaphore_initialized;
 
 // 函数: data_value g_cleanup_thread_sync;
 dataValue g_cleanup_thread_sync;
-dataValue g_thread_cleanup_data;
-dataValue g_thread_cleanup_ptr;
+uint64 g_thread_cleanup_data;
+void* g_thread_cleanup_ptr;
 
 // 函数: data_value g_close_system_handle;
 dataValue g_close_system_handle;
 
 // 函数: data_value g_destroy_mutex;
 dataValue g_destroy_mutex;
-dataValue g_mutex_destroy_handle;
-dataValue g_mutex_destroy_context;
-dataValue g_mutex_destroy_callback;
-dataValue g_mutex_destroy_work_data;
-dataValue g_mutex_destroy_work;
+uint64 g_mutex_destroy_handle;
+void* g_mutex_destroy_context;
+void* g_mutex_destroy_callback;
+uint64 g_mutex_destroy_work_data;
+uint64 g_mutex_destroy_work;
 
 // 函数: data_value g_initialize_memory_release_system;          # 内存释放系统初始化函数
 dataValue g_initialize_memory_release_system;
-dataValue g_memory_release_block_size;
-dataValue g_memory_release_block_count;
-dataValue g_memory_release_list_head;
+uint64 g_memory_release_block_size;
+uint64 g_memory_release_block_count;
+void* g_memory_release_list_head;
 dataValue g_memory_release_list_tail;
 dataValue g_memory_release_alignment;
 dataValue g_memory_release_flags;
@@ -7079,7 +7079,7 @@ int connect_network_socket(longlong resource_handle_identifier,uint64 resource_b
   if ((int)resource_buffer < 1) {
     utility_operation_status = allocateSystemMemory();
     if ((resource_size_limit == 0) &&
-       (utility_operation_status = system_memory_operation(*(uint32 *)(utility_cpu_context + ERROR_CODE_INVALID_HANDLE),&stack_validation_security_buffer_60), resource_size_limit == 0)
+       (utility_operation_status = system_memory_operation(*(uint32 *)(utility_cpu_context + ERROR_CODE_INVALID_HANDLE),&utility_stack_security_buffer_60), resource_size_limit == 0)
        ) {
       if (*(int *)(utility_stack_security_context + field_offset_primary) == 1) {
         *(uint32 *)(utility_stack_security_context + field_offset_primary) = 2;
@@ -7201,7 +7201,7 @@ int send_network_dataValue(uint64 resource_handle_identifier,uint64 resource_buf
   else {
     utility_operation_status = allocateSystemMemory();
     if ((resource_size_limit == 0) &&
-       (utility_operation_status = system_memory_operation(*(uint32 *)(utility_cpu_context + FIELD_OFFSET_THIRD),&stack_validation_security_buffer_60), resource_size_limit == 0)
+       (utility_operation_status = system_memory_operation(*(uint32 *)(utility_cpu_context + FIELD_OFFSET_THIRD),&utility_stack_security_buffer_60), resource_size_limit == 0)
        ) {
       if (*(int *)(utility_stack_security_context + field_offset_primary) == 1) {
         *(uint32 *)(utility_stack_security_context + field_offset_primary) = 2;
@@ -11475,16 +11475,16 @@ void HandleResourceCallback(void)
     if (utility_operation_status == 0) {
       utility_stack_uint_xmm_da_1a0 = utility_register_xmm6_da;
       utility_stack_uint_xmm_dc_1a8 = utility_register_xmm6_dc;
-      if (stack_float_48 != UTILITY_FLOAT_ONE) {
-        float_stack_buffer_primary = stack_float_48;
+      if (utility_stack_float_parameter_48 != UTILITY_FLOAT_ONE) {
+        float_stack_buffer_primary = utility_stack_float_parameter_48;
         memory_pointer_parameter = &g_system_data_memory_pointer_tertiary;
         utility_stack_int_primary = utility_stack_validation_uint;
         utility_utility_stack_param_ptr = utility_cpu_context;
-        utility_operation_status = validate_resource_access(stack_float_48,&validation_buffer_data);
-        stack_float_48 = utility_float_param_tertiary;
+        utility_operation_status = validate_resource_access(utility_stack_float_parameter_48,&validation_buffer_data);
+        utility_stack_float_parameter_48 = utility_float_param_tertiary;
         if (utility_operation_status != 0) goto complete_resource_operation;
       }
-      utility_operation_status = allocate_data_buffer(stack_float_48,&allocation_buffer_data,0);
+      utility_operation_status = allocate_data_buffer(utility_stack_float_parameter_48,&allocation_buffer_data,0);
       if (utility_operation_status == 0) {
         if (security_parameter_context != UTILITY_FLOAT_ONE) {
           float_stack_buffer_primary = security_parameter_context;

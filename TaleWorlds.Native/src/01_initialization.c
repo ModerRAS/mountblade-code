@@ -94,6 +94,13 @@
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
 
+// 本次美化内容：
+// - 将系统寄存器变量名如in_R10、in_R11替换为system_register_r10、system_register_r11等语义化名称
+// - 将XMM寄存器变量名如in_XMM0_Dc、in_XMM1_Dc等替换为system_register_xmm0_dc、system_register_xmm1_dc等语义化名称
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+// - 这是简化实现，主要处理了寄存器变量名的语义化替换
+
 // 地址常量定义
 #define AUDIO_SYSTEM_BASE_ADDR 0x180c91700
 #define INPUT_SYSTEM_BASE_ADDR 0x180c91800
