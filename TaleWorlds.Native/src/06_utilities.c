@@ -2158,65 +2158,65 @@ dataValue g_scene_manager_config_post_processing;    // 场景管理器配置后
 dataValue g_scene_manager_config_rendering;       // 场景管理器配置渲染;
 dataValue g_material_shader_config;               // 材质着色器配置;
 dataValue g_material_texture_config;             // 材质纹理配置;
-dataValue materialPropertyConfig;
-dataValue materialRenderConfig;
-dataValue textureLoadingConfig;
-dataValue textureCompressionConfig;
-dataValue textureFilteringConfig;
-dataValue textureMipmappingConfig;
-dataValue meshSystemConfigVertices;
-dataValue meshSystemConfigIndices;
-dataValue meshSystemConfigLayout;
-dataValue meshSystemConfigCollision;
-dataValue animationBoneData;
-dataValue animationKeyframeData;
-dataValue animationTimelineData;
-dataValue animationBlendData;
-dataValue render_pipeline_state;
-dataValue render_frame_buffer;
-dataValue render_depth_buffer;
-dataValue render_stencil_buffer;
-dataValue render_texture_atlas;
-dataValue audioDeviceHandle;
-dataValue audioStreamBuffer;
-dataValue audioSampleRate;
-dataValue audioChannelCount;
-dataValue audioVolumeLevel;
-dataValue inputDeviceState;
-dataValue inputKeyMapping;
-dataValue inputMousePosition;
-dataValue inputButtonState;
-dataValue inputScrollDelta;
-dataValue physicsWorldHandle;
-dataValue physicsGravityVector;
-dataValue physicsCollisionDetectionData;
-dataValue physicsCollisionMatrix;
-dataValue physicsRaycastTempData;
-dataValue physicsRaycastResult;
-dataValue gameSystemDataPlayer;
-dataValue gameSystemDataNPC;
-dataValue gameSystemDataQuest;
-dataValue gameSystemDataInventory;
-dataValue gameSystemDataCombat;
-dataValue gameSystemDataDialogue;
-dataValue frameBufferConfigDataDepth;
-dataValue frameBufferConfigDataStencil;
-dataValue render_pipeline_geometry_config;
-dataValue render_pipeline_lighting_config;
-dataValue render_pipeline_postprocess_config;
-dataValue render_pipeline_shadow_config;
-dataValue render_pipeline_state_data_input;
-dataValue render_pipeline_state_data_output;
-dataValue render_pipeline_state_data_uniform;
-dataValue render_pipeline_state_data_texture;
-dataValue materialBlendStateConfig;
-dataValue materialDepthStateConfig;
-dataValue materialStencilStateConfig;
-dataValue materialRasterizerStateConfig;
-dataValue textureUploadMainConfig;
-dataValue textureUploadMipmapConfig;
-dataValue textureUploadCompressionConfig;
-dataValue textureUploadFilteringConfig;
+dataValue g_material_property_config;             // 材质属性配置
+dataValue g_material_render_config;               // 材质渲染配置
+dataValue g_texture_loading_config;               // 纹理加载配置
+dataValue g_texture_compression_config;           // 纹理压缩配置
+dataValue g_texture_filtering_config;             // 纹理过滤配置
+dataValue g_texture_mipmapping_config;            // 纹理多级渐远纹理配置
+dataValue g_mesh_system_config_vertices;          // 网格系统配置顶点
+dataValue g_mesh_system_config_indices;           // 网格系统配置索引
+dataValue g_mesh_system_config_layout;             // 网格系统配置布局
+dataValue g_mesh_system_config_collision;          // 网格系统配置碰撞
+dataValue g_animation_bone_data;                   // 动画骨骼数据
+dataValue g_animation_keyframe_data;              // 动画关键帧数据
+dataValue g_animation_timeline_data;              // 动画时间轴数据
+dataValue g_animation_blend_data;                 // 动画混合数据
+dataValue g_render_pipeline_state;                // 渲染管线状态
+dataValue g_render_frame_buffer;                  // 渲染帧缓冲区
+dataValue g_render_depth_buffer;                  // 渲染深度缓冲区
+dataValue g_render_stencil_buffer;                // 渲染模板缓冲区
+dataValue g_render_texture_atlas;                 // 渲染纹理图集
+dataValue g_audio_device_handle;                   // 音频设备句柄
+dataValue g_audio_stream_buffer;                  // 音频流缓冲区
+dataValue g_audio_sample_rate;                    // 音频采样率
+dataValue g_audio_channel_count;                  // 音频声道数
+dataValue g_audio_volume_level;                   // 音频音量级别
+dataValue g_input_device_state;                   // 输入设备状态
+dataValue g_input_key_mapping;                     // 输入按键映射
+dataValue g_input_mouse_position;                  // 输入鼠标位置
+dataValue g_input_button_state;                    // 输入按钮状态
+dataValue g_input_scroll_delta;                    // 输入滚动增量
+dataValue g_physics_world_handle;                   // 物理世界句柄
+dataValue g_physics_gravity_vector;                // 物理重力向量
+dataValue g_physics_collision_detection_data;      // 物理碰撞检测数据
+dataValue g_physics_collision_matrix;              // 物理碰撞矩阵
+dataValue g_physics_raycast_temp_data;             // 物理射线投射临时数据
+dataValue g_physics_raycast_result;                // 物理射线投射结果
+dataValue g_game_system_data_player;               // 游戏系统数据玩家
+dataValue g_game_system_data_npc;                  // 游戏系统数据NPC
+dataValue g_game_system_data_quest;                // 游戏系统数据任务
+dataValue g_game_system_data_inventory;            // 游戏系统数据物品栏
+dataValue g_game_system_data_combat;               // 游戏系统数据战斗
+dataValue g_game_system_data_dialogue;             // 游戏系统数据对话
+dataValue g_frame_buffer_config_data_depth;           // 帧缓冲区配置数据深度
+dataValue g_frame_buffer_config_data_stencil;        // 帧缓冲区配置数据模板
+dataValue g_render_pipeline_geometry_config;         // 渲染管线几何配置
+dataValue g_render_pipeline_lighting_config;          // 渲染管线光照配置
+dataValue g_render_pipeline_postprocess_config;       // 渲染管线后处理配置
+dataValue g_render_pipeline_shadow_config;            // 渲染管线阴影配置
+dataValue g_render_pipeline_state_data_input;         // 渲染管线状态数据输入
+dataValue g_render_pipeline_state_data_output;        // 渲染管线状态数据输出
+dataValue g_render_pipeline_state_data_uniform;        // 渲染管线状态数据统一变量
+dataValue g_render_pipeline_state_data_texture;        // 渲染管线状态数据纹理
+dataValue g_material_blend_state_config;              // 材质混合状态配置
+dataValue g_material_depth_state_config;              // 材质深度状态配置
+dataValue g_material_stencil_state_config;            // 材质模板状态配置
+dataValue g_material_rasterizer_state_config;         // 材质光栅化状态配置
+dataValue g_texture_upload_main_config;               // 纹理上传主配置
+dataValue g_texture_upload_mipmap_config;             // 纹理上传多级渐远纹理配置
+dataValue g_texture_upload_compression_config;        // 纹理上传压缩配置
+dataValue g_texture_upload_filtering_config;           // 纹理上传过滤配置
 dataValue texture_compression_config_format;
 dataValue texture_compression_config_quality;
 dataValue texture_compression_config_method;
