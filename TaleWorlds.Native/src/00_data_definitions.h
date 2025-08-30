@@ -9172,13 +9172,13 @@ system_execution_function(unsigned long long handle_param,unsigned long long thr
                                                         system_char_variable = string_system_processor(auStack_50,
                                                                                     &g_stack_data_info);
                                                         if (system_char_variable != '\0') {
-                                                          buffer_allocation_result = 0x43c;
+                                                          buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_BASE_8;
                                                           goto section_processing_jump_label_;
                                                         }
                                                         system_char_variable = string_system_processor(auStack_50,
                                                                                     &g_stack_data_debug);
                                                         if (system_char_variable != '\0') {
-                                                          buffer_allocation_result = 0x440;
+                                                          buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_BASE_9;
                                                           goto section_processing_jump_label_;
                                                         }
                                                       }
