@@ -15399,7 +15399,7 @@ void SystemFunction_82_4(longlong handleIdentifier)
 {
   longlong long_var_;
   longlong *ptr_long_var;
-  char cVar3;
+  char char_var;
   longlong *plstack_var;
   longlong **pplstack_var;
   longlong *plstack_var;
@@ -15412,12 +15412,12 @@ void SystemFunction_82_4(longlong handleIdentifier)
   SystemFunction_49_6();
   if (systemInitializationObject != (longlong *)0x0) { // 原始名称: systemInitializationObject
     if ((void *)*systemInitializationObject == &g_system_vtable_1) { // 原始名称: systemInitializationObject, globalSystemVariable
-      cVar3 = (char)systemInitializationObject[2] != '\0'; // 原始名称: systemInitializationObject
+      char_var = (char)systemInitializationObject[2] != '\0'; // 原始名称: systemInitializationObject
     }
     else {
-      cVar3 = (**(code **)((void *)*systemInitializationObject + 0x68))(); // 原始名称: systemInitializationObject
+      char_var = (**(code **)((void *)*systemInitializationObject + 0x68))(); // 原始名称: systemInitializationObject
     }
-    if (cVar3 == '\0') goto LAB_180043e47;
+    if (char_var == '\0') goto LAB_180043e47;
   }
   ptr_long_var = (longlong *)AllocateSystemMemory(systemMemoryPool,0xc0,8,3,uint_var_); // 原始名称: systemMemoryPool
   plstack_var = ptr_long_var;
@@ -15509,7 +15509,7 @@ void UtilityModule231(void)
 
 {
   uint64_t *ptr_uint_var;
-  code *pcVar2;
+  code *ptr_char_var;
   longlong long_var_;
   int int_var_;
   uint64_t uint_var_;
@@ -15558,11 +15558,11 @@ void UtilityModule231(void)
     }
     *(uint32_t *)(ptr_long_var + 0xd) = 0xbb80073;
     ptr_uint_var = *(uint64_t **)(long_var_ + 400);
-    pcVar2 = *(code **)*ptr_uint_var;
+    ptr_char_var = *(code **)*ptr_uint_var;
     applongStack_150[0] = &plongStack_208;
     plongStack_208 = ptr_long_var;
     (**(code **)(*ptr_long_var + 0x28))(ptr_long_var);
-    (*pcVar2)(ptr_uint_var,&plongStack_208);
+    (*ptr_char_var)(ptr_uint_var,&plongStack_208);
     (**(code **)(*ptr_long_var + 0x38))(ptr_long_var);
     SystemFunction_62_4();
     bufferPtr_1d8 = &resourcePoolPointer;
@@ -15593,8 +15593,8 @@ void UtilityModule231(void)
         ValidateSystemIntegrity();
 LAB_180044db8:
         ValidateSystemIntegrity();
-        pcVar2 = (code *)swi(3);
-        (*pcVar2)();
+        ptr_char_var = (code *)swi(3);
+        (*ptr_char_var)();
         return;
       }
       localBuffer_138[(ulonglong)plongStack_208 & 0xffffffff] = 0;
@@ -15838,7 +15838,7 @@ uint32_t get_game_initialization_status(void)
 
 {
   uint64_t *ptr_uint_var;
-  code *pcVar2;
+  code *ptr_char_var;
   longlong **pplVar3;
   uint32_t uint_var_;
   int int_var_;
@@ -15899,26 +15899,26 @@ uint32_t get_game_initialization_status(void)
     (*(code *)(*pppplVar8)[5])(pppplVar8);
   }
   ptr_uint_var = *(uint64_t **)(long_var_ + 400);
-  pcVar2 = *(code **)*ptr_uint_var;
+  ptr_char_var = *(code **)*ptr_uint_var;
   pppplstack_var = &ppplstack_var;
   ppplstack_var = (longlong ***)pppplVar8;
   if (pppplVar8 != (longlong ****)0x0) {
     (*(code *)(*pppplVar8)[5])(pppplVar8);
   }
-  (*pcVar2)(ptr_uint_var,&ppplstack_var);
+  (*ptr_char_var)(ptr_uint_var,&ppplstack_var);
   uint_var_ = AllocateSystemMemory(systemMemoryPool,0x70,8,3,uint_var_,ppppplVar13,pppplVar14);
   ppplVar9 = (longlong ***)SystemFunction_28_0(uint_var_,0,long_var_);
   if (ppplVar9 != (longlong ***)0x0) {
     (*(code *)(*ppplVar9)[5])(ppplVar9);
   }
   ptr_uint_var = *(uint64_t **)(long_var_ + 400);
-  pcVar2 = *(code **)*ptr_uint_var;
+  ptr_char_var = *(code **)*ptr_uint_var;
   pppplstack_var = (longlong ****)&pplstack_var;
   pplstack_var = (longlong **)ppplVar9;
   if (ppplVar9 != (longlong ***)0x0) {
     (*(code *)(*ppplVar9)[5])(ppplVar9);
   }
-  (*pcVar2)(ptr_uint_var,&pplstack_var);
+  (*ptr_char_var)(ptr_uint_var,&pplstack_var);
   ProcessGameData(*(uint64_t *)(long_var_ + 400));
   if (ppplVar9 != (longlong ***)0x0) {
     (*(code *)(*ppplVar9)[7])(ppplVar9);
@@ -16290,12 +16290,12 @@ longlong SystemFunction_29_6(uint32_t *handleIdentifier,uint32_t *resourceIdenti
 
 {
   uint32_t uint_var_;
-  char cVar2;
+  char char_var;
   void *ptr_uint_var;
 
   if (*(longlong *)(handleIdentifier + 0x18) != 0) {
-    cVar2 = (**(code **)(handleIdentifier + 0x1a))(resourceIdentifier,handleIdentifier + 0x14);
-    if (cVar2 == '\0') {
+    char_var = (**(code **)(handleIdentifier + 0x1a))(resourceIdentifier,handleIdentifier + 0x14);
+    if (char_var == '\0') {
       if (g_system_data_variable0 == '\0') {
         ptr_uint_var = &g_system_data_variable3;
         if (*(void **)(handleIdentifier + 4) != (void *)0x0) {
@@ -16317,14 +16317,14 @@ void ConfigureGraphicsShader(uint64_t handleIdentifier,uint32_t resourceIdentifi
 
 {
   longlong long_var_;
-  char cVar2;
+  char char_var;
   void *ptr_uint_var;
   uint32_t localBuffer_X10 [6];
 
   long_var_ = systemCoreData;
   if ((*(longlong *)(systemCoreData + 0x22f0) != 0) &&
-     (localBuffer_X10[0] = resourceIdentifier, cVar2 = (**(code **)(systemCoreData + 0x22f8))(localBuffer_X10),
-     resourceIdentifier = localBuffer_X10[0], cVar2 == '\0')) {
+     (localBuffer_X10[0] = resourceIdentifier, char_var = (**(code **)(systemCoreData + 0x22f8))(localBuffer_X10),
+     resourceIdentifier = localBuffer_X10[0], char_var == '\0')) {
     if (g_system_data_variable0 == '\0') {
       ptr_uint_var = &g_system_data_variable3;
       if (*(void **)(long_var_ + 0x22a0) != (void *)0x0) {
@@ -16577,7 +16577,7 @@ void SystemFunction_83_2(longlong *handleIdentifier)
 void SystemFunction_86_4(ulonglong *handleIdentifier)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   uint64_t *node_root;
   longlong long_var_;
   ulonglong uint_var_;
@@ -16593,9 +16593,9 @@ void SystemFunction_86_4(ulonglong *handleIdentifier)
     if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
       *node_root = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
       *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = node_root;
-      piVar1 = (int *)(long_var_ + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      ptr_int_var = (int *)(long_var_ + 0x18);
+      *ptr_int_var = *ptr_int_var + -1;
+      if (*ptr_int_var == 0) {
         InitializeSystemComponents();
         return;
       }
@@ -16769,10 +16769,10 @@ void SystemFunction_55_2(uint64_t *handleIdentifier,uint64_t resourceIdentifier,
 ulonglong SystemFunction_66_4(longlong handleIdentifier,longlong resourceIdentifier)
 
 {
-  byte *pbVar1;
+  byte *ptr_byte_var;
   int int_var_;
   longlong long_var_;
-  byte *pbVar4;
+  byte *ptr_byte_var;
   int int_var_;
   int int_var_;
   ulonglong uint_var_;
@@ -16788,14 +16788,14 @@ ulonglong SystemFunction_66_4(longlong handleIdentifier,longlong resourceIdentif
     int_var_ = *(int *)(uint_var_ * SYSTEM_DATA_COMPARE_SIZE0 + SYSTEM_DATA_COMPARE_SIZE + long_var_);
     if (int_var_ == int_var_) {
       if (int_var_ != 0) {
-        pbVar4 = *(byte **)(uint_var_ * SYSTEM_DATA_COMPARE_SIZE0 + 8 + long_var_);
-        long_var_ = *(longlong *)(resourceIdentifier + 8) - (longlong)pbVar4;
+        ptr_byte_var = *(byte **)(uint_var_ * SYSTEM_DATA_COMPARE_SIZE0 + 8 + long_var_);
+        long_var_ = *(longlong *)(resourceIdentifier + 8) - (longlong)ptr_byte_var;
         do {
-          pbVar1 = pbVar4 + long_var_;
-          int_var_ = (uint)*pbVar4 - (uint)*pbVar1;
+          ptr_byte_var = ptr_byte_var + long_var_;
+          int_var_ = (uint)*ptr_byte_var - (uint)*ptr_byte_var;
           if (int_var_ != 0) break;
-          pbVar4 = pbVar4 + 1;
-        } while (*pbVar1 != 0);
+          ptr_byte_var = ptr_byte_var + 1;
+        } while (*ptr_byte_var != 0);
       }
     }
     else if (int_var_ != 0) goto LAB_180046c03;
@@ -16815,14 +16815,14 @@ LAB_180046c03:
       int_var_ = int_var_;
       if (int_var_ == int_var_) {
         if (int_var_ != 0) {
-          pbVar4 = *(byte **)(uint_var_ + 8 + long_var_);
-          long_var_ = *(longlong *)(resourceIdentifier + 8) - (longlong)pbVar4;
+          ptr_byte_var = *(byte **)(uint_var_ + 8 + long_var_);
+          long_var_ = *(longlong *)(resourceIdentifier + 8) - (longlong)ptr_byte_var;
           do {
-            pbVar1 = pbVar4 + long_var_;
-            int_var_ = (uint)*pbVar4 - (uint)*pbVar1;
+            ptr_byte_var = ptr_byte_var + long_var_;
+            int_var_ = (uint)*ptr_byte_var - (uint)*ptr_byte_var;
             if (int_var_ != 0) break;
-            pbVar4 = pbVar4 + 1;
-          } while (*pbVar1 != 0);
+            ptr_byte_var = ptr_byte_var + 1;
+          } while (*ptr_byte_var != 0);
         }
 LAB_180046c5e:
         if (int_var_ == 0) {
@@ -16889,7 +16889,7 @@ void SystemFunction_33_6(void)
 
 {
   uint64_t uint_var_;
-  char cVar2;
+  char char_var;
   int compare_result;
   longlong ***ppptr_data;
   ulonglong uint_var_;
@@ -16980,13 +16980,13 @@ void SystemFunction_33_6(void)
   ProcessResourceData(&longStack_678,&g_system_data_variable0);
   if (intStack_668 == 0) {
     (**(code **)(longStack_678 + SYSTEM_DATA_COMPARE_SIZE))(&longStack_678,&g_global_config_2);
-    cVar2 = ValidateSystemData(&longStack_678);
-    if (cVar2 == '\0') {
+    char_var = ValidateSystemData(&longStack_678);
+    if (char_var == '\0') {
       CleanupSystemData(&longStack_678);
     }
   }
-  cVar2 = ValidateSystemData(&longStack_678);
-  if (cVar2 == '\0') {
+  char_var = ValidateSystemData(&longStack_678);
+  if (char_var == '\0') {
     CleanupSystemData(&longStack_678);
   }
   bufferPtr_4e8 = &g_thread_config_ptr;
@@ -17179,12 +17179,12 @@ void SystemFunction_46_4(uint64_t *handleIdentifier)
 void ConfigureGraphicsParameters(uint64_t handleIdentifier,uint64_t resourceIdentifier,longlong systemConfig,uint64_t systemFlags)
 
 {
-  byte bVar1;
-  bool bVar2;
+  byte bool_var;
+  bool bool_var;
   int compare_result;
   uint64_t *ptr_uint_var;
   uint uint_var_;
-  byte *pbVar6;
+  byte *ptr_byte_var;
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *ptr_uint_var;
@@ -17203,22 +17203,22 @@ void ConfigureGraphicsParameters(uint64_t handleIdentifier,uint64_t resourceIden
     do {
       if (*(int *)(systemConfig + SYSTEM_DATA_COMPARE_SIZE) == 0) {
         ptr_uint_var = (uint64_t *)node_next[1];
-        bVar2 = false;
+        bool_var = false;
       }
       else {
         if (*(int *)(node_next + 6) == 0) {
-          bVar2 = true;
+          bool_var = true;
         }
         else {
-          pbVar6 = *(byte **)(systemConfig + 8);
-          long_var_ = node_next[5] - (longlong)pbVar6;
+          ptr_byte_var = *(byte **)(systemConfig + 8);
+          long_var_ = node_next[5] - (longlong)ptr_byte_var;
           do {
-            uint_var_ = (uint)pbVar6[long_var_];
-            compare_result = *pbVar6 - uint_var_;
-            if (*pbVar6 != uint_var_) break;
-            pbVar6 = pbVar6 + 1;
+            uint_var_ = (uint)ptr_byte_var[long_var_];
+            compare_result = *ptr_byte_var - uint_var_;
+            if (*ptr_byte_var != uint_var_) break;
+            ptr_byte_var = ptr_byte_var + 1;
           } while (uint_var_ != 0);
-          bVar2 = 0 < compare_result;
+          bool_var = 0 < compare_result;
           if (compare_result < 1) {
             ptr_uint_var = (uint64_t *)node_next[1];
             goto LAB_180047f2c;
@@ -17227,7 +17227,7 @@ void ConfigureGraphicsParameters(uint64_t handleIdentifier,uint64_t resourceIden
         ptr_uint_var = (uint64_t *)*node_next;
       }
 LAB_180047f2c:
-      if (bVar2) {
+      if (bool_var) {
         node_next = ptr_uint_var;
       }
       ptr_uint_var = node_next;
@@ -17237,15 +17237,15 @@ LAB_180047f2c:
   if (ptr_uint_var != node_previous) {
     if (*(int *)(ptr_uint_var + 6) == 0) goto LAB_180047f93;
     if (*(int *)(systemConfig + SYSTEM_DATA_COMPARE_SIZE) != 0) {
-      pbVar6 = (byte *)ptr_uint_var[5];
-      long_var_ = *(longlong *)(systemConfig + 8) - (longlong)pbVar6;
+      ptr_byte_var = (byte *)ptr_uint_var[5];
+      long_var_ = *(longlong *)(systemConfig + 8) - (longlong)ptr_byte_var;
       do {
-        bVar1 = *pbVar6;
-        uint_var_ = (uint)pbVar6[long_var_];
-        if (bVar1 != uint_var_) break;
-        pbVar6 = pbVar6 + 1;
+        bool_var = *ptr_byte_var;
+        uint_var_ = (uint)ptr_byte_var[long_var_];
+        if (bool_var != uint_var_) break;
+        ptr_byte_var = ptr_byte_var + 1;
       } while (uint_var_ != 0);
-      if ((int)(bVar1 - uint_var_) < 1) goto LAB_180047f93;
+      if ((int)(bool_var - uint_var_) < 1) goto LAB_180047f93;
     }
   }
   ptr_uint_var = (uint64_t *)SystemFunction_17_6(node_previous,&ustack_var);
@@ -17260,9 +17260,9 @@ LAB_180047f93:
 void SystemFunction_84_8(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t systemConfig,uint64_t systemFlags)
 
 {
-  double dVar1;
-  char cVar2;
-  double dVar3;
+  double double_var;
+  char char_var;
+  double double_var;
   uint uint_var_;
   uint64_t *ptr_uint_var;
   longlong long_var_;
@@ -17356,114 +17356,114 @@ void SystemFunction_84_8(uint64_t handleIdentifier,uint64_t resourceIdentifier,u
         }
         uintStack_70 = uintStack_70 & 0xffffffff;
       }
-      cVar2 = *pcStack_80;
-      while (cVar2 != '\0') {
+      char_var = *pcStack_80;
+      while (char_var != '\0') {
         long_var_ = strchr(&g_system_data_variable4,(int)pcStack_80[long_var_]);
         if (long_var_ != 0) {
           pcStack_80[long_var_] = '_';
         }
         long_var_ = long_var_ + 1;
-        cVar2 = pcStack_80[long_var_];
+        char_var = pcStack_80[long_var_];
       }
       pis_initialized4 = "";
       if (pcStack_80 != (char *)0x0) {
         pis_initialized4 = pcStack_80;
       }
       InitializeSystemModule(ptr_uint_var,&g_global_config_4,pis_initialized4);
-      dVar1 = *(double *)(long_var_ + 0xa0 + uint_var_);
-      dVar3 = (double)*(uint *)(long_var_ + 0xb0 + uint_var_);
-      if (dVar3 != 0.0) {
-        InitializeSystemModule(ptr_uint_var,&g_global_config_6,&g_global_config_5,dVar3);
+      double_var = *(double *)(long_var_ + 0xa0 + uint_var_);
+      double_var = (double)*(uint *)(long_var_ + 0xb0 + uint_var_);
+      if (double_var != 0.0) {
+        InitializeSystemModule(ptr_uint_var,&g_global_config_6,&g_global_config_5,double_var);
       }
-      if (dVar1 != 0.0) {
-        InitializeSystemModule(ptr_uint_var,&g_global_config_6,&g_global_config_7,dVar1);
+      if (double_var != 0.0) {
+        InitializeSystemModule(ptr_uint_var,&g_global_config_6,&g_global_config_7,double_var);
       }
-      dVar1 = *(double *)(long_var_ + 0xb8 + uint_var_);
-      dVar3 = (double)*(uint *)(long_var_ + 200 + uint_var_);
-      if (dVar3 != 0.0) {
-        InitializeSystemModule(ptr_uint_var,&g_global_config_6,&g_global_config_8,dVar3);
+      double_var = *(double *)(long_var_ + 0xb8 + uint_var_);
+      double_var = (double)*(uint *)(long_var_ + 200 + uint_var_);
+      if (double_var != 0.0) {
+        InitializeSystemModule(ptr_uint_var,&g_global_config_6,&g_global_config_8,double_var);
       }
-      if (dVar1 != 0.0) {
-        InitializeSystemModule(ptr_uint_var,&g_global_config_6,&g_global_config_9,dVar1);
+      if (double_var != 0.0) {
+        InitializeSystemModule(ptr_uint_var,&g_global_config_6,&g_global_config_9,double_var);
       }
-      dVar1 = *(double *)(long_var_ + SYSTEM_NODE_HEADER_SIZE + uint_var_);
-      if (dVar1 != 0.0) {
-        InitializeSystemModule(ptr_uint_var,&g_global_config_6,&g_global_config_10,dVar1);
+      double_var = *(double *)(long_var_ + SYSTEM_NODE_HEADER_SIZE + uint_var_);
+      if (double_var != 0.0) {
+        InitializeSystemModule(ptr_uint_var,&g_global_config_6,&g_global_config_10,double_var);
       }
-      dVar1 = *(double *)(long_var_ + 0x28 + uint_var_);
-      if (dVar1 != 0.0) {
-        InitializeSystemModule(ptr_uint_var,&g_global_config_6,&g_global_config_11,dVar1);
+      double_var = *(double *)(long_var_ + 0x28 + uint_var_);
+      if (double_var != 0.0) {
+        InitializeSystemModule(ptr_uint_var,&g_global_config_6,&g_global_config_11,double_var);
       }
       long_var_ = *(longlong *)(long_var_ + 0x30 + uint_var_);
-      dVar1 = (double)long_var_;
+      double_var = (double)long_var_;
       if (long_var_ < 0) {
-        dVar1 = dVar1 + 1.8446744073709552e+19;
+        double_var = double_var + 1.8446744073709552e+19;
       }
       InitializeSystemModule(ptr_uint_var,&g_system_global_variable4,&g_global_config_12,
-                    (double)(float)(dVar1 * 9.5367431640625e-07));
+                    (double)(float)(double_var * 9.5367431640625e-07));
       long_var_ = *(longlong *)(long_var_ + 0x38 + uint_var_);
-      dVar1 = (double)long_var_;
+      double_var = (double)long_var_;
       if (long_var_ < 0) {
-        dVar1 = dVar1 + 1.8446744073709552e+19;
+        double_var = double_var + 1.8446744073709552e+19;
       }
       InitializeSystemModule(ptr_uint_var,&g_system_global_variable4,&globalSystemVariable,
-                    (double)(float)(dVar1 * 9.5367431640625e-07));
+                    (double)(float)(double_var * 9.5367431640625e-07));
       long_var_ = *(longlong *)(long_var_ + 0x40 + uint_var_);
-      dVar1 = (double)long_var_;
+      double_var = (double)long_var_;
       if (long_var_ < 0) {
-        dVar1 = dVar1 + 1.8446744073709552e+19;
+        double_var = double_var + 1.8446744073709552e+19;
       }
       InitializeSystemModule(ptr_uint_var,&g_system_global_variable4,&globalSystemVariable,
-                    (double)(float)(dVar1 * 9.5367431640625e-07));
+                    (double)(float)(double_var * 9.5367431640625e-07));
       long_var_ = *(longlong *)(long_var_ + 0x48 + uint_var_);
-      dVar1 = (double)long_var_;
+      double_var = (double)long_var_;
       if (long_var_ < 0) {
-        dVar1 = dVar1 + 1.8446744073709552e+19;
+        double_var = double_var + 1.8446744073709552e+19;
       }
       InitializeSystemModule(ptr_uint_var,&g_system_global_variable4,&g_system_global_variable8,
-                    (double)(float)(dVar1 * 9.5367431640625e-07));
+                    (double)(float)(double_var * 9.5367431640625e-07));
       long_var_ = *(longlong *)(long_var_ + 0x50 + uint_var_);
-      dVar1 = (double)long_var_;
+      double_var = (double)long_var_;
       if (long_var_ < 0) {
-        dVar1 = dVar1 + 1.8446744073709552e+19;
+        double_var = double_var + 1.8446744073709552e+19;
       }
       InitializeSystemModule(ptr_uint_var,&g_system_global_variable4,&globalSystemVariable,
-                    (double)(float)(dVar1 * 9.5367431640625e-07));
+                    (double)(float)(double_var * 9.5367431640625e-07));
       long_var_ = *(longlong *)(long_var_ + 0x58 + uint_var_);
-      dVar1 = (double)long_var_;
+      double_var = (double)long_var_;
       if (long_var_ < 0) {
-        dVar1 = dVar1 + 1.8446744073709552e+19;
+        double_var = double_var + 1.8446744073709552e+19;
       }
       InitializeSystemModule(ptr_uint_var,&g_system_global_variable4,&g_system_global_variable8,
-                    (double)(float)(dVar1 * 9.5367431640625e-07));
+                    (double)(float)(double_var * 9.5367431640625e-07));
       long_var_ = *(longlong *)(long_var_ + 0x60 + uint_var_);
-      dVar1 = (double)long_var_;
+      double_var = (double)long_var_;
       if (long_var_ < 0) {
-        dVar1 = dVar1 + 1.8446744073709552e+19;
+        double_var = double_var + 1.8446744073709552e+19;
       }
       InitializeSystemModule(ptr_uint_var,&g_system_global_variable4,&globalSystemVariable,
-                    (double)(float)(dVar1 * 9.5367431640625e-07));
+                    (double)(float)(double_var * 9.5367431640625e-07));
       long_var_ = *(longlong *)(long_var_ + 0x68 + uint_var_);
-      dVar1 = (double)long_var_;
+      double_var = (double)long_var_;
       if (long_var_ < 0) {
-        dVar1 = dVar1 + 1.8446744073709552e+19;
+        double_var = double_var + 1.8446744073709552e+19;
       }
       InitializeSystemModule(ptr_uint_var,&g_system_global_variable4,&g_system_global_variable8,
-                    (double)(float)(dVar1 * 9.5367431640625e-07));
+                    (double)(float)(double_var * 9.5367431640625e-07));
       long_var_ = *(longlong *)(long_var_ + 0x70 + uint_var_);
-      dVar1 = (double)long_var_;
+      double_var = (double)long_var_;
       if (long_var_ < 0) {
-        dVar1 = dVar1 + 1.8446744073709552e+19;
+        double_var = double_var + 1.8446744073709552e+19;
       }
       InitializeSystemModule(ptr_uint_var,&g_system_global_variable4,&g_system_global_variable8,
-                    (double)(float)(dVar1 * 9.5367431640625e-07));
-      dVar1 = *(double *)(long_var_ + 0x78 + uint_var_);
-      if (dVar1 != 0.0) {
-        InitializeSystemModule(ptr_uint_var,&g_global_config_6,&g_system_global_variable8,dVar1);
+                    (double)(float)(double_var * 9.5367431640625e-07));
+      double_var = *(double *)(long_var_ + 0x78 + uint_var_);
+      if (double_var != 0.0) {
+        InitializeSystemModule(ptr_uint_var,&g_global_config_6,&g_system_global_variable8,double_var);
       }
-      dVar1 = *(double *)(long_var_ + 0x80 + uint_var_);
-      if (dVar1 != 0.0) {
-        InitializeSystemModule(ptr_uint_var,&g_global_config_6,&g_system_global_variable8,dVar1);
+      double_var = *(double *)(long_var_ + 0x80 + uint_var_);
+      if (double_var != 0.0) {
+        InitializeSystemModule(ptr_uint_var,&g_global_config_6,&g_system_global_variable8,double_var);
       }
       long_var_ = uint_var_ + 0xd0 + long_var_;
       long_var_ = *(longlong *)(long_var_ + 8);
@@ -17486,14 +17486,14 @@ void SystemFunction_84_8(uint64_t handleIdentifier,uint64_t resourceIdentifier,u
           }
           uintStack_90 = uintStack_90 & 0xffffffff;
         }
-        cVar2 = *pcStack_a0;
-        while (cVar2 != '\0') {
+        char_var = *pcStack_a0;
+        while (char_var != '\0') {
           long_var_ = strchr(&g_system_data_variable4,(int)pcStack_a0[long_var_]);
           if (long_var_ != 0) {
             pcStack_a0[long_var_] = '_';
           }
           long_var_ = long_var_ + 1;
-          cVar2 = pcStack_a0[long_var_];
+          char_var = pcStack_a0[long_var_];
         }
         pis_initialized4 = "";
         if (pcStack_a0 != (char *)0x0) {
@@ -17533,15 +17533,15 @@ void SystemFunction_84_8(uint64_t handleIdentifier,uint64_t resourceIdentifier,u
       long_var_ = systemConfigurationData;
       long_var_ = 0;
       pis_initialized4 = *(char **)(systemConfigurationData + 8 + long_var_);
-      cVar2 = *pis_initialized4;
-      while (cVar2 != '\0') {
+      char_var = *pis_initialized4;
+      while (char_var != '\0') {
         long_var_ = strchr(&g_system_data_variable4,(int)pis_initialized4[long_var_]);
         if (long_var_ != 0) {
           *(uint8_t *)(long_var_ + *(longlong *)(long_var_ + 8 + long_var_)) = 0x5f;
         }
         long_var_ = long_var_ + 1;
         pis_initialized4 = *(char **)(long_var_ + 8 + long_var_);
-        cVar2 = pis_initialized4[long_var_];
+        char_var = pis_initialized4[long_var_];
       }
       ptr_uint_var = *(void **)(systemConfigurationData + 8 + long_var_);
       puVar15 = &g_system_data_variable3;
@@ -17618,7 +17618,7 @@ void SystemFunction_34_4(longlong *handleIdentifier)
 void SystemFunction_50_4(ulonglong *handleIdentifier)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   uint64_t *node_root;
   longlong long_var_;
   ulonglong uint_var_;
@@ -17634,9 +17634,9 @@ void SystemFunction_50_4(ulonglong *handleIdentifier)
     if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
       *node_root = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
       *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = node_root;
-      piVar1 = (int *)(long_var_ + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      ptr_int_var = (int *)(long_var_ + 0x18);
+      *ptr_int_var = *ptr_int_var + -1;
+      if (*ptr_int_var == 0) {
         InitializeSystemComponents();
         return;
       }
@@ -17768,11 +17768,11 @@ SystemFunction_17_6(longlong *handleIdentifier,uint64_t *resourceIdentifier,uint
              longlong parameter_5)
 
 {
-  byte bVar1;
-  bool bVar2;
+  byte bool_var;
+  bool bool_var;
   longlong *ptr_long_var;
   longlong *ptr_data;
-  byte *pbVar5;
+  byte *ptr_byte_var;
   uint uint_var_;
   longlong long_var_;
   uint64_t uint_var_;
@@ -17783,15 +17783,15 @@ SystemFunction_17_6(longlong *handleIdentifier,uint64_t *resourceIdentifier,uint
     if ((handleIdentifier[4] != 0) && (*(int *)(parameter_5 + SYSTEM_DATA_COMPARE_SIZE) != 0)) {
       systemFlags = ptr_data;
       if (*(int *)(ptr_data + 6) != 0) {
-        pbVar5 = *(byte **)(parameter_5 + 8);
-        long_var_ = ptr_data[5] - (longlong)pbVar5;
+        ptr_byte_var = *(byte **)(parameter_5 + 8);
+        long_var_ = ptr_data[5] - (longlong)ptr_byte_var;
         do {
-          bVar1 = *pbVar5;
-          uint_var_ = (uint)pbVar5[long_var_];
-          if (bVar1 != uint_var_) break;
-          pbVar5 = pbVar5 + 1;
+          bool_var = *ptr_byte_var;
+          uint_var_ = (uint)ptr_byte_var[long_var_];
+          if (bool_var != uint_var_) break;
+          ptr_byte_var = ptr_byte_var + 1;
         } while (uint_var_ != 0);
-        if ((int)(bVar1 - uint_var_) < 1) goto LAB_180048dd7;
+        if ((int)(bool_var - uint_var_) < 1) goto LAB_180048dd7;
       }
 LAB_180048db7:
       uint_var_ = 0;
@@ -17806,26 +17806,26 @@ LAB_180048dba:
     ptr_data = (longlong *)SystemFunction66bd70(systemFlags);
     if (*(int *)(parameter_5 + SYSTEM_DATA_COMPARE_SIZE) != 0) {
       if ((int)systemFlags[6] != 0) {
-        pbVar5 = *(byte **)(parameter_5 + 8);
-        long_var_ = systemFlags[5] - (longlong)pbVar5;
+        ptr_byte_var = *(byte **)(parameter_5 + 8);
+        long_var_ = systemFlags[5] - (longlong)ptr_byte_var;
         do {
-          bVar1 = *pbVar5;
-          uint_var_ = (uint)pbVar5[long_var_];
-          if (bVar1 != uint_var_) break;
-          pbVar5 = pbVar5 + 1;
+          bool_var = *ptr_byte_var;
+          uint_var_ = (uint)ptr_byte_var[long_var_];
+          if (bool_var != uint_var_) break;
+          ptr_byte_var = ptr_byte_var + 1;
         } while (uint_var_ != 0);
-        if ((int)(bVar1 - uint_var_) < 1) goto LAB_180048dd7;
+        if ((int)(bool_var - uint_var_) < 1) goto LAB_180048dd7;
       }
       if ((int)ptr_data[6] != 0) {
-        pbVar5 = (byte *)ptr_data[5];
-        long_var_ = *(longlong *)(parameter_5 + 8) - (longlong)pbVar5;
+        ptr_byte_var = (byte *)ptr_data[5];
+        long_var_ = *(longlong *)(parameter_5 + 8) - (longlong)ptr_byte_var;
         do {
-          bVar1 = *pbVar5;
-          uint_var_ = (uint)pbVar5[long_var_];
-          if (bVar1 != uint_var_) break;
-          pbVar5 = pbVar5 + 1;
+          bool_var = *ptr_byte_var;
+          uint_var_ = (uint)ptr_byte_var[long_var_];
+          if (bool_var != uint_var_) break;
+          ptr_byte_var = ptr_byte_var + 1;
         } while (uint_var_ != 0);
-        if (0 < (int)(bVar1 - uint_var_)) {
+        if (0 < (int)(bool_var - uint_var_)) {
           if (*systemFlags == 0) goto LAB_180048db7;
           uint_var_ = 1;
           systemFlags = ptr_data;
@@ -17835,37 +17835,37 @@ LAB_180048dba:
     }
   }
 LAB_180048dd7:
-  bVar2 = true;
+  bool_var = true;
   ptr_data = (longlong *)handleIdentifier[2];
   ptr_long_var = handleIdentifier;
   while (ptr_data != (longlong *)0x0) {
     ptr_long_var = ptr_data;
     if ((int)ptr_data[6] == 0) {
-      bVar2 = false;
+      bool_var = false;
 LAB_180048e00:
       ptr_data = (longlong *)*ptr_data;
     }
     else {
       if (*(int *)(parameter_5 + SYSTEM_DATA_COMPARE_SIZE) == 0) {
-        bVar2 = true;
+        bool_var = true;
       }
       else {
-        pbVar5 = (byte *)ptr_data[5];
-        long_var_ = *(longlong *)(parameter_5 + 8) - (longlong)pbVar5;
+        ptr_byte_var = (byte *)ptr_data[5];
+        long_var_ = *(longlong *)(parameter_5 + 8) - (longlong)ptr_byte_var;
         do {
-          bVar1 = *pbVar5;
-          uint_var_ = (uint)pbVar5[long_var_];
-          if (bVar1 != uint_var_) break;
-          pbVar5 = pbVar5 + 1;
+          bool_var = *ptr_byte_var;
+          uint_var_ = (uint)ptr_byte_var[long_var_];
+          if (bool_var != uint_var_) break;
+          ptr_byte_var = ptr_byte_var + 1;
         } while (uint_var_ != 0);
-        bVar2 = 0 < (int)(bVar1 - uint_var_);
+        bool_var = 0 < (int)(bool_var - uint_var_);
       }
-      if (!bVar2) goto LAB_180048e00;
+      if (!bool_var) goto LAB_180048e00;
       ptr_data = (longlong *)ptr_data[1];
     }
   }
   ptr_data = ptr_long_var;
-  if (bVar2) {
+  if (bool_var) {
     if (ptr_long_var != (longlong *)handleIdentifier[1]) {
       ptr_data = (longlong *)SystemFunction66b9a0(ptr_long_var);
       goto LAB_180048e20;
@@ -17875,15 +17875,15 @@ LAB_180048e00:
 LAB_180048e20:
     if (*(int *)(parameter_5 + SYSTEM_DATA_COMPARE_SIZE) == 0) goto LAB_180048e74;
     if ((int)ptr_data[6] != 0) {
-      pbVar5 = *(byte **)(parameter_5 + 8);
-      long_var_ = ptr_data[5] - (longlong)pbVar5;
+      ptr_byte_var = *(byte **)(parameter_5 + 8);
+      long_var_ = ptr_data[5] - (longlong)ptr_byte_var;
       do {
-        bVar1 = *pbVar5;
-        uint_var_ = (uint)pbVar5[long_var_];
-        if (bVar1 != uint_var_) break;
-        pbVar5 = pbVar5 + 1;
+        bool_var = *ptr_byte_var;
+        uint_var_ = (uint)ptr_byte_var[long_var_];
+        if (bool_var != uint_var_) break;
+        ptr_byte_var = ptr_byte_var + 1;
       } while (uint_var_ != 0);
-      if ((int)(bVar1 - uint_var_) < 1) goto LAB_180048e74;
+      if ((int)(bool_var - uint_var_) < 1) goto LAB_180048e74;
     }
   }
   SystemFunction_72_0(handleIdentifier,&plstack_var,ptr_long_var,0,parameter_5);
@@ -17898,8 +17898,8 @@ void SystemFunction_72_0(longlong handleIdentifier,uint64_t resourceIdentifier,l
                   longlong parameter_5)
 
 {
-  byte bVar1;
-  byte *pbVar2;
+  byte bool_var;
+  byte *ptr_byte_var;
   uint uint_var_;
   uint64_t *ptr_uint_var;
   longlong allocation_size;
@@ -17911,15 +17911,15 @@ void SystemFunction_72_0(longlong handleIdentifier,uint64_t resourceIdentifier,l
   if (((char)systemFlags != '\0') || (systemConfig == handleIdentifier)) goto LAB_180048f62;
   if (*(int *)(systemConfig + 0x30) != 0) {
     if (*(int *)(parameter_5 + SYSTEM_DATA_COMPARE_SIZE) == 0) goto LAB_180048f62;
-    pbVar2 = *(byte **)(systemConfig + 0x28);
-    allocation_size = *(longlong *)(parameter_5 + 8) - (longlong)pbVar2;
+    ptr_byte_var = *(byte **)(systemConfig + 0x28);
+    allocation_size = *(longlong *)(parameter_5 + 8) - (longlong)ptr_byte_var;
     do {
-      bVar1 = *pbVar2;
-      uint_var_ = (uint)pbVar2[allocation_size];
-      if (bVar1 != uint_var_) break;
-      pbVar2 = pbVar2 + 1;
+      bool_var = *ptr_byte_var;
+      uint_var_ = (uint)ptr_byte_var[allocation_size];
+      if (bool_var != uint_var_) break;
+      ptr_byte_var = ptr_byte_var + 1;
     } while (uint_var_ != 0);
-    if (0 < (int)(bVar1 - uint_var_)) goto LAB_180048f62;
+    if (0 < (int)(bool_var - uint_var_)) goto LAB_180048f62;
   }
   uint_var_ = 1;
 LAB_180048f62:
@@ -18821,7 +18821,7 @@ bool SystemFunction_38_4(void)
   uint32_t *node_root;
   void *ptr_uint_var;
   int int_var_;
-  bool bVar5;
+  bool bool_var;
   uint64_t uintStack_48;
   longlong longStack_40;
   void *bufferPtr_30;
@@ -18846,7 +18846,7 @@ bool SystemFunction_38_4(void)
   uintStack_20 = int_var_;
   ProcessSystemNode(&uintStack_48,ptr_uint_var,&g_system_global_variablec);
   if (longStack_40 == 0) {
-    bVar5 = false;
+    bool_var = false;
   }
   else {
     is_initialized = SystemFunction_1_6(systemCoreData,&uintStack_48);
@@ -18857,7 +18857,7 @@ bool SystemFunction_38_4(void)
       systemCoreData = systemCoreData + -1;
       UNLOCK();
     }
-    bVar5 = is_initialized != '\0';
+    bool_var = is_initialized != '\0';
   }
   if (longStack_40 != 0) {
     fclose();
@@ -18871,7 +18871,7 @@ bool SystemFunction_38_4(void)
                     // WARNING: Subroutine does not return
     ProcessSystemOperation();
   }
-  return bVar5;
+  return bool_var;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 // void SystemFunction_70_4(void)
@@ -18966,7 +18966,7 @@ void SystemFunction_62_4(void)
 {
   char is_initialized;
   uint64_t *node_root;
-  char *pcVar3;
+  char *ptr_char_var;
   uint64_t uint_var_;
   longlong allocation_size;
   longlong long_var_;
@@ -19006,17 +19006,17 @@ void SystemFunction_62_4(void)
     node_previous = bufferPtr_28;
   }
   UpdateSystemBuffer(node_root + 1,node_previous);
-  pcVar3 = (char *)node_root[2];
-  if (*pcVar3 != '\0') {
+  ptr_char_var = (char *)node_root[2];
+  if (*ptr_char_var != '\0') {
     allocation_size = 0;
     do {
-      long_var_ = strchr(&g_system_data_variable8,(int)pcVar3[allocation_size]);
+      long_var_ = strchr(&g_system_data_variable8,(int)ptr_char_var[allocation_size]);
       if (long_var_ != 0) {
         *(uint8_t *)(allocation_size + node_root[2]) = 0x2f;
       }
       allocation_size = allocation_size + 1;
-      pcVar3 = (char *)node_root[2];
-    } while (pcVar3[allocation_size] != '\0');
+      ptr_char_var = (char *)node_root[2];
+    } while (ptr_char_var[allocation_size] != '\0');
   }
   *node_root = 0;
   systemConfigurationData = node_root;
@@ -19133,7 +19133,7 @@ uint64_t SystemFunction_69_6(char handleIdentifier)
 
 {
   longlong *ptr_long_var;
-  char cVar2;
+  char char_var;
   uint32_t *ptr_uint_var;
   void *ptr_uint_var;
   int int_var_;
@@ -19147,16 +19147,16 @@ uint64_t SystemFunction_69_6(char handleIdentifier)
   if (handleIdentifier == '\0') {
     if ((void *)*systemCoreData == &globalSystemVariable) {
       if ((systemCoreData[0x16] == 0) && (*(char *)(g_system_base_1 + 0x1f0) != '\0')) {
-        cVar2 = '\x01';
+        char_var = '\x01';
       }
       else {
-        cVar2 = '\0';
+        char_var = '\0';
       }
     }
     else {
-      cVar2 = (**(code **)((void *)*systemCoreData + 0x28))();
+      char_var = (**(code **)((void *)*systemCoreData + 0x28))();
     }
-    if (cVar2 == '\0') {
+    if (char_var == '\0') {
       return 0;
     }
   }
@@ -19182,8 +19182,8 @@ uint64_t SystemFunction_69_6(char handleIdentifier)
     uint_var_ = 3;
   }
   else {
-    cVar2 = (**(code **)(*systemCoreData + 0x28))(systemCoreData);
-    if (cVar2 != '\0') {
+    char_var = (**(code **)(*systemCoreData + 0x28))(systemCoreData);
+    if (char_var != '\0') {
       SystemFunction_54_4(ptr_long_var,&uintStack_48);
     }
     uint_var_ = 0;
@@ -19811,7 +19811,7 @@ void HandleUIInput(longlong *handleIdentifier)
 void SystemFunction_28_0(longlong handleIdentifier)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   longlong long_var_;
   uint64_t *ptr_uint_var;
   longlong long_var_;
@@ -19842,9 +19842,9 @@ void SystemFunction_28_0(longlong handleIdentifier)
       if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
         *ptr_uint_var = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
         *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = ptr_uint_var;
-        piVar1 = (int *)(long_var_ + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        ptr_int_var = (int *)(long_var_ + 0x18);
+        *ptr_int_var = *ptr_int_var + -1;
+        if (*ptr_int_var == 0) {
           InitializeSystemComponents();
           return;
         }
@@ -19929,7 +19929,7 @@ void SystemFunction_44_0(longlong *handleIdentifier)
 void SystemFunction_47_2(longlong handleIdentifier)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   longlong long_var_;
   uint64_t *ptr_uint_var;
   longlong long_var_;
@@ -19960,9 +19960,9 @@ void SystemFunction_47_2(longlong handleIdentifier)
       if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
         *ptr_uint_var = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
         *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = ptr_uint_var;
-        piVar1 = (int *)(long_var_ + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        ptr_int_var = (int *)(long_var_ + 0x18);
+        *ptr_int_var = *ptr_int_var + -1;
+        if (*ptr_int_var == 0) {
           InitializeSystemComponents();
           return;
         }
@@ -20005,7 +20005,7 @@ void SystemFunction_50_4(longlong handleIdentifier)
 void SystemFunction_90_4(ulonglong *handleIdentifier)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   uint64_t *node_root;
   longlong long_var_;
   ulonglong uint_var_;
@@ -20021,9 +20021,9 @@ void SystemFunction_90_4(ulonglong *handleIdentifier)
     if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
       *node_root = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
       *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = node_root;
-      piVar1 = (int *)(long_var_ + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      ptr_int_var = (int *)(long_var_ + 0x18);
+      *ptr_int_var = *ptr_int_var + -1;
+      if (*ptr_int_var == 0) {
         InitializeSystemComponents();
         return;
       }
@@ -20440,11 +20440,11 @@ void SystemFunction_9_6(longlong handleIdentifier)
   longlong long_var_;
   int int_var_;
   int compare_result;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
 
   long_var_ = systemCoreData;
   int_var_ = *(int *)(systemCoreData + 0xd90) + -1;
@@ -20452,23 +20452,23 @@ void SystemFunction_9_6(longlong handleIdentifier)
   if ((-1 < int_var_) && (compare_result = int_var_, 3 < int_var_)) {
     compare_result = 3;
   }
-  fVar8 = (float)compare_result;
-  fVar7 = fVar8 * 1.6750001 + 2.4750001;
-  fVar5 = fVar8 * 4.4666667 + 6.6000004;
-  fVar6 = fVar8 * 3.3500001 + 4.9500003;
-  fVar4 = fVar7 + fVar6;
-  *(float *)(handleIdentifier + 0x38c) = fVar6 * fVar6;
-  fVar7 = fVar7 + fVar4;
-  *(float *)(handleIdentifier + 0x390) = fVar4 * fVar4;
-  fVar4 = fVar5 + fVar7;
-  *(float *)(handleIdentifier + 0x394) = fVar7 * fVar7;
-  fVar5 = fVar5 + fVar4;
-  *(float *)(handleIdentifier + 0x398) = fVar4 * fVar4;
-  fVar4 = fVar8 * 13.400001 + 19.800001 + fVar5;
-  *(float *)(handleIdentifier + 0x39c) = fVar5 * fVar5;
-  fVar5 = fVar8 * 17.866667 + 26.400002 + fVar4;
-  *(float *)(handleIdentifier + 0x3a0) = fVar4 * fVar4;
-  *(float *)(handleIdentifier + 0x3a4) = fVar5 * fVar5;
+  float_var = (float)compare_result;
+  float_var = float_var * 1.6750001 + 2.4750001;
+  float_var = float_var * 4.4666667 + 6.6000004;
+  float_var = float_var * 3.3500001 + 4.9500003;
+  float_var = float_var + float_var;
+  *(float *)(handleIdentifier + 0x38c) = float_var * float_var;
+  float_var = float_var + float_var;
+  *(float *)(handleIdentifier + 0x390) = float_var * float_var;
+  float_var = float_var + float_var;
+  *(float *)(handleIdentifier + 0x394) = float_var * float_var;
+  float_var = float_var + float_var;
+  *(float *)(handleIdentifier + 0x398) = float_var * float_var;
+  float_var = float_var * 13.400001 + 19.800001 + float_var;
+  *(float *)(handleIdentifier + 0x39c) = float_var * float_var;
+  float_var = float_var * 17.866667 + 26.400002 + float_var;
+  *(float *)(handleIdentifier + 0x3a0) = float_var * float_var;
+  *(float *)(handleIdentifier + 0x3a4) = float_var * float_var;
   *(uint32_t *)(handleIdentifier + 0x3a8) = 0x7f7fffff;
   *(uint *)(handleIdentifier + 0x3ac) = (uint)(*(int *)(long_var_ + 0xd90) == 0);
   return;
@@ -20675,11 +20675,11 @@ void InitializeGraphicsMemory(longlong *handleIdentifier)
 void ConfigureGraphicsShader(uint64_t handleIdentifier,longlong resourceIdentifier)
 
 {
-  byte bVar1;
+  byte bool_var;
   uint8_t uint_var_;
   uint64_t *ptr_uint_var;
   uint64_t *ptr_uint_var;
-  char cVar5;
+  char char_var;
   int int_var_;
   uint32_t uint_var_;
   uint uint_var_;
@@ -20828,9 +20828,9 @@ void ConfigureGraphicsShader(uint64_t handleIdentifier,longlong resourceIdentifi
   puVar14 = puVar11;
   if (uint_var_ != 0) {
     do {
-      bVar1 = puVar17[uintStack_2f0];
+      bool_var = puVar17[uintStack_2f0];
       uint_var_ = (uint)puVar14;
-      if ((bVar1 & 0xdf) == 0) {
+      if ((bool_var & 0xdf) == 0) {
         long_var_ = long_var_ + 0x2e0;
         long_var_ = AllocateSystemResource(systemMemoryPool,0x40,*(uint8_t *)(long_var_ + 0x308));
         ProcessResourceData(long_var_ + SYSTEM_NODE_HEADER_SIZE,&bufferPtr_310);
@@ -20857,61 +20857,61 @@ void ConfigureGraphicsShader(uint64_t handleIdentifier,longlong resourceIdentifi
 void SystemFunction_0_8(longlong handleIdentifier)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   uint32_t uint_var_;
   int compare_result;
-  bool bVar4;
+  bool bool_var;
   uint64_t uint_var_;
-  bool bVar6;
+  bool bool_var;
 
-  piVar1 = (int *)(handleIdentifier + 0x3d0);
+  ptr_int_var = (int *)(handleIdentifier + 0x3d0);
   if (((int)*(float *)(systemCoreData + 0x17ec) == *(int *)(handleIdentifier + 0x3cc)) &&
-     ((int)*(float *)(systemCoreData + 0x17f0) == *piVar1)) {
-    bVar4 = false;
+     ((int)*(float *)(systemCoreData + 0x17f0) == *ptr_int_var)) {
+    bool_var = false;
   }
   else {
-    bVar4 = true;
-    SystemFunction_9_6(systemCoreData,*(int *)(handleIdentifier + 0x3cc),*piVar1);
+    bool_var = true;
+    SystemFunction_9_6(systemCoreData,*(int *)(handleIdentifier + 0x3cc),*ptr_int_var);
   }
   if (*(int *)(*(longlong *)(handleIdentifier + 8) + 0x38) == 2) {
     if ((*(char *)(handleIdentifier + 0x3d4) != '\0') || (*(char *)(handleIdentifier + 0x3d5) != '\0')) {
       uint_var_ = *(uint32_t *)(systemCoreData + 0x1ea0);
       ConfigureGraphicsShader(systemCoreData,0);
-      ProcessAudioConfiguration(*(uint64_t *)(handleIdentifier + 8),*(uint32_t *)(handleIdentifier + 0x3cc),*piVar1,
+      ProcessAudioConfiguration(*(uint64_t *)(handleIdentifier + 8),*(uint32_t *)(handleIdentifier + 0x3cc),*ptr_int_var,
                     *(uint8_t *)(handleIdentifier + 0x3d5));
-      SystemFunction_82_4(systemConfigurationData,*(uint32_t *)(handleIdentifier + 0x3cc),*piVar1,1);
+      SystemFunction_82_4(systemConfigurationData,*(uint32_t *)(handleIdentifier + 0x3cc),*ptr_int_var,1);
       ConfigureGraphicsShader(systemCoreData,uint_var_);
-      ProcessAudioConfiguration(*(uint64_t *)(handleIdentifier + 8),*(uint32_t *)(handleIdentifier + 0x3cc),*piVar1,
+      ProcessAudioConfiguration(*(uint64_t *)(handleIdentifier + 8),*(uint32_t *)(handleIdentifier + 0x3cc),*ptr_int_var,
                     *(uint8_t *)(handleIdentifier + 0x3d5));
-      bVar6 = true;
+      bool_var = true;
       goto LAB_18004e721;
     }
   }
   else {
     if (*(char *)(handleIdentifier + 0x3d4) != '\0') {
       compare_result = *(int *)(systemCoreData + 0x1ea0);
-      if ((*(char *)(handleIdentifier + 0x3d5) != '\0') || (bVar4)) {
+      if ((*(char *)(handleIdentifier + 0x3d5) != '\0') || (bool_var)) {
         uint_var_ = 1;
       }
       else {
         uint_var_ = 0;
       }
-      ProcessAudioConfiguration(*(longlong *)(handleIdentifier + 8),*(uint32_t *)(handleIdentifier + 0x3cc),*piVar1,uint_var_);
-      bVar6 = compare_result == 2;
+      ProcessAudioConfiguration(*(longlong *)(handleIdentifier + 8),*(uint32_t *)(handleIdentifier + 0x3cc),*ptr_int_var,uint_var_);
+      bool_var = compare_result == 2;
       goto LAB_18004e721;
     }
-    if (!bVar4) {
+    if (!bool_var) {
       return;
     }
   }
-  bVar6 = false;
+  bool_var = false;
 LAB_18004e721:
-  SystemFunction_82_4(systemConfigurationData,*(uint32_t *)(handleIdentifier + 0x3cc),*piVar1,bVar6);
-  if (!bVar4) {
+  SystemFunction_82_4(systemConfigurationData,*(uint32_t *)(handleIdentifier + 0x3cc),*ptr_int_var,bool_var);
+  if (!bool_var) {
     return;
   }
                     // WARNING: Subroutine does not return
-  SystemFunction_17_6(g_system_context_1,&g_system_global_variable8,*(uint32_t *)(handleIdentifier + 0x3cc),*piVar1);
+  SystemFunction_17_6(g_system_context_1,&g_system_global_variable8,*(uint32_t *)(handleIdentifier + 0x3cc),*ptr_int_var);
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
@@ -21188,11 +21188,11 @@ void ConfigureGraphicsShader(void)
   longlong long_var_;
   longlong long_var_;
   longlong long_var_;
-  int *piVar5;
+  int *ptr_int_var;
   uint64_t *node_current;
   uint32_t *node_previous;
   void *node_next;
-  char cVar9;
+  char char_var;
   float fVar10;
   uint32_t uint_var_;
   float fVar12;
@@ -21213,12 +21213,12 @@ void ConfigureGraphicsShader(void)
   uintStack_178 = INVALID_HANDLE_VALUE;
   uintStack_48 = systemConfigurationData ^ (ulonglong)localBuffer_208;
   if (*(void **)*systemConfigurationData == &systemNextData) {
-    cVar9 = *(int *)(systemConfigurationData + 0xe0) != 0;
+    char_var = *(int *)(systemConfigurationData + 0xe0) != 0;
   }
   else {
-    cVar9 = (**(code **)(*(void **)*systemConfigurationData + 0x48))();
+    char_var = (**(code **)(*(void **)*systemConfigurationData + 0x48))();
   }
-  if (cVar9 == '\0') {
+  if (char_var == '\0') {
     systemConfigurationData = timeGetTime();
   }
   else {
@@ -21243,8 +21243,8 @@ void ConfigureGraphicsShader(void)
   fVar12 = 1.0;
   if (*(int *)(long_var_ + 0x1ea0) == 1) {
     int_var_ = *(int *)(long_var_ + 0x1d50);
-    piVar5 = (int *)GetAudioDeviceHandle(*(uint64_t *)(g_system_base_1 + 8),localBuffer_170);
-    fVar12 = (float)int_var_ / (float)*piVar5;
+    ptr_int_var = (int *)GetAudioDeviceHandle(*(uint64_t *)(g_system_base_1 + 8),localBuffer_170);
+    fVar12 = (float)int_var_ / (float)*ptr_int_var;
     fVar10 = fVar12 * *(float *)(long_var_ + 0x234);
     fVar12 = fVar12 * *(float *)(long_var_ + 0x238);
   }
@@ -21338,7 +21338,7 @@ void ConfigureGraphicsShader(void)
 void SystemFunction_85_6(longlong handleIdentifier)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   longlong long_var_;
   uint64_t *ptr_uint_var;
   longlong long_var_;
@@ -21369,9 +21369,9 @@ void SystemFunction_85_6(longlong handleIdentifier)
       if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
         *ptr_uint_var = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
         *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = ptr_uint_var;
-        piVar1 = (int *)(long_var_ + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        ptr_int_var = (int *)(long_var_ + 0x18);
+        *ptr_int_var = *ptr_int_var + -1;
+        if (*ptr_int_var == 0) {
           InitializeSystemComponents();
           return;
         }
@@ -21390,7 +21390,7 @@ void SystemFunction_85_6(longlong handleIdentifier)
 void SystemFunction_88_8(longlong handleIdentifier)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   longlong long_var_;
   uint64_t *ptr_uint_var;
   longlong long_var_;
@@ -21421,9 +21421,9 @@ void SystemFunction_88_8(longlong handleIdentifier)
       if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
         *ptr_uint_var = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
         *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = ptr_uint_var;
-        piVar1 = (int *)(long_var_ + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        ptr_int_var = (int *)(long_var_ + 0x18);
+        *ptr_int_var = *ptr_int_var + -1;
+        if (*ptr_int_var == 0) {
           InitializeSystemComponents();
           return;
         }
@@ -21443,10 +21443,10 @@ void SystemFunction_92_0(void)
 
 {
   uint64_t *ptr_uint_var;
-  char *pcVar2;
+  char *ptr_char_var;
   uint64_t uint_var_;
   longlong long_var_;
-  char cVar5;
+  char char_var;
   int int_var_;
   uint32_t uint_var_;
   longlong long_var_;
@@ -21475,8 +21475,8 @@ void SystemFunction_92_0(void)
     long_var_ = SystemFunction_21_6(systemConfigurationData);
     if (long_var_ == 0) break;
     ptr_long_var = (longlong *)SystemFunction_21_6(uint_var_);
-    cVar5 = (**(code **)(*ptr_long_var + SYSTEM_NODE_HEADER_SIZE))(ptr_long_var,1);
-  } while (cVar5 != '\0');
+    char_var = (**(code **)(*ptr_long_var + SYSTEM_NODE_HEADER_SIZE))(ptr_long_var,1);
+  } while (char_var != '\0');
   SystemFunction_60_8(systemConfigurationData);
   ptr_uint_var = systemCoreData;
   if (*(char *)(systemCoreData + 7) != '\0') {
@@ -21526,10 +21526,10 @@ void SystemFunction_92_0(void)
   if (*(longlong **)(long_var_ + 0x2b0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(long_var_ + 0x2b0) + SYSTEM_NODE_HEADER_SIZE))();
   }
-  pcVar2 = *(char **)(systemConfigurationData + SYSTEM_DATA_COMPARE_SIZE);
-  if (*pcVar2 != '\0') {
+  ptr_char_var = *(char **)(systemConfigurationData + SYSTEM_DATA_COMPARE_SIZE);
+  if (*ptr_char_var != '\0') {
     WSACleanup();
-    *pcVar2 = '\0';
+    *ptr_char_var = '\0';
   }
   uint_var_ = systemConfigurationData;
   if (systemInitializationObject != (longlong *)0x0) {
@@ -21595,7 +21595,7 @@ void SystemFunction_49_6(void)
 {
   longlong *ptr_long_var;
   uint64_t *node_root;
-  code *pcVar3;
+  code *ptr_char_var;
   uint8_t *ptr_uint_var;
   uint64_t uint_var_;
   longlong long_var_;
@@ -21659,11 +21659,11 @@ void SystemFunction_49_6(void)
     pplongStack_60 = pplVar9;
     (*(code *)(*pplVar9)[5])(pplVar9);
     node_root = (uint64_t *)ptr_long_var[0x28];
-    pcVar3 = *(code **)*node_root;
+    ptr_char_var = *(code **)*node_root;
     ppplongStack_70 = &pplstack_var;
     pplstack_var = pplVar9;
     (*(code *)(*pplVar9)[5])(pplVar9);
-    (*pcVar3)(node_root,&pplstack_var);
+    (*ptr_char_var)(node_root,&pplstack_var);
     ProcessGameData(ptr_long_var[0x28]);
     (*(code *)(*pplVar9)[7])(pplVar9);
   }
@@ -21720,7 +21720,7 @@ void SystemFunction_54_4(longlong handleIdentifier)
 {
   longlong *ptr_long_var;
   uint64_t *node_root;
-  code *pcVar3;
+  code *ptr_char_var;
   uint8_t *ptr_uint_var;
   uint64_t uint_var_;
   int int_var_;
@@ -21778,11 +21778,11 @@ void SystemFunction_54_4(longlong handleIdentifier)
     pplongStack_60 = pplVar8;
     (*(code *)(*pplVar8)[5])(pplVar8);
     node_root = (uint64_t *)ptr_long_var[0x28];
-    pcVar3 = *(code **)*node_root;
+    ptr_char_var = *(code **)*node_root;
     ppplongStack_70 = &pplstack_var;
     pplstack_var = pplVar8;
     (*(code *)(*pplVar8)[5])(pplVar8);
-    (*pcVar3)(node_root,&pplstack_var);
+    (*ptr_char_var)(node_root,&pplstack_var);
     ProcessGameData(ptr_long_var[0x28]);
     (*(code *)(*pplVar8)[7])(pplVar8);
   }
@@ -21838,8 +21838,8 @@ void InitializeEffectSystem(longlong handleIdentifier,uint64_t resourceIdentifie
 
 {
   longlong *ptr_long_var;
-  char cVar2;
-  char cVar3;
+  char char_var;
+  char char_var;
   int int_var_;
   uint32_t uint_var_;
   uint8_t *node_current;
@@ -21883,11 +21883,11 @@ void InitializeEffectSystem(longlong handleIdentifier,uint64_t resourceIdentifie
   systemConfigurationData = fVar15;
   uint_var_ = SystemFunction_95_2();
   uint_var_ = ValidateTextureData(uint_var_,resourceIdentifier);
-  cVar2 = CheckTextureFormat(uint_var_,0x52);
-  cVar3 = CheckTextureFormat(1,0x51);
+  char_var = CheckTextureFormat(uint_var_,0x52);
+  char_var = CheckTextureFormat(1,0x51);
   long_var_ = 0xe0;
-  if (cVar3 == '\0') {
-    if (cVar2 == '\0') goto LAB_18005122d;
+  if (char_var == '\0') {
+    if (char_var == '\0') goto LAB_18005122d;
   }
   else {
 // void SystemFunction_10_4(longlong handleIdentifier)
@@ -21895,7 +21895,7 @@ void InitializeEffectSystem(longlong handleIdentifier,uint64_t resourceIdentifie
 void SystemFunction_10_4(longlong handleIdentifier)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   uint64_t *node_root;
   longlong long_var_;
   ulonglong uint_var_;
@@ -21911,9 +21911,9 @@ void SystemFunction_10_4(longlong handleIdentifier)
     if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
       *node_root = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
       *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = node_root;
-      piVar1 = (int *)(long_var_ + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      ptr_int_var = (int *)(long_var_ + 0x18);
+      *ptr_int_var = *ptr_int_var + -1;
+      if (*ptr_int_var == 0) {
         InitializeSystemComponents();
         return;
       }
@@ -22153,9 +22153,9 @@ bool SystemFunction_61_6(longlong handleIdentifier)
 
 {
   uint64_t *ptr_uint_var;
-  byte bVar2;
-  bool bVar3;
-  byte *pbVar4;
+  byte bool_var;
+  bool bool_var;
+  byte *ptr_byte_var;
   uint uint_var_;
   int int_var_;
   longlong long_var_;
@@ -22174,22 +22174,22 @@ bool SystemFunction_61_6(longlong handleIdentifier)
   if (node_next != (uint64_t *)0x0) {
     do {
       if (intStack_20 == 0) {
-        bVar3 = false;
+        bool_var = false;
         ptr_uint_var = (uint64_t *)node_next[1];
       }
       else {
         if (*(int *)(node_next + 6) == 0) {
-          bVar3 = true;
+          bool_var = true;
         }
         else {
-          pbVar4 = pbStack_28;
+          ptr_byte_var = pbStack_28;
           do {
-            uint_var_ = (uint)pbVar4[node_next[5] - (longlong)pbStack_28];
-            int_var_ = *pbVar4 - uint_var_;
-            if (*pbVar4 != uint_var_) break;
-            pbVar4 = pbVar4 + 1;
+            uint_var_ = (uint)ptr_byte_var[node_next[5] - (longlong)pbStack_28];
+            int_var_ = *ptr_byte_var - uint_var_;
+            if (*ptr_byte_var != uint_var_) break;
+            ptr_byte_var = ptr_byte_var + 1;
           } while (uint_var_ != 0);
-          bVar3 = 0 < int_var_;
+          bool_var = 0 < int_var_;
           if (int_var_ < 1) {
             ptr_uint_var = (uint64_t *)node_next[1];
             goto LAB_180051f8b;
@@ -22199,7 +22199,7 @@ bool SystemFunction_61_6(longlong handleIdentifier)
       }
 LAB_180051f8b:
       puVar10 = node_next;
-      if (bVar3) {
+      if (bool_var) {
         puVar10 = puVar11;
       }
       node_next = ptr_uint_var;
@@ -22208,15 +22208,15 @@ LAB_180051f8b:
     if (puVar10 != ptr_uint_var) {
       if (*(int *)(puVar10 + 6) == 0) goto LAB_180051fc9;
       if (intStack_20 != 0) {
-        pbVar4 = (byte *)puVar10[5];
-        long_var_ = (longlong)pbStack_28 - (longlong)pbVar4;
+        ptr_byte_var = (byte *)puVar10[5];
+        long_var_ = (longlong)pbStack_28 - (longlong)ptr_byte_var;
         do {
-          bVar2 = *pbVar4;
-          uint_var_ = (uint)pbVar4[long_var_];
-          if (bVar2 != uint_var_) break;
-          pbVar4 = pbVar4 + 1;
+          bool_var = *ptr_byte_var;
+          uint_var_ = (uint)ptr_byte_var[long_var_];
+          if (bool_var != uint_var_) break;
+          ptr_byte_var = ptr_byte_var + 1;
         } while (uint_var_ != 0);
-        if ((int)(bVar2 - uint_var_) < 1) goto LAB_180051fc9;
+        if ((int)(bool_var - uint_var_) < 1) goto LAB_180051fc9;
       }
     }
   }
@@ -22413,8 +22413,8 @@ void InitializeAudioMutex(longlong handleIdentifier,float resourceIdentifier,uin
 
 {
   ulonglong uint_var_;
-  float fVar2;
-  float fVar3;
+  float float_var;
+  float float_var;
   ulonglong uint_var_;
   ulonglong uint_var_;
   int int_var_;
@@ -22460,24 +22460,24 @@ void InitializeAudioMutex(longlong handleIdentifier,float resourceIdentifier,uin
       fVar19 = (float)exp2f();
       fVar20 = (float)exp2f();
       systemStatusData = (1.0 - fVar16) * systemStatusData + fVar16 * resourceIdentifier;
-      fVar2 = (float)*(int *)(systemCoreData + 0x21b0);
+      float_var = (float)*(int *)(systemCoreData + 0x21b0);
       if (*(float *)(g_system_base_1 + 0x1f8) <= (float)*(int *)(systemCoreData + 0x21b0)) {
-        fVar2 = *(float *)(g_system_base_1 + 0x1f8);
+        float_var = *(float *)(g_system_base_1 + 0x1f8);
       }
       fVar22 = *(float *)(systemCoreData + 0x1e30);
       if (0 < *(int *)(systemCoreData + 0x1f80)) {
         fVar22 = fVar22 / (float)*(int *)(systemCoreData + 0x1f80);
       }
-      fVar3 = (float)((int)fVar22 + -1);
-      if (fVar2 <= (float)((int)fVar22 + -1)) {
-        fVar3 = fVar2;
+      float_var = (float)((int)fVar22 + -1);
+      if (float_var <= (float)((int)fVar22 + -1)) {
+        float_var = float_var;
       }
       if ((*(int *)(long_var_ + 0x48) < systemConfigurationData) &&
          (CheckSystemInitialized(&g_system_data_variable8), systemConfigurationData == -1)) {
-        g_system_data_variablec = fVar3;
+        g_system_data_variablec = float_var;
         MarkSystemInitialized(&g_system_data_variable8);
       }
-      g_system_data_variablec = (1.0 - fVar16) * g_system_data_variablec + fVar3 * fVar16;
+      g_system_data_variablec = (1.0 - fVar16) * g_system_data_variablec + float_var * fVar16;
       fVar18 = ((float)(int)((systemStatusData / g_system_data_variablec) / fVar17) * fVar17 - 1.0) * fVar18 *
                fVar19 + fVar18;
       if (fVar18 <= fVar15) {
@@ -22601,7 +22601,7 @@ void SystemFunction_69_6(longlong *handleIdentifier,uint64_t resourceIdentifier,
   longlong long_var_;
   uint64_t uint_var_;
   longlong *pallocation_size;
-  int *piVar6;
+  int *ptr_int_var;
   longlong long_var_;
   ulonglong uint_var_;
   uint uint_var_;
@@ -22692,8 +22692,8 @@ void SystemFunction_69_6(longlong *handleIdentifier,uint64_t resourceIdentifier,
   fVar12 = 1.0;
   if (*(int *)(long_var_ + 0x1ea0) == 1) {
     int_var_ = *(int *)(long_var_ + 0x1d50);
-    piVar6 = (int *)GetAudioDeviceHandle(*(uint64_t *)(g_system_base_1 + 8),&plstack_var);
-    fVar12 = (float)int_var_ / (float)*piVar6;
+    ptr_int_var = (int *)GetAudioDeviceHandle(*(uint64_t *)(g_system_base_1 + 8),&plstack_var);
+    fVar12 = (float)int_var_ / (float)*ptr_int_var;
     fVar11 = fVar12 * *(float *)(long_var_ + 0x234);
     fVar12 = fVar12 * *(float *)(long_var_ + 0x238);
   }
@@ -23214,12 +23214,12 @@ SystemFunction_35_2(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64
 
 {
   char is_initialized;
-  char cVar2;
+  char char_var;
   uint64_t *ptr_uint_var;
   uint64_t *ptr_uint_var;
   uint64_t *ptr_uint_var;
   longlong long_var_;
-  char *pcVar7;
+  char *ptr_char_var;
   uint uint_var_;
   int *piVar10;
   ulonglong uint_var_;
@@ -23296,15 +23296,15 @@ LAB_18005419d:
   long_var_ = SystemFunction0464d0(&bufferPtr_70);
   puVar16 = (uint64_t *)&globalSystemVariable;
   do {
-    pcVar7 = (char *)*puVar16;
-    long_var_ = long_var_ - (longlong)pcVar7;
+    ptr_char_var = (char *)*puVar16;
+    long_var_ = long_var_ - (longlong)ptr_char_var;
     do {
-      is_initialized = *pcVar7;
-      cVar2 = pcVar7[long_var_];
-      if (is_initialized != cVar2) break;
-      pcVar7 = pcVar7 + 1;
-    } while (cVar2 != '\0');
-    if (is_initialized == cVar2) break;
+      is_initialized = *ptr_char_var;
+      char_var = ptr_char_var[long_var_];
+      if (is_initialized != char_var) break;
+      ptr_char_var = ptr_char_var + 1;
+    } while (char_var != '\0');
+    if (is_initialized == char_var) break;
     puVar16 = puVar16 + 1;
     if (0x1809fde87 < (longlong)puVar16) {
       bufferPtr_70 = &resourcePoolPointer;
@@ -23556,7 +23556,7 @@ void SystemFunction_3_2(void)
   uint uint_var_;
   longlong *ptr_long_var;
   uint64_t *ptr_uint_var;
-  char cVar4;
+  char char_var;
   uint64_t *ptr_uint_var;
   uint8_t *node_current;
   uint32_t *node_previous;
@@ -23674,8 +23674,8 @@ LAB_180054912:
       *(uint64_t *)(bufferPtr_130 + uintStack_128) = 0x6a624f656e656353;
       *(uint8_t *)((longlong)(bufferPtr_130 + uintStack_128) + 8) = 0;
       uintStack_128 = int_var_;
-      cVar4 = ValidateSystemData(&bufferPtr_138);
-      if (cVar4 == '\0') {
+      char_var = ValidateSystemData(&bufferPtr_138);
+      if (char_var == '\0') {
         bufferPtr_118 = &resourcePoolPointer;
         if (bufferPtr_110 != (uint8_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -23705,8 +23705,8 @@ LAB_180054912:
           node_current = bufferPtr_110;
         }
         ConfigureBufferAttributes(&bufferPtr_d0,&g_system_global_variable4,node_current);
-        cVar4 = ValidateSystemData(&bufferPtr_d0);
-        if (cVar4 == '\0') {
+        char_var = ValidateSystemData(&bufferPtr_d0);
+        if (char_var == '\0') {
           CleanupSystemData(&bufferPtr_d0);
         }
         ptr_long_var = plongStack_a8;
@@ -23771,8 +23771,8 @@ LAB_180054912:
               }
               long_var_ = strstr(node_current,&g_system_global_variable8);
               if (long_var_ != 0) goto LAB_180054ec9;
-              cVar4 = ValidateConfigurationValue(&bufferPtr_158);
-              if (cVar4 == '\0') {
+              char_var = ValidateConfigurationValue(&bufferPtr_158);
+              if (char_var == '\0') {
                 uintStack_148 = 0;
                 if (bufferPtr_150 != (uint8_t *)0x0) {
                   *bufferPtr_150 = 0;
@@ -23800,8 +23800,8 @@ LAB_180054912:
                 *(uint16_t *)(node_previous + 4) = 0x656e;
                 *(uint8_t *)((longlong)node_previous + 0x12) = 0;
                 uintStack_148 = 0x12;
-                cVar4 = ValidateConfigurationValue(&bufferPtr_158);
-                if (cVar4 != '\0') goto LAB_180054d28;
+                char_var = ValidateConfigurationValue(&bufferPtr_158);
+                if (char_var != '\0') goto LAB_180054d28;
                 bufferPtr_158 = &resourcePoolPointer;
                 if (bufferPtr_150 != (uint8_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -24161,13 +24161,13 @@ void SystemFunction_16_0(void)
 {
   uint64_t *ptr_uint_var;
   uint64_t uint_var_;
-  char *pcVar3;
+  char *ptr_char_var;
   int int_var_;
-  char *pcVar5;
+  char *ptr_char_var;
   uint64_t systemParam_;
   uint64_t uint_var_;
 
-  pcVar3 = systemConfigurationData;
+  ptr_char_var = systemConfigurationData;
   uint_var_ = INVALID_HANDLE_VALUE;
   if (*systemConfigurationData != '\0') {
     ptr_uint_var = (uint64_t *)*systemCoreData;
@@ -24178,23 +24178,23 @@ void SystemFunction_16_0(void)
     uint_var_ = systemCoreData;
     systemCoreData = *ptr_uint_var;
     InitializeGraphicsContext(&globalSystemVariable,0,0,systemParam_,uint_var_);
-    SetGraphicsContext(&globalSystemVariable,*(uint32_t *)(pcVar3 + 4));
-    SetGraphicsContext(&globalSystemVariable,*(uint32_t *)(pcVar3 + 8));
-    SetGraphicsContext(&globalSystemVariable,*(uint32_t *)(pcVar3 + 0xc));
-    SetGraphicsContext(&globalSystemVariable,*(uint32_t *)(pcVar3 + SYSTEM_DATA_COMPARE_SIZE));
-    SetGraphicsContext(&globalSystemVariable,*(uint32_t *)(pcVar3 + 0x14));
-    SetGraphicsContext(&g_system_global_variable8,*(uint32_t *)(pcVar3 + 0x18));
-    for (pcVar5 = *(char **)(pcVar3 + 0x28); pcVar5 != pcVar3 + SYSTEM_NODE_HEADER_SIZE;
-        pcVar5 = (char *)SystemFunction66bd70(pcVar5)) {
-      SetGraphicsContext(&globalSystemVariable,*(uint32_t *)(pcVar5 + SYSTEM_NODE_HEADER_SIZE),*(uint32_t *)(pcVar5 + 0x24));
+    SetGraphicsContext(&globalSystemVariable,*(uint32_t *)(ptr_char_var + 4));
+    SetGraphicsContext(&globalSystemVariable,*(uint32_t *)(ptr_char_var + 8));
+    SetGraphicsContext(&globalSystemVariable,*(uint32_t *)(ptr_char_var + 0xc));
+    SetGraphicsContext(&globalSystemVariable,*(uint32_t *)(ptr_char_var + SYSTEM_DATA_COMPARE_SIZE));
+    SetGraphicsContext(&globalSystemVariable,*(uint32_t *)(ptr_char_var + 0x14));
+    SetGraphicsContext(&g_system_global_variable8,*(uint32_t *)(ptr_char_var + 0x18));
+    for (ptr_char_var = *(char **)(ptr_char_var + 0x28); ptr_char_var != ptr_char_var + SYSTEM_NODE_HEADER_SIZE;
+        ptr_char_var = (char *)SystemFunction66bd70(ptr_char_var)) {
+      SetGraphicsContext(&globalSystemVariable,*(uint32_t *)(ptr_char_var + SYSTEM_NODE_HEADER_SIZE),*(uint32_t *)(ptr_char_var + 0x24));
     }
-    for (pcVar5 = *(char **)(pcVar3 + 0x58); pcVar5 != pcVar3 + 0x50;
-        pcVar5 = (char *)SystemFunction66bd70(pcVar5)) {
-      SetGraphicsContext(&g_system_global_variable8,*(uint32_t *)(pcVar5 + SYSTEM_NODE_HEADER_SIZE),*(uint32_t *)(pcVar5 + 0x24));
+    for (ptr_char_var = *(char **)(ptr_char_var + 0x58); ptr_char_var != ptr_char_var + 0x50;
+        ptr_char_var = (char *)SystemFunction66bd70(ptr_char_var)) {
+      SetGraphicsContext(&g_system_global_variable8,*(uint32_t *)(ptr_char_var + SYSTEM_NODE_HEADER_SIZE),*(uint32_t *)(ptr_char_var + 0x24));
     }
-    SetGraphicsContext(&globalSystemVariable,*(uint32_t *)(pcVar3 + 0x80));
-    SetGraphicsContext(&g_system_global_variable8,*(uint32_t *)(pcVar3 + 0x84));
-    SetGraphicsContext(&globalSystemVariable,*(uint32_t *)(pcVar3 + 0x88));
+    SetGraphicsContext(&globalSystemVariable,*(uint32_t *)(ptr_char_var + 0x80));
+    SetGraphicsContext(&g_system_global_variable8,*(uint32_t *)(ptr_char_var + 0x84));
+    SetGraphicsContext(&globalSystemVariable,*(uint32_t *)(ptr_char_var + 0x88));
     FinalizeGraphicsContext();
     systemCoreData = uint_var_;
     int_var_ = _Mtx_unlock(0x180c91970);
@@ -24210,12 +24210,12 @@ void InitializeTestingSystem(longlong handleIdentifier)
 
 {
   char is_initialized;
-  char cVar2;
+  char char_var;
   int compare_result;
   uint64_t *ptr_uint_var;
   ulonglong uint_var_;
   int int_var_;
-  char *pcVar7;
+  char *ptr_char_var;
   longlong *ptr_long_var;
   longlong long_var_;
   ulonglong uint_var_;
@@ -24255,15 +24255,15 @@ LAB_180056220:
               bVar20 = true;
             }
             else {
-              pcVar7 = *(char **)(*(longlong *)(long_var_ + long_var_) + 8);
-              long_var_ = *(longlong *)(*(longlong *)(uint_var_ + long_var_) + 8) - (longlong)pcVar7;
+              ptr_char_var = *(char **)(*(longlong *)(long_var_ + long_var_) + 8);
+              long_var_ = *(longlong *)(*(longlong *)(uint_var_ + long_var_) + 8) - (longlong)ptr_char_var;
               do {
-                is_initialized = *pcVar7;
-                cVar2 = pcVar7[long_var_];
-                if (is_initialized != cVar2) break;
-                pcVar7 = pcVar7 + 1;
-              } while (cVar2 != '\0');
-              bVar20 = is_initialized == cVar2;
+                is_initialized = *ptr_char_var;
+                char_var = ptr_char_var[long_var_];
+                if (is_initialized != char_var) break;
+                ptr_char_var = ptr_char_var + 1;
+              } while (char_var != '\0');
+              bVar20 = is_initialized == char_var;
             }
           }
           else {
@@ -24440,7 +24440,7 @@ void SystemFunction_77_6(longlong *handleIdentifier)
 
 {
   uint64_t *ptr_uint_var;
-  code *pcVar2;
+  code *ptr_char_var;
   longlong long_var_;
   longlong *ptr_data;
   uint8_t localBuffer_98 [32];
@@ -24486,13 +24486,13 @@ void SystemFunction_77_6(longlong *handleIdentifier)
   handleIdentifier[1] = (longlong)ptr_data;
   bufferPtr_50 = &globalSystemPointerData;
   ptr_uint_var = (uint64_t *)handleIdentifier[1];
-  pcVar2 = *(code **)*ptr_uint_var;
+  ptr_char_var = *(code **)*ptr_uint_var;
   pplongStack_60 = &plongStack_68;
   plongStack_68 = (longlong *)*handleIdentifier;
   if (plongStack_68 != (longlong *)0x0) {
     (**(code **)(*plongStack_68 + 0x28))();
   }
-  (*pcVar2)(ptr_uint_var,&plongStack_68);
+  (*ptr_char_var)(ptr_uint_var,&plongStack_68);
                     // WARNING: Subroutine does not return
   InitializeSystemStack(uintStack_28 ^ (ulonglong)localBuffer_98);
 }
@@ -24515,7 +24515,7 @@ void SystemFunction_32_0(longlong handleIdentifier)
 
 {
   uint uint_var_;
-  double dVar2;
+  double double_var;
   uint uint_var_;
   longlong long_var_;
   uint32_t *ptr_uint_var;
@@ -24561,8 +24561,8 @@ void SystemFunction_32_0(longlong handleIdentifier)
         QueryPerformanceCounter(alongStack_70);
         long_var_ = alongStack_70[0];
       }
-      dVar2 = (double)(long_var_ - systemConfigurationData) * systemCoreData;
-    } while ((g_system_data_variable3 == '\0') || (dVar2 - *(double *)(handleIdentifier + 0xc0) <= 900.0));
+      double_var = (double)(long_var_ - systemConfigurationData) * systemCoreData;
+    } while ((g_system_data_variable3 == '\0') || (double_var - *(double *)(handleIdentifier + 0xc0) <= 900.0));
     LOCK();
     *(uint32_t *)(handleIdentifier + 200) = 1;
     UNLOCK();
@@ -24629,7 +24629,7 @@ void SystemFunction_32_0(longlong handleIdentifier)
     uintStack_88 = uint_var_ + 0x2b;
     (**(code **)(*(longlong *)*systemConfigurationData + SYSTEM_NODE_HEADER_SIZE))
               ((longlong *)*systemConfigurationData,&globalSystemVariable,0x175c,ptr_uint_var);
-    *(double *)(handleIdentifier + 0xc0) = dVar2;
+    *(double *)(handleIdentifier + 0xc0) = double_var;
     bufferPtr_98 = &resourcePoolPointer;
     if (bufferPtr_90 != (void *)0x0) {
                     // WARNING: Subroutine does not return
@@ -24649,15 +24649,15 @@ void SetupGraphicsDevice(uint64_t handleIdentifier,uint64_t resourceIdentifier,u
 
 {
   longlong long_var_;
-  char cVar2;
+  char char_var;
   uint8_t localBuffer_30 [16];
   void *bufferPtr_20;
   void *bufferPtr_18;
 
   SystemFunction_5_6(handleIdentifier,1,1,systemFlags,INVALID_HANDLE_VALUE);
   if (systemConfigurationData != (longlong *)0x0) {
-    cVar2 = (**(code **)(*systemConfigurationData + 0x48))();
-    if ((cVar2 != '\0') && (systemConfigurationData[2] != 0)) {
+    char_var = (**(code **)(*systemConfigurationData + 0x48))();
+    if ((char_var != '\0') && (systemConfigurationData[2] != 0)) {
       (*(code *)systemConfigurationData[0x11])(0);
     }
   }
@@ -25256,7 +25256,7 @@ void SystemFunction_68_0(longlong handleIdentifier,uint64_t resourceIdentifier,u
 void InitializeProfilingSystem(longlong handleIdentifier)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   longlong long_var_;
   uint64_t *ptr_uint_var;
   longlong long_var_;
@@ -25287,9 +25287,9 @@ void InitializeProfilingSystem(longlong handleIdentifier)
       if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
         *ptr_uint_var = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
         *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = ptr_uint_var;
-        piVar1 = (int *)(long_var_ + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        ptr_int_var = (int *)(long_var_ + 0x18);
+        *ptr_int_var = *ptr_int_var + -1;
+        if (*ptr_int_var == 0) {
           InitializeSystemComponents();
           return;
         }
@@ -25308,7 +25308,7 @@ void InitializeProfilingSystem(longlong handleIdentifier)
 void SystemFunction_71_8(longlong handleIdentifier)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   longlong long_var_;
   uint64_t *ptr_uint_var;
   longlong long_var_;
@@ -25339,9 +25339,9 @@ void SystemFunction_71_8(longlong handleIdentifier)
       if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
         *ptr_uint_var = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
         *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = ptr_uint_var;
-        piVar1 = (int *)(long_var_ + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        ptr_int_var = (int *)(long_var_ + 0x18);
+        *ptr_int_var = *ptr_int_var + -1;
+        if (*ptr_int_var == 0) {
           InitializeSystemComponents();
           return;
         }
@@ -25360,7 +25360,7 @@ void SystemFunction_71_8(longlong handleIdentifier)
 void SystemFunction_76_0(void)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   uint64_t *node_root;
   longlong long_var_;
   longlong system_RBP;
@@ -25389,9 +25389,9 @@ void SystemFunction_76_0(void)
       if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
         *node_root = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
         *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = node_root;
-        piVar1 = (int *)(long_var_ + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        ptr_int_var = (int *)(long_var_ + 0x18);
+        *ptr_int_var = *ptr_int_var + -1;
+        if (*ptr_int_var == 0) {
           InitializeSystemComponents();
           return;
         }
@@ -25410,7 +25410,7 @@ void SystemFunction_76_0(void)
 void SystemFunction_81_4(void)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   uint64_t *node_root;
   longlong long_var_;
   longlong system_RBP;
@@ -25427,9 +25427,9 @@ void SystemFunction_81_4(void)
       if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
         *node_root = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
         *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = node_root;
-        piVar1 = (int *)(long_var_ + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        ptr_int_var = (int *)(long_var_ + 0x18);
+        *ptr_int_var = *ptr_int_var + -1;
+        if (*ptr_int_var == 0) {
           InitializeSystemComponents();
           return;
         }
@@ -25448,7 +25448,7 @@ void SystemFunction_81_4(void)
 void SystemFunction_84_4(void)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   uint64_t *node_root;
   longlong long_var_;
   longlong system_RBP;
@@ -25465,9 +25465,9 @@ void SystemFunction_84_4(void)
     if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
       *node_root = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
       *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = node_root;
-      piVar1 = (int *)(long_var_ + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      ptr_int_var = (int *)(long_var_ + 0x18);
+      *ptr_int_var = *ptr_int_var + -1;
+      if (*ptr_int_var == 0) {
         InitializeSystemComponents();
         return;
       }
@@ -25565,7 +25565,7 @@ void SystemFunction_19_2(longlong *handleIdentifier)
 void SystemFunction_28_8(longlong handleIdentifier)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   longlong long_var_;
   uint64_t *ptr_uint_var;
   longlong long_var_;
@@ -25596,9 +25596,9 @@ void SystemFunction_28_8(longlong handleIdentifier)
       if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
         *ptr_uint_var = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
         *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = ptr_uint_var;
-        piVar1 = (int *)(long_var_ + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        ptr_int_var = (int *)(long_var_ + 0x18);
+        *ptr_int_var = *ptr_int_var + -1;
+        if (*ptr_int_var == 0) {
           InitializeSystemComponents();
           return;
         }
@@ -25617,7 +25617,7 @@ void SystemFunction_28_8(longlong handleIdentifier)
 void SystemFunction_29_4(longlong handleIdentifier)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   longlong long_var_;
   uint64_t *ptr_uint_var;
   longlong long_var_;
@@ -25648,9 +25648,9 @@ void SystemFunction_29_4(longlong handleIdentifier)
       if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
         *ptr_uint_var = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
         *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = ptr_uint_var;
-        piVar1 = (int *)(long_var_ + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        ptr_int_var = (int *)(long_var_ + 0x18);
+        *ptr_int_var = *ptr_int_var + -1;
+        if (*ptr_int_var == 0) {
           InitializeSystemComponents();
           return;
         }
@@ -25669,7 +25669,7 @@ void SystemFunction_29_4(longlong handleIdentifier)
 void SystemFunction_33_6(void)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   uint64_t *node_root;
   longlong long_var_;
   longlong system_RBP;
@@ -25698,9 +25698,9 @@ void SystemFunction_33_6(void)
       if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
         *node_root = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
         *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = node_root;
-        piVar1 = (int *)(long_var_ + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        ptr_int_var = (int *)(long_var_ + 0x18);
+        *ptr_int_var = *ptr_int_var + -1;
+        if (*ptr_int_var == 0) {
           InitializeSystemComponents();
           return;
         }
@@ -25719,7 +25719,7 @@ void SystemFunction_33_6(void)
 void SystemFunction_39_0(void)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   uint64_t *node_root;
   longlong long_var_;
   longlong system_RBP;
@@ -25736,9 +25736,9 @@ void SystemFunction_39_0(void)
       if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
         *node_root = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
         *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = node_root;
-        piVar1 = (int *)(long_var_ + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        ptr_int_var = (int *)(long_var_ + 0x18);
+        *ptr_int_var = *ptr_int_var + -1;
+        if (*ptr_int_var == 0) {
           InitializeSystemComponents();
           return;
         }
@@ -25757,7 +25757,7 @@ void SystemFunction_39_0(void)
 void SystemFunction_42_0(void)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   uint64_t *node_root;
   longlong long_var_;
   longlong system_RBP;
@@ -25774,9 +25774,9 @@ void SystemFunction_42_0(void)
     if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
       *node_root = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
       *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = node_root;
-      piVar1 = (int *)(long_var_ + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      ptr_int_var = (int *)(long_var_ + 0x18);
+      *ptr_int_var = *ptr_int_var + -1;
+      if (*ptr_int_var == 0) {
         InitializeSystemComponents();
         return;
       }
@@ -25813,7 +25813,7 @@ void SystemFunction_44_8(longlong *handleIdentifier)
 void SystemFunction_56_0(void)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   uint64_t *node_root;
   longlong long_var_;
   ulonglong uint_var_;
@@ -25849,9 +25849,9 @@ void SystemFunction_56_0(void)
     if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
       *node_root = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
       *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = node_root;
-      piVar1 = (int *)(long_var_ + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      ptr_int_var = (int *)(long_var_ + 0x18);
+      *ptr_int_var = *ptr_int_var + -1;
+      if (*ptr_int_var == 0) {
         InitializeSystemComponents();
         return;
       }
@@ -25870,8 +25870,8 @@ void SystemFunction_78_4(longlong handleIdentifier,longlong resourceIdentifier,u
 {
   char is_initialized;
   longlong long_var_;
-  char *pcVar3;
-  char *pcVar4;
+  char *ptr_char_var;
+  char *ptr_char_var;
   uint64_t uint_var_;
   void *bufferPtr_50;
   longlong longStack_48;
@@ -25879,19 +25879,19 @@ void SystemFunction_78_4(longlong handleIdentifier,longlong resourceIdentifier,u
   ulonglong uintStack_38;
 
   uint_var_ = INVALID_HANDLE_VALUE;
-  pcVar3 = *(char **)(handleIdentifier + 8);
-  is_initialized = *pcVar3;
-  pcVar4 = pcVar3;
+  ptr_char_var = *(char **)(handleIdentifier + 8);
+  is_initialized = *ptr_char_var;
+  ptr_char_var = ptr_char_var;
   if (is_initialized != '\0') {
     do {
       long_var_ = strchr(systemConfig,(int)is_initialized);
-      if ((long_var_ != 0) && (pcVar4 != pcVar3)) {
+      if ((long_var_ != 0) && (ptr_char_var != ptr_char_var)) {
         bufferPtr_50 = &resourcePoolPointer;
         uintStack_38 = 0;
         longStack_48 = 0;
         uintStack_40 = 0;
-        SystemConfigWriteExtendedFunction(&bufferPtr_50,pcVar4,(int)pcVar3 - (int)pcVar4,systemFlags,uint_var_);
-        pcVar4 = pcVar3 + 1;
+        SystemConfigWriteExtendedFunction(&bufferPtr_50,ptr_char_var,(int)ptr_char_var - (int)ptr_char_var,systemFlags,uint_var_);
+        ptr_char_var = ptr_char_var + 1;
         if (*(ulonglong *)(resourceIdentifier + 8) < *(ulonglong *)(resourceIdentifier + SYSTEM_DATA_COMPARE_SIZE)) {
           *(ulonglong *)(resourceIdentifier + 8) = *(ulonglong *)(resourceIdentifier + 8) + SYSTEM_NODE_HEADER_SIZE;
           ProcessResourceData();
@@ -25908,15 +25908,15 @@ void SystemFunction_78_4(longlong handleIdentifier,longlong resourceIdentifier,u
         uintStack_38 = uintStack_38 & 0xffffffff00000000;
         bufferPtr_50 = &globalSystemPointerData;
       }
-      pcVar3 = pcVar3 + 1;
-      is_initialized = *pcVar3;
+      ptr_char_var = ptr_char_var + 1;
+      is_initialized = *ptr_char_var;
     } while (is_initialized != '\0');
-    if (pcVar4 != pcVar3) {
+    if (ptr_char_var != ptr_char_var) {
       bufferPtr_50 = &resourcePoolPointer;
       uintStack_38 = 0;
       longStack_48 = 0;
       uintStack_40 = 0;
-      SystemConfigWriteExtendedFunction(&bufferPtr_50,pcVar4,(int)pcVar3 - (int)pcVar4,systemFlags,uint_var_);
+      SystemConfigWriteExtendedFunction(&bufferPtr_50,ptr_char_var,(int)ptr_char_var - (int)ptr_char_var,systemFlags,uint_var_);
       if (*(ulonglong *)(resourceIdentifier + 8) < *(ulonglong *)(resourceIdentifier + SYSTEM_DATA_COMPARE_SIZE)) {
         *(ulonglong *)(resourceIdentifier + 8) = *(ulonglong *)(resourceIdentifier + 8) + SYSTEM_NODE_HEADER_SIZE;
         ProcessResourceData();
@@ -25938,11 +25938,11 @@ void SystemFunction_78_4(longlong handleIdentifier,longlong resourceIdentifier,u
 longlong * SystemFunction_16_8(longlong handleIdentifier,longlong *resourceIdentifier,uint64_t systemConfig)
 
 {
-  byte bVar1;
+  byte bool_var;
   uint uint_var_;
   longlong long_var_;
   longlong long_var_;
-  byte *pbVar5;
+  byte *ptr_byte_var;
   longlong long_var_;
   uint64_t uint_var_;
   char acstack_var [8];
@@ -25963,15 +25963,15 @@ LAB_180057b97:
       goto LAB_180057ba2;
     }
     if (*(int *)(long_var_ + 0x30) != 0) {
-      pbVar5 = *(byte **)(long_var_ + 0x28);
-      long_var_ = *(longlong *)(long_var_ + 0x28) - (longlong)pbVar5;
+      ptr_byte_var = *(byte **)(long_var_ + 0x28);
+      long_var_ = *(longlong *)(long_var_ + 0x28) - (longlong)ptr_byte_var;
       do {
-        bVar1 = *pbVar5;
-        uint_var_ = (uint)pbVar5[long_var_];
-        if (bVar1 != uint_var_) break;
-        pbVar5 = pbVar5 + 1;
+        bool_var = *ptr_byte_var;
+        uint_var_ = (uint)ptr_byte_var[long_var_];
+        if (bool_var != uint_var_) break;
+        ptr_byte_var = ptr_byte_var + 1;
       } while (uint_var_ != 0);
-      if ((int)(bVar1 - uint_var_) < 1) goto LAB_180057b97;
+      if ((int)(bool_var - uint_var_) < 1) goto LAB_180057b97;
     }
   }
   uint_var_ = 0;
@@ -26186,9 +26186,9 @@ void SystemFunction_48_0(longlong handleIdentifier,uint64_t resourceIdentifier,u
 uint64_t * SystemFunction_57_6(uint64_t *handleIdentifier,uint64_t *resourceIdentifier,longlong systemConfig)
 
 {
-  byte bVar1;
-  bool bVar2;
-  byte *pbVar3;
+  byte bool_var;
+  bool bool_var;
+  byte *ptr_byte_var;
   uint uint_var_;
   int int_var_;
   longlong long_var_;
@@ -26203,22 +26203,22 @@ uint64_t * SystemFunction_57_6(uint64_t *handleIdentifier,uint64_t *resourceIden
     do {
       if (*(int *)(systemConfig + SYSTEM_DATA_COMPARE_SIZE) == 0) {
         node_next = (uint64_t *)node_previous[1];
-        bVar2 = false;
+        bool_var = false;
       }
       else {
         if (*(int *)(node_previous + 6) == 0) {
-          bVar2 = true;
+          bool_var = true;
         }
         else {
-          pbVar3 = *(byte **)(systemConfig + 8);
-          long_var_ = node_previous[5] - (longlong)pbVar3;
+          ptr_byte_var = *(byte **)(systemConfig + 8);
+          long_var_ = node_previous[5] - (longlong)ptr_byte_var;
           do {
-            uint_var_ = (uint)pbVar3[long_var_];
-            int_var_ = *pbVar3 - uint_var_;
-            if (*pbVar3 != uint_var_) break;
-            pbVar3 = pbVar3 + 1;
+            uint_var_ = (uint)ptr_byte_var[long_var_];
+            int_var_ = *ptr_byte_var - uint_var_;
+            if (*ptr_byte_var != uint_var_) break;
+            ptr_byte_var = ptr_byte_var + 1;
           } while (uint_var_ != 0);
-          bVar2 = 0 < int_var_;
+          bool_var = 0 < int_var_;
           if (int_var_ < 1) {
             node_next = (uint64_t *)node_previous[1];
             goto LAB_1800580f9;
@@ -26228,7 +26228,7 @@ uint64_t * SystemFunction_57_6(uint64_t *handleIdentifier,uint64_t *resourceIden
       }
 LAB_1800580f9:
       ptr_uint_var = node_previous;
-      if (bVar2) {
+      if (bool_var) {
         ptr_uint_var = puVar10;
       }
       node_previous = node_next;
@@ -26241,15 +26241,15 @@ LAB_180058138:
         return resourceIdentifier;
       }
       if (*(int *)(systemConfig + SYSTEM_DATA_COMPARE_SIZE) != 0) {
-        pbVar3 = (byte *)ptr_uint_var[5];
-        long_var_ = *(longlong *)(systemConfig + 8) - (longlong)pbVar3;
+        ptr_byte_var = (byte *)ptr_uint_var[5];
+        long_var_ = *(longlong *)(systemConfig + 8) - (longlong)ptr_byte_var;
         do {
-          bVar1 = *pbVar3;
-          uint_var_ = (uint)pbVar3[long_var_];
-          if (bVar1 != uint_var_) break;
-          pbVar3 = pbVar3 + 1;
+          bool_var = *ptr_byte_var;
+          uint_var_ = (uint)ptr_byte_var[long_var_];
+          if (bool_var != uint_var_) break;
+          ptr_byte_var = ptr_byte_var + 1;
         } while (uint_var_ != 0);
-        if ((int)(bVar1 - uint_var_) < 1) goto LAB_180058138;
+        if ((int)(bool_var - uint_var_) < 1) goto LAB_180058138;
       }
     }
   }
@@ -26261,7 +26261,7 @@ LAB_180058138:
 void SystemFunction_80_0(ulonglong *handleIdentifier)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   ulonglong uint_var_;
   ulonglong uint_var_;
   uint64_t *ptr_uint_var;
@@ -26293,9 +26293,9 @@ void SystemFunction_80_0(ulonglong *handleIdentifier)
     if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
       *ptr_uint_var = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
       *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = ptr_uint_var;
-      piVar1 = (int *)(long_var_ + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      ptr_int_var = (int *)(long_var_ + 0x18);
+      *ptr_int_var = *ptr_int_var + -1;
+      if (*ptr_int_var == 0) {
         InitializeSystemComponents();
         return;
       }
@@ -27716,45 +27716,45 @@ void SystemFunction_54_4(longlong *handleIdentifier)
 uint64_t * SystemFunction_72_0(uint64_t *handleIdentifier,uint8_t *resourceIdentifier,longlong systemConfig)
 
 {
-  byte bVar1;
-  bool bVar2;
+  byte bool_var;
+  bool bool_var;
   uint64_t *ptr_uint_var;
   uint64_t *ptr_uint_var;
   uint uint_var_;
-  byte *pbVar6;
+  byte *ptr_byte_var;
   longlong long_var_;
 
-  bVar2 = true;
+  bool_var = true;
   ptr_uint_var = (uint64_t *)handleIdentifier[2];
   ptr_uint_var = handleIdentifier;
   while (ptr_uint_var != (uint64_t *)0x0) {
     ptr_uint_var = ptr_uint_var;
     if (*(int *)(ptr_uint_var + 6) == 0) {
-      bVar2 = false;
+      bool_var = false;
 LAB_1800590e2:
       ptr_uint_var = (uint64_t *)*ptr_uint_var;
     }
     else {
       if (*(int *)(systemConfig + SYSTEM_DATA_COMPARE_SIZE) == 0) {
-        bVar2 = true;
+        bool_var = true;
       }
       else {
-        pbVar6 = (byte *)ptr_uint_var[5];
-        long_var_ = *(longlong *)(systemConfig + 8) - (longlong)pbVar6;
+        ptr_byte_var = (byte *)ptr_uint_var[5];
+        long_var_ = *(longlong *)(systemConfig + 8) - (longlong)ptr_byte_var;
         do {
-          bVar1 = *pbVar6;
-          uint_var_ = (uint)pbVar6[long_var_];
-          if (bVar1 != uint_var_) break;
-          pbVar6 = pbVar6 + 1;
+          bool_var = *ptr_byte_var;
+          uint_var_ = (uint)ptr_byte_var[long_var_];
+          if (bool_var != uint_var_) break;
+          ptr_byte_var = ptr_byte_var + 1;
         } while (uint_var_ != 0);
-        bVar2 = 0 < (int)(bVar1 - uint_var_);
+        bool_var = 0 < (int)(bool_var - uint_var_);
       }
-      if (!bVar2) goto LAB_1800590e2;
+      if (!bool_var) goto LAB_1800590e2;
       ptr_uint_var = (uint64_t *)ptr_uint_var[1];
     }
   }
   ptr_uint_var = ptr_uint_var;
-  if (bVar2) {
+  if (bool_var) {
     if (ptr_uint_var == (uint64_t *)handleIdentifier[1]) {
       *resourceIdentifier = 1;
       return ptr_uint_var;
@@ -27763,15 +27763,15 @@ LAB_1800590e2:
   }
   if (*(int *)(systemConfig + SYSTEM_DATA_COMPARE_SIZE) != 0) {
     if (*(int *)(ptr_uint_var + 6) != 0) {
-      pbVar6 = *(byte **)(systemConfig + 8);
-      long_var_ = ptr_uint_var[5] - (longlong)pbVar6;
+      ptr_byte_var = *(byte **)(systemConfig + 8);
+      long_var_ = ptr_uint_var[5] - (longlong)ptr_byte_var;
       do {
-        bVar1 = *pbVar6;
-        uint_var_ = (uint)pbVar6[long_var_];
-        if (bVar1 != uint_var_) break;
-        pbVar6 = pbVar6 + 1;
+        bool_var = *ptr_byte_var;
+        uint_var_ = (uint)ptr_byte_var[long_var_];
+        if (bool_var != uint_var_) break;
+        ptr_byte_var = ptr_byte_var + 1;
       } while (uint_var_ != 0);
-      if ((int)(bVar1 - uint_var_) < 1) goto LAB_1800591a6;
+      if ((int)(bool_var - uint_var_) < 1) goto LAB_1800591a6;
     }
     *resourceIdentifier = 1;
     return ptr_uint_var;
@@ -28263,7 +28263,7 @@ void ValidateSystemConfiguration(longlong handleIdentifier,longlong resourceIden
 void SystemFunction_52_0(uint64_t *handleIdentifier)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   longlong long_var_;
   ulonglong uint_var_;
 
@@ -28277,9 +28277,9 @@ void SystemFunction_52_0(uint64_t *handleIdentifier)
     if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
       *handleIdentifier = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
       *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = handleIdentifier;
-      piVar1 = (int *)(long_var_ + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      ptr_int_var = (int *)(long_var_ + 0x18);
+      *ptr_int_var = *ptr_int_var + -1;
+      if (*ptr_int_var == 0) {
         InitializeSystemComponents();
         return;
       }
@@ -28414,8 +28414,8 @@ void SystemFunction_55_2(void)
 void SystemFunction_35_2(longlong *handleIdentifier)
 
 {
-  int *piVar1;
-  char *pcVar2;
+  int *ptr_int_var;
+  char *ptr_char_var;
   uint64_t *ptr_uint_var;
   longlong long_var_;
   ulonglong uint_var_;
@@ -28435,9 +28435,9 @@ void SystemFunction_35_2(longlong *handleIdentifier)
   }
   long_var_ = handleIdentifier[5];
   while (long_var_ != 0) {
-    pcVar2 = (char *)(long_var_ + 0x141);
+    ptr_char_var = (char *)(long_var_ + 0x141);
     long_var_ = *(longlong *)(long_var_ + 0x138);
-    if (*pcVar2 != '\0') {
+    if (*ptr_char_var != '\0') {
                     // WARNING: Subroutine does not return
       ProcessSystemOperation();
     }
@@ -28453,9 +28453,9 @@ void SystemFunction_35_2(longlong *handleIdentifier)
     if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
       *ptr_uint_var = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
       *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = ptr_uint_var;
-      piVar1 = (int *)(long_var_ + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      ptr_int_var = (int *)(long_var_ + 0x18);
+      *ptr_int_var = *ptr_int_var + -1;
+      if (*ptr_int_var == 0) {
         InitializeSystemComponents();
         return;
       }
@@ -28472,8 +28472,8 @@ void SystemFunction_35_2(longlong *handleIdentifier)
 void SystemFunction_35_6(longlong *handleIdentifier)
 
 {
-  int *piVar1;
-  char *pcVar2;
+  int *ptr_int_var;
+  char *ptr_char_var;
   uint64_t *ptr_uint_var;
   longlong long_var_;
   ulonglong uint_var_;
@@ -28493,9 +28493,9 @@ void SystemFunction_35_6(longlong *handleIdentifier)
   }
   long_var_ = handleIdentifier[5];
   while (long_var_ != 0) {
-    pcVar2 = (char *)(long_var_ + 0x141);
+    ptr_char_var = (char *)(long_var_ + 0x141);
     long_var_ = *(longlong *)(long_var_ + 0x138);
-    if (*pcVar2 != '\0') {
+    if (*ptr_char_var != '\0') {
                     // WARNING: Subroutine does not return
       ProcessSystemOperation();
     }
@@ -28511,9 +28511,9 @@ void SystemFunction_35_6(longlong *handleIdentifier)
     if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
       *ptr_uint_var = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
       *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = ptr_uint_var;
-      piVar1 = (int *)(long_var_ + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      ptr_int_var = (int *)(long_var_ + 0x18);
+      *ptr_int_var = *ptr_int_var + -1;
+      if (*ptr_int_var == 0) {
         InitializeSystemComponents();
         return;
       }
@@ -28544,8 +28544,8 @@ void SystemFunction_37_7(void)
 void SystemFunction_46_3(void)
 
 {
-  int *piVar1;
-  char *pcVar2;
+  int *ptr_int_var;
+  char *ptr_char_var;
   uint64_t *ptr_uint_var;
   longlong long_var_;
   longlong system_RSI;
@@ -28558,9 +28558,9 @@ void SystemFunction_46_3(void)
   }
   long_var_ = *(longlong *)(system_RSI + 0x28);
   while (long_var_ != 0) {
-    pcVar2 = (char *)(long_var_ + 0x141);
+    ptr_char_var = (char *)(long_var_ + 0x141);
     long_var_ = *(longlong *)(long_var_ + 0x138);
-    if (*pcVar2 != '\0') {
+    if (*ptr_char_var != '\0') {
                     // WARNING: Subroutine does not return
       ProcessSystemOperation();
     }
@@ -28574,9 +28574,9 @@ void SystemFunction_46_3(void)
       if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
         *ptr_uint_var = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
         *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = ptr_uint_var;
-        piVar1 = (int *)(long_var_ + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        ptr_int_var = (int *)(long_var_ + 0x18);
+        *ptr_int_var = *ptr_int_var + -1;
+        if (*ptr_int_var == 0) {
           InitializeSystemComponents();
           return;
         }
@@ -28595,7 +28595,7 @@ void SystemFunction_46_3(void)
 void SystemFunction_56_0(uint64_t *handleIdentifier)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   longlong long_var_;
   ulonglong uint_var_;
 
@@ -28606,9 +28606,9 @@ void SystemFunction_56_0(uint64_t *handleIdentifier)
     if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
       *handleIdentifier = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
       *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = handleIdentifier;
-      piVar1 = (int *)(long_var_ + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      ptr_int_var = (int *)(long_var_ + 0x18);
+      *ptr_int_var = *ptr_int_var + -1;
+      if (*ptr_int_var == 0) {
         InitializeSystemComponents();
         return;
       }
@@ -28625,8 +28625,8 @@ void SystemFunction_56_0(uint64_t *handleIdentifier)
 void SystemFunction_57_6(longlong *handleIdentifier)
 
 {
-  int *piVar1;
-  char *pcVar2;
+  int *ptr_int_var;
+  char *ptr_char_var;
   uint64_t *ptr_uint_var;
   longlong long_var_;
   ulonglong uint_var_;
@@ -28648,9 +28648,9 @@ void SystemFunction_57_6(longlong *handleIdentifier)
   }
   long_var_ = handleIdentifier[5];
   while (long_var_ != 0) {
-    pcVar2 = (char *)(long_var_ + 0x141);
+    ptr_char_var = (char *)(long_var_ + 0x141);
     long_var_ = *(longlong *)(long_var_ + 0x138);
-    if (*pcVar2 != '\0') {
+    if (*ptr_char_var != '\0') {
                     // WARNING: Subroutine does not return
       ProcessSystemOperation();
     }
@@ -28666,9 +28666,9 @@ void SystemFunction_57_6(longlong *handleIdentifier)
     if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
       *ptr_uint_var = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
       *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = ptr_uint_var;
-      piVar1 = (int *)(long_var_ + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      ptr_int_var = (int *)(long_var_ + 0x18);
+      *ptr_int_var = *ptr_int_var + -1;
+      if (*ptr_int_var == 0) {
         InitializeSystemComponents();
         return;
       }
@@ -28685,7 +28685,7 @@ void SystemFunction_57_6(longlong *handleIdentifier)
 void SystemFunction_65_6(longlong handleIdentifier)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   uint64_t *node_root;
   longlong long_var_;
   ulonglong uint_var_;
@@ -28701,9 +28701,9 @@ void SystemFunction_65_6(longlong handleIdentifier)
     if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
       *node_root = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
       *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = node_root;
-      piVar1 = (int *)(long_var_ + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      ptr_int_var = (int *)(long_var_ + 0x18);
+      *ptr_int_var = *ptr_int_var + -1;
+      if (*ptr_int_var == 0) {
         InitializeSystemComponents();
         return;
       }
@@ -28754,7 +28754,7 @@ void SystemFunction_72_0(longlong handleIdentifier)
 void SystemFunction_89_6(longlong handleIdentifier)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   uint64_t *node_root;
   longlong long_var_;
   ulonglong uint_var_;
@@ -28769,9 +28769,9 @@ void SystemFunction_89_6(longlong handleIdentifier)
       if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
         *node_root = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
         *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = node_root;
-        piVar1 = (int *)(long_var_ + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        ptr_int_var = (int *)(long_var_ + 0x18);
+        *ptr_int_var = *ptr_int_var + -1;
+        if (*ptr_int_var == 0) {
           InitializeSystemComponents();
           return;
         }
@@ -28790,7 +28790,7 @@ void SystemFunction_89_6(longlong handleIdentifier)
 void InitializeSystemTimer(longlong handleIdentifier)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   uint64_t *node_root;
   longlong long_var_;
   ulonglong uint_var_;
@@ -28805,9 +28805,9 @@ void InitializeSystemTimer(longlong handleIdentifier)
       if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
         *node_root = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
         *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = node_root;
-        piVar1 = (int *)(long_var_ + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        ptr_int_var = (int *)(long_var_ + 0x18);
+        *ptr_int_var = *ptr_int_var + -1;
+        if (*ptr_int_var == 0) {
           InitializeSystemComponents();
           return;
         }
@@ -28826,7 +28826,7 @@ void InitializeSystemTimer(longlong handleIdentifier)
 void SystemFunction_0_8(longlong handleIdentifier)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   uint64_t *node_root;
   longlong long_var_;
   ulonglong uint_var_;
@@ -28841,9 +28841,9 @@ void SystemFunction_0_8(longlong handleIdentifier)
       if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
         *node_root = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
         *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = node_root;
-        piVar1 = (int *)(long_var_ + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        ptr_int_var = (int *)(long_var_ + 0x18);
+        *ptr_int_var = *ptr_int_var + -1;
+        if (*ptr_int_var == 0) {
           InitializeSystemComponents();
           return;
         }
@@ -29464,7 +29464,7 @@ SystemFunction_50_4(uint64_t *handleIdentifier,uint64_t *resourceIdentifier,uint
 
 {
   uint64_t *ptr_uint_var;
-  code *pcVar2;
+  code *ptr_char_var;
 
   *handleIdentifier = &globalSystemVariable;
   *handleIdentifier = &globalSystemVariable;
@@ -29482,12 +29482,12 @@ SystemFunction_50_4(uint64_t *handleIdentifier,uint64_t *resourceIdentifier,uint
     if ((code *)handleIdentifier[6] != (code *)0x0) {
       (*(code *)handleIdentifier[6])(ptr_uint_var,0,0,systemFlags,INVALID_HANDLE_VALUE);
     }
-    pcVar2 = (code *)resourceIdentifier[2];
-    if (pcVar2 != (code *)0x0) {
-      (*pcVar2)(ptr_uint_var,resourceIdentifier,1);
-      pcVar2 = (code *)resourceIdentifier[2];
+    ptr_char_var = (code *)resourceIdentifier[2];
+    if (ptr_char_var != (code *)0x0) {
+      (*ptr_char_var)(ptr_uint_var,resourceIdentifier,1);
+      ptr_char_var = (code *)resourceIdentifier[2];
     }
-    handleIdentifier[6] = pcVar2;
+    handleIdentifier[6] = ptr_char_var;
     handleIdentifier[7] = resourceIdentifier[3];
   }
   if ((code *)resourceIdentifier[2] != (code *)0x0) {
@@ -29583,7 +29583,7 @@ SystemFunction_25_6(uint64_t *handleIdentifier,uint64_t *resourceIdentifier,uint
 
 {
   uint64_t *ptr_uint_var;
-  code *pcVar2;
+  code *ptr_char_var;
   uint64_t uint_var_;
 
   uint_var_ = INVALID_HANDLE_VALUE;
@@ -29596,12 +29596,12 @@ SystemFunction_25_6(uint64_t *handleIdentifier,uint64_t *resourceIdentifier,uint
     if ((code *)handleIdentifier[0x1a] != (code *)0x0) {
       (*(code *)handleIdentifier[0x1a])(ptr_uint_var,0,0,systemFlags,uint_var_);
     }
-    pcVar2 = (code *)resourceIdentifier[2];
-    if (pcVar2 != (code *)0x0) {
-      (*pcVar2)(ptr_uint_var,resourceIdentifier,1);
-      pcVar2 = (code *)resourceIdentifier[2];
+    ptr_char_var = (code *)resourceIdentifier[2];
+    if (ptr_char_var != (code *)0x0) {
+      (*ptr_char_var)(ptr_uint_var,resourceIdentifier,1);
+      ptr_char_var = (code *)resourceIdentifier[2];
     }
-    handleIdentifier[0x1a] = pcVar2;
+    handleIdentifier[0x1a] = ptr_char_var;
     handleIdentifier[0x1b] = resourceIdentifier[3];
   }
   handleIdentifier[0x1c] = systemConfig;
@@ -29620,7 +29620,7 @@ void SystemFunction_44_8(longlong *handleIdentifier)
   int compare_result;
   uint64_t uint_var_;
   longlong *pallocation_size;
-  code *pcVar6;
+  code *ptr_char_var;
   uint8_t localBuffer_128 [32];
   longlong *plongStack_108;
   longlong **pplongStack_100;
@@ -29654,13 +29654,13 @@ void SystemFunction_44_8(longlong *handleIdentifier)
     pcStack_e8 = (code *)0x0;
     pcStack_e0 = _guard_check_icall;
     if (alongStack_f8 != handleIdentifier) {
-      pcVar6 = (code *)handleIdentifier[2];
-      if (pcVar6 != (code *)0x0) {
-        (*pcVar6)(alongStack_f8,handleIdentifier,1);
-        pcVar6 = (code *)handleIdentifier[2];
+      ptr_char_var = (code *)handleIdentifier[2];
+      if (ptr_char_var != (code *)0x0) {
+        (*ptr_char_var)(alongStack_f8,handleIdentifier,1);
+        ptr_char_var = (code *)handleIdentifier[2];
       }
       pcStack_e0 = (code *)handleIdentifier[3];
-      pcStack_e8 = pcVar6;
+      pcStack_e8 = ptr_char_var;
     }
     pallocation_size = (longlong *)SystemFunction_25_6(uint_var_,alongStack_f8,alongStack_b8);
     plongStack_c8 = pallocation_size;
@@ -29695,15 +29695,15 @@ void SystemFunction_92_8(uint *handleIdentifier)
 
 {
   uint uint_var_;
-  char cVar2;
+  char char_var;
 
   if (*(void **)*systemConfigurationData == &systemNextData) {
-    cVar2 = *(int *)(systemConfigurationData + 0xe0) != 0;
+    char_var = *(int *)(systemConfigurationData + 0xe0) != 0;
   }
   else {
-    cVar2 = (**(code **)(*(void **)*systemConfigurationData + 0x48))();
+    char_var = (**(code **)(*(void **)*systemConfigurationData + 0x48))();
   }
-  if (cVar2 != '\0') {
+  if (char_var != '\0') {
     *handleIdentifier = 0x41c6fe0c;
     return;
   }
@@ -29741,7 +29741,7 @@ void SystemFunction_18_4(uint64_t *handleIdentifier,uint64_t resourceIdentifier,
 
 {
   int int_var_;
-  bool bVar2;
+  bool bool_var;
   uint64_t *ptr_uint_var;
   longlong long_var_;
   uint64_t *ptr_uint_var;
@@ -29749,12 +29749,12 @@ void SystemFunction_18_4(uint64_t *handleIdentifier,uint64_t resourceIdentifier,
 
   long_var_ = AllocateSystemResource(systemMemoryPool,0x28,*(uint8_t *)(handleIdentifier + 5));
   int_var_ = *systemConfig;
-  bVar2 = true;
+  bool_var = true;
   *(int *)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = int_var_;
   ptr_uint_var = (uint64_t *)handleIdentifier[2];
   ptr_uint_var = handleIdentifier;
   while (ptr_uint_var != (uint64_t *)0x0) {
-    bVar2 = int_var_ < *(int *)(ptr_uint_var + 4);
+    bool_var = int_var_ < *(int *)(ptr_uint_var + 4);
     ptr_uint_var = ptr_uint_var;
     if (int_var_ < *(int *)(ptr_uint_var + 4)) {
       ptr_uint_var = (uint64_t *)ptr_uint_var[1];
@@ -29764,7 +29764,7 @@ void SystemFunction_18_4(uint64_t *handleIdentifier,uint64_t resourceIdentifier,
     }
   }
   ptr_uint_var = ptr_uint_var;
-  if (bVar2) {
+  if (bool_var) {
     if (ptr_uint_var == (uint64_t *)handleIdentifier[1]) goto LAB_18005c9be;
     ptr_uint_var = (uint64_t *)SystemFunction66b9a0(ptr_uint_var);
   }
@@ -29868,11 +29868,11 @@ longlong SystemFunction_74_4(longlong handleIdentifier)
 void SystemFunction_90_4(void **handleIdentifier,uint64_t resourceIdentifier,uint64_t systemConfig,uint64_t systemFlags)
 
 {
-  byte bVar1;
+  byte bool_var;
   uint uint_var_;
   longlong long_var_;
   void **ppuVar4;
-  byte *pbVar5;
+  byte *ptr_byte_var;
   void **pnode_current;
   longlong long_var_;
   uint64_t uint_var_;
@@ -29927,15 +29927,15 @@ void SystemFunction_90_4(void **handleIdentifier,uint64_t resourceIdentifier,uin
   if (ppuVar4 == pnode_current) goto LAB_18005ccff;
   if (*(int *)(ppuVar4 + 6) != 0) {
     if (*(int *)(long_var_ + 0x30) == 0) goto LAB_18005ccff;
-    pbVar5 = ppuVar4[5];
-    long_var_ = *(longlong *)(long_var_ + 0x28) - (longlong)pbVar5;
+    ptr_byte_var = ppuVar4[5];
+    long_var_ = *(longlong *)(long_var_ + 0x28) - (longlong)ptr_byte_var;
     do {
-      bVar1 = *pbVar5;
-      uint_var_ = (uint)pbVar5[long_var_];
-      if (bVar1 != uint_var_) break;
-      pbVar5 = pbVar5 + 1;
+      bool_var = *ptr_byte_var;
+      uint_var_ = (uint)ptr_byte_var[long_var_];
+      if (bool_var != uint_var_) break;
+      ptr_byte_var = ptr_byte_var + 1;
     } while (uint_var_ != 0);
-    if (0 < (int)(bVar1 - uint_var_)) goto LAB_18005ccff;
+    if (0 < (int)(bool_var - uint_var_)) goto LAB_18005ccff;
   }
   uint_var_ = 1;
 LAB_18005ccff:
@@ -30101,7 +30101,7 @@ void SystemFunction_15_2(ulonglong handleIdentifier,longlong resourceIdentifier)
   longlong long_var_;
   int int_var_;
   int int_var_;
-  float fVar9;
+  float float_var;
   float fVar10;
   double dstack_var;
   ulonglong ustack_var;
@@ -30128,13 +30128,13 @@ void SystemFunction_15_2(ulonglong handleIdentifier,longlong resourceIdentifier)
   } while (uint_var_ != 0);
   is_initialized = (&globalSystemVariable)[int_var_ / int_var_];
   uintStack_30 = 0x18005d147;
-  fVar9 = (float)powf(0x44800000);
+  float_var = (float)powf(0x44800000);
   fVar10 = (float)(longlong)handleIdentifier;
   if ((longlong)handleIdentifier < 0) {
     fVar10 = fVar10 + 1.8446744e+19;
   }
   ustack_var = (ulonglong)(uint)(int)is_initialized;
-  dstack_var = (double)(fVar9 * fVar10);
+  dstack_var = (double)(float_var * fVar10);
   uintStack_38 = systemConfigurationData ^ (ulonglong)localBuffer_478;
   ptr_uint_var = (ulonglong *)SystemFunction04b9a0();
   allocation_size = 0;
@@ -30283,43 +30283,43 @@ uint64_t * SystemFunction_95_2(longlong handleIdentifier,char *resourceIdentifie
 
 {
   char *pis_initialized;
-  char cVar2;
+  char char_var;
   uint64_t *ptr_uint_var;
-  char *pcVar4;
+  char *ptr_char_var;
   longlong allocation_size;
-  char *pcVar6;
+  char *ptr_char_var;
 
   if (resourceIdentifier == (char *)0x0) {
     return *(uint64_t **)(handleIdentifier + 0x58);
   }
-  cVar2 = *resourceIdentifier;
-  pcVar6 = resourceIdentifier;
-  while (cVar2 != '\0') {
-    pcVar6 = pcVar6 + 1;
-    cVar2 = *pcVar6;
+  char_var = *resourceIdentifier;
+  ptr_char_var = resourceIdentifier;
+  while (char_var != '\0') {
+    ptr_char_var = ptr_char_var + 1;
+    char_var = *ptr_char_var;
   }
   ptr_uint_var = *(uint64_t **)(handleIdentifier + 0x58);
   do {
     if (ptr_uint_var == (uint64_t *)0x0) {
       return (uint64_t *)0x0;
     }
-    pcVar4 = (char *)*ptr_uint_var;
-    if (pcVar4 == (char *)0x0) {
+    ptr_char_var = (char *)*ptr_uint_var;
+    if (ptr_char_var == (char *)0x0) {
       allocation_size = 0;
-      pcVar4 = (char *)0x180d48d24;
+      ptr_char_var = (char *)0x180d48d24;
     }
     else {
       allocation_size = ptr_uint_var[2];
     }
-    if (allocation_size == (longlong)pcVar6 - (longlong)resourceIdentifier) {
-      pis_initialized = pcVar4 + allocation_size;
-      if (pis_initialized <= pcVar4) {
+    if (allocation_size == (longlong)ptr_char_var - (longlong)resourceIdentifier) {
+      pis_initialized = ptr_char_var + allocation_size;
+      if (pis_initialized <= ptr_char_var) {
         return ptr_uint_var;
       }
-      allocation_size = (longlong)resourceIdentifier - (longlong)pcVar4;
-      while (*pcVar4 == pcVar4[allocation_size]) {
-        pcVar4 = pcVar4 + 1;
-        if (pis_initialized <= pcVar4) {
+      allocation_size = (longlong)resourceIdentifier - (longlong)ptr_char_var;
+      while (*ptr_char_var == ptr_char_var[allocation_size]) {
+        ptr_char_var = ptr_char_var + 1;
+        if (pis_initialized <= ptr_char_var) {
           return ptr_uint_var;
         }
       }
@@ -30332,30 +30332,30 @@ uint64_t * SystemFunction_0_0(uint64_t handleIdentifier,uint64_t *resourceIdenti
 
 {
   char *pis_initialized;
-  char *pcVar2;
+  char *ptr_char_var;
   longlong long_var_;
   longlong in_R10;
   longlong in_R11;
 
   if (resourceIdentifier != (uint64_t *)0x0) {
     do {
-      pcVar2 = (char *)*resourceIdentifier;
-      if (pcVar2 == (char *)0x0) {
+      ptr_char_var = (char *)*resourceIdentifier;
+      if (ptr_char_var == (char *)0x0) {
         long_var_ = 0;
-        pcVar2 = (char *)0x180d48d24;
+        ptr_char_var = (char *)0x180d48d24;
       }
       else {
         long_var_ = resourceIdentifier[2];
       }
       if (long_var_ == in_R10) {
-        pis_initialized = pcVar2 + long_var_;
-        if (pis_initialized <= pcVar2) {
+        pis_initialized = ptr_char_var + long_var_;
+        if (pis_initialized <= ptr_char_var) {
           return resourceIdentifier;
         }
-        long_var_ = in_R11 - (longlong)pcVar2;
-        while (*pcVar2 == pcVar2[long_var_]) {
-          pcVar2 = pcVar2 + 1;
-          if (pis_initialized <= pcVar2) {
+        long_var_ = in_R11 - (longlong)ptr_char_var;
+        while (*ptr_char_var == ptr_char_var[long_var_]) {
+          ptr_char_var = ptr_char_var + 1;
+          if (pis_initialized <= ptr_char_var) {
             return resourceIdentifier;
           }
         }
@@ -30370,7 +30370,7 @@ uint64_t * SystemFunction_8_4(uint64_t handleIdentifier,uint64_t *resourceIdenti
 
 {
   char *pis_initialized;
-  char *pcVar2;
+  char *ptr_char_var;
   char *system_RBX;
   longlong long_var_;
   longlong in_R10;
@@ -30384,19 +30384,19 @@ uint64_t * SystemFunction_8_4(uint64_t handleIdentifier,uint64_t *resourceIdenti
       }
       if ((char *)*resourceIdentifier == (char *)0x0) {
         long_var_ = 0;
-        pcVar2 = system_RBX;
+        ptr_char_var = system_RBX;
       }
       else {
         long_var_ = resourceIdentifier[2];
-        pcVar2 = (char *)*resourceIdentifier;
+        ptr_char_var = (char *)*resourceIdentifier;
       }
     } while (long_var_ != in_R10);
-    pis_initialized = pcVar2 + long_var_;
-    if (pis_initialized <= pcVar2) break;
-    long_var_ = in_R11 - (longlong)pcVar2;
-    while (*pcVar2 == pcVar2[long_var_]) {
-      pcVar2 = pcVar2 + 1;
-      if (pis_initialized <= pcVar2) {
+    pis_initialized = ptr_char_var + long_var_;
+    if (pis_initialized <= ptr_char_var) break;
+    long_var_ = in_R11 - (longlong)ptr_char_var;
+    while (*ptr_char_var == ptr_char_var[long_var_]) {
+      ptr_char_var = ptr_char_var + 1;
+      if (pis_initialized <= ptr_char_var) {
         return resourceIdentifier;
       }
     }
@@ -30414,45 +30414,45 @@ uint64_t * SystemFunction_12_8(longlong handleIdentifier,char *resourceIdentifie
 
 {
   char *pis_initialized;
-  char cVar2;
+  char char_var;
   uint64_t *ptr_uint_var;
-  char *pcVar4;
+  char *ptr_char_var;
   longlong allocation_size;
 
   if (resourceIdentifier == (char *)0x0) {
     return *(uint64_t **)(handleIdentifier + 0x30);
   }
   if (systemConfig == 0) {
-    cVar2 = *resourceIdentifier;
-    pcVar4 = resourceIdentifier;
-    while (cVar2 != '\0') {
-      pcVar4 = pcVar4 + 1;
-      cVar2 = *pcVar4;
+    char_var = *resourceIdentifier;
+    ptr_char_var = resourceIdentifier;
+    while (char_var != '\0') {
+      ptr_char_var = ptr_char_var + 1;
+      char_var = *ptr_char_var;
     }
-    systemConfig = (longlong)pcVar4 - (longlong)resourceIdentifier;
+    systemConfig = (longlong)ptr_char_var - (longlong)resourceIdentifier;
   }
   ptr_uint_var = *(uint64_t **)(handleIdentifier + 0x30);
   do {
     if (ptr_uint_var == (uint64_t *)0x0) {
       return (uint64_t *)0x0;
     }
-    pcVar4 = (char *)*ptr_uint_var;
-    if (pcVar4 == (char *)0x0) {
+    ptr_char_var = (char *)*ptr_uint_var;
+    if (ptr_char_var == (char *)0x0) {
       allocation_size = 0;
-      pcVar4 = (char *)0x180d48d24;
+      ptr_char_var = (char *)0x180d48d24;
     }
     else {
       allocation_size = ptr_uint_var[2];
     }
     if (allocation_size == systemConfig) {
-      pis_initialized = pcVar4 + allocation_size;
-      if (pis_initialized <= pcVar4) {
+      pis_initialized = ptr_char_var + allocation_size;
+      if (pis_initialized <= ptr_char_var) {
         return ptr_uint_var;
       }
-      allocation_size = (longlong)resourceIdentifier - (longlong)pcVar4;
-      while (*pcVar4 == pcVar4[allocation_size]) {
-        pcVar4 = pcVar4 + 1;
-        if (pis_initialized <= pcVar4) {
+      allocation_size = (longlong)resourceIdentifier - (longlong)ptr_char_var;
+      while (*ptr_char_var == ptr_char_var[allocation_size]) {
+        ptr_char_var = ptr_char_var + 1;
+        if (pis_initialized <= ptr_char_var) {
           return ptr_uint_var;
         }
       }
@@ -30465,29 +30465,29 @@ uint64_t * SystemFunction_17_6(uint64_t handleIdentifier,uint64_t *resourceIdent
 
 {
   char *pis_initialized;
-  char *pcVar2;
+  char *ptr_char_var;
   longlong long_var_;
   longlong in_R11;
 
   if (resourceIdentifier != (uint64_t *)0x0) {
     do {
-      pcVar2 = (char *)*resourceIdentifier;
-      if (pcVar2 == (char *)0x0) {
+      ptr_char_var = (char *)*resourceIdentifier;
+      if (ptr_char_var == (char *)0x0) {
         long_var_ = 0;
-        pcVar2 = (char *)0x180d48d24;
+        ptr_char_var = (char *)0x180d48d24;
       }
       else {
         long_var_ = resourceIdentifier[2];
       }
       if (long_var_ == systemConfig) {
-        pis_initialized = pcVar2 + long_var_;
-        if (pis_initialized <= pcVar2) {
+        pis_initialized = ptr_char_var + long_var_;
+        if (pis_initialized <= ptr_char_var) {
           return resourceIdentifier;
         }
-        long_var_ = in_R11 - (longlong)pcVar2;
-        while (*pcVar2 == pcVar2[long_var_]) {
-          pcVar2 = pcVar2 + 1;
-          if (pis_initialized <= pcVar2) {
+        long_var_ = in_R11 - (longlong)ptr_char_var;
+        while (*ptr_char_var == ptr_char_var[long_var_]) {
+          ptr_char_var = ptr_char_var + 1;
+          if (pis_initialized <= ptr_char_var) {
             return resourceIdentifier;
           }
         }
@@ -30502,7 +30502,7 @@ uint64_t * SystemFunction_26_0(uint64_t handleIdentifier,uint64_t *resourceIdent
 
 {
   char *pis_initialized;
-  char *pcVar2;
+  char *ptr_char_var;
   char *system_RBX;
   longlong long_var_;
   longlong in_R11;
@@ -30515,19 +30515,19 @@ uint64_t * SystemFunction_26_0(uint64_t handleIdentifier,uint64_t *resourceIdent
       }
       if ((char *)*resourceIdentifier == (char *)0x0) {
         long_var_ = 0;
-        pcVar2 = system_RBX;
+        ptr_char_var = system_RBX;
       }
       else {
         long_var_ = resourceIdentifier[2];
-        pcVar2 = (char *)*resourceIdentifier;
+        ptr_char_var = (char *)*resourceIdentifier;
       }
     } while (long_var_ != systemConfig);
-    pis_initialized = pcVar2 + long_var_;
-    if (pis_initialized <= pcVar2) break;
-    long_var_ = in_R11 - (longlong)pcVar2;
-    while (*pcVar2 == pcVar2[long_var_]) {
-      pcVar2 = pcVar2 + 1;
-      if (pis_initialized <= pcVar2) {
+    pis_initialized = ptr_char_var + long_var_;
+    if (pis_initialized <= ptr_char_var) break;
+    long_var_ = in_R11 - (longlong)ptr_char_var;
+    while (*ptr_char_var == ptr_char_var[long_var_]) {
+      ptr_char_var = ptr_char_var + 1;
+      if (pis_initialized <= ptr_char_var) {
         return resourceIdentifier;
       }
     }
@@ -31150,7 +31150,7 @@ void SystemFunction_79_2(longlong handleIdentifier,longlong *resourceIdentifier,
 
 {
   uint64_t *ptr_uint_var;
-  code *pcVar2;
+  code *ptr_char_var;
   longlong *plstack_var;
   longlong *plstack_var;
   longlong **pplstack_var;
@@ -31158,14 +31158,14 @@ void SystemFunction_79_2(longlong handleIdentifier,longlong *resourceIdentifier,
 
   uint_var_ = INVALID_HANDLE_VALUE;
   ptr_uint_var = (uint64_t *)**(uint64_t **)(handleIdentifier + 8);
-  pcVar2 = *(code **)*ptr_uint_var;
+  ptr_char_var = *(code **)*ptr_uint_var;
   pplstack_var = &plstack_var;
   plstack_var = (longlong *)*resourceIdentifier;
   plstack_var = resourceIdentifier;
   if (plstack_var != (longlong *)0x0) {
     (**(code **)(*plstack_var + 0x28))();
   }
-  (*pcVar2)(ptr_uint_var,&plstack_var,systemConfig,systemFlags,uint_var_);
+  (*ptr_char_var)(ptr_uint_var,&plstack_var,systemConfig,systemFlags,uint_var_);
   if ((longlong *)*resourceIdentifier != (longlong *)0x0) {
     (**(code **)(*(longlong *)*resourceIdentifier + 0x38))();
   }
@@ -31177,7 +31177,7 @@ void SystemFunction_90_4(longlong handleIdentifier,longlong *resourceIdentifier,
 
 {
   uint64_t *ptr_uint_var;
-  code *pcVar2;
+  code *ptr_char_var;
   longlong *plstack_var;
   longlong *plstack_var;
   longlong **pplstack_var;
@@ -31185,14 +31185,14 @@ void SystemFunction_90_4(longlong handleIdentifier,longlong *resourceIdentifier,
 
   uint_var_ = INVALID_HANDLE_VALUE;
   ptr_uint_var = *(uint64_t **)(*(longlong *)(handleIdentifier + 8) + 8);
-  pcVar2 = *(code **)*ptr_uint_var;
+  ptr_char_var = *(code **)*ptr_uint_var;
   pplstack_var = &plstack_var;
   plstack_var = (longlong *)*resourceIdentifier;
   plstack_var = resourceIdentifier;
   if (plstack_var != (longlong *)0x0) {
     (**(code **)(*plstack_var + 0x28))();
   }
-  (*pcVar2)(ptr_uint_var,&plstack_var,systemConfig,systemFlags,uint_var_);
+  (*ptr_char_var)(ptr_uint_var,&plstack_var,systemConfig,systemFlags,uint_var_);
   if ((longlong *)*resourceIdentifier != (longlong *)0x0) {
     (**(code **)(*(longlong *)*resourceIdentifier + 0x38))();
   }
@@ -31204,7 +31204,7 @@ void SystemFunction_1_6(longlong handleIdentifier,longlong *resourceIdentifier,u
 
 {
   uint64_t *ptr_uint_var;
-  code *pcVar2;
+  code *ptr_char_var;
   longlong *plstack_var;
   longlong *plstack_var;
   longlong **pplstack_var;
@@ -31212,14 +31212,14 @@ void SystemFunction_1_6(longlong handleIdentifier,longlong *resourceIdentifier,u
 
   uint_var_ = INVALID_HANDLE_VALUE;
   ptr_uint_var = *(uint64_t **)(*(longlong *)(handleIdentifier + 8) + SYSTEM_DATA_COMPARE_SIZE);
-  pcVar2 = *(code **)*ptr_uint_var;
+  ptr_char_var = *(code **)*ptr_uint_var;
   pplstack_var = &plstack_var;
   plstack_var = (longlong *)*resourceIdentifier;
   plstack_var = resourceIdentifier;
   if (plstack_var != (longlong *)0x0) {
     (**(code **)(*plstack_var + 0x28))();
   }
-  (*pcVar2)(ptr_uint_var,&plstack_var,systemConfig,systemFlags,uint_var_);
+  (*ptr_char_var)(ptr_uint_var,&plstack_var,systemConfig,systemFlags,uint_var_);
   if ((longlong *)*resourceIdentifier != (longlong *)0x0) {
     (**(code **)(*(longlong *)*resourceIdentifier + 0x38))();
   }
@@ -31399,22 +31399,22 @@ void SystemFunction_72_0(uint64_t handleIdentifier,longlong *resourceIdentifier,
 {
   code *pis_initialized;
   longlong *ptr_long_var;
-  char cVar3;
+  char char_var;
   uint64_t uint_var_;
 
   uint_var_ = INVALID_HANDLE_VALUE;
   while( true ) {
     pis_initialized = *(code **)(*(longlong *)*resourceIdentifier + 0x68);
     if (pis_initialized == (code *)&g_system_func_1) {
-      cVar3 = (char)((longlong *)*resourceIdentifier)[2] != '\0';
+      char_var = (char)((longlong *)*resourceIdentifier)[2] != '\0';
     }
     else {
-      cVar3 = (*pis_initialized)();
+      char_var = (*pis_initialized)();
     }
-    if (cVar3 != '\0') break;
+    if (char_var != '\0') break;
     ptr_long_var = (longlong *)SystemFunction_21_6(handleIdentifier);
-    cVar3 = (**(code **)(*ptr_long_var + SYSTEM_NODE_HEADER_SIZE))(ptr_long_var,systemConfig,*(code **)(*ptr_long_var + SYSTEM_NODE_HEADER_SIZE),systemFlags,uint_var_);
-    if (cVar3 == '\0') {
+    char_var = (**(code **)(*ptr_long_var + SYSTEM_NODE_HEADER_SIZE))(ptr_long_var,systemConfig,*(code **)(*ptr_long_var + SYSTEM_NODE_HEADER_SIZE),systemFlags,uint_var_);
+    if (char_var == '\0') {
       pis_initialized = *(code **)(*(longlong *)*resourceIdentifier + 0x80);
       if (pis_initialized == (code *)&g_system_func_4) {
         SystemFunction_72_0((longlong *)*resourceIdentifier + 4);
@@ -31435,17 +31435,17 @@ void SystemFunction_92_8(uint64_t handleIdentifier,longlong *resourceIdentifier,
 
 {
   code *pis_initialized;
-  bool bVar2;
+  bool bool_var;
   longlong *ptr_long_var;
   ulonglong uint_var_;
   longlong allocation_size;
   longlong long_var_;
-  char cVar7;
+  char char_var;
 
   long_var_ = resourceIdentifier[1];
   allocation_size = *resourceIdentifier;
   do {
-    bVar2 = false;
+    bool_var = false;
     uint_var_ = 0;
     if (long_var_ - allocation_size >> 3 == 0) {
       return;
@@ -31454,21 +31454,21 @@ void SystemFunction_92_8(uint64_t handleIdentifier,longlong *resourceIdentifier,
       ptr_long_var = *(longlong **)(uint_var_ * 8 + allocation_size);
       pis_initialized = *(code **)(*ptr_long_var + 0x68);
       if (pis_initialized == (code *)&g_system_func_1) {
-        cVar7 = (char)ptr_long_var[2] != '\0';
+        char_var = (char)ptr_long_var[2] != '\0';
       }
       else {
-        cVar7 = (*pis_initialized)();
+        char_var = (*pis_initialized)();
       }
-      if (cVar7 == '\0') {
-        bVar2 = true;
+      if (char_var == '\0') {
+        bool_var = true;
         ptr_long_var = (longlong *)SystemFunction_21_6(handleIdentifier);
         if (systemConfig == '\0') {
-          cVar7 = (**(code **)(*ptr_long_var + SYSTEM_NODE_HEADER_SIZE))(ptr_long_var,0);
+          char_var = (**(code **)(*ptr_long_var + SYSTEM_NODE_HEADER_SIZE))(ptr_long_var,0);
         }
         else {
-          cVar7 = ValidateGraphicsResource();
+          char_var = ValidateGraphicsResource();
         }
-        if (cVar7 == '\0') {
+        if (char_var == '\0') {
           ptr_long_var = *(longlong **)(uint_var_ * 8 + *resourceIdentifier);
           pis_initialized = *(code **)(*ptr_long_var + 0x80);
           if (pis_initialized == (code *)&g_system_func_4) {
@@ -31483,7 +31483,7 @@ void SystemFunction_92_8(uint64_t handleIdentifier,longlong *resourceIdentifier,
       uint_var_ = (ulonglong)((int)uint_var_ + 1);
       allocation_size = *resourceIdentifier;
     } while (uint_var_ < (ulonglong)(long_var_ - allocation_size >> 3));
-  } while (bVar2);
+  } while (bool_var);
   return;
 }
 
@@ -31878,14 +31878,14 @@ longlong SystemFunction_11_3(void)
 uint64_t SystemFunction_34_8(uint64_t handleIdentifier,uint64_t resourceIdentifier,longlong *systemConfig)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   uint64_t uint_var_;
   longlong in_RAX;
   ulonglong system_RSI;
   ulonglong uint_var_;
   longlong *system_RDI;
   int system_R15D;
-  bool bVar4;
+  bool bool_var;
 
   uint_var_ = *(uint64_t *)(systemConfig[1] + 8 + in_RAX * SYSTEM_DATA_COMPARE_SIZE);
   if (systemConfig == system_RDI) {
@@ -31894,14 +31894,14 @@ uint64_t SystemFunction_34_8(uint64_t handleIdentifier,uint64_t resourceIdentifi
   do {
     uint_var_ = system_RSI & *system_RDI - 1U;
     if (*(int *)(system_RDI[1] + uint_var_ * SYSTEM_DATA_COMPARE_SIZE) == 0) {
-      piVar1 = (int *)(system_RDI[1] + uint_var_ * SYSTEM_DATA_COMPARE_SIZE);
+      ptr_int_var = (int *)(system_RDI[1] + uint_var_ * SYSTEM_DATA_COMPARE_SIZE);
       LOCK();
-      bVar4 = *piVar1 == 0;
-      if (bVar4) {
-        *piVar1 = system_R15D;
+      bool_var = *ptr_int_var == 0;
+      if (bool_var) {
+        *ptr_int_var = system_R15D;
       }
       UNLOCK();
-      if (bVar4) {
+      if (bool_var) {
         *(uint64_t *)(system_RDI[1] + 8 + uint_var_ * SYSTEM_DATA_COMPARE_SIZE) = uint_var_;
         return uint_var_;
       }
@@ -31915,7 +31915,7 @@ longlong SystemFunction_43_6(void)
 
 {
   uint *ptr_uint_var;
-  int *piVar2;
+  int *ptr_int_var;
   uint uint_var_;
   ulonglong *ptr_uint_var;
   ulonglong uint_var_;
@@ -31928,7 +31928,7 @@ longlong SystemFunction_43_6(void)
   longlong system_R12;
   longlong system_R14;
   int system_R15D;
-  bool bVar9;
+  bool bool_var;
   char in_stack_00000050;
 
   while( true ) {
@@ -31953,14 +31953,14 @@ longlong SystemFunction_43_6(void)
             do {
               uint_var_ = system_RSI & *system_RDI - 1;
               if (*(int *)(system_RDI[1] + uint_var_ * SYSTEM_DATA_COMPARE_SIZE) == 0) {
-                piVar2 = (int *)(system_RDI[1] + uint_var_ * SYSTEM_DATA_COMPARE_SIZE);
+                ptr_int_var = (int *)(system_RDI[1] + uint_var_ * SYSTEM_DATA_COMPARE_SIZE);
                 LOCK();
-                bVar9 = *piVar2 == 0;
-                if (bVar9) {
-                  *piVar2 = system_R15D;
+                bool_var = *ptr_int_var == 0;
+                if (bool_var) {
+                  *ptr_int_var = system_R15D;
                 }
                 UNLOCK();
-                if (bVar9) {
+                if (bool_var) {
                   *(longlong *)(system_RDI[1] + 8 + uint_var_ * SYSTEM_DATA_COMPARE_SIZE) = long_var_;
                   return long_var_;
                 }
@@ -32016,7 +32016,7 @@ uint64_t * SystemFunction_65_6(longlong *handleIdentifier,char resourceIdentifie
   uint64_t *node_current;
   ulonglong uint_var_;
   ulonglong uint_var_;
-  bool bVar9;
+  bool bool_var;
 
   node_current = (uint64_t *)0x0;
   node_root = (uint64_t *)*handleIdentifier;
@@ -32095,26 +32095,26 @@ uint64_t * SystemFunction_65_6(longlong *handleIdentifier,char resourceIdentifie
           node_root[1] = ptr_uint_var;
           LOCK();
           long_var_ = *handleIdentifier;
-          bVar9 = long_var_ == long_var_;
-          if (bVar9) {
+          bool_var = long_var_ == long_var_;
+          if (bool_var) {
             *handleIdentifier = (longlong)node_root;
             long_var_ = long_var_;
           }
           UNLOCK();
           long_var_ = long_var_;
           ptr_uint_var = node_root;
-        } while (!bVar9);
+        } while (!bool_var);
       }
       return ptr_uint_var;
     }
     if ((*(char *)(node_root + 2) != '\0') && (*(char *)(node_root + 9) == resourceIdentifier)) {
       LOCK();
-      bVar9 = *(char *)(node_root + 2) == '\x01';
-      if (bVar9) {
+      bool_var = *(char *)(node_root + 2) == '\x01';
+      if (bool_var) {
         *(char *)(node_root + 2) = '\0';
       }
       UNLOCK();
-      if (bVar9) {
+      if (bool_var) {
         *systemConfig = 1;
         return node_root;
       }
@@ -32131,7 +32131,7 @@ uint64_t SystemFunction_18_4(longlong handleIdentifier,longlong *resourceIdentif
 
 {
   ulonglong uint_var_;
-  char cVar2;
+  char char_var;
   longlong long_var_;
   ulonglong uint_var_;
   ulonglong *ptr_uint_var;
@@ -32147,8 +32147,8 @@ LAB_18005f0e6:
       if ((((*(longlong *)(handleIdentifier + 0x28) - uint_var_) - SYSTEM_NODE_HEADER_SIZE < 0x8000000000000001) ||
           (((*(longlong *)(handleIdentifier + 0x80) == 0 ||
             (*(longlong *)(handleIdentifier + 0x60) == *(longlong *)(handleIdentifier + 0x68))) &&
-           (cVar2 = SystemFunction_95_2(handleIdentifier,*(uint64_t *)(handleIdentifier + 0x60),uint_var_,systemFlags,
-                                  INVALID_HANDLE_VALUE), cVar2 == '\0')))) ||
+           (char_var = SystemFunction_95_2(handleIdentifier,*(uint64_t *)(handleIdentifier + 0x60),uint_var_,systemFlags,
+                                  INVALID_HANDLE_VALUE), char_var == '\0')))) ||
          (long_var_ = SystemFunction_4_0(*(uint64_t *)(handleIdentifier + 0x50)), long_var_ == 0)) {
         return 0;
       }
@@ -32209,7 +32209,7 @@ uint64_t SystemFunction_66_4(longlong handleIdentifier,longlong *resourceIdentif
 
 {
   ulonglong uint_var_;
-  char cVar2;
+  char char_var;
   longlong *ptr_long_var;
   ulonglong uint_var_;
   ulonglong flag_initialized;
@@ -32228,8 +32228,8 @@ LAB_18005f30a:
     return 1;
   }
   if (0x8000000000000000 < (*(longlong *)(handleIdentifier + 0x28) - uint_var_) - SYSTEM_NODE_HEADER_SIZE) {
-    cVar2 = SystemFunction_34_4(handleIdentifier,&flag_initialized,uint_var_,uint_var_,INVALID_HANDLE_VALUE);
-    if (cVar2 != '\0') {
+    char_var = SystemFunction_34_4(handleIdentifier,&flag_initialized,uint_var_,uint_var_,INVALID_HANDLE_VALUE);
+    if (char_var != '\0') {
       ptr_long_var = (longlong *)SystemFunction_4_0(*(uint64_t *)(handleIdentifier + 0x50));
       if (ptr_long_var != (longlong *)0x0) {
         ptr_long_var[0x21] = 0;
@@ -32729,7 +32729,7 @@ ulonglong SystemFunction_98_4(longlong handleIdentifier,longlong *resourceIdenti
   longlong long_var_;
   ulonglong uint_var_;
   ulonglong uint_var_;
-  char cVar9;
+  char char_var;
   ulonglong uint_var_;
   ulonglong uint_var_;
   ulonglong uint_var_;
@@ -32795,8 +32795,8 @@ ulonglong SystemFunction_98_4(longlong handleIdentifier,longlong *resourceIdenti
       pallocation_size[1] = uint_var_;
     }
     else {
-      cVar9 = SystemFunction_19_2(handleIdentifier);
-      if (cVar9 == '\0') goto joined_r0x00018005fdcd;
+      char_var = SystemFunction_19_2(handleIdentifier);
+      if (char_var == '\0') goto joined_r0x00018005fdcd;
       pallocation_size = *(longlong **)(handleIdentifier + 0x60);
       uint_var_ = *pallocation_size - 1U & pallocation_size[1] + 1U;
       node_root0 = *(ulonglong **)(pallocation_size[3] + uint_var_ * 8);
@@ -33071,7 +33071,7 @@ void SystemFunction_72_8(uint64_t *handleIdentifier)
 
 {
   longlong *ptr_long_var;
-  int *piVar2;
+  int *ptr_int_var;
   int compare_result;
   uint uint_var_;
   ulonglong uint_var_;
@@ -33152,9 +33152,9 @@ code_r0x000180060327:
       }
       long_var_ = handleIdentifier[10];
       LOCK();
-      piVar2 = (int *)(long_var_ + 0x130);
-      compare_result = *piVar2;
-      *piVar2 = *piVar2 + -0x80000000;
+      ptr_int_var = (int *)(long_var_ + 0x130);
+      compare_result = *ptr_int_var;
+      *ptr_int_var = *ptr_int_var + -0x80000000;
       UNLOCK();
       if (compare_result == 0) {
         long_var_ = *(longlong *)(long_var_ + 0x28);
@@ -33172,9 +33172,9 @@ code_r0x000180060327:
           UNLOCK();
           if (bVar12) break;
           LOCK();
-          piVar2 = (int *)(long_var_ + 0x130);
-          compare_result = *piVar2;
-          *piVar2 = *piVar2 + 0x7fffffff;
+          ptr_int_var = (int *)(long_var_ + 0x130);
+          compare_result = *ptr_int_var;
+          *ptr_int_var = *ptr_int_var + 0x7fffffff;
           UNLOCK();
           long_var_ = long_var_;
         } while (compare_result == 1);
@@ -33199,7 +33199,7 @@ uint64_t SystemFunction_20_8(uint64_t handleIdentifier,ulonglong resourceIdentif
 void SystemFunction_27_2(uint64_t *handleIdentifier)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   int int_var_;
   ulonglong uint_var_;
   ulonglong uint_var_;
@@ -33220,9 +33220,9 @@ void SystemFunction_27_2(uint64_t *handleIdentifier)
       if (long_var_ != 0) {
         long_var_ = handleIdentifier[10];
         LOCK();
-        piVar1 = (int *)(long_var_ + 0x130);
-        int_var_ = *piVar1;
-        *piVar1 = *piVar1 + -0x80000000;
+        ptr_int_var = (int *)(long_var_ + 0x130);
+        int_var_ = *ptr_int_var;
+        *ptr_int_var = *ptr_int_var + -0x80000000;
         UNLOCK();
         if (int_var_ == 0) {
           long_var_ = *(longlong *)(long_var_ + 0x28);
@@ -33240,9 +33240,9 @@ void SystemFunction_27_2(uint64_t *handleIdentifier)
             UNLOCK();
             if (bVar11) break;
             LOCK();
-            piVar1 = (int *)(long_var_ + 0x130);
-            int_var_ = *piVar1;
-            *piVar1 = *piVar1 + 0x7fffffff;
+            ptr_int_var = (int *)(long_var_ + 0x130);
+            int_var_ = *ptr_int_var;
+            *ptr_int_var = *ptr_int_var + 0x7fffffff;
             UNLOCK();
             long_var_ = long_var_;
           } while (int_var_ == 1);
@@ -33266,9 +33266,9 @@ LAB_1800604d1:
   if ((long_var_ != 0) && ((uint_var_ != uint_var_ || ((uint_var_ & 0x1f) != 0)))) {
     long_var_ = handleIdentifier[10];
     LOCK();
-    piVar1 = (int *)(long_var_ + 0x130);
-    int_var_ = *piVar1;
-    *piVar1 = *piVar1 + -0x80000000;
+    ptr_int_var = (int *)(long_var_ + 0x130);
+    int_var_ = *ptr_int_var;
+    *ptr_int_var = *ptr_int_var + -0x80000000;
     UNLOCK();
     if (int_var_ == 0) {
       long_var_ = *(longlong *)(long_var_ + 0x28);
@@ -33286,9 +33286,9 @@ LAB_1800604d1:
         UNLOCK();
         if (bVar11) break;
         LOCK();
-        piVar1 = (int *)(long_var_ + 0x130);
-        int_var_ = *piVar1;
-        *piVar1 = *piVar1 + 0x7fffffff;
+        ptr_int_var = (int *)(long_var_ + 0x130);
+        int_var_ = *ptr_int_var;
+        *ptr_int_var = *ptr_int_var + 0x7fffffff;
         UNLOCK();
         long_var_ = long_var_;
       } while (int_var_ == 1);
@@ -33382,7 +33382,7 @@ void SystemFunction_97_6(longlong *handleIdentifier)
 
 {
   longlong *ptr_long_var;
-  char cVar2;
+  char char_var;
   int compare_result;
   uint64_t ustack_var;
   longlong *plongStack_20;
@@ -33391,8 +33391,8 @@ void SystemFunction_97_6(longlong *handleIdentifier)
   if ((char)handleIdentifier[0xb] != '\0') {
     ptr_long_var = (longlong *)((longlong)threadLocalStoragePointer + (ulonglong)__tls_index * 8);
     do {
-      cVar2 = (**(code **)(*handleIdentifier + SYSTEM_NODE_HEADER_SIZE))(handleIdentifier,1);
-      if (cVar2 == '\0') {
+      char_var = (**(code **)(*handleIdentifier + SYSTEM_NODE_HEADER_SIZE))(handleIdentifier,1);
+      if (char_var == '\0') {
         ValidateGraphicsMemory(*(uint64_t *)(*ptr_long_var + SYSTEM_DATA_COMPARE_SIZE),0);
         plongStack_20 = handleIdentifier + 0x33;
         cStack_18 = 0;
@@ -33500,21 +33500,21 @@ bool SystemFunction_71_2(longlong handleIdentifier,uint64_t resourceIdentifier,u
 
 {
   longlong *ptr_long_var;
-  char cVar2;
+  char char_var;
   longlong *plstack_var;
 
   plstack_var = (longlong *)0x0;
   WaitForSingleObject(**(uint64_t **)(handleIdentifier + 0x1f0),1,systemConfig,systemFlags,INVALID_HANDLE_VALUE);
-  cVar2 = SystemFunction_86_4(*(uint64_t *)(handleIdentifier + 0x60),handleIdentifier + 0x78,&plstack_var);
+  char_var = SystemFunction_86_4(*(uint64_t *)(handleIdentifier + 0x60),handleIdentifier + 0x78,&plstack_var);
   ptr_long_var = plstack_var;
-  if (cVar2 != '\0') {
+  if (char_var != '\0') {
     (**(code **)(*plstack_var + 0x60))(plstack_var);
     (**(code **)(*ptr_long_var + 0x70))(ptr_long_var);
   }
   if (ptr_long_var != (longlong *)0x0) {
     (**(code **)(*ptr_long_var + 0x38))(ptr_long_var);
   }
-  return cVar2 != '\0';
+  return char_var != '\0';
 }
 
 ulonglong SystemFunction_85_6(longlong *handleIdentifier,uint *resourceIdentifier)
@@ -33847,21 +33847,21 @@ bool ValidateSystemConfiguration(longlong handleIdentifier,uint64_t resourceIden
 
 {
   longlong *ptr_long_var;
-  char cVar2;
+  char char_var;
   longlong *plstack_var;
 
   plstack_var = (longlong *)0x0;
-  cVar2 = SystemFunction_86_4(*(uint64_t *)(handleIdentifier + 0x60),handleIdentifier + 0x78,&plstack_var,systemFlags,
+  char_var = SystemFunction_86_4(*(uint64_t *)(handleIdentifier + 0x60),handleIdentifier + 0x78,&plstack_var,systemFlags,
                         INVALID_HANDLE_VALUE);
   ptr_long_var = plstack_var;
-  if (cVar2 != '\0') {
+  if (char_var != '\0') {
     (**(code **)(*plstack_var + 0x60))(plstack_var);
     (**(code **)(*ptr_long_var + 0x70))(ptr_long_var);
   }
   if (ptr_long_var != (longlong *)0x0) {
     (**(code **)(*ptr_long_var + 0x38))(ptr_long_var);
   }
-  return cVar2 != '\0';
+  return char_var != '\0';
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 // void SystemFunction_24_8(longlong *handleIdentifier,longlong *resourceIdentifier)
@@ -34102,7 +34102,7 @@ void SystemFunction_35_2(longlong *handleIdentifier)
 
 {
   uint64_t *ptr_uint_var;
-  code *pcVar2;
+  code *ptr_char_var;
   longlong long_var_;
   uint64_t uint_var_;
   longlong *pallocation_size;
@@ -34122,13 +34122,13 @@ void SystemFunction_35_2(longlong *handleIdentifier)
     (**(code **)(*pallocation_size + 0x28))(pallocation_size);
   }
   ptr_uint_var = *(uint64_t **)(long_var_ + 400);
-  pcVar2 = *(code **)*ptr_uint_var;
+  ptr_char_var = *(code **)*ptr_uint_var;
   pplstack_var = &plstack_var;
   plstack_var = pallocation_size;
   if (pallocation_size != (longlong *)0x0) {
     (**(code **)(*pallocation_size + 0x28))(pallocation_size);
   }
-  (*pcVar2)(ptr_uint_var,&plstack_var);
+  (*ptr_char_var)(ptr_uint_var,&plstack_var);
   uint_var_ = AllocateSystemMemory(systemMemoryPool,0x70,8,3);
   ptr_long_var = (longlong *)SystemFunction_28_0(uint_var_,4,long_var_);
   plstack_var = ptr_long_var;
@@ -34136,13 +34136,13 @@ void SystemFunction_35_2(longlong *handleIdentifier)
     (**(code **)(*ptr_long_var + 0x28))(ptr_long_var);
   }
   ptr_uint_var = *(uint64_t **)(long_var_ + 400);
-  pcVar2 = *(code **)*ptr_uint_var;
+  ptr_char_var = *(code **)*ptr_uint_var;
   pplstack_var = &plstack_var;
   plstack_var = ptr_long_var;
   if (ptr_long_var != (longlong *)0x0) {
     (**(code **)(*ptr_long_var + 0x28))(ptr_long_var);
   }
-  (*pcVar2)(ptr_uint_var,&plstack_var);
+  (*ptr_char_var)(ptr_uint_var,&plstack_var);
   uint_var_ = AllocateSystemMemory(systemMemoryPool,0x70,8,3);
   ptr_long_var = (longlong *)SystemFunction_28_0(uint_var_,0,long_var_);
   if (ptr_long_var != (longlong *)0x0) {
@@ -34155,13 +34155,13 @@ void SystemFunction_35_2(longlong *handleIdentifier)
     (**(code **)(*pallocation_size + 0x38))(pallocation_size);
   }
   ptr_uint_var = *(uint64_t **)(long_var_ + 400);
-  pcVar2 = *(code **)*ptr_uint_var;
+  ptr_char_var = *(code **)*ptr_uint_var;
   pplstack_var = &plstack_var;
   plstack_var = ptr_long_var;
   if (ptr_long_var != (longlong *)0x0) {
     (**(code **)(*ptr_long_var + 0x28))(ptr_long_var);
   }
-  (*pcVar2)(ptr_uint_var,&plstack_var);
+  (*ptr_char_var)(ptr_uint_var,&plstack_var);
   ProcessGameData(*(uint64_t *)(long_var_ + 400));
   if (ptr_long_var != (longlong *)0x0) {
     (**(code **)(*ptr_long_var + 0x38))(ptr_long_var);
@@ -34177,7 +34177,7 @@ void SystemFunction_81_6(longlong *handleIdentifier)
 
 {
   uint64_t *ptr_uint_var;
-  code *pcVar2;
+  code *ptr_char_var;
   longlong long_var_;
   uint64_t uint_var_;
   longlong *pallocation_size;
@@ -34197,13 +34197,13 @@ void SystemFunction_81_6(longlong *handleIdentifier)
     (**(code **)(*pallocation_size + 0x28))(pallocation_size);
   }
   ptr_uint_var = *(uint64_t **)(long_var_ + 400);
-  pcVar2 = *(code **)*ptr_uint_var;
+  ptr_char_var = *(code **)*ptr_uint_var;
   pplstack_var = &plstack_var;
   plstack_var = pallocation_size;
   if (pallocation_size != (longlong *)0x0) {
     (**(code **)(*pallocation_size + 0x28))(pallocation_size);
   }
-  (*pcVar2)(ptr_uint_var,&plstack_var);
+  (*ptr_char_var)(ptr_uint_var,&plstack_var);
   uint_var_ = AllocateSystemMemory(systemMemoryPool,0x70,8,3);
   ptr_long_var = (longlong *)SystemFunction_28_0(uint_var_,3,long_var_);
   plstack_var = ptr_long_var;
@@ -34211,13 +34211,13 @@ void SystemFunction_81_6(longlong *handleIdentifier)
     (**(code **)(*ptr_long_var + 0x28))(ptr_long_var);
   }
   ptr_uint_var = *(uint64_t **)(long_var_ + 400);
-  pcVar2 = *(code **)*ptr_uint_var;
+  ptr_char_var = *(code **)*ptr_uint_var;
   pplstack_var = &plstack_var;
   plstack_var = ptr_long_var;
   if (ptr_long_var != (longlong *)0x0) {
     (**(code **)(*ptr_long_var + 0x28))(ptr_long_var);
   }
-  (*pcVar2)(ptr_uint_var,&plstack_var);
+  (*ptr_char_var)(ptr_uint_var,&plstack_var);
   uint_var_ = AllocateSystemMemory(systemMemoryPool,0x70,8,3);
   ptr_long_var = (longlong *)SystemFunction_28_0(uint_var_,0,long_var_);
   if (ptr_long_var != (longlong *)0x0) {
@@ -34230,13 +34230,13 @@ void SystemFunction_81_6(longlong *handleIdentifier)
     (**(code **)(*pallocation_size + 0x38))(pallocation_size);
   }
   ptr_uint_var = *(uint64_t **)(long_var_ + 400);
-  pcVar2 = *(code **)*ptr_uint_var;
+  ptr_char_var = *(code **)*ptr_uint_var;
   pplstack_var = &plstack_var;
   plstack_var = ptr_long_var;
   if (ptr_long_var != (longlong *)0x0) {
     (**(code **)(*ptr_long_var + 0x28))(ptr_long_var);
   }
-  (*pcVar2)(ptr_uint_var,&plstack_var);
+  (*ptr_char_var)(ptr_uint_var,&plstack_var);
   ProcessGameData(*(uint64_t *)(long_var_ + 400));
   if (ptr_long_var != (longlong *)0x0) {
     (**(code **)(*ptr_long_var + 0x38))(ptr_long_var);
@@ -34308,7 +34308,7 @@ void InitializeGraphicsMemory(longlong *handleIdentifier)
 
 {
   uint64_t *ptr_uint_var;
-  code *pcVar2;
+  code *ptr_char_var;
   longlong long_var_;
   uint64_t uint_var_;
   longlong *pallocation_size;
@@ -34326,13 +34326,13 @@ void InitializeGraphicsMemory(longlong *handleIdentifier)
       (**(code **)(*pallocation_size + 0x28))(pallocation_size);
     }
     ptr_uint_var = *(uint64_t **)(long_var_ + 400);
-    pcVar2 = *(code **)*ptr_uint_var;
+    ptr_char_var = *(code **)*ptr_uint_var;
     pplstack_var = &plstack_var;
     plstack_var = pallocation_size;
     if (pallocation_size != (longlong *)0x0) {
       (**(code **)(*pallocation_size + 0x28))(pallocation_size);
     }
-    (*pcVar2)(ptr_uint_var,&plstack_var);
+    (*ptr_char_var)(ptr_uint_var,&plstack_var);
     ProcessGameData(*(uint64_t *)(long_var_ + 400));
     if (pallocation_size != (longlong *)0x0) {
       (**(code **)(*pallocation_size + 0x38))(pallocation_size);
@@ -34369,11 +34369,11 @@ void SystemFunction_74_4(int *handleIdentifier)
 
 {
   char is_initialized;
-  char cVar2;
+  char char_var;
   uint32_t uint_var_;
   longlong long_var_;
   uint32_t *ptr_uint_var;
-  char *pcVar6;
+  char *ptr_char_var;
   uint64_t *node_previous;
   int int_var_;
   ulonglong uint_var_;
@@ -34443,15 +34443,15 @@ void SystemFunction_74_4(int *handleIdentifier)
     node_previous = (uint64_t *)(longStack_168 + 8);
     do {
       if (*(int *)(node_previous + 1) == 0x12) {
-        pcVar6 = (char *)*node_previous;
-        long_var_ = (longlong)ptr_uint_var - (longlong)pcVar6;
+        ptr_char_var = (char *)*node_previous;
+        long_var_ = (longlong)ptr_uint_var - (longlong)ptr_char_var;
         do {
-          is_initialized = *pcVar6;
-          cVar2 = pcVar6[long_var_];
-          if (is_initialized != cVar2) break;
-          pcVar6 = pcVar6 + 1;
-        } while (cVar2 != '\0');
-        if (is_initialized == cVar2) break;
+          is_initialized = *ptr_char_var;
+          char_var = ptr_char_var[long_var_];
+          if (is_initialized != char_var) break;
+          ptr_char_var = ptr_char_var + 1;
+        } while (char_var != '\0');
+        if (is_initialized == char_var) break;
       }
       int_var_ = int_var_ + 1;
       node_previous = node_previous + 4;
@@ -34696,12 +34696,12 @@ int SystemFunction_70_4(uint64_t handleIdentifier,uint64_t resourceIdentifier,ui
 ulonglong SystemFunction_80_0(longlong *handleIdentifier,longlong resourceIdentifier)
 
 {
-  byte *pbVar1;
+  byte *ptr_byte_var;
   uint uint_var_;
   uint uint_var_;
   longlong long_var_;
   ulonglong in_RAX;
-  byte *pbVar5;
+  byte *ptr_byte_var;
   uint uint_var_;
   ulonglong uint_var_;
   longlong long_var_;
@@ -34716,22 +34716,22 @@ ulonglong SystemFunction_80_0(longlong *handleIdentifier,longlong resourceIdenti
     long_var_ = 0;
     do {
       uint_var_ = *(uint *)(long_var_ + SYSTEM_DATA_COMPARE_SIZE + long_var_);
-      pbVar5 = (byte *)(ulonglong)uint_var_;
+      ptr_byte_var = (byte *)(ulonglong)uint_var_;
       uint_var_ = uint_var_;
       if (uint_var_ == uint_var_) {
         if (uint_var_ != 0) {
-          pbVar5 = *(byte **)(long_var_ + 8 + long_var_);
-          long_var_ = *(longlong *)(resourceIdentifier + 8) - (longlong)pbVar5;
+          ptr_byte_var = *(byte **)(long_var_ + 8 + long_var_);
+          long_var_ = *(longlong *)(resourceIdentifier + 8) - (longlong)ptr_byte_var;
           do {
-            pbVar1 = pbVar5 + long_var_;
-            uint_var_ = (uint)*pbVar5 - (uint)*pbVar1;
+            ptr_byte_var = ptr_byte_var + long_var_;
+            uint_var_ = (uint)*ptr_byte_var - (uint)*ptr_byte_var;
             if (uint_var_ != 0) break;
-            pbVar5 = pbVar5 + 1;
-          } while (*pbVar1 != 0);
+            ptr_byte_var = ptr_byte_var + 1;
+          } while (*ptr_byte_var != 0);
         }
 LAB_18006357e:
         if (uint_var_ == 0) {
-          return CONCAT71((int7)((ulonglong)pbVar5 >> 8),1);
+          return CONCAT71((int7)((ulonglong)ptr_byte_var >> 8),1);
         }
       }
       else if (uint_var_ == 0) goto LAB_18006357e;
@@ -34904,7 +34904,7 @@ void SystemFunction_81_6(void)
 
 {
   void *ptr_uint_var;
-  bool bVar2;
+  bool bool_var;
   uint64_t *ptr_uint_var;
   uint64_t *ptr_uint_var;
   uint64_t *ptr_uint_var;
@@ -34962,7 +34962,7 @@ void SystemFunction_81_6(void)
       int_var_ = *(int *)((longlong)bufferPtr_2d8 + uint_var_ + SYSTEM_DATA_COMPARE_SIZE);
       if (int_var_ < 4) {
 LAB_180063de9:
-        bVar2 = false;
+        bool_var = false;
       }
       else {
         long_var_ = 0;
@@ -34972,9 +34972,9 @@ LAB_180063de9:
                        long_var_) != (&g_module_data_3)[long_var_]) goto LAB_180063de9;
           long_var_ = long_var_;
         } while (long_var_ != 5);
-        bVar2 = true;
+        bool_var = true;
       }
-      if (bVar2) {
+      if (bool_var) {
         ptr_uint_var = *(void **)((longlong)bufferPtr_2d8 + uint_var_ + 8);
         ptr_uint_var = &g_system_data_variable3;
         if (ptr_uint_var != (void *)0x0) {
@@ -35591,13 +35591,13 @@ LAB_180065009:
 void SystemFunction_4_8(uint64_t handleIdentifier)
 
 {
-  byte *pbVar1;
+  byte *ptr_byte_var;
   int int_var_;
-  bool bVar3;
+  bool bool_var;
   uint64_t *ptr_uint_var;
   uint64_t *ptr_uint_var;
   uint64_t *node_current;
-  char cVar7;
+  char char_var;
   int int_var_;
   longlong long_var_;
   ulonglong uint_var_;
@@ -35708,7 +35708,7 @@ void SystemFunction_4_8(uint64_t handleIdentifier)
   intStack_320 = 0;
   SystemFunction_90_4(uint_var_,&bufferPtr_200);
   if ((systemConfigurationData == (longlong *)0x0) ||
-     (cVar7 = (**(code **)(*systemConfigurationData + 0x28))(), cVar7 == '\0')) {
+     (char_var = (**(code **)(*systemConfigurationData + 0x28))(), char_var == '\0')) {
     puVar16 = &globalSystemVariable;
   }
   else {
@@ -35720,7 +35720,7 @@ void SystemFunction_4_8(uint64_t handleIdentifier)
   }
   UpdateSystemBuffer(&bufferPtr_1c0,puVar16);
   if ((systemConfigurationData == (longlong *)0x0) ||
-     (cVar7 = (**(code **)(*systemConfigurationData + 0x28))(), cVar7 == '\0')) {
+     (char_var = (**(code **)(*systemConfigurationData + 0x28))(), char_var == '\0')) {
     puVar16 = &g_system_global_variable8;
   }
   else {
@@ -35879,7 +35879,7 @@ void SystemFunction_4_8(uint64_t handleIdentifier)
   uint_var_ = (longlong)bufferPtr_218 - (longlong)ptr_uint_var >> 5;
   if (uint_var_ != 0) {
     if ((systemConfigurationData == (longlong *)0x0) ||
-       (cVar7 = (**(code **)(*systemConfigurationData + 0x28))(), cVar7 == '\0')) {
+       (char_var = (**(code **)(*systemConfigurationData + 0x28))(), char_var == '\0')) {
       puVar16 = &g_system_global_variable8;
     }
     else {
@@ -35922,8 +35922,8 @@ void SystemFunction_4_8(uint64_t handleIdentifier)
             intStack_290 = 0;
             long_var_ = 0;
             long_var_ = 0;
-            cVar7 = *pcStack_298;
-            while (cVar7 != '\0') {
+            char_var = *pcStack_298;
+            while (char_var != '\0') {
               if (' ' < pcStack_298[long_var_]) {
                 if (long_var_ != long_var_) {
                   pcStack_298[long_var_] = pcStack_298[long_var_];
@@ -35932,7 +35932,7 @@ void SystemFunction_4_8(uint64_t handleIdentifier)
                 long_var_ = long_var_ + 1;
               }
               long_var_ = long_var_ + 1;
-              cVar7 = pcStack_298[long_var_];
+              char_var = pcStack_298[long_var_];
             }
             pcStack_298[long_var_] = '\0';
           }
@@ -35947,11 +35947,11 @@ void SystemFunction_4_8(uint64_t handleIdentifier)
                   pbVar13 = (byte *)*puVar18;
                   long_var_ = (longlong)pcStack_298 - (longlong)pbVar13;
                   do {
-                    pbVar1 = pbVar13 + long_var_;
-                    int_var_ = (uint)*pbVar13 - (uint)*pbVar1;
+                    ptr_byte_var = pbVar13 + long_var_;
+                    int_var_ = (uint)*pbVar13 - (uint)*ptr_byte_var;
                     if (int_var_ != 0) break;
                     pbVar13 = pbVar13 + 1;
-                  } while (*pbVar1 != 0);
+                  } while (*ptr_byte_var != 0);
                 }
 LAB_180065a3e:
                 if (int_var_ == 0) {
@@ -36031,12 +36031,12 @@ LAB_180065a3e:
     bufferPtr_258 = puVar17;
   }
   if ((systemCoreData == 0) || (*(int *)(g_system_base_1 + 0x340) == 0)) {
-    bVar3 = false;
+    bool_var = false;
   }
   else {
-    bVar3 = true;
+    bool_var = true;
   }
-  if (((g_system_base_1 != 0) && (*(int *)(g_system_base_1 + 0x340) == 1)) && (bVar3)) {
+  if (((g_system_base_1 != 0) && (*(int *)(g_system_base_1 + 0x340) == 1)) && (bool_var)) {
     long_var_ = (**(code **)(systemCoreData + 0x18))();
     puVar16 = &g_system_data_variable3;
     if (*(void **)(long_var_ + 8) != (void *)0x0) {
@@ -36163,7 +36163,7 @@ void SystemFunction_53_6(uint64_t handleIdentifier,longlong resourceIdentifier,u
 
 {
   code *pis_initialized;
-  char cVar2;
+  char char_var;
   uint64_t uint_var_;
   longlong long_var_;
   int int_var_;
@@ -36186,8 +36186,8 @@ void SystemFunction_53_6(uint64_t handleIdentifier,longlong resourceIdentifier,u
   ConfigureSystemParameters(&bufferPtr_a8,int_var_);
   *(uint32_t *)((ulonglong)uintStack_98 + longStack_a0) = 0x706d74;
   uintStack_98 = int_var_;
-  cVar2 = ValidateSystemData(&bufferPtr_a8);
-  if (cVar2 == '\0') {
+  char_var = ValidateSystemData(&bufferPtr_a8);
+  if (char_var == '\0') {
     CleanupSystemData(&bufferPtr_a8);
   }
   pbufferPtr_68 = &bufferPtr_a8;
@@ -36583,7 +36583,7 @@ void SystemFunction_28_8(uint64_t handleIdentifier,uint64_t resourceIdentifier,c
 
 {
   longlong long_var_;
-  char cVar2;
+  char char_var;
   int compare_result;
   uint32_t uint_var_;
   uint64_t *ptr_uint_var;
@@ -36595,8 +36595,8 @@ void SystemFunction_28_8(uint64_t handleIdentifier,uint64_t resourceIdentifier,c
   uint64_t uintStack_88;
   uint8_t localBuffer_80 [72];
 
-  cVar2 = (**(code **)**(uint64_t **)(systemConfigurationData + 0x18))();
-  if (cVar2 == '\0') {
+  char_var = (**(code **)**(uint64_t **)(systemConfigurationData + 0x18))();
+  if (char_var == '\0') {
     if ((g_system_initialized_flag == '\0') && (*(int *)(systemCoreData + SYSTEM_DATA_COMPARE_SIZEe0) != 1)) {
       compare_result = 0;
       if ((systemConfig != '\0') || (g_system_data_variable1 != '\0')) {
@@ -36925,7 +36925,7 @@ void SystemFunction_32_0(uint64_t *handleIdentifier,uint64_t resourceIdentifier,
 
 {
   ulonglong uint_var_;
-  code *pcVar2;
+  code *ptr_char_var;
   uint64_t uint_var_;
   ulonglong uint_var_;
   uint64_t *ptr_uint_var;
@@ -36955,8 +36955,8 @@ void SystemFunction_32_0(uint64_t *handleIdentifier,uint64_t resourceIdentifier,
     memcpy(uint_var_,resourceIdentifier,systemConfig);
   }
   SystemFunction_12_8();
-  pcVar2 = (code *)swi(3);
-  (*pcVar2)();
+  ptr_char_var = (code *)swi(3);
+  (*ptr_char_var)();
   return;
 }
 // void SystemFunction_41_1(ulonglong handleIdentifier)
@@ -37130,7 +37130,7 @@ void SystemFunction_95_2(longlong handleIdentifier,uint64_t resourceIdentifier,u
 void SystemFunction_0_0(longlong *handleIdentifier)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   longlong *ptr_long_var;
   longlong long_var_;
   longlong long_var_;
@@ -37181,8 +37181,8 @@ void SystemFunction_0_0(longlong *handleIdentifier)
     ProcessSystemOperation();
   }
   LOCK();
-  piVar1 = (int *)(*(longlong *)(handleIdentifier[1] + 0x1f8) + 0x120);
-  *piVar1 = *piVar1 + -1;
+  ptr_int_var = (int *)(*(longlong *)(handleIdentifier[1] + 0x1f8) + 0x120);
+  *ptr_int_var = *ptr_int_var + -1;
   UNLOCK();
   lstack_var = *(longlong *)(handleIdentifier[1] + 0x1a8);
   long_var_ = *handleIdentifier;
@@ -37224,8 +37224,8 @@ void SystemFunction_0_0(longlong *handleIdentifier)
   *ptr_long_var = *ptr_long_var - (longlong)ptr_long_var;
   UNLOCK();
   LOCK();
-  piVar1 = (int *)(*(longlong *)(*handleIdentifier + 8) + 0x3f8);
-  *piVar1 = *piVar1 + -1;
+  ptr_int_var = (int *)(*(longlong *)(*handleIdentifier + 8) + 0x3f8);
+  *ptr_int_var = *ptr_int_var + -1;
   UNLOCK();
   long_var_ = *handleIdentifier;
   node_previous = (uint64_t *)handleIdentifier[1];
@@ -37390,7 +37390,7 @@ uint64_t SystemFunction_57_6(longlong handleIdentifier,longlong resourceIdentifi
 
 {
   ulonglong uint_var_;
-  char cVar2;
+  char char_var;
   int compare_result;
   uint64_t uint_var_;
   ulonglong uint_var_;
@@ -37417,8 +37417,8 @@ uint64_t SystemFunction_57_6(longlong handleIdentifier,longlong resourceIdentifi
       uRam00000000000001f0 = 0;
       uRam00000000000001e8 = 0;
       uRam00000000000001e0 = 0;
-      cVar2 = SystemFunction_76_0(handleIdentifier,SYSTEM_NODE_HEADER_SIZE,0x1e0,0x1e8,0x1f0);
-      if (cVar2 == '\0') {
+      char_var = SystemFunction_76_0(handleIdentifier,SYSTEM_NODE_HEADER_SIZE,0x1e0,0x1e8,0x1f0);
+      if (char_var == '\0') {
         SystemFunction_98_4(handleIdentifier + 0x370,0);
         uint_var_ = 0;
       }
@@ -37464,7 +37464,7 @@ longlong SystemFunction_15_2(longlong handleIdentifier,longlong resourceIdentifi
 
 {
   longlong long_var_;
-  code *pcVar2;
+  code *ptr_char_var;
   void *ptr_uint_var;
 
   *(uint32_t *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) = *(uint32_t *)(resourceIdentifier + SYSTEM_DATA_COMPARE_SIZE);
@@ -37484,12 +37484,12 @@ longlong SystemFunction_15_2(longlong handleIdentifier,longlong resourceIdentifi
     if (*(code **)(handleIdentifier + 0x158) != (code *)0x0) {
       (**(code **)(handleIdentifier + 0x158))(long_var_,0,0);
     }
-    pcVar2 = *(code **)(resourceIdentifier + 0x158);
-    if (pcVar2 != (code *)0x0) {
-      (*pcVar2)(long_var_,resourceIdentifier + 0x148,1);
-      pcVar2 = *(code **)(resourceIdentifier + 0x158);
+    ptr_char_var = *(code **)(resourceIdentifier + 0x158);
+    if (ptr_char_var != (code *)0x0) {
+      (*ptr_char_var)(long_var_,resourceIdentifier + 0x148,1);
+      ptr_char_var = *(code **)(resourceIdentifier + 0x158);
     }
-    *(code **)(handleIdentifier + 0x158) = pcVar2;
+    *(code **)(handleIdentifier + 0x158) = ptr_char_var;
     *(uint64_t *)(handleIdentifier + 0x160) = *(uint64_t *)(resourceIdentifier + 0x160);
   }
   long_var_ = handleIdentifier + 0x168;
@@ -37497,12 +37497,12 @@ longlong SystemFunction_15_2(longlong handleIdentifier,longlong resourceIdentifi
     if (*(code **)(handleIdentifier + 0x178) != (code *)0x0) {
       (**(code **)(handleIdentifier + 0x178))(long_var_,0,0);
     }
-    pcVar2 = *(code **)(resourceIdentifier + 0x178);
-    if (pcVar2 != (code *)0x0) {
-      (*pcVar2)(long_var_,resourceIdentifier + 0x168,1);
-      pcVar2 = *(code **)(resourceIdentifier + 0x178);
+    ptr_char_var = *(code **)(resourceIdentifier + 0x178);
+    if (ptr_char_var != (code *)0x0) {
+      (*ptr_char_var)(long_var_,resourceIdentifier + 0x168,1);
+      ptr_char_var = *(code **)(resourceIdentifier + 0x178);
     }
-    *(code **)(handleIdentifier + 0x178) = pcVar2;
+    *(code **)(handleIdentifier + 0x178) = ptr_char_var;
     *(uint64_t *)(handleIdentifier + 0x180) = *(uint64_t *)(resourceIdentifier + 0x180);
   }
   *(uint64_t *)(handleIdentifier + 0x188) = *(uint64_t *)(resourceIdentifier + 0x188);
@@ -37542,15 +37542,15 @@ void SystemFunction_69_6(longlong handleIdentifier)
   longlong *ptr_long_var;
   longlong *ptr_long_var;
   longlong long_var_;
-  char cVar4;
+  char char_var;
   longlong *pallocation_size;
   longlong *ptr_long_var;
   longlong *ptr_long_var;
   longlong *plstack_var;
 
-  cVar4 = ValidateSystemConfiguration(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE,&plstack_var);
+  char_var = ValidateSystemConfiguration(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE,&plstack_var);
   do {
-    if (cVar4 == '\0') {
+    if (char_var == '\0') {
       return;
     }
     ptr_long_var = *(longlong **)(handleIdentifier + 0x318);
@@ -37592,7 +37592,7 @@ void SystemFunction_69_6(longlong handleIdentifier)
         ptr_long_var = (longlong *)pallocation_size[2];
       }
     }
-    cVar4 = ValidateSystemConfiguration(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE,&plstack_var);
+    char_var = ValidateSystemConfiguration(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE,&plstack_var);
   } while( true );
 }
 // void SystemFunction_98_4(longlong handleIdentifier,uint64_t *resourceIdentifier)
@@ -37667,8 +37667,8 @@ uint64_t ValidateSystemConfiguration(ulonglong *handleIdentifier,uint64_t *resou
   ulonglong *node_root;
   longlong long_var_;
   longlong long_var_;
-  char cVar5;
-  bool bVar6;
+  char char_var;
+  bool bool_var;
   ulonglong uint_var_;
   ulonglong uint_var_;
   ulonglong uint_var_;
@@ -37705,8 +37705,8 @@ uint64_t ValidateSystemConfiguration(ulonglong *handleIdentifier,uint64_t *resou
     uint_var_ = uint_var_;
   } while (uint_var_ < 3);
   if (uint_var_ != 0) {
-    cVar5 = SystemFunction_28_0(uint_var_,resourceIdentifier);
-    if (cVar5 != '\0') {
+    char_var = SystemFunction_28_0(uint_var_,resourceIdentifier);
+    if (char_var != '\0') {
       return 1;
     }
     uint_var_ = *handleIdentifier;
@@ -37744,7 +37744,7 @@ uint64_t ValidateSystemConfiguration(ulonglong *handleIdentifier,uint64_t *resou
             *(uint64_t *)(long_var_ + 8) = 0;
             SystemFunction060c10(*(uint64_t *)(uint_var_ + 0x50));
           }
-          bVar6 = true;
+          bool_var = true;
         }
         else {
           if (0x8000000000000000 <
@@ -37768,7 +37768,7 @@ uint64_t ValidateSystemConfiguration(ulonglong *handleIdentifier,uint64_t *resou
                         >> 5) + ptr_long_var[1] & *ptr_long_var - 1U) * SYSTEM_DATA_COMPARE_SIZE);
               *resourceIdentifier = *(uint64_t *)(long_var_ + uint_var_ * 8);
               *(uint8_t *)((long_var_ - uint_var_) + 0x12f) = 1;
-              bVar6 = true;
+              bool_var = true;
               goto LAB_180068c94;
             }
 LAB_180068c87:
@@ -37777,10 +37777,10 @@ LAB_180068c87:
             UNLOCK();
           }
 LAB_180068c92:
-          bVar6 = false;
+          bool_var = false;
         }
 LAB_180068c94:
-        if (bVar6) {
+        if (bool_var) {
           return 1;
         }
       }
@@ -37882,7 +37882,7 @@ longlong SystemFunction_76_0(longlong *handleIdentifier,longlong *resourceIdenti
 {
   longlong long_var_;
   longlong long_var_;
-  code *pcVar3;
+  code *ptr_char_var;
 
   if (systemConfig == 3) {
     long_var_ = 0x180bfd400;
@@ -37908,12 +37908,12 @@ longlong SystemFunction_76_0(longlong *handleIdentifier,longlong *resourceIdenti
         *(uint64_t *)(long_var_ + SYSTEM_DATA_COMPARE_SIZE) = 0;
         *(code **)(long_var_ + 0x18) = _guard_check_icall;
         if (long_var_ != long_var_) {
-          pcVar3 = *(code **)(long_var_ + SYSTEM_DATA_COMPARE_SIZE);
-          if (pcVar3 != (code *)0x0) {
-            (*pcVar3)(long_var_,long_var_,1);
-            pcVar3 = *(code **)(long_var_ + SYSTEM_DATA_COMPARE_SIZE);
+          ptr_char_var = *(code **)(long_var_ + SYSTEM_DATA_COMPARE_SIZE);
+          if (ptr_char_var != (code *)0x0) {
+            (*ptr_char_var)(long_var_,long_var_,1);
+            ptr_char_var = *(code **)(long_var_ + SYSTEM_DATA_COMPARE_SIZE);
           }
-          *(code **)(long_var_ + SYSTEM_DATA_COMPARE_SIZE) = pcVar3;
+          *(code **)(long_var_ + SYSTEM_DATA_COMPARE_SIZE) = ptr_char_var;
           *(uint64_t *)(long_var_ + 0x18) = *(uint64_t *)(long_var_ + 0x18);
         }
         *handleIdentifier = long_var_;
@@ -38182,7 +38182,7 @@ uint64_t SystemFunction_96_8(uint64_t handleIdentifier,ulonglong resourceIdentif
 void SystemFunction_3_2(uint64_t *handleIdentifier)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   int int_var_;
   ulonglong uint_var_;
   ulonglong uint_var_;
@@ -38203,9 +38203,9 @@ void SystemFunction_3_2(uint64_t *handleIdentifier)
       if (long_var_ != 0) {
         long_var_ = handleIdentifier[10];
         LOCK();
-        piVar1 = (int *)(long_var_ + 0x130);
-        int_var_ = *piVar1;
-        *piVar1 = *piVar1 + -0x80000000;
+        ptr_int_var = (int *)(long_var_ + 0x130);
+        int_var_ = *ptr_int_var;
+        *ptr_int_var = *ptr_int_var + -0x80000000;
         UNLOCK();
         if (int_var_ == 0) {
           long_var_ = *(longlong *)(long_var_ + 0x28);
@@ -38223,9 +38223,9 @@ void SystemFunction_3_2(uint64_t *handleIdentifier)
             UNLOCK();
             if (bVar11) break;
             LOCK();
-            piVar1 = (int *)(long_var_ + 0x130);
-            int_var_ = *piVar1;
-            *piVar1 = *piVar1 + 0x7fffffff;
+            ptr_int_var = (int *)(long_var_ + 0x130);
+            int_var_ = *ptr_int_var;
+            *ptr_int_var = *ptr_int_var + 0x7fffffff;
             UNLOCK();
             long_var_ = long_var_;
           } while (int_var_ == 1);
@@ -38246,9 +38246,9 @@ LAB_180069842:
   if ((long_var_ != 0) && ((uint_var_ != uint_var_ || ((uint_var_ & 0x1f) != 0)))) {
     long_var_ = handleIdentifier[10];
     LOCK();
-    piVar1 = (int *)(long_var_ + 0x130);
-    int_var_ = *piVar1;
-    *piVar1 = *piVar1 + -0x80000000;
+    ptr_int_var = (int *)(long_var_ + 0x130);
+    int_var_ = *ptr_int_var;
+    *ptr_int_var = *ptr_int_var + -0x80000000;
     UNLOCK();
     if (int_var_ == 0) {
       long_var_ = *(longlong *)(long_var_ + 0x28);
@@ -38266,9 +38266,9 @@ LAB_180069842:
         UNLOCK();
         if (bVar11) break;
         LOCK();
-        piVar1 = (int *)(long_var_ + 0x130);
-        int_var_ = *piVar1;
-        *piVar1 = *piVar1 + 0x7fffffff;
+        ptr_int_var = (int *)(long_var_ + 0x130);
+        int_var_ = *ptr_int_var;
+        *ptr_int_var = *ptr_int_var + 0x7fffffff;
         UNLOCK();
         long_var_ = long_var_;
       } while (int_var_ == 1);
@@ -38650,7 +38650,7 @@ void SystemFunction_48_0(longlong handleIdentifier)
 
 {
   longlong *ptr_long_var;
-  char cVar2;
+  char char_var;
   uint64_t uint_var_;
   uint64_t *ptr_uint_var;
   void *ptr_uint_var;
@@ -38662,8 +38662,8 @@ void SystemFunction_48_0(longlong handleIdentifier)
 
   uintStack_98 = INVALID_HANDLE_VALUE;
   SetErrorMode(1);
-  cVar2 = (**(code **)**(uint64_t **)(systemConfigurationData + 0x18))();
-  if (cVar2 == '\0') {
+  char_var = (**(code **)**(uint64_t **)(systemConfigurationData + 0x18))();
+  if (char_var == '\0') {
     SetUnhandledExceptionFilter(&g_system_func_14);
   }
   uint_var_ = AllocateSystemMemory(systemMemoryPool,0x170,8,3);
@@ -38875,14 +38875,14 @@ void SystemFunction_61_6(uint64_t handleIdentifier,uint32_t resourceIdentifier)
 
 {
   longlong long_var_;
-  char cVar2;
+  char char_var;
   void *ptr_uint_var;
   uint32_t localBuffer_X10 [6];
 
   long_var_ = systemCoreData;
   if ((*(longlong *)(systemCoreData + 0x1870) != 0) &&
-     (localBuffer_X10[0] = resourceIdentifier, cVar2 = (**(code **)(systemCoreData + 0x1878))(localBuffer_X10),
-     resourceIdentifier = localBuffer_X10[0], cVar2 == '\0')) {
+     (localBuffer_X10[0] = resourceIdentifier, char_var = (**(code **)(systemCoreData + 0x1878))(localBuffer_X10),
+     resourceIdentifier = localBuffer_X10[0], char_var == '\0')) {
     if (g_system_data_variable0 == '\0') {
       ptr_uint_var = &g_system_data_variable3;
       if (*(void **)(long_var_ + 0x1820) != (void *)0x0) {
@@ -38983,7 +38983,7 @@ void SystemFunction_19_2(void)
 {
   longlong *ptr_long_var;
   longlong long_var_;
-  char cVar3;
+  char char_var;
 
   if (systemConfigurationData != 0) {
     (**(code **)(systemConfigurationData + 0x88))(1);
@@ -39282,14 +39282,14 @@ void SystemFunction_48_0(longlong handleIdentifier)
 
 {
   longlong *ptr_long_var;
-  int *piVar2;
-  byte *pbVar3;
+  int *ptr_int_var;
+  byte *ptr_byte_var;
   uint64_t uint_var_;
   uint64_t *ptr_uint_var;
   uint64_t *node_current;
-  bool bVar7;
+  bool bool_var;
   longlong long_var_;
-  char cVar9;
+  char char_var;
   longlong long_var_;
   longlong *plVar11;
   byte *pbVar12;
@@ -39345,9 +39345,9 @@ void SystemFunction_48_0(longlong handleIdentifier)
 
   uintStack_208 = INVALID_HANDLE_VALUE;
   uintStack_38 = systemConfigurationData ^ (ulonglong)localBuffer_278;
-  cVar9 = *(char *)(*(longlong *)(handleIdentifier + 1000) + 0x58);
+  char_var = *(char *)(*(longlong *)(handleIdentifier + 1000) + 0x58);
   do {
-    if ((cVar9 == '\0') || (uint_var_ = 0, *(char *)(handleIdentifier + 0x400) != '\0')) {
+    if ((char_var == '\0') || (uint_var_ = 0, *(char *)(handleIdentifier + 0x400) != '\0')) {
                     // WARNING: Subroutine does not return
       InitializeSystemStack(uintStack_38 ^ (ulonglong)localBuffer_278);
     }
@@ -39370,8 +39370,8 @@ void SystemFunction_48_0(longlong handleIdentifier)
     long_var_ = *(longlong *)(handleIdentifier + 0x3d0) - long_var_;
     long_var_ = long_var_ >> 0x3f;
     if (long_var_ / 0x1a8 + long_var_ == long_var_) {
-      cVar9 = SystemFunction_71_2(handleIdentifier + 200,&bufferPtr_1f8);
-      if (cVar9 == '\0') {
+      char_var = SystemFunction_71_2(handleIdentifier + 200,&bufferPtr_1f8);
+      if (char_var == '\0') {
         long_var_ = handleIdentifier + 0x378;
         uintStack_228 = 0;
         longStack_230 = long_var_;
@@ -39398,24 +39398,24 @@ void SystemFunction_48_0(longlong handleIdentifier)
         if ((uint_var_ & 0xfffffffd) != 0) {
           __Throw_C_error_std__YAXH_Z(uint_var_);
         }
-        cVar9 = SystemFunction_71_2(handleIdentifier + 200,&bufferPtr_1f8);
-        if (cVar9 == '\0') {
+        char_var = SystemFunction_71_2(handleIdentifier + 200,&bufferPtr_1f8);
+        if (char_var == '\0') {
           int_var_ = _Mtx_unlock(long_var_);
           if (int_var_ != 0) {
             __Throw_C_error_std__YAXH_Z(int_var_);
           }
-          bVar7 = false;
+          bool_var = false;
         }
         else {
           int_var_ = _Mtx_unlock();
           if (int_var_ != 0) {
             __Throw_C_error_std__YAXH_Z(int_var_);
           }
-          bVar7 = true;
+          bool_var = true;
         }
       }
       else {
-        bVar7 = true;
+        bool_var = true;
       }
     }
     else {
@@ -39461,12 +39461,12 @@ void SystemFunction_48_0(longlong handleIdentifier)
       uintStack_58 = *(uint64_t *)(long_var_ + 0x1a0);
       *(longlong *)(handleIdentifier + 0x3d0) = *(longlong *)(handleIdentifier + 0x3d0) + -0x1a8;
       SystemFunction_40_8();
-      bVar7 = true;
+      bool_var = true;
     }
     node_root0 = *(uint64_t **)(handleIdentifier + 0xc0);
     if ((void *)*node_root0 == &globalSystemVariable) {
-      cVar9 = ValidateSystemConfiguration(node_root0 + 2,&plongStack_240);
-      while (cVar9 != '\0') {
+      char_var = ValidateSystemConfiguration(node_root0 + 2,&plongStack_240);
+      while (char_var != '\0') {
         plVar23 = (longlong *)node_root0[99];
         if (plongStack_240 != (longlong *)0x0) {
           *(uint8_t *)(plongStack_240 + 4) = 0;
@@ -39507,13 +39507,13 @@ void SystemFunction_48_0(longlong handleIdentifier)
             plVar18 = (longlong *)plVar11[2];
           }
         }
-        cVar9 = ValidateSystemConfiguration(node_root0 + 2,&plongStack_240);
+        char_var = ValidateSystemConfiguration(node_root0 + 2,&plongStack_240);
       }
     }
     else {
       (**(code **)((void *)*node_root0 + 0x18))(node_root0);
     }
-    if (bVar7) {
+    if (bool_var) {
       plVar23 = *(longlong **)(handleIdentifier + 0xc0);
       uint_var_ = uint_var_;
       if (0 < intStack_1e8) {
@@ -39531,11 +39531,11 @@ void SystemFunction_48_0(longlong handleIdentifier)
           if (intStack_1e8 != 0) {
             pbVar12 = pbStack_1f0;
             do {
-              pbVar3 = pbVar12 + (*(longlong *)(long_var_ + 8) - (longlong)pbStack_1f0);
-              int_var_ = (uint)*pbVar12 - (uint)*pbVar3;
+              ptr_byte_var = pbVar12 + (*(longlong *)(long_var_ + 8) - (longlong)pbStack_1f0);
+              int_var_ = (uint)*pbVar12 - (uint)*ptr_byte_var;
               if (int_var_ != 0) break;
               pbVar12 = pbVar12 + 1;
-            } while (*pbVar3 != 0);
+            } while (*ptr_byte_var != 0);
           }
 LAB_18006c61e:
           if (int_var_ == 0) {
@@ -39571,9 +39571,9 @@ LAB_18006c852:
         *plVar23 = *plVar23 + uint_var_;
         UNLOCK();
         LOCK();
-        piVar2 = (int *)(handleIdentifier + 0x3f8);
-        int_var_ = *piVar2;
-        *piVar2 = *piVar2 + 1;
+        ptr_int_var = (int *)(handleIdentifier + 0x3f8);
+        int_var_ = *ptr_int_var;
+        *ptr_int_var = *ptr_int_var + 1;
         UNLOCK();
         node_root0 = *(uint64_t **)(handleIdentifier + 0xc0);
         uintStack_258 = node_root0[0x6c];
@@ -39587,7 +39587,7 @@ LAB_18006c852:
         }
         if (((uintStack_258 < long_var_ + uint_var_) ||
             ((ulonglong)(longlong)*(int *)(handleIdentifier + 0x3fc) < (longlong)int_var_ + 1U)) ||
-           (cVar9 = (**(code **)*node_root0)(node_root0,long_var_,&bufferPtr_1f8), cVar9 == '\0')) {
+           (char_var = (**(code **)*node_root0)(node_root0,long_var_,&bufferPtr_1f8), char_var == '\0')) {
           LOCK();
           *(longlong *)(handleIdentifier + 0x3f0) = *(longlong *)(handleIdentifier + 0x3f0) - uint_var_;
           UNLOCK();
@@ -39732,7 +39732,7 @@ LAB_18006ca95:
     }
     pbufferPtr_248 = &bufferPtr_1f8;
     bufferPtr_1f8 = &globalSystemPointerData;
-    cVar9 = *(char *)(*(longlong *)(handleIdentifier + 1000) + 0x58);
+    char_var = *(char *)(*(longlong *)(handleIdentifier + 1000) + 0x58);
   } while( true );
 }
 // void SystemFunction_32_8(longlong handleIdentifier)
@@ -39777,7 +39777,7 @@ ulonglong SystemFunction_52_0(longlong *handleIdentifier,longlong resourceIdenti
   ulonglong uint_var_;
   longlong long_var_;
   longlong long_var_;
-  code *pcVar5;
+  code *ptr_char_var;
   longlong long_var_;
   ulonglong ustack_var;
 
@@ -39795,23 +39795,23 @@ ulonglong SystemFunction_52_0(longlong *handleIdentifier,longlong resourceIdenti
     *(uint64_t *)(uint_var_ + 0x158) = 0;
     *(code **)(uint_var_ + 0x160) = _guard_check_icall;
     if (uint_var_ + 0x148 != resourceIdentifier + 0x148) {
-      pcVar5 = *(code **)(resourceIdentifier + 0x158);
-      if (pcVar5 != (code *)0x0) {
-        (*pcVar5)(uint_var_ + 0x148,resourceIdentifier + 0x148,1);
-        pcVar5 = *(code **)(resourceIdentifier + 0x158);
+      ptr_char_var = *(code **)(resourceIdentifier + 0x158);
+      if (ptr_char_var != (code *)0x0) {
+        (*ptr_char_var)(uint_var_ + 0x148,resourceIdentifier + 0x148,1);
+        ptr_char_var = *(code **)(resourceIdentifier + 0x158);
       }
-      *(code **)(uint_var_ + 0x158) = pcVar5;
+      *(code **)(uint_var_ + 0x158) = ptr_char_var;
       *(uint64_t *)(uint_var_ + 0x160) = *(uint64_t *)(resourceIdentifier + 0x160);
     }
     *(uint64_t *)(uint_var_ + 0x178) = 0;
     *(code **)(uint_var_ + 0x180) = _guard_check_icall;
     if (uint_var_ + 0x168 != resourceIdentifier + 0x168) {
-      pcVar5 = *(code **)(resourceIdentifier + 0x178);
-      if (pcVar5 != (code *)0x0) {
-        (*pcVar5)(uint_var_ + 0x168,resourceIdentifier + 0x168,1);
-        pcVar5 = *(code **)(resourceIdentifier + 0x178);
+      ptr_char_var = *(code **)(resourceIdentifier + 0x178);
+      if (ptr_char_var != (code *)0x0) {
+        (*ptr_char_var)(uint_var_ + 0x168,resourceIdentifier + 0x168,1);
+        ptr_char_var = *(code **)(resourceIdentifier + 0x178);
       }
-      *(code **)(uint_var_ + 0x178) = pcVar5;
+      *(code **)(uint_var_ + 0x178) = ptr_char_var;
       *(uint64_t *)(uint_var_ + 0x180) = *(uint64_t *)(resourceIdentifier + 0x180);
     }
     *(uint64_t *)(uint_var_ + 0x188) = *(uint64_t *)(resourceIdentifier + 0x188);
@@ -39965,7 +39965,7 @@ longlong SystemFunction_82_4(longlong handleIdentifier,longlong resourceIdentifi
 void SystemFunction_20_8(uint64_t *handleIdentifier)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   int int_var_;
   ulonglong uint_var_;
   ulonglong uint_var_;
@@ -39986,9 +39986,9 @@ void SystemFunction_20_8(uint64_t *handleIdentifier)
       if (long_var_ != 0) {
         long_var_ = handleIdentifier[10];
         LOCK();
-        piVar1 = (int *)(long_var_ + 0x3530);
-        int_var_ = *piVar1;
-        *piVar1 = *piVar1 + -0x80000000;
+        ptr_int_var = (int *)(long_var_ + 0x3530);
+        int_var_ = *ptr_int_var;
+        *ptr_int_var = *ptr_int_var + -0x80000000;
         UNLOCK();
         if (int_var_ == 0) {
           long_var_ = *(longlong *)(long_var_ + 0x28);
@@ -40006,9 +40006,9 @@ void SystemFunction_20_8(uint64_t *handleIdentifier)
             UNLOCK();
             if (bVar11) break;
             LOCK();
-            piVar1 = (int *)(long_var_ + 0x3530);
-            int_var_ = *piVar1;
-            *piVar1 = *piVar1 + 0x7fffffff;
+            ptr_int_var = (int *)(long_var_ + 0x3530);
+            int_var_ = *ptr_int_var;
+            *ptr_int_var = *ptr_int_var + 0x7fffffff;
             UNLOCK();
             long_var_ = long_var_;
           } while (int_var_ == 1);
@@ -40029,9 +40029,9 @@ LAB_18006cfb1:
   if ((long_var_ != 0) && ((uint_var_ != uint_var_ || ((uint_var_ & 0x1f) != 0)))) {
     long_var_ = handleIdentifier[10];
     LOCK();
-    piVar1 = (int *)(long_var_ + 0x3530);
-    int_var_ = *piVar1;
-    *piVar1 = *piVar1 + -0x80000000;
+    ptr_int_var = (int *)(long_var_ + 0x3530);
+    int_var_ = *ptr_int_var;
+    *ptr_int_var = *ptr_int_var + -0x80000000;
     UNLOCK();
     if (int_var_ == 0) {
       long_var_ = *(longlong *)(long_var_ + 0x28);
@@ -40049,9 +40049,9 @@ LAB_18006cfb1:
         UNLOCK();
         if (bVar11) break;
         LOCK();
-        piVar1 = (int *)(long_var_ + 0x3530);
-        int_var_ = *piVar1;
-        *piVar1 = *piVar1 + 0x7fffffff;
+        ptr_int_var = (int *)(long_var_ + 0x3530);
+        int_var_ = *ptr_int_var;
+        *ptr_int_var = *ptr_int_var + 0x7fffffff;
         UNLOCK();
         long_var_ = long_var_;
       } while (int_var_ == 1);
@@ -40279,7 +40279,7 @@ uint64_t SystemFunction_71_2(ulonglong *handleIdentifier,uint64_t resourceIdenti
   ulonglong *node_root;
   longlong long_var_;
   longlong long_var_;
-  char cVar5;
+  char char_var;
   ulonglong uint_var_;
   ulonglong uint_var_;
   ulonglong uint_var_;
@@ -40316,15 +40316,15 @@ uint64_t SystemFunction_71_2(ulonglong *handleIdentifier,uint64_t resourceIdenti
     uint_var_ = uint_var_;
   } while (uint_var_ < 3);
   if (uint_var_ != 0) {
-    cVar5 = SystemFunction_52_8(uint_var_,resourceIdentifier,uint_var_,uint_var_,INVALID_HANDLE_VALUE);
-    if (cVar5 != '\0') {
+    char_var = SystemFunction_52_8(uint_var_,resourceIdentifier,uint_var_,uint_var_,INVALID_HANDLE_VALUE);
+    if (char_var != '\0') {
       return 1;
     }
     uint_var_ = *handleIdentifier;
     while (uint_var_ != 0) {
       if (uint_var_ != uint_var_) {
         if (*(char *)(uint_var_ + 0x48) == '\0') {
-          cVar5 = SystemFunction_16_8(uint_var_,resourceIdentifier);
+          char_var = SystemFunction_16_8(uint_var_,resourceIdentifier);
         }
         else {
           if (0x8000000000000000 <
@@ -40353,17 +40353,17 @@ uint64_t SystemFunction_71_2(ulonglong *handleIdentifier,uint64_t resourceIdenti
               SystemFunction_71_2(resourceIdentifier,long_var_);
               SystemFunction_40_8(long_var_);
               *(uint8_t *)((long_var_ - uint_var_) + 0x352f) = 1;
-              cVar5 = '\x01';
+              char_var = '\x01';
               goto LAB_18006d67d;
             }
             LOCK();
             *(longlong *)(uint_var_ + 0x38) = *(longlong *)(uint_var_ + 0x38) + 1;
             UNLOCK();
           }
-          cVar5 = '\0';
+          char_var = '\0';
         }
 LAB_18006d67d:
-        if (cVar5 != '\0') {
+        if (char_var != '\0') {
           return 1;
         }
       }
@@ -40382,7 +40382,7 @@ uint64_t SystemFunction_19_2(longlong handleIdentifier,uint64_t resourceIdentifi
 {
   ulonglong uint_var_;
   longlong *ptr_long_var;
-  char cVar3;
+  char char_var;
   ulonglong uint_var_;
   ulonglong *ptr_uint_var;
   uint64_t uint_var_;
@@ -40404,8 +40404,8 @@ LAB_18006d7fb:
       ptr_long_var[1] = uint_var_;
     }
     else {
-      cVar3 = SystemFunction_19_2(handleIdentifier);
-      if (cVar3 == '\0') {
+      char_var = SystemFunction_19_2(handleIdentifier);
+      if (char_var == '\0') {
         return 0;
       }
       ptr_long_var = *(longlong **)(handleIdentifier + 0x60);
@@ -40686,13 +40686,13 @@ void SystemFunction_55_2(longlong *handleIdentifier)
 
 {
   longlong *ptr_long_var;
-  int *piVar2;
+  int *ptr_int_var;
   int compare_result;
   longlong long_var_;
   longlong allocation_size;
   longlong long_var_;
   longlong long_var_;
-  bool bVar8;
+  bool bool_var;
 
   SystemFunction_40_8((ulonglong)(*(uint *)(handleIdentifier + 1) & 0x1f) * 0x1a8 + *handleIdentifier);
   LOCK();
@@ -40705,9 +40705,9 @@ void SystemFunction_55_2(longlong *handleIdentifier)
     long_var_ = *handleIdentifier;
     allocation_size = handleIdentifier[3];
     LOCK();
-    piVar2 = (int *)(long_var_ + 0x3530);
-    compare_result = *piVar2;
-    *piVar2 = *piVar2 + -0x80000000;
+    ptr_int_var = (int *)(long_var_ + 0x3530);
+    compare_result = *ptr_int_var;
+    *ptr_int_var = *ptr_int_var + -0x80000000;
     UNLOCK();
     if (compare_result == 0) {
       long_var_ = *(longlong *)(allocation_size + 0x28);
@@ -40717,19 +40717,19 @@ void SystemFunction_55_2(longlong *handleIdentifier)
         ptr_long_var = (longlong *)(allocation_size + 0x28);
         LOCK();
         long_var_ = *ptr_long_var;
-        bVar8 = long_var_ == long_var_;
-        if (bVar8) {
+        bool_var = long_var_ == long_var_;
+        if (bool_var) {
           *ptr_long_var = long_var_;
           long_var_ = long_var_;
         }
         UNLOCK();
-        if (bVar8) {
+        if (bool_var) {
           return;
         }
         LOCK();
-        piVar2 = (int *)(long_var_ + 0x3530);
-        compare_result = *piVar2;
-        *piVar2 = *piVar2 + 0x7fffffff;
+        ptr_int_var = (int *)(long_var_ + 0x3530);
+        compare_result = *ptr_int_var;
+        *ptr_int_var = *ptr_int_var + 0x7fffffff;
         UNLOCK();
         long_var_ = long_var_;
       } while (compare_result == 1);
@@ -40782,7 +40782,7 @@ SystemFunction_4_8(longlong *handleIdentifier,uint64_t *resourceIdentifier,uint6
 
 {
   uint64_t *ptr_uint_var;
-  code *pcVar2;
+  code *ptr_char_var;
   uint64_t *ptr_uint_var;
   void *ptr_uint_var;
 
@@ -40812,12 +40812,12 @@ SystemFunction_4_8(longlong *handleIdentifier,uint64_t *resourceIdentifier,uint6
       systemFlags[0x2b] = 0;
       systemFlags[0x2c] = _guard_check_icall;
       if (systemFlags + 0x29 != ptr_uint_var + -2) {
-        pcVar2 = (code *)*ptr_uint_var;
-        if (pcVar2 != (code *)0x0) {
-          (*pcVar2)(systemFlags + 0x29,ptr_uint_var + -2,2);
-          pcVar2 = (code *)*ptr_uint_var;
+        ptr_char_var = (code *)*ptr_uint_var;
+        if (ptr_char_var != (code *)0x0) {
+          (*ptr_char_var)(systemFlags + 0x29,ptr_uint_var + -2,2);
+          ptr_char_var = (code *)*ptr_uint_var;
         }
-        systemFlags[0x2b] = pcVar2;
+        systemFlags[0x2b] = ptr_char_var;
         systemFlags[0x2c] = ptr_uint_var[1];
         *ptr_uint_var = 0;
         ptr_uint_var[1] = _guard_check_icall;
@@ -40825,12 +40825,12 @@ SystemFunction_4_8(longlong *handleIdentifier,uint64_t *resourceIdentifier,uint6
       systemFlags[0x2f] = 0;
       systemFlags[0x30] = _guard_check_icall;
       if (systemFlags + 0x2d != ptr_uint_var + 2) {
-        pcVar2 = (code *)ptr_uint_var[4];
-        if (pcVar2 != (code *)0x0) {
-          (*pcVar2)(systemFlags + 0x2d,ptr_uint_var + 2,2);
-          pcVar2 = (code *)ptr_uint_var[4];
+        ptr_char_var = (code *)ptr_uint_var[4];
+        if (ptr_char_var != (code *)0x0) {
+          (*ptr_char_var)(systemFlags + 0x2d,ptr_uint_var + 2,2);
+          ptr_char_var = (code *)ptr_uint_var[4];
         }
-        systemFlags[0x2f] = pcVar2;
+        systemFlags[0x2f] = ptr_char_var;
         systemFlags[0x30] = ptr_uint_var[5];
         ptr_uint_var[4] = 0;
         ptr_uint_var[5] = _guard_check_icall;
@@ -41039,8 +41039,8 @@ uint64_t * SystemFunction_68_0(uint64_t *handleIdentifier,ulonglong resourceIden
 void SystemFunction_74_4(longlong *handleIdentifier)
 
 {
-  int *piVar1;
-  char *pcVar2;
+  int *ptr_int_var;
+  char *ptr_char_var;
   uint64_t *ptr_uint_var;
   longlong long_var_;
   ulonglong uint_var_;
@@ -41060,9 +41060,9 @@ void SystemFunction_74_4(longlong *handleIdentifier)
   }
   long_var_ = handleIdentifier[5];
   while (long_var_ != 0) {
-    pcVar2 = (char *)(long_var_ + 0x3541);
+    ptr_char_var = (char *)(long_var_ + 0x3541);
     long_var_ = *(longlong *)(long_var_ + 0x3538);
-    if (*pcVar2 != '\0') {
+    if (*ptr_char_var != '\0') {
                     // WARNING: Subroutine does not return
       ProcessSystemOperation();
     }
@@ -41078,9 +41078,9 @@ void SystemFunction_74_4(longlong *handleIdentifier)
     if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
       *ptr_uint_var = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
       *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = ptr_uint_var;
-      piVar1 = (int *)(long_var_ + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      ptr_int_var = (int *)(long_var_ + 0x18);
+      *ptr_int_var = *ptr_int_var + -1;
+      if (*ptr_int_var == 0) {
         InitializeSystemComponents();
         return;
       }
@@ -41097,8 +41097,8 @@ void SystemFunction_74_4(longlong *handleIdentifier)
 void SystemFunction_74_8(longlong *handleIdentifier)
 
 {
-  int *piVar1;
-  char *pcVar2;
+  int *ptr_int_var;
+  char *ptr_char_var;
   uint64_t *ptr_uint_var;
   longlong long_var_;
   ulonglong uint_var_;
@@ -41118,9 +41118,9 @@ void SystemFunction_74_8(longlong *handleIdentifier)
   }
   long_var_ = handleIdentifier[5];
   while (long_var_ != 0) {
-    pcVar2 = (char *)(long_var_ + 0x3541);
+    ptr_char_var = (char *)(long_var_ + 0x3541);
     long_var_ = *(longlong *)(long_var_ + 0x3538);
-    if (*pcVar2 != '\0') {
+    if (*ptr_char_var != '\0') {
                     // WARNING: Subroutine does not return
       ProcessSystemOperation();
     }
@@ -41136,9 +41136,9 @@ void SystemFunction_74_8(longlong *handleIdentifier)
     if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
       *ptr_uint_var = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
       *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = ptr_uint_var;
-      piVar1 = (int *)(long_var_ + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      ptr_int_var = (int *)(long_var_ + 0x18);
+      *ptr_int_var = *ptr_int_var + -1;
+      if (*ptr_int_var == 0) {
         InitializeSystemComponents();
         return;
       }
@@ -41169,8 +41169,8 @@ void SystemFunction_76_9(void)
 void SystemFunction_85_5(void)
 
 {
-  int *piVar1;
-  char *pcVar2;
+  int *ptr_int_var;
+  char *ptr_char_var;
   uint64_t *ptr_uint_var;
   longlong long_var_;
   longlong system_RSI;
@@ -41183,9 +41183,9 @@ void SystemFunction_85_5(void)
   }
   long_var_ = *(longlong *)(system_RSI + 0x28);
   while (long_var_ != 0) {
-    pcVar2 = (char *)(long_var_ + 0x3541);
+    ptr_char_var = (char *)(long_var_ + 0x3541);
     long_var_ = *(longlong *)(long_var_ + 0x3538);
-    if (*pcVar2 != '\0') {
+    if (*ptr_char_var != '\0') {
                     // WARNING: Subroutine does not return
       ProcessSystemOperation();
     }
@@ -41199,9 +41199,9 @@ void SystemFunction_85_5(void)
       if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
         *ptr_uint_var = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
         *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = ptr_uint_var;
-        piVar1 = (int *)(long_var_ + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        ptr_int_var = (int *)(long_var_ + 0x18);
+        *ptr_int_var = *ptr_int_var + -1;
+        if (*ptr_int_var == 0) {
           InitializeSystemComponents();
           return;
         }
@@ -41220,7 +41220,7 @@ void SystemFunction_85_5(void)
 void SystemFunction_95_2(uint64_t *handleIdentifier)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   longlong long_var_;
   ulonglong uint_var_;
 
@@ -41231,9 +41231,9 @@ void SystemFunction_95_2(uint64_t *handleIdentifier)
     if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
       *handleIdentifier = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
       *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = handleIdentifier;
-      piVar1 = (int *)(long_var_ + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      ptr_int_var = (int *)(long_var_ + 0x18);
+      *ptr_int_var = *ptr_int_var + -1;
+      if (*ptr_int_var == 0) {
         InitializeSystemComponents();
         return;
       }
@@ -41250,8 +41250,8 @@ void SystemFunction_95_2(uint64_t *handleIdentifier)
 void SystemFunction_96_8(longlong *handleIdentifier)
 
 {
-  int *piVar1;
-  char *pcVar2;
+  int *ptr_int_var;
+  char *ptr_char_var;
   uint64_t *ptr_uint_var;
   longlong long_var_;
   ulonglong uint_var_;
@@ -41273,9 +41273,9 @@ void SystemFunction_96_8(longlong *handleIdentifier)
   }
   long_var_ = handleIdentifier[5];
   while (long_var_ != 0) {
-    pcVar2 = (char *)(long_var_ + 0x3541);
+    ptr_char_var = (char *)(long_var_ + 0x3541);
     long_var_ = *(longlong *)(long_var_ + 0x3538);
-    if (*pcVar2 != '\0') {
+    if (*ptr_char_var != '\0') {
                     // WARNING: Subroutine does not return
       ProcessSystemOperation();
     }
@@ -41291,9 +41291,9 @@ void SystemFunction_96_8(longlong *handleIdentifier)
     if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
       *ptr_uint_var = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
       *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = ptr_uint_var;
-      piVar1 = (int *)(long_var_ + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      ptr_int_var = (int *)(long_var_ + 0x18);
+      *ptr_int_var = *ptr_int_var + -1;
+      if (*ptr_int_var == 0) {
         InitializeSystemComponents();
         return;
       }
@@ -41461,7 +41461,7 @@ void SystemFunction_0_8(void)
 
 {
   longlong long_var_;
-  char cVar2;
+  char char_var;
   int compare_result;
   longlong *ptr_data;
 
@@ -41499,8 +41499,8 @@ LAB_18006f48d:
       }
       return;
     }
-    cVar2 = (**(code **)(*(longlong *)ptr_data[3] + 0x40))();
-    if (cVar2 != '\0') {
+    char_var = (**(code **)(*(longlong *)ptr_data[3] + 0x40))();
+    if (char_var != '\0') {
       if (*(uint *)(ptr_data + 2) < *(uint *)(long_var_ + 0x164)) {
         ptr_data = *(longlong **)(*ptr_data + 8);
         *(longlong *)(*ptr_data + 8) = ptr_data[1];
@@ -41842,14 +41842,14 @@ ulonglong SystemFunction_22_4(uint64_t handleIdentifier,uint64_t resourceIdentif
 
 {
   code *pis_initialized;
-  bool bVar2;
+  bool bool_var;
   longlong long_var_;
-  char cVar4;
+  char char_var;
   int int_var_;
   int int_var_;
   ulonglong uint_var_;
   void *node_next;
-  bool bVar9;
+  bool bool_var;
   void *bufferPtr_50;
   void *bufferPtr_48;
   uint32_t uintStack_40;
@@ -41865,18 +41865,18 @@ ulonglong SystemFunction_22_4(uint64_t handleIdentifier,uint64_t resourceIdentif
   if (long_var_ != 0) {
     SystemFunction_66_4(long_var_);
   }
-  bVar9 = true;
-  cVar4 = (**(code **)**(uint64_t **)(systemConfigurationData + 0x18))();
-  if ((cVar4 == '\0') && (int_var_ = IsDebuggerPresent(), int_var_ != 0)) {
-    bVar2 = true;
+  bool_var = true;
+  char_var = (**(code **)**(uint64_t **)(systemConfigurationData + 0x18))();
+  if ((char_var == '\0') && (int_var_ = IsDebuggerPresent(), int_var_ != 0)) {
+    bool_var = true;
   }
   else {
-    bVar2 = false;
+    bool_var = false;
   }
   if (long_var_ != 0) {
     int_var_ = *(int *)(**(longlong **)(long_var_ + 8) + 0x48);
     int_var_ = _Thrd_id();
-    bVar9 = int_var_ == int_var_;
+    bool_var = int_var_ == int_var_;
   }
   InitializeSystemLogger(localBuffer_30,0);
   bufferPtr_50 = &resourcePoolPointer;
@@ -41903,7 +41903,7 @@ ulonglong SystemFunction_22_4(uint64_t handleIdentifier,uint64_t resourceIdentif
   OutputDebugStringA(node_next);
   SystemFunction_98_4(resourceIdentifier);
   long_var_ = systemCoreData;
-  if (((bVar9) && (systemCoreData != 0)) && (*(char *)(systemCoreData + 0x1609) != '\x01')) {
+  if (((bool_var) && (systemCoreData != 0)) && (*(char *)(systemCoreData + 0x1609) != '\x01')) {
     SystemProcessDataFunction(*(uint64_t *)(g_system_base_1 + 8),*(char *)(systemCoreData + SYSTEM_NODE_HEADER_SIZE28) != '\0',
                   *(uint32_t *)(systemCoreData + 0x160c));
     *(uint8_t *)(long_var_ + 0x1609) = 1;
@@ -41925,7 +41925,7 @@ ulonglong SystemFunction_22_4(uint64_t handleIdentifier,uint64_t resourceIdentif
     SystemNodeUpdateFunction(node_next);
   }
   int_var_ = SystemFunction_17_6(resourceIdentifier);
-  if ((!bVar2) && (int_var_ == 0)) {
+  if ((!bool_var) && (int_var_ == 0)) {
     SystemFunction_59_2();
   }
   SystemFunction_61_6(resourceIdentifier,0);
@@ -41954,11 +41954,11 @@ ulonglong SystemFunction_2_4(uint64_t handleIdentifier,uint64_t resourceIdentifi
 
 {
   uint8_t uint_var_;
-  code *pcVar2;
-  bool bVar3;
+  code *ptr_char_var;
+  bool bool_var;
   longlong long_var_;
   void *ptr_uint_var;
-  char cVar6;
+  char char_var;
   int int_var_;
   int int_var_;
   uint32_t uint_var_;
@@ -41999,12 +41999,12 @@ ulonglong SystemFunction_2_4(uint64_t handleIdentifier,uint64_t resourceIdentifi
       SystemFunction_66_4(long_var_);
     }
     bVar15 = true;
-    cVar6 = (**(code **)**(uint64_t **)(systemConfigurationData + 0x18))();
-    if ((cVar6 == '\0') && (int_var_ = IsDebuggerPresent(), int_var_ != 0)) {
-      bVar3 = true;
+    char_var = (**(code **)**(uint64_t **)(systemConfigurationData + 0x18))();
+    if ((char_var == '\0') && (int_var_ = IsDebuggerPresent(), int_var_ != 0)) {
+      bool_var = true;
     }
     else {
-      bVar3 = false;
+      bool_var = false;
     }
     if (long_var_ != 0) {
       int_var_ = *(int *)(**(longlong **)(long_var_ + 8) + 0x48);
@@ -42015,7 +42015,7 @@ ulonglong SystemFunction_2_4(uint64_t handleIdentifier,uint64_t resourceIdentifi
     uintStack_a8 = 0;
     bufferPtr_b8 = (void *)0x0;
     uintStack_b0 = 0;
-    if (!bVar3) {
+    if (!bool_var) {
       long_var_ = InitializeSystemLogger(&bufferPtr_e0,0);
       uintStack_b0 = *(uint32_t *)(long_var_ + SYSTEM_DATA_COMPARE_SIZE);
       bufferPtr_b8 = *(void **)(long_var_ + 8);
@@ -42056,12 +42056,12 @@ ulonglong SystemFunction_2_4(uint64_t handleIdentifier,uint64_t resourceIdentifi
     }
     OutputDebugStringA(puVar11);
     SystemFunction_98_4(resourceIdentifier);
-    if (((g_system_data_variable0 != '\0') && (bVar3)) &&
+    if (((g_system_data_variable0 != '\0') && (bool_var)) &&
        ((*(char *)(g_system_base_1 + 0x25) != '\0' ||
         ((systemConfig == '\0' || (*(int *)(g_system_base_1 + 0x340) == 2)))))) {
       if (g_system_data_variable1 == '\0') {
-        pcVar2 = (code *)swi(3);
-        uint_var_ = (*pcVar2)();
+        ptr_char_var = (code *)swi(3);
+        uint_var_ = (*ptr_char_var)();
         return uint_var_;
       }
       bstack_var = 1;
@@ -42106,7 +42106,7 @@ ulonglong SystemFunction_2_4(uint64_t handleIdentifier,uint64_t resourceIdentifi
       SystemNodeUpdateFunction(&globalSystemVariable,resourceIdentifier);
     }
     int_var_ = SystemFunction_17_6(resourceIdentifier);
-    if (((!bVar3) && (int_var_ == 0)) && (*(char *)(g_system_base_1 + 0x2a) != '\0')) {
+    if (((!bool_var) && (int_var_ == 0)) && (*(char *)(g_system_base_1 + 0x2a) != '\0')) {
       uint_var_ = *(uint8_t *)(g_system_base_1 + 0x141);
       uint_var_ = ProcessResourceData(&bufferPtr_80,g_system_base_1 + 0x148);
       uint_var_ = ProcessResourceData(&bufferPtr_e0,uint_var_);
@@ -42134,18 +42134,18 @@ ulonglong SystemFunction_2_4(uint64_t handleIdentifier,uint64_t resourceIdentifi
     }
     SystemFunction_61_6(resourceIdentifier,0);
     if (g_system_base_1 == 0) {
-      cVar6 = '\x01';
+      char_var = '\x01';
     }
     else {
-      cVar6 = *(char *)(g_system_base_1 + 0x29);
+      char_var = *(char *)(g_system_base_1 + 0x29);
     }
     if (*(char *)(g_system_base_1 + 0x25) != '\0') {
       InitializeSystemResources(g_system_base_1,5);
-      pcVar2 = (code *)swi(3);
-      uint_var_ = (*pcVar2)();
+      ptr_char_var = (code *)swi(3);
+      uint_var_ = (*ptr_char_var)();
       return uint_var_;
     }
-    if (cVar6 != '\0') {
+    if (char_var != '\0') {
       systemStatusData = 5;
     }
     if ((g_graphics_initialized_flag == '\0') && (bVar15)) {
@@ -42186,7 +42186,7 @@ ulonglong SystemFunction_62_4(uint64_t handleIdentifier,uint64_t resourceIdentif
 {
   code *pis_initialized;
   longlong long_var_;
-  char cVar3;
+  char char_var;
   int int_var_;
   int int_var_;
   uint8_t *node_current;
@@ -42230,8 +42230,8 @@ ulonglong SystemFunction_62_4(uint64_t handleIdentifier,uint64_t resourceIdentif
     SystemFunction_66_4(long_var_);
   }
   bVar14 = true;
-  cVar3 = (**(code **)**(uint64_t **)(systemConfigurationData + 0x18))();
-  if ((cVar3 == '\0') && (int_var_ = IsDebuggerPresent(), int_var_ != 0)) {
+  char_var = (**(code **)**(uint64_t **)(systemConfigurationData + 0x18))();
+  if ((char_var == '\0') && (int_var_ = IsDebuggerPresent(), int_var_ != 0)) {
     bVar15 = true;
   }
   else {
@@ -42392,10 +42392,10 @@ LAB_180070230:
     }
     SystemFunction_61_6(resourceIdentifier,0);
     if (g_system_base_1 == 0) {
-      cVar3 = '\x01';
+      char_var = '\x01';
     }
     else {
-      cVar3 = *(char *)(g_system_base_1 + 0x29);
+      char_var = *(char *)(g_system_base_1 + 0x29);
     }
     if (*(char *)(g_system_base_1 + 0x25) != '\0') {
       InitializeSystemResources(g_system_base_1,5);
@@ -42403,7 +42403,7 @@ LAB_180070230:
       uint_var_ = (*pis_initialized)();
       return uint_var_;
     }
-    if (cVar3 != '\0') {
+    if (char_var != '\0') {
       systemStatusData = 5;
     }
     if ((g_graphics_initialized_flag == '\0') && (bVar14)) {
@@ -42458,15 +42458,15 @@ LAB_180070230:
 void SystemFunction_41_6(uint64_t handleIdentifier,uint64_t resourceIdentifier)
 
 {
-  bool bVar1;
-  char cVar2;
+  bool bool_var;
+  char char_var;
   int compare_result;
   int int_var_;
   longlong allocation_size;
   void *node_current;
   uint64_t uint_var_;
   void *node_next;
-  bool bVar9;
+  bool bool_var;
   void *bufferPtr_70;
   void *bufferPtr_68;
   uint32_t uintStack_60;
@@ -42479,21 +42479,21 @@ void SystemFunction_41_6(uint64_t handleIdentifier,uint64_t resourceIdentifier)
   if (compare_result != 0) {
     return;
   }
-  bVar9 = true;
-  cVar2 = (**(code **)**(uint64_t **)(systemConfigurationData + 0x18))();
-  if ((cVar2 == '\0') && (compare_result = IsDebuggerPresent(), compare_result != 0)) {
-    bVar1 = true;
+  bool_var = true;
+  char_var = (**(code **)**(uint64_t **)(systemConfigurationData + 0x18))();
+  if ((char_var == '\0') && (compare_result = IsDebuggerPresent(), compare_result != 0)) {
+    bool_var = true;
   }
   else {
-    bVar1 = false;
+    bool_var = false;
   }
   if (systemConfigurationData != 0) {
     compare_result = *(int *)(**(longlong **)(systemConfigurationData + 8) + 0x48);
     int_var_ = _Thrd_id();
-    bVar9 = int_var_ == compare_result;
+    bool_var = int_var_ == compare_result;
   }
   node_next = (void *)0x0;
-  if (!bVar1) {
+  if (!bool_var) {
     allocation_size = InitializeSystemLogger(&bufferPtr_50,0);
     node_next = *(void **)(allocation_size + 8);
     *(uint32_t *)(allocation_size + SYSTEM_DATA_COMPARE_SIZE) = 0;
@@ -42531,7 +42531,7 @@ void SystemFunction_41_6(uint64_t handleIdentifier,uint64_t resourceIdentifier)
   }
   OutputDebugStringA(node_next);
   allocation_size = systemCoreData;
-  if (((bVar9) && (systemCoreData != 0)) && (*(char *)(systemCoreData + 0x1609) != '\x01')) {
+  if (((bool_var) && (systemCoreData != 0)) && (*(char *)(systemCoreData + 0x1609) != '\x01')) {
     SystemProcessDataFunction(*(uint64_t *)(g_system_base_1 + 8),*(char *)(systemCoreData + SYSTEM_NODE_HEADER_SIZE28) != '\0',
                   *(uint32_t *)(systemCoreData + 0x160c));
     *(uint8_t *)(allocation_size + 0x1609) = 1;
@@ -42558,8 +42558,8 @@ void SystemFunction_10_4(uint64_t handleIdentifier,longlong resourceIdentifier,u
 
 {
   code *pis_initialized;
-  bool bVar2;
-  char cVar3;
+  bool bool_var;
+  char char_var;
   int int_var_;
   uint uint_var_;
   uint uint_var_;
@@ -42708,8 +42708,8 @@ LAB_180070b00:
   if (bufferPtr_f0 != (void *)0x0) {
     puVar18 = bufferPtr_f0;
   }
-  cVar3 = SystemFunction_44_0(puVar18);
-  if (cVar3 != '\0') {
+  char_var = SystemFunction_44_0(puVar18);
+  if (char_var != '\0') {
     bufferPtr_f8 = &resourcePoolPointer;
     if (bufferPtr_f0 != (void *)0x0) {
                     // WARNING: Subroutine does not return
@@ -42935,8 +42935,8 @@ LAB_18007113f:
   }
   bVar13 = 1;
   cStack_11f = '\x01';
-  cVar3 = (**(code **)**(uint64_t **)(systemConfigurationData + 0x18))();
-  if ((cVar3 != '\0') || (int_var_ = IsDebuggerPresent(), int_var_ == 0)) {
+  char_var = (**(code **)**(uint64_t **)(systemConfigurationData + 0x18))();
+  if ((char_var != '\0') || (int_var_ = IsDebuggerPresent(), int_var_ == 0)) {
     bVar13 = 0;
   }
   if (g_system_base_1 == 0) {
@@ -42945,15 +42945,15 @@ LAB_18007113f:
   else {
     cStack_147 = *(char *)(g_system_base_1 + 0x24);
   }
-  bVar2 = true;
+  bool_var = true;
   if (long_var_ != 0) {
     int_var_ = *(int *)(**(longlong **)(long_var_ + 8) + 0x48);
     int_var_ = _Thrd_id();
     cStack_11f = int_var_ == int_var_;
-    bVar2 = (bool)cStack_11f;
+    bool_var = (bool)cStack_11f;
   }
   long_var_ = systemCoreData;
-  if ((g_graphics_initialized_flag == '\0') && (bVar2)) {
+  if ((g_graphics_initialized_flag == '\0') && (bool_var)) {
     if ((systemCoreData != 0) && (*(char *)(systemCoreData + 0x1609) != '\x01')) {
       SystemProcessDataFunction(*(uint64_t *)(g_system_base_1 + 8),*(char *)(systemCoreData + SYSTEM_NODE_HEADER_SIZE28) != '\0',
                     *(uint32_t *)(systemCoreData + 0x160c));
@@ -43092,18 +43092,18 @@ LAB_18007113f:
     }
     else if (int_var_ == 3) goto LAB_1800715eb;
     if (g_system_base_1 == 0) {
-      cVar3 = '\x01';
+      char_var = '\x01';
     }
     else {
-      cVar3 = *(char *)(g_system_base_1 + 0x29);
+      char_var = *(char *)(g_system_base_1 + 0x29);
     }
     if (cStack_147 != '\0') {
-      InitializeSystemResources(cVar3,5);
+      InitializeSystemResources(char_var,5);
       pis_initialized = (code *)swi(3);
       (*pis_initialized)();
       return;
     }
-    if (cVar3 != '\0') {
+    if (char_var != '\0') {
       systemStatusData = 5;
     }
     if ((g_graphics_initialized_flag == '\0') && (cStack_11f != '\0')) {
@@ -43461,7 +43461,7 @@ void InitializeSystemTimer(uint64_t handleIdentifier,longlong resourceIdentifier
 
 {
   code *pis_initialized;
-  char cVar2;
+  char char_var;
   int compare_result;
   uint uint_var_;
   int int_var_;
@@ -43612,19 +43612,19 @@ LAB_1800721e1:
   if (thread_parameter_ptr != (void *)0x0) {
     puVar15 = thread_parameter_ptr;
   }
-  cVar2 = SystemFunction_44_0(puVar15);
-  if (cVar2 == '\0') {
+  char_var = SystemFunction_44_0(puVar15);
+  if (char_var == '\0') {
     compare_result = WaitForSingleObject(inputSystemData,0);
     if (compare_result == 0) {
       cStack_117 = '\x01';
-      cVar2 = (**(code **)**(uint64_t **)(systemConfigurationData + 0x18))();
-      if ((cVar2 == '\0') && (compare_result = IsDebuggerPresent(), compare_result != 0)) {
-        cVar2 = '\x01';
+      char_var = (**(code **)**(uint64_t **)(systemConfigurationData + 0x18))();
+      if ((char_var == '\0') && (compare_result = IsDebuggerPresent(), compare_result != 0)) {
+        char_var = '\x01';
       }
       else {
-        cVar2 = '\0';
+        char_var = '\0';
       }
-      cStack_118 = cVar2;
+      cStack_118 = char_var;
       if (systemConfigurationData == 0) {
 LAB_1800722f5:
         long_var_ = systemCoreData;
@@ -43644,7 +43644,7 @@ LAB_1800722f5:
         cStack_117 = int_var_ == compare_result;
         if ((bool)cStack_117) goto LAB_1800722f5;
       }
-      if (cVar2 != '\0') {
+      if (char_var != '\0') {
         if ((parameter_6 == '\0') || (*(int *)(g_system_base_1 + 0x340) == 2)) {
           pis_initialized = (code *)swi(3);
           (*pis_initialized)();
@@ -43656,7 +43656,7 @@ LAB_1800722f5:
       uintStack_f8 = 0;
       bufferPtr_108 = (void *)0x0;
       uintStack_100 = 0;
-      if (cVar2 == '\0') {
+      if (char_var == '\0') {
         long_var_ = InitializeSystemLogger(&bufferPtr_f0,0);
         uintStack_100 = *(uint *)(long_var_ + SYSTEM_DATA_COMPARE_SIZE);
         bufferPtr_108 = *(uint8_t **)(long_var_ + 8);
@@ -44336,7 +44336,7 @@ void SystemFunction_62_4(uint64_t handleIdentifier,uint64_t resourceIdentifier)
 
 {
   void *ptr_uint_var;
-  char cVar2;
+  char char_var;
   uint32_t aflag_initialized [4];
   void *bufferPtr_30;
   longlong longStack_28;
@@ -44347,12 +44347,12 @@ void SystemFunction_62_4(uint64_t handleIdentifier,uint64_t resourceIdentifier)
     UpdateSystemBuffer(&bufferPtr_30,resourceIdentifier);
     ptr_uint_var = *(void **)*systemConfigurationData;
     if (ptr_uint_var == &systemNextData) {
-      cVar2 = *(int *)(systemConfigurationData + 0xc40) != 0;
+      char_var = *(int *)(systemConfigurationData + 0xc40) != 0;
     }
     else {
-      cVar2 = (**(code **)(ptr_uint_var + 0x50))((uint64_t *)*systemConfigurationData);
+      char_var = (**(code **)(ptr_uint_var + 0x50))((uint64_t *)*systemConfigurationData);
     }
-    if (cVar2 == '\0') {
+    if (char_var == '\0') {
       (**(code **)(*(longlong *)systemConfigurationData[1] + 0x18))
                 ((longlong *)systemConfigurationData[1],&bufferPtr_30,aflag_initialized);
     }
@@ -44370,7 +44370,7 @@ void SystemFunction_88_0(uint64_t handleIdentifier,uint64_t resourceIdentifier)
 
 {
   void *ptr_uint_var;
-  char cVar2;
+  char char_var;
   uint32_t aflag_initialized [4];
   void *bufferPtr_30;
   longlong longStack_28;
@@ -44381,12 +44381,12 @@ void SystemFunction_88_0(uint64_t handleIdentifier,uint64_t resourceIdentifier)
     UpdateSystemBuffer(&bufferPtr_30,resourceIdentifier);
     ptr_uint_var = *(void **)*systemConfigurationData;
     if (ptr_uint_var == &systemNextData) {
-      cVar2 = *(int *)(systemConfigurationData + 0xc40) != 0;
+      char_var = *(int *)(systemConfigurationData + 0xc40) != 0;
     }
     else {
-      cVar2 = (**(code **)(ptr_uint_var + 0x50))((uint64_t *)*systemConfigurationData);
+      char_var = (**(code **)(ptr_uint_var + 0x50))((uint64_t *)*systemConfigurationData);
     }
-    if (cVar2 == '\0') {
+    if (char_var == '\0') {
       (**(code **)(*(longlong *)systemConfigurationData[1] + 0x18))
                 ((longlong *)systemConfigurationData[1],&bufferPtr_30,aflag_initialized);
     }
@@ -44404,7 +44404,7 @@ void ValidateSystemConfiguration(uint64_t handleIdentifier,uint32_t resourceIden
 
 {
   void *ptr_uint_var;
-  char cVar2;
+  char char_var;
   uint32_t localBuffer_X20 [2];
   void *bufferPtr_30;
   longlong longStack_28;
@@ -44415,12 +44415,12 @@ void ValidateSystemConfiguration(uint64_t handleIdentifier,uint32_t resourceIden
     UpdateSystemBuffer(&bufferPtr_30,systemConfig);
     ptr_uint_var = *(void **)*systemConfigurationData;
     if (ptr_uint_var == &systemNextData) {
-      cVar2 = *(int *)(systemConfigurationData + 0xc40) != 0;
+      char_var = *(int *)(systemConfigurationData + 0xc40) != 0;
     }
     else {
-      cVar2 = (**(code **)(ptr_uint_var + 0x50))((uint64_t *)*systemConfigurationData);
+      char_var = (**(code **)(ptr_uint_var + 0x50))((uint64_t *)*systemConfigurationData);
     }
-    if (cVar2 == '\0') {
+    if (char_var == '\0') {
       (**(code **)(*(longlong *)systemConfigurationData[1] + 0x18))
                 ((longlong *)systemConfigurationData[1],&bufferPtr_30,localBuffer_X20);
     }
@@ -45241,7 +45241,7 @@ void SystemFunction_28_0(longlong *handleIdentifier,longlong resourceIdentifier)
 
 {
   longlong *ptr_long_var;
-  int *piVar2;
+  int *ptr_int_var;
   uint uint_var_;
   int int_var_;
   longlong allocation_size;
@@ -45304,10 +45304,10 @@ void SystemFunction_28_0(longlong *handleIdentifier,longlong resourceIdentifier)
         ProcessSystemOperation();
       }
       long_var_ = *ptr_long_var;
-      piVar2 = (int *)(allocation_size + 0x14);
-      *(int **)(resourceIdentifier + 8) = piVar2;
+      ptr_int_var = (int *)(allocation_size + 0x14);
+      *(int **)(resourceIdentifier + 8) = ptr_int_var;
       allocation_size = allocation_size + 0x18;
-      int_var_ = *piVar2;
+      int_var_ = *ptr_int_var;
       long_var_ = long_var_ + long_var_;
       *(longlong *)(resourceIdentifier + 8) = allocation_size;
       if (0 < int_var_) {
@@ -45414,7 +45414,7 @@ void SystemFunction_29_8(longlong *handleIdentifier)
 
 {
   longlong *ptr_long_var;
-  int *piVar2;
+  int *ptr_int_var;
   uint uint_var_;
   int int_var_;
   uint *in_RAX;
@@ -45479,10 +45479,10 @@ void SystemFunction_29_8(longlong *handleIdentifier)
         ProcessSystemOperation();
       }
       long_var_ = *ptr_long_var;
-      piVar2 = (int *)(allocation_size + 0x14);
-      *(int **)(system_RDI + 8) = piVar2;
+      ptr_int_var = (int *)(allocation_size + 0x14);
+      *(int **)(system_RDI + 8) = ptr_int_var;
       allocation_size = allocation_size + 0x18;
-      int_var_ = *piVar2;
+      int_var_ = *ptr_int_var;
       long_var_ = long_var_ + long_var_;
       *(longlong *)(system_RDI + 8) = allocation_size;
       if (0 < int_var_) {
@@ -45865,7 +45865,7 @@ void SystemFunction_33_6(longlong handleIdentifier,longlong resourceIdentifier)
   uint *ptr_uint_var;
   int int_var_;
   uint uint_var_;
-  int *piVar4;
+  int *ptr_int_var;
   longlong allocation_size;
   int int_var_;
   int int_var_;
@@ -45885,13 +45885,13 @@ void SystemFunction_33_6(longlong handleIdentifier,longlong resourceIdentifier)
 
   uintStack_d8 = INVALID_HANDLE_VALUE;
   uintStack_28 = systemConfigurationData ^ (ulonglong)localBuffer_f8;
-  piVar4 = *(int **)(resourceIdentifier + 8);
-  int_var_ = *piVar4;
-  *(int **)(resourceIdentifier + 8) = piVar4 + 1;
-  int_var_ = piVar4[2];
-  int_var_ = piVar4[3];
-  int_var_ = piVar4[4];
-  *(int *)(handleIdentifier + 0x18) = piVar4[1];
+  ptr_int_var = *(int **)(resourceIdentifier + 8);
+  int_var_ = *ptr_int_var;
+  *(int **)(resourceIdentifier + 8) = ptr_int_var + 1;
+  int_var_ = ptr_int_var[2];
+  int_var_ = ptr_int_var[3];
+  int_var_ = ptr_int_var[4];
+  *(int *)(handleIdentifier + 0x18) = ptr_int_var[1];
   *(int *)(handleIdentifier + 0x1c) = int_var_;
   *(int *)(handleIdentifier + SYSTEM_NODE_HEADER_SIZE) = int_var_;
   *(int *)(handleIdentifier + 0x24) = int_var_;
@@ -46433,7 +46433,7 @@ uint64_t * SystemFunction_28_0(uint64_t *handleIdentifier,char resourceIdentifie
 
 {
   longlong *ptr_long_var;
-  byte bVar2;
+  byte bool_var;
   longlong *ptr_long_var;
   longlong *ptr_data;
 
@@ -46525,8 +46525,8 @@ uint64_t * SystemFunction_28_0(uint64_t *handleIdentifier,char resourceIdentifie
   if (ptr_long_var != (longlong *)0x0) {
     (**(code **)(*ptr_long_var + 0x38))();
   }
-  bVar2 = *(byte *)((longlong)handleIdentifier + 0xfd) & 0xf7;
-  *(byte *)((longlong)handleIdentifier + 0xfd) = bVar2;
+  bool_var = *(byte *)((longlong)handleIdentifier + 0xfd) & 0xf7;
+  *(byte *)((longlong)handleIdentifier + 0xfd) = bool_var;
   handleIdentifier[0x47] = 0x3f8000003f800000;
   handleIdentifier[0x48] = 0x3f8000003f800000;
   handleIdentifier[0x49] = 0x3f8000003f800000;
@@ -46548,7 +46548,7 @@ uint64_t * SystemFunction_28_0(uint64_t *handleIdentifier,char resourceIdentifie
   handleIdentifier[0x31] = 0x3f800000;
   handleIdentifier[0x32] = 0;
   handleIdentifier[0x33] = 0x3f80000000000000;
-  *(byte *)((longlong)handleIdentifier + 0xfd) = bVar2 | 1;
+  *(byte *)((longlong)handleIdentifier + 0xfd) = bool_var | 1;
   *(byte *)((longlong)handleIdentifier + 0xfe) = *(byte *)((longlong)handleIdentifier + 0xfe) | 2;
   *(uint32_t *)(handleIdentifier + 0x4e) = 0x21;
   *(uint32_t *)((longlong)handleIdentifier + SYSTEM_DATA_COMPARE_SIZE4) = 0x80;
@@ -46671,7 +46671,7 @@ void SystemFunction_81_6(longlong handleIdentifier,uint64_t *resourceIdentifier)
   uint32_t uint_var_;
   uint32_t uint_var_;
   uint64_t uint_var_;
-  char cVar8;
+  char char_var;
   longlong long_var_;
   longlong *plVar10;
   uint uint_var_;
@@ -46688,8 +46688,8 @@ void SystemFunction_81_6(longlong handleIdentifier,uint64_t *resourceIdentifier)
   uint_var_ = *(uint *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE0) & 0xfbffffff;
   *(uint *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE0) = uint_var_;
   uintStack_30 = 0x180075655;
-  cVar8 = SystemFunction_28_0(resourceIdentifier);
-  if (cVar8 == '\0') {
+  char_var = SystemFunction_28_0(resourceIdentifier);
+  if (char_var == '\0') {
     *(uint *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE0) = uint_var_ | 0x4000000;
   }
   uint_var_ = resourceIdentifier[1];
@@ -46836,7 +46836,7 @@ void SystemFunction_81_6(longlong handleIdentifier,uint64_t *resourceIdentifier)
 void SystemFunction_99_2(uint64_t *handleIdentifier)
 
 {
-  byte *pbVar1;
+  byte *ptr_byte_var;
   longlong *ptr_long_var;
   longlong long_var_;
   uint64_t uint_var_;
@@ -46900,8 +46900,8 @@ void SystemFunction_99_2(uint64_t *handleIdentifier)
     SystemFunction_38_4();
     handleIdentifier[0x3d] = 0;
     if (handleIdentifier[0x3e] != 0) {
-      pbVar1 = (byte *)(handleIdentifier[0x3e] + 0xfe);
-      *pbVar1 = *pbVar1 & 0xfb;
+      ptr_byte_var = (byte *)(handleIdentifier[0x3e] + 0xfe);
+      *ptr_byte_var = *ptr_byte_var & 0xfb;
     }
   }
   ptr_long_var = (longlong *)handleIdentifier[0x42];
@@ -47002,18 +47002,18 @@ longlong SystemFunction_3_2(longlong handleIdentifier)
 {
   longlong long_var_;
   longlong long_var_;
-  byte bVar3;
+  byte bool_var;
 
-  bVar3 = *(byte *)(handleIdentifier + 0xfd) & SYSTEM_NODE_HEADER_SIZE;
+  bool_var = *(byte *)(handleIdentifier + 0xfd) & SYSTEM_NODE_HEADER_SIZE;
   long_var_ = handleIdentifier;
-  if (bVar3 == 0) {
+  if (bool_var == 0) {
     long_var_ = SystemFunction085de0(*(uint64_t *)(handleIdentifier + 0x1b0));
   }
   long_var_ = 2;
   if (0xffff < *(int *)(long_var_ + SYSTEM_NODE_HEADER_SIZE0)) {
     long_var_ = 4;
   }
-  if (bVar3 == 0) {
+  if (bool_var == 0) {
     handleIdentifier = SystemFunction085de0(*(uint64_t *)(handleIdentifier + 0x1b0));
   }
   return (*(int *)(handleIdentifier + 0x1fc) * 3) * long_var_;
@@ -47023,14 +47023,14 @@ float * SystemFunction_16_0(float *handleIdentifier)
 
 {
   float *pfVar1;
-  byte bVar2;
+  byte bool_var;
   longlong *ptr_long_var;
   float *pfVar4;
-  char cVar5;
+  char char_var;
   float *pfVar6;
   uint uint_var_;
   ulonglong uint_var_;
-  bool bVar9;
+  bool bool_var;
   float fVar10;
   float fVar11;
   float fStack_b8;
@@ -47199,19 +47199,19 @@ float * SystemFunction_16_0(float *handleIdentifier)
     if (pfStack_98 != (float *)0x0) {
       while( true ) {
         LOCK();
-        cVar5 = *(char *)(pfVar4 + 0x3b);
-        bVar9 = cVar5 == '\0';
-        if (bVar9) {
+        char_var = *(char *)(pfVar4 + 0x3b);
+        bool_var = char_var == '\0';
+        if (bool_var) {
           *(char *)(pfVar4 + 0x3b) = '\x01';
-          cVar5 = '\0';
+          char_var = '\0';
         }
         UNLOCK();
-        if (bVar9) break;
+        if (bool_var) break;
         fVar10 = (float)_Thrd_id();
         if ((pfVar4[0x3c] == fVar10) || (pfVar4[0x3c] != 0.0)) goto LAB_180075f4f;
         Sleep();
       }
-      cVar5 = '\0';
+      char_var = '\0';
 LAB_180075f4f:
       LOCK();
       pfVar1 = pfVar4 + 0x3a;
@@ -47219,7 +47219,7 @@ LAB_180075f4f:
       pfVar6 = (float *)(ulonglong)(uint)fVar10;
       *pfVar1 = (float)((int)*pfVar1 + -1);
       UNLOCK();
-      if (cVar5 == '\0') {
+      if (char_var == '\0') {
         if ((((fVar10 == 1.4013e-45) && (*(longlong *)(pfStack_98 + 0x84) != 0)) &&
             (pfVar6 = pfStack_98, SystemFunction_3_2(pfStack_98), *(char *)(pfVar6 + 0x3f) == '\0')) &&
            ((*(char *)(pfVar6 + 0x3d) == '\0' &&
@@ -47233,9 +47233,9 @@ LAB_180075f4f:
           }
         }
         LOCK();
-        bVar2 = *(byte *)(pfVar4 + 0x3b);
+        bool_var = *(byte *)(pfVar4 + 0x3b);
         *(byte *)(pfVar4 + 0x3b) = 0;
-        pfVar6 = (float *)(ulonglong)bVar2;
+        pfVar6 = (float *)(ulonglong)bool_var;
         UNLOCK();
       }
     }
@@ -47254,8 +47254,8 @@ void SystemFunction_31_2(longlong *handleIdentifier)
   int int_var_;
   int int_var_;
   longlong long_var_;
-  float fVar8;
-  float fVar9;
+  float float_var;
+  float float_var;
   uint8_t localBuffer_138 [8];
   longlong *plongStack_130;
   uint32_t uintStack_128;
@@ -47278,8 +47278,8 @@ void SystemFunction_31_2(longlong *handleIdentifier)
   uintStack_90 = INVALID_HANDLE_VALUE;
   while( true ) {
     if (((int)handleIdentifier[0x41] != 0) &&
-       ((fVar8 = *(float *)(handleIdentifier + 0x5b) - *(float *)((longlong)handleIdentifier + 0x2dc), fVar8 <= -0.01
-        || (0.01 <= fVar8)))) {
+       ((float_var = *(float *)(handleIdentifier + 0x5b) - *(float *)((longlong)handleIdentifier + 0x2dc), float_var <= -0.01
+        || (0.01 <= float_var)))) {
       ptr_long_var = handleIdentifier;
       if ((((*(byte *)((longlong)handleIdentifier + 0xfd) & 0x40) == 0) || (handleIdentifier[0x42] == 0)) &&
          (handleIdentifier[0x36] != 0)) {
@@ -47294,17 +47294,17 @@ void SystemFunction_31_2(longlong *handleIdentifier)
         SystemFunction_40_8(localBuffer_138);
         ptr_long_var = plongStack_120 + 0x16;
         uint_var_ = *(ushort *)(plongStack_120 + 0x18);
-        fVar8 = *(float *)(plongStack_120[0x17] + -4 + (ulonglong)uint_var_ * 4);
-        fVar9 = *(float *)((longlong)handleIdentifier + 0x2dc);
-        if (fVar8 < *(float *)((longlong)handleIdentifier + 0x2dc)) {
-          *(float *)((longlong)handleIdentifier + 0x2dc) = fVar8;
+        float_var = *(float *)(plongStack_120[0x17] + -4 + (ulonglong)uint_var_ * 4);
+        float_var = *(float *)((longlong)handleIdentifier + 0x2dc);
+        if (float_var < *(float *)((longlong)handleIdentifier + 0x2dc)) {
+          *(float *)((longlong)handleIdentifier + 0x2dc) = float_var;
           uint_var_ = *(ushort *)(plongStack_120 + 0x18);
-          fVar9 = fVar8;
+          float_var = float_var;
         }
         uint_var_ = (uint)uint_var_;
         if (uint_var_ < 2) {
           int_var_ = uint_var_ - 1;
-          fVar8 = 0.0;
+          float_var = 0.0;
           int_var_ = int_var_;
         }
         else {
@@ -47312,22 +47312,22 @@ void SystemFunction_31_2(longlong *handleIdentifier)
           if (0 < (int)(uint_var_ - 2)) {
             do {
               int_var_ = int_var_ + int_var_ >> 1;
-              if (*(float *)(plongStack_120[0x17] + (longlong)int_var_ * 4) <= fVar9) {
+              if (*(float *)(plongStack_120[0x17] + (longlong)int_var_ * 4) <= float_var) {
                 int_var_ = int_var_;
                 int_var_ = int_var_;
               }
               int_var_ = int_var_;
             } while (int_var_ < int_var_ + -1);
           }
-          fVar8 = *(float *)(plongStack_120[0x17] + (longlong)int_var_ * 4);
-          fVar8 = (fVar9 - fVar8) / (*(float *)(plongStack_120[0x17] + (longlong)int_var_ * 4) - fVar8);
-          if (0.0 <= fVar8) {
-            if (1.0 <= fVar8) {
-              fVar8 = 1.0;
+          float_var = *(float *)(plongStack_120[0x17] + (longlong)int_var_ * 4);
+          float_var = (float_var - float_var) / (*(float *)(plongStack_120[0x17] + (longlong)int_var_ * 4) - float_var);
+          if (0.0 <= float_var) {
+            if (1.0 <= float_var) {
+              float_var = 1.0;
             }
           }
           else {
-            fVar8 = 0.0;
+            float_var = 0.0;
           }
         }
         if (-1 < int_var_) {
@@ -47339,7 +47339,7 @@ void SystemFunction_31_2(longlong *handleIdentifier)
           uintStack_f0 = 0;
           SystemFunction2f2e0(&uintStack_100,handleIdentifier,0);
           (**(code **)(*handleIdentifier + 0x38))(handleIdentifier);
-          SystemFunction2f9b0(&uintStack_100,ptr_long_var,int_var_,int_var_,fVar8);
+          SystemFunction2f9b0(&uintStack_100,ptr_long_var,int_var_,int_var_,float_var);
           SystemFunction2f410(&uintStack_100);
         }
         SystemFunction_88_8(localBuffer_138);
@@ -47353,17 +47353,17 @@ void SystemFunction_31_2(longlong *handleIdentifier)
         SystemFunction_9_6(&plongStack_118);
         long_var_ = longStack_108 + 0xb0;
         uint_var_ = *(ushort *)(longStack_108 + 0xc0);
-        fVar8 = *(float *)(*(longlong *)(longStack_108 + 0xb8) + -4 + (ulonglong)uint_var_ * 4);
-        fVar9 = *(float *)((longlong)handleIdentifier + 0x2dc);
-        if (fVar8 < *(float *)((longlong)handleIdentifier + 0x2dc)) {
-          *(float *)((longlong)handleIdentifier + 0x2dc) = fVar8;
+        float_var = *(float *)(*(longlong *)(longStack_108 + 0xb8) + -4 + (ulonglong)uint_var_ * 4);
+        float_var = *(float *)((longlong)handleIdentifier + 0x2dc);
+        if (float_var < *(float *)((longlong)handleIdentifier + 0x2dc)) {
+          *(float *)((longlong)handleIdentifier + 0x2dc) = float_var;
           uint_var_ = *(ushort *)(longStack_108 + 0xc0);
-          fVar9 = fVar8;
+          float_var = float_var;
         }
         uint_var_ = (uint)uint_var_;
         if (uint_var_ < 2) {
           int_var_ = uint_var_ - 1;
-          fVar8 = 0.0;
+          float_var = 0.0;
           int_var_ = int_var_;
         }
         else {
@@ -47371,23 +47371,23 @@ void SystemFunction_31_2(longlong *handleIdentifier)
           if (0 < (int)(uint_var_ - 2)) {
             do {
               int_var_ = int_var_ + int_var_ >> 1;
-              if (*(float *)(*(longlong *)(longStack_108 + 0xb8) + (longlong)int_var_ * 4) <= fVar9) {
+              if (*(float *)(*(longlong *)(longStack_108 + 0xb8) + (longlong)int_var_ * 4) <= float_var) {
                 int_var_ = int_var_;
                 int_var_ = int_var_;
               }
               int_var_ = int_var_;
             } while (int_var_ < int_var_ + -1);
           }
-          fVar8 = *(float *)(*(longlong *)(longStack_108 + 0xb8) + (longlong)int_var_ * 4);
-          fVar8 = (fVar9 - fVar8) /
-                  (*(float *)(*(longlong *)(longStack_108 + 0xb8) + (longlong)int_var_ * 4) - fVar8);
-          if (0.0 <= fVar8) {
-            if (1.0 <= fVar8) {
-              fVar8 = 1.0;
+          float_var = *(float *)(*(longlong *)(longStack_108 + 0xb8) + (longlong)int_var_ * 4);
+          float_var = (float_var - float_var) /
+                  (*(float *)(*(longlong *)(longStack_108 + 0xb8) + (longlong)int_var_ * 4) - float_var);
+          if (0.0 <= float_var) {
+            if (1.0 <= float_var) {
+              float_var = 1.0;
             }
           }
           else {
-            fVar8 = 0.0;
+            float_var = 0.0;
           }
         }
         if (-1 < int_var_) {
@@ -47399,7 +47399,7 @@ void SystemFunction_31_2(longlong *handleIdentifier)
           uintStack_b8 = 0;
           SystemFunction2f2e0(&uintStack_c8,handleIdentifier,0);
           (**(code **)(*handleIdentifier + 0x38))(handleIdentifier);
-          SystemFunction2f9b0(&uintStack_c8,long_var_,int_var_,int_var_,fVar8);
+          SystemFunction2f9b0(&uintStack_c8,long_var_,int_var_,int_var_,float_var);
           SystemFunction2f410(&uintStack_c8);
         }
         SystemFunction_30_4(&plongStack_118);
@@ -47416,7 +47416,7 @@ void SystemFunction_31_2(longlong *handleIdentifier)
 longlong * SystemFunction_28_8(longlong *handleIdentifier,longlong *resourceIdentifier)
 
 {
-  byte *pbVar1;
+  byte *ptr_byte_var;
   uint32_t uint_var_;
   longlong long_var_;
   uint32_t uint_var_;
@@ -47481,8 +47481,8 @@ longlong * SystemFunction_28_8(longlong *handleIdentifier,longlong *resourceIden
     (**(code **)(*handleIdentifier + 0x38))(handleIdentifier);
   }
   *(longlong *)(*resourceIdentifier + 0xa8) = handleIdentifier[0x15];
-  pbVar1 = (byte *)(*resourceIdentifier + 0xfd);
-  *pbVar1 = *pbVar1 ^ (*(byte *)(*resourceIdentifier + 0xfd) ^ *(byte *)((longlong)handleIdentifier + 0xfd)) & 2;
+  ptr_byte_var = (byte *)(*resourceIdentifier + 0xfd);
+  *ptr_byte_var = *ptr_byte_var ^ (*(byte *)(*resourceIdentifier + 0xfd) ^ *(byte *)((longlong)handleIdentifier + 0xfd)) & 2;
   *(int *)(*resourceIdentifier + SYSTEM_DATA_COMPARE_SIZE0) = (int)handleIdentifier[SYSTEM_NODE_HEADER_SIZE];
   long_var_ = handleIdentifier[0x48];
   long_var_ = *resourceIdentifier;
@@ -47574,8 +47574,8 @@ longlong * SystemFunction_28_8(longlong *handleIdentifier,longlong *resourceIden
   *(uint32_t *)(long_var_ + NODE_INITIALIZED_OFFSET4) = uint_var_;
   *(int *)(long_var_ + NODE_INITIALIZED_OFFSET8) = (int)long_var_;
   *(uint32_t *)(long_var_ + NODE_INITIALIZED_OFFSETc) = uint_var_;
-  pbVar1 = (byte *)(*resourceIdentifier + 0xfd);
-  *pbVar1 = *pbVar1 ^ (*(byte *)(*resourceIdentifier + 0xfd) ^ *(byte *)((longlong)handleIdentifier + 0xfd)) & 1;
+  ptr_byte_var = (byte *)(*resourceIdentifier + 0xfd);
+  *ptr_byte_var = *ptr_byte_var ^ (*(byte *)(*resourceIdentifier + 0xfd) ^ *(byte *)((longlong)handleIdentifier + 0xfd)) & 1;
   *(uint8_t *)(*resourceIdentifier + 0xf7) = *(uint8_t *)((longlong)handleIdentifier + 0xf7);
   *(int *)(*resourceIdentifier + SYSTEM_NODE_HEADER_SIZE8) = (int)handleIdentifier[0x41];
   *(int *)(*resourceIdentifier + 0x1f8) = (int)handleIdentifier[0x3f];
@@ -47681,10 +47681,10 @@ void SystemFunction_21_6(longlong *handleIdentifier,uint64_t resourceIdentifier,
 void SystemFunction_64_8(longlong handleIdentifier,longlong *resourceIdentifier)
 
 {
-  byte bVar1;
+  byte bool_var;
   longlong long_var_;
   uint8_t uint_var_;
-  byte bVar4;
+  byte bool_var;
   uint uint_var_;
   longlong long_var_;
   longlong *ptr_long_var;
@@ -47698,9 +47698,9 @@ void SystemFunction_64_8(longlong handleIdentifier,longlong *resourceIdentifier)
     long_var_ = *(longlong *)(handleIdentifier + 0x1b8);
     if (long_var_ != 0) {
       long_var_ = 0;
-      bVar1 = *(byte *)(handleIdentifier + 0xfd);
-      bVar4 = (byte)((uint)*(uint32_t *)(*(longlong *)(long_var_ + 0x1e0) + 0x1588) >> 0x1b) << 7;
-      *(byte *)(handleIdentifier + 0xfd) = bVar4 | bVar1 & 0x7f;
+      bool_var = *(byte *)(handleIdentifier + 0xfd);
+      bool_var = (byte)((uint)*(uint32_t *)(*(longlong *)(long_var_ + 0x1e0) + 0x1588) >> 0x1b) << 7;
+      *(byte *)(handleIdentifier + 0xfd) = bool_var | bool_var & 0x7f;
       uint_var_ = *(uint *)(long_var_ + 0x138) & 0x3000;
       if (uint_var_ == SYSTEM_DATA_COMPARE_SIZE00) {
         *(uint8_t *)(handleIdentifier + 0xf7) = 1;
@@ -47712,18 +47712,18 @@ void SystemFunction_64_8(longlong handleIdentifier,longlong *resourceIdentifier)
         }
         *(uint8_t *)(handleIdentifier + 0xf7) = uint_var_;
       }
-      bVar4 = bVar4 | bVar1 & 0x77;
-      *(byte *)(handleIdentifier + 0xfd) = bVar4;
+      bool_var = bool_var | bool_var & 0x77;
+      *(byte *)(handleIdentifier + 0xfd) = bool_var;
       ptr_long_var = (longlong *)(long_var_ + 0xb8);
       do {
         if (0xf < long_var_) break;
         if ((*ptr_long_var != 0) && (*(int *)(*ptr_long_var + 0x36c) != 0)) {
-          bVar4 = bVar4 | 8;
-          *(byte *)(handleIdentifier + 0xfd) = bVar4;
+          bool_var = bool_var | 8;
+          *(byte *)(handleIdentifier + 0xfd) = bool_var;
         }
         long_var_ = long_var_ + 1;
         ptr_long_var = ptr_long_var + 1;
-      } while ((bVar4 & 8) == 0);
+      } while ((bool_var & 8) == 0);
       SystemFunction_0_0(handleIdentifier);
     }
   }
@@ -47755,7 +47755,7 @@ void SystemFunction_1_6(longlong handleIdentifier)
   char *pis_initialized;
   longlong *ptr_long_var;
   int compare_result;
-  bool bVar4;
+  bool bool_var;
 
   compare_result = _Mtx_lock(0x180c91910);
   if (compare_result != 0) {
@@ -47766,12 +47766,12 @@ void SystemFunction_1_6(longlong handleIdentifier)
   if (*pis_initialized == '\0') {
     while( true ) {
       LOCK();
-      bVar4 = *(char *)(handleIdentifier + 0xec) == '\0';
-      if (bVar4) {
+      bool_var = *(char *)(handleIdentifier + 0xec) == '\0';
+      if (bool_var) {
         *(char *)(handleIdentifier + 0xec) = '\x01';
       }
       UNLOCK();
-      if (bVar4) break;
+      if (bool_var) break;
       Sleep();
     }
     while (*(int *)(handleIdentifier + 0xe8) != 0) {
@@ -47803,28 +47803,28 @@ void SystemFunction_1_6(longlong handleIdentifier)
 uint64_t SystemFunction_28_8(longlong handleIdentifier)
 
 {
-  byte bVar1;
+  byte bool_var;
   longlong long_var_;
-  byte bVar3;
+  byte bool_var;
 
-  bVar3 = *(byte *)(handleIdentifier + 0xfd);
+  bool_var = *(byte *)(handleIdentifier + 0xfd);
   long_var_ = handleIdentifier;
-  if ((bVar3 & SYSTEM_NODE_HEADER_SIZE) == 0) {
+  if ((bool_var & SYSTEM_NODE_HEADER_SIZE) == 0) {
     long_var_ = SystemFunction085de0(*(uint64_t *)(handleIdentifier + 0x1b0));
   }
   if (0 < *(int *)(long_var_ + SYSTEM_NODE_HEADER_SIZE0)) {
     long_var_ = *(longlong *)(handleIdentifier + 0x1b8);
-    bVar1 = *(byte *)(long_var_ + 0x38c);
-    if (bVar1 == 9) {
-      bVar1 = SystemFunction22d300();
-      *(byte *)(long_var_ + 0x38c) = bVar1;
-      bVar3 = *(byte *)(handleIdentifier + 0xfd);
+    bool_var = *(byte *)(long_var_ + 0x38c);
+    if (bool_var == 9) {
+      bool_var = SystemFunction22d300();
+      *(byte *)(long_var_ + 0x38c) = bool_var;
+      bool_var = *(byte *)(handleIdentifier + 0xfd);
     }
-    if ((bVar3 & SYSTEM_NODE_HEADER_SIZE) == 0) {
+    if ((bool_var & SYSTEM_NODE_HEADER_SIZE) == 0) {
       handleIdentifier = SystemFunction085de0(*(uint64_t *)(handleIdentifier + 0x1b0));
     }
     if ((*(longlong *)(handleIdentifier + 0x1e0) == 0) ||
-       (*(byte *)(*(longlong *)(handleIdentifier + 0x1e0) + 0x15 + (ulonglong)bVar1 * 0x18) < 2)) {
+       (*(byte *)(*(longlong *)(handleIdentifier + 0x1e0) + 0x15 + (ulonglong)bool_var * 0x18) < 2)) {
       return 0;
     }
   }
@@ -47838,11 +47838,11 @@ int SystemFunction_48_0(longlong handleIdentifier,longlong *resourceIdentifier)
   longlong *ptr_long_var;
   longlong *ptr_long_var;
   ulonglong *ptr_uint_var;
-  char cVar4;
+  char char_var;
   int int_var_;
   uint uint_var_;
   longlong long_var_;
-  char *pcVar8;
+  char *ptr_char_var;
   longlong long_var_;
   ulonglong uint_var_;
   ulonglong uint_var_;
@@ -47872,8 +47872,8 @@ int SystemFunction_48_0(longlong handleIdentifier,longlong *resourceIdentifier)
     int_var_ = SystemFunction2d470();
   }
   if ((*(byte *)(resourceIdentifier + 1) & SYSTEM_NODE_HEADER_SIZE) == 0) {
-    cVar4 = SystemFunction_28_8(handleIdentifier);
-    if (cVar4 == '\0') {
+    char_var = SystemFunction_28_8(handleIdentifier);
+    if (char_var == '\0') {
       if ((char)resourceIdentifier[2] != '\0') {
         bufferPtr_80 = (ulonglong *)0x0;
         plongStack_78 = (longlong *)0x0;
@@ -47884,8 +47884,8 @@ int SystemFunction_48_0(longlong handleIdentifier,longlong *resourceIdentifier)
           (*pcStack_70)(&bufferPtr_80,0,0);
         }
       }
-      cVar4 = SystemFunction_28_8(handleIdentifier);
-      if (cVar4 == '\0') {
+      char_var = SystemFunction_28_8(handleIdentifier);
+      if (char_var == '\0') {
         int_var_ = int_var_ + 1;
         if (*resourceIdentifier != 0) {
           ustack_var = handleIdentifier;
@@ -47906,16 +47906,16 @@ int SystemFunction_48_0(longlong handleIdentifier,longlong *resourceIdentifier)
   uintStack_48 = 3;
   node_new = *(uint64_t **)(handleIdentifier + 0x1b8);
   uint_var_ = *(uint *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE0) >> 0x16;
-  pcVar8 = "";
+  ptr_char_var = "";
   if ((char *)node_new[3] != (char *)0x0) {
-    pcVar8 = (char *)node_new[3];
+    ptr_char_var = (char *)node_new[3];
   }
   uint_var_ = 0x1505;
-  cVar4 = *pcVar8;
-  while (cVar4 != '\0') {
-    pcVar8 = pcVar8 + 1;
-    uint_var_ = uint_var_ * 0x21 + (int)cVar4;
-    cVar4 = *pcVar8;
+  char_var = *ptr_char_var;
+  while (char_var != '\0') {
+    ptr_char_var = ptr_char_var + 1;
+    uint_var_ = uint_var_ * 0x21 + (int)char_var;
+    char_var = *ptr_char_var;
   }
   uint_var_ = (ulonglong)uint_var_;
   if ((uint_var_ & 1) != 0) {
@@ -47959,8 +47959,8 @@ int SystemFunction_48_0(longlong handleIdentifier,longlong *resourceIdentifier)
                          (byte)uint_var_ & 1,ptr_long_var,1,0,0,&ustack_var,uint_var_);
   node_new = &ustack_var;
   ustack_var = 0;
-  cVar4 = EngineFunctionde280(uint_var_,ptr_long_var,&ustack_var);
-  if (cVar4 == '\0') {
+  char_var = EngineFunctionde280(uint_var_,ptr_long_var,&ustack_var);
+  if (char_var == '\0') {
     int_var_ = int_var_ + 1;
   }
   resourceIdentifier[6] = *ptr_long_var;
@@ -48019,8 +48019,8 @@ void InitializeSystemProfiler(longlong *handleIdentifier)
 ulonglong SystemFunction_48_8(longlong handleIdentifier)
 
 {
-  int *piVar1;
-  byte bVar2;
+  int *ptr_int_var;
+  byte bool_var;
   longlong long_var_;
   ulonglong uint_var_;
   longlong allocation_size;
@@ -48036,8 +48036,8 @@ ulonglong SystemFunction_48_8(longlong handleIdentifier)
         if (*(longlong *)(long_var_ + 0x1d8) == 0) {
           SystemFunction3b050(long_var_,0);
           allocation_size = g_system_base_1;
-          piVar1 = (int *)(*(longlong *)(long_var_ + *(longlong *)(handleIdentifier + 0x1b8)) + 0x3a8);
-          *piVar1 = *piVar1 + 1;
+          ptr_int_var = (int *)(*(longlong *)(long_var_ + *(longlong *)(handleIdentifier + 0x1b8)) + 0x3a8);
+          *ptr_int_var = *ptr_int_var + 1;
         }
         else if (allocation_size != 0) {
           *(longlong *)(long_var_ + 0x340) = (longlong)*(int *)(allocation_size + 0x224);
@@ -48046,19 +48046,19 @@ ulonglong SystemFunction_48_8(longlong handleIdentifier)
       long_var_ = long_var_ + 8;
     } while (long_var_ < 0x138);
   }
-  bVar2 = *(byte *)(handleIdentifier + 0xf9);
-  if (bVar2 != 0) {
+  bool_var = *(byte *)(handleIdentifier + 0xf9);
+  if (bool_var != 0) {
     if (*(longlong *)(handleIdentifier + 0x1d8) != 0) {
                     // WARNING: Subroutine does not return
       ProcessSystemOperation();
     }
     *(uint64_t *)(handleIdentifier + 0x1d8) = 0;
     LOCK();
-    bVar2 = *(byte *)(handleIdentifier + 0xf9);
+    bool_var = *(byte *)(handleIdentifier + 0xf9);
     *(byte *)(handleIdentifier + 0xf9) = 0;
     UNLOCK();
   }
-  uint_var_ = (ulonglong)bVar2;
+  uint_var_ = (ulonglong)bool_var;
   if (*(longlong *)(handleIdentifier + 0x1e8) != 0) {
     SystemFunction_38_4();
     uint_var_ = *(ulonglong *)(handleIdentifier + 0x1f0);
@@ -48079,7 +48079,7 @@ void SystemFunction_76_0(longlong *handleIdentifier)
   ulonglong uint_var_;
   longlong *ptr_data;
   longlong allocation_size;
-  byte bVar6;
+  byte bool_var;
   uint8_t localBuffer_88 [32];
   ulonglong *bufferPtr_68;
   uint64_t uintStack_60;
@@ -48106,12 +48106,12 @@ void SystemFunction_76_0(longlong *handleIdentifier)
   if (uint_var_ != 0) {
     allocation_size = handleIdentifier[0x37];
     if ((*(ulonglong *)(allocation_size + 0x140) & uint_var_) != 0) {
-      bVar6 = *(byte *)((longlong)handleIdentifier + 0xfd) & SYSTEM_NODE_HEADER_SIZE;
+      bool_var = *(byte *)((longlong)handleIdentifier + 0xfd) & SYSTEM_NODE_HEADER_SIZE;
       ptr_data = handleIdentifier;
-      if (bVar6 == 0) {
+      if (bool_var == 0) {
         ptr_data = (longlong *)SystemFunction085de0(handleIdentifier[0x36]);
       }
-      if (((*(uint *)(ptr_data + SYSTEM_NODE_HEADER_SIZE) & 0x8000000) == 0) && (bVar6 != 0)) {
+      if (((*(uint *)(ptr_data + SYSTEM_NODE_HEADER_SIZE) & 0x8000000) == 0) && (bool_var != 0)) {
         bufferPtr_68 = (ulonglong *)handleIdentifier;
         (**(code **)(*handleIdentifier + 0x28))(handleIdentifier);
         bufferPtr_58 = (void *)0x0;
@@ -48178,10 +48178,10 @@ uint64_t SystemFunction_48_0(longlong handleIdentifier,longlong resourceIdentifi
   uint *ptr_uint_var;
   longlong *ptr_long_var;
   uint uint_var_;
-  code *pcVar4;
-  bool bVar5;
-  byte bVar6;
-  char cVar7;
+  code *ptr_char_var;
+  bool bool_var;
+  byte bool_var;
+  char char_var;
   int int_var_;
   uint uint_var_;
   longlong long_var_;
@@ -48210,13 +48210,13 @@ uint64_t SystemFunction_48_0(longlong handleIdentifier,longlong resourceIdentifi
     long_var_ = SystemFunction085de0(*(uint64_t *)(handleIdentifier + 0x1b0));
   }
   long_var_ = *(longlong *)(handleIdentifier + 0x1b8);
-  bVar6 = *(byte *)(long_var_ + 0x38c);
-  if (bVar6 == 9) {
-    bVar6 = SystemFunction22d300();
-    *(byte *)(long_var_ + 0x38c) = bVar6;
+  bool_var = *(byte *)(long_var_ + 0x38c);
+  if (bool_var == 9) {
+    bool_var = SystemFunction22d300();
+    *(byte *)(long_var_ + 0x38c) = bool_var;
   }
   if ((*(longlong *)(long_var_ + 0x1e0) == 0) ||
-     (((long_var_ = (ulonglong)bVar6 * 0x18,
+     (((long_var_ = (ulonglong)bool_var * 0x18,
        *(char *)(*(longlong *)(long_var_ + 0x1e0) + 0x15 + long_var_) != '\x03' &&
        (*(char *)(*(longlong *)(long_var_ + 0x1e0) + 0x15 + long_var_) != '\x04')) &&
       (*(char *)(*(longlong *)(long_var_ + 0x1e0) + long_var_ + 0x15) != '\x02')))) {
@@ -48242,22 +48242,22 @@ uint64_t SystemFunction_48_0(longlong handleIdentifier,longlong resourceIdentifi
                     // WARNING: Subroutine does not return
         ProcessSystemOperation();
       }
-      bVar5 = false;
+      bool_var = false;
       if ((*(byte *)(handleIdentifier + 0xfd) & 8) != 0) {
         long_var_ = 0xb8;
         pis_initialized5 = (code *)&g_system_call_7;
         do {
           long_var_ = *(longlong *)(long_var_ + *(longlong *)(handleIdentifier + 0x1b8));
           if (((long_var_ != 0) && (long_var_ = *(longlong *)(long_var_ + 0x370), long_var_ != 0)) &&
-             ((cVar7 = SystemFunction2434e0(), cVar7 != '\0' &&
+             ((char_var = SystemFunction2434e0(), char_var != '\0' &&
               ((*(char *)(long_var_ + 0xde) != '\0' &&
-               (bVar5 = true, (*(byte *)(resourceIdentifier + 0x1bd8) & SYSTEM_NODE_HEADER_SIZE) != 0)))))) {
-            pcVar4 = *(code **)(**(longlong **)(resourceIdentifier + 0x3580) + 0xb8);
-            if (pcVar4 == pis_initialized5) {
+               (bool_var = true, (*(byte *)(resourceIdentifier + 0x1bd8) & SYSTEM_NODE_HEADER_SIZE) != 0)))))) {
+            ptr_char_var = *(code **)(**(longlong **)(resourceIdentifier + 0x3580) + 0xb8);
+            if (ptr_char_var == pis_initialized5) {
               long_var_ = (*(longlong **)(resourceIdentifier + 0x3580))[0xda];
             }
             else {
-              long_var_ = (*pcVar4)();
+              long_var_ = (*ptr_char_var)();
             }
             ptr_uint_var = (uint *)(long_var_ + 0x3f68);
             LOCK();
@@ -48300,7 +48300,7 @@ uint64_t SystemFunction_48_0(longlong handleIdentifier,longlong resourceIdentifi
           }
           long_var_ = long_var_ + 8;
         } while (long_var_ < 0x138);
-        if (bVar5) {
+        if (bool_var) {
           return 0;
         }
       }
@@ -48319,7 +48319,7 @@ uint64_t SystemFunction_48_0(longlong handleIdentifier,longlong resourceIdentifi
 void SystemFunction_23_2(longlong handleIdentifier)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   uint64_t *node_root;
   longlong long_var_;
   ulonglong uint_var_;
@@ -48335,9 +48335,9 @@ void SystemFunction_23_2(longlong handleIdentifier)
     if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
       *node_root = *(uint64_t *)(long_var_ + SYSTEM_NODE_HEADER_SIZE);
       *(uint64_t **)(long_var_ + SYSTEM_NODE_HEADER_SIZE) = node_root;
-      piVar1 = (int *)(long_var_ + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      ptr_int_var = (int *)(long_var_ + 0x18);
+      *ptr_int_var = *ptr_int_var + -1;
+      if (*ptr_int_var == 0) {
         InitializeSystemComponents();
         return;
       }
@@ -48355,15 +48355,15 @@ ulonglong SystemFunction_29_6(longlong handleIdentifier,uint *resourceIdentifier
                        longlong parameter_5)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   uint uint_var_;
   uint32_t uint_var_;
   uint32_t uint_var_;
-  float fVar9;
+  float float_var;
   float fVar10;
   float fVar11;
   float fVar12;
@@ -48662,7 +48662,7 @@ LAB_180077879:
       }
     }
     if ((*(uint *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE0) & 0x4000000) != 0) {
-      fVar9 = *systemConfig;
+      float_var = *systemConfig;
       fVar10 = systemConfig[1];
       fVar11 = systemConfig[2];
       fVar12 = systemConfig[3];
@@ -48674,34 +48674,34 @@ LAB_180077879:
       fVar18 = systemConfig[9];
       fVar19 = systemConfig[10];
       fVar20 = systemConfig[0xb];
-      fVar1 = *(float *)(handleIdentifier + 0x124);
-      fVar2 = *(float *)(handleIdentifier + 0x120);
-      fVar3 = *(float *)(handleIdentifier + 0x128);
-      fVar4 = *(float *)(handleIdentifier + 0x134);
-      fVar5 = *(float *)(handleIdentifier + 0x130);
-      fStack_c8 = fVar1 * fVar13 + fVar2 * fVar9 + fVar3 * fVar17;
-      fStack_c4 = fVar1 * fVar14 + fVar2 * fVar10 + fVar3 * fVar18;
-      fStack_c0 = fVar1 * fVar15 + fVar2 * fVar11 + fVar3 * fVar19;
-      fStack_bc = fVar1 * fVar16 + fVar2 * fVar12 + fVar3 * fVar20;
-      fVar1 = *(float *)(handleIdentifier + 0x138);
-      fVar2 = *(float *)(handleIdentifier + 0x140);
-      fVar3 = *(float *)(handleIdentifier + 0x144);
-      fStack_b8 = fVar4 * fVar13 + fVar5 * fVar9 + fVar1 * fVar17;
-      fStack_b4 = fVar4 * fVar14 + fVar5 * fVar10 + fVar1 * fVar18;
-      fStack_b0 = fVar4 * fVar15 + fVar5 * fVar11 + fVar1 * fVar19;
-      fStack_ac = fVar4 * fVar16 + fVar5 * fVar12 + fVar1 * fVar20;
-      fVar1 = *(float *)(handleIdentifier + 0x148);
-      fVar4 = *(float *)(handleIdentifier + 0x154);
-      fVar5 = *(float *)(handleIdentifier + 0x150);
-      fStack_a8 = fVar3 * fVar13 + fVar2 * fVar9 + fVar1 * fVar17;
-      fStack_a4 = fVar3 * fVar14 + fVar2 * fVar10 + fVar1 * fVar18;
-      fStack_a0 = fVar3 * fVar15 + fVar2 * fVar11 + fVar1 * fVar19;
-      fStack_9c = fVar3 * fVar16 + fVar2 * fVar12 + fVar1 * fVar20;
-      fVar1 = *(float *)(handleIdentifier + 0x158);
-      fStack_98 = fVar4 * fVar13 + fVar5 * fVar9 + fVar1 * fVar17 + systemConfig[0xc];
-      fStack_94 = fVar4 * fVar14 + fVar5 * fVar10 + fVar1 * fVar18 + systemConfig[0xd];
-      fStack_90 = fVar4 * fVar15 + fVar5 * fVar11 + fVar1 * fVar19 + systemConfig[0xe];
-      fStack_8c = fVar4 * fVar16 + fVar5 * fVar12 + fVar1 * fVar20 + systemConfig[0xf];
+      float_var = *(float *)(handleIdentifier + 0x124);
+      float_var = *(float *)(handleIdentifier + 0x120);
+      float_var = *(float *)(handleIdentifier + 0x128);
+      float_var = *(float *)(handleIdentifier + 0x134);
+      float_var = *(float *)(handleIdentifier + 0x130);
+      fStack_c8 = float_var * fVar13 + float_var * float_var + float_var * fVar17;
+      fStack_c4 = float_var * fVar14 + float_var * fVar10 + float_var * fVar18;
+      fStack_c0 = float_var * fVar15 + float_var * fVar11 + float_var * fVar19;
+      fStack_bc = float_var * fVar16 + float_var * fVar12 + float_var * fVar20;
+      float_var = *(float *)(handleIdentifier + 0x138);
+      float_var = *(float *)(handleIdentifier + 0x140);
+      float_var = *(float *)(handleIdentifier + 0x144);
+      fStack_b8 = float_var * fVar13 + float_var * float_var + float_var * fVar17;
+      fStack_b4 = float_var * fVar14 + float_var * fVar10 + float_var * fVar18;
+      fStack_b0 = float_var * fVar15 + float_var * fVar11 + float_var * fVar19;
+      fStack_ac = float_var * fVar16 + float_var * fVar12 + float_var * fVar20;
+      float_var = *(float *)(handleIdentifier + 0x148);
+      float_var = *(float *)(handleIdentifier + 0x154);
+      float_var = *(float *)(handleIdentifier + 0x150);
+      fStack_a8 = float_var * fVar13 + float_var * float_var + float_var * fVar17;
+      fStack_a4 = float_var * fVar14 + float_var * fVar10 + float_var * fVar18;
+      fStack_a0 = float_var * fVar15 + float_var * fVar11 + float_var * fVar19;
+      fStack_9c = float_var * fVar16 + float_var * fVar12 + float_var * fVar20;
+      float_var = *(float *)(handleIdentifier + 0x158);
+      fStack_98 = float_var * fVar13 + float_var * float_var + float_var * fVar17 + systemConfig[0xc];
+      fStack_94 = float_var * fVar14 + float_var * fVar10 + float_var * fVar18 + systemConfig[0xd];
+      fStack_90 = float_var * fVar15 + float_var * fVar11 + float_var * fVar19 + systemConfig[0xe];
+      fStack_8c = float_var * fVar16 + float_var * fVar12 + float_var * fVar20 + systemConfig[0xf];
       systemConfig = &fStack_c8;
     }
     SystemFunction_16_8(&uintStack_108,resourceIdentifier + 0xc,*(uint8_t *)(handleIdentifier + 0xf7),systemConfig);
@@ -48748,14 +48748,14 @@ void SystemFunction_88_4(void)
 
 {
   uint uint_var_;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   uint32_t uint_var_;
   uint32_t uint_var_;
-  float fVar9;
+  float float_var;
   float fVar10;
   float fVar11;
   float fVar12;
@@ -48977,7 +48977,7 @@ void SystemFunction_88_4(void)
   SystemFunction_1_6(long_var_ + 0x3388,puVar35,&stack0x00000040);
   pfVar39 = in_stack_00000180;
   if ((*(uint *)(system_RBX + SYSTEM_DATA_COMPARE_SIZE0) & 0x4000000) != 0) {
-    fVar9 = *in_stack_00000180;
+    float_var = *in_stack_00000180;
     fVar10 = in_stack_00000180[1];
     fVar11 = in_stack_00000180[2];
     fVar12 = in_stack_00000180[3];
@@ -48989,38 +48989,38 @@ void SystemFunction_88_4(void)
     fVar18 = in_stack_00000180[9];
     fVar19 = in_stack_00000180[10];
     fVar20 = in_stack_00000180[0xb];
-    fVar2 = *(float *)(system_RBX + 0x124);
-    fVar3 = *(float *)(system_RBX + 0x120);
-    fVar4 = *(float *)(system_RBX + 0x128);
-    fVar5 = *(float *)(system_RBX + 0x134);
-    fVar6 = *(float *)(system_RBX + 0x130);
-    fStack00000000000000a0 = fVar2 * fVar13 + fVar3 * fVar9 + fVar4 * fVar17;
-    fStack00000000000000a4 = fVar2 * fVar14 + fVar3 * fVar10 + fVar4 * fVar18;
-    fStack00000000000000a8 = fVar2 * fVar15 + fVar3 * fVar11 + fVar4 * fVar19;
-    fStack00000000000000ac = fVar2 * fVar16 + fVar3 * fVar12 + fVar4 * fVar20;
-    fVar2 = *(float *)(system_RBX + 0x138);
-    fVar3 = *(float *)(system_RBX + 0x140);
-    fVar4 = *(float *)(system_RBX + 0x144);
-    fStack00000000000000b0 = fVar5 * fVar13 + fVar6 * fVar9 + fVar2 * fVar17;
-    fStack00000000000000b4 = fVar5 * fVar14 + fVar6 * fVar10 + fVar2 * fVar18;
-    fStack00000000000000b8 = fVar5 * fVar15 + fVar6 * fVar11 + fVar2 * fVar19;
-    fStack00000000000000bc = fVar5 * fVar16 + fVar6 * fVar12 + fVar2 * fVar20;
-    fVar2 = *(float *)(system_RBX + 0x148);
-    fVar5 = *(float *)(system_RBX + 0x154);
-    fVar6 = *(float *)(system_RBX + 0x150);
-    fStack00000000000000c0 = fVar4 * fVar13 + fVar3 * fVar9 + fVar2 * fVar17;
-    fStack00000000000000c4 = fVar4 * fVar14 + fVar3 * fVar10 + fVar2 * fVar18;
-    fStack00000000000000c8 = fVar4 * fVar15 + fVar3 * fVar11 + fVar2 * fVar19;
-    fStack00000000000000cc = fVar4 * fVar16 + fVar3 * fVar12 + fVar2 * fVar20;
-    fVar2 = *(float *)(system_RBX + 0x158);
+    float_var = *(float *)(system_RBX + 0x124);
+    float_var = *(float *)(system_RBX + 0x120);
+    float_var = *(float *)(system_RBX + 0x128);
+    float_var = *(float *)(system_RBX + 0x134);
+    float_var = *(float *)(system_RBX + 0x130);
+    fStack00000000000000a0 = float_var * fVar13 + float_var * float_var + float_var * fVar17;
+    fStack00000000000000a4 = float_var * fVar14 + float_var * fVar10 + float_var * fVar18;
+    fStack00000000000000a8 = float_var * fVar15 + float_var * fVar11 + float_var * fVar19;
+    fStack00000000000000ac = float_var * fVar16 + float_var * fVar12 + float_var * fVar20;
+    float_var = *(float *)(system_RBX + 0x138);
+    float_var = *(float *)(system_RBX + 0x140);
+    float_var = *(float *)(system_RBX + 0x144);
+    fStack00000000000000b0 = float_var * fVar13 + float_var * float_var + float_var * fVar17;
+    fStack00000000000000b4 = float_var * fVar14 + float_var * fVar10 + float_var * fVar18;
+    fStack00000000000000b8 = float_var * fVar15 + float_var * fVar11 + float_var * fVar19;
+    fStack00000000000000bc = float_var * fVar16 + float_var * fVar12 + float_var * fVar20;
+    float_var = *(float *)(system_RBX + 0x148);
+    float_var = *(float *)(system_RBX + 0x154);
+    float_var = *(float *)(system_RBX + 0x150);
+    fStack00000000000000c0 = float_var * fVar13 + float_var * float_var + float_var * fVar17;
+    fStack00000000000000c4 = float_var * fVar14 + float_var * fVar10 + float_var * fVar18;
+    fStack00000000000000c8 = float_var * fVar15 + float_var * fVar11 + float_var * fVar19;
+    fStack00000000000000cc = float_var * fVar16 + float_var * fVar12 + float_var * fVar20;
+    float_var = *(float *)(system_RBX + 0x158);
     fStack00000000000000d0 =
-         fVar5 * fVar13 + fVar6 * fVar9 + fVar2 * fVar17 + in_stack_00000180[0xc];
+         float_var * fVar13 + float_var * float_var + float_var * fVar17 + in_stack_00000180[0xc];
     fStack00000000000000d4 =
-         fVar5 * fVar14 + fVar6 * fVar10 + fVar2 * fVar18 + in_stack_00000180[0xd];
+         float_var * fVar14 + float_var * fVar10 + float_var * fVar18 + in_stack_00000180[0xd];
     fStack00000000000000d8 =
-         fVar5 * fVar15 + fVar6 * fVar11 + fVar2 * fVar19 + in_stack_00000180[0xe];
+         float_var * fVar15 + float_var * fVar11 + float_var * fVar19 + in_stack_00000180[0xe];
     fStack00000000000000dc =
-         fVar5 * fVar16 + fVar6 * fVar12 + fVar2 * fVar20 + in_stack_00000180[0xf];
+         float_var * fVar16 + float_var * fVar12 + float_var * fVar20 + in_stack_00000180[0xf];
     pfVar39 = &stack0x000000a0;
   }
   SystemFunction_16_8(&stack0x00000060,long_var_ + 0x30,*(uint8_t *)(system_RBX + 0xf7),pfVar39);
@@ -49073,15 +49073,15 @@ void SystemFunction_88_4(void)
 void InitializeSystemLogger(void)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   int int_var_;
   uint32_t uint_var_;
   uint32_t uint_var_;
-  float fVar9;
+  float float_var;
   float fVar10;
   float fVar11;
   float fVar12;
@@ -49237,7 +49237,7 @@ void InitializeSystemLogger(void)
   SystemFunction_1_6(long_var_ + 0x3388,puVar34,&stack0x00000040);
   pfVar36 = in_stack_00000180;
   if ((*(uint *)(system_RBX + SYSTEM_DATA_COMPARE_SIZE0) & 0x4000000) != 0) {
-    fVar9 = *in_stack_00000180;
+    float_var = *in_stack_00000180;
     fVar10 = in_stack_00000180[1];
     fVar11 = in_stack_00000180[2];
     fVar12 = in_stack_00000180[3];
@@ -49249,38 +49249,38 @@ void InitializeSystemLogger(void)
     fVar18 = in_stack_00000180[9];
     fVar19 = in_stack_00000180[10];
     fVar20 = in_stack_00000180[0xb];
-    fVar1 = *(float *)(system_RBX + 0x124);
-    fVar2 = *(float *)(system_RBX + 0x120);
-    fVar3 = *(float *)(system_RBX + 0x128);
-    fVar4 = *(float *)(system_RBX + 0x134);
-    fVar5 = *(float *)(system_RBX + 0x130);
-    fStack00000000000000a0 = fVar1 * fVar13 + fVar2 * fVar9 + fVar3 * fVar17;
-    fStack00000000000000a4 = fVar1 * fVar14 + fVar2 * fVar10 + fVar3 * fVar18;
-    fStack00000000000000a8 = fVar1 * fVar15 + fVar2 * fVar11 + fVar3 * fVar19;
-    fStack00000000000000ac = fVar1 * fVar16 + fVar2 * fVar12 + fVar3 * fVar20;
-    fVar1 = *(float *)(system_RBX + 0x138);
-    fVar2 = *(float *)(system_RBX + 0x140);
-    fVar3 = *(float *)(system_RBX + 0x144);
-    fStack00000000000000b0 = fVar4 * fVar13 + fVar5 * fVar9 + fVar1 * fVar17;
-    fStack00000000000000b4 = fVar4 * fVar14 + fVar5 * fVar10 + fVar1 * fVar18;
-    fStack00000000000000b8 = fVar4 * fVar15 + fVar5 * fVar11 + fVar1 * fVar19;
-    fStack00000000000000bc = fVar4 * fVar16 + fVar5 * fVar12 + fVar1 * fVar20;
-    fVar1 = *(float *)(system_RBX + 0x148);
-    fVar4 = *(float *)(system_RBX + 0x154);
-    fVar5 = *(float *)(system_RBX + 0x150);
-    fStack00000000000000c0 = fVar3 * fVar13 + fVar2 * fVar9 + fVar1 * fVar17;
-    fStack00000000000000c4 = fVar3 * fVar14 + fVar2 * fVar10 + fVar1 * fVar18;
-    fStack00000000000000c8 = fVar3 * fVar15 + fVar2 * fVar11 + fVar1 * fVar19;
-    fStack00000000000000cc = fVar3 * fVar16 + fVar2 * fVar12 + fVar1 * fVar20;
-    fVar1 = *(float *)(system_RBX + 0x158);
+    float_var = *(float *)(system_RBX + 0x124);
+    float_var = *(float *)(system_RBX + 0x120);
+    float_var = *(float *)(system_RBX + 0x128);
+    float_var = *(float *)(system_RBX + 0x134);
+    float_var = *(float *)(system_RBX + 0x130);
+    fStack00000000000000a0 = float_var * fVar13 + float_var * float_var + float_var * fVar17;
+    fStack00000000000000a4 = float_var * fVar14 + float_var * fVar10 + float_var * fVar18;
+    fStack00000000000000a8 = float_var * fVar15 + float_var * fVar11 + float_var * fVar19;
+    fStack00000000000000ac = float_var * fVar16 + float_var * fVar12 + float_var * fVar20;
+    float_var = *(float *)(system_RBX + 0x138);
+    float_var = *(float *)(system_RBX + 0x140);
+    float_var = *(float *)(system_RBX + 0x144);
+    fStack00000000000000b0 = float_var * fVar13 + float_var * float_var + float_var * fVar17;
+    fStack00000000000000b4 = float_var * fVar14 + float_var * fVar10 + float_var * fVar18;
+    fStack00000000000000b8 = float_var * fVar15 + float_var * fVar11 + float_var * fVar19;
+    fStack00000000000000bc = float_var * fVar16 + float_var * fVar12 + float_var * fVar20;
+    float_var = *(float *)(system_RBX + 0x148);
+    float_var = *(float *)(system_RBX + 0x154);
+    float_var = *(float *)(system_RBX + 0x150);
+    fStack00000000000000c0 = float_var * fVar13 + float_var * float_var + float_var * fVar17;
+    fStack00000000000000c4 = float_var * fVar14 + float_var * fVar10 + float_var * fVar18;
+    fStack00000000000000c8 = float_var * fVar15 + float_var * fVar11 + float_var * fVar19;
+    fStack00000000000000cc = float_var * fVar16 + float_var * fVar12 + float_var * fVar20;
+    float_var = *(float *)(system_RBX + 0x158);
     fStack00000000000000d0 =
-         fVar4 * fVar13 + fVar5 * fVar9 + fVar1 * fVar17 + in_stack_00000180[0xc];
+         float_var * fVar13 + float_var * float_var + float_var * fVar17 + in_stack_00000180[0xc];
     fStack00000000000000d4 =
-         fVar4 * fVar14 + fVar5 * fVar10 + fVar1 * fVar18 + in_stack_00000180[0xd];
+         float_var * fVar14 + float_var * fVar10 + float_var * fVar18 + in_stack_00000180[0xd];
     fStack00000000000000d8 =
-         fVar4 * fVar15 + fVar5 * fVar11 + fVar1 * fVar19 + in_stack_00000180[0xe];
+         float_var * fVar15 + float_var * fVar11 + float_var * fVar19 + in_stack_00000180[0xe];
     fStack00000000000000dc =
-         fVar4 * fVar16 + fVar5 * fVar12 + fVar1 * fVar20 + in_stack_00000180[0xf];
+         float_var * fVar16 + float_var * fVar12 + float_var * fVar20 + in_stack_00000180[0xf];
     pfVar36 = &stack0x000000a0;
   }
   SystemFunction_16_8(&stack0x00000060,long_var_ + 0x30,*(uint8_t *)(system_RBX + 0xf7),pfVar36);
@@ -49333,15 +49333,15 @@ void InitializeSystemLogger(void)
 void SystemFunction_64_6(void)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   int int_var_;
-  float fVar7;
-  float fVar8;
-  float fVar9;
+  float float_var;
+  float float_var;
+  float float_var;
   float fVar10;
   float fVar11;
   float fVar12;
@@ -49391,9 +49391,9 @@ void SystemFunction_64_6(void)
   float fStack00000000000000dc;
 
   if (!in_ZF) {
-    fVar7 = *system_RSI;
-    fVar8 = system_RSI[1];
-    fVar9 = system_RSI[2];
+    float_var = *system_RSI;
+    float_var = system_RSI[1];
+    float_var = system_RSI[2];
     fVar10 = system_RSI[3];
     fVar11 = system_RSI[4];
     fVar12 = system_RSI[5];
@@ -49403,34 +49403,34 @@ void SystemFunction_64_6(void)
     fVar16 = system_RSI[9];
     fVar17 = system_RSI[10];
     fVar18 = system_RSI[0xb];
-    fVar1 = *(float *)(system_RBX + 0x124);
-    fVar2 = *(float *)(system_RBX + 0x120);
-    fVar3 = *(float *)(system_RBX + 0x128);
-    fVar4 = *(float *)(system_RBX + 0x134);
-    fVar5 = *(float *)(system_RBX + 0x130);
-    fStack00000000000000a0 = fVar1 * fVar11 + fVar2 * fVar7 + fVar3 * fVar15;
-    fStack00000000000000a4 = fVar1 * fVar12 + fVar2 * fVar8 + fVar3 * fVar16;
-    fStack00000000000000a8 = fVar1 * fVar13 + fVar2 * fVar9 + fVar3 * fVar17;
-    fStack00000000000000ac = fVar1 * fVar14 + fVar2 * fVar10 + fVar3 * fVar18;
-    fVar1 = *(float *)(system_RBX + 0x138);
-    fVar2 = *(float *)(system_RBX + 0x140);
-    fVar3 = *(float *)(system_RBX + 0x144);
-    fStack00000000000000b0 = fVar4 * fVar11 + fVar5 * fVar7 + fVar1 * fVar15;
-    fStack00000000000000b4 = fVar4 * fVar12 + fVar5 * fVar8 + fVar1 * fVar16;
-    fStack00000000000000b8 = fVar4 * fVar13 + fVar5 * fVar9 + fVar1 * fVar17;
-    fStack00000000000000bc = fVar4 * fVar14 + fVar5 * fVar10 + fVar1 * fVar18;
-    fVar1 = *(float *)(system_RBX + 0x148);
-    fVar4 = *(float *)(system_RBX + 0x154);
-    fVar5 = *(float *)(system_RBX + 0x150);
-    fStack00000000000000c0 = fVar3 * fVar11 + fVar2 * fVar7 + fVar1 * fVar15;
-    fStack00000000000000c4 = fVar3 * fVar12 + fVar2 * fVar8 + fVar1 * fVar16;
-    fStack00000000000000c8 = fVar3 * fVar13 + fVar2 * fVar9 + fVar1 * fVar17;
-    fStack00000000000000cc = fVar3 * fVar14 + fVar2 * fVar10 + fVar1 * fVar18;
-    fVar1 = *(float *)(system_RBX + 0x158);
-    fStack00000000000000d0 = fVar4 * fVar11 + fVar5 * fVar7 + fVar1 * fVar15 + system_RSI[0xc];
-    fStack00000000000000d4 = fVar4 * fVar12 + fVar5 * fVar8 + fVar1 * fVar16 + system_RSI[0xd];
-    fStack00000000000000d8 = fVar4 * fVar13 + fVar5 * fVar9 + fVar1 * fVar17 + system_RSI[0xe];
-    fStack00000000000000dc = fVar4 * fVar14 + fVar5 * fVar10 + fVar1 * fVar18 + system_RSI[0xf];
+    float_var = *(float *)(system_RBX + 0x124);
+    float_var = *(float *)(system_RBX + 0x120);
+    float_var = *(float *)(system_RBX + 0x128);
+    float_var = *(float *)(system_RBX + 0x134);
+    float_var = *(float *)(system_RBX + 0x130);
+    fStack00000000000000a0 = float_var * fVar11 + float_var * float_var + float_var * fVar15;
+    fStack00000000000000a4 = float_var * fVar12 + float_var * float_var + float_var * fVar16;
+    fStack00000000000000a8 = float_var * fVar13 + float_var * float_var + float_var * fVar17;
+    fStack00000000000000ac = float_var * fVar14 + float_var * fVar10 + float_var * fVar18;
+    float_var = *(float *)(system_RBX + 0x138);
+    float_var = *(float *)(system_RBX + 0x140);
+    float_var = *(float *)(system_RBX + 0x144);
+    fStack00000000000000b0 = float_var * fVar11 + float_var * float_var + float_var * fVar15;
+    fStack00000000000000b4 = float_var * fVar12 + float_var * float_var + float_var * fVar16;
+    fStack00000000000000b8 = float_var * fVar13 + float_var * float_var + float_var * fVar17;
+    fStack00000000000000bc = float_var * fVar14 + float_var * fVar10 + float_var * fVar18;
+    float_var = *(float *)(system_RBX + 0x148);
+    float_var = *(float *)(system_RBX + 0x154);
+    float_var = *(float *)(system_RBX + 0x150);
+    fStack00000000000000c0 = float_var * fVar11 + float_var * float_var + float_var * fVar15;
+    fStack00000000000000c4 = float_var * fVar12 + float_var * float_var + float_var * fVar16;
+    fStack00000000000000c8 = float_var * fVar13 + float_var * float_var + float_var * fVar17;
+    fStack00000000000000cc = float_var * fVar14 + float_var * fVar10 + float_var * fVar18;
+    float_var = *(float *)(system_RBX + 0x158);
+    fStack00000000000000d0 = float_var * fVar11 + float_var * float_var + float_var * fVar15 + system_RSI[0xc];
+    fStack00000000000000d4 = float_var * fVar12 + float_var * float_var + float_var * fVar16 + system_RSI[0xd];
+    fStack00000000000000d8 = float_var * fVar13 + float_var * float_var + float_var * fVar17 + system_RSI[0xe];
+    fStack00000000000000dc = float_var * fVar14 + float_var * fVar10 + float_var * fVar18 + system_RSI[0xf];
   }
   SystemFunction_16_8(&stack0x00000060,system_R13 + 0x30,*(uint8_t *)(system_RBX + 0xf7));
   uint_var_ = in_stack_00000098;
@@ -49482,15 +49482,15 @@ void SystemFunction_64_6(void)
 void SystemFunction_95_0(void)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   int int_var_;
-  float fVar7;
-  float fVar8;
-  float fVar9;
+  float float_var;
+  float float_var;
+  float float_var;
   float fVar10;
   float fVar11;
   float fVar12;
@@ -49553,9 +49553,9 @@ void SystemFunction_95_0(void)
   SystemFunction_1_6(system_R13 + 0x3388,&stack0x00000030);
   pfVar29 = in_stack_00000180;
   if ((*(uint *)(system_RBX + SYSTEM_DATA_COMPARE_SIZE0) & 0x4000000) != 0) {
-    fVar7 = *in_stack_00000180;
-    fVar8 = in_stack_00000180[1];
-    fVar9 = in_stack_00000180[2];
+    float_var = *in_stack_00000180;
+    float_var = in_stack_00000180[1];
+    float_var = in_stack_00000180[2];
     fVar10 = in_stack_00000180[3];
     fVar11 = in_stack_00000180[4];
     fVar12 = in_stack_00000180[5];
@@ -49565,38 +49565,38 @@ void SystemFunction_95_0(void)
     fVar16 = in_stack_00000180[9];
     fVar17 = in_stack_00000180[10];
     fVar18 = in_stack_00000180[0xb];
-    fVar1 = *(float *)(system_RBX + 0x124);
-    fVar2 = *(float *)(system_RBX + 0x120);
-    fVar3 = *(float *)(system_RBX + 0x128);
-    fVar4 = *(float *)(system_RBX + 0x134);
-    fVar5 = *(float *)(system_RBX + 0x130);
-    fStack00000000000000a0 = fVar1 * fVar11 + fVar2 * fVar7 + fVar3 * fVar15;
-    fStack00000000000000a4 = fVar1 * fVar12 + fVar2 * fVar8 + fVar3 * fVar16;
-    fStack00000000000000a8 = fVar1 * fVar13 + fVar2 * fVar9 + fVar3 * fVar17;
-    fStack00000000000000ac = fVar1 * fVar14 + fVar2 * fVar10 + fVar3 * fVar18;
-    fVar1 = *(float *)(system_RBX + 0x138);
-    fVar2 = *(float *)(system_RBX + 0x140);
-    fVar3 = *(float *)(system_RBX + 0x144);
-    fStack00000000000000b0 = fVar4 * fVar11 + fVar5 * fVar7 + fVar1 * fVar15;
-    fStack00000000000000b4 = fVar4 * fVar12 + fVar5 * fVar8 + fVar1 * fVar16;
-    fStack00000000000000b8 = fVar4 * fVar13 + fVar5 * fVar9 + fVar1 * fVar17;
-    fStack00000000000000bc = fVar4 * fVar14 + fVar5 * fVar10 + fVar1 * fVar18;
-    fVar1 = *(float *)(system_RBX + 0x148);
-    fVar4 = *(float *)(system_RBX + 0x154);
-    fVar5 = *(float *)(system_RBX + 0x150);
-    fStack00000000000000c0 = fVar3 * fVar11 + fVar2 * fVar7 + fVar1 * fVar15;
-    fStack00000000000000c4 = fVar3 * fVar12 + fVar2 * fVar8 + fVar1 * fVar16;
-    fStack00000000000000c8 = fVar3 * fVar13 + fVar2 * fVar9 + fVar1 * fVar17;
-    fStack00000000000000cc = fVar3 * fVar14 + fVar2 * fVar10 + fVar1 * fVar18;
-    fVar1 = *(float *)(system_RBX + 0x158);
+    float_var = *(float *)(system_RBX + 0x124);
+    float_var = *(float *)(system_RBX + 0x120);
+    float_var = *(float *)(system_RBX + 0x128);
+    float_var = *(float *)(system_RBX + 0x134);
+    float_var = *(float *)(system_RBX + 0x130);
+    fStack00000000000000a0 = float_var * fVar11 + float_var * float_var + float_var * fVar15;
+    fStack00000000000000a4 = float_var * fVar12 + float_var * float_var + float_var * fVar16;
+    fStack00000000000000a8 = float_var * fVar13 + float_var * float_var + float_var * fVar17;
+    fStack00000000000000ac = float_var * fVar14 + float_var * fVar10 + float_var * fVar18;
+    float_var = *(float *)(system_RBX + 0x138);
+    float_var = *(float *)(system_RBX + 0x140);
+    float_var = *(float *)(system_RBX + 0x144);
+    fStack00000000000000b0 = float_var * fVar11 + float_var * float_var + float_var * fVar15;
+    fStack00000000000000b4 = float_var * fVar12 + float_var * float_var + float_var * fVar16;
+    fStack00000000000000b8 = float_var * fVar13 + float_var * float_var + float_var * fVar17;
+    fStack00000000000000bc = float_var * fVar14 + float_var * fVar10 + float_var * fVar18;
+    float_var = *(float *)(system_RBX + 0x148);
+    float_var = *(float *)(system_RBX + 0x154);
+    float_var = *(float *)(system_RBX + 0x150);
+    fStack00000000000000c0 = float_var * fVar11 + float_var * float_var + float_var * fVar15;
+    fStack00000000000000c4 = float_var * fVar12 + float_var * float_var + float_var * fVar16;
+    fStack00000000000000c8 = float_var * fVar13 + float_var * float_var + float_var * fVar17;
+    fStack00000000000000cc = float_var * fVar14 + float_var * fVar10 + float_var * fVar18;
+    float_var = *(float *)(system_RBX + 0x158);
     fStack00000000000000d0 =
-         fVar4 * fVar11 + fVar5 * fVar7 + fVar1 * fVar15 + in_stack_00000180[0xc];
+         float_var * fVar11 + float_var * float_var + float_var * fVar15 + in_stack_00000180[0xc];
     fStack00000000000000d4 =
-         fVar4 * fVar12 + fVar5 * fVar8 + fVar1 * fVar16 + in_stack_00000180[0xd];
+         float_var * fVar12 + float_var * float_var + float_var * fVar16 + in_stack_00000180[0xd];
     fStack00000000000000d8 =
-         fVar4 * fVar13 + fVar5 * fVar9 + fVar1 * fVar17 + in_stack_00000180[0xe];
+         float_var * fVar13 + float_var * float_var + float_var * fVar17 + in_stack_00000180[0xe];
     fStack00000000000000dc =
-         fVar4 * fVar14 + fVar5 * fVar10 + fVar1 * fVar18 + in_stack_00000180[0xf];
+         float_var * fVar14 + float_var * fVar10 + float_var * fVar18 + in_stack_00000180[0xf];
     pfVar29 = &stack0x000000a0;
   }
   SystemFunction_16_8(&stack0x00000060,system_R13 + 0x30,*(uint8_t *)(system_RBX + 0xf7),pfVar29);
@@ -49727,15 +49727,15 @@ ulonglong SystemFunction_29_6(longlong handleIdentifier,uint64_t resourceIdentif
                        uint32_t parameter_5,uint32_t parameter_6)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   float fVar10;
   float fVar11;
   float fVar12;
@@ -49803,36 +49803,36 @@ LAB_180077fcf:
         fVar10 = systemFlags[4];
         fVar11 = systemFlags[5];
         fVar12 = systemFlags[6];
-        fVar1 = *(float *)(handleIdentifier + 0x120);
-        fVar2 = *(float *)(handleIdentifier + 0x128);
-        fVar3 = *(float *)(handleIdentifier + 0x134);
-        fVar4 = *(float *)(handleIdentifier + 0x144);
-        fVar5 = *(float *)(handleIdentifier + 0x154);
+        float_var = *(float *)(handleIdentifier + 0x120);
+        float_var = *(float *)(handleIdentifier + 0x128);
+        float_var = *(float *)(handleIdentifier + 0x134);
+        float_var = *(float *)(handleIdentifier + 0x144);
+        float_var = *(float *)(handleIdentifier + 0x154);
         fVar13 = *systemFlags;
         fVar14 = systemFlags[1];
         fVar15 = systemFlags[2];
         fVar16 = systemFlags[8];
         fVar17 = systemFlags[9];
         fVar18 = systemFlags[10];
-        fVar6 = *(float *)(handleIdentifier + 0x124);
-        fVar7 = *(float *)(handleIdentifier + 0x130);
-        uintStack_80._0_4_ = fVar6 * fVar12 + fVar1 * fVar15 + fVar2 * fVar18;
-        fVar8 = *(float *)(handleIdentifier + 0x138);
-        fVar9 = *(float *)(handleIdentifier + 0x140);
-        uintStack_70._0_4_ = fVar3 * fVar12 + fVar7 * fVar15 + fVar8 * fVar18;
-        uintStack_88 = CONCAT44(fVar6 * fVar11 + fVar1 * fVar14 + fVar2 * fVar17,
-                             fVar6 * fVar10 + fVar1 * fVar13 + fVar2 * fVar16);
-        fVar1 = *(float *)(handleIdentifier + 0x148);
-        fVar2 = *(float *)(handleIdentifier + 0x150);
-        uintStack_60._0_4_ = fVar4 * fVar12 + fVar9 * fVar15 + fVar1 * fVar18;
-        fVar6 = *(float *)(handleIdentifier + 0x158);
-        uintStack_78 = CONCAT44(fVar3 * fVar11 + fVar7 * fVar14 + fVar8 * fVar17,
-                             fVar3 * fVar10 + fVar7 * fVar13 + fVar8 * fVar16);
-        uintStack_68 = CONCAT44(fVar4 * fVar11 + fVar9 * fVar14 + fVar1 * fVar17,
-                             fVar4 * fVar10 + fVar9 * fVar13 + fVar1 * fVar16);
-        fStack_58 = fVar5 * fVar10 + fVar2 * fVar13 + fVar6 * fVar16 + systemFlags[0xc];
-        fStack_54 = fVar5 * fVar11 + fVar2 * fVar14 + fVar6 * fVar17 + systemFlags[0xd];
-        fStack_50 = fVar5 * fVar12 + fVar2 * fVar15 + fVar6 * fVar18 + systemFlags[0xe];
+        float_var = *(float *)(handleIdentifier + 0x124);
+        float_var = *(float *)(handleIdentifier + 0x130);
+        uintStack_80._0_4_ = float_var * fVar12 + float_var * fVar15 + float_var * fVar18;
+        float_var = *(float *)(handleIdentifier + 0x138);
+        float_var = *(float *)(handleIdentifier + 0x140);
+        uintStack_70._0_4_ = float_var * fVar12 + float_var * fVar15 + float_var * fVar18;
+        uintStack_88 = CONCAT44(float_var * fVar11 + float_var * fVar14 + float_var * fVar17,
+                             float_var * fVar10 + float_var * fVar13 + float_var * fVar16);
+        float_var = *(float *)(handleIdentifier + 0x148);
+        float_var = *(float *)(handleIdentifier + 0x150);
+        uintStack_60._0_4_ = float_var * fVar12 + float_var * fVar15 + float_var * fVar18;
+        float_var = *(float *)(handleIdentifier + 0x158);
+        uintStack_78 = CONCAT44(float_var * fVar11 + float_var * fVar14 + float_var * fVar17,
+                             float_var * fVar10 + float_var * fVar13 + float_var * fVar16);
+        uintStack_68 = CONCAT44(float_var * fVar11 + float_var * fVar14 + float_var * fVar17,
+                             float_var * fVar10 + float_var * fVar13 + float_var * fVar16);
+        fStack_58 = float_var * fVar10 + float_var * fVar13 + float_var * fVar16 + systemFlags[0xc];
+        fStack_54 = float_var * fVar11 + float_var * fVar14 + float_var * fVar17 + systemFlags[0xd];
+        fStack_50 = float_var * fVar12 + float_var * fVar15 + float_var * fVar18 + systemFlags[0xe];
       }
       uintStack_4c = 0x3f800000;
       uintStack_60 = (ulonglong)(uint)(float)uintStack_60;
@@ -49855,15 +49855,15 @@ LAB_180077fcf:
 void SystemFunction_60_1(uint64_t handleIdentifier,uint64_t resourceIdentifier,float systemConfig,float systemFlags)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   longlong system_RBX;
   float *system_RDI;
   uint32_t system_R14D;
@@ -49893,39 +49893,39 @@ void SystemFunction_60_1(uint64_t handleIdentifier,uint64_t resourceIdentifier,f
   uint32_t in_stack_000000e0;
   uint32_t in_stack_000000e8;
 
-  fVar4 = *system_RDI;
-  fVar5 = system_RDI[1];
-  fVar6 = system_RDI[2];
-  fVar7 = system_RDI[8];
-  fVar8 = system_RDI[9];
-  fVar9 = system_RDI[10];
-  fVar1 = *(float *)(system_RBX + 0x124);
-  fVar2 = *(float *)(system_RBX + 0x130);
-  fStack0000000000000030 = fVar1 * in_XMM4_Da + (float)handleIdentifier * fVar4 + (float)resourceIdentifier * fVar7;
+  float_var = *system_RDI;
+  float_var = system_RDI[1];
+  float_var = system_RDI[2];
+  float_var = system_RDI[8];
+  float_var = system_RDI[9];
+  float_var = system_RDI[10];
+  float_var = *(float *)(system_RBX + 0x124);
+  float_var = *(float *)(system_RBX + 0x130);
+  fStack0000000000000030 = float_var * in_XMM4_Da + (float)handleIdentifier * float_var + (float)resourceIdentifier * float_var;
   fStack0000000000000034 =
-       fVar1 * in_XMM4_Db + (float)((ulonglong)handleIdentifier >> SYSTEM_NODE_HEADER_SIZE) * fVar5 +
-       (float)((ulonglong)resourceIdentifier >> SYSTEM_NODE_HEADER_SIZE) * fVar8;
-  fStack0000000000000038 = fVar1 * in_XMM4_Dc + in_XMM0_Dc * fVar6 + in_XMM1_Dc * fVar9;
-  fVar1 = *(float *)(system_RBX + 0x138);
-  fVar3 = *(float *)(system_RBX + 0x140);
-  fStack0000000000000040 = in_XMM5_Da * in_XMM4_Da + fVar2 * fVar4 + fVar1 * fVar7;
-  fStack0000000000000044 = in_XMM5_Da * in_XMM4_Db + fVar2 * fVar5 + fVar1 * fVar8;
-  fStack0000000000000048 = in_XMM5_Da * in_XMM4_Dc + fVar2 * fVar6 + fVar1 * fVar9;
-  fVar1 = *(float *)(system_RBX + 0x148);
-  fVar2 = *(float *)(system_RBX + 0x150);
-  fStack0000000000000050 = systemFlags * in_XMM4_Da + fVar3 * fVar4 + fVar1 * fVar7;
-  fStack0000000000000054 = systemFlags * in_XMM4_Db + fVar3 * fVar5 + fVar1 * fVar8;
-  fStack0000000000000058 = systemFlags * in_XMM4_Dc + fVar3 * fVar6 + fVar1 * fVar9;
-  fVar1 = *(float *)(system_RBX + 0x158);
-  fStack0000000000000060 = systemConfig * in_XMM4_Da + fVar2 * fVar4 + fVar1 * fVar7 + system_RDI[0xc];
-  fStack0000000000000064 = systemConfig * in_XMM4_Db + fVar2 * fVar5 + fVar1 * fVar8 + system_RDI[0xd];
-  fStack0000000000000068 = systemConfig * in_XMM4_Dc + fVar2 * fVar6 + fVar1 * fVar9 + system_RDI[0xe];
+       float_var * in_XMM4_Db + (float)((ulonglong)handleIdentifier >> SYSTEM_NODE_HEADER_SIZE) * float_var +
+       (float)((ulonglong)resourceIdentifier >> SYSTEM_NODE_HEADER_SIZE) * float_var;
+  fStack0000000000000038 = float_var * in_XMM4_Dc + in_XMM0_Dc * float_var + in_XMM1_Dc * float_var;
+  float_var = *(float *)(system_RBX + 0x138);
+  float_var = *(float *)(system_RBX + 0x140);
+  fStack0000000000000040 = in_XMM5_Da * in_XMM4_Da + float_var * float_var + float_var * float_var;
+  fStack0000000000000044 = in_XMM5_Da * in_XMM4_Db + float_var * float_var + float_var * float_var;
+  fStack0000000000000048 = in_XMM5_Da * in_XMM4_Dc + float_var * float_var + float_var * float_var;
+  float_var = *(float *)(system_RBX + 0x148);
+  float_var = *(float *)(system_RBX + 0x150);
+  fStack0000000000000050 = systemFlags * in_XMM4_Da + float_var * float_var + float_var * float_var;
+  fStack0000000000000054 = systemFlags * in_XMM4_Db + float_var * float_var + float_var * float_var;
+  fStack0000000000000058 = systemFlags * in_XMM4_Dc + float_var * float_var + float_var * float_var;
+  float_var = *(float *)(system_RBX + 0x158);
+  fStack0000000000000060 = systemConfig * in_XMM4_Da + float_var * float_var + float_var * float_var + system_RDI[0xc];
+  fStack0000000000000064 = systemConfig * in_XMM4_Db + float_var * float_var + float_var * float_var + system_RDI[0xd];
+  fStack0000000000000068 = systemConfig * in_XMM4_Dc + float_var * float_var + float_var * float_var + system_RDI[0xe];
   uStack0000000000000028 = in_stack_000000e8;
   uStack000000000000006c = 0x3f800000;
   uStack000000000000005c = 0;
   uStack000000000000004c = 0;
   uStack000000000000003c = 0;
-  SystemFunction52ca0(0x3f800000,fVar1 * fVar7,system_R14D,&stack0x00000030,in_stack_000000e0);
+  SystemFunction52ca0(0x3f800000,float_var * float_var,system_R14D,&stack0x00000030,in_stack_000000e0);
   return;
 }
 // void SystemFunction_84_3(void)
@@ -49972,7 +49972,7 @@ void SystemFunction_0_0(longlong handleIdentifier)
   uint32_t uint_var_;
   uint32_t uint_var_;
   uint32_t uint_var_;
-  char cVar5;
+  char char_var;
   uint8_t uint_var_;
   uint64_t *node_previous;
   longlong long_var_;
@@ -49999,15 +49999,15 @@ LAB_1800782d4:
   else {
     uint_var_ = *(uint *)(*(longlong *)(long_var_ + 0x1b8) + 0x138);
     if ((uint_var_ & SYSTEM_NODE_HEADER_SIZE) != 0) {
-      cVar5 = '\0';
+      char_var = '\0';
       goto LAB_1800782e0;
     }
     if ((uint_var_ & SYSTEM_DATA_COMPARE_SIZE) == 0) goto LAB_1800782d4;
     bVar10 = (*(byte *)(handleIdentifier + 0xfd) & 2) == 0;
   }
-  cVar5 = bVar10 + '\x01';
+  char_var = bVar10 + '\x01';
 LAB_1800782e0:
-  *(char *)(handleIdentifier + 0xff) = cVar5;
+  *(char *)(handleIdentifier + 0xff) = char_var;
   long_var_ = *(longlong *)(handleIdentifier + 0x1b8);
   uint_var_ = *(uint *)(long_var_ + 0x138) & 0x3000;
   uint_var_ = 0;
@@ -50070,13 +50070,13 @@ void SystemFunction_2_0(longlong handleIdentifier)
   uint32_t uint_var_;
   uint32_t uint_var_;
   uint32_t uint_var_;
-  char cVar5;
+  char char_var;
   uint8_t uint_var_;
   longlong in_RAX;
   uint64_t *node_previous;
   uint uint_var_;
   longlong system_RBX;
-  bool bVar9;
+  bool bool_var;
   float fVar10;
 
   if ((in_RAX != 0) && (long_var_ = *(longlong *)(in_RAX + 0x28), long_var_ != 0)) {
@@ -50091,20 +50091,20 @@ void SystemFunction_2_0(longlong handleIdentifier)
   }
   if (*(longlong *)(handleIdentifier + 0x1b8) == 0) {
 LAB_1800782d4:
-    bVar9 = (*(byte *)(system_RBX + 0xfd) & 2) != 0;
+    bool_var = (*(byte *)(system_RBX + 0xfd) & 2) != 0;
   }
   else {
     uint_var_ = *(uint *)(*(longlong *)(handleIdentifier + 0x1b8) + 0x138);
     if ((uint_var_ & SYSTEM_NODE_HEADER_SIZE) != 0) {
-      cVar5 = '\0';
+      char_var = '\0';
       goto LAB_1800782e0;
     }
     if ((uint_var_ & SYSTEM_DATA_COMPARE_SIZE) == 0) goto LAB_1800782d4;
-    bVar9 = (*(byte *)(system_RBX + 0xfd) & 2) == 0;
+    bool_var = (*(byte *)(system_RBX + 0xfd) & 2) == 0;
   }
-  cVar5 = bVar9 + '\x01';
+  char_var = bool_var + '\x01';
 LAB_1800782e0:
-  *(char *)(system_RBX + 0xff) = cVar5;
+  *(char *)(system_RBX + 0xff) = char_var;
   long_var_ = *(longlong *)(system_RBX + 0x1b8);
   uint_var_ = *(uint *)(long_var_ + 0x138) & 0x3000;
   uint_var_ = 0;
@@ -50167,14 +50167,14 @@ void SystemFunction_8_9(float handleIdentifier,float resourceIdentifier,float sy
   uint32_t uint_var_;
   uint32_t uint_var_;
   uint32_t uint_var_;
-  char cVar5;
+  char char_var;
   uint8_t uint_var_;
   longlong in_RAX;
   uint64_t *node_previous;
   longlong in_RCX;
   uint uint_var_;
   longlong system_RBX;
-  bool bVar9;
+  bool bool_var;
   float fVar10;
   float in_XMM4_Da;
   float in_XMM5_Da;
@@ -50187,20 +50187,20 @@ void SystemFunction_8_9(float handleIdentifier,float resourceIdentifier,float sy
                              *(float *)(in_RAX + 0x98) < system_XMM8_Da);
   if (*(longlong *)(in_RCX + 0x1b8) == 0) {
 LAB_1800782d4:
-    bVar9 = (*(byte *)(system_RBX + 0xfd) & 2) != 0;
+    bool_var = (*(byte *)(system_RBX + 0xfd) & 2) != 0;
   }
   else {
     uint_var_ = *(uint *)(*(longlong *)(in_RCX + 0x1b8) + 0x138);
     if ((uint_var_ & SYSTEM_NODE_HEADER_SIZE) != 0) {
-      cVar5 = '\0';
+      char_var = '\0';
       goto LAB_1800782e0;
     }
     if ((uint_var_ & SYSTEM_DATA_COMPARE_SIZE) == 0) goto LAB_1800782d4;
-    bVar9 = (*(byte *)(system_RBX + 0xfd) & 2) == 0;
+    bool_var = (*(byte *)(system_RBX + 0xfd) & 2) == 0;
   }
-  cVar5 = bVar9 + '\x01';
+  char_var = bool_var + '\x01';
 LAB_1800782e0:
-  *(char *)(system_RBX + 0xff) = cVar5;
+  *(char *)(system_RBX + 0xff) = char_var;
   long_var_ = *(longlong *)(system_RBX + 0x1b8);
   uint_var_ = *(uint *)(long_var_ + 0x138) & 0x3000;
   uint_var_ = 0;
@@ -50265,30 +50265,30 @@ void InitializeSystemLogger(longlong handleIdentifier)
   uint32_t uint_var_;
   uint32_t uint_var_;
   uint32_t uint_var_;
-  char cVar5;
+  char char_var;
   uint8_t uint_var_;
   uint64_t *node_previous;
   uint uint_var_;
   longlong system_RBX;
-  bool bVar9;
+  bool bool_var;
   float system_XMM8_Da;
 
   if (*(longlong *)(handleIdentifier + 0x1b8) == 0) {
 LAB_1800782d4:
-    bVar9 = (*(byte *)(system_RBX + 0xfd) & 2) != 0;
+    bool_var = (*(byte *)(system_RBX + 0xfd) & 2) != 0;
   }
   else {
     uint_var_ = *(uint *)(*(longlong *)(handleIdentifier + 0x1b8) + 0x138);
     if ((uint_var_ & SYSTEM_NODE_HEADER_SIZE) != 0) {
-      cVar5 = '\0';
+      char_var = '\0';
       goto LAB_1800782e0;
     }
     if ((uint_var_ & SYSTEM_DATA_COMPARE_SIZE) == 0) goto LAB_1800782d4;
-    bVar9 = (*(byte *)(system_RBX + 0xfd) & 2) == 0;
+    bool_var = (*(byte *)(system_RBX + 0xfd) & 2) == 0;
   }
-  cVar5 = bVar9 + '\x01';
+  char_var = bool_var + '\x01';
 LAB_1800782e0:
-  *(char *)(system_RBX + 0xff) = cVar5;
+  *(char *)(system_RBX + 0xff) = char_var;
   long_var_ = *(longlong *)(system_RBX + 0x1b8);
   uint_var_ = *(uint *)(long_var_ + 0x138) & 0x3000;
   uint_var_ = 0;
@@ -50786,14 +50786,14 @@ void SystemFunction_60_8(longlong handleIdentifier)
 
 {
   float *pfVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   float fVar10;
   float fVar11;
   float fVar12;
@@ -50824,70 +50824,70 @@ void SystemFunction_60_8(longlong handleIdentifier)
   *(uint32_t *)(handleIdentifier + 0x8c) = 0;
   *(uint32_t *)(handleIdentifier + 0x9c) = 0;
   *(uint32_t *)(handleIdentifier + 0xac) = 0;
-  fVar7 = pfVar1[6];
-  fVar5 = pfVar1[0xd];
-  fVar2 = pfVar1[9];
-  fVar6 = pfVar1[1];
-  fVar4 = pfVar1[0xe];
+  float_var = pfVar1[6];
+  float_var = pfVar1[0xd];
+  float_var = pfVar1[9];
+  float_var = pfVar1[1];
+  float_var = pfVar1[0xe];
   fVar12 = pfVar1[2];
   fVar14 = pfVar1[10];
   fVar17 = pfVar1[5];
-  fVar13 = fVar4 * fVar2 - fVar5 * fVar14;
-  fVar10 = fVar4 * fVar17 - fVar5 * fVar7;
-  fVar11 = fVar4 * fVar6 - fVar5 * fVar12;
-  fVar18 = fVar17 * fVar14 - fVar2 * fVar7;
-  fVar9 = fVar6 * fVar14 - fVar2 * fVar12;
+  fVar13 = float_var * float_var - float_var * fVar14;
+  fVar10 = float_var * fVar17 - float_var * float_var;
+  fVar11 = float_var * float_var - float_var * fVar12;
+  fVar18 = fVar17 * fVar14 - float_var * float_var;
+  float_var = float_var * fVar14 - float_var * fVar12;
   *(float *)(handleIdentifier + 0xc0) = fVar18;
-  fVar8 = fVar6 * fVar7 - fVar17 * fVar12;
+  float_var = float_var * float_var - fVar17 * fVar12;
   fVar19 = fVar12 * pfVar1[9] - fVar14 * pfVar1[1];
   *(float *)(handleIdentifier + 0xc4) = fVar19;
-  fVar5 = pfVar1[5];
-  fVar4 = pfVar1[1];
+  float_var = pfVar1[5];
+  float_var = pfVar1[1];
   *(uint32_t *)(handleIdentifier + 0xcc) = 0;
-  fVar20 = fVar7 * fVar4 - fVar12 * fVar5;
+  fVar20 = float_var * float_var - fVar12 * float_var;
   *(float *)(handleIdentifier + 200) = fVar20;
-  fVar3 = fVar7 * pfVar1[8] - fVar14 * pfVar1[4];
-  *(float *)(handleIdentifier + 0xd0) = fVar3;
+  float_var = float_var * pfVar1[8] - fVar14 * pfVar1[4];
+  *(float *)(handleIdentifier + 0xd0) = float_var;
   fVar16 = fVar14 * *pfVar1 - fVar12 * pfVar1[8];
   *(float *)(handleIdentifier + 0xd4) = fVar16;
-  fVar5 = pfVar1[4];
-  fVar4 = *pfVar1;
+  float_var = pfVar1[4];
+  float_var = *pfVar1;
   *(uint32_t *)(handleIdentifier + 0xdc) = 0;
-  fVar15 = fVar12 * fVar5 - fVar7 * fVar4;
+  fVar15 = fVar12 * float_var - float_var * float_var;
   *(float *)(handleIdentifier + 0xd8) = fVar15;
-  fVar4 = fVar2 * pfVar1[4] - fVar17 * pfVar1[8];
-  *(float *)(handleIdentifier + 0xe0) = fVar4;
-  fVar2 = fVar6 * pfVar1[8] - fVar2 * *pfVar1;
-  *(float *)(handleIdentifier + 0xe4) = fVar2;
-  fVar7 = pfVar1[4];
-  fVar5 = *pfVar1;
+  float_var = float_var * pfVar1[4] - fVar17 * pfVar1[8];
+  *(float *)(handleIdentifier + 0xe0) = float_var;
+  float_var = float_var * pfVar1[8] - float_var * *pfVar1;
+  *(float *)(handleIdentifier + 0xe4) = float_var;
+  float_var = pfVar1[4];
+  float_var = *pfVar1;
   *(uint32_t *)(handleIdentifier + 0xec) = 0;
-  fVar17 = fVar17 * fVar5 - fVar6 * fVar7;
+  fVar17 = fVar17 * float_var - float_var * float_var;
   *(float *)(handleIdentifier + 0xe8) = fVar17;
-  fVar5 = (fVar10 * pfVar1[8] - fVar13 * pfVar1[4]) - fVar18 * pfVar1[0xc];
-  *(float *)(handleIdentifier + 0xf0) = fVar5;
-  fVar14 = (fVar13 * *pfVar1 - fVar11 * pfVar1[8]) + fVar9 * pfVar1[0xc];
+  float_var = (fVar10 * pfVar1[8] - fVar13 * pfVar1[4]) - fVar18 * pfVar1[0xc];
+  *(float *)(handleIdentifier + 0xf0) = float_var;
+  fVar14 = (fVar13 * *pfVar1 - fVar11 * pfVar1[8]) + float_var * pfVar1[0xc];
   *(float *)(handleIdentifier + 0xf4) = fVar14;
-  fVar12 = (fVar11 * pfVar1[4] - fVar10 * *pfVar1) - fVar8 * pfVar1[0xc];
+  fVar12 = (fVar11 * pfVar1[4] - fVar10 * *pfVar1) - float_var * pfVar1[0xc];
   *(float *)(handleIdentifier + 0xf8) = fVar12;
-  fVar6 = (fVar18 * *pfVar1 - fVar9 * pfVar1[4]) + fVar8 * pfVar1[8];
-  *(float *)(handleIdentifier + 0xfc) = fVar6;
-  fVar7 = fVar19 * pfVar1[4] + fVar18 * *pfVar1 + fVar20 * pfVar1[8];
-  if (fVar7 != 1.0) {
-    fVar7 = 1.0 / fVar7;
-    *(float *)(handleIdentifier + 0xd0) = fVar3 * fVar7;
-    *(float *)(handleIdentifier + 0xe0) = fVar4 * fVar7;
-    *(float *)(handleIdentifier + 0xc0) = fVar18 * fVar7;
-    *(float *)(handleIdentifier + 0xc4) = fVar19 * fVar7;
-    *(float *)(handleIdentifier + 200) = fVar20 * fVar7;
-    *(float *)(handleIdentifier + 0xd4) = fVar16 * fVar7;
-    *(float *)(handleIdentifier + 0xd8) = fVar15 * fVar7;
-    *(float *)(handleIdentifier + 0xe4) = fVar2 * fVar7;
-    *(float *)(handleIdentifier + 0xe8) = fVar17 * fVar7;
-    *(float *)(handleIdentifier + 0xf0) = fVar5 * fVar7;
-    *(float *)(handleIdentifier + 0xf4) = fVar14 * fVar7;
-    *(float *)(handleIdentifier + 0xf8) = fVar12 * fVar7;
-    *(float *)(handleIdentifier + 0xfc) = fVar6 * fVar7;
+  float_var = (fVar18 * *pfVar1 - float_var * pfVar1[4]) + float_var * pfVar1[8];
+  *(float *)(handleIdentifier + 0xfc) = float_var;
+  float_var = fVar19 * pfVar1[4] + fVar18 * *pfVar1 + fVar20 * pfVar1[8];
+  if (float_var != 1.0) {
+    float_var = 1.0 / float_var;
+    *(float *)(handleIdentifier + 0xd0) = float_var * float_var;
+    *(float *)(handleIdentifier + 0xe0) = float_var * float_var;
+    *(float *)(handleIdentifier + 0xc0) = fVar18 * float_var;
+    *(float *)(handleIdentifier + 0xc4) = fVar19 * float_var;
+    *(float *)(handleIdentifier + 200) = fVar20 * float_var;
+    *(float *)(handleIdentifier + 0xd4) = fVar16 * float_var;
+    *(float *)(handleIdentifier + 0xd8) = fVar15 * float_var;
+    *(float *)(handleIdentifier + 0xe4) = float_var * float_var;
+    *(float *)(handleIdentifier + 0xe8) = fVar17 * float_var;
+    *(float *)(handleIdentifier + 0xf0) = float_var * float_var;
+    *(float *)(handleIdentifier + 0xf4) = fVar14 * float_var;
+    *(float *)(handleIdentifier + 0xf8) = fVar12 * float_var;
+    *(float *)(handleIdentifier + 0xfc) = float_var * float_var;
   }
   return;
 }
@@ -51090,18 +51090,18 @@ void SystemFunction_3_2(longlong handleIdentifier)
 {
   longlong long_var_;
   longlong long_var_;
-  byte bVar3;
+  byte bool_var;
 
   long_var_ = *(longlong *)(handleIdentifier + 0x210);
   *(uint32_t *)(handleIdentifier + 0x1f8) = *(uint32_t *)(long_var_ + SYSTEM_DATA_COMPARE_SIZE);
   *(uint32_t *)(handleIdentifier + 0x1fc) = *(uint32_t *)(long_var_ + 0x88);
   *(uint32_t *)(handleIdentifier + SYSTEM_NODE_HEADER_SIZE0) = *(uint32_t *)(long_var_ + 0x60);
-  bVar3 = *(byte *)(handleIdentifier + 0xfd) & 0x40;
-  if ((((bVar3 != 0) && (long_var_ != 0)) || (*(longlong *)(handleIdentifier + 0x1b0) == 0)) ||
+  bool_var = *(byte *)(handleIdentifier + 0xfd) & 0x40;
+  if ((((bool_var != 0) && (long_var_ != 0)) || (*(longlong *)(handleIdentifier + 0x1b0) == 0)) ||
      (long_var_ = SystemFunction_7_2(), handleIdentifier == long_var_)) {
     *(uint32_t *)(handleIdentifier + SYSTEM_NODE_HEADER_SIZE4) = *(uint32_t *)(long_var_ + 200);
   }
-  if (((bVar3 == 0) || (long_var_ == 0)) &&
+  if (((bool_var == 0) || (long_var_ == 0)) &&
      ((*(longlong *)(handleIdentifier + 0x1b0) != 0 && (long_var_ = SystemFunction_7_2(), handleIdentifier != long_var_)))) {
     return;
   }
@@ -51114,14 +51114,14 @@ void InitializeAudioMutex(longlong handleIdentifier,longlong resourceIdentifier)
 
 {
   longlong *ptr_long_var;
-  int *piVar2;
+  int *ptr_int_var;
   longlong *ptr_long_var;
-  byte *pbVar4;
+  byte *ptr_byte_var;
   uint64_t *ptr_uint_var;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   float fVar10;
   float fVar11;
   float fVar12;
@@ -51170,9 +51170,9 @@ void InitializeAudioMutex(longlong handleIdentifier,longlong resourceIdentifier)
     long_var_ = SystemFunction085de0(*(uint64_t *)(handleIdentifier + 0x1b0));
   }
   LOCK();
-  piVar2 = (int *)(long_var_ + 0xed8);
-  int_var_ = *piVar2;
-  *piVar2 = *piVar2 + *(int *)(long_var_ + SYSTEM_NODE_HEADER_SIZE0);
+  ptr_int_var = (int *)(long_var_ + 0xed8);
+  int_var_ = *ptr_int_var;
+  *ptr_int_var = *ptr_int_var + *(int *)(long_var_ + SYSTEM_NODE_HEADER_SIZE0);
   UNLOCK();
   long_var_ = *(longlong *)(handleIdentifier + 600);
   uint_var_ = *(uint8_t *)(resourceIdentifier + 0x24);
@@ -51219,23 +51219,23 @@ void InitializeAudioMutex(longlong handleIdentifier,longlong resourceIdentifier)
     fVar28 = pfVar18[5];
     fVar29 = pfVar18[6];
     fVar30 = pfVar18[7];
-    fVar6 = *(float *)(long_var_ + 0x374);
-    fVar7 = *(float *)(long_var_ + 0x370);
-    fVar8 = *(float *)(long_var_ + 0x378);
-    fVar9 = *(float *)(long_var_ + 900);
+    float_var = *(float *)(long_var_ + 0x374);
+    float_var = *(float *)(long_var_ + 0x370);
+    float_var = *(float *)(long_var_ + 0x378);
+    float_var = *(float *)(long_var_ + 900);
     fVar10 = *(float *)(long_var_ + 0x394);
     fVar11 = *(float *)(long_var_ + 0x380);
     fVar12 = *(float *)(long_var_ + 0x388);
     fVar13 = *(float *)(long_var_ + 0x390);
     fVar14 = *(float *)(long_var_ + 0x398);
-    *pfVar18 = fVar6 * fVar27 + fVar7 * fVar23 + fVar8 * fVar19;
-    pfVar18[1] = fVar6 * fVar28 + fVar7 * fVar24 + fVar8 * fVar20;
-    pfVar18[2] = fVar6 * fVar29 + fVar7 * fVar25 + fVar8 * fVar21;
-    pfVar18[3] = fVar6 * fVar30 + fVar7 * fVar26 + fVar8 * fVar22;
-    pfVar18[4] = fVar9 * fVar27 + fVar11 * fVar23 + fVar12 * fVar19;
-    pfVar18[5] = fVar9 * fVar28 + fVar11 * fVar24 + fVar12 * fVar20;
-    pfVar18[6] = fVar9 * fVar29 + fVar11 * fVar25 + fVar12 * fVar21;
-    pfVar18[7] = fVar9 * fVar30 + fVar11 * fVar26 + fVar12 * fVar22;
+    *pfVar18 = float_var * fVar27 + float_var * fVar23 + float_var * fVar19;
+    pfVar18[1] = float_var * fVar28 + float_var * fVar24 + float_var * fVar20;
+    pfVar18[2] = float_var * fVar29 + float_var * fVar25 + float_var * fVar21;
+    pfVar18[3] = float_var * fVar30 + float_var * fVar26 + float_var * fVar22;
+    pfVar18[4] = float_var * fVar27 + fVar11 * fVar23 + fVar12 * fVar19;
+    pfVar18[5] = float_var * fVar28 + fVar11 * fVar24 + fVar12 * fVar20;
+    pfVar18[6] = float_var * fVar29 + fVar11 * fVar25 + fVar12 * fVar21;
+    pfVar18[7] = float_var * fVar30 + fVar11 * fVar26 + fVar12 * fVar22;
     pfVar18[8] = fVar10 * fVar27 + fVar13 * fVar23 + fVar14 * fVar19;
     pfVar18[9] = fVar10 * fVar28 + fVar13 * fVar24 + fVar14 * fVar20;
     pfVar18[10] = fVar10 * fVar29 + fVar13 * fVar25 + fVar14 * fVar21;
@@ -51331,9 +51331,9 @@ void InitializeAudioMutex(longlong handleIdentifier,longlong resourceIdentifier)
             do {
               compare_result9 = *(int *)(long_var_ + 0x30) + int_var_;
               int_var_ = int_var_ + 1;
-              pbVar4 = (byte *)(*(longlong *)(long_var_ + SYSTEM_DATA_COMPARE_SIZE) + long_var_);
+              ptr_byte_var = (byte *)(*(longlong *)(long_var_ + SYSTEM_DATA_COMPARE_SIZE) + long_var_);
               long_var_ = long_var_ + 1;
-              *(int *)(*ptr_long_var + (ulonglong)*pbVar4 * 4) = compare_result9;
+              *(int *)(*ptr_long_var + (ulonglong)*ptr_byte_var * 4) = compare_result9;
             } while (long_var_ < int_var_);
           }
         }
@@ -51419,14 +51419,14 @@ void SystemFunction_26_0(longlong handleIdentifier)
 
 {
   longlong *ptr_long_var;
-  int *piVar2;
+  int *ptr_int_var;
   longlong *ptr_long_var;
-  byte *pbVar4;
+  byte *ptr_byte_var;
   uint64_t *ptr_uint_var;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   float fVar10;
   float fVar11;
   float fVar12;
@@ -51477,9 +51477,9 @@ void SystemFunction_26_0(longlong handleIdentifier)
     long_var_ = SystemFunction085de0(*(uint64_t *)(handleIdentifier + 0x1b0));
   }
   LOCK();
-  piVar2 = (int *)(long_var_ + 0xed8);
-  int_var_ = *piVar2;
-  *piVar2 = *piVar2 + *(int *)(long_var_ + SYSTEM_NODE_HEADER_SIZE0);
+  ptr_int_var = (int *)(long_var_ + 0xed8);
+  int_var_ = *ptr_int_var;
+  *ptr_int_var = *ptr_int_var + *(int *)(long_var_ + SYSTEM_NODE_HEADER_SIZE0);
   UNLOCK();
   long_var_ = *(longlong *)(handleIdentifier + 600);
   uint_var_ = *(uint8_t *)(system_RDI + 0x24);
@@ -51526,23 +51526,23 @@ void SystemFunction_26_0(longlong handleIdentifier)
     fVar28 = pfVar18[5];
     fVar29 = pfVar18[6];
     fVar30 = pfVar18[7];
-    fVar6 = *(float *)(long_var_ + 0x374);
-    fVar7 = *(float *)(long_var_ + 0x370);
-    fVar8 = *(float *)(long_var_ + 0x378);
-    fVar9 = *(float *)(long_var_ + 900);
+    float_var = *(float *)(long_var_ + 0x374);
+    float_var = *(float *)(long_var_ + 0x370);
+    float_var = *(float *)(long_var_ + 0x378);
+    float_var = *(float *)(long_var_ + 900);
     fVar10 = *(float *)(long_var_ + 0x394);
     fVar11 = *(float *)(long_var_ + 0x380);
     fVar12 = *(float *)(long_var_ + 0x388);
     fVar13 = *(float *)(long_var_ + 0x390);
     fVar14 = *(float *)(long_var_ + 0x398);
-    *pfVar18 = fVar6 * fVar27 + fVar7 * fVar23 + fVar8 * fVar19;
-    pfVar18[1] = fVar6 * fVar28 + fVar7 * fVar24 + fVar8 * fVar20;
-    pfVar18[2] = fVar6 * fVar29 + fVar7 * fVar25 + fVar8 * fVar21;
-    pfVar18[3] = fVar6 * fVar30 + fVar7 * fVar26 + fVar8 * fVar22;
-    pfVar18[4] = fVar9 * fVar27 + fVar11 * fVar23 + fVar12 * fVar19;
-    pfVar18[5] = fVar9 * fVar28 + fVar11 * fVar24 + fVar12 * fVar20;
-    pfVar18[6] = fVar9 * fVar29 + fVar11 * fVar25 + fVar12 * fVar21;
-    pfVar18[7] = fVar9 * fVar30 + fVar11 * fVar26 + fVar12 * fVar22;
+    *pfVar18 = float_var * fVar27 + float_var * fVar23 + float_var * fVar19;
+    pfVar18[1] = float_var * fVar28 + float_var * fVar24 + float_var * fVar20;
+    pfVar18[2] = float_var * fVar29 + float_var * fVar25 + float_var * fVar21;
+    pfVar18[3] = float_var * fVar30 + float_var * fVar26 + float_var * fVar22;
+    pfVar18[4] = float_var * fVar27 + fVar11 * fVar23 + fVar12 * fVar19;
+    pfVar18[5] = float_var * fVar28 + fVar11 * fVar24 + fVar12 * fVar20;
+    pfVar18[6] = float_var * fVar29 + fVar11 * fVar25 + fVar12 * fVar21;
+    pfVar18[7] = float_var * fVar30 + fVar11 * fVar26 + fVar12 * fVar22;
     pfVar18[8] = fVar10 * fVar27 + fVar13 * fVar23 + fVar14 * fVar19;
     pfVar18[9] = fVar10 * fVar28 + fVar13 * fVar24 + fVar14 * fVar20;
     pfVar18[10] = fVar10 * fVar29 + fVar13 * fVar25 + fVar14 * fVar21;
@@ -51638,9 +51638,9 @@ void SystemFunction_26_0(longlong handleIdentifier)
             do {
               compare_result9 = *(int *)(long_var_ + 0x30) + int_var_;
               int_var_ = int_var_ + 1;
-              pbVar4 = (byte *)(*(longlong *)(long_var_ + SYSTEM_DATA_COMPARE_SIZE) + long_var_);
+              ptr_byte_var = (byte *)(*(longlong *)(long_var_ + SYSTEM_DATA_COMPARE_SIZE) + long_var_);
               long_var_ = long_var_ + 1;
-              *(int *)(*ptr_long_var + (ulonglong)*pbVar4 * 4) = compare_result9;
+              *(int *)(*ptr_long_var + (ulonglong)*ptr_byte_var * 4) = compare_result9;
             } while (long_var_ < int_var_);
           }
         }
@@ -51727,13 +51727,13 @@ void SystemFunction_36_2(void)
 {
   longlong *ptr_long_var;
   longlong *ptr_long_var;
-  byte *pbVar3;
+  byte *ptr_byte_var;
   uint64_t *ptr_uint_var;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   float fVar10;
   float fVar11;
   float fVar12;
@@ -51814,27 +51814,27 @@ void SystemFunction_36_2(void)
   fVar26 = pfVar15[5];
   fVar27 = pfVar15[6];
   fVar28 = pfVar15[7];
-  fVar5 = *(float *)(long_var_ + 0x374);
-  fVar6 = *(float *)(long_var_ + 0x370);
-  fVar7 = *(float *)(long_var_ + 0x378);
-  fVar8 = *(float *)(long_var_ + 900);
-  fVar9 = *(float *)(long_var_ + 0x394);
+  float_var = *(float *)(long_var_ + 0x374);
+  float_var = *(float *)(long_var_ + 0x370);
+  float_var = *(float *)(long_var_ + 0x378);
+  float_var = *(float *)(long_var_ + 900);
+  float_var = *(float *)(long_var_ + 0x394);
   fVar10 = *(float *)(long_var_ + 0x380);
   fVar11 = *(float *)(long_var_ + 0x388);
   fVar12 = *(float *)(long_var_ + 0x390);
   fVar13 = *(float *)(long_var_ + 0x398);
-  *pfVar15 = fVar5 * fVar25 + fVar6 * fVar21 + fVar7 * fVar17;
-  pfVar15[1] = fVar5 * fVar26 + fVar6 * fVar22 + fVar7 * fVar18;
-  pfVar15[2] = fVar5 * fVar27 + fVar6 * fVar23 + fVar7 * fVar19;
-  pfVar15[3] = fVar5 * fVar28 + fVar6 * fVar24 + fVar7 * fVar20;
-  pfVar15[4] = fVar8 * fVar25 + fVar10 * fVar21 + fVar11 * fVar17;
-  pfVar15[5] = fVar8 * fVar26 + fVar10 * fVar22 + fVar11 * fVar18;
-  pfVar15[6] = fVar8 * fVar27 + fVar10 * fVar23 + fVar11 * fVar19;
-  pfVar15[7] = fVar8 * fVar28 + fVar10 * fVar24 + fVar11 * fVar20;
-  pfVar15[8] = fVar9 * fVar25 + fVar12 * fVar21 + fVar13 * fVar17;
-  pfVar15[9] = fVar9 * fVar26 + fVar12 * fVar22 + fVar13 * fVar18;
-  pfVar15[10] = fVar9 * fVar27 + fVar12 * fVar23 + fVar13 * fVar19;
-  pfVar15[0xb] = fVar9 * fVar28 + fVar12 * fVar24 + fVar13 * fVar20;
+  *pfVar15 = float_var * fVar25 + float_var * fVar21 + float_var * fVar17;
+  pfVar15[1] = float_var * fVar26 + float_var * fVar22 + float_var * fVar18;
+  pfVar15[2] = float_var * fVar27 + float_var * fVar23 + float_var * fVar19;
+  pfVar15[3] = float_var * fVar28 + float_var * fVar24 + float_var * fVar20;
+  pfVar15[4] = float_var * fVar25 + fVar10 * fVar21 + fVar11 * fVar17;
+  pfVar15[5] = float_var * fVar26 + fVar10 * fVar22 + fVar11 * fVar18;
+  pfVar15[6] = float_var * fVar27 + fVar10 * fVar23 + fVar11 * fVar19;
+  pfVar15[7] = float_var * fVar28 + fVar10 * fVar24 + fVar11 * fVar20;
+  pfVar15[8] = float_var * fVar25 + fVar12 * fVar21 + fVar13 * fVar17;
+  pfVar15[9] = float_var * fVar26 + fVar12 * fVar22 + fVar13 * fVar18;
+  pfVar15[10] = float_var * fVar27 + fVar12 * fVar23 + fVar13 * fVar19;
+  pfVar15[0xb] = float_var * fVar28 + fVar12 * fVar24 + fVar13 * fVar20;
   long_var_ = *(longlong *)(system_RBX + 600);
   if (*(int *)(long_var_ + 0x28) != *(int *)(g_system_base_1 + 0x224)) {
     int_var_ = *(int *)(long_var_ + 0x1c) + *(int *)(long_var_ + 0x18);
@@ -51926,9 +51926,9 @@ void SystemFunction_36_2(void)
             do {
               compare_result6 = *(int *)(long_var_ + 0x30) + int_var_;
               int_var_ = int_var_ + 1;
-              pbVar3 = (byte *)(*(longlong *)(long_var_ + SYSTEM_DATA_COMPARE_SIZE) + long_var_);
+              ptr_byte_var = (byte *)(*(longlong *)(long_var_ + SYSTEM_DATA_COMPARE_SIZE) + long_var_);
               long_var_ = long_var_ + 1;
-              *(int *)(*ptr_long_var + (ulonglong)*pbVar3 * 4) = compare_result6;
+              *(int *)(*ptr_long_var + (ulonglong)*ptr_byte_var * 4) = compare_result6;
             } while (long_var_ < int_var_);
           }
         }
@@ -52015,13 +52015,13 @@ void SystemFunction_39_3(longlong handleIdentifier,uint resourceIdentifier,uint6
 {
   longlong *ptr_long_var;
   longlong *ptr_long_var;
-  byte *pbVar3;
+  byte *ptr_byte_var;
   uint64_t *ptr_uint_var;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  float fVar9;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   float fVar10;
   float fVar11;
   float fVar12;
@@ -52098,27 +52098,27 @@ void SystemFunction_39_3(longlong handleIdentifier,uint resourceIdentifier,uint6
   fVar25 = systemFlags[5];
   fVar26 = systemFlags[6];
   fVar27 = systemFlags[7];
-  fVar5 = *(float *)(long_var_ + 0x374);
-  fVar6 = *(float *)(long_var_ + 0x370);
-  fVar7 = *(float *)(long_var_ + 0x378);
-  fVar8 = *(float *)(long_var_ + 900);
-  fVar9 = *(float *)(long_var_ + 0x394);
+  float_var = *(float *)(long_var_ + 0x374);
+  float_var = *(float *)(long_var_ + 0x370);
+  float_var = *(float *)(long_var_ + 0x378);
+  float_var = *(float *)(long_var_ + 900);
+  float_var = *(float *)(long_var_ + 0x394);
   fVar10 = *(float *)(long_var_ + 0x380);
   fVar11 = *(float *)(long_var_ + 0x388);
   fVar12 = *(float *)(long_var_ + 0x390);
   fVar13 = *(float *)(long_var_ + 0x398);
-  *systemFlags = fVar5 * fVar24 + fVar6 * fVar20 + fVar7 * fVar16;
-  systemFlags[1] = fVar5 * fVar25 + fVar6 * fVar21 + fVar7 * fVar17;
-  systemFlags[2] = fVar5 * fVar26 + fVar6 * fVar22 + fVar7 * fVar18;
-  systemFlags[3] = fVar5 * fVar27 + fVar6 * fVar23 + fVar7 * fVar19;
-  systemFlags[4] = fVar8 * fVar24 + fVar10 * fVar20 + fVar11 * fVar16;
-  systemFlags[5] = fVar8 * fVar25 + fVar10 * fVar21 + fVar11 * fVar17;
-  systemFlags[6] = fVar8 * fVar26 + fVar10 * fVar22 + fVar11 * fVar18;
-  systemFlags[7] = fVar8 * fVar27 + fVar10 * fVar23 + fVar11 * fVar19;
-  systemFlags[8] = fVar9 * fVar24 + fVar12 * fVar20 + fVar13 * fVar16;
-  systemFlags[9] = fVar9 * fVar25 + fVar12 * fVar21 + fVar13 * fVar17;
-  systemFlags[10] = fVar9 * fVar26 + fVar12 * fVar22 + fVar13 * fVar18;
-  systemFlags[0xb] = fVar9 * fVar27 + fVar12 * fVar23 + fVar13 * fVar19;
+  *systemFlags = float_var * fVar24 + float_var * fVar20 + float_var * fVar16;
+  systemFlags[1] = float_var * fVar25 + float_var * fVar21 + float_var * fVar17;
+  systemFlags[2] = float_var * fVar26 + float_var * fVar22 + float_var * fVar18;
+  systemFlags[3] = float_var * fVar27 + float_var * fVar23 + float_var * fVar19;
+  systemFlags[4] = float_var * fVar24 + fVar10 * fVar20 + fVar11 * fVar16;
+  systemFlags[5] = float_var * fVar25 + fVar10 * fVar21 + fVar11 * fVar17;
+  systemFlags[6] = float_var * fVar26 + fVar10 * fVar22 + fVar11 * fVar18;
+  systemFlags[7] = float_var * fVar27 + fVar10 * fVar23 + fVar11 * fVar19;
+  systemFlags[8] = float_var * fVar24 + fVar12 * fVar20 + fVar13 * fVar16;
+  systemFlags[9] = float_var * fVar25 + fVar12 * fVar21 + fVar13 * fVar17;
+  systemFlags[10] = float_var * fVar26 + fVar12 * fVar22 + fVar13 * fVar18;
+  systemFlags[0xb] = float_var * fVar27 + fVar12 * fVar23 + fVar13 * fVar19;
   long_var_ = *(longlong *)(system_RBX + 600);
   if (*(int *)(long_var_ + 0x28) != *(int *)(g_system_base_1 + 0x224)) {
     compare_result9 = *(int *)(long_var_ + 0x1c) + *(int *)(long_var_ + 0x18);
@@ -52210,9 +52210,9 @@ void SystemFunction_39_3(longlong handleIdentifier,uint resourceIdentifier,uint6
             do {
               compare_result5 = *(int *)(long_var_ + 0x30) + int_var_;
               int_var_ = int_var_ + 1;
-              pbVar3 = (byte *)(*(longlong *)(long_var_ + SYSTEM_DATA_COMPARE_SIZE) + long_var_);
+              ptr_byte_var = (byte *)(*(longlong *)(long_var_ + SYSTEM_DATA_COMPARE_SIZE) + long_var_);
               long_var_ = long_var_ + 1;
-              *(int *)(*ptr_long_var + (ulonglong)*pbVar3 * 4) = compare_result5;
+              *(int *)(*ptr_long_var + (ulonglong)*ptr_byte_var * 4) = compare_result5;
             } while (long_var_ < int_var_);
           }
         }
@@ -52299,8 +52299,8 @@ void SystemFunction_65_4(void)
 {
   longlong *ptr_long_var;
   longlong *ptr_long_var;
-  byte *pbVar3;
-  char cVar4;
+  byte *ptr_byte_var;
+  char char_var;
   longlong allocation_size;
   uint32_t uint_var_;
   uint uint_var_;
@@ -52342,11 +52342,11 @@ void SystemFunction_65_4(void)
         }
       }
       else {
-        cVar4 = *(char *)(allocation_size + 0x44);
-        uint_var_ = (ulonglong)cVar4;
+        char_var = *(char *)(allocation_size + 0x44);
+        uint_var_ = (ulonglong)char_var;
         ptr_long_var = (longlong *)(allocation_size + 0x38);
-        int_var_ = (int)cVar4;
-        if (*(int *)(allocation_size + 0x40) == (int)cVar4) {
+        int_var_ = (int)char_var;
+        if (*(int *)(allocation_size + 0x40) == (int)char_var) {
           ptr_long_var = (longlong *)*ptr_long_var;
         }
         else {
@@ -52356,22 +52356,22 @@ void SystemFunction_65_4(void)
             ProcessSystemOperation();
           }
           *ptr_long_var = 0;
-          if (cVar4 == '\0') {
+          if (char_var == '\0') {
             ptr_long_var = (longlong *)0x0;
             *ptr_long_var = 0;
           }
           else {
-            ptr_long_var = (longlong *)AllocateSystemMemory(systemMemoryPool,(longlong)cVar4 * 4);
+            ptr_long_var = (longlong *)AllocateSystemMemory(systemMemoryPool,(longlong)char_var * 4);
             *ptr_long_var = (longlong)ptr_long_var;
           }
         }
         if (ptr_long_var != (longlong *)0x0) {
           int_var_ = 0;
-          uint_var_ = (uint)cVar4;
+          uint_var_ = (uint)char_var;
           int_var_ = int_var_;
           if ((0 < int_var_) && (0xf < uint_var_)) {
             int_var_ = *(int *)(allocation_size + 0x2c);
-            ptr_long_var = (longlong *)((longlong)ptr_long_var + (longlong)(cVar4 + -1) * 4);
+            ptr_long_var = (longlong *)((longlong)ptr_long_var + (longlong)(char_var + -1) * 4);
             if ((((longlong *)(allocation_size + 0x2c) < ptr_long_var) || (ptr_long_var < (longlong *)(allocation_size + 0x2c))) &&
                ((ptr_long_var < ptr_long_var || (int_var_ = 0, ptr_long_var < ptr_long_var)))) {
               uint_var_ = uint_var_ & 0x8000000f;
@@ -52416,24 +52416,24 @@ void SystemFunction_65_4(void)
             do {
               int_var_ = *(int *)(allocation_size + 0x30) + int_var_;
               int_var_ = int_var_ + 1;
-              pbVar3 = (byte *)(*(longlong *)(allocation_size + SYSTEM_DATA_COMPARE_SIZE) + long_var_);
+              ptr_byte_var = (byte *)(*(longlong *)(allocation_size + SYSTEM_DATA_COMPARE_SIZE) + long_var_);
               long_var_ = long_var_ + 1;
-              *(int *)(*ptr_long_var + (ulonglong)*pbVar3 * 4) = int_var_;
+              *(int *)(*ptr_long_var + (ulonglong)*ptr_byte_var * 4) = int_var_;
             } while (long_var_ < int_var_);
           }
         }
         puVar15 = (uint *)((longlong)*(int *)(systemCoreData + 0xc20) * 0x128 +
                           systemCoreData + 0x9d0);
         if (int_var_ == 0) {
-          uint_var_ = (int)cVar4 - 1;
+          uint_var_ = (int)char_var - 1;
         }
         else {
           LOCK();
           uint_var_ = *puVar15;
-          *puVar15 = *puVar15 + (int)cVar4;
+          *puVar15 = *puVar15 + (int)char_var;
           UNLOCK();
           uint_var_ = (ulonglong)(uint_var_ >> 0xb);
-          uint_var_ = (ulonglong)(cVar4 + -1 + uint_var_ >> 0xb);
+          uint_var_ = (ulonglong)(char_var + -1 + uint_var_ >> 0xb);
           if (uint_var_ <= uint_var_) {
             pis_initialized4 = (char *)((longlong)puVar15 + uint_var_ + SYSTEM_DATA_COMPARE_SIZE8);
             long_var_ = (uint_var_ - uint_var_) + 1;
@@ -52476,7 +52476,7 @@ void SystemFunction_65_4(void)
         node_root0 = *(uint32_t **)(allocation_size + 0x38);
         uint_var_ = uint_var_ >> 0xb;
         *(uint *)(allocation_size + 0x2c) = uint_var_;
-        if (uint_var_ == (int)cVar4 + uint_var_ >> 0xb) {
+        if (uint_var_ == (int)char_var + uint_var_ >> 0xb) {
                     // WARNING: Subroutine does not return
           memcpy(*(longlong *)(puVar15 + (ulonglong)uint_var_ * 2 + 2) +
                  (ulonglong)(uint_var_ + uint_var_ * -0x800) * 4,node_root0,(uint_var_ & 0xffffffff) << 2);
@@ -52615,11 +52615,11 @@ float * SystemFunction_7_2(float *handleIdentifier)
 
 {
   float *pfVar1;
-  byte bVar2;
+  byte bool_var;
   longlong *ptr_long_var;
   float *pfVar4;
-  char cVar5;
-  float fVar6;
+  char char_var;
+  float float_var;
   float *pfVar7;
   uint uint_var_;
   ulonglong uint_var_;
@@ -52659,10 +52659,10 @@ float * SystemFunction_7_2(float *handleIdentifier)
     pfStack_28 = handleIdentifier;
     SystemFunction_40_8(localBuffer_30);
     uintStack_80 = 0x180079605;
-    fVar6 = (float)SystemFunction349a0(0);
-    if ((10 < (int)fVar6) ||
+    float_var = (float)SystemFunction349a0(0);
+    if ((10 < (int)float_var) ||
        ((int)(*(int *)(*(longlong *)(handleIdentifier + 0x84) + 0x88) +
-             (*(int *)(*(longlong *)(handleIdentifier + 0x84) + 0x88) >> 0x1f & 3U)) >> 2 < (int)fVar6)) {
+             (*(int *)(*(longlong *)(handleIdentifier + 0x84) + 0x88) >> 0x1f & 3U)) >> 2 < (int)float_var)) {
       bufferPtr_48 = &g_system_data_variable3;
       if (*(void **)(handleIdentifier + 6) != (void *)0x0) {
         bufferPtr_48 = *(void **)(handleIdentifier + 6);
@@ -52670,7 +52670,7 @@ float * SystemFunction_7_2(float *handleIdentifier)
       uintStack_40 = CONCAT44(uintStack_40._4_4_,*(uint32_t *)(*(longlong *)(handleIdentifier + 0x84) + 0x60));
       bufferPtr_58 = &globalSystemVariable;
       uintStack_80 = 0x18007967a;
-      fStack_50 = fVar6;
+      fStack_50 = float_var;
       SystemFunction_35_2(g_system_context_1,0,0x80000000000,3);
     }
     handleIdentifier[0x40] = (float)((uint)handleIdentifier[0x40] | SYSTEM_DATA_COMPARE_SIZE000);
@@ -52795,50 +52795,50 @@ float * SystemFunction_7_2(float *handleIdentifier)
       handleIdentifier[0xa6] = (handleIdentifier[0xa2] + handleIdentifier[0x9e]) * 0.5;
       handleIdentifier[0xa7] = (handleIdentifier[0xa3] + handleIdentifier[0x9f]) * 0.5;
       handleIdentifier[0xa8] = 3.4028235e+38;
-      fVar6 = 0.0;
+      float_var = 0.0;
       uint_var_ = (ulonglong)*(uint *)(longStack_88 + SYSTEM_DATA_COMPARE_SIZE);
       if (0 < (int)*(uint *)(longStack_88 + SYSTEM_DATA_COMPARE_SIZE)) {
         pfVar7 = *(float **)(longStack_88 + 0x18);
-        fVar11 = fVar6;
+        fVar11 = float_var;
         do {
-          fVar6 = (*pfVar7 - handleIdentifier[0xa5]) * (*pfVar7 - handleIdentifier[0xa5]) +
+          float_var = (*pfVar7 - handleIdentifier[0xa5]) * (*pfVar7 - handleIdentifier[0xa5]) +
                   (pfVar7[1] - handleIdentifier[0xa6]) * (pfVar7[1] - handleIdentifier[0xa6]) +
                   (pfVar7[2] - handleIdentifier[0xa7]) * (pfVar7[2] - handleIdentifier[0xa7]);
-          if (fVar6 <= fVar11) {
-            fVar6 = fVar11;
+          if (float_var <= fVar11) {
+            float_var = fVar11;
           }
           pfVar7 = pfVar7 + 4;
           uint_var_ = uint_var_ - 1;
-          fVar11 = fVar6;
+          fVar11 = float_var;
         } while (uint_var_ != 0);
       }
-      handleIdentifier[0xa9] = SQRT(fVar6);
+      handleIdentifier[0xa9] = SQRT(float_var);
     }
     if (pfStack_98 != (float *)0x0) {
       while( true ) {
         LOCK();
-        cVar5 = *(char *)(pfVar4 + 0x3b);
-        bVar10 = cVar5 == '\0';
+        char_var = *(char *)(pfVar4 + 0x3b);
+        bVar10 = char_var == '\0';
         if (bVar10) {
           *(char *)(pfVar4 + 0x3b) = '\x01';
-          cVar5 = '\0';
+          char_var = '\0';
         }
         UNLOCK();
         if (bVar10) break;
-        fVar6 = (float)_Thrd_id();
-        if ((pfVar4[0x3c] == fVar6) || (pfVar4[0x3c] != 0.0)) goto LAB_180075f4f;
+        float_var = (float)_Thrd_id();
+        if ((pfVar4[0x3c] == float_var) || (pfVar4[0x3c] != 0.0)) goto LAB_180075f4f;
         Sleep();
       }
-      cVar5 = '\0';
+      char_var = '\0';
 LAB_180075f4f:
       LOCK();
       pfVar1 = pfVar4 + 0x3a;
-      fVar6 = *pfVar1;
-      pfVar7 = (float *)(ulonglong)(uint)fVar6;
+      float_var = *pfVar1;
+      pfVar7 = (float *)(ulonglong)(uint)float_var;
       *pfVar1 = (float)((int)*pfVar1 + -1);
       UNLOCK();
-      if (cVar5 == '\0') {
-        if ((((fVar6 == 1.4013e-45) && (*(longlong *)(pfStack_98 + 0x84) != 0)) &&
+      if (char_var == '\0') {
+        if ((((float_var == 1.4013e-45) && (*(longlong *)(pfStack_98 + 0x84) != 0)) &&
             (pfVar7 = pfStack_98, SystemFunction_3_2(pfStack_98), *(char *)(pfVar7 + 0x3f) == '\0')) &&
            ((*(char *)(pfVar7 + 0x3d) == '\0' &&
             (((*(byte *)((longlong)pfVar7 + 0xfd) & SYSTEM_NODE_HEADER_SIZE) == 0 ||
@@ -52851,9 +52851,9 @@ LAB_180075f4f:
           }
         }
         LOCK();
-        bVar2 = *(byte *)(pfVar4 + 0x3b);
+        bool_var = *(byte *)(pfVar4 + 0x3b);
         *(byte *)(pfVar4 + 0x3b) = 0;
-        pfVar7 = (float *)(ulonglong)bVar2;
+        pfVar7 = (float *)(ulonglong)bool_var;
         UNLOCK();
       }
     }
@@ -52873,15 +52873,15 @@ LAB_180075f4f:
 void SystemFunction_32_8(longlong handleIdentifier)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   uint *node_root;
   uint64_t *ptr_uint_var;
   uint64_t *ptr_uint_var;
-  float fVar5;
+  float float_var;
   uint64_t uint_var_;
   uint64_t uint_var_;
   uint8_t auVar8 [16];
-  bool bVar9;
+  bool bool_var;
   int *piVar10;
   int int_var_;
   longlong long_var_;
@@ -52978,8 +52978,8 @@ void SystemFunction_32_8(longlong handleIdentifier)
   uint32_t uintStack_b0;
 
   uintStack_110 = INVALID_HANDLE_VALUE;
-  piVar1 = (int *)(handleIdentifier + 0x60);
-  int_var_ = *piVar1;
+  ptr_int_var = (int *)(handleIdentifier + 0x60);
+  int_var_ = *ptr_int_var;
   int_var_ = *(int *)(handleIdentifier + 0x88);
   uint_var_ = (ulonglong)int_var_;
   intStack_1e8 = *(int *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE);
@@ -53080,7 +53080,7 @@ void SystemFunction_32_8(longlong handleIdentifier)
           long_var_ = (longlong)*(int *)((longlong)*(int *)(long_var_ + uint_var_) * 0x5c + long_var_);
           fVar48 = *(float *)(long_var_ + 8 + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
           fVar49 = *(float *)(long_var_ + 8 + long_var_ * SYSTEM_DATA_COMPARE_SIZE) - fVar48;
-          fVar5 = *(float *)(long_var_ + 4 + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
+          float_var = *(float *)(long_var_ + 4 + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
           fVar52 = *(float *)(long_var_ + 4 + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
           fVar51 = *(float *)(long_var_ + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
           long_var_ = (longlong)*(int *)(long_var_ * 0x5c + long_var_);
@@ -53096,7 +53096,7 @@ void SystemFunction_32_8(longlong handleIdentifier)
           long_var_ = (longlong)*(int *)((longlong)*(int *)(long_var_ + uint_var_) * 0x5c + long_var_);
           fVar48 = *(float *)(long_var_ + 8 + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
           fVar49 = *(float *)(long_var_ + 8 + long_var_ * SYSTEM_DATA_COMPARE_SIZE) - fVar48;
-          fVar5 = *(float *)(long_var_ + 4 + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
+          float_var = *(float *)(long_var_ + 4 + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
           fVar52 = *(float *)(long_var_ + 4 + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
           fVar51 = *(float *)(long_var_ + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
           long_var_ = (longlong)*(int *)(long_var_ * 0x5c + long_var_);
@@ -53105,9 +53105,9 @@ void SystemFunction_32_8(longlong handleIdentifier)
           fVar46 = *(float *)(long_var_ + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
           fVar53 = *(float *)(long_var_ + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
         }
-        fVar50 = (fVar46 - fVar51) * (fVar45 - fVar5) - (fVar52 - fVar5) * (fVar53 - fVar51);
+        fVar50 = (fVar46 - fVar51) * (fVar45 - float_var) - (fVar52 - float_var) * (fVar53 - fVar51);
         fVar51 = fVar49 * (fVar53 - fVar51) - fVar48 * (fVar46 - fVar51);
-        fVar48 = fVar48 * (fVar52 - fVar5) - fVar49 * (fVar45 - fVar5);
+        fVar48 = fVar48 * (fVar52 - float_var) - fVar49 * (fVar45 - float_var);
         fStack_174 = SQRT(fVar51 * fVar51 + fVar48 * fVar48 + fVar50 * fVar50);
         if (fStack_174 <= 0.0) {
           fVar48 = 0.0;
@@ -53261,7 +53261,7 @@ LAB_180079d9b:
   }
   uint_var_ = 0;
   flag_initialized = 0;
-  if (*piVar1 < 1) {
+  if (*ptr_int_var < 1) {
 LAB_18007a5ac:
     SystemFunction_28_8(&longStack_170);
     long_var_ = (longlong)intStack_1e8;
@@ -53347,7 +53347,7 @@ LAB_18007a5ac:
           else {
             longStack_1d0 = 0;
             do {
-              piVar1 = pintStack_218;
+              ptr_int_var = pintStack_218;
               long_var_ = 0;
               puVar32 = (uint *)((longlong)*(int *)(uintStack_180 + longStack_1d0 * 4) * 0x5c +
                                 *(longlong *)(handleIdentifier + 0x68));
@@ -53484,8 +53484,8 @@ LAB_18007ac04:
                     pauVar42 = (uint8_t (*) [16])
                                AllocateSystemResource(systemMemoryPool,ustack_var * 0x14,
                                              (char)pintStack_218[uint_var_ * 8 + 6]);
-                    pauVar37 = *(uint8_t (**) [16])(piVar1 + uint_var_ * 8 + 2);
-                    pauVar35 = *(uint8_t (**) [16])(piVar1 + uint_var_ * 8);
+                    pauVar37 = *(uint8_t (**) [16])(ptr_int_var + uint_var_ * 8 + 2);
+                    pauVar35 = *(uint8_t (**) [16])(ptr_int_var + uint_var_ * 8);
                   }
                   else {
                     ustack_var = long_var_ * 2;
@@ -53502,13 +53502,13 @@ LAB_18007ac04:
                   auVar47._12_4_ = uintStack_1b8._4_4_;
                   *pauVar42 = auVar47;
                   *(uint32_t *)pauVar42[1] = pintStack_1b0._0_4_;
-                  if (*(longlong *)(piVar1 + uint_var_ * 8) != 0) {
+                  if (*(longlong *)(ptr_int_var + uint_var_ * 8) != 0) {
                     // WARNING: Subroutine does not return
                     ProcessSystemOperation();
                   }
-                  *(uint8_t (**) [16])(piVar1 + uint_var_ * 8) = pauVar42;
-                  *(uint8_t **)(piVar1 + uint_var_ * 8 + 2) = pauVar42[1] + 4;
-                  *(ulonglong *)(piVar1 + uint_var_ * 8 + 4) = (longlong)pauVar42 + ustack_var * 0x14;
+                  *(uint8_t (**) [16])(ptr_int_var + uint_var_ * 8) = pauVar42;
+                  *(uint8_t **)(ptr_int_var + uint_var_ * 8 + 2) = pauVar42[1] + 4;
+                  *(ulonglong *)(ptr_int_var + uint_var_ * 8 + 4) = (longlong)pauVar42 + ustack_var * 0x14;
                 }
               }
               longStack_1d0 = longStack_1d0 + 1;
@@ -53788,7 +53788,7 @@ LAB_180079fb3:
         pintStack_1b0 = (int *)0x0;
         uintStack_1a8 = 3;
         bVar44 = false;
-        bVar9 = false;
+        bool_var = false;
         uint_var_ = 0;
         uintStack_180 = (longlong)pintStack_210 - (longlong)pintStack_218 >> 2;
         piVar26 = (int *)0x0;
@@ -53836,7 +53836,7 @@ LAB_18007a203:
               }
               piVar26 = piVar26 + 1;
               uintStack_1b8 = piVar26;
-              bVar44 = bVar9;
+              bVar44 = bool_var;
             }
             else {
               uintStack_1c8 = uintStack_1c8 | bufferPtr_130[int_var_];
@@ -53885,7 +53885,7 @@ LAB_18007a142:
             pcompare_result4 = (int *)(ulonglong)uint_var_;
             piVar10 = pintStack_1f0;
             piVar15 = pintStack_190;
-            bVar9 = bVar44;
+            bool_var = bVar44;
           } while ((ulonglong)(longlong)(int)uint_var_ < uintStack_180);
         }
         plVar39 = plongStack_168;
@@ -53955,7 +53955,7 @@ LAB_18007a312:
       piVar16 = pintStack_218;
     }
     long_var_ = longStack_1d0;
-    int_var_ = *piVar1;
+    int_var_ = *ptr_int_var;
     long_var_ = longStack_1d0 * 0x5c;
     long_var_ = *(longlong *)(handleIdentifier + 0x68);
     uintStack_108 = *(uint64_t *)(long_var_ + long_var_);
@@ -53974,7 +53974,7 @@ LAB_18007a312:
     uintStack_c0 = ptr_uint_var[1];
     uintStack_b8 = *(uint64_t *)(long_var_ + 0x50 + long_var_);
     uintStack_b0 = *(uint32_t *)(long_var_ + 0x58 + long_var_);
-    SystemFunction_37_6(piVar1,&uintStack_108);
+    SystemFunction_37_6(ptr_int_var,&uintStack_108);
     uint_var_ = (longlong)piVar26 - (longlong)piVar16 >> 2;
     uint_var_ = 0;
     piVar20 = piVar16;
@@ -54041,7 +54041,7 @@ LAB_18007a58b:
   uint_var_ = uint_var_ + 1;
   flag_initialized = (ulonglong)uint_var_;
   longStack_1d0 = longStack_1d0 + 1;
-  if (*piVar1 <= (int)uint_var_) goto LAB_18007a5ac;
+  if (*ptr_int_var <= (int)uint_var_) goto LAB_18007a5ac;
   goto LAB_180079e40;
 }
 // void SystemFunction_22_4(longlong *handleIdentifier)
@@ -54113,11 +54113,11 @@ uint8_t SystemFunction_28_8(longlong handleIdentifier)
 ulonglong SystemFunction_38_4(longlong handleIdentifier,longlong *resourceIdentifier,byte systemConfig,char systemFlags)
 
 {
-  byte *pbVar1;
-  char cVar2;
+  byte *ptr_byte_var;
+  char char_var;
   int compare_result;
   int int_var_;
-  byte bVar5;
+  byte bool_var;
   longlong long_var_;
   uint64_t *node_previous;
   ulonglong uint_var_;
@@ -54154,7 +54154,7 @@ ulonglong SystemFunction_38_4(longlong handleIdentifier,longlong *resourceIdenti
   while ((long_var_ = handleIdentifier, (*(byte *)(handleIdentifier + 0xfd) & SYSTEM_NODE_HEADER_SIZE) == 0 &&
          (long_var_ = SystemFunction085de0(*(uint64_t *)(handleIdentifier + 0x1b0)), long_var_ != handleIdentifier))) {
     if ((systemFlags != '\0') ||
-       (pbVar1 = (byte *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE0), handleIdentifier = long_var_, (*pbVar1 & 8) != 0)) {
+       (ptr_byte_var = (byte *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE0), handleIdentifier = long_var_, (*ptr_byte_var & 8) != 0)) {
       systemFlags = '\x01';
       handleIdentifier = long_var_;
     }
@@ -54175,8 +54175,8 @@ ulonglong SystemFunction_38_4(longlong handleIdentifier,longlong *resourceIdenti
       UNLOCK();
     }
     if (resourceIdentifier[1] != 0) {
-      pbVar1 = (byte *)(resourceIdentifier[1] + 0xfe);
-      *pbVar1 = *pbVar1 & 0xfb;
+      ptr_byte_var = (byte *)(resourceIdentifier[1] + 0xfe);
+      *ptr_byte_var = *ptr_byte_var & 0xfb;
     }
   }
   LOCK();
@@ -54259,9 +54259,9 @@ LAB_18007b454:
   *(byte *)(plVar10 + 0x13) =
        *(byte *)(plVar10 + 0x13) ^ (*(byte *)(handleIdentifier + 0xfe) >> 1 ^ *(byte *)(plVar10 + 0x13)) & 1;
   *(byte *)((longlong)plVar10 + 0x14) = systemConfig;
-  cVar2 = *(char *)(handleIdentifier + 0xfa);
-  *(char *)((longlong)plVar10 + 0x15) = cVar2;
-  if (cVar2 == '\x01') {
+  char_var = *(char *)(handleIdentifier + 0xfa);
+  *(char *)((longlong)plVar10 + 0x15) = char_var;
+  if (char_var == '\x01') {
     systemFlags = '\x01';
   }
   plVar11 = (longlong *)AllocateSystemMemory(systemMemoryPool,0x30,8,SYSTEM_NODE_HEADER_SIZE);
@@ -54274,14 +54274,14 @@ LAB_18007b454:
   *(byte *)(plVar11 + 5) = *(byte *)(plVar11 + 5) | 1;
   plongStack_48 = plVar11;
   (**(code **)(*plVar11 + 0x28))(plVar11);
-  bVar5 = *(byte *)(handleIdentifier + 0xfd) & SYSTEM_NODE_HEADER_SIZE;
+  bool_var = *(byte *)(handleIdentifier + 0xfd) & SYSTEM_NODE_HEADER_SIZE;
   long_var_ = handleIdentifier;
-  if (bVar5 == 0) {
+  if (bool_var == 0) {
     long_var_ = SystemFunction085de0(*(uint64_t *)(handleIdentifier + 0x1b0));
   }
   compare_result = *(int *)(long_var_ + SYSTEM_NODE_HEADER_SIZE0);
   long_var_ = handleIdentifier;
-  if (bVar5 == 0) {
+  if (bool_var == 0) {
     long_var_ = SystemFunction085de0(*(uint64_t *)(handleIdentifier + 0x1b0));
   }
   int_var_ = *(int *)(long_var_ + 0x1fc);
@@ -54865,8 +54865,8 @@ void SystemFunction_7_2(longlong *handleIdentifier,byte resourceIdentifier,longl
   longlong *ptr_long_var;
   longlong *ptr_long_var;
   longlong *ptr_data;
-  code *pcVar5;
-  char cVar6;
+  code *ptr_char_var;
+  char char_var;
   void *node_previous;
   uint32_t uintStack_100;
   uint32_t uintStack_fc;
@@ -54913,7 +54913,7 @@ void SystemFunction_7_2(longlong *handleIdentifier,byte resourceIdentifier,longl
   }
   if (parameter_5 == '\0') {
     ptr_data = *(longlong **)(handleIdentifier[0x15] + 0x88);
-    pcVar5 = *(code **)(*ptr_data + 0x70);
+    ptr_char_var = *(code **)(*ptr_data + 0x70);
     pcStack_f0 = (code *)&g_system_func_17;
     bufferPtr_e8 = &g_system_func_16;
     uintStack_100 = (uint32_t)uintStack_e0;
@@ -54931,7 +54931,7 @@ void SystemFunction_7_2(longlong *handleIdentifier,byte resourceIdentifier,longl
       (**(code **)(*ptr_long_var + 0x28))(ptr_long_var);
     }
     SystemFunction_67_2(localBuffer_60,&plongStack_b0);
-    (*pcVar5)(ptr_data,&systemDataPattern1,handleIdentifier + 0x17,0,localBuffer_60,&uintStack_100);
+    (*ptr_char_var)(ptr_data,&systemDataPattern1,handleIdentifier + 0x17,0,localBuffer_60,&uintStack_100);
     if (pcStack_50 != (code *)0x0) {
       (*pcStack_50)(localBuffer_60,0,0);
     }
@@ -54941,7 +54941,7 @@ void SystemFunction_7_2(longlong *handleIdentifier,byte resourceIdentifier,longl
   }
   else {
     ptr_data = *(longlong **)(handleIdentifier[0x15] + 0x88);
-    pcVar5 = *(code **)(*ptr_data + 0x60);
+    ptr_char_var = *(code **)(*ptr_data + 0x60);
     pplongStack_88 = &plongStack_d0;
     plongStack_d0 = handleIdentifier;
     bStack_c8 = resourceIdentifier;
@@ -54954,11 +54954,11 @@ void SystemFunction_7_2(longlong *handleIdentifier,byte resourceIdentifier,longl
       (**(code **)(*ptr_long_var + 0x28))(ptr_long_var);
     }
     SystemFunction_67_2(localBuffer_80,&plongStack_d0);
-    cVar6 = (*pcVar5)(ptr_data,&systemDataPattern1,handleIdentifier + 0x17,0,localBuffer_80);
+    char_var = (*ptr_char_var)(ptr_data,&systemDataPattern1,handleIdentifier + 0x17,0,localBuffer_80);
     if (pcStack_70 != (code *)0x0) {
       (*pcStack_70)(localBuffer_80,0,0);
     }
-    if (cVar6 == '\0') {
+    if (char_var == '\0') {
       node_previous = &g_system_data_variable3;
       if ((void *)handleIdentifier[3] != (void *)0x0) {
         node_previous = (void *)handleIdentifier[3];
@@ -55066,7 +55066,7 @@ void SystemFunction_17_6(longlong handleIdentifier,byte resourceIdentifier,longl
 
 {
   longlong long_var_;
-  char *pcVar2;
+  char *ptr_char_var;
   int compare_result;
   int int_var_;
   uint64_t uint_var_;
@@ -55108,10 +55108,10 @@ void SystemFunction_17_6(longlong handleIdentifier,byte resourceIdentifier,longl
       (**(code **)(*plongStack_b8 + 0x28))();
     }
     SystemFunction55b70(uint_var_,&plongStack_b8);
-    pcVar2 = (char *)(*(longlong *)(handleIdentifier + 0x1e0) + 0x15 + long_var_);
+    ptr_char_var = (char *)(*(longlong *)(handleIdentifier + 0x1e0) + 0x15 + long_var_);
     LOCK();
-    if (*pcVar2 == '\x01') {
-      *pcVar2 = '\x03';
+    if (*ptr_char_var == '\x01') {
+      *ptr_char_var = '\x03';
     }
     UNLOCK();
   }
@@ -55164,10 +55164,10 @@ void SystemFunction_17_6(longlong handleIdentifier,byte resourceIdentifier,longl
       (**(code **)(*ptr_long_var + 0x28))(ptr_long_var);
     }
     SystemFunction_90_4(systemConfigurationData,&plongStack_b0);
-    pcVar2 = (char *)(*(longlong *)(handleIdentifier + 0x1e0) + 0x15 + (ulonglong)resourceIdentifier * 0x18);
+    ptr_char_var = (char *)(*(longlong *)(handleIdentifier + 0x1e0) + 0x15 + (ulonglong)resourceIdentifier * 0x18);
     LOCK();
-    if (*pcVar2 == '\x01') {
-      *pcVar2 = '\x02';
+    if (*ptr_char_var == '\x01') {
+      *ptr_char_var = '\x02';
     }
     UNLOCK();
     if (ptr_long_var != (longlong *)0x0) {
@@ -55187,11 +55187,11 @@ void SystemFunction_17_6(longlong handleIdentifier,byte resourceIdentifier,longl
 void SystemFunction_89_6(uint handleIdentifier,longlong resourceIdentifier,longlong *systemConfig,uint64_t systemFlags)
 
 {
-  float fVar1;
+  float float_var;
   int int_var_;
   longlong *ptr_long_var;
   longlong long_var_;
-  bool bVar5;
+  bool bool_var;
   ushort uint_var_;
   uint16_t uint_var_;
   int int_var_;
@@ -55366,13 +55366,13 @@ void SystemFunction_89_6(uint handleIdentifier,longlong resourceIdentifier,longl
   case 4:
   case 5:
     if ((handleIdentifier == 5) && (0 < *(int *)(resourceIdentifier + 0x38))) {
-      bVar5 = true;
+      bool_var = true;
     }
     else {
-      bVar5 = false;
+      bool_var = false;
     }
     piVar12 = (int *)(resourceIdentifier + 0x38);
-    if (!bVar5) {
+    if (!bool_var) {
       piVar12 = (int *)(resourceIdentifier + SYSTEM_DATA_COMPARE_SIZE);
     }
     if (3 < long_var_) {
@@ -55895,12 +55895,12 @@ code_r0x00018007db1b:
         }
         fVar29 = *(float *)(long_var_ + 0x18 + long_var_);
         fVar30 = *(float *)(long_var_ + 0x1c + long_var_);
-        fVar1 = *(float *)(long_var_ + 0x14 + long_var_);
+        float_var = *(float *)(long_var_ + 0x14 + long_var_);
         if ((fVar30 * *(float *)(long_var_ + 0x34 + long_var_) -
-            fVar1 * *(float *)(long_var_ + 0x3c + long_var_)) * *(float *)(long_var_ + 0x28 + long_var_) +
+            float_var * *(float *)(long_var_ + 0x3c + long_var_)) * *(float *)(long_var_ + 0x28 + long_var_) +
             (fVar29 * *(float *)(long_var_ + 0x3c + long_var_) -
             fVar30 * *(float *)(long_var_ + 0x38 + long_var_)) * *(float *)(long_var_ + 0x24 + long_var_) +
-            (fVar1 * *(float *)(long_var_ + 0x38 + long_var_) -
+            (float_var * *(float *)(long_var_ + 0x38 + long_var_) -
             fVar29 * *(float *)(long_var_ + 0x34 + long_var_)) * *(float *)(long_var_ + 0x2c + long_var_) <= 0.0
            ) {
           fVar31 = -fVar31;
@@ -55980,7 +55980,7 @@ void SystemFunction_22_4(longlong handleIdentifier,ulonglong resourceIdentifier,
 
 {
   longlong long_var_;
-  int *piVar2;
+  int *ptr_int_var;
   int compare_result;
   int int_var_;
   longlong allocation_size;
@@ -56003,11 +56003,11 @@ void SystemFunction_22_4(longlong handleIdentifier,ulonglong resourceIdentifier,
       compare_result = 0;
       int_var_ = -1;
       if (0 < int_var_) {
-        piVar2 = (int *)(allocation_size + 0x128);
+        ptr_int_var = (int *)(allocation_size + 0x128);
         allocation_size = longStack_60;
         int_var_ = int_var_;
         do {
-          switch(*piVar2) {
+          switch(*ptr_int_var) {
           case 0:
           case 1:
           case 2:
@@ -56020,7 +56020,7 @@ void SystemFunction_22_4(longlong handleIdentifier,ulonglong resourceIdentifier,
           case 0xb:
           case 0xc:
           case 0xd:
-            SystemFunction_89_6((longlong)*piVar2,allocation_size,*systemConfig + 0x18 + (longlong)compare_result * 8);
+            SystemFunction_89_6((longlong)*ptr_int_var,allocation_size,*systemConfig + 0x18 + (longlong)compare_result * 8);
             allocation_size = longStack_60;
             break;
           case 8:
@@ -56030,7 +56030,7 @@ void SystemFunction_22_4(longlong handleIdentifier,ulonglong resourceIdentifier,
             int_var_ = compare_result;
           }
           compare_result = compare_result + 1;
-          piVar2 = piVar2 + 3;
+          ptr_int_var = ptr_int_var + 3;
           long_var_ = long_var_ + -1;
         } while (long_var_ != 0);
         if (int_var_ != -1) {
@@ -56103,7 +56103,7 @@ void SystemFunction_55_2(longlong handleIdentifier,longlong *resourceIdentifier)
 
 {
   uint32_t uint_var_;
-  int *piVar2;
+  int *ptr_int_var;
   uint32_t *ptr_uint_var;
   longlong long_var_;
   int int_var_;
@@ -56119,20 +56119,20 @@ void SystemFunction_55_2(longlong handleIdentifier,longlong *resourceIdentifier)
   int_var_ = *(int *)(handleIdentifier + 0x60);
   uint_var_ = (longlong)int_var_ * 0x5c + 4;
   long_var_ = resourceIdentifier[2];
-  piVar2 = (int *)resourceIdentifier[1];
+  ptr_int_var = (int *)resourceIdentifier[1];
   long_var_ = *resourceIdentifier;
-  if ((ulonglong)((long_var_ - (longlong)piVar2) + long_var_) <= uint_var_) {
-    UtilityFunction39bf0(resourceIdentifier,(longlong)piVar2 + (uint_var_ - long_var_),long_var_,uint_var_,uint_var_);
+  if ((ulonglong)((long_var_ - (longlong)ptr_int_var) + long_var_) <= uint_var_) {
+    UtilityFunction39bf0(resourceIdentifier,(longlong)ptr_int_var + (uint_var_ - long_var_),long_var_,uint_var_,uint_var_);
     int_var_ = *(int *)(handleIdentifier + 0x60);
     long_var_ = resourceIdentifier[2];
-    piVar2 = (int *)resourceIdentifier[1];
+    ptr_int_var = (int *)resourceIdentifier[1];
     long_var_ = *resourceIdentifier;
   }
-  if ((ulonglong)((long_var_ - (longlong)piVar2) + long_var_) < 5) {
-    UtilityFunction39bf0(resourceIdentifier,(longlong)piVar2 + (4 - long_var_));
-    piVar2 = (int *)resourceIdentifier[1];
+  if ((ulonglong)((long_var_ - (longlong)ptr_int_var) + long_var_) < 5) {
+    UtilityFunction39bf0(resourceIdentifier,(longlong)ptr_int_var + (4 - long_var_));
+    ptr_int_var = (int *)resourceIdentifier[1];
   }
-  *piVar2 = int_var_;
+  *ptr_int_var = int_var_;
   resourceIdentifier[1] = resourceIdentifier[1] + 4;
   ptr_uint_var = (uint32_t *)resourceIdentifier[1];
   int_var_ = 0;
@@ -56291,7 +56291,7 @@ void SystemFunction_54_4(longlong handleIdentifier,int resourceIdentifier)
 void SystemFunction_67_2(longlong handleIdentifier,char resourceIdentifier)
 
 {
-  byte bVar1;
+  byte bool_var;
   longlong long_var_;
   longlong *ptr_long_var;
   uint8_t localBuffer_40 [8];
@@ -56320,14 +56320,14 @@ void SystemFunction_67_2(longlong handleIdentifier,char resourceIdentifier)
   if (resourceIdentifier != '\0') {
     if ((resourceIdentifier != '\x01') || ((*(byte *)(handleIdentifier + 0xfd) & SYSTEM_NODE_HEADER_SIZE) == 0)) goto LAB_18007eb55;
     long_var_ = *(longlong *)(handleIdentifier + 0x1b8);
-    bVar1 = *(byte *)(long_var_ + 0x38c);
-    if (bVar1 == 9) {
-      bVar1 = SystemFunction22d300();
-      *(byte *)(long_var_ + 0x38c) = bVar1;
+    bool_var = *(byte *)(long_var_ + 0x38c);
+    if (bool_var == 9) {
+      bool_var = SystemFunction22d300();
+      *(byte *)(long_var_ + 0x38c) = bool_var;
     }
     ptr_long_var = plongStack_28;
-    if ((*(char *)(*(longlong *)(handleIdentifier + 0x1e0) + 0x15 + (ulonglong)bVar1 * 0x18) != '\x03') &&
-       (*(char *)(*(longlong *)(handleIdentifier + 0x1e0) + 0x15 + (ulonglong)bVar1 * 0x18) != '\x02'))
+    if ((*(char *)(*(longlong *)(handleIdentifier + 0x1e0) + 0x15 + (ulonglong)bool_var * 0x18) != '\x03') &&
+       (*(char *)(*(longlong *)(handleIdentifier + 0x1e0) + 0x15 + (ulonglong)bool_var * 0x18) != '\x02'))
     goto LAB_18007eb55;
   }
   plongStack_28 = (longlong *)0x0;
@@ -56350,15 +56350,15 @@ code * SystemFunction_4_0(longlong handleIdentifier,char resourceIdentifier)
   longlong *ptr_long_var;
   code *in_RAX;
   uint64_t uint_var_;
-  code *pcVar3;
+  code *ptr_char_var;
   longlong *ptr_data;
   longlong longStack_30;
   uint32_t uintStack_28;
   code *pcStack_20;
   code *pcStack_18;
 
-  pcVar3 = (code *)(handleIdentifier + 0x210);
-  if (*(longlong *)pcVar3 == 0) {
+  ptr_char_var = (code *)(handleIdentifier + 0x210);
+  if (*(longlong *)ptr_char_var == 0) {
     if ((*(byte *)(handleIdentifier + 0xfd) & SYSTEM_NODE_HEADER_SIZE) == 0) {
       longStack_30 = SystemFunction085de0(*(uint64_t *)(handleIdentifier + 0x1b0));
       if (longStack_30 != handleIdentifier) {
@@ -56366,18 +56366,18 @@ code * SystemFunction_4_0(longlong handleIdentifier,char resourceIdentifier)
         SystemFunction_9_6(&longStack_30);
         uint_var_ = AllocateSystemMemory(systemMemoryPool,0xf0,8,3);
         uint_var_ = InitializeSystemTimer(uint_var_);
-        InitializeSystemResources(pcVar3,uint_var_);
-        SystemFunction_10_4(*(longlong *)pcVar3 + SYSTEM_DATA_COMPARE_SIZE,(longlong)pcStack_20 + SYSTEM_DATA_COMPARE_SIZE);
-        SystemFunction_10_4(*(longlong *)pcVar3 + 0x38,(longlong)pcStack_20 + 0x38);
-        SystemFunction_0_8(*(longlong *)pcVar3 + 0x60,(longlong)pcStack_20 + 0x60);
-        SystemFunction_78_4(*(longlong *)pcVar3 + 0x88,(longlong)pcStack_20 + 0x88);
+        InitializeSystemResources(ptr_char_var,uint_var_);
+        SystemFunction_10_4(*(longlong *)ptr_char_var + SYSTEM_DATA_COMPARE_SIZE,(longlong)pcStack_20 + SYSTEM_DATA_COMPARE_SIZE);
+        SystemFunction_10_4(*(longlong *)ptr_char_var + 0x38,(longlong)pcStack_20 + 0x38);
+        SystemFunction_0_8(*(longlong *)ptr_char_var + 0x60,(longlong)pcStack_20 + 0x60);
+        SystemFunction_78_4(*(longlong *)ptr_char_var + 0x88,(longlong)pcStack_20 + 0x88);
         if (resourceIdentifier != '\0') {
           *(byte *)(handleIdentifier + 0xfd) = *(byte *)(handleIdentifier + 0xfd) | 0x40;
-          SystemFunction_54_4(*(longlong *)pcVar3 + 200,(longlong)pcStack_20 + 200);
-          ProcessSystemStringData(*(longlong *)pcVar3 + 0xb0,(longlong)pcStack_20 + 0xb0);
+          SystemFunction_54_4(*(longlong *)ptr_char_var + 200,(longlong)pcStack_20 + 200);
+          ProcessSystemStringData(*(longlong *)ptr_char_var + 0xb0,(longlong)pcStack_20 + 0xb0);
         }
-        pcVar3 = (code *)SystemFunction_30_4(&longStack_30);
-        return pcVar3;
+        ptr_char_var = (code *)SystemFunction_30_4(&longStack_30);
+        return ptr_char_var;
       }
     }
     if (*(longlong *)(handleIdentifier + 0xa8) == 0) {
@@ -56388,12 +56388,12 @@ code * SystemFunction_4_0(longlong handleIdentifier,char resourceIdentifier)
         if (ptr_data != (longlong *)0x0) {
           (**(code **)(*ptr_data + 0x28))(ptr_data);
         }
-        ptr_long_var = *(longlong **)pcVar3;
-        *(longlong **)pcVar3 = ptr_data;
+        ptr_long_var = *(longlong **)ptr_char_var;
+        *(longlong **)ptr_char_var = ptr_data;
         if (ptr_long_var != (longlong *)0x0) {
           (**(code **)(*ptr_long_var + 0x38))();
         }
-        return pcVar3;
+        return ptr_char_var;
       }
       SystemNodeUpdateFunction(&globalSystemVariable);
       in_RAX = (code *)ProcessSystemDataHeader(&globalSystemVariable);
@@ -56406,8 +56406,8 @@ code * SystemFunction_4_0(longlong handleIdentifier,char resourceIdentifier)
       (**(code **)(*ptr_data + 0x60))(ptr_data,&gameDataDefaultPattern,handleIdentifier + 0xb8,0,&longStack_30);
       in_RAX = pcStack_20;
       if (pcStack_20 != (code *)0x0) {
-        pcVar3 = (code *)(*pcStack_20)(&longStack_30,0,0);
-        return pcVar3;
+        ptr_char_var = (code *)(*pcStack_20)(&longStack_30,0,0);
+        return ptr_char_var;
       }
     }
   }
@@ -56739,12 +56739,12 @@ void SystemFunction_39_4(longlong handleIdentifier)
 void SystemFunction_41_6(longlong handleIdentifier,longlong resourceIdentifier,int systemConfig)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   uint64_t *node_root;
   uint64_t *ptr_uint_var;
   uint64_t *ptr_uint_var;
   uint uint_var_;
-  int *piVar7;
+  int *ptr_int_var;
   longlong long_var_;
   ulonglong uint_var_;
   longlong long_var_;
@@ -56775,23 +56775,23 @@ void SystemFunction_41_6(longlong handleIdentifier,longlong resourceIdentifier,i
       long_var_ = -8 - resourceIdentifier;
       long_var_ = (uint_var_ - 4 >> 2) + 1;
       ptr_uint_var = (uint64_t *)(long_var_ * 4);
-      piVar7 = (int *)(resourceIdentifier + 8);
+      ptr_int_var = (int *)(resourceIdentifier + 8);
       do {
-        piVar1 = piVar7 + 8;
-        *(float *)((longlong)piVar7 + **(longlong **)(handleIdentifier + 0x2d0) + long_var_) = (float)piVar7[-2]
+        ptr_int_var = ptr_int_var + 8;
+        *(float *)((longlong)ptr_int_var + **(longlong **)(handleIdentifier + 0x2d0) + long_var_) = (float)ptr_int_var[-2]
         ;
-        *(int *)((longlong)piVar7 + **(longlong **)(handleIdentifier + 0x2d0) + 4 + long_var_) = piVar7[-1];
-        *(float *)((longlong)piVar7 + **(longlong **)(handleIdentifier + 0x2d0) + 8 + long_var_) =
-             (float)*piVar7;
-        *(int *)((longlong)piVar7 + **(longlong **)(handleIdentifier + 0x2d0) + 0xc + long_var_) = piVar7[1];
-        *(float *)((**(longlong **)(handleIdentifier + 0x2d0) - resourceIdentifier) + -0x18 + (longlong)piVar1) =
-             (float)piVar7[2];
-        *(int *)((longlong)piVar7 + **(longlong **)(handleIdentifier + 0x2d0) + 0x14 + long_var_) = piVar7[3];
-        *(float *)((**(longlong **)(handleIdentifier + 0x2d0) - resourceIdentifier) + -SYSTEM_DATA_COMPARE_SIZE + (longlong)piVar1) =
-             (float)piVar7[4];
-        *(int *)((longlong)piVar7 + **(longlong **)(handleIdentifier + 0x2d0) + 0x1c + long_var_) = piVar7[5];
+        *(int *)((longlong)ptr_int_var + **(longlong **)(handleIdentifier + 0x2d0) + 4 + long_var_) = ptr_int_var[-1];
+        *(float *)((longlong)ptr_int_var + **(longlong **)(handleIdentifier + 0x2d0) + 8 + long_var_) =
+             (float)*ptr_int_var;
+        *(int *)((longlong)ptr_int_var + **(longlong **)(handleIdentifier + 0x2d0) + 0xc + long_var_) = ptr_int_var[1];
+        *(float *)((**(longlong **)(handleIdentifier + 0x2d0) - resourceIdentifier) + -0x18 + (longlong)ptr_int_var) =
+             (float)ptr_int_var[2];
+        *(int *)((longlong)ptr_int_var + **(longlong **)(handleIdentifier + 0x2d0) + 0x14 + long_var_) = ptr_int_var[3];
+        *(float *)((**(longlong **)(handleIdentifier + 0x2d0) - resourceIdentifier) + -SYSTEM_DATA_COMPARE_SIZE + (longlong)ptr_int_var) =
+             (float)ptr_int_var[4];
+        *(int *)((longlong)ptr_int_var + **(longlong **)(handleIdentifier + 0x2d0) + 0x1c + long_var_) = ptr_int_var[5];
         long_var_ = long_var_ + -1;
-        piVar7 = piVar1;
+        ptr_int_var = ptr_int_var;
       } while (long_var_ != 0);
     }
     for (; (longlong)ptr_uint_var < (longlong)uint_var_; ptr_uint_var = (uint64_t *)((longlong)ptr_uint_var + 1)) {
@@ -56811,7 +56811,7 @@ void SystemFunction_41_6(longlong handleIdentifier,longlong resourceIdentifier,i
 void SystemFunction_47_9(void)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   ulonglong *node_root;
   ulonglong *ptr_uint_var;
   ulonglong system_RBX;
@@ -56819,7 +56819,7 @@ void SystemFunction_47_9(void)
   longlong system_RDI;
   uint uint_var_;
   ulonglong uint_var_;
-  int *piVar6;
+  int *ptr_int_var;
   longlong long_var_;
   ulonglong system_R14;
   longlong long_var_;
@@ -56844,22 +56844,22 @@ void SystemFunction_47_9(void)
     long_var_ = -8 - system_RBP;
     long_var_ = (system_R14 - 4 >> 2) + 1;
     system_RBX = long_var_ * 4;
-    piVar6 = (int *)(system_RBP + 8);
+    ptr_int_var = (int *)(system_RBP + 8);
     do {
-      piVar1 = piVar6 + 8;
-      *(float *)((longlong)piVar6 + **(longlong **)(system_RDI + 0x2d0) + long_var_) = (float)piVar6[-2];
-      *(int *)((longlong)piVar6 + **(longlong **)(system_RDI + 0x2d0) + 4 + long_var_) = piVar6[-1];
-      *(float *)((longlong)piVar6 + **(longlong **)(system_RDI + 0x2d0) + 8 + long_var_) = (float)*piVar6
+      ptr_int_var = ptr_int_var + 8;
+      *(float *)((longlong)ptr_int_var + **(longlong **)(system_RDI + 0x2d0) + long_var_) = (float)ptr_int_var[-2];
+      *(int *)((longlong)ptr_int_var + **(longlong **)(system_RDI + 0x2d0) + 4 + long_var_) = ptr_int_var[-1];
+      *(float *)((longlong)ptr_int_var + **(longlong **)(system_RDI + 0x2d0) + 8 + long_var_) = (float)*ptr_int_var
       ;
-      *(int *)((longlong)piVar6 + **(longlong **)(system_RDI + 0x2d0) + 0xc + long_var_) = piVar6[1];
-      *(float *)((**(longlong **)(system_RDI + 0x2d0) - system_RBP) + -0x18 + (longlong)piVar1) =
-           (float)piVar6[2];
-      *(int *)((longlong)piVar6 + **(longlong **)(system_RDI + 0x2d0) + 0x14 + long_var_) = piVar6[3];
-      *(float *)((**(longlong **)(system_RDI + 0x2d0) - system_RBP) + -SYSTEM_DATA_COMPARE_SIZE + (longlong)piVar1) =
-           (float)piVar6[4];
-      *(int *)((longlong)piVar6 + **(longlong **)(system_RDI + 0x2d0) + 0x1c + long_var_) = piVar6[5];
+      *(int *)((longlong)ptr_int_var + **(longlong **)(system_RDI + 0x2d0) + 0xc + long_var_) = ptr_int_var[1];
+      *(float *)((**(longlong **)(system_RDI + 0x2d0) - system_RBP) + -0x18 + (longlong)ptr_int_var) =
+           (float)ptr_int_var[2];
+      *(int *)((longlong)ptr_int_var + **(longlong **)(system_RDI + 0x2d0) + 0x14 + long_var_) = ptr_int_var[3];
+      *(float *)((**(longlong **)(system_RDI + 0x2d0) - system_RBP) + -SYSTEM_DATA_COMPARE_SIZE + (longlong)ptr_int_var) =
+           (float)ptr_int_var[4];
+      *(int *)((longlong)ptr_int_var + **(longlong **)(system_RDI + 0x2d0) + 0x1c + long_var_) = ptr_int_var[5];
       long_var_ = long_var_ + -1;
-      piVar6 = piVar1;
+      ptr_int_var = ptr_int_var;
     } while (long_var_ != 0);
   }
   for (; (longlong)system_RBX < (longlong)system_R14; system_RBX = system_RBX + 1) {
@@ -56876,7 +56876,7 @@ void SystemFunction_47_9(void)
 void SystemFunction_56_6(void)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   longlong long_var_;
   longlong system_RBP;
   longlong system_RDI;
@@ -56890,19 +56890,19 @@ void SystemFunction_56_6(void)
   long_var_ = long_var_ * 4;
   pcompare_result = (int *)(system_RBP + 8);
   do {
-    piVar1 = pcompare_result + 8;
+    ptr_int_var = pcompare_result + 8;
     *(float *)((longlong)pcompare_result + **(longlong **)(system_RDI + 0x2d0) + allocation_size) = (float)pcompare_result[-2];
     *(int *)((longlong)pcompare_result + **(longlong **)(system_RDI + 0x2d0) + 4 + allocation_size) = pcompare_result[-1];
     *(float *)((longlong)pcompare_result + **(longlong **)(system_RDI + 0x2d0) + 8 + allocation_size) = (float)*pcompare_result;
     *(int *)((longlong)pcompare_result + **(longlong **)(system_RDI + 0x2d0) + 0xc + allocation_size) = pcompare_result[1];
-    *(float *)((**(longlong **)(system_RDI + 0x2d0) - system_RBP) + -0x18 + (longlong)piVar1) =
+    *(float *)((**(longlong **)(system_RDI + 0x2d0) - system_RBP) + -0x18 + (longlong)ptr_int_var) =
          (float)pcompare_result[2];
     *(int *)((longlong)pcompare_result + **(longlong **)(system_RDI + 0x2d0) + 0x14 + allocation_size) = pcompare_result[3];
-    *(float *)((**(longlong **)(system_RDI + 0x2d0) - system_RBP) + -SYSTEM_DATA_COMPARE_SIZE + (longlong)piVar1) =
+    *(float *)((**(longlong **)(system_RDI + 0x2d0) - system_RBP) + -SYSTEM_DATA_COMPARE_SIZE + (longlong)ptr_int_var) =
          (float)pcompare_result[4];
     *(int *)((longlong)pcompare_result + **(longlong **)(system_RDI + 0x2d0) + 0x1c + allocation_size) = pcompare_result[5];
     long_var_ = long_var_ + -1;
-    pcompare_result = piVar1;
+    pcompare_result = ptr_int_var;
   } while (long_var_ != 0);
   for (; long_var_ < system_R14; long_var_ = long_var_ + 1) {
     *(float *)(**(longlong **)(system_RDI + 0x2d0) + long_var_ * 8) =
@@ -57026,32 +57026,32 @@ void SystemFunction_40_8(uint8_t *handleIdentifier,uint64_t resourceIdentifier,u
   longlong long_var_;
   longlong *ptr_long_var;
   longlong *ptr_long_var;
-  char cVar4;
+  char char_var;
   int int_var_;
   uint32_t uint_var_;
   longlong long_var_;
   void *node_next;
-  bool bVar9;
+  bool bool_var;
   uint64_t uint_var_;
 
   uint_var_ = INVALID_HANDLE_VALUE;
-  bVar9 = false;
+  bool_var = false;
   if ((*(byte *)(*(longlong *)(handleIdentifier + 8) + 0xfd) & SYSTEM_NODE_HEADER_SIZE) != 0) {
     SystemFunction_52_8();
     long_var_ = 0;
     do {
-      cVar4 = *(char *)(*(longlong *)(*(longlong *)(handleIdentifier + 8) + 0x1e0) + 0x15 + long_var_ * 0x18);
-      if (cVar4 == '\x01') {
+      char_var = *(char *)(*(longlong *)(*(longlong *)(handleIdentifier + 8) + 0x1e0) + 0x15 + long_var_ * 0x18);
+      if (char_var == '\x01') {
         Sleep(0);
-        bVar9 = true;
+        bool_var = true;
       }
       long_var_ = long_var_ + 1;
       long_var_ = 0;
-      if (cVar4 != '\x01') {
+      if (char_var != '\x01') {
         long_var_ = long_var_;
       }
     } while (long_var_ < SYSTEM_DATA_COMPARE_SIZE);
-    if ((bVar9) &&
+    if ((bool_var) &&
        ((long_var_ = *(longlong *)(handleIdentifier + 8), *(char *)(long_var_ + 0xfa) == '\0' ||
         (*(char *)(long_var_ + 0xfb) == '\0')))) {
       node_next = &g_system_data_variable3;
@@ -57065,23 +57065,23 @@ void SystemFunction_40_8(uint8_t *handleIdentifier,uint64_t resourceIdentifier,u
   long_var_ = *(longlong *)(handleIdentifier + 8);
   while( true ) {
     LOCK();
-    cVar4 = *(char *)(long_var_ + 0xec);
-    bVar9 = cVar4 == '\0';
-    if (bVar9) {
+    char_var = *(char *)(long_var_ + 0xec);
+    bool_var = char_var == '\0';
+    if (bool_var) {
       *(char *)(long_var_ + 0xec) = '\x01';
-      cVar4 = '\0';
+      char_var = '\0';
     }
     UNLOCK();
-    if (bVar9) break;
+    if (bool_var) break;
     int_var_ = _Thrd_id();
     if (*(int *)(long_var_ + 0xf0) == int_var_) goto LAB_18007f5cb;
     Sleep();
   }
-  cVar4 = '\0';
+  char_var = '\0';
 LAB_18007f5cb:
   uint_var_ = _Thrd_id();
   *(uint32_t *)(long_var_ + 0xf0) = uint_var_;
-  if (cVar4 == '\0') {
+  if (char_var == '\0') {
     *handleIdentifier = 1;
   }
   while (*(int *)(long_var_ + 0xe8) != 0) {
@@ -57178,26 +57178,26 @@ void SystemFunction_9_6(longlong *handleIdentifier)
 
 {
   longlong long_var_;
-  char cVar2;
+  char char_var;
   int compare_result;
-  bool bVar4;
+  bool bool_var;
 
   long_var_ = *handleIdentifier;
   compare_result = _Thrd_id();
   while( true ) {
     LOCK();
-    cVar2 = *(char *)(long_var_ + 0xec);
-    bVar4 = cVar2 == '\0';
-    if (bVar4) {
+    char_var = *(char *)(long_var_ + 0xec);
+    bool_var = char_var == '\0';
+    if (bool_var) {
       *(char *)(long_var_ + 0xec) = '\x01';
-      cVar2 = '\0';
+      char_var = '\0';
     }
     UNLOCK();
-    if (bVar4) break;
+    if (bool_var) break;
     if (*(int *)(long_var_ + 0xf0) == compare_result) goto LAB_18007f7cf;
     Sleep(0);
   }
-  cVar2 = '\0';
+  char_var = '\0';
 LAB_18007f7cf:
   LOCK();
   *(int *)(long_var_ + 0xe8) = *(int *)(long_var_ + 0xe8) + 1;
@@ -57205,7 +57205,7 @@ LAB_18007f7cf:
   if ((*(uint *)(handleIdentifier + 1) & 1) == 0) {
     SystemFunction_4_0(*handleIdentifier,(byte)(*(uint *)(handleIdentifier + 1) >> 2) & 1);
   }
-  if (cVar2 == '\0') {
+  if (char_var == '\0') {
     LOCK();
     *(uint8_t *)(long_var_ + 0xec) = 0;
     UNLOCK();
@@ -57226,36 +57226,36 @@ void SystemFunction_27_2(void)
 void SystemFunction_30_4(longlong *handleIdentifier)
 
 {
-  int *piVar1;
+  int *ptr_int_var;
   longlong long_var_;
-  char cVar3;
+  char char_var;
   int int_var_;
-  bool bVar5;
+  bool bool_var;
 
   long_var_ = *handleIdentifier;
   if (long_var_ != 0) {
     while( true ) {
       LOCK();
-      cVar3 = *(char *)(long_var_ + 0xec);
-      bVar5 = cVar3 == '\0';
-      if (bVar5) {
+      char_var = *(char *)(long_var_ + 0xec);
+      bool_var = char_var == '\0';
+      if (bool_var) {
         *(char *)(long_var_ + 0xec) = '\x01';
-        cVar3 = '\0';
+        char_var = '\0';
       }
       UNLOCK();
-      if (bVar5) break;
+      if (bool_var) break;
       int_var_ = _Thrd_id();
       if ((*(int *)(long_var_ + 0xf0) == int_var_) || (*(int *)(long_var_ + 0xf0) != 0)) goto LAB_18007f89f;
       Sleep();
     }
-    cVar3 = '\0';
+    char_var = '\0';
 LAB_18007f89f:
     LOCK();
-    piVar1 = (int *)(long_var_ + 0xe8);
-    int_var_ = *piVar1;
-    *piVar1 = *piVar1 + -1;
+    ptr_int_var = (int *)(long_var_ + 0xe8);
+    int_var_ = *ptr_int_var;
+    *ptr_int_var = *ptr_int_var + -1;
     UNLOCK();
-    if (cVar3 == '\0') {
+    if (char_var == '\0') {
       if (int_var_ == 1) {
         SystemFunction_63_2(*handleIdentifier,0);
       }
@@ -57272,44 +57272,44 @@ uint SystemFunction_32_9(void)
 
 {
   uint *ptr_uint_var;
-  byte bVar2;
-  char cVar3;
+  byte bool_var;
+  char char_var;
   int int_var_;
   uint uint_var_;
   longlong system_RBX;
   uint64_t *system_RSI;
-  bool bVar6;
+  bool bool_var;
 
   while( true ) {
     LOCK();
-    cVar3 = *(char *)(system_RBX + 0xec);
-    bVar6 = cVar3 == '\0';
-    if (bVar6) {
+    char_var = *(char *)(system_RBX + 0xec);
+    bool_var = char_var == '\0';
+    if (bool_var) {
       *(char *)(system_RBX + 0xec) = '\x01';
-      cVar3 = '\0';
+      char_var = '\0';
     }
     UNLOCK();
-    if (bVar6) break;
+    if (bool_var) break;
     int_var_ = _Thrd_id();
     if ((*(int *)(system_RBX + 0xf0) == int_var_) || (*(int *)(system_RBX + 0xf0) != 0))
     goto LAB_18007f89f;
     Sleep();
   }
-  cVar3 = '\0';
+  char_var = '\0';
 LAB_18007f89f:
   LOCK();
   ptr_uint_var = (uint *)(system_RBX + 0xe8);
   uint_var_ = *ptr_uint_var;
   *ptr_uint_var = *ptr_uint_var - 1;
   UNLOCK();
-  if (cVar3 == '\0') {
+  if (char_var == '\0') {
     if (uint_var_ == 1) {
       SystemFunction_63_2(*system_RSI,0);
     }
     LOCK();
-    bVar2 = *(byte *)(system_RBX + 0xec);
+    bool_var = *(byte *)(system_RBX + 0xec);
     *(byte *)(system_RBX + 0xec) = 0;
-    uint_var_ = (uint)bVar2;
+    uint_var_ = (uint)bool_var;
     UNLOCK();
   }
   *system_RSI = 0;
@@ -57341,8 +57341,8 @@ void SystemFunction_48_0(longlong handleIdentifier)
 {
   longlong *ptr_long_var;
   longlong *ptr_long_var;
-  byte *pbVar3;
-  char cVar4;
+  byte *ptr_byte_var;
+  char char_var;
   uint32_t uint_var_;
   uint uint_var_;
   longlong *ptr_long_var;
@@ -57378,11 +57378,11 @@ void SystemFunction_48_0(longlong handleIdentifier)
         }
       }
       else {
-        cVar4 = *(char *)(handleIdentifier + 0x44);
-        uint_var_ = (ulonglong)cVar4;
+        char_var = *(char *)(handleIdentifier + 0x44);
+        uint_var_ = (ulonglong)char_var;
         ptr_long_var = (longlong *)(handleIdentifier + 0x38);
-        int_var_ = (int)cVar4;
-        if (*(int *)(handleIdentifier + 0x40) == (int)cVar4) {
+        int_var_ = (int)char_var;
+        if (*(int *)(handleIdentifier + 0x40) == (int)char_var) {
           ptr_long_var = (longlong *)*ptr_long_var;
         }
         else {
@@ -57392,22 +57392,22 @@ void SystemFunction_48_0(longlong handleIdentifier)
             ProcessSystemOperation();
           }
           *ptr_long_var = 0;
-          if (cVar4 == '\0') {
+          if (char_var == '\0') {
             ptr_long_var = (longlong *)0x0;
             *ptr_long_var = 0;
           }
           else {
-            ptr_long_var = (longlong *)AllocateSystemMemory(systemMemoryPool,(longlong)cVar4 * 4);
+            ptr_long_var = (longlong *)AllocateSystemMemory(systemMemoryPool,(longlong)char_var * 4);
             *ptr_long_var = (longlong)ptr_long_var;
           }
         }
         if (ptr_long_var != (longlong *)0x0) {
           int_var_ = 0;
-          uint_var_ = (uint)cVar4;
+          uint_var_ = (uint)char_var;
           int_var_ = int_var_;
           if ((0 < int_var_) && (0xf < uint_var_)) {
             int_var_ = *(int *)(handleIdentifier + 0x2c);
-            ptr_long_var = (longlong *)((longlong)ptr_long_var + (longlong)(cVar4 + -1) * 4);
+            ptr_long_var = (longlong *)((longlong)ptr_long_var + (longlong)(char_var + -1) * 4);
             if ((((longlong *)(handleIdentifier + 0x2c) < ptr_long_var) || (ptr_long_var < (longlong *)(handleIdentifier + 0x2c)))
                && ((ptr_long_var < ptr_long_var || (int_var_ = 0, ptr_long_var < ptr_long_var)))) {
               uint_var_ = uint_var_ & 0x8000000f;
@@ -57452,24 +57452,24 @@ void SystemFunction_48_0(longlong handleIdentifier)
             do {
               int_var_ = *(int *)(handleIdentifier + 0x30) + int_var_;
               int_var_ = int_var_ + 1;
-              pbVar3 = (byte *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) + long_var_);
+              ptr_byte_var = (byte *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) + long_var_);
               long_var_ = long_var_ + 1;
-              *(int *)(*ptr_long_var + (ulonglong)*pbVar3 * 4) = int_var_;
+              *(int *)(*ptr_long_var + (ulonglong)*ptr_byte_var * 4) = int_var_;
             } while (long_var_ < int_var_);
           }
         }
         puVar14 = (uint *)((longlong)*(int *)(systemCoreData + 0xc20) * 0x128 +
                           systemCoreData + 0x9d0);
         if (int_var_ == 0) {
-          uint_var_ = (int)cVar4 - 1;
+          uint_var_ = (int)char_var - 1;
         }
         else {
           LOCK();
           uint_var_ = *puVar14;
-          *puVar14 = *puVar14 + (int)cVar4;
+          *puVar14 = *puVar14 + (int)char_var;
           UNLOCK();
           uint_var_ = (ulonglong)(uint_var_ >> 0xb);
-          uint_var_ = (ulonglong)(cVar4 + -1 + uint_var_ >> 0xb);
+          uint_var_ = (ulonglong)(char_var + -1 + uint_var_ >> 0xb);
           if (uint_var_ <= uint_var_) {
             pis_initialized3 = (char *)((longlong)puVar14 + uint_var_ + SYSTEM_DATA_COMPARE_SIZE8);
             long_var_ = (uint_var_ - uint_var_) + 1;
@@ -57512,7 +57512,7 @@ void SystemFunction_48_0(longlong handleIdentifier)
         puVar19 = *(uint32_t **)(handleIdentifier + 0x38);
         uint_var_ = uint_var_ >> 0xb;
         *(uint *)(handleIdentifier + 0x2c) = uint_var_;
-        if (uint_var_ == (int)cVar4 + uint_var_ >> 0xb) {
+        if (uint_var_ == (int)char_var + uint_var_ >> 0xb) {
                     // WARNING: Subroutine does not return
           memcpy(*(longlong *)(puVar14 + (ulonglong)uint_var_ * 2 + 2) +
                  (ulonglong)(uint_var_ + uint_var_ * -0x800) * 4,puVar19,(uint_var_ & 0xffffffff) << 2);
@@ -57541,8 +57541,8 @@ void SystemFunction_51_1(uint32_t handleIdentifier)
 {
   longlong *ptr_long_var;
   longlong *ptr_long_var;
-  byte *pbVar3;
-  char cVar4;
+  byte *ptr_byte_var;
+  char char_var;
   uint32_t uint_var_;
   uint uint_var_;
   longlong *ptr_long_var;
@@ -57578,11 +57578,11 @@ void SystemFunction_51_1(uint32_t handleIdentifier)
       }
     }
     else {
-      cVar4 = *(char *)(system_RDI + 0x44);
-      uint_var_ = (ulonglong)cVar4;
+      char_var = *(char *)(system_RDI + 0x44);
+      uint_var_ = (ulonglong)char_var;
       ptr_long_var = (longlong *)(system_RDI + 0x38);
-      int_var_ = (int)cVar4;
-      if (*(int *)(system_RDI + 0x40) == (int)cVar4) {
+      int_var_ = (int)char_var;
+      if (*(int *)(system_RDI + 0x40) == (int)char_var) {
         ptr_long_var = (longlong *)*ptr_long_var;
       }
       else {
@@ -57592,22 +57592,22 @@ void SystemFunction_51_1(uint32_t handleIdentifier)
           ProcessSystemOperation();
         }
         *ptr_long_var = 0;
-        if (cVar4 == '\0') {
+        if (char_var == '\0') {
           ptr_long_var = (longlong *)0x0;
           *ptr_long_var = 0;
         }
         else {
-          ptr_long_var = (longlong *)AllocateSystemMemory(systemMemoryPool,(longlong)cVar4 * 4);
+          ptr_long_var = (longlong *)AllocateSystemMemory(systemMemoryPool,(longlong)char_var * 4);
           *ptr_long_var = (longlong)ptr_long_var;
         }
       }
       if (ptr_long_var != (longlong *)0x0) {
         int_var_ = 0;
-        uint_var_ = (uint)cVar4;
+        uint_var_ = (uint)char_var;
         int_var_ = int_var_;
         if ((0 < int_var_) && (0xf < uint_var_)) {
           int_var_ = *(int *)(system_RDI + 0x2c);
-          ptr_long_var = (longlong *)((longlong)ptr_long_var + (longlong)(cVar4 + -1) * 4);
+          ptr_long_var = (longlong *)((longlong)ptr_long_var + (longlong)(char_var + -1) * 4);
           if ((((longlong *)(system_RDI + 0x2c) < ptr_long_var) ||
               (ptr_long_var < (longlong *)(system_RDI + 0x2c))) &&
              ((ptr_long_var < ptr_long_var || (int_var_ = 0, ptr_long_var < ptr_long_var)))) {
@@ -57653,24 +57653,24 @@ void SystemFunction_51_1(uint32_t handleIdentifier)
           do {
             int_var_ = *(int *)(system_RDI + 0x30) + int_var_;
             int_var_ = int_var_ + 1;
-            pbVar3 = (byte *)(*(longlong *)(system_RDI + SYSTEM_DATA_COMPARE_SIZE) + long_var_);
+            ptr_byte_var = (byte *)(*(longlong *)(system_RDI + SYSTEM_DATA_COMPARE_SIZE) + long_var_);
             long_var_ = long_var_ + 1;
-            *(int *)(*ptr_long_var + (ulonglong)*pbVar3 * 4) = int_var_;
+            *(int *)(*ptr_long_var + (ulonglong)*ptr_byte_var * 4) = int_var_;
           } while (long_var_ < int_var_);
         }
       }
       puVar14 = (uint *)((longlong)*(int *)(systemCoreData + 0xc20) * 0x128 + systemCoreData + 0x9d0
                         );
       if (int_var_ == 0) {
-        uint_var_ = (int)cVar4 - 1;
+        uint_var_ = (int)char_var - 1;
       }
       else {
         LOCK();
         uint_var_ = *puVar14;
-        *puVar14 = *puVar14 + (int)cVar4;
+        *puVar14 = *puVar14 + (int)char_var;
         UNLOCK();
         uint_var_ = (ulonglong)(uint_var_ >> 0xb);
-        uint_var_ = (ulonglong)(cVar4 + -1 + uint_var_ >> 0xb);
+        uint_var_ = (ulonglong)(char_var + -1 + uint_var_ >> 0xb);
         if (uint_var_ <= uint_var_) {
           pis_initialized3 = (char *)((longlong)puVar14 + uint_var_ + SYSTEM_DATA_COMPARE_SIZE8);
           long_var_ = (uint_var_ - uint_var_) + 1;
@@ -57713,7 +57713,7 @@ void SystemFunction_51_1(uint32_t handleIdentifier)
       puVar19 = *(uint32_t **)(system_RDI + 0x38);
       uint_var_ = uint_var_ >> 0xb;
       *(uint *)(system_RDI + 0x2c) = uint_var_;
-      if (uint_var_ == (int)cVar4 + uint_var_ >> 0xb) {
+      if (uint_var_ == (int)char_var + uint_var_ >> 0xb) {
                     // WARNING: Subroutine does not return
         memcpy(*(longlong *)(puVar14 + (ulonglong)uint_var_ * 2 + 2) +
                (ulonglong)(uint_var_ + uint_var_ * -0x800) * 4,puVar19,(uint_var_ & 0xffffffff) << 2);
@@ -57741,8 +57741,8 @@ void SystemFunction_54_7(uint64_t handleIdentifier,longlong resourceIdentifier)
 {
   longlong *ptr_long_var;
   longlong *ptr_long_var;
-  byte *pbVar3;
-  char cVar4;
+  byte *ptr_byte_var;
+  char char_var;
   uint32_t uint_var_;
   uint uint_var_;
   longlong *ptr_long_var;
@@ -57776,11 +57776,11 @@ void SystemFunction_54_7(uint64_t handleIdentifier,longlong resourceIdentifier)
     }
   }
   else {
-    cVar4 = *(char *)(system_RDI + 0x44);
-    uint_var_ = (ulonglong)cVar4;
+    char_var = *(char *)(system_RDI + 0x44);
+    uint_var_ = (ulonglong)char_var;
     ptr_long_var = (longlong *)(system_RDI + 0x38);
-    int_var_ = (int)cVar4;
-    if (*(int *)(system_RDI + 0x40) == (int)cVar4) {
+    int_var_ = (int)char_var;
+    if (*(int *)(system_RDI + 0x40) == (int)char_var) {
       ptr_long_var = (longlong *)*ptr_long_var;
     }
     else {
@@ -57790,22 +57790,22 @@ void SystemFunction_54_7(uint64_t handleIdentifier,longlong resourceIdentifier)
         ProcessSystemOperation();
       }
       *ptr_long_var = 0;
-      if (cVar4 == '\0') {
+      if (char_var == '\0') {
         ptr_long_var = (longlong *)0x0;
         *ptr_long_var = 0;
       }
       else {
-        ptr_long_var = (longlong *)AllocateSystemMemory(systemMemoryPool,(longlong)cVar4 * 4);
+        ptr_long_var = (longlong *)AllocateSystemMemory(systemMemoryPool,(longlong)char_var * 4);
         *ptr_long_var = (longlong)ptr_long_var;
       }
     }
     if (ptr_long_var != (longlong *)0x0) {
       int_var_ = 0;
-      uint_var_ = (uint)cVar4;
+      uint_var_ = (uint)char_var;
       int_var_ = int_var_;
       if ((0 < int_var_) && (0xf < uint_var_)) {
         int_var_ = *(int *)(system_RDI + 0x2c);
-        ptr_long_var = (longlong *)((longlong)ptr_long_var + (longlong)(cVar4 + -1) * 4);
+        ptr_long_var = (longlong *)((longlong)ptr_long_var + (longlong)(char_var + -1) * 4);
         if ((((longlong *)(system_RDI + 0x2c) < ptr_long_var) || (ptr_long_var < (longlong *)(system_RDI + 0x2c)))
            && ((ptr_long_var < ptr_long_var || (int_var_ = 0, ptr_long_var < ptr_long_var)))) {
           uint_var_ = uint_var_ & 0x8000000f;
@@ -57850,23 +57850,23 @@ void SystemFunction_54_7(uint64_t handleIdentifier,longlong resourceIdentifier)
         do {
           int_var_ = *(int *)(system_RDI + 0x30) + int_var_;
           int_var_ = int_var_ + 1;
-          pbVar3 = (byte *)(*(longlong *)(system_RDI + SYSTEM_DATA_COMPARE_SIZE) + long_var_);
+          ptr_byte_var = (byte *)(*(longlong *)(system_RDI + SYSTEM_DATA_COMPARE_SIZE) + long_var_);
           long_var_ = long_var_ + 1;
-          *(int *)(*ptr_long_var + (ulonglong)*pbVar3 * 4) = int_var_;
+          *(int *)(*ptr_long_var + (ulonglong)*ptr_byte_var * 4) = int_var_;
         } while (long_var_ < int_var_);
       }
     }
     puVar14 = (uint *)((longlong)*(int *)(systemCoreData + 0xc20) * 0x128 + systemCoreData + 0x9d0);
     if (int_var_ == 0) {
-      uint_var_ = (int)cVar4 - 1;
+      uint_var_ = (int)char_var - 1;
     }
     else {
       LOCK();
       uint_var_ = *puVar14;
-      *puVar14 = *puVar14 + (int)cVar4;
+      *puVar14 = *puVar14 + (int)char_var;
       UNLOCK();
       uint_var_ = (ulonglong)(uint_var_ >> 0xb);
-      uint_var_ = (ulonglong)(cVar4 + -1 + uint_var_ >> 0xb);
+      uint_var_ = (ulonglong)(char_var + -1 + uint_var_ >> 0xb);
       if (uint_var_ <= uint_var_) {
         pis_initialized3 = (char *)((longlong)puVar14 + uint_var_ + SYSTEM_DATA_COMPARE_SIZE8);
         long_var_ = (uint_var_ - uint_var_) + 1;
@@ -57909,7 +57909,7 @@ void SystemFunction_54_7(uint64_t handleIdentifier,longlong resourceIdentifier)
     puVar18 = *(uint32_t **)(system_RDI + 0x38);
     uint_var_ = uint_var_ >> 0xb;
     *(uint *)(system_RDI + 0x2c) = uint_var_;
-    if (uint_var_ == (int)cVar4 + uint_var_ >> 0xb) {
+    if (uint_var_ == (int)char_var + uint_var_ >> 0xb) {
                     // WARNING: Subroutine does not return
       memcpy(*(longlong *)(puVar14 + (ulonglong)uint_var_ * 2 + 2) +
              (ulonglong)(uint_var_ + uint_var_ * -0x800) * 4,puVar18,(uint_var_ & 0xffffffff) << 2);
@@ -57936,7 +57936,7 @@ void SystemFunction_61_4(void)
 {
   longlong *ptr_long_var;
   longlong *ptr_long_var;
-  byte *pbVar3;
+  byte *ptr_byte_var;
   uint32_t uint_var_;
   uint uint_var_;
   uint uint_var_;
@@ -58029,9 +58029,9 @@ void SystemFunction_61_4(void)
       do {
         int_var_ = *(int *)(system_RDI + 0x30) + int_var_;
         int_var_ = int_var_ + 1;
-        pbVar3 = (byte *)(*(longlong *)(system_RDI + SYSTEM_DATA_COMPARE_SIZE) + long_var_);
+        ptr_byte_var = (byte *)(*(longlong *)(system_RDI + SYSTEM_DATA_COMPARE_SIZE) + long_var_);
         long_var_ = long_var_ + 1;
-        *(int *)(*ptr_long_var + (ulonglong)*pbVar3 * 4) = int_var_;
+        *(int *)(*ptr_long_var + (ulonglong)*ptr_byte_var * 4) = int_var_;
       } while (long_var_ < int_var_);
     }
   }
@@ -58114,7 +58114,7 @@ void SystemFunction_62_7(void)
 {
   longlong *ptr_long_var;
   longlong *ptr_long_var;
-  byte *pbVar3;
+  byte *ptr_byte_var;
   uint32_t uint_var_;
   uint uint_var_;
   uint uint_var_;
@@ -58208,9 +58208,9 @@ void SystemFunction_62_7(void)
       do {
         int_var_ = *(int *)(system_RDI + 0x30) + int_var_;
         int_var_ = int_var_ + 1;
-        pbVar3 = (byte *)(*(longlong *)(system_RDI + SYSTEM_DATA_COMPARE_SIZE) + long_var_);
+        ptr_byte_var = (byte *)(*(longlong *)(system_RDI + SYSTEM_DATA_COMPARE_SIZE) + long_var_);
         long_var_ = long_var_ + 1;
-        *(int *)(*ptr_long_var + (ulonglong)*pbVar3 * 4) = int_var_;
+        *(int *)(*ptr_long_var + (ulonglong)*ptr_byte_var * 4) = int_var_;
       } while (long_var_ < int_var_);
     }
   }
@@ -58294,7 +58294,7 @@ void SystemFunction_10_3(void)
   uint32_t uint_var_;
   longlong long_var_;
   uint uint_var_;
-  char *pcVar4;
+  char *ptr_char_var;
   uint *system_RBP;
   uint uint_var_;
   longlong system_RDI;
@@ -58315,7 +58315,7 @@ void SystemFunction_10_3(void)
   uint_var_ = (ulonglong)(uint_var_ >> 0xb);
   uint_var_ = (ulonglong)((system_R12D - 1) + uint_var_ >> 0xb);
   if (uint_var_ <= uint_var_) {
-    pcVar4 = (char *)((longlong)system_RBP + uint_var_ + SYSTEM_DATA_COMPARE_SIZE8);
+    ptr_char_var = (char *)((longlong)system_RBP + uint_var_ + SYSTEM_DATA_COMPARE_SIZE8);
     long_var_ = (uint_var_ - uint_var_) + 1;
     node_next = system_RBP + (ulonglong)(uint_var_ >> 0xb) * 2 + 2;
     do {
@@ -58339,16 +58339,16 @@ void SystemFunction_10_3(void)
             ProcessSystemOperation();
           }
           do {
-          } while (*pcVar4 != '\0');
+          } while (*ptr_char_var != '\0');
         }
       }
       else {
         do {
-        } while (*pcVar4 != '\0');
+        } while (*ptr_char_var != '\0');
       }
       uint_var_ = (ulonglong)(int_var_ + 1);
       node_next = node_next + 2;
-      pcVar4 = pcVar4 + 1;
+      ptr_char_var = ptr_char_var + 1;
       long_var_ = long_var_ + -1;
     } while (long_var_ != 0);
     system_R13 = (uint64_t *)(system_RDI + 0x38);
@@ -58563,14 +58563,14 @@ void* g_global_data_1800a127e;
 uint64_t ProcessFunction79434(void)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   uint uint_var_;
   uint uint_var_;
   int int_var_;
@@ -58687,48 +58687,48 @@ uint64_t ProcessFunction79434(void)
         pfVar12 = system_RDI;
         int_var_ = int_var_;
         do {
-          fVar1 = *pfVar12;
-          fVar2 = pfVar12[1];
-          fVar3 = pfVar12[2];
-          fVar4 = pfVar12[3];
-          uint_var_ = -(uint)(0.0001 < fVar1);
-          uint_var_ = -(uint)(0.0001 < fVar2);
-          uint_var_ = -(uint)(0.0001 < fVar3);
-          uint_var_ = -(uint)(0.0001 < fVar4);
+          float_var = *pfVar12;
+          float_var = pfVar12[1];
+          float_var = pfVar12[2];
+          float_var = pfVar12[3];
+          uint_var_ = -(uint)(0.0001 < float_var);
+          uint_var_ = -(uint)(0.0001 < float_var);
+          uint_var_ = -(uint)(0.0001 < float_var);
+          uint_var_ = -(uint)(0.0001 < float_var);
           int_var_ = int_var_ + 8;
-          fVar5 = pfVar12[4];
-          fVar6 = pfVar12[5];
-          fVar7 = pfVar12[6];
-          fVar8 = pfVar12[7];
+          float_var = pfVar12[4];
+          float_var = pfVar12[5];
+          float_var = pfVar12[6];
+          float_var = pfVar12[7];
           pfVar12 = pfVar12 + 8;
-          fVar17 = (float)((uint)((float)int_var_ * (float)system_XMM12_Da * 0.5 * fVar20 * fVar1 +
+          fVar17 = (float)((uint)((float)int_var_ * (float)system_XMM12_Da * 0.5 * fVar20 * float_var +
                                  fVar17) & uint_var_ | ~uint_var_ & (uint)fVar17);
-          fVar29 = (float)((uint)((float)(int_var_ + 1) * (float)system_XMM12_Db * 0.5 * fVar22 * fVar2
+          fVar29 = (float)((uint)((float)(int_var_ + 1) * (float)system_XMM12_Db * 0.5 * fVar22 * float_var
                                  + fVar29) & uint_var_ | ~uint_var_ & (uint)fVar29);
-          fVar31 = (float)((uint)((float)(int_var_ + 2) * (float)system_XMM12_Dc * 0.5 * fVar23 * fVar3
+          fVar31 = (float)((uint)((float)(int_var_ + 2) * (float)system_XMM12_Dc * 0.5 * fVar23 * float_var
                                  + fVar31) & uint_var_ | ~uint_var_ & (uint)fVar31);
-          fVar19 = (float)((uint)((float)(int_var_ + 3) * (float)system_XMM12_Dd * 0.5 * fVar24 * fVar4
+          fVar19 = (float)((uint)((float)(int_var_ + 3) * (float)system_XMM12_Dd * 0.5 * fVar24 * float_var
                                  + fVar19) & uint_var_ | ~uint_var_ & (uint)fVar19);
-          fVar25 = (float)((uint)(fVar1 + fVar25) & uint_var_ | ~uint_var_ & (uint)fVar25);
-          fVar26 = (float)((uint)(fVar2 + fVar26) & uint_var_ | ~uint_var_ & (uint)fVar26);
-          fVar27 = (float)((uint)(fVar3 + fVar27) & uint_var_ | ~uint_var_ & (uint)fVar27);
-          fVar28 = (float)((uint)(fVar4 + fVar28) & uint_var_ | ~uint_var_ & (uint)fVar28);
-          uint_var_ = -(uint)(0.0001 < fVar5);
-          uint_var_ = -(uint)(0.0001 < fVar6);
-          uint_var_ = -(uint)(0.0001 < fVar7);
-          uint_var_ = -(uint)(0.0001 < fVar8);
-          fVar30 = (float)((uint)((float)(int_var_ + 4) * (float)system_XMM12_Da * 0.5 * fVar20 * fVar5
+          fVar25 = (float)((uint)(float_var + fVar25) & uint_var_ | ~uint_var_ & (uint)fVar25);
+          fVar26 = (float)((uint)(float_var + fVar26) & uint_var_ | ~uint_var_ & (uint)fVar26);
+          fVar27 = (float)((uint)(float_var + fVar27) & uint_var_ | ~uint_var_ & (uint)fVar27);
+          fVar28 = (float)((uint)(float_var + fVar28) & uint_var_ | ~uint_var_ & (uint)fVar28);
+          uint_var_ = -(uint)(0.0001 < float_var);
+          uint_var_ = -(uint)(0.0001 < float_var);
+          uint_var_ = -(uint)(0.0001 < float_var);
+          uint_var_ = -(uint)(0.0001 < float_var);
+          fVar30 = (float)((uint)((float)(int_var_ + 4) * (float)system_XMM12_Da * 0.5 * fVar20 * float_var
                                  + fVar30) & uint_var_ | ~uint_var_ & (uint)fVar30);
-          fVar32 = (float)((uint)((float)(int_var_ + 5) * (float)system_XMM12_Db * 0.5 * fVar22 * fVar6
+          fVar32 = (float)((uint)((float)(int_var_ + 5) * (float)system_XMM12_Db * 0.5 * fVar22 * float_var
                                  + fVar32) & uint_var_ | ~uint_var_ & (uint)fVar32);
-          fVar33 = (float)((uint)((float)(int_var_ + 6) * (float)system_XMM12_Dc * 0.5 * fVar23 * fVar7
+          fVar33 = (float)((uint)((float)(int_var_ + 6) * (float)system_XMM12_Dc * 0.5 * fVar23 * float_var
                                  + fVar33) & uint_var_ | ~uint_var_ & (uint)fVar33);
-          fVar34 = (float)((uint)((float)(int_var_ + 7) * (float)system_XMM12_Dd * 0.5 * fVar24 * fVar8
+          fVar34 = (float)((uint)((float)(int_var_ + 7) * (float)system_XMM12_Dd * 0.5 * fVar24 * float_var
                                  + fVar34) & uint_var_ | ~uint_var_ & (uint)fVar34);
-          fVar35 = (float)((uint)(fVar5 + fVar35) & uint_var_ | ~uint_var_ & (uint)fVar35);
-          fVar36 = (float)((uint)(fVar6 + fVar36) & uint_var_ | ~uint_var_ & (uint)fVar36);
-          fVar37 = (float)((uint)(fVar7 + fVar37) & uint_var_ | ~uint_var_ & (uint)fVar37);
-          fVar38 = (float)((uint)(fVar8 + fVar38) & uint_var_ | ~uint_var_ & (uint)fVar38);
+          fVar35 = (float)((uint)(float_var + fVar35) & uint_var_ | ~uint_var_ & (uint)fVar35);
+          fVar36 = (float)((uint)(float_var + fVar36) & uint_var_ | ~uint_var_ & (uint)fVar36);
+          fVar37 = (float)((uint)(float_var + fVar37) & uint_var_ | ~uint_var_ & (uint)fVar37);
+          fVar38 = (float)((uint)(float_var + fVar38) & uint_var_ | ~uint_var_ & (uint)fVar38);
           int_var_ = int_var_;
         } while (int_var_ < (int)(systemParam_D - uint_var_));
         system_XMM6_Da = fVar27 + fVar37 + fVar25 + fVar35 + fVar28 + fVar38 + fVar26 + fVar36;
@@ -58793,14 +58793,14 @@ uint64_t ProcessFunction79434(void)
 uint64_t ProcessFunction794c5(void)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   uint uint_var_;
   int int_var_;
   float *pfVar11;
@@ -58889,48 +58889,48 @@ uint64_t ProcessFunction794c5(void)
       pfVar11 = system_RDI;
       int_var_ = int_var_;
       do {
-        fVar1 = *pfVar11;
-        fVar2 = pfVar11[1];
-        fVar3 = pfVar11[2];
-        fVar4 = pfVar11[3];
-        uint_var_ = -(uint)(0.0001 < fVar1);
-        uint_var_ = -(uint)(0.0001 < fVar2);
-        uint_var_ = -(uint)(0.0001 < fVar3);
-        uint_var_ = -(uint)(0.0001 < fVar4);
+        float_var = *pfVar11;
+        float_var = pfVar11[1];
+        float_var = pfVar11[2];
+        float_var = pfVar11[3];
+        uint_var_ = -(uint)(0.0001 < float_var);
+        uint_var_ = -(uint)(0.0001 < float_var);
+        uint_var_ = -(uint)(0.0001 < float_var);
+        uint_var_ = -(uint)(0.0001 < float_var);
         int_var_ = int_var_ + 8;
-        fVar5 = pfVar11[4];
-        fVar6 = pfVar11[5];
-        fVar7 = pfVar11[6];
-        fVar8 = pfVar11[7];
+        float_var = pfVar11[4];
+        float_var = pfVar11[5];
+        float_var = pfVar11[6];
+        float_var = pfVar11[7];
         pfVar11 = pfVar11 + 8;
-        fVar25 = (float)((uint)((float)int_var_ * (float)system_XMM12_Da * 0.5 * fVar19 * fVar1 +
+        fVar25 = (float)((uint)((float)int_var_ * (float)system_XMM12_Da * 0.5 * fVar19 * float_var +
                                fVar25) & uint_var_ | ~uint_var_ & (uint)fVar25);
-        fVar29 = (float)((uint)((float)(int_var_ + 1) * (float)system_XMM12_Db * 0.5 * fVar21 * fVar2 +
+        fVar29 = (float)((uint)((float)(int_var_ + 1) * (float)system_XMM12_Db * 0.5 * fVar21 * float_var +
                                fVar29) & uint_var_ | ~uint_var_ & (uint)fVar29);
-        fVar31 = (float)((uint)((float)(int_var_ + 2) * (float)system_XMM12_Dc * 0.5 * fVar22 * fVar3 +
+        fVar31 = (float)((uint)((float)(int_var_ + 2) * (float)system_XMM12_Dc * 0.5 * fVar22 * float_var +
                                fVar31) & uint_var_ | ~uint_var_ & (uint)fVar31);
-        fVar18 = (float)((uint)((float)(int_var_ + 3) * (float)system_XMM12_Dd * 0.5 * fVar23 * fVar4 +
+        fVar18 = (float)((uint)((float)(int_var_ + 3) * (float)system_XMM12_Dd * 0.5 * fVar23 * float_var +
                                fVar18) & uint_var_ | ~uint_var_ & (uint)fVar18);
-        fVar24 = (float)((uint)(fVar1 + fVar24) & uint_var_ | ~uint_var_ & (uint)fVar24);
-        fVar26 = (float)((uint)(fVar2 + fVar26) & uint_var_ | ~uint_var_ & (uint)fVar26);
-        fVar27 = (float)((uint)(fVar3 + fVar27) & uint_var_ | ~uint_var_ & (uint)fVar27);
-        fVar28 = (float)((uint)(fVar4 + fVar28) & uint_var_ | ~uint_var_ & (uint)fVar28);
-        uint_var_ = -(uint)(0.0001 < fVar5);
-        uint_var_ = -(uint)(0.0001 < fVar6);
-        uint_var_ = -(uint)(0.0001 < fVar7);
-        uint_var_ = -(uint)(0.0001 < fVar8);
-        fVar30 = (float)((uint)((float)(int_var_ + 4) * (float)system_XMM12_Da * 0.5 * fVar19 * fVar5 +
+        fVar24 = (float)((uint)(float_var + fVar24) & uint_var_ | ~uint_var_ & (uint)fVar24);
+        fVar26 = (float)((uint)(float_var + fVar26) & uint_var_ | ~uint_var_ & (uint)fVar26);
+        fVar27 = (float)((uint)(float_var + fVar27) & uint_var_ | ~uint_var_ & (uint)fVar27);
+        fVar28 = (float)((uint)(float_var + fVar28) & uint_var_ | ~uint_var_ & (uint)fVar28);
+        uint_var_ = -(uint)(0.0001 < float_var);
+        uint_var_ = -(uint)(0.0001 < float_var);
+        uint_var_ = -(uint)(0.0001 < float_var);
+        uint_var_ = -(uint)(0.0001 < float_var);
+        fVar30 = (float)((uint)((float)(int_var_ + 4) * (float)system_XMM12_Da * 0.5 * fVar19 * float_var +
                                fVar30) & uint_var_ | ~uint_var_ & (uint)fVar30);
-        fVar32 = (float)((uint)((float)(int_var_ + 5) * (float)system_XMM12_Db * 0.5 * fVar21 * fVar6 +
+        fVar32 = (float)((uint)((float)(int_var_ + 5) * (float)system_XMM12_Db * 0.5 * fVar21 * float_var +
                                fVar32) & uint_var_ | ~uint_var_ & (uint)fVar32);
-        fVar33 = (float)((uint)((float)(int_var_ + 6) * (float)system_XMM12_Dc * 0.5 * fVar22 * fVar7 +
+        fVar33 = (float)((uint)((float)(int_var_ + 6) * (float)system_XMM12_Dc * 0.5 * fVar22 * float_var +
                                fVar33) & uint_var_ | ~uint_var_ & (uint)fVar33);
-        fVar34 = (float)((uint)((float)(int_var_ + 7) * (float)system_XMM12_Dd * 0.5 * fVar23 * fVar8 +
+        fVar34 = (float)((uint)((float)(int_var_ + 7) * (float)system_XMM12_Dd * 0.5 * fVar23 * float_var +
                                fVar34) & uint_var_ | ~uint_var_ & (uint)fVar34);
-        fVar35 = (float)((uint)(fVar5 + fVar35) & uint_var_ | ~uint_var_ & (uint)fVar35);
-        fVar36 = (float)((uint)(fVar6 + fVar36) & uint_var_ | ~uint_var_ & (uint)fVar36);
-        fVar37 = (float)((uint)(fVar7 + fVar37) & uint_var_ | ~uint_var_ & (uint)fVar37);
-        fVar38 = (float)((uint)(fVar8 + fVar38) & uint_var_ | ~uint_var_ & (uint)fVar38);
+        fVar35 = (float)((uint)(float_var + fVar35) & uint_var_ | ~uint_var_ & (uint)fVar35);
+        fVar36 = (float)((uint)(float_var + fVar36) & uint_var_ | ~uint_var_ & (uint)fVar36);
+        fVar37 = (float)((uint)(float_var + fVar37) & uint_var_ | ~uint_var_ & (uint)fVar37);
+        fVar38 = (float)((uint)(float_var + fVar38) & uint_var_ | ~uint_var_ & (uint)fVar38);
         int_var_ = int_var_;
       } while (int_var_ < (int)(systemParam_D - uint_var_));
       system_XMM6_Da = fVar27 + fVar37 + fVar24 + fVar35 + fVar28 + fVar38 + fVar26 + fVar36;
@@ -58994,14 +58994,14 @@ uint64_t ProcessFunction794c5(void)
 uint64_t ProcessFunction794dd(int handleIdentifier,uint64_t resourceIdentifier,uint64_t systemConfig,uint systemFlags)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   uint uint_var_;
   float *pfVar10;
   int system_EBX;
@@ -59083,48 +59083,48 @@ uint64_t ProcessFunction794dd(int handleIdentifier,uint64_t resourceIdentifier,u
   pfVar10 = system_RDI;
   do {
     int_var_ = handleIdentifier;
-    fVar1 = *pfVar10;
-    fVar2 = pfVar10[1];
-    fVar3 = pfVar10[2];
-    fVar4 = pfVar10[3];
-    uint_var_ = -(uint)(0.0001 < fVar1);
-    uint_var_ = -(uint)(0.0001 < fVar2);
-    uint_var_ = -(uint)(0.0001 < fVar3);
-    uint_var_ = -(uint)(0.0001 < fVar4);
+    float_var = *pfVar10;
+    float_var = pfVar10[1];
+    float_var = pfVar10[2];
+    float_var = pfVar10[3];
+    uint_var_ = -(uint)(0.0001 < float_var);
+    uint_var_ = -(uint)(0.0001 < float_var);
+    uint_var_ = -(uint)(0.0001 < float_var);
+    uint_var_ = -(uint)(0.0001 < float_var);
     handleIdentifier = int_var_ + 8;
-    fVar5 = pfVar10[4];
-    fVar6 = pfVar10[5];
-    fVar7 = pfVar10[6];
-    fVar8 = pfVar10[7];
+    float_var = pfVar10[4];
+    float_var = pfVar10[5];
+    float_var = pfVar10[6];
+    float_var = pfVar10[7];
     pfVar10 = pfVar10 + 8;
-    fVar24 = (float)((uint)((float)int_var_ * (float)system_XMM12_Da * 0.5 * fVar18 * fVar1 + fVar24) &
+    fVar24 = (float)((uint)((float)int_var_ * (float)system_XMM12_Da * 0.5 * fVar18 * float_var + fVar24) &
                      uint_var_ | ~uint_var_ & (uint)fVar24);
-    fVar28 = (float)((uint)((float)(int_var_ + 1) * (float)system_XMM12_Db * 0.5 * fVar20 * fVar2 +
+    fVar28 = (float)((uint)((float)(int_var_ + 1) * (float)system_XMM12_Db * 0.5 * fVar20 * float_var +
                            fVar28) & uint_var_ | ~uint_var_ & (uint)fVar28);
-    fVar30 = (float)((uint)((float)(int_var_ + 2) * (float)system_XMM12_Dc * 0.5 * fVar21 * fVar3 +
+    fVar30 = (float)((uint)((float)(int_var_ + 2) * (float)system_XMM12_Dc * 0.5 * fVar21 * float_var +
                            fVar30) & uint_var_ | ~uint_var_ & (uint)fVar30);
-    fVar17 = (float)((uint)((float)(int_var_ + 3) * (float)system_XMM12_Dd * 0.5 * fVar22 * fVar4 +
+    fVar17 = (float)((uint)((float)(int_var_ + 3) * (float)system_XMM12_Dd * 0.5 * fVar22 * float_var +
                            fVar17) & uint_var_ | ~uint_var_ & (uint)fVar17);
-    fVar23 = (float)((uint)(fVar1 + fVar23) & uint_var_ | ~uint_var_ & (uint)fVar23);
-    fVar25 = (float)((uint)(fVar2 + fVar25) & uint_var_ | ~uint_var_ & (uint)fVar25);
-    fVar26 = (float)((uint)(fVar3 + fVar26) & uint_var_ | ~uint_var_ & (uint)fVar26);
-    fVar27 = (float)((uint)(fVar4 + fVar27) & uint_var_ | ~uint_var_ & (uint)fVar27);
-    uint_var_ = -(uint)(0.0001 < fVar5);
-    uint_var_ = -(uint)(0.0001 < fVar6);
-    uint_var_ = -(uint)(0.0001 < fVar7);
-    uint_var_ = -(uint)(0.0001 < fVar8);
-    fVar29 = (float)((uint)((float)(int_var_ + 4) * (float)system_XMM12_Da * 0.5 * fVar18 * fVar5 +
+    fVar23 = (float)((uint)(float_var + fVar23) & uint_var_ | ~uint_var_ & (uint)fVar23);
+    fVar25 = (float)((uint)(float_var + fVar25) & uint_var_ | ~uint_var_ & (uint)fVar25);
+    fVar26 = (float)((uint)(float_var + fVar26) & uint_var_ | ~uint_var_ & (uint)fVar26);
+    fVar27 = (float)((uint)(float_var + fVar27) & uint_var_ | ~uint_var_ & (uint)fVar27);
+    uint_var_ = -(uint)(0.0001 < float_var);
+    uint_var_ = -(uint)(0.0001 < float_var);
+    uint_var_ = -(uint)(0.0001 < float_var);
+    uint_var_ = -(uint)(0.0001 < float_var);
+    fVar29 = (float)((uint)((float)(int_var_ + 4) * (float)system_XMM12_Da * 0.5 * fVar18 * float_var +
                            fVar29) & uint_var_ | ~uint_var_ & (uint)fVar29);
-    fVar31 = (float)((uint)((float)(int_var_ + 5) * (float)system_XMM12_Db * 0.5 * fVar20 * fVar6 +
+    fVar31 = (float)((uint)((float)(int_var_ + 5) * (float)system_XMM12_Db * 0.5 * fVar20 * float_var +
                            fVar31) & uint_var_ | ~uint_var_ & (uint)fVar31);
-    fVar32 = (float)((uint)((float)(int_var_ + 6) * (float)system_XMM12_Dc * 0.5 * fVar21 * fVar7 +
+    fVar32 = (float)((uint)((float)(int_var_ + 6) * (float)system_XMM12_Dc * 0.5 * fVar21 * float_var +
                            fVar32) & uint_var_ | ~uint_var_ & (uint)fVar32);
-    fVar33 = (float)((uint)((float)(int_var_ + 7) * (float)system_XMM12_Dd * 0.5 * fVar22 * fVar8 +
+    fVar33 = (float)((uint)((float)(int_var_ + 7) * (float)system_XMM12_Dd * 0.5 * fVar22 * float_var +
                            fVar33) & uint_var_ | ~uint_var_ & (uint)fVar33);
-    fVar34 = (float)((uint)(fVar5 + fVar34) & uint_var_ | ~uint_var_ & (uint)fVar34);
-    fVar35 = (float)((uint)(fVar6 + fVar35) & uint_var_ | ~uint_var_ & (uint)fVar35);
-    fVar36 = (float)((uint)(fVar7 + fVar36) & uint_var_ | ~uint_var_ & (uint)fVar36);
-    fVar37 = (float)((uint)(fVar8 + fVar37) & uint_var_ | ~uint_var_ & (uint)fVar37);
+    fVar34 = (float)((uint)(float_var + fVar34) & uint_var_ | ~uint_var_ & (uint)fVar34);
+    fVar35 = (float)((uint)(float_var + fVar35) & uint_var_ | ~uint_var_ & (uint)fVar35);
+    fVar36 = (float)((uint)(float_var + fVar36) & uint_var_ | ~uint_var_ & (uint)fVar36);
+    fVar37 = (float)((uint)(float_var + fVar37) & uint_var_ | ~uint_var_ & (uint)fVar37);
   } while (handleIdentifier < (int)(systemFlags - uint_var_));
   fVar18 = fVar26 + fVar36 + fVar23 + fVar34 + fVar27 + fVar37 + fVar25 + fVar35;
   fVar24 = fVar30 + fVar32 + fVar24 + fVar29 + fVar17 + fVar33 + fVar28 + fVar31;
@@ -59186,7 +59186,7 @@ uint64_t ProcessFunction794dd(int handleIdentifier,uint64_t resourceIdentifier,u
 uint64_t ProcessFunction79635(int handleIdentifier,uint64_t resourceIdentifier,uint64_t systemConfig,float systemFlags)
 
 {
-  float fVar1;
+  float float_var;
   float *pfVar2;
   int system_EBX;
   longlong system_RDI;
@@ -59194,35 +59194,35 @@ uint64_t ProcessFunction79635(int handleIdentifier,uint64_t resourceIdentifier,u
   int systemParam_D;
   float *in_R11;
   float system_XMM6_Da;
-  float fVar4;
-  float fVar5;
+  float float_var;
+  float float_var;
 
   if (handleIdentifier < systemParam_D) {
     if (3 < systemParam_D - handleIdentifier) {
       compare_result = handleIdentifier + 2;
-      fVar4 = (float)system_EBX;
+      float_var = (float)system_EBX;
       pfVar2 = (float *)(system_RDI + ((longlong)handleIdentifier + 2) * 4);
-      fVar5 = (float)systemParam_D;
+      float_var = (float)systemParam_D;
       do {
-        fVar1 = pfVar2[-2];
-        if (0.0001 < fVar1) {
-          systemFlags = systemFlags + fVar1;
-          system_XMM6_Da = system_XMM6_Da + ((fVar4 * 0.5 * (float)handleIdentifier) / fVar5) * fVar1;
+        float_var = pfVar2[-2];
+        if (0.0001 < float_var) {
+          systemFlags = systemFlags + float_var;
+          system_XMM6_Da = system_XMM6_Da + ((float_var * 0.5 * (float)handleIdentifier) / float_var) * float_var;
         }
-        fVar1 = pfVar2[-1];
-        if (0.0001 < fVar1) {
-          systemFlags = systemFlags + fVar1;
-          system_XMM6_Da = system_XMM6_Da + (((float)(compare_result + -1) * fVar4 * 0.5) / fVar5) * fVar1;
+        float_var = pfVar2[-1];
+        if (0.0001 < float_var) {
+          systemFlags = systemFlags + float_var;
+          system_XMM6_Da = system_XMM6_Da + (((float)(compare_result + -1) * float_var * 0.5) / float_var) * float_var;
         }
-        fVar1 = *pfVar2;
-        if (0.0001 < fVar1) {
-          systemFlags = systemFlags + fVar1;
-          system_XMM6_Da = system_XMM6_Da + (((float)compare_result * fVar4 * 0.5) / fVar5) * fVar1;
+        float_var = *pfVar2;
+        if (0.0001 < float_var) {
+          systemFlags = systemFlags + float_var;
+          system_XMM6_Da = system_XMM6_Da + (((float)compare_result * float_var * 0.5) / float_var) * float_var;
         }
-        fVar1 = pfVar2[1];
-        if (0.0001 < fVar1) {
-          systemFlags = systemFlags + fVar1;
-          system_XMM6_Da = system_XMM6_Da + (((float)(compare_result + 1) * fVar4 * 0.5) / fVar5) * fVar1;
+        float_var = pfVar2[1];
+        if (0.0001 < float_var) {
+          systemFlags = systemFlags + float_var;
+          system_XMM6_Da = system_XMM6_Da + (((float)(compare_result + 1) * float_var * 0.5) / float_var) * float_var;
         }
         pfVar2 = pfVar2 + 4;
         handleIdentifier = handleIdentifier + 4;
@@ -59232,11 +59232,11 @@ uint64_t ProcessFunction79635(int handleIdentifier,uint64_t resourceIdentifier,u
     if (handleIdentifier < systemParam_D) {
       pfVar2 = (float *)(system_RDI + (longlong)handleIdentifier * 4);
       do {
-        fVar4 = *pfVar2;
-        if (0.0001 < fVar4) {
-          systemFlags = systemFlags + fVar4;
+        float_var = *pfVar2;
+        if (0.0001 < float_var) {
+          systemFlags = systemFlags + float_var;
           system_XMM6_Da =
-               system_XMM6_Da + (((float)system_EBX * 0.5 * (float)handleIdentifier) / (float)systemParam_D) * fVar4;
+               system_XMM6_Da + (((float)system_EBX * 0.5 * (float)handleIdentifier) / (float)systemParam_D) * float_var;
         }
         pfVar2 = pfVar2 + 1;
         handleIdentifier = handleIdentifier + 1;
@@ -59255,9 +59255,9 @@ uint64_t ProcessFunction79635(int handleIdentifier,uint64_t resourceIdentifier,u
 uint64_t ProcessFunction797e0(longlong handleIdentifier,uint resourceIdentifier)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
+  float float_var;
+  float float_var;
+  float float_var;
   longlong long_var_;
   int int_var_;
   uint uint_var_;
@@ -59360,50 +59360,50 @@ uint64_t ProcessFunction797e0(longlong handleIdentifier,uint resourceIdentifier)
                 uint_var_ = (ulonglong)(uint_var_ - 2);
                 uint_var_ = uint_var_ - 3;
                 fVar21 = *(float *)(long_var_ + 4 + (ulonglong)uint_var_ * 8);
-                fVar1 = *(float *)(long_var_ + (ulonglong)uint_var_ * 8);
-                fVar2 = *(float *)(long_var_ + long_var_ * 8);
-                fVar3 = *(float *)(long_var_ + 4 + long_var_ * 8);
-                fVar20 = fVar1 * fVar22 - fVar21 * fVar19;
-                fVar21 = fVar21 * fVar22 + fVar1 * fVar19;
-                *(float *)(long_var_ + long_var_ * 8) = fVar20 + fVar2;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + long_var_ * 8) = fVar21 + fVar3;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + (ulonglong)uint_var_ * 8) = fVar2 - fVar20;
+                float_var = *(float *)(long_var_ + (ulonglong)uint_var_ * 8);
+                float_var = *(float *)(long_var_ + long_var_ * 8);
+                float_var = *(float *)(long_var_ + 4 + long_var_ * 8);
+                fVar20 = float_var * fVar22 - fVar21 * fVar19;
+                fVar21 = fVar21 * fVar22 + float_var * fVar19;
+                *(float *)(long_var_ + long_var_ * 8) = fVar20 + float_var;
+                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + long_var_ * 8) = fVar21 + float_var;
+                *(float *)(*(longlong *)(handleIdentifier + 0x218) + (ulonglong)uint_var_ * 8) = float_var - fVar20;
                 *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + (ulonglong)uint_var_ * 8) =
-                     fVar3 - fVar21;
+                     float_var - fVar21;
                 long_var_ = *(longlong *)(handleIdentifier + 0x218);
                 fVar21 = *(float *)(long_var_ + 4 + uint_var_ * 8);
-                fVar1 = *(float *)(long_var_ + uint_var_ * 8);
-                fVar2 = *(float *)(long_var_ + 8 + long_var_ * 8);
-                fVar3 = *(float *)(long_var_ + 0xc + long_var_ * 8);
-                fVar20 = fVar1 * fVar22 - fVar21 * fVar19;
-                fVar21 = fVar21 * fVar22 + fVar1 * fVar19;
-                *(float *)(long_var_ + 8 + long_var_ * 8) = fVar20 + fVar2;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 0xc + long_var_ * 8) = fVar21 + fVar3;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + uint_var_ * 8) = fVar2 - fVar20;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + uint_var_ * 8) = fVar3 - fVar21;
+                float_var = *(float *)(long_var_ + uint_var_ * 8);
+                float_var = *(float *)(long_var_ + 8 + long_var_ * 8);
+                float_var = *(float *)(long_var_ + 0xc + long_var_ * 8);
+                fVar20 = float_var * fVar22 - fVar21 * fVar19;
+                fVar21 = fVar21 * fVar22 + float_var * fVar19;
+                *(float *)(long_var_ + 8 + long_var_ * 8) = fVar20 + float_var;
+                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 0xc + long_var_ * 8) = fVar21 + float_var;
+                *(float *)(*(longlong *)(handleIdentifier + 0x218) + uint_var_ * 8) = float_var - fVar20;
+                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + uint_var_ * 8) = float_var - fVar21;
                 long_var_ = *(longlong *)(handleIdentifier + 0x218);
                 fVar21 = *(float *)(long_var_ + uint_var_ * 8);
-                fVar1 = *(float *)(long_var_ + 4 + uint_var_ * 8);
-                fVar2 = *(float *)(long_var_ + SYSTEM_DATA_COMPARE_SIZE + long_var_ * 8);
-                fVar3 = *(float *)(long_var_ + 0x14 + long_var_ * 8);
-                fVar20 = fVar21 * fVar22 - fVar1 * fVar19;
-                fVar21 = fVar1 * fVar22 + fVar21 * fVar19;
-                *(float *)(long_var_ + SYSTEM_DATA_COMPARE_SIZE + long_var_ * 8) = fVar20 + fVar2;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 0x14 + long_var_ * 8) = fVar21 + fVar3;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + uint_var_ * 8) = fVar2 - fVar20;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + uint_var_ * 8) = fVar3 - fVar21;
+                float_var = *(float *)(long_var_ + 4 + uint_var_ * 8);
+                float_var = *(float *)(long_var_ + SYSTEM_DATA_COMPARE_SIZE + long_var_ * 8);
+                float_var = *(float *)(long_var_ + 0x14 + long_var_ * 8);
+                fVar20 = fVar21 * fVar22 - float_var * fVar19;
+                fVar21 = float_var * fVar22 + fVar21 * fVar19;
+                *(float *)(long_var_ + SYSTEM_DATA_COMPARE_SIZE + long_var_ * 8) = fVar20 + float_var;
+                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 0x14 + long_var_ * 8) = fVar21 + float_var;
+                *(float *)(*(longlong *)(handleIdentifier + 0x218) + uint_var_ * 8) = float_var - fVar20;
+                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + uint_var_ * 8) = float_var - fVar21;
                 long_var_ = *(longlong *)(handleIdentifier + 0x218);
                 fVar21 = *(float *)(long_var_ + uint_var_ * 8);
-                fVar1 = *(float *)(long_var_ + 4 + uint_var_ * 8);
-                fVar2 = *(float *)(long_var_ + 0x18 + long_var_ * 8);
-                fVar3 = *(float *)(long_var_ + 0x1c + long_var_ * 8);
-                fVar20 = fVar21 * fVar22 - fVar1 * fVar19;
-                fVar21 = fVar1 * fVar22 + fVar21 * fVar19;
-                *(float *)(long_var_ + 0x18 + long_var_ * 8) = fVar20 + fVar2;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 0x1c + long_var_ * 8) = fVar21 + fVar3;
+                float_var = *(float *)(long_var_ + 4 + uint_var_ * 8);
+                float_var = *(float *)(long_var_ + 0x18 + long_var_ * 8);
+                float_var = *(float *)(long_var_ + 0x1c + long_var_ * 8);
+                fVar20 = fVar21 * fVar22 - float_var * fVar19;
+                fVar21 = float_var * fVar22 + fVar21 * fVar19;
+                *(float *)(long_var_ + 0x18 + long_var_ * 8) = fVar20 + float_var;
+                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 0x1c + long_var_ * 8) = fVar21 + float_var;
                 long_var_ = long_var_ + 4;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + uint_var_ * 8) = fVar2 - fVar20;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + uint_var_ * 8) = fVar3 - fVar21;
+                *(float *)(*(longlong *)(handleIdentifier + 0x218) + uint_var_ * 8) = float_var - fVar20;
+                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + uint_var_ * 8) = float_var - fVar21;
                 uint_var_ = uint_var_ + 4;
               } while (long_var_ < long_var_ + -3);
             }
@@ -59413,16 +59413,16 @@ uint64_t ProcessFunction797e0(longlong handleIdentifier,uint resourceIdentifier)
                 uint_var_ = (ulonglong)uint_var_;
                 long_var_ = *(longlong *)(handleIdentifier + 0x218);
                 fVar21 = *(float *)(long_var_ + uint_var_ * 8);
-                fVar1 = *(float *)(long_var_ + 4 + uint_var_ * 8);
-                fVar2 = *(float *)(long_var_ + long_var_ * 8);
-                fVar3 = *(float *)(long_var_ + 4 + long_var_ * 8);
-                fVar20 = fVar21 * fVar22 - fVar1 * fVar19;
-                fVar21 = fVar1 * fVar22 + fVar21 * fVar19;
-                *(float *)(long_var_ + long_var_ * 8) = fVar20 + fVar2;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + long_var_ * 8) = fVar21 + fVar3;
+                float_var = *(float *)(long_var_ + 4 + uint_var_ * 8);
+                float_var = *(float *)(long_var_ + long_var_ * 8);
+                float_var = *(float *)(long_var_ + 4 + long_var_ * 8);
+                fVar20 = fVar21 * fVar22 - float_var * fVar19;
+                fVar21 = float_var * fVar22 + fVar21 * fVar19;
+                *(float *)(long_var_ + long_var_ * 8) = fVar20 + float_var;
+                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + long_var_ * 8) = fVar21 + float_var;
                 long_var_ = long_var_ + 1;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + uint_var_ * 8) = fVar2 - fVar20;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + uint_var_ * 8) = fVar3 - fVar21;
+                *(float *)(*(longlong *)(handleIdentifier + 0x218) + uint_var_ * 8) = float_var - fVar20;
+                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + uint_var_ * 8) = float_var - fVar21;
                 uint_var_ = uint_var_ + 1;
               } while (long_var_ < long_var_);
             }
@@ -59442,9 +59442,9 @@ uint64_t ProcessFunction797e0(longlong handleIdentifier,uint resourceIdentifier)
 uint64_t ProcessFunction79832(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint systemConfig)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
+  float float_var;
+  float float_var;
+  float float_var;
   longlong long_var_;
   ulonglong uint_var_;
   ulonglong uint_var_;
@@ -59544,49 +59544,49 @@ uint64_t ProcessFunction79832(uint64_t handleIdentifier,uint64_t resourceIdentif
               uint_var_ = (ulonglong)(uint_var_ - 2);
               uint_var_ = uint_var_ - 3;
               fVar18 = *(float *)(long_var_ + 4 + (ulonglong)uint_var_ * 8);
-              fVar1 = *(float *)(long_var_ + (ulonglong)uint_var_ * 8);
-              fVar2 = *(float *)(long_var_ + long_var_ * 8);
-              fVar3 = *(float *)(long_var_ + 4 + long_var_ * 8);
-              fVar17 = fVar1 * fVar20 - fVar18 * fVar19;
-              fVar18 = fVar18 * fVar20 + fVar1 * fVar19;
-              *(float *)(long_var_ + long_var_ * 8) = fVar17 + fVar2;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + long_var_ * 8) = fVar18 + fVar3;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + (ulonglong)uint_var_ * 8) = fVar2 - fVar17;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + (ulonglong)uint_var_ * 8) = fVar3 - fVar18;
+              float_var = *(float *)(long_var_ + (ulonglong)uint_var_ * 8);
+              float_var = *(float *)(long_var_ + long_var_ * 8);
+              float_var = *(float *)(long_var_ + 4 + long_var_ * 8);
+              fVar17 = float_var * fVar20 - fVar18 * fVar19;
+              fVar18 = fVar18 * fVar20 + float_var * fVar19;
+              *(float *)(long_var_ + long_var_ * 8) = fVar17 + float_var;
+              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + long_var_ * 8) = fVar18 + float_var;
+              *(float *)(*(longlong *)(in_R11 + 0x218) + (ulonglong)uint_var_ * 8) = float_var - fVar17;
+              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + (ulonglong)uint_var_ * 8) = float_var - fVar18;
               long_var_ = *(longlong *)(in_R11 + 0x218);
               fVar18 = *(float *)(long_var_ + 4 + uint_var_ * 8);
-              fVar1 = *(float *)(long_var_ + uint_var_ * 8);
-              fVar2 = *(float *)(long_var_ + 8 + long_var_ * 8);
-              fVar3 = *(float *)(long_var_ + 0xc + long_var_ * 8);
-              fVar17 = fVar1 * fVar20 - fVar18 * fVar19;
-              fVar18 = fVar18 * fVar20 + fVar1 * fVar19;
-              *(float *)(long_var_ + 8 + long_var_ * 8) = fVar17 + fVar2;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + 0xc + long_var_ * 8) = fVar18 + fVar3;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + uint_var_ * 8) = fVar2 - fVar17;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + uint_var_ * 8) = fVar3 - fVar18;
+              float_var = *(float *)(long_var_ + uint_var_ * 8);
+              float_var = *(float *)(long_var_ + 8 + long_var_ * 8);
+              float_var = *(float *)(long_var_ + 0xc + long_var_ * 8);
+              fVar17 = float_var * fVar20 - fVar18 * fVar19;
+              fVar18 = fVar18 * fVar20 + float_var * fVar19;
+              *(float *)(long_var_ + 8 + long_var_ * 8) = fVar17 + float_var;
+              *(float *)(*(longlong *)(in_R11 + 0x218) + 0xc + long_var_ * 8) = fVar18 + float_var;
+              *(float *)(*(longlong *)(in_R11 + 0x218) + uint_var_ * 8) = float_var - fVar17;
+              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + uint_var_ * 8) = float_var - fVar18;
               long_var_ = *(longlong *)(in_R11 + 0x218);
               fVar18 = *(float *)(long_var_ + uint_var_ * 8);
-              fVar1 = *(float *)(long_var_ + 4 + uint_var_ * 8);
-              fVar2 = *(float *)(long_var_ + SYSTEM_DATA_COMPARE_SIZE + long_var_ * 8);
-              fVar3 = *(float *)(long_var_ + 0x14 + long_var_ * 8);
-              fVar17 = fVar18 * fVar20 - fVar1 * fVar19;
-              fVar18 = fVar1 * fVar20 + fVar18 * fVar19;
-              *(float *)(long_var_ + SYSTEM_DATA_COMPARE_SIZE + long_var_ * 8) = fVar17 + fVar2;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + 0x14 + long_var_ * 8) = fVar18 + fVar3;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + uint_var_ * 8) = fVar2 - fVar17;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + uint_var_ * 8) = fVar3 - fVar18;
+              float_var = *(float *)(long_var_ + 4 + uint_var_ * 8);
+              float_var = *(float *)(long_var_ + SYSTEM_DATA_COMPARE_SIZE + long_var_ * 8);
+              float_var = *(float *)(long_var_ + 0x14 + long_var_ * 8);
+              fVar17 = fVar18 * fVar20 - float_var * fVar19;
+              fVar18 = float_var * fVar20 + fVar18 * fVar19;
+              *(float *)(long_var_ + SYSTEM_DATA_COMPARE_SIZE + long_var_ * 8) = fVar17 + float_var;
+              *(float *)(*(longlong *)(in_R11 + 0x218) + 0x14 + long_var_ * 8) = fVar18 + float_var;
+              *(float *)(*(longlong *)(in_R11 + 0x218) + uint_var_ * 8) = float_var - fVar17;
+              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + uint_var_ * 8) = float_var - fVar18;
               long_var_ = *(longlong *)(in_R11 + 0x218);
               fVar18 = *(float *)(long_var_ + uint_var_ * 8);
-              fVar1 = *(float *)(long_var_ + 4 + uint_var_ * 8);
-              fVar2 = *(float *)(long_var_ + 0x18 + long_var_ * 8);
-              fVar3 = *(float *)(long_var_ + 0x1c + long_var_ * 8);
-              fVar17 = fVar18 * fVar20 - fVar1 * fVar19;
-              fVar18 = fVar1 * fVar20 + fVar18 * fVar19;
-              *(float *)(long_var_ + 0x18 + long_var_ * 8) = fVar17 + fVar2;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + 0x1c + long_var_ * 8) = fVar18 + fVar3;
+              float_var = *(float *)(long_var_ + 4 + uint_var_ * 8);
+              float_var = *(float *)(long_var_ + 0x18 + long_var_ * 8);
+              float_var = *(float *)(long_var_ + 0x1c + long_var_ * 8);
+              fVar17 = fVar18 * fVar20 - float_var * fVar19;
+              fVar18 = float_var * fVar20 + fVar18 * fVar19;
+              *(float *)(long_var_ + 0x18 + long_var_ * 8) = fVar17 + float_var;
+              *(float *)(*(longlong *)(in_R11 + 0x218) + 0x1c + long_var_ * 8) = fVar18 + float_var;
               long_var_ = long_var_ + 4;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + uint_var_ * 8) = fVar2 - fVar17;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + uint_var_ * 8) = fVar3 - fVar18;
+              *(float *)(*(longlong *)(in_R11 + 0x218) + uint_var_ * 8) = float_var - fVar17;
+              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + uint_var_ * 8) = float_var - fVar18;
               uint_var_ = uint_var_ + 4;
             } while (long_var_ < long_var_ + -3);
           }
@@ -59596,16 +59596,16 @@ uint64_t ProcessFunction79832(uint64_t handleIdentifier,uint64_t resourceIdentif
               uint_var_ = (ulonglong)uint_var_;
               long_var_ = *(longlong *)(in_R11 + 0x218);
               fVar18 = *(float *)(long_var_ + uint_var_ * 8);
-              fVar1 = *(float *)(long_var_ + 4 + uint_var_ * 8);
-              fVar2 = *(float *)(long_var_ + long_var_ * 8);
-              fVar3 = *(float *)(long_var_ + 4 + long_var_ * 8);
-              fVar17 = fVar18 * fVar20 - fVar1 * fVar19;
-              fVar18 = fVar1 * fVar20 + fVar18 * fVar19;
-              *(float *)(long_var_ + long_var_ * 8) = fVar17 + fVar2;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + long_var_ * 8) = fVar18 + fVar3;
+              float_var = *(float *)(long_var_ + 4 + uint_var_ * 8);
+              float_var = *(float *)(long_var_ + long_var_ * 8);
+              float_var = *(float *)(long_var_ + 4 + long_var_ * 8);
+              fVar17 = fVar18 * fVar20 - float_var * fVar19;
+              fVar18 = float_var * fVar20 + fVar18 * fVar19;
+              *(float *)(long_var_ + long_var_ * 8) = fVar17 + float_var;
+              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + long_var_ * 8) = fVar18 + float_var;
               long_var_ = long_var_ + 1;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + uint_var_ * 8) = fVar2 - fVar17;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + uint_var_ * 8) = fVar3 - fVar18;
+              *(float *)(*(longlong *)(in_R11 + 0x218) + uint_var_ * 8) = float_var - fVar17;
+              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + uint_var_ * 8) = float_var - fVar18;
               uint_var_ = uint_var_ + 1;
             } while (long_var_ < long_var_);
           }
