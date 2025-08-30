@@ -4517,7 +4517,7 @@ label_:
       if (str_len_counter == 0) {
         str_len_counter = 1;
 label_:
-        ptr_var_7 = (long long *)system_execution_function(global_data_ptr,str_len_counter << 4,data_180c91d08);
+        ptr_var_7 = (long long *)system_execution_function(global_data_ptr,str_len_counter << 4,system_config_data_buffer);
       }
       else {
         str_len_counter = str_len_counter * 2;
