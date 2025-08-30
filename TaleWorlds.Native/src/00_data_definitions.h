@@ -30,7 +30,7 @@
 #define SYSTEM_CHAR_COMMA 0x2c
 #define SYSTEM_CHAR_MINUS 0x2d
 #define SYSTEM_CHAR_DOT 0x2e
-#define SYSTEM_CHAR_SLASH SYSTEM_CHAR_SLASH
+#define SYSTEM_CHAR_SLASH 0x2f
 #define SYSTEM_CHAR_ZERO 0x30
 #define SYSTEM_CHAR_ONE 0x31
 #define SYSTEM_CHAR_TWO 0x32
@@ -75,7 +75,7 @@
 #define SYSTEM_CHAR_UPPERCASE_Y 0x59
 #define SYSTEM_CHAR_UPPERCASE_Z 0x5a
 #define SYSTEM_CHAR_LEFT_BRACKET 0x5b
-#define SYSTEM_CHAR_BACKSLASH SYSTEM_CHAR_BACKSLASH
+#define SYSTEM_CHAR_BACKSLASH 0x5c
 #define SYSTEM_CHAR_RIGHT_BRACKET 0x5d
 #define SYSTEM_CHAR_CARET 0x5e
 #define SYSTEM_CHAR_UNDERSCORE 0x5f
@@ -1679,7 +1679,7 @@ extern char system_flag_buffer_cleanup_handler;
 #define SYSTEM_ERROR_ADAP_HDW_ERR 0x1f
 
 // 系统特殊常量定义 - 美化为语义化名称
-#define SYSTEM_CHAR_SLASH SYSTEM_CHAR_SLASH        // '/' 字符
+#define SYSTEM_CHAR_SLASH 0x2f        // '/' 字符
 #define SYSTEM_CHAR_LOWERCASE_A SYSTEM_CHAR_LOWERCASE_E  // 'a' 字符  
 #define SYSTEM_CHAR_EXCLAMATION 0x21  // '!' 字符
 #define SYSTEM_CHAR_DC2 0x12          // DC2 控制字符
@@ -1704,7 +1704,7 @@ extern char system_flag_buffer_cleanup_handler;
 #define SYSTEM_CHAR_DOLLAR_SIGN 0x24   // '$' 字符
 #define SYSTEM_CHAR_DIGIT_FOUR 0x34    // '4' 字符
 #define SYSTEM_CHAR_LESS_THAN 0x3c     // '<' 字符
-#define SYSTEM_CHAR_BACKSLASH SYSTEM_CHAR_BACKSLASH    // '\' 字符
+#define SYSTEM_CHAR_BACKSLASH 0x5c    // '\' 字符
 #define SYSTEM_CHAR_GRAVE_ACCENT 0x60  // '`' 字符
 #define SYSTEM_CHAR_LOWERCASE_A_2 SYSTEM_CHAR_LOWERCASE_A // 'a' 字符 (重复定义)
 #define SYSTEM_CHAR_LOWERCASE_F SYSTEM_CHAR_LOWERCASE_P   // 'f' 字符
