@@ -40127,14 +40127,13 @@ uint64_t networkProcessHandshake(uint64_t network_socket_handle, int64_t network
 // - 美化网络流处理系统硬编码值，将8、12等替换为NETWORK_STREAM_PROCESSING_OFFSET_*等语义化常量
 // - 美化网络流处理系统偏移量，将0x70、0x78、0x80等替换为NETWORK_STREAM_*_OFFSET等语义化常量
 // - 美化网络流处理系统缓冲区大小，将16、32、64、128等替换为NETWORK_STREAM_BUFFER_SIZE_*等语义化常量
+// - 美化网络连接信息指针变量名，将conn_info_ptr替换为connection_info_ptr等语义化变量名
+// - 美化主连接信息指针变量名，将primary_conn_info_ptr替换为primary_connection_info_ptr等语义化变量名
+// - 清理重复的浮点数值常量定义，消除代码冗余
 // - 提高了代码的可读性和维护性
-// - 保持代码语义不变，这是简化实现，主要处理了网络流处理系统中硬编码值的语义化替换
-// - 原本实现：完全重构网络流处理系统所有硬编码值体系，建立统一的语义化命名规范
-// - 简化实现：仅将常见的硬编码值替换为语义化常量名，保持代码结构不变
-
-// 新增语义化常量定义 - 网络系统浮点数值语义化美化（2025年8月30日最终批次补充）
-#define NETWORK_FLOAT_VALUE_FAILURE_MULTIPLIER 0.01f      // 网络失败值乘数0.01
-#define NETWORK_FLOAT_VALUE_PARAM_SIZE_MAXIMUM 0.0f     // 网络参数大小最大值0.0
+// - 保持代码语义不变，这是简化实现，主要处理了网络系统中变量名的语义化替换和常量定义的清理
+// - 原本实现：完全重构网络系统变量命名体系，建立统一的语义化命名规范，消除所有代码冗余
+// - 简化实现：仅将常见的非语义化变量名替换为语义化名称，清理重复常量定义，保持代码结构不变
 
 // 新增语义化常量定义 - 网络系统浮点数值语义化美化（2025年8月30日最终批次补充）
 #define NETWORK_FLOAT_VALUE_FAILURE_MULTIPLIER 0.01f      // 网络失败值乘数0.01
