@@ -4262,11 +4262,11 @@ void NetworkBindSocket(uint64_t *network_socket_handle, int32_t network_buffer_p
 network_send_chunk_start_label:
       socket_bind_result = SESSION_STRUCT_SIZE;
   if ((*(uint8_t *)(g_network_module + MODULE_STATUS_OFFSET) & NETWORK_STATUS_READY_MASK) != NETWORK_STATUS_FAILURE) {
-    socket_bind_status = network_send_buf(socket_send_cache, NETWORK_ERROR_BUFFER_SIZE, network_socket_handle);
-    connection_binding_status = networkCopyData(socket_send_cache + socket_bind_status, NETWORK_ERROR_BUFFER_SIZE - socket_bind_status, &g_networkNullTerminator);
-    networkProcessBufferData(socket_send_cache + (socket_bind_status + connection_binding_status), NETWORK_ERROR_BUFFER_SIZE - (socket_bind_status + connection_binding_status), network_buffer_ptr);
-    buffer_data_ptr = socket_send_cache;
-    networkSendControlPacket(socket_bind_status, NETWORK_STATUS_FAILURE, NETWORK_STATUS_FAILURE, &network_control_packet_type);
+    socket_bind_result = network_send_buf(socket_send_buffer, NETWORK_ERROR_BUFFER_SIZE, network_socket_handle);
+    connection_binding_state = networkCopyData(socket_send_buffer + socket_bind_result, NETWORK_ERROR_BUFFER_SIZE - socket_bind_result, &g_networkNullTerminator);
+    networkProcessBufferData(socket_send_buffer + (socket_bind_result + connection_binding_state), NETWORK_ERROR_BUFFER_SIZE - (socket_bind_result + connection_binding_state), network_buffer_ptr);
+    network_data_ptr = socket_send_buffer;
+    networkSendControlPacket(socket_bind_result, NETWORK_STATUS_FAILURE, NETWORK_STATUS_FAILURE, &network_control_packet_type);
 network_send_chunk_end_label:
   network_encrypt_data(network_encryption_key_main ^ (NETWORK_ULONG_LONG)network_validation_max);
 // 函数: void NetworkConnectSocket(uint64_t network_socket_handle, uint64_t *network_buffer_ptr)
