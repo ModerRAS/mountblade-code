@@ -21870,7 +21870,7 @@ void InitializeSystemCore(longlong system_context_param)
   system_float_temp_secondary = system_float_var_8 * SYSTEM_INIT_FLOAT_COEFFICIENT_3 + SYSTEM_INIT_FLOAT_COEFFICIENT_4;
   system_float_coefficient_six = system_float_var_8 * SYSTEM_INIT_FLOAT_COEFFICIENT_5 + SYSTEM_INIT_FLOAT_COEFFICIENT_6;
   system_float_temp_primary = system_float_var_7 + system_float_coefficient_six;
-  *(float *)(system_context_param + SYSTEM_INIT_SIZE_0X38c) = system_float_var_6 * system_float_var_6;
+  *(float *)(system_context_param + SYSTEM_INIT_SIZE_0X38c) = system_float_coefficient_six * system_float_coefficient_six;
   system_float_var_7 = system_float_var_7 + system_float_temp_primary;
   *(float *)(system_context_param + SYSTEM_INIT_OFFSET_0X390) = system_float_temp_primary * system_float_temp_primary;
   system_float_temp_primary = system_float_temp_secondary + system_float_var_7;
@@ -21878,10 +21878,10 @@ void InitializeSystemCore(longlong system_context_param)
   system_float_temp_secondary = system_float_temp_secondary + system_float_temp_primary;
   *(float *)(system_context_param + SYSTEM_INIT_OFFSET_0X398) = system_float_temp_primary * system_float_temp_primary;
   system_float_temp_primary = system_float_var_8 * SYSTEM_INIT_FLOAT_COEFFICIENT_7 + SYSTEM_INIT_FLOAT_COEFFICIENT_8 + system_float_temp_secondary;
-  *(float *)(system_context_param + SYSTEM_INIT_OFFSET_0X39c) = system_float_5 * system_float_5;
+  *(float *)(system_context_param + SYSTEM_INIT_OFFSET_0X39c) = system_float_temp_secondary * system_float_temp_secondary;
   system_float_temp_secondary = system_float_var_8 * SYSTEM_INIT_FLOAT_COEFFICIENT_9 + SYSTEM_INIT_FLOAT_COEFFICIENT_10 + system_float_temp_primary;
   *(float *)(system_context_param + SYSTEM_INIT_OFFSET_ARRAY_3A0) = system_float_temp_primary * system_float_temp_primary;
-  *(float *)(system_context_param + SYSTEM_INIT_OFFSET_ARRAY_3A4) = system_float_5 * system_float_5;
+  *(float *)(system_context_param + SYSTEM_INIT_OFFSET_ARRAY_3A4) = system_float_temp_secondary * system_float_temp_secondary;
   *(system_uint32_t *)(system_context_param + SYSTEM_INIT_OFFSET_ARRAY_3A8) = SYSTEM_INIT_OFFSET_ARRAY_7F7fffff;
   *(uint *)(system_context_param + SYSTEM_INIT_OFFSET_ARRAY_3Ac) = (uint)(*(int *)(system_long_var_1 + SYSTEM_INIT_VALUE_STACK_1390) == 0);
   return;
