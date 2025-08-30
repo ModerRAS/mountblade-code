@@ -4257,10 +4257,10 @@ void NetworkBindSocket(uint64_t *network_socket_handle, int32_t network_buffer_p
             goto network_send_chunk_end;
         }
       }
-      if (socket_bind_status == NETWORK_STATUS_FAILURE) goto network_send_chunk_end;
+      if (socket_bind_result == NETWORK_STATUS_FAILURE) goto network_send_chunk_end;
     else {
 network_send_chunk_start_label:
-      socket_bind_status = SESSION_STRUCT_SIZE;
+      socket_bind_result = SESSION_STRUCT_SIZE;
   if ((*(uint8_t *)(g_network_module + MODULE_STATUS_OFFSET) & NETWORK_STATUS_READY_MASK) != NETWORK_STATUS_FAILURE) {
     socket_bind_status = network_send_buf(socket_send_cache, NETWORK_ERROR_BUFFER_SIZE, network_socket_handle);
     connection_binding_status = networkCopyData(socket_send_cache + socket_bind_status, NETWORK_ERROR_BUFFER_SIZE - socket_bind_status, &g_networkNullTerminator);
