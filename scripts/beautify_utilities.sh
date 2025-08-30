@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# 美化脚本 - 替换06_utilities.c中的硬编码十六进制值为语义化常量
+
+# 定义输入文件
+INPUT_FILE="/dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c"
+
+# 创建备份
+cp "$INPUT_FILE" "$INPUT_FILE.backup"
+
+# 在文件开头添加新的语义化常量定义（在第一个#include之后）
+sed -i '/^#include/a\
+\
+// 新增语义化宏定义 - 美化线程本地存储偏移量\
+#define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_22B8 0x22b8  // 线程本地存储数据指针偏移量\
+#define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_22C0 0x22c0  // 线程本地存储状态偏移量\
+#define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_22D0 0x22d0  // 线程本地存储清理偏移量\
+#define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_2298 0x2298  // 线程本地存储备用数据指针偏移量\
+#define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_22A0 0x22a0  // 线程本地存储备用状态偏移量\
+#define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_22B0 0x22b0  // 线程本地存储备用清理偏移量\
+#define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_2398 0x2398  // 线程本地存储主数据指针偏移量\
+#define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_2378 0x2378  // 线程本地存储次数据指针偏移量\
+#define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_2408 0x2408  // 线程本地存储扩展数据指针偏移量\
+#define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_2420 0x2420  // 线程本地存储扩展状态偏移量\
+#define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_23E8 0x23e8  // 线程本地存储扩展备用数据指针偏移量\
+#define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_2478 0x2478  // 线程本地存储高级数据指针偏移量\
+' "$INPUT_FILE"
+
+# 替换硬编码十六进制值为语义化常量
+sed -i 's/0x22b8/UTILITY_THREAD_LOCAL_STORAGE_OFFSET_22B8/g' "$INPUT_FILE"
+sed -i 's/0x22c0/UTILITY_THREAD_LOCAL_STORAGE_OFFSET_22C0/g' "$INPUT_FILE"
+sed -i 's/0x22d0/UTILITY_THREAD_LOCAL_STORAGE_OFFSET_22D0/g' "$INPUT_FILE"
+sed -i 's/0x2298/UTILITY_THREAD_LOCAL_STORAGE_OFFSET_2298/g' "$INPUT_FILE"
+sed -i 's/0x22a0/UTILITY_THREAD_LOCAL_STORAGE_OFFSET_22A0/g' "$INPUT_FILE"
+sed -i 's/0x22b0/UTILITY_THREAD_LOCAL_STORAGE_OFFSET_22B0/g' "$INPUT_FILE"
+sed -i 's/0x2398/UTILITY_THREAD_LOCAL_STORAGE_OFFSET_2398/g' "$INPUT_FILE"
+sed -i 's/0x2378/UTILITY_THREAD_LOCAL_STORAGE_OFFSET_2378/g' "$INPUT_FILE"
+sed -i 's/0x2408/UTILITY_THREAD_LOCAL_STORAGE_OFFSET_2408/g' "$INPUT_FILE"
+sed -i 's/0x2420/UTILITY_THREAD_LOCAL_STORAGE_OFFSET_2420/g' "$INPUT_FILE"
+sed -i 's/0x23e8/UTILITY_THREAD_LOCAL_STORAGE_OFFSET_23E8/g' "$INPUT_FILE"
+sed -i 's/0x2478/UTILITY_THREAD_LOCAL_STORAGE_OFFSET_2478/g' "$INPUT_FILE"
+
+echo "美化完成！已将硬编码十六进制值替换为语义化常量"
