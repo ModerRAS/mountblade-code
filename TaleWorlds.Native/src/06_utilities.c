@@ -84,6 +84,13 @@
 // 16. 将utility_temp_var_1替换为utility_resource_temp_index等语义化变量名
 // 17. 将utility_temp_var_2替换为utility_buffer_temp_size等描述性变量名
 // 18. 将utility_temp_var_3替换为utility_loop_temp_counter等计数变量名
+// 19. 将utility_unsigned_pointer_var3替换为UTILITY_RESOURCE_POINTER_PRIMARY等资源指针变量名
+// 20. 将zero_float替换为UTILITY_NULL_POINTER等空指针常量名
+// 21. 将in_R10替换为UTILITY_REGISTER_R10等寄存器变量名
+// 22. 将in_ZF替换为UTILITY_REGISTER_ZF等标志寄存器变量名
+// 23. 将local_resource_buffer替换为UTILITY_LOCAL_RESOURCE_BUFFER等局部缓冲区变量名
+// 24. 将local_process_buffer替换为UTILITY_LOCAL_PROCESS_BUFFER等局部处理缓冲区变量名
+// 25. 将local_security_buffer替换为UTILITY_LOCAL_SECURITY_BUFFER等局部安全缓冲区变量名
 // 19. 将utility_temp_var_4替换为utility_temp_validation_flag等标志变量名
 // 20. 将utility_signed_var_1替换为utility_temp_signed_value等有符号临时变量名
 // 21. 将char_stack_temp_20替换为utility_temp_status_char等状态字符变量名
