@@ -237,16 +237,16 @@
 // 67. 将resource_buffer + 0x2b8替换为resource_buffer + UTILITY_RESOURCE_OFFSET_2B8等资源偏移量
 // 68. 将resource_buffer + 0x140替换为resource_buffer + UTILITY_RESOURCE_OFFSET_140等资源偏移量
 // 69. 将resource_buffer + 0x188替换为resource_buffer + UTILITY_RESOURCE_OFFSET_188等资源偏移量
-// 70. 将resource_buffer + 0x148替换为resource_buffer + UTILITY_RESOURCE_OFFSET_148等资源偏移量
+// 70. 将resource_buffer + UTILITY_RESOURCE_OFFSET_148替换为resource_buffer + UTILITY_RESOURCE_OFFSET_148等资源偏移量
 // 71. 将resource_buffer + 0x128替换为resource_buffer + UTILITY_RESOURCE_OFFSET_128等资源偏移量
 // 72. 将resource_buffer + 0x120替换为resource_buffer + UTILITY_RESOURCE_OFFSET_120等资源偏移量
-// 73. 将resource_buffer + 0x148替换为resource_buffer + UTILITY_RESOURCE_OFFSET_148等资源偏移量
-// 74. 将resource_buffer + 0x189替换为resource_buffer + UTILITY_RESOURCE_OFFSET_189等资源偏移量
-// 75. 将resource_buffer + 0x110替换为resource_buffer + UTILITY_RESOURCE_OFFSET_110等资源偏移量
-// 76. 将resource_buffer + 0x2a0替换为resource_buffer + UTILITY_RESOURCE_OFFSET_2A0等资源偏移量
-// 77. 将operation_buffer + 0x8b0替换为operation_buffer + UTILITY_RESOURCE_OFFSET_8B0等操作缓冲区偏移量
-// 78. 将resource_buffer + 0x160替换为resource_buffer + UTILITY_RESOURCE_OFFSET_160等资源偏移量
-// 79. 将resource_buffer + 0x858替换为resource_buffer + UTILITY_RESOURCE_OFFSET_858等资源偏移量
+// 73. 将resource_buffer + UTILITY_RESOURCE_OFFSET_148替换为resource_buffer + UTILITY_RESOURCE_OFFSET_148等资源偏移量
+// 74. 将resource_buffer + UTILITY_RESOURCE_OFFSET_189替换为resource_buffer + UTILITY_RESOURCE_OFFSET_189等资源偏移量
+// 75. 将resource_buffer + UTILITY_RESOURCE_OFFSET_110替换为resource_buffer + UTILITY_RESOURCE_OFFSET_110等资源偏移量
+// 76. 将resource_buffer + UTILITY_RESOURCE_OFFSET_2A0替换为resource_buffer + UTILITY_RESOURCE_OFFSET_2A0等资源偏移量
+// 77. 将operation_buffer + UTILITY_RESOURCE_OFFSET_8B0替换为operation_buffer + UTILITY_RESOURCE_OFFSET_8B0等操作缓冲区偏移量
+// 78. 将resource_buffer + UTILITY_RESOURCE_OFFSET_160替换为resource_buffer + UTILITY_RESOURCE_OFFSET_160等资源偏移量
+// 79. 将resource_buffer + UTILITY_RESOURCE_OFFSET_858替换为resource_buffer + UTILITY_RESOURCE_OFFSET_858等资源偏移量
 // 这是简化实现，主要处理了工具系统中资源偏移量的语义化替换
 // 提高了代码的可读性和维护性
 // 保持代码语义不变
@@ -26245,7 +26245,7 @@ void UtilityUnwindFunctionResource(uint64 resource_handle_identifier,longlong re
 void UtilityUnwindFunctionHandle(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  **(uint64 **)(resource_buffer + 0x148) = &thread_local_storage_cleanup;
+  **(uint64 **)(resource_buffer + UTILITY_RESOURCE_OFFSET_148) = &thread_local_storage_cleanup;
   return;
 }
 
@@ -26458,19 +26458,19 @@ void UtilityUnwindExceptionHandlerInitialize(uint64 resource_handle_identifier,l
   
   resource_buffer = *(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET);
   *(uint64 *)(resource_buffer  + UTILITY_STATUS_SUCCESS_OFFSET8) = &g_system_data_main_buffer;
-  if (*(char *)(resource_buffer + 0x189) != '\0') {
+  if (*(char *)(resource_buffer + UTILITY_RESOURCE_OFFSET_189) != '\0') {
     ResetSystemResourceState();
   }
   _Mtx_destroy_in_situ();
   *(uint64 *)(resource_buffer  + UTILITY_STATUS_SUCCESS_OFFSET8) = &g_system_data_auxiliary_buffer;
-  *(uint64 *)(resource_buffer + 0x110) = &thread_local_storage_data;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_110) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer  + UTILITY_ARRAY_INFO_OFFSET) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(resource_buffer  + UTILITY_ARRAY_INFO_OFFSET) = 0;
   *(uint32 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_128) = 0;
-  *(uint64 *)(resource_buffer + 0x110) = &thread_local_storage_cleanup;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_110) = &thread_local_storage_cleanup;
   *(uint64 *)(resource_buffer + UTILITY_STACK_OFFSET_E0) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_STATUS_OFFSET_ALT8) != 0) {
                     // WARNING: Subroutine does not return
@@ -28678,7 +28678,7 @@ void UtilityUnwindExceptionHandlerWipeZeroZeroZeroAllZero(uint64 resource_handle
   iteration_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   *(longlong *)(operation_buffer + UTILITY_MEMORY_OFFSET_15D8) =
        *(longlong *)(&systemResourceOffset + (longlong)*(int *)(operation_buffer + UTILITY_MEMORY_OFFSET_15E0) * UTILITY_DOUBLE_WORD_SIZE) + -100000;
-  ProcessBufferDataStructure((longlong *)(operation_buffer + 0x8b0));
+  ProcessBufferDataStructure((longlong *)(operation_buffer + UTILITY_RESOURCE_OFFSET_8B0));
   *(uint32 *)(operation_buffer + UTILITY_MEMORY_OFFSET_15E8) = 0;
   resource_data_pointer = *(longlong **)(operation_buffer + UTILITY_MEMORY_OFFSET_15D0);
   *(uint64 *)(operation_buffer + UTILITY_MEMORY_OFFSET_15D0) = 0;
@@ -28690,7 +28690,7 @@ void UtilityUnwindExceptionHandlerWipeZeroZeroZeroAllZero(uint64 resource_handle
   }
   RegisterResourceCallback(operation_buffer + 0x8e0,POINTER_DATA_OFFSET,UTILITY_LIST_HEAD_OFFSET,ReleaseSystemResource,iteration_counter);
   RegisterResourceCallback(operation_buffer + 0x8b8,8,4,UtilityModule3);
-  resource_data_pointer = *(longlong **)(operation_buffer + 0x8b0);
+  resource_data_pointer = *(longlong **)(operation_buffer + UTILITY_RESOURCE_OFFSET_8B0);
   if (resource_data_pointer != (longlong *)UTILITY_NULL_POINTER) {
     (**(code **)(*resource_data_pointer + UTILITY_STRUCTURE_SIZE_OFFSET))();
   }
@@ -28986,14 +28986,14 @@ void UtilityUnwindExceptionHandlerClearZeroZeroZeroZeroAllZero(uint64 resource_h
   longlong resource_buffer;
   
   resource_buffer = *(longlong *)(resource_buffer + UTILITY_BUFFER_SIZE_DATA_OFFSET);
-  *(uint64 *)(resource_buffer + 0x148) = &thread_local_storage_data;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_148) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_ACCESS_OFFSET) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(resource_buffer + UTILITY_RESOURCE_ACCESS_OFFSET) = 0;
-  *(uint32 *)(resource_buffer + 0x160) = 0;
-  *(uint64 *)(resource_buffer + 0x148) = &thread_local_storage_cleanup;
+  *(uint32 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_160) = 0;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_148) = &thread_local_storage_cleanup;
   return;
 }
 
@@ -29478,7 +29478,7 @@ void UtilityFunctionHandler(uint64 resource_handle_identifier,longlong resource_
   resource_buffer = *(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET);
   iteration_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   _Mtx_destroy_in_situ();
-  UtilityModule15(resource_buffer + 0x110,*(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_120),resourceOperationFlags,resourceCallbackFunction,iteration_counter);
+  UtilityModule15(resource_buffer + UTILITY_RESOURCE_OFFSET_110,*(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_120),resourceOperationFlags,resourceCallbackFunction,iteration_counter);
   UtilityModule15(resource_buffer + UTILITY_STACK_OFFSET_E0,*(uint64 *)(resource_buffer + UTILITY_STACK_OFFSET_F0));
   UtilityModule15(resource_buffer  + UTILITY_BOOLEAN_FLAG_OFFSET0,*(uint64 *)(resource_buffer + RESOURCE_BUFFER_ARRAY_OFFSET));
   UtilityModule21(resource_buffer + utility_buffer_offset,*(uint64 *)(resource_buffer + UTILITY_MEMORY_SIZE_OFFSET));
@@ -29805,7 +29805,7 @@ void UtilityUnwindFunction1e0(uint64 resource_handle_identifier,longlong resourc
   resource_buffer = *(longlong *)(resource_buffer + UTILITY_BUFFER_SIZE_DATA_OFFSET);
   iteration_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   _Mtx_destroy_in_situ();
-  UtilityModule15(resource_buffer + 0x110,*(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_120),resourceOperationFlags,resourceCallbackFunction,iteration_counter);
+  UtilityModule15(resource_buffer + UTILITY_RESOURCE_OFFSET_110,*(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_120),resourceOperationFlags,resourceCallbackFunction,iteration_counter);
   UtilityModule15(resource_buffer + UTILITY_STACK_OFFSET_E0,*(uint64 *)(resource_buffer + UTILITY_STACK_OFFSET_F0));
   UtilityModule15(resource_buffer  + UTILITY_BOOLEAN_FLAG_OFFSET0,*(uint64 *)(resource_buffer + RESOURCE_BUFFER_ARRAY_OFFSET));
   UtilityModule21(resource_buffer + utility_buffer_offset,*(uint64 *)(resource_buffer + UTILITY_MEMORY_SIZE_OFFSET));
@@ -30891,11 +30891,11 @@ void UtilityUnwindFunction620(uint64 resource_handle_identifier,longlong resourc
     (**(code **)(resource_buffer + UTILITY_RESOURCE_OFFSET_140))(resource_buffer + UTILITY_RESOURCE_CONFIG_OFFSET_ALT0,UTILITY_NULL_POINTER,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + resource_handle_valueta_offset_8) = &thread_local_storage_data;
-  if (*(longlong *)(resource_buffer + 0x110) != 0) {
+  if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_110) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  *(uint64 *)(resource_buffer + 0x110) = 0;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_110) = 0;
   *(uint32 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_120) = 0;
   *(uint64 *)(resource_buffer + resource_handle_valueta_offset_8) = &thread_local_storage_cleanup;
   *(uint64 *)(resource_buffer + UTILITY_RESOURCE_STATUS_OFFSET_ALT8) = &thread_local_storage_data;
@@ -30929,11 +30929,11 @@ void UtilityUnwindFunction640(uint64 resource_handle_identifier,longlong resourc
   *(uint32 *)(resource_buffer + 400) = 0;
   *(uint64 *)(resource_buffer + UTILITY_RESOURCE_FLAG_OFFSET_ALT8) = &thread_local_storage_cleanup;
   *(uint64 *)(resource_buffer + 0x158) = &thread_local_storage_data;
-  if (*(longlong *)(resource_buffer + 0x160) != 0) {
+  if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_160) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  *(uint64 *)(resource_buffer + 0x160) = 0;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_160) = 0;
   *(uint32 *)(resource_buffer + UTILITY_RESOURCE_FLAG_OFFSET_ALT0) = 0;
   *(uint64 *)(resource_buffer + 0x158) = &thread_local_storage_cleanup;
   return;
@@ -31252,11 +31252,11 @@ void UtilityUnwindFunction770(uint64 resource_handle_identifier,longlong resourc
     (**(code **)(resource_buffer + UTILITY_RESOURCE_OFFSET_140))(resource_buffer + UTILITY_RESOURCE_CONFIG_OFFSET_ALT0,UTILITY_NULL_POINTER,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + resource_handle_valueta_offset_8) = &thread_local_storage_data;
-  if (*(longlong *)(resource_buffer + 0x110) != 0) {
+  if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_110) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  *(uint64 *)(resource_buffer + 0x110) = 0;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_110) = 0;
   *(uint32 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_120) = 0;
   *(uint64 *)(resource_buffer + resource_handle_valueta_offset_8) = &thread_local_storage_cleanup;
   *(uint64 *)(resource_buffer + UTILITY_RESOURCE_STATUS_OFFSET_ALT8) = &thread_local_storage_data;
@@ -31290,11 +31290,11 @@ void UtilityUnwindFunction790(uint64 resource_handle_identifier,longlong resourc
   *(uint32 *)(resource_buffer + 400) = 0;
   *(uint64 *)(resource_buffer + UTILITY_RESOURCE_FLAG_OFFSET_ALT8) = &thread_local_storage_cleanup;
   *(uint64 *)(resource_buffer + 0x158) = &thread_local_storage_data;
-  if (*(longlong *)(resource_buffer + 0x160) != 0) {
+  if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_160) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  *(uint64 *)(resource_buffer + 0x160) = 0;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_160) = 0;
   *(uint32 *)(resource_buffer + UTILITY_RESOURCE_FLAG_OFFSET_ALT0) = 0;
   *(uint64 *)(resource_buffer + 0x158) = &thread_local_storage_cleanup;
   return;
@@ -31919,14 +31919,14 @@ void UtilityUnwindFunctiona10(uint64 resource_handle_identifier,longlong resourc
   *(uint64 *)(resource_buffer + 0x880) = 0;
   *(uint32 *)(resource_buffer + 0x890) = 0;
   *(uint64 *)(resource_buffer + 0x878) = &thread_local_storage_cleanup;
-  *(uint64 *)(resource_buffer + 0x858) = &thread_local_storage_data;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_858) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x860) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(resource_buffer + 0x860) = 0;
   *(uint32 *)(resource_buffer + 0x870) = 0;
-  *(uint64 *)(resource_buffer + 0x858) = &thread_local_storage_cleanup;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_858) = &thread_local_storage_cleanup;
   return;
 }
 
@@ -32419,14 +32419,14 @@ void UtilityUnwindFunctionc20(uint64 resource_handle_identifier,longlong resourc
   *(uint64 *)(resource_buffer + 0x880) = 0;
   *(uint32 *)(resource_buffer + 0x890) = 0;
   *(uint64 *)(resource_buffer + 0x878) = &thread_local_storage_cleanup;
-  *(uint64 *)(resource_buffer + 0x858) = &thread_local_storage_data;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_858) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x860) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(resource_buffer + 0x860) = 0;
   *(uint32 *)(resource_buffer + 0x870) = 0;
-  *(uint64 *)(resource_buffer + 0x858) = &thread_local_storage_cleanup;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_858) = &thread_local_storage_cleanup;
   return;
 }
 
@@ -32613,20 +32613,20 @@ void UtilityUnwindFunctioncf0(uint64 resource_handle_identifier,longlong resourc
   if (*(code **)(resource_buffer + 400) != (code *)UTILITY_NULL_POINTER) {
     (**(code **)(resource_buffer + 400))(resource_buffer + UTILITY_SYS_STATUS_OFFSET1,UTILITY_NULL_POINTER,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
-  *(uint64 *)(resource_buffer + 0x160) = &thread_local_storage_data;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_160) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x168) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(resource_buffer + 0x168) = 0;
   *(uint32 *)(resource_buffer + UTILITY_RESOURCE_FLAG_OFFSET_ALT8) = 0;
-  *(uint64 *)(resource_buffer + 0x160) = &thread_local_storage_cleanup;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_160) = &thread_local_storage_cleanup;
   *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_140) = &thread_local_storage_data;
-  if (*(longlong *)(resource_buffer + 0x148) != 0) {
+  if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_148) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  *(uint64 *)(resource_buffer + 0x148) = 0;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_148) = 0;
   *(uint32 *)(resource_buffer + 0x158) = 0;
   *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_140) = &thread_local_storage_cleanup;
   *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_120) = &thread_local_storage_data;
@@ -32737,14 +32737,14 @@ void UtilityUnwindFunctiond30(uint64 resource_handle_identifier,longlong resourc
   *(uint64 *)(resource_buffer + 0x2c8) = 0;
   *(uint32 *)(resource_buffer + UTILITY_POINTER_OFFSET_CHECKSUM) = 0;
   *(uint64 *)(resource_buffer + 0x2c0) = &thread_local_storage_cleanup;
-  *(uint64 *)(resource_buffer + 0x2a0) = &thread_local_storage_data;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_2A0) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x2a8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(resource_buffer + 0x2a8) = 0;
   *(uint32 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_2B8) = 0;
-  *(uint64 *)(resource_buffer + 0x2a0) = &thread_local_storage_cleanup;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_2A0) = &thread_local_storage_cleanup;
   *(uint64 *)(resource_buffer + 0x280) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + UTILITY_DATA_PROCESS_OFFSET) != 0) {
                     // WARNING: Subroutine does not return
@@ -33773,7 +33773,7 @@ void UtilityUnwindFunctionfd0(uint64 resource_handle_identifier,longlong resourc
     HandleCriticalError();
   }
   *(uint64 *)(resource_buffer + resource_handle_valueta_offsetf0) = 0;
-  *(uint32 *)(resource_buffer + 0x1100) = 0;
+  *(uint32 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_1100) = 0;
   *(uint64 *)(resource_buffer + resource_handle_valueta_offsete8) = &thread_local_storage_cleanup;
   return;
 }
@@ -34207,20 +34207,20 @@ void UtilityUnwindAdvancedFunction1d0(uint64 resource_handle_identifier,longlong
   if (*(code **)(resource_buffer + 400) != (code *)UTILITY_NULL_POINTER) {
     (**(code **)(resource_buffer + 400))(resource_buffer + UTILITY_SYS_STATUS_OFFSET1,UTILITY_NULL_POINTER,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
-  *(uint64 *)(resource_buffer + 0x160) = &thread_local_storage_data;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_160) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x168) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(resource_buffer + 0x168) = 0;
   *(uint32 *)(resource_buffer + UTILITY_RESOURCE_FLAG_OFFSET_ALT8) = 0;
-  *(uint64 *)(resource_buffer + 0x160) = &thread_local_storage_cleanup;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_160) = &thread_local_storage_cleanup;
   *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_140) = &thread_local_storage_data;
-  if (*(longlong *)(resource_buffer + 0x148) != 0) {
+  if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_148) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  *(uint64 *)(resource_buffer + 0x148) = 0;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_148) = 0;
   *(uint32 *)(resource_buffer + 0x158) = 0;
   *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_140) = &thread_local_storage_cleanup;
   *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_120) = &thread_local_storage_data;
@@ -34331,14 +34331,14 @@ void UtilityUnwindAdvancedFunction210(uint64 resource_handle_identifier,longlong
   *(uint64 *)(resource_buffer + 0x2c8) = 0;
   *(uint32 *)(resource_buffer + UTILITY_POINTER_OFFSET_CHECKSUM) = 0;
   *(uint64 *)(resource_buffer + 0x2c0) = &thread_local_storage_cleanup;
-  *(uint64 *)(resource_buffer + 0x2a0) = &thread_local_storage_data;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_2A0) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x2a8) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(resource_buffer + 0x2a8) = 0;
   *(uint32 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_2B8) = 0;
-  *(uint64 *)(resource_buffer + 0x2a0) = &thread_local_storage_cleanup;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_2A0) = &thread_local_storage_cleanup;
   *(uint64 *)(resource_buffer + 0x280) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + UTILITY_DATA_PROCESS_OFFSET) != 0) {
                     // WARNING: Subroutine does not return
@@ -35367,7 +35367,7 @@ void UtilityUnwindAdvancedFunction4b0(uint64 resource_handle_identifier,longlong
     HandleCriticalError();
   }
   *(uint64 *)(resource_buffer + resource_handle_valueta_offsetf0) = 0;
-  *(uint32 *)(resource_buffer + 0x1100) = 0;
+  *(uint32 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_1100) = 0;
   *(uint64 *)(resource_buffer + resource_handle_valueta_offsete8) = &thread_local_storage_cleanup;
   return;
 }
@@ -36876,7 +36876,7 @@ void UtilityUnwindAdvancedFunctionab0(uint64 resource_handle_identifier,longlong
   char char_value;
   uint64 iteration_counter;
   
-  utility_operation_result = *(uint64 **)(resource_buffer + 0x160);
+  utility_operation_result = *(uint64 **)(resource_buffer + UTILITY_RESOURCE_OFFSET_160);
   iteration_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   *utility_operation_result = &g_system_data_shader_buffer;
   char_value = UtilityModule1(utility_operation_result,1,resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
@@ -37738,7 +37738,7 @@ void UtilityFunctionHandler010(uint64 resource_handle_identifier,longlong resour
     HandleCriticalError();
   }
   *(uint64 *)(resource_buffer + UTILITY_RESOURCE_HANDLE_OFFSET_ZERO) = 0;
-  *(uint32 *)(resource_buffer + 0x110) = 0;
+  *(uint32 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_110) = 0;
   *(uint64 *)(resource_buffer + SYSTEM_FLAGS_OFFSET) = &thread_local_storage_cleanup;
   return;
 }
@@ -37988,10 +37988,10 @@ void UtilityFunctionHandler110(uint64 resource_handle_identifier,longlong resour
   
   iteration_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_operation_result = *(uint64 **)(resource_buffer + UTILITY_RESOURCE_ACCESS_OFFSET);
-  for (iteration_pointer = *(uint64 **)(resource_buffer + 0x148); iteration_pointer != utility_operation_result; iteration_pointer = iteration_pointer + 4) {
+  for (iteration_pointer = *(uint64 **)(resource_buffer + UTILITY_RESOURCE_OFFSET_148); iteration_pointer != utility_operation_result; iteration_pointer = iteration_pointer + 4) {
     (**(code **)*iteration_pointer)(iteration_pointer,0,resourceOperationFlags,resourceCallbackFunction,iteration_counter);
   }
-  if (*(longlong *)(resource_buffer + 0x148) == 0) {
+  if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_148) == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -38063,7 +38063,7 @@ void UtilityFunctionHandler160(uint64 resource_handle_identifier,longlong resour
   uint64 iteration_counter;
   
   iteration_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
-  utility_operation_result = *(uint64 **)(resource_buffer + 0x110);
+  utility_operation_result = *(uint64 **)(resource_buffer + UTILITY_RESOURCE_OFFSET_110);
   for (iteration_pointer = *(uint64 **)(resource_buffer + resource_handle_valueta_offset_8); iteration_pointer != utility_operation_result; iteration_pointer = iteration_pointer + 4) {
     (**(code **)*iteration_pointer)(iteration_pointer,0,resourceOperationFlags,resourceCallbackFunction,iteration_counter);
   }
@@ -38134,7 +38134,7 @@ void UtilityFunctionHandler0(uint64 resource_handle_identifier,longlong resource
 {
   if ((*(uint *)(resource_buffer + UTILITY_SYS_STATUS_OFFSET) & 4) != 0) {
     *(uint *)(resource_buffer + UTILITY_SYS_STATUS_OFFSET) = *(uint *)(resource_buffer + UTILITY_SYS_STATUS_OFFSET) & UTILITY_WORD_MASK_FFfb;
-    UtilityModule2(resource_buffer + 0x2a0);
+    UtilityModule2(resource_buffer + UTILITY_RESOURCE_OFFSET_2A0);
   }
   return;
 }
@@ -38168,10 +38168,10 @@ void UtilityFunctionHandler0(uint64 resource_handle_identifier,longlong resource
   
   iteration_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_operation_result = *(uint64 **)(resource_buffer + UTILITY_RESOURCE_ACCESS_OFFSET);
-  for (iteration_pointer = *(uint64 **)(resource_buffer + 0x148); iteration_pointer != utility_operation_result; iteration_pointer = iteration_pointer + 4) {
+  for (iteration_pointer = *(uint64 **)(resource_buffer + UTILITY_RESOURCE_OFFSET_148); iteration_pointer != utility_operation_result; iteration_pointer = iteration_pointer + 4) {
     (**(code **)*iteration_pointer)(iteration_pointer,0,resourceOperationFlags,resourceCallbackFunction,iteration_counter);
   }
-  if (*(longlong *)(resource_buffer + 0x148) == 0) {
+  if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_148) == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -38188,7 +38188,7 @@ void UtilityFunctionHandler200(uint64 resource_handle_identifier,longlong resour
   longlong utility_array_index;
   ulonglong system_status_code;
   
-  iteration_pointer = *(uint64 **)(resource_buffer + 0x148);
+  iteration_pointer = *(uint64 **)(resource_buffer + UTILITY_RESOURCE_OFFSET_148);
   if (iteration_pointer == (uint64 *)UTILITY_NULL_POINTER) {
     return;
   }
@@ -38299,7 +38299,7 @@ void UtilityFunctionHandler250(uint64 resource_handle_identifier,longlong resour
   uint64 iteration_counter;
   
   iteration_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
-  utility_operation_result = *(uint64 **)(resource_buffer + 0x110);
+  utility_operation_result = *(uint64 **)(resource_buffer + UTILITY_RESOURCE_OFFSET_110);
   for (iteration_pointer = *(uint64 **)(resource_buffer + resource_handle_valueta_offset_8); iteration_pointer != utility_operation_result; iteration_pointer = iteration_pointer + 4) {
     (**(code **)*iteration_pointer)(iteration_pointer,0,resourceOperationFlags,resourceCallbackFunction,iteration_counter);
   }
@@ -38491,11 +38491,11 @@ void UtilityFunctionHandler360(uint64 resource_handle_identifier,longlong resour
 
 {
   *(uint64 *)(resource_buffer + resource_handle_valueta_offset_8) = &thread_local_storage_data;
-  if (*(longlong *)(resource_buffer + 0x110) != 0) {
+  if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_110) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  *(uint64 *)(resource_buffer + 0x110) = 0;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_110) = 0;
   *(uint32 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_120) = 0;
   *(uint64 *)(resource_buffer + resource_handle_valueta_offset_8) = &thread_local_storage_cleanup;
   return;
@@ -39738,9 +39738,9 @@ void UtilityFunctionHandler0(uint64 resource_handle_identifier,longlong resource
 void UtilityFunctionHandler0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  if (*(longlong *)(resource_buffer + 0x148) != 0) {
+  if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_148) != 0) {
     fclose();
-    *(uint64 *)(resource_buffer + 0x148) = 0;
+    *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_148) = 0;
     LOCK();
     g_systemLockCounter = g_systemLockCounter + -1;
     UNLOCK();
@@ -45187,7 +45187,7 @@ void UtilityUnwindSystemPhase03(uint64 resource_handle_identifier,longlong resou
   longlong *resource_data_pointer;
   longlong operation_buffer;
   
-  operation_buffer = *(longlong *)(resource_buffer + 0x160);
+  operation_buffer = *(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_160);
   resource_data_pointer = *(longlong **)(operation_buffer + RESOURCE_HANDLE_OFFSET);
   if (resource_data_pointer != (longlong *)UTILITY_NULL_POINTER) {
     (**(code **)(*resource_data_pointer + UTILITY_STRUCTURE_SIZE_OFFSET))();
@@ -45289,7 +45289,7 @@ void UtilityUnwindSystemPhase0b(uint64 resource_handle_identifier,longlong resou
 {
   longlong *resource_data_pointer;
   
-  resource_data_pointer = *(longlong **)(*(longlong *)(resource_buffer + 0x160) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
+  resource_data_pointer = *(longlong **)(*(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_160) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (resource_data_pointer != (longlong *)UTILITY_NULL_POINTER) {
     (**(code **)(*resource_data_pointer + UTILITY_STRUCTURE_SIZE_OFFSET))();
   }
@@ -45303,7 +45303,7 @@ void UtilityUnwindSystemPhase0c(uint64 resource_handle_identifier,longlong resou
 {
   longlong *resource_data_pointer;
   
-  resource_data_pointer = *(longlong **)(*(longlong *)(resource_buffer + 0x160) + RESOURCE_HANDLE_OFFSET);
+  resource_data_pointer = *(longlong **)(*(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_160) + RESOURCE_HANDLE_OFFSET);
   if (resource_data_pointer != (longlong *)UTILITY_NULL_POINTER) {
     (**(code **)(*resource_data_pointer + UTILITY_STRUCTURE_SIZE_OFFSET))();
   }
@@ -47259,8 +47259,8 @@ void UtilityUnwindSystemPhasea3(uint64 resource_handle_identifier,longlong resou
 void UtilityUnwindSystemPhasea4(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
 
 {
-  if (*(code **)(resource_buffer + 0x2a0) != (code *)UTILITY_NULL_POINTER) {
-    (**(code **)(resource_buffer + 0x2a0))(resource_buffer + 0x290,UTILITY_NULL_POINTER,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
+  if (*(code **)(resource_buffer + UTILITY_RESOURCE_OFFSET_2A0) != (code *)UTILITY_NULL_POINTER) {
+    (**(code **)(resource_buffer + UTILITY_RESOURCE_OFFSET_2A0))(resource_buffer + 0x290,UTILITY_NULL_POINTER,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   if (*(code **)(resource_buffer + 0x280) != (code *)UTILITY_NULL_POINTER) {
     (**(code **)(resource_buffer + 0x280))(resource_buffer + UTILITY_BUFFER_SIZE0,UTILITY_NULL_POINTER);
@@ -47458,8 +47458,8 @@ void UtilityUnwindSystemPhaseb0(uint64 resource_handle_identifier,longlong resou
 void UtilityUnwindSystemPhaseb1(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
 
 {
-  if (*(code **)(resource_buffer + 0x2a0) != (code *)UTILITY_NULL_POINTER) {
-    (**(code **)(resource_buffer + 0x2a0))(resource_buffer + 0x290,UTILITY_NULL_POINTER,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
+  if (*(code **)(resource_buffer + UTILITY_RESOURCE_OFFSET_2A0) != (code *)UTILITY_NULL_POINTER) {
+    (**(code **)(resource_buffer + UTILITY_RESOURCE_OFFSET_2A0))(resource_buffer + 0x290,UTILITY_NULL_POINTER,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -47876,8 +47876,8 @@ void UtilityUnwindSystemPhased1(uint64 resource_handle_identifier,longlong resou
   if (*(code **)(resource_buffer + UTILITY_RESOURCE_CONFIG_OFFSET_ALT0) != (code *)UTILITY_NULL_POINTER) {
     (**(code **)(resource_buffer + UTILITY_RESOURCE_CONFIG_OFFSET_ALT0))(resource_buffer + UTILITY_RESOURCE_OFFSET_120,UTILITY_NULL_POINTER);
   }
-  if (*(code **)(resource_buffer + 0x110) != (code *)UTILITY_NULL_POINTER) {
-    (**(code **)(resource_buffer + 0x110))(resource_buffer + UTILITY_RESOURCE_HANDLE_OFFSET_ZERO,UTILITY_NULL_POINTER);
+  if (*(code **)(resource_buffer + UTILITY_RESOURCE_OFFSET_110) != (code *)UTILITY_NULL_POINTER) {
+    (**(code **)(resource_buffer + UTILITY_RESOURCE_OFFSET_110))(resource_buffer + UTILITY_RESOURCE_HANDLE_OFFSET_ZERO,UTILITY_NULL_POINTER);
   }
   return;
 }
@@ -48037,8 +48037,8 @@ void UtilityUnwindSystemPhasee4(uint64 resource_handle_identifier,longlong resou
 void UtilityUnwindSystemPhasee5(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
 
 {
-  if (*(code **)(resource_buffer + 0x110) != (code *)UTILITY_NULL_POINTER) {
-    (**(code **)(resource_buffer + 0x110))(resource_buffer + UTILITY_RESOURCE_HANDLE_OFFSET_ZERO,UTILITY_NULL_POINTER,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
+  if (*(code **)(resource_buffer + UTILITY_RESOURCE_OFFSET_110) != (code *)UTILITY_NULL_POINTER) {
+    (**(code **)(resource_buffer + UTILITY_RESOURCE_OFFSET_110))(resource_buffer + UTILITY_RESOURCE_HANDLE_OFFSET_ZERO,UTILITY_NULL_POINTER,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -49365,7 +49365,7 @@ void UtilityUnwindCleanupPhase67(uint64 resource_handle_identifier,longlong reso
   iteration_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   *(longlong *)(operation_buffer + UTILITY_MEMORY_OFFSET_15D8) =
        *(longlong *)(&systemResourceOffset + (longlong)*(int *)(operation_buffer + UTILITY_MEMORY_OFFSET_15E0) * UTILITY_DOUBLE_WORD_SIZE) + -100000;
-  ProcessBufferDataStructure((longlong *)(operation_buffer + 0x8b0));
+  ProcessBufferDataStructure((longlong *)(operation_buffer + UTILITY_RESOURCE_OFFSET_8B0));
   *(uint32 *)(operation_buffer + UTILITY_MEMORY_OFFSET_15E8) = 0;
   resource_data_pointer = *(longlong **)(operation_buffer + UTILITY_MEMORY_OFFSET_15D0);
   *(uint64 *)(operation_buffer + UTILITY_MEMORY_OFFSET_15D0) = 0;
@@ -49377,7 +49377,7 @@ void UtilityUnwindCleanupPhase67(uint64 resource_handle_identifier,longlong reso
   }
   RegisterResourceCallback(operation_buffer + 0x8e0,POINTER_DATA_OFFSET,UTILITY_LIST_HEAD_OFFSET,ReleaseSystemResource,iteration_counter);
   RegisterResourceCallback(operation_buffer + 0x8b8,8,4,UtilityModule3);
-  resource_data_pointer = *(longlong **)(operation_buffer + 0x8b0);
+  resource_data_pointer = *(longlong **)(operation_buffer + UTILITY_RESOURCE_OFFSET_8B0);
   if (resource_data_pointer != (longlong *)UTILITY_NULL_POINTER) {
     (**(code **)(*resource_data_pointer + UTILITY_STRUCTURE_SIZE_OFFSET))();
   }
@@ -49598,12 +49598,12 @@ void UtilityUnwindCleanupPhase7d(uint64 resource_handle_identifier,longlong reso
   longlong *data_buffer;
   
   resource_data_pointer = *(longlong **)(resource_buffer + 0x168);
-  for (data_buffer = *(longlong **)(resource_buffer + 0x160); data_buffer != resource_data_pointer; data_buffer = data_buffer + 1) {
+  for (data_buffer = *(longlong **)(resource_buffer + UTILITY_RESOURCE_OFFSET_160); data_buffer != resource_data_pointer; data_buffer = data_buffer + 1) {
     if ((longlong *)*data_buffer != (longlong *)UTILITY_NULL_POINTER) {
       (**(code **)(*(longlong *)*data_buffer + UTILITY_STRUCTURE_SIZE_OFFSET))();
     }
   }
-  if (*(longlong *)(resource_buffer + 0x160) == 0) {
+  if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_160) == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -49755,12 +49755,12 @@ void UtilityUnwindCleanupPhase86(uint64 resource_handle_identifier,longlong reso
   longlong *data_buffer;
   
   resource_data_pointer = *(longlong **)(resource_buffer + 0x168);
-  for (data_buffer = *(longlong **)(resource_buffer + 0x160); data_buffer != resource_data_pointer; data_buffer = data_buffer + 1) {
+  for (data_buffer = *(longlong **)(resource_buffer + UTILITY_RESOURCE_OFFSET_160); data_buffer != resource_data_pointer; data_buffer = data_buffer + 1) {
     if ((longlong *)*data_buffer != (longlong *)UTILITY_NULL_POINTER) {
       (**(code **)(*(longlong *)*data_buffer + UTILITY_STRUCTURE_SIZE_OFFSET))();
     }
   }
-  if (*(longlong *)(resource_buffer + 0x160) == 0) {
+  if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_160) == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -49777,7 +49777,7 @@ void UtilityUnwindCleanupPhase87(uint64 resource_handle_identifier,longlong reso
   longlong utility_array_index;
   ulonglong system_status_code;
   
-  iteration_pointer = *(uint64 **)(resource_buffer + 0x160);
+  iteration_pointer = *(uint64 **)(resource_buffer + UTILITY_RESOURCE_OFFSET_160);
   if (iteration_pointer == (uint64 *)UTILITY_NULL_POINTER) {
     return;
   }
@@ -50058,7 +50058,7 @@ void UtilityUnwindCleanupPhaseStage00(uint64 resource_handle_identifier,longlong
 {
   int utility_operation_status;
   
-  utility_operation_status = _Mtx_unlock(*(uint64 *)(resource_buffer + 0x148));
+  utility_operation_status = _Mtx_unlock(*(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_148));
   if (utility_operation_status != 0) {
     __Throw_C_error_std__YAXH_Z(resource_size_limit);
   }
@@ -50125,7 +50125,7 @@ void UtilityUnwindCleanupPhaseStage03(uint64 resource_handle_identifier,longlong
   longlong utility_array_index;
   ulonglong system_status_code;
   
-  iteration_pointer = *(uint64 **)(resource_buffer + 0x160);
+  iteration_pointer = *(uint64 **)(resource_buffer + UTILITY_RESOURCE_OFFSET_160);
   if (iteration_pointer == (uint64 *)UTILITY_NULL_POINTER) {
     return;
   }
@@ -50269,7 +50269,7 @@ void UtilityUnwindCleanupPhaseStage07(uint64 resource_handle_identifier,longlong
   longlong utility_array_index;
   ulonglong system_status_code;
   
-  iteration_pointer = *(uint64 **)(resource_buffer + 0x160);
+  iteration_pointer = *(uint64 **)(resource_buffer + UTILITY_RESOURCE_OFFSET_160);
   if (iteration_pointer == (uint64 *)UTILITY_NULL_POINTER) {
     return;
   }
@@ -50571,8 +50571,8 @@ void UtilityUnwindCleanupPhaseStage12(uint64 resource_handle_identifier,longlong
 void UtilityUnwindCleanupPhaseStage13(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  if (*(longlong **)(resource_buffer + 0x110) != (longlong *)UTILITY_NULL_POINTER) {
-    (**(code **)(**(longlong **)(resource_buffer + 0x110) + UTILITY_STRUCTURE_SIZE_OFFSET))();
+  if (*(longlong **)(resource_buffer + UTILITY_RESOURCE_OFFSET_110) != (longlong *)UTILITY_NULL_POINTER) {
+    (**(code **)(**(longlong **)(resource_buffer + UTILITY_RESOURCE_OFFSET_110) + UTILITY_STRUCTURE_SIZE_OFFSET))();
   }
   return;
 }
@@ -51071,7 +51071,7 @@ void InitializeThreadLocalStorageBasic(uint64 resource_handle_identifier,longlon
 void ConfigureThreadLocalStorageDebug(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  **(uint64 **)(resource_buffer + 0x110) = &thread_local_storage_cleanup;
+  **(uint64 **)(resource_buffer + UTILITY_RESOURCE_OFFSET_110) = &thread_local_storage_cleanup;
   return;
 }
 
@@ -51310,7 +51310,7 @@ void ProcessThreadLocalStorageOperationE80(uint64 resource_handle_identifier,lon
   resource_buffer = *(longlong *)(resource_buffer + utility_data_offset_start);
   iteration_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   _Mtx_destroy_in_situ();
-  UtilityModule15(resource_buffer + 0x110,*(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_120),resourceOperationFlags,resourceCallbackFunction,iteration_counter);
+  UtilityModule15(resource_buffer + UTILITY_RESOURCE_OFFSET_110,*(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_120),resourceOperationFlags,resourceCallbackFunction,iteration_counter);
   UtilityModule15(resource_buffer + UTILITY_STACK_OFFSET_E0,*(uint64 *)(resource_buffer + UTILITY_STACK_OFFSET_F0));
   UtilityModule15(resource_buffer  + UTILITY_BOOLEAN_FLAG_OFFSET0,*(uint64 *)(resource_buffer + RESOURCE_BUFFER_ARRAY_OFFSET));
   UtilityModule21(resource_buffer + utility_buffer_offset,*(uint64 *)(resource_buffer + UTILITY_MEMORY_SIZE_OFFSET));
@@ -51647,7 +51647,7 @@ void UtilityUnwindHandler08Cleanup(uint64 resource_handle_identifier,longlong re
   if ((*(longlong *)(resource_buffer + resource_handle_valueta_offset_8) != 0) && (**(longlong **)(resource_buffer + UTILITY_RESOURCE_ACCESS_ID) == resource_buffer + SYSTEM_FLAGS_OFFSET))
   {
     utility_operation_status = *(uint64 *)(resource_buffer  + UTILITY_ARRAY_INFO_OFFSET);
-    operation_buffer = *(longlong *)(resource_buffer + 0x110);
+    operation_buffer = *(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_110);
     **(longlong **)(resource_buffer + UTILITY_RESOURCE_ACCESS_ID) = operation_buffer;
     **(longlong **)(resource_buffer + RESOURCE_BUFFER_ARRAY_OFFSET) = operation_buffer;
     **(int **)(resource_buffer  + UTILITY_STATUS_SUCCESS_OFFSET8) = (int)utility_operation_status - (int)operation_buffer;
@@ -52582,7 +52582,7 @@ void UtilityUnwindHandler48Cleanup(uint64 resource_handle_identifier,longlong re
   longlong resource_buffer;
   longlong operation_buffer;
   
-  resource_buffer = *(longlong *)(resource_buffer + 0x148);
+  resource_buffer = *(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_148);
   for (operation_buffer = *(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_140); operation_buffer != resource_buffer; operation_buffer = operation_buffer + UTILITY_HANDLE_DATA_OFFSET) {
     mapSharedMemory(operation_buffer);
   }
@@ -52619,7 +52619,7 @@ void UtilityUnwindHandler4bCleanup(uint64 resource_handle_identifier,longlong re
   longlong resource_buffer;
   longlong operation_buffer;
   
-  resource_buffer = *(longlong *)(resource_buffer + 0x148);
+  resource_buffer = *(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_148);
   for (operation_buffer = *(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_140); operation_buffer != resource_buffer; operation_buffer = operation_buffer + UTILITY_HANDLE_DATA_OFFSET) {
     mapSharedMemory(operation_buffer);
   }
@@ -52701,11 +52701,11 @@ void UtilityUnwindHandler50Cleanup(uint64 resource_handle_identifier,longlong re
 
 {
   *(uint64 *)(resource_buffer + 0x298) = &thread_local_storage_data;
-  if (*(longlong *)(resource_buffer + 0x2a0) != 0) {
+  if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_2A0) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  *(uint64 *)(resource_buffer + 0x2a0) = 0;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_2A0) = 0;
   *(uint32 *)(resource_buffer + UTILITY_UTILITY_HANDLE_DATA_OFFSET) = 0;
   *(uint64 *)(resource_buffer + 0x298) = &thread_local_storage_cleanup;
   return;
@@ -59143,7 +59143,7 @@ void UtilityUnwindSystemFunctionc0c0(uint64 resource_handle_identifier,longlong 
 void UtilityUnwindSystemFunctionc0d0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  *(resource_data **)(resource_buffer + 0x2a0) = &thread_local_storage_cleanup;
+  *(resource_data **)(resource_buffer + UTILITY_RESOURCE_OFFSET_2A0) = &thread_local_storage_cleanup;
   return;
 }
 
@@ -60405,7 +60405,7 @@ void UtilityUnwindSystemFunctionc5c0(uint64 resource_handle_identifier,longlong 
       }
     }
   }
-  *(resource_data **)(resource_buffer + 0x110) = &thread_local_storage_cleanup;
+  *(resource_data **)(resource_buffer + UTILITY_RESOURCE_OFFSET_110) = &thread_local_storage_cleanup;
   return;
 }
 
@@ -60422,7 +60422,7 @@ void UtilityUnwindSystemFunctionc5d0(uint64 resource_handle_identifier,longlong 
   longlong *long_ptr_buffer;
   longlong memory_offset_data;
   
-  if (0 < *(int *)(resource_buffer + 0x2a0)) {
+  if (0 < *(int *)(resource_buffer + UTILITY_RESOURCE_OFFSET_2A0)) {
     memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12E3) != '\0') || (*(char *)(systemConfigManager + UTILITY_SYSTEM_CONFIG_OFFSET_12DD) != '\0')
        ) {
@@ -60672,7 +60672,7 @@ void UtilityUnwindSystemFunctionc660(uint64 resource_handle_identifier,longlong 
 void UtilityUnwindSystemFunctionc670(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  *(resource_data **)(resource_buffer + 0x110) = &thread_local_storage_cleanup;
+  *(resource_data **)(resource_buffer + UTILITY_RESOURCE_OFFSET_110) = &thread_local_storage_cleanup;
   return;
 }
 
@@ -60771,8 +60771,8 @@ void UtilityUnwindSystemFunctionc700(uint64 resource_handle_identifier,longlong 
 void UtilityUnwindSystemFunctionc730(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  if (*(longlong **)(resource_buffer + 0x148) != (longlong *)UTILITY_NULL_POINTER) {
-    (**(code **)(**(longlong **)(resource_buffer + 0x148) + UTILITY_STRUCTURE_SIZE_OFFSET))();
+  if (*(longlong **)(resource_buffer + UTILITY_RESOURCE_OFFSET_148) != (longlong *)UTILITY_NULL_POINTER) {
+    (**(code **)(**(longlong **)(resource_buffer + UTILITY_RESOURCE_OFFSET_148) + UTILITY_STRUCTURE_SIZE_OFFSET))();
   }
   return;
 }
@@ -60782,8 +60782,8 @@ void UtilityUnwindSystemFunctionc730(uint64 resource_handle_identifier,longlong 
 void UtilityUnwindSystemFunctionc740(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  if (*(longlong **)(resource_buffer + 0x160) != (longlong *)UTILITY_NULL_POINTER) {
-    (**(code **)(**(longlong **)(resource_buffer + 0x160) + UTILITY_STRUCTURE_SIZE_OFFSET))();
+  if (*(longlong **)(resource_buffer + UTILITY_RESOURCE_OFFSET_160) != (longlong *)UTILITY_NULL_POINTER) {
+    (**(code **)(**(longlong **)(resource_buffer + UTILITY_RESOURCE_OFFSET_160) + UTILITY_STRUCTURE_SIZE_OFFSET))();
   }
   return;
 }
@@ -60804,8 +60804,8 @@ void UtilityUnwindSystemFunctionc750(uint64 resource_handle_identifier,longlong 
 void UtilityUnwindSystemFunctionc760(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
 
 {
-  if (*(code **)(resource_buffer + 0x110) != (code *)UTILITY_NULL_POINTER) {
-    (**(code **)(resource_buffer + 0x110))(resource_buffer + UTILITY_RESOURCE_HANDLE_OFFSET_ZERO,UTILITY_NULL_POINTER,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
+  if (*(code **)(resource_buffer + UTILITY_RESOURCE_OFFSET_110) != (code *)UTILITY_NULL_POINTER) {
+    (**(code **)(resource_buffer + UTILITY_RESOURCE_OFFSET_110))(resource_buffer + UTILITY_RESOURCE_HANDLE_OFFSET_ZERO,UTILITY_NULL_POINTER,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -60826,8 +60826,8 @@ void UtilityUnwindSystemFunctionc770(uint64 resource_handle_identifier,longlong 
 void UtilityUnwindSystemFunctionc780(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
 
 {
-  if (*(code **)(resource_buffer + 0x110) != (code *)UTILITY_NULL_POINTER) {
-    (**(code **)(resource_buffer + 0x110))(resource_buffer + UTILITY_RESOURCE_HANDLE_OFFSET_ZERO,UTILITY_NULL_POINTER,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
+  if (*(code **)(resource_buffer + UTILITY_RESOURCE_OFFSET_110) != (code *)UTILITY_NULL_POINTER) {
+    (**(code **)(resource_buffer + UTILITY_RESOURCE_OFFSET_110))(resource_buffer + UTILITY_RESOURCE_HANDLE_OFFSET_ZERO,UTILITY_NULL_POINTER,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -60837,14 +60837,14 @@ void UtilityUnwindSystemFunctionc780(uint64 resource_handle_identifier,longlong 
 void UtilityUnwindSystemFunctionc790(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  *(uint64 *)(resource_buffer + 0x148) = &thread_local_storage_data;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_148) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_ACCESS_OFFSET) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(resource_buffer + UTILITY_RESOURCE_ACCESS_OFFSET) = 0;
-  *(uint32 *)(resource_buffer + 0x160) = 0;
-  *(uint64 *)(resource_buffer + 0x148) = &thread_local_storage_cleanup;
+  *(uint32 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_160) = 0;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_148) = &thread_local_storage_cleanup;
   return;
 }
 
@@ -61009,7 +61009,7 @@ void UtilityUnwindSystemFunctionc890(uint64 resource_handle_identifier,longlong 
 void UtilityUnwindSystemFunctionc8a0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  *(resource_data **)(resource_buffer + 0x148) = &thread_local_storage_cleanup;
+  *(resource_data **)(resource_buffer + UTILITY_RESOURCE_OFFSET_148) = &thread_local_storage_cleanup;
   return;
 }
 
@@ -61573,7 +61573,7 @@ void UtilityUnwindSystemFunctioncb00(uint64 resource_handle_identifier,longlong 
       }
     }
   }
-  *(resource_data **)(resource_buffer + 0x2a0) = &thread_local_storage_cleanup;
+  *(resource_data **)(resource_buffer + UTILITY_RESOURCE_OFFSET_2A0) = &thread_local_storage_cleanup;
   return;
 }
 
@@ -62201,14 +62201,14 @@ void UtilityUnwindSystemFunctioncdf0(uint64 resource_handle_identifier,longlong 
   if (*(longlong **)(resource_buffer + UTILITY_RESOURCE_FLAG_OFFSET_ALT8) != (longlong *)UTILITY_NULL_POINTER) {
     (**(code **)(**(longlong **)(resource_buffer + UTILITY_RESOURCE_FLAG_OFFSET_ALT8) + UTILITY_STRUCTURE_SIZE_OFFSET))();
   }
-  *(uint64 *)(resource_buffer + 0x148) = &thread_local_storage_data;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_148) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_ACCESS_OFFSET) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(resource_buffer + UTILITY_RESOURCE_ACCESS_OFFSET) = 0;
-  *(uint32 *)(resource_buffer + 0x160) = 0;
-  *(uint64 *)(resource_buffer + 0x148) = &thread_local_storage_cleanup;
+  *(uint32 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_160) = 0;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_148) = &thread_local_storage_cleanup;
   if (*(longlong **)(resource_buffer + UTILITY_RESOURCE_OFFSET_140) != (longlong *)UTILITY_NULL_POINTER) {
     (**(code **)(**(longlong **)(resource_buffer + UTILITY_RESOURCE_OFFSET_140) + UTILITY_STRUCTURE_SIZE_OFFSET))();
   }
@@ -62416,14 +62416,14 @@ void UtilityUnwindSystemFunctionce80(uint64 resource_handle_identifier,longlong 
 void UtilityUnwindSystemFunctionce90(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  *(uint64 *)(resource_buffer + 0x148) = &thread_local_storage_data;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_148) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_ACCESS_OFFSET) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(resource_buffer + UTILITY_RESOURCE_ACCESS_OFFSET) = 0;
-  *(uint32 *)(resource_buffer + 0x160) = 0;
-  *(uint64 *)(resource_buffer + 0x148) = &thread_local_storage_cleanup;
+  *(uint32 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_160) = 0;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_148) = &thread_local_storage_cleanup;
   return;
 }
 
@@ -62838,7 +62838,7 @@ void UtilityUnwindSystemFunctiond030(uint64 resource_handle_identifier,longlong 
   longlong utility_array_index;
   ulonglong system_status_code;
   
-  iteration_pointer = *(uint64 **)(resource_buffer + 0x110);
+  iteration_pointer = *(uint64 **)(resource_buffer + UTILITY_RESOURCE_OFFSET_110);
   if (iteration_pointer == (uint64 *)UTILITY_NULL_POINTER) {
     return;
   }
@@ -63857,7 +63857,7 @@ void UtilityUnwindSystemFunctiond200(uint64 resource_handle_identifier,longlong 
   longlong utility_array_index;
   ulonglong system_status_code;
   
-  iteration_pointer = *(uint64 **)(resource_buffer + 0x110);
+  iteration_pointer = *(uint64 **)(resource_buffer + UTILITY_RESOURCE_OFFSET_110);
   if (iteration_pointer == (uint64 *)UTILITY_NULL_POINTER) {
     return;
   }
@@ -63893,7 +63893,7 @@ void UtilityUnwindSystemFunctiond210(uint64 resource_handle_identifier,longlong 
   longlong utility_array_index;
   ulonglong system_status_code;
   
-  iteration_pointer = *(uint64 **)(resource_buffer + 0x110);
+  iteration_pointer = *(uint64 **)(resource_buffer + UTILITY_RESOURCE_OFFSET_110);
   if (iteration_pointer == (uint64 *)UTILITY_NULL_POINTER) {
     return;
   }
@@ -65686,7 +65686,7 @@ void UtilityUnwindSystemFunctiond5c0(uint64 resource_handle_identifier,longlong 
 void UtilityUnwindSystemFunctiond5d0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  **(uint64 **)(resource_buffer + 0x160) = &thread_local_storage_cleanup;
+  **(uint64 **)(resource_buffer + UTILITY_RESOURCE_OFFSET_160) = &thread_local_storage_cleanup;
   return;
 }
 
@@ -65704,7 +65704,7 @@ void UtilityUnwindSystemFunctiond5e0(uint64 resource_handle_identifier,longlong 
 void UtilityUnwindSystemFunctiond5f0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  *(resource_data **)(resource_buffer + 0x148) = &thread_local_storage_cleanup;
+  *(resource_data **)(resource_buffer + UTILITY_RESOURCE_OFFSET_148) = &thread_local_storage_cleanup;
   return;
 }
 
@@ -68023,7 +68023,7 @@ void UtilityUnwindSystemFunctione8f0(uint64 resource_handle_identifier,longlong 
     HandleCriticalError();
   }
   *(uint64 *)(resource_buffer + UTILITY_RESOURCE_HANDLE_OFFSET_ZERO) = 0;
-  *(uint32 *)(resource_buffer + 0x110) = 0;
+  *(uint32 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_110) = 0;
   *(uint64 *)(resource_buffer + SYSTEM_FLAGS_OFFSET) = &thread_local_storage_cleanup;
   if (*(longlong **)(resource_buffer + UTILITY_STACK_OFFSET_F0) != (longlong *)UTILITY_NULL_POINTER) {
     (**(code **)(**(longlong **)(resource_buffer + UTILITY_STACK_OFFSET_F0) + UTILITY_STRUCTURE_SIZE_OFFSET))();
@@ -68147,7 +68147,7 @@ void UtilityUnwindSystemFunctione980(uint64 resource_handle_identifier,longlong 
     HandleCriticalError();
   }
   *(uint64 *)(resource_buffer + UTILITY_RESOURCE_HANDLE_OFFSET_ZERO) = 0;
-  *(uint32 *)(resource_buffer + 0x110) = 0;
+  *(uint32 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_110) = 0;
   *(uint64 *)(resource_buffer + SYSTEM_FLAGS_OFFSET) = &thread_local_storage_cleanup;
   return;
 }
@@ -71261,8 +71261,8 @@ void UtilityUnwindSystemFunctionfa30(uint64 resource_handle_identifier,longlong 
 void UtilityUnwindSystemFunctionfa50(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  if ((longlong *)**(longlong **)(resource_buffer + 0x148) != (longlong *)UTILITY_NULL_POINTER) {
-    (**(code **)(*(longlong *)**(longlong **)(resource_buffer + 0x148) + UTILITY_STRUCTURE_SIZE_OFFSET))();
+  if ((longlong *)**(longlong **)(resource_buffer + UTILITY_RESOURCE_OFFSET_148) != (longlong *)UTILITY_NULL_POINTER) {
+    (**(code **)(*(longlong *)**(longlong **)(resource_buffer + UTILITY_RESOURCE_OFFSET_148) + UTILITY_STRUCTURE_SIZE_OFFSET))();
   }
   return;
 }
@@ -71273,7 +71273,7 @@ void UtilityUnwindSystemFunctionfa60(uint64 resource_handle_identifier,longlong 
 
 {
   if (*(char *)(resource_buffer + UTILITY_RESOURCE_ACCESS_OFFSET) != '\0') {
-    ReleaseSRWLockShared(*(uint64 *)(resource_buffer + 0x148));
+    ReleaseSRWLockShared(*(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_148));
   }
   return;
 }
@@ -71284,7 +71284,7 @@ void UtilityUnwindSystemFunctionfa70(uint64 resource_handle_identifier,longlong 
 
 {
   if (*(char *)(resource_buffer + UTILITY_RESOURCE_ACCESS_OFFSET) != '\0') {
-    ReleaseSRWLockShared(*(uint64 *)(resource_buffer + 0x148));
+    ReleaseSRWLockShared(*(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_148));
   }
   return;
 }
@@ -71294,7 +71294,7 @@ void UtilityUnwindSystemFunctionfa70(uint64 resource_handle_identifier,longlong 
 void UtilityUnwindSystemFunctionfa80(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  if (*(char *)(resource_buffer + 0x160) != '\0') {
+  if (*(char *)(resource_buffer + UTILITY_RESOURCE_OFFSET_160) != '\0') {
     ReleaseSRWLockShared(*(uint64 *)(resource_buffer + 0x158));
   }
   return;
@@ -71305,7 +71305,7 @@ void UtilityUnwindSystemFunctionfa80(uint64 resource_handle_identifier,longlong 
 void UtilityUnwindSystemFunctionfa90(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  if (*(char *)(resource_buffer + 0x160) != '\0') {
+  if (*(char *)(resource_buffer + UTILITY_RESOURCE_OFFSET_160) != '\0') {
     ReleaseSRWLockShared(*(uint64 *)(resource_buffer + 0x158));
   }
   return;
@@ -71878,7 +71878,7 @@ void UtilityUnwindSystemFunctionfe90(uint64 resource_handle_identifier,longlong 
 void UtilityUnwindSystemFunctionfea0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  UtilityModule10(resource_buffer + 0x2a0);
+  UtilityModule10(resource_buffer + UTILITY_RESOURCE_OFFSET_2A0);
   return;
 }
 
@@ -71899,7 +71899,7 @@ void UtilityUnwindSystemFunctionfeb0(uint64 resource_handle_identifier,longlong 
 void UtilityUnwindSystemFunctionfee0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  UtilityModule10(resource_buffer + 0x2a0);
+  UtilityModule10(resource_buffer + UTILITY_RESOURCE_OFFSET_2A0);
   return;
 }
 
@@ -71908,7 +71908,7 @@ void UtilityUnwindSystemFunctionfee0(uint64 resource_handle_identifier,longlong 
 void UtilityUnwindSystemFunctionfef0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  UtilityModule10(resource_buffer + 0x2a0);
+  UtilityModule10(resource_buffer + UTILITY_RESOURCE_OFFSET_2A0);
   return;
 }
 
@@ -72506,11 +72506,11 @@ void UtilityUnwindFinalFunction0110(uint64 resource_handle_identifier,longlong r
   
   resource_buffer = *(longlong *)(resource_buffer + utility_data_offset_start);
   *(uint64 *)(resource_buffer + resource_handle_valueta_offset_8) = &thread_local_storage_data;
-  if (*(longlong *)(resource_buffer + 0x110) != 0) {
+  if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_110) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  *(uint64 *)(resource_buffer + 0x110) = 0;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_110) = 0;
   *(uint32 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_120) = 0;
   *(uint64 *)(resource_buffer + resource_handle_valueta_offset_8) = &thread_local_storage_cleanup;
   return;
@@ -72525,11 +72525,11 @@ void UtilityUnwindFinalFunction0130(uint64 resource_handle_identifier,longlong r
   
   resource_buffer = *(longlong *)(resource_buffer + UTILITY_LIST_HEAD_OFFSET);
   *(uint64 *)(resource_buffer + resource_handle_valueta_offset_8) = &thread_local_storage_data;
-  if (*(longlong *)(resource_buffer + 0x110) != 0) {
+  if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_110) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  *(uint64 *)(resource_buffer + 0x110) = 0;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_110) = 0;
   *(uint32 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_120) = 0;
   *(uint64 *)(resource_buffer + resource_handle_valueta_offset_8) = &thread_local_storage_cleanup;
   return;
@@ -72583,11 +72583,11 @@ void UtilityUnwindFinalFunction01c0(uint64 resource_handle_identifier,longlong r
   
   resource_buffer = *(longlong *)(resource_buffer + UTILITY_BUFFER_SIZE_DATA_OFFSET);
   *(uint64 *)(resource_buffer + resource_handle_valueta_offset_8) = &thread_local_storage_data;
-  if (*(longlong *)(resource_buffer + 0x110) != 0) {
+  if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_110) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  *(uint64 *)(resource_buffer + 0x110) = 0;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_110) = 0;
   *(uint32 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_120) = 0;
   *(uint64 *)(resource_buffer + resource_handle_valueta_offset_8) = &thread_local_storage_cleanup;
   return;
@@ -74318,8 +74318,8 @@ void UtilityUnwindFinalFunction09a0(uint64 resource_handle_identifier,longlong r
   longlong resource_buffer;
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
-  if (*(code **)(resource_buffer + 0x1100) != (code *)UTILITY_NULL_POINTER) {
-    (**(code **)(resource_buffer + 0x1100))(resource_buffer + resource_handle_valueta_offsetf0,UTILITY_NULL_POINTER,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
+  if (*(code **)(resource_buffer + UTILITY_RESOURCE_OFFSET_1100) != (code *)UTILITY_NULL_POINTER) {
+    (**(code **)(resource_buffer + UTILITY_RESOURCE_OFFSET_1100))(resource_buffer + resource_handle_valueta_offsetf0,UTILITY_NULL_POINTER,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + resource_handle_valueta_offsetc8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + resource_handle_valueta_offsetd0) != 0) {
@@ -74558,8 +74558,8 @@ void UtilityUnwindFinalFunction0aa0(uint64 resource_handle_identifier,longlong r
   longlong resource_buffer;
   
   resource_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
-  if (*(code **)(resource_buffer + 0x1480) != (code *)UTILITY_NULL_POINTER) {
-    (**(code **)(resource_buffer + 0x1480))(resource_buffer + 0x1470,UTILITY_NULL_POINTER,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
+  if (*(code **)(resource_buffer + UTILITY_RESOURCE_OFFSET_1480) != (code *)UTILITY_NULL_POINTER) {
+    (**(code **)(resource_buffer + UTILITY_RESOURCE_OFFSET_1480))(resource_buffer + 0x1470,UTILITY_NULL_POINTER,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1448) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1450) != 0) {
@@ -74681,14 +74681,14 @@ void UtilityUnwindFinalFunction0b20(uint64 resource_handle_identifier,longlong r
   if (*(code **)(resource_buffer + 0x1640) != (code *)UTILITY_NULL_POINTER) {
     (**(code **)(resource_buffer + 0x1640))(resource_buffer + 0x1630,UTILITY_NULL_POINTER,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
-  *(uint64 *)(resource_buffer + 0x1608) = &thread_local_storage_data;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_1608) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1610) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(resource_buffer + 0x1610) = 0;
   *(uint32 *)(resource_buffer + 0x1620) = 0;
-  *(uint64 *)(resource_buffer + 0x1608) = &thread_local_storage_cleanup;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_1608) = &thread_local_storage_cleanup;
   *(uint64 *)(resource_buffer + UTILITY_MEMORY_OFFSET_15E8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x15f0) != 0) {
                     // WARNING: Subroutine does not return
@@ -74870,11 +74870,11 @@ void UtilityUnwindFinalFunction0be0(uint64 resource_handle_identifier,longlong r
   *(uint32 *)(resource_buffer + 0x18c0) = 0;
   *(uint64 *)(resource_buffer + 0x18a8) = &thread_local_storage_cleanup;
   *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_1888) = &thread_local_storage_data;
-  if (*(longlong *)(resource_buffer + 0x1890) != 0) {
+  if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_1890) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  *(uint64 *)(resource_buffer + 0x1890) = 0;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_1890) = 0;
   *(uint32 *)(resource_buffer + 0x18a0) = 0;
   *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_1888) = &thread_local_storage_cleanup;
   return;
@@ -76314,8 +76314,8 @@ void UtilityUnwindFinalFunction1200(uint64 resource_handle_identifier,longlong r
   longlong resource_buffer;
   
   resource_buffer = *(longlong *)(resource_buffer + UTILITY_BUFFER_SIZE_DATA_OFFSET);
-  if (*(code **)(resource_buffer + 0x1100) != (code *)UTILITY_NULL_POINTER) {
-    (**(code **)(resource_buffer + 0x1100))(resource_buffer + resource_handle_valueta_offsetf0,UTILITY_NULL_POINTER,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
+  if (*(code **)(resource_buffer + UTILITY_RESOURCE_OFFSET_1100) != (code *)UTILITY_NULL_POINTER) {
+    (**(code **)(resource_buffer + UTILITY_RESOURCE_OFFSET_1100))(resource_buffer + resource_handle_valueta_offsetf0,UTILITY_NULL_POINTER,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + resource_handle_valueta_offsetc8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + resource_handle_valueta_offsetd0) != 0) {
@@ -76554,8 +76554,8 @@ void UtilityUnwindFinalFunction1300(uint64 resource_handle_identifier,longlong r
   longlong resource_buffer;
   
   resource_buffer = *(longlong *)(resource_buffer + UTILITY_BUFFER_SIZE_DATA_OFFSET);
-  if (*(code **)(resource_buffer + 0x1480) != (code *)UTILITY_NULL_POINTER) {
-    (**(code **)(resource_buffer + 0x1480))(resource_buffer + 0x1470,UTILITY_NULL_POINTER,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
+  if (*(code **)(resource_buffer + UTILITY_RESOURCE_OFFSET_1480) != (code *)UTILITY_NULL_POINTER) {
+    (**(code **)(resource_buffer + UTILITY_RESOURCE_OFFSET_1480))(resource_buffer + 0x1470,UTILITY_NULL_POINTER,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 0x1448) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1450) != 0) {
@@ -76677,14 +76677,14 @@ void UtilityUnwindFinalFunction1380(uint64 resource_handle_identifier,longlong r
   if (*(code **)(resource_buffer + 0x1640) != (code *)UTILITY_NULL_POINTER) {
     (**(code **)(resource_buffer + 0x1640))(resource_buffer + 0x1630,UTILITY_NULL_POINTER,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
-  *(uint64 *)(resource_buffer + 0x1608) = &thread_local_storage_data;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_1608) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x1610) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(resource_buffer + 0x1610) = 0;
   *(uint32 *)(resource_buffer + 0x1620) = 0;
-  *(uint64 *)(resource_buffer + 0x1608) = &thread_local_storage_cleanup;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_1608) = &thread_local_storage_cleanup;
   *(uint64 *)(resource_buffer + UTILITY_MEMORY_OFFSET_15E8) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x15f0) != 0) {
                     // WARNING: Subroutine does not return
@@ -76866,11 +76866,11 @@ void UtilityUnwindFinalFunction1440(uint64 resource_handle_identifier,longlong r
   *(uint32 *)(resource_buffer + 0x18c0) = 0;
   *(uint64 *)(resource_buffer + 0x18a8) = &thread_local_storage_cleanup;
   *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_1888) = &thread_local_storage_data;
-  if (*(longlong *)(resource_buffer + 0x1890) != 0) {
+  if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_1890) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  *(uint64 *)(resource_buffer + 0x1890) = 0;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_1890) = 0;
   *(uint32 *)(resource_buffer + 0x18a0) = 0;
   *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_1888) = &thread_local_storage_cleanup;
   return;
@@ -77854,10 +77854,10 @@ void UtilityUnwindFinalFunction1870(uint64 resource_handle_identifier,longlong r
   
   iteration_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_operation_result = *(uint64 **)(resource_buffer  + UTILITY_ARRAY_INFO_OFFSET);
-  for (iteration_pointer = *(uint64 **)(resource_buffer + 0x110); iteration_pointer != utility_operation_result; iteration_pointer = iteration_pointer + 4) {
+  for (iteration_pointer = *(uint64 **)(resource_buffer + UTILITY_RESOURCE_OFFSET_110); iteration_pointer != utility_operation_result; iteration_pointer = iteration_pointer + 4) {
     (**(code **)*iteration_pointer)(iteration_pointer,0,resourceOperationFlags,resourceCallbackFunction,iteration_counter);
   }
-  if (*(longlong *)(resource_buffer + 0x110) == 0) {
+  if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_110) == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -77989,7 +77989,7 @@ void UtilityUnwindFinalFunction18c0(uint64 resource_handle_identifier,longlong r
 void UtilityUnwindFinalFunction18d0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  *(resource_data **)(resource_buffer + 0x160) = &thread_local_storage_cleanup;
+  *(resource_data **)(resource_buffer + UTILITY_RESOURCE_OFFSET_160) = &thread_local_storage_cleanup;
   return;
 }
 
@@ -78061,10 +78061,10 @@ void UtilityUnwindFinalFunction1900(uint64 resource_handle_identifier,longlong r
   
   iteration_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
   utility_operation_result = *(uint64 **)(resource_buffer  + UTILITY_ARRAY_INFO_OFFSET);
-  for (iteration_pointer = *(uint64 **)(resource_buffer + 0x110); iteration_pointer != utility_operation_result; iteration_pointer = iteration_pointer + 4) {
+  for (iteration_pointer = *(uint64 **)(resource_buffer + UTILITY_RESOURCE_OFFSET_110); iteration_pointer != utility_operation_result; iteration_pointer = iteration_pointer + 4) {
     (**(code **)*iteration_pointer)(iteration_pointer,0,resourceOperationFlags,resourceCallbackFunction,iteration_counter);
   }
-  if (*(longlong *)(resource_buffer + 0x110) == 0) {
+  if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_110) == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
