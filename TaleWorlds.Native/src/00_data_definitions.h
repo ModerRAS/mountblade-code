@@ -80,6 +80,9 @@
 // - 新增美化内容：将变量名如 system_ram_pointer_1 -> system_ram_pointer_1
 // - 新增美化内容：将变量名如 system_ram_pointer_2 -> system_ram_pointer_2
 // - 新增美化内容：将变量名如 label_ -> jump_label_
+// - 新增美化内容：将dVar14-16替换为system_performance_counter_prev等性能计数器变量名
+// - 新增美化内容：将dVar1-2、7-9替换为system_sum_accumulator等累加器变量名
+// - 新增美化内容：将dVar21替换为color_luminance_accumulator等颜色亮度累加器变量名
 // - 这是简化实现，主要处理了变量名和函数名的语义化替换
 
 // 系统常量定义
@@ -3030,7 +3033,7 @@ label_:
     system_performance_counter_prev = (double)thread_stack_base_address * global_data_ptr;
     global_data_ptr = global_data_ptr + 1;
     system_performance_counter_diff = system_performance_counter_prev - global_data_ptr;
-    if (1.0 < dVar16) {
+    if (1.0 < system_performance_counter_diff) {
       *(float *)(str_len_counter + 500) = (float)((double)global_data_ptr / system_performance_counter_diff);
       global_data_ptr = 0;
       global_data_ptr = system_performance_counter_prev;
@@ -3139,7 +3142,7 @@ label_:
     system_performance_base = (double)thread_stack_base_address * global_data_ptr;
     global_data_ptr = global_data_ptr + 1;
     system_performance_diff = system_performance_base - global_data_ptr;
-    if (1.0 < dVar15) {
+    if (1.0 < system_performance_diff) {
       *(float *)(handle_param + 500) = (float)((double)global_data_ptr / system_performance_diff);
       global_data_ptr = 0;
       global_data_ptr = system_performance_base;
@@ -5328,11 +5331,11 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
   int thread_result_index;
   ulong long buffer_alloc_result;
   long long str_len_counter;
-  double dVar21;
+  double color_luminance_accumulator;
   if (*(int *)((long long)handle_param + 0x54) == path_buffer_size) {
     pfloat_var = (float *)*handle_param;
     thread_result_index = 0;
-    dVar21 = 0.0;
+    color_luminance_accumulator = 0.0;
     str_len_counter = 0;
     thread_result_index = 0;
     thread_result_index = (int)((ulong long)handle_param[1] / 0xc);
@@ -5356,7 +5359,7 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
         pfloat_var = pfloat_var + 8;
         pfloat_var = pfloat_var + 0xb;
         pfloat_var = pfloat_var + 0xc;
-        dVar21 = dVar21 + (double)*pfloat_var * 0.2126 + (double)float_var * 0.2126 +
+        color_luminance_accumulator = color_luminance_accumulator + (double)*pfloat_var * 0.2126 + (double)float_var * 0.2126 +
                           (double)*pfloat_var * 0.2126 + (double)*pfloat_var * 0.2126 +
                           (double)*pfloat_var * 0.7152 +
                           (double)*pfloat_var * 0.7152 + (double)*pfloat_var * 0.7152 +
@@ -5375,29 +5378,29 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
         pfloat_var = pfloat_var + -2;
         float_var = *pfloat_var;
         pfloat_var = pfloat_var + 3;
-        dVar21 = dVar21 + (double)*pfloat_var * 0.7152 + (double)*pfloat_var * 0.2126 +
+        color_luminance_accumulator = color_luminance_accumulator + (double)*pfloat_var * 0.7152 + (double)*pfloat_var * 0.2126 +
                           (double)float_var * 0.0722;
         buffer_alloc_result = buffer_alloc_result - 1;
       } while (buffer_alloc_result != 0);
     }
-    dVar21 = 1.0 / (dVar21 / (double)str_len_counter);
+    color_luminance_accumulator = 1.0 / (color_luminance_accumulator / (double)str_len_counter);
     if (3 < thread_result_index) {
       buffer_alloc_result = (thread_result_index - 4U >> 2) + 1;
       buffer_alloc_result = (ulong long)buffer_alloc_result;
       thread_result_index = buffer_alloc_result * 4;
       do {
-        *pfloat_var = (float)((double)*pfloat_var * dVar21);
-        pfloat_var[1] = (float)((double)pfloat_var[1] * dVar21);
-        pfloat_var[2] = (float)((double)pfloat_var[2] * dVar21);
-        pfloat_var[3] = (float)((double)pfloat_var[3] * dVar21);
-        pfloat_var[4] = (float)((double)pfloat_var[4] * dVar21);
-        pfloat_var[5] = (float)((double)pfloat_var[5] * dVar21);
-        pfloat_var[6] = (float)((double)pfloat_var[6] * dVar21);
-        pfloat_var[7] = (float)((double)pfloat_var[7] * dVar21);
-        pfloat_var[8] = (float)((double)pfloat_var[8] * dVar21);
-        pfloat_var[9] = (float)((double)pfloat_var[9] * dVar21);
-        pfloat_var[10] = (float)((double)pfloat_var[10] * dVar21);
-        pfloat_var[0xb] = (float)((double)pfloat_var[0xb] * dVar21);
+        *pfloat_var = (float)((double)*pfloat_var * color_luminance_accumulator);
+        pfloat_var[1] = (float)((double)pfloat_var[1] * color_luminance_accumulator);
+        pfloat_var[2] = (float)((double)pfloat_var[2] * color_luminance_accumulator);
+        pfloat_var[3] = (float)((double)pfloat_var[3] * color_luminance_accumulator);
+        pfloat_var[4] = (float)((double)pfloat_var[4] * color_luminance_accumulator);
+        pfloat_var[5] = (float)((double)pfloat_var[5] * color_luminance_accumulator);
+        pfloat_var[6] = (float)((double)pfloat_var[6] * color_luminance_accumulator);
+        pfloat_var[7] = (float)((double)pfloat_var[7] * color_luminance_accumulator);
+        pfloat_var[8] = (float)((double)pfloat_var[8] * color_luminance_accumulator);
+        pfloat_var[9] = (float)((double)pfloat_var[9] * color_luminance_accumulator);
+        pfloat_var[10] = (float)((double)pfloat_var[10] * color_luminance_accumulator);
+        pfloat_var[0xb] = (float)((double)pfloat_var[0xb] * color_luminance_accumulator);
         pfloat_var = pfloat_var + 0xc;
         buffer_alloc_result = buffer_alloc_result - 1;
       } while (buffer_alloc_result != 0);
@@ -5406,9 +5409,9 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
       pfloat_var = pfloat_var + 2;
       buffer_alloc_result = (ulong long)(uint)(thread_result_index - thread_result_index);
       do {
-        pfloat_var[-2] = (float)((double)pfloat_var[-2] * dVar21);
-        pfloat_var[-1] = (float)((double)pfloat_var[-1] * dVar21);
-        *pfloat_var = (float)((double)*pfloat_var * dVar21);
+        pfloat_var[-2] = (float)((double)pfloat_var[-2] * color_luminance_accumulator);
+        pfloat_var[-1] = (float)((double)pfloat_var[-1] * color_luminance_accumulator);
+        *pfloat_var = (float)((double)*pfloat_var * color_luminance_accumulator);
         pfloat_var = pfloat_var + 3;
         buffer_alloc_result = buffer_alloc_result - 1;
       } while (buffer_alloc_result != 0);
@@ -5420,7 +5423,7 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
     }
     thread_result_index = 0;
     pfloat_var = (float *)*handle_param;
-    dVar21 = 0.0;
+    color_luminance_accumulator = 0.0;
     str_len_counter = 0;
     thread_result_index = 0;
     thread_result_index = (int)((ulong long)handle_param[1] >> 4);
@@ -5444,7 +5447,7 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
         pfloat_var = pfloat_var + 10;
         pfloat_var = pfloat_var + 0xe;
         pfloat_var = pfloat_var + STRING_BUFFER_SIZE;
-        dVar21 = dVar21 + (double)*pfloat_var * 0.2126 + (double)float_var * 0.2126 +
+        color_luminance_accumulator = color_luminance_accumulator + (double)*pfloat_var * 0.2126 + (double)float_var * 0.2126 +
                           (double)*pfloat_var * 0.2126 + (double)*pfloat_var * 0.2126 +
                           (double)*pfloat_var * 0.7152 +
                           (double)*pfloat_var * 0.7152 + (double)*pfloat_var * 0.7152 +
@@ -5463,26 +5466,26 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
         pfloat_var = pfloat_var + -2;
         float_var = *pfloat_var;
         pfloat_var = pfloat_var + 4;
-        dVar21 = dVar21 + (double)*pfloat_var * 0.7152 + (double)*pfloat_var * 0.2126 +
+        color_luminance_accumulator = color_luminance_accumulator + (double)*pfloat_var * 0.7152 + (double)*pfloat_var * 0.2126 +
                           (double)float_var * 0.0722;
         buffer_alloc_result = buffer_alloc_result - 1;
       } while (buffer_alloc_result != 0);
     }
-    dVar21 = 1.0 / (dVar21 / (double)str_len_counter);
+    color_luminance_accumulator = 1.0 / (color_luminance_accumulator / (double)str_len_counter);
     if (3 < thread_result_index) {
       buffer_alloc_result = (thread_result_index - 4U >> 2) + 1;
       buffer_alloc_result = (ulong long)buffer_alloc_result;
       thread_result_index = buffer_alloc_result * 4;
       do {
-        *pfloat_var = (float)((double)*pfloat_var * dVar21);
-        pfloat_var[1] = (float)((double)pfloat_var[1] * dVar21);
-        pfloat_var[2] = (float)((double)pfloat_var[2] * dVar21);
-        pfloat_var[4] = (float)((double)pfloat_var[4] * dVar21);
-        pfloat_var[5] = (float)((double)pfloat_var[5] * dVar21);
-        pfloat_var[6] = (float)((double)pfloat_var[6] * dVar21);
-        pfloat_var[8] = (float)((double)pfloat_var[8] * dVar21);
-        pfloat_var[9] = (float)((double)pfloat_var[9] * dVar21);
-        pfloat_var[10] = (float)((double)pfloat_var[10] * dVar21);
+        *pfloat_var = (float)((double)*pfloat_var * color_luminance_accumulator);
+        pfloat_var[1] = (float)((double)pfloat_var[1] * color_luminance_accumulator);
+        pfloat_var[2] = (float)((double)pfloat_var[2] * color_luminance_accumulator);
+        pfloat_var[4] = (float)((double)pfloat_var[4] * color_luminance_accumulator);
+        pfloat_var[5] = (float)((double)pfloat_var[5] * color_luminance_accumulator);
+        pfloat_var[6] = (float)((double)pfloat_var[6] * color_luminance_accumulator);
+        pfloat_var[8] = (float)((double)pfloat_var[8] * color_luminance_accumulator);
+        pfloat_var[9] = (float)((double)pfloat_var[9] * color_luminance_accumulator);
+        pfloat_var[10] = (float)((double)pfloat_var[10] * color_luminance_accumulator);
         pfloat_var[0xc] = (float)((double)pfloat_var[0xc] * dVar21);
         pfloat_var[0xd] = (float)((double)pfloat_var[0xd] * dVar21);
         pfloat_var[0xe] = (float)((double)pfloat_var[0xe] * dVar21);
@@ -5494,9 +5497,9 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
       pfloat_var = pfloat_var + 2;
       buffer_alloc_result = (ulong long)(uint)(thread_result_index - thread_result_index);
       do {
-        pfloat_var[-2] = (float)((double)pfloat_var[-2] * dVar21);
-        pfloat_var[-1] = (float)((double)pfloat_var[-1] * dVar21);
-        *pfloat_var = (float)((double)*pfloat_var * dVar21);
+        pfloat_var[-2] = (float)((double)pfloat_var[-2] * color_luminance_accumulator);
+        pfloat_var[-1] = (float)((double)pfloat_var[-1] * color_luminance_accumulator);
+        *pfloat_var = (float)((double)*pfloat_var * color_luminance_accumulator);
         pfloat_var = pfloat_var + 4;
         buffer_alloc_result = buffer_alloc_result - 1;
       } while (buffer_alloc_result != 0);
@@ -12249,8 +12252,8 @@ unsigned long long allocate_system_buffer(uint handle_param)
       global_data_ptr = global_data_ptr;
     }
     else {
-      system_status = _initialize_onexit_table(&system_onexit_table_1);
-      if ((system_status != 0) || (system_status = _initialize_onexit_table(&system_onexit_table_2), system_status != 0)) {
+      system_status = _initialize_onexit_table(&system_onexit_table_primary);
+      if ((system_status != 0) || (system_status = _initialize_onexit_table(&system_onexit_table_secondary), system_status != 0)) {
         return 0;
       }
     }
@@ -12290,7 +12293,7 @@ label_:
   }
   return;
 }
-  system_global_flag_1 = 0;
+  system_global_flag_primary = 0;
   return;
 }
   system_global_flag_4 = 0;

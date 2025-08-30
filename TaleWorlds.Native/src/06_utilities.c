@@ -15516,7 +15516,7 @@ uint64 ProcessDataBlock(longlong resource_handle_identifier,uint32 *memory_block
         utility_array_index = 0;
         if (0 < resource_size_limit) {
           do {
-            iteration_counter = ValidateResourceSize(resource_handle_identifier,(longlong)utility_array_index * 0x278 + *(longlong *)(resource_buffer + 4));
+            iteration_counter = ValidateResourceSize(resource_handle_identifier,(longlong)utility_array_index * UTILITY_RESOURCE_SIZE_UNIT + *(longlong *)(resource_buffer + 4));
             if ((int)iteration_counter != 0) {
               return iteration_counter;
             }
@@ -20701,7 +20701,7 @@ LAB_PERFORM_OPERATION:
     if ((int)iteration_counter != 0) {
       return iteration_counter;
     }
-    if (0x3ff < utility_stack_resource_buffer_primary[0]) {
+    if (UTILITY_RESOURCE_SIZE_THRESHOLD < utility_stack_resource_buffer_primary[0]) {
       return STATUS_SUCCESS;
     }
     iteration_counter = ProcessTaskOperation2(resource_handle_identifier + UTILITY_BUFFER_DATA_OFFSET);
@@ -21592,7 +21592,7 @@ void avoidUtilityRisks(longlong resource_handle_identifier,uint64 *memory_block_
       utility_operation_status = 0;
     }
     else if (*(int *)(resource_buffer[1] + RESOURCE_HANDLE_OFFSET) == 0) {
-      utility_operation_status = writeResourceData(*memory_block_size,resource_handle_identifier + 0x210,8);
+      utility_operation_status = writeResourceData(*memory_block_size,resource_handle_identifier + UTILITY_RESOURCE_OFFSET_210,8);
     }
     else {
       utility_operation_status = UTILITY_BYTE_OFFSET_FLAG;
@@ -21603,7 +21603,7 @@ void avoidUtilityRisks(longlong resource_handle_identifier,uint64 *memory_block_
         utility_operation_status = 0;
       }
       else if (*(int *)(resource_buffer[1] + RESOURCE_HANDLE_OFFSET) == 0) {
-        utility_operation_status = writeResourceData(*memory_block_size,resource_handle_identifier + 0x2f4,4);
+        utility_operation_status = writeResourceData(*memory_block_size,resource_handle_identifier + UTILITY_RESOURCE_OFFSET_2F4,4);
       }
       else {
         utility_operation_status = UTILITY_BYTE_OFFSET_FLAG;
@@ -21652,7 +21652,7 @@ void mitigateUtilityThreats(uint32 resource_handle_identifier)
         utility_operation_status = 0;
       }
       else if (*(int *)(utility_register_context_base[1] + RESOURCE_HANDLE_OFFSET) == 0) {
-        utility_operation_status = writeResourceData(*utility_register_context_base,utility_cpu_context + 0x210,8);
+        utility_operation_status = writeResourceData(*utility_register_context_base,utility_cpu_context + UTILITY_RESOURCE_OFFSET_210,8);
       }
       else {
         utility_operation_status = UTILITY_BYTE_OFFSET_FLAG;
