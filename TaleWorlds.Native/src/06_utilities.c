@@ -71,6 +71,10 @@
 #define UTILITY_HANDLE_CHECK_VALUE -0x3ffffffb
 #define UTILITY_RESOURCE_MASK_OFFSET -0x565dff77
 
+// 新增寄存器变量宏定义
+#define UTILITY_REGISTER_EBP unaff_EBP
+#define UTILITY_REGISTER_BPL unaff_BPL
+
 
 // 06_utilities.c - 473 个函数
 // 美化内容：
@@ -15517,7 +15521,7 @@ void orderUtilityLists(longlong resource_handle_identifier,int *memory_block_siz
   char_value = (char)cpu_register_eax + -0x57 + in_CF;
   system_status_code = CONCAT_BYTES(validation_flag,char_value);
   *(uint32 *)CONCAT44(utility_register_input_value_var,system_status_code) = system_status_code;
-  *(uint *)(resource_handle_identifier + UTILITY_RESOURCE_MASK_OFFSET) = *(uint *)(resource_handle_identifier + UTILITY_RESOURCE_MASK_OFFSET) & unaff_EBP;
+  *(uint *)(resource_handle_identifier + UTILITY_RESOURCE_MASK_OFFSET) = *(uint *)(resource_handle_identifier + UTILITY_RESOURCE_MASK_OFFSET) & UTILITY_REGISTER_EBP;
   *(uint32 *)CONCAT44(utility_register_input_value_var,system_status_code) = system_status_code;
   plocalInt = resource_buffer;
   *(uint32 *)CONCAT44(utility_register_input_value_var,system_status_code) = system_status_code;
