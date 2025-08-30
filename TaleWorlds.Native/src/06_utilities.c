@@ -166,7 +166,9 @@
 #define EVENT_CALLBACK_SYSTEM_START 0x6050
 #define EVENT_CALLBACK_RESOURCE_PROCESS 0x6790
 
-// 新增语义化宏定义 - 替换地址常量
+// 新增语义化宏定义 - 替换临时栈变量
+#define UTILITY_TEMP_STACK_BUFFER_SIZE 2
+#define UTILITY_TEMP_STACK_BUFFER_NAME utility_temp_stack_buffer
 // 新增语义化宏定义 - 替换系统地址变量名
 #define ADDRESS_SECURITY_TOKEN_HANDLER address_security_token_handler
 #define ADDRESS_MUTEX_DESTROY_1 address_mutex_destroy_1
@@ -244,7 +246,7 @@
 #define UTILITY_FLOAT_QUARTER 0.25
 
 // 新增资源类型签名常量 - 美化十六进制字符串编码
-#define UTILITY_RESOURCE_SIGNATURE_PANIC 0x50414e53  // "PANS"
+#define UTILITY_RESOURCE_SIGNATURE_PANIC UTILITY_RESOURCE_SIGNATURE_PANIC  // "PANS"
 #define UTILITY_RESOURCE_SIGNATURE_WAIT 0x54494157   // "TIOW"
 #define UTILITY_RESOURCE_SIGNATURE_TSIL 0x5453494c  // "TSIL"
 #define UTILITY_RESOURCE_SIGNATURE_VRUC 0x56525543  // "VRUC"
@@ -21946,7 +21948,7 @@ ulonglong ProcessResourceOperation2(longlong resource_handle_identifier,longlong
   byte UTILITY_LOCAL_SECURITY_BUFFER [32];
   ulonglong validation_flag;
   
-  utility_loop_counter = createResourceBuffer(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,1,0x50414e53);
+  utility_loop_counter = createResourceBuffer(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,1,UTILITY_RESOURCE_SIGNATURE_PANIC);
   if ((int)utility_loop_counter != 0) {
     return utility_loop_counter;
   }
