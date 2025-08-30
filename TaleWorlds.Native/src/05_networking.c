@@ -5183,7 +5183,7 @@ uint64_t GetNetworkStatistics(void)
   uint32_t network_operation_count;
   uint32_t network_timeout_value_ptr_counter;
   network_operation_count = NETWORK_DATA_SIZE_4;
-  network_timeout_value_ptr_counter = 4;
+  network_timeout_value_ptr_counter = NETWORK_DATA_SIZE_4;
   network_allocate_receive_buffer();
   network_allocate_memory();
   network_loop_counter = NETWORK_OPERATION_FAILURE;
