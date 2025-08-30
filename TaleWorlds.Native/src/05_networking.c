@@ -232,6 +232,10 @@
 #define NETWORK_NEGATIVE_OFFSET_244 -0x244  // 负偏移量244
 #define NETWORK_NEGATIVE_OFFSET_23C -0x23c  // 负偏移量23C
 
+// 新增语义化常量定义 - 网络数据指针偏移量
+#define NETWORK_DATA_PTR_OFFSET_360 0x360  // 网络数据指针偏移量360
+#define NETWORK_DATA_PTR_OFFSET_368 0x368  // 网络数据指针偏移量368
+
 // 新增语义化常量定义 - 网络连接管理偏移量
 #define NETWORK_CONNECTION_MANAGE_OFFSET_52C 0x52C  // 网络连接管理偏移量52C
 #define NETWORK_CONNECTION_MANAGE_OFFSET_55C NETWORK_STATUS_CODE_55C  // 网络连接管理偏移量55C
