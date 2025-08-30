@@ -5,6 +5,20 @@
 // 美化内容：
 // - 修复了循环引用的宏定义 DEFAULT_THREAD_POOL_FLAG
 // - 将十六进制地址变量名替换为语义化名称，如 data_180bf6fa8 -> auth_data_buffer
+// - 将 data_180bfbd80 替换为 string_input_buffer
+// - 将 data_180a06a48 替换为 network_buffer_ptr
+// - 将 data_180a0ba58 替换为 config_buffer_ptr
+// - 将 data_180a04ee4 替换为 char_scan_buffer_end
+// - 将 data_180a12e00 替换为 string_buffer_end
+// - 将 data_180a03a84 替换为 temp_char_buffer
+// - 将 data_180c95fea 替换为 system_initialized_flag
+// - 将 data_180c8eced 替换为 char_null_check_flag
+// - 将 data_180c8ecef 替换为 string_processing_flag
+// - 将 data_180d49130 替换为 network_status_flag
+// - 将 data_180c8f000 替换为 system_mode_flag
+// - 将 data_180c8ed80 替换为 system_config_buffer
+// - 将 data_180329eb7 替换为 system_entry_point
+// - 将 data_1dc4331ba 替换为 register_accumulator
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
 // 这是简化实现，主要处理了变量名的语义化替换
@@ -5460,7 +5474,7 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
 label_:
   return buffer_alloc_result & 0xffffffffffffff00;
 }
-data_180329eb7:
+system_entry_point:
     thread_result_index = _Mtx_unlock(handle_param + 0x3d8);
     if (thread_result_index != 0) {
       __Throw_C_error_std__YAXH_Z(thread_result_index);
@@ -5968,7 +5982,7 @@ unsigned char check_memory_bounds(void)
   unsigned char unaff_SIL;
   return unaff_SIL;
 }
-  data_1dc4331ba = data_1dc4331ba + unaff_BL;
+  register_accumulator = register_accumulator + unaff_BL;
   buffer_alloc_result = in(buffer_alloc_result);
   character_scan_pointer = (char *)((ulong long)buffer_alloc_result + 0x1c0042ed);
   *character_scan_pointer = *character_scan_pointer + (char)unaffected_registerDI + '\x04';
@@ -7307,7 +7321,7 @@ system_execution_function(unsigned long long handle_param,unsigned long long thr
                                                                                     &system_180a3ad30);
                                                         if (system_char_variable != '\0') goto label_;
                                                         system_char_variable = func_0x0001800a1eb0(auStack_50,
-                                                                                    &data_180a06a48);
+                                                                                    &network_buffer_ptr);
                                                         if (system_char_variable != '\0') goto label_;
                                                         system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                     &system_180a3ad18);
@@ -7708,7 +7722,7 @@ label_:
                                                                               &system_180a3a8c0);
                                                   if (system_char_variable != '\0') goto label_;
                                                   system_char_variable = func_0x0001800a1eb0(auStack_50,
-                                                                              &data_180a0ba58);
+                                                                              &config_buffer_ptr);
                                                   if (system_char_variable != '\0') goto label_;
                                                   system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                               &system_180a3a5a8);
@@ -8993,7 +9007,7 @@ unsigned long long * setup_thread_parameters(long long handle_param,unsigned lon
   }
   return thread_op_flags;
 }
-  data_180c95fea = 1;
+  system_initialized_flag = 1;
   thread_stack_ptr = &g_threadString2;
   stack_size_max = 0;
   thread_stack_ptr = (unsigned long long *)0x0;
@@ -9051,7 +9065,7 @@ label_:
   } while (acStack_40[str_len_counter + 1] != '\0');
   thread_result_index = (int)(str_len_counter + 1);
   if (thread_result_index < 1) {
-    if (data_180c8eced != '\0') {
+    if (char_null_check_flag != '\0') {
       _Exit(5);
     }
     thread_stack_ptr = &g_threadString2;
@@ -9269,7 +9283,7 @@ char * system_execution_function(unsigned int handle_param,unsigned long long th
           character_scan_pointer = character_scan_pointer + (long long)character_scan_pointer;
           character_scan_pointer = character_scan_pointer;
           if (character_scan_pointer <= character_scan_pointer) break;
-          str_len_counter = (long long)&data_180a04ee4 - (long long)character_scan_pointer;
+          str_len_counter = (long long)&char_scan_buffer_end - (long long)character_scan_pointer;
           while (*character_scan_pointer == character_scan_pointer[str_len_counter]) {
             character_scan_pointer = character_scan_pointer + 1;
             if (character_scan_pointer <= character_scan_pointer) goto label_;
@@ -9496,7 +9510,7 @@ char * system_execution_function(unsigned long long handle_param,unsigned long l
       character_scan_pointer = character_scan_pointer + (long long)character_scan_pointer;
       character_scan_pointer = character_scan_pointer;
       if (character_scan_pointer <= character_scan_pointer) break;
-      str_len_counter = (long long)&data_180a04ee4 - (long long)character_scan_pointer;
+      str_len_counter = (long long)&char_scan_buffer_end - (long long)character_scan_pointer;
       while (*character_scan_pointer == character_scan_pointer[str_len_counter]) {
         character_scan_pointer = character_scan_pointer + 1;
         if (character_scan_pointer <= character_scan_pointer) goto label_;
@@ -9525,7 +9539,7 @@ label_:
         character_scan_pointer = character_scan_pointer + (long long)character_scan_pointer;
         character_scan_pointer = character_scan_pointer;
         if (character_scan_pointer <= character_scan_pointer) break;
-        str_len_counter = (long long)&data_180a12e00 - (long long)character_scan_pointer;
+        str_len_counter = (long long)&string_buffer_end - (long long)character_scan_pointer;
         while (*character_scan_pointer == character_scan_pointer[str_len_counter]) {
           character_scan_pointer = character_scan_pointer + 1;
           if (character_scan_pointer <= character_scan_pointer) goto label_;
@@ -9680,7 +9694,7 @@ long long process_system_configuration(long long handle_param,long long thread_o
       character_scan_pointer = character_scan_pointer + (long long)character_scan_pointer;
       character_scan_pointer = character_scan_pointer;
       if (character_scan_pointer <= character_scan_pointer) break;
-      str_len_counter = (long long)&data_180a04ee4 - (long long)character_scan_pointer;
+      str_len_counter = (long long)&char_scan_buffer_end - (long long)character_scan_pointer;
       while (*character_scan_pointer == character_scan_pointer[str_len_counter]) {
         character_scan_pointer = character_scan_pointer + 1;
         if (character_scan_pointer <= character_scan_pointer) goto label_;
@@ -9808,7 +9822,7 @@ label_:
           system_execution_function(&thread_stack_ptr,str_len_counter);
           break;
         }
-        str_len_counter = (long long)&data_180a03a84 - (long long)character_scan_pointer;
+        str_len_counter = (long long)&temp_char_buffer - (long long)character_scan_pointer;
         while (*character_scan_pointer == character_scan_pointer[str_len_counter]) {
           character_scan_pointer = character_scan_pointer + 1;
           if (character_scan_pointer <= character_scan_pointer) goto label_;
@@ -9858,7 +9872,7 @@ label_:
   }
   goto label_;
 }
-  data_180c95fea = 0;
+  system_initialized_flag = 0;
   if (system_char_variable != '\0') {
     system_thread_initializer(&system_180a3cc28,handle_param);
   }
@@ -10369,7 +10383,7 @@ unsigned long long get_thread_handle_param(unsigned long long handle_param)
   system_execution_function(&system_18064ffc0);
   str_len_counter = 0;
   global_data_ptr = system_execution_function;
-  string_input_ptr = (unsigned int *)&data_180bfbd80;
+  string_input_ptr = (unsigned int *)&string_input_buffer;
   str_len_counter = 0x16;
   do {
     if (string_input_ptr[1] == 0) {
@@ -10396,9 +10410,9 @@ unsigned long long get_thread_handle_param(unsigned long long handle_param)
   }
   return;
 }
-  data_180c8ecef = 1;
-  if (data_180d49130 == '\0') {
-    data_180d49130 = '\x01';
+  string_processing_flag = 1;
+  if (network_status_flag == '\0') {
+    network_status_flag = '\x01';
     thread_op_flags = FlsAlloc(&system_18064f970);
     global_data_ptr = thread_op_flags;
     *(unsigned long long *)
@@ -10408,7 +10422,7 @@ unsigned long long get_thread_handle_param(unsigned long long handle_param)
   }
   system_execution_function(&system_180a3d988,&ExceptionList);
   system_init_result = cpuid_Extended_Feature_Enumeration_info(7);
-  data_180c8f000 = (byte)(*(uint *)(system_init_result + 8) >> 4) & 1;
+  system_mode_flag = (byte)(*(uint *)(system_init_result + 8) >> 4) & 1;
   GetSystemInfo(auStack_40);
   if (stack_size_max != 0) {
     global_data_ptr = (ulong long)stack_size_max;
@@ -10417,8 +10431,8 @@ unsigned long long get_thread_handle_param(unsigned long long handle_param)
   system_execution_function(&system_180a3d940,0);
   system_execution_function();
   plVar3 = (long long *)system_execution_function();
-  if ((void *)(*plVar3 + 0x3d8) == &data_180c8ed80) {
-    memset(&data_180c8ed80,0,0x240);
+  if ((void *)(*plVar3 + 0x3d8) == &system_config_buffer) {
+    memset(&system_config_buffer,0,0x240);
   }
   memset((void *)(*plVar3 + 0x3d8),0,0x240);
 }
@@ -10439,7 +10453,7 @@ unsigned long long get_thread_handle_param(unsigned long long handle_param)
   }
   psystem_init_result = (long long *)system_execution_function();
   pthread_op_flags = (void *)(*psystem_init_result + 0x3d8);
-  if (pthread_op_flags != &data_180c8ed80) {
+  if (pthread_op_flags != &system_config_buffer) {
     system_execution_function();
     memset(pthread_op_flags,0,0x240);
   }
@@ -10452,9 +10466,9 @@ label_:
 unsigned int validate_resource_handle_param(int handle_param)
 {
   if (*(int *)(&data_180bfbd84 + (long long)handle_param * 0x18) == 0) {
-    system_execution_function(&data_180bfbd80 + (long long)handle_param * 0x18);
+    system_execution_function(&string_input_buffer + (long long)handle_param * 0x18);
   }
-  return *(unsigned int *)(&data_180bfbd80 + (long long)handle_param * 0x18);
+  return *(unsigned int *)(&string_input_buffer + (long long)handle_param * 0x18);
 }
     data_180c8f020 = 0;
     return;
