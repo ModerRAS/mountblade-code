@@ -1615,6 +1615,21 @@
 #define UTILITY_LOOP_INDEX_SECONDARY utility_loop_index_secondary
 #define UTILITY_LOOP_INDEX_TERTIARY utility_loop_index_tertiary
 
+// 新增语义化宏定义 - 替换硬编码数值常量
+#define UTILITY_POINTER_SIZE_OFFSET 8
+#define UTILITY_INCREMENT_STEP 1
+#define UTILITY_DATA_ARRAY_INDEX_LIMIT 200
+#define UTILITY_RESOURCE_COUNTER_OFFSET 500
+#define UTILITY_BYTE_OFFSET_FLAG_1 1
+#define UTILITY_BYTE_OFFSET_200 200
+
+// 新增语义化宏定义 - 替换系统寄存器常量
+#define UTILITY_REGISTER_INPUT_VALUE_OFFSET 8
+#define UTILITY_REGISTER_CONTEXT_BASE_OFFSET 8
+#define UTILITY_MEMORY_SIZE_OFFSET 12
+#define UTILITY_ARRAY_INDEX_PRIMARY_OFFSET 0
+#define UTILITY_SYSTEM_FLAGS_OFFSET SYSTEM_FLAGS_OFFSET
+
 // 函数: int processBufferData(longlong buffer_handle)
 // 缓冲区数据处理函数
 uint64 g_bufferReadOffset;              // 缓冲区读取偏移量
@@ -4049,7 +4064,7 @@ void utility_process_memory_allocation(longlong resource_handle_identifier,longl
   
   utility_security_validation_token = g_security_token_mask ^ (ulonglong)utility_security_buffer;
   allocation_status = system_memory_operation(*(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),resource_info_array);
-  if ((allocation_status == 0) && (*(longlong *)(resource_info_array[UTILITY_ARRAY_INDEX_PRIMARY] + 8) != 0)) {
+  if ((allocation_status == 0) && (*(longlong *)(resource_info_array[UTILITY_ARRAY_INDEX_PRIMARY] + UTILITY_POINTER_SIZE_OFFSET) != 0)) {
     utility_allocated_memory_pointer = utility_security_buffer;
     processed_block_count = 0;
     memory_block_count = 0;
