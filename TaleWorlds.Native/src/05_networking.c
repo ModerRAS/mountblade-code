@@ -1883,9 +1883,9 @@
 // - 将network_status_return_code_code替换为status_return_code（状态返回码）
 // - 将network_packet_size_ptr_ptr替换为network_packet_size_ptr（网络包大小指针）
 // - 将network_connection_network_processor_index_pointer替换为network_processor_index_ptr（网络处理器索引指针）
-// - 将socket_descriptor_storage替换为socket_descriptor_cache（套接字描述符缓存）
+// - 将socket_descriptor_storage替换为socket_desc_cache（套接字描述符缓存）
 // - 将packet_information_arrayay替换为packet_info_array（数据包信息数组）
-// - 将buffer_data_pointer替换为buffer_data_pointer（缓冲区数据指针）
+// - 将buffer_data_ptr替换为buffer_data_ptr（缓冲区数据指针）
 // - 将socket_validation_buffer替换为socket_validation_cache（套接字验证缓存）
 // - 将socket_config_array替换为socket_config_params（套接字配置参数）
 // - 将socket_send_buffer替换为socket_send_cache（套接字发送缓存）
@@ -3987,11 +3987,11 @@ uint64_t network_process_socket_data(int64_t *network_socket_handle)
 void NetworkBindSocket(uint64_t *network_socket_handle, int32_t network_buffer_ptr)
 {
     int32_t socket_binding_status;
-  int32_t connection_binding_state;
+  int32_t connection_binding_status;
   uint8_t socket_validation_cache [NETWORK_BUFFER_SIZE_WORD];
-  uint8_t *buffer_data_pointer;
+  uint8_t *buffer_data_ptr;
   int32_t packet_info_array [NETWORK_BUFFER_INDEX_CAPACITY];
-  int64_t socket_descriptor_cache;
+  int64_t socket_desc_cache;
   uint32_t socket_config_params [NETWORK_BASIC_VALUE_QUAD];
   uint8_t socket_send_cache [NETWORK_BUFFER_SIZE_256];
   uint64_t network_encryption_xor_value;
@@ -4001,17 +4001,17 @@ void NetworkBindSocket(uint64_t *network_socket_handle, int32_t network_buffer_p
     socket_binding_status = NETWORK_BIT_SHIFT_MASK_VALUE;
   else {
     if (network_buffer_ptr - NETWORK_SOCKET_RESPONSE_EXTENDED_OFFSET < NETWORK_ERROR_BUFFER_SIZE) {
-      socket_descriptor_cache = NETWORK_STATUS_FAILURE;
-      socket_binding_status = networkAllocateBuffer(&socket_descriptor_cache);
+      socket_desc_cache = NETWORK_STATUS_FAILURE;
+      socket_binding_status = networkAllocateBuffer(&socket_desc_cache);
       if (socket_binding_status == NETWORK_STATUS_FAILURE) {
         packet_info_array[NETWORK_STATUS_FAILURE] = NETWORK_STATUS_FAILURE;
-        socket_binding_status = networkSendPacket(*(uint64_t *)(socket_descriptor_cache + SOCKET_HANDLE_OFFSET), packet_info_array);
+        socket_binding_status = networkSendPacket(*(uint64_t *)(socket_desc_cache + SOCKET_HANDLE_OFFSET), packet_info_array);
         if (socket_binding_status == NETWORK_STATUS_FAILURE) {
           if (packet_info_array[NETWORK_STATUS_FAILURE] != SOCKET_DESCRIPTOR_RESPONSE_OFFSET_STANDARD_EXTENDED) {
             networkFlushBuffer();
             goto network_send_chunk_start_label;
           }
-          socket_binding_status = network_config_buffer(socket_descriptor_cache, socket_config_params);
+          socket_binding_status = network_config_buffer(socket_desc_cache, socket_config_params);
           if (socket_binding_status == NETWORK_STATUS_FAILURE) {
             *network_socket_handle = (NETWORK_ULONG_LONG)socket_config_params[NETWORK_STATUS_FAILURE];
             goto network_send_chunk_end;
@@ -4023,9 +4023,9 @@ network_send_chunk_start_label:
       socket_binding_status = SESSION_STRUCT_SIZE;
   if ((*(uint8_t *)(g_network_module + MODULE_STATUS_OFFSET) & NETWORK_STATUS_READY_MASK) != NETWORK_STATUS_FAILURE) {
     socket_binding_status = network_send_buf(socket_send_cache, NETWORK_ERROR_BUFFER_SIZE, network_socket_handle);
-    connection_binding_state = networkCopyData(socket_send_cache + socket_binding_status, NETWORK_ERROR_BUFFER_SIZE - socket_binding_status, &g_networkNullTerminator);
-    networkProcessBufferData(socket_send_cache + (socket_binding_status + connection_binding_state), NETWORK_ERROR_BUFFER_SIZE - (socket_binding_status + connection_binding_state), network_buffer_ptr);
-    buffer_data_pointer = socket_send_cache;
+    connection_binding_status = networkCopyData(socket_send_cache + socket_binding_status, NETWORK_ERROR_BUFFER_SIZE - socket_binding_status, &g_networkNullTerminator);
+    networkProcessBufferData(socket_send_cache + (socket_binding_status + connection_binding_status), NETWORK_ERROR_BUFFER_SIZE - (socket_binding_status + connection_binding_status), network_buffer_ptr);
+    buffer_data_ptr = socket_send_cache;
     networkSendControlPacket(socket_binding_status, NETWORK_STATUS_FAILURE, NETWORK_STATUS_FAILURE, &network_control_packet_type);
 network_send_chunk_end_label:
   network_encrypt_data(network_encryption_key_main ^ (NETWORK_ULONG_LONG)network_validation_max);
@@ -4035,7 +4035,7 @@ void NetworkConnectSocket(uint64_t network_socket_handle, uint64_t *network_buff
     int32_t socket_connection_error;
   int32_t connection_establishment_result;
   uint8_t connection_validation_buf [NETWORK_BUFFER_SIZE_WORD];
-  uint8_t *connection_buffer_pointer;
+  uint8_t *connection_buf_ptr;
   int64_t socket_context_array [NETWORK_BUFFER_INDEX_CAPACITY];
   uint64_t *session_config_array [NETWORK_BUFFER_INDEX_CAPACITY];
   uint8_t connection_send_buf [NETWORK_BUFFER_SIZE_256];
