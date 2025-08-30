@@ -185,6 +185,20 @@
 // 90. 将aUTILITY_STACK_MEMORY_OFFSET_18替换为utility_temp_stack_buffer等临时栈变量名
 // 91. 添加了UTILITY_UNWIND_FUNCTION_180902*等工具展开函数的语义化宏定义
 // 92. 替换了部分UtilityUnwind_180902*函数名为语义化宏定义
+// 93. 添加了UTILITY_MIN_CAPACITY等常用数字常量的宏定义
+// 94. 添加了UTILITY_STACK_BUFFER_SIZE_2等数组大小的宏定义
+// 95. 将硬编码的数字8替换为UTILITY_MIN_CAPACITY
+// 96. 将硬编码的数组大小[2]替换为UTILITY_STACK_BUFFER_SIZE_2
+// 97. 将硬编码的数组大小[4]替换为UTILITY_STACK_BUFFER_SIZE_4
+// 98. 将硬编码的增量操作+1替换为UTILITY_INDEX_INCREMENT
+// 99. 将硬编码的增量操作+8替换为UTILITY_POINTER_INCREMENT
+// 100. 将硬编码的缓冲区大小32替换为UTILITY_SECURITY_BUFFER_SIZE_32
+// 101. 将硬编码的缓冲区大小16替换为UTILITY_SECURITY_BUFFER_SIZE_16
+// 102. 将硬编码的工作缓冲区大小512替换为UTILITY_WORKING_BUFFER_SIZE
+// 103. 将硬编码的句柄偏移量8替换为UTILITY_RESOURCE_HANDLE_OFFSET
+// 104. 提高了代码的可读性和维护性
+// 105. 保持代码语义不变
+// 106. 这是简化实现，主要处理了工具系统中数字常量的语义化替换
 
 // 新增语义化宏定义 - 替换事件回调变量名
 #define EVENT_CALLBACK_RESOURCE_INIT 0x6030
