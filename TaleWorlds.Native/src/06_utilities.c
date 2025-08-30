@@ -246,12 +246,12 @@
 #define UTILITY_FLOAT_QUARTER 0.25
 
 // 新增资源类型签名常量 - 美化十六进制字符串编码
-#define UTILITY_RESOURCE_SIGNATURE_PANIC UTILITY_RESOURCE_SIGNATURE_PANIC  // "PANS"
-#define UTILITY_RESOURCE_SIGNATURE_WAIT UTILITY_RESOURCE_SIGNATURE_WAIT   // "TIOW"
-#define UTILITY_RESOURCE_SIGNATURE_TSIL UTILITY_RESOURCE_SIGNATURE_TSIL  // "TSIL"
-#define UTILITY_RESOURCE_SIGNATURE_VRUC UTILITY_RESOURCE_SIGNATURE_VRUC  // "VRUC"
-#define UTILITY_RESOURCE_SIGNATURE_TIFE UTILITY_RESOURCE_SIGNATURE_TIFE  // "TIFE"
-#define UTILITY_RESOURCE_SIGNATURE_TNVE 0x544e5645  // "TNVE"
+#define UTILITY_RESOURCE_SIGNATURE_PANIC 0x50414e53  // "PANS"
+#define UTILITY_RESOURCE_SIGNATURE_WAIT 0x54494157   // "TIOW"
+#define UTILITY_RESOURCE_SIGNATURE_TSIL 0x5453494c  // "TSIL"
+#define UTILITY_RESOURCE_SIGNATURE_VRUC 0x56525543  // "VRUC"
+#define UTILITY_RESOURCE_SIGNATURE_TIFE 0x54494645  // "TIFE"
+#define UTILITY_RESOURCE_SIGNATURE_TNVE UTILITY_RESOURCE_SIGNATURE_TNVE  // "TNVE"
 #define UTILITY_FLOAT_TO_INT_SCALE 1000.0
 #define UTILITY_LONG_LONG_MIN -0x8000000000000000
 #define UTILITY_MAX_UNSIGNED_VALUE 0x3fffffff
@@ -274,7 +274,7 @@
 #define ERROR_CODE_5 ERROR_MEMORY_FAIL
 
 // 函数参数语义化宏定义
-#define PARAM_SEARCH_DATA_OFFSET param3
+#define PARAM_SEARCH_DATA_OFFSET PARAM_SEARCH_DATA_OFFSET
 #define PARAM_SEARCH_FLAGS param4  
 #define PARAM_SEARCH_CONTEXT param5
 
@@ -12636,7 +12636,7 @@ validate_string_data:
 
 // 数组二分搜索函数 - 在排序数组中查找指定元素
 uint64
-binary_search_in_array(longlong array_handle, uint *search_key, uint64 param3, uint32 param4,
+binary_search_in_array(longlong array_handle, uint *search_key, uint64 PARAM_SEARCH_DATA_OFFSET, uint32 param4,
                    uint64 param5)
 
 {
@@ -12676,7 +12676,7 @@ binary_search_in_array(longlong array_handle, uint *search_key, uint64 param3, u
         if (middle_index < 0) {
           return ERROR_CODE_INVALID;
         }
-        utility_operation_status = retrieve_array_element_data(array_handle, middle_index, 0, param3, param4, param5);
+        utility_operation_status = retrieve_array_element_data(array_handle, middle_index, 0, PARAM_SEARCH_DATA_OFFSET, param4, param5);
         return utility_operation_status;
       }
       rightBound = middle_index + -1;
@@ -24826,13 +24826,13 @@ uint64 processMemoryAllocation(uint64 resource_handle_identifier,longlong resour
   byte UTILITY_LOCAL_SECURITY_BUFFER [32];
   
   if (*(uint *)(resource_buffer + utility_buffer_size_data_offset) < 0x31) {
-    utility_operation_status = allocateMemoryWithType(resource_handle_identifier,resource_buffer,0x544e5645);
+    utility_operation_status = allocateMemoryWithType(resource_handle_identifier,resource_buffer,UTILITY_RESOURCE_SIGNATURE_TNVE);
     if ((int)utility_operation_status == 0) {
       utility_operation_status = 0;
     }
   }
   else {
-    utility_operation_status = ValidateOperationHandle2(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,1,UTILITY_RESOURCE_SIGNATURE_TSIL,0x544e5645);
+    utility_operation_status = ValidateOperationHandle2(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,1,UTILITY_RESOURCE_SIGNATURE_TSIL,UTILITY_RESOURCE_SIGNATURE_TNVE);
     if ((int)utility_operation_status == 0) {
       utility_operation_status = allocateMemoryWithType(resource_handle_identifier,resource_buffer,RESOURCE_PROP_OFFSET2545645);
       if ((int)utility_operation_status == 0) {
