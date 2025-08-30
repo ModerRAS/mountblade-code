@@ -198,6 +198,9 @@
 // 系统时间常量
 #define SYSTEM_SLEEP_TIME_MINIMUM 1
 
+// 系统线程标志常量
+#define SYSTEM_THREAD_FLAG_ENABLED 1
+
 // 系统函数偏移量常量
 #define SYSTEM_FUNC_OFFSET_CLEANUP 0x28
 #define SYSTEM_FUNC_OFFSET_INITIALIZE 0x38
@@ -3003,7 +3006,7 @@ int initialize_scaling_system(void)
   system_initialization_result = system_execution_function(resource_manager_64_init_function);
   return (system_initialization_result != 0) - 1;
 }
-  system_thread_flag_2 = 1;
+  system_thread_flag_2 = SYSTEM_THREAD_FLAG_ENABLED;
   system_thread_flag_1 = SYSTEM_ZERO_VALUE;
   system_temp_stack_array[0] = GetModuleHandleA(SYSTEM_MODULE_HANDLE_NULL);
   initialize_core_system(handle_param,system_temp_stack_array);
@@ -3100,7 +3103,7 @@ section_processing_jump_label_:
       system_char_variable = (**(code **)((void *)*thread_data_ptr + SYSTEM_OFFSET_THREAD_HANDLER))(thread_data_ptr);
     }
     if (system_char_variable != '\0') break;
-    Sleep(1);
+    Sleep(SYSTEM_SLEEP_TIME_MINIMUM);
   }
   (**(code **)(*thread_data_ptr + SYSTEM_OFFSET_THREAD_SYSTEM))(thread_data_ptr);
   thread_stack98 = &g_threadString2;
@@ -3109,7 +3112,7 @@ section_processing_jump_label_:
   }
   handle_param_system_error();
 }
-  system_thread_flag_2 = 1;
+  system_thread_flag_2 = SYSTEM_THREAD_FLAG_ENABLED;
   system_thread_flag_1 = SYSTEM_ZERO_VALUE;
   system_temp_stack_array[0] = GetModuleHandleA(SYSTEM_MODULE_HANDLE_NULL);
   initialize_core_system(handle_param,system_temp_stack_array);
@@ -3132,7 +3135,7 @@ void WotsMainNativeCoreCLR(unsigned long long handle_param)
 {
   unsigned long long system_temp_stack_array [2];
   system_thread_flag_2 = SYSTEM_ZERO_VALUE;
-  system_thread_flag_1 = 1;
+  system_thread_flag_1 = SYSTEM_THREAD_FLAG_ENABLED;
   system_temp_stack_array[0] = GetModuleHandleA(SYSTEM_MODULE_HANDLE_NULL);
   initialize_core_system(handle_param,system_temp_stack_array);
   initialize_subsystem_modules();
