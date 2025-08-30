@@ -93,6 +93,7 @@
 #define SYSTEM_FLOAT_ONE 0x3f800000
 #define SYSTEM_FLOAT_MAX 0x7f7fffff
 #define SYSTEM_STRING_COMMA_TOKEN 0x2c
+#define SYSTEM_NULL_POINTER 0x0
 
 // 01_initialization.c - 初始化系统代码（已美化变量名和函数名）
 
@@ -16098,7 +16099,7 @@ void UtilityModule231(void)
   uint32_t init_stack_parameter_1c8;
   ulonglong init_stack_parameter_1c0;
   void *system_buffer_ptr_graphics_context;
-  longlong init_stack_long_parameter_1b0;
+  longlong init_stack_parameter_1b0;
   uint32_t init_stack_uint_parameter_1a0;
   uint64_t init_stack_parameter_198;
   longlong *stack_system_memory_pointer;
@@ -16210,11 +16211,11 @@ INIT_LABEL_VALIDATE_MEMORY_POINTER:
     init_stack_parameter_1c0 = init_stack_parameter_1c0 & SYSTEM_HIGH_32BIT_MASK;
     system_buffer_ptr_audio_context = &globalSystemPointerData;
     system_buffer_ptr_graphics_context = &resourcePoolPointer;
-    if (init_stack_long_parameter_1b0 != 0) {
+    if (init_stack_parameter_1b0 != 0) {
                     // WARNING: Subroutine does not return
       ProcessSystemOperation();
     }
-    init_stack_long_parameter_1b0 = 0;
+    init_stack_parameter_1b0 = 0;
     init_stack_uint_parameter_1a0 = 0;
     system_buffer_ptr_graphics_context = &globalSystemPointerData;
   }
@@ -36913,7 +36914,7 @@ void InitializeSystemModule30(uint64_t handleIdentifier,uint64_t resourceIdentif
   void *system_buffer_ptr_audio_data;
   void *system_buffer_ptr_1c8;
   void *system_buffer_ptr_graphics_context;
-  longlong init_stack_long_parameter_1b0;
+  longlong init_stack_parameter_1b0;
   uint32_t uintStack_1a8;
   uint64_t init_stack_uint_parameter_1a0;
   void *system_buffer_ptr_198;
@@ -36953,11 +36954,11 @@ void InitializeSystemModule30(uint64_t handleIdentifier,uint64_t resourceIdentif
     UpdateSystemBuffer(&system_buffer_ptr_graphics_context,&g_system_string_buffer);
     InitializeSecurityEngineNode(&system_buffer_ptr_graphics_context,0);
     system_buffer_ptr_graphics_context = &resourcePoolPointer;
-    if (init_stack_long_parameter_1b0 != 0) {
+    if (init_stack_parameter_1b0 != 0) {
                     // WARNING: Subroutine does not return
       ProcessSystemOperation();
     }
-    init_stack_long_parameter_1b0 = 0;
+    init_stack_parameter_1b0 = 0;
     init_stack_uint_parameter_1a0 = (ulonglong)init_stack_uint_parameter_1a0._4_4_ << SYSTEM_NODE_HEADER_SIZE;
     system_buffer_ptr_graphics_context = &globalSystemPointerData;
     goto INIT_LABEL_SYSTEM_66971;
@@ -37016,7 +37017,7 @@ INIT_LABEL_SYSTEM_6650a:
     CompareSystemData(&system_buffer_ptr_198,&system_buffer_ptr_d0,system_int_result + 7,SYSTEM_OFFSET_Ffffffff);
     system_buffer_ptr_graphics_context = &resourcePoolPointer;
     init_stack_uint_parameter_1a0 = 0;
-    init_stack_long_parameter_1b0 = 0;
+    init_stack_parameter_1b0 = 0;
     uintStack_1a8 = 0;
     system_buffer_ptr_158 = &resourcePoolPointer;
     uintStack_140 = 0;
@@ -37121,7 +37122,7 @@ INIT_LABEL_SYSTEM_6650a:
     system_buffer_ptr_150 = (void *)0x0;
     uintStack_140 = uintStack_140 & SYSTEM_HIGH_32BIT_MASK;
     system_buffer_ptr_158 = &globalSystemPointerData;
-    init_stack_long_parameter_1b0 = 0;
+    init_stack_parameter_1b0 = 0;
     init_stack_uint_parameter_1a0 = init_stack_uint_parameter_1a0 & SYSTEM_HIGH_32BIT_MASK;
     system_buffer_ptr_graphics_context = &globalSystemPointerData;
     system_buffer_ptr_d0 = &resourcePoolPointer;
