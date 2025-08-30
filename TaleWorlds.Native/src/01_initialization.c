@@ -124,6 +124,14 @@
 // - 保持代码语义不变
 // - 这是简化实现，主要处理了通用变量名和寄存器变量名的语义化替换
 
+// 本次美化内容：
+// - 将g_system_state_1替换为g_system_audio_initialization_flag等语义化名称
+// - 将g_system_state_2替换为g_system_render_initialization_flag等描述性名称
+// - 将g_system_object_1-21替换为g_system_core_data_object、g_system_status_data_object、g_system_config_data_object、g_system_data_variable_c_object等语义化名称
+// - 根据原始注释为不同类型的对象分配了相应的语义化名称前缀
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+
 // 地址常量定义
 #define AUDIO_SYSTEM_BASE_ADDR 0x180c91700
 #define INPUT_SYSTEM_BASE_ADDR 0x180c91800
