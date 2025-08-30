@@ -14743,16 +14743,16 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_OFFSET_MEMORY_NEGATIVE_1EF8 -0x1ef8               // 内存负数1EF8偏移量
 
 // 系统结构体偏移常量定义（2025年8月30日语义化常量替换批次）
-#define SYSTEM_STRUCTURE_OFFSET_1334 0x1334                      // 结构体1334偏移量
-#define SYSTEM_STRUCTURE_OFFSET_133C 0x133c                      // 结构体133C偏移量
-#define SYSTEM_STRUCTURE_OFFSET_1344 0x1344                      // 结构体1344偏移量
-#define SYSTEM_STRUCTURE_OFFSET_134C 0x134c                      // 结构体134C偏移量
+#define SYSTEM_STRUCTURE_OFFSET_1334 0x1334                      // 主要结构体偏移量
+#define SYSTEM_STRUCTURE_OFFSET_133C 0x133c                      // 次要结构体偏移量
+#define SYSTEM_STRUCTURE_OFFSET_1344 0x1344                      // 扩展结构体偏移量
+#define SYSTEM_STRUCTURE_OFFSET_134C 0x134c                      // 保留结构体偏移量
 
 // 系统函数调用偏移常量定义（2025年8月30日语义化常量替换批次）
-#define SYSTEM_FUNCTION_OFFSET_CALLBACK_120 0x120                // 函数回调120偏移量
-#define SYSTEM_FUNCTION_OFFSET_STACK_1BD8 0x1bd8                 // 函数栈1BD8偏移量
-#define SYSTEM_FUNCTION_OFFSET_INITIALIZE_4F8 0x4f8              // 函数初始化4F8偏移量
-#define SYSTEM_FUNCTION_OFFSET_CALLBACK_A3A 0xa3a                // 函数回调A3A偏移量
+#define SYSTEM_FUNCTION_OFFSET_CALLBACK_120 0x120                // 标准回调函数偏移量
+#define SYSTEM_FUNCTION_OFFSET_STACK_1BD8 0x1bd8                 // 栈操作函数偏移量
+#define SYSTEM_FUNCTION_OFFSET_INITIALIZE_4F8 0x4f8              // 初始化函数偏移量
+#define SYSTEM_FUNCTION_OFFSET_CALLBACK_A3A 0xa3a                // 扩展回调函数偏移量
 
 // 系统控制值常量定义（2025年8月30日语义化常量替换批次）
 #define SYSTEM_CONTROL_VALUE_1614 0x1614                        // 控制值1614
@@ -14764,33 +14764,33 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_SPECIAL_VALUE_EXECUTION_PARAM 0xfffffffd          // 特殊执行参数
 
 // 系统初始化偏移常量定义（2025年8月30日最终批次）
-#define SYSTEM_INITIALIZATION_OFFSET_1318 0x1318                 // 初始化1318偏移量
-#define SYSTEM_INITIALIZATION_OFFSET_1328 0x1328                 // 初始化1328偏移量
-#define SYSTEM_INITIALIZATION_OFFSET_1338 0x1338                 // 初始化1338偏移量
-#define SYSTEM_INITIALIZATION_OFFSET_1340 0x1340                 // 初始化1340偏移量
-#define SYSTEM_INITIALIZATION_OFFSET_1348 0x1348                 // 初始化1348偏移量
+#define SYSTEM_INITIALIZATION_OFFSET_1318 0x1318                 // 初始化缓冲区偏移量
+#define SYSTEM_INITIALIZATION_OFFSET_1328 0x1328                 // 初始化配置偏移量
+#define SYSTEM_INITIALIZATION_OFFSET_1338 0x1338                 // 初始化状态偏移量
+#define SYSTEM_INITIALIZATION_OFFSET_1340 0x1340                 // 初始化标志偏移量
+#define SYSTEM_INITIALIZATION_OFFSET_1348 0x1348                 // 初始化结果偏移量
 
 // 系统全局数据偏移常量定义（2025年8月30日最终批次）
-#define SYSTEM_GLOBAL_DATA_OFFSET_1A08 0x1a08                     // 全局数据1A08偏移量
-#define SYSTEM_GLOBAL_DATA_OFFSET_124EC 0x124ec                   // 全局数据124EC偏移量
-#define SYSTEM_GLOBAL_DATA_OFFSET_12498 0x12498                   // 全局数据12498偏移量
-#define SYSTEM_GLOBAL_DATA_OFFSET_2908 0x2908                     // 全局数据2908偏移量
+#define SYSTEM_GLOBAL_DATA_OFFSET_1A08 0x1a08                     // 全局数据主偏移量
+#define SYSTEM_GLOBAL_DATA_OFFSET_124EC 0x124ec                   // 全局数据扩展偏移量
+#define SYSTEM_GLOBAL_DATA_OFFSET_12498 0x12498                   // 全局数据配置偏移量
+#define SYSTEM_GLOBAL_DATA_OFFSET_2908 0x2908                     // 全局数据保留偏移量
 
 // 系统指针偏移常量定义（2025年8月30日最终批次）
-#define SYSTEM_POINTER_OFFSET_461 0x461                          // 指针461偏移量
-#define SYSTEM_POINTER_OFFSET_4CF 0x4cf                          // 指针4CF偏移量
-#define SYSTEM_POINTER_OFFSET_A39 0xa39                          // 指针A39偏移量
-#define SYSTEM_POINTER_OFFSET_B5B 0xb5b                          // 指针B5B偏移量
-#define SYSTEM_POINTER_OFFSET_5E 0x5e                             // 指针5E偏移量
-#define SYSTEM_POINTER_OFFSET_B 0xb                               // 指针B偏移量
-#define SYSTEM_POINTER_OFFSET_D 0xd                               // 指针D偏移量
-#define SYSTEM_POINTER_OFFSET_E 0xe                               // 指针E偏移量
-#define SYSTEM_POINTER_OFFSET_12 0x12                             // 指针12偏移量
-#define SYSTEM_POINTER_OFFSET_22 0x22                             // 指针22偏移量
-#define SYSTEM_POINTER_OFFSET_DD 0xdd                             // 指针DD偏移量
-#define SYSTEM_POINTER_OFFSET_2C 0x2c                             // 指针2C偏移量
-#define SYSTEM_POINTER_OFFSET_1A 0x1a                             // 指针1A偏移量
-#define SYSTEM_POINTER_OFFSET_16 0x16                             // 指针16偏移量
+#define SYSTEM_POINTER_OFFSET_461 0x461                          // 主要指针偏移量
+#define SYSTEM_POINTER_OFFSET_4CF 0x4cf                          // 次要指针偏移量
+#define SYSTEM_POINTER_OFFSET_A39 0xa39                          // 扩展指针偏移量
+#define SYSTEM_POINTER_OFFSET_B5B 0xb5b                          // 保留指针偏移量
+#define SYSTEM_POINTER_OFFSET_5E 0x5e                             // 控制指针偏移量
+#define SYSTEM_POINTER_OFFSET_B 0xb                               // 基础指针偏移量
+#define SYSTEM_POINTER_OFFSET_D 0xd                               // 数据指针偏移量
+#define SYSTEM_POINTER_OFFSET_E 0xe                               // 执行指针偏移量
+#define SYSTEM_POINTER_OFFSET_12 0x12                             // 状态指针偏移量
+#define SYSTEM_POINTER_OFFSET_22 0x22                             // 配置指针偏移量
+#define SYSTEM_POINTER_OFFSET_DD 0xdd                             // 特殊指针偏移量
+#define SYSTEM_POINTER_OFFSET_2C 0x2c                             // 缓冲区指针偏移量
+#define SYSTEM_POINTER_OFFSET_1A 0x1a                             // 函数指针偏移量
+#define SYSTEM_POINTER_OFFSET_16 0x16                             // 系统指针偏移量
 #define SYSTEM_POINTER_OFFSET_9F8 0x9f8                           // 指针9F8偏移量
 #define SYSTEM_POINTER_OFFSET_118 0x118                           // 指针118偏移量
 #define SYSTEM_POINTER_OFFSET_98C8 0x98c8                         // 指针98C8偏移量
