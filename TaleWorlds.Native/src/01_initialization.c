@@ -18907,8 +18907,8 @@ InitializeSystemModule21(uint64_t *handleIdentifier,longlong *resourceIdentifier
       systemFlags[SYSTEM_CONFIG_SIZE_AUTH] = pallocation_size[SYSTEM_STACK_OFFSET_NEGATIVE_6];
       *(int *)(systemFlags + SYSTEM_CONFIG_SIZE_FONT) = (int)pallocation_size[SYSTEM_STACK_OFFSET_NEGATIVE_5];
       *(uint32_t *)((longlong)systemFlags + SYSTEM_INIT_DATA_OFFSET_B4) = *(uint32_t *)((longlong)pallocation_size + SYSTEM_OFFSET_24);
-      systemFlags[SYSTEM_CONFIG_SIZE_UTILITY_2] = pallocation_size[-4];
-      systemFlags[SYSTEM_OFFSET_18] = pallocation_size[-3];
+      systemFlags[SYSTEM_CONFIG_SIZE_UTILITY_2] = pallocation_size[SYSTEM_STACK_OFFSET_NEGATIVE_4];
+      systemFlags[SYSTEM_OFFSET_18] = pallocation_size[SYSTEM_STACK_OFFSET_NEGATIVE_3];
       *(int *)(systemFlags + NODE_INITIALIZED_OFFSET) = (int)pallocation_size[-2];
       *(uint32_t *)((longlong)systemFlags + SYSTEM_HANDLE_OFFSET_HEADER_3) = *(uint32_t *)((longlong)pallocation_size + -0xc);
       system_memory_pointer = systemFlags + SYSTEM_CONFIG_SIZE_AUDIO;
