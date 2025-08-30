@@ -136,6 +136,19 @@
 #define NETWORK_SOCKET_EXTENDED_OFFSET    100
 #define NETWORK_CONNECTION_TIMEOUT_OFFSET 200
 #define NETWORK_SOCKET_DESCRIPTORS_OFFSET 600
+
+// 本次美化内容（2025年8月30日）：
+// - 添加了NETWORK_ARRAY_SIZE_16等数组大小语义化常量定义
+// - 将硬编码的数组大小[16]替换为NETWORK_ARRAY_SIZE_16等语义化常量
+// - 将硬编码的数组大小[32]替换为NETWORK_ARRAY_SIZE_32等语义化常量
+// - 将硬编码的数组大小[33]替换为NETWORK_ARRAY_SIZE_33等语义化常量
+// - 将硬编码的数组大小[34]替换为NETWORK_ARRAY_SIZE_34等语义化常量
+// - 将硬编码的数组大小[40]替换为NETWORK_ARRAY_SIZE_40等语义化常量
+// - 将硬编码的数组大小[48]替换为NETWORK_ARRAY_SIZE_48等语义化常量
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了网络系统中硬编码数组大小的语义化替换
+// - 原本实现：完全重构数组大小命名体系
+// - 简化实现：仅将常见的硬编码数组大小替换为语义化常量
 #define NETWORK_PORT_OFFSET               5
 
 // 网络系统数组大小语义化常量定义（简化实现）
