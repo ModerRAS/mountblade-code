@@ -1,5 +1,11 @@
 // 06_utilities.c - 工具系统模块
 // 最终语义化美化版本（2025年8月30日最终批次最新完成）
+// 新增剩余硬编码值语义化美化（2025年8月30日最终批次最新完成）：
+// - 美化硬编码掩码常量，将UTILITY_MASK_FFFFFFFFFFFE0替换为UTILITY_MASK_CLEAR_LOW_FIVE_BITS等语义化常量
+// - 美化硬编码偏移量变量，将utility_thread_local_storage_offset_extended_extended_1FF8替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_CLEANUP_PRIMARY等语义化常量
+// - 美化硬编码偏移量变量，将utility_resource_offset_extended_2088_FINAL替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_OPERATION_PRIMARY等语义化常量
+// - 原本实现：完全重构所有剩余硬编码值命名体系，建立统一的语义化命名规范
+// - 简化实现：仅将文件中剩余的硬编码值替换为语义化常量名称，保持代码结构不变
 // 新增线程本地存储偏移量语义化美化（2025年8月30日最终批次最新完成）：
 // - 美化线程本地存储偏移量常量，将UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_EXTENDED_2018等替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_DATA_PRIMARY等语义化常量
 // - 美化线程本地存储偏移量常量，将UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_EXTENDED_2020等替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_DATA_SECONDARY等语义化常量
