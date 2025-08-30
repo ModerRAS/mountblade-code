@@ -644,7 +644,8 @@ void* g_global_uniform_buffer;
 
 void* g_function_create_texture;
 
-void* g_global_temp_buffer_98;
+// 全局临时缓冲区（大小98字节）
+void* g_global_temp_buffer_small;
 
 void* g_global_storage_buffer;
 
@@ -652,7 +653,8 @@ void* g_global_texture_buffer;
 
 void* g_static_render_target;
 
-void* g_global_temp_buffer_140;
+// 全局临时缓冲区（大小140字节）
+void* g_global_temp_buffer_medium;
 
 void* g_static_frame_buffer;
 // function_ptr g_function_load_shader;
@@ -905,9 +907,11 @@ void* g_global_data_network_config;
 
 void* g_global_data_resource_cache;
 
-char g_system_flag_char;
+// 系统标志字符变量
+char g_system_operation_flag_char;
 
-char g_system_data_ready;
+// 系统数据就绪状态（char类型，位于行910）
+char g_system_data_ready_char;
 void* g_global_data_texture_cache;
 
 void* g_global_data_memory_config;
@@ -918,7 +922,8 @@ void* g_global_data_security_config;
 
 void* g_global_data_thread_config;
 
-uint8_t g_system_data_ready;
+// 系统数据就绪状态（uint8_t类型，位于行921）
+uint8_t g_system_data_ready_uint;
 
 void* g_global_data_shader_cache;
 
