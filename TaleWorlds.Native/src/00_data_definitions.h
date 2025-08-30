@@ -8000,7 +8000,7 @@ system_finalizer_tertiary(unsigned long long handle_param,unsigned long long thr
   system_global_data_pointer = SYSTEM_ZERO_VALUE;
   system_global_data_pointer = SYSTEM_THREE_VALUE;
   audio_system_initialized = SYSTEM_ONE_VALUE;
-  system_execution_function(MODULE_HANDLER_ADDR);
+  system_execution_function(SYSTEM_MODULE_HANDLER_ADDRESS);
   input_system_initialized = SYSTEM_ONE_VALUE;
   system_global_data_pointer = SYSTEM_THREE_VALUE;
   system_global_data_pointer = SYSTEM_CONFIG_BUFFER_SIZE_ZERO;
@@ -14999,7 +14999,6 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_ERROR_CODE_SPECIAL_5 -0x7f6dfffa                   // 特殊错误码5
 #define SYSTEM_ERROR_CODE_TIMEOUT -0x7ffeffff                     // 超时错误码
 
-// 系统最大值常量定义
 // 系统最大值常量定义（2025年8月30日最终批次美化）
 #define SYSTEM_MAX_VALUE_32BIT 0xffffffff                         // 32位无符号整数最大值
 #define SYSTEM_MAX_VALUE_64BIT 0xffffffffffffffff                 // 64位无符号整数最大值
