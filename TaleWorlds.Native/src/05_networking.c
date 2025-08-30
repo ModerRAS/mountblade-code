@@ -6,6 +6,14 @@
 // 原本实现：完全重构网络系统所有变量命名体系，建立统一的语义化命名规范
 // 简化实现：仅将常见的包含十六进制值的变量名替换为语义化名称，保持代码结构不变
 // 注意：此为简化实现，主要处理网络系统中剩余的UNK_和DAT_变量名的语义化替换
+// 
+// 本次美化工作（2025年8月30日）：
+// - 美化网络系统连接上下文变量名，将UNK_180985578等替换为network_connection_context_primary等语义化变量名
+// - 美化网络系统缓冲区变量名，将UNK_180986218等替换为network_buffer_primary等语义化变量名
+// - 美化网络系统静态缓冲区变量名，将DAT_180c4eaa0等替换为network_buffer_static_primary等语义化变量名
+// - 美化网络系统配置寄存器变量名，将UNK_180c4eafc等替换为network_config_register_primary等语义化变量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了网络系统中剩余UNK_变量名的语义化替换
 
 // 网络系统硬编码值语义化常量定义
 #define NETWORK_OFFSET_POINTER_SIZE 0x28  // 指针大小偏移量
@@ -111,9 +119,9 @@ undefined network_connection_context_septenary;
 undefined network_connection_context_octonary;
 undefined network_config_data_primary;
 undefined network_connection_context_nonary;
-undefined4 UNK_180c4eafc;
-undefined4 UNK_180c4eb00;
-undefined4 UNK_180c4eb04;
+undefined4 network_config_register_primary;
+undefined4 network_config_register_secondary;
+undefined4 network_config_register_tertiary;
 undefined network_connection_context_denary;
 undefined network_connection_context_primary_extended;
 undefined network_connection_context_secondary_extended;
@@ -706,10 +714,10 @@ undefined4 network_validate_packet_header(undefined4 param_1,longlong param_2,un
   }
   else if (iVar3 != 0) goto LAB_1808408dd;
   puVar1 = (undefined8 *)(lStack_28 + 0xb0);
-  puVar5 = &DAT_18098bc73;
+  puVar5 = &network_connection_timeout_default;
   for (puVar2 = (undefined8 *)*puVar1; puVar2 != puVar1; puVar2 = (undefined8 *)*puVar2) {
     if (*(int *)(puVar2 + 3) < 1) {
-      puVar4 = &DAT_18098bc73;
+      puVar4 = &network_connection_timeout_default;
     }
     else {
       puVar4 = (undefined *)puVar2[2];
@@ -729,7 +737,7 @@ undefined4 network_validate_packet_header(undefined4 param_1,longlong param_2,un
   puVar1 = (undefined8 *)(lStack_28 + 0xc0);
   for (puVar2 = (undefined8 *)*puVar1; puVar2 != puVar1; puVar2 = (undefined8 *)*puVar2) {
     if (*(int *)(puVar2 + 3) < 1) {
-      puVar4 = &DAT_18098bc73;
+      puVar4 = &network_connection_timeout_default;
     }
     else {
       puVar4 = (undefined *)puVar2[2];
@@ -737,7 +745,7 @@ undefined4 network_validate_packet_header(undefined4 param_1,longlong param_2,un
     iVar3 = func_0x00018076b420(puVar4,param_2);
     if (iVar3 == 0) {
       if (*(int *)(puVar2 + 3) < 1) {
-        puVar4 = &DAT_18098bc73;
+        puVar4 = &network_connection_timeout_default;
       }
       else {
         puVar4 = (undefined *)puVar2[2];
@@ -786,10 +794,10 @@ void network_process_incoming_packet(undefined8 param_1,undefined8 param_2,undef
   }
   else if (iVar3 != 0) goto LAB_1808408dd;
   puVar1 = (undefined8 *)(lStack0000000000000030 + 0xb0);
-  puVar5 = &DAT_18098bc73;
+  puVar5 = &network_connection_timeout_default;
   for (puVar2 = (undefined8 *)*puVar1; puVar2 != puVar1; puVar2 = (undefined8 *)*puVar2) {
     if (*(int *)(puVar2 + 3) < 1) {
-      puVar4 = &DAT_18098bc73;
+      puVar4 = &network_connection_timeout_default;
     }
     else {
       puVar4 = (undefined *)puVar2[2];
@@ -809,7 +817,7 @@ void network_process_incoming_packet(undefined8 param_1,undefined8 param_2,undef
   puVar1 = (undefined8 *)(lStack0000000000000030 + 0xc0);
   for (puVar2 = (undefined8 *)*puVar1; puVar2 != puVar1; puVar2 = (undefined8 *)*puVar2) {
     if (*(int *)(puVar2 + 3) < 1) {
-      puVar4 = &DAT_18098bc73;
+      puVar4 = &network_connection_timeout_default;
     }
     else {
       puVar4 = (undefined *)puVar2[2];
@@ -817,7 +825,7 @@ void network_process_incoming_packet(undefined8 param_1,undefined8 param_2,undef
     iVar3 = func_0x00018076b420(puVar4);
     if (iVar3 == 0) {
       if (*(int *)(puVar2 + 3) < 1) {
-        puVar4 = &DAT_18098bc73;
+        puVar4 = &network_connection_timeout_default;
       }
       else {
         puVar4 = (undefined *)puVar2[2];
@@ -925,7 +933,7 @@ LAB_180840a03:
           lVar1 = *(longlong *)(lVar9 + 0x10 + *(longlong *)(param_2 + NETWORK_OFFSET_DATA_HEADER));
           if (lVar1 == 0) break;
           if (*(int *)(lVar1 + 0x58) < 1) {
-            puVar6 = &DAT_18098bc73;
+            puVar6 = &network_connection_timeout_default;
           }
           else {
             puVar6 = *(undefined **)(lVar1 + 0x50);
@@ -1025,7 +1033,7 @@ void network_handle_connection_reconnect(longlong param_1,longlong param_2,int *
         do {
           lVar3 = func_0x000180867680(param_1,iVar5);
           if (*(int *)(lVar3 + 0x58) < 1) {
-            puVar4 = &DAT_18098bc73;
+            puVar4 = &network_connection_timeout_default;
           }
           else {
             puVar4 = *(undefined **)(lVar3 + 0x50);
@@ -5014,7 +5022,7 @@ void FUN_180847550(longlong param_1,undefined8 *param_2,undefined1 param_3)
   
   uStack_28 = network_encryption_checksum ^ (ulonglong)auStack_58;
   if (*(int *)(param_1 + 0x58) < 1) {
-    puVar6 = &DAT_18098bc73;
+    puVar6 = &network_connection_timeout_default;
   }
   else {
     puVar6 = *(undefined **)(param_1 + 0x50);
@@ -12179,7 +12187,7 @@ undefined8 FUN_18084de40(longlong param_1,longlong param_2,float *param_3)
     }
     if (param_2 != 0) {
       if (*(int *)(puVar3 + 1) < 1) {
-        puVar2 = &DAT_18098bc73;
+        puVar2 = &network_connection_timeout_default;
       }
       else {
         puVar2 = (undefined *)*puVar3;
@@ -16184,7 +16192,7 @@ LAB_180850d9b:
     lVar8 = *(longlong *)(lVar8 + 0x68);
     if (lVar8 != 0) {
       if (*(longlong *)(lVar8 + 8) != 0) goto LAB_1808513ac;
-      FUN_18088c9b0(lVar8,plStack_118);
+      network_process_async_operations(lVar8,plStack_118);
       plStack_118[9] = lVar8;
     }
     if (param_3 == 0) {
@@ -16576,7 +16584,7 @@ LAB_180850d9b:
     lVar10 = *(longlong *)(unaff_RSI + 0x68);
     if (lVar10 != 0) {
       if (*(longlong *)(lVar10 + 8) != 0) goto LAB_180851223;
-      FUN_18088c9b0(lVar10,in_stack_00000030);
+      network_process_async_operations(lVar10,in_stack_00000030);
       in_stack_00000030[9] = lVar10;
     }
     if (unaff_R14 == 0) {
@@ -16967,7 +16975,7 @@ undefined8 FUN_180851490(longlong param_1,longlong param_2)
             if (*(longlong *)(lVar2 + 8) != param_2) {
               return 0x1c;
             }
-            FUN_18088c9b0(lVar2,0);
+            network_process_async_operations(lVar2,0);
           }
           if (((*(short *)(*(longlong *)(param_2 + 0x40) + 0xc) != 2) ||
               (uVar3 = FUN_180740d90(*(undefined8 *)(param_2 + 0x68)), (int)uVar3 == 0)) &&
@@ -30552,7 +30560,7 @@ void FUN_18085ca30(longlong param_1,ulonglong param_2)
         uVar16 = *(uint *)(lVar17 + NETWORK_OFFSET_DATA_HEADER + lVar14 * 0x28);
         if (uVar16 == *(uint *)(plVar15 + 3)) {
           if (*(int *)(lVar17 + 0x18 + lVar14 * 0x28) < 1) {
-            pppuStack_88 = (undefined8 ***)&DAT_18098bc73;
+            pppuStack_88 = (undefined8 ***)&network_connection_timeout_default;
           }
           else {
             pppuStack_88 = *(undefined8 ****)(lVar17 + 0x10 + lVar14 * 0x28);
@@ -33295,7 +33303,7 @@ thunk_FUN_18085fbb0(longlong param_1,undefined8 *param_2,undefined8 *param_3,und
       *(undefined8 *)(lVar3 + lVar11) = *param_2;
       ((undefined8 *)(lVar3 + lVar11))[1] = uVar6;
       if (*(int *)(param_3 + 1) < 1) {
-        puVar10 = &DAT_18098bc73;
+        puVar10 = &network_connection_timeout_default;
       }
       else {
         puVar10 = (undefined *)*param_3;
@@ -33388,7 +33396,7 @@ FUN_18085fbb0(longlong param_1,undefined8 *param_2,undefined8 *param_3,undefined
       *(undefined8 *)(lVar3 + lVar11) = *param_2;
       ((undefined8 *)(lVar3 + lVar11))[1] = uVar6;
       if (*(int *)(param_3 + 1) < 1) {
-        puVar10 = &DAT_18098bc73;
+        puVar10 = &network_connection_timeout_default;
       }
       else {
         puVar10 = (undefined *)*param_3;
@@ -33479,7 +33487,7 @@ undefined8 FUN_18085fc0e(void)
     *(undefined8 *)(lVar4 + lVar12) = *unaff_R12;
     ((undefined8 *)(lVar4 + lVar12))[1] = uVar7;
     if (*(int *)(unaff_R15 + 1) < 1) {
-      puVar11 = &DAT_18098bc73;
+      puVar11 = &network_connection_timeout_default;
     }
     else {
       puVar11 = (undefined *)*unaff_R15;
@@ -33810,7 +33818,7 @@ undefined8 thunk_FUN_180865550(longlong param_1)
             *(undefined4 *)(lVar13 + -0x14) = uVar6;
             *(undefined4 *)(lVar13 + -0x10) = uVar7;
             if (*(int *)(lVar9 + -4 + lVar13) < 1) {
-              puVar12 = &DAT_18098bc73;
+              puVar12 = &network_connection_timeout_default;
             }
             else {
               puVar12 = *(undefined **)(lVar9 + -0xc + lVar13);
@@ -36474,7 +36482,7 @@ undefined8 FUN_180861ce0(longlong *param_1,int param_2)
           *(undefined4 *)(lVar11 + -0x14) = uVar5;
           *(undefined4 *)(lVar11 + -0x10) = uVar6;
           if (*(int *)(lVar8 + -4 + lVar11) < 1) {
-            puVar10 = &DAT_18098bc73;
+            puVar10 = &network_connection_timeout_default;
           }
           else {
             puVar10 = *(undefined **)(lVar8 + -0xc + lVar11);
@@ -36551,7 +36559,7 @@ undefined8 FUN_180861d0b(void)
           *(undefined4 *)(lVar11 + -0x14) = uVar5;
           *(undefined4 *)(lVar11 + -0x10) = uVar6;
           if (*(int *)(lVar8 + -4 + lVar11) < 1) {
-            puVar10 = &DAT_18098bc73;
+            puVar10 = &network_connection_timeout_default;
           }
           else {
             puVar10 = *(undefined **)(lVar8 + -0xc + lVar11);
@@ -36620,7 +36628,7 @@ undefined8 FUN_180861d76(longlong param_1)
       *(undefined4 *)(lVar8 + -0x14) = uVar4;
       *(undefined4 *)(lVar8 + -0x10) = uVar5;
       if (*(int *)(lVar6 + -4 + lVar8) < 1) {
-        puVar7 = &DAT_18098bc73;
+        puVar7 = &network_connection_timeout_default;
       }
       else {
         puVar7 = *(undefined **)(lVar6 + -0xc + lVar8);
@@ -36688,7 +36696,7 @@ undefined8 FUN_180861d98(undefined8 param_1,undefined8 param_2)
     *(undefined4 *)(lVar7 + -0x14) = uVar3;
     *(undefined4 *)(lVar7 + -0x10) = uVar4;
     if (*(int *)(lVar5 + -4 + lVar7) < 1) {
-      puVar6 = &DAT_18098bc73;
+      puVar6 = &network_connection_timeout_default;
     }
     else {
       puVar6 = *(undefined **)(lVar5 + -0xc + lVar7);
@@ -41426,7 +41434,7 @@ undefined8 FUN_180865550(longlong param_1,char param_2)
               *(undefined4 *)(lVar14 + -0x14) = uVar6;
               *(undefined4 *)(lVar14 + -0x10) = uVar7;
               if (*(int *)(lVar10 + -4 + lVar14) < 1) {
-                puVar13 = &DAT_18098bc73;
+                puVar13 = &network_connection_timeout_default;
               }
               else {
                 puVar13 = *(undefined **)(lVar10 + -0xc + lVar14);
@@ -41528,7 +41536,7 @@ undefined8 FUN_1808655bb(void)
           *(undefined4 *)(lVar14 + -0x14) = uVar6;
           *(undefined4 *)(lVar14 + -0x10) = uVar7;
           if (*(int *)(lVar10 + -4 + lVar14) < 1) {
-            puVar13 = &DAT_18098bc73;
+            puVar13 = &network_connection_timeout_default;
           }
           else {
             puVar13 = *(undefined **)(lVar10 + -0xc + lVar14);
@@ -43220,7 +43228,7 @@ undefined8 FUN_1808673a0(longlong param_1)
     }
     if (999 < aiStackX_8[0] - *(int *)(param_1 + 0x78)) {
       if (*(int *)(param_1 + 0x90) < 1) {
-        puVar2 = &DAT_18098bc73;
+        puVar2 = &network_connection_timeout_default;
       }
       else {
         puVar2 = *(undefined **)(param_1 + 0x88);
@@ -43658,7 +43666,7 @@ FUN_180867b40(longlong param_1,longlong param_2,undefined8 param_3,undefined8 *p
     uStack_20 = 0;
     uStack_14 = 0;
     if (*(int *)(param_4 + 1) < 1) {
-      puStack_28 = &DAT_18098bc73;
+      puStack_28 = &network_connection_timeout_default;
     }
     else {
       puStack_28 = (undefined *)*param_4;
@@ -43741,7 +43749,7 @@ FUN_180867cf0(longlong param_1,longlong param_2,undefined8 param_3,undefined8 *p
   if ((*(uint *)(param_1 + 0x74) & 0x100) != 0) {
     uStack_14 = 0;
     if (*(int *)(param_4 + 1) < 1) {
-      puStack_28 = &DAT_18098bc73;
+      puStack_28 = &network_connection_timeout_default;
     }
     else {
       puStack_28 = (undefined *)*param_4;
@@ -44326,7 +44334,7 @@ undefined8 FUN_180868640(longlong param_1,longlong param_2,undefined8 *param_3,u
   }
   if ((*(uint *)(param_1 + 0x74) & 0x200) != 0) {
     if (*(int *)(param_3 + 1) < 1) {
-      puStack_18 = &DAT_18098bc73;
+      puStack_18 = &network_connection_timeout_default;
     }
     else {
       puStack_18 = (undefined *)*param_3;
@@ -44354,7 +44362,7 @@ undefined8 FUN_1808686a0(longlong param_1,longlong param_2,undefined8 *param_3,u
   }
   if ((*(uint *)(param_1 + 0x74) & 0x400) != 0) {
     if (*(int *)(param_3 + 1) < 1) {
-      puStack_18 = &DAT_18098bc73;
+      puStack_18 = &network_connection_timeout_default;
     }
     else {
       puStack_18 = (undefined *)*param_3;
@@ -83893,8 +83901,8 @@ undefined8 FUN_18088c970(longlong param_1,undefined4 *param_2,undefined4 *param_
 
 
 
-// 函数: void FUN_18088c9b0(int *param_1,longlong param_2)
-void FUN_18088c9b0(int *param_1,longlong param_2)
+// 函数: void network_process_async_operations(int *param_1,longlong param_2)
+void network_process_async_operations(int *param_1,longlong param_2)
 
 {
   undefined8 uStackX_8;
@@ -87073,7 +87081,7 @@ LAB_18088f951:
       if (plVar10 != (longlong *)0x0) {
         if (*(longlong **)(lStackX_18 + 8) == (longlong *)0x0) {
           if (plVar10[9] == 0) {
-            FUN_18088c9b0(lStackX_18,plVar10);
+            network_process_async_operations(lStackX_18,plVar10);
             plVar10[9] = lStackX_18;
             return (longlong *)0x0;
           }
@@ -87179,7 +87187,7 @@ LAB_18088f951:
     if (plVar6 != (longlong *)0x0) {
       if (*(longlong **)(in_stack_00000050 + 8) == (longlong *)0x0) {
         if (plVar6[9] == 0) {
-          FUN_18088c9b0(in_stack_00000050,plVar6);
+          network_process_async_operations(in_stack_00000050,plVar6);
           plVar6[9] = in_stack_00000050;
           return (longlong *)0x0;
         }
@@ -90892,7 +90900,7 @@ undefined8 FUN_180892270(longlong param_1,longlong param_2)
           return 0x1e;
         }
         if (*(int *)(lVar1 + 0x58) < 1) {
-          puVar4 = &DAT_18098bc73;
+          puVar4 = &network_connection_timeout_default;
         }
         else {
           puVar4 = *(undefined **)(lVar1 + 0x50);
@@ -90948,7 +90956,7 @@ undefined8 FUN_1808922ad(void)
         return 0x1e;
       }
       if (*(int *)(lVar1 + 0x58) < 1) {
-        puVar4 = &DAT_18098bc73;
+        puVar4 = &network_connection_timeout_default;
       }
       else {
         puVar4 = *(undefined **)(lVar1 + 0x50);
@@ -96254,7 +96262,7 @@ void FUN_1808975e0(longlong param_1,longlong param_2)
               uStack_e8 = *(undefined8 *)(*(longlong *)(lVar9 + 0x90) + lVar8 * 8);
               uStack_ec = 0;
               if (*(int *)(lVar3 + 0x58) < 1) {
-                puVar12 = &DAT_18098bc73;
+                puVar12 = &network_connection_timeout_default;
               }
               else {
                 puVar12 = *(undefined **)(lVar3 + 0x50);
@@ -96495,7 +96503,7 @@ void FUN_180897644(void)
             *unaff_RBP = *(undefined8 *)(*(longlong *)(lVar15 + 0x90) + uVar23 * 8);
             *(undefined1 *)((longlong)unaff_RBP + -4) = 0;
             if (*(int *)(lVar2 + 0x58) < 1) {
-              puVar18 = &DAT_18098bc73;
+              puVar18 = &network_connection_timeout_default;
             }
             else {
               puVar18 = *(undefined **)(lVar2 + 0x50);
@@ -96741,7 +96749,7 @@ void FUN_1808976b0(void)
         *unaff_RBP = *(undefined8 *)(*(longlong *)(lVar15 + 0x90) + uVar22 * 8);
         *(undefined1 *)((longlong)unaff_RBP + -4) = 0;
         if (*(int *)(lVar2 + 0x58) < 1) {
-          puVar18 = &DAT_18098bc73;
+          puVar18 = &network_connection_timeout_default;
         }
         else {
           puVar18 = *(undefined **)(lVar2 + 0x50);
@@ -97493,7 +97501,7 @@ void FUN_180898040(longlong *param_1)
             puStack_2d8 = &UNK_180982260;
             uStack_2c4 = uStack_2c4 & 0xffffff00;
             if (*(int *)(lVar11 + 0x58) < 1) {
-              puVar12 = &DAT_18098bc73;
+              puVar12 = &network_connection_timeout_default;
             }
             else {
               puVar12 = *(undefined **)(lVar11 + 0x50);
