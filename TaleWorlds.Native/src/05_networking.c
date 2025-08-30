@@ -13377,10 +13377,10 @@ network_error_code_handler_label:
 // 函数: void StopNetworkService(void)
 void StopNetworkService(void)
 void* * GetNetworkInterface(void)
-              NETWORK_SOCKET_HEADER_OFFSET) < _g_networkConnectionTimeoutValueSetting) {
+              NETWORK_SOCKET_HEADER_OFFSET) < g_network_conn_timeout_value) {
     GetNetworkTimeout(&g_networkConnectionTimeoutValueSetting);
-    if (_g_networkConnectionTimeoutValueSetting == NETWORK_STATUS_ERROR) {
-      _g_networkSocketTimeoutSetting = NETWORK_MAX_SIZE;
+    if (g_network_conn_timeout_value == NETWORK_STATUS_ERROR) {
+      g_network_socket_timeout_value = NETWORK_MAX_SIZE;
       SetNetworkTimeout(&g_networkConnectionTimeoutValueSetting);
   return &g_networkSocketTimeoutSetting;
 uint64_t ManageNetworkBandwidth(int64_t network_socket_handle, uint32_t *network_buffer_ptr, int32_t network_buffer_size, uint32_t network_timeout)
@@ -18744,7 +18744,7 @@ int32_t network_socket_handle(int64_t network_socket_handle)
   *(uint32_t *)(network_socket_handle + NETWORK_BUFFER_EXTENDED_OFFSET) =
        (-(NETWORK_UINT)(stack_buffer_network_header[NETWORK_STATUS_FAILURE] != NETWORK_STATUS_FAILURE) & MODULE_STATUS_OFFSET_BASE | *(uint32_t *)(network_socket_handle + NETWORK_BUFFER_EXTENDED_OFFSET)) & ~network_status_pointer;
   network_connection_index_current = *(int64_t *)(*(int64_t *)(*(int64_t *)(network_socket_handle + SOCKET_CONFIG_OFFSET) + NETWORK_SOCKET_DATA_OFFSET) + NETWORK_PACKET_DATA_PAYLOAD_OFFSET);
-  if (network_connection_index_current == _g_networkConfiguration) {
+  if (network_connection_index_current == g_network_config) {
     if (*(int64_t *)(network_socket_handle + NETWORK_STATUS_OFFSET) == NETWORK_STATUS_FAILURE) goto network_jump_label;
     network_connection_buffer_stack_arrayay[NETWORK_STATUS_FAILURE] = NETWORK_STATUS_FAILURE;
     network_char_status = networkUpdateStatus(*(int64_t *)(network_socket_handle + NETWORK_STATUS_OFFSET), network_socket_handle, network_connection_buffer_stack_arrayay);
