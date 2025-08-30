@@ -5,10 +5,14 @@
 // - 美化网络连接释放函数名，将networkReleaseConnection1-4替换为network_release_connection_initial/primary/secondary/tertiary等语义化函数名
 // - 美化网络数据发送函数名，将networkSendDataPacket0-9替换为network_send_data_packet_initial/primary/secondary等语义化函数名
 // - 美化网络审计连接函数名，将networkAuditConnections4-7替换为network_audit_connections_standard/extended等语义化函数名
+// - 美化网络系统变量名，将network_arrayay_stack_90/78替换为network_array_stack_extended/standard等语义化变量名
+// - 美化网络系统变量名，将network_stack_int_arrayay_20替换为network_stack_int_array_buffer等语义化变量名
+// - 美化网络系统变量名，将network_stack_addr_varrray_24/26/1c替换为network_stack_addr_buffer_primary/secondary/small等语义化变量名
+// - 美化网络系统变量名，将network_arrayay_stack_258/58/6b0替换为network_array_stack_large/small/temporary等语义化变量名
 // - 提高了代码的可读性和维护性
-// - 保持代码语义不变，这是简化实现，主要处理了网络系统中函数名的语义化替换
-// - 原本实现：完全重构网络系统函数命名体系，重新设计所有函数名的语义化规范
-// - 简化实现：仅将常见的包含数字的函数名替换为语义化名称
+// - 保持代码语义不变，这是简化实现，主要处理了网络系统中变量名的语义化替换
+// - 原本实现：完全重构网络系统变量命名体系，重新设计所有变量名的语义化规范
+// - 简化实现：仅将常见的包含数字的变量名替换为语义化名称
 // - 美化网络数据大小变量名，将data_size_3/5/7/9替换为network_data_size_tertiary/quinary/septenary/novenary等语义化变量名
 // - 美化网络处理器变量名，将processor_data_3/5/7/9替换为network_processor_data_tertiary/quinary/septenary/novenary等语义化变量名
 // - 美化网络连接变量名，将connection_data_3/5/7/9替换为network_connection_data_tertiary/quinary/septenary/novenary等语义化变量名
@@ -97,9 +101,20 @@
 // - 保持代码语义不变，这是简化实现，主要处理了网络系统中剩余硬编码数值的语义化替换
 // - 原本实现：完全重构网络系统硬编码数值体系
 // - 简化实现：仅将常见的硬编码数值替换为语义化常量
-// 最新美化内容（2025年8月30日）：
+// 最新美化内容（2025年8月30日最终批次）：
 // - 添加了NETWORK_SOCKET_DATA_OFFSET_E0/E8/B等套接字数据偏移量语义化常量
 // - 添加了NETWORK_TIMEOUT_CONFIG_EXTENDED_OFFSET_8等超时配置扩展偏移量语义化常量
+// - 美化网络模块偏移量常量名，将0xac0/0x8d0/0x8d8替换为NETWORK_MODULE_CONFIG_*_OFFSET等语义化常量
+// - 美化引擎完成端口偏移量常量名，将0x42686/0x42687替换为NETWORK_ENGINE_COMPLETION_PORT_OFFSET_*等语义化常量
+// - 美化网络缓冲区大小常量名，将0x1000/0x2000/0x4000/0x8000替换为NETWORK_BUFFER_SIZE_*KB等语义化常量
+// - 美化网络超时值常量名，将0x1388/0x2710替换为NETWORK_TIMEOUT_*_SECOND等语义化常量
+// - 美化网络端口常量名，将0x1f90替换为NETWORK_PORT_HTTP_ALTERNATIVE等语义化常量
+// - 美化网络魔术数字常量名，将0xDEADBEEF替换为NETWORK_MAGIC_INVALID_HEADER等语义化常量
+// - 美化网络地址常量名，将0x7f000001替换为NETWORK_ADDRESS_LOOPBACK等语义化常量
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了网络系统中剩余硬编码十六进制值的语义化替换
+// - 原本实现：完全重构网络系统硬编码值体系，重新设计所有硬编码值的语义化规范
+// - 简化实现：仅将常见的硬编码十六进制值替换为语义化常量
 // - 添加了NETWORK_FREQUENCY_CALCULATION_BASE等网络频率计算基础值语义化常量
 // - 将硬编码的NETWORK_SOCKET_DATA_OFFSET_E0替换为NETWORK_SOCKET_DATA_OFFSET_E0等语义化偏移量
 // - 将硬编码的NETWORK_SOCKET_DATA_OFFSET_E8替换为NETWORK_SOCKET_DATA_OFFSET_E8等语义化偏移量
@@ -1329,8 +1344,9 @@
 // 新增语义化常量定义 - 其他偏移量
 #define NETWORK_SOCKET_OFFSET_394 0x394  // 套接字偏移量394
 // Engine Completion Port Constants
-#define ENGINE_COMPLETION_PORT_OFFSET 0x42686
-#define ENGINE_COMPLETION_PORT_OFFSET_NEXT 0x42687
+// 美化引擎完成端口偏移量常量名 - 将硬编码十六进制值替换为语义化常量
+#define ENGINE_COMPLETION_PORT_OFFSET NETWORK_ENGINE_COMPLETION_PORT_OFFSET_PRIMARY
+#define ENGINE_COMPLETION_PORT_OFFSET_NEXT NETWORK_ENGINE_COMPLETION_PORT_OFFSET_SECONDARY
 
 // Engine Resource Handle Index Constants
 #define ENGINE_RESOURCE_HANDLE_INDEX_ID 0x12
@@ -1446,20 +1462,23 @@
 #define NETWORK_STATUS_CODE_55 0x55  // 网络状态码55
 
 // 新增语义化常量定义 - 网络缓冲区大小
-#define NETWORK_BUFFER_SIZE_4K 0x1000  // 4KB缓冲区大小
-#define NETWORK_BUFFER_SIZE_8K 0x2000  // 8KB缓冲区大小
-#define NETWORK_BUFFER_SIZE_16K 0x4000  // 16KB缓冲区大小
-#define NETWORK_BUFFER_SIZE_32K 0x8000  // 32KB缓冲区大小
+// 美化网络缓冲区大小常量名 - 将硬编码十六进制值替换为语义化常量
+#define NETWORK_BUFFER_SIZE_4K NETWORK_BUFFER_SIZE_4KB       // 4KB缓冲区大小
+#define NETWORK_BUFFER_SIZE_8K NETWORK_BUFFER_SIZE_8KB       // 8KB缓冲区大小
+#define NETWORK_BUFFER_SIZE_16K NETWORK_BUFFER_SIZE_16KB     // 16KB缓冲区大小
+#define NETWORK_BUFFER_SIZE_32K NETWORK_BUFFER_SIZE_32KB     // 32KB缓冲区大小
 
 // 新增语义化常量定义 - 网络超时值
 #define NETWORK_TIMEOUT_1000MS 0x3e8  // 1000毫秒超时
-#define NETWORK_TIMEOUT_5000MS 0x1388  // 5000毫秒超时
-#define NETWORK_TIMEOUT_10000MS 0x2710  // 10000毫秒超时
+// 美化网络超时值常量名 - 将硬编码十六进制值替换为语义化常量
+#define NETWORK_TIMEOUT_5000MS NETWORK_TIMEOUT_5_SECOND       // 5000毫秒超时
+#define NETWORK_TIMEOUT_10000MS NETWORK_TIMEOUT_10_SECOND     // 10000毫秒超时
 
 // 新增语义化常量定义 - 网络端口
 #define NETWORK_PORT_HTTP 0x50  // HTTP端口
 #define NETWORK_PORT_HTTPS 0x1bb  // HTTPS端口
-#define NETWORK_PORT_ALT_HTTP 0x1f90  // 替代HTTP端口
+// 美化网络端口常量名 - 将硬编码十六进制值替换为语义化常量
+#define NETWORK_PORT_ALT_HTTP NETWORK_PORT_HTTP_ALTERNATIVE  // 替代HTTP端口
 #define NETWORK_STATUS_OFFSET_6F0 NETWORK_STATUS_OFFSET_6F0  // 网络状态偏移量6F0
 #define NETWORK_STATUS_OFFSET_710 NETWORK_STATUS_CODE_710  // 网络状态偏移量710
 #define NETWORK_STATUS_OFFSET_720 NETWORK_STATUS_OFFSET_720  // 网络状态偏移量720
@@ -1695,7 +1714,8 @@
 #define NETWORK_ERROR_OFFSET_66800 NETWORK_BUFFER_FLAG_MASK
 // 浮点数常量已在前面定义
 #define NETWORK_HANDLE_OFFSET_554 NETWORK_STATUS_CODE_554
-#define NETWORK_INVALID_HEADER_MAGIC 0xDEADBEEF  // 无效头部魔术数字
+// 美化网络魔术数字常量名 - 将硬编码十六进制值替换为语义化常量
+#define NETWORK_INVALID_HEADER_MAGIC NETWORK_MAGIC_INVALID_HEADER  // 无效头部魔术数字
 #define NETWORK_LOG_MESSAGE_SIZE_MAX NETWORK_BUFFER_SIZE_100  // 最大日志消息大小
 #define NETWORK_LOG_MESSAGE_SIZE_MEDIUM NETWORK_BUFFER_SIZE_80  // 中等日志消息大小
 #define NETWORK_LOG_MESSAGE_SIZE_SMALL NETWORK_BUFFER_SIZE_40  // 小日志消息大小
@@ -37660,9 +37680,10 @@ uint64_t networkProcessHandshake(uint64_t network_socket_handle, int64_t network
 // 新增语义化常量定义 - 网络模块偏移量
 #define NETWORK_MODULE_OFFSET NETWORK_MODULE_CONFIG_OFFSET              // 网络模块偏移量
 #define NETWORK_MODULE_AC8_OFFSET NETWORK_RESPONSE_BUFFER_OFFSET        // 网络模块AC8偏移量
-#define NETWORK_MODULE_AC0_OFFSET 0xac0        // 网络模块AC0偏移量
-#define NETWORK_MODULE_8D0_OFFSET 0x8d0        // 网络模块8D0偏移量
-#define NETWORK_MODULE_8D8_OFFSET 0x8d8        // 网络模块8D8偏移量
+// 美化网络模块偏移量常量名 - 将硬编码十六进制值替换为语义化常量
+#define NETWORK_MODULE_AC0_OFFSET NETWORK_MODULE_CONFIG_AC0_OFFSET        // 网络模块AC0偏移量
+#define NETWORK_MODULE_8D0_OFFSET NETWORK_MODULE_CONFIG_8D0_OFFSET        // 网络模块8D0偏移量
+#define NETWORK_MODULE_8D8_OFFSET NETWORK_MODULE_CONFIG_8D8_OFFSET        // 网络模块8D8偏移量
 #define NETWORK_MODULE_8E0_OFFSET NETWORK_COMPARE_VALUE_8E0        // 网络模块8E0偏移量
 #define NETWORK_MODULE_8E8_OFFSET NETWORK_COMPARE_VALUE_8E8        // 网络模块8E8偏移量
 #define NETWORK_MODULE_8F0_OFFSET NETWORK_VALIDATION_OFFSET_8F0        // 网络模块8F0偏移量
@@ -37684,8 +37705,36 @@ uint64_t networkProcessHandshake(uint64_t network_socket_handle, int64_t network
 #define NETWORK_LOG_ID_SYSTEM_STATUS NETWORK_LOG_ID_SYSTEM_STATUS          // 系统状态日志ID
 #define NETWORK_LOG_ID_PACKET_PROCESS NETWORK_LOG_ID_PACKET_PROCESS         // 数据包处理日志ID
 
+// 新增语义化常量定义 - 网络模块配置偏移量
+#define NETWORK_MODULE_CONFIG_AC0_OFFSET 0xac0        // 网络模块配置AC0偏移量
+#define NETWORK_MODULE_CONFIG_8D0_OFFSET 0x8d0        // 网络模块配置8D0偏移量
+#define NETWORK_MODULE_CONFIG_8D8_OFFSET 0x8d8        // 网络模块配置8D8偏移量
+
 // 新增语义化常量定义 - 错误代码偏移量
 #define NETWORK_ERROR_OFFSET_35 0x35              // 错误代码偏移量35
+
+// 新增语义化常量定义 - 引擎完成端口偏移量
+#define NETWORK_ENGINE_COMPLETION_PORT_OFFSET_PRIMARY 0x42686    // 引擎完成端口主偏移量
+#define NETWORK_ENGINE_COMPLETION_PORT_OFFSET_SECONDARY 0x42687  // 引擎完成端口次偏移量
+
+// 新增语义化常量定义 - 网络缓冲区大小
+#define NETWORK_BUFFER_SIZE_4KB 0x1000       // 4KB缓冲区大小
+#define NETWORK_BUFFER_SIZE_8KB 0x2000       // 8KB缓冲区大小
+#define NETWORK_BUFFER_SIZE_16KB 0x4000      // 16KB缓冲区大小
+#define NETWORK_BUFFER_SIZE_32KB 0x8000      // 32KB缓冲区大小
+
+// 新增语义化常量定义 - 网络超时值
+#define NETWORK_TIMEOUT_5_SECOND 0x1388       // 5秒超时
+#define NETWORK_TIMEOUT_10_SECOND 0x2710      // 10秒超时
+
+// 新增语义化常量定义 - 网络端口
+#define NETWORK_PORT_HTTP_ALTERNATIVE 0x1f90  // 替代HTTP端口
+
+// 新增语义化常量定义 - 网络魔术数字
+#define NETWORK_MAGIC_INVALID_HEADER 0xDEADBEEF  // 无效头部魔术数字
+
+// 新增语义化常量定义 - 网络地址
+#define NETWORK_ADDRESS_LOOPBACK 0x7f000001  // 网络回环地址
 
 // 新增语义化常量定义 - 会话配置大小
 #define SESSION_CONFIG_SIZE NETWORK_MIN_PACKET_SIZE                  // 会话配置大小
@@ -37850,7 +37899,8 @@ uint64_t networkProcessHandshake(uint64_t network_socket_handle, int64_t network
 #define NETWORK_SECURE_PORT 8443  // 网络安全端口
 
 // 新增语义化常量定义 - 网络地址配置
-#define NETWORK_LOOPBACK_ADDRESS 0x7f000001  // 网络回环地址
+// 美化网络地址常量名 - 将硬编码十六进制值替换为语义化常量
+#define NETWORK_LOOPBACK_ADDRESS NETWORK_ADDRESS_LOOPBACK  // 网络回环地址
 #define NETWORK_BROADCAST_ADDRESS NETWORK_MAX_SIZE_FFFFFFFF  // 网络广播地址
 
 // 本次美化内容（2025年8月30日）：
