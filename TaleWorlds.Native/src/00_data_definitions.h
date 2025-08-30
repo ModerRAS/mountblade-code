@@ -104,30 +104,30 @@
 #define SYSTEM_CHAR_BACKTICK 0x60
 #define SYSTEM_CHAR_LOWERCASE_A 0x61
 #define SYSTEM_CHAR_LOWERCASE_B 0x62
-#define SYSTEM_CHAR_LOWERCASE_C SYSTEM_CHAR_LOWERCASE_C
-#define SYSTEM_CHAR_LOWERCASE_D SYSTEM_CHAR_LOWERCASE_D
-#define SYSTEM_CHAR_LOWERCASE_E SYSTEM_CHAR_LOWERCASE_E
-#define SYSTEM_CHAR_LOWERCASE_F SYSTEM_CHAR_LOWERCASE_F
-#define SYSTEM_CHAR_LOWERCASE_G SYSTEM_CHAR_LOWERCASE_G
-#define SYSTEM_CHAR_LOWERCASE_H SYSTEM_CHAR_LOWERCASE_H
-#define SYSTEM_CHAR_LOWERCASE_I SYSTEM_CHAR_LOWERCASE_I
-#define SYSTEM_CHAR_LOWERCASE_J SYSTEM_CHAR_LOWERCASE_J
-#define SYSTEM_CHAR_LOWERCASE_K SYSTEM_CHAR_LOWERCASE_K
-#define SYSTEM_CHAR_LOWERCASE_L SYSTEM_CHAR_LOWERCASE_L
-#define SYSTEM_CHAR_LOWERCASE_M SYSTEM_CHAR_LOWERCASE_M
-#define SYSTEM_CHAR_LOWERCASE_N SYSTEM_CHAR_LOWERCASE_N
-#define SYSTEM_CHAR_LOWERCASE_O SYSTEM_CHAR_LOWERCASE_O
-#define SYSTEM_CHAR_LOWERCASE_P SYSTEM_CHAR_LOWERCASE_P
-#define SYSTEM_CHAR_LOWERCASE_Q SYSTEM_CHAR_LOWERCASE_Q
-#define SYSTEM_CHAR_LOWERCASE_R SYSTEM_CHAR_LOWERCASE_R
-#define SYSTEM_CHAR_LOWERCASE_S SYSTEM_CHAR_LOWERCASE_S
-#define SYSTEM_CHAR_LOWERCASE_T SYSTEM_CHAR_LOWERCASE_T
-#define SYSTEM_CHAR_LOWERCASE_U SYSTEM_CHAR_LOWERCASE_U
-#define SYSTEM_CHAR_LOWERCASE_V SYSTEM_CHAR_LOWERCASE_V
-#define SYSTEM_CHAR_LOWERCASE_W SYSTEM_CHAR_LOWERCASE_W
-#define SYSTEM_CHAR_LOWERCASE_X SYSTEM_CHAR_LOWERCASE_X
-#define SYSTEM_CHAR_LOWERCASE_Y SYSTEM_CHAR_LOWERCASE_Y
-#define SYSTEM_CHAR_LOWERCASE_Z SYSTEM_CHAR_LOWERCASE_Z
+#define SYSTEM_CHAR_LOWERCASE_C 0x63
+#define SYSTEM_CHAR_LOWERCASE_D 0x64
+#define SYSTEM_CHAR_LOWERCASE_E 0x65
+#define SYSTEM_CHAR_LOWERCASE_F 0x66
+#define SYSTEM_CHAR_LOWERCASE_G 0x67
+#define SYSTEM_CHAR_LOWERCASE_H 0x68
+#define SYSTEM_CHAR_LOWERCASE_I 0x69
+#define SYSTEM_CHAR_LOWERCASE_J 0x6a
+#define SYSTEM_CHAR_LOWERCASE_K 0x6b
+#define SYSTEM_CHAR_LOWERCASE_L 0x6c
+#define SYSTEM_CHAR_LOWERCASE_M 0x6d
+#define SYSTEM_CHAR_LOWERCASE_N 0x6e
+#define SYSTEM_CHAR_LOWERCASE_O 0x6f
+#define SYSTEM_CHAR_LOWERCASE_P 0x70
+#define SYSTEM_CHAR_LOWERCASE_Q 0x71
+#define SYSTEM_CHAR_LOWERCASE_R 0x72
+#define SYSTEM_CHAR_LOWERCASE_S 0x73
+#define SYSTEM_CHAR_LOWERCASE_T 0x74
+#define SYSTEM_CHAR_LOWERCASE_U 0x75
+#define SYSTEM_CHAR_LOWERCASE_V 0x76
+#define SYSTEM_CHAR_LOWERCASE_W 0x77
+#define SYSTEM_CHAR_LOWERCASE_X 0x78
+#define SYSTEM_CHAR_LOWERCASE_Y 0x79
+#define SYSTEM_CHAR_LOWERCASE_Z 0x7a
 #define SYSTEM_CHAR_LEFT_BRACE 0x7b
 #define SYSTEM_CHAR_VERTICAL_BAR 0x7c
 #define SYSTEM_CHAR_RIGHT_BRACE 0x7d
@@ -1861,7 +1861,7 @@ extern char system_flag_buffer_cleanup_handler;
 
 // 系统特殊常量定义 - 美化为语义化名称
 #define SYSTEM_CHAR_SLASH 0x2f        // '/' 字符
-#define SYSTEM_CHAR_LOWERCASE_A SYSTEM_CHAR_LOWERCASE_E  // 'a' 字符  
+#define SYSTEM_CHAR_LOWERCASE_A 0x61  // 'a' 字符
 #define SYSTEM_CHAR_EXCLAMATION 0x21  // '!' 字符
 #define SYSTEM_CHAR_DC2 0x12          // DC2 控制字符
 #define SYSTEM_CHAR_DIGIT_ZERO 0x30   // '0' 字符
@@ -1873,12 +1873,12 @@ extern char system_flag_buffer_cleanup_handler;
 #define SYSTEM_CHAR_DIGIT_FIVE 0x58    // '5' 字符
 #define SYSTEM_CONTROL_VALUE_C 0xc     // 控制值 C
 #define SYSTEM_CONTROL_VALUE_A8 0xa8   // 控制值 A8
-#define SYSTEM_CHAR_LOWERCASE_H SYSTEM_CHAR_LOWERCASE_H   // 'h' 字符
+#define SYSTEM_CHAR_LOWERCASE_H 0x68  // 'h' 字符
 #define SYSTEM_CONTROL_VALUE_18 0x18  // 控制值 18
 #define SYSTEM_CONTROL_VALUE_A0 0xa0   // 控制值 A0
 #define SYSTEM_CHAR_LOWERCASE_P 0x50   // 'p' 字符
-#define SYSTEM_CHAR_LOWERCASE_L SYSTEM_CHAR_LOWERCASE_L   // 'l' 字符
-#define SYSTEM_CHAR_LOWERCASE_T SYSTEM_CHAR_LOWERCASE_T   // 't' 字符
+#define SYSTEM_CHAR_LOWERCASE_L 0x6c  // 'l' 字符
+#define SYSTEM_CHAR_LOWERCASE_T 0x74  // 't' 字符
 #define SYSTEM_CONTROL_VALUE_96 0x96   // 控制值 96
 #define SYSTEM_CONTROL_VALUE_F8 0xf8   // 控制值 F8
 #define SYSTEM_CONTROL_VALUE_FC 0xfc   // 控制值 FC
@@ -1888,12 +1888,12 @@ extern char system_flag_buffer_cleanup_handler;
 #define SYSTEM_CHAR_BACKSLASH 0x5c    // '\' 字符
 #define SYSTEM_CHAR_GRAVE_ACCENT 0x60  // '`' 字符
 #define SYSTEM_CHAR_LOWERCASE_A_2 SYSTEM_CHAR_LOWERCASE_A // 'a' 字符 (重复定义)
-#define SYSTEM_CHAR_LOWERCASE_F SYSTEM_CHAR_LOWERCASE_P   // 'f' 字符
+#define SYSTEM_CHAR_LOWERCASE_F 0x66  // 'f' 字符
 #define SYSTEM_CHAR_DIGIT_EIGHT 0x38    // '8' 字符
 #define SYSTEM_CHAR_DIGIT_FOUR_2 0x44   // '4' 字符 (重复定义)
 #define SYSTEM_CHAR_LOWERCASE_L_2 0x4c  // 'l' 字符 (重复定义)
 #define SYSTEM_CHAR_LOWERCASE_Q 0x51    // 'q' 字符
-#define SYSTEM_CHAR_LOWERCASE_X SYSTEM_CHAR_LOWERCASE_X    // 'x' 字符
+#define SYSTEM_CHAR_LOWERCASE_X 0x78  // 'x' 字符
 #define SYSTEM_CONTROL_VALUE_94 0x94    // 控制值 94
 #define SYSTEM_CONTROL_VALUE_98 0x98    // 控制值 98
 #define SYSTEM_CONTROL_VALUE_9C 0x9c    // 控制值 9C
@@ -6595,11 +6595,11 @@ section_processing_jump_label_:
     *(unsigned long long *)(mutex_attr + SYSTEM_CONFIG_OFFSET_INIT_FLAG) = SYSTEM_ZERO_VALUE;
     *(unsigned long long *)(mutex_attr + SYSTEM_OFFSET_PATH_SIZE) = SYSTEM_ZERO_VALUE;
     *(unsigned long long *)(mutex_attr + SYSTEM_OFFSET_PATH_BUFFER) = SYSTEM_ZERO_VALUE;
-    *(unsigned long long *)(mutex_attr + 0x2c) = SYSTEM_ZERO_VALUE;
+    *(unsigned long long *)(mutex_attr + SYSTEM_OFFSET_MUTEX_LOCK) = SYSTEM_ZERO_VALUE;
     *(unsigned long long *)(mutex_attr + SYSTEM_CONFIG_OFFSET_MODULE_HANDLE) = SYSTEM_ZERO_VALUE;
-    *(unsigned long long *)(mutex_attr + 0x3c) = SYSTEM_ZERO_VALUE;
-    *(unsigned long long *)(mutex_attr + 0x44) = SYSTEM_ZERO_VALUE;
-    *(unsigned long long *)(mutex_attr + 0x4c) = SYSTEM_ZERO_VALUE;
+    *(unsigned long long *)(mutex_attr + SYSTEM_OFFSET_MUTEX_DATA) = SYSTEM_ZERO_VALUE;
+    *(unsigned long long *)(mutex_attr + SYSTEM_OFFSET_MUTEX_EXTRA) = SYSTEM_ZERO_VALUE;
+    *(unsigned long long *)(mutex_attr + SYSTEM_OFFSET_MUTEX_FLAG) = SYSTEM_ZERO_VALUE;
     buffer_allocation_result = mutex_set_function(*(unsigned int *)(mutex_attr + SYSTEM_OFFSET_INITIALIZATION_FLAG));
     strcpy_s(mutex_attr + SYSTEM_CONFIG_OFFSET_INIT_FLAG, SYSTEM_CONFIG_BUFFER_SIZE, buffer_allocation_result);
   }
@@ -8250,8 +8250,8 @@ unsigned long long initialize_graphics_context(unsigned long long handle_param,u
   if (*(long long *)(handle_param + SYSTEM_POINTER_OFFSETa8) != 0) {
     system_initialization_result1 = *(long long *)(*(long long *)(handle_param + SYSTEM_POINTER_OFFSETa8) + 0x260);
   }
-  *(float *)(system_initialization_result1 + 0x218) = float_var;
-  *(float *)(system_initialization_result1 + 0x21c) = float_var;
+  *(float *)(system_initialization_result1 + SYSTEM_OFFSET_PERFORMANCE_TIMEOUT) = float_var;
+  *(float *)(system_initialization_result1 + SYSTEM_OFFSET_FLOAT_ARRAY_21C) = float_var;
   *(float *)(system_initialization_result1 + SYSTEM_OFFSET_FLOAT_DATA) = fStack_180;
   *(unsigned int *)(system_initialization_result1 + SYSTEM_OFFSET_AUDIO_CONFIG) = buffer_allocation_result;
   *(float *)(system_initialization_result1 + SYSTEM_OFFSET_NETWORK_DATA_PTR) = float_var;
@@ -12853,7 +12853,7 @@ section_processing_jump_label_:
     }
   }
 system_execution_function:
-  system_execute_crypto_operation(*(ulong long *)(unreg_bp + 0x218) ^ (ulong long)&system_stack_zero);
+  system_execute_crypto_operation(*(ulong long *)(unreg_bp + SYSTEM_OFFSET_CRYPTO_OPERATION_218) ^ (ulong long)&system_stack_zero);
 }
       crypto_module_flag = SYSTEM_ZERO_VALUE;
       system_global_data_pointer = buffer_allocation_result;
