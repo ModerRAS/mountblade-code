@@ -2088,12 +2088,12 @@ void NetworkSendData(uint32_t network_socket_descriptor, int32_t network_buffer_
   int64_t *network_timeout_config_ptr;
   int64_t network_primary_connection_data;
   int64_t network_data_buffer_ptr;
-  uint8_t encryption_temporary_buffer [NETWORK_BUFFER_SIZE_32];
+  uint8_t encryption_temp_buffer [NETWORK_BUFFER_SIZE_32];
   uint64_t network_processor_handler;
   int64_t network_context_array_ptr;
   int64_t network_data_position_offset;
   int64_t network_secondary_connection_info;
-  uint8_t network_send_buffer_ptr [NETWORK_BUFFER_SIZE_40];
+  uint8_t network_send_buffer [NETWORK_BUFFER_SIZE_40];
   uint64_t network_encryption_xor_value;
   network_encryption_xor_value = network_encryption_xor_global ^ (ulonglong)encryption_temp_buffer;
   if (network_buffer_size == NETWORK_OPERATION_FAILURE) {
