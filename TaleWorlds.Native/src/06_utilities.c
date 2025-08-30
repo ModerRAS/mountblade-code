@@ -144,19 +144,20 @@
 #define EVENT_CALLBACK_RESOURCE_PROCESS 0x6790
 
 // 新增语义化宏定义 - 替换地址常量
-#define ADDRESS_SECURITY_TOKEN_HANDLER 0x180c82238
-#define ADDRESS_MUTEX_DESTROY_1 0x180c82248
-#define ADDRESS_MUTEX_DESTROY_2 0x180c82258
-#define ADDRESS_TIMER_DESTROY 0x180c82268
-#define ADDRESS_TIMER_SETUP 0x180c82278
-#define ADDRESS_CLOCK_INIT 0x180c82288
-#define ADDRESS_MUTEX_DESTROY_3 0x180c82298
-#define ADDRESS_MUTEX_DESTROY_4 0x180c822a8
-#define ADDRESS_MUTEX_DESTROY_5 0x180c822b8
-#define ADDRESS_MUTEX_DESTROY_6 0x180c822c8
-#define ADDRESS_THREAD_LOCAL_CLEANUP 0x180c822d8
-#define ADDRESS_THREAD_LOCAL_STORAGE 0x180c822e8
-#define ADDRESS_RESOURCE_CLEANUP 0x180c822f8
+// 新增语义化宏定义 - 替换系统地址变量名
+#define ADDRESS_SECURITY_TOKEN_HANDLER address_security_token_handler
+#define ADDRESS_MUTEX_DESTROY_1 address_mutex_destroy_1
+#define ADDRESS_MUTEX_DESTROY_2 address_mutex_destroy_2
+#define ADDRESS_TIMER_DESTROY address_timer_destroy
+#define ADDRESS_TIMER_SETUP address_timer_setup
+#define ADDRESS_CLOCK_INIT address_clock_init
+#define ADDRESS_MUTEX_DESTROY_3 address_mutex_destroy_3
+#define ADDRESS_MUTEX_DESTROY_4 address_mutex_destroy_4
+#define ADDRESS_MUTEX_DESTROY_5 address_mutex_destroy_5
+#define ADDRESS_MUTEX_DESTROY_6 address_mutex_destroy_6
+#define ADDRESS_THREAD_LOCAL_CLEANUP address_thread_local_cleanup
+#define ADDRESS_THREAD_LOCAL_STORAGE address_thread_local_storage
+#define ADDRESS_RESOURCE_CLEANUP address_resource_cleanup
 // 
 // 美化修改说明：
 // 1. 将所有 g_systemData 十六进制地址变量名替换为语义化名称
@@ -311,10 +312,10 @@
 #define UTILITY_STACK_ARRAY_INDEX_SIZE 2
 
 // 新增语义化宏定义 - 替换栈变量名
-#define UTILITY_STACK_ARRAY_PRIMARY_BUFFER 0x180bfc170
-#define UTILITY_STACK_ARRAY_SECONDARY_BUFFER 0x180bfc174
-#define UTILITY_STACK_INDEX_BUFFER 0x180bfc178
-#define UTILITY_RENDER_SYSTEM_ALIGNMENT_FLAG 0x180bfc171
+#define UTILITY_STACK_ARRAY_PRIMARY_BUFFER utility_stack_array_primary_buffer
+#define UTILITY_STACK_ARRAY_SECONDARY_BUFFER utility_stack_array_secondary_buffer
+#define UTILITY_STACK_INDEX_BUFFER utility_stack_index_buffer
+#define UTILITY_RENDER_SYSTEM_ALIGNMENT_FLAG utility_render_system_alignment_flag
 #define UTILITY_CHECK_FLAG 0x1b
 #define UTILITY_BIT_SHIFT_1 0x19
 #define UTILITY_BIT_SHIFT_2 0x1a
@@ -379,24 +380,24 @@
 
 // 函数: int processBufferData(longlong buffer_handle)
 // 缓冲区数据处理函数
-dataValue g_bufferReadOffset;              // 缓冲区读取偏移量
-dataValue g_bufferWriteOffset;             // 缓冲区写入偏移量  
-dataValue g_bufferCurrentSize;             // 缓冲区当前大小
-dataValue g_bufferMaximumAllowedSize;      // 缓冲区最大允许大小
-dataValue g_bufferOperationFlags;         // 缓冲区操作标志
-dataValue g_bufferDataChecksum;            // 缓冲区数据校验和
+uint64 g_bufferReadOffset;              // 缓冲区读取偏移量
+uint64 g_bufferWriteOffset;             // 缓冲区写入偏移量  
+uint64 g_bufferCurrentSize;             // 缓冲区当前大小
+uint64 g_bufferMaximumAllowedSize;      // 缓冲区最大允许大小
+uint32 g_bufferOperationFlags;         // 缓冲区操作标志
+uint32 g_bufferDataChecksum;            // 缓冲区数据校验和
 byte g_isBufferInitialized;               // 缓冲区初始化状态标志
-dataValue g_bufferTotalCapacity;           // 缓冲区总容量
-dataValue g_bufferAbsoluteMaximumSize;     // 缓冲区绝对最大尺寸
+uint64 g_bufferTotalCapacity;           // 缓冲区总容量
+uint64 g_bufferAbsoluteMaximumSize;     // 缓冲区绝对最大尺寸
 byte g_isBufferLocked;                     // 缓冲区锁定标志
-dataValue g_bufferStatusFlags;             // 缓冲区状态标志
+uint32 g_bufferStatusFlags;             // 缓冲区状态标志
 uint64 g_primaryBufferHandle;             // 主缓冲区句柄
 uint64 g_secondaryBufferHandle;           // 辅助缓冲区句柄
-dataValue g_bufferSizeConfiguration;       // 缓冲区大小配置
-dataValue g_bufferAlignmentConfiguration;  // 缓冲区对齐配置
-dataValue g_bufferPermissionConfiguration; // 缓冲区权限配置
-dataValue g_bufferFlagConfiguration;       // 缓冲区标志配置
-dataValue g_bufferMemoryPointer;           // 缓冲区内存指针
+uint64 g_bufferSizeConfiguration;       // 缓冲区大小配置
+uint64 g_bufferAlignmentConfiguration;  // 缓冲区对齐配置
+uint64 g_bufferPermissionConfiguration; // 缓冲区权限配置
+uint64 g_bufferFlagConfiguration;       // 缓冲区标志配置
+void* g_bufferMemoryPointer;           // 缓冲区内存指针
 
 // 函数: data_value g_initialize_memory_pool;
 // 系统初始化函数180941590
@@ -2840,16 +2841,17 @@ void ProcessMemoryAllocation(longlong resource_handle_identifier,longlong resour
 void HandleResourceCleanup(void)
 
 {
-  uint64 utility_operation_status;
+  uint64 utility_memory_block_handle;
   int utility_operation_status;
   longlong utility_register_input_value;
   longlong utility_register_context_base;
   longlong utility_array_index;
-  int utility_iteration_counter_primary;
+  int utility_iteration_counter;
   byte *utility_stack_buffer_ptr;
   int utility_stack_buffer_count;
   uint32 utility_stack_buffer_mask;
   ulonglong utility_security_context;
+  byte *utility_stack_buffer_primary;
   
   if (*(longlong *)(utility_register_input_value + 8) != 0) {
     utility_stack_buffer_ptr = &utility_stack_buffer_local;
@@ -2862,11 +2864,11 @@ void HandleResourceCleanup(void)
       if (0 < utility_stack_buffer_count) {
         utility_array_index = 0;
         do {
-          utility_operation_status = *(uint64 *)(utility_stack_buffer_ptr + utility_array_index);
-          utility_operation_status = utility_allocate_memory(utility_operation_status);
+          utility_memory_block_handle = *(uint64 *)(utility_stack_buffer_ptr + utility_array_index);
+          utility_operation_status = utility_allocate_memory(utility_memory_block_handle);
           if (utility_operation_status != 2) {
                     // WARNING: Subroutine does not return
-            utility_free_memory(utility_operation_status,1); # 内存块释放函数
+            utility_free_memory(utility_memory_block_handle,1); # 内存块释放函数
           }
           utility_iteration_counter = utility_iteration_counter + 1;
           utility_array_index = utility_array_index + 8;
