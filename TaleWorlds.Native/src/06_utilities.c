@@ -1,5 +1,75 @@
 #include "TaleWorlds.Native.Split.h"
 
+// 新增状态码常量定义
+#define STATUS_SUCCESS 0xd
+#define STATUS_PENDING 0xe
+#define STATUS_PROCESSING 0x12
+#define STATUS_COMPLETE 0x13
+#define STATUS_VALIDATED 0x15
+#define STATUS_INITIALIZED 0x16
+#define STATUS_ACTIVE 0x17
+#define STATUS_READY 0x19
+#define STATUS_CONFIGURING 0x1a
+#define STATUS_FINALIZING 0x1b
+#define STATUS_INITIALIZING 0x21
+#define STATUS_CONFIG_LOADED 0x22
+#define STATUS_READY_TO_START 0x23
+#define SECURITY_LEVEL_LOW 0xb
+
+// 新增错误码常量定义
+#define ERROR_NONE 0x0
+#define ERROR_INVALID_PARAM 0x1
+#define ERROR_MEMORY_FAIL 0x2
+#define ERROR_TIMEOUT 0x3
+#define ERROR_ACCESS_DENIED 0x4
+#define ERROR_NOT_FOUND 0x5
+#define ERROR_ALREADY_EXISTS 0x6
+#define ERROR_BUSY 0x7
+#define ERROR_CANCELLED 0x8
+#define ERROR_NOT_SUPPORTED 0x9
+#define ERROR_INVALID_HANDLE 0xa
+#define ERROR_BUFFER_OVERFLOW 0xc
+#define ERROR_INVALID_STATE 0xf
+#define ERROR_RESOURCE_BUSY 0x10
+#define ERROR_NOT_IMPLEMENTED 0x11
+#define ERROR_OUT_OF_MEMORY 0x14
+#define ERROR_CONNECTION_FAILED 0x18
+
+// 新增状态码常量定义
+#define STATUS_SUCCESS 0xd
+#define STATUS_PENDING 0xe
+#define STATUS_PROCESSING 0x12
+#define STATUS_COMPLETE 0x13
+#define STATUS_VALIDATED 0x15
+#define STATUS_INITIALIZED 0x16
+#define STATUS_ACTIVE 0x17
+#define STATUS_READY 0x19
+#define STATUS_CONFIGURING 0x1a
+#define STATUS_FINALIZING 0x1b
+#define STATUS_INITIALIZING 0x21
+#define STATUS_CONFIG_LOADED 0x22
+#define STATUS_READY_TO_START 0x23
+#define SECURITY_LEVEL_LOW 0xb
+
+// 新增错误码常量定义
+#define ERROR_NONE 0x0
+#define ERROR_INVALID_PARAM 0x1
+#define ERROR_MEMORY_FAIL 0x2
+#define ERROR_TIMEOUT 0x3
+#define ERROR_ACCESS_DENIED 0x4
+#define ERROR_NOT_FOUND 0x5
+#define ERROR_ALREADY_EXISTS 0x6
+#define ERROR_BUSY 0x7
+#define ERROR_CANCELLED 0x8
+#define ERROR_NOT_SUPPORTED 0x9
+#define ERROR_INVALID_HANDLE 0xa
+#define ERROR_BUFFER_OVERFLOW 0xc
+#define ERROR_INVALID_STATE 0xf
+#define ERROR_RESOURCE_BUSY 0x10
+#define ERROR_NOT_IMPLEMENTED 0x11
+#define ERROR_OUT_OF_MEMORY 0x14
+#define ERROR_CONNECTION_FAILED 0x18
+
 // 新增的语义化宏定义 - 替换十六进制偏移量
 #define UTILITY_RESOURCE_STATUS_OFFSET 0x116bc
 #define UTILITY_RESOURCE_CONFIG_OFFSET 0x1193c
@@ -176,6 +246,15 @@
 #define UTILITY_STACK_OFFSET_2 0xd4
 #define UTILITY_ACCESS_SIZE_1 0x130
 #define UTILITY_ACCESS_SIZE_2 0x119
+
+// 新增语义化宏定义 - 替换更多硬编码十六进制值
+#define UTILITY_MODULE_HANDLE_OFFSET 0xd8
+#define UTILITY_BUFFER_OFFSET_ALT 0x94
+#define UTILITY_ITERATION_COUNTER_OFFSET_ALT 0xb0
+#define UTILITY_FLOAT_VALUE_OFFSET_ALT 0xb4
+#define UTILITY_COUNTER_OFFSET_ALT 0xac
+#define UTILITY_FUNCTION_POINTER_OFFSET_ALT 0x2f8
+#define UTILITY_SYSTEM_STATUS_OFFSET_ALT 0x790
 
 // 函数: int processBufferData(longlong buffer_handle)
 // 缓冲区数据处理函数
@@ -15633,7 +15712,7 @@ process_data_iteration:
       registerESI = 6;
       break;
     default:
-      validation_result_flag = 0xd;
+      validation_result_flag = STATUS_SUCCESS;
       goto validate_data_iteration;
     }
     *(uint *)(stack_frame_pointer + 0xd4) = registerESI;
@@ -18626,7 +18705,7 @@ LAB_SKIP_TO_NEXT:
     system_status_code = 9;
     break;
   default:
-    loop_counter = 0xd;
+    loop_counter = STATUS_SUCCESS;
     goto LAB_FINALIZE_PROCESSING;
   }
   *(uint32 *)(resource_handle_identifier + field_offset_primary) = system_status_code;
@@ -18978,7 +19057,7 @@ LAB_SKIP_TO_NEXT:
     validation_result_flag = 9;
     break;
   default:
-    system_status_code = 0xd;
+    system_status_code = STATUS_SUCCESS;
     goto LAB_FINALIZE_PROCESSING;
   }
   *(uint *)(utility_register_context + field_offset_primary) = validation_result_flag;
@@ -20153,7 +20232,7 @@ LAB_START_RESOURCE_OPERATION:
     return loop_counter;
   }
   *(uint *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET) = utility_stack_array_primary_20[0];
-  loop_counter = 0xd;
+  loop_counter = STATUS_SUCCESS;
   if (utility_stack_array_primary_20[0] < 5) {
     loop_counter = 0;
   }
@@ -20186,7 +20265,7 @@ LAB_PREPARE_RESOURCE_DATA:
     return loop_counter;
   }
   *(uint *)(resource_handle_identifier + RESOURCE_DATA_IDX) = utility_stack_array_primary_20[0];
-  loop_counter = 0xd;
+  loop_counter = STATUS_SUCCESS;
   if (utility_stack_array_primary_20[0] < 3) {
     loop_counter = 0;
   }
@@ -20273,7 +20352,7 @@ LAB_START_RESOURCE_OPERATION:
     return loop_counter;
   }
   *(uint *)(cpu_register_context + RESOURCE_UTILITY_HANDLE_DATA_OFFSET) = in_stack_98;
-  loop_counter = 0xd;
+  loop_counter = STATUS_SUCCESS;
   if (in_stack_98 < 5) {
     loop_counter = 0;
   }
@@ -20306,7 +20385,7 @@ LAB_PREPARE_RESOURCE_DATA:
     return loop_counter;
   }
   *(uint *)(cpu_register_context + RESOURCE_DATA_IDX) = in_stack_98;
-  loop_counter = 0xd;
+  loop_counter = STATUS_SUCCESS;
   if (in_stack_98 < 3) {
     loop_counter = 0;
   }
@@ -21005,7 +21084,7 @@ ulonglong ProcessValidationRequest(longlong resource_handle_identifier,uint64 *m
       if (loop_counter == 0) {
         if (((*(uint *)(resource_buffer + 8) < 0x8a) && (*(int *)(resource_handle_identifier + SYSTEM_FLAGS_OFFSET) == 0)) ||
            ((*(uint *)(resource_buffer + 8) < 0x8e && (*(int *)(resource_handle_identifier + SYSTEM_FLAGS_OFFSET) == INT_MAX)))) {
-          *(uint32 *)(resource_handle_identifier + SYSTEM_FLAGS_OFFSET) = 0x21;
+          *(uint32 *)(resource_handle_identifier + SYSTEM_FLAGS_OFFSET) = STATUS_INITIALIZING;
         }
         loop_counter = ResizeResourceBuffer(resource_buffer,resource_handle_identifier + resource_handle_offset_zero);
         if ((int)loop_counter == 0) {
@@ -21086,7 +21165,7 @@ ulonglong InitializeValidationHandler(void)
       if (loop_counter == 0) {
         if (((*(uint *)(utility_base_register_pointer + 8) < 0x8a) && (*(int *)(cpu_register_context + SYSTEM_FLAGS_OFFSET) == 0)) ||
            ((*(uint *)(utility_base_register_pointer + 8) < 0x8e && (*(int *)(cpu_register_context + SYSTEM_FLAGS_OFFSET) == INT_MAX)))) {
-          *(uint32 *)(cpu_register_context + SYSTEM_FLAGS_OFFSET) = 0x21;
+          *(uint32 *)(cpu_register_context + SYSTEM_FLAGS_OFFSET) = STATUS_INITIALIZING;
         }
         loop_counter = ResizeResourceBuffer();
         if ((int)loop_counter == 0) {
@@ -21166,7 +21245,7 @@ ulonglong GetValidationStatus(void)
     if (loop_counter == 0) {
       if (((*(uint *)(utility_base_register_pointer + 8) < 0x8a) && (*(int *)(cpu_register_context + SYSTEM_FLAGS_OFFSET) == 0)) ||
          ((*(uint *)(utility_base_register_pointer + 8) < 0x8e && (*(int *)(cpu_register_context + SYSTEM_FLAGS_OFFSET) == INT_MAX)))) {
-        *(uint32 *)(cpu_register_context + SYSTEM_FLAGS_OFFSET) = 0x21;
+        *(uint32 *)(cpu_register_context + SYSTEM_FLAGS_OFFSET) = STATUS_INITIALIZING;
       }
       loop_counter = ResizeResourceBuffer();
       if ((int)loop_counter == 0) {
@@ -21239,7 +21318,7 @@ ulonglong ValidateSystemResources(void)
     if (loop_counter == 0) {
       if (((*(uint *)(utility_base_register_pointer + 8) < 0x8a) && (*(int *)(cpu_register_context + SYSTEM_FLAGS_OFFSET) == 0)) ||
          ((*(uint *)(utility_base_register_pointer + 8) < 0x8e && (*(int *)(cpu_register_context + SYSTEM_FLAGS_OFFSET) == INT_MAX)))) {
-        *(uint32 *)(cpu_register_context + SYSTEM_FLAGS_OFFSET) = 0x21;
+        *(uint32 *)(cpu_register_context + SYSTEM_FLAGS_OFFSET) = STATUS_INITIALIZING;
       }
       loop_counter = ResizeResourceBuffer();
       if ((int)loop_counter == 0) {
@@ -21713,7 +21792,7 @@ ulonglong ProcessResourceOperation2(longlong resource_handle_identifier,longlong
 LAB_RESOURCE_DATA_VALIDATION:
   if ((int)loop_counter == 0) {
     *(uint *)(resource_handle_identifier + ERROR_CODE_2) = utility_stack_array_primary_20[0];
-    loop_counter = 0xd;
+    loop_counter = STATUS_SUCCESS;
     if (utility_stack_array_primary_20[0] < 7) {
       loop_counter = systemFlagsData;
     }
@@ -21817,7 +21896,7 @@ ulonglong InitializeResourceOperator(void)
 LAB_RESOURCE_DATA_VALIDATION:
   if ((int)loop_counter == 0) {
     *(uint *)(cpu_register_context + ERROR_CODE_2) = stack_status_register;
-    loop_counter = 0xd;
+    loop_counter = STATUS_SUCCESS;
     if (stack_status_register < 7) {
       loop_counter = systemFlagsData;
     }
@@ -21917,7 +21996,7 @@ ulonglong GetOperationResult2(void)
 LAB_RESOURCE_DATA_VALIDATION:
   if ((int)loop_counter == 0) {
     *(uint *)(cpu_register_context + ERROR_CODE_2) = stack_status_register;
-    loop_counter = 0xd;
+    loop_counter = STATUS_SUCCESS;
     if (stack_status_register < 7) {
       loop_counter = systemFlagsData;
     }
@@ -22013,7 +22092,7 @@ ulonglong ValidateOperationData2(void)
 LAB_RESOURCE_DATA_VALIDATION:
   if ((int)loop_counter == 0) {
     *(uint *)(cpu_register_context + ERROR_CODE_2) = stackContextUIntB8;
-    loop_counter = 0xd;
+    loop_counter = STATUS_SUCCESS;
     if (stackContextUIntB8 < 7) {
       loop_counter = systemFlagsData;
     }
@@ -23496,16 +23575,16 @@ uint64 InitializeIntegrityOperator(longlong resource_handle_identifier,longlong 
             utility_stack_resource_context_18[0] = 10;
             break;
           case 0xb:
-            utility_stack_resource_context_18[0] = 0xb;
+            utility_stack_resource_context_18[0] = SECURITY_LEVEL_LOW;
             break;
           case structure_multiplier:
             utility_stack_resource_context_18[0] = structure_multiplier;
             break;
           case 0xd:
-            utility_stack_resource_context_18[0] = 0xd;
+            utility_stack_resource_context_18[0] = STATUS_SUCCESS;
             break;
           case 0xe:
-            utility_stack_resource_context_18[0] = 0xe;
+            utility_stack_resource_context_18[0] = STATUS_PENDING;
             break;
           case ALIGNMENT_MASK:
             utility_stack_resource_context_18[0] = ALIGNMENT_MASK;
@@ -23517,34 +23596,34 @@ uint64 InitializeIntegrityOperator(longlong resource_handle_identifier,longlong 
             utility_stack_resource_context_18[0] = access_flag;
             break;
           case 0x12:
-            utility_stack_resource_context_18[0] = 0x12;
+            utility_stack_resource_context_18[0] = STATUS_PROCESSING;
             break;
           case 0x13:
-            utility_stack_resource_context_18[0] = 0x13;
+            utility_stack_resource_context_18[0] = STATUS_COMPLETE;
             break;
           case RESOURCE_DATA_IDX:
             utility_stack_resource_context_18[0] = RESOURCE_DATA_IDX;
             break;
           case 0x15:
-            utility_stack_resource_context_18[0] = 0x15;
+            utility_stack_resource_context_18[0] = STATUS_VALIDATED;
             break;
           case 0x16:
-            utility_stack_resource_context_18[0] = 0x16;
+            utility_stack_resource_context_18[0] = STATUS_INITIALIZED;
             break;
           case 0x17:
-            utility_stack_resource_context_18[0] = 0x17;
+            utility_stack_resource_context_18[0] = STATUS_ACTIVE;
             break;
           case RESOURCE_HANDLE_OFFSET:
             utility_stack_resource_context_18[0] = RESOURCE_HANDLE_OFFSET;
             break;
           case 0x19:
-            utility_stack_resource_context_18[0] = 0x19;
+            utility_stack_resource_context_18[0] = STATUS_READY;
             break;
           case 0x1a:
-            utility_stack_resource_context_18[0] = 0x1a;
+            utility_stack_resource_context_18[0] = STATUS_CONFIGURING;
             break;
           case 0x1b:
-            utility_stack_resource_context_18[0] = 0x1b;
+            utility_stack_resource_context_18[0] = STATUS_FINALIZING;
             break;
           case byte_offset_flag:
             utility_stack_resource_context_18[0] = byte_offset_flag;
@@ -23562,13 +23641,13 @@ uint64 InitializeIntegrityOperator(longlong resource_handle_identifier,longlong 
             utility_stack_resource_context_18[0] = POINTER_DATA_OFFSET;
             break;
           case 0x21:
-            utility_stack_resource_context_18[0] = 0x21;
+            utility_stack_resource_context_18[0] = STATUS_INITIALIZING;
             break;
           case 0x22:
-            utility_stack_resource_context_18[0] = 0x22;
+            utility_stack_resource_context_18[0] = STATUS_CONFIG_LOADED;
             break;
           case 0x23:
-            utility_stack_resource_context_18[0] = 0x23;
+            utility_stack_resource_context_18[0] = STATUS_READY_TO_START;
             break;
           case FIELD_OFFSET_3:
             utility_stack_resource_context_18[0] = FIELD_OFFSET_3;
@@ -23644,16 +23723,16 @@ uint64 GetIntegrityResult2(void)
           resourceSecurityParam = 10;
           break;
         case 0xb:
-          resourceSecurityParam = 0xb;
+          resourceSecurityParam = SECURITY_LEVEL_LOW;
           break;
         case structure_multiplier:
           resourceSecurityParam = structure_multiplier;
           break;
         case 0xd:
-          resourceSecurityParam = 0xd;
+          resourceSecurityParam = STATUS_SUCCESS;
           break;
         case 0xe:
-          resourceSecurityParam = 0xe;
+          resourceSecurityParam = STATUS_PENDING;
           break;
         case ALIGNMENT_MASK:
           resourceSecurityParam = ALIGNMENT_MASK;
@@ -23665,34 +23744,34 @@ uint64 GetIntegrityResult2(void)
           resourceSecurityParam = access_flag;
           break;
         case 0x12:
-          resourceSecurityParam = 0x12;
+          resourceSecurityParam = STATUS_PROCESSING;
           break;
         case 0x13:
-          resourceSecurityParam = 0x13;
+          resourceSecurityParam = STATUS_COMPLETE;
           break;
         case RESOURCE_DATA_IDX:
           resourceSecurityParam = RESOURCE_DATA_IDX;
           break;
         case 0x15:
-          resourceSecurityParam = 0x15;
+          resourceSecurityParam = STATUS_VALIDATED;
           break;
         case 0x16:
-          resourceSecurityParam = 0x16;
+          resourceSecurityParam = STATUS_INITIALIZED;
           break;
         case 0x17:
-          resourceSecurityParam = 0x17;
+          resourceSecurityParam = STATUS_ACTIVE;
           break;
         case RESOURCE_HANDLE_OFFSET:
           resourceSecurityParam = RESOURCE_HANDLE_OFFSET;
           break;
         case 0x19:
-          resourceSecurityParam = 0x19;
+          resourceSecurityParam = STATUS_READY;
           break;
         case 0x1a:
-          resourceSecurityParam = 0x1a;
+          resourceSecurityParam = STATUS_CONFIGURING;
           break;
         case 0x1b:
-          resourceSecurityParam = 0x1b;
+          resourceSecurityParam = STATUS_FINALIZING;
           break;
         case byte_offset_flag:
           resourceSecurityParam = byte_offset_flag;
@@ -23710,13 +23789,13 @@ uint64 GetIntegrityResult2(void)
           resourceSecurityParam = POINTER_DATA_OFFSET;
           break;
         case 0x21:
-          resourceSecurityParam = 0x21;
+          resourceSecurityParam = STATUS_INITIALIZING;
           break;
         case 0x22:
-          resourceSecurityParam = 0x22;
+          resourceSecurityParam = STATUS_CONFIG_LOADED;
           break;
         case 0x23:
-          resourceSecurityParam = 0x23;
+          resourceSecurityParam = STATUS_READY_TO_START;
           break;
         case FIELD_OFFSET_3:
           resourceSecurityParam = FIELD_OFFSET_3;
