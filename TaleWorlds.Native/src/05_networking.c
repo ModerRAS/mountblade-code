@@ -24559,8 +24559,8 @@ int64_t networkFreeConnection4(int64_t network_socket_descriptor,uint64_t networ
   network_timeout_ms = *(int64_t *)(network_socket_context_ptr + NETWORK_CONNECTION_STATE_OFFSET_3B0);
   if ((*(int32_t *)(network_socket_context_ptr + NETWORK_STATUS_CODE_OFFSET_3AC) != NETWORK_OPERATION_FAILURE) && (*(int32_t *)(network_socket_context_ptr + NETWORK_STATUS_OFFSET_390) != NETWORK_OPERATION_FAILURE)) {
     network_connection_processor_count_value = *(int32_t *)(*(int64_t *)(network_socket_context_ptr + NETWORK_ENCRYPTION_OFFSET8) +
-                          threadStackLong28._4_4_) & *(int32_t *)(network_socket_context_ptr + 0x390) - 1U) * 4);
-        pprimary_connection_info = (int64_t *)((longlong)network_connection_processor_count_value * SOCKET_RESPONSE_OFFSET + *(int64_t *)(network_socket_context_ptr + 0x398));
+                          threadStackLong28._4_4_) & *(int32_t *)(network_socket_context_ptr + NETWORK_STATUS_OFFSET_390) - 1U) * 4);
+        pprimary_connection_info = (int64_t *)((longlong)network_connection_processor_count_value * SOCKET_RESPONSE_OFFSET + *(int64_t *)(network_socket_context_ptr + NETWORK_STATUS_CODE_OFFSET_398));
 // 函数: void networkFreeConnection5(void)
 void networkFreeConnection5(void)
 uint64_t networkFreeConnection6(void)
@@ -36024,6 +36024,24 @@ uint64_t networkProcessHandshake(uint64_t network_socket_descriptor,int64_t netw
         status_return_code = networkEstablishSecureConnection(network_socket_descriptor,network_buffer_pointer);
 // 网络系统常量定义补充
 #define NETWORK_NETWORK_SOCKET_BUFFER_OFFSET 0x19
+
+// 新增语义化常量定义 - 网络状态码偏移量
+#define NETWORK_STATUS_OFFSET_390 0x390  // 网络状态偏移量390
+#define NETWORK_STATUS_OFFSET_39C 0x39c  // 网络状态偏移量39C
+
+// 新增语义化常量定义 - 网络加密相关偏移量
+#define NETWORK_ENCRYPTION_OFFSET_8 0x8  // 网络加密偏移量8
+
+// 新增语义化常量定义 - 网络缓冲区大小
+#define NETWORK_BUFFER_SIZE_MEDIUM 0x20  // 网络缓冲区中等大小
+
+// 新增语义化常量定义 - 网络偏移量
+#define NETWORK_OFFSET_3DC 0x3dc  // 网络偏移量3DC
+#define NETWORK_OFFSET_3B8 0x3b8  // 网络偏移量3B8
+
+// 新增语义化常量定义 - 网络套接字压缩偏移量
+#define SOCKET_COMPRESSION_OFFSET0 0x0  // 套接字压缩偏移量0
+#define SOCKET_COMPRESSION_OFFSET8 0x8  // 套接字压缩偏移量8
 // 新增语义化宏定义 - 美化网络系统中剩余的十六进制常量
 // 这是简化实现，仅添加新的常量定义来替换硬编码值
 #define SOCKET_HANDLE_OFFSET1 0x1
