@@ -20706,8 +20706,8 @@ void ConfigureGraphicsShader(uint64_t handleIdentifier,longlong resourceIdentifi
   ulonglong uint_var_;
   uint uint_var_;
   bool bVar31;
-  uint32_t extraout_XMM0_Da;
-  uint32_t extraout_XMM0_Da_00;
+  uint32_t extra_output_varXMM0_Da;
+  uint32_t extra_output_varXMM0_Da_00;
   uint8_t localBuffer_368 [32];
   uint8_t uintStack_348;
   char cStack_338;
@@ -20843,7 +20843,7 @@ void ConfigureGraphicsShader(uint64_t handleIdentifier,longlong resourceIdentifi
           long_var_ = *(longlong *)(long_var_ + 0x28) - (longlong)pbVar15;
           goto LAB_18004d1a2;
         }
-        ConfigureGraphicsShader(extraout_XMM0_Da,long_var_);
+        ConfigureGraphicsShader(extra_output_varXMM0_Da,long_var_);
         if (uint_var_ == 8) {
           int_var_ = strcmp(puVar11,&globalSystemVariable);
           bVar31 = int_var_ == 0;
@@ -47849,7 +47849,7 @@ int SystemFunction_48_0(longlong handleIdentifier,longlong *resourceIdentifier)
   ulonglong *puVar12;
   uint uint_var_;
   ulonglong uint_var_;
-  uint32_t extraout_XMM0_Da;
+  uint32_t extra_output_varXMM0_Da;
   uint32_t uint_var_;
   uint64_t ustack_var;
   uint64_t *node_new;
@@ -47879,7 +47879,7 @@ int SystemFunction_48_0(longlong handleIdentifier,longlong *resourceIdentifier)
         plongStack_78 = (longlong *)0x0;
         pcStack_70 = (code *)0x0;
         pcStack_68 = _guard_check_icall;
-        InitializeSystemProfiler(extraout_XMM0_Da,handleIdentifier,&bufferPtr_80);
+        InitializeSystemProfiler(extra_output_varXMM0_Da,handleIdentifier,&bufferPtr_80);
         if (pcStack_70 != (code *)0x0) {
           (*pcStack_70)(&bufferPtr_80,0,0);
         }

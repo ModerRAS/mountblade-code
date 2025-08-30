@@ -4403,14 +4403,14 @@ label_:
     pppppppuStackX_18 = (unsigned long long *******)ppppppuVar12;
     (*(code *)(*ppppppuVar12)[5])(ppppppuVar12);
   }
-  pppppppuStackX_18 = *(unsigned long long ********)(init_result9 + 系统配置缓冲区大小);
-  *(unsigned long long *******)(init_result9 + 系统配置缓冲区大小) = ppppppuVar12;
+  pppppppuStackX_18 = *(unsigned long long ********)(init_result9 + SYSTEM_CONFIG_BUFFER_SIZE);
+  *(unsigned long long *******)(init_result9 + SYSTEM_CONFIG_BUFFER_SIZE) = ppppppuVar12;
   if (pppppppuStackX_18 != (unsigned long long *******)0x0) {
     (*(code *)(*pppppppuStackX_18)[7])();
   }
   uint_var_ = global_data_;
   pppppppuStackX_10 = &pppppppuStackX_18;
-  pppppppuStackX_18 = *(unsigned long long ********)(init_result9 + 系统配置缓冲区大小);
+  pppppppuStackX_18 = *(unsigned long long ********)(init_result9 + SYSTEM_CONFIG_BUFFER_SIZE);
   if (pppppppuStackX_18 != (unsigned long long *******)0x0) {
     (*(code *)(*pppppppuStackX_18)[5])();
   }
