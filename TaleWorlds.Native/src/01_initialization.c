@@ -48,6 +48,12 @@
 #define SYSTEM_STRING_N_DI_TOKEN 0x6e206469
 #define SYSTEM_STRING_R_TO_TOKEN 0x7220746f
 #define SYSTEM_STRING_END_TOKEN 0x65646e65
+#define SYSTEM_STRING_VERSION_TOKEN 0x32312e322e3176
+#define SYSTEM_STRING_DOT_TOKEN 0x2e
+#define SYSTEM_STATUS_CODE_MAX 0x1fff
+#define SYSTEM_FLOAT_ONE 0x3f800000
+#define SYSTEM_FLOAT_MAX 0x7f7fffff
+#define SYSTEM_STRING_COMMA_TOKEN 0x2c
 
 // 01_initialization.c - 初始化系统代码（已美化变量名和函数名）
 
@@ -19783,12 +19789,12 @@ void InitializeSystemModule24(uint64_t *handleIdentifier)
   system_status_code = *(uint *)(handleIdentifier + 2);
   system_status_code = usystem_int_result + 7;
   if (usystem_int_result < 0x1f) {
-    *(uint64_t *)((ulonglong)usystem_int_result + handleIdentifier[1]) = 0x32312e322e3176;
+    *(uint64_t *)((ulonglong)usystem_int_result + handleIdentifier[1]) = SYSTEM_STRING_VERSION_TOKEN;
     *(uint *)(handleIdentifier + 2) = usystem_integer_result;
     system_status_code = usystem_integer_result;
   }
   if (usystem_int_result + 1 < 0x1f) {
-    *(uint16_t *)((ulonglong)usystem_int_result + handleIdentifier[1]) = 0x2e;
+    *(uint16_t *)((ulonglong)usystem_int_result + handleIdentifier[1]) = SYSTEM_STRING_DOT_TOKEN;
     *(uint *)(handleIdentifier + 2) = usystem_int_result + 1;
   }
   system_buffer_ptr_50 = &g_system_data_main;
@@ -20602,7 +20608,7 @@ void CopySystemStringData(longlong handleIdentifier)
   } while (*(char *)(handleIdentifier + system_long_result) != '\0');
   system_status_code = (uint)system_long_value;
   if (0x1fff < usystem_int_result) {
-    system_status_code = 0x1fff;
+    system_status_code = SYSTEM_STATUS_CODE_MAX;
   }
                     // WARNING: Subroutine does not return
   memcpy(&g_system_string_buffer,handleIdentifier,(longlong)(int)usystem_int_result);
@@ -20868,7 +20874,7 @@ INIT_LABEL_SYSTEM_4c7ef:
       *(uint32_t *)((longlong)handleIdentifier + 0x24) = 0;
       *(uint32_t *)((longlong)handleIdentifier + 0x29) = SYSTEM_DATA_COMPARE_SIZE10101;
       *(uint8_t *)(handleIdentifier + 5) = 1;
-      *(uint32_t *)(handleIdentifier + 0x71) = 0x3f800000;
+      *(uint32_t *)(handleIdentifier + 0x71) = SYSTEM_FLOAT_ONE;
       *(uint8_t *)(handleIdentifier + 0x76) = 1;
       *(uint32_t *)(handleIdentifier + 0x25) = 0;
       handleIdentifier[0x56] = 0;
@@ -20993,7 +20999,7 @@ void InitializeThreadManagerSystem(longlong handleIdentifier)
   system_float_value = system_float_result * 17.866667 + 26.400002 + system_float_value;
   *(float *)(handleIdentifier + 0x3a0) = system_float_result * system_float_value;
   *(float *)(handleIdentifier + 0x3a4) = system_float_result * system_float_value;
-  *(uint32_t *)(handleIdentifier + 0x3a8) = 0x7f7fffff;
+  *(uint32_t *)(handleIdentifier + 0x3a8) = SYSTEM_FLOAT_MAX;
   *(uint *)(handleIdentifier + 0x3ac) = (uint)(*(int *)(system_long_result + SYSTEM_CONFIG_SIZE_STATUS90) == 0);
   return;
 }
@@ -21473,17 +21479,17 @@ uint32_t InitializeSystemModule21(void)
     ExtractAudioData(&system_buffer_ptr_thread_context,audio_data_buffer._0_4_);
     system_status_code = init_stack_uint_param_thread + 1;
     ConfigureSystemParameters(&system_buffer_ptr_thread_context,usystem_int_result);
-    *(uint16_t *)((ulonglong)init_stack_uint_param_thread + longStack_c0) = 0x2c;
+    *(uint16_t *)((ulonglong)init_stack_uint_param_thread + longStack_c0) = SYSTEM_STRING_COMMA_TOKEN;
     init_stack_uint_param_thread = usystem_integer_result;
     ExtractAudioData(&system_buffer_ptr_thread_context,audio_data_buffer._0_8_ >> SYSTEM_NODE_HEADER_SIZE);
     system_status_code = init_stack_uint_param_thread + 1;
     ConfigureSystemParameters(&system_buffer_ptr_thread_context,usystem_int_result);
-    *(uint16_t *)((ulonglong)init_stack_uint_param_thread + longStack_c0) = 0x2c;
+    *(uint16_t *)((ulonglong)init_stack_uint_param_thread + longStack_c0) = SYSTEM_STRING_COMMA_TOKEN;
     init_stack_uint_param_thread = usystem_integer_result;
     ExtractAudioData(&system_buffer_ptr_thread_context,audio_data_buffer._8_8_ & SYSTEM_OFFSET_Ffffffff);
     system_integer_result = init_stack_uint_param_thread + 1;
     ConfigureSystemParameters(&system_buffer_ptr_thread_context,system_int_result);
-    *(uint16_t *)((ulonglong)init_stack_uint_param_thread + longStack_c0) = 0x2c;
+    *(uint16_t *)((ulonglong)init_stack_uint_param_thread + longStack_c0) = SYSTEM_STRING_COMMA_TOKEN;
     init_stack_uint_param_thread = system_integer_result;
     ExtractAudioData(&system_buffer_ptr_thread_context,audio_data_buffer._8_8_ >> SYSTEM_NODE_HEADER_SIZE);
     system_ptr_value = (uint64_t *)ProcessResourceData(system_local_buffer_80,&system_buffer_ptr_thread_context);
