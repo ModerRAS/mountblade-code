@@ -8689,7 +8689,7 @@ section_processing_jump_label_:
 section_processing_jump_label_:
       thread_result_status = strcmp(str_len_counter,&g_system_string_constant);
       if (thread_result_status == SYSTEM_ZERO_VALUE) {
-        thread_result_status = 0x18;
+        thread_result_status = SYSTEM_THREAD_STATUS_IDLE;
         goto section_processing_jump_label_;
       }
 section_processing_jump_label_:
@@ -8893,7 +8893,7 @@ section_processing_jump_label_:
 section_processing_jump_label_:
               thread_result_status = strcmp(str_len_counter,&g_system_string_reference);
               if (thread_result_status == SYSTEM_ZERO_VALUE) {
-                thread_result_status = 0x18;
+                thread_result_status = SYSTEM_THREAD_STATUS_IDLE;
                 goto section_processing_jump_label_;
               }
               goto section_processing_jump_label_;
