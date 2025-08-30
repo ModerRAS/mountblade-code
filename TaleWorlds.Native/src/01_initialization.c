@@ -19189,7 +19189,7 @@ void InitializePhysicsSystem(void)
   init_stack_uint_config_offset_418 = SYSTEM_OFFSET_18;
   system_result_operation = strcpy_s(system_local_buffer_shader_context,SYSTEM_DATA_BLOCK_SIZE,&g_global_config_3);
   system_configuration_data = (float)InitializeSystemProfiler(system_flag_status,&system_buffer_ptr_profiler);
-  system_configuration_data = 1.0 / system_configuration_data;
+  system_configuration_data = SYSTEM_FLOAT_VALUE_ONE / system_configuration_data;
   system_buffer_ptr_profiler = &globalSystemPointerData;
   system_buffer_ptr_profiler_context = &g_system_core_data_ptr;
   system_buffer_ptr_render_state = system_local_buffer_texture_data;
@@ -19197,7 +19197,7 @@ void InitializePhysicsSystem(void)
   init_stack_uint_thread_local_size_3b8 = SYSTEM_CONFIG_SIZE_THREAD_LOCAL;
   system_result_operation = strcpy_s(system_local_buffer_texture_data,SYSTEM_DATA_BLOCK_SIZE,&g_global_config_1);
   g_system_data_variablec = (float)InitializeSystemProfiler(system_flag_status,&system_buffer_ptr_profiler_context);
-  g_system_data_variablec = 1.0 / g_system_data_variablec;
+  g_system_data_variablec = SYSTEM_FLOAT_VALUE_ONE / g_system_data_variablec;
   system_buffer_ptr_profiler_context = &globalSystemPointerData;
   system_buffer_ptr_shader_context = &g_system_core_data_ptr;
   system_buffer_ptr_shader_data = system_local_buffer_vertex_data;
@@ -19240,8 +19240,8 @@ void InitializePhysicsSystem(void)
     stack_char_ptr = InitializeStringManagerSystem;
     appstack_system_memory_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = (longlong ***)&ppstack_system_memory_pointer;
     InitializeFontSystem(appstack_system_memory_pointer);
-    *(double *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_A0 + system_configuration_data) = (double)(1.0 / system_float_result_value);
-    *(double *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_B8 + system_configuration_data) = (double)(1.0 / system_float_result_value);
+    *(double *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_A0 + system_configuration_data) = (double)(SYSTEM_FLOAT_VALUE_ONE / system_float_result_value);
+    *(double *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_B8 + system_configuration_data) = (double)(SYSTEM_FLOAT_VALUE_ONE / system_float_result_value);
     *(int *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_B0 + system_configuration_data) = (int)(longlong)system_configuration_data;
     *(int *)(system_long_result + SYSTEM_OFFSET_200 + system_configuration_data) = (int)(longlong)g_system_data_variablec;
     *(double *)(system_long_result + SYSTEM_NODE_HEADER_SIZE + system_configuration_data) = (double)(system_counter_temp >> SYSTEM_CONFIG_SIZE_NETWORK_BUFFER);
@@ -23411,7 +23411,7 @@ void ConfigureGraphicsShader(void)
       system_float_value = *(float *)(systemCoreData + SYSTEM_NODE_HEADER_SIZEd0);
     }
     else {
-      system_float_value = 100.0;
+      system_float_value = SYSTEM_FLOAT_VALUE_ONE_HUNDRED;
     }
     system_float_value = system_float_result_value * 0.01;
   }
@@ -24693,7 +24693,7 @@ void InitializeAudioMutex(longlong handleIdentifier,float resourceIdentifier,uin
       system_float_value = *(float *)(system_long_result + SYSTEM_NODE_HEADER_SIZEd0);
     }
     else {
-      system_float_value = 100.0;
+      system_float_value = SYSTEM_FLOAT_VALUE_ONE_HUNDRED;
     }
     system_float_value = system_float_result_value * 0.01;
   }
@@ -24860,7 +24860,7 @@ void initialize_system_module_forty_three(longlong *handleIdentifier,uint64_t re
       system_float_value = *(float *)(systemCoreData + SYSTEM_NODE_HEADER_SIZEd0);
     }
     else {
-      system_float_value = 100.0;
+      system_float_value = SYSTEM_FLOAT_VALUE_ONE_HUNDRED;
     }
     system_float_value = system_float_result_value * 0.01;
   }
