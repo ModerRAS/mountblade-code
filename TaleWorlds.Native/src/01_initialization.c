@@ -12338,9 +12338,9 @@ void InitializeSystemModule10(void)
   node_previous[10] = flag_initialized;
   return;
 }
-// void GetSystemFunctionPointer(void)
+// void InitializeSystemNode(void)
 
-void GetSystemFunctionPointer(void)
+void InitializeSystemNode(void)
 
 {
   char is_initialized;
@@ -16143,9 +16143,9 @@ void InitializeNetworkSystem(longlong *handleIdentifier)
   }
   return;
 }
-// void GetSystemFunctionPointer(longlong handleIdentifier,longlong resourceIdentifier)
+// void ProcessResourceIdentifier(longlong handleIdentifier,longlong resourceIdentifier)
 
-void GetSystemFunctionPointer(longlong handleIdentifier,longlong resourceIdentifier)
+void ProcessResourceIdentifier(longlong handleIdentifier,longlong resourceIdentifier)
 
 {
   longlong long_result;
@@ -20058,9 +20058,9 @@ void InitializeSystemModule21(longlong *handleIdentifier)
                     // WARNING: Subroutine does not return
   ProcessSystemOperation();
 }
-// void GetSystemFunctionPointer(longlong handleIdentifier)
+// void HandleSystemResource(longlong handleIdentifier)
 
-void GetSystemFunctionPointer(longlong handleIdentifier)
+void HandleSystemResource(longlong handleIdentifier)
 
 {
   int *ptr_int_var;
@@ -58621,8 +58621,8 @@ void ProcessSystemStringData(void)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void GetSystemFunctionPointer(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration)
-void GetSystemFunctionPointer(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration)
+// void ConfigureSystemResource(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration)
+void ConfigureSystemResource(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration)
 
 {
   uint64_t system_operation_status;
