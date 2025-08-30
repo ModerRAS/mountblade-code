@@ -511,10 +511,10 @@ int initialize_io_thread_pool(void* handle_param, void* thread_op_flags, void* m
 int initialize_base_resource_manager(void)
 {
   long long system_init_result;
-  unsigned long long str_length;
+  unsigned long long base_resource_string_length;
   g_resource_string_1 = 0;
   g_resource_id_1 = 6;
-  strcpy_s(&g_resource_string_1,STRING_BUFFER_SIZE,&base_resource_string,str_length,DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&g_resource_string_1, STRING_BUFFER_SIZE, &base_resource_string, base_resource_string_length, DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(base_resource_manager_init_function);
   return (system_init_result != 0) - 1;
 }
