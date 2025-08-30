@@ -30730,11 +30730,11 @@ void UtilityUnwind_180903680(uint64 resource_handle_identifier,longlong resource
     (**(code **)(resource_buffer + 0x290))(resource_buffer + 0x280,UTILITY_NULL_POINTER,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 600) = &thread_local_storage_data;
-  if (*(longlong *)(resource_buffer + 0x260) != 0) {
+  if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_260) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  *(uint64 *)(resource_buffer + 0x260) = 0;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_260) = 0;
   *(uint32 *)(resource_buffer + UTILITY_BUFFER_SIZE0) = 0;
   *(uint64 *)(resource_buffer + 600) = &thread_local_storage_cleanup;
   *(uint64 *)(resource_buffer + 0x238) = &thread_local_storage_data;
@@ -31091,11 +31091,11 @@ void UtilityUnwind_1809037d0(uint64 resource_handle_identifier,longlong resource
     (**(code **)(resource_buffer + 0x290))(resource_buffer + 0x280,UTILITY_NULL_POINTER,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   *(uint64 *)(resource_buffer + 600) = &thread_local_storage_data;
-  if (*(longlong *)(resource_buffer + 0x260) != 0) {
+  if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_260) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  *(uint64 *)(resource_buffer + 0x260) = 0;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_260) = 0;
   *(uint32 *)(resource_buffer + UTILITY_BUFFER_SIZE0) = 0;
   *(uint64 *)(resource_buffer + 600) = &thread_local_storage_cleanup;
   *(uint64 *)(resource_buffer + 0x238) = &thread_local_storage_data;
@@ -32502,14 +32502,14 @@ void UtilityUnwind_180903d30(uint64 resource_handle_identifier,longlong resource
   *(uint64 *)(resource_buffer + UTILITY_DATA_PROCESS_OFFSET) = 0;
   *(uint32 *)(resource_buffer + 0x298) = 0;
   *(uint64 *)(resource_buffer + 0x280) = &thread_local_storage_cleanup;
-  *(uint64 *)(resource_buffer + 0x260) = &thread_local_storage_data;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_260) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x268) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(resource_buffer + 0x268) = 0;
   *(uint32 *)(resource_buffer + UTILITY_LARGE_BUFFER_SIZE) = 0;
-  *(uint64 *)(resource_buffer + 0x260) = &thread_local_storage_cleanup;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_260) = &thread_local_storage_cleanup;
   return;
 }
 
@@ -34096,14 +34096,14 @@ void UtilityUnwind_180904210(uint64 resource_handle_identifier,longlong resource
   *(uint64 *)(resource_buffer + UTILITY_DATA_PROCESS_OFFSET) = 0;
   *(uint32 *)(resource_buffer + 0x298) = 0;
   *(uint64 *)(resource_buffer + 0x280) = &thread_local_storage_cleanup;
-  *(uint64 *)(resource_buffer + 0x260) = &thread_local_storage_data;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_260) = &thread_local_storage_data;
   if (*(longlong *)(resource_buffer + 0x268) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
   *(uint64 *)(resource_buffer + 0x268) = 0;
   *(uint32 *)(resource_buffer + UTILITY_LARGE_BUFFER_SIZE) = 0;
-  *(uint64 *)(resource_buffer + 0x260) = &thread_local_storage_cleanup;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_260) = &thread_local_storage_cleanup;
   return;
 }
 
@@ -62067,11 +62067,11 @@ void UtilityUtilityUnwind_18090ce40(uint64 resource_handle_identifier,longlong r
     (**(code **)(**(longlong **)(resource_buffer + UTILITY_DATA_PROCESS_OFFSET) + UTILITY_STRUCTURE_SIZE_OFFSET))();
   }
   *(uint64 *)(resource_buffer + 600) = &thread_local_storage_data;
-  if (*(longlong *)(resource_buffer + 0x260) != 0) {
+  if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_260) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  *(uint64 *)(resource_buffer + 0x260) = 0;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_260) = 0;
   *(uint32 *)(resource_buffer + UTILITY_BUFFER_SIZE0) = 0;
   *(uint64 *)(resource_buffer + 600) = &thread_local_storage_cleanup;
   if (*(longlong **)(resource_buffer + 0x250) != (longlong *)UTILITY_NULL_POINTER) {
@@ -62327,11 +62327,11 @@ void UtilityUtilityUnwind_18090cf50(uint64 resource_handle_identifier,longlong r
 
 {
   *(uint64 *)(resource_buffer + 600) = &thread_local_storage_data;
-  if (*(longlong *)(resource_buffer + 0x260) != 0) {
+  if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_260) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  *(uint64 *)(resource_buffer + 0x260) = 0;
+  *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_260) = 0;
   *(uint32 *)(resource_buffer + UTILITY_BUFFER_SIZE0) = 0;
   *(uint64 *)(resource_buffer + 600) = &thread_local_storage_cleanup;
   return;
