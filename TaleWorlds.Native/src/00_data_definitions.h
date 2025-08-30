@@ -1484,9 +1484,9 @@
 #define SYSTEM_OFFSET_HARDWARE_INIT_E8 0xe8      // 硬件初始化E8偏移量
 #define SYSTEM_OFFSET_RENDER_COUNTER_D8 0xd8     // 渲染计数器D8偏移量
 #define SYSTEM_OFFSET_RENDER_MODE_5E 0x5e        // 渲染模式5E偏移量
-#define SYSTEM_OFFSET_FLOAT_CALCULATION_354 0x354 // 浮点计算354偏移量
-#define SYSTEM_OFFSET_RENDER_FLAG_33C 0x33c     // 渲染标志33C偏移量
-#define SYSTEM_OFFSET_SYSTEM_DATA_260 0x260      // 系统数据260偏移量
+#define SYSTEM_OFFSET_FLOAT_CALCULATION_354 SYSTEM_OFFSET_FLOAT_ARRAY_EXTENDED // 浮点计算354偏移量
+#define SYSTEM_OFFSET_RENDER_FLAG_33C SYSTEM_OFFSET_FLOAT_ARRAY_BASE     // 渲染标志33C偏移量
+#define SYSTEM_OFFSET_SYSTEM_DATA_260 SYSTEM_OFFSET_CRYPTO_MODULE_DATA      // 系统数据260偏移量
 #define SYSTEM_OFFSET_MEMORY_ALLOCATION_30 0x30 // 内存分配30偏移量
 #define SYSTEM_OFFSET_CHARACTER_SCAN_2C 0x2c     // 字符扫描2C偏移量
 #define SYSTEM_OFFSET_MEMORY_ALLOCATION_C0 0xc0  // 内存分配C0偏移量
@@ -7918,8 +7918,8 @@ unsigned long long * system_execution_function(unsigned long long *handle_param,
   handle_param[SYSTEM_CHAR_SLASH] = SYSTEM_ZERO_VALUE;
   psystem_initialization_result = handle_param + 0x31;
   *psystem_initialization_result = SYSTEM_ZERO_VALUE;
-  handle_param[0x32] = SYSTEM_ZERO_VALUE;
-  handle_param[0x33] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_32] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_33] = SYSTEM_ZERO_VALUE;
   *(unsigned int *)(handle_param + SYSTEM_CONFIG_OFFSET_MODULE_HANDLE) = SYSTEM_THREE_VALUE;
   string_input_pointer = handle_param + 0x35;
   str_len_counter = SYSTEM_EIGHT_VALUE;
@@ -7988,45 +7988,45 @@ unsigned long long * system_execution_function(unsigned long long *handle_param,
       handle_param[0x21] = buffer_allocation_result;
       buffer_allocation_result = (ulong long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G);
       str_len_counter = *psystem_initialization_result;
-      if ((ulong long)(handle_param[0x33] - str_len_counter >> 3) < buffer_allocation_result) {
+      if ((ulong long)(handle_param[SYSTEM_OFFSET_HANDLE_PARAM_33] - str_len_counter >> 3) < buffer_allocation_result) {
         if (buffer_allocation_result != 0) {
           str_len_counter = system_execution_function(system_global_data_pointer,buffer_allocation_result * 8,*(unsigned char *)(handle_param + SYSTEM_CONFIG_OFFSET_MODULE_HANDLE));
           str_len_counter = *psystem_initialization_result;
         }
-        if (str_len_counter != handle_param[0x32]) {
-          memmove(str_len_counter,str_len_counter,handle_param[0x32] - str_len_counter);
+        if (str_len_counter != handle_param[SYSTEM_OFFSET_HANDLE_PARAM_32]) {
+          memmove(str_len_counter,str_len_counter,handle_param[SYSTEM_OFFSET_HANDLE_PARAM_32] - str_len_counter);
         }
         if (str_len_counter != 0) {
           handle_param_system_error();
         }
         *psystem_initialization_result = str_len_counter;
-        handle_param[0x32] = str_len_counter;
-        handle_param[0x33] = str_len_counter + buffer_allocation_result * 8;
+        handle_param[SYSTEM_OFFSET_HANDLE_PARAM_32] = str_len_counter;
+        handle_param[SYSTEM_OFFSET_HANDLE_PARAM_33] = str_len_counter + buffer_allocation_result * 8;
       }
       thread_result_status = *(int *)(system_global_data_pointer + SYSTEM_OFFSET_RENDER_COUNTER0) + -1;
       thread_result_status = SYSTEM_ZERO_VALUE;
       if ((-1 < thread_result_status) && (thread_result_status = thread_result_status, 3 < thread_result_status)) {
         thread_result_status = SYSTEM_THREE_VALUE;
       }
-      float_var = (float)thread_result_status * 0.33333334;
-      float_var = float_var * 10.05 + SYSTEM_OFFSET_HANDLE_PARAM.9500003;
-      float_var = float_var * 2.9999998 + SYSTEM_OFFSET_HANDLE_PARAM.5;
+      float_var = (float)thread_result_status * SYSTEM_FLOAT_VALUE_ONE_THIRD;
+      float_var = float_var * SYSTEM_FLOAT_VALUE_TEN_POINT_ZERO_FIVE + SYSTEM_OFFSET_HANDLE_PARAM.9500003;
+      float_var = float_var * SYSTEM_FLOAT_VALUE_THREE_POINT_ZERO + SYSTEM_OFFSET_HANDLE_PARAM.5;
       float_var = float_var + float_var;
       float_var = float_var + float_var;
-      float_var = float_var * 13.5 + SYSTEM_OFFSET_HANDLE_PARAM.5;
+      float_var = float_var * SYSTEM_FLOAT_VALUE_THIRTEEN_POINT_FIVE + SYSTEM_OFFSET_HANDLE_PARAM.5;
       float_var = float_var + float_var;
       float_var = float_var + float_var;
-      float_var = float_var * 37.5 + 12.5 + float_var;
-      float_var = float_var * 45.0 + 15.0 + float_var;
+      float_var = float_var * SYSTEM_FLOAT_VALUE_THIRTY_SEVEN_POINT_FIVE + SYSTEM_FLOAT_VALUE_TWELVE_POINT_FIVE + float_var;
+      float_var = float_var * SYSTEM_FLOAT_VALUE_FORTY_FIVE_POINT_ZERO + SYSTEM_FLOAT_VALUE_FIFTEEN_POINT_ZERO + float_var;
       *(float *)(handle_param + SYSTEM_CHAR_LOWERCASE_H) = float_var * float_var;
       *(float *)((long long)handle_param + SYSTEM_CONFIG_OFFSET_MODULE_HANDLE4) = float_var * float_var;
       *(float *)(handle_param + SYSTEM_CHAR_LOWERCASE_I) = float_var * float_var;
       *(float *)((long long)handle_param + SYSTEM_CONFIG_OFFSET_MODULE_HANDLEc) = float_var * float_var;
       *(float *)(handle_param + SYSTEM_CHAR_LOWERCASE_J) = float_var * float_var;
-      *(float *)((long long)handle_param + 0x354) = float_var * float_var;
+      *(float *)((long long)handle_param + SYSTEM_OFFSET_FLOAT_ARRAY_EXTENDED) = float_var * float_var;
       *(float *)(handle_param + SYSTEM_CHAR_LOWERCASE_K) = float_var * float_var;
       *(unsigned int *)((long long)handle_param + SYSTEM_ADDRESS_OFFSET_MODULE_CLEANUP) = SYSTEM_FLOAT_MAX_VALUE;
-      *(unsigned int *)((long long)handle_param + 0x33c) = SYSTEM_ZERO_VALUE;
+      *(unsigned int *)((long long)handle_param + SYSTEM_OFFSET_FLOAT_ARRAY_BASE) = SYSTEM_ZERO_VALUE;
       *(unsigned int *)(handle_param + SYSTEM_OFFSET_FUNCTION_TABLE) = SYSTEM_ZERO_VALUE;
       return handle_param;
     }
@@ -8038,7 +8038,7 @@ unsigned long long initialize_graphics_context(unsigned long long handle_param,u
 {
   system_execution_function();
   if ((thread_operation_flags & 1) != 0) {
-    free(handle_param,0x360);
+    free(handle_param,SYSTEM_MEMORY_SIZE_360);
   }
   return handle_param;
 }
@@ -8062,7 +8062,7 @@ unsigned long long initialize_graphics_context(unsigned long long handle_param,u
     thread_data_buffer_character = '\0';
     system_crypto_module_initializer(&thread_data_buffer_primary);
   }
-  thread_operation_flags = *(unsigned long long *)(*(long long *)(*(long long *)(handle_param + SYSTEM_POINTER_OFFSETa8) + 0x260) + path_buffer_size8);
+  thread_operation_flags = *(unsigned long long *)(*(long long *)(*(long long *)(handle_param + SYSTEM_POINTER_OFFSETa8) + SYSTEM_OFFSET_CRYPTO_MODULE_DATA) + path_buffer_size8);
   string_input_pointer = (unsigned int *)system_execution_function(thread_operation_flags,0,thread_operation_flags);
   maximum_stack_size = *string_input_pointer;
   maximum_stack_size = string_input_pointer[1];
@@ -8072,22 +8072,22 @@ unsigned long long initialize_graphics_context(unsigned long long handle_param,u
   float_var = *(float *)(thread_operation_flags + SYSTEM_CONFIG_BUFFER_SIZE_FOUR);
   float_var = *(float *)(thread_operation_flags + SYSTEM_CONFIG_BUFFER_SIZE_EIGHT);
   maximum_stack_size = *(unsigned int *)(thread_operation_flags + SYSTEM_CONFIG_BUFFER_SIZE_TWELVE);
-  float_var = 1e+08;
-  float_var = 1e+08;
-  fStack_180 = 1e+08;
-  fStack_158 = 1e+08;
-  fStack_154 = 1e+08;
-  fStack_150 = 1e+08;
+  float_var = SYSTEM_FLOAT_VALUE_LARGE_POSITIVE;
+  float_var = SYSTEM_FLOAT_VALUE_LARGE_POSITIVE;
+  fStack_180 = SYSTEM_FLOAT_VALUE_LARGE_POSITIVE;
+  fStack_158 = SYSTEM_FLOAT_VALUE_LARGE_POSITIVE;
+  fStack_154 = SYSTEM_FLOAT_VALUE_LARGE_POSITIVE;
+  fStack_150 = SYSTEM_FLOAT_VALUE_LARGE_POSITIVE;
   maximum_stack_size = SYSTEM_ZERO_VALUE;
-  fStack_148 = -1e+08;
-  fStack_144 = -1e+08;
-  fStack_140 = -1e+08;
+  fStack_148 = -SYSTEM_FLOAT_VALUE_LARGE_POSITIVE;
+  fStack_144 = -SYSTEM_FLOAT_VALUE_LARGE_POSITIVE;
+  fStack_140 = -SYSTEM_FLOAT_VALUE_LARGE_POSITIVE;
   maximum_stack_size = SYSTEM_ZERO_VALUE;
   thread_result_status = *(char *)(handle_param + SYSTEM_POINTER_OFFSET58) + -1;
   system_initialization_result1 = (long long)thread_result_status;
-  float_var = -1e+08;
-  float_var = -1e+08;
-  float_var = -1e+08;
+  float_var = -SYSTEM_FLOAT_VALUE_LARGE_POSITIVE;
+  float_var = -SYSTEM_FLOAT_VALUE_LARGE_POSITIVE;
+  float_var = -SYSTEM_FLOAT_VALUE_LARGE_POSITIVE;
   buffer_allocation_result = SYSTEM_ZERO_VALUE;
   buffer_allocation_result = SYSTEM_ZERO_VALUE;
   if (-1 < thread_result_status) {
@@ -8248,7 +8248,7 @@ unsigned long long initialize_graphics_context(unsigned long long handle_param,u
   *(ulong long *)(handle_param + SYSTEM_POINTER_OFFSET80) = merge_32bit_values(fStack_194,fStack_198);
   *(ulong long *)(handle_param + SYSTEM_POINTER_OFFSET88) = merge_32bit_values(maximum_stack_size,fStack_190);
   if (*(long long *)(handle_param + SYSTEM_POINTER_OFFSETa8) != 0) {
-    system_initialization_result1 = *(long long *)(*(long long *)(handle_param + SYSTEM_POINTER_OFFSETa8) + 0x260);
+    system_initialization_result1 = *(long long *)(*(long long *)(handle_param + SYSTEM_POINTER_OFFSETa8) + SYSTEM_OFFSET_CRYPTO_MODULE_DATA);
   }
   *(float *)(system_initialization_result1 + SYSTEM_OFFSET_PERFORMANCE_TIMEOUT) = float_var;
   *(float *)(system_initialization_result1 + SYSTEM_OFFSET_FLOAT_ARRAY_21C) = float_var;
@@ -14063,4 +14063,37 @@ void system_data_initialization_cleanup(void)
 // 特殊数值常量
 #define SYSTEM_VALUE_200 200
 #define SYSTEM_VALUE_9 9
+
+
+// 本次美化内容（2025年8月30日）：
+// - 美化地址偏移量常量，将0x32、0x33替换为SYSTEM_OFFSET_HANDLE_PARAM_*等语义化常量
+// - 美化浮点数常量，将0.33333334等替换为SYSTEM_FLOAT_VALUE_*等语义化常量
+// - 美化内存大小常量，将0x360等替换为SYSTEM_MEMORY_SIZE_*等语义化常量
+// - 美化数值常量，将1e+08等替换为SYSTEM_FLOAT_VALUE_*等语义化常量
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中剩余硬编码值的语义化替换
+// - 原本实现：完全重构所有硬编码值体系
+// - 简化实现：仅将常见的硬编码值替换为语义化常量
+
+// 地址偏移量常量
+#define SYSTEM_OFFSET_HANDLE_PARAM_32 0x32
+#define SYSTEM_OFFSET_HANDLE_PARAM_33 0x33
+#define SYSTEM_OFFSET_FLOAT_ARRAY_EXTENDED 0x354
+#define SYSTEM_OFFSET_FLOAT_ARRAY_BASE 0x33c
+#define SYSTEM_OFFSET_CRYPTO_MODULE_DATA 0x260
+
+// 浮点数常量
+#define SYSTEM_FLOAT_VALUE_ONE_THIRD 0.33333334
+#define SYSTEM_FLOAT_VALUE_TEN_POINT_ZERO_FIVE 10.05
+#define SYSTEM_FLOAT_VALUE_THREE_POINT_ZERO 2.9999998
+#define SYSTEM_FLOAT_VALUE_THIRTEEN_POINT_FIVE 13.5
+#define SYSTEM_FLOAT_VALUE_TWELVE_POINT_FIVE 12.5
+#define SYSTEM_FLOAT_VALUE_THIRTY_SEVEN_POINT_FIVE 37.5
+#define SYSTEM_FLOAT_VALUE_FORTY_FIVE_POINT_ZERO 45.0
+#define SYSTEM_FLOAT_VALUE_FIFTEEN_POINT_ZERO 15.0
+#define SYSTEM_FLOAT_VALUE_LARGE_POSITIVE 1e+08
+#define SYSTEM_FLOAT_VALUE_LARGE_NEGATIVE -1e+08
+
+// 内存大小常量
+#define SYSTEM_MEMORY_SIZE_360 0x360
 
