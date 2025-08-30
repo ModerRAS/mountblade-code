@@ -4616,7 +4616,7 @@ uint64 utility_validate_memory_size(longlong resource_handle_identifier,uint64 r
   if ((int)utility_iteration_counter != UTILITY_NULL_RESULT) {
     return utility_iteration_counter;
   }
-  if (*(int *)(utility_stack_buffer_array[0] + ERROR_CODE_INVALID_HANDLE) < 1) {
+  if (*(int *)(utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] + ERROR_CODE_INVALID_HANDLE) < UTILITY_INTEGER_INCREMENT_VALUE) {
     return UTILITY_BYTE_OFFSET_FLAG;
   }
   utility_data_array_index = *(int *)(utility_stack_buffer_array[0] + ERROR_CODE_INVALID_HANDLE) + -1;
@@ -9781,7 +9781,7 @@ uint get_pool_allocator(longlong *resource_handle_identifier)
     utility_iteration_counter = UTILITY_NULL_RESULT;
     *(uint32 *)((longlong)resource_handle_identifier + structure_multiplier) = UTILITY_NULL_RESULT;
   }
-  utility_operation_status = (int)resource_handle_identifier[1];
+  utility_operation_status = (int)resource_handle_identifier[UTILITY_SECURITY_TOKEN_SECONDARY_OFFSET];
   if (resource_size_limit < 0) {
     if (resource_size_limit < 0) {
                     // WARNING: Subroutine does not return
@@ -9885,7 +9885,7 @@ uint64 free_from_allocator(longlong *resource_handle_identifier)
     utility_iteration_counter = UTILITY_NULL_RESULT;
     *(uint32 *)((longlong)resource_handle_identifier + structure_multiplier) = UTILITY_NULL_RESULT;
   }
-  utility_operation_status = (int)resource_handle_identifier[1];
+  utility_operation_status = (int)resource_handle_identifier[UTILITY_SECURITY_TOKEN_SECONDARY_OFFSET];
   if (resource_size_limit < 0) {
                     // WARNING: Subroutine does not return
     memset(*resource_handle_identifier + (longlong)resource_size_limit * structure_multiplier,0,(longlong)-resource_size_limit * structure_multiplier);
@@ -9924,7 +9924,7 @@ uint64 configure_system_parameters(longlong *resource_handle_identifier)
     *(uint32 *)((longlong)resource_handle_identifier + structure_multiplier) = UTILITY_NULL_RESULT;
     validation_flag_primary = UTILITY_NULL_RESULT;
   }
-  utility_operation_status = (int)resource_handle_identifier[1];
+  utility_operation_status = (int)resource_handle_identifier[UTILITY_SECURITY_TOKEN_SECONDARY_OFFSET];
   if (resource_size_limit < 0) {
     threadContextData = (longlong)-resource_size_limit;
     if (resource_size_limit < 0) {
@@ -9967,7 +9967,7 @@ uint64 set_allocator_statusFlags(longlong *resource_handle_identifier)
   if (statusCounter == UTILITY_ERROR_CODE_OPERATION_FAILED) {
     return UTILITY_BYTE_OFFSET_FLAG;
   }
-  utility_operation_status = (int)resource_handle_identifier[1];
+  utility_operation_status = (int)resource_handle_identifier[UTILITY_SECURITY_TOKEN_SECONDARY_OFFSET];
   if (statusCounter == resource_size_limit) {
     statusCounter = statusCounter * UTILITY_PAIR_COUNT;
     if (statusCounter < 4) {
@@ -10837,7 +10837,7 @@ uint64 allocate_buffer_memoryBlock(longlong *resource_handle_identifier,int reso
                utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),resource_buffer * structure_multiplier,&utilityMemoryDataBuffer,
                              UTILITY_MEMORY_ACCESS_FLAG_2,UTILITY_NULL_POINTER,1);
       if (UTILITY_RESOURCE_POINTER_PRIMARY != (uint64 *)UTILITY_NULL_POINTER) {
-        utility_operation_status = (int)resource_handle_identifier[1];
+        utility_operation_status = (int)resource_handle_identifier[UTILITY_SECURITY_TOKEN_SECONDARY_OFFSET];
         threadContextData = (longlong)resource_size_limit;
         if ((resource_size_limit != UTILITY_NULL_RESULT) && (operation_buffer = *resource_handle_identifier, 0 < resource_size_limit)) {
           validation_result_array = UTILITY_RESOURCE_POINTER_PRIMARY;
@@ -13805,7 +13805,7 @@ uint64 AllocateResourceBuffer(longlong *resource_handle_identifier,int resource_
      (utility_iteration_counter = process_system_request(resource_handle_identifier,resource_buffer), (int)utility_iteration_counter != UTILITY_NULL_RESULT)) {
     return utility_iteration_counter;
   }
-  utility_operation_status = (int)resource_handle_identifier[1];
+  utility_operation_status = (int)resource_handle_identifier[UTILITY_SECURITY_TOKEN_SECONDARY_OFFSET];
   if (resource_buffer <= resource_size_limit) {
     *(int *)(resource_handle_identifier + 1) = resource_buffer;
     return UTILITY_NULL_RESULT;
@@ -14458,7 +14458,7 @@ uint64 AllocateResourceSpace(longlong *resource_handle_identifier,int resource_b
                utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),resource_buffer * UTILITY_BYTE_SIZE_3&utilityMemoryDataBuffer,UTILITY_MEMORY_ACCESS_FLAG_2
                              ,UTILITY_NULL_POINTER,1);
       if (UTILITY_RESOURCE_POINTER_PRIMARY != (uint16_t *)UTILITY_NULL_POINTER) {
-        utility_operation_status = (int)resource_handle_identifier[1];
+        utility_operation_status = (int)resource_handle_identifier[UTILITY_SECURITY_TOKEN_SECONDARY_OFFSET];
         threadContextData = (longlong)resource_size_limit;
         if ((resource_size_limit != UTILITY_NULL_RESULT) && (operation_buffer = *resource_handle_identifier, 0 < resource_size_limit)) {
           validation_result_array = UTILITY_RESOURCE_POINTER_PRIMARY;
