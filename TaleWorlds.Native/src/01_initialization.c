@@ -17366,10 +17366,10 @@ void InitializeSystemResources(void)
 uint64_t InitializeThreadLocalStorage(void)
 
 {
-  longlong threadLocalStorageBase;
+  longlong thread_local_storage_base;
   int *storage_ptr;
 
-  threadLocalStorageBase = *(longlong *)((longlong)threadLocalStoragePointer + (ulonglong)__tls_index * SYSTEM_INIT_PARAM_POINTER_SIZE);
+  thread_local_storage_base = *(longlong *)((longlong)threadLocalStoragePointer + (ulonglong)__tls_index * SYSTEM_INIT_PARAM_POINTER_SIZE);
   *(uint64_t *)(threadLocalStorageBase + SYSTEM_OFFSET_18) = &globalSystemPointerData;
   *(uint64_t *)(threadLocalStorageBase + SYSTEM_NODE_HEADER_SIZE) = 0;
   *(uint32_t *)(threadLocalStorageBase + SYSTEM_OBJECT_OFFSET_28) = 0;
