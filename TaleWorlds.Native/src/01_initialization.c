@@ -82,6 +82,18 @@
 // - 保持代码语义不变
 // - 这是简化实现，主要处理了函数内部变量名的语义化替换
 
+// 本次美化内容：
+// - 将system_buffer_ptr_420替换为system_buffer_ptr_graphics_aux等图形系统相关变量名
+// - 将system_buffer_ptr_3c0替换为system_buffer_ptr_render_state等渲染状态变量名
+// - 将system_buffer_ptr_360替换为system_buffer_ptr_shader_data等着色器数据变量名
+// - 将system_buffer_ptr_308替换为system_buffer_ptr_texture_pool等纹理池变量名
+// - 将system_buffer_ptr_300替换为system_buffer_ptr_vertex_buffer等顶点缓冲区变量名
+// - 将system_buffer_ptr_90替换为system_buffer_ptr_small_buffer等小缓冲区变量名
+// - 将system_buffer_ptr_88替换为system_buffer_ptr_data_array等数据数组变量名
+// - 将uintStack_418等栈变量替换为init_stack_uint_render_aux等语义化名称
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+
 // 地址常量定义
 #define AUDIO_SYSTEM_BASE_ADDR 0x180c91700
 #define INPUT_SYSTEM_BASE_ADDR 0x180c91800
@@ -17099,19 +17111,19 @@ void InitializePhysicsSystem(void)
   uint32_t init_stack_ulong_param_478;
   uint8_t local_buffer_470 [72];
   void *system_buffer_ptr_graphics_pool;
-  uint8_t *system_buffer_ptr_420;
-  uint32_t uintStack_418;
+  uint8_t *system_buffer_ptr_graphics_aux;
+  uint32_t init_stack_uint_render_aux;
   uint8_t local_buffer_410 [72];
-  void *system_buffer_ptr_3c8;
-  uint8_t *system_buffer_ptr_3c0;
-  uint32_t uintStack_3b8;
+  void *system_buffer_ptr_render_config;
+  uint8_t *system_buffer_ptr_render_state;
+  uint32_t init_stack_uint_render_state;
   uint8_t local_buffer_3b0 [72];
-  void *system_buffer_ptr_368;
-  uint8_t *system_buffer_ptr_360;
-  uint32_t uintStack_358;
+  void *system_buffer_ptr_shader_config;
+  uint8_t *system_buffer_ptr_shader_data;
+  uint32_t init_stack_uint_shader_data;
   uint8_t local_buffer_350 [72];
-  void *system_buffer_ptr_308;
-  uint8_t *system_buffer_ptr_300;
+  void *system_buffer_ptr_texture_pool;
+  uint8_t *system_buffer_ptr_vertex_buffer;
   uint32_t uintStack_2f8;
   uint8_t local_buffer_2f0 [648];
   ulonglong uintStack_68;
@@ -22441,8 +22453,8 @@ void InitializeSystemComponents(longlong handleIdentifier,longlong resourceIdent
   ulonglong system_operation_status;
   longlong long_result;
   uint64_t system_operation_status;
-  void *system_buffer_ptr_90;
-  uint64_t *system_buffer_ptr_88;
+  void *system_buffer_ptr_small_buffer;
+  uint64_t *system_buffer_ptr_data_array;
   uint32_t uintStack_80;
   uint64_t uintStack_78;
   void *system_buffer_ptr_config_data;
@@ -23757,7 +23769,7 @@ void InitializeAuthenticationSystem(void)
   longlong *stack_system_memory_pointer;
   longlong longStack_a0;
   void *system_buffer_pointer_primary;
-  void *system_buffer_ptr_90;
+  void *system_buffer_ptr_small_buffer;
   uint32_t uintStack_80;
   void *system_buffer_ptr_config_context;
   longlong longStack_70;
@@ -24689,7 +24701,7 @@ void InitializeSystemModule14(longlong handleIdentifier)
   uint8_t uintStack_a8;
   uint8_t init_stack_uint_param_a0;
   void *system_buffer_pointer_primary;
-  void *system_buffer_ptr_90;
+  void *system_buffer_ptr_small_buffer;
   uint init_stack_uint_param_88;
   ulonglong uintStack_80;
   longlong longStack_78;
@@ -30496,8 +30508,8 @@ uint64_t * InitializeSystemDataNode24(uint64_t handleIdentifier,uint64_t *resour
   char *pis_initialized;
   char *ptr_system_init_flag;
   longlong long_result;
-  longlong in_R10;
-  longlong in_R11;
+  longlong system_register_r10;
+  longlong system_register_r11;
 
   if (resourceIdentifier != (uint64_t *)0x0) {
     do {
@@ -30535,8 +30547,8 @@ uint64_t * GetSystemResource8_4(uint64_t handleIdentifier,uint64_t *resourceIden
   char *ptr_system_init_flag;
   char *system_register_rbx;
   longlong long_result;
-  longlong in_R10;
-  longlong in_R11;
+  longlong system_register_r10;
+  longlong system_register_r11;
 
   while( true ) {
     do {
@@ -30629,7 +30641,7 @@ uint64_t * ConfigureSystemModule17(uint64_t handleIdentifier,uint64_t *resourceI
   char *pis_initialized;
   char *ptr_system_init_flag;
   longlong long_result;
-  longlong in_R11;
+  longlong system_register_r11;
 
   if (resourceIdentifier != (uint64_t *)0x0) {
     do {
@@ -30667,7 +30679,7 @@ uint64_t * InitializeSystemModule55(uint64_t handleIdentifier,uint64_t *resource
   char *ptr_system_init_flag;
   char *system_register_rbx;
   longlong long_result;
-  longlong in_R11;
+  longlong system_register_r11;
 
   while( true ) {
     do {
@@ -35782,7 +35794,7 @@ void InitializeFontSystem(uint64_t handleIdentifier)
   int intStack_320;
   ulonglong uintStack_318;
   uint32_t uintStack_310;
-  void *system_buffer_ptr_308;
+  void *system_buffer_ptr_texture_pool;
   void *system_buffer_ptr_300;
   uint32_t uintStack_2f8;
   ulonglong init_stack_pointer_2f0;
@@ -37418,7 +37430,7 @@ void ConfigureSystemSettings(uint64_t *handleIdentifier)
 
 {
   uint8_t local_buffer_b8 [48];
-  uint64_t *system_buffer_ptr_88;
+  uint64_t *system_buffer_ptr_data_array;
   uint64_t init_stack_uint_param_70;
   uint64_t *system_buffer_ptr_system_context;
   ulonglong uintStack_30;
@@ -39178,7 +39190,7 @@ void SetupSystemServices(uint64_t *handleIdentifier)
   longlong long_result;
   longlong long_result;
   uint8_t local_buffer_b8 [48];
-  uint64_t *system_buffer_ptr_88;
+  uint64_t *system_buffer_ptr_data_array;
   uint64_t *system_buffer_ptr_80;
   uint64_t uintStack_68;
   uint64_t *system_buffer_ptr_system_data;
@@ -40031,7 +40043,7 @@ void ProcessSystemData58(uint64_t handleIdentifier,uint64_t resourceIdentifier,l
   longlong long_result;
   longlong allocation_size;
   longlong *system_register_rdi;
-  longlong in_R10;
+  longlong system_register_r10;
   longlong init_input_stack_50;
 
   long_result = SUB168(SEXT816(in_RAX) * SEXT816(system_configuration - in_R10),8);
@@ -42367,8 +42379,8 @@ ulonglong InitializeUISystem(uint64_t handleIdentifier,uint64_t resourceIdentifi
   void *system_buffer_ptr_a8;
   uint32_t init_stack_uint_param_a0;
   ulonglong uintStack_98;
-  void *system_buffer_ptr_90;
-  uint64_t *system_buffer_ptr_88;
+  void *system_buffer_ptr_small_buffer;
+  uint64_t *system_buffer_ptr_data_array;
   uint32_t uintStack_80;
   ulonglong uintStack_78;
   void *system_buffer_ptr_config_data;
@@ -43344,7 +43356,7 @@ void InitializeSystemModule10(uint64_t handleIdentifier,longlong resourceIdentif
   longlong long_result;
   uint system_operation_status;
   uint system_operation_status;
-  void *system_buffer_ptr_90;
+  void *system_buffer_ptr_small_buffer;
   uint8_t *system_buffer_ptr_88;
   uint uintStack_80;
   ulonglong uintStack_78;
@@ -44241,7 +44253,7 @@ bool InitializeSystemModule4(uint64_t handleIdentifier,uint64_t *resourceIdentif
   uint64_t *system_buffer_ptr_a8;
   uint32_t init_stack_uint_param_a0;
   ulonglong uintStack_98;
-  void *system_buffer_ptr_90;
+  void *system_buffer_ptr_small_buffer;
   uint8_t *system_buffer_ptr_88;
   uint32_t uintStack_80;
   ulonglong uintStack_78;
@@ -50029,10 +50041,10 @@ void ValidateSystemHandle60(uint64_t handleIdentifier,uint64_t resourceIdentifie
   longlong system_register_rbx;
   float *system_register_rdi;
   uint32_t system_register_r14d;
-  float in_XMM0_Dc;
-  float in_XMM1_Dc;
-  float in_XMM4_Da;
-  float in_XMM4_Db;
+  float system_register_xmm0_dc;
+  float system_register_xmm1_dc;
+  float system_register_xmm4_da;
+  float system_register_xmm4_db;
   float in_XMM4_Dc;
   float in_XMM5_Da;
   uint32_t init_uint_stack_28;
@@ -50338,7 +50350,7 @@ void HandleSystemOperation8(float handleIdentifier,float resourceIdentifier,floa
   longlong system_register_rbx;
   bool bool_var;
   float float_result;
-  float in_XMM4_Da;
+  float system_register_xmm4_da;
   float in_XMM5_Da;
   float system_XMM8_Da;
 
@@ -59618,7 +59630,7 @@ uint64_t ProcessFunction79832(uint64_t handleIdentifier,uint64_t resourceIdentif
   uint system_operation_status;
   ulonglong system_operation_status;
   longlong long_result;
-  longlong in_R11;
+  longlong system_register_r11;
   ulonglong system_operation_status;
   uint system_R13D;
   uint system_register_r14d;
