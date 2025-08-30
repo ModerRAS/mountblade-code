@@ -93,6 +93,13 @@
 #define NETWORK_SOCKET_INDEX_3      3
 #define NETWORK_SOCKET_INDEX_7      7
 
+// 网络系统数组大小语义化常量（本次美化内容）
+#define NETWORK_ARRAY_SIZE_34       34
+#define NETWORK_ARRAY_SIZE_5        5
+#define NETWORK_BUFFER_SIZE_32     32
+#define NETWORK_BUFFER_SIZE_4       4
+#define NETWORK_BUFFER_SIZE_10      10
+
 #define NETWORK_HARD_CODED_VALUES
 #define STRUCT_FIELD_BYTE_0    _byte_0_
 #define STRUCT_FIELD_WORD_0    _word_0_
@@ -3694,7 +3701,7 @@ bool Networknetwork_validate_socket_handle(uint64_t network_socket_handle)
 // 函数: void NetworkMonitorSecurity(uint64_t network_socket_handle)
 void NetworkMonitorSecurity(uint64_t network_socket_handle)
   uint8_t network_validation_large_buffer [NETWORK_BUFFER_SIZE_48];
-  uint64_t *network_context_data [34];
+  uint64_t *network_context_data [NETWORK_ARRAY_SIZE_34];
   network_context_data_array[NETWORK_OPERATION_SUCCESS] = NETWORK_OPERATION_FAILURE;
     if ((*(uint32_t *)(network_context_data_array[NETWORK_OPERATION_FAILURE] + SOCKET_FLAG_OFFSET) >> NETWORK_OPERATION_SUCCESS & NETWORK_OPERATION_SUCCESS) == NETWORK_OPERATION_FAILURE) goto check_socket_readiness;
     if (network_operation_result_code == NETWORK_OPERATION_FAILURE) goto process_readiness_check;
@@ -3905,7 +3912,7 @@ void NetworkSocketSend(char *network_socket_handle, uint64_t *network_buffer_ptr
   uint8_t *network_timeout_ptr_ptr;
   int64_t network_connection_index_counter;
   uint8_t *network_processor_data_size;
-  uint8_t network_xor_buffer [32];
+  uint8_t network_xor_buffer [NETWORK_BUFFER_SIZE_32];
   uint32_t network_max_connections_value;
   uint32_t network_current_connections;
   uint32_t network_connection_processor_timeout;
