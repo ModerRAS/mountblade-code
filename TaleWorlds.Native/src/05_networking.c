@@ -193,7 +193,7 @@
 #define NETWORK_SOCKET_BASE_OFFSET_EXTENDEDb NETWORK_CONNECTION_EXTENDED_OFFSET8
 #define NETWORK_SOCKET_BUFFER_POINTER_OFFSET 0x91
 #define NETWORK_SOCKET_CHANNEL_OFFSET 0x96
-#define NETWORK_SOCKET_CHECKSUM_OFFSET 0x10
+#define NETWORK_SOCKET_CHECKSUM_OFFSET NETWORK_CONTEXT_OFFSET
 #define NETWORK_SOCKET_CONFIG_OFFSET_ALT 0x4f
 #define NETWORK_SOCKET_CONFIG_WRITE_OFFSET 0x50  // 套接字配置写入偏移量
 #define NETWORK_SOCKET_CONNECTION_OFFSET 0x4d  // 套接字连接偏移量
@@ -202,7 +202,7 @@
 #define NETWORK_SOCKET_DATA_FLAG_OFFSET 0x71  // 套接字数据标志偏移量
 #define NETWORK_SOCKET_DATA_OFFSET_65 0x65
 #define NETWORK_SOCKET_DATA_OFFSET_6A 0x6a
-#define NETWORK_SOCKET_DATA_OFFSET80 0x80
+#define NETWORK_SOCKET_DATA_OFFSET80 NETWORK_LOG_MESSAGE_SIZE_MEDIUM
 #define NETWORK_SOCKET_DATA_OFFSET_8F 0x8f
 #define NETWORK_SOCKET_DATA_OFFSET_91 0x91
 #define NETWORK_SOCKET_DATA_OFFSET_93 0x93
@@ -215,12 +215,12 @@
 #define NETWORK_SOCKET_DATA_OFFSET_9C 0x9c
 #define NETWORK_SOCKET_DATA_OFFSET 0x4d  // Socket data offset - 主数据偏移量
 #define NETWORK_SOCKET_DATA_POINTER_OFFSET 0x93
-#define NETWORK_SOCKET_DESCRIPTOR_OFFSET 0x80
+#define NETWORK_SOCKET_DESCRIPTOR_OFFSET NETWORK_LOG_MESSAGE_SIZE_MEDIUM
 #define NETWORK_SOCKET_DESCRIPTOR_OFFSET_49 0x49
 #define NETWORK_SOCKET_END_OFFSET 0x4
 #define NETWORK_SOCKET_ENDPOINT_OFFSET 0x45
 #define NETWORK_SOCKET_ENDPOINT_OFFSET_ALT 0x99
-#define NETWORK_SOCKET_EXTENDED_OFFSET 0x100  // Socket extended offset
+#define NETWORK_SOCKET_EXTENDED_OFFSET NETWORK_LOG_MESSAGE_SIZE_MAX  // Socket extended offset
 #define NETWORK_SOCKET_FLAG_OFFSET 0xC
 #define NETWORK_SOCKET_FLAG_OFFSET_ALT 0x9a
 #define NETWORK_SOCKET_FLAG_OFFSET_NEGATIVE_45 -0x45
@@ -243,7 +243,7 @@
 #define NETWORK_SOCKET_NEG_OFFSET_6D -0x6D
 #define NETWORK_SOCKET_NEG_OFFSET_71 -0x71
 #define NETWORK_SOCKET_NEG_OFFSET_79 -0x79
-#define NETWORK_SOCKET_NEXT_OFFSET_NEG -0x10
+#define NETWORK_SOCKET_NEXT_OFFSET_NEG -NETWORK_CONTEXT_OFFSET
 #define NETWORK_SOCKET_PACKET_SIZE_OFFSET 0x2
 #define NETWORK_SOCKET_PACKET_SIZE_OFFSET NETWORK_SOCKET_STATE_OFFSETc  // 套接字数据包大小偏移量
 #define NETWORK_SOCKET_PROCESSOR_OFFSET 0x3f0
@@ -283,17 +283,17 @@
 #define NETWORK_AUDIO_SAMPLE_RATE_DEFAULT 48000  // Default audio sample rate
 #define NETWORK_AUDIO_SAMPLE_RATE_OFFSET NETWORK_AUDIO_SAMPLE_RATE_OFFSET  // Audio sample rate offset
 #define NETWORK_AUTH_VALIDATION_OFFSET 0xC
-#define NETWORK_BIT_SHIFT_MASK_VALUE_VALUE 0x10
+#define NETWORK_BIT_SHIFT_MASK_VALUE_VALUE NETWORK_CONTEXT_OFFSET
 #define NETWORK_BUFFER_FLAG_MASK NETWORK_BUFFER_FLAG_MASK
 #define NETWORK_BUFFER_OFFSET_82 0x82
 #define NETWORK_BUFFER_PRIMARY_OFFSET 0x590
 #define NETWORK_BUFFER_SECONDARY_OFFSET 0x560
-#define NETWORK_BUFFER_THRESHOLD 0x400
+#define NETWORK_BUFFER_THRESHOLD NETWORK_LOG_MESSAGE_SIZE_SMALL0
 #define NETWORK_BUFFER_THRESHOLD NETWORK_CONTROL_PACKET_DATA100    // 缓冲区验证阈值
 #define NETWORK_CHECKSUM_OFFSET_BYTES 0x4
 #define NETWORK_CONFIG_OFFSET_24 0x24
 #define NETWORK_CONFIG_OFFSET NETWORK_MODULE_CONFIG_OFFSET        // 配置数据偏移量
-#define NETWORK_CONNECTION_BUFFER_SIZE 0x1000
+#define NETWORK_CONNECTION_BUFFER_SIZE 0x1000  // 连接缓冲区大小
 #define NETWORK_CONNECTION_COUNT_INCR_OFFSET NETWORK_CONNECTION_COUNT_INCR_OFFSET  // Connection count increment offset
 #define NETWORK_CONNECTION_EXTENDED_OFFSET0 NETWORK_ZERO_OFFSET  // Connection extended base offset
 #define NETWORK_CONNECTION_EXTENDED_OFFSET0 NETWORK_ZERO_OFFSET  // Connection extended offset NETWORK_OPERATION_FAILURE
@@ -302,7 +302,7 @@
 #define NETWORK_CONNECTION_STATE_MINIMUM NETWORK_BUFFER_SIZE_MEDIUM  // 最小连接状态值
 #define NETWORK_CONNECTION_STATE_PENDING 0x1
 #define NETWORK_CONNECTION_TIMEOUT_OFFSET 0x3e0  // 连接超时偏移量
-#define NETWORK_CONTEXT_OFFSET 0x10        // 上下文结构偏移量
+#define NETWORK_CONTEXT_OFFSET NETWORK_CONTEXT_OFFSET        // 上下文结构偏移量
 #define NETWORK_CONTROL_PACKET_DATA 0x2
 #define NETWORK_CONTROL_PACKET_DATA NETWORK_CONTROL_PACKET_DATA     // 数据控制数据包类型
 #define NETWORK_CONTROL_PACKET_HANDSHAKE 0x1
@@ -312,35 +312,35 @@
 #define NETWORK_ERROR_MASK NETWORK_BUFFER_MASK_0X33
 #define NETWORK_ERROR_OFFSET_33 NETWORK_BUFFER_MASK_0X33
 #define NETWORK_ERROR_OFFSET_66800 NETWORK_BUFFER_FLAG_MASK
-#define NETWORK_FLOAT_EPSILON NETWORK_OPERATION_SUCCESS.1920929e-07
-#define NETWORK_FLOAT_EPSILON_PRECISE NETWORK_OPERATION_SUCCESS.1920928955078125e-07
+#define NETWORK_FLOAT_EPSILON 1.1920929e-07  // 浮点数精度阈值
+#define NETWORK_FLOAT_EPSILON_PRECISE 1.1920928955078125e-07  // 精确浮点数精度阈值
 #define NETWORK_HANDLE_OFFSET_554 0x554
-#define NETWORK_INVALID_HEADER_MAGIC 0xDEADBEEF
-#define NETWORK_LOG_MESSAGE_SIZE_MAX 0x100
-#define NETWORK_LOG_MESSAGE_SIZE_MEDIUM 0x80
-#define NETWORK_LOG_MESSAGE_SIZE_SMALL 0x40
-#define NETWORK_MAGIC_DEADFOOD 0xdeadf00d
+#define NETWORK_INVALID_HEADER_MAGIC 0xDEADBEEF  // 无效头部魔术数字
+#define NETWORK_LOG_MESSAGE_SIZE_MAX 0x100  // 最大日志消息大小
+#define NETWORK_LOG_MESSAGE_SIZE_MEDIUM 0x80  // 中等日志消息大小
+#define NETWORK_LOG_MESSAGE_SIZE_SMALL 0x40  // 小日志消息大小
+#define NETWORK_MAGIC_DEADFOOD 0xdeadf00d  // 死亡食物魔术数字
 #define NETWORK_MAGIC_SIZE_41 NETWORK_BUFFER_SIZE_THRESHOLD_0X41
 #define NETWORK_MAGIC_SIZE_41200000 NETWORK_BUFFER_SIZE_THRESHOLD_0X41200000
 #define NETWORK_MAGIC_SIZE_48414E44 0x48414E44
 #define NETWORK_MAGIC_SIZE_4F0 0x4f0
-#define NETWORK_MAX_BUFFER_SIZE 0x1000
-#define NETWORK_MAX_PACKET_SIZE 0x1000
-#define NETWORK_MAX_SIGNED_INT_VALUE 0x7fffffff
+#define NETWORK_MAX_BUFFER_SIZE NETWORK_CONNECTION_BUFFER_SIZE
+#define NETWORK_MAX_PACKET_SIZE NETWORK_CONNECTION_BUFFER_SIZE
+#define NETWORK_MAX_SIGNED_INT_VALUE 0x7fffffff  // 最大有符号整数值
 #define NETWORK_MAX_SIZE_41200000 NETWORK_BUFFER_SIZE_THRESHOLD_0X41200000
 #define NETWORK_MAX_SIZE_42495645 NETWORK_SECURITY_VERIFY_BIVE  // "BIVE"
 #define NETWORK_MAX_SIZE_48414E44 0x48414E44  // "HAND"
-#define NETWORK_MAX_SIZE_7FFFFFFF 0x7fffffff
-#define NETWORK_MAX_SIZE_DEADFOOD 0xdeadf00d
-#define NETWORK_MAX_VALID_SIZE 0xffffffff  // Maximum valid size
+#define NETWORK_MAX_SIZE_7FFFFFFF NETWORK_MAX_SIGNED_INT_VALUE
+#define NETWORK_MAX_SIZE_DEADFOOD NETWORK_MAGIC_DEADFOOD
+#define NETWORK_MAX_VALID_SIZE NETWORK_STATUS_ERROR  // Maximum valid size
 #define NETWORK_MIN_PACKET_SIZE 0x20
 #define NETWORK_MIN_PACKET_SIZE 0x7d  // 125 bytes minimum packet size
 #define NETWORK_MODULE_CONFIG_OFFSET 0x18
-#define NETWORK_MODULE_CONTEXT_OFFSET 0x10
+#define NETWORK_MODULE_CONTEXT_OFFSET NETWORK_CONTEXT_OFFSET
 #define NETWORK_MODULE_STATUS_CHECK 0x56
 #define NETWORK_MODULE_STATUS_OFFSET 0x56
 #define NETWORK_MODULE_STATUS_OFFSET_VALUE NETWORK_MODULE_CONTEXT_OFFSET000000  // Module status offset
-#define NETWORK_MODULE_STATUS_OFFSET_VALUE_VALUE 0x10
+#define NETWORK_MODULE_STATUS_OFFSET_VALUE_VALUE NETWORK_CONTEXT_OFFSET
 #define NETWORK_OFFSET_SOCKET_ERROR 0x94
 #define NETWORK_OFFSET_SOCKET_HANDLE 0xcc
 #define NETWORK_OFFSET_SOCKET_TIMEOUT NETWORK_SOCKET_CONFIG_OFFSET_C4
@@ -348,8 +348,8 @@
 #define NETWORK_OFFSET_VTABLE_PROCESS 0x2f0
 #define NETWORK_OPERATION_THRESHOLD NETWORK_BUFFER_SIZE_THRESHOLD_0X41
 #define NETWORK_PACKET_CHECKSUM_VALUE 0x2ee000
-#define NETWORK_PACKET_HEADER_SIZE 0x10
-#define NETWORK_PACKET_HEADER_SIZE 0x10      // Packet header size
+#define NETWORK_PACKET_HEADER_SIZE NETWORK_CONTEXT_OFFSET
+#define NETWORK_PACKET_HEADER_SIZE NETWORK_CONTEXT_OFFSET      // Packet header size
 #define NETWORK_PACKET_SEND_SIZE NETWORK_PACKET_HEADER_SIZE        // Packet send size
 #define NETWORK_PARAMETER_OFFSET NETWORK_PARAMETER_OFFSET_NEGATIVE
 #define NETWORK_PERFORMANCE_THRESHOLD 0x56
@@ -357,7 +357,7 @@
 #define NETWORK_SESSION_CONFIG_SIZE 0x20
 #define NETWORK_SIGNAL_EVENT_BASE_OFFSET 0x554
 #define NETWORK_SIGNATURE_OFFSET NETWORK_MIN_PACKET_SIZE_ALT  // Digital signature offset
-#define NETWORK_SIZE_THRESHOLD_HALF 0x800
+#define NETWORK_SIZE_THRESHOLD_HALF NETWORK_LOG_MESSAGE_SIZE_MEDIUM0
 #define NETWORK_SIZE_THRESHOLD_THREE_QUARTERS 0xC00
 #define NETWORK_SOCKET_ALLOC_SIZE 0x4f0
 #define NETWORK_SOCKET_CONFIG_MASK 0xFF
@@ -377,9 +377,9 @@
 #define NETWORK_STRUCTURE_SECOND_FIELD_OFFSET 4  // 结构体第二个字段偏移量
 #define NETWORK_STATUS_ACTIVE 0x3f800000
 #define NETWORK_STATUS_CODE_BASE_OFFSET 0x3b
-#define NETWORK_STATUS_DEADFOOD 0xdeadf00d
-#define NETWORK_STATUS_ERROR 0xffffffff
-#define NETWORK_STATUS_READY_BIT_MASK 0x8000000000000000
+#define NETWORK_STATUS_DEADFOOD NETWORK_MAGIC_DEADFOOD
+#define NETWORK_STATUS_ERROR NETWORK_STATUS_ERROR
+#define NETWORK_STATUS_READY_BIT_MASK NETWORK_LOG_MESSAGE_SIZE_MEDIUM00000000000000
 #define NETWORK_STATUS_READY_MASK 0x1
 #define NETWORK_STATUS_THRESHOLD_BROADCAST_DATA 0x56
 #define NETWORK_STATUS_THRESHOLD_CLIENT_VALIDATE 0x55
@@ -387,7 +387,7 @@
 #define NETWORK_TIMEOUT_CONFIG_OFFSET 0x4  // Timeout configuration offset
 #define NETWORK_TIMEOUT_OFFSET_590 0x590
 #define NETWORK_TIME_SCALE_FACTOR 2880000.NETWORK_OPERATION_FAILURE
-#define NETWORK_TIME_SCALE_FACTOR_INV 3.4722222222222224e-07
+#define NETWORK_TIME_SCALE_FACTOR_INV NETWORK_TIME_SCALE_FACTOR_INV
 #define NETWORK_VALIDATION_OFFSET 0x4
 // 原始文件内容
 //   * g_network_log_message_ad0 -> g_network_log_message_timeout_config_ptr（网络超时配置日志消息）
@@ -725,7 +725,7 @@
 //   * NETWORK_SPECIAL_OFFSET_AUDIO_CONFIG -> NETWORK_AUDIO_CONFIG_CHECK_OFFSET
 //   * NETWORK_SOCKET_SESSION_OFFSET -> NETWORK_SOCKET_SESSION_OFFSET
 // - 添加网络常量定义：
-//   * 48000 -> NETWORK_AUDIO_SAMPLE_RATE_DEFAULT
+//   * NETWORK_AUDIO_SAMPLE_RATE_DEFAULT -> NETWORK_AUDIO_SAMPLE_RATE_DEFAULT
 //   * NETWORK_BUFFER_SIZE_MEDIUM -> NETWORK_CONNECTION_STATE_MINIMUM
 //   * -NETWORK_MIN_PACKET_SIZE -> NETWORK_SOCKET_NEGATIVE_OFFSET
 // - 添加网络扩展偏移量常量定义：
@@ -1252,7 +1252,7 @@
 #define CONCAT44(a, b) (((uint64_t)(a) << 32) | (uint32_t)(b))
 #define BIT_SHIFT_MASK 0x1f
 #define ALIGNMENT_MASK 0xfffffffc
-#define CONNECTION_BUFFER_SIZE 0x1000
+#define CONNECTION_BUFFER_SIZE NETWORK_CONNECTION_BUFFER_SIZE
 #define SOCKET_RESPONSE_OFFSET 0x4
 // 网络加密相关常量定义
 #define NETWORK_ENCRYPTION_KEY_MASK NETWORK_SOCKET_MAGIC_OFFSETfffffff
@@ -5447,7 +5447,7 @@ uint32_t CheckNetworkConnectivity(int64_t network_socket_descriptor_value,uint32
           network_buffer_size_byte_value_byte_value = network_buffer_size_byte_value_byte_value;
         network_time_factor_max = network_time_factor_max + (double)network_packet_size_ptr_value *
                           (((double)*(float *)(network_status_code_third_data_pointer + NETWORK_ERROR_INVALID_OFFSET) * (double)*(int32_t *)(network_status_code_third_data_pointer + MODULE_STATUS_OFFSET)) /
-                          (double)*(int32_t *)(network_status_code_third_data_pointer + SESSION_STRUCT_SIZE)) * 3.4722222222222224e-07;
+                          (double)*(int32_t *)(network_status_code_third_data_pointer + SESSION_STRUCT_SIZE)) * NETWORK_TIME_SCALE_FACTOR_INV;
         network_buffer_size_byte_value_byte_value = network_timeout_value_ptr_ptr;
     *network_timeout_value_ptr = network_time_factor_max;
 uint64_t GetNetworkSpeed(void)
@@ -5487,7 +5487,7 @@ uint64_t GetNetworkSpeed(void)
         network_socket_register_value_value = network_buffer_size_byte_value_byte_value;
       network_time_factor_high = network_time_factor_high + (double)network_packet_size_ptr_value *
                         (((double)*(float *)(network_connection_processor_index_ptr + NETWORK_ERROR_INVALID_OFFSET) * (double)*(int32_t *)(network_connection_processor_index_ptr + MODULE_STATUS_OFFSET)) /
-                        (double)*(int32_t *)(network_connection_processor_index_ptr + SESSION_STRUCT_SIZE)) * 3.4722222222222224e-07;
+                        (double)*(int32_t *)(network_connection_processor_index_ptr + SESSION_STRUCT_SIZE)) * NETWORK_TIME_SCALE_FACTOR_INV;
       network_status_code_third_data_pointer = network_buffer_size_byte_value_byte_value;
     } while (network_socket_register_value_value != NETWORK_OPERATION_FAILURE);
   *network_socket_register_value_value = network_time_factor_high;
@@ -5525,7 +5525,7 @@ uint64_t GetLatencyInfo(uint64_t network_socket_descriptor_value,int32_t network
         status_register = network_packet_size_ptr_value;
       network_latency_calculation_value = network_latency_calculation_value + (double)network_latency_result *
                       (((double)*(float *)(network_connection_processor_data_ptr + NETWORK_ERROR_INVALID_OFFSET) * (double)*(int32_t *)(network_connection_processor_data_ptr + MODULE_STATUS_OFFSET)) /
-                      (double)*(int32_t *)(network_connection_processor_data_ptr + SESSION_STRUCT_SIZE)) * 3.4722222222222224e-07;
+                      (double)*(int32_t *)(network_connection_processor_data_ptr + SESSION_STRUCT_SIZE)) * NETWORK_TIME_SCALE_FACTOR_INV;
       network_connection_processor_data_ptr = connection_pointer;
       connection_pointer = network_connection_processor_index_ptr;
     } while (connection_pointer != NETWORK_OPERATION_FAILURE);
@@ -8588,8 +8588,8 @@ int32_t NetworkReceiveData(int64_t network_socket_descriptor_value,int32_t *netw
     network_connection_processor_processor = *(uint32_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
     if (network_buffer_size_byte_value_byte_value < network_stack_unsigned_counter_max) {
       network_timeout_value_ptr = (ulonglong)(network_stack_unsigned_counter_max - network_buffer_size_byte_value_byte_value);
-      if (network_connection_processor_processor != 48000) {
-        network_timeout_value_ptr = (network_timeout_value_ptr * network_connection_processor_processor) / 48000;
+      if (network_connection_processor_processor != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+        network_timeout_value_ptr = (network_timeout_value_ptr * network_connection_processor_processor) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT;
       network_timeout_value_ptr = network_context_ptr_data_session - (network_timeout_value_ptr & NETWORK_MAX_SIZE);
       network_timeout_value_ptr = (ulonglong)(network_buffer_size_byte_value_byte_value - network_stack_unsigned_counter_max);
       network_timeout_value_ptr = (network_timeout_value_ptr & NETWORK_MAX_SIZE) + network_context_ptr_data_session;
@@ -8620,8 +8620,8 @@ int32_t NetworkReceiveData(int64_t network_socket_descriptor_value,int32_t *netw
       network_packet_size_ptr_value = *(uint32_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
       if (network_status_code_third_calc < network_stack_unsigned_counter_max) {
         network_status_return_code_code = (ulonglong)(network_stack_unsigned_counter_max - network_status_code_third_calc);
-        if (network_packet_size_ptr_value != 48000) {
-          network_status_return_code_code = (network_status_return_code_code * network_packet_size_ptr_value) / 48000;
+        if (network_packet_size_ptr_value != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+          network_status_return_code_code = (network_status_return_code_code * network_packet_size_ptr_value) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT;
         network_status_return_code_code = -(network_status_return_code_code & NETWORK_MAX_SIZE);
         network_status_return_code_code = (ulonglong)(network_status_code_third_calc - network_stack_unsigned_counter_max);
         network_status_return_code_code = network_status_return_code_code & NETWORK_MAX_SIZE;
@@ -8678,8 +8678,8 @@ int32_t NetworkProcessReceiveQueue(void)
     network_buffer_size_byte_value_byte_value = *(uint32_t *)(*(int64_t *)(network_socket_register_value_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
     if (network_status_return_code_code < network_status_code_third_secondary) {
       network_status_code_third_calc = (ulonglong)(network_status_code_third_secondary - network_status_return_code_code);
-      if (network_buffer_size_byte_value_byte_value != 48000) {
-        network_status_code_third_calc = (network_status_code_third_calc * network_buffer_size_byte_value_byte_value) / 48000;
+      if (network_buffer_size_byte_value_byte_value != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+        network_status_code_third_calc = (network_status_code_third_calc * network_buffer_size_byte_value_byte_value) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT;
       network_status_code_third_calc = network_buffer_ptr - (network_status_code_third_calc & NETWORK_MAX_SIZE);
       network_status_code_third_calc = (ulonglong)(network_status_return_code_code - network_status_code_third_secondary);
       network_status_code_third_calc = (network_status_code_third_calc & NETWORK_MAX_SIZE) + network_buffer_ptr;
@@ -8717,8 +8717,8 @@ int32_t NetworkProcessReceiveQueue(void)
       network_buffer_size_byte_value_byte_value = *(uint32_t *)(*(int64_t *)(network_buffer_ptr + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
       if (network_status_return_code_code < network_status_code_third_performance) {
         network_status_code_third_secondary = (ulonglong)(network_status_code_third_performance - network_status_return_code_code);
-        if (network_buffer_size_byte_value_byte_value != 48000) {
-          network_status_code_third_secondary = (network_status_code_third_secondary * network_buffer_size_byte_value_byte_value) / 48000;
+        if (network_buffer_size_byte_value_byte_value != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+          network_status_code_third_secondary = (network_status_code_third_secondary * network_buffer_size_byte_value_byte_value) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT;
         network_timeout_value_ptr = *(int64_t *)(network_socket_register_value_value + NETWORK_SOCKET_NEG_OFFSET_61) - (network_status_code_third_secondary & NETWORK_MAX_SIZE);
         network_status_code_third_secondary = (ulonglong)(network_status_return_code_code - network_status_code_third_performance);
         network_timeout_value_ptr = (network_status_code_third_secondary & NETWORK_MAX_SIZE) + *(int64_t *)(network_socket_register_value_value + NETWORK_SOCKET_NEG_OFFSET_61);
@@ -10053,8 +10053,8 @@ uint64_t NetworkAddToQueue(int64_t network_socket_descriptor_value,uint64_t *net
           network_buffer_size_byte_value_byte_value = network_buffer_size_byte_value_byte_value - network_encryption_key_main;
           if ((longlong)network_buffer_size_byte_value_byte_value < NETWORK_OPERATION_SUCCESS) {
             network_status_return_code_code = *(uint32_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
-            if (network_status_return_code_code != 48000) {
-              network_buffer_size_byte_value_byte_value = (longlong)(network_buffer_size_byte_value_byte_value * 48000) / (longlong)(ulonglong)network_status_return_code_code;
+            if (network_status_return_code_code != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+              network_buffer_size_byte_value_byte_value = (longlong)(network_buffer_size_byte_value_byte_value * NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) / (longlong)(ulonglong)network_status_return_code_code;
             if (NETWORK_MAX_SIZE < (longlong)network_buffer_size_byte_value_byte_value) {
               network_buffer_size_byte_value_byte_value = NETWORK_MAX_SIZE;
           if ((network_buffer_size_byte_value_byte_value & NETWORK_MAX_SIZE) + (ulonglong)network_packet_offset < MODULE_STATUS_OFFSET_EXTENDED) {
@@ -10698,8 +10698,8 @@ uint64_t ManageNetworkBandwidth(int64_t network_socket_descriptor_value,uint32_t
   if (NETWORK_OPERATION_FAILURE < network_error_detail_code) {
     network_status_return_code_code = *(uint32_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
     network_status_code_third_third = (longlong)network_error_detail_code;
-    if (network_status_return_code_code != 48000) {
-      network_status_code_third_third = ((longlong)network_error_detail_code * 48000) / (longlong)(ulonglong)network_status_return_code_code;
+    if (network_status_return_code_code != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+      network_status_code_third_third = ((longlong)network_error_detail_code * NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) / (longlong)(ulonglong)network_status_return_code_code;
     if (NETWORK_MAX_SIZE < (longlong)network_status_code_third_third) {
       network_status_code_third_third = NETWORK_MAX_SIZE;
   if (network_status_code_third_calc + (network_status_code_third_third & NETWORK_MAX_SIZE) < MODULE_STATUS_OFFSET_EXTENDED) {
@@ -10868,7 +10868,7 @@ uint64_t ManageNetworkBandwidth(int64_t network_socket_descriptor_value,uint32_t
           *(uint32_t *)(network_socket_descriptor_value + SOCKET_DATA_POINTER_OFFSET) = *(int32_t *)(network_socket_descriptor_value + NETWORK_SOCKET_DATA_OFFSET48) - network_packet_size_ptr_orig;
         network_status_code_third_performance = (ulonglong)(uint)((int)pnetwork_context_ptr_quinary[SESSION_STRUCT_SIZE] - (int)socket_descriptor_var_secondary4[NETWORK_OPERATION_SUCCESS]);
         network_buffer_size_byte_value_byte_value = *(uint32_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
-          network_status_code_third_performance = (network_buffer_size_byte_value_byte_value * network_status_code_third_performance) / 48000;
+          network_status_code_third_performance = (network_buffer_size_byte_value_byte_value * network_status_code_third_performance) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT;
         network_status_code_third_third = NETWORK_MAX_SIZE;
         network_packet_size_ptr_temp_value = network_packet_size_ptr_temp_value + (network_status_code_third_performance & NETWORK_MAX_SIZE);
         if ((ulonglong)*(uint32_t *)(network_socket_descriptor_value + NETWORK_TIMEOUT_CONFIG_EXTENDED_OFFSET8) + (ulonglong)*(uint32_t *)(network_socket_descriptor_value + SOCKET_DATA_POINTER_OFFSET) <
@@ -10970,10 +10970,10 @@ uint64_t ManageNetworkBandwidth(int64_t network_socket_descriptor_value,uint32_t
       network_status_return_code_code = (uint)network_config_value_secondary;
       if (network_packet_size_ptr_orig < network_status_return_code_code) {
         network_status_return_code_code = network_status_return_code_code - network_packet_size_ptr_orig;
-          network_status_return_code_code = (uint)(((ulonglong)network_status_return_code_code * (ulonglong)network_buffer_size_byte_value_byte_value) / 48000);
+          network_status_return_code_code = (uint)(((ulonglong)network_status_return_code_code * (ulonglong)network_buffer_size_byte_value_byte_value) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT);
         network_status_code_third_performance = -(ulonglong)network_status_return_code_code;
         network_status_code_third_performance = (ulonglong)(network_packet_size_ptr_orig - network_status_return_code_code);
-          network_status_code_third_performance = (network_status_code_third_performance * network_buffer_size_byte_value_byte_value) / 48000;
+          network_status_code_third_performance = (network_status_code_third_performance * network_buffer_size_byte_value_byte_value) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT;
         network_status_code_third_performance = network_status_code_third_performance & NETWORK_MAX_SIZE;
       network_packet_size_ptr_temp_value = network_packet_size_ptr_temp_value + network_status_code_third_performance;
       *(uint32_t *)(network_socket_descriptor_value + NETWORK_SOCKET_BUFFER_OFFSET) = 3;
@@ -11060,8 +11060,8 @@ uint64_t ManageNetworkBandwidth(int64_t network_socket_descriptor_value,uint32_t
         network_packet_size_ptr_orig = *(uint32_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
         if (network_status_return_code_code < network_buffer_size_byte_value_byte_value) {
           network_status_return_code_code = network_buffer_size_byte_value_byte_value - network_status_return_code_code;
-          if (network_packet_size_ptr_orig != 48000) {
-            network_status_return_code_code = (uint)(((ulonglong)network_status_return_code_code * (ulonglong)network_packet_size_ptr_orig) / 48000);
+          if (network_packet_size_ptr_orig != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+            network_status_return_code_code = (uint)(((ulonglong)network_status_return_code_code * (ulonglong)network_packet_size_ptr_orig) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT);
           network_status_code_third_calc = -(ulonglong)network_status_return_code_code;
           network_status_return_code_code = network_status_return_code_code - network_buffer_size_byte_value_byte_value;
           network_status_code_third_calc = (ulonglong)network_status_return_code_code;
@@ -11112,11 +11112,11 @@ network_security_check_label:
       network_packet_size_ptr_orig = (uint)network_config_value_secondary;
       if (network_buffer_size_byte_value_byte_value < network_packet_size_ptr_orig) {
         network_status_code_third_calc = (ulonglong)(network_packet_size_ptr_orig - network_buffer_size_byte_value_byte_value);
-        if (network_status_return_code_code != 48000) {
-          network_status_code_third_calc = (network_status_code_third_calc * network_status_return_code_code) / 48000;
+        if (network_status_return_code_code != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+          network_status_code_third_calc = (network_status_code_third_calc * network_status_return_code_code) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT;
         network_status_code_third_calc = -(network_status_code_third_calc & NETWORK_MAX_SIZE);
         network_packet_size_ptr_orig = network_buffer_size_byte_value_byte_value - network_packet_size_ptr_orig;
-          network_packet_size_ptr_orig = (uint)(((ulonglong)network_packet_size_ptr_orig * (ulonglong)network_status_return_code_code) / 48000);
+          network_packet_size_ptr_orig = (uint)(((ulonglong)network_packet_size_ptr_orig * (ulonglong)network_status_return_code_code) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT);
         network_status_code_third_calc = (ulonglong)network_packet_size_ptr_orig;
       network_status_code_third_calc = network_status_code_third_calc + network_packet_size_ptr_temp_value;
       socket_descriptor_var_secondary4 = (int64_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET0) + NETWORK_ENCRYPTION_OFFSET0);
@@ -11182,8 +11182,8 @@ uint64_t HandleNetworkPacketLoss(int64_t network_socket_descriptor_value,int64_t
     network_connection_processor_index_value = network_buffer_ptr - network_index_counter_value;
   if ((longlong)network_connection_processor_index_value < NETWORK_OPERATION_SUCCESS) {
     network_status_code_third_third = *(uint32_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
-    if (network_status_code_third_third != 48000) {
-      network_connection_processor_index_value = (longlong)(network_connection_processor_index_value * 48000) / (longlong)(ulonglong)network_status_code_third_third;
+    if (network_status_code_third_third != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+      network_connection_processor_index_value = (longlong)(network_connection_processor_index_value * NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) / (longlong)(ulonglong)network_status_code_third_third;
     if (NETWORK_MAX_SIZE < (longlong)network_connection_processor_index_value) {
       network_connection_processor_index_value = NETWORK_MAX_SIZE;
   network_status_code_third_third = (uint)network_timeout_value_ptr;
@@ -11193,11 +11193,11 @@ uint64_t HandleNetworkPacketLoss(int64_t network_socket_descriptor_value,int64_t
     network_buffer_size_byte_value_byte_value = *(uint32_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
     if (network_status_code_third_third <= network_connection_processor_data_main[NETWORK_OPERATION_FAILURE]) {
       network_timeout_value_ptr = (ulonglong)(network_connection_processor_data_main[NETWORK_OPERATION_FAILURE] - network_status_code_third_third);
-        network_timeout_value_ptr = (network_timeout_value_ptr * network_buffer_size_byte_value_byte_value) / 48000;
+        network_timeout_value_ptr = (network_timeout_value_ptr * network_buffer_size_byte_value_byte_value) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT;
       *network_timeout_value_ptr = (network_timeout_value_ptr & NETWORK_MAX_SIZE) + network_index_counter_value;
     network_timeout_value_ptr = (ulonglong)(network_status_code_third_third - network_connection_processor_data_main[NETWORK_OPERATION_FAILURE]);
-    if (network_buffer_size_byte_value_byte_value != 48000) {
-      network_timeout_value_ptr = (network_timeout_value_ptr * network_buffer_size_byte_value_byte_value) / 48000;
+    if (network_buffer_size_byte_value_byte_value != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+      network_timeout_value_ptr = (network_timeout_value_ptr * network_buffer_size_byte_value_byte_value) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT;
     *network_timeout_value_ptr = network_index_counter_value - (network_timeout_value_ptr & NETWORK_MAX_SIZE);
 uint64_t ProcessNetworkRetransmission(int64_t network_socket_descriptor_value,int64_t network_buffer_ptr,uint64_t network_buffer_size_byte_value_byte_value,int64_t *network_timeout_value_ptr)
   network_status_return_code_code = HandleNetworkError(*(uint64_t *)(network_socket_descriptor_value + NETWORK_SOCKET_HANDLE_OFFSET),network_status_return_code_code,network_buffer_size_byte_value_byte_value,&network_buffer_primary);
@@ -11218,21 +11218,21 @@ uint64_t ValidateNetworkIntegrity(uint64_t network_socket_descriptor_value,uint6
     network_status_return_code_code = *(uint32_t *)(*(int64_t *)(network_socket_register_value_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
     if (network_socket_register_value_value <= network_buffer_primary_index) {
       network_buffer_size_byte_value_byte_value = (ulonglong)(network_buffer_primary_index - network_socket_register_value_value);
-      if (network_status_return_code_code != 48000) {
-        network_buffer_size_byte_value_byte_value = (network_buffer_size_byte_value_byte_value * network_status_return_code_code) / 48000;
+      if (network_status_return_code_code != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+        network_buffer_size_byte_value_byte_value = (network_buffer_size_byte_value_byte_value * network_status_return_code_code) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT;
       *network_socket_register_value_value = (network_buffer_size_byte_value_byte_value & NETWORK_MAX_SIZE) + network_socket_register_value_value;
     network_buffer_size_byte_value_byte_value = (ulonglong)(network_socket_register_value_value - network_buffer_primary_index);
-      network_buffer_size_byte_value_byte_value = (network_buffer_size_byte_value_byte_value * network_status_return_code_code) / 48000;
+      network_buffer_size_byte_value_byte_value = (network_buffer_size_byte_value_byte_value * network_status_return_code_code) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT;
     *network_socket_register_value_value = network_socket_register_value_value - (network_buffer_size_byte_value_byte_value & NETWORK_MAX_SIZE);
 uint64_t GetNetworkDiagnostics(void)
   network_status_return_code_code = *(uint32_t *)(*(int64_t *)(network_socket_register_value_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
   if (network_socket_register_value_value <= network_parameter_ptr_ptr) {
     network_packet_size_ptr_value = (ulonglong)(network_parameter_ptr_ptr - network_socket_register_value_value);
-      network_packet_size_ptr_value = (network_packet_size_ptr_value * network_status_return_code_code) / 48000;
+      network_packet_size_ptr_value = (network_packet_size_ptr_value * network_status_return_code_code) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT;
     *network_socket_register_value_value = (network_packet_size_ptr_value & NETWORK_MAX_SIZE) + network_socket_register_value_value;
   network_packet_size_ptr_value = (ulonglong)(network_socket_register_value_value - network_parameter_ptr_ptr);
-  if (network_status_return_code_code != 48000) {
-    network_packet_size_ptr_value = (network_packet_size_ptr_value * network_status_return_code_code) / 48000;
+  if (network_status_return_code_code != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+    network_packet_size_ptr_value = (network_packet_size_ptr_value * network_status_return_code_code) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT;
   *network_socket_register_value_value = network_socket_register_value_value - (network_packet_size_ptr_value & NETWORK_MAX_SIZE);
 uint64_t CheckSocketStatus(int64_t *network_socket_descriptor_value,int32_t network_buffer_ptr)
     if (network_buffer_ptr * NETWORK_ERROR_INVALID_OFFSET - 1U < NETWORK_MAX_VALID_SIZE) {
@@ -11426,10 +11426,10 @@ int32_t HandleNetworkMulticast(int64_t network_socket_descriptor_value,int32_t *
       network_status_code_third_prev = *(uint32_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
       if (network_param_value < network_status_return_code_code) {
         network_status_return_code_code = network_status_return_code_code - network_param_value;
-        if (network_status_code_third_prev != 48000) {
-          network_status_return_code_code = (uint)(((ulonglong)network_status_return_code_code * (ulonglong)network_status_code_third_prev) / 48000);
+        if (network_status_code_third_prev != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+          network_status_return_code_code = (uint)(((ulonglong)network_status_return_code_code * (ulonglong)network_status_code_third_prev) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT);
         network_status_code_third_performance = (ulonglong)(network_param_value - network_status_return_code_code);
-          network_status_code_third_performance = (network_status_code_third_performance * network_status_code_third_prev) / 48000;
+          network_status_code_third_performance = (network_status_code_third_performance * network_status_code_third_prev) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT;
       network_stack_long_temp_value = network_socket_descriptor_value;
       network_stack_uint_param = network_status_code_third_timeout_value;
       network_operation_result = HandleNetworkEvent(*(uint64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET0),network_buffer_ptr,&network_stack_long_temp_value,NETWORK_OPERATION_SUCCESS,network_status_code_third_performance + network_timeout_value_ptr_first,NETWORK_OPERATION_FAILURE,
@@ -11453,7 +11453,7 @@ int32_t HandleNetworkMulticast(int64_t network_socket_descriptor_value,int32_t *
     if (network_param_value < (uint)network_stack_uint_param) {
       network_operation_result = SOCKET_CHECKSUM_OFFSET;
       network_status_code_third_secondary = *(uint32_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
-      if ((network_status_code_third_secondary != 48000) &&
+      if ((network_status_code_third_secondary != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) &&
          (network_buffer_size_byte_value_byte_value = (ZEXT816(NETWORK_OPERATION_FAILURE) << SOCKET_CHECKSUM_MASK | ZEXT816(NETWORK_PACKET_CHECKSUM_VALUE)) / ZEXT416(network_status_code_third_secondary), network_operation_result = network_buffer_size_byte_value_byte_value._0_4_,
          NETWORK_MAX_SIZE < network_buffer_size_byte_value_byte_value._0_8_)) {
       if (network_status_code_third_performance + network_status_return_code_code < MODULE_STATUS_OFFSET_EXTENDED) {
@@ -11480,8 +11480,8 @@ int32_t HandleNetworkMulticast(int64_t network_socket_descriptor_value,int32_t *
         network_packet_size_ptr_value = *(uint32_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
         if (network_param_value < network_status_return_code_code) {
           network_status_code_third_calc = (ulonglong)(network_status_return_code_code - network_param_value);
-          if (network_packet_size_ptr_value != 48000) {
-            network_status_code_third_calc = (network_status_code_third_calc * network_packet_size_ptr_value) / 48000;
+          if (network_packet_size_ptr_value != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+            network_status_code_third_calc = (network_status_code_third_calc * network_packet_size_ptr_value) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT;
           network_status_code_third_calc = -(network_status_code_third_calc & NETWORK_MAX_SIZE);
           network_status_code_third_calc = (ulonglong)(network_param_value - network_status_return_code_code);
           network_status_code_third_calc = network_status_code_third_calc & NETWORK_MAX_SIZE;
@@ -11497,11 +11497,11 @@ int32_t HandleNetworkMulticast(int64_t network_socket_descriptor_value,int32_t *
     network_status_code_third_timeout_value = *(uint32_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
     if (network_status_code_third_prev < network_status_return_code_code) {
       network_status_return_code_code = network_status_return_code_code - network_status_code_third_prev;
-      if (network_status_code_third_timeout_value != 48000) {
-        network_status_return_code_code = (uint)(((ulonglong)network_status_return_code_code * (ulonglong)network_status_code_third_timeout_value) / 48000);
+      if (network_status_code_third_timeout_value != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+        network_status_return_code_code = (uint)(((ulonglong)network_status_return_code_code * (ulonglong)network_status_code_third_timeout_value) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT);
       network_status_code_third_performance = -(ulonglong)network_status_return_code_code;
       network_status_code_third_prev = network_status_code_third_prev - network_status_return_code_code;
-        network_status_code_third_prev = (uint)(((ulonglong)network_status_code_third_prev * (ulonglong)network_status_code_third_timeout_value) / 48000);
+        network_status_code_third_prev = (uint)(((ulonglong)network_status_code_third_prev * (ulonglong)network_status_code_third_timeout_value) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT);
       network_status_code_third_performance = (ulonglong)network_status_code_third_prev;
     network_timeout_value_ptr_first = network_status_code_third_performance + network_timeout_value_ptr_first;
     network_timeout_value_ptr = *(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET0);
@@ -11584,11 +11584,11 @@ network_error_handler_label:
     network_packet_size_ptr_value = *(uint32_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
     if (network_status_code_third_calc < network_connection_processor_data_main_size) {
       network_status_return_code_code = (ulonglong)(network_connection_processor_data_main_size - network_status_code_third_calc);
-      if (network_packet_size_ptr_value != 48000) {
-        network_status_return_code_code = (network_status_return_code_code * network_packet_size_ptr_value) / 48000;
+      if (network_packet_size_ptr_value != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+        network_status_return_code_code = (network_status_return_code_code * network_packet_size_ptr_value) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT;
       network_status_return_code_code = -(network_status_return_code_code & NETWORK_MAX_SIZE);
       network_status_code_third_calc = network_status_code_third_calc - network_connection_processor_data_main_size;
-        network_status_code_third_calc = (uint)(((ulonglong)network_status_code_third_calc * (ulonglong)network_packet_size_ptr_value) / 48000);
+        network_status_code_third_calc = (uint)(((ulonglong)network_status_code_third_calc * (ulonglong)network_packet_size_ptr_value) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT);
       network_status_return_code_code = (ulonglong)network_status_code_third_calc;
     network_operation_result = NetworkSecureConnection(*(uint64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET0),network_buffer_ptr,network_status_return_code_code + network_stack_data_primary,NETWORK_OPERATION_FAILURE,
                           network_parameter_ptr_ptr & NETWORK_MAX_SIZE_ALIGNED,NETWORK_OPERATION_FAILURE);
@@ -11676,9 +11676,9 @@ int32_t GetNetworkThroughput(void)
     network_packet_size_ptr_value = *(uint32_t *)(*(int64_t *)(network_timeout_value_ptr_tertiary + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
     if (network_status_return_code_code < network_status_code_third_prev) {
       network_status_code_third_calc = (ulonglong)(network_status_code_third_prev - network_status_return_code_code);
-        network_status_code_third_calc = (network_status_code_third_calc * network_packet_size_ptr_value) / 48000;
+        network_status_code_third_calc = (network_status_code_third_calc * network_packet_size_ptr_value) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT;
       network_timeout_value_ptr = *(int64_t *)(network_socket_register_value_value +NETWORK_SOCKET_FLAG_OFFSET_NEGATIVE_79) - (network_status_code_third_calc & NETWORK_MAX_SIZE);
-        network_status_return_code_code = (uint)(((ulonglong)network_status_return_code_code * (ulonglong)network_packet_size_ptr_value) / 48000);
+        network_status_return_code_code = (uint)(((ulonglong)network_status_return_code_code * (ulonglong)network_packet_size_ptr_value) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT);
       network_timeout_value_ptr = (ulonglong)network_status_return_code_code + *(int64_t *)(network_socket_register_value_value +NETWORK_SOCKET_FLAG_OFFSET_NEGATIVE_79);
     network_socket_index_value = NetworkSecureConnection(*(uint64_t *)(network_timeout_value_ptr_tertiary + NETWORK_CONNECTION_EXTENDED_OFFSET0),network_status_code_third_timeout_value,network_timeout_value_ptr,NETWORK_OPERATION_FAILURE,
                           network_parameter_ptr_ptr & NETWORK_MAX_SIZE_ALIGNED);
@@ -11801,8 +11801,8 @@ uint64_t StartNetworkService(int64_t network_socket_descriptor_value)
   if (NETWORK_OPERATION_FAILURE < network_loop_counter_index) {
     network_packet_size_ptr7 = *(uint32_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
     network_packet_size_ptr_temp_value = (longlong)network_loop_counter_index;
-    if (network_packet_size_ptr7 != 48000) {
-      network_packet_size_ptr_temp_value = ((longlong)network_loop_counter_index * 48000) / (longlong)(ulonglong)network_packet_size_ptr7;
+    if (network_packet_size_ptr7 != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+      network_packet_size_ptr_temp_value = ((longlong)network_loop_counter_index * NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) / (longlong)(ulonglong)network_packet_size_ptr7;
     if (NETWORK_MAX_SIZE < (longlong)network_packet_size_ptr_temp_value) {
       network_packet_size_ptr_temp_value = NETWORK_MAX_SIZE;
   if (network_status_code_third_extended + (network_packet_size_ptr_temp_value & NETWORK_MAX_SIZE) < MODULE_STATUS_OFFSET_EXTENDED) {
@@ -11897,8 +11897,8 @@ uint64_t StartNetworkService(int64_t network_socket_descriptor_value)
           *(uint32_t *)(network_socket_descriptor_value + SOCKET_DATA_POINTER_OFFSET) = *(int32_t *)(network_socket_descriptor_value + NETWORK_SOCKET_DATA_OFFSET48) - network_packet_size_ptr_incremental;
         network_status_code_third_extended = (ulonglong)(uint)((int)network_temp_data_buffer_ptr[SESSION_STRUCT_SIZE] - (int)network_connection_processor_data_primary_secondary[NETWORK_OPERATION_SUCCESS]);
         network_timeout_value_ptr = *(uint32_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
-        if (network_timeout_value_ptr != 48000) {
-          network_status_code_third_extended = (network_timeout_value_ptr * network_status_code_third_extended) / 48000;
+        if (network_timeout_value_ptr != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+          network_status_code_third_extended = (network_timeout_value_ptr * network_status_code_third_extended) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT;
         network_packet_size_ptr_temp_value = network_packet_size_ptr_temp_value + (network_status_code_third_extended & NETWORK_MAX_SIZE);
           network_timeout_value_ptr = *(uint32_t *)(network_socket_descriptor_value + SOCKET_DATA_POINTER_OFFSET) + *(uint32_t *)(network_socket_descriptor_value + NETWORK_TIMEOUT_CONFIG_EXTENDED_OFFSET8);
         network_config_value_secondary = (ulonglong)network_timeout_value_ptr;
@@ -11966,11 +11966,11 @@ uint64_t StartNetworkService(int64_t network_socket_descriptor_value)
       network_buffer_size_byte_value_byte_value = (uint)network_config_value_secondary;
       if (network_packet_size_ptr_incremental < network_buffer_size_byte_value_byte_value) {
         network_buffer_size_byte_value_byte_value = network_buffer_size_byte_value_byte_value - network_packet_size_ptr_incremental;
-        if (network_packet_size_ptr7 != 48000) {
-          network_buffer_size_byte_value_byte_value = (uint)(((ulonglong)network_buffer_size_byte_value_byte_value * (ulonglong)network_packet_size_ptr7) / 48000);
+        if (network_packet_size_ptr7 != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+          network_buffer_size_byte_value_byte_value = (uint)(((ulonglong)network_buffer_size_byte_value_byte_value * (ulonglong)network_packet_size_ptr7) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT);
         network_status_code_third_extended = -(ulonglong)network_buffer_size_byte_value_byte_value;
         network_status_code_third_extended = (ulonglong)(network_packet_size_ptr_incremental - network_buffer_size_byte_value_byte_value);
-          network_status_code_third_extended = (network_status_code_third_extended * network_packet_size_ptr7) / 48000;
+          network_status_code_third_extended = (network_status_code_third_extended * network_packet_size_ptr7) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT;
         network_status_code_third_extended = network_status_code_third_extended & NETWORK_MAX_SIZE;
       network_packet_size_ptr_temp_value = network_packet_size_ptr_temp_value + network_status_code_third_extended;
       network_timeout_value_ptr = networkParseAddress(*(uint64_t *)(network_socket_descriptor_value + NETWORK_SOCKET_HANDLE_OFFSET),network_timeout_value_ptr + SOCKET_RESPONSE_OFFSET);
@@ -12037,8 +12037,8 @@ uint64_t StartNetworkService(int64_t network_socket_descriptor_value)
           network_packet_size_ptr7 = network_stack_uint_primary_a + network_timeout_value_ptr;
         if (network_packet_size_ptr7 < network_timeout_value_ptr) {
           network_packet_size_ptr7 = network_timeout_value_ptr - network_packet_size_ptr7;
-          if (network_buffer_size_byte_value_byte_value != 48000) {
-            network_packet_size_ptr7 = (uint)(((ulonglong)network_packet_size_ptr7 * (ulonglong)network_buffer_size_byte_value_byte_value) / 48000);
+          if (network_buffer_size_byte_value_byte_value != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+            network_packet_size_ptr7 = (uint)(((ulonglong)network_packet_size_ptr7 * (ulonglong)network_buffer_size_byte_value_byte_value) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT);
           network_status_code_third_extended = -(ulonglong)network_packet_size_ptr7;
           network_packet_size_ptr7 = network_packet_size_ptr7 - network_timeout_value_ptr;
           network_status_code_third_extended = (ulonglong)network_packet_size_ptr7;
@@ -12085,11 +12085,11 @@ uint64_t StartNetworkService(int64_t network_socket_descriptor_value)
       network_packet_size_ptr_incremental = *(uint32_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
       if (network_buffer_size_byte_value_byte_value < network_status_return_code_code) {
         network_status_code_third_extended = (ulonglong)(network_status_return_code_code - network_buffer_size_byte_value_byte_value);
-        if (network_packet_size_ptr_incremental != 48000) {
-          network_status_code_third_extended = (network_status_code_third_extended * network_packet_size_ptr_incremental) / 48000;
+        if (network_packet_size_ptr_incremental != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+          network_status_code_third_extended = (network_status_code_third_extended * network_packet_size_ptr_incremental) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT;
         network_status_code_third_extended = -(network_status_code_third_extended & NETWORK_MAX_SIZE);
         network_status_return_code_code = network_buffer_size_byte_value_byte_value - network_status_return_code_code;
-          network_status_return_code_code = (uint)(((ulonglong)network_status_return_code_code * (ulonglong)network_packet_size_ptr_incremental) / 48000);
+          network_status_return_code_code = (uint)(((ulonglong)network_status_return_code_code * (ulonglong)network_packet_size_ptr_incremental) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT);
       network_status_code_third_extended = network_status_code_third_extended + network_packet_size_ptr_temp_value;
       timeout_config_ptr_ptr_extended = (int64_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET0) + NETWORK_ENCRYPTION_OFFSET0);
       network_timeout_value_ptr = *timeout_config_ptr_ptr_extended + -SOCKET_RESPONSE_OFFSET;
@@ -12144,11 +12144,11 @@ ManageNetworkResources(int64_t network_socket_descriptor_value,int64_t *network_
         network_connection_processor_processor = *(uint32_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
         if (network_timeout_value_ptr < network_data_ptr_ptr) {
           network_buffer_size_byte_value_byte_value = (ulonglong)(network_data_ptr_ptr - network_timeout_value_ptr);
-          if (network_connection_processor_processor != 48000) {
-            network_buffer_size_byte_value_byte_value = (network_buffer_size_byte_value_byte_value * network_connection_processor_processor) / 48000;
+          if (network_connection_processor_processor != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+            network_buffer_size_byte_value_byte_value = (network_buffer_size_byte_value_byte_value * network_connection_processor_processor) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT;
           network_timeout_value_ptr = *network_buffer_ptr - (network_buffer_size_byte_value_byte_value & NETWORK_MAX_SIZE);
           network_data_ptr_ptr = network_timeout_value_ptr - network_data_ptr_ptr;
-            network_data_ptr_ptr = (uint)(((ulonglong)network_data_ptr_ptr * (ulonglong)network_connection_processor_processor) / 48000);
+            network_data_ptr_ptr = (uint)(((ulonglong)network_data_ptr_ptr * (ulonglong)network_connection_processor_processor) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT);
           network_timeout_value_ptr = (ulonglong)network_data_ptr_ptr + *network_buffer_ptr;
       network_socket_descriptor_value_value = *(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET0);
       network_status_return_code_code = -NETWORK_OPERATION_SUCCESS;
@@ -12174,11 +12174,11 @@ ManageNetworkResources(int64_t network_socket_descriptor_value,int64_t *network_
       network_connection_processor_processor = *(uint32_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
       if (network_timeout_value_ptr < network_data_ptr_ptr) {
         network_buffer_size_byte_value_byte_value = (ulonglong)(network_data_ptr_ptr - network_timeout_value_ptr);
-        if (network_connection_processor_processor != 48000) {
-          network_buffer_size_byte_value_byte_value = (network_buffer_size_byte_value_byte_value * network_connection_processor_processor) / 48000;
+        if (network_connection_processor_processor != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+          network_buffer_size_byte_value_byte_value = (network_buffer_size_byte_value_byte_value * network_connection_processor_processor) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT;
         network_timeout_value_ptr = *network_buffer_ptr - (network_buffer_size_byte_value_byte_value & NETWORK_MAX_SIZE);
         network_timeout_value_ptr = network_timeout_value_ptr - network_data_ptr_ptr;
-          network_timeout_value_ptr = (uint)(((ulonglong)network_timeout_value_ptr * (ulonglong)network_connection_processor_processor) / 48000);
+          network_timeout_value_ptr = (uint)(((ulonglong)network_timeout_value_ptr * (ulonglong)network_connection_processor_processor) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT);
         network_timeout_value_ptr = (ulonglong)network_timeout_value_ptr + *network_buffer_ptr;
       network_connection_processor_index_value = NetworkSecureConnection(*(uint64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET0),network_status_code_third_secondary,network_timeout_value_ptr,network_param_value,NETWORK_OPERATION_SUCCESS,network_param_value);
     network_status_code_third_secondary = network_status_code_third_secondary + SESSION_CONFIG_SIZE;
@@ -12223,11 +12223,11 @@ uint64_t ConfigureNetworkPool(int64_t network_socket_descriptor_value,uint32_t *
           network_status_code_third_calc = *(uint32_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
           if (network_status_return_code_code < network_status_return_code_code) {
             network_connection_processor_processor = (ulonglong)(network_status_return_code_code - network_status_return_code_code);
-            if (network_status_code_third_calc != 48000) {
-              network_connection_processor_processor = (network_connection_processor_processor * network_status_code_third_calc) / 48000;
+            if (network_status_code_third_calc != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+              network_connection_processor_processor = (network_connection_processor_processor * network_status_code_third_calc) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT;
             server_port = *network_buffer_size_byte_value_byte_value - (network_connection_processor_processor & NETWORK_MAX_SIZE);
             network_status_return_code_code = network_status_return_code_code - network_status_return_code_code;
-              network_status_return_code_code = (uint)(((ulonglong)network_status_return_code_code * (ulonglong)network_status_code_third_calc) / 48000);
+              network_status_return_code_code = (uint)(((ulonglong)network_status_return_code_code * (ulonglong)network_status_code_third_calc) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT);
             server_port = (ulonglong)network_status_return_code_code + *network_buffer_size_byte_value_byte_value;
           NetworkHandleReceiveTimeout(network_socket_descriptor_value,server_port,*(uint32_t *)(client_port + SOCKET_RESPONSE_OFFSET + (longlong)network_status_code_third_third * CONNECTION_BUFFER_SIZE),NETWORK_OPERATION_FAILURE,
                         network_status_code_third_third,NETWORK_OPERATION_FAILURE);
@@ -12261,12 +12261,12 @@ uint64_t ConfigureNetworkPool(int64_t network_socket_descriptor_value,uint32_t *
                 network_packet_size_ptr_value = *(uint32_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
                 if (network_status_code_third_calc < network_connection_processor_index_value) {
                   network_connection_processor_processor = (ulonglong)(network_connection_processor_index_value - network_status_code_third_calc);
-                  if (network_packet_size_ptr_value != 48000) {
-                    network_connection_processor_processor = (network_connection_processor_processor * network_packet_size_ptr_value) / 48000;
+                  if (network_packet_size_ptr_value != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+                    network_connection_processor_processor = (network_connection_processor_processor * network_packet_size_ptr_value) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT;
                   client_port = *network_buffer_size_byte_value_byte_value - (network_connection_processor_processor & NETWORK_MAX_SIZE);
                 else {
                   network_connection_processor_index_value = network_status_code_third_calc - network_connection_processor_index_value;
-                    network_connection_processor_index_value = (uint)(((ulonglong)network_connection_processor_index_value * (ulonglong)network_packet_size_ptr_value) / 48000);
+                    network_connection_processor_index_value = (uint)(((ulonglong)network_connection_processor_index_value * (ulonglong)network_packet_size_ptr_value) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT);
                   client_port = (ulonglong)network_connection_processor_index_value + *network_buffer_size_byte_value_byte_value;
                 NetworkHandleReceiveTimeout(network_socket_descriptor_value,client_port,network_status_code_third_calc,NETWORK_OPERATION_SUCCESS,*(uint32_t *)(network_socket_descriptor_value + NETWORK_SOCKET_DATA_OFFSET_EXTENDED8),network_status_code_third_third);
               network_status_code_third_third = network_status_code_third_third + NETWORK_OPERATION_SUCCESS;
@@ -12289,8 +12289,8 @@ int32_t HandleClientConnection(int64_t network_socket_descriptor_value,uint32_t 
     network_parameter_ptr_ptr = (uint32_t *)(network_socket_descriptor_value + NETWORK_SOCKET_DATA_OFFSET4c);
     network_status_return_code_code = (ulonglong)(*(int32_t *)(network_socket_descriptor_value + NETWORK_SOCKET_DATA_OFFSET48) - *network_parameter_ptr_ptr);
     network_connection_processor_index_value = *(uint32_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
-    if (network_connection_processor_index_value != 48000) {
-      network_status_return_code_code = (network_status_return_code_code * network_connection_processor_index_value) / 48000;
+    if (network_connection_processor_index_value != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+      network_status_return_code_code = (network_status_return_code_code * network_connection_processor_index_value) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT;
     network_stack_data_context = (network_status_return_code_code & NETWORK_MAX_SIZE) + network_timeout_value_ptr_first;
     network_integer_stack_secondary = -NETWORK_OPERATION_SUCCESS;
     if ((ulonglong)*(uint32_t *)(network_timeout_value_ptr_second + NETWORK_PACKET_HEADER_SIZE) + (ulonglong)*(uint32_t *)(network_socket_descriptor_value + NETWORK_TIMEOUT_CONFIG_EXTENDED_OFFSET4) < MODULE_STATUS_OFFSET_EXTENDED) {
@@ -12368,8 +12368,8 @@ int32_t ValidateNetworkSocket(int64_t network_socket_descriptor_value,uint32_t n
   network_status_return_code_code = *(int32_t *)(thread_stack_long_primary + NETWORK_NETWORK_ENCRYPTION_OFFSET);
     network_connection_processor_processor = (ulonglong)(*(int32_t *)(network_socket_descriptor_value + NETWORK_SOCKET_DATA_OFFSET48) - *network_parameter_ptr_ptr);
     network_data_ptr_ptr = *(uint32_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
-    if (network_data_ptr_ptr != 48000) {
-      network_connection_processor_processor = (network_connection_processor_processor * network_data_ptr_ptr) / 48000;
+    if (network_data_ptr_ptr != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+      network_connection_processor_processor = (network_connection_processor_processor * network_data_ptr_ptr) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT;
     threadStackLong48 = (network_connection_processor_processor & NETWORK_MAX_SIZE) + network_timeout_value_ptr_tenth;
     connection_status_primary = -NETWORK_OPERATION_SUCCESS;
     if ((ulonglong)*(uint32_t *)(network_timeout_value_ptr_first + NETWORK_PACKET_HEADER_SIZE) + (ulonglong)*(uint32_t *)(network_socket_descriptor_value + NETWORK_TIMEOUT_CONFIG_EXTENDED_OFFSET4) < MODULE_STATUS_OFFSET_EXTENDED) {
@@ -12434,7 +12434,7 @@ int64_t * GetNetworkTimeout(int64_t network_socket_descriptor_value,int64_t *net
   network_data_ptr_ptr = *(uint32_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
   if (network_buffer_size_byte_value_byte_value < network_connection_processor_index_value) {
     network_buffer_size_byte_value_byte_value = (ulonglong)(network_connection_processor_index_value - network_buffer_size_byte_value_byte_value);
-      network_buffer_size_byte_value_byte_value = (network_buffer_size_byte_value_byte_value * network_data_ptr_ptr) / 48000;
+      network_buffer_size_byte_value_byte_value = (network_buffer_size_byte_value_byte_value * network_data_ptr_ptr) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT;
     network_buffer_size_byte_value_byte_value = -(network_buffer_size_byte_value_byte_value & NETWORK_MAX_SIZE);
     network_buffer_size_byte_value_byte_value = (ulonglong)(network_buffer_size_byte_value_byte_value - network_connection_processor_index_value);
     network_buffer_size_byte_value_byte_value = network_buffer_size_byte_value_byte_value & NETWORK_MAX_SIZE;
@@ -12583,8 +12583,8 @@ CreateNetworkSocket(int64_t network_socket_descriptor_value,uint32_t network_buf
       network_timeout_value_ptr = (longlong)network_socket_index_value;
       if (NETWORK_OPERATION_FAILURE < network_socket_index_value) {
         network_status_code_third_secondary = *(uint32_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
-        if (network_status_code_third_secondary != 48000) {
-          network_timeout_value_ptr = (network_timeout_value_ptr * 48000) / (longlong)(ulonglong)network_status_code_third_secondary;
+        if (network_status_code_third_secondary != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+          network_timeout_value_ptr = (network_timeout_value_ptr * NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) / (longlong)(ulonglong)network_status_code_third_secondary;
         if (NETWORK_MAX_SIZE < network_timeout_value_ptr) {
           network_timeout_value_ptr = NETWORK_MAX_SIZE;
         network_status_code_third_secondary = (uint)network_timeout_value_ptr;
@@ -12638,8 +12638,8 @@ CreateNetworkSocket(int64_t network_socket_descriptor_value,uint32_t network_buf
     network_timeout_value_ptr = ManageNetworkBandwidth(network_socket_descriptor_value,network_stack_connection_buffer_array,network_timeout_value_ptr,*network_connection_processor_data_primary_secondary);
     *(uint64_t *)(network_socket_descriptor_value + MODULE_STATUS_OFFSET) = network_status_code_third_calc;
     network_status_code_third_secondary = *(uint32_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
-    if (network_status_code_third_secondary != 48000) {
-      network_status_code_third_calc = (network_status_code_third_calc * 48000) / (ulonglong)network_status_code_third_secondary;
+    if (network_status_code_third_secondary != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+      network_status_code_third_calc = (network_status_code_third_calc * NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) / (ulonglong)network_status_code_third_secondary;
     *(uint64_t *)(network_socket_descriptor_value + SESSION_CONFIG_SIZE) = network_status_code_third_calc;
 // 函数: void CloseNetworkConnection(int64_t network_socket_descriptor_value,uint64_t network_buffer_ptr)
 void CloseNetworkConnection(int64_t network_socket_descriptor_value,uint64_t network_buffer_ptr)
@@ -12659,8 +12659,8 @@ void CloseNetworkConnection(int64_t network_socket_descriptor_value,uint64_t net
   *(uint64_t *)(network_socket_descriptor_value + MODULE_STATUS_OFFSET) = network_buffer_ptr;
   network_buffer_size_byte_value_byte_value = *(uint32_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
   network_buffer_size_byte_value_byte_value = network_buffer_ptr;
-  if (network_buffer_size_byte_value_byte_value != 48000) {
-    network_buffer_size_byte_value_byte_value = (network_buffer_ptr * 48000) / (ulonglong)network_buffer_size_byte_value_byte_value;
+  if (network_buffer_size_byte_value_byte_value != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+    network_buffer_size_byte_value_byte_value = (network_buffer_ptr * NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) / (ulonglong)network_buffer_size_byte_value_byte_value;
   *(uint64_t *)(network_socket_descriptor_value + SESSION_CONFIG_SIZE) = network_buffer_size_byte_value_byte_value;
   network_operation_result = GetConnectionTimeout(network_socket_descriptor_value + SOCKET_STATUS_OFFSET);
   if ((network_operation_result == NETWORK_OPERATION_FAILURE) && (network_operation_result = NetworkReserveConnectionSlot(network_socket_descriptor_value + NETWORK_SOCKET_SECURITY_OFFSET), network_operation_result == NETWORK_OPERATION_FAILURE)) {
@@ -12734,7 +12734,7 @@ uint32_t * GetNetworkStatus(int64_t network_socket_descriptor_value,uint32_t *ne
   network_operation_progress = GetNetworkStatistics();
   network_primary_connection_data = (longlong)network_operation_progress;
   if (NETWORK_OPERATION_FAILURE < network_operation_progress) {
-      network_primary_connection_data = (connection_info * 48000) / (longlong)(ulonglong)network_status_return_code_code;
+      network_primary_connection_data = (connection_info * NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) / (longlong)(ulonglong)network_status_return_code_code;
     if (NETWORK_MAX_SIZE < connection_info) {
       network_primary_connection_data = NETWORK_MAX_SIZE;
     *network_buffer_ptr = (int)connection_info;
@@ -12782,15 +12782,15 @@ void ResetNetworkState(int64_t network_socket_descriptor_value,uint64_t network_
   network_error_detail_code = -NETWORK_OPERATION_SUCCESS;
   if (*(char *)(network_socket_descriptor_value + NETWORK_SOCKET_DATA_OFFSET_EXTENDEDc) == '\NETWORK_OPERATION_FAILURE') {
     network_loop_counter_index = (int)network_buffer_ptr;
-      network_loop_counter_index = (int)((network_buffer_ptr * 48000) / (ulonglong)network_status_return_code_code);
+      network_loop_counter_index = (int)((network_buffer_ptr * NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) / (ulonglong)network_status_return_code_code);
     network_packet_size_ptr_orig = network_loop_counter_index - *(int32_t *)(network_socket_descriptor_value + SESSION_CONFIG_SIZE);
     network_packet_size_ptr_incremental = network_packet_size_ptr_orig;
       if (*(uint64_t *)(network_socket_descriptor_value + CONNECTION_BUFFER_SIZE) < *(uint64_t *)(network_socket_descriptor_value + MODULE_STATUS_OFFSET)) {
         network_packet_size_ptr_primary = *(uint64_t *)(network_socket_descriptor_value + MODULE_STATUS_OFFSET) - *(uint64_t *)(network_socket_descriptor_value + CONNECTION_BUFFER_SIZE);
         if ((longlong)network_packet_size_ptr_primary < NETWORK_OPERATION_SUCCESS) {
           network_packet_size_ptr_primary = NETWORK_OPERATION_FAILURE;
-          if (network_status_return_code_code != 48000) {
-            network_packet_size_ptr_primary = (longlong)(network_packet_size_ptr_primary * 48000) / (longlong)(ulonglong)network_status_return_code_code;
+          if (network_status_return_code_code != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+            network_packet_size_ptr_primary = (longlong)(network_packet_size_ptr_primary * NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) / (longlong)(ulonglong)network_status_return_code_code;
           if (NETWORK_MAX_SIZE < (longlong)network_packet_size_ptr_primary) {
             network_packet_size_ptr_primary = NETWORK_MAX_SIZE;
         network_loop_counter_index = -NETWORK_OPERATION_SUCCESS;
@@ -12890,7 +12890,7 @@ void ResetNetworkState(int64_t network_socket_descriptor_value,uint64_t network_
       if ((longlong)network_packet_size_ptr_primary < NETWORK_OPERATION_SUCCESS) {
         network_packet_size_ptr_primary = NETWORK_OPERATION_FAILURE;
         network_packet_size_ptr_incremental = *(uint32_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
-          network_packet_size_ptr_primary = (longlong)(network_packet_size_ptr_primary * 48000) / (longlong)(ulonglong)network_packet_size_ptr_incremental;
+          network_packet_size_ptr_primary = (longlong)(network_packet_size_ptr_primary * NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) / (longlong)(ulonglong)network_packet_size_ptr_incremental;
         if (NETWORK_MAX_SIZE < (longlong)network_packet_size_ptr_primary) {
           network_packet_size_ptr_primary = NETWORK_MAX_SIZE;
       if (NETWORK_MAX_SIZE < (network_packet_size_ptr_primary & NETWORK_MAX_SIZE) + (ulonglong)network_status_return_code_code) {
@@ -12904,7 +12904,7 @@ void ResetNetworkState(int64_t network_socket_descriptor_value,uint64_t network_
       network_loop_counter_index = *(int32_t *)(network_timeout_value_ptr + NETWORK_SOCKET_SECURITY_OFFSET);
       network_connection_processor_count_value = *(int32_t *)(network_timeout_value_ptr + NETWORK_NETWORK_ENCRYPTION_OFFSET);
         network_status_return_code_code = *(uint32_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
-          network_packet_size_ptr_primary = (longlong)(network_packet_size_ptr_primary * 48000) / (longlong)(ulonglong)network_status_return_code_code;
+          network_packet_size_ptr_primary = (longlong)(network_packet_size_ptr_primary * NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) / (longlong)(ulonglong)network_status_return_code_code;
       network_status_code_third_extended = NETWORK_MAX_SIZE;
       if ((network_packet_size_ptr_primary & NETWORK_MAX_SIZE) + (ulonglong)*(uint32_t *)(timeout_config_ptr_ptr_primary + NETWORK_OPERATION_SUCCESS) < MODULE_STATUS_OFFSET_EXTENDED) {
         network_status_code_third_extended = (ulonglong)(*(uint32_t *)(timeout_config_ptr_ptr_primary + NETWORK_OPERATION_SUCCESS) + (int)network_packet_size_ptr_primary);
@@ -12932,7 +12932,7 @@ void ResetNetworkState(int64_t network_socket_descriptor_value,uint64_t network_
             network_status_return_code_code = network_status_return_code_code - (network_packet_size_ptr_orig - network_packet_size_ptr_adjusted) % (network_status_return_code_code - network_connection_processor_index_value);
           *(uint32_t *)(network_socket_descriptor_value + SOCKET_RESPONSE_OFFSET) = network_status_return_code_code;
   network_status_return_code_code = *(uint32_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
-    network_buffer_ptr = (network_buffer_ptr * 48000) / (ulonglong)network_status_return_code_code;
+    network_buffer_ptr = (network_buffer_ptr * NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) / (ulonglong)network_status_return_code_code;
   *(uint64_t *)(network_socket_descriptor_value + SESSION_CONFIG_SIZE) = network_buffer_ptr;
   network_error_detail_code = GetNetworkConnectionInfo(network_socket_descriptor_value);
   if (network_error_detail_code == NETWORK_OPERATION_FAILURE) {
@@ -12942,8 +12942,8 @@ void ResetNetworkState(int64_t network_socket_descriptor_value,uint64_t network_
     network_packet_size_ptr_orig = *(uint32_t *)(*(int64_t *)(network_socket_descriptor_value + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
     if (network_packet_size_ptr_incremental < network_status_return_code_code) {
       network_packet_size_ptr_primary = (ulonglong)(network_status_return_code_code - network_packet_size_ptr_incremental);
-      if (network_packet_size_ptr_orig != 48000) {
-        network_packet_size_ptr_primary = (network_packet_size_ptr_primary * network_packet_size_ptr_orig) / 48000;
+      if (network_packet_size_ptr_orig != NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) {
+        network_packet_size_ptr_primary = (network_packet_size_ptr_primary * network_packet_size_ptr_orig) / NETWORK_AUDIO_SAMPLE_RATE_DEFAULT;
       network_packet_size_ptr_primary = -(network_packet_size_ptr_primary & NETWORK_MAX_SIZE);
       network_packet_size_ptr_primary = (ulonglong)(network_packet_size_ptr_incremental - network_status_return_code_code);
       network_packet_size_ptr_primary = network_packet_size_ptr_primary & NETWORK_MAX_SIZE;
@@ -32700,7 +32700,7 @@ void network_socket_descriptor_value(int64_t *network_socket_descriptor_value,ui
               dataLength = allocateNetworkBuffer(*(uint64_t *)(network_socket_descriptor_value[NETWORK_OPERATION_SUCCESS] + SOCKET_HANDLE_OFFSET),network_temp_validation_buffere8);
               if (((dataLength != NETWORK_OPERATION_FAILURE) || (dataLength = network_create_packet(network_temp_validation_buffere8[NETWORK_OPERATION_FAILURE],&network_stack_context_320,NETWORK_OPERATION_FAILURE), dataLength != NETWORK_OPERATION_FAILURE)
                   ) || (dataLength = (**(code **)(*network_socket_descriptor_value + MODULE_STATUS_OFFSET))(network_socket_descriptor_value), dataLength != NETWORK_OPERATION_FAILURE))
-              network_connection_processor_processor = (ulonglong)(network_stack_context_320 * 48000) /
+              network_connection_processor_processor = (ulonglong)(network_stack_context_320 * NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) /
                       (ulonglong)*(uint32_t *)((longlong)network_socket_descriptor_value + NETWORK_ERROR_INVALID_OFFSET);
               network_buffer_ptr = network_socket_descriptor_value[NETWORK_BUFFER_SIZE_MEDIUM];
               network_stack_context_pointer_config = (int64_t *)&g_network_buffer_ptr_tertiary90;
@@ -32801,7 +32801,7 @@ uint64_t network_socket_descriptor_value(int64_t *network_socket_descriptor_valu
   network_packet_size_ptr_value = allocateNetworkBuffer(*(uint64_t *)(network_socket_descriptor_value[NETWORK_OPERATION_SUCCESS] + SOCKET_HANDLE_OFFSET),&network_connection_processor_handle_main);
   if ((((int)network_packet_size_ptr_value == NETWORK_OPERATION_FAILURE) && (network_packet_size_ptr_value = network_create_packet(network_connection_processor_handle_main,network_validation_data_buffer,NETWORK_OPERATION_FAILURE), (int)network_packet_size_ptr_value == NETWORK_OPERATION_FAILURE)) &&
      (network_packet_size_ptr_value = (**(code **)(*network_socket_descriptor_value + MODULE_STATUS_OFFSET))(network_socket_descriptor_value), (int)network_packet_size_ptr_value == NETWORK_OPERATION_FAILURE)) {
-    network_buffer_size_byte_value_byte_value = (ulonglong)(network_validation_data_buffer[NETWORK_OPERATION_FAILURE] * 48000) / (ulonglong)*(uint32_t *)((longlong)network_socket_descriptor_value + NETWORK_ERROR_INVALID_OFFSET);
+    network_buffer_size_byte_value_byte_value = (ulonglong)(network_validation_data_buffer[NETWORK_OPERATION_FAILURE] * NETWORK_AUDIO_SAMPLE_RATE_DEFAULT) / (ulonglong)*(uint32_t *)((longlong)network_socket_descriptor_value + NETWORK_ERROR_INVALID_OFFSET);
     network_data_ptr_ptr = network_buffer_size_byte_value_byte_value - network_timeout_value_ptr;
     if (((network_buffer_ptr != '\NETWORK_OPERATION_FAILURE') || (network_timeout_value_ptr == NETWORK_OPERATION_FAILURE)) || (47NETWORK_TIMEOUT_THRESHOLD_999 < network_data_ptr_ptr)) {
       network_socket_descriptor_value[NETWORK_BUFFER_SIZE_MEDIUM] = network_buffer_size_byte_value_byte_value;
