@@ -296,6 +296,50 @@
 #define NETWORK_THREAD_POOL_MUTEX_ADDR SYSTEM_MUTEX_PRIMARY_ADDR
 #define IO_THREAD_POOL_MUTEX_ADDR SYSTEM_MUTEX_PRIMARY_ADDR
 
+// 系统操作码常量定义
+#define SYSTEM_OPCODE_AUDIO_INIT 0xf
+#define SYSTEM_OPCODE_SHADER_INIT 0xb
+#define SYSTEM_OPCODE_VIDEO_INIT 0x9
+#define SYSTEM_OPCODE_INPUT_INIT 0x9
+#define SYSTEM_OPCODE_NETWORK_INIT 0xd
+#define SYSTEM_OPCODE_SYNC_INIT 0xd
+#define SYSTEM_OPCODE_PHYSICS_INIT 0xc
+#define SYSTEM_OPCODE_UI_INIT 0x13
+#define SYSTEM_OPCODE_RENDER_INIT 0xc
+#define SYSTEM_OPCODE_AI_INIT 0x11
+#define SYSTEM_OPCODE_SECURITY_INIT 0x11
+#define SYSTEM_OPCODE_RESOURCE_INIT 0x19
+#define SYSTEM_OPCODE_AUTH_INIT 0x1a
+#define SYSTEM_OPCODE_UTILITY_INIT 0x1b
+#define SYSTEM_OPCODE_CLEANUP_INIT 0xc
+#define SYSTEM_OPCODE_FINAL_INIT 0x11
+
+// 系统偏移量常量定义
+#define SYSTEM_OFFSET_GLOBAL_DATA 0x7b4
+#define SYSTEM_OFFSET_THREAD_STACK 0x18
+#define SYSTEM_OFFSET_THREAD_DATA 0x19
+#define SYSTEM_OFFSET_THREAD_FLAGS 0x1a
+#define SYSTEM_OFFSET_THREAD_CONTROL 0x1b
+#define SYSTEM_OFFSET_THREAD_CONFIG 0x1c
+#define SYSTEM_OFFSET_THREAD_CALLBACK 0x28
+#define SYSTEM_OFFSET_THREAD_SYSTEM 0x38
+#define SYSTEM_OFFSET_THREAD_HANDLER 0x68
+#define SYSTEM_OFFSET_INITIALIZATION_FLAG 0x1f0
+#define SYSTEM_OFFSET_STRING_LENGTH 0x24
+#define SYSTEM_OFFSET_STRING_BUFFER 0x28
+#define SYSTEM_OFFSET_STRING_COUNTER 0x178
+#define SYSTEM_OFFSET_STRING_SIZE 0x180
+#define SYSTEM_OFFSET_STRING_MAX 0x18c
+
+// 系统标志常量定义
+#define SYSTEM_FLAG_AUDIO_FORMAT 0x666e6f63
+#define SYSTEM_FLAG_CONFIG_GI 0x3a6769
+
+// 系统状态常量定义
+#define SYSTEM_STATUS_AUDIO_CONFIG 0x11
+#define SYSTEM_STATUS_NETWORK_CONFIG 0xc
+#define SYSTEM_STATUS_PHYSICS_CONFIG 0xd
+
 // 缓冲区大小常量
 #define PRIMARY_STRING_BUFFER_SIZE 0x80
 #define STRING_BUFFER_SIZE_SECONDARY 0x80
@@ -1071,7 +1115,7 @@ int initialize_data_buffer_system(void)
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &g_audio_format_buffer;
   g_audio_format_buffer = 0;
-  system_global_data_pointer = 0xf;
+  system_global_data_pointer = SYSTEM_OPCODE_AUDIO_INIT;
   strcpy_s(&g_audio_format_buffer,SYSTEM_CONFIG_BUFFER_SIZE,&audio_format_string);
   system_initialization_result = system_execution_function(&system_init_function_primary);
   return (system_initialization_result != 0) - 1;
@@ -1083,7 +1127,7 @@ int initialize_audio_module(void)
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &shader_system_buffer;
   shader_system_buffer = 0;
-  system_global_data_pointer = 0xb;
+  system_global_data_pointer = SYSTEM_OPCODE_SHADER_INIT;
   strcpy_s(&shader_system_buffer,SYSTEM_CONFIG_BUFFER_SIZE,&system_string_primary,system_string_length_parameter,DEFAULT_THREAD_POOL_FLAG);
   system_initialization_result = system_execution_function(data_buffer_system_initialization_callback);
   return (system_initialization_result != 0) - 1;
