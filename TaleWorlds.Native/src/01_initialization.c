@@ -28123,7 +28123,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
   system_status_code = AllocateSystemMemory(systemMemoryPool,0x270,8,3);
   uintStack_30 = SYSTEM_OFFSET_18005902b;
   system_long_value = GetSystemModuleHandle(system_operation_status);
-  system_status_code = *(uint32_t *)(systemCoreData + 0x1dc0);
+  system_status_code = *(uint32_t *)(systemCoreData + SYSTEM_INIT_OFFSET_1DC0);
   systemCoreData = system_long_value;
   *(uint32_t *)(system_long_result + SYSTEM_OFFSET_1E0) = *(uint32_t *)(systemCoreData + SYSTEM_MEMORY_OFFSET_1D50);
   *(uint32_t *)(system_long_result + SYSTEM_OFFSET_1E4) = system_integer_result_unsigned;

@@ -2269,14 +2269,14 @@ dataValue g_shader_constant_config_global;             // 着色器常量配置�
 dataValue g_shader_constant_config_material;           // 着色器常量配置材质
 dataValue g_shader_constant_config_object;             // 着色器常量配置对象
 dataValue g_shader_constant_config_lighting;           // 着色器常量配置光照
-dataValue render_pass_config_geometry;
-dataValue render_pass_config_shadow;
-dataValue render_pass_config_transparent;
-dataValue render_pass_config_postprocess;
-dataValue render_target_config_color;
-dataValue render_target_config_depth;
-dataValue render_target_config_stencil;
-dataValue render_target_config_multisample;
+dataValue g_render_pass_config_geometry;              // 渲染通道配置几何
+dataValue g_render_pass_config_shadow;                // 渲染通道配置阴影
+dataValue g_render_pass_config_transparent;           // 渲染通道配置透明
+dataValue g_render_pass_config_postprocess;           // 渲染通道配置后处理
+dataValue g_render_target_config_color;               // 渲染目标配置颜色
+dataValue g_render_target_config_depth;               // 渲染目标配置深度
+dataValue g_render_target_config_stencil;             // 渲染目标配置模板
+dataValue g_render_target_config_multisample;         // 渲染目标配置多重采样
 dataValue render_descriptor_config_layout;
 dataValue render_descriptor_config_set;
 dataValue render_descriptor_config_binding;
