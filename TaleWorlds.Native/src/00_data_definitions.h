@@ -14358,3 +14358,30 @@ void system_data_initialization_cleanup(void)
 // 通用常量 - 美化硬编码值（2025年8月30日最终批次）
 #define SYSTEM_ONE_VALUE 1                // 值1
 #define SYSTEM_ZERO_VALUE 0               // 值0
+
+// 额外美化常量 - 美化硬编码值（2025年8月30日最终批次）
+#define SYSTEM_ELEVEN_VALUE 11            // 值11
+#define SYSTEM_TWELVE_VALUE 12            // 值12
+#define SYSTEM_THIRTEEN_VALUE 13          // 值13
+#define SYSTEM_FOURTEEN_VALUE 14          // 值14
+#define SYSTEM_FIFTEEN_VALUE 15           // 值15
+#define SYSTEM_SIXTEEN_VALUE 16           // 值16
+
+// 常用大小常量 - 美化硬编码值（2025年8月30日最终批次）
+#define SYSTEM_SIZE_SMALL_32 32           // 小尺寸32
+#define SYSTEM_SIZE_MEDIUM_64 64          // 中等尺寸64
+#define SYSTEM_SIZE_LARGE_128 128         // 大尺寸128
+#define SYSTEM_SIZE_EXTRA_LARGE_256 256   // 特大尺寸256
+
+// 系统缓冲区大小常量 - 美化硬编码值（2025年8月30日最终批次）
+#define SYSTEM_BUFFER_SIZE_16 16          // 缓冲区大小16
+#define SYSTEM_BUFFER_SIZE_32 32          // 缓冲区大小32
+#define SYSTEM_BUFFER_SIZE_64 64          // 缓冲区大小64
+
+// 扩展数值常量 - 美化硬编码值（2025年8月30日最终批次）
+#define SYSTEM_SEVENTEEN_VALUE 17        // 值17
+#define SYSTEM_EIGHTEEN_VALUE 18          // 值18
+#define SYSTEM_NINETEEN_VALUE 19         // 值19
+#define SYSTEM_TWENTY_VALUE 20           // 值20
+#define SYSTEM_TWENTY_FOUR_VALUE 24       // 值24
+#define SYSTEM_THIRTY_TWO_VALUE 32        // 值32
