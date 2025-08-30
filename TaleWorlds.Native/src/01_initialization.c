@@ -43077,7 +43077,7 @@ LAB_18007113f:
     module_initialization_flag = 0;
   }
   if (g_system_base_1 == 0) {
-    cStack_147 = '\0';
+    init_stack_char_check_147 = '\0';
   }
   else {
     cStack_147 = *(char *)(g_system_base_1 + 0x24);
