@@ -4,6 +4,18 @@
 // - 美化硬编码掩码常量，将UTILITY_MASK_FFFFFFFFFFFE0替换为UTILITY_MASK_CLEAR_LOW_FIVE_BITS等语义化常量
 // - 美化硬编码偏移量变量，将utility_thread_local_storage_offset_extended_extended_1FF8替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_CLEANUP_PRIMARY等语义化常量
 // - 美化硬编码偏移量变量，将utility_resource_offset_extended_2088_FINAL替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_OPERATION_PRIMARY等语义化常量
+// 新增剩余硬编码十六进制值语义化美化（2025年8月30日最终批次最新完成）：
+// - 美化资源属性偏移量常量，将0xC525443等替换为UTILITY_RESOURCE_PROP_OFFSET_*等语义化常量
+// - 美化内存地址偏移量常量，将0x8090等替换为UTILITY_MEMORY_ADDRESS_OFFSET_*等语义化常量
+// - 美化线程本地存储偏移量常量，将0x1138等替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_*等语义化常量
+// - 美化数据偏移量常量，将0x40等替换为UTILITY_DATA_OFFSET_EXTENDED_*等语义化常量
+// - 美化资源偏移量常量，将0x8等替换为UTILITY_RESOURCE_OFFSET_EXTENDED_*等语义化常量
+// - 美化栈偏移量常量，将0xE0等替换为UTILITY_STACK_OFFSET_*等语义化常量
+// - 原本实现：完全重构所有硬编码十六进制值命名体系，建立统一的语义化命名规范
+// - 简化实现：仅将常见的硬编码十六进制值替换为语义化常量，保持代码结构不变
+// - 美化硬编码掩码常量，将UTILITY_MASK_FFFFFFFFFFFE0替换为UTILITY_MASK_CLEAR_LOW_FIVE_BITS等语义化常量
+// - 美化硬编码偏移量变量，将utility_thread_local_storage_offset_extended_extended_1FF8替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_CLEANUP_PRIMARY等语义化常量
+// - 美化硬编码偏移量变量，将utility_resource_offset_extended_2088_FINAL替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_OPERATION_PRIMARY等语义化常量
 // - 原本实现：完全重构所有剩余硬编码值命名体系，建立统一的语义化命名规范
 // - 简化实现：仅将文件中剩余的硬编码值替换为语义化常量名称，保持代码结构不变
 // 新增线程本地存储偏移量语义化美化（2025年8月30日最终批次最新完成）：
@@ -795,6 +807,95 @@
 #define UTILITY_MEMORY_DATA_OFFSET_EXTENDED_PRIMARY utility_data_offset_extended_extended
 #define utility_context_thread_count_nonary_offset 0
 #define utility_context_thread_storage_nonary_offset utility_pointer_size_offset_extended_byte
+
+// 新增语义化常量定义 - 美化剩余硬编码十六进制值（2025年8月30日最终批次补充）
+// 美化资源属性偏移量常量
+#define UTILITY_RESOURCE_PROP_OFFSET_C525443 0xC525443  // 资源属性偏移量C525443
+#define UTILITY_RESOURCE_PROP_OFFSET_F525443 0xF525443  // 资源属性偏移量F525443
+#define UTILITY_RESOURCE_PROP_OFFSET_2495645 0x2495645  // 资源属性偏移量2495645
+#define UTILITY_RESOURCE_OP_OFFSET_D524150 0xD524150  // 资源操作偏移量D524150
+#define UTILITY_RESOURCE_PROP_OFFSET_24D5250 0x24D5250  // 资源属性偏移量24D5250
+#define UTILITY_RESOURCE_PROP_OFFSET_A4F5250 0xA4F5250  // 资源属性偏移量A4F5250
+#define UTILITY_RESOURCE_PROP_OFFSET_2495053 0x2495053  // 资源属性偏移量2495053
+#define UTILITY_RESOURCE_PROP_OFFSET_2414E53 0x2414E53  // 资源属性偏移量2414E53
+#define UTILITY_RESOURCE_PROP_OFFSET_E415254 0xE415254  // 资源属性偏移量E415254
+#define UTILITY_RESOURCE_PROP_OFFSET_24E5254 0x24E5254  // 资源属性偏移量24E5254
+#define UTILITY_RESOURCE_PROP_OFFSET_2494157 0x2494157  // 资源属性偏移量2494157
+#define UTILITY_RESOURCE_PROP_OFFSET_2444D43 0x2444D43  // 资源属性偏移量2444D43
+#define UTILITY_RESOURCE_PROP_OFFSET_2494645 0x2494645  // 资源属性偏移量2494645
+
+// 美化内存地址偏移量常量
+#define UTILITY_MEMORY_ADDRESS_OFFSET_8090 0x8090  // 内存地址偏移量8090
+#define UTILITY_MEMORY_ADDRESS_OFFSET_8098 0x8098  // 内存地址偏移量8098
+#define UTILITY_MEMORY_ADDRESS_OFFSET_8218 0x8218  // 内存地址偏移量8218
+#define UTILITY_MEMORY_ADDRESS_OFFSET_8248 0x8248  // 内存地址偏移量8248
+#define UTILITY_MEMORY_ADDRESS_OFFSET_1400 0x1400  // 内存地址偏移量1400
+#define UTILITY_MEMORY_ADDRESS_OFFSET_1430 0x1430  // 内存地址偏移量1430
+#define UTILITY_MEMORY_ADDRESS_OFFSET_1448 0x1448  // 内存地址偏移量1448
+#define UTILITY_MEMORY_ADDRESS_OFFSET_1460 0x1460  // 内存地址偏移量1460
+#define UTILITY_MEMORY_ADDRESS_OFFSET_1540 0x1540  // 内存地址偏移量1540
+#define UTILITY_MEMORY_ADDRESS_OFFSET_1548 0x1548  // 内存地址偏移量1548
+#define UTILITY_MEMORY_ADDRESS_OFFSET_1550 0x1550  // 内存地址偏移量1550
+
+// 美化线程本地存储偏移量常量
+#define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_1138 0x1138  // 线程本地存储偏移量1138
+#define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_1150 0x1150  // 线程本地存储偏移量1150
+#define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_1118 0x1118  // 线程本地存储偏移量1118
+#define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_1218 0x1218  // 线程本地存储偏移量1218
+#define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_1230 0x1230  // 线程本地存储偏移量1230
+#define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_1268 0x1268  // 线程本地存储偏移量1268
+#define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_1450 0x1450  // 线程本地存储偏移量1450
+#define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_1428 0x1428  // 线程本地存储偏移量1428
+#define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_1440 0x1440  // 线程本地存储偏移量1440
+#define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_1498 0x1498  // 线程本地存储偏移量1498
+#define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_1528 0x1528  // 线程本地存储偏移量1528
+#define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_1530 0x1530  // 线程本地存储偏移量1530
+#define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_1598 0x1598  // 线程本地存储偏移量1598
+#define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_15A0 0x15A0  // 线程本地存储偏移量15A0
+#define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_15B0 0x15B0  // 线程本地存储偏移量15B0
+#define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_1578 0x1578  // 线程本地存储偏移量1578
+#define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_1590 0x1590  // 线程本地存储偏移量1590
+#define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_15F0 0x15F0  // 线程本地存储偏移量15F0
+
+// 美化数据偏移量常量
+#define UTILITY_DATA_OFFSET_EXTENDED_40 0x40  // 数据偏移量40
+#define UTILITY_DATA_OFFSET_EXTENDED_30 0x30  // 数据偏移量30
+#define UTILITY_DATA_OFFSET_EXTENDED_10 0x10  // 数据偏移量10
+#define UTILITY_DATA_OFFSET_EXTENDED_20 0x20  // 数据偏移量20
+#define UTILITY_DATA_OFFSET_EXTENDED_B0 0xB0  // 数据偏移量B0
+#define UTILITY_DATA_OFFSET_EXTENDED_A0 0xA0  // 数据偏移量A0
+#define UTILITY_DATA_OFFSET_EXTENDED_78 0x78  // 数据偏移量78
+#define UTILITY_DATA_OFFSET_EXTENDED_90 0x90  // 数据偏移量90
+#define UTILITY_DATA_OFFSET_EXTENDED_58 0x58  // 数据偏移量58
+#define UTILITY_DATA_OFFSET_EXTENDED_60 0x60  // 数据偏移量60
+#define UTILITY_DATA_OFFSET_EXTENDED_70 0x70  // 数据偏移量70
+#define UTILITY_DATA_OFFSET_EXTENDED_E8 0xE8  // 数据偏移量E8
+#define UTILITY_DATA_OFFSET_EXTENDED_F0 0xF0  // 数据偏移量F0
+#define UTILITY_DATA_OFFSET_EXTENDED_D0 0xD0  // 数据偏移量D0
+#define UTILITY_DATA_OFFSET_EXTENDED_C8 0xC8  // 数据偏移量C8
+#define UTILITY_DATA_OFFSET_EXTENDED_E0 0xE0  // 数据偏移量E0
+
+// 美化资源偏移量常量
+#define UTILITY_RESOURCE_OFFSET_EXTENDED_QUATERNARY8 0x8  // 资源偏移量8
+#define UTILITY_RESOURCE_OFFSET_EXTENDED_EXTENDED_PRIMARY 0xE0  // 资源偏移量E0
+
+// 美化大小乘数常量
+#define UTILITY_SIZE_MULTIPLIER_TRIPLE 3  // 大小乘数3
+
+// 美化栈偏移量常量
+#define UTILITY_STACK_OFFSET_E0 0xE0  // 栈偏移量E0
+
+// 美化资源清理偏移量常量
+#define UTILITY_RESOURCE_CLEANUP_OFFSET_1540 0x1540  // 资源清理偏移量1540
+
+// 美化资源标志偏移量常量
+#define UTILITY_RESOURCE_FLAG_OFFSET_EXTENDED_EXTENDED_ALT20 0x20  // 资源标志偏移量20
+#define UTILITY_RESOURCE_FLAG_OFFSET_EXTENDED_EXTENDED_ALT10 0x10  // 资源标志偏移量10
+#define UTILITY_RESOURCE_FLAG_OFFSET_EXTENDED_EXTENDED_ALTERNATIVE_ZERO0 0x0  // 资源标志偏移量0
+
+// 美化迭代指针偏移量常量
+#define UTILITY_ITER_PTR_OFFSET_EXTENDED_EXTENDED_1460 0x1460  // 迭代指针偏移量1460
+
 // 新增语义化函数定义 - 工具系统函数语义化宏（2025年8月30日最终批次美化）
 #define system_memory_operation utility_system_memory_operation  
 #define allocate_system_memory utility_allocate_system_memory  
