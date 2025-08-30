@@ -22638,7 +22638,7 @@ void InitializeSystemCore(void)
   *(system_uint32_t *)(system_long_var_3 + SYSTEM_INIT_FLAG_INITIALIZED3c) = system_local_uint_primary1;
   *(system_uint64_t *)(system_long_var_3 + SYSTEM_INIT_FLAG_INITIALIZED54) = SYSTEM_INIT_DOUBLE_FLOAT_PAIR_1_0;
   lStack_1d8 = SYSTEM_INIT_DOUBLE_VALUE_1_0;
-  *(system_uint64_t *)(system_long_var_3 + SYSTEM_INIT_FLAG_INITIALIZED5c) = 0x3f8000003f800000;
+  *(system_uint64_t *)(system_long_var_3 + SYSTEM_INIT_FLAG_INITIALIZED5c) = SYSTEM_INIT_DOUBLE_FLOAT_PAIR_1_0;
   system_long_var_4 = _g_system_initialized;
   system_long_var_2 = _g_system_initialized;
   puStack_168 = &g_system_context;
