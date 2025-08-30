@@ -21392,7 +21392,7 @@ void networkEstablishConnection8(int64_t *network_socket_handle)
       network_data_pointer = *(uint32_t *)((longlong)network_socket_handle + NETWORK_SOCKET_BUFFER_OFFSET);
   if (NETWORK_OPERATION_FAILURE < (int)((network_data_pointer ^ (int)network_data_pointer >> BIT_SHIFT_MASK) - ((int)network_data_pointer >> BIT_SHIFT_MASK))) {
     NetworkThreadManager0(network_socket_handle, NETWORK_OPERATION_FAILURE);
-uint64_t networkEstablishConnection9(int64_t *network_socket_handle)
+uint64_t networkEstablishConnectionNinth(int64_t *network_socket_handle)
   network_operation_result = GetConnectionTimeout(network_socket_handle + NETWORK_SOCKET_CONFIG_OFFSET_87);
   if ((network_operation_result == NETWORK_OPERATION_FAILURE) && (network_operation_result = NetworkValidateConnectionSlot(network_socket_handle + NETWORK_SOCKET_DATA_OFFSET_89), network_operation_result == NETWORK_OPERATION_FAILURE)) {
     *(uint32_t *)(network_socket_handle + NETWORK_SOCKET_CONFIG_OFFSET_8B) = NETWORK_MAX_SIZE;
@@ -22770,7 +22770,7 @@ int64_t networkSendDataPacket1(int64_t *network_socket_handle, uint64_t network_
 void networkSendDataPacket2(int64_t network_socket_handle, int64_t *network_buffer_ptr)
   int64_t **timeout_config_ptr_ptr_pointer_4;
   int64_t **timeout_config_ptr_ptr_pointer_7;
-  uint8_t network_encryption_counter8 [32];
+  uint8_t network_encryption_counter_eighth [32];
   int64_t **network_stack_context_pointer_ptr_9a8;
   uint64_t network_stack_buffer_size;
   int64_t **network_stack_context_pointer_ptr_998;
@@ -22796,7 +22796,7 @@ void networkSendDataPacket2(int64_t network_socket_handle, int64_t *network_buff
   uint8_t network_temp_validation_buffere8 [784];
   uint32_t network_connection_processor_datac;
   uint8_t network_global_response_buffer [128];
-  network_module_operation_status = network_encryption_xor_global_value ^ (ulonglong)network_encryption_counter8;
+  network_module_operation_status = network_encryption_xor_global_value ^ (ulonglong)network_encryption_counter_eighth;
   network_configuration_varureInterface(network_temp_validation_buffere8);
   network_packet_size_ptr = (uint64_t *)*network_buffer_ptr;
     if ((((*(int32_t *)(network_packet_size_ptr + NETWORK_BUFFER_SIZE_MEDIUM) == NETWORK_OPERATION_FAILURE) && (*(int32_t *)((longlong)network_packet_size_ptr + SESSION_STRUCT_SIZE) == NETWORK_OPERATION_FAILURE)) &&
@@ -22967,11 +22967,11 @@ networkSendDataPacketFifth:
     dataLength = NetworkStreamData(network_socket_handle, network_packet_size_ptr + NETWORK_MAX_PACKET_SIZE);
       dataLength = NetworkReadConnectionData(network_socket_handle, network_packet_size_ptr);
       goto NETWORK_LABEL_SOCKET_CLEANUP_LOOP;
-  networkEstablishConnection9(network_validation_temp_buffer);
+  networkEstablishConnectionNinth(network_validation_temp_buffer);
   networkReleaseConnection0(&network_current_connections0);
 networkSendDataPacketFourth:
   network_configuration_varureProtocol(network_temp_validation_buffere8);
-  network_encrypt_data(network_module_operation_status ^ (ulonglong)network_encryption_counter8);
+  network_encrypt_data(network_module_operation_status ^ (ulonglong)network_encryption_counter_eighth);
   network_operation_status_code_third_prev = network_packet_size_ptr[NETWORK_ARRAY_INDEX_HANDSHAKE_TYPE];
     if ((network_operation_status_code_third_prev < (ulonglong)network_packet_size_ptr[NETWORK_ARRAY_INDEX_HANDSHAKE_TYPE]) ||
        ((ulonglong)((longlong)*(int32_t *)(network_packet_size_ptr + NETWORK_MODULE_STATUS_OFFSET) * MODULE_STATUS_OFFSET + network_packet_size_ptr[NETWORK_ARRAY_INDEX_HANDSHAKE_TYPE]) <= network_operation_status_code_third_prev)) break;
@@ -23165,7 +23165,7 @@ void networkSendDataPacket3(void)
          (network_socket_context[NETWORK_SOCKET_HANDLE_OFFSET] != NETWORK_OPERATION_FAILURE)) {
     if (*(int64_t *)(network_global_response_buffer + NETWORK_OFFSET_AD0) != NETWORK_OPERATION_FAILURE) {
       network_send_packet_content();
-  networkEstablishConnection9(network_socket_context + SOCKET_MAGIC_OFFSET);
+  networkEstablishConnectionNinth(network_socket_context + SOCKET_MAGIC_OFFSET);
   networkReleaseConnection0(network_socket_context + -NETWORK_SOCKET_MAGIC_OFFSET);
   network_configuration_varureProtocol(network_socket_context + NETWORK_SOCKET_BASE_OFFSET_EXTENDEDc);
   network_encrypt_data(network_socket_context[NETWORK_SOCKET_HANDLE_OFFSET] ^ (ulonglong)&network_global_buffer);
@@ -23211,7 +23211,7 @@ void networkSendDataPacket4(void)
   network_encrypt_data(*(uint64_t *)(network_socket_context + SOCKET_CONFIG_OFFSET0) ^ (ulonglong)&network_global_buffer);
 // 函数: void networkSendDataPacket5(void)
 void networkSendDataPacket5(void)
-  networkEstablishConnection9(network_socket_context + SOCKET_HANDLE_OFFSET);
+  networkEstablishConnectionNinth(network_socket_context + SOCKET_HANDLE_OFFSET);
   networkReleaseConnection0(network_socket_context + -SOCKET_HANDLE_OFFSET);
 uint64_t networkSendDataPacket6(int64_t network_socket_handle)
   if (*(int32_t *)(network_socket_handle + NETWORK_SOCKET_HEADER_OFFSET) == NETWORK_OPERATION_FAILURE) {
