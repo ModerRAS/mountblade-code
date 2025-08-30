@@ -7353,7 +7353,7 @@ unsigned long long initialize_graphics_context(unsigned long long handle_param,u
     }
   }
   if (*(int *)(*(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8) +
-              0x48) < system_global_data_pointer) {
+              SYSTEM_THREAD_LOCAL_STORAGE_OFFSET) < system_global_data_pointer) {
     system_crypto_004(&system_crypto_buffer);
     if (system_global_data_pointer == -1) {
       resource_template_pointer = &g_defaultDataTemplate;
