@@ -18075,7 +18075,7 @@ void InitializePhysicsSystem(void)
   float system_float_value;
   float system_float_value;
   uint8_t system_local_buffer_698 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-  longlong longStack_678;
+  longlong init_stack_resource_data_678;
   longlong longStack_670;
   int intStack_668;
   void *system_buffer_ptr_graphics_main;
