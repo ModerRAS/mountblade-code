@@ -6802,7 +6802,7 @@ unsigned long long initialize_graphics_context(unsigned long long handle_param,u
       system_crypto_module_initializer(&system_crypto_buffer);
     }
   }
-  (*UNRECOVERED_JUMPTABLE)(global_data_ptr,&data_180d49fe0);
+  (*UNRECOVERED_JUMPTABLE)(global_data_ptr,&system_resource_buffer);
   return;
 }
 // 处理配置参数验证函数
