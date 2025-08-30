@@ -1809,7 +1809,7 @@ network_send_chunk_start_label:
     socket_binding_status = networkSendBuffer(socket_send_cache,NETWORK_ERROR_BUFFER_SIZE,network_socket_descriptor);
     connection_binding_state = networkCopyData(socket_send_cache + socket_binding_status,NETWORK_ERROR_BUFFER_SIZE - socket_binding_status,&g_networkNullTerminator);
     networkProcessBufferData(socket_send_cache + (socket_binding_status + connection_binding_state),NETWORK_ERROR_BUFFER_SIZE - (socket_binding_status + connection_binding_state),network_buffer_pointer);
-    buffer_data_pointer = socket_send_buffer;
+    buffer_data_ptr = socket_send_cache;
     networkSendControlPacket(socket_binding_status,NETWORK_OPERATION_FAILURE,NETWORK_OPERATION_FAILURE,&network_control_packet_type);
 network_send_chunk_end_label:
   network_encrypt_content(network_encryption_key_main ^ (ulonglong)network_validation_max_value);
@@ -1841,14 +1841,14 @@ void NetworkConnectSocket(uint64_t network_socket_descriptor,uint64_t *network_b
 network_send_buffer_end_label:
     network_connection_processor_result = network_error_status;
   if ((network_connection_processor_result == NETWORK_OPERATION_FAILURE) &&
-     (network_error_status = networkCreateSession(*(uint64_t *)(network_socket_context_array[NETWORK_OPERATION_FAILURE] + NETWORK_CONTEXT_OFFSET),network_session_config_array,SOCKET_RESPONSE_OFFSET), network_error_status == NETWORK_OPERATION_FAILURE))
-    *network_session_config_array[NETWORK_OPERATION_FAILURE] = &g_network_session_config_array;
-    *(uint32_t *)(network_session_config_array[NETWORK_OPERATION_FAILURE] + 3) = NETWORK_OPERATION_FAILURE;
-    *(uint32_t *)(network_session_config_array[NETWORK_OPERATION_FAILURE] + NETWORK_OPERATION_SUCCESS) = SOCKET_RESPONSE_OFFSET;
-    *(int32_t *)(network_session_config_array[NETWORK_OPERATION_FAILURE] + NETWORK_BUFFER_SIZE_MEDIUM) = (int)network_socket_descriptor;
-    network_error_status = NetworkValidateSocket(*(uint64_t *)(network_socket_context_array[NETWORK_OPERATION_FAILURE] + NETWORK_CONTEXT_OFFSET),network_session_config_array[NETWORK_OPERATION_FAILURE]);
+     (network_error_status = networkCreateSession(*(uint64_t *)(network_socket_context_array[NETWORK_OPERATION_FAILURE] + NETWORK_CONTEXT_OFFSET),session_config_array,SOCKET_RESPONSE_OFFSET), network_error_status == NETWORK_OPERATION_FAILURE))
+    *session_config_array[NETWORK_OPERATION_FAILURE] = &g_network_session_config_array;
+    *(uint32_t *)(session_config_array[NETWORK_OPERATION_FAILURE] + 3) = NETWORK_OPERATION_FAILURE;
+    *(uint32_t *)(session_config_array[NETWORK_OPERATION_FAILURE] + NETWORK_OPERATION_SUCCESS) = SOCKET_RESPONSE_OFFSET;
+    *(int32_t *)(session_config_array[NETWORK_OPERATION_FAILURE] + NETWORK_BUFFER_SIZE_MEDIUM) = (int)network_socket_descriptor;
+    network_error_status = NetworkValidateSocket(*(uint64_t *)(network_socket_context_array[NETWORK_OPERATION_FAILURE] + NETWORK_CONTEXT_OFFSET),session_config_array[NETWORK_OPERATION_FAILURE]);
     if (network_error_status == NETWORK_OPERATION_FAILURE) {
-      *network_buffer_pointer = (ulonglong)*(uint32_t *)(network_session_config_array[NETWORK_OPERATION_FAILURE] + 3);
+      *network_buffer_pointer = (ulonglong)*(uint32_t *)(session_config_array[NETWORK_OPERATION_FAILURE] + 3);
       network_error_exit(network_socket_context_array + NETWORK_OPERATION_SUCCESS);
 network_send_buffer_start_label:
   network_error_exit(network_context_ptr_data_data + NETWORK_OPERATION_SUCCESS);
