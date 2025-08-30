@@ -1965,7 +1965,7 @@ void WotsMainNativeCoreCLR(unsigned long long handle)
                  ((long_var_ = strstr(ptr_var_,&g_systemDataString15), long_var_ == 0 &&
                   (long_var_ = strstr(ptr_var_,&g_systemDataString16), long_var_ == 0)))))) &&
                (long_var_ = strstr(ptr_var_,&g_systemDataString17), long_var_ == 0)) {
-              *(unsigned short *)(long_var_ + 0x24) = 字符串缓冲区大小1;
+              *(unsigned short *)(long_var_ + 0x24) = STRING_BUFFER_SIZE_1;
               *(unsigned char *)(long_var_ + 0x28) = 1;
             }
             else {
@@ -1976,7 +1976,7 @@ void WotsMainNativeCoreCLR(unsigned long long handle)
             *(unsigned short *)(long_var_ + 0x24) = 0;
           }
           stack_ptr_ = (unsigned char *)0x0;
-          stack_var_ = stack_var_ & 64位整数掩码;
+          stack_var_ = stack_var_ & INT64_MASK;
           stack_ptr_ = &g_threadString4;
         }
         else if (uint_var_ == 0xb) {
@@ -2026,7 +2026,7 @@ label_:
                 char_ptr_var_ = char_ptr_var_ + 1;
               } while (flags6 < stack_var_);
             }
-            flags1 = 无符号32位整数最大值;
+            flags1 = UINT32_MAX;
 label_:
             if (int_var_ != -1) {
               setup_thread_parameters(&stack_ptr_,&stack_ptr_,uint_var_,flags1);
@@ -2097,7 +2097,7 @@ label_:
                   char_ptr_var_ = char_ptr_var_ + 1;
                 } while (flags6 < stack_var_);
               }
-              flags1 = 无符号32位整数最大值;
+              flags1 = UINT32_MAX;
 label_:
               if (int_var_ != -1) {
                 setup_thread_parameters(&stack_ptr_,&stack_ptr_,uint_var_,flags1);
@@ -2154,7 +2154,7 @@ label_:
                     char_ptr_var_ = char_ptr_var_ + 1;
                   } while (uint_var_ < stack_var_);
                 }
-                flags1 = 无符号32位整数最大值;
+                flags1 = UINT32_MAX;
 label_:
                 uint_var_ = (int)flags1 + 1;
                 flags8 = (ulong long)(int)uint_var_;
@@ -2262,7 +2262,7 @@ label_:
                       char_ptr_var_ = char_ptr_var_ + 1;
                     } while (uint_var_ < stack_var_);
                   }
-                  flags1 = 无符号32位整数最大值;
+                  flags1 = UINT32_MAX;
 label_:
                   uint_var_ = (int)flags1 + 1;
                   flags8 = (ulong long)(int)uint_var_;
@@ -2547,7 +2547,7 @@ label_:
                         handle_system_error(ptr_var_);
                       }
                       stack_ptr_ = (unsigned char *)0x0;
-                      stack_var_ = stack_var_ & 64位整数掩码;
+                      stack_var_ = stack_var_ & INT64_MASK;
                       stack_ptr_ = &g_threadString4;
                       ptr_var_ = stack_ptr_;
                       ptr_var_ = stack_ptr_;
