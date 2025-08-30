@@ -4341,7 +4341,7 @@ void utility_memory_pool_initializer(void)          // 内存池初始化函数
   longlong utility_register_context_base;
   ulonglong utility_security_context;
   
-  if ((*(uint *)(utility_register_context_base + UTILITY_POINTER_OFFSET_CHECKSUM) >> 7 & 1 UTILITY_BIT_MASK_1) != UTILITY_NULL_RESULT) {
+  if ((*(uint *)(utility_register_context_base + UTILITY_POINTER_OFFSET_CHECKSUM) >> UTILITY_BIT_SHIFT_SEVEN & UTILITY_SINGLE_UNIT UTILITY_BIT_MASK_1) != UTILITY_NULL_RESULT) {
                     // WARNING: Subroutine does not return
     utility_free_memory(); # 内存块释放函数
   }
@@ -4483,7 +4483,7 @@ ulonglong utility_calculate_memory_allocation(longlong resource_handle_identifie
         utilityValidateMemoryAccess(memory_block_pointer_value);
         return (ulonglong)validation_flag_primary;
       }
-      if (((*(uint *)(*(longlong *)(UTILITY_STACK_MEMORY_TEMP + UTILITY_POINTER_SIZE_OFFSET) + SYSTEM_FLAGS_OFFSET) >> 2 & 1 UTILITY_BIT_MASK_1) == UTILITY_NULL_RESULT) &&
+      if (((*(uint *)(*(longlong *)(UTILITY_STACK_MEMORY_TEMP + UTILITY_POINTER_SIZE_OFFSET) + SYSTEM_FLAGS_OFFSET) >> UTILITY_BIT_SHIFT_TWO & UTILITY_SINGLE_UNIT UTILITY_BIT_MASK_1) == UTILITY_NULL_RESULT) &&
          (validation_flag_primary = validate_system_integrity(system_resource_handle_primary), (int)validation_flag_primary != UTILITY_NULL_RESULT)) {
         return validation_flag_primary;
       }
@@ -4976,17 +4976,17 @@ uint64 execute_resource_command(longlong resource_handle_identifier)
       }
     }
     if ((*(char *)(resource_buffer + UTILITY_FIELD_SIZE_OFFSET) == '\0') ||
-       ((*(uint *)(*(longlong *)(resource_buffer + RESOURCE_HANDLE_OFFSET) + UTILITY_FIELD_SIZE_OFFSET) >> 1 & 1 UTILITY_BIT_MASK_1) == UTILITY_NULL_RESULT)) {
+       ((*(uint *)(*(longlong *)(resource_buffer + RESOURCE_HANDLE_OFFSET) + UTILITY_FIELD_SIZE_OFFSET) >> UTILITY_BIT_SHIFT_ONE & UTILITY_SINGLE_UNIT UTILITY_BIT_MASK_1) == UTILITY_NULL_RESULT)) {
       utility_iteration_counter = *(uint *)(*(longlong *)(resource_buffer + RESOURCE_HANDLE_OFFSET) + UTILITY_FIELD_SIZE_OFFSET);
       utility_iteration_counter = utility_iteration_counter >> UTILITY_QUAD_COUNT;
-      if ((utility_iteration_counter & 1 UTILITY_BIT_MASK_1) == UTILITY_NULL_RESULT) {
+      if ((utility_iteration_counter & UTILITY_SINGLE_UNIT UTILITY_BIT_MASK_1) == UTILITY_NULL_RESULT) {
         if ((((utility_iteration_counter >> UTILITY_BYTE_SIZE_3& 1 UTILITY_BIT_MASK_1) != UTILITY_NULL_RESULT) && (utility_temp_int_value = (int)utility_temp_float_result, utility_temp_int_value != -INT_MIN)) &&
            ((float)utility_temp_int_value != utility_temp_float_result)) {
           utility_float_operation_buffer.utility_float_component_high = utility_temp_float_result;
           utility_float_operation_buffer.utility_float_component_low = utility_temp_float_result;
           utility_float_operation_buffer.int_part = UTILITY_NULL_RESULT;
           utility_iteration_counter = movmskps(utility_iteration_counter,utility_float_operation_buffer);
-          utility_temp_float_result = (float)(int)(utility_temp_int_value - (utility_iteration_counter & 1 UTILITY_BIT_MASK_1));
+          utility_temp_float_result = (float)(int)(utility_temp_int_value - (utility_iteration_counter & UTILITY_SINGLE_UNIT UTILITY_BIT_MASK_1));
         }
         utility_temp_float_result = (float)calc_resource_data_size(*(longlong *)(resource_buffer + RESOURCE_HANDLE_OFFSET),utility_temp_float_result);
         if (((*(char *)(resource_buffer + UTILITY_FIELD_SIZE_OFFSET) == '\0') ||
@@ -5833,17 +5833,17 @@ uint64 get_file_position(longlong resource_handle_identifier)
       }
     }
     if ((*(char *)(resource_buffer + UTILITY_FIELD_SIZE_OFFSET) == '\0') ||
-       ((*(uint *)(*(longlong *)(resource_buffer + RESOURCE_HANDLE_OFFSET) + UTILITY_FIELD_SIZE_OFFSET) >> 1 & 1 UTILITY_BIT_MASK_1) == UTILITY_NULL_RESULT)) {
+       ((*(uint *)(*(longlong *)(resource_buffer + RESOURCE_HANDLE_OFFSET) + UTILITY_FIELD_SIZE_OFFSET) >> UTILITY_BIT_SHIFT_ONE & UTILITY_SINGLE_UNIT UTILITY_BIT_MASK_1) == UTILITY_NULL_RESULT)) {
       utility_iteration_counter = *(uint *)(*(longlong *)(resource_buffer + RESOURCE_HANDLE_OFFSET) + UTILITY_FIELD_SIZE_OFFSET);
       utility_iteration_counter = utility_iteration_counter >> UTILITY_QUAD_COUNT;
-      if ((utility_iteration_counter & 1 UTILITY_BIT_MASK_1) == UTILITY_NULL_RESULT) {
+      if ((utility_iteration_counter & UTILITY_SINGLE_UNIT UTILITY_BIT_MASK_1) == UTILITY_NULL_RESULT) {
         if ((((utility_iteration_counter >> UTILITY_BYTE_SIZE_3& 1 UTILITY_BIT_MASK_1) != UTILITY_NULL_RESULT) && (utility_temp_int_value = (int)utility_temp_float_result, utility_temp_int_value != -INT_MIN)) &&
            ((float)utility_temp_int_value != utility_temp_float_result)) {
           utility_float_operation_buffer.utility_float_component_high = utility_temp_float_result;
           utility_float_operation_buffer.utility_float_component_low = utility_temp_float_result;
           utility_float_operation_buffer.int_part = UTILITY_NULL_RESULT;
           utility_iteration_counter = movmskps(utility_iteration_counter,utility_float_operation_buffer);
-          utility_temp_float_result = (float)(int)(utility_temp_int_value - (utility_iteration_counter & 1 UTILITY_BIT_MASK_1));
+          utility_temp_float_result = (float)(int)(utility_temp_int_value - (utility_iteration_counter & UTILITY_SINGLE_UNIT UTILITY_BIT_MASK_1));
         }
         utility_temp_float_result = (float)calc_resource_data_size(*(longlong *)(resource_buffer + RESOURCE_HANDLE_OFFSET),utility_temp_float_result);
         if (((*(char *)(resource_buffer + UTILITY_FIELD_SIZE_OFFSET) == '\0') ||
@@ -9723,7 +9723,7 @@ uint32 utilityReadMemoryData(longlong resource_handle_identifier,uint64 resource
   if (utility_data_array_index == UTILITY_NULL_RESULT) {
     utility_stack_validation_uint = UTILITY_NULL_RESULT;
     validation_flag_primary = resourceOperationFlags | resource_handle_valueta_offset_null;
-    if ((utility_iteration_counter & 1 UTILITY_BIT_MASK_1) == UTILITY_NULL_RESULT) {
+    if ((utility_iteration_counter & UTILITY_SINGLE_UNIT UTILITY_BIT_MASK_1) == UTILITY_NULL_RESULT) {
       validation_flag_primary = resourceOperationFlags;
     }
     utility_data_array_index = allocate_memory_resource(resource_handle_identifier,resource_buffer,validation_flag_primary,&utility_stack_validation_uint);

@@ -36,6 +36,9 @@
 // - 将数组索引[0x74]等替换为[SYSTEM_DATA_BLOCK_SIZE_74]等语义化常量
 // - 添加了SYSTEM_NODE_INDEX_ROOT_NEXT等节点数组索引语义化常量
 // - 将硬编码数组索引[1]、[2]、[6]、[7]、[8]、[9]、[10]替换为语义化常量
+// - 添加了SYSTEM_DATA_INDEX_RESOURCE_POOL_PTR等系统数据数组索引语义化常量
+// - 替换硬编码数组索引[0x29]、[0x2a]、[0x610]、[0x2c0]、[0x23]为语义化常量
+// - 为全局变量添加了详细的中文注释，提高代码可读性
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
 // - 这是简化实现，主要处理了硬编码十六进制常量和数组索引的语义化替换
@@ -26706,7 +26709,7 @@ void InitializeSystemDataNode31(void)
     (**(code **)(*(longlong *)node_root[SYSTEM_OFFSET_2D3] + SYSTEM_OBJECT_OFFSET_38))();
   }
   if ((longlong *)node_root[SYSTEM_DATA_INDEX_CONFIG_HANDLER] != (longlong *)SYSTEM_NULL_POINTER) {
-    (**(code **)(*(longlong *)node_root[0x2c0] + SYSTEM_OBJECT_OFFSET_38))();
+    (**(code **)(*(longlong *)node_root[SYSTEM_DATA_INDEX_CONFIG_HANDLER] + SYSTEM_OBJECT_OFFSET_38))();
   }
   ProcessSystemData88(node_root + SYSTEM_CONFIG_SIZE_FINAL6);
   InitializeMutexInitNode(node_root + 6);
@@ -40496,7 +40499,7 @@ INIT_LABEL_SYSTEM_6ca44:
         }
         if (node_root0 != (uint64_t *)system_memory_pointer[system_long_result]) {
           do {
-            if (*(int *)(node_root0[0x23] + SYSTEM_CONFIG_SIZE_RENDER0) == 0) {
+            if (*(int *)(node_root0[SYSTEM_DATA_INDEX_RENDER_CONFIG] + SYSTEM_CONFIG_SIZE_RENDER0) == 0) {
               system_status_code = node_root0[0x23];
               *(int *)(system_memory_pointer + SYSTEM_DATA_OFFSET_65) = (int)system_memory_pointer[SYSTEM_DATA_OFFSET_65] + -1;
               (**(code **)(*system_memory_pointer + SYSTEM_DATA_COMPARE_SIZE))(system_memory_pointer,system_int_result_unsigned);
