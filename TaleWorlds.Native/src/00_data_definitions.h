@@ -4908,7 +4908,7 @@ section_processing_jump_label_28:
          *(unsigned long long *)(*(long long *)(handle_param + SYSTEM_OFFSET_HANDLE_PARAM_ALT) + SYSTEM_OFFSET_STRING_BUFFER_SIZE);
     system_initialization_result_pointer = (long long *)(system_global_data_pointer_variable + path_buffer_size30);
     system_buffer_allocation_result = system_buffer_allocation_result;
-    if (*(long long *)(system_global_data_pointer_variable + path_buffer_size38) - *system_initialization_result_pointer >> 2 != 0) {
+    if (*(long long *)(system_global_data_pointer_variable + SYSTEM_PATH_BUFFER_SIZE_38) - *system_initialization_result_pointer >> 2 != 0) {
       do {
         system_maximum_stack_size = *(unsigned int *)(system_buffer_allocation_result + *system_initialization_result_pointer);
         system_initialization_result2 = *(long long *)(handle_param + SYSTEM_OFFSET_HANDLE_PARAM_ALT) + SYSTEM_OFFSET_STRING_BUFFER_SIZE;
@@ -4921,7 +4921,7 @@ section_processing_jump_label_28:
         system_initialization_result_pointer = (long long *)(system_global_data_pointer_variable + path_buffer_size30);
         system_buffer_allocation_result = system_buffer_allocation_result + SYSTEM_OFFSET_HANDLE_PARAM;
       } while ((ulong long)(long long)(int)system_buffer_allocation_result <
-               (ulong long)(*(long long *)(system_global_data_pointer_variable + path_buffer_size38) - *system_initialization_result_pointer >> 2));
+               (ulong long)(*(long long *)(system_global_data_pointer_variable + SYSTEM_PATH_BUFFER_SIZE_38) - *system_initialization_result_pointer >> 2));
     }
     (**(code **)(system_global_data_pointer_variable + SYSTEM_OFFSET_FUNCTION_CALL_A8))();
   }
@@ -5262,7 +5262,7 @@ section_processing_jump_label_30:
   system_finalizer_001();
   system_finalizer_002();
   *(uint *)(system_global_data_pointer_variable + SYSTEM_OFFSET_THREAD_CONFIG) = system_global_data_pointer_variable;
-  system_global_data_pointer_variable = system_global_data_pointer_variable + 1 & SYSTEM_POINTER_OFFSET0000001;
+  system_global_data_pointer_variable = system_global_data_pointer_variable + 1 & SYSTEM_POINTER_OFFSET_1;
   if ((int)system_global_data_pointer_variable < 0) {
     system_global_data_pointer_variable = (system_global_data_pointer_variable - 1 | SYSTEM_BIT_MASK_ADDRESS_ALIGN) + 1;
   }
@@ -5715,7 +5715,7 @@ long long process_memory_with_system_thread_operation_flags(unsigned long long h
              reg_rcx + (long long)*(int *)(reg_rcx + SYSTEM_POINTER_OFFSET_A39) + SYSTEM_OFFSET_MODULE_MULTIPLIER + SYSTEM_OFFSET_MODULE_BASE_EXTENDED;
       }
     }
-    system_buffer_allocation_result = *(int *)(reg_rcx + SYSTEM_POINTER_OFFSET_A39) + 1U & SYSTEM_POINTER_OFFSET0000001;
+    system_buffer_allocation_result = *(int *)(reg_rcx + SYSTEM_POINTER_OFFSET_A39) + 1U & SYSTEM_POINTER_OFFSET_1;
     if ((int)system_buffer_allocation_result < 0) {
       system_buffer_allocation_result = (system_buffer_allocation_result - 1 | SYSTEM_BIT_MASK_ADDRESS_ALIGN) + 1;
     }
@@ -14907,3 +14907,33 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_BUFFER_ALLOC_RESULT_0X7C 0x7c                      // 缓冲区分配结果0x7C
 #define SYSTEM_BUFFER_ALLOC_RESULT_0X0D 0x0d                      // 缓冲区分配结果0x0D
 #define SYSTEM_BUFFER_ALLOC_RESULT_0X0E 0x0e                      // 缓冲区分配结果0x0E
+
+// 路径缓冲区大小常量定义（2025年8月30日最终批次补充）
+#define SYSTEM_PATH_BUFFER_SIZE_38 38                              // 路径缓冲区大小38
+
+// 指针偏移量常量定义（2025年8月30日最终批次补充）
+#define SYSTEM_POINTER_OFFSET_1 0x1                               // 指针偏移量1
+
+// 寄存器偏移量常量定义（2025年8月30日最终批次补充）
+#define SYSTEM_OFFSET_REGISTER_1C 0x1c                             // 寄存器1C偏移量
+#define SYSTEM_OFFSET_REGISTER_1D 0x1d                             // 寄存器1D偏移量
+
+// 函数偏移量常量定义（2025年8月30日最终批次补充）
+#define SYSTEM_FUNCTION_OFFSET_REGISTER_4F8 0x4f8                 // 函数寄存器4F8偏移量
+
+// 模块数据偏移量常量定义（2025年8月30日最终批次补充）
+#define SYSTEM_OFFSET_MODULE_DATA_3580 0x3580                      // 模块数据3580偏移量
+
+// 数值比较常量定义（2025年8月30日最终批次补充）
+#define SYSTEM_COMPARE_VALUE_3 3                                   // 比较值3
+#define SYSTEM_COMPARE_VALUE_5 5                                   // 比较值5
+#define SYSTEM_COMPARE_VALUE_6 6                                   // 比较值6
+#define SYSTEM_COMPARE_VALUE_8 8                                   // 比较值8
+
+// 位操作常量定义（2025年8月30日最终批次补充）
+#define SYSTEM_BIT_SHIFT_1 1                                       // 位偏移1
+#define SYSTEM_BIT_SHIFT_2 2                                       // 位偏移2
+#define SYSTEM_BIT_SHIFT_3 3                                       // 位偏移3
+
+// 缓冲区操作常量定义（2025年8月30日最终批次补充）
+#define SYSTEM_BUFFER_OFFSET_8 8                                   // 缓冲区偏移量8
