@@ -525,9 +525,9 @@ dataValue textureUploadMainConfig;
 dataValue textureUploadMipmapConfig;
 dataValue textureUploadCompressionConfig;
 dataValue textureUploadFilteringConfig;
-dataValue texture_compression_config;
-dataValue texture_compression_config;
-dataValue texture_compression_config;
+dataValue texture_compression_config_format;
+dataValue texture_compression_config_quality;
+dataValue texture_compression_config_method;
 dataValue texture_compression_config;
 dataValue textureFilterConfigNearest;
 dataValue textureFilterConfigLinear;
@@ -1004,8 +1004,8 @@ dataValue renderStencilInitialize;
 dataValue computeBarrierFlag;
 dataValue render_stencil_buffer_primary;
 dataValue render_stencil_buffer_secondary;
-dataValue render_stencil_buffer;
-dataValue render_stencil_buffer;
+dataValue render_stencil_buffer_main;
+dataValue render_stencil_buffer_auxiliary;
 
 // 函数: dataValueValue renderViewportInitialize;
 dataValue renderViewportInitialize;
@@ -3405,7 +3405,7 @@ uint64 release_system_resources(void)
   uint32 *generic_data_pointer;
   uint system_status_code;
   ulonglong validation_result_flag;
-  longlong thread_stack_offset_50;
+  longlong thread_stack_offset_50;           // 线程栈偏移量50
   ulonglong validation_result_flag;
   
   validation_result_flag = 0;

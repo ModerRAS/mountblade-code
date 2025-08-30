@@ -39248,7 +39248,7 @@ InitializeNetworkSystem(longlong handleIdentifier,longlong resourceIdentifier,lo
   ulonglong uint_result;
   ulonglong uint_result;
   ulonglong uint_result;
-  undefined7 uint_result;
+  uint8_t init_result_uint;
 
   long_result = *(longlong *)(resourceIdentifier + 0x128);
   if (long_result != 0) {
@@ -45892,7 +45892,7 @@ void SystemFunction_91_3(void)
   uint64_t uint_result;
   ulonglong uint_result;
   uint16_t system_BP;
-  undefined6 system_0000002a;
+  uint8_t system_status_flag_2a;
   uint64_t system_RSI;
   longlong system_RDI;
   longlong system_R15;
@@ -49034,12 +49034,12 @@ void SystemFunction_88_4(void)
   }
   if (*(longlong *)(init_input_stack_178 + 0x28) == 0) {
     in_stack_00000030 = 0xffffffff;
-    system_pointer_var = &stack0x00000030;
+    system_pointer_var = &init_stack_uint_30;
     long_result = init_input_stack_178;
   }
   else {
     init_input_stack_170 = 0xffffffff;
-    system_pointer_var = &stack0x00000170;
+    system_pointer_var = &init_stack_uint_170;
     long_result = *(longlong *)(init_input_stack_178 + 0x28);
   }
   InitializeSystemModule1(long_result + 0x3388,system_pointer_var,&stack0x00000040);
@@ -49294,12 +49294,12 @@ void InitializeSystemLogger(void)
   }
   if (*(longlong *)(init_input_stack_178 + 0x28) == 0) {
     in_stack_00000030 = 0xffffffff;
-    system_pointer_var = &stack0x00000030;
+    system_pointer_var = &init_stack_uint_30;
     long_result = init_input_stack_178;
   }
   else {
     init_input_stack_170 = 0xffffffff;
-    system_pointer_var = &stack0x00000170;
+    system_pointer_var = &init_stack_uint_170;
     long_result = *(longlong *)(init_input_stack_178 + 0x28);
   }
   InitializeSystemModule1(long_result + 0x3388,system_pointer_var,&stack0x00000040);
