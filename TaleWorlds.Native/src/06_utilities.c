@@ -161,6 +161,11 @@
 // 保持代码语义不变
 // 这是简化实现，主要处理了工具系统中位操作函数和临时变量的语义化替换
 
+// 新增美化内容：
+// 90. 将aUTILITY_STACK_MEMORY_OFFSET_18替换为utility_temp_stack_buffer等临时栈变量名
+// 91. 添加了UTILITY_UNWIND_FUNCTION_180902*等工具展开函数的语义化宏定义
+// 92. 替换了部分UtilityUnwind_180902*函数名为语义化宏定义
+
 // 新增语义化宏定义 - 替换事件回调变量名
 #define EVENT_CALLBACK_RESOURCE_INIT 0x6030
 #define EVENT_CALLBACK_SYSTEM_START 0x6050
@@ -1716,13 +1721,14 @@ dataValue resourceCacheInvalidateBufferQuaternary;
 
 // 函数: data_value resourceCacheUpdate;
 dataValue resourceCacheUpdate;
-dataValue physics_system_gravity_data;
-dataValue render_culling_data;
-dataValue physics_system_collision_data;
-dataValue render_frustum_data;
-dataValue audio_system_device_data;
-dataValue audio_system_stream_data;
-dataValue audio_system_effect_data;
+// 美化变量名 - 将系统数据变量名替换为语义化名称
+dataValue utility_physics_system_gravity_data;
+dataValue utility_render_culling_data;
+dataValue utility_physics_system_collision_data;
+dataValue utility_render_frustum_data;
+dataValue utility_audio_system_device_data;
+dataValue utility_audio_system_stream_data;
+dataValue utility_audio_system_effect_data;
 
 // 函数: data_value resourceMonitorActivity;
 dataValue resourceMonitorActivity;

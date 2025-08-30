@@ -12060,9 +12060,9 @@ void InitializeSystemModule6(void)
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_system_local_buffer_primary;
   system_system_local_buffer_primary[0] = 0;
-  init_stack_uint_size_90 = 0x1b;
+  init_stack_input_config_size = 0x1b;
   strcpy_s(system_system_local_buffer_primary,0x80,&g_global_system_config,system_parameter,INVALID_HANDLE_VALUE);
-  g_system_object_25 = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
+  g_system_input_context_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
   return;
 }
 
@@ -15245,9 +15245,9 @@ void InitializeSystemModule34(void)
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_system_local_buffer_primary;
   system_system_local_buffer_primary[0] = 0;
-  init_stack_uint_size_90 = 0x1b;
+  init_stack_memory_config_size = 0x1b;
   strcpy_s(system_system_local_buffer_primary,0x80,&g_system_global_config,system_parameter,INVALID_HANDLE_VALUE);
-  g_system_data_variablec = create_system_object(&thread_parameter_ptr);
+  g_system_memory_context_ptr = create_system_object(&thread_parameter_ptr);
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
