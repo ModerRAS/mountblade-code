@@ -98,7 +98,7 @@
 #define SYSTEM_INIT_MAGIC_COOKIE_NETWORK_1      SYSTEM_INIT_MAGIC_COOKIE_NETWORK_1 // 网络系统魔法cookie 1
 #define SYSTEM_INIT_MAGIC_COOKIE_NETWORK_2      SYSTEM_INIT_MAGIC_COOKIE_NETWORK_2 // 网络系统魔法cookie 2
 #define SYSTEM_INIT_MAGIC_COOKIE_NETWORK_3      SYSTEM_INIT_MAGIC_COOKIE_NETWORK_3 // 网络系统魔法cookie 3
-#define SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_1       0x71876af946c867ab // 系统魔法cookie 1
+#define SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_1       SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_1 // 系统魔法cookie 1
 #define SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_2       0xfab48faa65382fa5 // 系统魔法cookie 2
 #define SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_3       0xc160408bde99e59f // 系统魔法cookie 3
 #define SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1     0xdcfdc333a769ec93 // 资源系统魔法cookie 1
@@ -1356,7 +1356,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_OFFSET_HEADER6be72011d07d37;
-  system_pointer_var_7[7] = 0x71876af946c867ab;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_1;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 0;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -1942,7 +1942,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_OFFSET_HEADER6be72011d07d37;
-  system_pointer_var_7[7] = 0x71876af946c867ab;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_1;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 0;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -3808,7 +3808,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_OFFSET_HEADER6be72011d07d37;
-  system_pointer_var_7[7] = 0x71876af946c867ab;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_1;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 0;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -3908,7 +3908,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_OFFSET_HEADER6be72011d07d37;
-  system_pointer_var_7[7] = 0x71876af946c867ab;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_1;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 0;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -5841,7 +5841,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_OFFSET_HEADER6be72011d07d37;
-  system_pointer_var_7[7] = 0x71876af946c867ab;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_1;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 0;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -13696,7 +13696,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_OFFSET_HEADER6be72011d07d37;
-  system_pointer_var_7[7] = 0x71876af946c867ab;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_1;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 0;
   system_pointer_var_7[10] = system_function_pointer_18;
@@ -14672,7 +14672,7 @@ void InitializeSystemCore(void)
     system_pointer_var_7 = system_stack_pointer_10;
   }
   system_pointer_var_7[6] = SYSTEM_INIT_OFFSET_HEADER6be72011d07d37;
-  system_pointer_var_7[7] = 0x71876af946c867ab;
+  system_pointer_var_7[7] = SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_1;
   system_pointer_var_7[8] = &g_system_context;
   system_pointer_var_7[9] = 0;
   system_pointer_var_7[10] = system_function_pointer_18;
