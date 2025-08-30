@@ -1,3 +1,19 @@
+
+// 06_utilities.c - 工具系统模块
+// 美化工作记录 - 2025年8月30日
+// 1. 美化了资源属性偏移量常量，将RESOURCE_PROP_OFFSET后跟十六进制数字的常量替换为语义化名称
+// 2. 美化了系统状态偏移量常量，将UTILITY_SYS_STATUS_OFFSET后跟数字的常量替换为语义化名称
+// 3. 美化了掩码常量，将UTILITY_WORD_MASK后跟十六进制的常量替换为语义化名称
+// 4. 美化了指针偏移量常量，将POINTER_DATA_OFFSET替换为UTILITY_POINTER_DATA_OFFSET
+// 5. 美化了栈偏移量常量，将UTILITY_STACK_OFFSET后跟十六进制的常量替换为语义化名称
+// 6. 美化了剩余的资源属性偏移量常量，确保所有硬编码常量都有语义化名称
+// 7. 美化了local开头的变量名，将local_status_pointer替换为utility_status_pointer等语义化变量名
+// 8. 美化了栈相关变量名，将local_stack_variable_value替换为utility_stack_value等
+// 9. 美化了指针相关变量名，将local_pointer替换为utility_data_ptr等
+// 10. 美化了线程相关变量名，将thread_local_storage_cleanup替换为utility_thread_cleanup_data等
+// 提高了代码的可读性和维护性
+// 保持代码语义不变，这是简化实现，主要处理了工具系统中变量名的语义化替换
+
 // 新增语义化宏定义 - 美化资源偏移量常量
 #define UTILITY_RESOURCE_OFFSET_2A0 0x2a0
 #define UTILITY_RESOURCE_OFFSET_3E0 0x3e0
@@ -517,6 +533,8 @@
 // 新增寄存器变量宏定义
 #define UTILITY_REGISTER_EBP unaff_EBP
 #define UTILITY_REGISTER_BPL unaff_BPL
+#define UTILITY_REGISTER_CF in_CF
+#define UTILITY_REGISTER_SIL unaff_SIL
 
 // 新增数组索引语义化宏定义
 #define UTILITY_ARRAY_INDEX_PRIMARY 0
@@ -4297,7 +4315,7 @@ ulonglong utility_calculate_memory_allocation(longlong resource_handle_identifie
       return UTILITY_BYTE_OFFSET_FLAG;
     }
   }
-  if (utility_utility_iteration_counter == SUCCESS_CODE) {
+  if (utility_iteration_counter_primary == SUCCESS_CODE) {
     return 0;
   }
   return validation_flag;
@@ -16541,12 +16559,12 @@ void orderUtilityLists(longlong resource_handle_identifier,int *memory_block_siz
   int utility_utility_iteration_counter_primary;
   uint32 utility_register_input_value_var;
   uint UTILITY_REGISTER_EBP;
-  char in_CF;
+  char UTILITY_REGISTER_CF;
   int *plocalInt;
   uint32 utility_system_status_code;
   
   validation_flag = (resource_data_3)((uint)utility_cpu_register_accumulator >> UTILITY_BYTE_SHIFT_8);
-  char_value = (char)utility_cpu_register_accumulator  + UTILITY_CHAR_BASE_OFFSET + in_CF;
+  char_value = (char)utility_cpu_register_accumulator  + UTILITY_CHAR_BASE_OFFSET + UTILITY_REGISTER_CF;
   utility_system_status_code = CONCAT_BYTES(validation_flag,char_value);
   *(uint32 *)UTILITY_BIT_CONCAT_4_4(utility_register_input_value_var,utility_system_status_code) = utility_system_status_code;
   *(uint *)(resource_handle_identifier + UTILITY_RESOURCE_MASK_OFFSET) = *(uint *)(resource_handle_identifier + UTILITY_RESOURCE_MASK_OFFSET) & UTILITY_REGISTER_EBP;
@@ -17165,13 +17183,13 @@ ulonglong InitializeRequestHandler(void)
   uint64 *utility_register_context_base;
   longlong utility_stack_frame_pointer;
   uint utility_iteration_counter;
-  bool in_CF;
+  bool UTILITY_REGISTER_CF;
   byte utility_stack_data_buffer [4];
   byte UTILITY_STACK_ARRAY_PRIMARY_BUFFER [UTILITY_STACK_ARRAY_PRIMARY_SIZE];
   byte UTILITY_STACK_ARRAY_SECONDARY_BUFFER [UTILITY_STACK_ARRAY_SECONDARY_SIZE];
   
   utility_iteration_counter = utility_cpu_register_accumulator + UTILITY_BYTE_OFFSET_FLAG;
-  if (in_CF) {
+  if (UTILITY_REGISTER_CF) {
     if (*(int *)(utility_register_context_base[1] + RESOURCE_HANDLE_OFFSET) == 0) {
       utility_operation_status = *utility_register_context_base;
       utility_iteration_counter = writeResourceData(utility_operation_status,utility_stack_data_buffer,4);
@@ -17437,11 +17455,11 @@ uint64 InitializeOperationSystem(void)
   longlong *utility_register_context_base;
   uint64 stack_frame_pointer;
   longlong utility_cpu_context;
-  bool in_CF;
+  bool UTILITY_REGISTER_CF;
   char stack_char_variable_value;
   uint utility_stack_uint_context;
   
-  if (in_CF) {
+  if (UTILITY_REGISTER_CF) {
     if (*(int *)(utility_register_input_value + RESOURCE_HANDLE_OFFSET) != 0) {
       return UTILITY_BYTE_OFFSET_FLAG;
     }
@@ -21119,7 +21137,7 @@ ulonglong ProcessIntegrityRequest(float resource_handle_identifier)
   longlong utility_register_context;
   int utility_cpu_context;
   int resource_size_limit_secondary;
-  bool in_CF;
+  bool UTILITY_REGISTER_CF;
   float float_parameter_zero;
   float utility_float_param_primary;
   float utility_float_param_secondary;
@@ -21137,7 +21155,7 @@ ulonglong ProcessIntegrityRequest(float resource_handle_identifier)
   utility_iteration_counter = (UTILITY_DATA_VALUE_ITERATION)(utility_cpu_context >> UTILITY_BYTE_SHIFT_8);
   resource_size_limit_secondary = utility_capacity;
   resource_size_limit_tertiary = utility_cpu_context;
-  if (in_CF) {
+  if (UTILITY_REGISTER_CF) {
     if (*(int *)(utility_register_context_base[1] + RESOURCE_HANDLE_OFFSET) == utility_capacity) {
       resource_data_pointer = (longlong *)*utility_register_context_base;
       operation_buffer = *resource_data_pointer;
