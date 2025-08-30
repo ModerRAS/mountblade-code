@@ -31436,7 +31436,7 @@ void FUN_18085dff0(undefined8 *param_1)
   }
   *(undefined4 *)(lVar2 + 0x10) = 0;
   if (0 < (int)((uVar8 ^ (int)uVar8 >> 0x1f) - ((int)uVar8 >> 0x1f))) {
-    FUN_180861ef0(lVar2 + 8,0);
+    network_buffer_get_tertiary(lVar2 + 8,0);
   }
 LAB_18085e1d5:
                     // WARNING: Subroutine does not return
@@ -31599,7 +31599,7 @@ void FUN_18085e003(undefined8 *param_1)
   }
   *(undefined4 *)(lVar1 + 0x10) = 0;
   if (0 < (int)((uVar7 ^ (int)uVar7 >> 0x1f) - ((int)uVar7 >> 0x1f))) {
-    FUN_180861ef0(lVar1 + 8,0);
+    network_buffer_get_tertiary(lVar1 + 8,0);
   }
 LAB_18085e1d5:
                     // WARNING: Subroutine does not return
@@ -31716,7 +31716,7 @@ void FUN_18085e112(void)
   }
   *(int *)(lVar1 + 0x10) = (int)unaff_RDI;
   if (0 < (int)((uVar6 ^ (int)uVar6 >> 0x1f) - ((int)uVar6 >> 0x1f))) {
-    FUN_180861ef0(lVar1 + 8,0);
+    network_buffer_get_tertiary(lVar1 + 8,0);
   }
 LAB_18085e1d5:
                     // WARNING: Subroutine does not return
@@ -36772,7 +36772,7 @@ undefined8 FUN_180861ed5(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180861ef0(longlong *param_1,int param_2)
+undefined8 network_buffer_get_tertiary(longlong *param_1,int param_2)
 
 {
   int iVar1;
