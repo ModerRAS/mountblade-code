@@ -19,6 +19,16 @@
 // - 原本实现：完全重构初始化系统所有函数命名体系，建立统一的语义化命名规范，消除所有FUN_函数名
 // - 简化实现：仅将常见的FUN_函数名替换为语义化名称，保持代码结构不变
 
+// 系统初始化硬编码值语义化常量（2025年8月30日最终批次补充美化）
+#define SYSTEM_INIT_OFFSET_CHAR_CHECK           0x19    // 字符检查偏移量 - 替换0x19
+#define SYSTEM_INIT_SIZE_COMPARE                0x10    // 比较大小 - 替换0x10
+#define SYSTEM_INIT_OFFSET_STACK_PARAM         0x20    // 栈参数偏移量 - 替换0x20
+#define SYSTEM_INIT_SIZE_BUFFER_SMALL          0x80    // 小缓冲区大小 - 替换0x80
+#define SYSTEM_INIT_VALUE_SEMAPHORE_MAX        0x7fffffff // 信号量最大值 - 替换0x7fffffff
+#define SYSTEM_INIT_VALUE_HANDLE_INVALID      0xfffffffffffffffe // 无效句柄值 - 替换0xfffffffffffffffe
+#define SYSTEM_INIT_ALIGNMENT_MUTEX           2       // 互斥体对齐 - 替换2
+#define SYSTEM_INIT_SIZE_MEMORY_CHUNK         8       // 内存块大小 - 替换8
+
 #include "TaleWorlds.Native.Split.h"
 
 // 01_initialization.c - 901 个函数
