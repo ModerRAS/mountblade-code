@@ -16294,7 +16294,7 @@ uint64 ProcessOperationRequest(longlong resource_handle_identifier,longlong *mem
 {
   longlong resource_buffer;
   uint64 utility_loop_counter;
-  char unaff_BPL;
+  char UTILITY_REGISTER_BPL;
   char utility_stack_param;
   
   if (*(uint *)(resource_buffer + 8) < 0x55) {
@@ -16484,7 +16484,7 @@ uint64 GetOperationStatus(void)
   longlong *data_buffer;
   uint64 utility_loop_counter;
   longlong *utility_register_context_base;
-  char unaff_BPL;
+  char UTILITY_REGISTER_BPL;
   longlong utility_cpu_context;
   uint utility_stack_uint_context;
   
