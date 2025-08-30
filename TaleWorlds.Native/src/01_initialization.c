@@ -59224,7 +59224,7 @@ uint64_t ProcessFunction794dd(int handleIdentifier,uint64_t resourceIdentifier,u
   int in_XMM5_Dc;
   float system_float_value;
   int in_XMM5_Dd;
-  uint8_t audio_data_buffer9 [16];
+  uint8_t audio_data_buffer_calc [16];
   float system_float_value;
   float system_float_value;
   float system_float_value;
@@ -59250,23 +59250,23 @@ uint64_t ProcessFunction794dd(int handleIdentifier,uint64_t resourceIdentifier,u
   if ((int)usystem_int_result < 0) {
     system_status_code = (usystem_int_result - 1 | 0xfffffff8) + 1;
   }
-  audio_data_buffer9._0_4_ = in_XMM5_Da + -1;
-  audio_data_buffer9._4_4_ = in_XMM5_Db + -1;
-  audio_data_buffer9._8_4_ = in_XMM5_Dc + -1;
-  audio_data_buffer9._12_4_ = in_XMM5_Dd + -1;
-  audio_data_buffer_temp._0_4_ = (float)audio_data_buffer9._0_4_;
-  audio_data_buffer_temp._4_4_ = (float)audio_data_buffer9._4_4_;
-  audio_data_buffer_temp._8_4_ = (float)audio_data_buffer9._8_4_;
-  audio_data_buffer_temp._12_4_ = (float)audio_data_buffer9._12_4_;
-  audio_data_buffer9 = rcpps(audio_data_buffer9,audio_data_buffer_temp);
+  audio_data_buffer_calc._0_4_ = in_XMM5_Da + -1;
+  audio_data_buffer_calc._4_4_ = in_XMM5_Db + -1;
+  audio_data_buffer_calc._8_4_ = in_XMM5_Dc + -1;
+  audio_data_buffer_calc._12_4_ = in_XMM5_Dd + -1;
+  audio_data_buffer_temp._0_4_ = (float)audio_data_buffer_calc._0_4_;
+  audio_data_buffer_temp._4_4_ = (float)audio_data_buffer_calc._4_4_;
+  audio_data_buffer_temp._8_4_ = (float)audio_data_buffer_calc._8_4_;
+  audio_data_buffer_temp._12_4_ = (float)audio_data_buffer_calc._12_4_;
+  audio_data_buffer_calc = rcpps(audio_data_buffer_calc,audio_data_buffer_temp);
   system_float_value = 0.0;
   system_float_value = 0.0;
   system_float_value = 0.0;
   system_float_value = 0.0;
-  system_float_value = audio_data_buffer9._0_4_;
-  system_float_value = audio_data_buffer9._4_4_;
-  system_float_value = audio_data_buffer9._8_4_;
-  system_float_value = audio_data_buffer9._12_4_;
+  system_float_value = audio_data_buffer_calc._0_4_;
+  system_float_value = audio_data_buffer_calc._4_4_;
+  system_float_value = audio_data_buffer_calc._8_4_;
+  system_float_value = audio_data_buffer_calc._12_4_;
   system_float_value = 0.0;
   system_float_value = 0.0;
   system_float_value = 0.0;
