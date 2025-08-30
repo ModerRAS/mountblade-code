@@ -198,6 +198,12 @@
 // - 新增美化内容：将函数名如 time_system_init_callback -> time_system_initialization_callback
 // - 新增美化内容：将函数名如 file_system_init_callback -> file_system_initialization_callback
 // - 新增美化内容：将函数名如 debug_system_init_callback -> debug_system_initialization_callback
+// - 新增美化内容：将system_180a39850等系统验证参数变量名替换为system_validation_param_1等语义化名称
+// - 新增美化内容：将system_18064ffc0等系统函数地址替换为system_cleanup_function等语义化名称
+// - 新增美化内容：将system_18045f200等栈数据变量名替换为system_stack_data_secondary等语义化名称
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+// - 这是简化实现，主要处理了数据定义文件中剩余系统变量和函数名的语义化替换
 // - 新增美化内容：将字符串变量名如 particle_resource_string -> particle_resource_config_string
 // - 新增美化内容：将字符串变量名如 shader_compute_string -> shader_compute_config_string
 // - 新增美化内容：将字符串变量名如 texture_resource_data_string -> texture_resource_data_config_string
