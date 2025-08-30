@@ -54,6 +54,24 @@
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
 // - 这是简化实现，主要处理了函数调用中十六进制地址的语义化替换
+// 最新美化内容（本轮）：
+// - 将 func_0x00018064e870 替换为 system_buffer_allocator 等系统缓冲区管理函数名
+// - 将 func_0x00018076a7d0 替换为 thread_configuration_handler 等线程配置函数名
+// - 将 func_0x000180856540 替换为 network_operation_processor 等网络操作函数名
+// - 将 func_0x0001808cf230 替换为 string_conversion_handler 等字符串处理函数名
+// - 将 func_0x0001808f62c0 替换为 system_cleanup_routine 等系统清理函数名
+// - 将 func_0x0001808f6640 替换为 buffer_deallocator 等缓冲区管理函数名
+// - 将 func_0x0001808f6ce0 替换为 system_synchronization_handler 等系统同步函数名
+// - 将 func_0x0001808f0200 替换为 handle_processor 等句柄处理函数名
+// - 将 func_0x0001808f0760 替换为 parameter_validator 等参数验证函数名
+// - 将 func_0x0001808f2030 替换为 status_checker 等状态检查函数名
+// - 将 func_0x0001808f6f90 替换为 thread_initializer 等线程初始化函数名
+// - 将 func_0x0001808f0dd0 替换为 data_processor 等数据处理函数名
+// - 将 func_0x0001808f0e30 替换为 string_comparator 等字符串比较函数名
+// - 将 func_0x0001808f0b40 替换为 integer_processor 等整数处理函数名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+// - 这是简化实现，主要处理了剩余十六进制函数名的语义化替换
 // - 将 data_180a04ee4 替换为 char_scan_buffer_end
 // - 将 data_180a12e00 替换为 string_buffer_end
 // - 将 data_180a03a84 替换为 temp_char_buffer
@@ -10827,7 +10845,7 @@ long long process_context_handle_param(long long *handle_param)
       }
     }
     else {
-      str_len_counter = func_0x00018064e870(buffer_alloc_result,CONCAT_BYTES_TO_64BIT(0xff000000,
+      str_len_counter = system_buffer_allocator(buffer_alloc_result,CONCAT_BYTES_TO_64BIT(0xff000000,
                                                  *(void ***)(buffer_alloc_result + 0x70) == &ExceptionList),
                                   handle_param,buffer_alloc_result,DEFAULT_THREAD_POOL_FLAG);
     }
@@ -11446,7 +11464,7 @@ unsigned long long allocate_resource_memory(int handle_param)
       system_execution_function(*(unsigned long long *)(unreg_bx + 0x170),*(unsigned int *)(unreg_bx + 0x110),0);
       thread_result_index = *(int *)(unreg_bx + 0x1c4);
       buffer_alloc_result = 0;
-      thread_result_index = func_0x00018076a7d0(*(unsigned long long *)(unreg_bx + 0x170),&stack0x00000050);
+      thread_result_index = thread_configuration_handler(*(unsigned long long *)(unreg_bx + 0x170),&stack0x00000050);
       if (thread_result_index == 0) {
         *pthread_op_flags = 0;
         *(unsigned int *)(*(long long *)(unreg_bx + 8) + 0x18) = 0;
@@ -11574,7 +11592,7 @@ section_processing_jump_label_:
     if (thread_op_flags == auStack_28[0]) {
       return 0x1c;
     }
-    thread_op_flags = func_0x000180856540(*handle_param,thread_op_flags - *(int *)(handle_param + 1));
+    thread_op_flags = network_operation_processor(*handle_param,thread_op_flags - *(int *)(handle_param + 1));
     uStackX_10 = thread_op_flags + stack_size_max;
     if (uStackX_10 == stack_size_max) {
       uStackX_10 = stack_size_max + 1;
@@ -11666,7 +11684,7 @@ system_execution_function(long long handle_param,long long thread_op_flags,long 
   buffer_alloc_result = system_execution_function(buffer_alloc_result,*(unsigned long long *)(thread_op_flags + STRING_BUFFER_SIZE),str_len_counter,*system_operation_parameter,buffer_alloc_result,0,0,&stack_long_var);
   if ((int)buffer_alloc_result == 0) {
     if (param_7 != (char)buffer_alloc_result) {
-      func_0x0001808cf230(stack_long_var,str_len_counter);
+      string_conversion_handler(stack_long_var,str_len_counter);
     }
     byte_system_flag = (byte)(*(uint *)(thread_op_flags + 0x1c) >> 4) & 1;
     *(uint *)(stack_long_var + 0x4c) =
@@ -11685,8 +11703,8 @@ unsigned long long get_system_global_state(void)
   int thread_result_index;
   uint buffer_alloc_result;
   unsigned long long in_stack_00000030;
-  func_0x0001808f62c0();
-  func_0x0001808f62a0(free_exref);
+  system_cleanup_routine();
+  memory_reference_cleaner(free_exref);
   thread_result_index = timeGetDevCaps(&stack0x00000030,8);
   buffer_alloc_result = 1;
   if (thread_result_index == 0) {
@@ -11695,7 +11713,7 @@ unsigned long long get_system_global_state(void)
       buffer_alloc_result = (uint)in_stack_00000030;
     }
   }
-  func_0x0001808f6640(buffer_alloc_result);
+  buffer_deallocator(buffer_alloc_result);
   system_char_variable = system_execution_function();
   if (system_char_variable == '\0') {
     return 0x809200ff;
@@ -11728,10 +11746,10 @@ unsigned int validate_system_parameters(int handle_param,int thread_op_flags,int
     if (thread_result_index == -0x7ffeffff) {
       thread_op_flags = 0x80920004;
     }
-    func_0x0001808f6ce0();
+    system_synchronization_handler();
     return thread_op_flags;
   }
-  func_0x0001808f6ce0();
+  system_synchronization_handler();
   return auStack_18[0];
 }
 unsigned long long initialize_parameter_block(unsigned int handle_param,uint *thread_op_flags)
@@ -11757,17 +11775,17 @@ unsigned long long initialize_parameter_block(unsigned int handle_param,uint *th
   if (thread_result_index != 0) {
     return 0x809200ff;
   }
-  thread_result_index = func_0x0001808f0200(handle_param);
+  thread_result_index = handle_processor(handle_param);
   if (thread_result_index < 0) {
-    func_0x0001808f6ce0();
+    system_synchronization_handler();
     return 0x80920003;
   }
   system_execution_function(thread_op_flags);
-  thread_result_index = func_0x0001808f0760(handle_param,&stack_long_var);
+  thread_result_index = parameter_validator(handle_param,&stack_long_var);
   if (thread_result_index == 0) {
     initialize_timer_context(handle_param,abStackX_18);
     if (*(long long *)(stack_long_var + 0x160) != 0) {
-      system_char_variable = func_0x0001808f2030();
+      system_char_variable = status_checker();
       buffer_alloc_result = *(uint *)(*(long long *)(stack_long_var + 0x160) + 0xc);
       if (system_char_variable == '\0') {
         buffer_alloc_result = buffer_alloc_result & 0xffdefffe;
@@ -11800,9 +11818,9 @@ unsigned long long initialize_parameter_block(unsigned int handle_param,uint *th
         thread_op_flags[0xc] = *(uint *)(*(long long *)(stack_long_var + 0x160) + 0x5c);
       }
       else {
-        func_0x0001808f6f90(thread_op_flags + 3);
-        func_0x0001808f6f70(thread_op_flags + 7);
-        func_0x0001808f6f80(thread_op_flags + 10);
+        thread_initializer(thread_op_flags + 3);
+        thread_configurator(thread_op_flags + 7);
+        thread_finalizer(thread_op_flags + 10);
       }
       *(unsigned char *)(thread_op_flags + 0x13) = 1;
       *(unsigned char *)(thread_op_flags + 0x1a) = *(unsigned char *)(stack_long_var + 1);
@@ -11828,7 +11846,7 @@ unsigned long long initialize_parameter_block(unsigned int handle_param,uint *th
       }
     }
   }
-  func_0x0001808f6ce0();
+  system_synchronization_handler();
   return 0;
 }
 int process_parameter_validation(unsigned int handle_param,byte *thread_op_flags)
@@ -11846,16 +11864,16 @@ int process_parameter_validation(unsigned int handle_param,byte *thread_op_flags
   if (thread_result_index != 0) {
     return -0x7f6dff01;
   }
-  thread_result_index = func_0x0001808f0200(handle_param);
+  thread_result_index = handle_processor(handle_param);
   if (thread_result_index < 0) {
-    func_0x0001808f6ce0();
+    system_synchronization_handler();
     return -0x7f6dfffd;
   }
-  str_len_counter = func_0x0001808f0dd0(handle_param,0);
+  str_len_counter = data_processor(handle_param,0);
   if (str_len_counter != 0) {
-    system_char_variable = func_0x0001808f0e30(*(unsigned short *)(str_len_counter + 2),*(unsigned short *)(str_len_counter + 4));
+    system_char_variable = string_comparator(*(unsigned short *)(str_len_counter + 2),*(unsigned short *)(str_len_counter + 4));
     if ((((system_char_variable == '\0') && (*thread_op_flags < 0xd)) && (thread_op_flags[1] < 0xd)) && (thread_op_flags[2] < 0xd)) {
-      func_0x0001808f6ce0();
+      system_synchronization_handler();
       return -0x7f6dfffa;
     }
     thread_result_index = system_execution_function(handle_param,thread_op_flags);
@@ -11866,11 +11884,11 @@ int process_parameter_validation(unsigned int handle_param,byte *thread_op_flags
       *(byte *)(str_len_counter + 0x23ec) = *thread_op_flags;
       *(byte *)(str_len_counter + 0x23ed) = thread_op_flags[1];
       *(byte *)(str_len_counter + 0x23ee) = thread_op_flags[2];
-      func_0x0001808f6ce0();
+      system_synchronization_handler();
       return thread_result_index;
     }
   }
-  func_0x0001808f6ce0();
+  system_synchronization_handler();
   return -0x7f6dff01;
 }
 int check_system_readiness(void)
@@ -11880,11 +11898,11 @@ int check_system_readiness(void)
   long long str_len_counter;
   byte *unreg_bx;
   unsigned int unaff_ESI;
-  str_len_counter = func_0x0001808f0dd0(unaff_ESI);
+  str_len_counter = data_processor(unaff_ESI);
   if (str_len_counter != 0) {
-    system_char_variable = func_0x0001808f0e30(*(unsigned short *)(str_len_counter + 2),*(unsigned short *)(str_len_counter + 4));
+    system_char_variable = string_comparator(*(unsigned short *)(str_len_counter + 2),*(unsigned short *)(str_len_counter + 4));
     if ((((system_char_variable == '\0') && (*unreg_bx < 0xd)) && (unreg_bx[1] < 0xd)) && (unreg_bx[2] < 0xd)) {
-      func_0x0001808f6ce0();
+      system_synchronization_handler();
       return -0x7f6dfffa;
     }
     thread_result_index = system_execution_function(unaff_ESI);
@@ -11895,11 +11913,11 @@ int check_system_readiness(void)
       *(byte *)(str_len_counter + 0x23ec) = *unreg_bx;
       *(byte *)(str_len_counter + 0x23ed) = unreg_bx[1];
       *(byte *)(str_len_counter + 0x23ee) = unreg_bx[2];
-      func_0x0001808f6ce0();
+      system_synchronization_handler();
       return thread_result_index;
     }
   }
-  func_0x0001808f6ce0();
+  system_synchronization_handler();
   return -0x7f6dff01;
 }
 int validate_system_state(void)
@@ -11916,22 +11934,22 @@ int validate_system_state(void)
     *(unsigned char *)(unaffected_registerDI + 0x23ec) = *unreg_bx;
     *(unsigned char *)(unaffected_registerDI + 0x23ed) = unreg_bx[1];
     *(unsigned char *)(unaffected_registerDI + 0x23ee) = unreg_bx[2];
-    func_0x0001808f6ce0();
+    system_synchronization_handler();
     return thread_result_index;
   }
-  func_0x0001808f6ce0();
+  system_synchronization_handler();
   return -0x7f6dff01;
 }
 unsigned long long get_system_status_info(void)
 {
-  func_0x0001808f6ce0();
+  system_synchronization_handler();
   return 0x809200ff;
 }
           byte_counter = byte_check_result;
           *thread_op_flags = thread_result_index;
           *(int *)(str_len_counter + STRING_BUFFER_SIZE) = thread_result_index;
           *(int *)(str_len_counter + 0x18) = thread_result_index;
-          func_0x0001808f0b40(str_len_counter);
+          integer_processor(str_len_counter);
           return 0;
         }
         str_len_counter = str_len_counter + 0x2408;
@@ -11948,7 +11966,7 @@ unsigned long long get_system_status_info(void)
   *thread_op_flags = thread_result_index;
   *system_int_param_ptr = thread_result_index;
   system_int_param_ptr[2] = thread_result_index;
-  func_0x0001808f0b40(system_int_param_ptr + -4);
+  integer_processor(system_int_param_ptr + -4);
   return 0;
 }
 long long system_initialize_timer(void)
@@ -12052,7 +12070,7 @@ float * system_execution_function(float *handle_param,float *thread_op_flags,flo
 unsigned long long initialize_timer_context(unsigned long long handle_param,unsigned int *thread_op_flags)
 {
   long long system_initialization_result;
-  system_initialization_result = func_0x0001808f0dd0(handle_param,0);
+  system_initialization_result = data_processor(handle_param,0);
   if (system_initialization_result != 0) {
     *thread_op_flags = *(unsigned int *)(system_initialization_result + 100);
     return 0;
