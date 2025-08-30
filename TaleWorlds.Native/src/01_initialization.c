@@ -38707,7 +38707,7 @@ void InitializeSystemModule45(longlong handleIdentifier,longlong resourceIdentif
       if (*(void **)(resourceIdentifier + 8) != (void *)SYSTEM_NULL_POINTER) {
         system_ptr_value = *(void **)(resourceIdentifier + 8);
       }
-      strcpy_s(local_varvartemp_variable_10,SYSTEM_DATA_COMPARE_SIZE0,system_pointer_var);
+      strcpy_s(system_temp_string_buffer,SYSTEM_DATA_COMPARE_SIZE0,system_pointer_var);
       system_status_code = system_integer_result_unsigned;
       if (0 < *(int *)(resourceIdentifier + SYSTEM_DATA_COMPARE_SIZE)) {
         do {
