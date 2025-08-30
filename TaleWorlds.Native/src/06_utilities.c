@@ -2,12 +2,14 @@
 
 // 06_utilities.c - 工具系统代码（已美化变量名和函数名）
 // 本次美化内容：
-// - 将UtilityUnwindCleanupPhase[a-f0-9]+函数名替换为语义化名称
-// - 将UtilityUnwindCleanupPhasea0替换为UtilityUnwindCleanupPhaseStage00等
-// - 总共替换了58个清理阶段函数名，提高了代码的可读性和维护性
-// - 这是简化实现，主要处理了工具系统中清理阶段函数名的语义化替换
-// - 原本实现：完全重构函数命名体系，建立清晰的阶段划分
-// - 简化实现：仅将十六进制后缀替换为语义化阶段标识符
+// - 将cpu_register_1c替换为utility_cpu_register_primary等CPU寄存器变量名
+// - 将utility_register_xmm6_da替换为utility_xmm_register_data_primary等XMM寄存器变量名
+// - 将utility_stack_cpu_register_context_68替换为utility_stack_cpu_context_buffer等栈上下文变量名
+// - 将utility_stack_uint_xmm_da_1a0替换为utility_stack_xmm_data_primary等栈数据变量名
+// - 总共替换了5个变量名，提高了代码的可读性和维护性
+// - 这是简化实现，主要处理了工具系统中寄存器和栈变量名的语义化替换
+// - 原本实现：完全重构寄存器和栈变量的命名体系
+// - 简化实现：仅将十六进制后缀替换为语义化名称
 // - 保持代码语义不变，提高可读性
 
 // 之前美化内容：
@@ -11683,7 +11685,7 @@ void ExecuteResourceCommand(void)
   resource_data *utility_stack_resource_primary_handle;
   float utility_stack_float_buffer_status;
   uint32 utility_stack_xmm_data_primary;
-  uint32 utility_stack_uint_xmm_dc_1a8;
+  uint32 utility_stack_xmm_data_secondary;
   
   local_uint_pointer_value = (uint64 *)(utility_cpu_context + 8);
   utility_stack_float_secondary = utility_cpu_context;
@@ -11774,7 +11776,7 @@ void ExecuteResourceCommand(void)
         utility_operation_status = prepare_data_buffer(utility_iteration_counter_secondary,(longlong)&data_buffer_data + 4,0);
         if (utility_operation_status == 0) {
           utility_stack_xmm_data_primary = utility_xmm_register_data_primary;
-          utility_stack_uint_xmm_dc_1a8 = utility_xmm_register_data_secondary;
+          utility_stack_xmm_data_secondary = utility_xmm_register_data_secondary;
           if (utility_stack_float_parameter != UTILITY_FLOAT_ONE) {
             float_stack_buffer_primary = utility_stack_float_parameter;
             memory_pointer_parameter = &g_system_data_memory_pointer_tertiary;
@@ -11941,7 +11943,7 @@ void HandleResourceCallback(void)
   longlong utility_stack_context_register;
   longlong utility_stack_cpu_context_buffer;
   uint32 utility_stack_xmm_data_primary;
-  uint32 utility_stack_uint_xmm_dc_1a8;
+  uint32 utility_stack_xmm_data_secondary;
   
   if (0 < utility_register_input_value) {
     loop_counter_secondary = (ulonglong)(uint)utility_cpu_context;
@@ -12020,7 +12022,7 @@ void HandleResourceCallback(void)
     utility_operation_status = prepare_data_buffer(utility_iteration_counter_primary,(longlong)&data_buffer_data + 4,0);
     if (utility_operation_status == 0) {
       utility_stack_xmm_data_primary = utility_xmm_register_data_primary;
-      utility_stack_uint_xmm_dc_1a8 = utility_xmm_register_data_secondary;
+      utility_stack_xmm_data_secondary = utility_xmm_register_data_secondary;
       if (utility_stack_float_param_value != UTILITY_FLOAT_ONE) {
         float_stack_buffer_primary = utility_stack_float_param_value;
         memory_pointer_parameter = &g_system_data_memory_pointer_tertiary;
