@@ -34534,7 +34534,7 @@ uint64_t initialize_system_module_thirty_four(longlong handleIdentifier,longlong
   char system_init_status_flag;
   longlong *system_memory_pointer;
   ulonglong system_result_operation;
-  ulonglong flag_initialized;
+  ulonglong system_init_status_flag;
   longlong *stack_system_memory_pointer;
 
   system_result_operation = *(ulonglong *)(handleIdentifier + SYSTEM_NODE_HEADER_SIZE);
@@ -41659,8 +41659,8 @@ void InitializeNetworkSystem(longlong handleIdentifier)
   uint64_t init_stack_buffer_size;
   uint64_t init_stack_handle_id;
   int init_stack_temp_int_48;
-  uint32_t uintStack_44;
-  int intStack_40;
+  uint32_t system_stack_thread_id;
+  int system_stack_nano_seconds;
   uint32_t init_stack_texture_result_3c;
   ulonglong system_init_stack_config_handle;
   ulonglong system_result_operation;
@@ -41708,7 +41708,7 @@ void InitializeNetworkSystem(longlong handleIdentifier)
         init_stack_temp_int_48 = (int)system_long_result_temp;
         init_stack_nano_seconds_210 = (int)system_long_result + init_stack_temp_int_48 * -1000000000;
         uint_stack_resource_handle._4_4_ = (uint32_t)((ulonglong)system_long_result >> SYSTEM_NODE_HEADER_SIZE);
-        uintStack_44 = uint_stack_resource_handle._4_4_;
+        system_stack_thread_id = uint_stack_resource_handle._4_4_;
         init_stack_texture_result_3c = init_stack_uint_parameter_20c;
         uint_stack_resource_handle = system_long_result_temp;
         intStack_40 = init_stack_nano_seconds_210;
@@ -55249,7 +55249,7 @@ void InitializeTextureSystem(longlong handleIdentifier)
   float system_temp_float_value;
   float system_temp_float_value;
   int istack_var;
-  ulonglong flag_initialized;
+  ulonglong system_init_status_flag;
   ulonglong init_stack_data_var;
   int *pintStack_218;
   int *pinit_stack_nano_seconds_210;
