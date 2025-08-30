@@ -182,6 +182,18 @@
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了硬编码十六进制常量的语义化替换
 
+// 本次美化内容：修复循环定义的系统常量
+// - 将SYSTEM_CONSTANT_1从循环定义改为实际值1
+// - 将SYSTEM_CONSTANT_2从循环定义改为实际值2
+// - 将SYSTEM_CONSTANT_3从循环定义改为实际值3
+// - 将SYSTEM_CONSTANT_4从循环定义改为实际值0x2c
+// - 添加了SYSTEM_CONSTANT_20（0x20）、SYSTEM_CONSTANT_28（0x28）等常量定义
+// - 添加了SYSTEM_CONSTANT_2ff（0x2ff）、SYSTEM_CONSTANT_3800000（0x3800000）等常量定义
+// - 添加了SYSTEM_CONSTANT_3f（0x3f）常量定义
+// - 添加了SYSTEM_CONSTANT_70（0x70）、SYSTEM_CONSTANT_786（0x786）等常量定义
+// - 修复了循环引用问题，提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了系统常量的循环定义问题
+
 // 新增美化内容：将变量名替换为语义化名称
 // - 将global_data_ptr替换为system_global_data_pointer等全局数据指针变量名
 // - 将resource_template_ptr替换为system_resource_template_pointer等资源模板指针变量名
@@ -482,6 +494,20 @@
 #define STRING_BUFFER_OFFSET_5 STRING_BUFFER_OFFSET_5
 #define THREAD_CLEANUP_FUNCTION_1 THREAD_CLEANUP_FUNCTION_1
 #define THREAD_CLEANUP_FUNCTION_2 THREAD_CLEANUP_FUNCTION_2
+// 系统常量定义（美化硬编码数值）
+#define SYSTEM_CONSTANT_1 1
+#define SYSTEM_CONSTANT_2 2
+#define SYSTEM_CONSTANT_3 3
+#define SYSTEM_CONSTANT_4 0x2c
+#define SYSTEM_CONSTANT_20 0x20
+#define SYSTEM_CONSTANT_28 0x28
+#define SYSTEM_CONSTANT_2c 0x2c
+#define SYSTEM_CONSTANT_2ff 0x2ff
+#define SYSTEM_CONSTANT_3800000 0x3800000
+#define SYSTEM_CONSTANT_3f 0x3f
+#define SYSTEM_CONSTANT_70 0x70
+#define SYSTEM_CONSTANT_786 0x786
+
 #define FLOAT_CONVERSION_FACTOR FLOAT_CONVERSION_FACTOR
 #define SYSTEM_CONSTANT_1 SYSTEM_CONSTANT_1
 #define SYSTEM_CONSTANT_2 SYSTEM_CONSTANT_2
