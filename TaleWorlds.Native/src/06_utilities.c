@@ -50008,7 +50008,9 @@ void Unwind_180908db0(uint64 resource_handle_identifier,longlong resource_buffer
 
 
 
-void UnwindHandler_dc0(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void SetupThreadLocalStorageDataDC0(
+// 设置线程本地存储数据DC0
+void SetupThreadLocalStorageDataDC0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   longlong resource_buffer;
@@ -50027,7 +50029,9 @@ void UnwindHandler_dc0(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_dd0(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void InitializeThreadLocalStorageDD0(
+// 初始化线程本地存储DD0
+void InitializeThreadLocalStorageDD0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   int *localStatusPointer;
@@ -50063,7 +50067,9 @@ void UnwindHandler_dd0(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_de0(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void ConfigureThreadLocalStorageDE0(
+// 配置线程本地存储DE0
+void ConfigureThreadLocalStorageDE0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   **(uint64 **)(resource_buffer + 0x110) = &threadLocalStorageCleanup;
@@ -50072,7 +50078,9 @@ void UnwindHandler_de0(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_df0(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void ProcessThreadLocalStorageDF0(
+// 处理线程本地存储DF0
+void ProcessThreadLocalStorageDF0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   int *localStatusPointer;
@@ -50108,7 +50116,9 @@ void UnwindHandler_df0(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_e00(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void ValidateThreadLocalStorageE00(
+// 验证线程本地存储E00
+void ValidateThreadLocalStorageE00(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   int *localStatusPointer;
@@ -50144,7 +50154,9 @@ void UnwindHandler_e00(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_e10(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void CleanupThreadLocalStorageE10(
+// 清理线程本地存储E10
+void CleanupThreadLocalStorageE10(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   if ((*(uint *)(resource_buffer + PTR_DATA_OFFSET) & 1) != 0) {
@@ -50156,7 +50168,9 @@ void UnwindHandler_e10(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_e40(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
+// 函数: void HandleThreadLocalStorageCallbackE40(
+// 处理线程本地存储回调E40
+void HandleThreadLocalStorageCallbackE40(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
 
 {
   uint64 *resource_operation_resultData;
@@ -50172,7 +50186,9 @@ void UnwindHandler_e40(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_e50(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void ResetThreadLocalStorageE50(
+// 重置线程本地存储E50
+void ResetThreadLocalStorageE50(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   int *localStatusPointer;
@@ -50208,7 +50224,9 @@ void UnwindHandler_e50(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_e60(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void AllocateThreadLocalStorageE60(
+// 分配线程本地存储E60
+void AllocateThreadLocalStorageE60(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   int *localStatusPointer;
@@ -50244,7 +50262,9 @@ void UnwindHandler_e60(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_e70(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void FreeThreadLocalStorageE70(
+// 释放线程本地存储E70
+void FreeThreadLocalStorageE70(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   int *localStatusPointer;
@@ -50280,7 +50300,9 @@ void UnwindHandler_e70(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_e80(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
+// 函数: void ProcessThreadLocalStorageOperationE80(
+// 处理线程本地存储操作E80
+void ProcessThreadLocalStorageOperationE80(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
 
 {
   longlong resource_buffer;
@@ -50300,7 +50322,9 @@ void UnwindHandler_e80(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_e90(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void ConfigureThreadLocalStorageE90(
+// 配置线程本地存储E90
+void ConfigureThreadLocalStorageE90(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   longlong resource_buffer;
@@ -50319,7 +50343,9 @@ void UnwindHandler_e90(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_ea0(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void InitializeThreadLocalStorageMutexEA0(
+// 初始化线程本地存储互斥锁EA0
+void InitializeThreadLocalStorageMutexEA0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
                     // WARNING: Could not recover jumptable at 0x000180908ea7. Too many branches
@@ -50330,7 +50356,9 @@ void UnwindHandler_ea0(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_eb0(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void LockThreadLocalStorageMutexEB0(
+// 锁定线程本地存储互斥锁EB0
+void LockThreadLocalStorageMutexEB0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   uint64 *resource_operation_resultData;
@@ -50349,7 +50377,9 @@ void UnwindHandler_eb0(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_ec0(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void UnlockThreadLocalStorageMutexEC0(
+// 解锁线程本地存储互斥锁EC0
+void UnlockThreadLocalStorageMutexEC0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   InitializeMemoryRegion(resource_buffer + DATA_OFFSET_START);
@@ -50358,7 +50388,9 @@ void UnwindHandler_ec0(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_ed0(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void DestroyThreadLocalStorageMutexED0(
+// 销毁线程本地存储互斥锁ED0
+void DestroyThreadLocalStorageMutexED0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   uint64 *resource_operation_resultData;
@@ -50371,7 +50403,9 @@ void UnwindHandler_ed0(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_ee0(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void ValidateThreadLocalStorageCompletionEE0(
+// 验证线程本地存储完成EE0
+void ValidateThreadLocalStorageCompletionEE0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
   uint64 *resource_operation_resultData;
@@ -50384,7 +50418,9 @@ void UnwindHandler_ee0(uint64 resource_handle_identifier,longlong resource_buffe
 
 
 
-void UnwindHandler_ef0(uint64 resource_handle_identifier,longlong resource_buffer)
+// 函数: void FinalizeThreadLocalStorageEF0(
+// 完成线程本地存储EF0
+void FinalizeThreadLocalStorageEF0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
                     // WARNING: Could not recover jumptable at 0x000180908ef7. Too many branches
