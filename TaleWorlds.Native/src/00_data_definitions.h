@@ -1097,6 +1097,83 @@ extern char system_flag_buffer_19;
 #define SYSTEM_ERROR_TOO_MANY_CMDS 0x1e
 #define SYSTEM_ERROR_ADAP_HDW_ERR 0x1f
 
+// 系统特殊常量定义
+#define SYSTEM_SPECIAL_VALUE_2F 0x2f
+#define SYSTEM_SPECIAL_VALUE_65 0x65
+#define SYSTEM_SPECIAL_VALUE_21 0x21
+#define SYSTEM_SPECIAL_VALUE_12 0x12
+#define SYSTEM_SPECIAL_VALUE_30 0x30
+#define SYSTEM_SPECIAL_VALUE_B0 0xb0
+#define SYSTEM_SPECIAL_VALUE_D4 0xd4
+#define SYSTEM_SPECIAL_VALUE_48 0x48
+#define SYSTEM_SPECIAL_VALUE_14 0x14
+#define SYSTEM_SPECIAL_VALUE_28 0x28
+#define SYSTEM_SPECIAL_VALUE_58 0x58
+#define SYSTEM_SPECIAL_VALUE_C 0xc
+#define SYSTEM_SPECIAL_VALUE_A8 0xa8
+#define SYSTEM_SPECIAL_VALUE_68 0x68
+#define SYSTEM_SPECIAL_VALUE_18 0x18
+#define SYSTEM_SPECIAL_VALUE_A0 0xa0
+#define SYSTEM_SPECIAL_VALUE_50 0x50
+#define SYSTEM_SPECIAL_VALUE_6C 0x6c
+#define SYSTEM_SPECIAL_VALUE_74 0x74
+#define SYSTEM_SPECIAL_VALUE_96 0x96
+#define SYSTEM_SPECIAL_VALUE_F8 0xf8
+#define SYSTEM_SPECIAL_VALUE_FC 0xfc
+#define SYSTEM_SPECIAL_VALUE_24 0x24
+#define SYSTEM_SPECIAL_VALUE_34 0x34
+#define SYSTEM_SPECIAL_VALUE_3C 0x3c
+#define SYSTEM_SPECIAL_VALUE_5C 0x5c
+#define SYSTEM_SPECIAL_VALUE_60 0x60
+#define SYSTEM_SPECIAL_VALUE_61 0x61
+#define SYSTEM_SPECIAL_VALUE_70 0x70
+#define SYSTEM_SPECIAL_VALUE_38 0x38
+#define SYSTEM_SPECIAL_VALUE_44 0x44
+#define SYSTEM_SPECIAL_VALUE_4C 0x4c
+#define SYSTEM_SPECIAL_VALUE_51 0x51
+#define SYSTEM_SPECIAL_VALUE_78 0x78
+#define SYSTEM_SPECIAL_VALUE_94 0x94
+#define SYSTEM_SPECIAL_VALUE_98 0x98
+#define SYSTEM_SPECIAL_VALUE_9C 0x9c
+#define SYSTEM_SPECIAL_VALUE_A4 0xa4
+#define SYSTEM_SPECIAL_VALUE_AC 0xac
+#define SYSTEM_SPECIAL_VALUE_B4 0xb4
+#define SYSTEM_SPECIAL_VALUE_B5 0xb5
+#define SYSTEM_SPECIAL_VALUE_B8 0xb8
+#define SYSTEM_SPECIAL_VALUE_BC 0xbc
+#define SYSTEM_SPECIAL_VALUE_BD 0xbd
+#define SYSTEM_SPECIAL_VALUE_BE 0xbe
+#define SYSTEM_SPECIAL_VALUE_C0 0xc0
+#define SYSTEM_SPECIAL_VALUE_1D 0x1d
+#define SYSTEM_SPECIAL_VALUE_7C 0x7c
+#define SYSTEM_SPECIAL_VALUE_C4 0xc4
+#define SYSTEM_SPECIAL_VALUE_CC 0xcc
+#define SYSTEM_SPECIAL_VALUE_D0 0xd0
+#define SYSTEM_SPECIAL_VALUE_31 0x31
+#define SYSTEM_SPECIAL_VALUE_32 0x32
+#define SYSTEM_SPECIAL_VALUE_35 0x35
+#define SYSTEM_SPECIAL_VALUE_54 0x54
+#define SYSTEM_SPECIAL_VALUE_22 0x22
+#define SYSTEM_SPECIAL_VALUE_23 0x23
+#define SYSTEM_SPECIAL_VALUE_25 0x25
+#define SYSTEM_SPECIAL_VALUE_26 0x26
+#define SYSTEM_SPECIAL_VALUE_27 0x27
+#define SYSTEM_SPECIAL_VALUE_29 0x29
+#define SYSTEM_SPECIAL_VALUE_2A 0x2a
+#define SYSTEM_SPECIAL_VALUE_2B 0x2b
+#define SYSTEM_SPECIAL_VALUE_2D 0x2d
+#define SYSTEM_SPECIAL_VALUE_2E 0x2e
+#define SYSTEM_SPECIAL_VALUE_15 0x15
+#define SYSTEM_SPECIAL_VALUE_16 0x16
+#define SYSTEM_SPECIAL_VALUE_1A 0x1a
+#define SYSTEM_SPECIAL_VALUE_1B 0x1b
+#define SYSTEM_SPECIAL_VALUE_EB 0xeb
+#define SYSTEM_SPECIAL_VALUE_EF 0xef
+#define SYSTEM_SPECIAL_VALUE_E 0xe
+#define SYSTEM_SPECIAL_VALUE_17 0x17
+#define SYSTEM_SPECIAL_VALUE_11 0x11
+#define SYSTEM_SPECIAL_VALUE_13 0x13
+
 // 全局系统数据定义
 void* global_system_data_pointer;
 void* system_config_data_pointer;
@@ -2139,7 +2216,7 @@ int initialize_ai_system(void)
   g_string_manager_ptr_primary = &g_defaultDataTemplate;
   g_string_manager_ptr_secondary = &g_string_buffer_primary;
   g_string_buffer_primary = 0;
-  g_string_manager_type_primary = 0x1c;
+  g_string_manager_type_primary = SYSTEM_DATA_SIZE_MEDIUM;
   strcpy_s(&g_string_buffer_primary,SYSTEM_CONFIG_BUFFER_SIZE,&string_manager_buffer,system_string_length_parameter,DEFAULT_THREAD_POOL_FLAG);
   system_initialization_result = system_execution_function(resource_manager_29_initialization_function);
   return (system_initialization_result != 0) - 1;
@@ -2535,7 +2612,7 @@ int initialize_backup_system(void)
 {
   long long system_initialization_result;
   system_global_data_pointer = 0;
-  system_ram_flag_1 = 0xf;
+  system_ram_flag_1 = SYSTEM_MEMORY_ALLOC_HUGE;
   system_global_flag_secondary = 0;
   system_global_data_pointer = 0;
   system_global_data_pointer = 0;
@@ -2773,7 +2850,7 @@ void WotsMainNativeCoreCLR(unsigned long long handle_param)
   initialize_service_layer();
   return;
 }
-    system_config_flag = thread_result_index != 0xb7;
+    system_config_flag = thread_result_index != SYSTEM_ERROR_INVALID_PARAMETER;
   }
   system_data_manager_initialize(system_global_data_pointer,0,0xd,&g_systemDataString1,system_config_flag);
   if (thread_stack28 == (void *)0x0) {
@@ -3267,7 +3344,7 @@ section_processing_jump_label_:
                       string_input_ptr[1] = STRING_TERMINATOR_PATTERN_2;
                       string_input_ptr[2] = 0x666e6f63;
                       string_input_ptr[3] = 0x3a6769;
-                      stack_size_max = 0xf;
+                      stack_size_max = SYSTEM_MEMORY_ALLOC_HUGE;
                       thread_op_flags = thread_op_flags;
                       thread_op_flags = thread_op_flags;
                       if (0 < (int)(buffer_alloc_result - 0xe)) goto section_processing_jump_label_;
@@ -3426,7 +3503,7 @@ section_processing_jump_label_:
                             }
                             else {
                               if (thread_op_flags <= (uint)string_input_ptr) goto section_processing_jump_label_;
-                              stack_size_max = 0x13;
+                              stack_size_max = SYSTEM_BUFFER_SIZE_STRING;
                               string_input_ptr = (unsigned char *)
                                         system_execution_function(system_global_data_pointer,string_input_ptr,thread_op_flags,STRING_BUFFER_SIZE);
                             }
@@ -3847,7 +3924,7 @@ section_processing_jump_label_:
 }
     io_status_flag = io_status_flag == '\0';
   }
-  str_len_counter = 0xe0;
+  str_len_counter = SYSTEM_OFFSET_STATUS_FLAG;
   string_input_ptr = system_global_data_pointer;
   do {
     string_input_ptr = string_input_ptr + 0x18;
@@ -4043,7 +4120,7 @@ section_processing_jump_label_:
       string_input_ptr[1] = 0x6567617375207972;
       string_input_ptr[2] = 0x6163697469726320;
       *(unsigned int *)(string_input_ptr + 3) = 0x2e2e6c;
-      stack_size_max = 0x1b;
+      stack_size_max = SYSTEM_STACK_SIZE_MEDIUM;
       thread_stack_ptr = &g_threadString2;
       handle_param_system_error(string_input_ptr);
     }
@@ -4117,7 +4194,7 @@ section_processing_jump_label_:
     string_input_ptr[2] = 0x656c6f736e6f6320;
     *(unsigned char *)(string_input_ptr + 3) = 0;
     system_initialization_result2 = system_global_data_pointer;
-    stack_size_max = 0x18;
+    stack_size_max = SYSTEM_STACK_SIZE_LARGE;
     string_input_ptr = (unsigned long long *)*system_global_data_pointer;
     thread_result_index = _Mtx_lock(ADDR_MAIN_MUTEX);
     if (thread_result_index != 0) {
@@ -4364,7 +4441,7 @@ section_processing_jump_label_:
     thread_stack_ptr = &g_defaultDataTemplate;
     thread_stack_ptr = system_path_stack_buffer;
     system_path_stack_buffer[0] = 0;
-    stack_size_max = 0x18;
+    stack_size_max = SYSTEM_STACK_SIZE_LARGE;
     thread_op_flags = strcpy_s(system_path_stack_buffer, SYSTEM_CONFIG_BUFFER_SIZE, &systemConfigStringBuffer2);
     system_ui_001(thread_op_flags,&thread_stack_ptr,buffer_alloc_result,1);
     thread_stack_ptr = &g_threadString4;
@@ -4529,7 +4606,7 @@ section_processing_jump_label_:
   thread_stack_ptr = system_initialization_stack_buffer;
   stack_size_max = 0;
   system_initialization_stack_buffer[0] = 0;
-  stack_size_max = 0x19;
+  stack_size_max = SYSTEM_BUFFER_SIZE_CONFIG;
   stack_size_max = thread_op_flags;
   pplStack_220 = (long long **)system_execution_function(system_global_data_pointer,path_buffer_size,8,3);
   *pplStack_220 = (long long *)&g_threadString4;
@@ -4933,7 +5010,7 @@ system_processor_initialize(unsigned long long *handle_param,long long thread_op
   system_thread_manager_create(handle_param, 9, mutex_attr, mutex_type, 0, DEFAULT_THREAD_POOL_FLAG);
   pthread_op_flags = (unsigned long long *)handle_param[1];
   *pthread_op_flags = 0x6a624f656e656353;
-  *(unsigned short *)(pthread_op_flags + 1) = 0x2f;
+  *(unsigned short *)(pthread_op_flags + 1) = SYSTEM_ERROR_ADAP_HDW_ERR;
   *(unsigned int *)(handle_param + 2) = 9;
   buffer_alloc_result = 1;
   thread_result_index = *(int *)(handle_param + 2);
@@ -5065,7 +5142,7 @@ section_processing_jump_label_:
             string_input_ptr = (unsigned long long *)(thread_stack_ptr + stack_size_max);
             *string_input_ptr = 0x782e656e6563732f;
             *(unsigned int *)(string_input_ptr + 1) = 0x6e656373;
-            *(unsigned short *)((long long)string_input_ptr + 0xc) = 0x65;
+            *(unsigned short *)((long long)string_input_ptr + 0xc) = SYSTEM_SPECIAL_VALUE_65;
             stack_size_max = thread_result_index;
             system_char_variable = system_thread_002(&thread_stack_ptr);
             if (system_char_variable == '\0') {
@@ -9829,7 +9906,7 @@ section_processing_jump_label_:
   *(unsigned long long *)((long long)string_input_ptr + 0xe) = 0x6e696c2074612027;
   *(unsigned short *)((long long)string_input_ptr + 0x16) = path_buffer_size65;
   *(unsigned char *)(string_input_ptr + 3) = 0;
-  stack_size_max = 0x18;
+  stack_size_max = SYSTEM_STACK_SIZE_LARGE;
   stack_size_max._0_4_ = buffer_alloc_result;
   system_execution_function(acStack_40,&system_thread_function_3,thread_result_index);
   system_initialization_result0 = -1;
