@@ -2054,50 +2054,50 @@ void InitializeCoreSystemData(void)
   core_system_previous_node[10] = core_system_initialization_flag;
   return;
 }
-// 初始化链表节点
+// 初始化系统链表节点 - 用于视频解码器节点管理
 void InitializeSystemListNode(void)
 
 {
-  char is_initialized;
-  uint64_t *node_root;
-  int compare_result;
-  longlong *ptr_data;
-  longlong allocation_size;
-  uint64_t *node_current;
-  uint64_t *node_previous;
-  uint64_t *node_next;
-  uint64_t *node_new;
-  uint64_t flag_initialized;
+  char node_is_initialized;
+  uint64_t *list_root_node;
+  int memory_compare_result;
+  longlong *system_data_pointer;
+  longlong node_allocation_size;
+  uint64_t *current_traverse_node;
+  uint64_t *previous_traverse_node;
+  uint64_t *next_traverse_node;
+  uint64_t *new_video_node;
+  uint64_t video_init_flag;
 
-  ptr_data = (longlong *)GetSystemPointerData();
-  node_root = (uint64_t *)*ptr_data;
-  is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  flag_initialized = 0;
-  node_previous = node_root;
-  node_current = (uint64_t *)node_root[1];
-  while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_video,SYSTEM_DATA_COMPARE_SIZE);
-    if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
-      node_current = node_previous;
+  system_data_pointer = (longlong *)GetSystemPointerData();
+  list_root_node = (uint64_t *)*system_data_pointer;
+  node_is_initialized = *(char *)((longlong)list_root_node[NODE_INDEX_ROOT_NEXT] + NODE_INITIALIZED_OFFSET);
+  video_init_flag = 0;
+  previous_traverse_node = list_root_node;
+  current_traverse_node = (uint64_t *)list_root_node[NODE_INDEX_ROOT_NEXT];
+  while (node_is_initialized == '\0') {
+    memory_compare_result = memcmp(current_traverse_node + NODE_DATA_OFFSET, &system_data_pattern_video, SYSTEM_DATA_COMPARE_SIZE);
+    if (memory_compare_result < 0) {
+      next_traverse_node = (uint64_t *)current_traverse_node[NODE_INDEX_CURRENT_PREV];
+      current_traverse_node = previous_traverse_node;
     }
     else {
-      node_next = (uint64_t *)*node_current;
+      next_traverse_node = (uint64_t *)*current_traverse_node;
     }
-    node_previous = node_current;
-    node_current = node_next;
-    is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
+    previous_traverse_node = current_traverse_node;
+    current_traverse_node = next_traverse_node;
+    node_is_initialized = *(char *)((longlong)next_traverse_node + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
-    allocation_size = CalculateAllocationSize(ptr_data);
-    AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
-    node_previous = node_new;
+  if ((previous_traverse_node == list_root_node) || (memory_compare_result = memcmp(&system_data_pattern_video, previous_traverse_node + NODE_DATA_OFFSET, SYSTEM_DATA_COMPARE_SIZE), memory_compare_result < 0)) {
+    node_allocation_size = CalculateAllocationSize(system_data_pointer);
+    AllocateSystemMemory(system_data_pointer, &new_video_node, previous_traverse_node, node_allocation_size + SYSTEM_NODE_HEADER_SIZE, node_allocation_size);
+    previous_traverse_node = new_video_node;
   }
-  node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_VIDEO_DECODER_1;
-  node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_VIDEO_DECODER_2;
-  node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_video;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
-  node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
+  previous_traverse_node[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_VIDEO_DECODER_1;
+  previous_traverse_node[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_VIDEO_DECODER_2;
+  previous_traverse_node[NODE_INDEX_ENGINE_PTR] = &g_system_node_video;
+  previous_traverse_node[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
+  previous_traverse_node[NODE_INDEX_ENGINE_FLAG] = video_init_flag;
   return;
 }
 // 初始化内存节点函数
@@ -16306,25 +16306,25 @@ INIT_LABEL_CHECK_SYSTEM_FLAG:
   return;
 }
 
+// 初始化系统模块14 - 处理基本系统数据初始化
 uint64_t *
-InitializeSystemModule14(uint64_t *handleIdentifier,ulonglong resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
+InitializeSystemModule14(uint64_t *system_handle_ptr, ulonglong resource_id, uint64_t system_config, uint64_t system_flags)
 
 {
-  *handleIdentifier = &globalSystemInputData;
-  *handleIdentifier = &globalSystemOutputData;
-  *handleIdentifier = &g_global_system_config;
-  *handleIdentifier = &g_global_system_config;
-  if ((resourceIdentifier & 1) != 0) {
-    free(handleIdentifier,SYSTEM_OBJECT_OFFSET_28,system_configuration,systemFlags,INVALID_HANDLE_VALUE);
+  *system_handle_ptr = &globalSystemInputData;
+  *system_handle_ptr = &globalSystemOutputData;
+  *system_handle_ptr = &g_global_system_config;
+  *system_handle_ptr = &g_global_system_config;
+  if ((resource_id & 1) != 0) {
+    free(system_handle_ptr, SYSTEM_OBJECT_OFFSET_28, system_config, system_flags, INVALID_HANDLE_VALUE);
   }
-  return handleIdentifier;
+  return system_handle_ptr;
 }
-// void InitializeSystemModule47(void)
-
+// 初始化系统模块47 - 调用系统核心初始化
 void InitializeSystemModule47(void)
 
 {
-                    // WARNING: Subroutine does not return
+  // 警告：此子程序不返回
   InitializeSystemCore();
 }
 // void ValidateSystemConfiguration(uint64_t *handleIdentifier)

@@ -2277,38 +2277,38 @@ dataValue g_render_target_config_color;               // 渲染目标配置颜�
 dataValue g_render_target_config_depth;               // 渲染目标配置深度
 dataValue g_render_target_config_stencil;             // 渲染目标配置模板
 dataValue g_render_target_config_multisample;         // 渲染目标配置多重采样
-dataValue render_descriptor_config_layout;
-dataValue render_descriptor_config_set;
-dataValue render_descriptor_config_binding;
-dataValue render_descriptor_config_update;
-dataValue g_renderCommandWorkBuffer;
-dataValue render_command_work_offset;
-dataValue render_command_work_size;
-dataValue render_command_work_flags;
-dataValue g_renderStateWorkBuffer;
-dataValue render_state_work_offset;
-dataValue render_state_work_size;
-dataValue render_state_work_flags;
-dataValue g_renderQueueWorkBuffer;
-dataValue render_queue_work_offset;
-dataValue render_queue_work_size;
-dataValue render_queue_work_flags;
-dataValue g_renderBufferWorkBuffer;
-dataValue render_buffer_work_offset;
-dataValue render_buffer_work_size;
-dataValue render_buffer_work_flags;
-dataValue g_renderSyncWorkBuffer;
-dataValue render_sync_work_offset;
-dataValue render_sync_work_size;
-dataValue render_sync_work_flags;
-dataValue g_renderMemoryWorkBuffer;
-dataValue render_memory_work_offset;
-dataValue render_memory_work_size;
-dataValue render_memory_work_flags;
-dataValue g_renderResourceWorkBuffer;
-dataValue render_resource_work_offset;
-dataValue render_resource_work_size;
-dataValue render_resource_work_flags;
+dataValue g_render_descriptor_config_layout;           // 渲染描述符配置布局
+dataValue g_render_descriptor_config_set;              // 渲染描述符配置集合
+dataValue g_render_descriptor_config_binding;          // 渲染描述符配置绑定
+dataValue g_render_descriptor_config_update;           // 渲染描述符配置更新
+dataValue g_render_command_work_buffer;               // 渲染命令工作缓冲区
+dataValue g_render_command_work_offset;               // 渲染命令工作偏移量
+dataValue g_render_command_work_size;                 // 渲染命令工作大小
+dataValue g_render_command_work_flags;                // 渲染命令工作标志
+dataValue g_render_state_work_buffer;                // 渲染状态工作缓冲区
+dataValue g_render_state_work_offset;                // 渲染状态工作偏移量
+dataValue g_render_state_work_size;                  // 渲染状态工作大小
+dataValue g_render_state_work_flags;                 // 渲染状态工作标志
+dataValue g_render_queue_work_buffer;                // 渲染队列工作缓冲区
+dataValue g_render_queue_work_offset;                // 渲染队列工作偏移量
+dataValue g_render_queue_work_size;                  // 渲染队列工作大小
+dataValue g_render_queue_work_flags;                 // 渲染队列工作标志
+dataValue g_render_buffer_work_buffer;                // 渲染缓冲区工作缓冲区
+dataValue g_render_buffer_work_offset;                // 渲染缓冲区工作偏移量
+dataValue g_render_buffer_work_size;                  // 渲染缓冲区工作大小
+dataValue g_render_buffer_work_flags;                 // 渲染缓冲区工作标志
+dataValue g_render_sync_work_buffer;                 // 渲染同步工作缓冲区
+dataValue g_render_sync_work_offset;                 // 渲染同步工作偏移量
+dataValue g_render_sync_work_size;                   // 渲染同步工作大小
+dataValue g_render_sync_work_flags;                  // 渲染同步工作标志
+dataValue g_render_memory_work_buffer;                // 渲染内存工作缓冲区
+dataValue g_render_memory_work_offset;                // 渲染内存工作偏移量
+dataValue g_render_memory_work_size;                  // 渲染内存工作大小
+dataValue g_render_memory_work_flags;                 // 渲染内存工作标志
+dataValue g_render_resource_work_buffer;              // 渲染资源工作缓冲区
+dataValue g_render_resource_work_offset;              // 渲染资源工作偏移量
+dataValue g_render_resource_work_size;                // 渲染资源工作大小
+dataValue g_render_resource_work_flags;               // 渲染资源工作标志
 dataValue g_renderTextureWorkBuffer;
 dataValue render_texture_work_offset;
 dataValue render_texture_work_size;
