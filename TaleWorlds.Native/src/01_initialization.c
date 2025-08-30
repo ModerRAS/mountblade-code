@@ -1454,6 +1454,23 @@
 #define SYSTEM_STRING_Atomination SYSTEM_PATH_SEPARATOR_2F6e6f6974616d6f  // "omnation/" backwards
 #define SYSTEM_STRING_Attachment 0x656d686361747441  // "Attachme" backwards
 
+// 新增字符串常量定义
+#define SYSTEM_STRING_LIBEL_PART1 0x656c6269  // "libel" backwards
+#define SYSTEM_STRING_LIBEL_PART2 0x61656420  // "dea " backwards
+#define SYSTEM_STRING_LIBEL_PART3 0x636f6c64  // "locd" backwards
+#define SYSTEM_STRING_KERNEL_MESSAGE_PART1 0x746365746564206b  // "k detecte" backwards
+#define SYSTEM_STRING_FRAME_PART1 0x6d617266  // "fram" backwards
+#define SYSTEM_STRING_FRAME_PART2 0x6f662065  // "e fo" backwards
+#define SYSTEM_STRING_CONSOLE_MESSAGE_PART1 0x73646e6f63657320  // " seconds" backwards
+#define SYSTEM_STRING_DEV_MESSAGE_PART1 0x65766544  // "Deve" backwards
+#define SYSTEM_STRING_POLICE_MESSAGE_PART1 0x65706f6c  // "lope" backwards
+#define SYSTEM_STRING_POLICE_MESSAGE_PART2 0x6e692072  // "r in" backwards
+#define SYSTEM_STRING_POLICE_MESSAGE_PART3 0x76726574  // "vert" backwards
+#define SYSTEM_STRING_POLICE_MESSAGE_PART4 0x69746e65  // "enti" backwards
+#define SYSTEM_STRING_POLICE_MESSAGE_PART5 0x73206e6f  // "on s" backwards
+#define SYSTEM_STRING_POLICE_MESSAGE_PART6 0x65676775  // "ugge" backwards
+#define SYSTEM_STRING_POLICE_MESSAGE_PART7 0x64657473  // "sted" backwards
+
 // 浮点常量定义
 #define SYSTEM_FLOAT_CONSTANT_1 1.0f
 
@@ -26024,10 +26041,10 @@ void InitializeSystemModule14(longlong handleIdentifier)
     ConfigureSystemParameters(&system_buffer_ptr_98system_buffer_pointer_primary,SYSTEM_CONFIG_SIZE_NETWORK);
     system_ptr_value = (uint32_t *)(system_buffer_ptr_small_buffer + init_stack_thread_count);
     *system_ptr_value = SYSTEM_STRING_POS;
-    system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x656c6269;
-    system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x61656420;
-    system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x636f6c64;
-    *(uint64_t *)(system_pointer_var + 4) = 0x746365746564206b;
+    system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_STRING_LIBEL_PART1;
+    system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_STRING_LIBEL_PART2;
+    system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_STRING_LIBEL_PART3;
+    *(uint64_t *)(system_pointer_var + 4) = SYSTEM_STRING_KERNEL_MESSAGE_PART1;
     system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NODE_HEADER_SIZE2c6465;
     *(uint8_t *)(system_pointer_var + 7) = 0;
     init_stack_thread_count = SYSTEM_CONFIG_SIZE_NETWORK;
@@ -26039,8 +26056,8 @@ void InitializeSystemModule14(longlong handleIdentifier)
     system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_STRING_R_TO_TOKEN;
     system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_STRING_END_TOKEN;
     system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NODE_HEADER_SIZE612072;
-    system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x6d617266;
-    system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x6f662065;
+    system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_STRING_FRAME_PART1;
+    system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_STRING_FRAME_PART2;
     *(uint16_t *)(system_pointer_var + 8) = SYSTEM_NODE_HEADER_SIZE72;
     *(uint8_t *)((longlong)system_pointer_var + SYSTEM_CORE_OFFSET_CONFIG) = 0;
     init_stack_thread_count = SYSTEM_THREAD_COUNT_3E;
@@ -26056,13 +26073,13 @@ void InitializeSystemModule14(longlong handleIdentifier)
     system_status_code = init_stack_thread_count + 10;
     ConfigureSystemParameters(&system_buffer_ptr_98system_buffer_pointer_primary,system_unsigned_integer_result_temp);
     node_current = (uint64_t *)(system_buffer_ptr_small_buffer + init_stack_thread_count);
-    *node_current = 0x73646e6f63657320;
+    *node_current = SYSTEM_STRING_CONSOLE_MESSAGE_PART1;
     *(uint16_t *)(node_current + 1) = SYSTEM_NODE_HEADER_SIZE21;
     *(uint8_t *)((longlong)node_current + 10) = 0;
     init_stack_thread_count = system_integer_result_unsigned;
     ConfigureSystemParameters(&system_buffer_ptr_98system_buffer_pointer_primary,system_unsigned_integer_result_temp + SYSTEM_OBJECT_OFFSET_2B);
     system_ptr_value = (uint32_t *)(system_buffer_ptr_small_buffer + init_stack_thread_count);
-    *system_ptr_value = 0x65766544;
+    *system_ptr_value = SYSTEM_STRING_DEV_MESSAGE_PART1;
     system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x65706f6c;
     system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x6e692072;
     system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x76726574;
