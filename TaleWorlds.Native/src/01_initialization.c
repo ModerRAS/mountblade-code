@@ -1575,23 +1575,23 @@ void* g_global_data_system_buffer;
 
 void* g_function_create_buffer;
 
-void* g_global_system_reserved_1;
-void* g_global_system_reserved_2;
-void* g_global_system_reserved_3;
-void* g_global_system_reserved_4;
+void* g_global_system_reserved_primary;
+void* g_global_system_reserved_secondary;
+void* g_global_system_reserved_tertiary;
+void* g_global_system_reserved_quaternary;
 
 // 系统视频初始化状态（char类型，位于行692）
 char g_system_video_initialized_secondary;
 
-void* g_global_system_reserved_5;
-void* g_global_system_reserved_6;
+void* g_global_system_reserved_audio;
+void* g_global_system_reserved_video;
 
 void* g_static_data_system_init;
 
-void* g_global_system_reserved_7;
-void* g_global_system_reserved_8;
-void* g_global_system_reserved_9;
-void* g_global_system_reserved_10;
+void* g_global_system_reserved_network;
+void* g_global_system_reserved_physics;
+void* g_global_system_reserved_security;
+void* g_global_system_reserved_thread;
 
 void* g_static_data_audio_system;
 
@@ -60681,8 +60681,8 @@ longlong g_global_system_tick_counter;
 longlong g_global_system_frame_counter;
 longlong g_global_memory_base_address;
 longlong g_global_memory_end_address;
-uint32_t g_system_reserved_flag_1;
-uint32_t g_system_reserved_flag_2;
+uint32_t g_system_reserved_flag_primary;
+uint32_t g_system_reserved_flag_secondary;
 void* g_static_memory_pool;
 
 void* g_static_resource_cache;
