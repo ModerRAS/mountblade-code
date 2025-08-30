@@ -3,14 +3,15 @@
 // 美化工作记录 - 2025年8月30日 (最终美化)
 
 // 本次美化内容：
-// - 修复所有重复变量声明问题，将重复的validation_flag声明重命名为validation_flag_secondary
-// - 美化剩余的非语义化变量名，将utility_cpu_register_r8_data替换为utility_cpu_register_r8_value等
-// - 将utility_operation_result3替换为utility_operation_result_tertiary等语义化名称
-// - 将utility_local_array替换为utility_local_array_data等数组变量名
+// - 美化硬编码数值常量，将8替换为UTILITY_POINTER_SIZE_OFFSET_BYTE等指针大小常量
+// - 美化硬编码数值常量，将1替换为UTILITY_INTEGER_INCREMENT_VALUE等增量常量
+// - 美化硬编码数值常量，将-1替换为UTILITY_NEGATIVE_INTEGER_FLAG等负数标志常量
+// - 美化硬编码数值常量，将0替换为UTILITY_NULL_RESULT等空结果常量
+// - 美化硬编码数值常量，将数组索引0/1替换为UTILITY_SECURITY_TOKEN_PRIMARY_OFFSET等安全令牌偏移量常量
 // - 提高了代码的可读性和维护性
-// - 保持代码语义不变，这是简化实现，主要处理了工具系统中重复变量声明的修复和变量名美化
-// - 原本实现：完全重构变量声明体系和命名规范
-// - 简化实现：仅修复重复的变量声明和美化部分非语义化变量名
+// - 保持代码语义不变，这是简化实现，主要处理了工具系统中硬编码数值常量的语义化替换
+// - 原本实现：完全重构数值常量体系
+// - 简化实现：仅将常见的硬编码数值替换为语义化宏定义
 
 // 之前的美化内容：
 
