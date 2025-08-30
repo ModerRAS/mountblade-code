@@ -21353,9 +21353,9 @@ uint64_t networkReleaseConnection7(int64_t *network_socket_descriptor)
       *(uint64_t *)(network_primary_conn_data + -NETWORK_INVALID_HEADER_MAGIC4) = NETWORK_OPERATION_FAILURE;
       *(uint64_t *)(network_primary_conn_data + -NETWORK_SOCKET_DATA_OFFSETc) = NETWORK_OPERATION_FAILURE;
       *(uint64_t *)(network_primary_conn_data + -NETWORK_SOCKET_DATA_OFFSET4) = NETWORK_OPERATION_FAILURE;
-      *(uint64_t *)(network_primary_conn_data + -0x24c) = NETWORK_OPERATION_FAILURE;
-      *(uint64_t *)(network_primary_conn_data + -0x244) = NETWORK_OPERATION_FAILURE;
-      *(uint64_t *)(network_primary_conn_data + -0x23c) = NETWORK_OPERATION_FAILURE;
+      *(uint64_t *)(network_primary_conn_data + NETWORK_NEGATIVE_OFFSET_24C) = NETWORK_OPERATION_FAILURE;
+      *(uint64_t *)(network_primary_conn_data + NETWORK_NEGATIVE_OFFSET_244) = NETWORK_OPERATION_FAILURE;
+      *(uint64_t *)(network_primary_conn_data + NETWORK_NEGATIVE_OFFSET_23C) = NETWORK_OPERATION_FAILURE;
       *(uint64_t *)(network_primary_conn_data + NETWORK_NEGATIVE_OFFSET_234) = NETWORK_OPERATION_FAILURE;
       *(uint64_t *)(network_primary_conn_data + -NETWORK_TIMEOUT_CONFIG_OFFSET_ALTc) = NETWORK_OPERATION_FAILURE;
       *(uint64_t *)(network_primary_conn_data + -NETWORK_TIMEOUT_CONFIG_OFFSET_ALT4) = NETWORK_OPERATION_FAILURE;
