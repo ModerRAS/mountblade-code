@@ -3717,12 +3717,12 @@ section_processing_jump_label_:
                       if (*(long long *)(str_len_counter + SYSTEM_STACK_OFFSET_THREAD_HANDLE) != 0) {
                         *(unsigned char *)(thread_op_flags + *(long long *)(str_len_counter + SYSTEM_STACK_OFFSET_THREAD_HANDLE)) = SYSTEM_ZERO_VALUE;
                       }
-                      *(uint *)(str_len_counter + 0x6c) = stack_size_max._4_4_;
+                      *(uint *)(str_len_counter + SYSTEM_STACK_OFFSET_THREAD_CONFIG) = stack_size_max._4_4_;
                       thread_stack_ptr = &g_threadString2;
                       if (pcStack_328 != (char *)SYSTEM_NULL_POINTER) {
                         handle_param_system_error(pcStack_328,pcStack_328);
                       }
-                      pcStack_328 = (char *)0x0;
+                      pcStack_328 = (char *)SYSTEM_NULL_POINTER;
                       stack_size_max = (ulong long)stack_size_max._4_4_ << path_buffer_size;
                       thread_stack_ptr = &g_threadString4;
                     }
