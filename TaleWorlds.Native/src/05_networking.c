@@ -3975,7 +3975,7 @@ void NetworkProcessDataStream(uint64_t network_socket_handle, uint8_t *network_b
   uint32_t *network_stack_connection_buffer;
   uint64_t network_socket_handle_third;
   uint64_t network_socket_handle_fourth;
-  int64_t network_context_third_pointer;
+  int64_t network_context_tertiary_pointer;
   int64_t network_context_pointer_config;
   uint32_t network_status_handle_primary;
   uint32_t network_config_secondary_value;
@@ -3983,7 +3983,7 @@ void NetworkProcessDataStream(uint64_t network_socket_handle, uint8_t *network_b
   network_module_operation_status = network_encryption_xor_global_value ^ (ulonglong)network_encryption_temporary_bufferfer;
   if (network_buffer_pointer != (uint8_t *)MEMORY_MEMORY_ZERO_OFFSET) {
   if (((network_buffer_pointer != (uint8_t *)MEMORY_MEMORY_ZERO_OFFSET) || (network_buffer_size_var == NETWORK_OPERATION_STATUS_FAILURE)) && (-NETWORK_OPERATION_SUCCESS < network_buffer_size_var)) {
-    network_context_third_pointer = NETWORK_OPERATION_STATUS_FAILURE;
+    network_context_tertiary_pointer = NETWORK_OPERATION_STATUS_FAILURE;
     network_socket_handle_third = NETWORK_OPERATION_STATUS_FAILURE;
     network_socket_handle_fourth = NETWORK_OPERATION_STATUS_FAILURE;
     network_operation_status_code = network_initialize_socket(NETWORK_OPERATION_STATUS_FAILURE, &network_socket_handle_fourth);
