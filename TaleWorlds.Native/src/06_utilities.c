@@ -85,15 +85,15 @@
 #define UTILITY_MASK_0XC000 0xc000
 #define UTILITY_LOOP_MAX_COUNT 0x20214
 #define UTILITY_SYSTEM_END_FLAG 0xffffff
-#define UTILITY_SYSTEM_END_FLAG_EXTENDED 0xfffffffffffffffe
+#define UTILITY_SYSTEM_END_FLAG_EXTENDED UTILITY_SYSTEM_END_FLAG_EXTENDED
 
 // 新增语义化宏定义 - 替换十六进制常量
 #define UTILITY_SYSTEM_TABLE_BASE 0x213438
 #define UTILITY_RESOURCE_TABLE_OFFSET 0x121c0
 #define UTILITY_RESOURCE_DATA_OFFSET 0x121e0
-#define UTILITY_MEMORY_MASK_HIGH 0xffffffff00000000
-#define UTILITY_HANDLE_CHECK_VALUE -0x3ffffffb
-#define UTILITY_RESOURCE_MASK_OFFSET -0x565dff77
+#define UTILITY_MEMORY_MASK_HIGH UTILITY_MEMORY_MASK_HIGH
+#define UTILITY_HANDLE_CHECK_VALUE UTILITY_HANDLE_CHECK_VALUE
+#define UTILITY_RESOURCE_MASK_OFFSET UTILITY_RESOURCE_MASK_OFFSET
 #define UTILITY_MEMORY_OFFSET_790 0x790
 #define UTILITY_MEMORY_OFFSET_1C8 0x1C8
 #define UTILITY_STACK_FRAME_OFFSET_5F0 0x5F0
@@ -284,9 +284,9 @@
 // 101. 将0x213438替换为UTILITY_SYSTEM_TABLE_BASE等系统表基址常量
 // 102. 将0x121c0替换为UTILITY_RESOURCE_TABLE_OFFSET等资源表偏移量常量
 // 103. 将0x121e0替换为UTILITY_RESOURCE_DATA_OFFSET等资源数据偏移量常量
-// 104. 将0xffffffff00000000替换为UTILITY_MEMORY_MASK_HIGH等内存掩码常量
-// 105. 将-0x3ffffffb替换为UTILITY_HANDLE_CHECK_VALUE等句柄检查值常量
-// 106. 将-0x565dff77替换为UTILITY_RESOURCE_MASK_OFFSET等资源掩码偏移量常量
+// 104. 将UTILITY_MEMORY_MASK_HIGH替换为UTILITY_MEMORY_MASK_HIGH等内存掩码常量
+// 105. 将UTILITY_HANDLE_CHECK_VALUE替换为UTILITY_HANDLE_CHECK_VALUE等句柄检查值常量
+// 106. 将UTILITY_RESOURCE_MASK_OFFSET替换为UTILITY_RESOURCE_MASK_OFFSET等资源掩码偏移量常量
 // 107. 将unaff_EBP替换为UTILITY_REGISTER_EBP等寄存器变量名
 // 108. 将unaff_BPL替换为UTILITY_REGISTER_BPL等寄存器变量名
 // 65. 将utility_stack_working_buffer_30替换为utility_stack_working_buffer_primary_30等工作缓冲区变量名
@@ -473,7 +473,7 @@
 #define UTILITY_BYTE_OFFSET_FLAG 0xb
 #define UTILITY_POINTER_OFFSET_CHECKSUM 0x7
 #define UTILITY_STACK_TEMP_BUFFER_SIZE 0x100
-#define UTILITY_ERROR_CODE_FAILED 0xffffffff
+#define UTILITY_ERROR_CODE_FAILED UTILITY_ERROR_CODE_FAILED
 #define UTILITY_BUFFER_DATA_OFFSET 0x8
 #define UTILITY_STRUCTURE_SIZE_OFFSET 0x10
 #define UTILITY_BUFFER_STATUS_OFFSET_ALT 0x14
@@ -492,7 +492,7 @@
 #define UTILITY_RESOURCE_ACCESS_OFFSET 0x150
 #define UTILITY_DATA_PROCESS_OFFSET 0x288
 #define UTILITY_WORD_MASK 0xffff
-#define UTILITY_FLOAT_INFINITY_MASK 0x7f800000
+#define UTILITY_FLOAT_INFINITY_MASK UTILITY_FLOAT_INFINITY_MASK
 #define UTILITY_FLOAT_INFINITY 3.4028235e+38
 #define UTILITY_FLOAT_MAX_SIGNED 9.223372e+18
 #define UTILITY_SIZE_MULTIPLIER 1.5
@@ -501,20 +501,20 @@
 #define UTILITY_FLOAT_QUARTER 0.25
 
 // 新增资源类型签名常量 - 美化十六进制字符串编码
-#define UTILITY_RESOURCE_SIGNATURE_PANIC 0x50414e53  // "PANS"
-#define UTILITY_RESOURCE_SIGNATURE_WAIT 0x54494157   // "TIOW"
-#define UTILITY_RESOURCE_SIGNATURE_TSIL 0x5453494c  // "TSIL"
-#define UTILITY_RESOURCE_SIGNATURE_VRUC 0x56525543  // "VRUC"
-#define UTILITY_RESOURCE_SIGNATURE_TIFE 0x54494645  // "TIFE"
+#define UTILITY_RESOURCE_SIGNATURE_PANIC UTILITY_RESOURCE_SIGNATURE_PANIC  // "PANS"
+#define UTILITY_RESOURCE_SIGNATURE_WAIT UTILITY_RESOURCE_SIGNATURE_WAIT   // "TIOW"
+#define UTILITY_RESOURCE_SIGNATURE_TSIL UTILITY_RESOURCE_SIGNATURE_TSIL  // "TSIL"
+#define UTILITY_RESOURCE_SIGNATURE_VRUC UTILITY_RESOURCE_SIGNATURE_VRUC  // "VRUC"
+#define UTILITY_RESOURCE_SIGNATURE_TIFE UTILITY_RESOURCE_SIGNATURE_TIFE  // "TIFE"
 #define UTILITY_RESOURCE_SIGNATURE_TNVE UTILITY_RESOURCE_SIGNATURE_TNVE  // "TNVE"
 #define UTILITY_FLOAT_TO_INT_SCALE 1000.0
-#define UTILITY_LONG_LONG_MIN -0x8000000000000000
-#define UTILITY_MAX_UNSIGNED_VALUE 0x3fffffff
-#define UTILITY_FLAG_MASK_CLEAR 0xfdffffff
+#define UTILITY_LONG_LONG_MIN UTILITY_LONG_LONG_MIN
+#define UTILITY_MAX_UNSIGNED_VALUE UTILITY_MAX_UNSIGNED_VALUE
+#define UTILITY_FLAG_MASK_CLEAR UTILITY_FLAG_MASK_CLEAR
 #define UTILITY_FLAG_SET_BIT 0x4000000
 #define UTILITY_WORD_MASK_FF 0xff
 #define UTILITY_WORD_MASK_FF00 0xff00
-#define UTILITY_FLAG_MASK_CLEAR_2 0xfbffffff
+#define UTILITY_FLAG_MASK_CLEAR_2 UTILITY_FLAG_MASK_CLEAR_2
 #define UTILITY_FLAG_SET_BIT_2 0x6000000
 #define UTILITY_ENCRYPTION_KEY_SIZE 0xdd
 
@@ -631,7 +631,7 @@
 #define UTILITY_SHORT_OFFSET_3 UTILITY_MEMORY_OFFSET_114
 #define UTILITY_DATA_OFFSET_118 0x118
 #define UTILITY_LARGE_BUFFER_SIZE 0x278
-#define UTILITY_MAGIC_NUMBER 0x41435449
+#define UTILITY_MAGIC_NUMBER UTILITY_MAGIC_NUMBER
 #define UTILITY_MODULE_OFFSET_ALT 0xe8
 
 // 新增语义化宏定义 - 替换栈数组变量名
@@ -721,7 +721,7 @@
 // 新增语义化变量名 - 替换临时变量
 #define UTILITY_TEMP_STACK_BUFFER utility_temp_stack_buffer
 #define UTILITY_TEMP_RESOURCE_HANDLE utility_stack_resource_primary_handle
-#define UTILITY_EXCEPTION_CHECK_MASK 0xff000000
+#define UTILITY_EXCEPTION_CHECK_MASK UTILITY_EXCEPTION_CHECK_MASK
 #define UTILITY_EXCEPTION_LIST_PTR_OFFSET 0x288
 
 // 新增语义化宏定义 - 替换工具展开函数
@@ -754,13 +754,13 @@
 #define UTILITY_SIZE_THRESHOLD_XMAX 0x7d
 #define UTILITY_FLAG_CHECK_BIT 0x800
 #define UTILITY_FLAG_MASK_FE 0xfe
-#define UTILITY_FLAG_CLEAR_MASK 0xffffffff00000000
+#define UTILITY_FLAG_CLEAR_MASK UTILITY_MEMORY_MASK_HIGH
 #define UTILITY_STATUS_SUCCESS_D 0xd
 #define UTILITY_STATUS_PENDING_12 0x12
 #define UTILITY_STATUS_VALIDATED_16 0x16
 #define UTILITY_STACK_OFFSET_NEG_D -0xd
 #define UTILITY_STACK_OFFSET_NEG_E -0xe
-#define UTILITY_REGISTER_EBP_MASK 0xfffffffd
+#define UTILITY_REGISTER_EBP_MASK UTILITY_REGISTER_EBP_MASK
 #define UTILITY_REGISTER_EAX_BASE 0x57
 #define UTILITY_REGISTER_CF_OFFSET 1
 #define UTILITY_REGISTER_ESI_VALUE 7
@@ -769,7 +769,7 @@
 
 // 新增语义化宏定义 - 替换field_offset_primary变量
 #define UTILITY_FIELD_PRIMARY_OFFSET 0x0
-#define UTILITY_RESOURCE_HANDLE_OFFSET_NEG 0x565dff77
+#define UTILITY_RESOURCE_HANDLE_OFFSET_NEG UTILITY_RESOURCE_HANDLE_OFFSET_NEG
 #define UTILITY_EXCEPTION_CODE_1B 0x1b
 #define UTILITY_SIZE_LIMIT_8C 0x8c
 #define UTILITY_SIZE_LIMIT_7D 0x7d
@@ -833,7 +833,7 @@
 // 新增语义化宏定义 - 替换句柄常量
 #define UTILITY_HANDLE_INVALID 0
 #define UTILITY_HANDLE_MIN 1
-#define UTILITY_HANDLE_MAX 0xFFFFFFFF
+#define UTILITY_HANDLE_MAX UTILITY_HANDLE_MAX
 #define UTILITY_HANDLE_FLAGS_VALID 0x1
 #define UTILITY_HANDLE_FLAGS_ACTIVE 0x2
 #define UTILITY_HANDLE_FLAGS_LOCKED 0x4
@@ -938,7 +938,7 @@ uint64 g_bufferFlagConfiguration;       // 缓冲区标志配置
 void* g_bufferMemoryPointer;           // 缓冲区内存指针
 
 // 函数: resource_data g_initialize_memory_pool;
-// 系统初始化函数180941590
+// 系统初始化函数 utility_initialize_system_core
 void* g_initialize_memory_pool;
 void* g_memoryPoolBaseAddress;            // 内存池基地址
 uint64 g_memoryPoolSize;                   // 内存池大小
@@ -976,22 +976,22 @@ uint32 g_errorHandlerRecoveryMode;         // 错误处理器恢复
 uint32 g_errorHandlerLoggingEnabled;       // 错误处理器日志
 
 // 函数: resource_data g_validate_memory_config;
-// 内存配置验证函数180941630
+// 内存配置验证函数 utility_validate_memory_config
 void* g_validate_memory_config;
 byte g_thread_sync_initialized;
 
 // 函数: resource_data g_initialize_thread_sync;
-// 线程同步初始化函数180941650
+// 线程同步初始化函数 utility_initialize_thread_sync
 void* g_initialize_thread_sync;
 byte g_thread_sync_active;
 
 // 函数: resource_data g_initialize_event_handler;
-// 事件处理初始化函数180941690
+// 事件处理初始化函数 utility_initialize_event_handler
 void* g_initialize_event_handler;
 byte g_thread_sync_pending;
 
 // 函数: resource_data g_initialize_semaphore;
-// 信号量初始化函数1809416d0
+// 信号量初始化函数 utility_initialize_semaphore
 void* g_initialize_semaphore;
 byte g_semaphore_initialized;
 
@@ -25403,7 +25403,7 @@ void ExceptionHandlerCleanup9(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -25439,7 +25439,7 @@ void ExceptionHandlerCleanup10(uint64 resource_handle_identifier,longlong resour
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -25492,7 +25492,7 @@ void ExceptionHandlerCleanup12(uint64 resource_handle_identifier,longlong resour
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -25528,7 +25528,7 @@ void ExceptionHandlerCleanup13(uint64 resource_handle_identifier,longlong resour
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -26079,7 +26079,7 @@ void UtilityUnwindExceptionHandlerSimple(uint64 resource_handle_identifier,longl
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -26321,7 +26321,7 @@ void UtilityUnwindExceptionHandlerCleanup(uint64 resource_handle_identifier,long
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -26574,7 +26574,7 @@ void UtilityUnwindExceptionHandlerBegin(uint64 resource_handle_identifier,longlo
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -27161,7 +27161,7 @@ void UtilityUnwindExceptionHandlerSterilizeZeroAll(uint64 resource_handle_identi
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -27208,7 +27208,7 @@ void UtilityUnwindExceptionHandlerDecontaminateZeroAll(uint64 resource_handle_id
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -27283,7 +27283,7 @@ void UtilityUnwindExceptionHandlerEmptyZeroAll(uint64 resource_handle_identifier
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -27319,7 +27319,7 @@ void UtilityUnwindExceptionHandlerBlankZeroAll(uint64 resource_handle_identifier
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -27403,7 +27403,7 @@ void UtilityUnwindExceptionHandlerCleanAllZero(uint64 resource_handle_identifier
         }
       }
       else {
-        exceptionHandleFunction(systemFlagsData,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(systemFlagsData + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+        exceptionHandleFunction(systemFlagsData,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(systemFlagsData + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                             UTILITY_RESOURCE_POINTER_PRIMARY,systemFlagsData,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
@@ -27458,7 +27458,7 @@ void UtilityUnwindExceptionHandlerPurgeAllZero(uint64 resource_handle_identifier
         }
       }
       else {
-        exceptionHandleFunction(systemFlagsData,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(systemFlagsData + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+        exceptionHandleFunction(systemFlagsData,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(systemFlagsData + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                             UTILITY_RESOURCE_POINTER_PRIMARY,systemFlagsData,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
@@ -27561,7 +27561,7 @@ void UtilityUnwindExceptionHandlerDisinfectAllZero(uint64 resource_handle_identi
         }
       }
       else {
-        exceptionHandleFunction(systemFlagsData,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(systemFlagsData + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+        exceptionHandleFunction(systemFlagsData,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(systemFlagsData + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                             UTILITY_RESOURCE_POINTER_PRIMARY,systemFlagsData,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
@@ -27616,7 +27616,7 @@ void UtilityUnwindExceptionHandlerDecontaminateAllZero(uint64 resource_handle_id
         }
       }
       else {
-        exceptionHandleFunction(systemFlagsData,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(systemFlagsData + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+        exceptionHandleFunction(systemFlagsData,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(systemFlagsData + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                             UTILITY_RESOURCE_POINTER_PRIMARY,systemFlagsData,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
@@ -27799,7 +27799,7 @@ void UtilityUnwindExceptionHandlerZeroAllZero(uint64 resource_handle_identifier,
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -28063,7 +28063,7 @@ void UtilityUnwindExceptionHandlerVoidZeroAllZero(uint64 resource_handle_identif
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -28146,7 +28146,7 @@ void UtilityUnwindExceptionHandlerClearZeroZeroAllZero(uint64 resource_handle_id
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -28182,7 +28182,7 @@ void UtilityUnwindExceptionHandlerResetZeroZeroAllZero(uint64 resource_handle_id
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -28218,7 +28218,7 @@ void UtilityUnwindExceptionHandlerFlushZeroZeroAllZero(uint64 resource_handle_id
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -28263,7 +28263,7 @@ void UtilityUnwindExceptionHandlerPurgeZeroZeroAllZero(uint64 resource_handle_id
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -28299,7 +28299,7 @@ void UtilityUnwindExceptionHandlerWipeZeroZeroAllZero(uint64 resource_handle_ide
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -28465,7 +28465,7 @@ void UtilityUnwindExceptionHandlerEmptyZeroZeroAllZero(uint64 resource_handle_id
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -28501,7 +28501,7 @@ void UtilityUnwindExceptionHandlerBlankZeroZeroAllZero(uint64 resource_handle_id
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -28786,7 +28786,7 @@ void UtilityUnwindExceptionHandlerVoidZeroZeroZeroAllZero(uint64 resource_handle
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -28822,7 +28822,7 @@ void UtilityUnwindExceptionHandlerEmptyZeroZeroZeroAllZero(uint64 resource_handl
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -28858,7 +28858,7 @@ void UtilityUnwindExceptionHandlerBlankZeroZeroZeroAllZero(uint64 resource_handl
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -28899,7 +28899,7 @@ void UtilityUnwindExceptionHandlerZeroZeroZeroZeroAllZero(uint64 resource_handle
         }
       }
       else {
-        exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+        exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                             iteration_pointer,validation_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
@@ -28961,7 +28961,7 @@ void UtilityUnwindExceptionHandlerFlushZeroZeroZeroZeroAllZero(uint64 resource_h
         }
       }
       else {
-        exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+        exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                             iteration_pointer,validation_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
@@ -29004,7 +29004,7 @@ void UtilityUnwindExceptionHandlerCleanZeroZeroZeroZeroAllZero(uint64 resource_h
         }
       }
       else {
-        exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+        exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                             iteration_pointer,validation_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
@@ -29117,7 +29117,7 @@ void UtilityUnwindExceptionHandlerVoidZeroZeroZeroZeroAllZero(uint64 resource_ha
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -29488,7 +29488,7 @@ void UtilityUnwindFunction130(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -29524,7 +29524,7 @@ void UtilityUnwindFunction140(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -29583,7 +29583,7 @@ void UtilityUnwindFunction160(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -29661,7 +29661,7 @@ void UtilityUnwindFunction190(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -29773,7 +29773,7 @@ void UtilityUnwindFunction1f0(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -29809,7 +29809,7 @@ void UtilityUnwindFunction200(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -29980,7 +29980,7 @@ void UtilityUnwindFunction310(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -30201,7 +30201,7 @@ void UtilityUnwindFunction460(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           UTILITY_RESOURCE_POINTER_PRIMARY,validation_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -30255,7 +30255,7 @@ void UtilityUnwindFunction4b0(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -30291,7 +30291,7 @@ void UtilityUnwindFunction4c0(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -30327,7 +30327,7 @@ void UtilityUnwindFunction4d0(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -30363,7 +30363,7 @@ void UtilityUnwindFunction4e0(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -30399,7 +30399,7 @@ void UtilityUnwindFunction4f0(uint64 resource_handle_identifier,longlong resourc
         }
       }
       else {
-        exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+        exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                             iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
@@ -30437,7 +30437,7 @@ void UtilityUnwindFunction500(uint64 resource_handle_identifier,longlong resourc
         }
       }
       else {
-        exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+        exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                             iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
@@ -30502,7 +30502,7 @@ void UtilityUnwindFunction510(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           UTILITY_RESOURCE_POINTER_PRIMARY,validation_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -30538,7 +30538,7 @@ void UtilityUnwindFunction520(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -30588,7 +30588,7 @@ void UtilityUnwindFunction560(uint64 resource_handle_identifier,longlong resourc
         }
       }
       else {
-        exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+        exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                             iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
@@ -30651,7 +30651,7 @@ void UtilityUnwindFunction580(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           UTILITY_RESOURCE_POINTER_PRIMARY,validation_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -30714,7 +30714,7 @@ void UtilityUnwindFunction5e0(uint64 resource_handle_identifier,longlong resourc
         }
       }
       else {
-        exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+        exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                             iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
@@ -30752,7 +30752,7 @@ void UtilityUnwindFunction5f0(uint64 resource_handle_identifier,longlong resourc
         }
       }
       else {
-        exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+        exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                             iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
@@ -35568,7 +35568,7 @@ void UtilityUnwindAdvancedFunction630(uint64 resource_handle_identifier,longlong
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -36130,7 +36130,7 @@ void UtilityUnwindAdvancedFunction920(uint64 resource_handle_identifier,longlong
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -36166,7 +36166,7 @@ void UtilityUnwindAdvancedFunction930(uint64 resource_handle_identifier,longlong
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -36246,7 +36246,7 @@ void UtilityUnwindAdvancedFunction960(uint64 resource_handle_identifier,longlong
       }
     }
     else {
-      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           UTILITY_RESOURCE_POINTER_PRIMARY,validation_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -36308,7 +36308,7 @@ void UtilityUnwindAdvancedFunction970(uint64 resource_handle_identifier,longlong
       }
     }
     else {
-      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           UTILITY_RESOURCE_POINTER_PRIMARY,validation_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -36370,7 +36370,7 @@ void UtilityUnwindAdvancedFunction990(uint64 resource_handle_identifier,longlong
       }
     }
     else {
-      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           UTILITY_RESOURCE_POINTER_PRIMARY,validation_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -36424,7 +36424,7 @@ void UtilityUnwindAdvancedFunction9d0(uint64 resource_handle_identifier,longlong
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -36460,7 +36460,7 @@ void UtilityUnwindAdvancedFunction9e0(uint64 resource_handle_identifier,longlong
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -36496,7 +36496,7 @@ void UtilityUnwindAdvancedFunction9f0(uint64 resource_handle_identifier,longlong
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -36576,7 +36576,7 @@ void UtilityUnwindAdvancedFunctiona20(uint64 resource_handle_identifier,longlong
       }
     }
     else {
-      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           UTILITY_RESOURCE_POINTER_PRIMARY,validation_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -36638,7 +36638,7 @@ void UtilityUnwindAdvancedFunctiona30(uint64 resource_handle_identifier,longlong
       }
     }
     else {
-      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           UTILITY_RESOURCE_POINTER_PRIMARY,validation_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -36700,7 +36700,7 @@ void UtilityUnwindAdvancedFunctiona50(uint64 resource_handle_identifier,longlong
       }
     }
     else {
-      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           UTILITY_RESOURCE_POINTER_PRIMARY,validation_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -36745,7 +36745,7 @@ void UtilityUnwindAdvancedFunctiona80(uint64 resource_handle_identifier,longlong
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -36781,7 +36781,7 @@ void UtilityUnwindAdvancedFunctiona90(uint64 resource_handle_identifier,longlong
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -37321,7 +37321,7 @@ void UtilityUnwindAdvancedFunctione70(uint64 resource_handle_identifier,longlong
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -37435,7 +37435,7 @@ void UtilityUnwindAdvancedFunctionf30(uint64 resource_handle_identifier,longlong
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -37563,7 +37563,7 @@ void UtilityUnwindAdvancedFunctionfb0(uint64 resource_handle_identifier,longlong
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -37723,7 +37723,7 @@ void UtilityFunctionHandler030(uint64 resource_handle_identifier,longlong resour
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -37780,7 +37780,7 @@ void UtilityFunctionHandler050(uint64 resource_handle_identifier,longlong resour
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -38137,7 +38137,7 @@ void UtilityFunctionHandler200(uint64 resource_handle_identifier,longlong resour
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -38194,7 +38194,7 @@ void UtilityFunctionHandler220(uint64 resource_handle_identifier,longlong resour
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -38269,7 +38269,7 @@ void UtilityFunctionHandler260(uint64 resource_handle_identifier,longlong resour
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -38326,7 +38326,7 @@ void UtilityFunctionHandler280(uint64 resource_handle_identifier,longlong resour
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -38469,7 +38469,7 @@ void UtilityFunctionHandler380(uint64 resource_handle_identifier,longlong resour
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -38836,7 +38836,7 @@ void UtilityFunctionHandler540(uint64 resource_handle_identifier,longlong resour
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -38899,7 +38899,7 @@ void UtilityFunctionHandler0(uint64 resource_handle_identifier,longlong resource
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -38935,7 +38935,7 @@ void UtilityFunctionHandler0(uint64 resource_handle_identifier,longlong resource
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -39527,7 +39527,7 @@ void UtilityFunctionHandler880(uint64 resource_handle_identifier,longlong resour
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -39778,7 +39778,7 @@ void UtilityFunctionHandler940(uint64 resource_handle_identifier,longlong resour
         }
       }
       else {
-        exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+        exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                             iteration_pointer,validation_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
@@ -40314,7 +40314,7 @@ void UtilityFunctionHandler60(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           UTILITY_RESOURCE_POINTER_PRIMARY,validation_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -40411,7 +40411,7 @@ void UtilityFunctionHandler90(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           UTILITY_RESOURCE_POINTER_PRIMARY,validation_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -40664,7 +40664,7 @@ void UtilityFunctionHandler50(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           UTILITY_RESOURCE_POINTER_PRIMARY,validation_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -40833,7 +40833,7 @@ void UtilityFunctionHandler0(uint64 resource_handle_identifier,longlong resource
       }
     }
     else {
-      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           UTILITY_RESOURCE_POINTER_PRIMARY,validation_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -41184,7 +41184,7 @@ void UtilityUtilityUnwindSpecializedFunctionea0(uint64 resource_handle_identifie
       }
     }
     else {
-      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           UTILITY_RESOURCE_POINTER_PRIMARY,validation_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -41287,7 +41287,7 @@ void UtilityUtilityUnwindSpecializedFunctionef0(uint64 resource_handle_identifie
       }
     }
     else {
-      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           UTILITY_RESOURCE_POINTER_PRIMARY,validation_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -41393,7 +41393,7 @@ void UtilityUtilityUnwindSpecializedFunctionf70(uint64 resource_handle_identifie
       }
     }
     else {
-      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           UTILITY_RESOURCE_POINTER_PRIMARY,validation_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -41495,7 +41495,7 @@ void UtilityUtilityUnwindSpecializedFunctionfa0(uint64 resource_handle_identifie
       }
     }
     else {
-      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           UTILITY_RESOURCE_POINTER_PRIMARY,validation_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -41577,7 +41577,7 @@ void UtilityUtilityUnwindSpecializedFunctionfe0(uint64 resource_handle_identifie
       }
     }
     else {
-      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           UTILITY_RESOURCE_POINTER_PRIMARY,validation_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -41857,7 +41857,7 @@ void UtilityFunctionHandler160(uint64 resource_handle_identifier,longlong resour
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -41893,7 +41893,7 @@ void UtilityFunctionHandler180(uint64 resource_handle_identifier,longlong resour
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -41929,7 +41929,7 @@ void UtilityFunctionHandler190(uint64 resource_handle_identifier,longlong resour
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -42021,7 +42021,7 @@ void ResourceUnwindHandler5(uint64 resource_handle_identifier,longlong resource_
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -42267,7 +42267,7 @@ void UtilityFunctionHandler470(uint64 resource_handle_identifier,longlong resour
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -43634,7 +43634,7 @@ void UtilityFunctionHandler50(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -43759,7 +43759,7 @@ void UtilityFunctionHandler0(uint64 resource_handle_identifier,longlong resource
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -43795,7 +43795,7 @@ void UtilityFunctionHandler0(uint64 resource_handle_identifier,longlong resource
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -43912,7 +43912,7 @@ void UtilityFunctionHandler50(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -43990,7 +43990,7 @@ void UtilityFunctionHandler80(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -44026,7 +44026,7 @@ void UtilityFunctionHandler90(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -44062,7 +44062,7 @@ void UtilityFunctionHandler0(uint64 resource_handle_identifier,longlong resource
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -44119,7 +44119,7 @@ void UtilityFunctionHandler0(uint64 resource_handle_identifier,longlong resource
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -44155,7 +44155,7 @@ void UtilityFunctionHandler0(uint64 resource_handle_identifier,longlong resource
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -44212,7 +44212,7 @@ void UtilityFunctionHandler0(uint64 resource_handle_identifier,longlong resource
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -44248,7 +44248,7 @@ void UtilityFunctionHandler00(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -44284,7 +44284,7 @@ void UtilityFunctionHandler10(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -44341,7 +44341,7 @@ void UtilityFunctionHandler30(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -44377,7 +44377,7 @@ void UtilityFunctionHandler40(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -44413,7 +44413,7 @@ void UtilityFunctionHandler50(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -44449,7 +44449,7 @@ void UtilityFunctionHandler60(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -44485,7 +44485,7 @@ void UtilityFunctionHandler70(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -44521,7 +44521,7 @@ void UtilityFunctionHandler80(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -44557,7 +44557,7 @@ void UtilityFunctionHandler90(uint64 resource_handle_identifier,longlong resourc
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -44593,7 +44593,7 @@ void UtilityFunctionHandler0(uint64 resource_handle_identifier,longlong resource
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -44650,7 +44650,7 @@ void UtilityFunctionHandler0(uint64 resource_handle_identifier,longlong resource
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -45684,7 +45684,7 @@ void UtilityUnwindSystemPhase35(uint64 resource_handle_identifier,longlong resou
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -45720,7 +45720,7 @@ void UtilityUnwindSystemPhase36(uint64 resource_handle_identifier,longlong resou
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -45756,7 +45756,7 @@ void UtilityUnwindSystemPhase37(uint64 resource_handle_identifier,longlong resou
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -45973,7 +45973,7 @@ void UtilityUnwindSystemPhase4d(uint64 resource_handle_identifier,longlong resou
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -46009,7 +46009,7 @@ void UtilityUnwindSystemPhase4e(uint64 resource_handle_identifier,longlong resou
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -46045,7 +46045,7 @@ void UtilityUnwindSystemPhase4f(uint64 resource_handle_identifier,longlong resou
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -46728,7 +46728,7 @@ void UtilityUnwindSystemPhase88(uint64 resource_handle_identifier,longlong resou
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -47059,7 +47059,7 @@ void UtilityUnwindSystemPhase9d(uint64 resource_handle_identifier,longlong resou
         }
       }
       else {
-        exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+        exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                             iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
@@ -47097,7 +47097,7 @@ void UtilityUnwindSystemPhase9e(uint64 resource_handle_identifier,longlong resou
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -47151,7 +47151,7 @@ void UtilityUnwindSystemPhasea1(uint64 resource_handle_identifier,longlong resou
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -47230,7 +47230,7 @@ void UtilityUnwindSystemPhasea5(uint64 resource_handle_identifier,longlong resou
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -47266,7 +47266,7 @@ void UtilityUnwindSystemPhasea6(uint64 resource_handle_identifier,longlong resou
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -47565,7 +47565,7 @@ void UtilityUnwindSystemPhasec2(uint64 resource_handle_identifier,longlong resou
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -47645,7 +47645,7 @@ void UtilityUnwindSystemPhasec7(uint64 resource_handle_identifier,longlong resou
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -47681,7 +47681,7 @@ void UtilityUnwindSystemPhasec8(uint64 resource_handle_identifier,longlong resou
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -47862,7 +47862,7 @@ void UtilityUnwindSystemPhased3(uint64 resource_handle_identifier,longlong resou
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -48045,7 +48045,7 @@ void UtilityUnwindSystemPhasee9(uint64 resource_handle_identifier,longlong resou
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -48081,7 +48081,7 @@ void UtilityUnwindSystemPhaseea(uint64 resource_handle_identifier,longlong resou
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -48117,7 +48117,7 @@ void UtilityUnwindSystemPhaseeb(uint64 resource_handle_identifier,longlong resou
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -48153,7 +48153,7 @@ void UtilityUnwindSystemPhaseec(uint64 resource_handle_identifier,longlong resou
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -48189,7 +48189,7 @@ void UtilityUnwindSystemPhaseed(uint64 resource_handle_identifier,longlong resou
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -48416,7 +48416,7 @@ void UtilityUnwindCleanupPhase00(uint64 resource_handle_identifier,longlong reso
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -48484,7 +48484,7 @@ void UtilityUnwindCleanupPhase03(uint64 resource_handle_identifier,longlong reso
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -49257,7 +49257,7 @@ void UtilityUnwindCleanupPhase65(uint64 resource_handle_identifier,longlong reso
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -49512,7 +49512,7 @@ void UtilityUnwindCleanupPhase7c(uint64 resource_handle_identifier,longlong reso
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -49622,7 +49622,7 @@ void UtilityUnwindCleanupPhase83(uint64 resource_handle_identifier,longlong reso
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -49658,7 +49658,7 @@ void UtilityUnwindCleanupPhase84(uint64 resource_handle_identifier,longlong reso
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -49726,7 +49726,7 @@ void UtilityUnwindCleanupPhase87(uint64 resource_handle_identifier,longlong reso
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -50038,7 +50038,7 @@ void UtilityUnwindCleanupPhaseStage02(uint64 resource_handle_identifier,longlong
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -50074,7 +50074,7 @@ void UtilityUnwindCleanupPhaseStage03(uint64 resource_handle_identifier,longlong
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -50110,7 +50110,7 @@ void UtilityUnwindCleanupPhaseStage04(uint64 resource_handle_identifier,longlong
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -50146,7 +50146,7 @@ void UtilityUnwindCleanupPhaseStage05(uint64 resource_handle_identifier,longlong
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -50182,7 +50182,7 @@ void UtilityUnwindCleanupPhaseStage06(uint64 resource_handle_identifier,longlong
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -50218,7 +50218,7 @@ void UtilityUnwindCleanupPhaseStage07(uint64 resource_handle_identifier,longlong
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -50254,7 +50254,7 @@ void UtilityUnwindCleanupPhaseStage08(uint64 resource_handle_identifier,longlong
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -50290,7 +50290,7 @@ void UtilityUnwindCleanupPhaseStage09(uint64 resource_handle_identifier,longlong
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -50335,7 +50335,7 @@ void UtilityUnwindCleanupPhaseStage0b(uint64 resource_handle_identifier,longlong
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -50371,7 +50371,7 @@ void UtilityUnwindCleanupPhaseStage0c(uint64 resource_handle_identifier,longlong
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -50407,7 +50407,7 @@ void UtilityUnwindCleanupPhaseStage0d(uint64 resource_handle_identifier,longlong
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -50480,7 +50480,7 @@ void UtilityUnwindCleanupPhaseStage11(uint64 resource_handle_identifier,longlong
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -50987,7 +50987,7 @@ void InitializeThreadLocalStorageBasic(uint64 resource_handle_identifier,longlon
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -51036,7 +51036,7 @@ void ProcessThreadLocalStorageBasic(uint64 resource_handle_identifier,longlong r
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -51074,7 +51074,7 @@ void ValidateThreadLocalStorageBasic(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -51144,7 +51144,7 @@ void ResetThreadLocalStorageBasic(uint64 resource_handle_identifier,longlong res
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -51182,7 +51182,7 @@ void AllocateThreadLocalStorageEvent(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -51220,7 +51220,7 @@ void FreeThreadLocalStorageFree(uint64 resource_handle_identifier,longlong resou
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -51620,7 +51620,7 @@ void UtilityUnwindHandler09Cleanup(uint64 resource_handle_identifier,longlong re
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -51711,7 +51711,7 @@ void UtilityUnwindHandler0bCleanup(uint64 resource_handle_identifier,longlong re
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -51948,7 +51948,7 @@ void UtilityUnwindHandler29Cleanup(uint64 resource_handle_identifier,longlong re
         }
       }
       else {
-        exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+        exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                             iteration_pointer,validation_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
@@ -52005,7 +52005,7 @@ void UtilityUnwindHandler2dCleanup(uint64 resource_handle_identifier,longlong re
         }
       }
       else {
-        exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+        exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                             iteration_pointer,validation_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
@@ -52048,7 +52048,7 @@ void UtilityUnwindHandler2eCleanup(uint64 resource_handle_identifier,longlong re
         }
       }
       else {
-        exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+        exceptionHandleFunction(validation_flag,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(validation_flag + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                             iteration_pointer,validation_flag,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
@@ -52924,7 +52924,7 @@ void UtilityUnwindSystemFunction9660(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -52960,7 +52960,7 @@ void UtilityUnwindSystemFunctionHandler17(uint64 resource_handle_identifier,long
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -52996,7 +52996,7 @@ void UtilityUnwindSystemFunctionHandler18(uint64 resource_handle_identifier,long
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -53032,7 +53032,7 @@ void UtilityUnwindSystemFunctionHandler19(uint64 resource_handle_identifier,long
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -53068,7 +53068,7 @@ void UtilityUnwindSystemFunctionHandler20(uint64 resource_handle_identifier,long
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -53528,7 +53528,7 @@ void UtilityUnwindSystemFunctionHandler44(uint64 resource_handle_identifier,long
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -53735,7 +53735,7 @@ void UtilityUnwindSystemFunctionHandler61(uint64 resource_handle_identifier,long
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -53803,7 +53803,7 @@ void UtilityUnwindSystemFunctionHandler65(uint64 resource_handle_identifier,long
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -53839,7 +53839,7 @@ void UtilityUnwindSystemFunctionHandler66(uint64 resource_handle_identifier,long
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -54101,7 +54101,7 @@ void UtilityUnwindSystemFunctionHandler86(uint64 resource_handle_identifier,long
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -54500,7 +54500,7 @@ void UtilityUnwindSystemFunctionHandler115(uint64 resource_handle_identifier,lon
         }
       }
       else {
-        exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+        exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                             iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
@@ -55065,7 +55065,7 @@ void UtilityUnwindSystemFunctiona450(uint64 resource_handle_identifier,longlong 
         }
       }
       else {
-        exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+        exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                             iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
@@ -55266,7 +55266,7 @@ void UtilityUnwindSystemFunctiona5c0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -55302,7 +55302,7 @@ void UtilityUnwindSystemFunctiona5d0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -55510,7 +55510,7 @@ void UtilityUnwindSystemFunctiona780(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -55560,7 +55560,7 @@ void UtilityUnwindSystemFunctiona7a0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -55739,7 +55739,7 @@ void UtilityUnwindSystemFunctiona880(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -55775,7 +55775,7 @@ void UtilityUnwindSystemFunctiona890(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -55999,7 +55999,7 @@ void UtilityUnwindSystemFunctiona930(uint64 resource_handle_identifier,longlong 
         }
       }
       else {
-        exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+        exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                             iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
@@ -56037,7 +56037,7 @@ void UtilityUnwindSystemFunctiona940(uint64 resource_handle_identifier,longlong 
         }
       }
       else {
-        exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+        exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                             iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
@@ -56075,7 +56075,7 @@ void UtilityUnwindSystemFunctiona950(uint64 resource_handle_identifier,longlong 
         }
       }
       else {
-        exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+        exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                             iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
@@ -56113,7 +56113,7 @@ void UtilityUnwindSystemFunctiona960(uint64 resource_handle_identifier,longlong 
         }
       }
       else {
-        exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+        exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                             iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
@@ -56151,7 +56151,7 @@ void UtilityUnwindSystemFunctiona970(uint64 resource_handle_identifier,longlong 
         }
       }
       else {
-        exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+        exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                             iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
       }
     }
@@ -59184,7 +59184,7 @@ void UtilityUnwindSystemFunctionc140(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -59329,7 +59329,7 @@ void UtilityUnwindSystemFunctionc1c0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -59484,7 +59484,7 @@ void UtilityUnwindSystemFunctionc280(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -59556,7 +59556,7 @@ void UtilityUnwindSystemFunctionc2d0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -59592,7 +59592,7 @@ void UtilityUnwindSystemFunctionc2e0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -59740,7 +59740,7 @@ void UtilityUnwindSystemFunctionc3b0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -59799,7 +59799,7 @@ void UtilityUnwindSystemFunctionc400(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -60097,7 +60097,7 @@ void UtilityUnwindSystemFunctionc530(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -60518,7 +60518,7 @@ void UtilityUnwindSystemFunctionc610(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -60554,7 +60554,7 @@ void UtilityUnwindSystemFunctionc620(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -62679,7 +62679,7 @@ void UtilityUnwindSystemFunctiond000(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -62715,7 +62715,7 @@ void UtilityUnwindSystemFunctiond010(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -62751,7 +62751,7 @@ void UtilityUnwindSystemFunctiond020(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -62787,7 +62787,7 @@ void UtilityUnwindSystemFunctiond030(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -62823,7 +62823,7 @@ void UtilityUnwindSystemFunctiond040(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -62859,7 +62859,7 @@ void UtilityUnwindSystemFunctiond050(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -62895,7 +62895,7 @@ void UtilityUnwindSystemFunctiond060(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -62931,7 +62931,7 @@ void UtilityUnwindSystemFunctiond070(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -62967,7 +62967,7 @@ void UtilityUnwindSystemFunctiond080(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -63003,7 +63003,7 @@ void UtilityUnwindSystemFunctiond090(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -63039,7 +63039,7 @@ void UtilityUnwindSystemFunctiond0a0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -63075,7 +63075,7 @@ void UtilityUnwindSystemFunctiond0b0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -63111,7 +63111,7 @@ void UtilityUnwindSystemFunctiond0c0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -63147,7 +63147,7 @@ void UtilityUnwindSystemFunctiond0d0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -63183,7 +63183,7 @@ void UtilityUnwindSystemFunctiond0e0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -63219,7 +63219,7 @@ void UtilityUnwindSystemFunctiond0f0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -63255,7 +63255,7 @@ void UtilityUnwindSystemFunctiond100(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -63291,7 +63291,7 @@ void UtilityUnwindSystemFunctiond110(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -63327,7 +63327,7 @@ void UtilityUnwindSystemFunctiond120(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -63363,7 +63363,7 @@ void UtilityUnwindSystemFunctiond130(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -63399,7 +63399,7 @@ void UtilityUnwindSystemFunctiond140(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -63435,7 +63435,7 @@ void UtilityUnwindSystemFunctiond150(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -63471,7 +63471,7 @@ void UtilityUnwindSystemFunctiond160(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -63507,7 +63507,7 @@ void UtilityUnwindSystemFunctiond170(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -63543,7 +63543,7 @@ void UtilityUnwindSystemFunctiond180(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -63590,7 +63590,7 @@ void UtilityUnwindSystemFunctiond1a0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -63626,7 +63626,7 @@ void UtilityUnwindSystemFunctiond1b0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -63662,7 +63662,7 @@ void UtilityUnwindSystemFunctiond1c0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -63698,7 +63698,7 @@ void UtilityUnwindSystemFunctiond1d0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -63734,7 +63734,7 @@ void UtilityUnwindSystemFunctiond1e0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -63770,7 +63770,7 @@ void UtilityUnwindSystemFunctiond1f0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -63806,7 +63806,7 @@ void UtilityUnwindSystemFunctiond200(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -63842,7 +63842,7 @@ void UtilityUnwindSystemFunctiond210(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -63878,7 +63878,7 @@ void UtilityUnwindSystemFunctiond220(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -63914,7 +63914,7 @@ void UtilityUnwindSystemFunctiond230(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -63950,7 +63950,7 @@ void UtilityUnwindSystemFunctiond240(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -63986,7 +63986,7 @@ void UtilityUnwindSystemFunctiond250(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -64022,7 +64022,7 @@ void UtilityUnwindSystemFunctiond260(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -64058,7 +64058,7 @@ void UtilityUnwindSystemFunctiond270(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -64094,7 +64094,7 @@ void UtilityUnwindSystemFunctiond280(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -64130,7 +64130,7 @@ void UtilityUnwindSystemFunctiond290(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -64166,7 +64166,7 @@ void UtilityUnwindSystemFunctiond2a0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -64202,7 +64202,7 @@ void UtilityUnwindSystemFunctiond2b0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -64238,7 +64238,7 @@ void UtilityUnwindSystemFunctiond2c0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -64274,7 +64274,7 @@ void UtilityUnwindSystemFunctiond2d0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -64310,7 +64310,7 @@ void UtilityUnwindSystemFunctiond2e0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -64346,7 +64346,7 @@ void UtilityUnwindSystemFunctiond2f0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -64382,7 +64382,7 @@ void UtilityUnwindSystemFunctiond300(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -64418,7 +64418,7 @@ void UtilityUnwindSystemFunctiond310(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -64510,7 +64510,7 @@ void UtilityUnwindSystemFunctiond360(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -64546,7 +64546,7 @@ void UtilityUnwindSystemFunctiond370(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -64582,7 +64582,7 @@ void UtilityUnwindSystemFunctiond380(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -64618,7 +64618,7 @@ void UtilityUnwindSystemFunctiond390(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -64654,7 +64654,7 @@ void UtilityUnwindSystemFunctiond3a0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -64690,7 +64690,7 @@ void UtilityUnwindSystemFunctiond3b0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -64726,7 +64726,7 @@ void UtilityUnwindSystemFunctiond3c0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -64762,7 +64762,7 @@ void UtilityUnwindSystemFunctiond3d0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -64798,7 +64798,7 @@ void UtilityUnwindSystemFunctiond3e0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -64834,7 +64834,7 @@ void UtilityUnwindSystemFunctiond3f0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -64870,7 +64870,7 @@ void UtilityUnwindSystemFunctiond400(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -64906,7 +64906,7 @@ void UtilityUnwindSystemFunctiond410(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -64942,7 +64942,7 @@ void UtilityUnwindSystemFunctiond420(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -64978,7 +64978,7 @@ void UtilityUnwindSystemFunctiond430(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -65014,7 +65014,7 @@ void UtilityUnwindSystemFunctiond440(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -65050,7 +65050,7 @@ void UtilityUnwindSystemFunctiond450(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -65086,7 +65086,7 @@ void UtilityUnwindSystemFunctiond460(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -65122,7 +65122,7 @@ void UtilityUnwindSystemFunctiond470(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -65158,7 +65158,7 @@ void UtilityUnwindSystemFunctiond480(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -65194,7 +65194,7 @@ void UtilityUnwindSystemFunctiond490(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -65230,7 +65230,7 @@ void UtilityUnwindSystemFunctiond4a0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -65266,7 +65266,7 @@ void UtilityUnwindSystemFunctiond4b0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -65302,7 +65302,7 @@ void UtilityUnwindSystemFunctiond4c0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -65338,7 +65338,7 @@ void UtilityUnwindSystemFunctiond4d0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -65374,7 +65374,7 @@ void UtilityUnwindSystemFunctiond4e0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -65410,7 +65410,7 @@ void UtilityUnwindSystemFunctiond4f0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -65904,7 +65904,7 @@ void UtilityUnwindSystemFunctiond7e0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -66427,7 +66427,7 @@ void UtilityUnwindSystemFunctionde40(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -66678,7 +66678,7 @@ void UtilityUnwindSystemFunctione000(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -66989,7 +66989,7 @@ void UtilityUnwindSystemFunctione3c0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -67025,7 +67025,7 @@ void UtilityUnwindSystemFunctione3d0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -69023,7 +69023,7 @@ void UtilityUnwindSystemFunctioneeb0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -69068,7 +69068,7 @@ void UtilityUnwindSystemFunctioneee0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -69118,7 +69118,7 @@ void UtilityUnwindSystemFunctionef20(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -69168,7 +69168,7 @@ void UtilityUnwindSystemFunctionef50(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -69204,7 +69204,7 @@ void UtilityUnwindSystemFunctionef60(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -69838,7 +69838,7 @@ void UtilityUnwindSystemFunctionf1b0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -69874,7 +69874,7 @@ void UtilityUnwindSystemFunctionf1d0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -69932,7 +69932,7 @@ void UtilityUnwindSystemFunctionf210(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -69968,7 +69968,7 @@ void UtilityUnwindSystemFunctionf230(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -70004,7 +70004,7 @@ void UtilityUnwindSystemFunctionf250(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -70040,7 +70040,7 @@ void UtilityUnwindSystemFunctionf270(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -70076,7 +70076,7 @@ void UtilityUnwindSystemFunctionf290(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -70112,7 +70112,7 @@ void UtilityUnwindSystemFunctionf2b0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -70169,7 +70169,7 @@ void UtilityUnwindSystemFunctionf2f0(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -71967,7 +71967,7 @@ void UtilityUnwindSystemFunctionff90(uint64 resource_handle_identifier,longlong 
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -72835,7 +72835,7 @@ void UtilityUnwindFinalFunction0320(uint64 resource_handle_identifier,longlong r
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -72892,7 +72892,7 @@ void UtilityUnwindFinalFunction0340(uint64 resource_handle_identifier,longlong r
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -72928,7 +72928,7 @@ void UtilityUnwindFinalFunction0350(uint64 resource_handle_identifier,longlong r
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -73003,7 +73003,7 @@ void UtilityUnwindFinalFunction03c0(uint64 resource_handle_identifier,longlong r
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -73208,7 +73208,7 @@ void UtilityUnwindFinalFunction04f0(uint64 resource_handle_identifier,longlong r
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -73244,7 +73244,7 @@ void UtilityUnwindFinalFunction0510(uint64 resource_handle_identifier,longlong r
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -73429,7 +73429,7 @@ void UtilityUnwindFinalFunction0640(uint64 resource_handle_identifier,longlong r
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -73465,7 +73465,7 @@ void UtilityUnwindFinalFunction0660(uint64 resource_handle_identifier,longlong r
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -73563,7 +73563,7 @@ void UtilityUnwindFinalFunction06e0(uint64 resource_handle_identifier,longlong r
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -73623,7 +73623,7 @@ void UtilityUnwindFinalFunction0750(uint64 resource_handle_identifier,longlong r
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -73681,7 +73681,7 @@ void UtilityUnwindFinalFunction0770(uint64 resource_handle_identifier,longlong r
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -73717,7 +73717,7 @@ void UtilityUnwindFinalFunction0780(uint64 resource_handle_identifier,longlong r
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -73753,7 +73753,7 @@ void UtilityUnwindFinalFunction0790(uint64 resource_handle_identifier,longlong r
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -77907,7 +77907,7 @@ void UtilityUnwindFinalFunction18c0(uint64 resource_handle_identifier,longlong r
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -77973,7 +77973,7 @@ void UtilityUnwindFinalFunction18f0(uint64 resource_handle_identifier,longlong r
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -78114,7 +78114,7 @@ void UtilityUnwindFinalFunction1950(uint64 resource_handle_identifier,longlong r
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -81041,7 +81041,7 @@ void UtilityUnwindFinalFunction2930(uint64 resource_handle_identifier,longlong r
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           iteration_pointer,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
@@ -81682,7 +81682,7 @@ void systemInitializeExtensions(void)
       }
     }
     else {
-      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(0xff000000,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
+      exceptionHandleFunction(system_status_code,UTILITY_BIT_CONCAT_8_1(UTILITY_EXCEPTION_CHECK_MASK,*(void ***)(system_status_code + UTILITY_MEMORY_DATA_OFFSET) == &ExceptionList),
                           system_loop_counter_ptr_main,system_status_code,UTILITY_SYSTEM_END_FLAG_EXTENDED);
     }
   }
