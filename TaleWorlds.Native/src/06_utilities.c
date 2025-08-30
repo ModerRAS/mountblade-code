@@ -4980,7 +4980,7 @@ uint64 execute_resource_command(longlong resource_handle_identifier)
       utility_iteration_counter = *(uint *)(*(longlong *)(resource_buffer + RESOURCE_HANDLE_OFFSET) + UTILITY_FIELD_SIZE_OFFSET);
       utility_iteration_counter = utility_iteration_counter >> UTILITY_QUAD_COUNT;
       if ((utility_iteration_counter & UTILITY_SINGLE_UNIT UTILITY_BIT_MASK_1) == UTILITY_NULL_RESULT) {
-        if ((((utility_iteration_counter >> UTILITY_BYTE_SIZE_3& 1 UTILITY_BIT_MASK_1) != UTILITY_NULL_RESULT) && (utility_temp_int_value = (int)utility_temp_float_result, utility_temp_int_value != -INT_MIN)) &&
+        if ((((utility_iteration_counter >> UTILITY_BYTE_SIZE_3& UTILITY_SINGLE_UNIT UTILITY_BIT_MASK_1) != UTILITY_NULL_RESULT) && (utility_temp_int_value = (int)utility_temp_float_result, utility_temp_int_value != -INT_MIN)) &&
            ((float)utility_temp_int_value != utility_temp_float_result)) {
           utility_float_operation_buffer.utility_float_component_high = utility_temp_float_result;
           utility_float_operation_buffer.utility_float_component_low = utility_temp_float_result;
@@ -5837,7 +5837,7 @@ uint64 get_file_position(longlong resource_handle_identifier)
       utility_iteration_counter = *(uint *)(*(longlong *)(resource_buffer + RESOURCE_HANDLE_OFFSET) + UTILITY_FIELD_SIZE_OFFSET);
       utility_iteration_counter = utility_iteration_counter >> UTILITY_QUAD_COUNT;
       if ((utility_iteration_counter & UTILITY_SINGLE_UNIT UTILITY_BIT_MASK_1) == UTILITY_NULL_RESULT) {
-        if ((((utility_iteration_counter >> UTILITY_BYTE_SIZE_3& 1 UTILITY_BIT_MASK_1) != UTILITY_NULL_RESULT) && (utility_temp_int_value = (int)utility_temp_float_result, utility_temp_int_value != -INT_MIN)) &&
+        if ((((utility_iteration_counter >> UTILITY_BYTE_SIZE_3& UTILITY_SINGLE_UNIT UTILITY_BIT_MASK_1) != UTILITY_NULL_RESULT) && (utility_temp_int_value = (int)utility_temp_float_result, utility_temp_int_value != -INT_MIN)) &&
            ((float)utility_temp_int_value != utility_temp_float_result)) {
           utility_float_operation_buffer.utility_float_component_high = utility_temp_float_result;
           utility_float_operation_buffer.utility_float_component_low = utility_temp_float_result;
