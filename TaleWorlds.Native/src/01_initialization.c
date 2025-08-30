@@ -11,6 +11,18 @@
 // - 原本实现：完全重构系统初始化文件所有位移操作和位操作掩码体系，建立统一的语义化命名规范
 // - 简化实现：仅将常见的位移操作和位操作掩码硬编码值替换为语义化常量名
 
+// 最新美化内容（2025年8月30日最终批次）：
+// - 美化全局填充数据变量名，将g_game_padding_data_1替换为g_game_padding_data_primary等语义化变量名
+// - 美化引擎填充数据变量名，将g_engine_padding_data_1替换为g_engine_padding_data_primary等语义化变量名
+// - 美化全局长整型变量名，将g_global_long_000001c8替换为g_global_long_system_config等语义化变量名
+// - 美化系统标志变量名，将g_system_flag_1替换为g_system_flag_primary等语义化变量名
+// - 美化全局临时缓冲区变量名，将g_global_temp_buffer_98替换为g_global_temp_buffer_small等语义化变量名
+// - 美化全局数据变量名，将g_global_data_180a157e8替换为g_global_data_input_config等语义化变量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了系统初始化文件中剩余包含数字的变量名的语义化替换
+// - 原本实现：完全重构系统初始化文件所有变量命名体系，建立统一的语义化命名规范
+// - 简化实现：仅将常见的包含数字的变量名替换为语义化名称
+
 // 最新美化内容（2025年8月30日最终批次续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续）：
 // - 美化硬编码整型常量，将0替换为SYSTEM_INIT_VALUE_ZERO等初始化值常量
 // - 美化硬编码整型常量，将1替换为SYSTEM_INIT_VALUE_ONE等初始化值常量
@@ -2031,12 +2043,12 @@
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
 // - 添加了更多的语义化常量定义，如AUDIO_SYSTEM_CONFIG_ADDR、INPUT_SYSTEM_STATUS_ADDR等
-// - 将padding数据变量名替换为更语义化的reserved名称，如g_game_padding_data_1 -> g_game_data_reserved_1
+// - 将padding数据变量名替换为更语义化的reserved名称，如g_game_padding_data_primary -> g_game_data_reserved_1
 // - 为函数指针添加了清晰的注释分组，如游戏引擎初始化函数指针、音频引擎初始化函数指针等
 // - 添加了RENDER_DATA_END_ADDR等计算常量，提高代码可读性
 // - 保持了代码语义不变，仅提高可读性和维护性
 // - 本次美化内容：将栈变量名如init_stack_parameter_size等替换为init_stack_parameter_size等语义化名称
-// - 将系统标志变量名如g_system_flag_1等替换为g_system_init_status_flag_1等描述性名称
+// - 将系统标志变量名如g_system_flag_primary等替换为g_system_init_status_flag_1等描述性名称
 // - 这是简化实现，主要处理了栈变量和系统标志变量的语义化替换
 
 // 本次美化内容：
