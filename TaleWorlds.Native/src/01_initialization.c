@@ -122,6 +122,14 @@
 #define SYSTEM_CONFIG_VALUE_B061 0xb061
 #define SYSTEM_CONFIG_VALUE_2A5F 0x2a5f
 #define SYSTEM_CONFIG_VALUE_5F53 0x5f53
+#define SYSTEM_OFFSET_798 0x798
+#define SYSTEM_OFFSET_9f8 0x9f8
+#define SYSTEM_OFFSET_a28 0xa28
+#define SYSTEM_OFFSET_a30 0xa30
+#define SYSTEM_OFFSET_a38 0xa38
+#define SYSTEM_OFFSET_b70 0xb70
+#define SYSTEM_OFFSET_b78 0xb78
+#define SYSTEM_FLOAT_VALUE_3E4CCCCD 0x3e4ccccd
 #define SYSTEM_STRING_RESU_TOKEN 0x72657375
 #define SYSTEM_STRING_CONF_TOKEN 0x6e6f635f
 #define SYSTEM_STRING_T_CHAR 0x74
@@ -23189,7 +23197,7 @@ uint64_t InitializeSystemModule16(uint64_t handleIdentifier,uint64_t resourceIde
   *(uint16_t *)(system_pointer_var + 1) = SYSTEM_CONFIG_VALUE_2A5F;
   *(uint8_t *)((longlong)system_pointer_var + 10) = 0;
   init_stack_param_58 = 10;
-  compare_result = CompareSystemBuffers(system_long_result + 0x2c0,&system_buffer_ptr_system_contextsystem_buffer_ptr_system_context);
+  compare_result = CompareSystemBuffers(system_long_result + SYSTEM_OFFSET_2c0,&system_buffer_ptr_system_contextsystem_buffer_ptr_system_context);
   if (-1 < compare_result) {
     system_buffer_ptr_data_array = &resourcePoolPointer;
     init_stack_uint_param_size = 0;
@@ -23204,7 +23212,7 @@ uint64_t InitializeSystemModule16(uint64_t handleIdentifier,uint64_t resourceIde
     *(uint16_t *)(system_pointer_var + 1) = SYSTEM_CONFIG_VALUE_5F53;
     *(uint8_t *)((longlong)system_pointer_var + 10) = 0;
     init_stack_uint_param_data = 10;
-    CompareSystemBuffers(system_long_result + 0x2c0,&system_buffer_ptr_data_array);
+    CompareSystemBuffers(system_long_result + SYSTEM_OFFSET_2c0,&system_buffer_ptr_data_array);
     system_buffer_ptr_data_array = &resourcePoolPointer;
                     // WARNING: Subroutine does not return
     ProcessSystemOperation(system_pointer_var);
@@ -23519,7 +23527,7 @@ void InitializeSystemModule43(longlong *handleIdentifier,uint64_t resourceIdenti
     *(float *)(system_long_result + SYSTEM_OFFSET_238) = system_float_value;
   }
   else {
-    *(uint32_t *)(system_long_result + 0x238) = 0x3e4ccccd;
+    *(uint32_t *)(system_long_result + SYSTEM_OFFSET_238) = SYSTEM_FLOAT_VALUE_3E4CCCCD;
   }
   return;
 }
@@ -48312,7 +48320,7 @@ longlong * InitializeResourceSystem(longlong *handleIdentifier,longlong *resourc
   system_long_value = *resourceIdentifier;
   *(int *)(system_long_result + SYSTEM_OBJECT_OFFSET_2B8) = (int)handleIdentifier[SYSTEM_DATA_OFFSET_57];
   *(uint32_t *)(system_long_result + 700) = system_integer_result_unsigned;
-  *(int *)(system_long_result + 0x2c0) = (int)system_long_value;
+  *(int *)(system_long_result + SYSTEM_OFFSET_2c0) = (int)system_long_value;
   *(uint32_t *)(system_long_result + 0x2c4) = system_integer_result_unsigned;
   *(int *)(*resourceIdentifier + SYSTEM_DATA_COMPARE_SIZE8) = (int)handleIdentifier[SYSTEM_DATA_OFFSET_21];
   if ((longlong *)(*resourceIdentifier + SYSTEM_DATA_OFFSET_218) != handleIdentifier + SYSTEM_FLAG_BIT_43) {
