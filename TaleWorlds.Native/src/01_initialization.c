@@ -34206,7 +34206,7 @@ longlong InitializeSystemCore(longlong system_context_param)
             return 0;
           }
           *system_configuration_data_pointer = system_init_flag_graphics;
-          system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SECOND] = (ulonglong)(-(int)(system_configuration_data_pointer + 0x10) & 7) + (longlong)(system_configuration_data_pointer + 0x10);
+          system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SECOND] = (ulonglong)(-(int)(system_configuration_data_pointer + SYSTEM_INIT_ALIGNMENT_MEMORY_8) (system_configuration_data_pointer + 0x10) & 7) SYSTEM_INIT_ALIGNMENT_MASK_7) + (longlong)(system_configuration_data_pointer + 0x10);
           system_memory_address = SYSTEM_INIT_VALUE_ZERO;
           for (; system_init_flag_graphics != 0; system_init_flag_graphics = system_init_flag_graphics - 1) {
             *(system_uint64_t *)(system_memory_address + SYSTEM_INIT_SIZE_MEMORY_CHUNK + system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SECOND]) = SYSTEM_INIT_VALUE_ZERO;
@@ -34308,7 +34308,7 @@ longlong InitializeSystemCore(void)
             return 0;
           }
           *system_register_rdi_input = system_init_flag_network;
-          system_register_rdi_input[SYSTEM_ARRAY_INDEX_SECOND] = (ulonglong)(-(int)(system_register_rdi_input + 0x10) & 7) + (longlong)(system_register_rdi_input + 0x10);
+          system_register_rdi_input[SYSTEM_ARRAY_INDEX_SECOND] = (ulonglong)(-(int)(system_register_rdi_input + SYSTEM_INIT_ALIGNMENT_MEMORY_8) (system_register_rdi_input + 0x10) & 7) SYSTEM_INIT_ALIGNMENT_MASK_7) + (longlong)(system_register_rdi_input + 0x10);
           system_function_result = SYSTEM_INIT_VALUE_ZERO;
           for (; system_init_flag_network != 0; system_init_flag_network = system_init_flag_network - 1) {
             *(system_uint64_t *)(system_function_result + SYSTEM_INIT_SIZE_MEMORY_CHUNK + system_register_rdi_input[SYSTEM_ARRAY_INDEX_SECOND]) = SYSTEM_INIT_VALUE_ZERO;
@@ -34472,7 +34472,7 @@ longlong InitializeSystemCore(void)
     system_register_rdi_input = (ulonglong *)system_allocate_memory(system_global_initialized_flag,system_ulong_temp * SYSTEM_INIT_OFFSET_STACK_PARAM + SYSTEM_INIT_FLAG_ENABLEDf,10);
     if (system_register_rdi_input == (ulonglong *)SYSTEM_INIT_VALUE_CHAR_NULL) break;
     *system_register_rdi_input = system_init_flag_audio;
-    system_register_rdi_input[SYSTEM_ARRAY_INDEX_SECOND] = (ulonglong)(-(int)(system_register_rdi_input + 0x10) & 7) + (longlong)(system_register_rdi_input + 0x10);
+    system_register_rdi_input[SYSTEM_ARRAY_INDEX_SECOND] = (ulonglong)(-(int)(system_register_rdi_input + SYSTEM_INIT_ALIGNMENT_MEMORY_8) (system_register_rdi_input + 0x10) & 7) SYSTEM_INIT_ALIGNMENT_MASK_7) + (longlong)(system_register_rdi_input + 0x10);
     system_calculation_temp = system_register_r12_input;
     for (; system_init_flag_audio != 0; system_init_flag_audio = system_init_flag_audio - 1) {
       *(longlong *)(system_calculation_temp + SYSTEM_INIT_SIZE_MEMORY_CHUNK + system_register_rdi_input[SYSTEM_ARRAY_INDEX_SECOND]) = system_register_r12_input;
@@ -41223,7 +41223,7 @@ system_uint64_t * InitializeSystemCore(longlong *system_context_param)
             return (system_uint64_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
           }
           *system_configuration_data_pointer = system_ulong_result;
-          system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SECOND] = (ulonglong)(-(int)(system_configuration_data_pointer + 0x10) & 7) + (longlong)(system_configuration_data_pointer + 0x10);
+          system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SECOND] = (ulonglong)(-(int)(system_configuration_data_pointer + SYSTEM_INIT_ALIGNMENT_MEMORY_8) (system_configuration_data_pointer + 0x10) & 7) SYSTEM_INIT_ALIGNMENT_MASK_7) + (longlong)(system_configuration_data_pointer + 0x10);
           system_uint8_pointer_primary = psystem_ulong_primary5;
           for (; system_ulong_result != 0; system_ulong_result = system_ulong_result - 1) {
             *(system_uint64_t *)((longlong)system_uint8_pointer_primary + system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SECOND] + SYSTEM_INIT_SIZE_MEMORY_CHUNK) = SYSTEM_INIT_VALUE_ZERO;
@@ -43106,7 +43106,7 @@ system_uint64_t * InitializeSystemCore(longlong *system_context_param)
             return (system_uint64_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
           }
           *system_configuration_data_pointer = system_ulong_result;
-          system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SECOND] = (ulonglong)(-(int)(system_configuration_data_pointer + 0x10) & 7) + (longlong)(system_configuration_data_pointer + 0x10);
+          system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SECOND] = (ulonglong)(-(int)(system_configuration_data_pointer + SYSTEM_INIT_ALIGNMENT_MEMORY_8) (system_configuration_data_pointer + 0x10) & 7) SYSTEM_INIT_ALIGNMENT_MASK_7) + (longlong)(system_configuration_data_pointer + 0x10);
           system_uint8_pointer_primary = psystem_ulong_primary5;
           for (; system_ulong_result != 0; system_ulong_result = system_ulong_result - 1) {
             *(system_uint64_t *)((longlong)system_uint8_pointer_primary + system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SECOND] + SYSTEM_INIT_SIZE_MEMORY_CHUNK) = SYSTEM_INIT_VALUE_ZERO;
