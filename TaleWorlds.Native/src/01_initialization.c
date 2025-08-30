@@ -5,7 +5,8 @@
 // - 将SystemFunctionxxxxx函数替换为语义化名称如InitializeAudioSystem、InitializeVideoSystem等
 // - 将通用变量名如auVar1、bVar31等替换为语义化名称如audio_data_buffer、system_initialization_flag等
 // - 将指针变量名如pppppppuVar1替换为语义化名称如system_pointer_chain等
-// - 本次美化：将bVar13-50、audio_buffer_temp-47、resource_process_pointer、pauVar35-42等变量替换为语义化名称如module_initialization_flag、system_validation_flag等
+// - 将bVar13-50、audio_buffer_temp-47、resource_process_pointer、pauVar35-42等变量替换为语义化名称如module_initialization_flag、system_validation_flag等
+// - 本次美化：将SystemFunction_xx_xx函数替换为语义化名称如InitializeAudioSystem、InitializeVideoSystem等
 // - 保持代码语义不变，仅提高可读性和维护性
 // void InitializeGameData(void)
 
