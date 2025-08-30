@@ -13159,9 +13159,9 @@ int32_t ValidateNetworkSocket(int64_t network_socket_handle, uint32_t network_bu
     *(bool *)(network_socket_handle + NETWORK_SOCKET_DATA_OFFSET_EXTENDEDe) = network_config_parameter_ptr != NETWORK_OPERATION_FAILURE;
   network_server_address = thread_stack_long_primary;
   connection_status_primary = *(int32_t *)(network_timeout_value_ptr_first + NETWORK_PACKET_HEADER_SIZE);
-  network_stack_int_offset_a4 = -NETWORK_OPERATION_SUCCESS;
+  network_stack_int_offset_socket_config = -NETWORK_OPERATION_SUCCESS;
   if (network_data_pointer + network_status_tertiary < MODULE_STATUS_OFFSET_EXTENDED) {
-    network_stack_int_offset_a4 = network_data_pointer + network_buffer_ptr;
+    network_stack_int_offset_socket_config = network_data_pointer + network_buffer_ptr;
   network_global_buffer = NETWORK_OPERATION_FAILURE;
   network_processor_result = CONCAT71((int7)((ulonglong)network_config_parameter_ptr >> NETWORK_PACKET_HEADER_SIZE), NETWORK_OPERATION_SUCCESS);
   threadStackLong48 = network_timeout_value_ptr_tenth;
@@ -16229,7 +16229,7 @@ void network_socket_handle(int64_t network_socket_handle, int64_t *network_buffe
                     (*(int64_t **)(network_socket_handle + NETWORK_CONFIG_DATA_OFFSET58), &network_stack_unsigned_counter_primary, NETWORK_OPERATION_SUCCESS);
   if (network_server_address == NETWORK_OPERATION_FAILURE) {
     network_socket_flag_sync = (uint)network_bool_packet_flag_sync;
-    network_socket_flag8 = (uint)network_bool_packet_flag_ack_required;
+    network_socket_flag_ack_required = (uint)network_bool_packet_flag_ack_required;
     network_stack_buffer_size = (uint)network_bool_packet_flag_priority;
     network_stack_uint_primary_d = (uint)network_bool_packet_flag_fragmented;
     network_stack_unsigned_primary_c = (uint)network_bool_packet_flag_compressed;
