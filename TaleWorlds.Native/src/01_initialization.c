@@ -23,6 +23,15 @@
 #define SYSTEM_STRING_TEMP_SUFFIX 0x7261726f
 #define SYSTEM_STRING_RESOURCE_SUFFIX 0x73655279
 #define SYSTEM_STRING_CRUOR_SUFFIX 0x6372756f
+#define SYSTEM_STRING_CONFIG_TOKEN 0x73676f6c
+#define SYSTEM_STRING_PATH_SEPARATOR 0x2f
+#define SYSTEM_STRING_PREFIX_TOKEN 0x66726570
+#define SYSTEM_STRING_ROM_TOKEN 0x616d726f
+#define SYSTEM_STRING_CONFIG_TOKEN_UNDERSCORE 0x5f65636e
+#define SYSTEM_STRING_GOL_TOKEN 0x2e676f6c
+#define SYSTEM_STRING_TXT_TOKEN 0x747874
+#define SYSTEM_STRING_UNDERSCORE_TOKEN 0x5f
+#define SYSTEM_CONFIG_SIZE_THREAD_LOCAL 0xb
 
 // 01_initialization.c - 初始化系统代码（已美化变量名和函数名）
 
@@ -69,6 +78,14 @@
 // - 将剩余的SystemFunction函数名替换为语义化名称如HandleSystemResourceOperation、GetSystemMemoryData、ProcessSystemResourceData等
 
 // 本次美化内容：
+// - 添加了系统字符串常量语义化定义，如SYSTEM_STRING_CONFIG_TOKEN、SYSTEM_STRING_PATH_SEPARATOR等
+// - 添加了SYSTEM_CONFIG_SIZE_THREAD_LOCAL等配置大小常量
+// - 为后续替换硬编码十六进制值做准备
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+// - 这是简化实现，主要处理了硬编码十六进制值的语义化替换
+
+// 本次美化内容：
 // - 将system_buffer_ptr_1b8system_buffer_ptr_graphics_context替换为system_buffer_ptr_graphics_context
 // - 将system_buffer_ptr_1f0替换为system_buffer_ptr_system_info
 // - 将system_buffer_ptr_1d0替换为system_buffer_ptr_resource_config
@@ -113,6 +130,14 @@
 // - 本次美化内容：将栈变量名如uintStack_200等替换为init_stack_uint_parameter_200等语义化名称
 // - 将系统标志变量名如g_system_flag_1等替换为g_system_initialization_flag_1等描述性名称
 // - 这是简化实现，主要处理了栈变量和系统标志变量的语义化替换
+
+// 本次美化内容：
+// - 添加了系统字符串常量语义化定义，如SYSTEM_STRING_CONFIG_TOKEN、SYSTEM_STRING_PATH_SEPARATOR等
+// - 添加了SYSTEM_CONFIG_SIZE_THREAD_LOCAL等配置大小常量
+// - 为后续替换硬编码十六进制值做准备
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+// - 这是简化实现，主要处理了硬编码十六进制值的语义化替换
 
 // 本次美化内容：
 // - 将system_buffer_ptr_1b8system_buffer_ptr_graphics_context替换为system_buffer_ptr_graphics_context
@@ -194,6 +219,14 @@
 // - 这是简化实现，主要处理了寄存器变量名的语义化替换
 
 // 本次美化内容：
+// - 添加了系统字符串常量语义化定义，如SYSTEM_STRING_CONFIG_TOKEN、SYSTEM_STRING_PATH_SEPARATOR等
+// - 添加了SYSTEM_CONFIG_SIZE_THREAD_LOCAL等配置大小常量
+// - 为后续替换硬编码十六进制值做准备
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+// - 这是简化实现，主要处理了硬编码十六进制值的语义化替换
+
+// 本次美化内容：
 // - 将system_buffer_ptr_1b8system_buffer_ptr_graphics_context替换为system_buffer_ptr_graphics_context
 // - 将system_buffer_ptr_1f0替换为system_buffer_ptr_system_info
 // - 将system_buffer_ptr_1d0替换为system_buffer_ptr_resource_config
@@ -225,6 +258,14 @@
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
 // - 这是简化实现，主要处理了通用变量名和寄存器变量名的语义化替换
+
+// 本次美化内容：
+// - 添加了系统字符串常量语义化定义，如SYSTEM_STRING_CONFIG_TOKEN、SYSTEM_STRING_PATH_SEPARATOR等
+// - 添加了SYSTEM_CONFIG_SIZE_THREAD_LOCAL等配置大小常量
+// - 为后续替换硬编码十六进制值做准备
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+// - 这是简化实现，主要处理了硬编码十六进制值的语义化替换
 
 // 本次美化内容：
 // - 将system_buffer_ptr_1b8system_buffer_ptr_graphics_context替换为system_buffer_ptr_graphics_context
@@ -262,6 +303,14 @@
 // - 将systemNode1-5替换为g_system_node_audio、g_system_node_video等语义化名称
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
+
+// 本次美化内容：
+// - 添加了系统字符串常量语义化定义，如SYSTEM_STRING_CONFIG_TOKEN、SYSTEM_STRING_PATH_SEPARATOR等
+// - 添加了SYSTEM_CONFIG_SIZE_THREAD_LOCAL等配置大小常量
+// - 为后续替换硬编码十六进制值做准备
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+// - 这是简化实现，主要处理了硬编码十六进制值的语义化替换
 
 // 本次美化内容：
 // - 将system_buffer_ptr_1b8system_buffer_ptr_graphics_context替换为system_buffer_ptr_graphics_context
@@ -17458,7 +17507,7 @@ void InitializePhysicsSystem(void)
   system_buffer_ptr_network_config = &g_system_core_data_ptr;
   system_buffer_ptr_network_data = system_local_buffer_470;
   system_local_buffer_470[0] = 0;
-  init_stack_ulong_param_478 = 0xb;
+  init_stack_ulong_param_478 = SYSTEM_CONFIG_SIZE_THREAD_LOCAL;
   strcpy_s(system_local_buffer_470,SYSTEM_DATA_BLOCK_SIZE,&g_global_config_1);
   InitializeNetworkManagerSystem(systemCoreData,&system_buffer_ptr_network_config,&longStack_678);
   system_buffer_ptr_network_config = &globalSystemPointerData;
@@ -17473,7 +17522,7 @@ void InitializePhysicsSystem(void)
   system_buffer_ptr_profiler_context = &g_system_core_data_ptr;
   system_buffer_ptr_render_state = system_local_buffer_3b0;
   system_local_buffer_3b0[0] = 0;
-  uintStack_3b8 = 0xb;
+  uintStack_3b8 = SYSTEM_CONFIG_SIZE_THREAD_LOCAL;
   system_status_code = strcpy_s(system_local_buffer_3b0,SYSTEM_DATA_BLOCK_SIZE,&g_global_config_1);
   g_system_data_variablec = (float)InitializeSystemProfiler(system_operation_status,&system_buffer_ptr_profiler_context);
   g_system_data_variablec = 1.0 / g_system_data_variablec;
@@ -17481,7 +17530,7 @@ void InitializePhysicsSystem(void)
   system_buffer_ptr_shader_context = &g_system_core_data_ptr;
   system_buffer_ptr_shader_data = system_local_buffer_350;
   system_local_buffer_350[0] = 0;
-  uintStack_358 = 0xb;
+  uintStack_358 = SYSTEM_CONFIG_SIZE_THREAD_LOCAL;
   system_status_code = strcpy_s(system_local_buffer_350,SYSTEM_DATA_BLOCK_SIZE,&g_global_config_1);
   system_float_value = (float)ConfigureSystemParameters(system_operation_status,&system_buffer_ptr_shader_context);
   system_buffer_ptr_shader_context = &globalSystemPointerData;
@@ -17773,8 +17822,8 @@ void InitializeSystemModule31(uint64_t handleIdentifier,uint64_t resourceIdentif
   init_stack_uint_param_audio = CONCAT44(*(uint32_t *)(system_long_result + SYSTEM_OFFSET_18c),(uint32_t)init_stack_uint_param_audio);
   init_stack_uint_param_thread = usystem_integer_result;
   ConfigureSystemParameters(&system_buffer_ptr_thread_context,5);
-  *(uint32_t *)(system_buffer_ptr_thread_data + init_stack_uint_param_thread) = 0x73676f6c;
-  *(uint16_t *)((longlong)(system_buffer_ptr_thread_data + init_stack_uint_param_thread) + 4) = 0x2f;
+  *(uint32_t *)(system_buffer_ptr_thread_data + init_stack_uint_param_thread) = SYSTEM_STRING_CONFIG_TOKEN;
+  *(uint16_t *)((longlong)(system_buffer_ptr_thread_data + init_stack_uint_param_thread) + 4) = SYSTEM_STRING_PATH_SEPARATOR;
   init_stack_uint_param_thread = 5;
   ConfigureSystemParameters(&system_buffer_ptr_thread_context,SYSTEM_OFFSET_18);
   node_next = (uint32_t *)(system_buffer_ptr_thread_data + init_stack_uint_param_thread);
