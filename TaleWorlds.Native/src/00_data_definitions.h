@@ -197,11 +197,11 @@
 #define MODULE_TYPE_MONITORING 0x3d
 #define MODULE_TYPE_HEALTH_CHECK 0x3e
 
-// 全局数据定义 - 从原始文件中提取
+// 全局系统数据定义
 void* g_global_system_data;
 void* g_system_config_data;
 
-// 系统地址常量定义 - 美化后的变量名
+// 系统核心组件地址定义
 // 原始名称: unknown_180a1b368 - 句柄管理器地址
 void* g_handle_manager_addr_180a1b368 = (void*)0x180a1b368;
 // 原始名称: unknown_180a1b3f0 - 内存管理器地址
