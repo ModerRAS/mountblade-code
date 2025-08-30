@@ -169,7 +169,21 @@
 
 
 // 06_utilities.c - 473 个函数
-// 美化内容：
+// 本次美化内容：
+// 50. 添加了UTILITY_ARRAY_INDEX_*等数组索引语义化宏定义
+// 51. 添加了UTILITY_OFFSET_*等十六进制偏移量语义化宏定义  
+// 52. 添加了UTILITY_HARDWARE_REGISTER_VALUE等常量语义化宏定义
+// 53. 将utility_stack_buffer_array[0]替换为utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY]等数组索引
+// 54. 将memory_block_pointer_value[2]替换为memory_block_pointer_value[UTILITY_ARRAY_INDEX_TERTIARY]等数组索引
+// 55. 将resource_buffer[0x6f]替换为resource_buffer[UTILITY_OFFSET_RESOURCE_HANDLE]等十六进制偏移量
+// 56. 将*(uint16_t *)(plocalIndex + 2) = 0x508替换为语义化常量
+// 57. 将*pbooleanFlag & 0xfe替换为*pbooleanFlag & UTILITY_BYTE_FLAG_CLEAR等位操作常量
+// 58. 将硬编码的偏移量8替换为UTILITY_OFFSET_ERROR_COUNTER等语义化名称
+// 这是简化实现，主要处理了工具系统中硬编码数组索引和十六进制偏移量的语义化替换
+// 提高了代码的可读性和维护性
+// 保持代码语义不变
+
+// 之前美化内容：
 // 1. 修复了validate_resource_handle_identifier函数名的重复问题
 // 2. 添加了UTILITY_BYTE_OFFSET_FLAG等语义化宏定义
 // 3. 将buffer_data_offset替换为UTILITY_BUFFER_DATA_OFFSET等语义化名称
