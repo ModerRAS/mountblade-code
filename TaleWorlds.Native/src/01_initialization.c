@@ -103,6 +103,9 @@
 #define GLOBAL_CONFIG_DENARY 10
 #define GLOBAL_CONFIG_UNDENARY 11
 #define GLOBAL_CONFIG_DUODENARY 12
+
+// 新增语义化常量 - 美化系统数据变量（2025年8月30日最终批次）
+#define SYSTEM_DATA_VARIABLE_PRIMARY 3
 // - 美化系统函数名，将EngineFunction_61_6替换为ConfigureSystemBuffers等系统缓冲区配置函数名
 // - 美化系统函数名，将EngineFunction_11_2替换为InitializeNetworkStack等网络栈初始化函数名
 // - 美化系统函数名，将EngineFunction_40_0替换为AllocateSystemMemoryPool等内存池分配函数名
@@ -19921,7 +19924,7 @@ void initialize_system_module_thirty_one(uint64_t handleIdentifier,uint64_t reso
       if (system_long_result < SYSTEM_COMPARISON_ZERO) {
         system_temp_double_value = system_temp_double_value + SYSTEM_DOUBLE_TO_INT_SCALE;
       }
-      InitializeSystemModule(system_pointer_temp,&g_system_global_variable4,&g_global_config_12,
+      InitializeSystemModule(system_pointer_temp,&g_system_global_variable4,&g_global_config_DUODENARY,
                     (double)(float)(system_temp_double_value * SYSTEM_DOUBLE_TO_FLOAT_SCALE));
       system_long_result_temp = *(longlong *)(system_long_result + SYSTEM_OBJECT_OFFSET_38 + system_counter_temp);
       system_temp_double_value = (double)system_long_result_temp;
