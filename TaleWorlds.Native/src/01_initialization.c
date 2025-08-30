@@ -267,6 +267,7 @@
 #define SYSTEM_RESOURCE_SIZE_SMALL_590 0x590
 #define SYSTEM_RESOURCE_SIZE_MEDIUM_A90 0xa90
 #define SYSTEM_RESOURCE_SIZE_LARGE_1428 0x1428
+#define SYSTEM_RESOURCE_SIZE_EXTRA_SMALL_260 0x260
 
 // 系统配置大小常量
 #define SYSTEM_CONFIG_SIZE_PHYSICS 0x24
@@ -558,6 +559,9 @@
 // - 添加了SYSTEM_OBJECT_OFFSET_28、SYSTEM_OBJECT_OFFSET_38、SYSTEM_OBJECT_OFFSET_60等对象偏移量常量
 // - 添加了SYSTEM_MEMORY_POOL_SIZE_SMALL、SYSTEM_MEMORY_POOL_SIZE_MEDIUM、SYSTEM_MEMORY_POOL_SIZE_LARGE等内存池大小常量
 // - 添加了SYSTEM_NODE_HEADER_SIZE、SYSTEM_DATA_COMPARE_SIZE等数据结构大小常量
+#define SYSTEM_DATA_OFFSET_500 0x1f4
+#define SYSTEM_DATA_OFFSET_7 0x7
+#define SYSTEM_DATA_OFFSET_5 0x5
 // - 添加了SYSTEM_CONFIG_SIZE_PHYSICS、SYSTEM_CONFIG_SIZE_FONT、SYSTEM_CONFIG_SIZE_NETWORK等配置大小常量
 // - 替换了代码中的硬编码十六进制值为语义化常量
 // - 提高了代码的可读性和维护性
@@ -39706,7 +39710,7 @@ uint64_t InitializeInputManagerSystem(uint64_t handleIdentifier,ulonglong resour
   system_status_code = INVALID_HANDLE_VALUE;
   SystemFinalizeFunction();
   if ((resourceIdentifier & 1) != 0) {
-    free(handleIdentifier,0x260,system_configuration,systemFlags,system_int_result_unsigned);
+    free(handleIdentifier,SYSTEM_RESOURCE_SIZE_EXTRA_SMALL_260,system_configuration,systemFlags,system_int_result_unsigned);
   }
   return handleIdentifier;
 }
