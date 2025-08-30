@@ -12076,7 +12076,7 @@ long long setup_thread_communication(unsigned long long handle_param,unsigned lo
     system_execution_function(system_character_scan_pointer,&system_thread_handler_10,mutex_attr,mutex_attr + SYSTEM_OFFSET_HANDLE_PARAM,mutex_attr + 8,mutex_attr + SYSTEM_POINTER_OFFSET_C,mutex_attr + SYSTEM_OFFSET_STRING_BUFFER_SIZE
                   ,mutex_attr + SYSTEM_CONFIG_OFFSET_INIT_FLAG,mutex_attr + SYSTEM_OFFSET_GLOBAL_DATA_PTR,mutex_attr + SYSTEM_OFFSET_PATH_SIZE,mutex_attr + path_buffer_size,mutex_attr + SYSTEM_OFFSET_PATH_BUFFER,
                   mutex_attr + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG,mutex_attr + SYSTEM_POINTER_OFFSET_2C,mutex_attr + SYSTEM_OFFSET_FUNCTION_TABLE,mutex_attr + SYSTEM_CONFIG_OFFSET_MODULE_HANDLE,mutex_attr + SYSTEM_OFFSET_CLEANUP_FUNCTION,
-                  mutex_attr + 0x3c,system_string_length_counter,system_buffer_allocation_result);
+                  mutex_attr + SYSTEM_OFFSET_THREAD_DATA_EXTENDED,system_string_length_counter,system_buffer_allocation_result);
     system_thread_stack_pointer_variable = &system_global_thread_string_2;
     if (pcStack_50 != (char *)0x0) {
       handle_param_system_error();
