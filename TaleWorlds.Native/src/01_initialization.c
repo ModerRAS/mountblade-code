@@ -17542,7 +17542,7 @@ void InitializeSystemCore(longlong *system_param_1)
 void InitializeResourceManager(ulonglong *system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   undefined8 *system_ptr_buffer;
   longlong system_long_var_3;
   ulonglong system_unsigned_var_4;
@@ -17558,9 +17558,9 @@ void InitializeResourceManager(ulonglong *system_param_1)
     if ((*(void ***)(system_unsigned_var_4 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList) && (*(char *)(system_long_var_3 + SYSTEM_INIT_VALUE_STACK_14) == '\0')) {
       *system_ptr_buffer = *(undefined8 *)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM);
       *(undefined8 **)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_buffer;
-      piVar1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      system_int_pointer_var_1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
+      *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+      if (*system_int_pointer_var_1 == 0) {
         system_free_memory();
         return;
       }
@@ -18627,7 +18627,7 @@ void InitializeSystemCore(longlong *system_param_1)
 void InitializeSystemCore(ulonglong *system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   undefined8 *system_ptr_buffer;
   longlong system_long_var_3;
   ulonglong system_unsigned_var_4;
@@ -18643,9 +18643,9 @@ void InitializeSystemCore(ulonglong *system_param_1)
     if ((*(void ***)(system_unsigned_var_4 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList) && (*(char *)(system_long_var_3 + SYSTEM_INIT_VALUE_STACK_14) == '\0')) {
       *system_ptr_buffer = *(undefined8 *)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM);
       *(undefined8 **)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_buffer;
-      piVar1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      system_int_pointer_var_1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
+      *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+      if (*system_int_pointer_var_1 == 0) {
         system_free_memory();
         return;
       }
@@ -21093,7 +21093,7 @@ void InitializeSystemCore(longlong *system_param_1)
 void InitializeSystemCore(longlong system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   longlong system_long_var_2;
   undefined8 *system_ptr_memory;
   longlong system_long_var_4;
@@ -21125,8 +21125,8 @@ void InitializeSystemCore(longlong system_param_1)
         *system_ptr_memory = *(undefined8 *)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM);
         *(undefined8 **)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_memory;
         piVar1 = (int *)(system_long_var_4 + SYSTEM_INIT_FLAG_ENABLED8);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+        if (*system_int_pointer_var_1 == 0) {
           system_free_memory();
           return;
         }
@@ -21225,7 +21225,7 @@ void InitializeSystemCore(longlong *system_param_1)
 void InitializeSystemCore(longlong system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   longlong system_long_var_2;
   undefined8 *system_ptr_memory;
   longlong system_long_var_4;
@@ -21257,8 +21257,8 @@ void InitializeSystemCore(longlong system_param_1)
         *system_ptr_memory = *(undefined8 *)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM);
         *(undefined8 **)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_memory;
         piVar1 = (int *)(system_long_var_4 + SYSTEM_INIT_FLAG_ENABLED8);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+        if (*system_int_pointer_var_1 == 0) {
           system_free_memory();
           return;
         }
@@ -21304,7 +21304,7 @@ void InitializeSystemCore(longlong system_param_1)
 void InitializeSystemCore(ulonglong *system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   undefined8 *system_ptr_buffer;
   longlong system_long_var_3;
   ulonglong system_unsigned_var_4;
@@ -21320,9 +21320,9 @@ void InitializeSystemCore(ulonglong *system_param_1)
     if ((*(void ***)(system_unsigned_var_4 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList) && (*(char *)(system_long_var_3 + SYSTEM_INIT_VALUE_STACK_14) == '\0')) {
       *system_ptr_buffer = *(undefined8 *)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM);
       *(undefined8 **)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_buffer;
-      piVar1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      system_int_pointer_var_1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
+      *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+      if (*system_int_pointer_var_1 == 0) {
         system_free_memory();
         return;
       }
@@ -22182,7 +22182,7 @@ void InitializeSystemCore(undefined8 system_param_1,longlong system_param_2)
 void InitializeSystemCore(longlong system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   undefined4 system_unsigned_var_2;
   int system_compare_result;
   bool system_validation_flag_4;
@@ -22637,7 +22637,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(longlong system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   longlong system_long_var_2;
   undefined8 *system_ptr_memory;
   longlong system_long_var_4;
@@ -22669,8 +22669,8 @@ void InitializeSystemCore(longlong system_param_1)
         *system_ptr_memory = *(undefined8 *)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM);
         *(undefined8 **)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_memory;
         piVar1 = (int *)(system_long_var_4 + SYSTEM_INIT_FLAG_ENABLED8);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+        if (*system_int_pointer_var_1 == 0) {
           system_free_memory();
           return;
         }
@@ -22692,7 +22692,7 @@ void InitializeSystemCore(longlong system_param_1)
 void InitializeSystemCore(longlong system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   longlong system_long_var_2;
   undefined8 *system_ptr_memory;
   longlong system_long_var_4;
@@ -22724,8 +22724,8 @@ void InitializeSystemCore(longlong system_param_1)
         *system_ptr_memory = *(undefined8 *)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM);
         *(undefined8 **)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_memory;
         piVar1 = (int *)(system_long_var_4 + SYSTEM_INIT_FLAG_ENABLED8);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+        if (*system_int_pointer_var_1 == 0) {
           system_free_memory();
           return;
         }
@@ -23207,7 +23207,7 @@ void InitializeSystemCore(longlong system_param_1,undefined8 system_param_2)
 void SetupFileSystem(longlong system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   undefined8 *system_ptr_buffer;
   longlong system_long_var_3;
   ulonglong system_unsigned_var_4;
@@ -23223,9 +23223,9 @@ void SetupFileSystem(longlong system_param_1)
     if ((*(void ***)(system_unsigned_var_4 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList) && (*(char *)(system_long_var_3 + SYSTEM_INIT_VALUE_STACK_14) == '\0')) {
       *system_ptr_buffer = *(undefined8 *)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM);
       *(undefined8 **)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_buffer;
-      piVar1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      system_int_pointer_var_1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
+      *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+      if (*system_int_pointer_var_1 == 0) {
         system_free_memory();
         return;
       }
@@ -26637,7 +26637,7 @@ void InitializeSystemCore(longlong system_param_1,undefined8 system_param_2,unde
 void InitializeSystemCore(longlong system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   longlong system_long_var_2;
   undefined8 *system_ptr_memory;
   longlong system_long_var_4;
@@ -26669,8 +26669,8 @@ void InitializeSystemCore(longlong system_param_1)
         *system_ptr_memory = *(undefined8 *)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM);
         *(undefined8 **)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_memory;
         piVar1 = (int *)(system_long_var_4 + SYSTEM_INIT_FLAG_ENABLED8);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+        if (*system_int_pointer_var_1 == 0) {
           system_free_memory();
           return;
         }
@@ -26692,7 +26692,7 @@ void InitializeSystemCore(longlong system_param_1)
 void InitializeSystemCore(longlong system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   longlong system_long_var_2;
   undefined8 *system_ptr_memory;
   longlong system_long_var_4;
@@ -26724,8 +26724,8 @@ void InitializeSystemCore(longlong system_param_1)
         *system_ptr_memory = *(undefined8 *)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM);
         *(undefined8 **)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_memory;
         piVar1 = (int *)(system_long_var_4 + SYSTEM_INIT_FLAG_ENABLED8);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+        if (*system_int_pointer_var_1 == 0) {
           system_free_memory();
           return;
         }
@@ -26747,7 +26747,7 @@ void InitializeSystemCore(longlong system_param_1)
 void InitializeSystemCore(void)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   undefined8 *system_ptr_buffer;
   longlong system_long_var_3;
   longlong unaff_RBP;
@@ -26776,9 +26776,9 @@ void InitializeSystemCore(void)
       if ((*(void ***)(system_unsigned_var_4 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList) && (*(char *)(system_long_var_3 + SYSTEM_INIT_VALUE_STACK_14) == '\0')) {
         *system_ptr_buffer = *(undefined8 *)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM);
         *(undefined8 **)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_buffer;
-        piVar1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        system_int_pointer_var_1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
+        *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+        if (*system_int_pointer_var_1 == 0) {
           system_free_memory();
           return;
         }
@@ -26800,7 +26800,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   undefined8 *system_ptr_buffer;
   longlong system_long_var_3;
   longlong unaff_RBP;
@@ -26817,9 +26817,9 @@ void InitializeSystemCore(void)
       if ((*(void ***)(system_unsigned_var_4 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList) && (*(char *)(system_long_var_3 + SYSTEM_INIT_VALUE_STACK_14) == '\0')) {
         *system_ptr_buffer = *(undefined8 *)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM);
         *(undefined8 **)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_buffer;
-        piVar1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        system_int_pointer_var_1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
+        *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+        if (*system_int_pointer_var_1 == 0) {
           system_free_memory();
           return;
         }
@@ -26841,7 +26841,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   undefined8 *system_ptr_buffer;
   longlong system_long_var_3;
   longlong unaff_RBP;
@@ -26858,9 +26858,9 @@ void InitializeSystemCore(void)
     if ((*(void ***)(system_unsigned_var_4 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList) && (*(char *)(system_long_var_3 + SYSTEM_INIT_VALUE_STACK_14) == '\0')) {
       *system_ptr_buffer = *(undefined8 *)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM);
       *(undefined8 **)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_buffer;
-      piVar1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      system_int_pointer_var_1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
+      *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+      if (*system_int_pointer_var_1 == 0) {
         system_free_memory();
         return;
       }
@@ -26973,7 +26973,7 @@ void InitializeSystemCore(longlong *system_param_1)
 void InitializeSystemCore(longlong system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   longlong system_long_var_2;
   undefined8 *system_ptr_memory;
   longlong system_long_var_4;
@@ -27005,8 +27005,8 @@ void InitializeSystemCore(longlong system_param_1)
         *system_ptr_memory = *(undefined8 *)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM);
         *(undefined8 **)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_memory;
         piVar1 = (int *)(system_long_var_4 + SYSTEM_INIT_FLAG_ENABLED8);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+        if (*system_int_pointer_var_1 == 0) {
           system_free_memory();
           return;
         }
@@ -27028,7 +27028,7 @@ void InitializeSystemCore(longlong system_param_1)
 void InitializeSystemCore(longlong system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   longlong system_long_var_2;
   undefined8 *system_ptr_memory;
   longlong system_long_var_4;
@@ -27060,8 +27060,8 @@ void InitializeSystemCore(longlong system_param_1)
         *system_ptr_memory = *(undefined8 *)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM);
         *(undefined8 **)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_memory;
         piVar1 = (int *)(system_long_var_4 + SYSTEM_INIT_FLAG_ENABLED8);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+        if (*system_int_pointer_var_1 == 0) {
           system_free_memory();
           return;
         }
@@ -27083,7 +27083,7 @@ void InitializeSystemCore(longlong system_param_1)
 void InitializeSystemCore(void)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   undefined8 *system_ptr_buffer;
   longlong system_long_var_3;
   longlong unaff_RBP;
@@ -27112,9 +27112,9 @@ void InitializeSystemCore(void)
       if ((*(void ***)(system_unsigned_var_4 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList) && (*(char *)(system_long_var_3 + SYSTEM_INIT_VALUE_STACK_14) == '\0')) {
         *system_ptr_buffer = *(undefined8 *)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM);
         *(undefined8 **)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_buffer;
-        piVar1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        system_int_pointer_var_1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
+        *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+        if (*system_int_pointer_var_1 == 0) {
           system_free_memory();
           return;
         }
@@ -27136,7 +27136,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   undefined8 *system_ptr_buffer;
   longlong system_long_var_3;
   longlong unaff_RBP;
@@ -27153,9 +27153,9 @@ void InitializeSystemCore(void)
       if ((*(void ***)(system_unsigned_var_4 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList) && (*(char *)(system_long_var_3 + SYSTEM_INIT_VALUE_STACK_14) == '\0')) {
         *system_ptr_buffer = *(undefined8 *)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM);
         *(undefined8 **)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_buffer;
-        piVar1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        system_int_pointer_var_1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
+        *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+        if (*system_int_pointer_var_1 == 0) {
           system_free_memory();
           return;
         }
@@ -27177,7 +27177,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   undefined8 *system_ptr_buffer;
   longlong system_long_var_3;
   longlong unaff_RBP;
@@ -27194,9 +27194,9 @@ void InitializeSystemCore(void)
     if ((*(void ***)(system_unsigned_var_4 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList) && (*(char *)(system_long_var_3 + SYSTEM_INIT_VALUE_STACK_14) == '\0')) {
       *system_ptr_buffer = *(undefined8 *)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM);
       *(undefined8 **)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_buffer;
-      piVar1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      system_int_pointer_var_1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
+      *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+      if (*system_int_pointer_var_1 == 0) {
         system_free_memory();
         return;
       }
@@ -27241,7 +27241,7 @@ void InitializeSystemCore(longlong *system_param_1)
 void InitializeSystemCore(void)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   undefined8 *system_ptr_buffer;
   longlong system_long_var_3;
   ulonglong system_unsigned_var_4;
@@ -27277,9 +27277,9 @@ void InitializeSystemCore(void)
     if ((*(void ***)(system_unsigned_var_4 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList) && (*(char *)(system_long_var_3 + SYSTEM_INIT_VALUE_STACK_14) == '\0')) {
       *system_ptr_buffer = *(undefined8 *)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM);
       *(undefined8 **)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_buffer;
-      piVar1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      system_int_pointer_var_1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
+      *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+      if (*system_int_pointer_var_1 == 0) {
         system_free_memory();
         return;
       }
@@ -27730,7 +27730,7 @@ LAB_180058138:
 void InitializeSystemCore(ulonglong *system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   ulonglong system_unsigned_var_2;
   ulonglong system_unsigned_var_3;
   undefined8 *system_ptr_data;
@@ -27763,8 +27763,8 @@ void InitializeSystemCore(ulonglong *system_param_1)
       *system_ptr_data = *(undefined8 *)(system_long_var_6 + SYSTEM_INIT_OFFSET_STACK_PARAM);
       *(undefined8 **)(system_long_var_6 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_data;
       piVar1 = (int *)(system_long_var_6 + SYSTEM_INIT_FLAG_ENABLED8);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+      if (*system_int_pointer_var_1 == 0) {
         system_free_memory();
         return;
       }
@@ -29842,7 +29842,7 @@ void InitializeSystemCore(longlong system_param_1,longlong system_param_2,longlo
 void InitializePhysicsSystem(undefined8 *system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   longlong system_long_var_2;
   ulonglong system_unsigned_var_3;
   
@@ -29857,8 +29857,8 @@ void InitializePhysicsSystem(undefined8 *system_param_1)
       *system_param_1 = *(undefined8 *)(system_long_var_2 + SYSTEM_INIT_OFFSET_STACK_PARAM);
       *(undefined8 **)(system_long_var_2 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_param_1;
       piVar1 = (int *)(system_long_var_2 + SYSTEM_INIT_FLAG_ENABLED8);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+      if (*system_int_pointer_var_1 == 0) {
         system_free_memory();
         return;
       }
@@ -30001,7 +30001,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(longlong *system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   char *system_code_pointer_var_2;
   undefined8 *system_ptr_memory;
   longlong system_long_var_4;
@@ -30041,8 +30041,8 @@ void InitializeSystemCore(longlong *system_param_1)
       *system_ptr_memory = *(undefined8 *)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM);
       *(undefined8 **)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_memory;
       piVar1 = (int *)(system_long_var_4 + SYSTEM_INIT_FLAG_ENABLED8);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+      if (*system_int_pointer_var_1 == 0) {
         system_free_memory();
         return;
       }
@@ -30062,7 +30062,7 @@ void InitializeSystemCore(longlong *system_param_1)
 void InitializeSystemCore(longlong *system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   char *system_code_pointer_var_2;
   undefined8 *system_ptr_memory;
   longlong system_long_var_4;
@@ -30102,8 +30102,8 @@ void InitializeSystemCore(longlong *system_param_1)
       *system_ptr_memory = *(undefined8 *)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM);
       *(undefined8 **)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_memory;
       piVar1 = (int *)(system_long_var_4 + SYSTEM_INIT_FLAG_ENABLED8);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+      if (*system_int_pointer_var_1 == 0) {
         system_free_memory();
         return;
       }
@@ -30140,7 +30140,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   char *system_code_pointer_var_2;
   undefined8 *system_ptr_memory;
   longlong system_long_var_4;
@@ -30171,8 +30171,8 @@ void InitializeSystemCore(void)
         *system_ptr_memory = *(undefined8 *)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM);
         *(undefined8 **)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_memory;
         piVar1 = (int *)(system_long_var_4 + SYSTEM_INIT_FLAG_ENABLED8);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+        if (*system_int_pointer_var_1 == 0) {
           system_free_memory();
           return;
         }
@@ -30194,7 +30194,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(undefined8 *system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   longlong system_long_var_2;
   ulonglong system_unsigned_var_3;
   
@@ -30206,8 +30206,8 @@ void InitializeSystemCore(undefined8 *system_param_1)
       *system_param_1 = *(undefined8 *)(system_long_var_2 + SYSTEM_INIT_OFFSET_STACK_PARAM);
       *(undefined8 **)(system_long_var_2 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_param_1;
       piVar1 = (int *)(system_long_var_2 + SYSTEM_INIT_FLAG_ENABLED8);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+      if (*system_int_pointer_var_1 == 0) {
         system_free_memory();
         return;
       }
@@ -30227,7 +30227,7 @@ void InitializeSystemCore(undefined8 *system_param_1)
 void InitializeSystemCore(longlong *system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   char *system_code_pointer_var_2;
   undefined8 *system_ptr_memory;
   longlong system_long_var_4;
@@ -30269,8 +30269,8 @@ void InitializeSystemCore(longlong *system_param_1)
       *system_ptr_memory = *(undefined8 *)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM);
       *(undefined8 **)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_memory;
       piVar1 = (int *)(system_long_var_4 + SYSTEM_INIT_FLAG_ENABLED8);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+      if (*system_int_pointer_var_1 == 0) {
         system_free_memory();
         return;
       }
@@ -30290,7 +30290,7 @@ void InitializeSystemCore(longlong *system_param_1)
 void InitializeSystemCore(longlong system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   undefined8 *system_ptr_buffer;
   longlong system_long_var_3;
   ulonglong system_unsigned_var_4;
@@ -30306,9 +30306,9 @@ void InitializeSystemCore(longlong system_param_1)
     if ((*(void ***)(system_unsigned_var_4 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList) && (*(char *)(system_long_var_3 + SYSTEM_INIT_VALUE_STACK_14) == '\0')) {
       *system_ptr_buffer = *(undefined8 *)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM);
       *(undefined8 **)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_buffer;
-      piVar1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      system_int_pointer_var_1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
+      *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+      if (*system_int_pointer_var_1 == 0) {
         system_free_memory();
         return;
       }
@@ -30365,7 +30365,7 @@ void InitializeSystemCore(longlong system_param_1)
 void InitializeSystemCore(longlong system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   undefined8 *system_ptr_buffer;
   longlong system_long_var_3;
   ulonglong system_unsigned_var_4;
@@ -30380,9 +30380,9 @@ void InitializeSystemCore(longlong system_param_1)
       if ((*(void ***)(system_unsigned_var_4 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList) && (*(char *)(system_long_var_3 + SYSTEM_INIT_VALUE_STACK_14) == '\0')) {
         *system_ptr_buffer = *(undefined8 *)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM);
         *(undefined8 **)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_buffer;
-        piVar1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        system_int_pointer_var_1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
+        *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+        if (*system_int_pointer_var_1 == 0) {
           system_free_memory();
           return;
         }
@@ -30404,7 +30404,7 @@ void InitializeSystemCore(longlong system_param_1)
 void InitializeSystemCore(longlong system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   undefined8 *system_ptr_buffer;
   longlong system_long_var_3;
   ulonglong system_unsigned_var_4;
@@ -30419,9 +30419,9 @@ void InitializeSystemCore(longlong system_param_1)
       if ((*(void ***)(system_unsigned_var_4 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList) && (*(char *)(system_long_var_3 + SYSTEM_INIT_VALUE_STACK_14) == '\0')) {
         *system_ptr_buffer = *(undefined8 *)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM);
         *(undefined8 **)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_buffer;
-        piVar1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        system_int_pointer_var_1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
+        *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+        if (*system_int_pointer_var_1 == 0) {
           system_free_memory();
           return;
         }
@@ -30443,7 +30443,7 @@ void InitializeSystemCore(longlong system_param_1)
 void InitializeSystemCore(longlong system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   undefined8 *system_ptr_buffer;
   longlong system_long_var_3;
   ulonglong system_unsigned_var_4;
@@ -30458,9 +30458,9 @@ void InitializeSystemCore(longlong system_param_1)
       if ((*(void ***)(system_unsigned_var_4 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList) && (*(char *)(system_long_var_3 + SYSTEM_INIT_VALUE_STACK_14) == '\0')) {
         *system_ptr_buffer = *(undefined8 *)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM);
         *(undefined8 **)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_buffer;
-        piVar1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        system_int_pointer_var_1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
+        *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+        if (*system_int_pointer_var_1 == 0) {
           system_free_memory();
           return;
         }
@@ -33758,7 +33758,7 @@ longlong InitializeSystemCore(void)
 undefined8 InitializeSystemCore(undefined8 system_param_1,undefined8 system_param_2,longlong *system_param_3)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   undefined8 system_unsigned_var_2;
   longlong in_RAX;
   ulonglong unaff_RSI;
@@ -35121,7 +35121,7 @@ undefined8 InitializeSystemCore(undefined8 system_param_1,ulonglong system_param
 void InitializeSystemCore(undefined8 *system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   int system_int_count;
   ulonglong system_unsigned_var_3;
   ulonglong system_unsigned_var_4;
@@ -39290,7 +39290,7 @@ void InitializeSystemCore(longlong system_param_1,undefined8 system_param_2,unde
 void InitializeSystemCore(longlong *system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   longlong *system_longlong_pointer_var_2;
   longlong system_long_var_3;
   longlong system_long_var_4;
@@ -40427,7 +40427,7 @@ undefined8 InitializeSystemCore(undefined8 system_param_1,ulonglong system_param
 void InitializeSystemCore(undefined8 *system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   int system_int_count;
   ulonglong system_unsigned_var_3;
   ulonglong system_unsigned_var_4;
@@ -42310,7 +42310,7 @@ longlong InitializeSystemCore(longlong system_param_1,longlong system_param_2,un
 void InitializeSystemCore(undefined8 *system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   int system_int_count;
   ulonglong system_unsigned_var_3;
   ulonglong system_unsigned_var_4;
@@ -43424,7 +43424,7 @@ undefined8 * InitializeSystemCore(undefined8 *system_param_1,ulonglong system_pa
 void InitializeSystemCore(longlong *system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   char *system_code_pointer_var_2;
   undefined8 *system_ptr_memory;
   longlong system_long_var_4;
@@ -43464,8 +43464,8 @@ void InitializeSystemCore(longlong *system_param_1)
       *system_ptr_memory = *(undefined8 *)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM);
       *(undefined8 **)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_memory;
       piVar1 = (int *)(system_long_var_4 + SYSTEM_INIT_FLAG_ENABLED8);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+      if (*system_int_pointer_var_1 == 0) {
         system_free_memory();
         return;
       }
@@ -43485,7 +43485,7 @@ void InitializeSystemCore(longlong *system_param_1)
 void InitializeSystemCore(longlong *system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   char *system_code_pointer_var_2;
   undefined8 *system_ptr_memory;
   longlong system_long_var_4;
@@ -43525,8 +43525,8 @@ void InitializeSystemCore(longlong *system_param_1)
       *system_ptr_memory = *(undefined8 *)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM);
       *(undefined8 **)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_memory;
       piVar1 = (int *)(system_long_var_4 + SYSTEM_INIT_FLAG_ENABLED8);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+      if (*system_int_pointer_var_1 == 0) {
         system_free_memory();
         return;
       }
@@ -43563,7 +43563,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   char *system_code_pointer_var_2;
   undefined8 *system_ptr_memory;
   longlong system_long_var_4;
@@ -43594,8 +43594,8 @@ void InitializeSystemCore(void)
         *system_ptr_memory = *(undefined8 *)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM);
         *(undefined8 **)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_memory;
         piVar1 = (int *)(system_long_var_4 + SYSTEM_INIT_FLAG_ENABLED8);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
+        *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+        if (*system_int_pointer_var_1 == 0) {
           system_free_memory();
           return;
         }
@@ -43617,7 +43617,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(undefined8 *system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   longlong system_long_var_2;
   ulonglong system_unsigned_var_3;
   
@@ -43629,8 +43629,8 @@ void InitializeSystemCore(undefined8 *system_param_1)
       *system_param_1 = *(undefined8 *)(system_long_var_2 + SYSTEM_INIT_OFFSET_STACK_PARAM);
       *(undefined8 **)(system_long_var_2 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_param_1;
       piVar1 = (int *)(system_long_var_2 + SYSTEM_INIT_FLAG_ENABLED8);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+      if (*system_int_pointer_var_1 == 0) {
         system_free_memory();
         return;
       }
@@ -43650,7 +43650,7 @@ void InitializeSystemCore(undefined8 *system_param_1)
 void InitializeSystemCore(longlong *system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   char *system_code_pointer_var_2;
   undefined8 *system_ptr_memory;
   longlong system_long_var_4;
@@ -43692,8 +43692,8 @@ void InitializeSystemCore(longlong *system_param_1)
       *system_ptr_memory = *(undefined8 *)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM);
       *(undefined8 **)(system_long_var_4 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_memory;
       piVar1 = (int *)(system_long_var_4 + SYSTEM_INIT_FLAG_ENABLED8);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+      if (*system_int_pointer_var_1 == 0) {
         system_free_memory();
         return;
       }
@@ -50656,7 +50656,7 @@ void InitializeSystemCore(longlong *system_param_1)
 ulonglong InitializeSystemCore(longlong system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   byte system_validation_flag_2;
   longlong system_long_var_3;
   ulonglong system_unsigned_var_4;
@@ -50967,7 +50967,7 @@ undefined8 InitializeSystemCore(longlong system_param_1,longlong system_param_2)
 void InitializeSystemCore(longlong system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   undefined8 *system_ptr_buffer;
   longlong system_long_var_3;
   ulonglong system_unsigned_var_4;
@@ -50983,9 +50983,9 @@ void InitializeSystemCore(longlong system_param_1)
     if ((*(void ***)(system_unsigned_var_4 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList) && (*(char *)(system_long_var_3 + SYSTEM_INIT_VALUE_STACK_14) == '\0')) {
       *system_ptr_buffer = *(undefined8 *)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM);
       *(undefined8 **)(system_long_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM) = system_ptr_buffer;
-      piVar1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+      system_int_pointer_var_1 = (int *)(system_long_var_3 + SYSTEM_INIT_FLAG_ENABLED8);
+      *system_int_pointer_var_1 = *system_int_pointer_var_1 + -1;
+      if (*system_int_pointer_var_1 == 0) {
         system_free_memory();
         return;
       }
@@ -55643,7 +55643,7 @@ LAB_180075f4f:
 void InitializeSystemCore(longlong system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   uint *system_ptr_buffer;
   undefined8 *system_ptr_memory;
   undefined8 *system_ptr_data;
@@ -59625,7 +59625,7 @@ void InitializeSystemCore(longlong system_param_1)
 void InitializeSystemCore(longlong system_param_1,longlong system_param_2,int system_param_3)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   undefined8 *system_ptr_buffer;
   undefined8 *system_ptr_memory;
   undefined8 *system_ptr_data;
@@ -59702,7 +59702,7 @@ void InitializeSystemCore(longlong system_param_1,longlong system_param_2,int sy
 void InitializeSystemCore(void)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   ulonglong *system_ptr_buffer;
   ulonglong *system_ptr_memory;
   ulonglong unaff_RBX;
@@ -59770,7 +59770,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(void)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   longlong system_long_var_2;
   longlong unaff_RBP;
   longlong unaff_RDI;
@@ -60150,7 +60150,7 @@ void InitializeSystemCore(void)
 void InitializeSystemCore(longlong *system_param_1)
 
 {
-  int *piVar1;
+  int *system_int_pointer_var_1;
   longlong system_long_var_2;
   char system_char_temp;
   int system_int_index;
