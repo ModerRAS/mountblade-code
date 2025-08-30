@@ -6730,7 +6730,7 @@ void NetworkSendByteToSocket(uint64_t network_socket_handle, uint8_t network_buf
        (((*(uint32_t *)(network_validation_data_buffer[NETWORK_STATUS_FAILURE] + SOCKET_FLAG_OFFSET) >> NETWORK_STATUS_SUCCESS & NETWORK_STATUS_SUCCESS) != NETWORK_STATUS_FAILURE &&
         (network_operation_result = network_init_connection(network_validation_data_buffer + NETWORK_STATUS_SUCCESS), network_operation_result == NETWORK_STATUS_FAILURE)))) && (network_op_status == NETWORK_STATUS_FAILURE)) &&
      (network_op_status = networkCreateSession(*(uint64_t *)(network_validation_data_buffer[NETWORK_STATUS_FAILURE] + NETWORK_CONTEXT_OFFSET), network_config_array_pointer, SESSION_CONFIG_SIZE), network_op_status == NETWORK_STATUS_FAILURE)) {
-    *network_config_arrayay_pointer[NETWORK_STATUS_FAILURE] = &network_session_config_data;
+    *network_config_array_pointer[NETWORK_STATUS_FAILURE] = &network_session_config_data;
     *(uint32_t *)(network_config_arrayay_pointer[NETWORK_STATUS_FAILURE] + NETWORK_STATUS_SUCCESS) = SESSION_CONFIG_SIZE;
     *(uint8_t *)(network_config_arrayay_pointer[NETWORK_STATUS_FAILURE] + NETWORK_BUFFER_INDEX_CAPACITY) = network_buffer_ptr;
     NetworkValidateSocket(*(uint64_t *)(network_validation_data_buffer[NETWORK_STATUS_FAILURE] + NETWORK_CONTEXT_OFFSET));
@@ -26773,8 +26773,8 @@ void networkProcessIncomingDataLarge(int64_t *network_socket_handle)
 void networkProcessIncomingDataMaximum(int64_t *network_socket_handle)
                     // WARNING: Could not recover jumptable at NETWORK_MEMORY_MEMORY_ZERO_OFFSET00180879fcf. Too many branches
   (**(code **)(*network_socket_handle + NETWORK_MODULE_OFFSET))(network_socket_handle, network_op_status, NETWORK_STATUS_SUCCESS);
-// 函数: void networkReadSocketData0(int64_t *network_socket_handle)
-void networkReadSocketData0(int64_t *network_socket_handle)
+// 函数: void network_read_socket_data_initial(int64_t *network_socket_handle)
+void network_read_socket_data_initial(int64_t *network_socket_handle)
                     // WARNING: Could not recover jumptable at NETWORK_MEMORY_MEMORY_ZERO_OFFSET00180879fff. Too many branches
   (**(code **)(*network_socket_handle + NETWORK_SOCKET_INDEX_OFFSET8))(network_socket_handle, network_op_status, NETWORK_STATUS_SUCCESS);
 // 函数: void network_read_socket_data_primary(int64_t *network_socket_handle)
@@ -26921,14 +26921,14 @@ void networkHandleProtocolErrorSecondary(int64_t network_socket_handle, uint64_t
 void networkHandleProtocolErrorTertiary(int64_t network_socket_handle, uint64_t network_buffer_ptr)
      (network_timeout = networkSendDataPacketBasic(*(int64_t *)(network_socket_handle + MODULE_STATUS_OFFSET) + NETWORK_CONTEXT_BUFFER_OFFSET), network_timeout != NETWORK_STATUS_FAILURE)) {
   (**(code **)(**(int64_t **)(network_socket_handle + NETWORK_HEADER_SIZE_DEFAULT) + SOCKET_PACKET_LENGTH_OFFSET_EXTENDED))(*(int64_t **)(network_socket_handle + NETWORK_HEADER_SIZE_DEFAULT), network_buffer_ptr, NETWORK_STATUS_SUCCESS);
-int64_t networkHandleProtocolError3(int64_t network_socket_handle, uint32_t *network_buffer_ptr, char network_buffer_size)
+int64_t network_handle_protocol_error_validation(int64_t network_socket_handle, uint32_t *network_buffer_ptr, char network_buffer_size)
   network_socket_handle = *(int64_t *)(network_socket_handle + NETWORK_HEADER_SIZE_DEFAULT);
   network_timeout = *(int64_t *)(network_socket_handle + NETWORK_STATUS_OFFSET_710);
   if (((*(int32_t *)(network_socket_handle + NETWORK_SOCKET_STATUS_OFFSETc) != NETWORK_STATUS_FAILURE) && (*(int32_t *)(network_socket_handle + NETWORK_STATUS_OFFSET_6F0) != NETWORK_STATUS_FAILURE)) &&
      (network_proc_count = *(int32_t *)(*(int64_t *)(network_socket_handle + NETWORK_SOCKET_DESCRIPTOR_OFFSET_6E8) +
                            *(int32_t *)(network_socket_handle + NETWORK_STATUS_OFFSET_6F0) - NETWORK_DECREMENT_VALUE_UNSIGNED) * NETWORK_BASIC_VALUE_QUAD), network_proc_count != -NETWORK_STATUS_SUCCESS)) {
       primary_conn_info_ptr = (int64_t *)((NETWORK_LONG_CAST)network_proc_count * NETWORK_SOCKET_DESCRIPTOR_RESPONSE_OFFSET + *(int64_t *)(network_socket_handle + NETWORK_SOCKET_DESCRIPTOR_OFFSET_6F8));
-int64_t networkHandleProtocolError4(uint64_t network_socket_handle, uint64_t network_buffer_ptr, char network_buffer_size)
+int64_t network_handle_protocol_error_authentication(uint64_t network_socket_handle, uint64_t network_buffer_ptr, char network_buffer_size)
   network_timeout = *(int64_t *)(network_socket_ctx + NETWORK_STATUS_OFFSET_710);
   if (((*(int32_t *)(network_socket_ctx + NETWORK_SOCKET_STATUS_OFFSETc) != NETWORK_STATUS_FAILURE) && (*(int32_t *)(network_socket_ctx + NETWORK_STATUS_OFFSET_6F0) != NETWORK_STATUS_FAILURE)) &&
      (network_proc_count = *(int32_t *)(*(int64_t *)(network_socket_ctx + NETWORK_SOCKET_DESCRIPTOR_OFFSET_6E8) +
@@ -26938,9 +26938,9 @@ int64_t networkHandleProtocolError4(uint64_t network_socket_handle, uint64_t net
       if ((*primary_conn_info_ptr == *(int64_t *)network_socket_ctx) && (conn_info_ptr[NETWORK_STATUS_SUCCESS] == *(int64_t *)(network_socket_ctx + NETWORK_BUFFER_INDEX_CAPACITY))) {
 // 函数: void networkHandleProtocolErrorMinimal(void)
 void networkHandleProtocolErrorMinimal(void)
-uint64_t networkHandleProtocolError6(void)
+uint64_t network_handle_protocol_error_cleanup(void)
   return *(uint64_t *)(network_contextPtr + SESSION_CONFIG_SIZE);
-int64_t networkHandleProtocolError7(int64_t network_socket_handle, uint32_t *network_buffer_ptr, char network_buffer_size)
+int64_t network_handle_protocol_error_recovery(int64_t network_socket_handle, uint32_t *network_buffer_ptr, char network_buffer_size)
   network_timeout_pointer_tenth = *(int64_t *)(network_socket_handle + NETWORK_HEADER_SIZE_DEFAULT);
   if (network_timeout_pointer_tenth == NETWORK_STATUS_FAILURE) {
   network_packet_temp_size_var = *network_buffer_ptr;
@@ -26964,7 +26964,7 @@ int64_t networkHandleProtocolError7(int64_t network_socket_handle, uint32_t *net
   network_timeout_pointer_tenth = NETWORK_STATUS_FAILURE;
   if (network_is_secure) {
   return network_timeout_pointer_tenth;
-int64_t networkHandleProtocolError8(int64_t network_socket_handle, uint64_t network_buffer_ptr, char network_buffer_size)
+int64_t network_handle_protocol_error_termination(int64_t network_socket_handle, uint64_t network_buffer_ptr, char network_buffer_size)
 {
     int64_t network_xmm_reg_qword;
   uint32_t network_connection_handle_extended;
@@ -26983,14 +26983,14 @@ int64_t networkHandleProtocolError8(int64_t network_socket_handle, uint64_t netw
         network_proc_count = (int)conn_info_ptr[NETWORK_BUFFER_INDEX_CAPACITY];
 // 函数: void networkHandleProtocolErrorMaximum(void)
 void networkHandleProtocolErrorMaximum(void)
-uint64_t networkProcessProtocolMessage0(void)
-int64_t networkProcessProtocolMessage1(int64_t network_socket_handle, uint32_t *network_buffer_ptr, char network_buffer_size)
+uint64_t network_process_protocol_message_initial(void)
+int64_t network_process_protocol_message_handshake(int64_t network_socket_handle, uint32_t *network_buffer_ptr, char network_buffer_size)
   network_timeout = *(int64_t *)(network_socket_handle + NETWORK_CONNECTION_OFFSET0);
   if (((*(int32_t *)(network_socket_handle + NETWORK_SOCKET_EXTENDED_OFFSET_5BC) != NETWORK_STATUS_FAILURE) && (*(int32_t *)(network_socket_handle + NETWORK_PROTOCOL_OFFSET_5A0) != NETWORK_STATUS_FAILURE)) &&
      (network_proc_count = *(int32_t *)(*(int64_t *)(network_socket_handle + NETWORK_PROTOCOL_OFFSET_598) +
                            *(int32_t *)(network_socket_handle + NETWORK_PROTOCOL_OFFSET_5A0) - NETWORK_DECREMENT_VALUE_UNSIGNED) * NETWORK_BASIC_VALUE_QUAD), network_proc_count != -NETWORK_STATUS_SUCCESS)) {
       primary_conn_info_ptr = (int64_t *)((NETWORK_LONG_CAST)network_proc_count * NETWORK_SOCKET_DESCRIPTOR_RESPONSE_OFFSET + *(int64_t *)(network_socket_handle + NETWORK_CONNECTION_OFFSET_5A8));
-int64_t networkProcessProtocolMessage2(uint64_t network_socket_handle, uint64_t network_buffer_ptr, char network_buffer_size)
+int64_t network_process_protocol_message_connect(uint64_t network_socket_handle, uint64_t network_buffer_ptr, char network_buffer_size)
   network_timeout = *(int64_t *)(network_socket_ctx + NETWORK_CONNECTION_OFFSET0);
   if (((*(int32_t *)(network_socket_ctx + NETWORK_SOCKET_EXTENDED_OFFSET_5BC) != NETWORK_STATUS_FAILURE) && (*(int32_t *)(network_socket_ctx + NETWORK_PROTOCOL_OFFSET_5A0) != NETWORK_STATUS_FAILURE)) &&
      (network_proc_count = *(int32_t *)(*(int64_t *)(network_socket_ctx + NETWORK_PROTOCOL_OFFSET_598) +
@@ -26998,14 +26998,14 @@ int64_t networkProcessProtocolMessage2(uint64_t network_socket_handle, uint64_t 
       primary_conn_info_ptr = (int64_t *)((NETWORK_LONG_CAST)network_proc_count * NETWORK_SOCKET_DESCRIPTOR_RESPONSE_OFFSET + *(int64_t *)(network_socket_ctx + NETWORK_CONNECTION_REGION_OFFSET_5A8));
 // 函数: void networkProcessProtocolMessageTertiary(void)
 void networkProcessProtocolMessageTertiary(void)
-uint64_t networkProcessProtocolMessage4(void)
-int64_t networkProcessProtocolMessage5(int64_t network_socket_handle, uint32_t *network_buffer_ptr, char network_buffer_size)
+uint64_t network_process_protocol_message_data(void)
+int64_t network_process_protocol_message_control(int64_t network_socket_handle, uint32_t *network_buffer_ptr, char network_buffer_size)
   network_timeout = *(int64_t *)(network_socket_handle + NETWORK_SOCKET_STATE_OFFSET0);
   if (((*(int32_t *)(network_socket_handle + NETWORK_SOCKET_EXTENDED_OFFSET_73C) != NETWORK_STATUS_FAILURE) && (*(int32_t *)(network_socket_handle + NETWORK_PROTOCOL_OFFSET_720) != NETWORK_STATUS_FAILURE)) &&
      (network_proc_count = *(int32_t *)(*(int64_t *)(network_socket_handle + NETWORK_SOCKET_DESCRIPTOR_OFFSET_718) +
                            *(int32_t *)(network_socket_handle + NETWORK_PROTOCOL_OFFSET_720) - NETWORK_DECREMENT_VALUE_UNSIGNED) * NETWORK_BASIC_VALUE_QUAD), network_proc_count != -NETWORK_STATUS_SUCCESS)) {
       primary_conn_info_ptr = (int64_t *)((NETWORK_LONG_CAST)network_proc_count * NETWORK_SOCKET_DESCRIPTOR_RESPONSE_OFFSET + *(int64_t *)(network_socket_handle + NETWORK_SOCKET_DESCRIPTOR_OFFSET_728));
-int64_t networkProcessProtocolMessage6(uint64_t network_socket_handle, uint64_t network_buffer_ptr, char network_buffer_size)
+int64_t network_process_protocol_message_status(uint64_t network_socket_handle, uint64_t network_buffer_ptr, char network_buffer_size)
   network_timeout = *(int64_t *)(network_socket_ctx + NETWORK_SOCKET_STATE_OFFSET0);
   if (((*(int32_t *)(network_socket_ctx + NETWORK_SOCKET_EXTENDED_OFFSET_73C) != NETWORK_STATUS_FAILURE) && (*(int32_t *)(network_socket_ctx + NETWORK_PROTOCOL_OFFSET_720) != NETWORK_STATUS_FAILURE)) &&
      (network_proc_count = *(int32_t *)(*(int64_t *)(network_socket_ctx + NETWORK_SOCKET_DESCRIPTOR_OFFSET_718) +
@@ -27013,14 +27013,14 @@ int64_t networkProcessProtocolMessage6(uint64_t network_socket_handle, uint64_t 
       primary_conn_info_ptr = (int64_t *)((NETWORK_LONG_CAST)network_proc_count * NETWORK_SOCKET_DESCRIPTOR_RESPONSE_OFFSET + *(int64_t *)(network_socket_ctx + NETWORK_SOCKET_DESCRIPTOR_OFFSET_728));
 // 函数: void networkProcessProtocolMessageExtended(void)
 void networkProcessProtocolMessageExtended(void)
-uint64_t networkProcessProtocolMessage8(void)
-int64_t networkProcessProtocolMessage9(int64_t network_socket_handle, uint32_t *network_buffer_ptr, char network_buffer_size)
+uint64_t network_process_protocol_message_cleanup(void)
+int64_t network_process_protocol_message_termination(int64_t network_socket_handle, uint32_t *network_buffer_ptr, char network_buffer_size)
   network_timeout = *(int64_t *)(network_socket_handle + NETWORK_SOCKET_REGION_OFFSET_EIGHT_HUNDRED_SIXTY);
   if (((*(int32_t *)(network_socket_handle + NETWORK_SOCKET_EXTENDED_OFFSET_85C) != NETWORK_STATUS_FAILURE) && (*(int32_t *)(network_socket_handle + NETWORK_SOCKET_TIMEOUT_STATUS_OFFSET0) != NETWORK_STATUS_FAILURE)) &&
      (network_proc_count = *(int32_t *)(*(int64_t *)(network_socket_handle + NETWORK_SOCKET_DESCRIPTOR_OFFSET_838) +
                            *(int32_t *)(network_socket_handle + NETWORK_SOCKET_TIMEOUT_STATUS_OFFSET0) - NETWORK_DECREMENT_VALUE_UNSIGNED) * NETWORK_BASIC_VALUE_QUAD), network_proc_count != -NETWORK_STATUS_SUCCESS)) {
       primary_conn_info_ptr = (int64_t *)((NETWORK_LONG_CAST)network_proc_count * NETWORK_SOCKET_DESCRIPTOR_RESPONSE_OFFSET + *(int64_t *)(network_socket_handle + NETWORK_SOCKET_TIMEOUT_STATUS_OFFSET8));
-int64_t networkValidateProtocolHeader0(uint64_t network_socket_handle, uint64_t network_buffer_ptr, char network_buffer_size)
+int64_t network_validate_protocol_header_initial(uint64_t network_socket_handle, uint64_t network_buffer_ptr, char network_buffer_size)
   network_timeout = *(int64_t *)(network_socket_ctx + NETWORK_SOCKET_REGION_OFFSET_EIGHT_HUNDRED_SIXTY);
   if (((*(int32_t *)(network_socket_ctx + NETWORK_SOCKET_EXTENDED_OFFSET_85C) != NETWORK_STATUS_FAILURE) && (*(int32_t *)(network_socket_ctx + NETWORK_SOCKET_TIMEOUT_STATUS_OFFSET0) != NETWORK_STATUS_FAILURE)) &&
      (network_proc_count = *(int32_t *)(*(int64_t *)(network_socket_ctx + NETWORK_SOCKET_DESCRIPTOR_OFFSET_838) +
@@ -27028,14 +27028,14 @@ int64_t networkValidateProtocolHeader0(uint64_t network_socket_handle, uint64_t 
       primary_conn_info_ptr = (int64_t *)((NETWORK_LONG_CAST)network_proc_count * NETWORK_SOCKET_DESCRIPTOR_RESPONSE_OFFSET + *(int64_t *)(network_socket_ctx + NETWORK_SOCKET_TIMEOUT_STATUS_OFFSET8));
 // 函数: void networkValidateProtocolHeaderSecondary(void)
 void networkValidateProtocolHeaderSecondary(void)
-uint64_t networkValidateProtocolHeader2(void)
-int64_t networkValidateProtocolHeader3(int64_t network_socket_handle, uint32_t *network_buffer_ptr, char network_buffer_size)
+uint64_t network_validate_protocol_header_basic(void)
+int64_t network_validate_protocol_header_extended(int64_t network_socket_handle, uint32_t *network_buffer_ptr, char network_buffer_size)
   network_timeout = *(int64_t *)(network_socket_handle + NETWORK_OFFSET_590);
   if (((*(int32_t *)(network_socket_handle + CONNECTION_TIMEOUT_OFFSETc) != NETWORK_STATUS_FAILURE) && (*(int32_t *)(network_socket_handle + NETWORK_OFFSET_570) != NETWORK_STATUS_FAILURE)) &&
      (network_proc_count = *(int32_t *)(*(int64_t *)(network_socket_handle + NETWORK_CONNECTION_OFFSET_568) +
                            *(int32_t *)(network_socket_handle + NETWORK_OFFSET_570) - NETWORK_DECREMENT_VALUE_UNSIGNED) * NETWORK_BASIC_VALUE_QUAD), network_proc_count != -NETWORK_STATUS_SUCCESS)) {
       primary_conn_info_ptr = (int64_t *)((NETWORK_LONG_CAST)network_proc_count * NETWORK_SOCKET_DESCRIPTOR_RESPONSE_OFFSET + *(int64_t *)(network_socket_handle + NETWORK_CONNECTION_OFFSET_578));
-int64_t networkValidateProtocolHeader4(uint64_t network_socket_handle, uint64_t network_buffer_ptr, char network_buffer_size)
+int64_t network_validate_protocol_header_secure(uint64_t network_socket_handle, uint64_t network_buffer_ptr, char network_buffer_size)
   network_timeout = *(int64_t *)(network_socket_ctx + NETWORK_OFFSET_590);
   if (((*(int32_t *)(network_socket_ctx + CONNECTION_TIMEOUT_OFFSETc) != NETWORK_STATUS_FAILURE) && (*(int32_t *)(network_socket_ctx + NETWORK_OFFSET_570) != NETWORK_STATUS_FAILURE)) &&
      (network_proc_count = *(int32_t *)(*(int64_t *)(network_socket_ctx + NETWORK_STATUS_CODE_568) +
@@ -27043,14 +27043,14 @@ int64_t networkValidateProtocolHeader4(uint64_t network_socket_handle, uint64_t 
       primary_conn_info_ptr = (int64_t *)((NETWORK_LONG_CAST)network_proc_count * NETWORK_SOCKET_DESCRIPTOR_RESPONSE_OFFSET + *(int64_t *)(network_socket_ctx + NETWORK_CONNECTION_REGION_OFFSET_578));
 // 函数: void networkValidateProtocolHeaderMinimal(void)
 void networkValidateProtocolHeaderMinimal(void)
-uint64_t networkValidateProtocolHeader6(void)
-int64_t networkValidateProtocolHeader7(int64_t network_socket_handle, uint32_t *network_buffer_ptr, char network_buffer_size)
+uint64_t network_validate_protocol_header_compressed(void)
+int64_t network_validate_protocol_header_encrypted(int64_t network_socket_handle, uint32_t *network_buffer_ptr, char network_buffer_size)
   network_timeout = *(int64_t *)(network_socket_handle + NETWORK_PACKET_DATA_PAYLOAD_OFFSET0);
   if (((*(int32_t *)(network_socket_handle + NETWORK_SOCKET_EXTENDED_OFFSET_67C) != NETWORK_STATUS_FAILURE) && (*(int32_t *)(network_socket_handle + NETWORK_PROTOCOL_OFFSET_660) != NETWORK_STATUS_FAILURE)) &&
      (network_proc_count = *(int32_t *)(*(int64_t *)(network_socket_handle + NETWORK_SOCKET_DESCRIPTOR_OFFSET_658) +
                            *(int32_t *)(network_socket_handle + NETWORK_PROTOCOL_OFFSET_660) - NETWORK_DECREMENT_VALUE_UNSIGNED) * NETWORK_BASIC_VALUE_QUAD), network_proc_count != -NETWORK_STATUS_SUCCESS)) {
       primary_conn_info_ptr = (int64_t *)((NETWORK_LONG_CAST)network_proc_count * NETWORK_SOCKET_DESCRIPTOR_RESPONSE_OFFSET + *(int64_t *)(network_socket_handle + NETWORK_SOCKET_DESCRIPTOR_OFFSET_668));
-int64_t networkValidateProtocolHeader8(uint64_t network_socket_handle, uint64_t network_buffer_ptr, char network_buffer_size)
+int64_t network_validate_protocol_header_signed(uint64_t network_socket_handle, uint64_t network_buffer_ptr, char network_buffer_size)
   network_timeout = *(int64_t *)(network_socket_ctx + NETWORK_PACKET_DATA_PAYLOAD_OFFSET0);
   if (((*(int32_t *)(network_socket_ctx + NETWORK_SOCKET_EXTENDED_OFFSET_67C) != NETWORK_STATUS_FAILURE) && (*(int32_t *)(network_socket_ctx + NETWORK_PROTOCOL_OFFSET_660) != NETWORK_STATUS_FAILURE)) &&
      (network_proc_count = *(int32_t *)(*(int64_t *)(network_socket_ctx + NETWORK_SOCKET_DESCRIPTOR_OFFSET_658) +
