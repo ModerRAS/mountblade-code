@@ -124,6 +124,28 @@
 // - 保持代码语义不变
 // - 这是简化实现，主要处理了通用变量名和寄存器变量名的语义化替换
 
+// 最新美化内容：
+// - 将ptr_float_var替换为init_float_pointer_temp等指针变量名
+// - 将ptr_int_var替换为init_int_pointer_temp等整数指针变量名
+// - 将ptr_byte_var替换为init_byte_pointer_temp等字节指针变量名
+// - 将ptr_system_ptr_value替换为init_system_ptr_temp等系统指针变量名
+// - 将ptr_ptr_system_memory_handle_ptr替换为init_system_memory_quad_ptr等四重指针变量名
+// - 将ptr_ptr_init_system_ptr_temp替换为init_system_quad_ptr_temp等四重指针临时变量名
+// - 将ptr_ptr_ptr_system_pointer_var替换为init_system_quad_ptr_var等四重指针变量名
+// - 将ptr_ptr_system_pointer_var替换为init_system_triple_ptr_var等三重指针变量名
+// - 将pppustack_var替换为init_stack_quad_ptr等栈四重指针变量名
+// - 将ustack_var替换为init_stack_data_var等栈数据变量名
+// - 将stack0x00000060替换为init_stack_60等栈变量名
+// - 将stack0x00000030替换为init_stack_30等栈变量名
+// - 将stack0x000000a0替换为init_float_stack_a0等浮点栈变量名
+// - 将audio_data_buffer8替换为audio_data_buffer_math等数学计算缓冲区变量名
+// - 将audio_data_buffer7替换为audio_data_buffer_vector等向量计算缓冲区变量名
+// - 将audio_data_buffer6替换为audio_data_buffer_temp等临时缓冲区变量名
+// - 将audio_data_buffer9替换为audio_data_buffer_calc等计算缓冲区变量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+// - 这是简化实现，主要处理了指针变量名和音频缓冲区变量名的语义化替换
+
 // 本次美化内容：
 // - 将pcstack_var替换为init_function_pointer_temp等函数指针临时变量名
 // - 将double_var替换为init_double_temp等双精度临时变量名
