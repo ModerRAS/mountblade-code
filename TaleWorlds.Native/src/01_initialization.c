@@ -49101,7 +49101,7 @@ void initialize_system_data_node_thirty_two(longlong handleIdentifier,uint64_t *
               system_temp_float_value = (*(float *)(system_memory_pointer + SYSTEM_FLAG_BIT_47) - system_float_result_value) * (*(float *)(system_memory_pointer + SYSTEM_FLAG_BIT_47) - system_float_result_value) +
                        system_float_result_value * system_float_result_value + system_float_result_value * system_temp_float_value;
               system_temp_float_value = system_float_result_value - system_temp_float_value;
-              if (system_float_result_value <= 0.0) {
+              if (system_float_result_value <= SYSTEM_FLOAT_VALUE_ZERO) {
                 system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
               }
               if (system_float_result_value * system_float_result_value < system_float_result_value) {
@@ -49109,7 +49109,7 @@ void initialize_system_data_node_thirty_two(longlong handleIdentifier,uint64_t *
               }
               system_memory_pointer = system_memory_pointer + 2;
             } while (system_memory_pointer < (longlong *)system_memory_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER]);
-            if ((0.0 < system_float_result_value) &&
+            if ((SYSTEM_FLOAT_VALUE_ZERO < system_float_result_value) &&
                (system_float_result_value < *(float *)((longlong)system_memory_pointer + SYSTEM_DATA_OFFSET_244) ||
                 system_float_result_value == *(float *)((longlong)system_memory_pointer + SYSTEM_DATA_OFFSET_244))) {
               *(float *)((longlong)system_memory_pointer + SYSTEM_DATA_OFFSET_244) = system_temp_float_value;
