@@ -921,6 +921,7 @@
 #define UTILITY_STACK_OFFSET_NEG_19 -0x19
 #define UTILITY_STACK_OFFSET_NEG_15 -0x15
 #define UTILITY_STACK_OFFSET_NEG_13 -0x13
+#define UTILITY_STACK_OFFSET_NEG_21 -0x21
 
 // 新增语义化宏定义 - 替换栈操作常量
 #define UTILITY_STACK_WRITE_SIZE_4 4
@@ -18587,7 +18588,7 @@ uint64 * ProcessValidationRequest(void)
       if ((int)utility_operation_result3 != 0) {
         return utility_operation_result3;
       }
-      utility_operation_result3 = (uint64 *)writeResourceData(utility_operation_status,stack_frame_pointer + -0x13,2);
+      utility_operation_result3 = (uint64 *)writeResourceData(utility_operation_status,stack_frame_pointer + UTILITY_STACK_OFFSET_NEG_13,UTILITY_STACK_WRITE_SIZE_2);
       if ((int)utility_operation_result3 != 0) {
         return utility_operation_result3;
       }
@@ -18834,7 +18835,7 @@ uint64 * HandleValidationCallback(void)
       if ((int)utility_operation_result_secondary != 0) {
         return utility_operation_result_secondary;
       }
-      utility_operation_result_secondary = (uint64 *)writeResourceData(utility_operation_status,stack_frame_pointer + -0x13,2);
+      utility_operation_result_secondary = (uint64 *)writeResourceData(utility_operation_status,stack_frame_pointer + UTILITY_STACK_OFFSET_NEG_13,UTILITY_STACK_WRITE_SIZE_2);
       if ((int)utility_operation_result_secondary != 0) {
         return utility_operation_result_secondary;
       }
@@ -22980,7 +22981,7 @@ ulonglong InitializeSystemOperator(void)
       if ((int)utility_iteration_index != 0) {
         return utility_iteration_index;
       }
-      utility_iteration_index = writeResourceData(utility_operation_status,stack_frame_pointer + -0x13,2);
+      utility_iteration_index = writeResourceData(utility_operation_status,stack_frame_pointer + UTILITY_STACK_OFFSET_NEG_13,UTILITY_STACK_WRITE_SIZE_2);
       if ((int)utility_iteration_index != 0) {
         return utility_iteration_index;
       }
