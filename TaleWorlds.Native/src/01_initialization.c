@@ -44315,9 +44315,9 @@ INIT_LABEL_SYSTEM_70230:
         init_stack_uint_param_data = CONCAT44(init_stack_uint_param_data._4_4_,system_temp_counter);
         *system_ptr_value = SYSTEM_STRING_DUMP_PATH;
         system_temp_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_CONFIG_SIZE_2E726f737365636f;
-        system_temp_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x6c726f77656c6174;
+        system_temp_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_STRING_RESOURCES_PROCESS;
         system_temp_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_PATH_Resources_3;
-        *(uint32_t *)(system_temp_pointer + 4) = 0x50706d75;
+        *(uint32_t *)(system_temp_pointer + 4) = SYSTEM_STRING_PATH_PMU;
         *(uint32_t *)((longlong)system_temp_pointer + SYSTEM_NODE_OFFSET_NEXT) = 0x65636f72;
         *(uint32_t *)(system_temp_pointer + 5) = 0x6e697373;
         *(uint32_t *)((longlong)system_temp_pointer + SYSTEM_POINTER_OFFSET_2C) = SYSTEM_STRING_FLAG_GOL;
@@ -45926,9 +45926,9 @@ INIT_LABEL_SYSTEM_729bd:
           init_stack_uint_param_thread = CONCAT44(init_stack_uint_param_thread._4_4_,system_temp_counter);
           *system_ptr_value = SYSTEM_STRING_DUMP_PATH;
           system_temp_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_CONFIG_SIZE_2E726f737365636f;
-          system_temp_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x6c726f77656c6174;
+          system_temp_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_STRING_RESOURCES_PROCESS;
           system_temp_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_PATH_Resources_3;
-          *(uint32_t *)(system_temp_pointer + 4) = 0x50706d75;
+          *(uint32_t *)(system_temp_pointer + 4) = SYSTEM_STRING_PATH_PMU;
           *(uint32_t *)((longlong)system_temp_pointer + SYSTEM_NODE_OFFSET_NEXT) = 0x65636f72;
           *(uint32_t *)(system_temp_pointer + 5) = 0x6e697373;
           *(uint32_t *)((longlong)system_temp_pointer + SYSTEM_POINTER_OFFSET_2C) = SYSTEM_STRING_FLAG_GOL;
