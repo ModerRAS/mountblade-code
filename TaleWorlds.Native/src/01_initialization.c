@@ -15394,9 +15394,9 @@ void ConfigureGraphicsParameters(void)
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_system_local_buffer_primary;
   system_system_local_buffer_primary[0] = 0;
-  init_stack_uint_size_90 = 0x11;
+  init_stack_final_config_size = 0x11;
   strcpy_s(system_system_local_buffer_primary,0x80,&g_global_system_config,system_parameter,INVALID_HANDLE_VALUE);
-  system_configuration_data = create_system_object(&thread_parameter_ptr);
+  g_system_final_config_ptr = create_system_object(&thread_parameter_ptr);
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
