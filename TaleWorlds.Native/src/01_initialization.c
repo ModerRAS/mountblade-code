@@ -14769,7 +14769,7 @@ void InitializeSemaphoreDataNode(void)
   system_local_buffer_primary[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
   init_stack_buffer_size = NODE_INITIALIZED_OFFSET;
   strcpy_s(system_local_buffer_primary,SYSTEM_OFFSET_80,&g_system_configuration_data_ptr,system_config_parameter,SYSTEM_HANDLE_INVALID);
-  _g_network_system_object_3 = create_system_object(&thread_parameter_ptr); // 原始名称: system_statusData
+  system_network_object_tertiary = create_system_object(&thread_parameter_ptr); // 原始名称: system_statusData
   return;
 }
 // WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
@@ -14799,8 +14799,8 @@ int initialize_system_data_node_thirty_two(void)
   longlong system_long_result_temp;
   uint64_t system_config_parameter_handle;
 
-  _g_network_system_config_1 = &g_system_data_main; // 原始名称: system_configuration_data
-  _g_network_system_config_2 = &g_system_string_buffer; // 原始名称: systemCoreData
+  system_network_config_primary = &g_system_data_main; // 原始名称: system_configuration_data
+  system_network_config_secondary = &g_system_string_buffer; // 原始名称: systemCoreData
 // void InitializeThreadDataNode(void)
 
 void InitializeThreadDataNode(void)
@@ -16128,7 +16128,7 @@ int ConfigureGraphicsParameters(void)
   initialize_system_component(NETWORK_SYSTEM_INIT_ADDR_1,SYSTEM_INIT_PARAM_POINTER_SIZE,5,&g_subsystem_init_function,InitializeNetworkSystem);
   initialize_system_component(NETWORK_SYSTEM_INIT_ADDR_2,SYSTEM_INIT_PARAM_POINTER_SIZE,5,&g_subsystem_init_function,InitializeNetworkSystem);
   _Mtx_init_in_situ(NETWORK_SYSTEM_MUTEX_ADDR,2);
-  _g_network_state_1 = SYSTEM_INIT_STATUS_DISABLED; // 原始名称: systemCoreData
+  system_network_state_primary = SYSTEM_INIT_STATUS_DISABLED; // 原始名称: systemCoreData
   g_network_buffer_size = SYSTEM_HANDLE_STATUS_INVALID;
   _g_network_state_2 = SYSTEM_INIT_STATUS_DISABLED; // 原始名称: systemCoreData
   _g_network_config_1 = SYSTEM_CONFIG_VALUE_TERTIARY; // 原始名称: system_configuration_data
