@@ -8579,9 +8579,9 @@ void InitializeShaderSystem(void)
   thread_parameter_ptr = &g_thread_parameter_ptr;
   system_buffer_pointer_primary = system_system_local_buffer_primary;
   system_system_local_buffer_primary[0] = 0;
-  init_stack_uint_size_90 = 0xd;
+  init_stack_status_config_size = 0xd;
   strcpy_s(system_system_local_buffer_primary,0x80,&g_global_system_config,system_parameter,INVALID_HANDLE_VALUE);
-  g_system_status_data_object_4 = create_system_object(&thread_parameter_ptr); // 原始名称: system_statusData
+  g_system_status_context_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: system_statusData
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
