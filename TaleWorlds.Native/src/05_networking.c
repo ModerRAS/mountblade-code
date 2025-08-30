@@ -4451,7 +4451,7 @@ void NetworkSendSocketBuffer(int64_t network_socket_handle, uint64_t network_buf
 void NetworkSendToSocket(int64_t *network_socket_handle, uint32_t network_buffer_pointer, uint64_t network_buffer_size_var)
   if (network_buffer_pointer < NETWORK_BUFFER_THRESHOLD) {
     network_operation_status_code = ValidateNetworkConnection(network_buffer_size_var, network_socket_handle + NETWORK_BUFFER_CAPACITY_MEDIUM);
-      network_operation_status_code = ProcessNetworkData(network_buffer_size_var, network_socket_handle + 5, NETWORK_STATUS_READY_MASK);
+      network_operation_status_code = ProcessNetworkData(network_buffer_size_var, network_socket_handle + NETWORK_SOCKET_HANDLE_OFFSET_PACKET_HEADER, NETWORK_STATUS_READY_MASK);
         network_operation_status_code = ReceiveNetworkPacket(network_buffer_size_var, network_socket_handle + NETWORK_DATA_OFFSET_3);
           *(uint8_t *)((longlong)network_socket_handle + NETWORK_ERROR_INVALID_OFFSET) = NETWORK_OPERATION_STATUS_FAILURE;
           return;
@@ -10569,7 +10569,7 @@ uint64_t NetworkHandleConnectionError(uint64_t *network_socket_handle)
       network_packet_offsetset = *network_status_data_buffer_pointer;
       network_packet_offsetset_header = NETWORK_OPERATION_STATUS_FAILURE;
       network_context_arrayay_primary = NETWORK_OPERATION_STATUS_FAILURE;
-      ProcessNetworkPacket(network_socket_handle + 5, &network_encryption_key_main);
+      ProcessNetworkPacket(network_socket_handle + NETWORK_SOCKET_HANDLE_OFFSET_PACKET_HEADER, &network_encryption_key_main);
       if (network_context_arrayay_primary != NETWORK_OPERATION_STATUS_FAILURE) {
         pnetwork_operation_status_code_third = (int32_t *)(network_context_arrayay_primary + MODULE_STATUS_OFFSET);
         *pnetwork_operation_status_code_third = *pnetwork_operation_status_code_third + -NETWORK_OPERATION_SUCCESS;
@@ -19119,7 +19119,7 @@ uint64_t network_socket_handle(uint64_t *network_socket_handle, int64_t *network
       network_encryption_key_main = (ulonglong)network_buffer_size_var;
       network_processor_index = (**(code **)(*network_buffer_main + MODULE_STATUS_OFFSET))(network_buffer_main, &network_stack_packet_transmission_buffer);
       if (network_packet_offsetset != network_encryption_key_main) {
-      network_processor_index = network_socket_handle(network_socket_handle + 5, &pnetwork_integer_stack_secondary);
+      network_processor_index = network_socket_handle(network_socket_handle + NETWORK_SOCKET_HANDLE_OFFSET_PACKET_HEADER, &pnetwork_integer_stack_secondary);
   network_timeout_value = network_global_response_buffer[NETWORK_ARRAY_SIZE_4];
   *network_socket_context = network_contextPtr;
   network_socket_context[NETWORK_OPERATION_SUCCESS] = network_contextPtr;
@@ -30156,10 +30156,10 @@ uint64_t GetNetworkContext(int64_t network_socket_handle)
     networkRoutePacket9(network_buffer_size_var);
     network_log_message(*(uint64_t *)(g_network_module + NETWORK_MODULE_OFFSET), network_buffer_size_var, &g_network_log_buffer_tertiary, NETWORK_SOCKET_DATA_OFFSETe7, NETWORK_OPERATION_SUCCESS);
   network_timeout_config_pointer = (int64_t *)(network_socket_handle + NETWORK_SOCKET_DATA_OFFSETe8);
-  network_data_pointer = *(uint32_t *)(network_socket_handle + 500);
+  network_data_pointer = *(uint32_t *)(network_socket_handle + NETWORK_SOCKET_HANDLE_OFFSET_PACKET_HEADER00);
     if (NETWORK_OPERATION_STATUS_FAILURE < *(int32_t *)(network_socket_handle + NETWORK_SOCKET_DATA_OFFSETf0)) {
     if ((NETWORK_OPERATION_STATUS_FAILURE < (int)network_data_pointer) && (*network_timeout_config_pointer != NETWORK_OPERATION_STATUS_FAILURE)) {
-    *(uint32_t *)(network_socket_handle + 500) = NETWORK_OPERATION_STATUS_FAILURE;
+    *(uint32_t *)(network_socket_handle + NETWORK_SOCKET_HANDLE_OFFSET_PACKET_HEADER00) = NETWORK_OPERATION_STATUS_FAILURE;
   network_operation_result = *(int32_t *)(network_socket_handle + NETWORK_SOCKET_DATA_OFFSETf0);
     memset(*network_timeout_config_pointer + (longlong)network_operation_result * NETWORK_PACKET_HEADER_SIZE, NETWORK_OPERATION_STATUS_FAILURE, (longlong)-network_operation_result << 3);
   *(uint32_t *)(network_socket_handle + NETWORK_SOCKET_DATA_OFFSETf0) = NETWORK_OPERATION_STATUS_FAILURE;
