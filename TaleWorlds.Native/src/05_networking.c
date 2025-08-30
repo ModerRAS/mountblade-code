@@ -1068,19 +1068,19 @@
 #define NETWORK_PARAMETER_OFFSET_NEGATIVE -0x54  // 参数负偏移量
 
 // 新增语义化常量定义 - 负偏移量常量
-#define NETWORK_NEGATIVE_OFFSET_234 -0x234  // 负偏移量234
-#define NETWORK_NEGATIVE_OFFSET_75 -NETWORK_STATUS_CODE_75    // 负偏移量75
-#define NETWORK_NEGATIVE_OFFSET_24C -0x24C    // 负偏移量24C
-#define NETWORK_NEGATIVE_OFFSET_244 -0x244    // 负偏移量244
-#define NETWORK_NEGATIVE_OFFSET_23C -0x23C    // 负偏移量23C
-#define NETWORK_NEGATIVE_OFFSET_35 -0x35       // 负偏移量35
-#define NETWORK_NEGATIVE_OFFSET_360 -NETWORK_DATA_PTR_OFFSET_360    // 负偏移量360
-#define NETWORK_NEGATIVE_OFFSET_368 -NETWORK_DATA_PTR_OFFSET_368    // 负偏移量368
+#define NETWORK_NEGATIVE_OFFSET_LARGE -0x234  // 负偏移量大值
+#define NETWORK_NEGATIVE_OFFSET_MEDIUM -NETWORK_STATUS_CODE_75    // 负偏移量中等值
+#define NETWORK_NEGATIVE_OFFSET_LARGE_C -0x24C    // 负偏移量大值C
+#define NETWORK_NEGATIVE_OFFSET_MEDIUM_4 -0x244    // 负偏移量中等值4
+#define NETWORK_NEGATIVE_OFFSET_MEDIUM_C -0x23C    // 负偏移量中等值C
+#define NETWORK_NEGATIVE_OFFSET_SMALL -0x35       // 负偏移量小值
+#define NETWORK_NEGATIVE_OFFSET_LARGE_60 -NETWORK_DATA_PTR_OFFSET_360    // 负偏移量大值60
+#define NETWORK_NEGATIVE_OFFSET_LARGE_68 -NETWORK_DATA_PTR_OFFSET_368    // 负偏移量大值68
 
 // 新增语义化常量定义 - 缓冲区掩码
-#define NETWORK_BUFFER_MASK_0X66800 0x66800  // 缓冲区掩码0X66800
-#define NETWORK_BUFFER_MASK_0X33 0x33        // 缓冲区掩码0X33
-#define NETWORK_BUFFER_SIZE_THRESHOLD_0X41 NETWORK_OPERATION_THRESHOLD  // 缓冲区大小阈值0X41
+#define NETWORK_BUFFER_MASK_LARGE 0x66800  // 缓冲区掩码大值
+#define NETWORK_BUFFER_MASK_SMALL 0x33        // 缓冲区掩码小值
+#define NETWORK_BUFFER_SIZE_THRESHOLD NETWORK_OPERATION_THRESHOLD  // 缓冲区大小阈值
 
 // 新增语义化常量定义 - 变量名语义化美化
 #define NETWORK_HANDSHAKE_DATA_0 network_handshake_data_zero  // 握手数据0
@@ -1095,8 +1095,8 @@
 // 简化实现：主要处理硬编码值的语义化替换和变量名改善，保持核心功能不变
 
 // 新增语义化常量定义 - 网络缩放因子常量
-#define NETWORK_SCALING_FACTOR_1_5 1.5f        // 网络缩放因子1.5
-#define NETWORK_SCALING_FACTOR_2_0 2.0f        // 网络缩放因子2.0
+#define NETWORK_SCALING_FACTOR_MEDIUM 1.5f        // 网络缩放因子中等值
+#define NETWORK_SCALING_FACTOR_LARGE 2.0f        // 网络缩放因子大值
 #define NETWORK_SCALING_FACTOR_3_0 3.0f        // 网络缩放因子3.0
 
 // 新增语义化常量定义 - 网络数据对齐常量
