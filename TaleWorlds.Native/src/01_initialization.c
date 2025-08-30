@@ -727,6 +727,10 @@
 #define NODE_INDEX_ENGINE_PTR 8
 #define NODE_INDEX_ENGINE_TYPE 9
 #define NODE_INDEX_ENGINE_FLAG 10
+#define NODE_INDEX_ROOT_NEXT 1
+#define NODE_INDEX_ROOT_PREV 2
+#define NODE_INDEX_CURRENT_NEXT 0
+#define NODE_INDEX_CURRENT_PREV 2
 
 // 系统节点标识符常量定义
 #define SYSTEM_NODE_ID_AUDIO_PROCESSOR_1 0x1
@@ -1926,10 +1930,10 @@ void InitializeSystemData(void)
 
   system_data_pointer = (longlong *)GetSystemDataBase();
   system_root_node = (uint64_t *)*system_data_pointer;
-  system_initialized_flag = *(char *)((longlong)system_root_node[1] + NODE_INITIALIZED_OFFSET);
+  system_initialized_flag = *(char *)((longlong)system_root_node[NODE_INDEX_ROOT_NEXT] + NODE_INITIALIZED_OFFSET);
   system_initialization_function = InitializeGameData;
   system_previous_node = system_root_node;
-  system_current_node = (uint64_t *)system_root_node[1];
+  system_current_node = (uint64_t *)system_root_node[NODE_INDEX_ROOT_NEXT];
   while (system_initialized_flag == '\0') {
     memory_compare_result = memcmp(system_current_node + 4,&gameDataDefaultPattern,SYSTEM_DATA_COMPARE_SIZE);
     if (memory_compare_result < 0) {
@@ -1972,10 +1976,10 @@ void InitializeCoreSystemData(void)
 
   core_system_data_pointer = (longlong *)GetSystemPointerData();
   core_system_root_node = (uint64_t *)*core_system_data_pointer;
-  core_system_initialized_flag = *(char *)((longlong)core_system_root_node[1] + NODE_INITIALIZED_OFFSET);
+  core_system_initialized_flag = *(char *)((longlong)core_system_root_node[NODE_INDEX_ROOT_NEXT] + NODE_INITIALIZED_OFFSET);
   core_system_initialization_flag = 0;
   core_system_previous_node = core_system_root_node;
-  core_system_current_node = (uint64_t *)core_system_root_node[1];
+  core_system_current_node = (uint64_t *)core_system_root_node[NODE_INDEX_ROOT_NEXT];
   while (core_system_initialized_flag == '\0') {
     core_memory_compare_result = memcmp(core_system_current_node + 4,&system_data_pattern_audio,SYSTEM_DATA_COMPARE_SIZE);
     if (core_memory_compare_result < 0) {
@@ -2025,7 +2029,7 @@ void InitializeSystemListNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_video,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -2071,7 +2075,7 @@ void InitializeMemoryNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_input,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -2117,7 +2121,7 @@ void InitializeBufferNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_network,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -2163,7 +2167,7 @@ void InitializeResourceNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_config,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -2209,7 +2213,7 @@ void InitializeResourceNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_font,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -2256,7 +2260,7 @@ void InitializeRenderNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -2303,7 +2307,7 @@ void InitializeAudioNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -2350,7 +2354,7 @@ void InitializeNetworkNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -2417,7 +2421,7 @@ void InitializeEngineState(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_physics,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -2497,7 +2501,7 @@ void InitializeRenderingSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_rendering,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -2543,7 +2547,7 @@ void InitializeAudioSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -2619,7 +2623,7 @@ void InitializeNetworkSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -2666,7 +2670,7 @@ void initialize_system_phase1(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -2713,7 +2717,7 @@ void initialize_system_phase2(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -2760,7 +2764,7 @@ void initialize_system_phase3(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -2807,7 +2811,7 @@ void initialize_system_phase4(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -2854,7 +2858,7 @@ void initialize_system_phase5(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -2901,7 +2905,7 @@ void initialize_system_phase6(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -2948,7 +2952,7 @@ void initialize_system_phase7(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_video0,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -2995,7 +2999,7 @@ void initialize_system_phase8(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_video1,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -3042,7 +3046,7 @@ void initialize_system_phase9(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_rendering,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -3089,7 +3093,7 @@ void initialize_system_phase10(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -3136,7 +3140,7 @@ void initialize_graphics_phase1(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_physics,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -3183,7 +3187,7 @@ void initialize_graphics_phase2(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_video2,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -3230,7 +3234,7 @@ void initialize_graphics_phase3(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_video3,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -3306,7 +3310,7 @@ void InitializeDataNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -3353,7 +3357,7 @@ void InitializeResourceNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -3400,7 +3404,7 @@ void InitializeMemoryNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -3447,7 +3451,7 @@ void InitializeThreadNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -3494,7 +3498,7 @@ void InitializeConfigNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -3541,7 +3545,7 @@ void InitializeStateNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -3588,7 +3592,7 @@ void InitializeBufferNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -3635,7 +3639,7 @@ void InitializeCacheNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_video1,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -3682,7 +3686,7 @@ void InitializePoolNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -3729,7 +3733,7 @@ void InitializeQueueNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -3776,7 +3780,7 @@ void InitializeStackNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -3823,7 +3827,7 @@ void InitializeSystemListNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -3870,7 +3874,7 @@ void InitializeTreeNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -3917,7 +3921,7 @@ void InitializeGraphNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -3964,7 +3968,7 @@ void InitializeMapNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -4011,7 +4015,7 @@ void InitializeSetNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -4058,7 +4062,7 @@ void InitializeArrayNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -4105,7 +4109,7 @@ void InitializeVectorNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -4152,7 +4156,7 @@ void InitializeMatrixNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -4199,7 +4203,7 @@ void InitializeHashNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -4246,7 +4250,7 @@ void InitializeTableNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -4293,7 +4297,7 @@ void InitializeRecordNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -4340,7 +4344,7 @@ void InitializeFieldNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_physics,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -4387,7 +4391,7 @@ void InitializeAttributeNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_video1,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -4434,7 +4438,7 @@ void InitializePropertyNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -4481,7 +4485,7 @@ void InitializeMethodNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -4528,7 +4532,7 @@ void InitializeEventNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -4575,7 +4579,7 @@ void InitializeDelegateNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -4622,7 +4626,7 @@ void InitializeCallbackNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -4669,7 +4673,7 @@ void InitializeHandlerNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -4716,7 +4720,7 @@ void InitializeListenerNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -4792,7 +4796,7 @@ void InitializeSystemObject1(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_rendering,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -4839,7 +4843,7 @@ void InitializeSystemObject2(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -4886,7 +4890,7 @@ void InitializeSystemObject3(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_rendering,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -4933,7 +4937,7 @@ void InitializeSystemObject4(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -4980,7 +4984,7 @@ void InitializeSystemObject5(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -5027,7 +5031,7 @@ void InitializeSystemObject6(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -5074,7 +5078,7 @@ void InitializeSystemObject7(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -5121,7 +5125,7 @@ void InitializeSystemObject8(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -5168,7 +5172,7 @@ void InitializeSystemObject9(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -5215,7 +5219,7 @@ void InitializeSystemObject10(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -5262,7 +5266,7 @@ void InitializeSystemObject11(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -5328,7 +5332,7 @@ void InitializeThreadConfig2(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -5375,7 +5379,7 @@ void InitializeSystemObject13(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -5422,7 +5426,7 @@ void InitializeSystemObject14(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -5469,7 +5473,7 @@ void InitializeSystemObject15(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -5516,7 +5520,7 @@ void InitializeSystemObject16(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -5563,7 +5567,7 @@ void InitializeSystemObject17(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -5610,7 +5614,7 @@ void InitializeSystemObject18(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -5781,7 +5785,7 @@ void InitializeSystemObject25(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_video2,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -5828,7 +5832,7 @@ void EnableInputDevice(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_video3,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -5875,7 +5879,7 @@ void DisableInputDevice(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -5922,7 +5926,7 @@ void InitializeNetworkSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -5969,7 +5973,7 @@ void CreateNetworkSocket(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -6016,7 +6020,7 @@ void DestroyNetworkSocket(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -6063,7 +6067,7 @@ void ConnectNetworkSocket(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -6110,7 +6114,7 @@ void DisconnectNetworkSocket(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -6157,7 +6161,7 @@ void SendNetworkData(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -6204,7 +6208,7 @@ void ReceiveNetworkData(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -6251,7 +6255,7 @@ void GetNetworkStatus(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -6298,7 +6302,7 @@ void SetNetworkTimeout(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -6345,7 +6349,7 @@ void FlushNetworkBuffer(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -6392,7 +6396,7 @@ void InitializeSystemModule18(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -6439,7 +6443,7 @@ void InitializeSystemModule19(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -6486,7 +6490,7 @@ void InitializeSystemModule20(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -6587,7 +6591,7 @@ void InitializeAudioSubsystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_video1,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -6634,7 +6638,7 @@ void InitializeVideoSubsystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_video0,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -6681,7 +6685,7 @@ void InitializeInputSubsystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_rendering,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -6728,7 +6732,7 @@ void InitializeNetworkSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -6775,7 +6779,7 @@ void InitializeConfigSubsystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -6822,7 +6826,7 @@ void InitializeFontSubsystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -6869,7 +6873,7 @@ void InitializeShaderSubsystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -6916,7 +6920,7 @@ void InitializePhysicsSubsystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -6963,7 +6967,7 @@ void InitializeUISubsystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -7010,7 +7014,7 @@ void InitializeSecuritySubsystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -7057,7 +7061,7 @@ void ProcessSystemStringData(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -7104,7 +7108,7 @@ void ValidateSystemConfiguration(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_video2,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -7151,7 +7155,7 @@ void InitializeSystemTimer(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_video3,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -7198,7 +7202,7 @@ void InitializeSystemLogger(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -7245,7 +7249,7 @@ void InitializeSystemProfiler(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -7292,7 +7296,7 @@ void InitializeAudioSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -7339,7 +7343,7 @@ void InitializeVideoSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -7386,7 +7390,7 @@ void InitializeInputSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -7433,7 +7437,7 @@ void InitializeNetworkSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -7480,7 +7484,7 @@ void InitializeConfigSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -7527,7 +7531,7 @@ void InitializeSystemModule42(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_video0,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -7574,7 +7578,7 @@ void InitializeSystemModule43(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_video1,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -7621,7 +7625,7 @@ void InitializeSystemModule44(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_video2,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -7668,7 +7672,7 @@ void InitializeSystemModule45(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_video3,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -7715,7 +7719,7 @@ void InitializeSystemModule46(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_physics,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -7762,7 +7766,7 @@ void UtilityModule1(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -7809,7 +7813,7 @@ void UtilityModule2(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -7856,7 +7860,7 @@ void UtilityModule3(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -7903,7 +7907,7 @@ void UtilityModule4(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -7950,7 +7954,7 @@ void UtilityModule5(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -7997,7 +8001,7 @@ void UtilityModule6(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -8044,7 +8048,7 @@ void UtilityModule7(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -8158,7 +8162,7 @@ void InitializeShaderSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -8205,7 +8209,7 @@ void InitializePhysicsSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -8252,7 +8256,7 @@ void ProcessGraphicsTexture(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -8299,7 +8303,7 @@ void InitializeUISystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -8346,7 +8350,7 @@ void InitializeSecuritySystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -8393,7 +8397,7 @@ void InitializeAuthenticationSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -8440,7 +8444,7 @@ void InitializeResourceSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -8487,7 +8491,7 @@ void InitializeTextureSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_physics,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -8553,7 +8557,7 @@ void InitializeSystemTimer(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&gameDataDefaultPattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -8600,7 +8604,7 @@ void InitializeSystemLogger(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -8647,7 +8651,7 @@ void InitializeSystemProfiler(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_video,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -8694,7 +8698,7 @@ void InitializeAudioSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_input,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -8741,7 +8745,7 @@ void InitializeVideoSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_network,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -8788,7 +8792,7 @@ void InitializeInputSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_config,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -8835,7 +8839,7 @@ void InitializeNetworkSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_font,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -8882,7 +8886,7 @@ void InitializeConfigSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -8929,7 +8933,7 @@ void InitializeAudioSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -8976,7 +8980,7 @@ void InitializeVideoSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -9023,7 +9027,7 @@ void InitializeInputSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_video1,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -9241,7 +9245,7 @@ void InitializeResourceSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -9288,7 +9292,7 @@ void InitializeTextureSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -9335,7 +9339,7 @@ void InitializeStringManagerSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -9382,7 +9386,7 @@ void InitializeMemoryManagerSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -9429,7 +9433,7 @@ void InitializeThreadManagerSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -9476,7 +9480,7 @@ void InitializeEventSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -9523,7 +9527,7 @@ void InitializeFilesystemSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -9570,7 +9574,7 @@ void InitializeDatabaseSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -9617,7 +9621,7 @@ void SetupGraphicsDevice(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -9664,7 +9668,7 @@ void InitializeGraphicsSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -9711,7 +9715,7 @@ void InitializeAudioManagerSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -9758,7 +9762,7 @@ void InitializeNetworkManagerSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -9805,7 +9809,7 @@ void InitializeInputManagerSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -9852,7 +9856,7 @@ void InitializeGraphicsMemory(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -9899,7 +9903,7 @@ void InitializeRenderSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -9946,7 +9950,7 @@ void InitializeGameSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -9993,7 +9997,7 @@ void InitializeConditionInitNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -10040,7 +10044,7 @@ void ConfigureGraphicsShader(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -10087,7 +10091,7 @@ void InitializeAudioDataNode7(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -10134,7 +10138,7 @@ void InitializeNetworkMutex(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -10181,7 +10185,7 @@ void InitializeShaderSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -10228,7 +10232,7 @@ void InitializeNetworkInitNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -10275,7 +10279,7 @@ void InitializeMutexInitNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -10322,7 +10326,7 @@ void InitializeSystemModule58(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -10369,7 +10373,7 @@ void InitializeSystemModule40(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -10416,7 +10420,7 @@ void InitializeAudioDataNode8(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -10463,7 +10467,7 @@ void InitializeDataEngineNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -10510,7 +10514,7 @@ void InitializeUtilEngineNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -10557,7 +10561,7 @@ void InitializeResourceEngineNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&gameDataDefaultPattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -10604,7 +10608,7 @@ void ConfigureGraphicsParameters(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -10651,7 +10655,7 @@ void InitializeSecuritySystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_video,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -10698,7 +10702,7 @@ void InitializeInputEngineNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_input,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -10745,7 +10749,7 @@ void InitializeSystemModule41(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_network,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -10792,7 +10796,7 @@ void InitializeSecurityEngineNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_config,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -10839,7 +10843,7 @@ void InitializeSystemDataNode29(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_font,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -10886,7 +10890,7 @@ void InitializeFontSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -10933,7 +10937,7 @@ void InitializeSystemDataNode30(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -10980,7 +10984,7 @@ void InitializeSystemDataNode31(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -11056,7 +11060,7 @@ void InitializeResourceEngineNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&gameDataDefaultPattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -11103,7 +11107,7 @@ void ConfigureGraphicsParameters(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -11150,7 +11154,7 @@ void InitializeSecuritySystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_video,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -11197,7 +11201,7 @@ void InitializeInputEngineNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_input,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -11244,7 +11248,7 @@ void InitializeSystemModule41(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_network,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -11291,7 +11295,7 @@ void InitializeSecurityEngineNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_config,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -11338,7 +11342,7 @@ void InitializeSystemDataNode29(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_font,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -11385,7 +11389,7 @@ void InitializeFontSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -11432,7 +11436,7 @@ void InitializeSystemDataNode30(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -11479,7 +11483,7 @@ void InitializeSystemDataNode31(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -11564,7 +11568,7 @@ void ConfigureSystemHandles(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -11611,7 +11615,7 @@ void SetupSystemMemory(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -11658,7 +11662,7 @@ void InitializeSystemResources(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -11705,7 +11709,7 @@ void InitializeInputMutex(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -11752,7 +11756,7 @@ void ConfigureSystemParameters(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -11799,7 +11803,7 @@ void InitializeSystemComponents(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -11846,7 +11850,7 @@ void SetupSystemServices(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -11903,7 +11907,7 @@ void InitializeSystemProfiler(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_video1,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -11950,7 +11954,7 @@ void InitializeAudioSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -11997,7 +12001,7 @@ void InitializeVideoSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -12044,7 +12048,7 @@ void InitializeInputSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -12091,7 +12095,7 @@ void InitializeNetworkSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -12138,7 +12142,7 @@ void InitializeConfigSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -12185,7 +12189,7 @@ void InitializeAudioSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -12232,7 +12236,7 @@ void InitializeVideoSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -12279,7 +12283,7 @@ void InitializeInputSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -12326,7 +12330,7 @@ void InitializeNetworkSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -12373,7 +12377,7 @@ void InitializeSystemModule1(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -12420,7 +12424,7 @@ void InitializeSystemModule2(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -12467,7 +12471,7 @@ void InitializeSystemModule3(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -12514,7 +12518,7 @@ void InitializeSystemModule4(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -12561,7 +12565,7 @@ void InitializeSystemModule59(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -12680,7 +12684,7 @@ void InitializeAudioDataNode7(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&gameDataDefaultPattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -12727,7 +12731,7 @@ void InitializeNetworkMutex(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -12774,7 +12778,7 @@ void InitializeShaderSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_video,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -12821,7 +12825,7 @@ void InitializeFontSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_input,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -12868,7 +12872,7 @@ void InitializeSystemModule9(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_network,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -12915,7 +12919,7 @@ void InitializeSystemModule38(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_config,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -12962,7 +12966,7 @@ void InitializeSystemModule10(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_font,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -13009,7 +13013,7 @@ void InitializeSystemNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -13056,7 +13060,7 @@ void InitializeSystemModule44(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -13103,7 +13107,7 @@ void InitializeSystemModule36(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -13236,7 +13240,7 @@ void InitializeSystemModule59(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -13283,7 +13287,7 @@ void InitializeSystemModule6(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -13330,7 +13334,7 @@ void InitializeSystemModule42(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&gameDataDefaultPattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -13377,7 +13381,7 @@ void InitializeSystemModule35(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -13424,7 +13428,7 @@ void InitializeSystemModule13(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_video,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -13471,7 +13475,7 @@ void InitializeSystemModule14(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_input,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -13518,7 +13522,7 @@ void ProcessSystemData(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_network,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -13565,7 +13569,7 @@ void InitializeSystemModule37(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_config,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -13612,7 +13616,7 @@ void InitializeSystemModule16(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_font,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -13659,7 +13663,7 @@ void InitializeSystemModule17(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -13706,7 +13710,7 @@ void InitializeSystemModule18(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -13753,7 +13757,7 @@ void InitializeSystemModule19(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -13800,7 +13804,7 @@ void InitializeGraphicsMemory(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -13847,7 +13851,7 @@ void InitializeRenderSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -13894,7 +13898,7 @@ void InitializeAuthenticationSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_video1,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -13941,7 +13945,7 @@ void InitializeSystemModule39(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_video0,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -13988,7 +13992,7 @@ void InitializeSystemModule21(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_rendering,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -14035,7 +14039,7 @@ void InitializeSystemModule43(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -14082,7 +14086,7 @@ void InitializeSystemModule23(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -14129,7 +14133,7 @@ void InitializeSystemModule24(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -14176,7 +14180,7 @@ void InitializeNetworkInitNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -14223,7 +14227,7 @@ void InitializeMutexInitNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -14270,7 +14274,7 @@ void InitializeSystemModule58(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -14317,7 +14321,7 @@ void InitializeSystemModule40(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -14364,7 +14368,7 @@ void InitializeAudioDataNode8(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -14411,7 +14415,7 @@ void InitializeDataEngineNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_physics,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -14458,7 +14462,7 @@ void InitializeUtilEngineNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -14505,7 +14509,7 @@ void InitializeResourceEngineNode(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -14589,7 +14593,7 @@ void InitializeSystemModule59(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -14636,7 +14640,7 @@ void InitializeSystemModule6(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -14683,7 +14687,7 @@ void InitializeStringManagerSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -14730,7 +14734,7 @@ void InitializeMemoryManagerSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -14806,7 +14810,7 @@ void InitializeResourceSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -14853,7 +14857,7 @@ void InitializeTextureSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -14900,7 +14904,7 @@ void InitializeStringManager(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_rendering,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -14947,7 +14951,7 @@ void InitializeSystemModule25(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -14994,7 +14998,7 @@ void InitializeSystemModule26(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -15041,7 +15045,7 @@ void InitializeSystemModule27(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -15088,7 +15092,7 @@ void InitializeSystemModule45(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -15135,7 +15139,7 @@ void InitializeSystemModule29(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -15182,7 +15186,7 @@ void InitializePhysicsSystem(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -15229,7 +15233,7 @@ void InitializeSystemModule30(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -15276,7 +15280,7 @@ void InitializeSystemModule31(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -15323,7 +15327,7 @@ void ConfigureSystemHandles(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&gameDataDefaultPattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -15370,7 +15374,7 @@ void SetupSystemMemory(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_audio,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -15417,7 +15421,7 @@ void InitializeSystemResources(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_video,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -15464,7 +15468,7 @@ void InitializeInputMutex(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_input,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -15511,7 +15515,7 @@ void ConfigureSystemParameters(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_network,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -15558,7 +15562,7 @@ void InitializeSystemComponents(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_config,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -15605,7 +15609,7 @@ void SetupSystemServices(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&system_data_pattern_font,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -15652,7 +15656,7 @@ void ConfigureSystemSettings(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -15699,7 +15703,7 @@ void InitializeSystemModule32(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
@@ -15746,7 +15750,7 @@ void InitializeSystemModule33(void)
   while (is_initialized == '\0') {
     compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
-      node_next = (uint64_t *)node_current[2];
+      node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
     }
     else {
