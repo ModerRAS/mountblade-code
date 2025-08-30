@@ -14385,3 +14385,26 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_TWENTY_VALUE 20           // 值20
 #define SYSTEM_TWENTY_FOUR_VALUE 24       // 值24
 #define SYSTEM_THIRTY_TWO_VALUE 32        // 值32
+
+// 颜色处理常量 - 美化硬编码值（2025年8月30日最终批次）
+#define SYSTEM_FLOAT_COLOR_LUMINANCE_RED_FULL 1.0      // 红色亮度系数完整值
+#define SYSTEM_FLOAT_COLOR_LUMINANCE_GREEN_FULL 1.0    // 绿色亮度系数完整值
+#define SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_FULL 1.0     // 蓝色亮度系数完整值
+
+// 算术运算常量 - 美化硬编码值（2025年8月30日最终批次）
+#define SYSTEM_FLOAT_ARITHMETIC_ADD 1.0               // 加法运算值
+#define SYSTEM_FLOAT_ARITHMETIC_SUBTRACT 1.0          // 减法运算值
+#define SYSTEM_FLOAT_ARITHMETIC_MULTIPLY 2.0          // 乘法运算值
+#define SYSTEM_FLOAT_ARITHMETIC_DIVIDE 2.0            // 除法运算值
+#define SYSTEM_FLOAT_ARITHMETIC_HALF 0.5               // 半值
+#define SYSTEM_FLOAT_ARITHMETIC_QUARTER 0.25           // 四分之一值
+
+// 特殊数值常量 - 美化硬编码值（2025年8月30日最终批次）
+#define SYSTEM_FLOAT_SQUARE_ROOT_APPROXIMATION 3.0    // 平方根近似值
+#define SYSTEM_FLOAT_NORMALIZATION_FACTOR 127.5       // 归一化因子
+#define SYSTEM_FLOAT_NORMALIZATION_FACTOR_LARGE 32767.5 // 大归一化因子
+
+// 颜色亮度计算常量 - 美化硬编码值（2025年8月30日最终批次）
+#define SYSTEM_FLOAT_COLOR_LUMINANCE_RED_COMPONENT 0.2126    // 红色分量
+#define SYSTEM_FLOAT_COLOR_LUMINANCE_GREEN_COMPONENT 0.7152  // 绿色分量
+#define SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT 0.0722   // 蓝色分量
