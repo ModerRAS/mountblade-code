@@ -7915,7 +7915,7 @@ system_finalizer_tertiary(unsigned long long handle_param,unsigned long long thr
       (**(code **)(*pstack_long_var + SYSTEM_OFFSET_CLEANUP_FUNCTION))();
     }
   }
-  *(float *)(system_global_data_pointer + path_buffer_size0) = 1.0 / (float)(int)handle_param[1];
+  *(float *)(system_global_data_pointer + path_buffer_size0) = SYSTEM_FLOAT_VALUE_ONE / (float)(int)handle_param[1];
   thread_stack_ptr = &g_threadString2;
   if (thread_stack_ptr != (void *)SYSTEM_NULL_POINTER) {
     handle_param_system_error();
