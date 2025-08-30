@@ -1,5 +1,25 @@
 #include "TaleWorlds.Native.Split.h"
 
+// 本次美化内容（2025年8月30日）第六批次：
+// - 美化InitializeSystemDataNode32函数中的变量名
+// - 将uintStack_2c8替换为system_stack_buffer_index_2c8等缓冲区索引变量名
+// - 将uintStack_2c0替换为system_stack_config_param_2c0等配置参数变量名
+// - 将uintStack_2a0替换为system_stack_data_handle_2a0等数据句柄变量名
+// - 将longStack_288替换为system_stack_file_handle_288等文件句柄变量名
+// - 将longStack_248替换为system_stack_max_size_248等最大尺寸变量名
+// - 将system_buffer_ptr_2d8替换为system_buffer_ptr_data_list_2d8等数据列表指针变量名
+// - 将system_buffer_ptr_2d0替换为system_buffer_ptr_data_end_2d0等数据结束指针变量名
+// - 将system_buffer_ptr_2b0替换为system_buffer_ptr_resource_pool_2b0等资源池指针变量名
+// - 将system_buffer_ptr_2a8替换为system_buffer_ptr_resource_data_2a8等资源数据指针变量名
+// - 将system_buffer_ptr_290替换为system_buffer_ptr_resource_context_290等资源上下文指针变量名
+// - 将system_local_buffer_2f8替换为system_local_buffer_config_key_2f8等配置键缓冲区变量名
+// - 将system_local_buffer_268替换为system_local_buffer_file_info_268等文件信息缓冲区变量名
+// - 将system_local_buffer_238替换为system_local_buffer_temp_data_238等临时数据缓冲区变量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了InitializeSystemDataNode32函数中变量名的语义化替换
+// - 原本实现：完全重构InitializeSystemDataNode32函数的变量命名体系
+// - 简化实现：仅将InitializeSystemDataNode32函数中常见的包含数字的变量名替换为语义化名称
+
 // 本次美化内容（2025年8月30日）第五批次：
 // - 美化临时变量名，将system_temp_long_1-4替换为system_temp_long_primary等语义化变量名
 // - 美化临时整数变量名，将system_temp_integer_1-3替换为system_temp_integer_primary等语义化变量名

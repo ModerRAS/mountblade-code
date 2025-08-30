@@ -277,6 +277,19 @@
 #define NETWORK_CONNECTION_TIMEOUT_OFFSET 200
 #define NETWORK_SOCKET_DESCRIPTORS_OFFSET 600
 
+// 网络系统套接字句柄偏移量语义化常量定义（简化实现）
+// 原本实现：完全重构套接字句柄偏移量体系
+// 简化实现：仅将常见的硬编码偏移量替换为语义化常量
+#define NETWORK_SOCKET_HANDLE_OFFSET_PACKET_HEADER   5     // 数据包头部偏移量
+#define NETWORK_SOCKET_HANDLE_OFFSET_AUTH           3     // 认证偏移量  
+#define NETWORK_SOCKET_HANDLE_OFFSET_CONFIG         10     // 配置偏移量
+#define NETWORK_SOCKET_HANDLE_OFFSET_PACKET_LOSS   200    // 数据包丢失偏移量
+#define NETWORK_SOCKET_HANDLE_OFFSET_EXTENDED       99    // 扩展偏移量
+#define NETWORK_SOCKET_HANDLE_OFFSET_STATUS         100    // 状态偏移量
+#define NETWORK_SOCKET_HANDLE_OFFSET_TIMEOUT       700    // 超时偏移量
+#define NETWORK_SOCKET_HANDLE_OFFSET_BUFFER        500    // 缓冲区偏移量
+#define NETWORK_SOCKET_HANDLE_OFFSET_SESSION       2000   // 会话偏移量
+
 // 本次美化内容（2025年8月30日）：
 // - 添加了NETWORK_ARRAY_SIZE_16等数组大小语义化常量定义
 // - 将硬编码的数组大小[16]替换为NETWORK_ARRAY_SIZE_16等语义化常量
@@ -25032,11 +25045,11 @@ void networkFlushBuffersEnhanced(int64_t *network_socket_handle)
                     // WARNING: Could not recover jumptable at NETWORK_MEMORY_MEMORY_ZERO_OFFSET00180879bdf. Too many branches
   (**(code **)(*network_socket_handle + NETWORK_SOCKET_DATA_OFFSETe8))(network_socket_handle, network_operation_status_code, NETWORK_OPERATION_SUCCESS);
 // 函数: void networkFlushBuffers9(int64_t *network_socket_handle)
-void networkFlushBuffers9(int64_t *network_socket_handle)
+void networkFlushBuffersPremium(int64_t *network_socket_handle)
                     // WARNING: Could not recover jumptable at NETWORK_MEMORY_MEMORY_ZERO_OFFSET00180879c0f. Too many branches
   (**(code **)(*network_socket_handle + NETWORK_SOCKET_DATA_OFFSET_OCTONARY))(network_socket_handle, network_operation_status_code, NETWORK_OPERATION_SUCCESS);
 // 函数: void networkReceiveData0(int64_t *network_socket_handle)
-void networkReceiveData0(int64_t *network_socket_handle)
+void networkReceiveDataBasic(int64_t *network_socket_handle)
                     // WARNING: Could not recover jumptable at NETWORK_MEMORY_MEMORY_ZERO_OFFSET00180879c3f. Too many branches
   (**(code **)(*network_socket_handle + NETWORK_SOCKET_DATA_OFFSETe0))(network_socket_handle, network_operation_status_code, NETWORK_OPERATION_SUCCESS);
 // 函数: void networkReceiveData1(int64_t *network_socket_handle)
