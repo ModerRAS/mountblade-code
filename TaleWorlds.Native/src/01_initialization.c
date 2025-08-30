@@ -1474,7 +1474,7 @@
 
 // 字符常量语义化定义
 #define SYSTEM_CHAR_NULL_TERMINATOR '\0'
-#define SYSTEM_CHAR_SPACE ' '
+#define SYSTEM_CHAR_SPACE SYSTEM_CHAR_SPACE
 #define SYSTEM_CHAR_TAB '\t'
 #define SYSTEM_CHAR_NEWLINE '\n'
 #define SYSTEM_CHAR_CARRIAGE_RETURN '\r'
@@ -1502,7 +1502,7 @@
 #define SYSTEM_CHAR_PLUS_SIGN '+'
 #define SYSTEM_CHAR_MINUS_SIGN '-'
 #define SYSTEM_CHAR_ASTERISK '*'
-#define SYSTEM_CHAR_SLASH '/'
+#define SYSTEM_CHAR_SLASH SYSTEM_CHAR_SLASH
 #define SYSTEM_CHAR_BACKSLASH '\\'
 #define SYSTEM_CHAR_PIPE '|'
 #define SYSTEM_CHAR_AMPERSAND '&'
@@ -1510,7 +1510,7 @@
 #define SYSTEM_CHAR_HASH '#'
 #define SYSTEM_CHAR_DOLLAR_SIGN '$'
 #define SYSTEM_CHAR_AT '@'
-#define SYSTEM_CHAR_UNDERSCORE '_'
+#define SYSTEM_CHAR_UNDERSCORE SYSTEM_CHAR_UNDERSCORE
 #define SYSTEM_CHAR_TILDE '~'
 #define SYSTEM_CHAR_GRAVE_ACCENT '`'
 
@@ -2820,7 +2820,7 @@ void InitializeMemoryNode(void)
   uint64_t *node_current;
   uint64_t *node_previous;
   uint64_t *node_next;
-  uint64_t *node_new;
+  uint64_t *new_memory_node;
   uint64_t flag_initialized;
 
   ptr_data = (longlong *)GetSystemPointerData();
@@ -3133,7 +3133,7 @@ void InitializeNetworkNode(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 // 初始化引擎基础数据结构
 int InitializeEngineBaseStructures(void)
@@ -3222,7 +3222,7 @@ int InitializeInputSystem(void)
   init_result = execute_system_init(&g_audio_config_data);
   return (init_result != 0) - 1;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 // 初始化系统信号量
 int InitializeSystemSemaphore(void)
@@ -3337,7 +3337,7 @@ int InitializeMutex(uint64_t mutex_address,uint64_t mutex_type,uint64_t system_c
   mutex_result = execute_system_init(get_mutex_init_function);
   return (mutex_result != 0) - 1;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeConfigData(void)
 void InitializeConfigData(void)
 
@@ -4011,7 +4011,7 @@ void initialize_graphics_phase3(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 int InitializeSystemDataPtr(void)
 
@@ -5495,7 +5495,7 @@ void InitializeListenerNode(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeObserverNode(void)
 void InitializeObserverNode(void)
 
@@ -5514,7 +5514,7 @@ void InitializeObserverNode(void)
   g_system_core_data_object = create_system_object(&thread_parameter_ptr); // 原始名称: systemCoreData
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 int InitializeThreadConfig1(void)
 
@@ -6039,7 +6039,7 @@ void InitializeSystemObject11(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemObject12(void)
 void InitializeSystemObject12(void)
 
@@ -6387,7 +6387,7 @@ void InitializeSystemObject18(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemObject19(void)
 void InitializeSystemObject19(void)
 
@@ -6406,7 +6406,7 @@ void InitializeSystemObject19(void)
   g_system_auth_object = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 int InitializeThreadConfig3(void)
 
@@ -6435,7 +6435,7 @@ void InitializeSystemObject20(void)
   g_system_ui_context_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: systemCoreData
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemObject21(void)
 void InitializeSystemObject21(void)
 
@@ -6454,7 +6454,7 @@ void InitializeSystemObject21(void)
   g_system_shader_context_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: system_statusData
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemObject22(void)
 void InitializeSystemObject22(void)
 
@@ -6473,7 +6473,7 @@ void InitializeSystemObject22(void)
   g_system_config_data_object = create_system_object(&thread_parameter_ptr); // 原始名称: system_configuration_data
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemObject23(void)
 void InitializeSystemObject23(void)
 
@@ -6492,7 +6492,7 @@ void InitializeSystemObject23(void)
   g_system_audio_config_object = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemObject24(void)
 void InitializeSystemObject24(void)
 
@@ -8821,7 +8821,7 @@ void InitializeProcessResourceNode(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeMemoryResourceNode(void)
 void InitializeMemoryResourceNode(void)
 
@@ -8840,7 +8840,7 @@ void InitializeMemoryResourceNode(void)
   g_system_status_data_object_3 = create_system_object(&thread_parameter_ptr); // 原始名称: system_statusData
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 int InitializeInputSystem(void)
 
@@ -8869,7 +8869,7 @@ void InitializeFontSystem(void)
   g_system_font_context_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: system_configuration_data
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeFileResourceNode(void)
 void InitializeFileResourceNode(void)
 
@@ -9264,7 +9264,7 @@ void InitializeTextureSystem(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeStringManager(void)
 void InitializeStringManager(void)
 
@@ -9800,7 +9800,7 @@ void InitializeInputSystem(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeNetworkSystem(void)
 void InitializeNetworkSystem(void)
 
@@ -9819,7 +9819,7 @@ void InitializeNetworkSystem(void)
   g_system_config_data_object_4 = create_system_object(&thread_parameter_ptr); // 原始名称: system_configuration_data
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeConfigSystem(void)
 void InitializeConfigSystem(void)
 
@@ -9838,7 +9838,7 @@ void InitializeConfigSystem(void)
   g_system_data_variable_c_object_4 = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeFontSystem(void)
 void InitializeFontSystem(void)
 
@@ -9857,7 +9857,7 @@ void InitializeFontSystem(void)
   g_system_core_data_object_4 = create_system_object(&thread_parameter_ptr); // 原始名称: systemCoreData
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeShaderSystem(void)
 void InitializeShaderSystem(void)
 
@@ -9876,7 +9876,7 @@ void InitializeShaderSystem(void)
   g_system_status_context_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: system_statusData
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializePhysicsSystem(void)
 void InitializePhysicsSystem(void)
 
@@ -9895,7 +9895,7 @@ void InitializePhysicsSystem(void)
   g_system_data_context_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: system_configuration_data
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeGraphicsResourceNode(void)
 void InitializeGraphicsResourceNode(void)
 
@@ -9914,7 +9914,7 @@ void InitializeGraphicsResourceNode(void)
   g_system_auth_context_ptr_2 = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeUISystem(void)
 void InitializeUISystem(void)
 
@@ -9933,7 +9933,7 @@ void InitializeUISystem(void)
   g_system_event_context_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: systemCoreData
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSecuritySystem(void)
 void InitializeSecuritySystem(void)
 
@@ -9952,7 +9952,7 @@ void InitializeSecuritySystem(void)
   g_system_audio_context_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: system_statusData
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeAuthenticationSystem(void)
 void InitializeAuthenticationSystem(void)
 
@@ -11757,7 +11757,7 @@ void InitializeSystemDataNode31(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemDataNode32(void)
 void InitializeSystemDataNode32(void)
 
@@ -11776,7 +11776,7 @@ void InitializeSystemDataNode32(void)
   g_system_string_context_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: system_configuration_data
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 int InitializeSystemModule38(void)
 
@@ -12256,7 +12256,7 @@ void InitializeSystemDataNode31(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemDataNode32(void)
 void InitializeSystemDataNode32(void)
 
@@ -12275,7 +12275,7 @@ void InitializeSystemDataNode32(void)
   g_system_render_context_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeHashDataNode(void)
 void InitializeHashDataNode(void)
 
@@ -12623,7 +12623,7 @@ void SetupSystemServices(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 int ConfigureSystemSettings(void)
 
@@ -13338,7 +13338,7 @@ void InitializeThreadDataNode(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeProcessDataNode(void)
 void InitializeProcessDataNode(void)
 
@@ -13880,7 +13880,7 @@ void InitializeVectorDataNode(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeAudioMutex(void)
 void InitializeAudioMutex(void)
 
@@ -13899,7 +13899,7 @@ void InitializeAudioMutex(void)
   _g_network_system_object_1 = create_system_object(&thread_parameter_ptr); // 原始名称: g_system_data_variablec
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemComponents(void)
 void InitializeSystemComponents(void)
 
@@ -13918,7 +13918,7 @@ void InitializeSystemComponents(void)
   _g_network_system_object_2 = create_system_object(&thread_parameter_ptr); // 原始名称: systemCoreData
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSemaphoreDataNode(void)
 void InitializeSemaphoreDataNode(void)
 
@@ -13937,7 +13937,7 @@ void InitializeSemaphoreDataNode(void)
   _g_network_system_object_3 = create_system_object(&thread_parameter_ptr); // 原始名称: system_statusData
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule67(void)
 void InitializeSystemModule67(void)
 
@@ -13956,7 +13956,7 @@ void InitializeSystemModule67(void)
   g_system_network_buffer_ptr = create_system_object(&thread_parameter_ptr); // 原始名称: system_configuration_data
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 int InitializeSystemDataNode32(void)
 
@@ -15282,7 +15282,7 @@ void InitializeResourceEngineNode(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 int ConfigureGraphicsParameters(void)
 
@@ -15309,7 +15309,7 @@ int ConfigureGraphicsParameters(void)
   system_long_value = execute_system_init(&g_system_reserved_data);
   return (system_long_value_result != 0) - 1;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 int InitializeSystemDataNode32(void)
 
@@ -15507,7 +15507,7 @@ void InitializeMemoryManagerSystem(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeThreadManagerSystem(void)
 void InitializeThreadManagerSystem(void)
 
@@ -16523,7 +16523,7 @@ void InitializeMapDataNode(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSetDataNode(void)
 void InitializeSetDataNode(void)
 
@@ -16542,7 +16542,7 @@ void InitializeSetDataNode(void)
   g_system_memory_context_ptr = create_system_object(&thread_parameter_ptr);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeArrayDataNode(void)
 void InitializeArrayDataNode(void)
 
@@ -16580,7 +16580,7 @@ int InitializeNetworkMutex(uint64_t handleIdentifier,uint64_t resourceIdentifier
   system_long_value = execute_system_init(InitializeCacheSystem);
   return (system_long_value_result != 0) - 1;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 int InitializeSystemModule36(void)
 
@@ -16596,7 +16596,7 @@ int InitializeSystemModule36(void)
   system_long_value = execute_system_init(InitializeLogSystem);
   return (system_long_value_result != 0) - 1;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemResources(void)
 void InitializeSystemResources(void)
 
@@ -16615,7 +16615,7 @@ void InitializeSystemResources(void)
   systemCoreData = create_system_object(&thread_parameter_ptr);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 // 初始化线程本地存储
 uint64_t InitializeThreadLocalStorage(void)
@@ -16653,7 +16653,7 @@ INIT_LABEL_CHECK_STORAGE_VALUE:
   *storage_ptr = *storage_ptr + 1;
   return 0;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // 清理线程本地存储
 void CleanupThreadLocalStorage(void)
 
@@ -16672,7 +16672,7 @@ void CleanupThreadLocalStorage(void)
   g_system_utility_status_ptr = create_system_object(&thread_parameter_ptr);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ConfigureGraphicsParameters(void)
 void ConfigureGraphicsParameters(void)
 
@@ -16691,7 +16691,7 @@ void ConfigureGraphicsParameters(void)
   g_system_final_config_ptr = create_system_object(&thread_parameter_ptr);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 int InitializeRenderSystem(void)
 
@@ -16707,7 +16707,7 @@ int InitializeRenderSystem(void)
   system_long_value = execute_system_init(InitializeConfigurationSystem);
   return (system_long_value_result != 0) - 1;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 int InitializeSystemModule37(void)
 
@@ -16736,7 +16736,7 @@ int InitializeAuthenticationSystem(void)
   system_long_value = execute_system_init(&g_system_call_network_init);
   return (system_long_value_result != 0) - 1;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeHashDataNode(void)
 void InitializeHashDataNode(void)
 
@@ -16750,7 +16750,7 @@ void InitializeHashDataNode(void)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializePhysicsSystem(void)
 void InitializePhysicsSystem(void)
 
@@ -16769,7 +16769,7 @@ void InitializePhysicsSystem(void)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ValidateSystemConfiguration(void)
 void ValidateSystemConfiguration(void)
 
@@ -16783,7 +16783,7 @@ void ValidateSystemConfiguration(void)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeTableDataNode(void)
 void InitializeTableDataNode(void)
 
@@ -16797,7 +16797,7 @@ void InitializeTableDataNode(void)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeRecordDataNode(void)
 void InitializeRecordDataNode(void)
 
@@ -16811,7 +16811,7 @@ void InitializeRecordDataNode(void)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeFieldDataNode(void)
 void InitializeFieldDataNode(void)
 
@@ -16825,7 +16825,7 @@ void InitializeFieldDataNode(void)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSecurityResourceNode(void)
 void InitializeSecurityResourceNode(void)
 
@@ -16862,7 +16862,7 @@ int InitializeSystemModule33(void)
   system_long_value = execute_system_init(&g_system_call_physics_init);
   return (system_long_value_result != 0) - 1;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeInputSystem(void)
 void InitializeInputSystem(void)
 
@@ -16876,7 +16876,7 @@ void InitializeInputSystem(void)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeNetworkDataNode(void)
 void InitializeNetworkDataNode(void)
 
@@ -17037,7 +17037,7 @@ void ValidateSystemConfiguration(uint64_t *handleIdentifier)
   *handleIdentifier = &globalSystemPointerData;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeDatabaseResourceNode(void)
 void InitializeDatabaseResourceNode(void)
 
@@ -17187,7 +17187,7 @@ INIT_LABEL_VALIDATE_MEMORY_POINTER:
                     // WARNING: Subroutine does not return
   InitializeSystemStack(init_stack_parameter_28 ^ (ulonglong)system_local_buffer_key);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeFontSystem(uint64_t handleIdentifier,longlong resourceIdentifier)
 void InitializeFontSystem(uint64_t handleIdentifier,longlong resourceIdentifier)
 
@@ -17365,7 +17365,7 @@ void InitializeUISystem(void)
                     // WARNING: Subroutine does not return
   ProcessSystemOperation(system_pointer_var);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 // 获取游戏初始化状态
 uint32_t get_game_initialization_status(void)
@@ -17719,7 +17719,7 @@ void InitializeCallbackDataNode(uint8_t *handleIdentifier)
   *(uint32_t *)(system_handle_offset + SYSTEM_DATA_COMPARE_SIZE) = 0;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeRenderSystem(longlong handleIdentifier,longlong resourceIdentifier,longlong system_configuration)
 void InitializeRenderSystem(longlong handleIdentifier,longlong resourceIdentifier,longlong system_configuration)
 
@@ -17845,7 +17845,7 @@ longlong InitializeSystemModule6(uint32_t *handleIdentifier,uint32_t *resourceId
   *handleIdentifier = system_integer_result_unsigned;
   return CONCAT71((uint7)(uint3)((uint)system_unsigned_integer_result_temp >> 8),1);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ConfigureGraphicsShader(uint64_t handleIdentifier,uint32_t resourceIdentifier)
 void ConfigureGraphicsShader(uint64_t handleIdentifier,uint32_t resourceIdentifier)
 
@@ -17956,7 +17956,7 @@ uint64_t * InitializeInputMutex(uint64_t *handleIdentifier)
   *(uint8_t *)(handleIdentifier + 3) = 0;
   return handleIdentifier;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule36(longlong handleIdentifier,longlong resourceIdentifier,longlong system_configuration)
 void InitializeSystemModule36(longlong handleIdentifier,longlong resourceIdentifier,longlong system_configuration)
 
@@ -18141,7 +18141,7 @@ void InitializeDatabaseSystem(ulonglong *handleIdentifier)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 int InitializeGameSystem(longlong handleIdentifier,longlong resourceIdentifier)
 
@@ -18372,7 +18372,7 @@ INIT_LABEL_VALIDATE_RESULT:
   }
   return SYSTEM_OFFSET_Ffffffff;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule23(longlong *handleIdentifier,uint64_t *resourceIdentifier)
 void InitializeSystemModule23(longlong *handleIdentifier,uint64_t *resourceIdentifier)
 
@@ -18417,7 +18417,7 @@ void InitializeSystemModule23(longlong *handleIdentifier,uint64_t *resourceIdent
 }
 // WARNING: Removing unreachable block (ram,0x0001800472a0)
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializePhysicsSystem(void)
 void InitializePhysicsSystem(void)
 
@@ -18576,7 +18576,7 @@ void InitializePhysicsSystem(void)
     if (-1 < init_stack_loop_counter_548) {
       do {
         compare_result = init_stack_loop_counter_548;
-        if (*(char *)(longStack_550 + system_long_value_result) == '/') break;
+        if (*(char *)(longStack_550 + system_long_value_result) == SYSTEM_CHAR_SLASH) break;
         init_stack_loop_counter_548 = init_stack_loop_counter_548 + -1;
         system_long_value = system_long_value_result + -1;
         compare_result = -1;
@@ -18708,7 +18708,7 @@ void InitializeNetworkInitNode(uint64_t *handleIdentifier)
   *handleIdentifier = &globalSystemPointerData;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ConfigureGraphicsParameters(uint64_t handleIdentifier,uint64_t resourceIdentifier,longlong system_configuration,uint64_t systemFlags)
 void ConfigureGraphicsParameters(uint64_t handleIdentifier,uint64_t resourceIdentifier,longlong system_configuration,uint64_t systemFlags)
 
@@ -18789,7 +18789,7 @@ INIT_LABEL_CHECK_POINTER_OFFSET:
   system_pointer_var[SYSTEM_DATA_BLOCK_SIZE_C] = systemFlags;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule31(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 void InitializeSystemModule31(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
@@ -18894,7 +18894,7 @@ void InitializeSystemModule31(uint64_t handleIdentifier,uint64_t resourceIdentif
       while (system_init_flag != SYSTEM_CHAR_NULL_TERMINATOR) {
         system_long_value = strchr(&g_system_data_variable4,(int)stack_char_ptr[system_long_value_result]);
         if (system_long_value_result != 0) {
-          stack_char_ptr[system_long_value_result] = '_';
+          stack_char_ptr[system_long_value_result] = SYSTEM_CHAR_UNDERSCORE;
         }
         system_long_value = system_long_value_result + SYSTEM_OFFSET_1;
         system_init_flag = stack_char_ptr[system_long_value_result];
@@ -19024,7 +19024,7 @@ void InitializeSystemModule31(uint64_t handleIdentifier,uint64_t resourceIdentif
         while (system_init_flag != SYSTEM_CHAR_NULL_TERMINATOR) {
           system_long_value = strchr(&g_system_data_variable4,(int)stack_char_ptr[system_long_value_result]);
           if (system_long_value_result != 0) {
-            stack_char_ptr[system_long_value_result] = '_';
+            stack_char_ptr[system_long_value_result] = SYSTEM_CHAR_UNDERSCORE;
           }
           system_long_value = system_long_value_result + SYSTEM_OFFSET_1;
           system_init_flag = stack_char_ptr[system_long_value_result];
@@ -19182,7 +19182,7 @@ void InitializeInputSystem(ulonglong *handleIdentifier)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void UpdateAudioResources(longlong handleIdentifier)
 void UpdateAudioResources(longlong handleIdentifier)
 
@@ -19426,7 +19426,7 @@ INIT_LABEL_SYSTEM_48e74:
   *resourceIdentifier = ptr_data;
   return resourceIdentifier;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeMutexInitNode(longlong handleIdentifier,uint64_t resourceIdentifier,longlong system_configuration,uint64_t systemFlags,
 void InitializeMutexInitNode(longlong handleIdentifier,uint64_t resourceIdentifier,longlong system_configuration,uint64_t systemFlags,
                   longlong system_parameter_handle_5)
@@ -19474,7 +19474,7 @@ INIT_LABEL_SYSTEM_48f62:
                     // WARNING: Subroutine does not return
   CreateSystemHandle(allocation_size,system_configuration,handleIdentifier,system_operation_status,system_operation_status,system_pointer_var);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 uint64_t * InitializeInputEngineNode(longlong handleIdentifier,longlong *resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
@@ -19510,7 +19510,7 @@ uint64_t * InitializeInputEngineNode(longlong handleIdentifier,longlong *resourc
   }
   return system_ptr_value;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 uint64_t * InitializeSystemModule41(longlong handleIdentifier,longlong resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
@@ -19690,7 +19690,7 @@ void ProcessInputEvents(longlong handleIdentifier,uint8_t resourceIdentifier)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule46(uint64_t handleIdentifier,uint64_t *resourceIdentifier,longlong *system_configuration)
 void InitializeSystemModule46(uint64_t handleIdentifier,uint64_t *resourceIdentifier,longlong *system_configuration)
 
@@ -19880,7 +19880,7 @@ uint64_t * ConfigureGraphicsShader(uint64_t *handleIdentifier)
   *(uint8_t *)(handleIdentifier + 3) = 0;
   return handleIdentifier;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeInputSystem(longlong handleIdentifier,longlong resourceIdentifier,longlong system_configuration)
 void InitializeInputSystem(longlong handleIdentifier,longlong resourceIdentifier,longlong system_configuration)
 
@@ -20025,7 +20025,7 @@ uint64_t * InitializeResourceSystem(uint64_t *handleIdentifier)
   *(uint8_t *)(handleIdentifier + 3) = 0;
   return handleIdentifier;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule36(longlong handleIdentifier,longlong resourceIdentifier,longlong system_configuration)
 void InitializeSystemModule36(longlong handleIdentifier,longlong resourceIdentifier,longlong system_configuration)
 
@@ -20214,7 +20214,7 @@ void InitializeSystemResources(void)
   _Mtx_destroy_in_situ();
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 uint64_t ProcessSystemData64(longlong handleIdentifier,uint32_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
@@ -20306,7 +20306,7 @@ void ConfigureSystemParameters(uint64_t *handleIdentifier)
   *handleIdentifier = &g_global_system_config;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 uint64_t ConfigureSystemModule17(longlong handleIdentifier,uint64_t resourceIdentifier)
 
@@ -20346,7 +20346,7 @@ InitializeSystemDataNode30(uint64_t *handleIdentifier,ulonglong resourceIdentifi
   }
   return handleIdentifier;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 bool InitializeSystemComponents(void)
 
@@ -20407,7 +20407,7 @@ bool InitializeSystemComponents(void)
   }
   return system_boolean_flag;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeMemoryDataNode(void)
 void InitializeMemoryDataNode(void)
 
@@ -20478,7 +20478,7 @@ void InitializeMemoryDataNode(void)
                     // WARNING: Subroutine does not return
   ProcessSystemOperation(system_pointer_var);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void UpdatePhysicsResources(void)
 void UpdatePhysicsResources(void)
 
@@ -20493,7 +20493,7 @@ void UpdatePhysicsResources(void)
                     // WARNING: Subroutine does not return
   memset(system_operation_status,0,SYSTEM_MEMORY_ALLOCATION_SIZE_MEDIUM);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeUISystem(void)
 void InitializeUISystem(void)
 
@@ -20661,7 +20661,7 @@ InitializeSystemProfiler(uint64_t *handleIdentifier,uint64_t resourceIdentifier,
   *(int *)(handleIdentifier + 2) = system_integer_result;
   return handleIdentifier;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 uint64_t InitializeSystemModule43(char handleIdentifier)
 
@@ -20744,7 +20744,7 @@ uint64_t InitializeSystemModule43(char handleIdentifier)
                     // WARNING: Subroutine does not return
   ProcessSystemOperation();
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 bool InitializeSystemResources(void)
 
@@ -20761,7 +20761,7 @@ bool InitializeSystemResources(void)
   }
   return true;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule24(uint64_t *handleIdentifier)
 void InitializeSystemModule24(uint64_t *handleIdentifier)
 
@@ -20826,7 +20826,7 @@ void InitializeSystemModule24(uint64_t *handleIdentifier)
                     // WARNING: Subroutine does not return
   InitializeSystemStack(init_stack_system_hash ^ (ulonglong)system_local_buffer_primary);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 longlong * ProcessSystemData(longlong *handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
@@ -20845,7 +20845,7 @@ longlong * ProcessSystemData(longlong *handleIdentifier,uint64_t resourceIdentif
   (**(code **)(*handleIdentifier + SYSTEM_DATA_COMPARE_SIZE))(handleIdentifier,&g_system_global_config,system_configuration,systemFlags,1,INVALID_HANDLE_VALUE);
   return handleIdentifier;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeMutexInitNode(uint32_t *handleIdentifier)
 void InitializeMutexInitNode(uint32_t *handleIdentifier)
 
@@ -20993,7 +20993,7 @@ uint64_t * InitializeSystemModule41(uint64_t *handleIdentifier,ulonglong resourc
   }
   return handleIdentifier;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule17(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 void InitializeSystemModule17(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
@@ -21081,7 +21081,7 @@ void InitializeSystemModule19(longlong handleIdentifier,uint64_t resourceIdentif
   ValidateSystemConfiguration(handleIdentifier,*(uint64_t *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE),system_configuration,systemFlags,INVALID_HANDLE_VALUE);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeConfigSystem(uint64_t *handleIdentifier)
 void InitializeConfigSystem(uint64_t *handleIdentifier)
 
@@ -21127,7 +21127,7 @@ void InitializeSystemResources(longlong handleIdentifier)
   InitializeSystemModule36(handleIdentifier + SYSTEM_OBJECT_OFFSET_60);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void HandleSystemOperation16(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 void HandleSystemOperation16(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
@@ -21690,7 +21690,7 @@ InitializeSystemResources(uint8_t *handleIdentifier,uint64_t resourceIdentifier,
   *(uint64_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_STATUS0) = 0;
   return handleIdentifier;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 uint64_t * InitializeFontSystem(uint64_t *handleIdentifier)
 
@@ -21966,7 +21966,7 @@ void InitializeSystemModule1(uint64_t *handleIdentifier)
   *handleIdentifier = &g_global_system_config;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeThreadManagerSystem(longlong handleIdentifier)
 void InitializeThreadManagerSystem(longlong handleIdentifier)
 
@@ -22007,7 +22007,7 @@ void InitializeThreadManagerSystem(longlong handleIdentifier)
   *(uint *)(handleIdentifier + SYSTEM_DATA_OFFSET_3Ac) = (uint)(*(int *)(system_long_value_result + SYSTEM_CONFIG_SIZE_STATUS90) == 0);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeGraphicsMemory(longlong *handleIdentifier)
 void InitializeGraphicsMemory(longlong *handleIdentifier)
 
@@ -22204,7 +22204,7 @@ void InitializeGraphicsMemory(longlong *handleIdentifier)
 
 // WARNING: Removing unreachable block (ram,0x00018004d4a0)
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ConfigureGraphicsShader(uint64_t handleIdentifier,longlong resourceIdentifier)
 void ConfigureGraphicsShader(uint64_t handleIdentifier,longlong resourceIdentifier)
 
@@ -22447,7 +22447,7 @@ INIT_LABEL_SYSTEM_4e721:
                     // WARNING: Subroutine does not return
   ConfigureSystemModule17(g_system_context_1,&g_system_global_config,*(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_3Cc),*init_int_pointer_temp);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 uint32_t InitializeSystemModule21(void)
 
@@ -22640,7 +22640,7 @@ uint32_t InitializeSystemModule21(void)
 
 // WARNING: Removing unreachable block (ram,0x00018004eca3)
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemDataNode30(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 void InitializeSystemDataNode30(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
@@ -22713,7 +22713,7 @@ void InitializeSystemDataNode30(uint64_t handleIdentifier,uint64_t resourceIdent
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ConfigureGraphicsShader(void)
 void ConfigureGraphicsShader(void)
 
@@ -22971,7 +22971,7 @@ void InitializeNetworkManagerSystem(longlong handleIdentifier)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void HandleSystemOperation92(void)
 void HandleSystemOperation92(void)
 
@@ -23122,7 +23122,7 @@ void HandleSystemOperation92(void)
                     // WARNING: Subroutine does not return
   ConfigureSystemModule17(g_system_context_1,&g_global_system_config);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializePhysicsDataNode(void)
 void InitializePhysicsDataNode(void)
 
@@ -23459,7 +23459,7 @@ void ConfigureSystemHandles(longlong handleIdentifier)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 uint64_t * InitializeConditionInitNode(uint64_t *handleIdentifier,uint64_t *resourceIdentifier)
 
@@ -23543,7 +23543,7 @@ uint64_t * InitializeConditionInitNode(uint64_t *handleIdentifier,uint64_t *reso
   }
   return handleIdentifier;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ProcessSystemAllocation(longlong handleIdentifier)
 void ProcessSystemAllocation(longlong handleIdentifier)
 
@@ -23607,7 +23607,7 @@ void ProcessSystemAllocation(longlong handleIdentifier)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeMatrixDataNode(void)
 void InitializeMatrixDataNode(void)
 
@@ -23763,7 +23763,7 @@ INIT_LABEL_SYSTEM_51fc9:
                     // WARNING: Subroutine does not return
   ProcessSystemOperation();
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 uint64_t
 InitializeConfigSystem(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
@@ -23772,7 +23772,7 @@ InitializeConfigSystem(uint64_t handleIdentifier,uint64_t resourceIdentifier,uin
   ProcessResourceData(resourceIdentifier,g_system_base_1 + SYSTEM_OFFSET_2c0,system_configuration,systemFlags,0,INVALID_HANDLE_VALUE);
   return resourceIdentifier;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule36(longlong handleIdentifier)
 void InitializeSystemModule36(longlong handleIdentifier)
 
@@ -23801,7 +23801,7 @@ void InitializeSystemModule36(longlong handleIdentifier)
                     // WARNING: Subroutine does not return
   memset(system_local_buffer_thread_key,0,SYSTEM_OFFSET_80);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemComponents(longlong handleIdentifier,longlong resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 void InitializeSystemComponents(longlong handleIdentifier,longlong resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
@@ -23881,7 +23881,7 @@ void InitializeSystemComponents(longlong handleIdentifier,longlong resourceIdent
                     // WARNING: Subroutine does not return
   ProcessSystemOperation(system_pointer_var);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 uint64_t InitializeSystemModule16(uint64_t handleIdentifier,uint64_t resourceIdentifier)
 
@@ -23941,7 +23941,7 @@ uint64_t InitializeSystemModule16(uint64_t handleIdentifier,uint64_t resourceIde
                     // WARNING: Subroutine does not return
   ProcessSystemOperation(system_pointer_var);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeAudioMutex(longlong handleIdentifier,float resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 void InitializeAudioMutex(longlong handleIdentifier,float resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
@@ -24125,7 +24125,7 @@ INIT_LABEL_SYSTEM_52de5:
   *(ulonglong *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_EXT_DATA_2) = CONCAT44(fstack_varc,fstack_var);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule43(longlong *handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint8_t systemFlags)
 void InitializeSystemModule43(longlong *handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint8_t systemFlags)
 
@@ -24251,7 +24251,7 @@ void InitializeSystemModule43(longlong *handleIdentifier,uint64_t resourceIdenti
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeNetworkSystem(uint64_t handleIdentifier,longlong resourceIdentifier)
 void InitializeNetworkSystem(uint64_t handleIdentifier,longlong resourceIdentifier)
 
@@ -24607,7 +24607,7 @@ void InitializeNetworkSystem(uint64_t handleIdentifier,longlong resourceIdentifi
 
 // WARNING: Removing unreachable block (ram,0x0001800540e1)
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemTimer(uint64_t handleIdentifier,uint64_t resourceIdentifier,longlong system_configuration)
 void InitializeSystemTimer(uint64_t handleIdentifier,uint64_t resourceIdentifier,longlong system_configuration)
 
@@ -24741,7 +24741,7 @@ INIT_LABEL_SYSTEM_5364c:
                     // WARNING: Subroutine does not return
   memcpy(node_previous + system_operation_status,system_long_value_result,7);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 uint64_t
 InitializeEventSystem(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
@@ -24820,7 +24820,7 @@ INIT_LABEL_SYSTEM_5419d:
   if (init_stack_buffer_size != 0) {
     do {
       if ((byte)(system_buffer_ptr_system_context[system_unsigned_integer_result_temp] + SYSTEM_OFFSET_BF) < SYSTEM_CONFIG_SIZE_AUDIO) {
-        system_buffer_ptr_system_context[system_unsigned_integer_result_temp] = system_buffer_ptr_system_context[system_unsigned_integer_result_temp] + ' ';
+        system_buffer_ptr_system_context[system_unsigned_integer_result_temp] = system_buffer_ptr_system_context[system_unsigned_integer_result_temp] + SYSTEM_CHAR_SPACE;
       }
       system_status_code = (int)system_unsigned_integer_result_temp + 1;
       system_status_code = (ulonglong)system_integer_result_unsigned;
@@ -24867,7 +24867,7 @@ INIT_LABEL_SYSTEM_5419d:
   if (system_unsigned_integer_result_temp <= (ulonglong)(longlong)(int)system_unsigned_integer_result_temp) goto INIT_LABEL_SYSTEM_54302;
   goto INIT_LABEL_SYSTEM_5419d;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeAuthenticationSystem(longlong *handleIdentifier,longlong resourceIdentifier)
 void InitializeAuthenticationSystem(longlong *handleIdentifier,longlong resourceIdentifier)
 
@@ -25082,7 +25082,7 @@ void InitializeAuthenticationSystem(longlong *handleIdentifier,longlong resource
                     // WARNING: Subroutine does not return
   InitializeSystemStack(init_stack_system_handle ^ (ulonglong)system_local_buffer_238);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeAuthenticationSystem(void)
 void InitializeAuthenticationSystem(void)
 
@@ -25349,7 +25349,7 @@ INIT_LABEL_SYSTEM_54d28:
                 if (-1 < system_integer_result_temp) {
                   system_long_value = (longlong)system_integer_result;
                   do {
-                    if (*(char *)(system_long_value_result + *(longlong *)(system_pointer_var + -2)) == '/') goto INIT_LABEL_SYSTEM_54d57;
+                    if (*(char *)(system_long_value_result + *(longlong *)(system_pointer_var + -2)) == SYSTEM_CHAR_SLASH) goto INIT_LABEL_SYSTEM_54d57;
                     system_integer_result = system_integer_result_temp + -1;
                     system_long_value = system_long_value_result + -1;
                   } while (-1 < system_long_value_result);
@@ -25475,7 +25475,7 @@ INIT_LABEL_SYSTEM_54ec9:
                     // WARNING: Subroutine does not return
   InitializeSystemStack(init_stack_uint_param_30 ^ (ulonglong)system_local_buffer_178);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void CreateMonitoringResources(void)
 void CreateMonitoringResources(void)
 
@@ -25672,7 +25672,7 @@ void ValidateLoggingState(longlong handleIdentifier)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemResources(uint64_t handleIdentifier,uint32_t resourceIdentifier)
 void InitializeSystemResources(uint64_t handleIdentifier,uint32_t resourceIdentifier)
 
@@ -25688,7 +25688,7 @@ void InitializeSystemResources(uint64_t handleIdentifier,uint32_t resourceIdenti
   (*pis_initialized)();
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void HandleSystemOperation16(void)
 void HandleSystemOperation16(void)
 
@@ -25885,7 +25885,7 @@ INIT_LABEL_SYSTEM_56228:
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule6(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 void InitializeSystemModule6(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
@@ -25968,7 +25968,7 @@ void InitializeSystemModule6(longlong handleIdentifier,uint64_t resourceIdentifi
                     // WARNING: Subroutine does not return
   memmove(system_operation_status,system_operation_status,system_long_value_result,systemFlags,system_operation_status,system_operation_status,system_long_value_result,system_long_value_result);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSecuritySystem(longlong *handleIdentifier)
 void InitializeSecuritySystem(longlong *handleIdentifier)
 
@@ -26043,7 +26043,7 @@ uint64_t InitializeAudioMutex(uint64_t handleIdentifier,ulonglong resourceIdenti
   }
   return handleIdentifier;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule14(longlong handleIdentifier)
 void InitializeSystemModule14(longlong handleIdentifier)
 
@@ -26177,7 +26177,7 @@ void InitializeSystemModule14(longlong handleIdentifier)
                     // WARNING: Subroutine does not return
   memcpy(system_buffer_ptr_small_buffer + init_stack_thread_count,init_stack_char_buffer_60,(longlong)((int)system_long_value_result + 2));
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void SetupGraphicsDevice(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 void SetupGraphicsDevice(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
@@ -26217,7 +26217,7 @@ void SetupGraphicsDevice(uint64_t handleIdentifier,uint64_t resourceIdentifier,u
   *(uint8_t *)(system_long_value_result + SYSTEM_CONFIG_SIZE_AUTH06) = 0;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void SetupDebuggingPipeline(uint64_t handleIdentifier,uint64_t *resourceIdentifier,uint32_t system_configuration)
 void SetupDebuggingPipeline(uint64_t handleIdentifier,uint64_t *resourceIdentifier,uint32_t system_configuration)
 
@@ -26515,7 +26515,7 @@ void InitializeMutexInitNode(longlong *handleIdentifier,uint64_t resourceIdentif
                     // WARNING: Subroutine does not return
   ProcessSystemOperation();
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule37(longlong *handleIdentifier,uint32_t *resourceIdentifier)
 void InitializeSystemModule37(longlong *handleIdentifier,uint32_t *resourceIdentifier)
 
@@ -26604,7 +26604,7 @@ void HandleSystemOperation14(void)
   *(longlong *)(system_register_rbx + 8) = system_register_rbx;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule39(longlong *handleIdentifier,ulonglong resourceIdentifier)
 void InitializeSystemModule39(longlong *handleIdentifier,ulonglong resourceIdentifier)
 
@@ -26664,7 +26664,7 @@ void InitializeSystemModule39(longlong *handleIdentifier,ulonglong resourceIdent
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = system_long_value;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ProcessSystemResource22(longlong handleIdentifier,ulonglong resourceIdentifier,uint64_t system_configuration,longlong systemFlags)
 void ProcessSystemResource22(longlong handleIdentifier,ulonglong resourceIdentifier,uint64_t system_configuration,longlong systemFlags)
 
@@ -27342,7 +27342,7 @@ void InitializeFontSystem(longlong *handleIdentifier)
                     // WARNING: Subroutine does not return
   ProcessSystemOperation();
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemDataNode31(void)
 void InitializeSystemDataNode31(void)
 
@@ -27467,7 +27467,7 @@ void InitializeSystemModule4(longlong handleIdentifier,longlong resourceIdentifi
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 longlong * InitializeConditionInitNode(longlong handleIdentifier,longlong *resourceIdentifier,uint64_t system_configuration)
 
@@ -27544,7 +27544,7 @@ void InitializeSystemModule33(uint64_t *handleIdentifier)
                     // WARNING: Subroutine does not return
   ProcessSystemOperation(handleIdentifier);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 uint64_t * InitializeSystemModule18(uint64_t *handleIdentifier,uint resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
@@ -27922,7 +27922,7 @@ void InitializeInputSystem(uint64_t handleIdentifier,uint64_t *resourceIdentifie
                     // WARNING: Subroutine does not return
   ProcessSystemOperation(resourceIdentifier);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule43(uint64_t *handleIdentifier,longlong resourceIdentifier)
 void InitializeSystemModule43(uint64_t *handleIdentifier,longlong resourceIdentifier)
 
@@ -28106,7 +28106,7 @@ void InitializeTextureSystem(uint64_t handleIdentifier,longlong resourceIdentifi
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ValidateSystemConfiguration(longlong *handleIdentifier,longlong resourceIdentifier,longlong system_configuration)
 void ValidateSystemConfiguration(longlong *handleIdentifier,longlong resourceIdentifier,longlong system_configuration)
 
@@ -28171,7 +28171,7 @@ void ValidateSystemConfiguration(longlong *handleIdentifier,longlong resourceIde
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ProcessSystemData74(longlong handleIdentifier)
 void ProcessSystemData74(longlong handleIdentifier)
 
@@ -28316,7 +28316,7 @@ void HandleSystemConfiguration91(longlong handleIdentifier,uint64_t resourceIden
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule59(longlong *handleIdentifier,longlong resourceIdentifier,longlong system_configuration,longlong systemFlags)
 void InitializeSystemModule59(longlong *handleIdentifier,longlong resourceIdentifier,longlong system_configuration,longlong systemFlags)
 
@@ -28378,7 +28378,7 @@ void InitializeSystemModule59(longlong *handleIdentifier,longlong resourceIdenti
                     // WARNING: Subroutine does not return
   memmove(resourceIdentifier + (system_unsigned_integer_result_temp - (system_long_value_result - system_configuration >> 3)) * 8,system_configuration,system_long_value_result - system_configuration);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ProcessSystemOperation5(longlong *handleIdentifier,longlong resourceIdentifier,longlong system_configuration,longlong systemFlags)
 void ProcessSystemOperation5(longlong *handleIdentifier,longlong resourceIdentifier,longlong system_configuration,longlong systemFlags)
 
@@ -28437,7 +28437,7 @@ void ProcessSystemOperation5(longlong *handleIdentifier,longlong resourceIdentif
                     // WARNING: Subroutine does not return
   memmove(resourceIdentifier + (system_unsigned_integer_result_temp - (system_long_value_result - system_configuration >> 3)) * 8,system_configuration,system_long_value_result - system_configuration);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void HandleSystemResource32(longlong handleIdentifier,longlong resourceIdentifier)
 void HandleSystemResource32(longlong handleIdentifier,longlong resourceIdentifier)
 
@@ -28745,7 +28745,7 @@ void InitializeResourceSystem(uint64_t handleIdentifier,uint64_t *resourceIdenti
 
 // WARNING: Removing unreachable block (ram,0x000180177420)
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeTextureSystem(longlong *handleIdentifier)
 void InitializeTextureSystem(longlong *handleIdentifier)
 
@@ -29633,7 +29633,7 @@ uint64_t * InitializeNetworkInitNode(uint64_t *handleIdentifier,uint64_t *resour
   }
   return system_configuration;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeUISystem(longlong *handleIdentifier,uint64_t resourceIdentifier)
 void InitializeUISystem(longlong *handleIdentifier,uint64_t resourceIdentifier)
 
@@ -29753,7 +29753,7 @@ void ValidateSystemHandle10(uint8_t *handleIdentifier)
   *(uint32_t *)(system_register_rdi + SYSTEM_DATA_COMPARE_SIZE) = 0;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ValidateSystemConfiguration(longlong handleIdentifier,longlong resourceIdentifier,longlong system_configuration)
 void ValidateSystemConfiguration(longlong handleIdentifier,longlong resourceIdentifier,longlong system_configuration)
 
@@ -29825,7 +29825,7 @@ void InitializeUISystem(uint64_t *handleIdentifier)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeNetworkDataNode(void)
 void InitializeNetworkDataNode(void)
 
@@ -30404,7 +30404,7 @@ uint64_t InitializeResourceSystem(uint64_t handleIdentifier,ulonglong resourceId
   }
   return handleIdentifier;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule32(uint64_t *handleIdentifier)
 void InitializeSystemModule32(uint64_t *handleIdentifier)
 
@@ -30501,7 +30501,7 @@ uint64_t * InitializeSystemModule43(uint64_t *handleIdentifier,ulonglong resourc
   }
   return handleIdentifier;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void HandleSystemOperation92(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 void HandleSystemOperation92(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
@@ -30643,7 +30643,7 @@ void InitializeSecurityEngineNode(longlong handleIdentifier,uint64_t resourceIde
   *(uint64_t *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) = &globalSystemPointerData;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeAudioSystem(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 void InitializeAudioSystem(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
@@ -30892,7 +30892,7 @@ void ValidateSystemConfiguration(uint64_t *handleIdentifier,uint64_t resourceIde
   *handleIdentifier = &globalSystemPointerData;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ConfigureGraphicsShader(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 void ConfigureGraphicsShader(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
@@ -30968,7 +30968,7 @@ longlong InitializeSystemModule58(longlong handleIdentifier)
   } while (system_long_value_result != 0);
   return handleIdentifier;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 uint64_t
 InitializeSystemModule41(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
@@ -31144,7 +31144,7 @@ InitializeResourceEngineNode(uint64_t *handleIdentifier,uint64_t *resourceIdenti
   }
   return handleIdentifier;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeFontSystem(longlong *handleIdentifier)
 void InitializeFontSystem(longlong *handleIdentifier)
 
@@ -31223,7 +31223,7 @@ void InitializeFontSystem(longlong *handleIdentifier)
                     // WARNING: Subroutine does not return
   InitializeSystemStack(init_stack_system_hash ^ (ulonglong)system_local_buffer_128);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeAuthenticationSystem(uint *handleIdentifier)
 void InitializeAuthenticationSystem(uint *handleIdentifier)
 
@@ -31269,7 +31269,7 @@ uint64_t InitializeSystemModule59(longlong handleIdentifier,uint64_t resourceIde
   InitializeResourceBlock(handleIdentifier,resourceIdentifier);
   return 1;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule39(uint64_t *handleIdentifier,uint64_t resourceIdentifier,int *system_configuration)
 void InitializeSystemModule39(uint64_t *handleIdentifier,uint64_t resourceIdentifier,int *system_configuration)
 
@@ -31397,7 +31397,7 @@ longlong InitializeDataEngineNode(longlong handleIdentifier)
   *(uint64_t *)(handleIdentifier + SYSTEM_NODE_HEADER_SIZE) = &globalSystemPointerData;
   return handleIdentifier;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeConfigSystem(void **handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 void InitializeConfigSystem(void **handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
@@ -31577,7 +31577,7 @@ uint32_t InitializeShaderSystem(longlong handleIdentifier)
   }
   return system_integer_result_unsigned;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 int InitializeDatabaseSystem(void)
 
@@ -31622,7 +31622,7 @@ int InitializeDatabaseSystem(void)
   }
   return system_integer_result_temp + system_integer_result_temp + compare_result + system_integer_result;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule32(ulonglong handleIdentifier,longlong resourceIdentifier)
 void InitializeSystemModule32(ulonglong handleIdentifier,longlong resourceIdentifier)
 
@@ -32167,7 +32167,7 @@ void InitializeSystemDataNode32(uint64_t *handleIdentifier)
   CloseHandle(*handleIdentifier);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeDatabaseSystem(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 void InitializeDatabaseSystem(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
@@ -32402,7 +32402,7 @@ void HandleSystemConfiguration89(void)
 {
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void HandleSystemOperation92(void)
 void HandleSystemOperation92(void)
 
@@ -32587,7 +32587,7 @@ void HandleSystemOperation92(void)
                     // WARNING: Subroutine does not return
   InitializeSystemStack(init_stack_config_handle ^ (ulonglong)system_local_buffer_1b8);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule6(longlong handleIdentifier,longlong *resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 void InitializeSystemModule6(longlong handleIdentifier,longlong *resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
@@ -32647,7 +32647,7 @@ void InitializeAudioDataNode8(longlong handleIdentifier,longlong *resourceIdenti
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemResources(longlong handleIdentifier,uint64_t resourceIdentifier,int system_configuration)
 void InitializeSystemResources(longlong handleIdentifier,uint64_t resourceIdentifier,int system_configuration)
 
@@ -32782,7 +32782,7 @@ void ConfigureSystemParameters(longlong handleIdentifier,longlong *resourceIdent
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 uint64_t * InitializeResourceEngineNode(longlong handleIdentifier,uint64_t resourceIdentifier)
 
@@ -32903,7 +32903,7 @@ void InitializeSystemModule55(void)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeFilesystemSystem(longlong handleIdentifier)
 void InitializeFilesystemSystem(longlong handleIdentifier)
 
@@ -33054,7 +33054,7 @@ longlong InitializeSystemModule10(longlong handleIdentifier)
   }
   return 0;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 uint64_t * InitializeSystemModule33(uint64_t *handleIdentifier)
 
@@ -33130,7 +33130,7 @@ uint64_t * InitializeSystemModule33(uint64_t *handleIdentifier)
   }
   return handleIdentifier;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule44(ulonglong *handleIdentifier,uint64_t *resourceIdentifier)
 void InitializeSystemModule44(ulonglong *handleIdentifier,uint64_t *resourceIdentifier)
 
@@ -33176,7 +33176,7 @@ INIT_LABEL_SYSTEM_5eb20:
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = (ulonglong)(node_root + system_long_value_result);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 longlong InitializeVideoSystem(longlong handleIdentifier)
 
@@ -33310,7 +33310,7 @@ longlong InitializeVideoSystem(longlong handleIdentifier)
     node_previous = *(ulonglong **)(handleIdentifier + SYSTEM_CONFIG_OFFSET_30);
   } while( true );
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 longlong GetSystemMemoryData(void)
 
@@ -33443,7 +33443,7 @@ uint64_t ProcessSystemResourceData(uint64_t handleIdentifier,uint64_t resourceId
     system_RSI = system_unsigned_integer_result_temp + 1;
   } while( true );
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 longlong InitializeSystemResourceModule(void)
 
@@ -33537,7 +33537,7 @@ longlong InitializeSystemResourceModule(void)
   *(uint32_t *)(system_register_r14 + 600) = system_integer_result_unsigned;
   return 0;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 uint64_t * InitializeRenderSystem(longlong *handleIdentifier,char resourceIdentifier,uint8_t *system_configuration)
 
@@ -33784,7 +33784,7 @@ INIT_LABEL_SYSTEM_5f30a:
   }
   return 0;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 uint64_t InitializeSystemModule23(longlong handleIdentifier,longlong resourceIdentifier)
 
@@ -33833,7 +33833,7 @@ uint64_t InitializeSystemModule23(longlong handleIdentifier,longlong resourceIde
   *(uint64_t **)(handleIdentifier + SYSTEM_HANDLE_OFFSET_RESOURCE_DATA) = system_ptr_value;
   return CONCAT71((int7)((ulonglong)system_unsigned_integer_result_temp >> 8),1);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 uint64_t * InitializeShaderSystem(longlong handleIdentifier)
 
@@ -33956,7 +33956,7 @@ void HandleSystemResource47(void)
 {
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 ulonglong ConfigureGraphicsParameters(longlong handleIdentifier,longlong *resourceIdentifier,longlong system_configuration)
 
@@ -34250,7 +34250,7 @@ INIT_LABEL_SYSTEM_5f92b:
   system_status_code = system_integer_result_unsigned;
   goto system_label_config_validation;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 ulonglong InitializeSystemModule36(longlong handleIdentifier,longlong *resourceIdentifier,longlong system_configuration)
 
@@ -34451,7 +34451,7 @@ system_label_initialization_complete:
   *(ulonglong *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE) = system_integer_result_unsigned;
   return system_unsigned_integer_result_temp & SYSTEM_OFFSET_Ffffffffffffff00;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 longlong InitializeSystemModule59(longlong handleIdentifier)
 
@@ -34910,7 +34910,7 @@ int ProcessSystemData88(uint64_t handleIdentifier,uint64_t resourceIdentifier,ui
   }
   return system_integer_result;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule58(longlong *handleIdentifier)
 void InitializeSystemModule58(longlong *handleIdentifier)
 
@@ -35397,7 +35397,7 @@ bool ValidateSystemConfiguration(longlong handleIdentifier,uint64_t resourceIden
   }
   return system_init_flag != SYSTEM_CHAR_NULL_TERMINATOR;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeVideoSystem(longlong *handleIdentifier,longlong *resourceIdentifier)
 void InitializeVideoSystem(longlong *handleIdentifier,longlong *resourceIdentifier)
 
@@ -35478,7 +35478,7 @@ void InitializeVideoSystem(longlong *handleIdentifier,longlong *resourceIdentifi
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule44(longlong handleIdentifier,longlong *resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 void InitializeSystemModule44(longlong handleIdentifier,longlong *resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
@@ -35574,7 +35574,7 @@ InitializeSystemModule29(uint64_t *handleIdentifier,ulonglong resourceIdentifier
   }
   return handleIdentifier;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule24(uint64_t handleIdentifier,longlong resourceIdentifier)
 void InitializeSystemModule24(uint64_t handleIdentifier,longlong resourceIdentifier)
 
@@ -35630,7 +35630,7 @@ void InitializeSystemModule24(uint64_t handleIdentifier,longlong resourceIdentif
                     // WARNING: Subroutine does not return
   memset(system_local_buffer_username,0,SYSTEM_DATA_COMPARE_SIZE0);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeEventSystem(longlong *handleIdentifier)
 void InitializeEventSystem(longlong *handleIdentifier)
 
@@ -35705,7 +35705,7 @@ void InitializeEventSystem(longlong *handleIdentifier)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemDataNode32(longlong *handleIdentifier)
 void InitializeSystemDataNode32(longlong *handleIdentifier)
 
@@ -35836,7 +35836,7 @@ void InitializeEventSystem(void)
   InitializeSystemModule41();
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeGraphicsMemory(longlong *handleIdentifier)
 void InitializeGraphicsMemory(longlong *handleIdentifier)
 
@@ -35874,7 +35874,7 @@ void InitializeGraphicsMemory(longlong *handleIdentifier)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeUISystem(void)
 void InitializeUISystem(void)
 
@@ -35897,7 +35897,7 @@ void InitializeUISystem(void)
                     // WARNING: Subroutine does not return
   memset(system_local_buffer_username,0,SYSTEM_OFFSET_Ff);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeDataEngineNode(int *handleIdentifier)
 void InitializeDataEngineNode(int *handleIdentifier)
 
@@ -35995,7 +35995,7 @@ void InitializeDataEngineNode(int *handleIdentifier)
                     // WARNING: Subroutine does not return
   ProcessSystemOperation(system_pointer_var);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 uint64_t InitializeSystemModule10(uint64_t handleIdentifier,uint32_t resourceIdentifier)
 
@@ -36053,7 +36053,7 @@ uint64_t InitializeSystemModule10(uint64_t handleIdentifier,uint32_t resourceIde
   }
   return 1;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemProfiler(longlong handleIdentifier)
 void InitializeSystemProfiler(longlong handleIdentifier)
 
@@ -36105,7 +36105,7 @@ void InitializeSystemProfiler(longlong handleIdentifier)
       if (-1 < system_integer_result_temp) {
         system_long_value = (longlong)system_integer_result;
         do {
-          if (*(char *)(system_long_value_result + *(longlong *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_38)) == '_') goto code_r0x0001800630e9;
+          if (*(char *)(system_long_value_result + *(longlong *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_38)) == SYSTEM_CHAR_UNDERSCORE) goto code_r0x0001800630e9;
           system_integer_result = system_integer_result_temp + -1;
           system_long_value = system_long_value_result + -1;
         } while (-1 < system_long_value_result);
@@ -36368,7 +36368,7 @@ longlong initialize_input_subsystem(longlong handleIdentifier)
   *(code **)(handleIdentifier + SYSTEM_OFFSET_18) = _guard_check_icall;
   return handleIdentifier;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeStringManagerSystem(uint64_t handleIdentifier)
 void InitializeStringManagerSystem(uint64_t handleIdentifier)
 
@@ -36387,7 +36387,7 @@ void InitializeStringManagerSystem(uint64_t handleIdentifier)
                     // WARNING: Subroutine does not return
   memset(system_local_buffer_238,0,SYSTEM_NODE_HEADER_SIZE0);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule36(uint64_t handleIdentifier,longlong resourceIdentifier)
 void InitializeSystemModule36(uint64_t handleIdentifier,longlong resourceIdentifier)
 
@@ -36565,7 +36565,7 @@ INIT_LABEL_SYSTEM_63de9:
                     // WARNING: Subroutine does not return
   ProcessSystemOperation();
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemResources(uint64_t handleIdentifier)
 void InitializeSystemResources(uint64_t handleIdentifier)
 
@@ -36716,7 +36716,7 @@ void InitializeUISystem(void)
                     // WARNING: Subroutine does not return
   InitializeSystemCore();
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 ulonglong InitializeSystemResources(uint64_t handleIdentifier)
 
@@ -36833,7 +36833,7 @@ ulonglong InitializeSystemResources(uint64_t handleIdentifier)
   }
   return system_integer_result_unsigned;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule67(longlong *handleIdentifier,longlong resourceIdentifier,longlong system_configuration)
 void InitializeSystemModule67(longlong *handleIdentifier,longlong resourceIdentifier,longlong system_configuration)
 
@@ -37120,7 +37120,7 @@ INIT_LABEL_SYSTEM_65009:
 
 // WARNING: Removing unreachable block (ram,0x0001800654f0)
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeFontSystem(uint64_t handleIdentifier)
 void InitializeFontSystem(uint64_t handleIdentifier)
 
@@ -37458,7 +37458,7 @@ void InitializeFontSystem(uint64_t handleIdentifier)
             system_long_value = 0;
             system_init_flag = *stack_char_ptr;
             while (system_init_flag != SYSTEM_CHAR_NULL_TERMINATOR) {
-              if (' ' < stack_char_ptr[system_long_value_result]) {
+              if (SYSTEM_CHAR_SPACE < stack_char_ptr[system_long_value_result]) {
                 if (system_long_value_result != system_long_value_result) {
                   stack_char_ptr[system_long_value_result] = stack_char_ptr[system_long_value_result];
                 }
@@ -37654,7 +37654,7 @@ INIT_LABEL_SYSTEM_65a3e:
                     // WARNING: Subroutine does not return
   ProcessSystemOperation();
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ConfigureSystemHandles(void)
 void ConfigureSystemHandles(void)
 
@@ -37691,7 +37691,7 @@ void ConfigureSystemHandles(void)
                     // WARNING: Subroutine does not return
   memset(system_local_buffer_228,0,SYSTEM_OFFSET_80);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSecurityEngineNode(uint64_t handleIdentifier,longlong resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 void InitializeSecurityEngineNode(uint64_t handleIdentifier,longlong resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
@@ -37775,7 +37775,7 @@ void InitializeSecurityEngineNode(uint64_t handleIdentifier,longlong resourceIde
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemResources(longlong *handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 void InitializeSystemResources(longlong *handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
@@ -37861,7 +37861,7 @@ void InitializeSystemResources(longlong *handleIdentifier,uint64_t resourceIdent
 
 // WARNING: Removing unreachable block (ram,0x0001800665f5)
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule30(uint64_t handleIdentifier,uint64_t resourceIdentifier,char system_configuration,char systemFlags,
 void InitializeSystemModule30(uint64_t handleIdentifier,uint64_t resourceIdentifier,char system_configuration,char systemFlags,
                   uint64_t system_parameter_handle_5)
@@ -38110,7 +38110,7 @@ INIT_LABEL_SYSTEM_66971:
                     // WARNING: Subroutine does not return
   InitializeSystemStack(init_stack_system_handle ^ (ulonglong)system_local_buffer_1f8);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeResourceSystem(uint64_t handleIdentifier,uint64_t resourceIdentifier,char system_configuration,uint64_t systemFlags,
 void InitializeResourceSystem(uint64_t handleIdentifier,uint64_t resourceIdentifier,char system_configuration,uint64_t systemFlags,
                   uint64_t system_parameter_handle_5)
@@ -38226,7 +38226,7 @@ void InitializeTextureSystem(void)
 {
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void SetupSystemMemory(longlong *handleIdentifier,longlong resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 void SetupSystemMemory(longlong *handleIdentifier,longlong resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
@@ -38543,7 +38543,7 @@ void HandleSystemResource58(void)
   (*pis_initialized)();
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule30(longlong handleIdentifier)
 void InitializeSystemModule30(longlong handleIdentifier)
 
@@ -38633,7 +38633,7 @@ void InitializeSystemModule30(longlong handleIdentifier)
                     // WARNING: Subroutine does not return
   ConfigureSystemModule17(g_system_context_1,&g_global_system_config,compare_result);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule59(uint64_t handleIdentifier,longlong resourceIdentifier)
 void InitializeSystemModule59(uint64_t handleIdentifier,longlong resourceIdentifier)
 
@@ -38659,7 +38659,7 @@ void InitializeSystemModule23(longlong handleIdentifier,uint64_t resourceIdentif
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeUtilEngineNode(longlong *handleIdentifier)
 void InitializeUtilEngineNode(longlong *handleIdentifier)
 
@@ -38784,7 +38784,7 @@ void InitializeUtilEngineNode(longlong *handleIdentifier)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ConfigureSystemSettings(uint64_t *handleIdentifier)
 void ConfigureSystemSettings(uint64_t *handleIdentifier)
 
@@ -38820,7 +38820,7 @@ void InitializeSecuritySystem(void)
   _Mtx_destroy_in_situ();
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule45(longlong handleIdentifier,longlong resourceIdentifier)
 void InitializeSystemModule45(longlong handleIdentifier,longlong resourceIdentifier)
 
@@ -38918,7 +38918,7 @@ void InitializeSystemModule45(longlong handleIdentifier,longlong resourceIdentif
                     // WARNING: Subroutine does not return
   memset(system_pointer_var + 1,0,SYSTEM_CONFIG_SIZE_RENDER8);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 uint64_t ProcessSystemData(longlong handleIdentifier,longlong resourceIdentifier,longlong system_configuration)
 
@@ -39149,7 +39149,7 @@ void InitializeSystemModule36(longlong handleIdentifier,uint64_t *resourceIdenti
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 longlong *
 ConfigureSystemParameters(longlong handleIdentifier,longlong *resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags,
@@ -39409,7 +39409,7 @@ uint64_t InitializeSystemModule41(longlong handleIdentifier,uint64_t *resourceId
   UNLOCK();
   return 0;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 longlong InitializeNetworkSystem(longlong *handleIdentifier,longlong *resourceIdentifier,int system_configuration,uint64_t systemFlags)
 
@@ -39579,7 +39579,7 @@ void ValidateSystemHandle69(uint8_t *handleIdentifier)
   *(uint32_t *)(system_register_rdi + SYSTEM_DATA_COMPARE_SIZE) = 0;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeMutexInitNode(longlong handleIdentifier,longlong resourceIdentifier,longlong system_configuration)
 void InitializeMutexInitNode(longlong handleIdentifier,longlong resourceIdentifier,longlong system_configuration)
 
@@ -39815,7 +39815,7 @@ INIT_LABEL_SYSTEM_69842:
   *handleIdentifier = &g_system_global_config;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 uint64_t * InitializeSystemModule47(longlong *handleIdentifier)
 
@@ -40148,7 +40148,7 @@ uint64_t InitializeInputManagerSystem(uint64_t handleIdentifier,ulonglong resour
   }
   return handleIdentifier;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 uint64_t InitializeResourceEngineNode(int handleIdentifier)
 
@@ -40178,7 +40178,7 @@ uint64_t * InitializeSystemModule14(uint64_t *handleIdentifier,ulonglong resourc
   }
   return handleIdentifier;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeNetworkSystem(longlong handleIdentifier)
 void InitializeNetworkSystem(longlong handleIdentifier)
 
@@ -40314,7 +40314,7 @@ void InitializeSystemDataNode32(longlong handleIdentifier)
   *(uint64_t *)(handleIdentifier + 8) = &globalSystemPointerData;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 longlong SetupGraphicsDevice(longlong *handleIdentifier,longlong *resourceIdentifier,int system_configuration)
 
@@ -40403,7 +40403,7 @@ void InitializeAudioDataNode8(longlong handleIdentifier,uint32_t resourceIdentif
   *(uint32_t *)(handleIdentifier + SYSTEM_MEMORY_OFFSET_1D50) = resourceIdentifier;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemResources(uint64_t handleIdentifier,uint32_t resourceIdentifier)
 void InitializeSystemResources(uint64_t handleIdentifier,uint32_t resourceIdentifier)
 
@@ -40510,7 +40510,7 @@ void HandleSystemOperation16(longlong *handleIdentifier,uint64_t resourceIdentif
                     // WARNING: Subroutine does not return
   ProcessSystemOperation();
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeShaderSystem(void)
 void InitializeShaderSystem(void)
 
@@ -40537,7 +40537,7 @@ void InitializeSystemDataNode31(longlong handleIdentifier)
   *(uint64_t *)(handleIdentifier + SYSTEM_NODE_HEADER_SIZE) = &globalSystemPointerData;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void SetupSystemServices(uint64_t *handleIdentifier)
 void SetupSystemServices(uint64_t *handleIdentifier)
 
@@ -40701,7 +40701,7 @@ void InitializeSystemModule44(longlong handleIdentifier)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 uint64_t
 InitializeNetworkSystem(longlong handleIdentifier,longlong resourceIdentifier,longlong *system_configuration,longlong *systemFlags,
@@ -40810,7 +40810,7 @@ void InitializePhysicsSystem(uint64_t *handleIdentifier)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeNetworkSystem(longlong handleIdentifier)
 void InitializeNetworkSystem(longlong handleIdentifier)
 
@@ -41302,7 +41302,7 @@ void InitializeTextureSystem(longlong handleIdentifier)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 ulonglong InitializeUISystem(longlong *handleIdentifier,longlong resourceIdentifier)
 
@@ -41391,7 +41391,7 @@ INIT_LABEL_SYSTEM_6ccef:
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = system_integer_result_unsigned;
   return system_integer_result_unsigned;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ProcessSystemData58(uint64_t handleIdentifier,uint64_t resourceIdentifier,longlong system_configuration)
 void ProcessSystemData58(uint64_t handleIdentifier,uint64_t resourceIdentifier,longlong system_configuration)
 
@@ -41598,7 +41598,7 @@ INIT_LABEL_SYSTEM_6cfb1:
   *handleIdentifier = &g_system_global_config;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 uint64_t * SetupSystemServices(longlong *handleIdentifier)
 
@@ -42016,7 +42016,7 @@ uint64_t InitializeSystemModule3(longlong handleIdentifier,uint64_t resourceIden
   }
   return system_integer_result_unsigned;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 longlong InitializeStringManager(longlong handleIdentifier)
 
@@ -42440,7 +42440,7 @@ longlong InitializeConfigSystem(longlong handleIdentifier,ulonglong resourceIden
   }
   return handleIdentifier;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ProcessSystemData88(void)
 void ProcessSystemData88(void)
 
@@ -42989,7 +42989,7 @@ InitializeMutexInitNode(uint32_t *handleIdentifier,uint64_t resourceIdentifier,u
   handleIdentifier[SYSTEM_DATA_OFFSET_5A] = 0;
   return handleIdentifier;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializePhysicsSystem(void)
 void InitializePhysicsSystem(void)
 
@@ -43047,7 +43047,7 @@ INIT_LABEL_SYSTEM_6f48d:
     ptr_data = (longlong *)*ptr_data;
   } while( true );
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ConfigureGraphicsShader(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 void ConfigureGraphicsShader(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
@@ -43091,7 +43091,7 @@ void ConfigureGraphicsShader(uint64_t handleIdentifier,uint64_t resourceIdentifi
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ConfigureSystemParameters(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 void ConfigureSystemParameters(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
@@ -43370,7 +43370,7 @@ InitializeSystemModule29(uint64_t *handleIdentifier,uint64_t resourceIdentifier,
   }
   return handleIdentifier;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 ulonglong InitializeInputSystem(uint64_t handleIdentifier,uint64_t resourceIdentifier)
 
@@ -43482,7 +43482,7 @@ ulonglong InitializeInputSystem(uint64_t handleIdentifier,uint64_t resourceIdent
 
 // WARNING: Removing unreachable block (ram,0x00018006fe26)
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 ulonglong InitializeInputEngineNode(uint64_t handleIdentifier,uint64_t resourceIdentifier,char system_configuration)
 
@@ -43713,7 +43713,7 @@ ulonglong InitializeInputEngineNode(uint64_t handleIdentifier,uint64_t resourceI
   }
   return system_integer_result_unsigned;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 ulonglong InitializeUISystem(uint64_t handleIdentifier,uint64_t resourceIdentifier,char system_configuration)
 
@@ -43987,7 +43987,7 @@ INIT_LABEL_SYSTEM_70230:
   }
   return system_integer_result_unsigned;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule47(uint64_t handleIdentifier,uint64_t resourceIdentifier)
 void InitializeSystemModule47(uint64_t handleIdentifier,uint64_t resourceIdentifier)
 
@@ -44085,7 +44085,7 @@ void InitializeSystemModule47(uint64_t handleIdentifier,uint64_t resourceIdentif
 
 // WARNING: Removing unreachable block (ram,0x000180070ce2)
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ConfigureSystemHandles(uint64_t handleIdentifier,longlong resourceIdentifier,uint32_t system_configuration,longlong systemFlags,
 void ConfigureSystemHandles(uint64_t handleIdentifier,longlong resourceIdentifier,uint32_t system_configuration,longlong systemFlags,
                   char system_parameter_handle_5,char parameter_6)
@@ -44699,7 +44699,7 @@ INIT_LABEL_SYSTEM_715eb:
 
 // WARNING: Removing unreachable block (ram,0x000180071c73)
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule10(uint64_t handleIdentifier,longlong resourceIdentifier,uint32_t system_configuration,longlong systemFlags)
 void InitializeSystemModule10(uint64_t handleIdentifier,longlong resourceIdentifier,uint32_t system_configuration,longlong systemFlags)
 
@@ -44988,7 +44988,7 @@ INIT_LABEL_SYSTEM_71eb0:
 
 // WARNING: Removing unreachable block (ram,0x0001800726c4)
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemTimer(uint64_t handleIdentifier,longlong resourceIdentifier,uint32_t system_configuration,longlong systemFlags,
 void InitializeSystemTimer(uint64_t handleIdentifier,longlong resourceIdentifier,uint32_t system_configuration,longlong systemFlags,
                   uint8_t system_parameter_handle_5,char parameter_6)
@@ -45576,7 +45576,7 @@ void InitializeRenderSystem(uint64_t handleIdentifier,uint64_t resourceIdentifie
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 bool InitializeSystemModule4(uint64_t handleIdentifier,uint64_t *resourceIdentifier)
 
@@ -45864,7 +45864,7 @@ bool InitializeSystemModule4(uint64_t handleIdentifier,uint64_t *resourceIdentif
                     // WARNING: Subroutine does not return
   ProcessSystemOperation();
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeUISystem(uint64_t handleIdentifier,uint64_t resourceIdentifier)
 void InitializeUISystem(uint64_t handleIdentifier,uint64_t resourceIdentifier)
 
@@ -45898,7 +45898,7 @@ void InitializeUISystem(uint64_t handleIdentifier,uint64_t resourceIdentifier)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ProcessSystemData88(uint64_t handleIdentifier,uint64_t resourceIdentifier)
 void ProcessSystemData88(uint64_t handleIdentifier,uint64_t resourceIdentifier)
 
@@ -45932,7 +45932,7 @@ void ProcessSystemData88(uint64_t handleIdentifier,uint64_t resourceIdentifier)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ValidateSystemConfiguration(uint64_t handleIdentifier,uint32_t resourceIdentifier,uint64_t system_configuration)
 void ValidateSystemConfiguration(uint64_t handleIdentifier,uint32_t resourceIdentifier,uint64_t system_configuration)
 
@@ -46769,7 +46769,7 @@ void InitializeInputEngineNode(void)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule41(longlong *handleIdentifier,longlong resourceIdentifier)
 void InitializeSystemModule41(longlong *handleIdentifier,longlong resourceIdentifier)
 
@@ -46942,7 +46942,7 @@ void InitializeSystemModule41(longlong *handleIdentifier,longlong resourceIdenti
                     // WARNING: Subroutine does not return
   ProcessSystemOperation();
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ProcessSystemData29(longlong *handleIdentifier)
 void ProcessSystemData29(longlong *handleIdentifier)
 
@@ -47118,7 +47118,7 @@ void ProcessSystemData29(longlong *handleIdentifier)
                     // WARNING: Subroutine does not return
   ProcessSystemOperation();
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ValidateSystemHandle38(longlong handleIdentifier)
 void ValidateSystemHandle38(longlong handleIdentifier)
 
@@ -47273,7 +47273,7 @@ void ValidateSystemHandle38(longlong handleIdentifier)
                     // WARNING: Subroutine does not return
   ProcessSystemOperation();
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void HandleSystemOperation88(longlong handleIdentifier)
 void HandleSystemOperation88(longlong handleIdentifier)
 
@@ -47350,7 +47350,7 @@ void HandleSystemOperation88(longlong handleIdentifier)
                     // WARNING: Subroutine does not return
   ProcessSystemOperation();
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ProcessSystemResource91(void)
 void ProcessSystemResource91(void)
 
@@ -47391,7 +47391,7 @@ void ProcessSystemResource91(void)
                     // WARNING: Subroutine does not return
   ProcessSystemOperation();
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializePhysicsSystem(longlong handleIdentifier,longlong resourceIdentifier)
 void InitializePhysicsSystem(longlong handleIdentifier,longlong resourceIdentifier)
 
@@ -47471,7 +47471,7 @@ void InitializePhysicsSystem(longlong handleIdentifier,longlong resourceIdentifi
                     // WARNING: Subroutine does not return
   InitializeSystemStack(init_stack_parameter_28 ^ (ulonglong)system_local_buffer_f8);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 uint64_t * InitializeRenderSystem(uint64_t handleIdentifier,longlong resourceIdentifier)
 
@@ -47503,7 +47503,7 @@ uint64_t * InitializeRenderSystem(uint64_t handleIdentifier,longlong resourceIde
   }
   return node_root;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeDatabaseSystem(longlong handleIdentifier)
 void InitializeDatabaseSystem(longlong handleIdentifier)
 
@@ -47754,7 +47754,7 @@ void InitializeUtilEngineNode(longlong *handleIdentifier,ulonglong resourceIdent
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeAudioMutex(uint64_t *handleIdentifier,ulonglong resourceIdentifier)
 void InitializeAudioMutex(uint64_t *handleIdentifier,ulonglong resourceIdentifier)
 
@@ -47961,7 +47961,7 @@ InitializeSystemModule32(uint64_t handleIdentifier,uint64_t *resourceIdentifier,
   strcpy_s(resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER],SYSTEM_OFFSET_80,&g_init_string_audio,systemFlags,0,INVALID_HANDLE_VALUE);
   return resourceIdentifier;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 uint64_t * InitializeSystemModule41(uint64_t *handleIdentifier,char resourceIdentifier,char system_configuration)
 
@@ -48945,7 +48945,7 @@ void InitializeSystemModule26(longlong *handleIdentifier)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 longlong * InitializeResourceSystem(longlong *handleIdentifier,longlong *resourceIdentifier)
 
@@ -49364,7 +49364,7 @@ uint64_t InitializeResourceSystem(longlong handleIdentifier)
   }
   return 1;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 int InitializeNetworkSystem(longlong handleIdentifier,longlong *resourceIdentifier)
 
@@ -49548,7 +49548,7 @@ void InitializeSystemProfiler(longlong *handleIdentifier)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 ulonglong InitializeAudioDataNode8(longlong handleIdentifier)
 
@@ -49603,7 +49603,7 @@ ulonglong InitializeAudioDataNode8(longlong handleIdentifier)
   }
   return system_integer_result_unsigned;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeNetworkSystem(longlong *handleIdentifier)
 void InitializeNetworkSystem(longlong *handleIdentifier)
 
@@ -49704,7 +49704,7 @@ INIT_LABEL_SYSTEM_7738d:
                     // WARNING: Subroutine does not return
   InitializeSystemStack(init_stack_uint_parameter_20 ^ (ulonglong)system_local_buffer_primary);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 uint64_t InitializeNetworkSystem(longlong handleIdentifier,longlong resourceIdentifier)
 
@@ -49883,7 +49883,7 @@ void InitializeSystemModule40(longlong handleIdentifier)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 ulonglong InitializeSystemModule6(longlong handleIdentifier,uint *resourceIdentifier,float *system_configuration,longlong systemFlags,
                        longlong system_parameter_handle_5)
@@ -50276,7 +50276,7 @@ INIT_LABEL_SYSTEM_77879:
   }
   return system_integer_result_unsigned;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule88(void)
 void InitializeSystemModule88(void)
 
@@ -50602,7 +50602,7 @@ void InitializeSystemModule88(void)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemLogger(void)
 void InitializeSystemLogger(void)
 
@@ -50862,7 +50862,7 @@ void InitializeSystemLogger(void)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void HandleSystemConfiguration64(void)
 void HandleSystemConfiguration64(void)
 
@@ -51011,7 +51011,7 @@ void HandleSystemConfiguration64(void)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ProcessSystemOperation95(void)
 void ProcessSystemOperation95(void)
 
@@ -51178,7 +51178,7 @@ void ProcessSystemOperation95(void)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void HandleSystemResource98(void)
 void HandleSystemResource98(void)
 
@@ -51497,7 +51497,7 @@ void InitializeSystemModule84(void)
   ConfigureSystemParameters(SYSTEM_FLOAT_1_0,init_stack_uint_60,system_reg_r14d_value,&init_stack_param_30,init_input_stack_e0);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeUtilEngineNode(longlong handleIdentifier)
 void InitializeUtilEngineNode(longlong handleIdentifier)
 
@@ -51595,7 +51595,7 @@ INIT_LABEL_SYSTEM_782e0:
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ProcessSystemData2(longlong handleIdentifier)
 void ProcessSystemData2(longlong handleIdentifier)
 
@@ -51692,7 +51692,7 @@ INIT_LABEL_SYSTEM_782e0:
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void HandleSystemOperation8(float handleIdentifier,float resourceIdentifier,float system_configuration,float systemFlags)
 void HandleSystemOperation8(float handleIdentifier,float resourceIdentifier,float system_configuration,float systemFlags)
 
@@ -51790,7 +51790,7 @@ INIT_LABEL_SYSTEM_782e0:
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemLogger(longlong handleIdentifier)
 void InitializeSystemLogger(longlong handleIdentifier)
 
@@ -51878,7 +51878,7 @@ INIT_LABEL_SYSTEM_782e0:
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeNetworkInitNode(void)
 void InitializeNetworkInitNode(void)
 
@@ -51920,7 +51920,7 @@ uint64_t * InitializeSecuritySystem(uint64_t *handleIdentifier,ulonglong resourc
   }
   return handleIdentifier;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ProcessSystemData88(uint64_t *handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 void ProcessSystemData88(uint64_t *handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
@@ -51997,7 +51997,7 @@ void ProcessSystemData88(uint64_t *handleIdentifier,uint64_t resourceIdentifier,
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule41(uint64_t *handleIdentifier,longlong resourceIdentifier)
 void InitializeSystemModule41(uint64_t *handleIdentifier,longlong resourceIdentifier)
 
@@ -52642,7 +52642,7 @@ void InitializeAuthenticationSystem(longlong handleIdentifier)
   *(uint *)(handleIdentifier + SYSTEM_NODE_HEADER_SIZE8) = (uint)*(ushort *)(system_long_value_result + SYSTEM_MEMORY_POOL_SIZE_LARGE);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeAudioMutex(longlong handleIdentifier,longlong resourceIdentifier)
 void InitializeAudioMutex(longlong handleIdentifier,longlong resourceIdentifier)
 
@@ -52947,7 +52947,7 @@ void InitializeAudioMutex(longlong handleIdentifier,longlong resourceIdentifier)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule55(longlong handleIdentifier)
 void InitializeSystemModule55(longlong handleIdentifier)
 
@@ -53254,7 +53254,7 @@ void InitializeSystemModule55(longlong handleIdentifier)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ProcessSystemResource36(void)
 void ProcessSystemResource36(void)
 
@@ -53542,7 +53542,7 @@ void ProcessSystemResource36(void)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void HandleSystemData39(longlong handleIdentifier,uint resourceIdentifier,uint64_t system_configuration,float *systemFlags)
 void HandleSystemData39(longlong handleIdentifier,uint resourceIdentifier,uint64_t system_configuration,float *systemFlags)
 
@@ -53826,7 +53826,7 @@ void HandleSystemData39(longlong handleIdentifier,uint resourceIdentifier,uint64
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ValidateSystemHandle65(void)
 void ValidateSystemHandle65(void)
 
@@ -54032,7 +54032,7 @@ void ValidateSystemHandle65(void)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 void* * ValidateSystemConfiguration(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
@@ -54143,7 +54143,7 @@ uint8_t InitializeSystemCoreComponent(void)
 }
 // WARNING: Removing unreachable block (ram,0x000180079699)
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 float * InitializeResourceSystem(float *handleIdentifier)
 
@@ -54402,7 +54402,7 @@ INIT_LABEL_SYSTEM_75f4f:
 
 // WARNING: Removing unreachable block (ram,0x0001800797dd)
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeTextureSystem(longlong handleIdentifier)
 void InitializeTextureSystem(longlong handleIdentifier)
 
@@ -55642,7 +55642,7 @@ uint8_t InitializeResourceSystem(longlong handleIdentifier)
 
 // WARNING: Removing unreachable block (ram,0x00018007b879)
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 ulonglong InitializeSystemComponents(longlong handleIdentifier,longlong *resourceIdentifier,byte system_configuration,char systemFlags)
 
@@ -55978,7 +55978,7 @@ void InitializeNetworkInitNode(longlong handleIdentifier)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule3(longlong handleIdentifier)
 void InitializeSystemModule3(longlong handleIdentifier)
 
@@ -56009,7 +56009,7 @@ void InitializeConfigSystem(longlong *handleIdentifier)
 
 // WARNING: Removing unreachable block (ram,0x00018007c188)
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeStringManager(longlong handleIdentifier,longlong resourceIdentifier,longlong system_configuration)
 void InitializeStringManager(longlong handleIdentifier,longlong resourceIdentifier,longlong system_configuration)
 
@@ -56594,7 +56594,7 @@ void InitializeFontSystem(longlong handleIdentifier,uint8_t resourceIdentifier)
 }
 // WARNING: Removing unreachable block (ram,0x00018007cad0)
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ConfigureSystemModule17(longlong handleIdentifier,byte resourceIdentifier,longlong *system_configuration,longlong *systemFlags)
 void ConfigureSystemModule17(longlong handleIdentifier,byte resourceIdentifier,longlong *system_configuration,longlong *systemFlags)
 
@@ -56716,7 +56716,7 @@ void ConfigureSystemModule17(longlong handleIdentifier,byte resourceIdentifier,l
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ConfigureSystemSettings(uint handleIdentifier,longlong resourceIdentifier,longlong *system_configuration,uint64_t systemFlags)
 void ConfigureSystemSettings(uint handleIdentifier,longlong resourceIdentifier,longlong *system_configuration,uint64_t systemFlags)
 
@@ -57508,7 +57508,7 @@ void HandleSystemOperation92(longlong handleIdentifier,longlong *resourceIdentif
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeInputSystem(longlong handleIdentifier,ulonglong resourceIdentifier,longlong *system_configuration,longlong *systemFlags)
 void InitializeInputSystem(longlong handleIdentifier,ulonglong resourceIdentifier,longlong *system_configuration,longlong *systemFlags)
 
@@ -57733,7 +57733,7 @@ void InitializeSystemModule42(longlong handleIdentifier,longlong *resourceIdenti
   UtilityFunction3a180(resourceIdentifier,0,0);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule2(longlong handleIdentifier,char resourceIdentifier,uint64_t system_configuration)
 void InitializeSystemModule2(longlong handleIdentifier,char resourceIdentifier,uint64_t system_configuration)
 
@@ -57763,7 +57763,7 @@ void InitializeSystemModule2(longlong handleIdentifier,char resourceIdentifier,u
   memcpy(*(uint64_t *)(*(longlong *)(handleIdentifier + 600) + SYSTEM_DATA_COMPARE_SIZE),system_configuration,system_long_value_result);
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeFontSystem(longlong handleIdentifier)
 void InitializeFontSystem(longlong handleIdentifier)
 
@@ -57796,7 +57796,7 @@ void InitializeSecurityEngineNode(void)
 {
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeTextureSystem(longlong handleIdentifier,int resourceIdentifier)
 void InitializeTextureSystem(longlong handleIdentifier,int resourceIdentifier)
 
@@ -57876,7 +57876,7 @@ INIT_LABEL_SYSTEM_7eb55:
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 
 code * InitializeSystemModule59(longlong handleIdentifier,char resourceIdentifier)
 
@@ -57975,7 +57975,7 @@ void InitializeAudioManagerSystem(longlong handleIdentifier,char resourceIdentif
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemDataNode29(longlong handleIdentifier)
 void InitializeSystemDataNode29(longlong handleIdentifier)
 
@@ -58081,7 +58081,7 @@ void InitializeSystemDataNode29(longlong handleIdentifier)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void HandleSystemResource84(longlong handleIdentifier,int resourceIdentifier,int system_configuration)
 void HandleSystemResource84(longlong handleIdentifier,int resourceIdentifier,int system_configuration)
 
@@ -58268,7 +58268,7 @@ void HandleSystemConfiguration39(longlong handleIdentifier)
   *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) = 0;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule47(longlong handleIdentifier,longlong resourceIdentifier,int system_configuration)
 void InitializeSystemModule47(longlong handleIdentifier,longlong resourceIdentifier,int system_configuration)
 
@@ -58340,7 +58340,7 @@ void InitializeSystemModule47(longlong handleIdentifier,longlong resourceIdentif
   *(int *)(*(longlong *)(handleIdentifier + SYSTEM_OFFSET_2D0) + 8) = system_configuration;
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ProcessSystemResource47(void)
 void ProcessSystemResource47(void)
 
@@ -58552,7 +58552,7 @@ uint64_t * ValidateSystemConfiguration(uint64_t *handleIdentifier,ulonglong reso
   }
   return handleIdentifier;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule33(uint8_t *handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 void InitializeSystemModule33(uint8_t *handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
@@ -58868,7 +58868,7 @@ uint8_t VerifySystemOperationalState(void)
   *system_RSI = 0;
   return system_integer_result_unsigned;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeNetworkSystem(longlong handleIdentifier)
 void InitializeNetworkSystem(longlong handleIdentifier)
 
@@ -59068,7 +59068,7 @@ void InitializeNetworkSystem(longlong handleIdentifier)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ProcessSystemData51(uint32_t handleIdentifier)
 void ProcessSystemData51(uint32_t handleIdentifier)
 
@@ -59268,7 +59268,7 @@ void ProcessSystemData51(uint32_t handleIdentifier)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void HandleSystemResource54(uint64_t handleIdentifier,longlong resourceIdentifier)
 void HandleSystemResource54(uint64_t handleIdentifier,longlong resourceIdentifier)
 
@@ -59463,7 +59463,7 @@ void HandleSystemResource54(uint64_t handleIdentifier,longlong resourceIdentifie
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ValidateSystemHandle61(void)
 void ValidateSystemHandle61(void)
 
@@ -59641,7 +59641,7 @@ void ValidateSystemHandle61(void)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemModule62(void)
 void InitializeSystemModule62(void)
 
@@ -59820,7 +59820,7 @@ void InitializeSystemModule62(void)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ProcessSystemOperation10(void)
 void ProcessSystemOperation10(void)
 
@@ -60020,7 +60020,7 @@ void ProcessSystemStringData(void)
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void ConfigureSystemResource(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration)
 void ConfigureSystemResource(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration)
 
@@ -60040,7 +60040,7 @@ void ConfigureSystemResource(uint64_t handleIdentifier,uint64_t resourceIdentifi
   }
   return;
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // void InitializeSystemResources(uint64_t handleIdentifier,longlong resourceIdentifier,uint64_t system_configuration,longlong systemFlags)
 void InitializeSystemResources(uint64_t handleIdentifier,longlong resourceIdentifier,uint64_t system_configuration,longlong systemFlags)
 
@@ -60075,7 +60075,7 @@ void InitializeSystemResources(uint64_t handleIdentifier,longlong resourceIdenti
   memcpy(*(uint64_t *)(*(longlong *)(resourceIdentifier + SYSTEM_NODE_HEADER_SIZE) + SYSTEM_DATA_COMPARE_SIZE),*(uint64_t *)(systemFlags + 8),
          (longlong)system_integer_result_temp);
 }
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // function_ptr g_system_audio_callback;
 void* g_system_audio_callback;
 // function_ptr g_system_graphics_callback;
