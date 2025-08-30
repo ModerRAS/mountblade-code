@@ -369,7 +369,7 @@ void* g_global_physics_system;
 
 void* g_global_render_system;
 
-longlong g_global_long_00000128;
+longlong g_global_system_memory_base;
 void* g_static_zero_buffer;
 
 void* g_global_input_system;
@@ -383,7 +383,7 @@ ulonglong g_global_long_000001d8;
 uint64_t g_system_flag_1;
 uint64_t g_system_flag_2;
 uint64_t g_system_flag_3;
-longlong g_global_long_000001f8;
+longlong g_global_system_memory_size;
 uint8_t g_system_audio_initialized;
 void* g_global_entity_manager;
 
@@ -393,7 +393,7 @@ void* g_global_game_manager;
 
 void* g_global_font_manager;
 
-char g_system_byte_flag_1;
+char g_system_status_flag;
 void* g_global_save_manager;
 
 void* g_global_load_manager;
@@ -411,7 +411,7 @@ void* g_global_navigation_manager;
 
 void* g_global_controls_manager;
 
-char g_system_byte_flag_3;
+char g_system_status_flag;
 void* g_global_task_manager;
 
 void* g_global_schedule_manager;
@@ -430,7 +430,7 @@ void* g_global_quest_manager;
 
 void* g_global_audio_manager;
 
-char g_system_byte_flag_4;
+char g_system_status_flag;
 
 void* g_static_system_manager;
 
@@ -462,13 +462,13 @@ void* g_global_viewport_config;
 
 void* g_global_frame_buffer;
 
-void* g_global_reserved_data_25;
+void* g_global_reserved_buffer_large;
 
 void* g_global_depth_buffer;
 
 void* g_global_storage_system;
 
-void* g_global_reserved_data_7;
+void* g_global_reserved_buffer_small;
 
 void* g_global_weapon_system;
 
@@ -485,7 +485,7 @@ void* g_global_uniform_buffer;
 
 void* g_function_create_texture;
 
-void* g_global_temp_data_98;
+void* g_global_temp_buffer_98;
 
 void* g_global_storage_buffer;
 
@@ -493,7 +493,7 @@ void* g_global_texture_buffer;
 
 void* g_static_render_target;
 
-void* g_global_temp_data_140;
+void* g_global_temp_buffer_140;
 
 void* g_static_frame_buffer;
 // function_ptr g_function_load_shader;
@@ -526,29 +526,29 @@ void* g_global_data_1801b9b60;
 
 void* g_function_create_buffer;
 
-void* g_global_high_data_550;
+void* g_global_high_memory_data;
 
-void* g_global_high_data_5b0;
+void* g_global_high_memory_data;
 
-void* g_global_high_data_5c0;
+void* g_global_high_memory_data;
 
-void* g_global_high_data_13f8;
+void* g_global_high_memory_data;
 
 char g_system_video_initialized;
 
-void* g_global_high_data_5e8;
+void* g_global_high_memory_data;
 
-void* g_global_high_data_7e0;
+void* g_global_high_memory_data;
 
 void* g_static_data_18098c090;
 
-void* g_global_high_data_9c8;
+void* g_global_high_memory_data;
 
-void* g_global_high_data_13e8;
+void* g_global_high_memory_data;
 
-void* g_global_high_data_13c8;
+void* g_global_high_memory_data;
 
-void* g_global_high_data_13d8;
+void* g_global_high_memory_data;
 
 void* g_static_data_180d49288;
 
@@ -780,11 +780,11 @@ void* g_global_data_180a17818;
 void* g_global_data_180a27cb0;
 
 uint32_t g_config_screen_width;
-uint32_t g_config_value_2;
-uint32_t g_config_value_3;
+uint32_t g_config_screen_dimension;
+uint32_t g_config_screen_dimension;
 void* g_static_data_180c8ecd0;
 
-char g_system_data_flag_2;
+char g_system_data_status;
 
 void* g_global_data_18042d5d0;
 
@@ -806,7 +806,7 @@ void* g_global_data_180a17a18;
 
 void* g_global_data_180a17a68;
 
-char g_system_data_flag_3;
+char g_system_data_status;
 void* g_global_data_180a178c8;
 
 void* g_global_data_180a178f0;
@@ -821,7 +821,7 @@ void* g_global_data_180a17980;
 
 void* g_global_data_180a179a8;
 
-char g_system_data_flag_4;
+char g_system_data_status;
 
 void* g_global_data_180a179d0;
 
@@ -1016,15 +1016,15 @@ void* g_global_data_180a25af0;
 
 void* g_global_data_180a25b00;
 
-void* g_global_system_data_1;
+void* g_global_system_data;
 
-void* g_global_system_data_2;
+void* g_global_system_data;
 
-void* g_global_system_data_3;
+void* g_global_system_data;
 
-void* g_global_system_data_4;
+void* g_global_system_data;
 
-void* g_global_system_data_5;
+void* g_global_system_data;
 
 void* g_global_data_180a25b40;
 
@@ -1446,7 +1446,7 @@ void InitializeResourceNode(void)
   }
   node_previous[6] = 0x45b8d074df27d12f;
   node_previous[7] = 0x8d98f4c06880eda4;
-  node_previous[8] = &g_system_node_6;
+  node_previous[8] = &g_system_node;
   node_previous[9] = 3;
   node_previous[10] = flag_initialized;
   return;
@@ -1474,7 +1474,7 @@ void InitializeRenderNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_data_compare_pattern_7,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[2];
       node_current = node_previous;
@@ -1486,14 +1486,14 @@ void InitializeRenderNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_data_compare_pattern_7,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
   node_previous[6] = 0x42d293584c8cf3e5;
   node_previous[7] = 0x355ffeb2d29e668a;
-  node_previous[8] = &g_system_node_7;
+  node_previous[8] = &g_system_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -1521,7 +1521,7 @@ void InitializeAudioNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_data_compare_pattern_8,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[2];
       node_current = node_previous;
@@ -1533,14 +1533,14 @@ void InitializeAudioNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_data_compare_pattern_8,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
   node_previous[6] = 0x421c3cedd07d816d;
   node_previous[7] = 0xbec25de793b7afa6;
-  node_previous[8] = &g_system_node_8;
+  node_previous[8] = &g_system_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -1568,7 +1568,7 @@ void InitializeNetworkNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_data_compare_pattern_9,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[2];
       node_current = node_previous;
@@ -1580,14 +1580,14 @@ void InitializeNetworkNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_data_compare_pattern_9,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
   node_previous[6] = 0x4c22bb0c326587ce;
   node_previous[7] = 0x5e3cf00ce2978287;
-  node_previous[8] = &g_system_node_9;
+  node_previous[8] = &g_system_node;
   node_previous[9] = 1;
   node_previous[10] = flag_initialized;
   return;
@@ -1654,7 +1654,7 @@ void InitializeEngineState_18002d150(void)
   }
   node_previous[6] = 0x42bea5b911d9c4bf;
   node_previous[7] = 0x1aa83fc0020dc1b6;
-  node_previous[8] = &g_data_node_1;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -1734,7 +1734,7 @@ void InitializeRenderingSystem_18002d320(void)
   }
   node_previous[6] = 0x406be72011d07d37;
   node_previous[7] = 0x71876af946c867ab;
-  node_previous[8] = &g_data_node_2;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -1780,7 +1780,7 @@ void InitializeAudioSystem_18002d420(void)
   }
   node_previous[6] = 0x40afa5469b6ac06d;
   node_previous[7] = 0x2f4bab01d34055a5;
-  node_previous[8] = &g_data_node_3;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 3;
   node_previous[10] = pcstack_var;
   return;
@@ -1856,7 +1856,7 @@ void InitializeNetworkSystem_18002d5e0(void)
   }
   node_previous[6] = 0x43330a43fcdb3653;
   node_previous[7] = 0xdcfdc333a769ec93;
-  node_previous[8] = &g_data_node_4;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 1;
   node_previous[10] = pcstack_var;
   return;
@@ -1903,7 +1903,7 @@ void initialize_system_phase1(void)
   }
   node_previous[6] = 0x431d7c8d7c475be2;
   node_previous[7] = 0xb97f048d2153e1b0;
-  node_previous[8] = &g_data_node_5;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 4;
   node_previous[10] = pcstack_var;
   return;
@@ -1950,7 +1950,7 @@ void initialize_system_phase2(void)
   }
   node_previous[6] = 0x4b2d79e470ee4e2c;
   node_previous[7] = 0x9c552acd3ed5548d;
-  node_previous[8] = &g_data_node_6;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -1997,7 +1997,7 @@ void initialize_system_phase3(void)
   }
   node_previous[6] = 0x49086ba08ab981a7;
   node_previous[7] = 0xa9191d34ad910696;
-  node_previous[8] = &g_data_node_7;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -2044,7 +2044,7 @@ void initialize_system_phase4(void)
   }
   node_previous[6] = 0x402feffe4481676e;
   node_previous[7] = 0xd4c2151109de93a0;
-  node_previous[8] = &g_data_node_8;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -2091,7 +2091,7 @@ void initialize_system_phase5(void)
   }
   node_previous[6] = 0x4384dcc4b6d3f417;
   node_previous[7] = 0x92a15d52fe2679bd;
-  node_previous[8] = &g_data_node_9;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pflag_initialized;
   return;
@@ -2138,7 +2138,7 @@ void initialize_system_phase6(void)
   }
   node_previous[6] = 0x4140994454d56503;
   node_previous[7] = 0x399eced9bb5517ad;
-  node_previous[8] = &g_data_node_10;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -2185,7 +2185,7 @@ void initialize_system_phase7(void)
   }
   node_previous[6] = 0x449bafe9b77ddd3c;
   node_previous[7] = 0xc160408bde99e59f;
-  node_previous[8] = &g_data_node_11;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -2232,7 +2232,7 @@ void initialize_system_phase8(void)
   }
   node_previous[6] = 0x45425dc186a5d575;
   node_previous[7] = 0xfab48faa65382fa5;
-  node_previous[8] = &g_data_node_12;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -2279,7 +2279,7 @@ void initialize_system_phase9(void)
   }
   node_previous[6] = 0x406be72011d07d37;
   node_previous[7] = 0x71876af946c867ab;
-  node_previous[8] = &g_data_node_2;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -2326,7 +2326,7 @@ void initialize_system_phase10(void)
   }
   node_previous[6] = 0x40afa5469b6ac06d;
   node_previous[7] = 0x2f4bab01d34055a5;
-  node_previous[8] = &g_data_node_3;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 3;
   node_previous[10] = pcstack_var;
   return;
@@ -2373,7 +2373,7 @@ void initialize_graphics_phase1(void)
   }
   node_previous[6] = 0x42bea5b911d9c4bf;
   node_previous[7] = 0x1aa83fc0020dc1b6;
-  node_previous[8] = &g_data_node_1;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -2420,7 +2420,7 @@ void initialize_graphics_phase2(void)
   }
   node_previous[6] = 0x40db4257e97d3df8;
   node_previous[7] = 0x81d539e33614429f;
-  node_previous[8] = &g_data_node_13;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 4;
   node_previous[10] = pcstack_var;
   return;
@@ -2467,7 +2467,7 @@ void initialize_graphics_phase3(void)
   }
   node_previous[6] = 0x4e33c4803e67a08f;
   node_previous[7] = 0x703a29a844ce399;
-  node_previous[8] = &g_data_node_14;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 3;
   node_previous[10] = pcstack_var;
   return;
@@ -2480,7 +2480,7 @@ int InitializeSystemDataPtr(void)
   longlong long_var_;
   uint64_t systemParam_;
 
-  g_system_ptr_1 = &g_data_node_config;
+  g_system_ptr_1 = &g_system_data_nodeconfig;
   g_system_ptr_2 = &g_system_ptr_3;
 // void CreateSystemObjectThread1(void)
 
@@ -2543,7 +2543,7 @@ void InitializeDataNode(void)
   }
   node_previous[6] = 0x43330a43fcdb3653;
   node_previous[7] = 0xdcfdc333a769ec93;
-  node_previous[8] = &g_data_node_4;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 1;
   node_previous[10] = pcstack_var;
   return;
@@ -2590,7 +2590,7 @@ void InitializeResourceNode(void)
   }
   node_previous[6] = 0x431d7c8d7c475be2;
   node_previous[7] = 0xb97f048d2153e1b0;
-  node_previous[8] = &g_data_node_5;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 4;
   node_previous[10] = pcstack_var;
   return;
@@ -2637,7 +2637,7 @@ void InitializeMemoryNode(void)
   }
   node_previous[6] = 0x4b2d79e470ee4e2c;
   node_previous[7] = 0x9c552acd3ed5548d;
-  node_previous[8] = &g_data_node_6;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -2684,7 +2684,7 @@ void InitializeThreadNode(void)
   }
   node_previous[6] = 0x49086ba08ab981a7;
   node_previous[7] = 0xa9191d34ad910696;
-  node_previous[8] = &g_data_node_7;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -2731,7 +2731,7 @@ void InitializeConfigNode(void)
   }
   node_previous[6] = 0x402feffe4481676e;
   node_previous[7] = 0xd4c2151109de93a0;
-  node_previous[8] = &g_data_node_8;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -2778,7 +2778,7 @@ void InitializeStateNode(void)
   }
   node_previous[6] = 0x4384dcc4b6d3f417;
   node_previous[7] = 0x92a15d52fe2679bd;
-  node_previous[8] = &g_data_node_9;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pflag_initialized;
   return;
@@ -2825,7 +2825,7 @@ void InitializeBufferNode(void)
   }
   node_previous[6] = 0x4140994454d56503;
   node_previous[7] = 0x399eced9bb5517ad;
-  node_previous[8] = &g_data_node_10;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -2872,7 +2872,7 @@ void InitializeCacheNode(void)
   }
   node_previous[6] = 0x45425dc186a5d575;
   node_previous[7] = 0xfab48faa65382fa5;
-  node_previous[8] = &g_data_node_12;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -2919,7 +2919,7 @@ void InitializePoolNode(void)
   }
   node_previous[6] = 0x43330a43fcdb3653;
   node_previous[7] = 0xdcfdc333a769ec93;
-  node_previous[8] = &g_data_node_4;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 1;
   node_previous[10] = pcstack_var;
   return;
@@ -2966,7 +2966,7 @@ void InitializeQueueNode(void)
   }
   node_previous[6] = 0x431d7c8d7c475be2;
   node_previous[7] = 0xb97f048d2153e1b0;
-  node_previous[8] = &g_data_node_5;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 4;
   node_previous[10] = pcstack_var;
   return;
@@ -3013,7 +3013,7 @@ void InitializeStackNode(void)
   }
   node_previous[6] = 0x4b2d79e470ee4e2c;
   node_previous[7] = 0x9c552acd3ed5548d;
-  node_previous[8] = &g_data_node_6;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -3060,7 +3060,7 @@ void InitializeSystemListNode(void)
   }
   node_previous[6] = 0x49086ba08ab981a7;
   node_previous[7] = 0xa9191d34ad910696;
-  node_previous[8] = &g_data_node_7;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -3107,7 +3107,7 @@ void InitializeTreeNode(void)
   }
   node_previous[6] = 0x402feffe4481676e;
   node_previous[7] = 0xd4c2151109de93a0;
-  node_previous[8] = &g_data_node_8;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -3154,7 +3154,7 @@ void InitializeGraphNode(void)
   }
   node_previous[6] = 0x4384dcc4b6d3f417;
   node_previous[7] = 0x92a15d52fe2679bd;
-  node_previous[8] = &g_data_node_9;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pflag_initialized;
   return;
@@ -3201,7 +3201,7 @@ void InitializeMapNode(void)
   }
   node_previous[6] = 0x4140994454d56503;
   node_previous[7] = 0x399eced9bb5517ad;
-  node_previous[8] = &g_data_node_10;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -3248,7 +3248,7 @@ void InitializeSetNode(void)
   }
   node_previous[6] = 0x43330a43fcdb3653;
   node_previous[7] = 0xdcfdc333a769ec93;
-  node_previous[8] = &g_data_node_4;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 1;
   node_previous[10] = pcstack_var;
   return;
@@ -3295,7 +3295,7 @@ void InitializeArrayNode(void)
   }
   node_previous[6] = 0x431d7c8d7c475be2;
   node_previous[7] = 0xb97f048d2153e1b0;
-  node_previous[8] = &g_data_node_5;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 4;
   node_previous[10] = pcstack_var;
   return;
@@ -3342,7 +3342,7 @@ void InitializeVectorNode(void)
   }
   node_previous[6] = 0x4b2d79e470ee4e2c;
   node_previous[7] = 0x9c552acd3ed5548d;
-  node_previous[8] = &g_data_node_6;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -3389,7 +3389,7 @@ void InitializeMatrixNode(void)
   }
   node_previous[6] = 0x49086ba08ab981a7;
   node_previous[7] = 0xa9191d34ad910696;
-  node_previous[8] = &g_data_node_7;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -3436,7 +3436,7 @@ void InitializeHashNode(void)
   }
   node_previous[6] = 0x402feffe4481676e;
   node_previous[7] = 0xd4c2151109de93a0;
-  node_previous[8] = &g_data_node_8;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -3483,7 +3483,7 @@ void InitializeTableNode(void)
   }
   node_previous[6] = 0x4384dcc4b6d3f417;
   node_previous[7] = 0x92a15d52fe2679bd;
-  node_previous[8] = &g_data_node_9;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pflag_initialized;
   return;
@@ -3530,7 +3530,7 @@ void InitializeRecordNode(void)
   }
   node_previous[6] = 0x4140994454d56503;
   node_previous[7] = 0x399eced9bb5517ad;
-  node_previous[8] = &g_data_node_10;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -3577,7 +3577,7 @@ void InitializeFieldNode(void)
   }
   node_previous[6] = 0x42bea5b911d9c4bf;
   node_previous[7] = 0x1aa83fc0020dc1b6;
-  node_previous[8] = &g_data_node_1;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -3624,7 +3624,7 @@ void InitializeAttributeNode(void)
   }
   node_previous[6] = 0x45425dc186a5d575;
   node_previous[7] = 0xfab48faa65382fa5;
-  node_previous[8] = &g_data_node_12;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -3671,7 +3671,7 @@ void InitializePropertyNode(void)
   }
   node_previous[6] = 0x43330a43fcdb3653;
   node_previous[7] = 0xdcfdc333a769ec93;
-  node_previous[8] = &g_data_node_4;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 1;
   node_previous[10] = pcstack_var;
   return;
@@ -3718,7 +3718,7 @@ void InitializeMethodNode(void)
   }
   node_previous[6] = 0x431d7c8d7c475be2;
   node_previous[7] = 0xb97f048d2153e1b0;
-  node_previous[8] = &g_data_node_5;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 4;
   node_previous[10] = pcstack_var;
   return;
@@ -3765,7 +3765,7 @@ void InitializeEventNode(void)
   }
   node_previous[6] = 0x4b2d79e470ee4e2c;
   node_previous[7] = 0x9c552acd3ed5548d;
-  node_previous[8] = &g_data_node_6;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -3812,7 +3812,7 @@ void InitializeDelegateNode(void)
   }
   node_previous[6] = 0x49086ba08ab981a7;
   node_previous[7] = 0xa9191d34ad910696;
-  node_previous[8] = &g_data_node_7;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -3859,7 +3859,7 @@ void InitializeCallbackNode(void)
   }
   node_previous[6] = 0x402feffe4481676e;
   node_previous[7] = 0xd4c2151109de93a0;
-  node_previous[8] = &g_data_node_8;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -3906,7 +3906,7 @@ void InitializeHandlerNode(void)
   }
   node_previous[6] = 0x4384dcc4b6d3f417;
   node_previous[7] = 0x92a15d52fe2679bd;
-  node_previous[8] = &g_data_node_9;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pflag_initialized;
   return;
@@ -3953,7 +3953,7 @@ void InitializeListenerNode(void)
   }
   node_previous[6] = 0x4140994454d56503;
   node_previous[7] = 0x399eced9bb5517ad;
-  node_previous[8] = &g_data_node_10;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -4029,7 +4029,7 @@ void InitializeSystemObject1(void)
   }
   node_previous[6] = 0x406be72011d07d37;
   node_previous[7] = 0x71876af946c867ab;
-  node_previous[8] = &g_data_node_2;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -4076,7 +4076,7 @@ void InitializeSystemObject2(void)
   }
   node_previous[6] = 0x40afa5469b6ac06d;
   node_previous[7] = 0x2f4bab01d34055a5;
-  node_previous[8] = &g_data_node_3;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 3;
   node_previous[10] = pcstack_var;
   return;
@@ -4123,7 +4123,7 @@ void InitializeSystemObject3(void)
   }
   node_previous[6] = 0x406be72011d07d37;
   node_previous[7] = 0x71876af946c867ab;
-  node_previous[8] = &g_data_node_2;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -4170,7 +4170,7 @@ void InitializeSystemObject4(void)
   }
   node_previous[6] = 0x40afa5469b6ac06d;
   node_previous[7] = 0x2f4bab01d34055a5;
-  node_previous[8] = &g_data_node_3;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 3;
   node_previous[10] = pcstack_var;
   return;
@@ -4217,7 +4217,7 @@ void InitializeSystemObject5(void)
   }
   node_previous[6] = 0x43330a43fcdb3653;
   node_previous[7] = 0xdcfdc333a769ec93;
-  node_previous[8] = &g_data_node_4;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 1;
   node_previous[10] = pcstack_var;
   return;
@@ -4264,7 +4264,7 @@ void InitializeSystemObject6(void)
   }
   node_previous[6] = 0x431d7c8d7c475be2;
   node_previous[7] = 0xb97f048d2153e1b0;
-  node_previous[8] = &g_data_node_5;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 4;
   node_previous[10] = pcstack_var;
   return;
@@ -4311,7 +4311,7 @@ void InitializeSystemObject7(void)
   }
   node_previous[6] = 0x4b2d79e470ee4e2c;
   node_previous[7] = 0x9c552acd3ed5548d;
-  node_previous[8] = &g_data_node_6;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -4358,7 +4358,7 @@ void InitializeSystemObject8(void)
   }
   node_previous[6] = 0x49086ba08ab981a7;
   node_previous[7] = 0xa9191d34ad910696;
-  node_previous[8] = &g_data_node_7;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -4405,7 +4405,7 @@ void InitializeSystemObject9(void)
   }
   node_previous[6] = 0x402feffe4481676e;
   node_previous[7] = 0xd4c2151109de93a0;
-  node_previous[8] = &g_data_node_8;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -4452,7 +4452,7 @@ void InitializeSystemObject10(void)
   }
   node_previous[6] = 0x4384dcc4b6d3f417;
   node_previous[7] = 0x92a15d52fe2679bd;
-  node_previous[8] = &g_data_node_9;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pflag_initialized;
   return;
@@ -4499,7 +4499,7 @@ void InitializeSystemObject11(void)
   }
   node_previous[6] = 0x4140994454d56503;
   node_previous[7] = 0x399eced9bb5517ad;
-  node_previous[8] = &g_data_node_10;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -4565,7 +4565,7 @@ void InitializeThreadConfig2(void)
   }
   node_previous[6] = 0x43330a43fcdb3653;
   node_previous[7] = 0xdcfdc333a769ec93;
-  node_previous[8] = &g_data_node_4;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 1;
   node_previous[10] = pcstack_var;
   return;
@@ -4612,7 +4612,7 @@ void InitializeSystemObject13(void)
   }
   node_previous[6] = 0x431d7c8d7c475be2;
   node_previous[7] = 0xb97f048d2153e1b0;
-  node_previous[8] = &g_data_node_5;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 4;
   node_previous[10] = pcstack_var;
   return;
@@ -4659,7 +4659,7 @@ void InitializeSystemObject14(void)
   }
   node_previous[6] = 0x4b2d79e470ee4e2c;
   node_previous[7] = 0x9c552acd3ed5548d;
-  node_previous[8] = &g_data_node_6;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -4706,7 +4706,7 @@ void InitializeSystemObject15(void)
   }
   node_previous[6] = 0x49086ba08ab981a7;
   node_previous[7] = 0xa9191d34ad910696;
-  node_previous[8] = &g_data_node_7;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -4753,7 +4753,7 @@ void InitializeSystemObject16(void)
   }
   node_previous[6] = 0x402feffe4481676e;
   node_previous[7] = 0xd4c2151109de93a0;
-  node_previous[8] = &g_data_node_8;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -4800,7 +4800,7 @@ void InitializeSystemObject17(void)
   }
   node_previous[6] = 0x4384dcc4b6d3f417;
   node_previous[7] = 0x92a15d52fe2679bd;
-  node_previous[8] = &g_data_node_9;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pflag_initialized;
   return;
@@ -4847,7 +4847,7 @@ void InitializeSystemObject18(void)
   }
   node_previous[6] = 0x4140994454d56503;
   node_previous[7] = 0x399eced9bb5517ad;
-  node_previous[8] = &g_data_node_10;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -5018,7 +5018,7 @@ void InitializeSystemObject25(void)
   }
   node_previous[6] = 0x40db4257e97d3df8;
   node_previous[7] = 0x81d539e33614429f;
-  node_previous[8] = &g_data_node_13;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 4;
   node_previous[10] = pcstack_var;
   return;
@@ -5065,7 +5065,7 @@ void EnableInputDevice(void)
   }
   node_previous[6] = 0x4e33c4803e67a08f;
   node_previous[7] = 0x703a29a844ce399;
-  node_previous[8] = &g_data_node_14;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 3;
   node_previous[10] = pcstack_var;
   return;
@@ -5112,7 +5112,7 @@ void DisableInputDevice(void)
   }
   node_previous[6] = 0x43330a43fcdb3653;
   node_previous[7] = 0xdcfdc333a769ec93;
-  node_previous[8] = &g_data_node_4;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 1;
   node_previous[10] = pcstack_var;
   return;
@@ -5159,7 +5159,7 @@ void InitializeNetworkSystem(void)
   }
   node_previous[6] = 0x431d7c8d7c475be2;
   node_previous[7] = 0xb97f048d2153e1b0;
-  node_previous[8] = &g_data_node_5;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 4;
   node_previous[10] = pcstack_var;
   return;
@@ -5206,7 +5206,7 @@ void CreateNetworkSocket(void)
   }
   node_previous[6] = 0x4b2d79e470ee4e2c;
   node_previous[7] = 0x9c552acd3ed5548d;
-  node_previous[8] = &g_data_node_6;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -5253,7 +5253,7 @@ void DestroyNetworkSocket(void)
   }
   node_previous[6] = 0x49086ba08ab981a7;
   node_previous[7] = 0xa9191d34ad910696;
-  node_previous[8] = &g_data_node_7;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -5300,7 +5300,7 @@ void ConnectNetworkSocket(void)
   }
   node_previous[6] = 0x402feffe4481676e;
   node_previous[7] = 0xd4c2151109de93a0;
-  node_previous[8] = &g_data_node_8;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -5347,7 +5347,7 @@ void DisconnectNetworkSocket(void)
   }
   node_previous[6] = 0x4384dcc4b6d3f417;
   node_previous[7] = 0x92a15d52fe2679bd;
-  node_previous[8] = &g_data_node_9;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pflag_initialized;
   return;
@@ -5394,7 +5394,7 @@ void SendNetworkData(void)
   }
   node_previous[6] = 0x4140994454d56503;
   node_previous[7] = 0x399eced9bb5517ad;
-  node_previous[8] = &g_data_node_10;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -5441,7 +5441,7 @@ void ReceiveNetworkData(void)
   }
   node_previous[6] = 0x43330a43fcdb3653;
   node_previous[7] = 0xdcfdc333a769ec93;
-  node_previous[8] = &g_data_node_4;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 1;
   node_previous[10] = pcstack_var;
   return;
@@ -5488,7 +5488,7 @@ void GetNetworkStatus(void)
   }
   node_previous[6] = 0x431d7c8d7c475be2;
   node_previous[7] = 0xb97f048d2153e1b0;
-  node_previous[8] = &g_data_node_5;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 4;
   node_previous[10] = pcstack_var;
   return;
@@ -5535,7 +5535,7 @@ void SetNetworkTimeout(void)
   }
   node_previous[6] = 0x4b2d79e470ee4e2c;
   node_previous[7] = 0x9c552acd3ed5548d;
-  node_previous[8] = &g_data_node_6;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -5582,7 +5582,7 @@ void FlushNetworkBuffer(void)
   }
   node_previous[6] = 0x49086ba08ab981a7;
   node_previous[7] = 0xa9191d34ad910696;
-  node_previous[8] = &g_data_node_7;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -5629,7 +5629,7 @@ void InitializeSystemModule18(void)
   }
   node_previous[6] = 0x402feffe4481676e;
   node_previous[7] = 0xd4c2151109de93a0;
-  node_previous[8] = &g_data_node_8;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -5676,7 +5676,7 @@ void InitializeSystemModule19(void)
   }
   node_previous[6] = 0x4384dcc4b6d3f417;
   node_previous[7] = 0x92a15d52fe2679bd;
-  node_previous[8] = &g_data_node_9;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pflag_initialized;
   return;
@@ -5723,7 +5723,7 @@ void InitializeSystemModule20(void)
   }
   node_previous[6] = 0x4140994454d56503;
   node_previous[7] = 0x399eced9bb5517ad;
-  node_previous[8] = &g_data_node_10;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -5824,7 +5824,7 @@ void InitializeAudioSubsystem(void)
   }
   node_previous[6] = 0x45425dc186a5d575;
   node_previous[7] = 0xfab48faa65382fa5;
-  node_previous[8] = &g_data_node_12;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -5871,7 +5871,7 @@ void InitializeVideoSubsystem(void)
   }
   node_previous[6] = 0x449bafe9b77ddd3c;
   node_previous[7] = 0xc160408bde99e59f;
-  node_previous[8] = &g_data_node_11;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -5918,7 +5918,7 @@ void InitializeInputSubsystem(void)
   }
   node_previous[6] = 0x406be72011d07d37;
   node_previous[7] = 0x71876af946c867ab;
-  node_previous[8] = &g_data_node_2;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -5965,7 +5965,7 @@ void InitializeNetworkSystem(void)
   }
   node_previous[6] = 0x40afa5469b6ac06d;
   node_previous[7] = 0x2f4bab01d34055a5;
-  node_previous[8] = &g_data_node_3;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 3;
   node_previous[10] = pcstack_var;
   return;
@@ -6012,7 +6012,7 @@ void InitializeConfigSubsystem(void)
   }
   node_previous[6] = 0x43330a43fcdb3653;
   node_previous[7] = 0xdcfdc333a769ec93;
-  node_previous[8] = &g_data_node_4;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 1;
   node_previous[10] = pcstack_var;
   return;
@@ -6059,7 +6059,7 @@ void InitializeFontSubsystem(void)
   }
   node_previous[6] = 0x431d7c8d7c475be2;
   node_previous[7] = 0xb97f048d2153e1b0;
-  node_previous[8] = &g_data_node_5;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 4;
   node_previous[10] = pcstack_var;
   return;
@@ -6106,7 +6106,7 @@ void InitializeShaderSubsystem(void)
   }
   node_previous[6] = 0x4b2d79e470ee4e2c;
   node_previous[7] = 0x9c552acd3ed5548d;
-  node_previous[8] = &g_data_node_6;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -6153,7 +6153,7 @@ void InitializePhysicsSubsystem(void)
   }
   node_previous[6] = 0x49086ba08ab981a7;
   node_previous[7] = 0xa9191d34ad910696;
-  node_previous[8] = &g_data_node_7;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -6200,7 +6200,7 @@ void InitializeUISubsystem(void)
   }
   node_previous[6] = 0x402feffe4481676e;
   node_previous[7] = 0xd4c2151109de93a0;
-  node_previous[8] = &g_data_node_8;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -6247,7 +6247,7 @@ void InitializeSecuritySubsystem(void)
   }
   node_previous[6] = 0x4384dcc4b6d3f417;
   node_previous[7] = 0x92a15d52fe2679bd;
-  node_previous[8] = &g_data_node_9;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pflag_initialized;
   return;
@@ -6294,7 +6294,7 @@ void ProcessSystemStringData(void)
   }
   node_previous[6] = 0x4140994454d56503;
   node_previous[7] = 0x399eced9bb5517ad;
-  node_previous[8] = &g_data_node_10;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -6341,7 +6341,7 @@ void ValidateSystemConfiguration(void)
   }
   node_previous[6] = 0x40db4257e97d3df8;
   node_previous[7] = 0x81d539e33614429f;
-  node_previous[8] = &g_data_node_13;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 4;
   node_previous[10] = pcstack_var;
   return;
@@ -6388,7 +6388,7 @@ void InitializeSystemTimer(void)
   }
   node_previous[6] = 0x4e33c4803e67a08f;
   node_previous[7] = 0x703a29a844ce399;
-  node_previous[8] = &g_data_node_14;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 3;
   node_previous[10] = pcstack_var;
   return;
@@ -6435,7 +6435,7 @@ void InitializeSystemLogger(void)
   }
   node_previous[6] = 0x43330a43fcdb3653;
   node_previous[7] = 0xdcfdc333a769ec93;
-  node_previous[8] = &g_data_node_4;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 1;
   node_previous[10] = pcstack_var;
   return;
@@ -6482,7 +6482,7 @@ void InitializeSystemProfiler(void)
   }
   node_previous[6] = 0x431d7c8d7c475be2;
   node_previous[7] = 0xb97f048d2153e1b0;
-  node_previous[8] = &g_data_node_5;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 4;
   node_previous[10] = pcstack_var;
   return;
@@ -6529,7 +6529,7 @@ void SystemFunction_71_2(void)
   }
   node_previous[6] = 0x4b2d79e470ee4e2c;
   node_previous[7] = 0x9c552acd3ed5548d;
-  node_previous[8] = &g_data_node_6;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -6576,7 +6576,7 @@ void SystemFunction_96_8(void)
   }
   node_previous[6] = 0x49086ba08ab981a7;
   node_previous[7] = 0xa9191d34ad910696;
-  node_previous[8] = &g_data_node_7;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -6623,7 +6623,7 @@ void SystemFunction_22_4(void)
   }
   node_previous[6] = 0x402feffe4481676e;
   node_previous[7] = 0xd4c2151109de93a0;
-  node_previous[8] = &g_data_node_8;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -6670,7 +6670,7 @@ void SystemFunction_48_0(void)
   }
   node_previous[6] = 0x4384dcc4b6d3f417;
   node_previous[7] = 0x92a15d52fe2679bd;
-  node_previous[8] = &g_data_node_9;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pflag_initialized;
   return;
@@ -6717,7 +6717,7 @@ void SystemFunction_73_6(void)
   }
   node_previous[6] = 0x4140994454d56503;
   node_previous[7] = 0x399eced9bb5517ad;
-  node_previous[8] = &g_data_node_10;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -6764,7 +6764,7 @@ void InitializeSystemModule42(void)
   }
   node_previous[6] = 0x449bafe9b77ddd3c;
   node_previous[7] = 0xc160408bde99e59f;
-  node_previous[8] = &g_data_node_11;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -6811,7 +6811,7 @@ void InitializeSystemModule43(void)
   }
   node_previous[6] = 0x45425dc186a5d575;
   node_previous[7] = 0xfab48faa65382fa5;
-  node_previous[8] = &g_data_node_12;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -6858,7 +6858,7 @@ void InitializeSystemModule44(void)
   }
   node_previous[6] = 0x40db4257e97d3df8;
   node_previous[7] = 0x81d539e33614429f;
-  node_previous[8] = &g_data_node_13;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 4;
   node_previous[10] = pcstack_var;
   return;
@@ -6905,7 +6905,7 @@ void InitializeSystemModule45(void)
   }
   node_previous[6] = 0x4e33c4803e67a08f;
   node_previous[7] = 0x703a29a844ce399;
-  node_previous[8] = &g_data_node_14;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 3;
   node_previous[10] = pcstack_var;
   return;
@@ -6952,7 +6952,7 @@ void InitializeSystemModule46(void)
   }
   node_previous[6] = 0x42bea5b911d9c4bf;
   node_previous[7] = 0x1aa83fc0020dc1b6;
-  node_previous[8] = &g_data_node_1;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -6999,7 +6999,7 @@ void UtilityModule1(void)
   }
   node_previous[6] = 0x43330a43fcdb3653;
   node_previous[7] = 0xdcfdc333a769ec93;
-  node_previous[8] = &g_data_node_4;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 1;
   node_previous[10] = pcstack_var;
   return;
@@ -7046,7 +7046,7 @@ void UtilityModule2(void)
   }
   node_previous[6] = 0x431d7c8d7c475be2;
   node_previous[7] = 0xb97f048d2153e1b0;
-  node_previous[8] = &g_data_node_5;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 4;
   node_previous[10] = pcstack_var;
   return;
@@ -7093,7 +7093,7 @@ void UtilityModule3(void)
   }
   node_previous[6] = 0x4b2d79e470ee4e2c;
   node_previous[7] = 0x9c552acd3ed5548d;
-  node_previous[8] = &g_data_node_6;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -7140,7 +7140,7 @@ void UtilityModule4(void)
   }
   node_previous[6] = 0x49086ba08ab981a7;
   node_previous[7] = 0xa9191d34ad910696;
-  node_previous[8] = &g_data_node_7;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -7187,7 +7187,7 @@ void UtilityModule5(void)
   }
   node_previous[6] = 0x402feffe4481676e;
   node_previous[7] = 0xd4c2151109de93a0;
-  node_previous[8] = &g_data_node_8;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -7234,7 +7234,7 @@ void UtilityModule6(void)
   }
   node_previous[6] = 0x4384dcc4b6d3f417;
   node_previous[7] = 0x92a15d52fe2679bd;
-  node_previous[8] = &g_data_node_9;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pflag_initialized;
   return;
@@ -7281,7 +7281,7 @@ void UtilityModule7(void)
   }
   node_previous[6] = 0x4140994454d56503;
   node_previous[7] = 0x399eced9bb5517ad;
-  node_previous[8] = &g_data_node_10;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -7395,7 +7395,7 @@ void SystemFunction_75_2(void)
   }
   node_previous[6] = 0x43330a43fcdb3653;
   node_previous[7] = 0xdcfdc333a769ec93;
-  node_previous[8] = &g_data_node_4;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 1;
   node_previous[10] = pcstack_var;
   return;
@@ -7442,7 +7442,7 @@ void SystemFunction_0_8(void)
   }
   node_previous[6] = 0x431d7c8d7c475be2;
   node_previous[7] = 0xb97f048d2153e1b0;
-  node_previous[8] = &g_data_node_5;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 4;
   node_previous[10] = pcstack_var;
   return;
@@ -7489,7 +7489,7 @@ void ProcessGraphicsTexture(void)
   }
   node_previous[6] = 0x4b2d79e470ee4e2c;
   node_previous[7] = 0x9c552acd3ed5548d;
-  node_previous[8] = &g_data_node_6;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -7536,7 +7536,7 @@ void SystemFunction_52_0(void)
   }
   node_previous[6] = 0x49086ba08ab981a7;
   node_previous[7] = 0xa9191d34ad910696;
-  node_previous[8] = &g_data_node_7;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -7583,7 +7583,7 @@ void SystemFunction_77_6(void)
   }
   node_previous[6] = 0x402feffe4481676e;
   node_previous[7] = 0xd4c2151109de93a0;
-  node_previous[8] = &g_data_node_8;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -7630,7 +7630,7 @@ void SystemFunction_3_2(void)
   }
   node_previous[6] = 0x4384dcc4b6d3f417;
   node_previous[7] = 0x92a15d52fe2679bd;
-  node_previous[8] = &g_data_node_9;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pflag_initialized;
   return;
@@ -7677,7 +7677,7 @@ void SystemFunction_28_8(void)
   }
   node_previous[6] = 0x4140994454d56503;
   node_previous[7] = 0x399eced9bb5517ad;
-  node_previous[8] = &g_data_node_10;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -7724,7 +7724,7 @@ void SystemFunction_54_4(void)
   }
   node_previous[6] = 0x42bea5b911d9c4bf;
   node_previous[7] = 0x1aa83fc0020dc1b6;
-  node_previous[8] = &g_data_node_1;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -8072,7 +8072,7 @@ void SystemFunction_48_0(void)
   }
   node_previous[6] = 0x45b8d074df27d12f;
   node_previous[7] = 0x8d98f4c06880eda4;
-  node_previous[8] = &g_system_node_6;
+  node_previous[8] = &g_system_node;
   node_previous[9] = 3;
   node_previous[10] = flag_initialized;
   return;
@@ -8100,7 +8100,7 @@ void SystemFunction_73_6(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_data_compare_pattern_7,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[2];
       node_current = node_previous;
@@ -8112,14 +8112,14 @@ void SystemFunction_73_6(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_data_compare_pattern_7,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
   node_previous[6] = 0x42d293584c8cf3e5;
   node_previous[7] = 0x355ffeb2d29e668a;
-  node_previous[8] = &g_system_node_7;
+  node_previous[8] = &g_system_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -8147,7 +8147,7 @@ void SystemFunction_99_2(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_data_compare_pattern_8,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[2];
       node_current = node_previous;
@@ -8159,14 +8159,14 @@ void SystemFunction_99_2(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_data_compare_pattern_8,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
   node_previous[6] = 0x421c3cedd07d816d;
   node_previous[7] = 0xbec25de793b7afa6;
-  node_previous[8] = &g_system_node_8;
+  node_previous[8] = &g_system_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -8194,7 +8194,7 @@ void SystemFunction_24_8(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_data_compare_pattern_9,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[2];
       node_current = node_previous;
@@ -8206,14 +8206,14 @@ void SystemFunction_24_8(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_data_compare_pattern_9,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
   node_previous[6] = 0x4c22bb0c326587ce;
   node_previous[7] = 0x5e3cf00ce2978287;
-  node_previous[8] = &g_system_node_9;
+  node_previous[8] = &g_system_node;
   node_previous[9] = 1;
   node_previous[10] = flag_initialized;
   return;
@@ -8260,7 +8260,7 @@ void SystemFunction_50_4(void)
   }
   node_previous[6] = 0x45425dc186a5d575;
   node_previous[7] = 0xfab48faa65382fa5;
-  node_previous[8] = &g_data_node_12;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -8478,7 +8478,7 @@ void SystemFunction_7_2(void)
   }
   node_previous[6] = 0x43330a43fcdb3653;
   node_previous[7] = 0xdcfdc333a769ec93;
-  node_previous[8] = &g_data_node_4;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 1;
   node_previous[10] = pcstack_var;
   return;
@@ -8525,7 +8525,7 @@ void SystemFunction_32_8(void)
   }
   node_previous[6] = 0x431d7c8d7c475be2;
   node_previous[7] = 0xb97f048d2153e1b0;
-  node_previous[8] = &g_data_node_5;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 4;
   node_previous[10] = pcstack_var;
   return;
@@ -8572,7 +8572,7 @@ void SystemFunction_58_4(void)
   }
   node_previous[6] = 0x4b2d79e470ee4e2c;
   node_previous[7] = 0x9c552acd3ed5548d;
-  node_previous[8] = &g_data_node_6;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -8619,7 +8619,7 @@ void SystemFunction_84_0(void)
   }
   node_previous[6] = 0x49086ba08ab981a7;
   node_previous[7] = 0xa9191d34ad910696;
-  node_previous[8] = &g_data_node_7;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -8666,7 +8666,7 @@ void SystemFunction_9_6(void)
   }
   node_previous[6] = 0x402feffe4481676e;
   node_previous[7] = 0xd4c2151109de93a0;
-  node_previous[8] = &g_data_node_8;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -8713,7 +8713,7 @@ void SystemFunction_35_2(void)
   }
   node_previous[6] = 0x4384dcc4b6d3f417;
   node_previous[7] = 0x92a15d52fe2679bd;
-  node_previous[8] = &g_data_node_9;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pflag_initialized;
   return;
@@ -8760,7 +8760,7 @@ void SystemFunction_60_8(void)
   }
   node_previous[6] = 0x4140994454d56503;
   node_previous[7] = 0x399eced9bb5517ad;
-  node_previous[8] = &g_data_node_10;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -8807,7 +8807,7 @@ void SystemFunction_86_4(void)
   }
   node_previous[6] = 0x43330a43fcdb3653;
   node_previous[7] = 0xdcfdc333a769ec93;
-  node_previous[8] = &g_data_node_4;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 1;
   node_previous[10] = pcstack_var;
   return;
@@ -8854,7 +8854,7 @@ void SetupGraphicsDevice(void)
   }
   node_previous[6] = 0x431d7c8d7c475be2;
   node_previous[7] = 0xb97f048d2153e1b0;
-  node_previous[8] = &g_data_node_5;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 4;
   node_previous[10] = pcstack_var;
   return;
@@ -8901,7 +8901,7 @@ void SystemFunction_37_6(void)
   }
   node_previous[6] = 0x4b2d79e470ee4e2c;
   node_previous[7] = 0x9c552acd3ed5548d;
-  node_previous[8] = &g_data_node_6;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -8948,7 +8948,7 @@ void SystemFunction_63_2(void)
   }
   node_previous[6] = 0x49086ba08ab981a7;
   node_previous[7] = 0xa9191d34ad910696;
-  node_previous[8] = &g_data_node_7;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -8995,7 +8995,7 @@ void SystemFunction_88_8(void)
   }
   node_previous[6] = 0x402feffe4481676e;
   node_previous[7] = 0xd4c2151109de93a0;
-  node_previous[8] = &g_data_node_8;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -9042,7 +9042,7 @@ void SystemFunction_14_4(void)
   }
   node_previous[6] = 0x4384dcc4b6d3f417;
   node_previous[7] = 0x92a15d52fe2679bd;
-  node_previous[8] = &g_data_node_9;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pflag_initialized;
   return;
@@ -9089,7 +9089,7 @@ void InitializeGraphicsMemory(void)
   }
   node_previous[6] = 0x4140994454d56503;
   node_previous[7] = 0x399eced9bb5517ad;
-  node_previous[8] = &g_data_node_10;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -9136,7 +9136,7 @@ void SystemFunction_65_6(void)
   }
   node_previous[6] = 0x43330a43fcdb3653;
   node_previous[7] = 0xdcfdc333a769ec93;
-  node_previous[8] = &g_data_node_4;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 1;
   node_previous[10] = pcstack_var;
   return;
@@ -9183,7 +9183,7 @@ void SystemFunction_91_2(void)
   }
   node_previous[6] = 0x431d7c8d7c475be2;
   node_previous[7] = 0xb97f048d2153e1b0;
-  node_previous[8] = &g_data_node_5;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 4;
   node_previous[10] = pcstack_var;
   return;
@@ -9230,7 +9230,7 @@ void SystemFunction_16_8(void)
   }
   node_previous[6] = 0x4b2d79e470ee4e2c;
   node_previous[7] = 0x9c552acd3ed5548d;
-  node_previous[8] = &g_data_node_6;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -9277,7 +9277,7 @@ void ConfigureGraphicsShader(void)
   }
   node_previous[6] = 0x49086ba08ab981a7;
   node_previous[7] = 0xa9191d34ad910696;
-  node_previous[8] = &g_data_node_7;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -9324,7 +9324,7 @@ void SystemFunction_68_0(void)
   }
   node_previous[6] = 0x402feffe4481676e;
   node_previous[7] = 0xd4c2151109de93a0;
-  node_previous[8] = &g_data_node_8;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -9371,7 +9371,7 @@ void InitializeNetworkMutex(void)
   }
   node_previous[6] = 0x4384dcc4b6d3f417;
   node_previous[7] = 0x92a15d52fe2679bd;
-  node_previous[8] = &g_data_node_9;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pflag_initialized;
   return;
@@ -9418,7 +9418,7 @@ void SystemFunction_19_2(void)
   }
   node_previous[6] = 0x4140994454d56503;
   node_previous[7] = 0x399eced9bb5517ad;
-  node_previous[8] = &g_data_node_10;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -9465,7 +9465,7 @@ void SystemFunction_46_4(void)
   }
   node_previous[6] = 0x43330a43fcdb3653;
   node_previous[7] = 0xdcfdc333a769ec93;
-  node_previous[8] = &g_data_node_4;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 1;
   node_previous[10] = pcstack_var;
   return;
@@ -9512,7 +9512,7 @@ void SystemFunction_72_0(void)
   }
   node_previous[6] = 0x431d7c8d7c475be2;
   node_previous[7] = 0xb97f048d2153e1b0;
-  node_previous[8] = &g_data_node_5;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 4;
   node_previous[10] = pcstack_var;
   return;
@@ -9559,7 +9559,7 @@ void SystemFunction_97_6(void)
   }
   node_previous[6] = 0x4b2d79e470ee4e2c;
   node_previous[7] = 0x9c552acd3ed5548d;
-  node_previous[8] = &g_data_node_6;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -9606,7 +9606,7 @@ void SystemFunction_23_2(void)
   }
   node_previous[6] = 0x49086ba08ab981a7;
   node_previous[7] = 0xa9191d34ad910696;
-  node_previous[8] = &g_data_node_7;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -9653,7 +9653,7 @@ void SystemFunction_48_8(void)
   }
   node_previous[6] = 0x402feffe4481676e;
   node_previous[7] = 0xd4c2151109de93a0;
-  node_previous[8] = &g_data_node_8;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -9700,7 +9700,7 @@ void SystemFunction_74_4(void)
   }
   node_previous[6] = 0x4384dcc4b6d3f417;
   node_previous[7] = 0x92a15d52fe2679bd;
-  node_previous[8] = &g_data_node_9;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pflag_initialized;
   return;
@@ -9747,7 +9747,7 @@ void SystemFunction_0_0(void)
   }
   node_previous[6] = 0x4140994454d56503;
   node_previous[7] = 0x399eced9bb5517ad;
-  node_previous[8] = &g_data_node_10;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -10076,7 +10076,7 @@ void SystemFunction_79_2(void)
   }
   node_previous[6] = 0x45b8d074df27d12f;
   node_previous[7] = 0x8d98f4c06880eda4;
-  node_previous[8] = &g_system_node_6;
+  node_previous[8] = &g_system_node;
   node_previous[9] = 3;
   node_previous[10] = flag_initialized;
   return;
@@ -10104,7 +10104,7 @@ void SystemFunction_4_8(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_data_compare_pattern_7,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[2];
       node_current = node_previous;
@@ -10116,14 +10116,14 @@ void SystemFunction_4_8(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_data_compare_pattern_7,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
   node_previous[6] = 0x42d293584c8cf3e5;
   node_previous[7] = 0x355ffeb2d29e668a;
-  node_previous[8] = &g_system_node_7;
+  node_previous[8] = &g_system_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -10151,7 +10151,7 @@ void SystemFunction_30_4(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_data_compare_pattern_8,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[2];
       node_current = node_previous;
@@ -10163,14 +10163,14 @@ void SystemFunction_30_4(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_data_compare_pattern_8,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
   node_previous[6] = 0x421c3cedd07d816d;
   node_previous[7] = 0xbec25de793b7afa6;
-  node_previous[8] = &g_system_node_8;
+  node_previous[8] = &g_system_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -10198,7 +10198,7 @@ void SystemFunction_56_0(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_data_compare_pattern_9,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[2];
       node_current = node_previous;
@@ -10210,14 +10210,14 @@ void SystemFunction_56_0(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_data_compare_pattern_9,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
   node_previous[6] = 0x4c22bb0c326587ce;
   node_previous[7] = 0x5e3cf00ce2978287;
-  node_previous[8] = &g_system_node_9;
+  node_previous[8] = &g_system_node;
   node_previous[9] = 1;
   node_previous[10] = flag_initialized;
   return;
@@ -10575,7 +10575,7 @@ void SystemFunction_79_2(void)
   }
   node_previous[6] = 0x45b8d074df27d12f;
   node_previous[7] = 0x8d98f4c06880eda4;
-  node_previous[8] = &g_system_node_6;
+  node_previous[8] = &g_system_node;
   node_previous[9] = 3;
   node_previous[10] = flag_initialized;
   return;
@@ -10603,7 +10603,7 @@ void SystemFunction_4_8(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_data_compare_pattern_7,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[2];
       node_current = node_previous;
@@ -10615,14 +10615,14 @@ void SystemFunction_4_8(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_data_compare_pattern_7,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
   node_previous[6] = 0x42d293584c8cf3e5;
   node_previous[7] = 0x355ffeb2d29e668a;
-  node_previous[8] = &g_system_node_7;
+  node_previous[8] = &g_system_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -10650,7 +10650,7 @@ void SystemFunction_30_4(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_data_compare_pattern_8,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[2];
       node_current = node_previous;
@@ -10662,14 +10662,14 @@ void SystemFunction_30_4(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_data_compare_pattern_8,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
   node_previous[6] = 0x421c3cedd07d816d;
   node_previous[7] = 0xbec25de793b7afa6;
-  node_previous[8] = &g_system_node_8;
+  node_previous[8] = &g_system_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -10697,7 +10697,7 @@ void SystemFunction_56_0(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_data_compare_pattern_9,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[2];
       node_current = node_previous;
@@ -10709,14 +10709,14 @@ void SystemFunction_56_0(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_data_compare_pattern_9,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
   node_previous[6] = 0x4c22bb0c326587ce;
   node_previous[7] = 0x5e3cf00ce2978287;
-  node_previous[8] = &g_system_node_9;
+  node_previous[8] = &g_system_node;
   node_previous[9] = 1;
   node_previous[10] = flag_initialized;
   return;
@@ -10801,7 +10801,7 @@ void SystemFunction_10_4(void)
   }
   node_previous[6] = 0x43330a43fcdb3653;
   node_previous[7] = 0xdcfdc333a769ec93;
-  node_previous[8] = &g_data_node_4;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 1;
   node_previous[10] = pcstack_var;
   return;
@@ -10848,7 +10848,7 @@ void SystemFunction_36_0(void)
   }
   node_previous[6] = 0x431d7c8d7c475be2;
   node_previous[7] = 0xb97f048d2153e1b0;
-  node_previous[8] = &g_data_node_5;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 4;
   node_previous[10] = pcstack_var;
   return;
@@ -10895,7 +10895,7 @@ void SystemFunction_61_6(void)
   }
   node_previous[6] = 0x4b2d79e470ee4e2c;
   node_previous[7] = 0x9c552acd3ed5548d;
-  node_previous[8] = &g_data_node_6;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -10942,7 +10942,7 @@ void InitializeInputMutex(void)
   }
   node_previous[6] = 0x49086ba08ab981a7;
   node_previous[7] = 0xa9191d34ad910696;
-  node_previous[8] = &g_data_node_7;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -10989,7 +10989,7 @@ void SystemFunction_12_8(void)
   }
   node_previous[6] = 0x402feffe4481676e;
   node_previous[7] = 0xd4c2151109de93a0;
-  node_previous[8] = &g_data_node_8;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -11036,7 +11036,7 @@ void SystemFunction_38_4(void)
   }
   node_previous[6] = 0x4384dcc4b6d3f417;
   node_previous[7] = 0x92a15d52fe2679bd;
-  node_previous[8] = &g_data_node_9;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pflag_initialized;
   return;
@@ -11083,7 +11083,7 @@ void SystemFunction_64_0(void)
   }
   node_previous[6] = 0x4140994454d56503;
   node_previous[7] = 0x399eced9bb5517ad;
-  node_previous[8] = &g_data_node_10;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -11140,7 +11140,7 @@ void InitializeSystemProfiler(void)
   }
   node_previous[6] = 0x45425dc186a5d575;
   node_previous[7] = 0xfab48faa65382fa5;
-  node_previous[8] = &g_data_node_12;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -11187,7 +11187,7 @@ void SystemFunction_71_2(void)
   }
   node_previous[6] = 0x43330a43fcdb3653;
   node_previous[7] = 0xdcfdc333a769ec93;
-  node_previous[8] = &g_data_node_4;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 1;
   node_previous[10] = pcstack_var;
   return;
@@ -11234,7 +11234,7 @@ void SystemFunction_96_8(void)
   }
   node_previous[6] = 0x431d7c8d7c475be2;
   node_previous[7] = 0xb97f048d2153e1b0;
-  node_previous[8] = &g_data_node_5;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 4;
   node_previous[10] = pcstack_var;
   return;
@@ -11281,7 +11281,7 @@ void SystemFunction_22_4(void)
   }
   node_previous[6] = 0x4b2d79e470ee4e2c;
   node_previous[7] = 0x9c552acd3ed5548d;
-  node_previous[8] = &g_data_node_6;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -11328,7 +11328,7 @@ void SystemFunction_48_0(void)
   }
   node_previous[6] = 0x49086ba08ab981a7;
   node_previous[7] = 0xa9191d34ad910696;
-  node_previous[8] = &g_data_node_7;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -11375,7 +11375,7 @@ void SystemFunction_73_6(void)
   }
   node_previous[6] = 0x402feffe4481676e;
   node_previous[7] = 0xd4c2151109de93a0;
-  node_previous[8] = &g_data_node_8;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -11422,7 +11422,7 @@ void SystemFunction_99_2(void)
   }
   node_previous[6] = 0x4384dcc4b6d3f417;
   node_previous[7] = 0x92a15d52fe2679bd;
-  node_previous[8] = &g_data_node_9;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pflag_initialized;
   return;
@@ -11469,7 +11469,7 @@ void SystemFunction_24_8(void)
   }
   node_previous[6] = 0x4140994454d56503;
   node_previous[7] = 0x399eced9bb5517ad;
-  node_previous[8] = &g_data_node_10;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -11516,7 +11516,7 @@ void SystemFunction_50_4(void)
   }
   node_previous[6] = 0x43330a43fcdb3653;
   node_previous[7] = 0xdcfdc333a769ec93;
-  node_previous[8] = &g_data_node_4;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 1;
   node_previous[10] = pcstack_var;
   return;
@@ -11563,7 +11563,7 @@ void SystemFunction_76_0(void)
   }
   node_previous[6] = 0x431d7c8d7c475be2;
   node_previous[7] = 0xb97f048d2153e1b0;
-  node_previous[8] = &g_data_node_5;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 4;
   node_previous[10] = pcstack_var;
   return;
@@ -11610,7 +11610,7 @@ void SystemFunction_1_6(void)
   }
   node_previous[6] = 0x4b2d79e470ee4e2c;
   node_previous[7] = 0x9c552acd3ed5548d;
-  node_previous[8] = &g_data_node_6;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -11657,7 +11657,7 @@ void SystemFunction_27_2(void)
   }
   node_previous[6] = 0x49086ba08ab981a7;
   node_previous[7] = 0xa9191d34ad910696;
-  node_previous[8] = &g_data_node_7;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -11704,7 +11704,7 @@ void SystemFunction_52_8(void)
   }
   node_previous[6] = 0x402feffe4481676e;
   node_previous[7] = 0xd4c2151109de93a0;
-  node_previous[8] = &g_data_node_8;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -11751,7 +11751,7 @@ void SystemFunction_78_4(void)
   }
   node_previous[6] = 0x4384dcc4b6d3f417;
   node_previous[7] = 0x92a15d52fe2679bd;
-  node_previous[8] = &g_data_node_9;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pflag_initialized;
   return;
@@ -11798,7 +11798,7 @@ void SystemFunction_4_0(void)
   }
   node_previous[6] = 0x4140994454d56503;
   node_previous[7] = 0x399eced9bb5517ad;
-  node_previous[8] = &g_data_node_10;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -12199,7 +12199,7 @@ void SystemFunction_21_6(void)
   }
   node_previous[6] = 0x45b8d074df27d12f;
   node_previous[7] = 0x8d98f4c06880eda4;
-  node_previous[8] = &g_system_node_6;
+  node_previous[8] = &g_system_node;
   node_previous[9] = 3;
   node_previous[10] = flag_initialized;
   return;
@@ -12227,7 +12227,7 @@ void SystemFunction_47_2(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_data_compare_pattern_7,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[2];
       node_current = node_previous;
@@ -12239,14 +12239,14 @@ void SystemFunction_47_2(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_data_compare_pattern_7,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
   node_previous[6] = 0x42d293584c8cf3e5;
   node_previous[7] = 0x355ffeb2d29e668a;
-  node_previous[8] = &g_system_node_7;
+  node_previous[8] = &g_system_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -12274,7 +12274,7 @@ void SystemFunction_72_8(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_data_compare_pattern_8,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[2];
       node_current = node_previous;
@@ -12286,14 +12286,14 @@ void SystemFunction_72_8(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_data_compare_pattern_8,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
   node_previous[6] = 0x421c3cedd07d816d;
   node_previous[7] = 0xbec25de793b7afa6;
-  node_previous[8] = &g_system_node_8;
+  node_previous[8] = &g_system_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -12321,7 +12321,7 @@ void SystemFunction_98_4(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_data_compare_pattern_9,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[2];
       node_current = node_previous;
@@ -12333,14 +12333,14 @@ void SystemFunction_98_4(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_data_compare_pattern_9,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
   node_previous[6] = 0x4c22bb0c326587ce;
   node_previous[7] = 0x5e3cf00ce2978287;
-  node_previous[8] = &g_system_node_9;
+  node_previous[8] = &g_system_node;
   node_previous[9] = 1;
   node_previous[10] = flag_initialized;
   return;
@@ -12849,7 +12849,7 @@ void SystemFunction_8_8(void)
   }
   node_previous[6] = 0x45b8d074df27d12f;
   node_previous[7] = 0x8d98f4c06880eda4;
-  node_previous[8] = &g_system_node_6;
+  node_previous[8] = &g_system_node;
   node_previous[9] = 3;
   node_previous[10] = flag_initialized;
   return;
@@ -12877,7 +12877,7 @@ void SystemFunction_34_4(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_data_compare_pattern_7,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[2];
       node_current = node_previous;
@@ -12889,14 +12889,14 @@ void SystemFunction_34_4(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_data_compare_pattern_7,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
   node_previous[6] = 0x42d293584c8cf3e5;
   node_previous[7] = 0x355ffeb2d29e668a;
-  node_previous[8] = &g_system_node_7;
+  node_previous[8] = &g_system_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -12924,7 +12924,7 @@ void SystemFunction_60_0(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_data_compare_pattern_8,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[2];
       node_current = node_previous;
@@ -12936,14 +12936,14 @@ void SystemFunction_60_0(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_data_compare_pattern_8,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
   node_previous[6] = 0x421c3cedd07d816d;
   node_previous[7] = 0xbec25de793b7afa6;
-  node_previous[8] = &g_system_node_8;
+  node_previous[8] = &g_system_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -12971,7 +12971,7 @@ void SystemFunction_85_6(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_data_compare_pattern_9,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[2];
       node_current = node_previous;
@@ -12983,14 +12983,14 @@ void SystemFunction_85_6(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_data_compare_pattern_9,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
   node_previous[6] = 0x4c22bb0c326587ce;
   node_previous[7] = 0x5e3cf00ce2978287;
-  node_previous[8] = &g_system_node_9;
+  node_previous[8] = &g_system_node;
   node_previous[9] = 1;
   node_previous[10] = flag_initialized;
   return;
@@ -13131,7 +13131,7 @@ void SystemFunction_92_8(void)
   }
   node_previous[6] = 0x45425dc186a5d575;
   node_previous[7] = 0xfab48faa65382fa5;
-  node_previous[8] = &g_data_node_12;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -13178,7 +13178,7 @@ void SystemFunction_18_4(void)
   }
   node_previous[6] = 0x449bafe9b77ddd3c;
   node_previous[7] = 0xc160408bde99e59f;
-  node_previous[8] = &g_data_node_11;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -13225,7 +13225,7 @@ void SystemFunction_44_0(void)
   }
   node_previous[6] = 0x406be72011d07d37;
   node_previous[7] = 0x71876af946c867ab;
-  node_previous[8] = &g_data_node_2;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -13272,7 +13272,7 @@ void SystemFunction_69_6(void)
   }
   node_previous[6] = 0x40afa5469b6ac06d;
   node_previous[7] = 0x2f4bab01d34055a5;
-  node_previous[8] = &g_data_node_3;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 3;
   node_previous[10] = pcstack_var;
   return;
@@ -13319,7 +13319,7 @@ void SystemFunction_95_2(void)
   }
   node_previous[6] = 0x43330a43fcdb3653;
   node_previous[7] = 0xdcfdc333a769ec93;
-  node_previous[8] = &g_data_node_4;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 1;
   node_previous[10] = pcstack_var;
   return;
@@ -13366,7 +13366,7 @@ void SystemFunction_20_8(void)
   }
   node_previous[6] = 0x431d7c8d7c475be2;
   node_previous[7] = 0xb97f048d2153e1b0;
-  node_previous[8] = &g_data_node_5;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 4;
   node_previous[10] = pcstack_var;
   return;
@@ -13413,7 +13413,7 @@ void SystemFunction_46_4(void)
   }
   node_previous[6] = 0x4b2d79e470ee4e2c;
   node_previous[7] = 0x9c552acd3ed5548d;
-  node_previous[8] = &g_data_node_6;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -13460,7 +13460,7 @@ void SystemFunction_72_0(void)
   }
   node_previous[6] = 0x49086ba08ab981a7;
   node_previous[7] = 0xa9191d34ad910696;
-  node_previous[8] = &g_data_node_7;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -13507,7 +13507,7 @@ void SystemFunction_97_6(void)
   }
   node_previous[6] = 0x402feffe4481676e;
   node_previous[7] = 0xd4c2151109de93a0;
-  node_previous[8] = &g_data_node_8;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -13554,7 +13554,7 @@ void SystemFunction_23_2(void)
   }
   node_previous[6] = 0x4384dcc4b6d3f417;
   node_previous[7] = 0x92a15d52fe2679bd;
-  node_previous[8] = &g_data_node_9;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pflag_initialized;
   return;
@@ -13601,7 +13601,7 @@ void SystemFunction_48_8(void)
   }
   node_previous[6] = 0x4140994454d56503;
   node_previous[7] = 0x399eced9bb5517ad;
-  node_previous[8] = &g_data_node_10;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -13648,7 +13648,7 @@ void SystemFunction_74_4(void)
   }
   node_previous[6] = 0x42bea5b911d9c4bf;
   node_previous[7] = 0x1aa83fc0020dc1b6;
-  node_previous[8] = &g_data_node_1;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -14137,7 +14137,7 @@ void SystemFunction_80_0(void)
   }
   node_previous[6] = 0x406be72011d07d37;
   node_previous[7] = 0x71876af946c867ab;
-  node_previous[8] = &g_data_node_2;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -14184,7 +14184,7 @@ void SystemFunction_5_6(void)
   }
   node_previous[6] = 0x40afa5469b6ac06d;
   node_previous[7] = 0x2f4bab01d34055a5;
-  node_previous[8] = &g_data_node_3;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 3;
   node_previous[10] = pcstack_var;
   return;
@@ -14231,7 +14231,7 @@ void SystemFunction_31_2(void)
   }
   node_previous[6] = 0x43330a43fcdb3653;
   node_previous[7] = 0xdcfdc333a769ec93;
-  node_previous[8] = &g_data_node_4;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 1;
   node_previous[10] = pcstack_var;
   return;
@@ -14278,7 +14278,7 @@ void SystemFunction_56_8(void)
   }
   node_previous[6] = 0x431d7c8d7c475be2;
   node_previous[7] = 0xb97f048d2153e1b0;
-  node_previous[8] = &g_data_node_5;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 4;
   node_previous[10] = pcstack_var;
   return;
@@ -14325,7 +14325,7 @@ void SystemFunction_82_4(void)
   }
   node_previous[6] = 0x4b2d79e470ee4e2c;
   node_previous[7] = 0x9c552acd3ed5548d;
-  node_previous[8] = &g_data_node_6;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -14372,7 +14372,7 @@ void SystemFunction_8_0(void)
   }
   node_previous[6] = 0x49086ba08ab981a7;
   node_previous[7] = 0xa9191d34ad910696;
-  node_previous[8] = &g_data_node_7;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -14419,7 +14419,7 @@ void SystemFunction_33_6(void)
   }
   node_previous[6] = 0x402feffe4481676e;
   node_previous[7] = 0xd4c2151109de93a0;
-  node_previous[8] = &g_data_node_8;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -14466,7 +14466,7 @@ void SystemFunction_59_2(void)
   }
   node_previous[6] = 0x4384dcc4b6d3f417;
   node_previous[7] = 0x92a15d52fe2679bd;
-  node_previous[8] = &g_data_node_9;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = pflag_initialized;
   return;
@@ -14513,7 +14513,7 @@ void SystemFunction_84_8(void)
   }
   node_previous[6] = 0x4140994454d56503;
   node_previous[7] = 0x399eced9bb5517ad;
-  node_previous[8] = &g_data_node_10;
+  node_previous[8] = &g_system_data_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -14842,7 +14842,7 @@ void SystemFunction_64_0(void)
   }
   node_previous[6] = 0x45b8d074df27d12f;
   node_previous[7] = 0x8d98f4c06880eda4;
-  node_previous[8] = &g_system_node_6;
+  node_previous[8] = &g_system_node;
   node_previous[9] = 3;
   node_previous[10] = flag_initialized;
   return;
@@ -14870,7 +14870,7 @@ void SystemFunction_89_6(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_data_compare_pattern_7,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[2];
       node_current = node_previous;
@@ -14882,14 +14882,14 @@ void SystemFunction_89_6(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_data_compare_pattern_7,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
   node_previous[6] = 0x42d293584c8cf3e5;
   node_previous[7] = 0x355ffeb2d29e668a;
-  node_previous[8] = &g_system_node_7;
+  node_previous[8] = &g_system_node;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -14917,7 +14917,7 @@ void SystemFunction_15_2(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_data_compare_pattern_8,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[2];
       node_current = node_previous;
@@ -14929,14 +14929,14 @@ void SystemFunction_15_2(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_data_compare_pattern_8,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
   node_previous[6] = 0x421c3cedd07d816d;
   node_previous[7] = 0xbec25de793b7afa6;
-  node_previous[8] = &g_system_node_8;
+  node_previous[8] = &g_system_node;
   node_previous[9] = 0;
   node_previous[10] = pcstack_var;
   return;
@@ -14964,7 +14964,7 @@ void SystemFunction_40_8(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_data_compare_pattern_9,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[2];
       node_current = node_previous;
@@ -14976,14 +14976,14 @@ void SystemFunction_40_8(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_data_compare_pattern_9,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
   }
   node_previous[6] = 0x4c22bb0c326587ce;
   node_previous[7] = 0x5e3cf00ce2978287;
-  node_previous[8] = &g_system_node_9;
+  node_previous[8] = &g_system_node;
   node_previous[9] = 1;
   node_previous[10] = flag_initialized;
   return;
@@ -15842,10 +15842,10 @@ uint32_t get_game_initialization_status(void)
   longlong **ptr_ptr_long_var;
   uint32_t uint_var_;
   int int_var_;
-  longlong ****pppplVar6;
+  longlong ****ptr_ptr_ptr_ptr_long_var;
   uint64_t uint_var_;
-  longlong ****pppplVar8;
-  longlong ***ppplVar9;
+  longlong ****ptr_ptr_ptr_ptr_long_var;
+  longlong ***ptr_ptr_ptr_long_var;
   longlong long_var_;
   char is_initialized1;
   longlong ****pppplstack_var;
@@ -15853,8 +15853,8 @@ uint32_t get_game_initialization_status(void)
   longlong **pplstack_var;
   longlong ***ppplstack_var;
   uint64_t uint_var_;
-  longlong *****ppppplVar13;
-  longlong ****pppplVar14;
+  longlong *****ptr_ptr_ptr_ptr_ptr_long_var3;
+  longlong ****ptr_ptr_ptr_ptr_long_var4;
 
   uint_var_ = INVALID_HANDLE_VALUE;
   if (systemInitializationObject != (uint64_t *)0x0) {
@@ -15869,23 +15869,23 @@ uint32_t get_game_initialization_status(void)
       Sleep(1);
     }
   }
-  pppplVar6 = (longlong ****)AllocateSystemMemory(systemMemoryPool,0xc0,8,3,uint_var_);
-  pppplstack_var = pppplVar6;
-  SystemFunction_10_4(pppplVar6);
-  *pppplVar6 = (longlong ***)&g_system_global_variable8;
-  ppplstack_var = (longlong ***)pppplVar6;
-  (*(code *)(*pppplVar6)[5])(pppplVar6);
+  ptr_ptr_ptr_ptr_long_var = (longlong ****)AllocateSystemMemory(systemMemoryPool,0xc0,8,3,uint_var_);
+  pppplstack_var = ptr_ptr_ptr_ptr_long_var;
+  SystemFunction_10_4(ptr_ptr_ptr_ptr_long_var);
+  *ptr_ptr_ptr_ptr_long_var = (longlong ***)&g_system_global_variable8;
+  ppplstack_var = (longlong ***)ptr_ptr_ptr_ptr_long_var;
+  (*(code *)(*ptr_ptr_ptr_ptr_long_var)[5])(ptr_ptr_ptr_ptr_long_var);
   long_var_ = systemConfigurationData;
-  ppppplVar13 = &pppplstack_var;
-  pppplstack_var = pppplVar6;
-  (*(code *)(*pppplVar6)[5])(pppplVar6);
+  ptr_ptr_ptr_ptr_ptr_long_var3 = &pppplstack_var;
+  pppplstack_var = ptr_ptr_ptr_ptr_long_var;
+  (*(code *)(*ptr_ptr_ptr_ptr_long_var)[5])(ptr_ptr_ptr_ptr_long_var);
   SystemFunction_79_2(long_var_,&pppplstack_var);
   while( true ) {
-    if (*pppplVar6 == (longlong ***)&g_system_global_variable8) {
-      is_initialized1 = *(char *)(pppplVar6 + 2) != '\0';
+    if (*ptr_ptr_ptr_ptr_long_var == (longlong ***)&g_system_global_variable8) {
+      is_initialized1 = *(char *)(ptr_ptr_ptr_ptr_long_var + 2) != '\0';
     }
     else {
-      is_initialized1 = (*(code *)(*pppplVar6)[0xd])(pppplVar6);
+      is_initialized1 = (*(code *)(*ptr_ptr_ptr_ptr_long_var)[0xd])(ptr_ptr_ptr_ptr_long_var);
     }
     if (is_initialized1 != '\0') break;
     Sleep(1);
@@ -15893,75 +15893,75 @@ uint32_t get_game_initialization_status(void)
   InitializeGraphicsMemory();
   long_var_ = g_system_context_1;
   uint_var_ = AllocateSystemMemory(systemMemoryPool,0x70,8,3);
-  pppplVar8 = (longlong ****)SystemFunction_28_0(uint_var_,2,long_var_);
-  pppplVar14 = pppplVar8;
-  if (pppplVar8 != (longlong ****)0x0) {
-    (*(code *)(*pppplVar8)[5])(pppplVar8);
+  ptr_ptr_ptr_ptr_long_var = (longlong ****)SystemFunction_28_0(uint_var_,2,long_var_);
+  ptr_ptr_ptr_ptr_long_var4 = ptr_ptr_ptr_ptr_long_var;
+  if (ptr_ptr_ptr_ptr_long_var != (longlong ****)0x0) {
+    (*(code *)(*ptr_ptr_ptr_ptr_long_var)[5])(ptr_ptr_ptr_ptr_long_var);
   }
   ptr_uint_var = *(uint64_t **)(long_var_ + 400);
   ptr_char_var = *(code **)*ptr_uint_var;
   pppplstack_var = &ppplstack_var;
-  ppplstack_var = (longlong ***)pppplVar8;
-  if (pppplVar8 != (longlong ****)0x0) {
-    (*(code *)(*pppplVar8)[5])(pppplVar8);
+  ppplstack_var = (longlong ***)ptr_ptr_ptr_ptr_long_var;
+  if (ptr_ptr_ptr_ptr_long_var != (longlong ****)0x0) {
+    (*(code *)(*ptr_ptr_ptr_ptr_long_var)[5])(ptr_ptr_ptr_ptr_long_var);
   }
   (*ptr_char_var)(ptr_uint_var,&ppplstack_var);
-  uint_var_ = AllocateSystemMemory(systemMemoryPool,0x70,8,3,uint_var_,ppppplVar13,pppplVar14);
-  ppplVar9 = (longlong ***)SystemFunction_28_0(uint_var_,0,long_var_);
-  if (ppplVar9 != (longlong ***)0x0) {
-    (*(code *)(*ppplVar9)[5])(ppplVar9);
+  uint_var_ = AllocateSystemMemory(systemMemoryPool,0x70,8,3,uint_var_,ptr_ptr_ptr_ptr_ptr_long_var3,ptr_ptr_ptr_ptr_long_var4);
+  ptr_ptr_ptr_long_var = (longlong ***)SystemFunction_28_0(uint_var_,0,long_var_);
+  if (ptr_ptr_ptr_long_var != (longlong ***)0x0) {
+    (*(code *)(*ptr_ptr_ptr_long_var)[5])(ptr_ptr_ptr_long_var);
   }
   ptr_uint_var = *(uint64_t **)(long_var_ + 400);
   ptr_char_var = *(code **)*ptr_uint_var;
   pppplstack_var = (longlong ****)&pplstack_var;
-  pplstack_var = (longlong **)ppplVar9;
-  if (ppplVar9 != (longlong ***)0x0) {
-    (*(code *)(*ppplVar9)[5])(ppplVar9);
+  pplstack_var = (longlong **)ptr_ptr_ptr_long_var;
+  if (ptr_ptr_ptr_long_var != (longlong ***)0x0) {
+    (*(code *)(*ptr_ptr_ptr_long_var)[5])(ptr_ptr_ptr_long_var);
   }
   (*ptr_char_var)(ptr_uint_var,&pplstack_var);
   ProcessGameData(*(uint64_t *)(long_var_ + 400));
-  if (ppplVar9 != (longlong ***)0x0) {
-    (*(code *)(*ppplVar9)[7])(ppplVar9);
+  if (ptr_ptr_ptr_long_var != (longlong ***)0x0) {
+    (*(code *)(*ptr_ptr_ptr_long_var)[7])(ptr_ptr_ptr_long_var);
   }
-  if (pppplVar8 != (longlong ****)0x0) {
-    (*(code *)(*pppplVar8)[7])(pppplVar8);
+  if (ptr_ptr_ptr_ptr_long_var != (longlong ****)0x0) {
+    (*(code *)(*ptr_ptr_ptr_ptr_long_var)[7])(ptr_ptr_ptr_ptr_long_var);
   }
-  pppplVar14 = systemCoreData;
+  ptr_ptr_ptr_ptr_long_var4 = systemCoreData;
   *(uint8_t *)(systemCoreData[1] + 0x80) = 1;
   while( true ) {
-    ptr_ptr_long_var = *pppplVar14[1];
+    ptr_ptr_long_var = *ptr_ptr_ptr_ptr_long_var4[1];
     if (ptr_ptr_long_var == (longlong **)&g_system_global_variable8) {
-      is_initialized1 = *(char *)(pppplVar14[1] + 2) != '\0';
+      is_initialized1 = *(char *)(ptr_ptr_ptr_ptr_long_var4[1] + 2) != '\0';
     }
     else {
       is_initialized1 = (*(code *)ptr_ptr_long_var[0xd])();
     }
-    pppplVar8 = systemCoreData;
+    ptr_ptr_ptr_ptr_long_var = systemCoreData;
     if (is_initialized1 != '\0') break;
     Sleep(1);
   }
   pppplstack_var = systemCoreData;
   if (systemCoreData != (longlong ****)0x0) {
     long_var_ = __RTCastToVoid(systemCoreData);
-    *pppplVar8 = (longlong ***)&globalSystemVariable;
-    PostQueuedCompletionStatus(pppplVar8[0x42686],0,0xffffffffffffffff);
-    CloseHandle(pppplVar8[0x42686]);
-    ppplstack_var = (longlong ***)(pppplVar8 + 0x42687);
+    *ptr_ptr_ptr_ptr_long_var = (longlong ***)&globalSystemVariable;
+    PostQueuedCompletionStatus(ptr_ptr_ptr_ptr_long_var[0x42686],0,0xffffffffffffffff);
+    CloseHandle(ptr_ptr_ptr_ptr_long_var[0x42686]);
+    ppplstack_var = (longlong ***)(ptr_ptr_ptr_ptr_long_var + 0x42687);
     if ((longlong ***)*ppplstack_var != (longlong ***)0x0) {
                     // WARNING: Subroutine does not return
       ProcessSystemOperation();
     }
-    ppplstack_var = (longlong ***)(pppplVar8 + 0x4267c);
+    ppplstack_var = (longlong ***)(ptr_ptr_ptr_ptr_long_var + 0x4267c);
     _Mtx_destroy_in_situ();
-    ppplstack_var = (longlong ***)(pppplVar8 + 0x40070);
+    ppplstack_var = (longlong ***)(ptr_ptr_ptr_ptr_long_var + 0x40070);
     _Mtx_destroy_in_situ();
-    SystemFunction_33_6(pppplVar8);
+    SystemFunction_33_6(ptr_ptr_ptr_ptr_long_var);
     if (long_var_ != 0) {
                     // WARNING: Subroutine does not return
       ProcessSystemOperation(long_var_);
     }
   }
-  pppplVar14 = g_system_handle_1;
+  ptr_ptr_ptr_ptr_long_var4 = g_system_handle_1;
   long_var_ = systemConfigurationData;
   systemCoreData = (longlong ****)0x0;
   if (systemConfigurationData != 0) {
@@ -15971,8 +15971,8 @@ uint32_t get_game_initialization_status(void)
   }
   systemConfigurationData = 0;
   *(uint32_t *)(g_system_handle_1 + 0x2d) = 2;
-  pppplstack_var = pppplVar14;
-  if (pppplVar14 == (longlong ****)0x0) {
+  pppplstack_var = ptr_ptr_ptr_ptr_long_var4;
+  if (ptr_ptr_ptr_ptr_long_var4 == (longlong ****)0x0) {
     g_system_handle_1 = (longlong ****)0x0;
     WaitForSingleObject(inputSystemData,0xffffffff);
     do {
@@ -15983,14 +15983,14 @@ uint32_t get_game_initialization_status(void)
     uint_var_ = __acrt_iob_func(2);
     fflush(uint_var_);
     uint_var_ = systemStatusData;
-    (*(code *)(*pppplVar6)[7])(pppplVar6);
+    (*(code *)(*ptr_ptr_ptr_ptr_long_var)[7])(ptr_ptr_ptr_ptr_long_var);
     return uint_var_;
   }
-  ProcessSystemStringData(pppplVar14 + 0x1e);
-  ProcessSystemStringData(pppplVar14 + 0xf);
-  ProcessSystemStringData(pppplVar14);
+  ProcessSystemStringData(ptr_ptr_ptr_ptr_long_var4 + 0x1e);
+  ProcessSystemStringData(ptr_ptr_ptr_ptr_long_var4 + 0xf);
+  ProcessSystemStringData(ptr_ptr_ptr_ptr_long_var4);
                     // WARNING: Subroutine does not return
-  ProcessSystemOperation(pppplVar14);
+  ProcessSystemOperation(ptr_ptr_ptr_ptr_long_var4);
 }
 
 void InitializeMainSystem(uint64_t handleIdentifier)
@@ -16612,7 +16612,7 @@ void SystemFunction_86_4(ulonglong *handleIdentifier)
 int SystemFunction_91_2(longlong handleIdentifier,longlong resourceIdentifier)
 
 {
-  uint64_t ***pppuVar1;
+  uint64_t ***ptr_ptr_ptr_uint_var;
   longlong long_var_;
   void *ptr_uint_var;
   longlong long_var_;
@@ -16620,7 +16620,7 @@ int SystemFunction_91_2(longlong handleIdentifier,longlong resourceIdentifier)
   longlong long_var_;
   longlong long_var_;
   ulonglong uint_var_;
-  uint64_t ****ppppuVar9;
+  uint64_t ****ptr_ptr_ptr_ptr_uint_var;
   uint64_t ***pppustack_var;
   uint64_t *bufferPtr_138;
   longlong longStack_130;
@@ -16700,7 +16700,7 @@ int SystemFunction_91_2(longlong handleIdentifier,longlong resourceIdentifier)
   if (uint_var_ < *(ulonglong *)(handleIdentifier + 0x18)) {
     *(ulonglong *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) = uint_var_ + SYSTEM_DATA_COMPARE_SIZE0;
     SystemFunction_61_6(uint_var_,&bufferPtr_138);
-    ppppuVar9 = *(uint64_t *****)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE);
+    ptr_ptr_ptr_ptr_uint_var = *(uint64_t *****)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE);
     goto LAB_180046a90;
   }
   long_var_ = *(longlong *)(handleIdentifier + 8);
@@ -16717,9 +16717,9 @@ LAB_1800469fd:
     if (long_var_ != 0) goto LAB_1800469fd;
   }
   SystemFunction_44_0(&pppustack_var,long_var_,uint_var_,long_var_);
-  pppuVar1 = pppustack_var;
+  ptr_ptr_ptr_uint_var = pppustack_var;
   SystemFunction_61_6(pppustack_var,&bufferPtr_138);
-  ppppuVar9 = (uint64_t ****)(pppuVar1 + SYSTEM_NODE_HEADER_SIZE);
+  ptr_ptr_ptr_ptr_uint_var = (uint64_t ****)(ptr_ptr_ptr_uint_var + SYSTEM_NODE_HEADER_SIZE);
   long_var_ = *(longlong *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE);
   long_var_ = *(longlong *)(handleIdentifier + 8);
   if (long_var_ != long_var_) {
@@ -16734,10 +16734,10 @@ LAB_1800469fd:
     ProcessSystemOperation(long_var_);
   }
   *(longlong *)(handleIdentifier + 8) = long_var_;
-  *(uint64_t *****)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) = ppppuVar9;
+  *(uint64_t *****)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) = ptr_ptr_ptr_ptr_uint_var;
   *(longlong *)(handleIdentifier + 0x18) = long_var_ * SYSTEM_DATA_COMPARE_SIZE0 + long_var_;
 LAB_180046a90:
-  int_var_ = (int)((ulonglong)((longlong)ppppuVar9 - *(longlong *)(handleIdentifier + 8)) >> 8) + -1;
+  int_var_ = (int)((ulonglong)((longlong)ptr_ptr_ptr_ptr_uint_var - *(longlong *)(handleIdentifier + 8)) >> 8) + -1;
   *(int *)(handleIdentifier + 0x68) = int_var_;
   pppustack_var = &ppbufferPtr_68;
   SystemFunction_5_6(&ppbufferPtr_68,uintStack_58);
@@ -16898,8 +16898,8 @@ void SystemFunction_33_6(void)
   uint32_t *node_next;
   uint8_t *ptr_uint_var;
   uint32_t uint_var_;
-  float fVar11;
-  float fVar12;
+  float float_var;
+  float float_var;
   uint8_t localBuffer_698 [32];
   longlong longStack_678;
   longlong longStack_670;
@@ -17024,14 +17024,14 @@ void SystemFunction_33_6(void)
   localBuffer_350[0] = 0;
   uintStack_358 = 0xb;
   uint_var_ = strcpy_s(localBuffer_350,0x40,&g_global_config_1);
-  fVar11 = (float)SystemFunction_12_8(uint_var_,&bufferPtr_368);
+  float_var = (float)SystemFunction_12_8(uint_var_,&bufferPtr_368);
   bufferPtr_368 = &globalSystemPointerData;
   bufferPtr_308 = &g_thread_config_ptr;
   bufferPtr_300 = localBuffer_2f0;
   localBuffer_2f0[0] = 0;
   uintStack_2f8 = 0x18;
   uint_var_ = strcpy_s(localBuffer_2f0,0x40,&g_global_config_3);
-  fVar12 = (float)SystemFunction_12_8(uint_var_,&bufferPtr_308);
+  float_var = (float)SystemFunction_12_8(uint_var_,&bufferPtr_308);
   bufferPtr_308 = &globalSystemPointerData;
   uint_var_ = GetSystemStatus();
   if (0 < systemCoreData) {
@@ -17060,8 +17060,8 @@ void SystemFunction_33_6(void)
     pcStack_500 = SystemFunction_58_4;
     appplongStack_518[0] = (longlong ***)&ppplongStack_590;
     SystemFunction_44_8(appplongStack_518);
-    *(double *)(long_var_ + 0xa0 + systemConfigurationData) = (double)(1.0 / fVar12);
-    *(double *)(long_var_ + 0xb8 + systemConfigurationData) = (double)(1.0 / fVar11);
+    *(double *)(long_var_ + 0xa0 + systemConfigurationData) = (double)(1.0 / float_var);
+    *(double *)(long_var_ + 0xb8 + systemConfigurationData) = (double)(1.0 / float_var);
     *(int *)(long_var_ + 0xb0 + systemConfigurationData) = (int)(longlong)systemConfigurationData;
     *(int *)(long_var_ + 200 + systemConfigurationData) = (int)(longlong)g_system_data_variablec;
     *(double *)(long_var_ + SYSTEM_NODE_HEADER_SIZE + systemConfigurationData) = (double)(uint_var_ >> 0x14);
@@ -18903,7 +18903,7 @@ void SystemFunction_70_4(void)
     SystemFunction_69_6(1);
     SystemFunction_38_4();
   }
-  bufferPtr_38 = &g_data_node_config;
+  bufferPtr_38 = &g_system_data_nodeconfig;
   bufferPtr_30 = localBuffer_20;
   localBuffer_20[0] = 0;
   uintStack_28 = 6;
@@ -21193,9 +21193,9 @@ void ConfigureGraphicsShader(void)
   uint32_t *node_previous;
   void *node_next;
   char char_var;
-  float fVar10;
+  float float_var;
   uint32_t uint_var_;
-  float fVar12;
+  float float_var;
   uint8_t localBuffer_208 [32];
   longlong longStack_1e8;
   longlong longStack_1d8;
@@ -21228,40 +21228,40 @@ void ConfigureGraphicsShader(void)
   systemConfigurationData = systemConfigurationData ^ 0x41c64e6d;
   if ((*(longlong *)(systemCoreData + 0x7ab8) == 0) || (*(int *)(systemCoreData + 0x540) < 1)) {
     if (*(int *)(systemCoreData + 0x2140) == 0) {
-      fVar10 = *(float *)(systemCoreData + SYSTEM_NODE_HEADER_SIZEd0);
+      float_var = *(float *)(systemCoreData + SYSTEM_NODE_HEADER_SIZEd0);
     }
     else {
-      fVar10 = 100.0;
+      float_var = 100.0;
     }
-    fVar10 = fVar10 * 0.01;
+    float_var = float_var * 0.01;
   }
   else {
-    fVar10 = 1.0;
+    float_var = 1.0;
   }
-  *(float *)(long_var_ + 0x234) = fVar10;
+  *(float *)(long_var_ + 0x234) = float_var;
   *(uint32_t *)(long_var_ + 0x238) = 0x3f800000;
-  fVar12 = 1.0;
+  float_var = 1.0;
   if (*(int *)(long_var_ + 0x1ea0) == 1) {
     int_var_ = *(int *)(long_var_ + 0x1d50);
     ptr_int_var = (int *)GetAudioDeviceHandle(*(uint64_t *)(g_system_base_1 + 8),localBuffer_170);
-    fVar12 = (float)int_var_ / (float)*ptr_int_var;
-    fVar10 = fVar12 * *(float *)(long_var_ + 0x234);
-    fVar12 = fVar12 * *(float *)(long_var_ + 0x238);
+    float_var = (float)int_var_ / (float)*ptr_int_var;
+    float_var = float_var * *(float *)(long_var_ + 0x234);
+    float_var = float_var * *(float *)(long_var_ + 0x238);
   }
-  if (0.2 <= fVar10) {
-    if (1.0 <= fVar10) {
-      fVar10 = 1.0;
+  if (0.2 <= float_var) {
+    if (1.0 <= float_var) {
+      float_var = 1.0;
     }
   }
   else {
-    fVar10 = 0.2;
+    float_var = 0.2;
   }
-  *(float *)(long_var_ + 0x234) = fVar10;
-  fVar10 = 0.2;
-  if ((0.2 <= fVar12) && (fVar10 = fVar12, 1.0 <= fVar12)) {
-    fVar10 = 1.0;
+  *(float *)(long_var_ + 0x234) = float_var;
+  float_var = 0.2;
+  if ((0.2 <= float_var) && (float_var = float_var, 1.0 <= float_var)) {
+    float_var = 1.0;
   }
-  *(float *)(long_var_ + 0x238) = fVar10;
+  *(float *)(long_var_ + 0x238) = float_var;
   *(uint8_t *)(long_var_ + 0x22d) = 0;
   uint_var_ = log2f();
   *(uint32_t *)(long_var_ + 0x230) = uint_var_;
@@ -21280,7 +21280,7 @@ void ConfigureGraphicsShader(void)
   *(uint64_t *)(long_var_ + 0x25c) = 0x3f8000003f800000;
   long_var_ = systemCoreData;
   long_var_ = systemConfigurationData;
-  bufferPtr_168 = &g_data_node_config;
+  bufferPtr_168 = &g_system_data_nodeconfig;
   bufferPtr_160 = localBuffer_150;
   localBuffer_150[0] = 0;
   uintStack_158 = 0xd;
@@ -21555,7 +21555,7 @@ void SystemFunction_92_0(void)
     ConfigureGraphicsShader();
   }
   SystemFunction_60_8(systemConfigurationData);
-  bufferPtr_50 = &g_data_node_config;
+  bufferPtr_50 = &g_system_data_nodeconfig;
   bufferPtr_48 = localBuffer_38;
   localBuffer_38[0] = 0;
   uintStack_40 = 3;
@@ -21605,9 +21605,9 @@ void SystemFunction_49_6(void)
   uint16_t *ptr_uint_var;
   uint uint_var_;
   ulonglong uint_var_;
-  float fVar14;
-  double dVar15;
-  double dVar16;
+  float float_var;
+  double double_var;
+  double double_var;
   longlong **pplstack_var;
   longlong *plstack_var;
   longlong *plstack_var;
@@ -21729,9 +21729,9 @@ void SystemFunction_54_4(longlong handleIdentifier)
   uint16_t *ptr_uint_var;
   uint uint_var_;
   ulonglong uint_var_;
-  float fVar13;
-  double dVar14;
-  double dVar15;
+  float float_var;
+  double double_var;
+  double double_var;
   longlong **pplstack_var;
   longlong *plstack_var;
   longlong *plstack_var;
@@ -21850,9 +21850,9 @@ void InitializeEffectSystem(longlong handleIdentifier,uint64_t resourceIdentifie
   longlong long_var_;
   ulonglong uint_var_;
   longlong *ptr_long_var;
-  float fVar15;
+  float float_var;
   uint64_t uint_var_;
-  float fVar17;
+  float float_var;
   uint8_t localBuffer_348 [32];
   longlong **pplongStack_328;
   void *bufferPtr_320;
@@ -21877,10 +21877,10 @@ void InitializeEffectSystem(longlong handleIdentifier,uint64_t resourceIdentifie
 
   uintStack_2b8 = INVALID_HANDLE_VALUE;
   uintStack_68 = systemConfigurationData ^ (ulonglong)localBuffer_348;
-  fVar15 = (float)resourceIdentifier;
-  systemCoreData = (longlong)(fVar15 * 100000.0);
+  float_var = (float)resourceIdentifier;
+  systemCoreData = (longlong)(float_var * 100000.0);
   systemCoreData = systemCoreData + systemCoreData;
-  systemConfigurationData = fVar15;
+  systemConfigurationData = float_var;
   uint_var_ = SystemFunction_95_2();
   uint_var_ = ValidateTextureData(uint_var_,resourceIdentifier);
   char_var = CheckTextureFormat(uint_var_,0x52);
@@ -22427,14 +22427,14 @@ void InitializeAudioMutex(longlong handleIdentifier,float resourceIdentifier,uin
   uint uint_var_;
   uint uint_var_;
   bool bVar14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  float fVar18;
-  float fVar19;
-  float fVar20;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   uint32_t uint_var_;
-  float fVar22;
+  float float_var;
   float fstack_var;
   float fstack_varc;
 
@@ -22446,7 +22446,7 @@ void InitializeAudioMutex(longlong handleIdentifier,float resourceIdentifier,uin
     bVar14 = false;
   }
   if (bVar14) {
-    fVar15 = (float)exp2f(systemCoreData,in_RDX,systemConfig,systemFlags,INVALID_HANDLE_VALUE);
+    float_var = (float)exp2f(systemCoreData,in_RDX,systemConfig,systemFlags,INVALID_HANDLE_VALUE);
     if (*(char *)(handleIdentifier + 0x22d) == '\0') {
       long_var_ = *(longlong *)((longlong)threadLocalStoragePointer + (ulonglong)__tls_index * 8);
       if ((*(int *)(long_var_ + 0x48) < systemCoreData) &&
@@ -22454,22 +22454,22 @@ void InitializeAudioMutex(longlong handleIdentifier,float resourceIdentifier,uin
         systemStatusData = resourceIdentifier;
         MarkSystemInitialized(&g_system_data_variable0);
       }
-      fVar16 = (float)exp2f();
-      fVar17 = (float)exp2f();
-      fVar18 = (float)exp2f();
-      fVar19 = (float)exp2f();
-      fVar20 = (float)exp2f();
-      systemStatusData = (1.0 - fVar16) * systemStatusData + fVar16 * resourceIdentifier;
+      float_var = (float)exp2f();
+      float_var = (float)exp2f();
+      float_var = (float)exp2f();
+      float_var = (float)exp2f();
+      float_var = (float)exp2f();
+      systemStatusData = (1.0 - float_var) * systemStatusData + float_var * resourceIdentifier;
       float_var = (float)*(int *)(systemCoreData + 0x21b0);
       if (*(float *)(g_system_base_1 + 0x1f8) <= (float)*(int *)(systemCoreData + 0x21b0)) {
         float_var = *(float *)(g_system_base_1 + 0x1f8);
       }
-      fVar22 = *(float *)(systemCoreData + 0x1e30);
+      float_var = *(float *)(systemCoreData + 0x1e30);
       if (0 < *(int *)(systemCoreData + 0x1f80)) {
-        fVar22 = fVar22 / (float)*(int *)(systemCoreData + 0x1f80);
+        float_var = float_var / (float)*(int *)(systemCoreData + 0x1f80);
       }
-      float_var = (float)((int)fVar22 + -1);
-      if (float_var <= (float)((int)fVar22 + -1)) {
+      float_var = (float)((int)float_var + -1);
+      if (float_var <= (float)((int)float_var + -1)) {
         float_var = float_var;
       }
       if ((*(int *)(long_var_ + 0x48) < systemConfigurationData) &&
@@ -22477,20 +22477,20 @@ void InitializeAudioMutex(longlong handleIdentifier,float resourceIdentifier,uin
         g_system_data_variablec = float_var;
         MarkSystemInitialized(&g_system_data_variable8);
       }
-      g_system_data_variablec = (1.0 - fVar16) * g_system_data_variablec + float_var * fVar16;
-      fVar18 = ((float)(int)((systemStatusData / g_system_data_variablec) / fVar17) * fVar17 - 1.0) * fVar18 *
-               fVar19 + fVar18;
-      if (fVar18 <= fVar15) {
-        fVar18 = fVar15;
+      g_system_data_variablec = (1.0 - float_var) * g_system_data_variablec + float_var * float_var;
+      float_var = ((float)(int)((systemStatusData / g_system_data_variablec) / float_var) * float_var - 1.0) * float_var *
+               float_var + float_var;
+      if (float_var <= float_var) {
+        float_var = float_var;
       }
-      if (1.0 <= fVar18) {
-        fVar18 = 1.0;
+      if (1.0 <= float_var) {
+        float_var = 1.0;
       }
-      fVar20 = (float)(int)((fVar18 + 0.05) / fVar20) * fVar20;
-      if ((fVar15 <= fVar20) && (fVar15 = fVar20, 1.0 <= fVar20)) {
-        fVar15 = 1.0;
+      float_var = (float)(int)((float_var + 0.05) / float_var) * float_var;
+      if ((float_var <= float_var) && (float_var = float_var, 1.0 <= float_var)) {
+        float_var = 1.0;
       }
-      *(float *)(handleIdentifier + 0x238) = fVar15;
+      *(float *)(handleIdentifier + 0x238) = float_var;
       uint_var_ = log2f();
       *(uint32_t *)(handleIdentifier + 0x248) = uint_var_;
       *(float *)(handleIdentifier + 0x250) = systemStatusData;
@@ -22499,7 +22499,7 @@ void InitializeAudioMutex(longlong handleIdentifier,float resourceIdentifier,uin
       long_var_ = systemCoreData;
     }
     else {
-      *(float *)(handleIdentifier + 0x238) = fVar15;
+      *(float *)(handleIdentifier + 0x238) = float_var;
       long_var_ = systemCoreData;
       long_var_ = systemCoreData;
     }
@@ -22510,22 +22510,22 @@ void InitializeAudioMutex(longlong handleIdentifier,float resourceIdentifier,uin
   }
   if ((*(longlong *)(systemCoreData + 0x7ab8) == 0) || (*(int *)(long_var_ + 0x540) < 1)) {
     if (*(int *)(long_var_ + 0x2140) == 0) {
-      fVar15 = *(float *)(long_var_ + SYSTEM_NODE_HEADER_SIZEd0);
+      float_var = *(float *)(long_var_ + SYSTEM_NODE_HEADER_SIZEd0);
     }
     else {
-      fVar15 = 100.0;
+      float_var = 100.0;
     }
-    fVar15 = fVar15 * 0.01;
+    float_var = float_var * 0.01;
   }
   else {
-    fVar15 = 1.0;
+    float_var = 1.0;
   }
-  *(float *)(handleIdentifier + 0x234) = fVar15;
+  *(float *)(handleIdentifier + 0x234) = float_var;
   uint_var_ = (uint)*(float *)(long_var_ + 0x17ec);
   uint_var_ = (uint)*(float *)(long_var_ + 0x17f0);
   uint_var_ = uint_var_;
   uint_var_ = uint_var_;
-  if (1.0 <= fVar15) {
+  if (1.0 <= float_var) {
     fstack_var = 1.0;
     fstack_varc = 1.0;
   }
@@ -22538,16 +22538,16 @@ void InitializeAudioMutex(longlong handleIdentifier,float resourceIdentifier,uin
     int_var_ = (int)uint_var_ / (int)uint_var_;
     fstack_var = (float)(int)uint_var_;
     do {
-      uint_var_ = (uint)(fstack_var * fVar15);
+      uint_var_ = (uint)(fstack_var * float_var);
       if (1 < int_var_) {
         uint_var_ = ((uint_var_ - 1) - (int)(uint_var_ - 1) % int_var_) + int_var_;
       }
       uint_var_ = (longlong)(int)(((int)uint_var_ / (int)uint_var_) * uint_var_) / (longlong)int_var_;
       uint_var_ = (uint)uint_var_;
       if (((uint_var_ & 1) == 0) && ((uint_var_ & 1) == 0)) goto LAB_180052ce3;
-      fVar15 = fVar15 + 0.01;
-      *(float *)(handleIdentifier + 0x234) = fVar15;
-    } while (fVar15 <= 1.0);
+      float_var = float_var + 0.01;
+      *(float *)(handleIdentifier + 0x234) = float_var;
+    } while (float_var <= 1.0);
     *(uint32_t *)(handleIdentifier + 0x234) = 0x3f800000;
 LAB_180052ce3:
     fstack_var = (float)(int)uint_var_ / fstack_var;
@@ -22555,8 +22555,8 @@ LAB_180052ce3:
     uint_var_ = uint_var_;
   }
   *(ulonglong *)(handleIdentifier + 0x254) = CONCAT44(fstack_varc,fstack_var);
-  fVar15 = *(float *)(handleIdentifier + 0x238);
-  if (1.0 <= fVar15) {
+  float_var = *(float *)(handleIdentifier + 0x238);
+  if (1.0 <= float_var) {
     fstack_var = 1.0;
     fstack_varc = 1.0;
   }
@@ -22574,15 +22574,15 @@ LAB_180052ce3:
     }
     int_var_ = (int)uint_var_ / (int)uint_var_;
     do {
-      uint_var_ = (uint)(fVar15 * (float)(int)uint_var_);
+      uint_var_ = (uint)(float_var * (float)(int)uint_var_);
       if (1 < int_var_) {
         uint_var_ = ((uint_var_ - 1) - (int)(uint_var_ - 1) % int_var_) + int_var_;
       }
       uint_var_ = (longlong)(int)(((int)uint_var_ / (int)uint_var_) * uint_var_) / (longlong)int_var_;
       if (((uint_var_ & 1) == 0) && ((uint_var_ & 1) == 0)) goto LAB_180052de5;
-      fVar15 = fVar15 + 0.01;
-      *(float *)(handleIdentifier + 0x238) = fVar15;
-    } while (fVar15 <= 1.0);
+      float_var = float_var + 0.01;
+      *(float *)(handleIdentifier + 0x238) = float_var;
+    } while (float_var <= 1.0);
     *(uint32_t *)(handleIdentifier + 0x238) = 0x3f800000;
 LAB_180052de5:
     fstack_var = (float)(int)uint_var_ / (float)(int)uint_var_;
@@ -22606,8 +22606,8 @@ void SystemFunction_69_6(longlong *handleIdentifier,uint64_t resourceIdentifier,
   ulonglong uint_var_;
   uint uint_var_;
   ulonglong uint_var_;
-  float fVar11;
-  float fVar12;
+  float float_var;
+  float float_var;
   longlong *plstack_var;
   longlong *plstack_var;
   longlong **pplstack_var;
@@ -22677,40 +22677,40 @@ void SystemFunction_69_6(longlong *handleIdentifier,uint64_t resourceIdentifier,
   long_var_ = systemCoreData;
   if ((*(longlong *)(systemCoreData + 0x7ab8) == 0) || (*(int *)(systemCoreData + 0x540) < 1)) {
     if (*(int *)(systemCoreData + 0x2140) == 0) {
-      fVar11 = *(float *)(systemCoreData + SYSTEM_NODE_HEADER_SIZEd0);
+      float_var = *(float *)(systemCoreData + SYSTEM_NODE_HEADER_SIZEd0);
     }
     else {
-      fVar11 = 100.0;
+      float_var = 100.0;
     }
-    fVar11 = fVar11 * 0.01;
+    float_var = float_var * 0.01;
   }
   else {
-    fVar11 = 1.0;
+    float_var = 1.0;
   }
-  *(float *)(long_var_ + 0x234) = fVar11;
+  *(float *)(long_var_ + 0x234) = float_var;
   *(uint32_t *)(long_var_ + 0x238) = 0x3f800000;
-  fVar12 = 1.0;
+  float_var = 1.0;
   if (*(int *)(long_var_ + 0x1ea0) == 1) {
     int_var_ = *(int *)(long_var_ + 0x1d50);
     ptr_int_var = (int *)GetAudioDeviceHandle(*(uint64_t *)(g_system_base_1 + 8),&plstack_var);
-    fVar12 = (float)int_var_ / (float)*ptr_int_var;
-    fVar11 = fVar12 * *(float *)(long_var_ + 0x234);
-    fVar12 = fVar12 * *(float *)(long_var_ + 0x238);
+    float_var = (float)int_var_ / (float)*ptr_int_var;
+    float_var = float_var * *(float *)(long_var_ + 0x234);
+    float_var = float_var * *(float *)(long_var_ + 0x238);
   }
-  if (0.2 <= fVar11) {
-    if (1.0 <= fVar11) {
-      fVar11 = 1.0;
+  if (0.2 <= float_var) {
+    if (1.0 <= float_var) {
+      float_var = 1.0;
     }
   }
   else {
-    fVar11 = 0.2;
+    float_var = 0.2;
   }
-  *(float *)(long_var_ + 0x234) = fVar11;
-  if (0.2 <= fVar12) {
-    if (1.0 <= fVar12) {
-      fVar12 = 1.0;
+  *(float *)(long_var_ + 0x234) = float_var;
+  if (0.2 <= float_var) {
+    if (1.0 <= float_var) {
+      float_var = 1.0;
     }
-    *(float *)(long_var_ + 0x238) = fVar12;
+    *(float *)(long_var_ + 0x238) = float_var;
   }
   else {
     *(uint32_t *)(long_var_ + 0x238) = 0x3e4ccccd;
@@ -24470,7 +24470,7 @@ void SystemFunction_77_6(longlong *handleIdentifier)
     (**(code **)(*plongStack_68 + 0x38))();
   }
   long_var_ = systemConfigurationData;
-  bufferPtr_50 = &g_data_node_config;
+  bufferPtr_50 = &g_system_data_nodeconfig;
   bufferPtr_48 = localBuffer_38;
   localBuffer_38[0] = 0;
   uintStack_40 = 0xc;
@@ -24926,7 +24926,7 @@ SystemFunction_49_6(uint64_t *handleIdentifier,longlong resourceIdentifier,uint6
   *handleIdentifier = &globalSystemPointerData;
   handleIdentifier[1] = 0;
   *(uint32_t *)(handleIdentifier + 2) = 0;
-  *handleIdentifier = &g_data_node_config;
+  *handleIdentifier = &g_system_data_nodeconfig;
   handleIdentifier[1] = handleIdentifier + 3;
   *(uint32_t *)(handleIdentifier + 2) = 0;
   *(uint8_t *)(handleIdentifier + 3) = 0;
@@ -27355,7 +27355,7 @@ void SystemFunction_54_4(longlong *handleIdentifier)
       bufferPtr_300 = (uint64_t *)0x0;
       uintStack_2f8 = 0;
       uintStack_2f0 = 3;
-      bufferPtr_290 = &g_data_node_config;
+      bufferPtr_290 = &g_system_data_nodeconfig;
       bufferPtr_288 = localBuffer_278;
       localBuffer_278[0] = 0;
       uintStack_280 = 4;
@@ -28237,7 +28237,7 @@ void ValidateSystemConfiguration(longlong handleIdentifier,longlong resourceIden
 
   uintStack_78 = INVALID_HANDLE_VALUE;
   uintStack_48 = systemConfigurationData ^ (ulonglong)localBuffer_98;
-  bufferPtr_70 = &g_data_node_config;
+  bufferPtr_70 = &g_system_data_nodeconfig;
   bufferPtr_68 = localBuffer_58;
   uintStack_60 = 0;
   localBuffer_58[0] = 0;
@@ -30102,7 +30102,7 @@ void SystemFunction_15_2(ulonglong handleIdentifier,longlong resourceIdentifier)
   int int_var_;
   int int_var_;
   float float_var;
-  float fVar10;
+  float float_var;
   double dstack_var;
   ulonglong ustack_var;
   uint8_t localBuffer_478 [32];
@@ -30129,12 +30129,12 @@ void SystemFunction_15_2(ulonglong handleIdentifier,longlong resourceIdentifier)
   is_initialized = (&globalSystemVariable)[int_var_ / int_var_];
   uintStack_30 = 0x18005d147;
   float_var = (float)powf(0x44800000);
-  fVar10 = (float)(longlong)handleIdentifier;
+  float_var = (float)(longlong)handleIdentifier;
   if ((longlong)handleIdentifier < 0) {
-    fVar10 = fVar10 + 1.8446744e+19;
+    float_var = float_var + 1.8446744e+19;
   }
   ustack_var = (ulonglong)(uint)(int)is_initialized;
-  dstack_var = (double)(float_var * fVar10);
+  dstack_var = (double)(float_var * float_var);
   uintStack_38 = systemConfigurationData ^ (ulonglong)localBuffer_478;
   ptr_uint_var = (ulonglong *)SystemFunction04b9a0();
   allocation_size = 0;
@@ -30928,7 +30928,7 @@ void SystemFunction_92_0(void)
   SystemFunction_18_4(ppuVar15,long_var_);
   uint_var_ = AllocateSystemMemory(systemMemoryPool,SYSTEM_NODE_HEADER_SIZE8,8,3);
   uint_var_ = 0;
-  bufferPtr_160 = &g_data_node_config;
+  bufferPtr_160 = &g_system_data_nodeconfig;
   bufferPtr_158 = localBuffer_148;
   localBuffer_148[0] = 0;
   uintStack_150 = 4;
@@ -30940,7 +30940,7 @@ void SystemFunction_92_0(void)
   *(uint64_t *)*ppuVar15 = uint_var_;
   bufferPtr_160 = &globalSystemPointerData;
   ptr_uint_var = (uint64_t *)AllocateSystemMemory(systemMemoryPool,SYSTEM_NODE_HEADER_SIZE8,8,3);
-  bufferPtr_138 = &g_data_node_config;
+  bufferPtr_138 = &g_system_data_nodeconfig;
   bufferPtr_130 = localBuffer_120;
   localBuffer_120[0] = 0;
   uintStack_128 = 6;
@@ -30958,7 +30958,7 @@ void SystemFunction_92_0(void)
   if (2 < long_var_) {
     long_var_ = 2;
     do {
-      bufferPtr_160 = &g_data_node_config;
+      bufferPtr_160 = &g_system_data_nodeconfig;
       bufferPtr_158 = localBuffer_148;
       localBuffer_148[0] = 0;
       uintStack_150 = 7;
@@ -30999,7 +30999,7 @@ void SystemFunction_92_0(void)
     uint_var_ = uint_var_;
     uint_var_ = uint_var_;
     do {
-      bufferPtr_160 = &g_data_node_config;
+      bufferPtr_160 = &g_system_data_nodeconfig;
       bufferPtr_158 = localBuffer_148;
       localBuffer_148[0] = 0;
       uintStack_150 = 10;
@@ -34069,7 +34069,7 @@ void SystemFunction_20_8(uint64_t handleIdentifier,longlong resourceIdentifier)
   uintStack_1b8 = INVALID_HANDLE_VALUE;
   uintStack_38 = systemConfigurationData ^ (ulonglong)localBuffer_268;
   longStack_210 = g_system_context_1;
-  bufferPtr_1a8 = &g_data_node_config;
+  bufferPtr_1a8 = &g_system_data_nodeconfig;
   bufferPtr_1a0 = localBuffer_190;
   localBuffer_190[0] = 0;
   uintStack_198 = 6;
@@ -35849,7 +35849,7 @@ void SystemFunction_4_8(uint64_t handleIdentifier)
   bufferPtr_158 = (uint64_t *)0x0;
   uintStack_150 = 0;
   uintStack_148 = 3;
-  bufferPtr_f0 = &g_data_node_config;
+  bufferPtr_f0 = &g_system_data_nodeconfig;
   bufferPtr_e8 = localBuffer_d8;
   localBuffer_d8[0] = 0;
   uintStack_e0 = 9;
@@ -35858,7 +35858,7 @@ void SystemFunction_4_8(uint64_t handleIdentifier)
   ptr_uint_var = bufferPtr_158;
   ptr_uint_var = bufferPtr_160;
   if (1 < (ulonglong)((longlong)bufferPtr_158 - (longlong)bufferPtr_160 >> 5)) {
-    bufferPtr_118 = &g_data_node_config;
+    bufferPtr_118 = &g_system_data_nodeconfig;
     bufferPtr_110 = localBuffer_100;
     localBuffer_100[0] = 0;
     uintStack_108 = 1;
@@ -38701,7 +38701,7 @@ void SystemFunction_48_0(longlong handleIdentifier)
     intStack_248 = 0;
   }
   else if (g_system_data_variable1 == '\0') {
-    intStack_248 = (g_system_byte_flag_1 != '\0') + 2;
+    intStack_248 = (g_system_status_flag != '\0') + 2;
   }
   else {
     intStack_248 = 1;
@@ -41817,7 +41817,7 @@ uint64_t *
 SystemFunction_8_0(uint64_t *handleIdentifier,uint64_t resourceIdentifier,uint64_t systemConfig,uint64_t systemFlags)
 
 {
-  if (g_system_byte_flag_3 == '\0') {
+  if (g_system_status_flag == '\0') {
     *handleIdentifier = &globalSystemPointerData;
     handleIdentifier[1] = 0;
     *(uint32_t *)(handleIdentifier + 2) = 0;
@@ -42269,7 +42269,7 @@ ulonglong SystemFunction_62_4(uint64_t handleIdentifier,uint64_t resourceIdentif
     ptr_uint_var = bufferPtr_a8;
   }
   SystemFunction_30_4(g_system_context_1,2,0xffffffff00000000,&globalSystemVariable,ptr_uint_var);
-  if (g_system_byte_flag_4 != '\0') {
+  if (g_system_status_flag != '\0') {
     ptr_uint_var = &g_system_data_variable3;
     if (ptr_uint_var != (void *)0x0) {
       ptr_uint_var = ptr_uint_var;
@@ -46675,13 +46675,13 @@ void SystemFunction_81_6(longlong handleIdentifier,uint64_t *resourceIdentifier)
   longlong long_var_;
   longlong *ptr_long_var;
   uint uint_var_;
-  float fVar12;
-  float fVar13;
-  float fVar14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  float fVar18;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   uint8_t localBuffer_e8 [184];
   uint64_t uintStack_30;
 
@@ -46759,67 +46759,67 @@ void SystemFunction_81_6(longlong handleIdentifier,uint64_t *resourceIdentifier)
         else {
           SystemFunction_69_6(ptr_uint_var);
           ptr_long_var = (longlong *)ptr_long_var[7];
-          fVar14 = 0.0;
+          float_var = 0.0;
           if (ptr_long_var < (longlong *)ptr_long_var[8]) {
             do {
               long_var_ = *ptr_long_var;
               if ((*(uint *)(long_var_ + SYSTEM_DATA_COMPARE_SIZE0) & 0x4000000) == 0) {
-                fVar15 = *(float *)(long_var_ + 0x294);
-                fVar16 = *(float *)(long_var_ + 0x298);
-                fVar17 = *(float *)(long_var_ + 0x29c);
-                fVar12 = *(float *)(long_var_ + 0x2a4);
+                float_var = *(float *)(long_var_ + 0x294);
+                float_var = *(float *)(long_var_ + 0x298);
+                float_var = *(float *)(long_var_ + 0x29c);
+                float_var = *(float *)(long_var_ + 0x2a4);
               }
               else {
-                fVar12 = *(float *)(long_var_ + 0x298);
-                fVar17 = *(float *)(long_var_ + 0x294);
-                fVar13 = *(float *)(long_var_ + 0x29c);
-                fVar15 = *(float *)(long_var_ + 0x130) * fVar12 + *(float *)(long_var_ + 0x120) * fVar17 +
-                         *(float *)(long_var_ + 0x140) * fVar13 + *(float *)(long_var_ + 0x150);
-                fVar16 = *(float *)(long_var_ + 0x134) * fVar12 + *(float *)(long_var_ + 0x124) * fVar17 +
-                         *(float *)(long_var_ + 0x144) * fVar13 + *(float *)(long_var_ + 0x154);
-                fVar17 = *(float *)(long_var_ + 0x138) * fVar12 + *(float *)(long_var_ + 0x128) * fVar17 +
-                         *(float *)(long_var_ + 0x148) * fVar13 + *(float *)(long_var_ + 0x158);
-                fVar12 = *(float *)(long_var_ + 0x140) * *(float *)(long_var_ + 0x140) +
+                float_var = *(float *)(long_var_ + 0x298);
+                float_var = *(float *)(long_var_ + 0x294);
+                float_var = *(float *)(long_var_ + 0x29c);
+                float_var = *(float *)(long_var_ + 0x130) * float_var + *(float *)(long_var_ + 0x120) * float_var +
+                         *(float *)(long_var_ + 0x140) * float_var + *(float *)(long_var_ + 0x150);
+                float_var = *(float *)(long_var_ + 0x134) * float_var + *(float *)(long_var_ + 0x124) * float_var +
+                         *(float *)(long_var_ + 0x144) * float_var + *(float *)(long_var_ + 0x154);
+                float_var = *(float *)(long_var_ + 0x138) * float_var + *(float *)(long_var_ + 0x128) * float_var +
+                         *(float *)(long_var_ + 0x148) * float_var + *(float *)(long_var_ + 0x158);
+                float_var = *(float *)(long_var_ + 0x140) * *(float *)(long_var_ + 0x140) +
                          *(float *)(long_var_ + 0x144) * *(float *)(long_var_ + 0x144) +
                          *(float *)(long_var_ + 0x148) * *(float *)(long_var_ + 0x148);
-                fVar13 = *(float *)(long_var_ + 0x130) * *(float *)(long_var_ + 0x130) +
+                float_var = *(float *)(long_var_ + 0x130) * *(float *)(long_var_ + 0x130) +
                          *(float *)(long_var_ + 0x134) * *(float *)(long_var_ + 0x134) +
                          *(float *)(long_var_ + 0x138) * *(float *)(long_var_ + 0x138);
-                fVar18 = *(float *)(long_var_ + 0x120) * *(float *)(long_var_ + 0x120) +
+                float_var = *(float *)(long_var_ + 0x120) * *(float *)(long_var_ + 0x120) +
                          *(float *)(long_var_ + 0x124) * *(float *)(long_var_ + 0x124) +
                          *(float *)(long_var_ + 0x128) * *(float *)(long_var_ + 0x128);
-                if (fVar18 <= fVar13) {
-                  if (fVar12 <= fVar13) {
-                    fVar12 = fVar13;
+                if (float_var <= float_var) {
+                  if (float_var <= float_var) {
+                    float_var = float_var;
                   }
                 }
-                else if (fVar12 <= fVar18) {
-                  fVar12 = fVar18;
+                else if (float_var <= float_var) {
+                  float_var = float_var;
                 }
-                if ((fVar12 - 1.0 <= -1e-06) || (1e-06 <= fVar12 - 1.0)) {
-                  fVar12 = SQRT(fVar12) * *(float *)(long_var_ + 0x2a4);
+                if ((float_var - 1.0 <= -1e-06) || (1e-06 <= float_var - 1.0)) {
+                  float_var = SQRT(float_var) * *(float *)(long_var_ + 0x2a4);
                 }
                 else {
-                  fVar12 = *(float *)(long_var_ + 0x2a4) * 1.0;
+                  float_var = *(float *)(long_var_ + 0x2a4) * 1.0;
                 }
               }
-              fVar17 = *(float *)((longlong)ptr_long_var + 0x23c) - fVar17;
-              fVar15 = *(float *)((longlong)ptr_long_var + 0x234) - fVar15;
-              fVar16 = (*(float *)(ptr_long_var + 0x47) - fVar16) * (*(float *)(ptr_long_var + 0x47) - fVar16) +
-                       fVar15 * fVar15 + fVar17 * fVar17;
-              fVar15 = fVar14 - fVar12;
-              if (fVar15 <= 0.0) {
-                fVar15 = 0.0;
+              float_var = *(float *)((longlong)ptr_long_var + 0x23c) - float_var;
+              float_var = *(float *)((longlong)ptr_long_var + 0x234) - float_var;
+              float_var = (*(float *)(ptr_long_var + 0x47) - float_var) * (*(float *)(ptr_long_var + 0x47) - float_var) +
+                       float_var * float_var + float_var * float_var;
+              float_var = float_var - float_var;
+              if (float_var <= 0.0) {
+                float_var = 0.0;
               }
-              if (fVar15 * fVar15 < fVar16) {
-                fVar14 = SQRT(fVar16) + fVar12;
+              if (float_var * float_var < float_var) {
+                float_var = SQRT(float_var) + float_var;
               }
               ptr_long_var = ptr_long_var + 2;
             } while (ptr_long_var < (longlong *)ptr_long_var[8]);
-            if ((0.0 < fVar14) &&
-               (fVar14 < *(float *)((longlong)ptr_long_var + 0x244) ||
-                fVar14 == *(float *)((longlong)ptr_long_var + 0x244))) {
-              *(float *)((longlong)ptr_long_var + 0x244) = fVar14;
+            if ((0.0 < float_var) &&
+               (float_var < *(float *)((longlong)ptr_long_var + 0x244) ||
+                float_var == *(float *)((longlong)ptr_long_var + 0x244))) {
+              *(float *)((longlong)ptr_long_var + 0x244) = float_var;
             }
           }
         }
@@ -47031,8 +47031,8 @@ float * SystemFunction_16_0(float *handleIdentifier)
   uint uint_var_;
   ulonglong uint_var_;
   bool bool_var;
-  float fVar10;
-  float fVar11;
+  float float_var;
+  float float_var;
   float fStack_b8;
   float fStack_b4;
   float fStack_b0;
@@ -47177,24 +47177,24 @@ float * SystemFunction_16_0(float *handleIdentifier)
       handleIdentifier[0xa6] = (handleIdentifier[0xa2] + handleIdentifier[0x9e]) * 0.5;
       handleIdentifier[0xa7] = (handleIdentifier[0xa3] + handleIdentifier[0x9f]) * 0.5;
       handleIdentifier[0xa8] = 3.4028235e+38;
-      fVar10 = 0.0;
+      float_var = 0.0;
       uint_var_ = (ulonglong)*(uint *)(longStack_88 + SYSTEM_DATA_COMPARE_SIZE);
       if (0 < (int)*(uint *)(longStack_88 + SYSTEM_DATA_COMPARE_SIZE)) {
         ptr_float_var = *(float **)(longStack_88 + 0x18);
-        fVar11 = fVar10;
+        float_var = float_var;
         do {
-          fVar10 = (*ptr_float_var - handleIdentifier[0xa5]) * (*ptr_float_var - handleIdentifier[0xa5]) +
+          float_var = (*ptr_float_var - handleIdentifier[0xa5]) * (*ptr_float_var - handleIdentifier[0xa5]) +
                    (ptr_float_var[1] - handleIdentifier[0xa6]) * (ptr_float_var[1] - handleIdentifier[0xa6]) +
                    (ptr_float_var[2] - handleIdentifier[0xa7]) * (ptr_float_var[2] - handleIdentifier[0xa7]);
-          if (fVar10 <= fVar11) {
-            fVar10 = fVar11;
+          if (float_var <= float_var) {
+            float_var = float_var;
           }
           ptr_float_var = ptr_float_var + 4;
           uint_var_ = uint_var_ - 1;
-          fVar11 = fVar10;
+          float_var = float_var;
         } while (uint_var_ != 0);
       }
-      handleIdentifier[0xa9] = SQRT(fVar10);
+      handleIdentifier[0xa9] = SQRT(float_var);
     }
     if (pfStack_98 != (float *)0x0) {
       while( true ) {
@@ -47207,20 +47207,20 @@ float * SystemFunction_16_0(float *handleIdentifier)
         }
         UNLOCK();
         if (bool_var) break;
-        fVar10 = (float)_Thrd_id();
-        if ((ptr_float_var[0x3c] == fVar10) || (ptr_float_var[0x3c] != 0.0)) goto LAB_180075f4f;
+        float_var = (float)_Thrd_id();
+        if ((ptr_float_var[0x3c] == float_var) || (ptr_float_var[0x3c] != 0.0)) goto LAB_180075f4f;
         Sleep();
       }
       char_var = '\0';
 LAB_180075f4f:
       LOCK();
       ptr_float_var = ptr_float_var + 0x3a;
-      fVar10 = *ptr_float_var;
-      ptr_float_var = (float *)(ulonglong)(uint)fVar10;
+      float_var = *ptr_float_var;
+      ptr_float_var = (float *)(ulonglong)(uint)float_var;
       *ptr_float_var = (float)((int)*ptr_float_var + -1);
       UNLOCK();
       if (char_var == '\0') {
-        if ((((fVar10 == 1.4013e-45) && (*(longlong *)(pfStack_98 + 0x84) != 0)) &&
+        if ((((float_var == 1.4013e-45) && (*(longlong *)(pfStack_98 + 0x84) != 0)) &&
             (ptr_float_var = pfStack_98, SystemFunction_3_2(pfStack_98), *(char *)(ptr_float_var + 0x3f) == '\0')) &&
            ((*(char *)(ptr_float_var + 0x3d) == '\0' &&
             (((*(byte *)((longlong)ptr_float_var + 0xfd) & SYSTEM_NODE_HEADER_SIZE) == 0 ||
@@ -48364,18 +48364,18 @@ ulonglong SystemFunction_29_6(longlong handleIdentifier,uint *resourceIdentifier
   uint32_t uint_var_;
   uint32_t uint_var_;
   float float_var;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fVar13;
-  float fVar14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  float fVar18;
-  float fVar19;
-  float fVar20;
-  char cVar21;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  char char_var;
   byte bVar22;
   uint32_t uint_var_;
   uint64_t uint_var_;
@@ -48475,8 +48475,8 @@ SystemFunction_25_7:
     }
     if (*(int *)(long_var_ + 0x1fc) * 3 == 0) goto LAB_180077847;
 LAB_180077879:
-    cVar21 = SystemFunction0854e0(handleIdentifier);
-    if ((cVar21 == '\0') || (systemFlags == 0)) {
+    char_var = SystemFunction0854e0(handleIdentifier);
+    if ((char_var == '\0') || (systemFlags == 0)) {
       SystemFunction_28_8(handleIdentifier,0);
       if ((*(byte *)(handleIdentifier + 0xfe) & 4) == 0) {
         uint_var_ = SystemFunction_48_0(handleIdentifier,resourceIdentifier);
@@ -48663,45 +48663,45 @@ LAB_180077879:
     }
     if ((*(uint *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE0) & 0x4000000) != 0) {
       float_var = *systemConfig;
-      fVar10 = systemConfig[1];
-      fVar11 = systemConfig[2];
-      fVar12 = systemConfig[3];
-      fVar13 = systemConfig[4];
-      fVar14 = systemConfig[5];
-      fVar15 = systemConfig[6];
-      fVar16 = systemConfig[7];
-      fVar17 = systemConfig[8];
-      fVar18 = systemConfig[9];
-      fVar19 = systemConfig[10];
-      fVar20 = systemConfig[0xb];
+      float_var = systemConfig[1];
+      float_var = systemConfig[2];
+      float_var = systemConfig[3];
+      float_var = systemConfig[4];
+      float_var = systemConfig[5];
+      float_var = systemConfig[6];
+      float_var = systemConfig[7];
+      float_var = systemConfig[8];
+      float_var = systemConfig[9];
+      float_var = systemConfig[10];
+      float_var = systemConfig[0xb];
       float_var = *(float *)(handleIdentifier + 0x124);
       float_var = *(float *)(handleIdentifier + 0x120);
       float_var = *(float *)(handleIdentifier + 0x128);
       float_var = *(float *)(handleIdentifier + 0x134);
       float_var = *(float *)(handleIdentifier + 0x130);
-      fStack_c8 = float_var * fVar13 + float_var * float_var + float_var * fVar17;
-      fStack_c4 = float_var * fVar14 + float_var * fVar10 + float_var * fVar18;
-      fStack_c0 = float_var * fVar15 + float_var * fVar11 + float_var * fVar19;
-      fStack_bc = float_var * fVar16 + float_var * fVar12 + float_var * fVar20;
+      fStack_c8 = float_var * float_var + float_var * float_var + float_var * float_var;
+      fStack_c4 = float_var * float_var + float_var * float_var + float_var * float_var;
+      fStack_c0 = float_var * float_var + float_var * float_var + float_var * float_var;
+      fStack_bc = float_var * float_var + float_var * float_var + float_var * float_var;
       float_var = *(float *)(handleIdentifier + 0x138);
       float_var = *(float *)(handleIdentifier + 0x140);
       float_var = *(float *)(handleIdentifier + 0x144);
-      fStack_b8 = float_var * fVar13 + float_var * float_var + float_var * fVar17;
-      fStack_b4 = float_var * fVar14 + float_var * fVar10 + float_var * fVar18;
-      fStack_b0 = float_var * fVar15 + float_var * fVar11 + float_var * fVar19;
-      fStack_ac = float_var * fVar16 + float_var * fVar12 + float_var * fVar20;
+      fStack_b8 = float_var * float_var + float_var * float_var + float_var * float_var;
+      fStack_b4 = float_var * float_var + float_var * float_var + float_var * float_var;
+      fStack_b0 = float_var * float_var + float_var * float_var + float_var * float_var;
+      fStack_ac = float_var * float_var + float_var * float_var + float_var * float_var;
       float_var = *(float *)(handleIdentifier + 0x148);
       float_var = *(float *)(handleIdentifier + 0x154);
       float_var = *(float *)(handleIdentifier + 0x150);
-      fStack_a8 = float_var * fVar13 + float_var * float_var + float_var * fVar17;
-      fStack_a4 = float_var * fVar14 + float_var * fVar10 + float_var * fVar18;
-      fStack_a0 = float_var * fVar15 + float_var * fVar11 + float_var * fVar19;
-      fStack_9c = float_var * fVar16 + float_var * fVar12 + float_var * fVar20;
+      fStack_a8 = float_var * float_var + float_var * float_var + float_var * float_var;
+      fStack_a4 = float_var * float_var + float_var * float_var + float_var * float_var;
+      fStack_a0 = float_var * float_var + float_var * float_var + float_var * float_var;
+      fStack_9c = float_var * float_var + float_var * float_var + float_var * float_var;
       float_var = *(float *)(handleIdentifier + 0x158);
-      fStack_98 = float_var * fVar13 + float_var * float_var + float_var * fVar17 + systemConfig[0xc];
-      fStack_94 = float_var * fVar14 + float_var * fVar10 + float_var * fVar18 + systemConfig[0xd];
-      fStack_90 = float_var * fVar15 + float_var * fVar11 + float_var * fVar19 + systemConfig[0xe];
-      fStack_8c = float_var * fVar16 + float_var * fVar12 + float_var * fVar20 + systemConfig[0xf];
+      fStack_98 = float_var * float_var + float_var * float_var + float_var * float_var + systemConfig[0xc];
+      fStack_94 = float_var * float_var + float_var * float_var + float_var * float_var + systemConfig[0xd];
+      fStack_90 = float_var * float_var + float_var * float_var + float_var * float_var + systemConfig[0xe];
+      fStack_8c = float_var * float_var + float_var * float_var + float_var * float_var + systemConfig[0xf];
       systemConfig = &fStack_c8;
     }
     SystemFunction_16_8(&uintStack_108,resourceIdentifier + 0xc,*(uint8_t *)(handleIdentifier + 0xf7),systemConfig);
@@ -48756,17 +48756,17 @@ void SystemFunction_88_4(void)
   uint32_t uint_var_;
   uint32_t uint_var_;
   float float_var;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fVar13;
-  float fVar14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  float fVar18;
-  float fVar19;
-  float fVar20;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   uint64_t uint_var_;
   uint64_t uint_var_;
   uint64_t uint_var_;
@@ -48978,49 +48978,49 @@ void SystemFunction_88_4(void)
   ptr_float_var = in_stack_00000180;
   if ((*(uint *)(system_RBX + SYSTEM_DATA_COMPARE_SIZE0) & 0x4000000) != 0) {
     float_var = *in_stack_00000180;
-    fVar10 = in_stack_00000180[1];
-    fVar11 = in_stack_00000180[2];
-    fVar12 = in_stack_00000180[3];
-    fVar13 = in_stack_00000180[4];
-    fVar14 = in_stack_00000180[5];
-    fVar15 = in_stack_00000180[6];
-    fVar16 = in_stack_00000180[7];
-    fVar17 = in_stack_00000180[8];
-    fVar18 = in_stack_00000180[9];
-    fVar19 = in_stack_00000180[10];
-    fVar20 = in_stack_00000180[0xb];
+    float_var = in_stack_00000180[1];
+    float_var = in_stack_00000180[2];
+    float_var = in_stack_00000180[3];
+    float_var = in_stack_00000180[4];
+    float_var = in_stack_00000180[5];
+    float_var = in_stack_00000180[6];
+    float_var = in_stack_00000180[7];
+    float_var = in_stack_00000180[8];
+    float_var = in_stack_00000180[9];
+    float_var = in_stack_00000180[10];
+    float_var = in_stack_00000180[0xb];
     float_var = *(float *)(system_RBX + 0x124);
     float_var = *(float *)(system_RBX + 0x120);
     float_var = *(float *)(system_RBX + 0x128);
     float_var = *(float *)(system_RBX + 0x134);
     float_var = *(float *)(system_RBX + 0x130);
-    fStack00000000000000a0 = float_var * fVar13 + float_var * float_var + float_var * fVar17;
-    fStack00000000000000a4 = float_var * fVar14 + float_var * fVar10 + float_var * fVar18;
-    fStack00000000000000a8 = float_var * fVar15 + float_var * fVar11 + float_var * fVar19;
-    fStack00000000000000ac = float_var * fVar16 + float_var * fVar12 + float_var * fVar20;
+    fStack00000000000000a0 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000a4 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000a8 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000ac = float_var * float_var + float_var * float_var + float_var * float_var;
     float_var = *(float *)(system_RBX + 0x138);
     float_var = *(float *)(system_RBX + 0x140);
     float_var = *(float *)(system_RBX + 0x144);
-    fStack00000000000000b0 = float_var * fVar13 + float_var * float_var + float_var * fVar17;
-    fStack00000000000000b4 = float_var * fVar14 + float_var * fVar10 + float_var * fVar18;
-    fStack00000000000000b8 = float_var * fVar15 + float_var * fVar11 + float_var * fVar19;
-    fStack00000000000000bc = float_var * fVar16 + float_var * fVar12 + float_var * fVar20;
+    fStack00000000000000b0 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000b4 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000b8 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000bc = float_var * float_var + float_var * float_var + float_var * float_var;
     float_var = *(float *)(system_RBX + 0x148);
     float_var = *(float *)(system_RBX + 0x154);
     float_var = *(float *)(system_RBX + 0x150);
-    fStack00000000000000c0 = float_var * fVar13 + float_var * float_var + float_var * fVar17;
-    fStack00000000000000c4 = float_var * fVar14 + float_var * fVar10 + float_var * fVar18;
-    fStack00000000000000c8 = float_var * fVar15 + float_var * fVar11 + float_var * fVar19;
-    fStack00000000000000cc = float_var * fVar16 + float_var * fVar12 + float_var * fVar20;
+    fStack00000000000000c0 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000c4 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000c8 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000cc = float_var * float_var + float_var * float_var + float_var * float_var;
     float_var = *(float *)(system_RBX + 0x158);
     fStack00000000000000d0 =
-         float_var * fVar13 + float_var * float_var + float_var * fVar17 + in_stack_00000180[0xc];
+         float_var * float_var + float_var * float_var + float_var * float_var + in_stack_00000180[0xc];
     fStack00000000000000d4 =
-         float_var * fVar14 + float_var * fVar10 + float_var * fVar18 + in_stack_00000180[0xd];
+         float_var * float_var + float_var * float_var + float_var * float_var + in_stack_00000180[0xd];
     fStack00000000000000d8 =
-         float_var * fVar15 + float_var * fVar11 + float_var * fVar19 + in_stack_00000180[0xe];
+         float_var * float_var + float_var * float_var + float_var * float_var + in_stack_00000180[0xe];
     fStack00000000000000dc =
-         float_var * fVar16 + float_var * fVar12 + float_var * fVar20 + in_stack_00000180[0xf];
+         float_var * float_var + float_var * float_var + float_var * float_var + in_stack_00000180[0xf];
     ptr_float_var = &stack0x000000a0;
   }
   SystemFunction_16_8(&stack0x00000060,long_var_ + 0x30,*(uint8_t *)(system_RBX + 0xf7),ptr_float_var);
@@ -49082,17 +49082,17 @@ void InitializeSystemLogger(void)
   uint32_t uint_var_;
   uint32_t uint_var_;
   float float_var;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fVar13;
-  float fVar14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  float fVar18;
-  float fVar19;
-  float fVar20;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   uint64_t uint_var_;
   uint64_t uint_var_;
   uint64_t uint_var_;
@@ -49238,49 +49238,49 @@ void InitializeSystemLogger(void)
   ptr_float_var = in_stack_00000180;
   if ((*(uint *)(system_RBX + SYSTEM_DATA_COMPARE_SIZE0) & 0x4000000) != 0) {
     float_var = *in_stack_00000180;
-    fVar10 = in_stack_00000180[1];
-    fVar11 = in_stack_00000180[2];
-    fVar12 = in_stack_00000180[3];
-    fVar13 = in_stack_00000180[4];
-    fVar14 = in_stack_00000180[5];
-    fVar15 = in_stack_00000180[6];
-    fVar16 = in_stack_00000180[7];
-    fVar17 = in_stack_00000180[8];
-    fVar18 = in_stack_00000180[9];
-    fVar19 = in_stack_00000180[10];
-    fVar20 = in_stack_00000180[0xb];
+    float_var = in_stack_00000180[1];
+    float_var = in_stack_00000180[2];
+    float_var = in_stack_00000180[3];
+    float_var = in_stack_00000180[4];
+    float_var = in_stack_00000180[5];
+    float_var = in_stack_00000180[6];
+    float_var = in_stack_00000180[7];
+    float_var = in_stack_00000180[8];
+    float_var = in_stack_00000180[9];
+    float_var = in_stack_00000180[10];
+    float_var = in_stack_00000180[0xb];
     float_var = *(float *)(system_RBX + 0x124);
     float_var = *(float *)(system_RBX + 0x120);
     float_var = *(float *)(system_RBX + 0x128);
     float_var = *(float *)(system_RBX + 0x134);
     float_var = *(float *)(system_RBX + 0x130);
-    fStack00000000000000a0 = float_var * fVar13 + float_var * float_var + float_var * fVar17;
-    fStack00000000000000a4 = float_var * fVar14 + float_var * fVar10 + float_var * fVar18;
-    fStack00000000000000a8 = float_var * fVar15 + float_var * fVar11 + float_var * fVar19;
-    fStack00000000000000ac = float_var * fVar16 + float_var * fVar12 + float_var * fVar20;
+    fStack00000000000000a0 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000a4 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000a8 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000ac = float_var * float_var + float_var * float_var + float_var * float_var;
     float_var = *(float *)(system_RBX + 0x138);
     float_var = *(float *)(system_RBX + 0x140);
     float_var = *(float *)(system_RBX + 0x144);
-    fStack00000000000000b0 = float_var * fVar13 + float_var * float_var + float_var * fVar17;
-    fStack00000000000000b4 = float_var * fVar14 + float_var * fVar10 + float_var * fVar18;
-    fStack00000000000000b8 = float_var * fVar15 + float_var * fVar11 + float_var * fVar19;
-    fStack00000000000000bc = float_var * fVar16 + float_var * fVar12 + float_var * fVar20;
+    fStack00000000000000b0 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000b4 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000b8 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000bc = float_var * float_var + float_var * float_var + float_var * float_var;
     float_var = *(float *)(system_RBX + 0x148);
     float_var = *(float *)(system_RBX + 0x154);
     float_var = *(float *)(system_RBX + 0x150);
-    fStack00000000000000c0 = float_var * fVar13 + float_var * float_var + float_var * fVar17;
-    fStack00000000000000c4 = float_var * fVar14 + float_var * fVar10 + float_var * fVar18;
-    fStack00000000000000c8 = float_var * fVar15 + float_var * fVar11 + float_var * fVar19;
-    fStack00000000000000cc = float_var * fVar16 + float_var * fVar12 + float_var * fVar20;
+    fStack00000000000000c0 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000c4 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000c8 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000cc = float_var * float_var + float_var * float_var + float_var * float_var;
     float_var = *(float *)(system_RBX + 0x158);
     fStack00000000000000d0 =
-         float_var * fVar13 + float_var * float_var + float_var * fVar17 + in_stack_00000180[0xc];
+         float_var * float_var + float_var * float_var + float_var * float_var + in_stack_00000180[0xc];
     fStack00000000000000d4 =
-         float_var * fVar14 + float_var * fVar10 + float_var * fVar18 + in_stack_00000180[0xd];
+         float_var * float_var + float_var * float_var + float_var * float_var + in_stack_00000180[0xd];
     fStack00000000000000d8 =
-         float_var * fVar15 + float_var * fVar11 + float_var * fVar19 + in_stack_00000180[0xe];
+         float_var * float_var + float_var * float_var + float_var * float_var + in_stack_00000180[0xe];
     fStack00000000000000dc =
-         float_var * fVar16 + float_var * fVar12 + float_var * fVar20 + in_stack_00000180[0xf];
+         float_var * float_var + float_var * float_var + float_var * float_var + in_stack_00000180[0xf];
     ptr_float_var = &stack0x000000a0;
   }
   SystemFunction_16_8(&stack0x00000060,long_var_ + 0x30,*(uint8_t *)(system_RBX + 0xf7),ptr_float_var);
@@ -49342,15 +49342,15 @@ void SystemFunction_64_6(void)
   float float_var;
   float float_var;
   float float_var;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fVar13;
-  float fVar14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  float fVar18;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   uint64_t uint_var_;
   uint64_t uint_var_;
   uint64_t uint_var_;
@@ -49394,43 +49394,43 @@ void SystemFunction_64_6(void)
     float_var = *system_RSI;
     float_var = system_RSI[1];
     float_var = system_RSI[2];
-    fVar10 = system_RSI[3];
-    fVar11 = system_RSI[4];
-    fVar12 = system_RSI[5];
-    fVar13 = system_RSI[6];
-    fVar14 = system_RSI[7];
-    fVar15 = system_RSI[8];
-    fVar16 = system_RSI[9];
-    fVar17 = system_RSI[10];
-    fVar18 = system_RSI[0xb];
+    float_var = system_RSI[3];
+    float_var = system_RSI[4];
+    float_var = system_RSI[5];
+    float_var = system_RSI[6];
+    float_var = system_RSI[7];
+    float_var = system_RSI[8];
+    float_var = system_RSI[9];
+    float_var = system_RSI[10];
+    float_var = system_RSI[0xb];
     float_var = *(float *)(system_RBX + 0x124);
     float_var = *(float *)(system_RBX + 0x120);
     float_var = *(float *)(system_RBX + 0x128);
     float_var = *(float *)(system_RBX + 0x134);
     float_var = *(float *)(system_RBX + 0x130);
-    fStack00000000000000a0 = float_var * fVar11 + float_var * float_var + float_var * fVar15;
-    fStack00000000000000a4 = float_var * fVar12 + float_var * float_var + float_var * fVar16;
-    fStack00000000000000a8 = float_var * fVar13 + float_var * float_var + float_var * fVar17;
-    fStack00000000000000ac = float_var * fVar14 + float_var * fVar10 + float_var * fVar18;
+    fStack00000000000000a0 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000a4 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000a8 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000ac = float_var * float_var + float_var * float_var + float_var * float_var;
     float_var = *(float *)(system_RBX + 0x138);
     float_var = *(float *)(system_RBX + 0x140);
     float_var = *(float *)(system_RBX + 0x144);
-    fStack00000000000000b0 = float_var * fVar11 + float_var * float_var + float_var * fVar15;
-    fStack00000000000000b4 = float_var * fVar12 + float_var * float_var + float_var * fVar16;
-    fStack00000000000000b8 = float_var * fVar13 + float_var * float_var + float_var * fVar17;
-    fStack00000000000000bc = float_var * fVar14 + float_var * fVar10 + float_var * fVar18;
+    fStack00000000000000b0 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000b4 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000b8 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000bc = float_var * float_var + float_var * float_var + float_var * float_var;
     float_var = *(float *)(system_RBX + 0x148);
     float_var = *(float *)(system_RBX + 0x154);
     float_var = *(float *)(system_RBX + 0x150);
-    fStack00000000000000c0 = float_var * fVar11 + float_var * float_var + float_var * fVar15;
-    fStack00000000000000c4 = float_var * fVar12 + float_var * float_var + float_var * fVar16;
-    fStack00000000000000c8 = float_var * fVar13 + float_var * float_var + float_var * fVar17;
-    fStack00000000000000cc = float_var * fVar14 + float_var * fVar10 + float_var * fVar18;
+    fStack00000000000000c0 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000c4 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000c8 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000cc = float_var * float_var + float_var * float_var + float_var * float_var;
     float_var = *(float *)(system_RBX + 0x158);
-    fStack00000000000000d0 = float_var * fVar11 + float_var * float_var + float_var * fVar15 + system_RSI[0xc];
-    fStack00000000000000d4 = float_var * fVar12 + float_var * float_var + float_var * fVar16 + system_RSI[0xd];
-    fStack00000000000000d8 = float_var * fVar13 + float_var * float_var + float_var * fVar17 + system_RSI[0xe];
-    fStack00000000000000dc = float_var * fVar14 + float_var * fVar10 + float_var * fVar18 + system_RSI[0xf];
+    fStack00000000000000d0 = float_var * float_var + float_var * float_var + float_var * float_var + system_RSI[0xc];
+    fStack00000000000000d4 = float_var * float_var + float_var * float_var + float_var * float_var + system_RSI[0xd];
+    fStack00000000000000d8 = float_var * float_var + float_var * float_var + float_var * float_var + system_RSI[0xe];
+    fStack00000000000000dc = float_var * float_var + float_var * float_var + float_var * float_var + system_RSI[0xf];
   }
   SystemFunction_16_8(&stack0x00000060,system_R13 + 0x30,*(uint8_t *)(system_RBX + 0xf7));
   uint_var_ = in_stack_00000098;
@@ -49491,15 +49491,15 @@ void SystemFunction_95_0(void)
   float float_var;
   float float_var;
   float float_var;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fVar13;
-  float fVar14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  float fVar18;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   uint64_t uint_var_;
   uint64_t uint_var_;
   uint64_t uint_var_;
@@ -49556,47 +49556,47 @@ void SystemFunction_95_0(void)
     float_var = *in_stack_00000180;
     float_var = in_stack_00000180[1];
     float_var = in_stack_00000180[2];
-    fVar10 = in_stack_00000180[3];
-    fVar11 = in_stack_00000180[4];
-    fVar12 = in_stack_00000180[5];
-    fVar13 = in_stack_00000180[6];
-    fVar14 = in_stack_00000180[7];
-    fVar15 = in_stack_00000180[8];
-    fVar16 = in_stack_00000180[9];
-    fVar17 = in_stack_00000180[10];
-    fVar18 = in_stack_00000180[0xb];
+    float_var = in_stack_00000180[3];
+    float_var = in_stack_00000180[4];
+    float_var = in_stack_00000180[5];
+    float_var = in_stack_00000180[6];
+    float_var = in_stack_00000180[7];
+    float_var = in_stack_00000180[8];
+    float_var = in_stack_00000180[9];
+    float_var = in_stack_00000180[10];
+    float_var = in_stack_00000180[0xb];
     float_var = *(float *)(system_RBX + 0x124);
     float_var = *(float *)(system_RBX + 0x120);
     float_var = *(float *)(system_RBX + 0x128);
     float_var = *(float *)(system_RBX + 0x134);
     float_var = *(float *)(system_RBX + 0x130);
-    fStack00000000000000a0 = float_var * fVar11 + float_var * float_var + float_var * fVar15;
-    fStack00000000000000a4 = float_var * fVar12 + float_var * float_var + float_var * fVar16;
-    fStack00000000000000a8 = float_var * fVar13 + float_var * float_var + float_var * fVar17;
-    fStack00000000000000ac = float_var * fVar14 + float_var * fVar10 + float_var * fVar18;
+    fStack00000000000000a0 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000a4 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000a8 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000ac = float_var * float_var + float_var * float_var + float_var * float_var;
     float_var = *(float *)(system_RBX + 0x138);
     float_var = *(float *)(system_RBX + 0x140);
     float_var = *(float *)(system_RBX + 0x144);
-    fStack00000000000000b0 = float_var * fVar11 + float_var * float_var + float_var * fVar15;
-    fStack00000000000000b4 = float_var * fVar12 + float_var * float_var + float_var * fVar16;
-    fStack00000000000000b8 = float_var * fVar13 + float_var * float_var + float_var * fVar17;
-    fStack00000000000000bc = float_var * fVar14 + float_var * fVar10 + float_var * fVar18;
+    fStack00000000000000b0 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000b4 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000b8 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000bc = float_var * float_var + float_var * float_var + float_var * float_var;
     float_var = *(float *)(system_RBX + 0x148);
     float_var = *(float *)(system_RBX + 0x154);
     float_var = *(float *)(system_RBX + 0x150);
-    fStack00000000000000c0 = float_var * fVar11 + float_var * float_var + float_var * fVar15;
-    fStack00000000000000c4 = float_var * fVar12 + float_var * float_var + float_var * fVar16;
-    fStack00000000000000c8 = float_var * fVar13 + float_var * float_var + float_var * fVar17;
-    fStack00000000000000cc = float_var * fVar14 + float_var * fVar10 + float_var * fVar18;
+    fStack00000000000000c0 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000c4 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000c8 = float_var * float_var + float_var * float_var + float_var * float_var;
+    fStack00000000000000cc = float_var * float_var + float_var * float_var + float_var * float_var;
     float_var = *(float *)(system_RBX + 0x158);
     fStack00000000000000d0 =
-         float_var * fVar11 + float_var * float_var + float_var * fVar15 + in_stack_00000180[0xc];
+         float_var * float_var + float_var * float_var + float_var * float_var + in_stack_00000180[0xc];
     fStack00000000000000d4 =
-         float_var * fVar12 + float_var * float_var + float_var * fVar16 + in_stack_00000180[0xd];
+         float_var * float_var + float_var * float_var + float_var * float_var + in_stack_00000180[0xd];
     fStack00000000000000d8 =
-         float_var * fVar13 + float_var * float_var + float_var * fVar17 + in_stack_00000180[0xe];
+         float_var * float_var + float_var * float_var + float_var * float_var + in_stack_00000180[0xe];
     fStack00000000000000dc =
-         float_var * fVar14 + float_var * fVar10 + float_var * fVar18 + in_stack_00000180[0xf];
+         float_var * float_var + float_var * float_var + float_var * float_var + in_stack_00000180[0xf];
     ptr_float_var = &stack0x000000a0;
   }
   SystemFunction_16_8(&stack0x00000060,system_R13 + 0x30,*(uint8_t *)(system_RBX + 0xf7),ptr_float_var);
@@ -49736,15 +49736,15 @@ ulonglong SystemFunction_29_6(longlong handleIdentifier,uint64_t resourceIdentif
   float float_var;
   float float_var;
   float float_var;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fVar13;
-  float fVar14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  float fVar18;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   char is_initialized9;
   ulonglong in_RAX;
   longlong long_var_;
@@ -49800,39 +49800,39 @@ LAB_180077fcf:
         fStack_50 = systemFlags[0xe];
       }
       else {
-        fVar10 = systemFlags[4];
-        fVar11 = systemFlags[5];
-        fVar12 = systemFlags[6];
+        float_var = systemFlags[4];
+        float_var = systemFlags[5];
+        float_var = systemFlags[6];
         float_var = *(float *)(handleIdentifier + 0x120);
         float_var = *(float *)(handleIdentifier + 0x128);
         float_var = *(float *)(handleIdentifier + 0x134);
         float_var = *(float *)(handleIdentifier + 0x144);
         float_var = *(float *)(handleIdentifier + 0x154);
-        fVar13 = *systemFlags;
-        fVar14 = systemFlags[1];
-        fVar15 = systemFlags[2];
-        fVar16 = systemFlags[8];
-        fVar17 = systemFlags[9];
-        fVar18 = systemFlags[10];
+        float_var = *systemFlags;
+        float_var = systemFlags[1];
+        float_var = systemFlags[2];
+        float_var = systemFlags[8];
+        float_var = systemFlags[9];
+        float_var = systemFlags[10];
         float_var = *(float *)(handleIdentifier + 0x124);
         float_var = *(float *)(handleIdentifier + 0x130);
-        uintStack_80._0_4_ = float_var * fVar12 + float_var * fVar15 + float_var * fVar18;
+        uintStack_80._0_4_ = float_var * float_var + float_var * float_var + float_var * float_var;
         float_var = *(float *)(handleIdentifier + 0x138);
         float_var = *(float *)(handleIdentifier + 0x140);
-        uintStack_70._0_4_ = float_var * fVar12 + float_var * fVar15 + float_var * fVar18;
-        uintStack_88 = CONCAT44(float_var * fVar11 + float_var * fVar14 + float_var * fVar17,
-                             float_var * fVar10 + float_var * fVar13 + float_var * fVar16);
+        uintStack_70._0_4_ = float_var * float_var + float_var * float_var + float_var * float_var;
+        uintStack_88 = CONCAT44(float_var * float_var + float_var * float_var + float_var * float_var,
+                             float_var * float_var + float_var * float_var + float_var * float_var);
         float_var = *(float *)(handleIdentifier + 0x148);
         float_var = *(float *)(handleIdentifier + 0x150);
-        uintStack_60._0_4_ = float_var * fVar12 + float_var * fVar15 + float_var * fVar18;
+        uintStack_60._0_4_ = float_var * float_var + float_var * float_var + float_var * float_var;
         float_var = *(float *)(handleIdentifier + 0x158);
-        uintStack_78 = CONCAT44(float_var * fVar11 + float_var * fVar14 + float_var * fVar17,
-                             float_var * fVar10 + float_var * fVar13 + float_var * fVar16);
-        uintStack_68 = CONCAT44(float_var * fVar11 + float_var * fVar14 + float_var * fVar17,
-                             float_var * fVar10 + float_var * fVar13 + float_var * fVar16);
-        fStack_58 = float_var * fVar10 + float_var * fVar13 + float_var * fVar16 + systemFlags[0xc];
-        fStack_54 = float_var * fVar11 + float_var * fVar14 + float_var * fVar17 + systemFlags[0xd];
-        fStack_50 = float_var * fVar12 + float_var * fVar15 + float_var * fVar18 + systemFlags[0xe];
+        uintStack_78 = CONCAT44(float_var * float_var + float_var * float_var + float_var * float_var,
+                             float_var * float_var + float_var * float_var + float_var * float_var);
+        uintStack_68 = CONCAT44(float_var * float_var + float_var * float_var + float_var * float_var,
+                             float_var * float_var + float_var * float_var + float_var * float_var);
+        fStack_58 = float_var * float_var + float_var * float_var + float_var * float_var + systemFlags[0xc];
+        fStack_54 = float_var * float_var + float_var * float_var + float_var * float_var + systemFlags[0xd];
+        fStack_50 = float_var * float_var + float_var * float_var + float_var * float_var + systemFlags[0xe];
       }
       uintStack_4c = 0x3f800000;
       uintStack_60 = (ulonglong)(uint)(float)uintStack_60;
@@ -49978,16 +49978,16 @@ void SystemFunction_0_0(longlong handleIdentifier)
   longlong long_var_;
   uint uint_var_;
   bool bVar10;
-  float fVar11;
+  float float_var;
 
   long_var_ = handleIdentifier;
   if ((*(longlong *)(handleIdentifier + 0x1c8) != 0) &&
      (long_var_ = *(longlong *)(*(longlong *)(handleIdentifier + 0x1c8) + 0x28), long_var_ != 0)) {
-    fVar11 = (*(float *)(long_var_ + 0x74) * *(float *)(long_var_ + 0x88) -
+    float_var = (*(float *)(long_var_ + 0x74) * *(float *)(long_var_ + 0x88) -
              *(float *)(long_var_ + 0x78) * *(float *)(long_var_ + 0x84)) * *(float *)(long_var_ + 0x90);
-    SystemFunction0773c0(fVar11,(*(float *)(long_var_ + 0x78) * *(float *)(long_var_ + 0x80) -
+    SystemFunction0773c0(float_var,(*(float *)(long_var_ + 0x78) * *(float *)(long_var_ + 0x80) -
                                *(float *)(long_var_ + 0x70) * *(float *)(long_var_ + 0x88)) *
-                               *(float *)(long_var_ + 0x94) + fVar11 +
+                               *(float *)(long_var_ + 0x94) + float_var +
                                (*(float *)(long_var_ + 0x70) * *(float *)(long_var_ + 0x84) -
                                *(float *)(long_var_ + 0x74) * *(float *)(long_var_ + 0x80)) *
                                *(float *)(long_var_ + 0x98) < 0.0);
@@ -50077,14 +50077,14 @@ void SystemFunction_2_0(longlong handleIdentifier)
   uint uint_var_;
   longlong system_RBX;
   bool bool_var;
-  float fVar10;
+  float float_var;
 
   if ((in_RAX != 0) && (long_var_ = *(longlong *)(in_RAX + 0x28), long_var_ != 0)) {
-    fVar10 = (*(float *)(long_var_ + 0x74) * *(float *)(long_var_ + 0x88) -
+    float_var = (*(float *)(long_var_ + 0x74) * *(float *)(long_var_ + 0x88) -
              *(float *)(long_var_ + 0x78) * *(float *)(long_var_ + 0x84)) * *(float *)(long_var_ + 0x90);
-    SystemFunction0773c0(fVar10,(*(float *)(long_var_ + 0x78) * *(float *)(long_var_ + 0x80) -
+    SystemFunction0773c0(float_var,(*(float *)(long_var_ + 0x78) * *(float *)(long_var_ + 0x80) -
                                *(float *)(long_var_ + 0x70) * *(float *)(long_var_ + 0x88)) *
-                               *(float *)(long_var_ + 0x94) + fVar10 +
+                               *(float *)(long_var_ + 0x94) + float_var +
                                (*(float *)(long_var_ + 0x70) * *(float *)(long_var_ + 0x84) -
                                *(float *)(long_var_ + 0x74) * *(float *)(long_var_ + 0x80)) *
                                *(float *)(long_var_ + 0x98) < 0.0);
@@ -50175,14 +50175,14 @@ void SystemFunction_8_9(float handleIdentifier,float resourceIdentifier,float sy
   uint uint_var_;
   longlong system_RBX;
   bool bool_var;
-  float fVar10;
+  float float_var;
   float in_XMM4_Da;
   float in_XMM5_Da;
   float system_XMM8_Da;
 
-  fVar10 = (*(float *)(in_RAX + 0x74) * resourceIdentifier - systemConfig * systemFlags) * *(float *)(in_RAX + 0x90);
-  SystemFunction0773c0(fVar10,(systemConfig * in_XMM4_Da - handleIdentifier * resourceIdentifier) * *(float *)(in_RAX + 0x94)
-                             + fVar10 +
+  float_var = (*(float *)(in_RAX + 0x74) * resourceIdentifier - systemConfig * systemFlags) * *(float *)(in_RAX + 0x90);
+  SystemFunction0773c0(float_var,(systemConfig * in_XMM4_Da - handleIdentifier * resourceIdentifier) * *(float *)(in_RAX + 0x94)
+                             + float_var +
                              (in_XMM5_Da * systemFlags - *(float *)(in_RAX + 0x74) * in_XMM4_Da) *
                              *(float *)(in_RAX + 0x98) < system_XMM8_Da);
   if (*(longlong *)(in_RCX + 0x1b8) == 0) {
@@ -50477,28 +50477,28 @@ void SystemFunction_28_0(uint64_t *handleIdentifier,longlong resourceIdentifier)
   longlong long_var_;
   longlong *ptr_long_var;
   int int_var_;
-  float fVar10;
+  float float_var;
   uint32_t uint_var_;
   uint32_t uint_var_;
   uint32_t uint_var_;
-  float fVar14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  float fVar18;
-  float fVar19;
-  float fVar20;
-  float fVar21;
-  float fVar22;
-  float fVar23;
-  float fVar24;
-  float fVar25;
-  float fVar26;
-  float fVar27;
-  float fVar28;
-  float fVar29;
-  float fVar30;
-  float fVar31;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   longlong *plstack_var;
   uint64_t localBuffer_X10 [2];
   uint64_t ustack_var;
@@ -50710,70 +50710,70 @@ void SystemFunction_28_0(uint64_t *handleIdentifier,longlong resourceIdentifier)
     *(uint32_t *)((longlong)handleIdentifier + 0x9c) = 0;
     *(uint32_t *)((longlong)handleIdentifier + 0xac) = 0;
     *(uint32_t *)((longlong)handleIdentifier + 0xbc) = 0x3f800000;
-    fVar18 = ptr_float_var[6];
-    fVar16 = ptr_float_var[0xd];
-    fVar10 = ptr_float_var[9];
-    fVar17 = ptr_float_var[1];
-    fVar15 = ptr_float_var[0xe];
-    fVar23 = ptr_float_var[2];
-    fVar25 = ptr_float_var[10];
-    fVar28 = ptr_float_var[5];
-    fVar24 = fVar15 * fVar10 - fVar16 * fVar25;
-    fVar21 = fVar15 * fVar28 - fVar16 * fVar18;
-    fVar22 = fVar15 * fVar17 - fVar16 * fVar23;
-    fVar29 = fVar28 * fVar25 - fVar10 * fVar18;
-    fVar20 = fVar17 * fVar25 - fVar10 * fVar23;
-    *(float *)(handleIdentifier + 0x18) = fVar29;
-    fVar19 = fVar17 * fVar18 - fVar28 * fVar23;
-    fVar30 = fVar23 * ptr_float_var[9] - fVar25 * ptr_float_var[1];
-    *(float *)((longlong)handleIdentifier + 0xc4) = fVar30;
-    fVar16 = ptr_float_var[5];
-    fVar15 = ptr_float_var[1];
+    float_var = ptr_float_var[6];
+    float_var = ptr_float_var[0xd];
+    float_var = ptr_float_var[9];
+    float_var = ptr_float_var[1];
+    float_var = ptr_float_var[0xe];
+    float_var = ptr_float_var[2];
+    float_var = ptr_float_var[10];
+    float_var = ptr_float_var[5];
+    float_var = float_var * float_var - float_var * float_var;
+    float_var = float_var * float_var - float_var * float_var;
+    float_var = float_var * float_var - float_var * float_var;
+    float_var = float_var * float_var - float_var * float_var;
+    float_var = float_var * float_var - float_var * float_var;
+    *(float *)(handleIdentifier + 0x18) = float_var;
+    float_var = float_var * float_var - float_var * float_var;
+    float_var = float_var * ptr_float_var[9] - float_var * ptr_float_var[1];
+    *(float *)((longlong)handleIdentifier + 0xc4) = float_var;
+    float_var = ptr_float_var[5];
+    float_var = ptr_float_var[1];
     *(uint32_t *)((longlong)handleIdentifier + 0xcc) = 0;
-    fVar31 = fVar18 * fVar15 - fVar23 * fVar16;
-    *(float *)(handleIdentifier + NODE_INITIALIZED_OFFSET) = fVar31;
-    fVar14 = fVar18 * ptr_float_var[8] - fVar25 * ptr_float_var[4];
-    *(float *)(handleIdentifier + 0x1a) = fVar14;
-    fVar27 = fVar25 * *ptr_float_var - fVar23 * ptr_float_var[8];
-    *(float *)((longlong)handleIdentifier + 0xd4) = fVar27;
-    fVar16 = ptr_float_var[4];
-    fVar15 = *ptr_float_var;
+    float_var = float_var * float_var - float_var * float_var;
+    *(float *)(handleIdentifier + NODE_INITIALIZED_OFFSET) = float_var;
+    float_var = float_var * ptr_float_var[8] - float_var * ptr_float_var[4];
+    *(float *)(handleIdentifier + 0x1a) = float_var;
+    float_var = float_var * *ptr_float_var - float_var * ptr_float_var[8];
+    *(float *)((longlong)handleIdentifier + 0xd4) = float_var;
+    float_var = ptr_float_var[4];
+    float_var = *ptr_float_var;
     *(uint32_t *)((longlong)handleIdentifier + 0xdc) = 0;
-    fVar26 = fVar23 * fVar16 - fVar18 * fVar15;
-    *(float *)(handleIdentifier + 0x1b) = fVar26;
-    fVar15 = fVar10 * ptr_float_var[4] - fVar28 * ptr_float_var[8];
-    *(float *)(handleIdentifier + 0x1c) = fVar15;
-    fVar10 = fVar17 * ptr_float_var[8] - fVar10 * *ptr_float_var;
-    *(float *)((longlong)handleIdentifier + 0xe4) = fVar10;
-    fVar18 = ptr_float_var[4];
-    fVar16 = *ptr_float_var;
+    float_var = float_var * float_var - float_var * float_var;
+    *(float *)(handleIdentifier + 0x1b) = float_var;
+    float_var = float_var * ptr_float_var[4] - float_var * ptr_float_var[8];
+    *(float *)(handleIdentifier + 0x1c) = float_var;
+    float_var = float_var * ptr_float_var[8] - float_var * *ptr_float_var;
+    *(float *)((longlong)handleIdentifier + 0xe4) = float_var;
+    float_var = ptr_float_var[4];
+    float_var = *ptr_float_var;
     *(uint32_t *)((longlong)handleIdentifier + 0xec) = 0;
-    fVar28 = fVar28 * fVar16 - fVar17 * fVar18;
-    *(float *)(handleIdentifier + 0x1d) = fVar28;
-    fVar16 = (fVar21 * ptr_float_var[8] - fVar24 * ptr_float_var[4]) - fVar29 * ptr_float_var[0xc];
-    *(float *)(handleIdentifier + 0x1e) = fVar16;
-    fVar25 = (fVar24 * *ptr_float_var - fVar22 * ptr_float_var[8]) + fVar20 * ptr_float_var[0xc];
-    *(float *)((longlong)handleIdentifier + 0xf4) = fVar25;
-    fVar23 = (fVar22 * ptr_float_var[4] - fVar21 * *ptr_float_var) - fVar19 * ptr_float_var[0xc];
-    *(float *)(handleIdentifier + 0x1f) = fVar23;
-    fVar17 = (fVar29 * *ptr_float_var - fVar20 * ptr_float_var[4]) + fVar19 * ptr_float_var[8];
-    *(float *)((longlong)handleIdentifier + 0xfc) = fVar17;
-    fVar18 = fVar30 * ptr_float_var[4] + fVar29 * *ptr_float_var + fVar31 * ptr_float_var[8];
-    if (fVar18 != 1.0) {
-      fVar18 = 1.0 / fVar18;
-      *(float *)(handleIdentifier + 0x1a) = fVar14 * fVar18;
-      *(float *)(handleIdentifier + 0x1c) = fVar15 * fVar18;
-      *(float *)(handleIdentifier + 0x18) = fVar29 * fVar18;
-      *(float *)((longlong)handleIdentifier + 0xc4) = fVar30 * fVar18;
-      *(float *)(handleIdentifier + NODE_INITIALIZED_OFFSET) = fVar31 * fVar18;
-      *(float *)((longlong)handleIdentifier + 0xd4) = fVar27 * fVar18;
-      *(float *)(handleIdentifier + 0x1b) = fVar26 * fVar18;
-      *(float *)((longlong)handleIdentifier + 0xe4) = fVar10 * fVar18;
-      *(float *)(handleIdentifier + 0x1d) = fVar28 * fVar18;
-      *(float *)(handleIdentifier + 0x1e) = fVar16 * fVar18;
-      *(float *)((longlong)handleIdentifier + 0xf4) = fVar25 * fVar18;
-      *(float *)(handleIdentifier + 0x1f) = fVar23 * fVar18;
-      *(float *)((longlong)handleIdentifier + 0xfc) = fVar17 * fVar18;
+    float_var = float_var * float_var - float_var * float_var;
+    *(float *)(handleIdentifier + 0x1d) = float_var;
+    float_var = (float_var * ptr_float_var[8] - float_var * ptr_float_var[4]) - float_var * ptr_float_var[0xc];
+    *(float *)(handleIdentifier + 0x1e) = float_var;
+    float_var = (float_var * *ptr_float_var - float_var * ptr_float_var[8]) + float_var * ptr_float_var[0xc];
+    *(float *)((longlong)handleIdentifier + 0xf4) = float_var;
+    float_var = (float_var * ptr_float_var[4] - float_var * *ptr_float_var) - float_var * ptr_float_var[0xc];
+    *(float *)(handleIdentifier + 0x1f) = float_var;
+    float_var = (float_var * *ptr_float_var - float_var * ptr_float_var[4]) + float_var * ptr_float_var[8];
+    *(float *)((longlong)handleIdentifier + 0xfc) = float_var;
+    float_var = float_var * ptr_float_var[4] + float_var * *ptr_float_var + float_var * ptr_float_var[8];
+    if (float_var != 1.0) {
+      float_var = 1.0 / float_var;
+      *(float *)(handleIdentifier + 0x1a) = float_var * float_var;
+      *(float *)(handleIdentifier + 0x1c) = float_var * float_var;
+      *(float *)(handleIdentifier + 0x18) = float_var * float_var;
+      *(float *)((longlong)handleIdentifier + 0xc4) = float_var * float_var;
+      *(float *)(handleIdentifier + NODE_INITIALIZED_OFFSET) = float_var * float_var;
+      *(float *)((longlong)handleIdentifier + 0xd4) = float_var * float_var;
+      *(float *)(handleIdentifier + 0x1b) = float_var * float_var;
+      *(float *)((longlong)handleIdentifier + 0xe4) = float_var * float_var;
+      *(float *)(handleIdentifier + 0x1d) = float_var * float_var;
+      *(float *)(handleIdentifier + 0x1e) = float_var * float_var;
+      *(float *)((longlong)handleIdentifier + 0xf4) = float_var * float_var;
+      *(float *)(handleIdentifier + 0x1f) = float_var * float_var;
+      *(float *)((longlong)handleIdentifier + 0xfc) = float_var * float_var;
     }
     return;
   }
@@ -50794,17 +50794,17 @@ void SystemFunction_60_8(longlong handleIdentifier)
   float float_var;
   float float_var;
   float float_var;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fVar13;
-  float fVar14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  float fVar18;
-  float fVar19;
-  float fVar20;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
 
   ptr_float_var = (float *)(handleIdentifier + 0x80);
   *(uint64_t *)ptr_float_var = *(uint64_t *)(handleIdentifier + 0x40);
@@ -50829,64 +50829,64 @@ void SystemFunction_60_8(longlong handleIdentifier)
   float_var = ptr_float_var[9];
   float_var = ptr_float_var[1];
   float_var = ptr_float_var[0xe];
-  fVar12 = ptr_float_var[2];
-  fVar14 = ptr_float_var[10];
-  fVar17 = ptr_float_var[5];
-  fVar13 = float_var * float_var - float_var * fVar14;
-  fVar10 = float_var * fVar17 - float_var * float_var;
-  fVar11 = float_var * float_var - float_var * fVar12;
-  fVar18 = fVar17 * fVar14 - float_var * float_var;
-  float_var = float_var * fVar14 - float_var * fVar12;
-  *(float *)(handleIdentifier + 0xc0) = fVar18;
-  float_var = float_var * float_var - fVar17 * fVar12;
-  fVar19 = fVar12 * ptr_float_var[9] - fVar14 * ptr_float_var[1];
-  *(float *)(handleIdentifier + 0xc4) = fVar19;
+  float_var = ptr_float_var[2];
+  float_var = ptr_float_var[10];
+  float_var = ptr_float_var[5];
+  float_var = float_var * float_var - float_var * float_var;
+  float_var = float_var * float_var - float_var * float_var;
+  float_var = float_var * float_var - float_var * float_var;
+  float_var = float_var * float_var - float_var * float_var;
+  float_var = float_var * float_var - float_var * float_var;
+  *(float *)(handleIdentifier + 0xc0) = float_var;
+  float_var = float_var * float_var - float_var * float_var;
+  float_var = float_var * ptr_float_var[9] - float_var * ptr_float_var[1];
+  *(float *)(handleIdentifier + 0xc4) = float_var;
   float_var = ptr_float_var[5];
   float_var = ptr_float_var[1];
   *(uint32_t *)(handleIdentifier + 0xcc) = 0;
-  fVar20 = float_var * float_var - fVar12 * float_var;
-  *(float *)(handleIdentifier + 200) = fVar20;
-  float_var = float_var * ptr_float_var[8] - fVar14 * ptr_float_var[4];
+  float_var = float_var * float_var - float_var * float_var;
+  *(float *)(handleIdentifier + 200) = float_var;
+  float_var = float_var * ptr_float_var[8] - float_var * ptr_float_var[4];
   *(float *)(handleIdentifier + 0xd0) = float_var;
-  fVar16 = fVar14 * *ptr_float_var - fVar12 * ptr_float_var[8];
-  *(float *)(handleIdentifier + 0xd4) = fVar16;
+  float_var = float_var * *ptr_float_var - float_var * ptr_float_var[8];
+  *(float *)(handleIdentifier + 0xd4) = float_var;
   float_var = ptr_float_var[4];
   float_var = *ptr_float_var;
   *(uint32_t *)(handleIdentifier + 0xdc) = 0;
-  fVar15 = fVar12 * float_var - float_var * float_var;
-  *(float *)(handleIdentifier + 0xd8) = fVar15;
-  float_var = float_var * ptr_float_var[4] - fVar17 * ptr_float_var[8];
+  float_var = float_var * float_var - float_var * float_var;
+  *(float *)(handleIdentifier + 0xd8) = float_var;
+  float_var = float_var * ptr_float_var[4] - float_var * ptr_float_var[8];
   *(float *)(handleIdentifier + 0xe0) = float_var;
   float_var = float_var * ptr_float_var[8] - float_var * *ptr_float_var;
   *(float *)(handleIdentifier + 0xe4) = float_var;
   float_var = ptr_float_var[4];
   float_var = *ptr_float_var;
   *(uint32_t *)(handleIdentifier + 0xec) = 0;
-  fVar17 = fVar17 * float_var - float_var * float_var;
-  *(float *)(handleIdentifier + 0xe8) = fVar17;
-  float_var = (fVar10 * ptr_float_var[8] - fVar13 * ptr_float_var[4]) - fVar18 * ptr_float_var[0xc];
+  float_var = float_var * float_var - float_var * float_var;
+  *(float *)(handleIdentifier + 0xe8) = float_var;
+  float_var = (float_var * ptr_float_var[8] - float_var * ptr_float_var[4]) - float_var * ptr_float_var[0xc];
   *(float *)(handleIdentifier + 0xf0) = float_var;
-  fVar14 = (fVar13 * *ptr_float_var - fVar11 * ptr_float_var[8]) + float_var * ptr_float_var[0xc];
-  *(float *)(handleIdentifier + 0xf4) = fVar14;
-  fVar12 = (fVar11 * ptr_float_var[4] - fVar10 * *ptr_float_var) - float_var * ptr_float_var[0xc];
-  *(float *)(handleIdentifier + 0xf8) = fVar12;
-  float_var = (fVar18 * *ptr_float_var - float_var * ptr_float_var[4]) + float_var * ptr_float_var[8];
+  float_var = (float_var * *ptr_float_var - float_var * ptr_float_var[8]) + float_var * ptr_float_var[0xc];
+  *(float *)(handleIdentifier + 0xf4) = float_var;
+  float_var = (float_var * ptr_float_var[4] - float_var * *ptr_float_var) - float_var * ptr_float_var[0xc];
+  *(float *)(handleIdentifier + 0xf8) = float_var;
+  float_var = (float_var * *ptr_float_var - float_var * ptr_float_var[4]) + float_var * ptr_float_var[8];
   *(float *)(handleIdentifier + 0xfc) = float_var;
-  float_var = fVar19 * ptr_float_var[4] + fVar18 * *ptr_float_var + fVar20 * ptr_float_var[8];
+  float_var = float_var * ptr_float_var[4] + float_var * *ptr_float_var + float_var * ptr_float_var[8];
   if (float_var != 1.0) {
     float_var = 1.0 / float_var;
     *(float *)(handleIdentifier + 0xd0) = float_var * float_var;
     *(float *)(handleIdentifier + 0xe0) = float_var * float_var;
-    *(float *)(handleIdentifier + 0xc0) = fVar18 * float_var;
-    *(float *)(handleIdentifier + 0xc4) = fVar19 * float_var;
-    *(float *)(handleIdentifier + 200) = fVar20 * float_var;
-    *(float *)(handleIdentifier + 0xd4) = fVar16 * float_var;
-    *(float *)(handleIdentifier + 0xd8) = fVar15 * float_var;
+    *(float *)(handleIdentifier + 0xc0) = float_var * float_var;
+    *(float *)(handleIdentifier + 0xc4) = float_var * float_var;
+    *(float *)(handleIdentifier + 200) = float_var * float_var;
+    *(float *)(handleIdentifier + 0xd4) = float_var * float_var;
+    *(float *)(handleIdentifier + 0xd8) = float_var * float_var;
     *(float *)(handleIdentifier + 0xe4) = float_var * float_var;
-    *(float *)(handleIdentifier + 0xe8) = fVar17 * float_var;
+    *(float *)(handleIdentifier + 0xe8) = float_var * float_var;
     *(float *)(handleIdentifier + 0xf0) = float_var * float_var;
-    *(float *)(handleIdentifier + 0xf4) = fVar14 * float_var;
-    *(float *)(handleIdentifier + 0xf8) = fVar12 * float_var;
+    *(float *)(handleIdentifier + 0xf4) = float_var * float_var;
+    *(float *)(handleIdentifier + 0xf8) = float_var * float_var;
     *(float *)(handleIdentifier + 0xfc) = float_var * float_var;
   }
   return;
@@ -51122,27 +51122,27 @@ void InitializeAudioMutex(longlong handleIdentifier,longlong resourceIdentifier)
   float float_var;
   float float_var;
   float float_var;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fVar13;
-  float fVar14;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   uint8_t uint_var_;
   char is_initialized6;
   longlong long_var_;
   float *ptr_float_var;
-  float fVar19;
-  float fVar20;
-  float fVar21;
-  float fVar22;
-  float fVar23;
-  float fVar24;
-  float fVar25;
-  float fVar26;
-  float fVar27;
-  float fVar28;
-  float fVar29;
-  float fVar30;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   uint64_t uint_var_;
   uint32_t uint_var_;
   longlong long_var_;
@@ -51207,39 +51207,39 @@ void InitializeAudioMutex(longlong handleIdentifier,longlong resourceIdentifier)
     *(uint64_t *)(ptr_float_var + 0xc) = *ptr_uint_var;
     *(uint64_t *)(ptr_float_var + 0xe) = uint_var_;
     long_var_ = *(longlong *)(resourceIdentifier + SYSTEM_DATA_COMPARE_SIZE);
-    fVar19 = ptr_float_var[8];
-    fVar20 = ptr_float_var[9];
-    fVar21 = ptr_float_var[10];
-    fVar22 = ptr_float_var[0xb];
-    fVar23 = *ptr_float_var;
-    fVar24 = ptr_float_var[1];
-    fVar25 = ptr_float_var[2];
-    fVar26 = ptr_float_var[3];
-    fVar27 = ptr_float_var[4];
-    fVar28 = ptr_float_var[5];
-    fVar29 = ptr_float_var[6];
-    fVar30 = ptr_float_var[7];
+    float_var = ptr_float_var[8];
+    float_var = ptr_float_var[9];
+    float_var = ptr_float_var[10];
+    float_var = ptr_float_var[0xb];
+    float_var = *ptr_float_var;
+    float_var = ptr_float_var[1];
+    float_var = ptr_float_var[2];
+    float_var = ptr_float_var[3];
+    float_var = ptr_float_var[4];
+    float_var = ptr_float_var[5];
+    float_var = ptr_float_var[6];
+    float_var = ptr_float_var[7];
     float_var = *(float *)(long_var_ + 0x374);
     float_var = *(float *)(long_var_ + 0x370);
     float_var = *(float *)(long_var_ + 0x378);
     float_var = *(float *)(long_var_ + 900);
-    fVar10 = *(float *)(long_var_ + 0x394);
-    fVar11 = *(float *)(long_var_ + 0x380);
-    fVar12 = *(float *)(long_var_ + 0x388);
-    fVar13 = *(float *)(long_var_ + 0x390);
-    fVar14 = *(float *)(long_var_ + 0x398);
-    *ptr_float_var = float_var * fVar27 + float_var * fVar23 + float_var * fVar19;
-    ptr_float_var[1] = float_var * fVar28 + float_var * fVar24 + float_var * fVar20;
-    ptr_float_var[2] = float_var * fVar29 + float_var * fVar25 + float_var * fVar21;
-    ptr_float_var[3] = float_var * fVar30 + float_var * fVar26 + float_var * fVar22;
-    ptr_float_var[4] = float_var * fVar27 + fVar11 * fVar23 + fVar12 * fVar19;
-    ptr_float_var[5] = float_var * fVar28 + fVar11 * fVar24 + fVar12 * fVar20;
-    ptr_float_var[6] = float_var * fVar29 + fVar11 * fVar25 + fVar12 * fVar21;
-    ptr_float_var[7] = float_var * fVar30 + fVar11 * fVar26 + fVar12 * fVar22;
-    ptr_float_var[8] = fVar10 * fVar27 + fVar13 * fVar23 + fVar14 * fVar19;
-    ptr_float_var[9] = fVar10 * fVar28 + fVar13 * fVar24 + fVar14 * fVar20;
-    ptr_float_var[10] = fVar10 * fVar29 + fVar13 * fVar25 + fVar14 * fVar21;
-    ptr_float_var[0xb] = fVar10 * fVar30 + fVar13 * fVar26 + fVar14 * fVar22;
+    float_var = *(float *)(long_var_ + 0x394);
+    float_var = *(float *)(long_var_ + 0x380);
+    float_var = *(float *)(long_var_ + 0x388);
+    float_var = *(float *)(long_var_ + 0x390);
+    float_var = *(float *)(long_var_ + 0x398);
+    *ptr_float_var = float_var * float_var + float_var * float_var + float_var * float_var;
+    ptr_float_var[1] = float_var * float_var + float_var * float_var + float_var * float_var;
+    ptr_float_var[2] = float_var * float_var + float_var * float_var + float_var * float_var;
+    ptr_float_var[3] = float_var * float_var + float_var * float_var + float_var * float_var;
+    ptr_float_var[4] = float_var * float_var + float_var * float_var + float_var * float_var;
+    ptr_float_var[5] = float_var * float_var + float_var * float_var + float_var * float_var;
+    ptr_float_var[6] = float_var * float_var + float_var * float_var + float_var * float_var;
+    ptr_float_var[7] = float_var * float_var + float_var * float_var + float_var * float_var;
+    ptr_float_var[8] = float_var * float_var + float_var * float_var + float_var * float_var;
+    ptr_float_var[9] = float_var * float_var + float_var * float_var + float_var * float_var;
+    ptr_float_var[10] = float_var * float_var + float_var * float_var + float_var * float_var;
+    ptr_float_var[0xb] = float_var * float_var + float_var * float_var + float_var * float_var;
   }
   long_var_ = *(longlong *)(handleIdentifier + 600);
   if (*(int *)(long_var_ + 0x28) != *(int *)(g_system_base_1 + 0x224)) {
@@ -51427,27 +51427,27 @@ void SystemFunction_26_0(longlong handleIdentifier)
   float float_var;
   float float_var;
   float float_var;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fVar13;
-  float fVar14;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   uint8_t uint_var_;
   char is_initialized6;
   longlong long_var_;
   float *ptr_float_var;
-  float fVar19;
-  float fVar20;
-  float fVar21;
-  float fVar22;
-  float fVar23;
-  float fVar24;
-  float fVar25;
-  float fVar26;
-  float fVar27;
-  float fVar28;
-  float fVar29;
-  float fVar30;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   uint64_t uint_var_;
   uint32_t uint_var_;
   longlong long_var_;
@@ -51514,39 +51514,39 @@ void SystemFunction_26_0(longlong handleIdentifier)
     *(uint64_t *)(ptr_float_var + 0xc) = *ptr_uint_var;
     *(uint64_t *)(ptr_float_var + 0xe) = uint_var_;
     long_var_ = *(longlong *)(system_RDI + SYSTEM_DATA_COMPARE_SIZE);
-    fVar19 = ptr_float_var[8];
-    fVar20 = ptr_float_var[9];
-    fVar21 = ptr_float_var[10];
-    fVar22 = ptr_float_var[0xb];
-    fVar23 = *ptr_float_var;
-    fVar24 = ptr_float_var[1];
-    fVar25 = ptr_float_var[2];
-    fVar26 = ptr_float_var[3];
-    fVar27 = ptr_float_var[4];
-    fVar28 = ptr_float_var[5];
-    fVar29 = ptr_float_var[6];
-    fVar30 = ptr_float_var[7];
+    float_var = ptr_float_var[8];
+    float_var = ptr_float_var[9];
+    float_var = ptr_float_var[10];
+    float_var = ptr_float_var[0xb];
+    float_var = *ptr_float_var;
+    float_var = ptr_float_var[1];
+    float_var = ptr_float_var[2];
+    float_var = ptr_float_var[3];
+    float_var = ptr_float_var[4];
+    float_var = ptr_float_var[5];
+    float_var = ptr_float_var[6];
+    float_var = ptr_float_var[7];
     float_var = *(float *)(long_var_ + 0x374);
     float_var = *(float *)(long_var_ + 0x370);
     float_var = *(float *)(long_var_ + 0x378);
     float_var = *(float *)(long_var_ + 900);
-    fVar10 = *(float *)(long_var_ + 0x394);
-    fVar11 = *(float *)(long_var_ + 0x380);
-    fVar12 = *(float *)(long_var_ + 0x388);
-    fVar13 = *(float *)(long_var_ + 0x390);
-    fVar14 = *(float *)(long_var_ + 0x398);
-    *ptr_float_var = float_var * fVar27 + float_var * fVar23 + float_var * fVar19;
-    ptr_float_var[1] = float_var * fVar28 + float_var * fVar24 + float_var * fVar20;
-    ptr_float_var[2] = float_var * fVar29 + float_var * fVar25 + float_var * fVar21;
-    ptr_float_var[3] = float_var * fVar30 + float_var * fVar26 + float_var * fVar22;
-    ptr_float_var[4] = float_var * fVar27 + fVar11 * fVar23 + fVar12 * fVar19;
-    ptr_float_var[5] = float_var * fVar28 + fVar11 * fVar24 + fVar12 * fVar20;
-    ptr_float_var[6] = float_var * fVar29 + fVar11 * fVar25 + fVar12 * fVar21;
-    ptr_float_var[7] = float_var * fVar30 + fVar11 * fVar26 + fVar12 * fVar22;
-    ptr_float_var[8] = fVar10 * fVar27 + fVar13 * fVar23 + fVar14 * fVar19;
-    ptr_float_var[9] = fVar10 * fVar28 + fVar13 * fVar24 + fVar14 * fVar20;
-    ptr_float_var[10] = fVar10 * fVar29 + fVar13 * fVar25 + fVar14 * fVar21;
-    ptr_float_var[0xb] = fVar10 * fVar30 + fVar13 * fVar26 + fVar14 * fVar22;
+    float_var = *(float *)(long_var_ + 0x394);
+    float_var = *(float *)(long_var_ + 0x380);
+    float_var = *(float *)(long_var_ + 0x388);
+    float_var = *(float *)(long_var_ + 0x390);
+    float_var = *(float *)(long_var_ + 0x398);
+    *ptr_float_var = float_var * float_var + float_var * float_var + float_var * float_var;
+    ptr_float_var[1] = float_var * float_var + float_var * float_var + float_var * float_var;
+    ptr_float_var[2] = float_var * float_var + float_var * float_var + float_var * float_var;
+    ptr_float_var[3] = float_var * float_var + float_var * float_var + float_var * float_var;
+    ptr_float_var[4] = float_var * float_var + float_var * float_var + float_var * float_var;
+    ptr_float_var[5] = float_var * float_var + float_var * float_var + float_var * float_var;
+    ptr_float_var[6] = float_var * float_var + float_var * float_var + float_var * float_var;
+    ptr_float_var[7] = float_var * float_var + float_var * float_var + float_var * float_var;
+    ptr_float_var[8] = float_var * float_var + float_var * float_var + float_var * float_var;
+    ptr_float_var[9] = float_var * float_var + float_var * float_var + float_var * float_var;
+    ptr_float_var[10] = float_var * float_var + float_var * float_var + float_var * float_var;
+    ptr_float_var[0xb] = float_var * float_var + float_var * float_var + float_var * float_var;
   }
   long_var_ = *(longlong *)(handleIdentifier + 600);
   if (*(int *)(long_var_ + 0x28) != *(int *)(g_system_base_1 + 0x224)) {
@@ -51734,25 +51734,25 @@ void SystemFunction_36_2(void)
   float float_var;
   float float_var;
   float float_var;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fVar13;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   char is_initialized4;
   float *ptr_float_var;
   longlong long_var_;
-  float fVar17;
-  float fVar18;
-  float fVar19;
-  float fVar20;
-  float fVar21;
-  float fVar22;
-  float fVar23;
-  float fVar24;
-  float fVar25;
-  float fVar26;
-  float fVar27;
-  float fVar28;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   uint64_t uint_var_;
   uint32_t uint_var_;
   longlong long_var_;
@@ -51802,39 +51802,39 @@ void SystemFunction_36_2(void)
   *(uint64_t *)(ptr_float_var + 0xc) = *ptr_uint_var;
   *(uint64_t *)(ptr_float_var + 0xe) = uint_var_;
   long_var_ = *(longlong *)(system_RDI + SYSTEM_DATA_COMPARE_SIZE);
-  fVar17 = ptr_float_var[8];
-  fVar18 = ptr_float_var[9];
-  fVar19 = ptr_float_var[10];
-  fVar20 = ptr_float_var[0xb];
-  fVar21 = *ptr_float_var;
-  fVar22 = ptr_float_var[1];
-  fVar23 = ptr_float_var[2];
-  fVar24 = ptr_float_var[3];
-  fVar25 = ptr_float_var[4];
-  fVar26 = ptr_float_var[5];
-  fVar27 = ptr_float_var[6];
-  fVar28 = ptr_float_var[7];
+  float_var = ptr_float_var[8];
+  float_var = ptr_float_var[9];
+  float_var = ptr_float_var[10];
+  float_var = ptr_float_var[0xb];
+  float_var = *ptr_float_var;
+  float_var = ptr_float_var[1];
+  float_var = ptr_float_var[2];
+  float_var = ptr_float_var[3];
+  float_var = ptr_float_var[4];
+  float_var = ptr_float_var[5];
+  float_var = ptr_float_var[6];
+  float_var = ptr_float_var[7];
   float_var = *(float *)(long_var_ + 0x374);
   float_var = *(float *)(long_var_ + 0x370);
   float_var = *(float *)(long_var_ + 0x378);
   float_var = *(float *)(long_var_ + 900);
   float_var = *(float *)(long_var_ + 0x394);
-  fVar10 = *(float *)(long_var_ + 0x380);
-  fVar11 = *(float *)(long_var_ + 0x388);
-  fVar12 = *(float *)(long_var_ + 0x390);
-  fVar13 = *(float *)(long_var_ + 0x398);
-  *ptr_float_var = float_var * fVar25 + float_var * fVar21 + float_var * fVar17;
-  ptr_float_var[1] = float_var * fVar26 + float_var * fVar22 + float_var * fVar18;
-  ptr_float_var[2] = float_var * fVar27 + float_var * fVar23 + float_var * fVar19;
-  ptr_float_var[3] = float_var * fVar28 + float_var * fVar24 + float_var * fVar20;
-  ptr_float_var[4] = float_var * fVar25 + fVar10 * fVar21 + fVar11 * fVar17;
-  ptr_float_var[5] = float_var * fVar26 + fVar10 * fVar22 + fVar11 * fVar18;
-  ptr_float_var[6] = float_var * fVar27 + fVar10 * fVar23 + fVar11 * fVar19;
-  ptr_float_var[7] = float_var * fVar28 + fVar10 * fVar24 + fVar11 * fVar20;
-  ptr_float_var[8] = float_var * fVar25 + fVar12 * fVar21 + fVar13 * fVar17;
-  ptr_float_var[9] = float_var * fVar26 + fVar12 * fVar22 + fVar13 * fVar18;
-  ptr_float_var[10] = float_var * fVar27 + fVar12 * fVar23 + fVar13 * fVar19;
-  ptr_float_var[0xb] = float_var * fVar28 + fVar12 * fVar24 + fVar13 * fVar20;
+  float_var = *(float *)(long_var_ + 0x380);
+  float_var = *(float *)(long_var_ + 0x388);
+  float_var = *(float *)(long_var_ + 0x390);
+  float_var = *(float *)(long_var_ + 0x398);
+  *ptr_float_var = float_var * float_var + float_var * float_var + float_var * float_var;
+  ptr_float_var[1] = float_var * float_var + float_var * float_var + float_var * float_var;
+  ptr_float_var[2] = float_var * float_var + float_var * float_var + float_var * float_var;
+  ptr_float_var[3] = float_var * float_var + float_var * float_var + float_var * float_var;
+  ptr_float_var[4] = float_var * float_var + float_var * float_var + float_var * float_var;
+  ptr_float_var[5] = float_var * float_var + float_var * float_var + float_var * float_var;
+  ptr_float_var[6] = float_var * float_var + float_var * float_var + float_var * float_var;
+  ptr_float_var[7] = float_var * float_var + float_var * float_var + float_var * float_var;
+  ptr_float_var[8] = float_var * float_var + float_var * float_var + float_var * float_var;
+  ptr_float_var[9] = float_var * float_var + float_var * float_var + float_var * float_var;
+  ptr_float_var[10] = float_var * float_var + float_var * float_var + float_var * float_var;
+  ptr_float_var[0xb] = float_var * float_var + float_var * float_var + float_var * float_var;
   long_var_ = *(longlong *)(system_RBX + 600);
   if (*(int *)(long_var_ + 0x28) != *(int *)(g_system_base_1 + 0x224)) {
     int_var_ = *(int *)(long_var_ + 0x1c) + *(int *)(long_var_ + 0x18);
@@ -52022,24 +52022,24 @@ void SystemFunction_39_3(longlong handleIdentifier,uint resourceIdentifier,uint6
   float float_var;
   float float_var;
   float float_var;
-  float fVar10;
-  float fVar11;
-  float fVar12;
-  float fVar13;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   char is_initialized4;
   longlong long_var_;
-  float fVar16;
-  float fVar17;
-  float fVar18;
-  float fVar19;
-  float fVar20;
-  float fVar21;
-  float fVar22;
-  float fVar23;
-  float fVar24;
-  float fVar25;
-  float fVar26;
-  float fVar27;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   uint64_t uint_var_;
   uint32_t uint_var_;
   uint uint_var_;
@@ -52086,39 +52086,39 @@ void SystemFunction_39_3(longlong handleIdentifier,uint resourceIdentifier,uint6
   *(uint64_t *)(systemFlags + 0xc) = *ptr_uint_var;
   *(uint64_t *)(systemFlags + 0xe) = uint_var_;
   long_var_ = *(longlong *)(system_RDI + SYSTEM_DATA_COMPARE_SIZE);
-  fVar16 = systemFlags[8];
-  fVar17 = systemFlags[9];
-  fVar18 = systemFlags[10];
-  fVar19 = systemFlags[0xb];
-  fVar20 = *systemFlags;
-  fVar21 = systemFlags[1];
-  fVar22 = systemFlags[2];
-  fVar23 = systemFlags[3];
-  fVar24 = systemFlags[4];
-  fVar25 = systemFlags[5];
-  fVar26 = systemFlags[6];
-  fVar27 = systemFlags[7];
+  float_var = systemFlags[8];
+  float_var = systemFlags[9];
+  float_var = systemFlags[10];
+  float_var = systemFlags[0xb];
+  float_var = *systemFlags;
+  float_var = systemFlags[1];
+  float_var = systemFlags[2];
+  float_var = systemFlags[3];
+  float_var = systemFlags[4];
+  float_var = systemFlags[5];
+  float_var = systemFlags[6];
+  float_var = systemFlags[7];
   float_var = *(float *)(long_var_ + 0x374);
   float_var = *(float *)(long_var_ + 0x370);
   float_var = *(float *)(long_var_ + 0x378);
   float_var = *(float *)(long_var_ + 900);
   float_var = *(float *)(long_var_ + 0x394);
-  fVar10 = *(float *)(long_var_ + 0x380);
-  fVar11 = *(float *)(long_var_ + 0x388);
-  fVar12 = *(float *)(long_var_ + 0x390);
-  fVar13 = *(float *)(long_var_ + 0x398);
-  *systemFlags = float_var * fVar24 + float_var * fVar20 + float_var * fVar16;
-  systemFlags[1] = float_var * fVar25 + float_var * fVar21 + float_var * fVar17;
-  systemFlags[2] = float_var * fVar26 + float_var * fVar22 + float_var * fVar18;
-  systemFlags[3] = float_var * fVar27 + float_var * fVar23 + float_var * fVar19;
-  systemFlags[4] = float_var * fVar24 + fVar10 * fVar20 + fVar11 * fVar16;
-  systemFlags[5] = float_var * fVar25 + fVar10 * fVar21 + fVar11 * fVar17;
-  systemFlags[6] = float_var * fVar26 + fVar10 * fVar22 + fVar11 * fVar18;
-  systemFlags[7] = float_var * fVar27 + fVar10 * fVar23 + fVar11 * fVar19;
-  systemFlags[8] = float_var * fVar24 + fVar12 * fVar20 + fVar13 * fVar16;
-  systemFlags[9] = float_var * fVar25 + fVar12 * fVar21 + fVar13 * fVar17;
-  systemFlags[10] = float_var * fVar26 + fVar12 * fVar22 + fVar13 * fVar18;
-  systemFlags[0xb] = float_var * fVar27 + fVar12 * fVar23 + fVar13 * fVar19;
+  float_var = *(float *)(long_var_ + 0x380);
+  float_var = *(float *)(long_var_ + 0x388);
+  float_var = *(float *)(long_var_ + 0x390);
+  float_var = *(float *)(long_var_ + 0x398);
+  *systemFlags = float_var * float_var + float_var * float_var + float_var * float_var;
+  systemFlags[1] = float_var * float_var + float_var * float_var + float_var * float_var;
+  systemFlags[2] = float_var * float_var + float_var * float_var + float_var * float_var;
+  systemFlags[3] = float_var * float_var + float_var * float_var + float_var * float_var;
+  systemFlags[4] = float_var * float_var + float_var * float_var + float_var * float_var;
+  systemFlags[5] = float_var * float_var + float_var * float_var + float_var * float_var;
+  systemFlags[6] = float_var * float_var + float_var * float_var + float_var * float_var;
+  systemFlags[7] = float_var * float_var + float_var * float_var + float_var * float_var;
+  systemFlags[8] = float_var * float_var + float_var * float_var + float_var * float_var;
+  systemFlags[9] = float_var * float_var + float_var * float_var + float_var * float_var;
+  systemFlags[10] = float_var * float_var + float_var * float_var + float_var * float_var;
+  systemFlags[0xb] = float_var * float_var + float_var * float_var + float_var * float_var;
   long_var_ = *(longlong *)(system_RBX + 600);
   if (*(int *)(long_var_ + 0x28) != *(int *)(g_system_base_1 + 0x224)) {
     compare_result9 = *(int *)(long_var_ + 0x1c) + *(int *)(long_var_ + 0x18);
@@ -52624,7 +52624,7 @@ float * SystemFunction_7_2(float *handleIdentifier)
   uint uint_var_;
   ulonglong uint_var_;
   bool bVar10;
-  float fVar11;
+  float float_var;
   float fStack_b8;
   float fStack_b4;
   float fStack_b0;
@@ -52799,17 +52799,17 @@ float * SystemFunction_7_2(float *handleIdentifier)
       uint_var_ = (ulonglong)*(uint *)(longStack_88 + SYSTEM_DATA_COMPARE_SIZE);
       if (0 < (int)*(uint *)(longStack_88 + SYSTEM_DATA_COMPARE_SIZE)) {
         ptr_float_var = *(float **)(longStack_88 + 0x18);
-        fVar11 = float_var;
+        float_var = float_var;
         do {
           float_var = (*ptr_float_var - handleIdentifier[0xa5]) * (*ptr_float_var - handleIdentifier[0xa5]) +
                   (ptr_float_var[1] - handleIdentifier[0xa6]) * (ptr_float_var[1] - handleIdentifier[0xa6]) +
                   (ptr_float_var[2] - handleIdentifier[0xa7]) * (ptr_float_var[2] - handleIdentifier[0xa7]);
-          if (float_var <= fVar11) {
-            float_var = fVar11;
+          if (float_var <= float_var) {
+            float_var = float_var;
           }
           ptr_float_var = ptr_float_var + 4;
           uint_var_ = uint_var_ - 1;
-          fVar11 = float_var;
+          float_var = float_var;
         } while (uint_var_ != 0);
       }
       handleIdentifier[0xa9] = SQRT(float_var);
@@ -52917,15 +52917,15 @@ void SystemFunction_32_8(longlong handleIdentifier)
   uint8_t (*pauVar42) [16];
   longlong long_var_;
   bool bVar44;
-  float fVar45;
-  float fVar46;
+  float float_var;
+  float float_var;
   uint8_t auVar47 [16];
-  float fVar48;
-  float fVar49;
-  float fVar50;
-  float fVar51;
-  float fVar52;
-  float fVar53;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   int istack_var;
   ulonglong flag_initialized;
   ulonglong ustack_var;
@@ -53078,53 +53078,53 @@ void SystemFunction_32_8(longlong handleIdentifier)
           long_var_ = *(longlong *)(handleIdentifier + 0x18);
           long_var_ = (longlong)*(int *)(long_var_ + long_var_);
           long_var_ = (longlong)*(int *)((longlong)*(int *)(long_var_ + uint_var_) * 0x5c + long_var_);
-          fVar48 = *(float *)(long_var_ + 8 + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
-          fVar49 = *(float *)(long_var_ + 8 + long_var_ * SYSTEM_DATA_COMPARE_SIZE) - fVar48;
+          float_var = *(float *)(long_var_ + 8 + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
+          float_var = *(float *)(long_var_ + 8 + long_var_ * SYSTEM_DATA_COMPARE_SIZE) - float_var;
           float_var = *(float *)(long_var_ + 4 + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
-          fVar52 = *(float *)(long_var_ + 4 + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
-          fVar51 = *(float *)(long_var_ + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
+          float_var = *(float *)(long_var_ + 4 + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
+          float_var = *(float *)(long_var_ + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
           long_var_ = (longlong)*(int *)(long_var_ * 0x5c + long_var_);
-          fVar48 = *(float *)(long_var_ + 8 + long_var_ * SYSTEM_DATA_COMPARE_SIZE) - fVar48;
-          fVar45 = *(float *)(long_var_ + 4 + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
-          fVar46 = *(float *)(long_var_ + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
-          fVar53 = *(float *)(long_var_ + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
+          float_var = *(float *)(long_var_ + 8 + long_var_ * SYSTEM_DATA_COMPARE_SIZE) - float_var;
+          float_var = *(float *)(long_var_ + 4 + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
+          float_var = *(float *)(long_var_ + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
+          float_var = *(float *)(long_var_ + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
         }
         else {
           long_var_ = *(longlong *)(handleIdentifier + 0x68);
           long_var_ = *(longlong *)(long_var_ * 0x50 + *(longlong *)(handleIdentifier + 0xb0) + 8);
           long_var_ = (longlong)*(int *)(long_var_ + long_var_);
           long_var_ = (longlong)*(int *)((longlong)*(int *)(long_var_ + uint_var_) * 0x5c + long_var_);
-          fVar48 = *(float *)(long_var_ + 8 + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
-          fVar49 = *(float *)(long_var_ + 8 + long_var_ * SYSTEM_DATA_COMPARE_SIZE) - fVar48;
+          float_var = *(float *)(long_var_ + 8 + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
+          float_var = *(float *)(long_var_ + 8 + long_var_ * SYSTEM_DATA_COMPARE_SIZE) - float_var;
           float_var = *(float *)(long_var_ + 4 + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
-          fVar52 = *(float *)(long_var_ + 4 + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
-          fVar51 = *(float *)(long_var_ + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
+          float_var = *(float *)(long_var_ + 4 + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
+          float_var = *(float *)(long_var_ + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
           long_var_ = (longlong)*(int *)(long_var_ * 0x5c + long_var_);
-          fVar48 = *(float *)(long_var_ + 8 + long_var_ * SYSTEM_DATA_COMPARE_SIZE) - fVar48;
-          fVar45 = *(float *)(long_var_ + 4 + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
-          fVar46 = *(float *)(long_var_ + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
-          fVar53 = *(float *)(long_var_ + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
+          float_var = *(float *)(long_var_ + 8 + long_var_ * SYSTEM_DATA_COMPARE_SIZE) - float_var;
+          float_var = *(float *)(long_var_ + 4 + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
+          float_var = *(float *)(long_var_ + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
+          float_var = *(float *)(long_var_ + long_var_ * SYSTEM_DATA_COMPARE_SIZE);
         }
-        fVar50 = (fVar46 - fVar51) * (fVar45 - float_var) - (fVar52 - float_var) * (fVar53 - fVar51);
-        fVar51 = fVar49 * (fVar53 - fVar51) - fVar48 * (fVar46 - fVar51);
-        fVar48 = fVar48 * (fVar52 - float_var) - fVar49 * (fVar45 - float_var);
-        fStack_174 = SQRT(fVar51 * fVar51 + fVar48 * fVar48 + fVar50 * fVar50);
+        float_var = (float_var - float_var) * (float_var - float_var) - (float_var - float_var) * (float_var - float_var);
+        float_var = float_var * (float_var - float_var) - float_var * (float_var - float_var);
+        float_var = float_var * (float_var - float_var) - float_var * (float_var - float_var);
+        fStack_174 = SQRT(float_var * float_var + float_var * float_var + float_var * float_var);
         if (fStack_174 <= 0.0) {
-          fVar48 = 0.0;
-          fVar51 = 0.0;
+          float_var = 0.0;
+          float_var = 0.0;
           fStack_178 = 1.0;
           fStack_174 = 1.0;
         }
         else {
           fStack_178 = 1.0 / fStack_174;
-          fVar48 = fVar48 * fStack_178;
-          fVar51 = fStack_178 * fVar51;
-          fStack_178 = fStack_178 * fVar50;
+          float_var = float_var * fStack_178;
+          float_var = fStack_178 * float_var;
+          fStack_178 = fStack_178 * float_var;
         }
-        uintStack_180 = CONCAT44(fVar51,fVar48);
+        uintStack_180 = CONCAT44(float_var,float_var);
         ptr_float_var = (float *)(*(longlong *)(localBuffer_150._0_8_ + long_var_) + uint_var_);
-        *ptr_float_var = fVar48;
-        ptr_float_var[1] = fVar51;
+        *ptr_float_var = float_var;
+        ptr_float_var[1] = float_var;
         ptr_float_var[2] = fStack_178;
         ptr_float_var[3] = fStack_174;
         uint_var_ = uint_var_ - 1;
@@ -53299,26 +53299,26 @@ LAB_18007a5ac:
                 uint_var_ = ((uint64_t *)(long_var_ + *ptr_long_var))[1];
                 *(uint64_t *)(long_var_ + 0x34) = *(uint64_t *)(long_var_ + *ptr_long_var);
                 *(uint64_t *)(long_var_ + 0x3c) = uint_var_;
-                fVar48 = *(float *)(long_var_ + 8);
-                fVar52 = *(float *)(long_var_ + 4);
-                fVar51 = *(float *)(long_var_ + 0xc);
-                fVar45 = fVar51 * fVar51 + fVar52 * fVar52 + fVar48 * fVar48;
-                auVar47 = rsqrtss(ZEXT416((uint)fVar45),ZEXT416((uint)fVar45));
-                fVar46 = auVar47._0_4_;
-                fVar45 = fVar46 * 0.5 * (3.0 - fVar45 * fVar46 * fVar46);
-                *(float *)(long_var_ + 4) = fVar45 * fVar52;
-                *(float *)(long_var_ + 8) = fVar45 * fVar48;
-                *(float *)(long_var_ + 0xc) = fVar45 * fVar51;
-                fVar48 = *(float *)(long_var_ + 0x38);
-                fVar52 = *(float *)(long_var_ + 0x34);
-                fVar51 = *(float *)(long_var_ + 0x3c);
-                fVar45 = fVar51 * fVar51 + fVar52 * fVar52 + fVar48 * fVar48;
-                auVar47 = rsqrtss(ZEXT416((uint)fVar45),ZEXT416((uint)fVar45));
-                fVar46 = auVar47._0_4_;
-                fVar45 = fVar46 * 0.5 * (3.0 - fVar45 * fVar46 * fVar46);
-                *(float *)(long_var_ + 0x34) = fVar52 * fVar45;
-                *(float *)(long_var_ + 0x38) = fVar48 * fVar45;
-                *(float *)(long_var_ + 0x3c) = fVar51 * fVar45;
+                float_var = *(float *)(long_var_ + 8);
+                float_var = *(float *)(long_var_ + 4);
+                float_var = *(float *)(long_var_ + 0xc);
+                float_var = float_var * float_var + float_var * float_var + float_var * float_var;
+                auVar47 = rsqrtss(ZEXT416((uint)float_var),ZEXT416((uint)float_var));
+                float_var = auVar47._0_4_;
+                float_var = float_var * 0.5 * (3.0 - float_var * float_var * float_var);
+                *(float *)(long_var_ + 4) = float_var * float_var;
+                *(float *)(long_var_ + 8) = float_var * float_var;
+                *(float *)(long_var_ + 0xc) = float_var * float_var;
+                float_var = *(float *)(long_var_ + 0x38);
+                float_var = *(float *)(long_var_ + 0x34);
+                float_var = *(float *)(long_var_ + 0x3c);
+                float_var = float_var * float_var + float_var * float_var + float_var * float_var;
+                auVar47 = rsqrtss(ZEXT416((uint)float_var),ZEXT416((uint)float_var));
+                float_var = auVar47._0_4_;
+                float_var = float_var * 0.5 * (3.0 - float_var * float_var * float_var);
+                *(float *)(long_var_ + 0x34) = float_var * float_var;
+                *(float *)(long_var_ + 0x38) = float_var * float_var;
+                *(float *)(long_var_ + 0x3c) = float_var * float_var;
               }
               else {
                 uint_var_ = ((uint64_t *)(long_var_ + *ptr_long_var))[1];
@@ -53330,16 +53330,16 @@ LAB_18007a5ac:
                 ptr_float_var = (float *)((longlong)*(int *)(uintStack_180 + long_var_ * 4) * SYSTEM_DATA_COMPARE_SIZE +
                                    *(longlong *)
                                     (*(longlong *)(handleIdentifier + 0xb0) + 0x30 + flag_initialized * 0x50));
-                fVar48 = ptr_float_var[1];
-                fVar52 = *ptr_float_var;
-                fVar51 = ptr_float_var[2];
-                fVar45 = fVar51 * fVar51 + fVar52 * fVar52 + fVar48 * fVar48;
-                auVar47 = rsqrtss(ZEXT416((uint)fVar45),ZEXT416((uint)fVar45));
-                fVar46 = auVar47._0_4_;
-                fVar45 = fVar46 * 0.5 * (3.0 - fVar45 * fVar46 * fVar46);
-                *ptr_float_var = fVar52 * fVar45;
-                ptr_float_var[1] = fVar48 * fVar45;
-                ptr_float_var[2] = fVar51 * fVar45;
+                float_var = ptr_float_var[1];
+                float_var = *ptr_float_var;
+                float_var = ptr_float_var[2];
+                float_var = float_var * float_var + float_var * float_var + float_var * float_var;
+                auVar47 = rsqrtss(ZEXT416((uint)float_var),ZEXT416((uint)float_var));
+                float_var = auVar47._0_4_;
+                float_var = float_var * 0.5 * (3.0 - float_var * float_var * float_var);
+                *ptr_float_var = float_var * float_var;
+                ptr_float_var[1] = float_var * float_var;
+                ptr_float_var[2] = float_var * float_var;
               }
               long_var_ = long_var_ + 1;
             } while (long_var_ < 3);
@@ -53366,13 +53366,13 @@ LAB_18007a5ac:
                     node_root = (uint *)(long_var_ + *(longlong *)(pintStack_218 + (ulonglong)uint_var_ * 8));
                     *node_root = *node_root | uint_var_;
                     long_var_ = *ptr_long_var;
-                    fVar48 = *(float *)(long_var_ + 8 + long_var_);
-                    fVar52 = *(float *)(long_var_ + 4 + long_var_);
+                    float_var = *(float *)(long_var_ + 8 + long_var_);
+                    float_var = *(float *)(long_var_ + 4 + long_var_);
                     long_var_ = *(longlong *)(pintStack_218 + (ulonglong)*ptr_uint_var * 8);
                     *(float *)(long_var_ + 4 + long_var_) =
                          *(float *)(long_var_ + 4 + long_var_) + *(float *)(long_var_ + long_var_);
-                    *(float *)(long_var_ + 8 + long_var_) = fVar52 + *(float *)(long_var_ + 8 + long_var_);
-                    *(float *)(long_var_ + 0xc + long_var_) = fVar48 + *(float *)(long_var_ + 0xc + long_var_);
+                    *(float *)(long_var_ + 8 + long_var_) = float_var + *(float *)(long_var_ + 8 + long_var_);
+                    *(float *)(long_var_ + 0xc + long_var_) = float_var + *(float *)(long_var_ + 0xc + long_var_);
                     bVar44 = true;
                     uint_var_ = *ptr_uint_var;
                   }
@@ -53382,14 +53382,14 @@ LAB_18007a5ac:
                                      long_var_);
                     *node_root = *node_root | uint_var_;
                     long_var_ = *ptr_long_var;
-                    fVar48 = *(float *)(long_var_ + 8 + long_var_);
-                    fVar52 = *(float *)(long_var_ + 4 + long_var_);
+                    float_var = *(float *)(long_var_ + 8 + long_var_);
+                    float_var = *(float *)(long_var_ + 4 + long_var_);
                     long_var_ = *(longlong *)(pintStack_218 + (ulonglong)*ptr_uint_var * 8);
                     *(float *)(long_var_ + 0x18 + long_var_) =
                          *(float *)(long_var_ + 0x18 + long_var_) + *(float *)(long_var_ + long_var_);
-                    *(float *)(long_var_ + 0x1c + long_var_) = fVar52 + *(float *)(long_var_ + 0x1c + long_var_)
+                    *(float *)(long_var_ + 0x1c + long_var_) = float_var + *(float *)(long_var_ + 0x1c + long_var_)
                     ;
-                    *(float *)(long_var_ + SYSTEM_NODE_HEADER_SIZE + long_var_) = fVar48 + *(float *)(long_var_ + SYSTEM_NODE_HEADER_SIZE + long_var_)
+                    *(float *)(long_var_ + SYSTEM_NODE_HEADER_SIZE + long_var_) = float_var + *(float *)(long_var_ + SYSTEM_NODE_HEADER_SIZE + long_var_)
                     ;
                     bVar44 = true;
                     uint_var_ = *ptr_uint_var;
@@ -53400,14 +53400,14 @@ LAB_18007a5ac:
                                      long_var_);
                     *node_root = *node_root | uint_var_;
                     long_var_ = *ptr_long_var;
-                    fVar48 = *(float *)(long_var_ + 8 + long_var_);
-                    fVar52 = *(float *)(long_var_ + 4 + long_var_);
+                    float_var = *(float *)(long_var_ + 8 + long_var_);
+                    float_var = *(float *)(long_var_ + 4 + long_var_);
                     long_var_ = *(longlong *)(pintStack_218 + (ulonglong)*ptr_uint_var * 8);
                     *(float *)(long_var_ + 0x2c + long_var_) =
                          *(float *)(long_var_ + 0x2c + long_var_) + *(float *)(long_var_ + long_var_);
-                    *(float *)(long_var_ + 0x30 + long_var_) = fVar52 + *(float *)(long_var_ + 0x30 + long_var_)
+                    *(float *)(long_var_ + 0x30 + long_var_) = float_var + *(float *)(long_var_ + 0x30 + long_var_)
                     ;
-                    *(float *)(long_var_ + 0x34 + long_var_) = fVar48 + *(float *)(long_var_ + 0x34 + long_var_)
+                    *(float *)(long_var_ + 0x34 + long_var_) = float_var + *(float *)(long_var_ + 0x34 + long_var_)
                     ;
                     bVar44 = true;
                   }
@@ -53417,14 +53417,14 @@ LAB_18007a5ac:
                     *(uint *)(*(longlong *)(pintStack_218 + (ulonglong)*ptr_uint_var * 8) + 0x3c + long_var_)
                          = uint_var_ | uint_var_;
                     long_var_ = *ptr_long_var;
-                    fVar48 = *(float *)(long_var_ + 8 + long_var_);
-                    fVar52 = *(float *)(long_var_ + 4 + long_var_);
+                    float_var = *(float *)(long_var_ + 8 + long_var_);
+                    float_var = *(float *)(long_var_ + 4 + long_var_);
                     long_var_ = *(longlong *)(pintStack_218 + (ulonglong)*ptr_uint_var * 8);
                     *(float *)(long_var_ + 0x40 + long_var_) =
                          *(float *)(long_var_ + 0x40 + long_var_) + *(float *)(long_var_ + long_var_);
-                    *(float *)(long_var_ + 0x44 + long_var_) = fVar52 + *(float *)(long_var_ + 0x44 + long_var_)
+                    *(float *)(long_var_ + 0x44 + long_var_) = float_var + *(float *)(long_var_ + 0x44 + long_var_)
                     ;
-                    *(float *)(long_var_ + 0x48 + long_var_) = fVar48 + *(float *)(long_var_ + 0x48 + long_var_)
+                    *(float *)(long_var_ + 0x48 + long_var_) = float_var + *(float *)(long_var_ + 0x48 + long_var_)
                     ;
                     bVar44 = true;
                   }
@@ -53442,13 +53442,13 @@ LAB_18007a5ac:
                     *(uint *)(long_var_ + *(longlong *)(pintStack_218 + (ulonglong)*ptr_uint_var * 8)) =
                          uint_var_ | uint_var_;
                     long_var_ = *ptr_long_var;
-                    fVar48 = *(float *)(long_var_ + 8 + long_var_);
-                    fVar52 = *(float *)(long_var_ + 4 + long_var_);
+                    float_var = *(float *)(long_var_ + 8 + long_var_);
+                    float_var = *(float *)(long_var_ + 4 + long_var_);
                     long_var_ = *(longlong *)(pintStack_218 + (ulonglong)*ptr_uint_var * 8);
                     *(float *)(long_var_ + 4 + long_var_) =
                          *(float *)(long_var_ + 4 + long_var_) + *(float *)(long_var_ + long_var_);
-                    *(float *)(long_var_ + 8 + long_var_) = fVar52 + *(float *)(long_var_ + 8 + long_var_);
-                    *(float *)(long_var_ + 0xc + long_var_) = fVar48 + *(float *)(long_var_ + 0xc + long_var_);
+                    *(float *)(long_var_ + 8 + long_var_) = float_var + *(float *)(long_var_ + 8 + long_var_);
+                    *(float *)(long_var_ + 0xc + long_var_) = float_var + *(float *)(long_var_ + 0xc + long_var_);
                     bVar44 = true;
                   }
                   long_var_ = long_var_ + 0x14;
@@ -53532,20 +53532,20 @@ LAB_18007ac04:
           if (0 < int_var_) {
             do {
               long_var_ = *(longlong *)(long_var_ + (longlong)pintStack_218);
-              fVar48 = *(float *)(long_var_ + 8 + long_var_);
-              fVar52 = *(float *)(long_var_ + 4 + long_var_);
-              fVar51 = *(float *)(long_var_ + 0xc + long_var_);
-              fVar45 = fVar52 * fVar52 + fVar48 * fVar48 + fVar51 * fVar51;
-              if (SQRT(fVar45) == 0.0) {
+              float_var = *(float *)(long_var_ + 8 + long_var_);
+              float_var = *(float *)(long_var_ + 4 + long_var_);
+              float_var = *(float *)(long_var_ + 0xc + long_var_);
+              float_var = float_var * float_var + float_var * float_var + float_var * float_var;
+              if (SQRT(float_var) == 0.0) {
                 *(uint8_t (*) [16])(long_var_ + 4 + long_var_) = systemCoreData;
               }
               else {
-                auVar47 = rsqrtss(ZEXT416((uint)fVar45),ZEXT416((uint)fVar45));
-                fVar46 = auVar47._0_4_;
-                fVar45 = fVar46 * 0.5 * (3.0 - fVar45 * fVar46 * fVar46);
-                *(float *)(long_var_ + 4 + long_var_) = fVar52 * fVar45;
-                *(float *)(long_var_ + 8 + long_var_) = fVar45 * fVar48;
-                *(float *)(long_var_ + 0xc + long_var_) = fVar51 * fVar45;
+                auVar47 = rsqrtss(ZEXT416((uint)float_var),ZEXT416((uint)float_var));
+                float_var = auVar47._0_4_;
+                float_var = float_var * 0.5 * (3.0 - float_var * float_var * float_var);
+                *(float *)(long_var_ + 4 + long_var_) = float_var * float_var;
+                *(float *)(long_var_ + 8 + long_var_) = float_var * float_var;
+                *(float *)(long_var_ + 0xc + long_var_) = float_var * float_var;
               }
               long_var_ = long_var_ + -1;
               long_var_ = long_var_ + 0x14;
@@ -55214,13 +55214,13 @@ void SystemFunction_89_6(uint handleIdentifier,longlong resourceIdentifier,longl
   longlong long_var_;
   ulonglong uint_var_;
   longlong long_var_;
-  float fVar28;
-  float fVar29;
-  float fVar30;
-  float fVar31;
-  float fVar32;
-  float fVar33;
-  float fVar34;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   longlong *plstack_var;
   uint32_t uint_var_;
   float fStack_128;
@@ -55474,12 +55474,12 @@ void SystemFunction_89_6(uint handleIdentifier,longlong resourceIdentifier,longl
         if ((ptr_float_var[-0x2e] * ptr_float_var[-0x29] - ptr_float_var[-0x2d] * ptr_float_var[-0x2a]) * ptr_float_var[4] +
             (ptr_float_var[-0x2d] * *ptr_float_var - ptr_float_var[-4] * ptr_float_var[-0x29]) * ptr_float_var[-0x26] +
             (ptr_float_var[-4] * ptr_float_var[-0x2a] - *ptr_float_var * ptr_float_var[-0x2e]) * ptr_float_var[-0x25] <= 0.0) {
-          fVar28 = -1.0;
+          float_var = -1.0;
         }
         else {
-          fVar28 = 1.0;
+          float_var = 1.0;
         }
-        ptr_float_var[3] = fVar28;
+        ptr_float_var[3] = float_var;
         ptr_float_var = (float *)((longlong)ptr_float_var + long_var_);
         *ptr_float_var = ptr_float_var[0x17];
         ptr_float_var[1] = ptr_float_var[0x18];
@@ -55488,12 +55488,12 @@ void SystemFunction_89_6(uint handleIdentifier,longlong resourceIdentifier,longl
             (ptr_float_var[0x17] * ptr_float_var[-0x16] - ptr_float_var[0x13] * ptr_float_var[-0x12]) * ptr_float_var[-0xf] +
             (ptr_float_var[0x13] * ptr_float_var[-0x13] - ptr_float_var[0x17] * ptr_float_var[-0x17]) * ptr_float_var[-0xe] <= 0.0
            ) {
-          fVar28 = -1.0;
+          float_var = -1.0;
         }
         else {
-          fVar28 = 1.0;
+          float_var = 1.0;
         }
-        ptr_float_var[3] = fVar28;
+        ptr_float_var[3] = float_var;
         ptr_float_var = (float *)((longlong)ptr_float_var + long_var_);
         *ptr_float_var = ptr_float_var[3];
         ptr_float_var[1] = ptr_float_var[4];
@@ -55501,12 +55501,12 @@ void SystemFunction_89_6(uint handleIdentifier,longlong resourceIdentifier,longl
         if ((ptr_float_var[1] * ptr_float_var[3] - ptr_float_var[5] * ptr_float_var[-1]) * ptr_float_var[8] +
             (ptr_float_var[5] * *ptr_float_var - ptr_float_var[1] * ptr_float_var[4]) * ptr_float_var[7] +
             (ptr_float_var[4] * ptr_float_var[-1] - *ptr_float_var * ptr_float_var[3]) * ptr_float_var[9] <= 0.0) {
-          fVar28 = -1.0;
+          float_var = -1.0;
         }
         else {
-          fVar28 = 1.0;
+          float_var = 1.0;
         }
-        ptr_float_var[3] = fVar28;
+        ptr_float_var[3] = float_var;
         ptr_float_var = (float *)((longlong)ptr_float_var + long_var_);
         *ptr_float_var = ptr_float_var[0x1a];
         ptr_float_var[1] = ptr_float_var[0x1b];
@@ -55515,12 +55515,12 @@ void SystemFunction_89_6(uint handleIdentifier,longlong resourceIdentifier,longl
             (ptr_float_var[0x1a] * ptr_float_var[0x18] - ptr_float_var[0x1c] * ptr_float_var[0x16]) * ptr_float_var[0x1f] +
             (ptr_float_var[0x16] * ptr_float_var[0x1b] - ptr_float_var[0x1a] * ptr_float_var[0x17]) * ptr_float_var[SYSTEM_NODE_HEADER_SIZE] <= 0.0)
         {
-          fVar28 = -1.0;
+          float_var = -1.0;
         }
         else {
-          fVar28 = 1.0;
+          float_var = 1.0;
         }
-        ptr_float_var[3] = fVar28;
+        ptr_float_var[3] = float_var;
         ptr_float_var = (float *)((longlong)ptr_float_var + long_var_);
         ptr_float_var = ptr_float_var + 0x5c;
         ptr_float_var = ptr_float_var + 0x5c;
@@ -55538,12 +55538,12 @@ void SystemFunction_89_6(uint handleIdentifier,longlong resourceIdentifier,longl
         if ((ptr_float_var[5] * *ptr_float_var - ptr_float_var[1] * ptr_float_var[4]) * ptr_float_var[7] +
             (ptr_float_var[3] * ptr_float_var[1] - ptr_float_var[-1] * ptr_float_var[5]) * ptr_float_var[8] +
             (ptr_float_var[-1] * ptr_float_var[4] - ptr_float_var[3] * *ptr_float_var) * ptr_float_var[9] <= 0.0) {
-          fVar28 = -1.0;
+          float_var = -1.0;
         }
         else {
-          fVar28 = 1.0;
+          float_var = 1.0;
         }
-        ptr_float_var[1] = fVar28;
+        ptr_float_var[1] = float_var;
         ptr_float_var = (float *)((longlong)ptr_float_var + (longlong)int_var_);
         ptr_float_var = ptr_float_var + 0x17;
         long_var_ = long_var_ + -1;
@@ -55572,17 +55572,17 @@ code_r0x00018007db1b:
         uint_var_ = (uint)(*(float *)(*(longlong *)(resourceIdentifier + 0xd0) + 8 +
                                  (longlong)*(int *)(long_var_ + long_var_) * 0x14) * 255.0);
         *(char *)((longlong)ptr_float_var + 2) = (char)uint_var_;
-        fVar28 = (float)((uint_var_ & 0xff) + (uint)*(byte *)((longlong)ptr_float_var + 1) +
+        float_var = (float)((uint_var_ & 0xff) + (uint)*(byte *)((longlong)ptr_float_var + 1) +
                         (uint)*(byte *)ptr_float_var);
-        if (0.0 <= fVar28) {
-          if (1.0 <= fVar28) {
-            fVar28 = 1.0;
+        if (0.0 <= float_var) {
+          if (1.0 <= float_var) {
+            float_var = 1.0;
           }
         }
         else {
-          fVar28 = 0.0;
+          float_var = 0.0;
         }
-        *(char *)((longlong)ptr_float_var + 3) = (char)(int)(1.0 - fVar28);
+        *(char *)((longlong)ptr_float_var + 3) = (char)(int)(1.0 - float_var);
         ptr_byte_var = (byte *)((longlong)ptr_float_var + long_var_);
         long_var_ = *(longlong *)(resourceIdentifier + 0x68);
         *ptr_byte_var = (byte)(int)(*(float *)(*(longlong *)(resourceIdentifier + 0xd0) +
@@ -55593,16 +55593,16 @@ code_r0x00018007db1b:
         uint_var_ = (uint)(*(float *)(*(longlong *)(resourceIdentifier + 0xd0) + 8 +
                                  (longlong)*(int *)(long_var_ + 0x5c + long_var_) * 0x14) * 255.0);
         ptr_byte_var[2] = (byte)uint_var_;
-        fVar28 = (float)((uint_var_ & 0xff) + (uint)ptr_byte_var[1] + (uint)*ptr_byte_var);
-        if (0.0 <= fVar28) {
-          if (1.0 <= fVar28) {
-            fVar28 = 1.0;
+        float_var = (float)((uint_var_ & 0xff) + (uint)ptr_byte_var[1] + (uint)*ptr_byte_var);
+        if (0.0 <= float_var) {
+          if (1.0 <= float_var) {
+            float_var = 1.0;
           }
         }
         else {
-          fVar28 = 0.0;
+          float_var = 0.0;
         }
-        ptr_byte_var[3] = (byte)(int)(1.0 - fVar28);
+        ptr_byte_var[3] = (byte)(int)(1.0 - float_var);
         ptr_byte_var = ptr_byte_var + long_var_;
         long_var_ = *(longlong *)(resourceIdentifier + 0x68);
         *ptr_byte_var = (byte)(int)(*(float *)(*(longlong *)(resourceIdentifier + 0xd0) +
@@ -55613,16 +55613,16 @@ code_r0x00018007db1b:
         uint_var_ = (uint)(*(float *)(*(longlong *)(resourceIdentifier + 0xd0) + 8 +
                                  (longlong)*(int *)(long_var_ + 0xb8 + long_var_) * 0x14) * 255.0);
         ptr_byte_var[2] = (byte)uint_var_;
-        fVar28 = (float)((uint_var_ & 0xff) + (uint)ptr_byte_var[1] + (uint)*ptr_byte_var);
-        if (0.0 <= fVar28) {
-          if (1.0 <= fVar28) {
-            fVar28 = 1.0;
+        float_var = (float)((uint_var_ & 0xff) + (uint)ptr_byte_var[1] + (uint)*ptr_byte_var);
+        if (0.0 <= float_var) {
+          if (1.0 <= float_var) {
+            float_var = 1.0;
           }
         }
         else {
-          fVar28 = 0.0;
+          float_var = 0.0;
         }
-        ptr_byte_var[3] = (byte)(int)(1.0 - fVar28);
+        ptr_byte_var[3] = (byte)(int)(1.0 - float_var);
         ptr_byte_var = ptr_byte_var + long_var_;
         long_var_ = *(longlong *)(resourceIdentifier + 0x68);
         *ptr_byte_var = (byte)(int)(*(float *)(*(longlong *)(resourceIdentifier + 0xd0) +
@@ -55634,16 +55634,16 @@ code_r0x00018007db1b:
         uint_var_ = (uint)(*(float *)(*(longlong *)(resourceIdentifier + 0xd0) + 8 +
                                  (longlong)*(int *)(long_var_ + 0x114 + long_var_) * 0x14) * 255.0);
         ptr_byte_var[2] = (byte)uint_var_;
-        fVar28 = (float)((uint_var_ & 0xff) + (uint)ptr_byte_var[1] + (uint)*ptr_byte_var);
-        if (0.0 <= fVar28) {
-          if (1.0 <= fVar28) {
-            fVar28 = 1.0;
+        float_var = (float)((uint_var_ & 0xff) + (uint)ptr_byte_var[1] + (uint)*ptr_byte_var);
+        if (0.0 <= float_var) {
+          if (1.0 <= float_var) {
+            float_var = 1.0;
           }
         }
         else {
-          fVar28 = 0.0;
+          float_var = 0.0;
         }
-        ptr_byte_var[3] = (byte)(int)(1.0 - fVar28);
+        ptr_byte_var[3] = (byte)(int)(1.0 - float_var);
         ptr_float_var = (float *)(ptr_byte_var + long_var_);
         long_var_ = long_var_ + 0x170;
         long_var_ = long_var_ + -1;
@@ -55664,16 +55664,16 @@ code_r0x00018007db1b:
         uint_var_ = (uint)(*(float *)(*(longlong *)(resourceIdentifier + 0xd0) + 8 +
                                  (longlong)*(int *)(long_var_ + long_var_) * 0x14) * 255.0);
         *ptr_uint_var = (char)uint_var_;
-        fVar28 = (float)((uint_var_ & 0xff) + (uint_var_ & 0xff) + (uint_var_ & 0xff));
-        if (0.0 <= fVar28) {
-          if (1.0 <= fVar28) {
-            fVar28 = 1.0;
+        float_var = (float)((uint_var_ & 0xff) + (uint_var_ & 0xff) + (uint_var_ & 0xff));
+        if (0.0 <= float_var) {
+          if (1.0 <= float_var) {
+            float_var = 1.0;
           }
         }
         else {
-          fVar28 = 0.0;
+          float_var = 0.0;
         }
-        ptr_uint_var[1] = (char)(int)(1.0 - fVar28);
+        ptr_uint_var[1] = (char)(int)(1.0 - float_var);
         ptr_uint_var = ptr_uint_var + int_var_;
         long_var_ = long_var_ + 0x5c;
         long_var_ = long_var_ + -1;
@@ -55707,39 +55707,39 @@ code_r0x00018007db1b:
     if (0 < int_var_) {
       do {
         long_var_ = *(longlong *)(resourceIdentifier + 0x68);
-        fVar29 = *(float *)(long_var_ + 0x34 + long_var_) * 0.5;
-        fVar34 = *(float *)(long_var_ + 0x38 + long_var_) * 0.5;
-        fVar28 = *(float *)(long_var_ + 0x3c + long_var_) * 0.5;
-        fVar31 = fVar29 + 0.5;
-        fVar32 = fVar34 + 0.5;
-        fVar33 = fVar28 + 0.5;
-        if (-0.5 <= fVar28) {
-          if (1.0 <= fVar33) {
-            fVar33 = 1.0;
+        float_var = *(float *)(long_var_ + 0x34 + long_var_) * 0.5;
+        float_var = *(float *)(long_var_ + 0x38 + long_var_) * 0.5;
+        float_var = *(float *)(long_var_ + 0x3c + long_var_) * 0.5;
+        float_var = float_var + 0.5;
+        float_var = float_var + 0.5;
+        float_var = float_var + 0.5;
+        if (-0.5 <= float_var) {
+          if (1.0 <= float_var) {
+            float_var = 1.0;
           }
         }
         else {
-          fVar33 = 0.0;
+          float_var = 0.0;
         }
-        if (-0.5 <= fVar34) {
-          if (1.0 <= fVar32) {
-            fVar32 = 1.0;
+        if (-0.5 <= float_var) {
+          if (1.0 <= float_var) {
+            float_var = 1.0;
           }
         }
         else {
-          fVar32 = 0.0;
+          float_var = 0.0;
         }
-        if (-0.5 <= fVar29) {
-          if (1.0 <= fVar31) {
-            fVar31 = 1.0;
+        if (-0.5 <= float_var) {
+          if (1.0 <= float_var) {
+            float_var = 1.0;
           }
         }
         else {
-          fVar31 = 0.0;
+          float_var = 0.0;
         }
-        *ptr_float_var = (float)(((uint)(longlong)(fVar32 * 2047.0) & 0x7ff |
-                           (int)(longlong)(fVar31 * 2047.0) << 0xb) << 10 |
-                          (uint)(longlong)(fVar33 * 1023.0) & 0x3ff);
+        *ptr_float_var = (float)(((uint)(longlong)(float_var * 2047.0) & 0x7ff |
+                           (int)(longlong)(float_var * 2047.0) << 0xb) << 10 |
+                          (uint)(longlong)(float_var * 1023.0) & 0x3ff);
         ptr_float_var = (float *)((longlong)ptr_float_var + (longlong)int_var_);
         long_var_ = long_var_ + 0x5c;
         long_var_ = long_var_ + -1;
@@ -55779,49 +55779,49 @@ code_r0x00018007db1b:
     if (0 < int_var_) {
       do {
         long_var_ = *(longlong *)(resourceIdentifier + 0x68);
-        fVar28 = *(float *)(long_var_ + 0x1c + long_var_);
-        fVar31 = *(float *)(long_var_ + 0x18 + long_var_);
-        fVar32 = *(float *)(long_var_ + 0x14 + long_var_);
-        fVar33 = *(float *)(long_var_ + 4 + long_var_);
-        fVar34 = fVar32 * 0.5 + 0.5;
-        fVar29 = fVar31 * 0.5 + 0.5;
-        fVar30 = fVar28 * 0.5 + 0.5;
-        if (-0.5 <= fVar28 * 0.5) {
-          if (1.0 <= fVar30) {
-            fVar30 = 1.0;
+        float_var = *(float *)(long_var_ + 0x1c + long_var_);
+        float_var = *(float *)(long_var_ + 0x18 + long_var_);
+        float_var = *(float *)(long_var_ + 0x14 + long_var_);
+        float_var = *(float *)(long_var_ + 4 + long_var_);
+        float_var = float_var * 0.5 + 0.5;
+        float_var = float_var * 0.5 + 0.5;
+        float_var = float_var * 0.5 + 0.5;
+        if (-0.5 <= float_var * 0.5) {
+          if (1.0 <= float_var) {
+            float_var = 1.0;
           }
         }
         else {
-          fVar30 = 0.0;
+          float_var = 0.0;
         }
-        if (-0.5 <= fVar31 * 0.5) {
-          if (1.0 <= fVar29) {
-            fVar29 = 1.0;
+        if (-0.5 <= float_var * 0.5) {
+          if (1.0 <= float_var) {
+            float_var = 1.0;
           }
         }
         else {
-          fVar29 = 0.0;
+          float_var = 0.0;
         }
-        if (-0.5 <= fVar32 * 0.5) {
-          if (1.0 <= fVar34) {
-            fVar34 = 1.0;
+        if (-0.5 <= float_var * 0.5) {
+          if (1.0 <= float_var) {
+            float_var = 1.0;
           }
         }
         else {
-          fVar34 = 0.0;
+          float_var = 0.0;
         }
         uint_var_ = 0;
-        if ((fVar32 * *(float *)(long_var_ + 0xc + long_var_) - fVar33 * fVar28) *
+        if ((float_var * *(float *)(long_var_ + 0xc + long_var_) - float_var * float_var) *
             *(float *)(long_var_ + 0x28 + long_var_) +
-            (fVar28 * *(float *)(long_var_ + 8 + long_var_) - fVar31 * *(float *)(long_var_ + 0xc + long_var_))
+            (float_var * *(float *)(long_var_ + 8 + long_var_) - float_var * *(float *)(long_var_ + 0xc + long_var_))
             * *(float *)(long_var_ + 0x24 + long_var_) +
-            (fVar33 * fVar31 - fVar32 * *(float *)(long_var_ + 8 + long_var_)) *
+            (float_var * float_var - float_var * *(float *)(long_var_ + 8 + long_var_)) *
             *(float *)(long_var_ + 0x2c + long_var_) < 0.0) {
           uint_var_ = 0x80000000;
         }
-        *ptr_float_var = (float)((((uint)(longlong)(fVar34 * 1023.0) & 0x3ff) << 0xb |
-                           (uint)(longlong)(fVar29 * 2047.0) & 0x7ff) << 10 |
-                           (uint)(longlong)(fVar30 * 1023.0) & 0x3ff | uint_var_);
+        *ptr_float_var = (float)((((uint)(longlong)(float_var * 1023.0) & 0x3ff) << 0xb |
+                           (uint)(longlong)(float_var * 2047.0) & 0x7ff) << 10 |
+                           (uint)(longlong)(float_var * 1023.0) & 0x3ff | uint_var_);
         ptr_float_var = (float *)((longlong)ptr_float_var + (longlong)int_var_);
         long_var_ = long_var_ + 0x5c;
         long_var_ = long_var_ + -1;
@@ -55832,7 +55832,7 @@ code_r0x00018007db1b:
     if (0 < int_var_) {
       long_var_ = 0x48;
       long_var_ = *(longlong *)((longlong)threadLocalStoragePointer + (ulonglong)__tls_index * 8);
-      fVar28 = fRam0000000180d49154;
+      float_var = fRam0000000180d49154;
       do {
         long_var_ = *(longlong *)(resourceIdentifier + 0x68);
         ptr_float_var = (float *)(long_var_ + 0x34 + long_var_);
@@ -55850,8 +55850,8 @@ code_r0x00018007db1b:
         fStack_e4 = ptr_float_var[1];
         fStack_e0 = ptr_float_var[2];
         fStack_dc = ptr_float_var[3];
-        fVar31 = fStack_100 * fStack_f8 - fStack_f0 * fStack_108;
-        if ((fStack_f0 * fStack_104 - fStack_100 * fStack_f4) * fStack_e8 + fStack_e4 * fVar31 +
+        float_var = fStack_100 * fStack_f8 - fStack_f0 * fStack_108;
+        if ((fStack_f0 * fStack_104 - fStack_100 * fStack_f4) * fStack_e8 + fStack_e4 * float_var +
             fStack_e0 * (fStack_f4 * fStack_108 - fStack_f8 * fStack_104) < 0.0) {
           fStack_e0 = -fStack_e0;
           fStack_118 = -fStack_e8;
@@ -55862,7 +55862,7 @@ code_r0x00018007db1b:
           fStack_dc = 3.4028235e+38;
           fStack_110 = fStack_e0;
         }
-        UtilityFunction3b470(&fStack_128,&fStack_108,fStack_e0,fVar31,uint_var_);
+        UtilityFunction3b470(&fStack_128,&fStack_108,fStack_e0,float_var,uint_var_);
         SystemFunction_67_2(&fStack_128);
         if (fStack_128 < 0.0) {
           fStack_128 = -fStack_128;
@@ -55870,10 +55870,10 @@ code_r0x00018007db1b:
           fStack_120 = -fStack_120;
           fStack_11c = -fStack_11c;
         }
-        fVar34 = fStack_11c;
-        fVar33 = fStack_120;
-        fVar32 = fStack_124;
-        fVar31 = fStack_128;
+        float_var = fStack_11c;
+        float_var = fStack_120;
+        float_var = fStack_124;
+        float_var = fStack_128;
         if (*(int *)(long_var_ + long_var_) < iRam0000000180d49150) {
           CheckSystemInitialized(0x180d49150);
           if (iRam0000000180d49150 == -1) {
@@ -55881,41 +55881,41 @@ code_r0x00018007db1b:
             MarkSystemInitialized(0x180d49150);
           }
           long_var_ = 0x48;
-          fVar28 = fRam0000000180d49154;
+          float_var = fRam0000000180d49154;
         }
-        if (fVar31 < 3.051851e-05) {
-          fVar31 = 3.051851e-05;
+        if (float_var < 3.051851e-05) {
+          float_var = 3.051851e-05;
           fStack_128 = 3.051851e-05;
-          fVar32 = fVar32 * fVar28;
-          fVar33 = fVar33 * fVar28;
-          fVar34 = fVar34 * fVar28;
-          fStack_124 = fVar32;
-          fStack_120 = fVar33;
-          fStack_11c = fVar34;
+          float_var = float_var * float_var;
+          float_var = float_var * float_var;
+          float_var = float_var * float_var;
+          fStack_124 = float_var;
+          fStack_120 = float_var;
+          fStack_11c = float_var;
         }
-        fVar29 = *(float *)(long_var_ + 0x18 + long_var_);
-        fVar30 = *(float *)(long_var_ + 0x1c + long_var_);
+        float_var = *(float *)(long_var_ + 0x18 + long_var_);
+        float_var = *(float *)(long_var_ + 0x1c + long_var_);
         float_var = *(float *)(long_var_ + 0x14 + long_var_);
-        if ((fVar30 * *(float *)(long_var_ + 0x34 + long_var_) -
+        if ((float_var * *(float *)(long_var_ + 0x34 + long_var_) -
             float_var * *(float *)(long_var_ + 0x3c + long_var_)) * *(float *)(long_var_ + 0x28 + long_var_) +
-            (fVar29 * *(float *)(long_var_ + 0x3c + long_var_) -
-            fVar30 * *(float *)(long_var_ + 0x38 + long_var_)) * *(float *)(long_var_ + 0x24 + long_var_) +
+            (float_var * *(float *)(long_var_ + 0x3c + long_var_) -
+            float_var * *(float *)(long_var_ + 0x38 + long_var_)) * *(float *)(long_var_ + 0x24 + long_var_) +
             (float_var * *(float *)(long_var_ + 0x38 + long_var_) -
-            fVar29 * *(float *)(long_var_ + 0x34 + long_var_)) * *(float *)(long_var_ + 0x2c + long_var_) <= 0.0
+            float_var * *(float *)(long_var_ + 0x34 + long_var_)) * *(float *)(long_var_ + 0x2c + long_var_) <= 0.0
            ) {
-          fVar31 = -fVar31;
-          fVar32 = -fVar32;
-          fVar33 = -fVar33;
-          fVar34 = -fVar34;
-          fStack_128 = fVar31;
-          fStack_124 = fVar32;
-          fStack_120 = fVar33;
-          fStack_11c = fVar34;
+          float_var = -float_var;
+          float_var = -float_var;
+          float_var = -float_var;
+          float_var = -float_var;
+          fStack_128 = float_var;
+          fStack_124 = float_var;
+          fStack_120 = float_var;
+          fStack_11c = float_var;
         }
-        *(short *)ptr_float_var = (short)(int)(fVar32 * 32767.0);
-        *(short *)((longlong)ptr_float_var + 2) = (short)(int)(fVar33 * 32767.0);
-        *(short *)(ptr_float_var + 1) = (short)(int)(fVar34 * 32767.0);
-        *(short *)((longlong)ptr_float_var + 6) = (short)(int)(fVar31 * 32767.0);
+        *(short *)ptr_float_var = (short)(int)(float_var * 32767.0);
+        *(short *)((longlong)ptr_float_var + 2) = (short)(int)(float_var * 32767.0);
+        *(short *)(ptr_float_var + 1) = (short)(int)(float_var * 32767.0);
+        *(short *)((longlong)ptr_float_var + 6) = (short)(int)(float_var * 32767.0);
         ptr_float_var = (float *)((longlong)ptr_float_var + (longlong)int_var_);
         long_var_ = long_var_ + 0x5c;
         long_var_ = long_var_ + -1;
@@ -58585,34 +58585,34 @@ uint64_t ProcessFunction79434(void)
   longlong system_R14;
   uint uint_var_;
   uint uint_var_;
-  float fVar17;
+  float float_var;
   uint8_t auVar18 [16];
-  float fVar19;
+  float float_var;
   int in_XMM5_Da;
-  float fVar20;
+  float float_var;
   int in_XMM5_Db;
-  float fVar22;
+  float float_var;
   int in_XMM5_Dc;
-  float fVar23;
+  float float_var;
   int in_XMM5_Dd;
   uint8_t auVar21 [16];
-  float fVar24;
+  float float_var;
   float system_XMM6_Da;
-  float fVar25;
-  float fVar26;
-  float fVar27;
-  float fVar28;
-  float fVar29;
-  float fVar30;
-  float fVar31;
-  float fVar32;
-  float fVar33;
-  float fVar34;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   float system_XMM9_Da;
-  float fVar35;
-  float fVar36;
-  float fVar37;
-  float fVar38;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   int system_XMM12_Da;
   int system_XMM12_Db;
   int system_XMM12_Dc;
@@ -58633,19 +58633,19 @@ uint64_t ProcessFunction79434(void)
       } while (int_var_ != 0);
     }
     in_R10D = in_R10D + 1;
-    fVar17 = *(float *)(*(longlong *)(system_R14 + 0x218) + 4 + (longlong)(int)uint_var_ * 8);
-    fVar29 = *(float *)(*(longlong *)(system_R14 + 0x218) + (longlong)(int)uint_var_ * 8);
-    fVar17 = SQRT(fVar29 * fVar29 + fVar17 * fVar17) * 2.5;
-    if (system_XMM9_Da <= fVar17) {
-      fVar17 = system_XMM9_Da;
+    float_var = *(float *)(*(longlong *)(system_R14 + 0x218) + 4 + (longlong)(int)uint_var_ * 8);
+    float_var = *(float *)(*(longlong *)(system_R14 + 0x218) + (longlong)(int)uint_var_ * 8);
+    float_var = SQRT(float_var * float_var + float_var * float_var) * 2.5;
+    if (system_XMM9_Da <= float_var) {
+      float_var = system_XMM9_Da;
     }
-    *ptr_float_var = fVar17;
+    *ptr_float_var = float_var;
     ptr_float_var = ptr_float_var + 1;
   } while ((int)in_R10D < (int)systemParam_D);
   if (in_stack_00000120 != (float *)0x0) {
     int_var_ = 0;
     if (0 < (int)systemParam_D) {
-      fVar17 = system_XMM6_Da;
+      float_var = system_XMM6_Da;
       if (7 < systemParam_D) {
         uint_var_ = systemParam_D & 0x80000007;
         if ((int)uint_var_ < 0) {
@@ -58660,30 +58660,30 @@ uint64_t ProcessFunction79434(void)
         auVar18._8_4_ = (float)auVar21._8_4_;
         auVar18._12_4_ = (float)auVar21._12_4_;
         auVar21 = rcpps(auVar21,auVar18);
-        fVar17 = 0.0;
-        fVar29 = 0.0;
-        fVar31 = 0.0;
-        fVar19 = 0.0;
-        fVar20 = auVar21._0_4_;
-        fVar22 = auVar21._4_4_;
-        fVar23 = auVar21._8_4_;
-        fVar24 = auVar21._12_4_;
-        fVar30 = 0.0;
-        fVar32 = 0.0;
-        fVar33 = 0.0;
-        fVar34 = 0.0;
-        fVar35 = 0.0;
-        fVar36 = 0.0;
-        fVar37 = 0.0;
-        fVar38 = 0.0;
-        fVar25 = 0.0;
-        fVar26 = 0.0;
-        fVar27 = 0.0;
-        fVar28 = 0.0;
-        fVar20 = (fVar20 + fVar20) - fVar20 * fVar20 * auVar18._0_4_;
-        fVar22 = (fVar22 + fVar22) - fVar22 * fVar22 * auVar18._4_4_;
-        fVar23 = (fVar23 + fVar23) - fVar23 * fVar23 * auVar18._8_4_;
-        fVar24 = (fVar24 + fVar24) - fVar24 * fVar24 * auVar18._12_4_;
+        float_var = 0.0;
+        float_var = 0.0;
+        float_var = 0.0;
+        float_var = 0.0;
+        float_var = auVar21._0_4_;
+        float_var = auVar21._4_4_;
+        float_var = auVar21._8_4_;
+        float_var = auVar21._12_4_;
+        float_var = 0.0;
+        float_var = 0.0;
+        float_var = 0.0;
+        float_var = 0.0;
+        float_var = 0.0;
+        float_var = 0.0;
+        float_var = 0.0;
+        float_var = 0.0;
+        float_var = 0.0;
+        float_var = 0.0;
+        float_var = 0.0;
+        float_var = 0.0;
+        float_var = (float_var + float_var) - float_var * float_var * auVar18._0_4_;
+        float_var = (float_var + float_var) - float_var * float_var * auVar18._4_4_;
+        float_var = (float_var + float_var) - float_var * float_var * auVar18._8_4_;
+        float_var = (float_var + float_var) - float_var * float_var * auVar18._12_4_;
         ptr_float_var = system_RDI;
         int_var_ = int_var_;
         do {
@@ -58701,65 +58701,65 @@ uint64_t ProcessFunction79434(void)
           float_var = ptr_float_var[6];
           float_var = ptr_float_var[7];
           ptr_float_var = ptr_float_var + 8;
-          fVar17 = (float)((uint)((float)int_var_ * (float)system_XMM12_Da * 0.5 * fVar20 * float_var +
-                                 fVar17) & uint_var_ | ~uint_var_ & (uint)fVar17);
-          fVar29 = (float)((uint)((float)(int_var_ + 1) * (float)system_XMM12_Db * 0.5 * fVar22 * float_var
-                                 + fVar29) & uint_var_ | ~uint_var_ & (uint)fVar29);
-          fVar31 = (float)((uint)((float)(int_var_ + 2) * (float)system_XMM12_Dc * 0.5 * fVar23 * float_var
-                                 + fVar31) & uint_var_ | ~uint_var_ & (uint)fVar31);
-          fVar19 = (float)((uint)((float)(int_var_ + 3) * (float)system_XMM12_Dd * 0.5 * fVar24 * float_var
-                                 + fVar19) & uint_var_ | ~uint_var_ & (uint)fVar19);
-          fVar25 = (float)((uint)(float_var + fVar25) & uint_var_ | ~uint_var_ & (uint)fVar25);
-          fVar26 = (float)((uint)(float_var + fVar26) & uint_var_ | ~uint_var_ & (uint)fVar26);
-          fVar27 = (float)((uint)(float_var + fVar27) & uint_var_ | ~uint_var_ & (uint)fVar27);
-          fVar28 = (float)((uint)(float_var + fVar28) & uint_var_ | ~uint_var_ & (uint)fVar28);
+          float_var = (float)((uint)((float)int_var_ * (float)system_XMM12_Da * 0.5 * float_var * float_var +
+                                 float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+          float_var = (float)((uint)((float)(int_var_ + 1) * (float)system_XMM12_Db * 0.5 * float_var * float_var
+                                 + float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+          float_var = (float)((uint)((float)(int_var_ + 2) * (float)system_XMM12_Dc * 0.5 * float_var * float_var
+                                 + float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+          float_var = (float)((uint)((float)(int_var_ + 3) * (float)system_XMM12_Dd * 0.5 * float_var * float_var
+                                 + float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+          float_var = (float)((uint)(float_var + float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+          float_var = (float)((uint)(float_var + float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+          float_var = (float)((uint)(float_var + float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+          float_var = (float)((uint)(float_var + float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
           uint_var_ = -(uint)(0.0001 < float_var);
           uint_var_ = -(uint)(0.0001 < float_var);
           uint_var_ = -(uint)(0.0001 < float_var);
           uint_var_ = -(uint)(0.0001 < float_var);
-          fVar30 = (float)((uint)((float)(int_var_ + 4) * (float)system_XMM12_Da * 0.5 * fVar20 * float_var
-                                 + fVar30) & uint_var_ | ~uint_var_ & (uint)fVar30);
-          fVar32 = (float)((uint)((float)(int_var_ + 5) * (float)system_XMM12_Db * 0.5 * fVar22 * float_var
-                                 + fVar32) & uint_var_ | ~uint_var_ & (uint)fVar32);
-          fVar33 = (float)((uint)((float)(int_var_ + 6) * (float)system_XMM12_Dc * 0.5 * fVar23 * float_var
-                                 + fVar33) & uint_var_ | ~uint_var_ & (uint)fVar33);
-          fVar34 = (float)((uint)((float)(int_var_ + 7) * (float)system_XMM12_Dd * 0.5 * fVar24 * float_var
-                                 + fVar34) & uint_var_ | ~uint_var_ & (uint)fVar34);
-          fVar35 = (float)((uint)(float_var + fVar35) & uint_var_ | ~uint_var_ & (uint)fVar35);
-          fVar36 = (float)((uint)(float_var + fVar36) & uint_var_ | ~uint_var_ & (uint)fVar36);
-          fVar37 = (float)((uint)(float_var + fVar37) & uint_var_ | ~uint_var_ & (uint)fVar37);
-          fVar38 = (float)((uint)(float_var + fVar38) & uint_var_ | ~uint_var_ & (uint)fVar38);
+          float_var = (float)((uint)((float)(int_var_ + 4) * (float)system_XMM12_Da * 0.5 * float_var * float_var
+                                 + float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+          float_var = (float)((uint)((float)(int_var_ + 5) * (float)system_XMM12_Db * 0.5 * float_var * float_var
+                                 + float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+          float_var = (float)((uint)((float)(int_var_ + 6) * (float)system_XMM12_Dc * 0.5 * float_var * float_var
+                                 + float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+          float_var = (float)((uint)((float)(int_var_ + 7) * (float)system_XMM12_Dd * 0.5 * float_var * float_var
+                                 + float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+          float_var = (float)((uint)(float_var + float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+          float_var = (float)((uint)(float_var + float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+          float_var = (float)((uint)(float_var + float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+          float_var = (float)((uint)(float_var + float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
           int_var_ = int_var_;
         } while (int_var_ < (int)(systemParam_D - uint_var_));
-        system_XMM6_Da = fVar27 + fVar37 + fVar25 + fVar35 + fVar28 + fVar38 + fVar26 + fVar36;
-        fVar17 = fVar31 + fVar33 + fVar17 + fVar30 + fVar19 + fVar34 + fVar29 + fVar32;
+        system_XMM6_Da = float_var + float_var + float_var + float_var + float_var + float_var + float_var + float_var;
+        float_var = float_var + float_var + float_var + float_var + float_var + float_var + float_var + float_var;
       }
       if (int_var_ < (int)systemParam_D) {
         if (3 < (int)(systemParam_D - int_var_)) {
           int_var_ = int_var_ + 2;
-          fVar29 = (float)system_EBX;
+          float_var = (float)system_EBX;
           ptr_float_var = system_RDI + (longlong)int_var_ + 2;
-          fVar31 = (float)(int)systemParam_D;
+          float_var = (float)(int)systemParam_D;
           do {
-            fVar19 = ptr_float_var[-2];
-            if (0.0001 < fVar19) {
-              system_XMM6_Da = system_XMM6_Da + fVar19;
-              fVar17 = fVar17 + ((fVar29 * 0.5 * (float)int_var_) / fVar31) * fVar19;
+            float_var = ptr_float_var[-2];
+            if (0.0001 < float_var) {
+              system_XMM6_Da = system_XMM6_Da + float_var;
+              float_var = float_var + ((float_var * 0.5 * (float)int_var_) / float_var) * float_var;
             }
-            fVar19 = ptr_float_var[-1];
-            if (0.0001 < fVar19) {
-              system_XMM6_Da = system_XMM6_Da + fVar19;
-              fVar17 = fVar17 + (((float)(int_var_ + -1) * fVar29 * 0.5) / fVar31) * fVar19;
+            float_var = ptr_float_var[-1];
+            if (0.0001 < float_var) {
+              system_XMM6_Da = system_XMM6_Da + float_var;
+              float_var = float_var + (((float)(int_var_ + -1) * float_var * 0.5) / float_var) * float_var;
             }
-            fVar19 = *ptr_float_var;
-            if (0.0001 < fVar19) {
-              system_XMM6_Da = system_XMM6_Da + fVar19;
-              fVar17 = fVar17 + (((float)int_var_ * fVar29 * 0.5) / fVar31) * fVar19;
+            float_var = *ptr_float_var;
+            if (0.0001 < float_var) {
+              system_XMM6_Da = system_XMM6_Da + float_var;
+              float_var = float_var + (((float)int_var_ * float_var * 0.5) / float_var) * float_var;
             }
-            fVar19 = ptr_float_var[1];
-            if (0.0001 < fVar19) {
-              system_XMM6_Da = system_XMM6_Da + fVar19;
-              fVar17 = fVar17 + (((float)(int_var_ + 1) * fVar29 * 0.5) / fVar31) * fVar19;
+            float_var = ptr_float_var[1];
+            if (0.0001 < float_var) {
+              system_XMM6_Da = system_XMM6_Da + float_var;
+              float_var = float_var + (((float)(int_var_ + 1) * float_var * 0.5) / float_var) * float_var;
             }
             ptr_float_var = ptr_float_var + 4;
             int_var_ = int_var_ + 4;
@@ -58769,11 +58769,11 @@ uint64_t ProcessFunction79434(void)
         if (int_var_ < (int)systemParam_D) {
           ptr_float_var = system_RDI + int_var_;
           do {
-            fVar29 = *ptr_float_var;
-            if (0.0001 < fVar29) {
-              system_XMM6_Da = system_XMM6_Da + fVar29;
-              fVar17 = fVar17 + (((float)system_EBX * 0.5 * (float)int_var_) / (float)(int)systemParam_D) *
-                                fVar29;
+            float_var = *ptr_float_var;
+            if (0.0001 < float_var) {
+              system_XMM6_Da = system_XMM6_Da + float_var;
+              float_var = float_var + (((float)system_EBX * 0.5 * (float)int_var_) / (float)(int)systemParam_D) *
+                                float_var;
             }
             ptr_float_var = ptr_float_var + 1;
             int_var_ = int_var_ + 1;
@@ -58781,7 +58781,7 @@ uint64_t ProcessFunction79434(void)
         }
       }
       if (0.001 < system_XMM6_Da) {
-        *in_stack_00000120 = fVar17 / system_XMM6_Da;
+        *in_stack_00000120 = float_var / system_XMM6_Da;
         return 0;
       }
     }
@@ -58814,32 +58814,32 @@ uint64_t ProcessFunction794c5(void)
   uint uint_var_;
   uint uint_var_;
   uint8_t auVar17 [16];
-  float fVar18;
+  float float_var;
   int in_XMM5_Da;
-  float fVar19;
+  float float_var;
   int in_XMM5_Db;
-  float fVar21;
+  float float_var;
   int in_XMM5_Dc;
-  float fVar22;
+  float float_var;
   int in_XMM5_Dd;
   uint8_t auVar20 [16];
-  float fVar23;
+  float float_var;
   float system_XMM6_Da;
-  float fVar24;
-  float fVar25;
-  float fVar26;
-  float fVar27;
-  float fVar28;
-  float fVar29;
-  float fVar30;
-  float fVar31;
-  float fVar32;
-  float fVar33;
-  float fVar34;
-  float fVar35;
-  float fVar36;
-  float fVar37;
-  float fVar38;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   int system_XMM12_Da;
   int system_XMM12_Db;
   int system_XMM12_Dc;
@@ -58847,7 +58847,7 @@ uint64_t ProcessFunction794c5(void)
 
   int_var_ = 0;
   if (0 < (int)systemParam_D) {
-    fVar25 = system_XMM6_Da;
+    float_var = system_XMM6_Da;
     if (7 < systemParam_D) {
       uint_var_ = systemParam_D & 0x80000007;
       if ((int)uint_var_ < 0) {
@@ -58862,30 +58862,30 @@ uint64_t ProcessFunction794c5(void)
       auVar17._8_4_ = (float)auVar20._8_4_;
       auVar17._12_4_ = (float)auVar20._12_4_;
       auVar20 = rcpps(auVar20,auVar17);
-      fVar25 = 0.0;
-      fVar29 = 0.0;
-      fVar31 = 0.0;
-      fVar18 = 0.0;
-      fVar19 = auVar20._0_4_;
-      fVar21 = auVar20._4_4_;
-      fVar22 = auVar20._8_4_;
-      fVar23 = auVar20._12_4_;
-      fVar30 = 0.0;
-      fVar32 = 0.0;
-      fVar33 = 0.0;
-      fVar34 = 0.0;
-      fVar35 = 0.0;
-      fVar36 = 0.0;
-      fVar37 = 0.0;
-      fVar38 = 0.0;
-      fVar24 = 0.0;
-      fVar26 = 0.0;
-      fVar27 = 0.0;
-      fVar28 = 0.0;
-      fVar19 = (fVar19 + fVar19) - fVar19 * fVar19 * auVar17._0_4_;
-      fVar21 = (fVar21 + fVar21) - fVar21 * fVar21 * auVar17._4_4_;
-      fVar22 = (fVar22 + fVar22) - fVar22 * fVar22 * auVar17._8_4_;
-      fVar23 = (fVar23 + fVar23) - fVar23 * fVar23 * auVar17._12_4_;
+      float_var = 0.0;
+      float_var = 0.0;
+      float_var = 0.0;
+      float_var = 0.0;
+      float_var = auVar20._0_4_;
+      float_var = auVar20._4_4_;
+      float_var = auVar20._8_4_;
+      float_var = auVar20._12_4_;
+      float_var = 0.0;
+      float_var = 0.0;
+      float_var = 0.0;
+      float_var = 0.0;
+      float_var = 0.0;
+      float_var = 0.0;
+      float_var = 0.0;
+      float_var = 0.0;
+      float_var = 0.0;
+      float_var = 0.0;
+      float_var = 0.0;
+      float_var = 0.0;
+      float_var = (float_var + float_var) - float_var * float_var * auVar17._0_4_;
+      float_var = (float_var + float_var) - float_var * float_var * auVar17._4_4_;
+      float_var = (float_var + float_var) - float_var * float_var * auVar17._8_4_;
+      float_var = (float_var + float_var) - float_var * float_var * auVar17._12_4_;
       ptr_float_var = system_RDI;
       int_var_ = int_var_;
       do {
@@ -58903,65 +58903,65 @@ uint64_t ProcessFunction794c5(void)
         float_var = ptr_float_var[6];
         float_var = ptr_float_var[7];
         ptr_float_var = ptr_float_var + 8;
-        fVar25 = (float)((uint)((float)int_var_ * (float)system_XMM12_Da * 0.5 * fVar19 * float_var +
-                               fVar25) & uint_var_ | ~uint_var_ & (uint)fVar25);
-        fVar29 = (float)((uint)((float)(int_var_ + 1) * (float)system_XMM12_Db * 0.5 * fVar21 * float_var +
-                               fVar29) & uint_var_ | ~uint_var_ & (uint)fVar29);
-        fVar31 = (float)((uint)((float)(int_var_ + 2) * (float)system_XMM12_Dc * 0.5 * fVar22 * float_var +
-                               fVar31) & uint_var_ | ~uint_var_ & (uint)fVar31);
-        fVar18 = (float)((uint)((float)(int_var_ + 3) * (float)system_XMM12_Dd * 0.5 * fVar23 * float_var +
-                               fVar18) & uint_var_ | ~uint_var_ & (uint)fVar18);
-        fVar24 = (float)((uint)(float_var + fVar24) & uint_var_ | ~uint_var_ & (uint)fVar24);
-        fVar26 = (float)((uint)(float_var + fVar26) & uint_var_ | ~uint_var_ & (uint)fVar26);
-        fVar27 = (float)((uint)(float_var + fVar27) & uint_var_ | ~uint_var_ & (uint)fVar27);
-        fVar28 = (float)((uint)(float_var + fVar28) & uint_var_ | ~uint_var_ & (uint)fVar28);
+        float_var = (float)((uint)((float)int_var_ * (float)system_XMM12_Da * 0.5 * float_var * float_var +
+                               float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+        float_var = (float)((uint)((float)(int_var_ + 1) * (float)system_XMM12_Db * 0.5 * float_var * float_var +
+                               float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+        float_var = (float)((uint)((float)(int_var_ + 2) * (float)system_XMM12_Dc * 0.5 * float_var * float_var +
+                               float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+        float_var = (float)((uint)((float)(int_var_ + 3) * (float)system_XMM12_Dd * 0.5 * float_var * float_var +
+                               float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+        float_var = (float)((uint)(float_var + float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+        float_var = (float)((uint)(float_var + float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+        float_var = (float)((uint)(float_var + float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+        float_var = (float)((uint)(float_var + float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
         uint_var_ = -(uint)(0.0001 < float_var);
         uint_var_ = -(uint)(0.0001 < float_var);
         uint_var_ = -(uint)(0.0001 < float_var);
         uint_var_ = -(uint)(0.0001 < float_var);
-        fVar30 = (float)((uint)((float)(int_var_ + 4) * (float)system_XMM12_Da * 0.5 * fVar19 * float_var +
-                               fVar30) & uint_var_ | ~uint_var_ & (uint)fVar30);
-        fVar32 = (float)((uint)((float)(int_var_ + 5) * (float)system_XMM12_Db * 0.5 * fVar21 * float_var +
-                               fVar32) & uint_var_ | ~uint_var_ & (uint)fVar32);
-        fVar33 = (float)((uint)((float)(int_var_ + 6) * (float)system_XMM12_Dc * 0.5 * fVar22 * float_var +
-                               fVar33) & uint_var_ | ~uint_var_ & (uint)fVar33);
-        fVar34 = (float)((uint)((float)(int_var_ + 7) * (float)system_XMM12_Dd * 0.5 * fVar23 * float_var +
-                               fVar34) & uint_var_ | ~uint_var_ & (uint)fVar34);
-        fVar35 = (float)((uint)(float_var + fVar35) & uint_var_ | ~uint_var_ & (uint)fVar35);
-        fVar36 = (float)((uint)(float_var + fVar36) & uint_var_ | ~uint_var_ & (uint)fVar36);
-        fVar37 = (float)((uint)(float_var + fVar37) & uint_var_ | ~uint_var_ & (uint)fVar37);
-        fVar38 = (float)((uint)(float_var + fVar38) & uint_var_ | ~uint_var_ & (uint)fVar38);
+        float_var = (float)((uint)((float)(int_var_ + 4) * (float)system_XMM12_Da * 0.5 * float_var * float_var +
+                               float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+        float_var = (float)((uint)((float)(int_var_ + 5) * (float)system_XMM12_Db * 0.5 * float_var * float_var +
+                               float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+        float_var = (float)((uint)((float)(int_var_ + 6) * (float)system_XMM12_Dc * 0.5 * float_var * float_var +
+                               float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+        float_var = (float)((uint)((float)(int_var_ + 7) * (float)system_XMM12_Dd * 0.5 * float_var * float_var +
+                               float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+        float_var = (float)((uint)(float_var + float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+        float_var = (float)((uint)(float_var + float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+        float_var = (float)((uint)(float_var + float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+        float_var = (float)((uint)(float_var + float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
         int_var_ = int_var_;
       } while (int_var_ < (int)(systemParam_D - uint_var_));
-      system_XMM6_Da = fVar27 + fVar37 + fVar24 + fVar35 + fVar28 + fVar38 + fVar26 + fVar36;
-      fVar25 = fVar31 + fVar33 + fVar25 + fVar30 + fVar18 + fVar34 + fVar29 + fVar32;
+      system_XMM6_Da = float_var + float_var + float_var + float_var + float_var + float_var + float_var + float_var;
+      float_var = float_var + float_var + float_var + float_var + float_var + float_var + float_var + float_var;
     }
     if (int_var_ < (int)systemParam_D) {
       if (3 < (int)(systemParam_D - int_var_)) {
         int_var_ = int_var_ + 2;
-        fVar29 = (float)system_EBX;
+        float_var = (float)system_EBX;
         ptr_float_var = system_RDI + (longlong)int_var_ + 2;
-        fVar31 = (float)(int)systemParam_D;
+        float_var = (float)(int)systemParam_D;
         do {
-          fVar18 = ptr_float_var[-2];
-          if (0.0001 < fVar18) {
-            system_XMM6_Da = system_XMM6_Da + fVar18;
-            fVar25 = fVar25 + ((fVar29 * 0.5 * (float)int_var_) / fVar31) * fVar18;
+          float_var = ptr_float_var[-2];
+          if (0.0001 < float_var) {
+            system_XMM6_Da = system_XMM6_Da + float_var;
+            float_var = float_var + ((float_var * 0.5 * (float)int_var_) / float_var) * float_var;
           }
-          fVar18 = ptr_float_var[-1];
-          if (0.0001 < fVar18) {
-            system_XMM6_Da = system_XMM6_Da + fVar18;
-            fVar25 = fVar25 + (((float)(int_var_ + -1) * fVar29 * 0.5) / fVar31) * fVar18;
+          float_var = ptr_float_var[-1];
+          if (0.0001 < float_var) {
+            system_XMM6_Da = system_XMM6_Da + float_var;
+            float_var = float_var + (((float)(int_var_ + -1) * float_var * 0.5) / float_var) * float_var;
           }
-          fVar18 = *ptr_float_var;
-          if (0.0001 < fVar18) {
-            system_XMM6_Da = system_XMM6_Da + fVar18;
-            fVar25 = fVar25 + (((float)int_var_ * fVar29 * 0.5) / fVar31) * fVar18;
+          float_var = *ptr_float_var;
+          if (0.0001 < float_var) {
+            system_XMM6_Da = system_XMM6_Da + float_var;
+            float_var = float_var + (((float)int_var_ * float_var * 0.5) / float_var) * float_var;
           }
-          fVar18 = ptr_float_var[1];
-          if (0.0001 < fVar18) {
-            system_XMM6_Da = system_XMM6_Da + fVar18;
-            fVar25 = fVar25 + (((float)(int_var_ + 1) * fVar29 * 0.5) / fVar31) * fVar18;
+          float_var = ptr_float_var[1];
+          if (0.0001 < float_var) {
+            system_XMM6_Da = system_XMM6_Da + float_var;
+            float_var = float_var + (((float)(int_var_ + 1) * float_var * 0.5) / float_var) * float_var;
           }
           ptr_float_var = ptr_float_var + 4;
           int_var_ = int_var_ + 4;
@@ -58971,11 +58971,11 @@ uint64_t ProcessFunction794c5(void)
       if (int_var_ < (int)systemParam_D) {
         ptr_float_var = system_RDI + int_var_;
         do {
-          fVar29 = *ptr_float_var;
-          if (0.0001 < fVar29) {
-            system_XMM6_Da = system_XMM6_Da + fVar29;
-            fVar25 = fVar25 + (((float)system_EBX * 0.5 * (float)int_var_) / (float)(int)systemParam_D) *
-                              fVar29;
+          float_var = *ptr_float_var;
+          if (0.0001 < float_var) {
+            system_XMM6_Da = system_XMM6_Da + float_var;
+            float_var = float_var + (((float)system_EBX * 0.5 * (float)int_var_) / (float)(int)systemParam_D) *
+                              float_var;
           }
           ptr_float_var = ptr_float_var + 1;
           int_var_ = int_var_ + 1;
@@ -58983,7 +58983,7 @@ uint64_t ProcessFunction794c5(void)
       }
     }
     if (0.001 < system_XMM6_Da) {
-      *in_R11 = fVar25 / system_XMM6_Da;
+      *in_R11 = float_var / system_XMM6_Da;
       return 0;
     }
   }
@@ -59013,31 +59013,31 @@ uint64_t ProcessFunction794dd(int handleIdentifier,uint64_t resourceIdentifier,u
   uint uint_var_;
   uint uint_var_;
   uint8_t auVar16 [16];
-  float fVar17;
+  float float_var;
   int in_XMM5_Da;
-  float fVar18;
+  float float_var;
   int in_XMM5_Db;
-  float fVar20;
+  float float_var;
   int in_XMM5_Dc;
-  float fVar21;
+  float float_var;
   int in_XMM5_Dd;
   uint8_t auVar19 [16];
-  float fVar22;
-  float fVar23;
-  float fVar24;
-  float fVar25;
-  float fVar26;
-  float fVar27;
-  float fVar28;
-  float fVar29;
-  float fVar30;
-  float fVar31;
-  float fVar32;
-  float fVar33;
-  float fVar34;
-  float fVar35;
-  float fVar36;
-  float fVar37;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   int system_XMM12_Da;
   int system_XMM12_Db;
   int system_XMM12_Dc;
@@ -59056,30 +59056,30 @@ uint64_t ProcessFunction794dd(int handleIdentifier,uint64_t resourceIdentifier,u
   auVar16._8_4_ = (float)auVar19._8_4_;
   auVar16._12_4_ = (float)auVar19._12_4_;
   auVar19 = rcpps(auVar19,auVar16);
-  fVar24 = 0.0;
-  fVar28 = 0.0;
-  fVar30 = 0.0;
-  fVar17 = 0.0;
-  fVar18 = auVar19._0_4_;
-  fVar20 = auVar19._4_4_;
-  fVar21 = auVar19._8_4_;
-  fVar22 = auVar19._12_4_;
-  fVar29 = 0.0;
-  fVar31 = 0.0;
-  fVar32 = 0.0;
-  fVar33 = 0.0;
-  fVar34 = 0.0;
-  fVar35 = 0.0;
-  fVar36 = 0.0;
-  fVar37 = 0.0;
-  fVar23 = 0.0;
-  fVar25 = 0.0;
-  fVar26 = 0.0;
-  fVar27 = 0.0;
-  fVar18 = (fVar18 + fVar18) - fVar18 * fVar18 * auVar16._0_4_;
-  fVar20 = (fVar20 + fVar20) - fVar20 * fVar20 * auVar16._4_4_;
-  fVar21 = (fVar21 + fVar21) - fVar21 * fVar21 * auVar16._8_4_;
-  fVar22 = (fVar22 + fVar22) - fVar22 * fVar22 * auVar16._12_4_;
+  float_var = 0.0;
+  float_var = 0.0;
+  float_var = 0.0;
+  float_var = 0.0;
+  float_var = auVar19._0_4_;
+  float_var = auVar19._4_4_;
+  float_var = auVar19._8_4_;
+  float_var = auVar19._12_4_;
+  float_var = 0.0;
+  float_var = 0.0;
+  float_var = 0.0;
+  float_var = 0.0;
+  float_var = 0.0;
+  float_var = 0.0;
+  float_var = 0.0;
+  float_var = 0.0;
+  float_var = 0.0;
+  float_var = 0.0;
+  float_var = 0.0;
+  float_var = 0.0;
+  float_var = (float_var + float_var) - float_var * float_var * auVar16._0_4_;
+  float_var = (float_var + float_var) - float_var * float_var * auVar16._4_4_;
+  float_var = (float_var + float_var) - float_var * float_var * auVar16._8_4_;
+  float_var = (float_var + float_var) - float_var * float_var * auVar16._12_4_;
   ptr_float_var = system_RDI;
   do {
     int_var_ = handleIdentifier;
@@ -59097,63 +59097,63 @@ uint64_t ProcessFunction794dd(int handleIdentifier,uint64_t resourceIdentifier,u
     float_var = ptr_float_var[6];
     float_var = ptr_float_var[7];
     ptr_float_var = ptr_float_var + 8;
-    fVar24 = (float)((uint)((float)int_var_ * (float)system_XMM12_Da * 0.5 * fVar18 * float_var + fVar24) &
-                     uint_var_ | ~uint_var_ & (uint)fVar24);
-    fVar28 = (float)((uint)((float)(int_var_ + 1) * (float)system_XMM12_Db * 0.5 * fVar20 * float_var +
-                           fVar28) & uint_var_ | ~uint_var_ & (uint)fVar28);
-    fVar30 = (float)((uint)((float)(int_var_ + 2) * (float)system_XMM12_Dc * 0.5 * fVar21 * float_var +
-                           fVar30) & uint_var_ | ~uint_var_ & (uint)fVar30);
-    fVar17 = (float)((uint)((float)(int_var_ + 3) * (float)system_XMM12_Dd * 0.5 * fVar22 * float_var +
-                           fVar17) & uint_var_ | ~uint_var_ & (uint)fVar17);
-    fVar23 = (float)((uint)(float_var + fVar23) & uint_var_ | ~uint_var_ & (uint)fVar23);
-    fVar25 = (float)((uint)(float_var + fVar25) & uint_var_ | ~uint_var_ & (uint)fVar25);
-    fVar26 = (float)((uint)(float_var + fVar26) & uint_var_ | ~uint_var_ & (uint)fVar26);
-    fVar27 = (float)((uint)(float_var + fVar27) & uint_var_ | ~uint_var_ & (uint)fVar27);
+    float_var = (float)((uint)((float)int_var_ * (float)system_XMM12_Da * 0.5 * float_var * float_var + float_var) &
+                     uint_var_ | ~uint_var_ & (uint)float_var);
+    float_var = (float)((uint)((float)(int_var_ + 1) * (float)system_XMM12_Db * 0.5 * float_var * float_var +
+                           float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+    float_var = (float)((uint)((float)(int_var_ + 2) * (float)system_XMM12_Dc * 0.5 * float_var * float_var +
+                           float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+    float_var = (float)((uint)((float)(int_var_ + 3) * (float)system_XMM12_Dd * 0.5 * float_var * float_var +
+                           float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+    float_var = (float)((uint)(float_var + float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+    float_var = (float)((uint)(float_var + float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+    float_var = (float)((uint)(float_var + float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+    float_var = (float)((uint)(float_var + float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
     uint_var_ = -(uint)(0.0001 < float_var);
     uint_var_ = -(uint)(0.0001 < float_var);
     uint_var_ = -(uint)(0.0001 < float_var);
     uint_var_ = -(uint)(0.0001 < float_var);
-    fVar29 = (float)((uint)((float)(int_var_ + 4) * (float)system_XMM12_Da * 0.5 * fVar18 * float_var +
-                           fVar29) & uint_var_ | ~uint_var_ & (uint)fVar29);
-    fVar31 = (float)((uint)((float)(int_var_ + 5) * (float)system_XMM12_Db * 0.5 * fVar20 * float_var +
-                           fVar31) & uint_var_ | ~uint_var_ & (uint)fVar31);
-    fVar32 = (float)((uint)((float)(int_var_ + 6) * (float)system_XMM12_Dc * 0.5 * fVar21 * float_var +
-                           fVar32) & uint_var_ | ~uint_var_ & (uint)fVar32);
-    fVar33 = (float)((uint)((float)(int_var_ + 7) * (float)system_XMM12_Dd * 0.5 * fVar22 * float_var +
-                           fVar33) & uint_var_ | ~uint_var_ & (uint)fVar33);
-    fVar34 = (float)((uint)(float_var + fVar34) & uint_var_ | ~uint_var_ & (uint)fVar34);
-    fVar35 = (float)((uint)(float_var + fVar35) & uint_var_ | ~uint_var_ & (uint)fVar35);
-    fVar36 = (float)((uint)(float_var + fVar36) & uint_var_ | ~uint_var_ & (uint)fVar36);
-    fVar37 = (float)((uint)(float_var + fVar37) & uint_var_ | ~uint_var_ & (uint)fVar37);
+    float_var = (float)((uint)((float)(int_var_ + 4) * (float)system_XMM12_Da * 0.5 * float_var * float_var +
+                           float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+    float_var = (float)((uint)((float)(int_var_ + 5) * (float)system_XMM12_Db * 0.5 * float_var * float_var +
+                           float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+    float_var = (float)((uint)((float)(int_var_ + 6) * (float)system_XMM12_Dc * 0.5 * float_var * float_var +
+                           float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+    float_var = (float)((uint)((float)(int_var_ + 7) * (float)system_XMM12_Dd * 0.5 * float_var * float_var +
+                           float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+    float_var = (float)((uint)(float_var + float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+    float_var = (float)((uint)(float_var + float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+    float_var = (float)((uint)(float_var + float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
+    float_var = (float)((uint)(float_var + float_var) & uint_var_ | ~uint_var_ & (uint)float_var);
   } while (handleIdentifier < (int)(systemFlags - uint_var_));
-  fVar18 = fVar26 + fVar36 + fVar23 + fVar34 + fVar27 + fVar37 + fVar25 + fVar35;
-  fVar24 = fVar30 + fVar32 + fVar24 + fVar29 + fVar17 + fVar33 + fVar28 + fVar31;
+  float_var = float_var + float_var + float_var + float_var + float_var + float_var + float_var + float_var;
+  float_var = float_var + float_var + float_var + float_var + float_var + float_var + float_var + float_var;
   if (handleIdentifier < (int)systemFlags) {
     if (3 < (int)(systemFlags - handleIdentifier)) {
       int_var_ = int_var_ + 10;
-      fVar28 = (float)system_EBX;
+      float_var = (float)system_EBX;
       ptr_float_var = system_RDI + (longlong)handleIdentifier + 2;
-      fVar30 = (float)(int)systemFlags;
+      float_var = (float)(int)systemFlags;
       do {
-        fVar17 = ptr_float_var[-2];
-        if (0.0001 < fVar17) {
-          fVar18 = fVar18 + fVar17;
-          fVar24 = fVar24 + ((fVar28 * 0.5 * (float)handleIdentifier) / fVar30) * fVar17;
+        float_var = ptr_float_var[-2];
+        if (0.0001 < float_var) {
+          float_var = float_var + float_var;
+          float_var = float_var + ((float_var * 0.5 * (float)handleIdentifier) / float_var) * float_var;
         }
-        fVar17 = ptr_float_var[-1];
-        if (0.0001 < fVar17) {
-          fVar18 = fVar18 + fVar17;
-          fVar24 = fVar24 + (((float)(int_var_ + -1) * fVar28 * 0.5) / fVar30) * fVar17;
+        float_var = ptr_float_var[-1];
+        if (0.0001 < float_var) {
+          float_var = float_var + float_var;
+          float_var = float_var + (((float)(int_var_ + -1) * float_var * 0.5) / float_var) * float_var;
         }
-        fVar17 = *ptr_float_var;
-        if (0.0001 < fVar17) {
-          fVar18 = fVar18 + fVar17;
-          fVar24 = fVar24 + (((float)int_var_ * fVar28 * 0.5) / fVar30) * fVar17;
+        float_var = *ptr_float_var;
+        if (0.0001 < float_var) {
+          float_var = float_var + float_var;
+          float_var = float_var + (((float)int_var_ * float_var * 0.5) / float_var) * float_var;
         }
-        fVar17 = ptr_float_var[1];
-        if (0.0001 < fVar17) {
-          fVar18 = fVar18 + fVar17;
-          fVar24 = fVar24 + (((float)(int_var_ + 1) * fVar28 * 0.5) / fVar30) * fVar17;
+        float_var = ptr_float_var[1];
+        if (0.0001 < float_var) {
+          float_var = float_var + float_var;
+          float_var = float_var + (((float)(int_var_ + 1) * float_var * 0.5) / float_var) * float_var;
         }
         ptr_float_var = ptr_float_var + 4;
         handleIdentifier = handleIdentifier + 4;
@@ -59163,22 +59163,22 @@ uint64_t ProcessFunction794dd(int handleIdentifier,uint64_t resourceIdentifier,u
     if (handleIdentifier < (int)systemFlags) {
       ptr_float_var = system_RDI + handleIdentifier;
       do {
-        fVar28 = *ptr_float_var;
-        if (0.0001 < fVar28) {
-          fVar18 = fVar18 + fVar28;
-          fVar24 = fVar24 + (((float)system_EBX * 0.5 * (float)handleIdentifier) / (float)(int)systemFlags) *
-                            fVar28;
+        float_var = *ptr_float_var;
+        if (0.0001 < float_var) {
+          float_var = float_var + float_var;
+          float_var = float_var + (((float)system_EBX * 0.5 * (float)handleIdentifier) / (float)(int)systemFlags) *
+                            float_var;
         }
         ptr_float_var = ptr_float_var + 1;
         handleIdentifier = handleIdentifier + 1;
       } while (handleIdentifier < (int)systemFlags);
     }
   }
-  if (fVar18 <= 0.001) {
+  if (float_var <= 0.001) {
     *in_R11 = 0.0;
   }
   else {
-    *in_R11 = fVar24 / fVar18;
+    *in_R11 = float_var / float_var;
   }
   return 0;
 }
@@ -59273,10 +59273,10 @@ uint64_t ProcessFunction797e0(longlong handleIdentifier,uint resourceIdentifier)
   longlong long_var_;
   ulonglong uint_var_;
   ulonglong uint_var_;
-  float fVar19;
-  float fVar20;
-  float fVar21;
-  float fVar22;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   uint32_t ustack_var;
 
   uint_var_ = (ulonglong)resourceIdentifier;
@@ -59300,8 +59300,8 @@ uint64_t ProcessFunction797e0(longlong handleIdentifier,uint resourceIdentifier)
               uint_var_ = uint_var_ - 1;
             } while (uint_var_ != 0);
           }
-          fVar19 = (float)(int)uint_var_ * (1.0 / (float)int_var_);
-          uint_var_ = (uint)(fVar19 * 32768.0);
+          float_var = (float)(int)uint_var_ * (1.0 / (float)int_var_);
+          uint_var_ = (uint)(float_var * 32768.0);
           if ((int)uint_var_ < 0) {
             uint_var_ = -uint_var_;
           }
@@ -59309,21 +59309,21 @@ uint64_t ProcessFunction797e0(longlong handleIdentifier,uint resourceIdentifier)
           uint_var_ = (ulonglong)uint_var_;
           uint_var_ = uint_var_ >> 0xd;
           if (uint_var_ >> 0xd == 0) {
-            fVar22 = *(float *)(handleIdentifier + 0x4cc + uint_var_ * 4);
+            float_var = *(float *)(handleIdentifier + 0x4cc + uint_var_ * 4);
           }
           else if (uint_var_ == 1) {
-            fVar22 = -*(float *)(handleIdentifier + (0x4132 - (ulonglong)uint_var_) * 4);
+            float_var = -*(float *)(handleIdentifier + (0x4132 - (ulonglong)uint_var_) * 4);
           }
           else if (uint_var_ == 2) {
-            fVar22 = -*(float *)(handleIdentifier + -0xfb34 + uint_var_ * 4);
+            float_var = -*(float *)(handleIdentifier + -0xfb34 + uint_var_ * 4);
           }
           else if (uint_var_ == 3) {
-            fVar22 = *(float *)(handleIdentifier + (0x8132 - uint_var_) * 4);
+            float_var = *(float *)(handleIdentifier + (0x8132 - uint_var_) * 4);
           }
           else {
-            fVar22 = 0.0;
+            float_var = 0.0;
           }
-          uint_var_ = (uint)((fVar19 - 0.25) * 32768.0);
+          uint_var_ = (uint)((float_var - 0.25) * 32768.0);
           if ((int)uint_var_ < 0) {
             uint_var_ = -uint_var_;
           }
@@ -59331,23 +59331,23 @@ uint64_t ProcessFunction797e0(longlong handleIdentifier,uint resourceIdentifier)
           uint_var_ = (ulonglong)uint_var_;
           uint_var_ = uint_var_ >> 0xd;
           if (uint_var_ >> 0xd == 0) {
-            fVar19 = *(float *)(handleIdentifier + 0x4cc + uint_var_ * 4);
+            float_var = *(float *)(handleIdentifier + 0x4cc + uint_var_ * 4);
           }
           else if (uint_var_ == 1) {
-            fVar19 = -*(float *)(handleIdentifier + (0x4132 - (ulonglong)uint_var_) * 4);
+            float_var = -*(float *)(handleIdentifier + (0x4132 - (ulonglong)uint_var_) * 4);
           }
           else if (uint_var_ == 2) {
-            fVar19 = -*(float *)(handleIdentifier + -0xfb34 + uint_var_ * 4);
+            float_var = -*(float *)(handleIdentifier + -0xfb34 + uint_var_ * 4);
           }
           else if (uint_var_ == 3) {
-            fVar19 = *(float *)(handleIdentifier + (0x8132 - uint_var_) * 4);
+            float_var = *(float *)(handleIdentifier + (0x8132 - uint_var_) * 4);
           }
           else {
-            fVar19 = 0.0;
+            float_var = 0.0;
           }
           long_var_ = (longlong)int_var_;
           long_var_ = (longlong)(int)(int_var_ + uint_var_);
-          fVar19 = -fVar19;
+          float_var = -float_var;
           if (long_var_ < long_var_) {
             int_var_ = int_var_;
             if (3 < long_var_ - long_var_) {
@@ -59359,51 +59359,51 @@ uint64_t ProcessFunction797e0(longlong handleIdentifier,uint resourceIdentifier)
                 uint_var_ = (ulonglong)(uint_var_ - 1);
                 uint_var_ = (ulonglong)(uint_var_ - 2);
                 uint_var_ = uint_var_ - 3;
-                fVar21 = *(float *)(long_var_ + 4 + (ulonglong)uint_var_ * 8);
+                float_var = *(float *)(long_var_ + 4 + (ulonglong)uint_var_ * 8);
                 float_var = *(float *)(long_var_ + (ulonglong)uint_var_ * 8);
                 float_var = *(float *)(long_var_ + long_var_ * 8);
                 float_var = *(float *)(long_var_ + 4 + long_var_ * 8);
-                fVar20 = float_var * fVar22 - fVar21 * fVar19;
-                fVar21 = fVar21 * fVar22 + float_var * fVar19;
-                *(float *)(long_var_ + long_var_ * 8) = fVar20 + float_var;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + long_var_ * 8) = fVar21 + float_var;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + (ulonglong)uint_var_ * 8) = float_var - fVar20;
+                float_var = float_var * float_var - float_var * float_var;
+                float_var = float_var * float_var + float_var * float_var;
+                *(float *)(long_var_ + long_var_ * 8) = float_var + float_var;
+                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + long_var_ * 8) = float_var + float_var;
+                *(float *)(*(longlong *)(handleIdentifier + 0x218) + (ulonglong)uint_var_ * 8) = float_var - float_var;
                 *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + (ulonglong)uint_var_ * 8) =
-                     float_var - fVar21;
+                     float_var - float_var;
                 long_var_ = *(longlong *)(handleIdentifier + 0x218);
-                fVar21 = *(float *)(long_var_ + 4 + uint_var_ * 8);
+                float_var = *(float *)(long_var_ + 4 + uint_var_ * 8);
                 float_var = *(float *)(long_var_ + uint_var_ * 8);
                 float_var = *(float *)(long_var_ + 8 + long_var_ * 8);
                 float_var = *(float *)(long_var_ + 0xc + long_var_ * 8);
-                fVar20 = float_var * fVar22 - fVar21 * fVar19;
-                fVar21 = fVar21 * fVar22 + float_var * fVar19;
-                *(float *)(long_var_ + 8 + long_var_ * 8) = fVar20 + float_var;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 0xc + long_var_ * 8) = fVar21 + float_var;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + uint_var_ * 8) = float_var - fVar20;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + uint_var_ * 8) = float_var - fVar21;
+                float_var = float_var * float_var - float_var * float_var;
+                float_var = float_var * float_var + float_var * float_var;
+                *(float *)(long_var_ + 8 + long_var_ * 8) = float_var + float_var;
+                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 0xc + long_var_ * 8) = float_var + float_var;
+                *(float *)(*(longlong *)(handleIdentifier + 0x218) + uint_var_ * 8) = float_var - float_var;
+                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + uint_var_ * 8) = float_var - float_var;
                 long_var_ = *(longlong *)(handleIdentifier + 0x218);
-                fVar21 = *(float *)(long_var_ + uint_var_ * 8);
+                float_var = *(float *)(long_var_ + uint_var_ * 8);
                 float_var = *(float *)(long_var_ + 4 + uint_var_ * 8);
                 float_var = *(float *)(long_var_ + SYSTEM_DATA_COMPARE_SIZE + long_var_ * 8);
                 float_var = *(float *)(long_var_ + 0x14 + long_var_ * 8);
-                fVar20 = fVar21 * fVar22 - float_var * fVar19;
-                fVar21 = float_var * fVar22 + fVar21 * fVar19;
-                *(float *)(long_var_ + SYSTEM_DATA_COMPARE_SIZE + long_var_ * 8) = fVar20 + float_var;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 0x14 + long_var_ * 8) = fVar21 + float_var;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + uint_var_ * 8) = float_var - fVar20;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + uint_var_ * 8) = float_var - fVar21;
+                float_var = float_var * float_var - float_var * float_var;
+                float_var = float_var * float_var + float_var * float_var;
+                *(float *)(long_var_ + SYSTEM_DATA_COMPARE_SIZE + long_var_ * 8) = float_var + float_var;
+                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 0x14 + long_var_ * 8) = float_var + float_var;
+                *(float *)(*(longlong *)(handleIdentifier + 0x218) + uint_var_ * 8) = float_var - float_var;
+                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + uint_var_ * 8) = float_var - float_var;
                 long_var_ = *(longlong *)(handleIdentifier + 0x218);
-                fVar21 = *(float *)(long_var_ + uint_var_ * 8);
+                float_var = *(float *)(long_var_ + uint_var_ * 8);
                 float_var = *(float *)(long_var_ + 4 + uint_var_ * 8);
                 float_var = *(float *)(long_var_ + 0x18 + long_var_ * 8);
                 float_var = *(float *)(long_var_ + 0x1c + long_var_ * 8);
-                fVar20 = fVar21 * fVar22 - float_var * fVar19;
-                fVar21 = float_var * fVar22 + fVar21 * fVar19;
-                *(float *)(long_var_ + 0x18 + long_var_ * 8) = fVar20 + float_var;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 0x1c + long_var_ * 8) = fVar21 + float_var;
+                float_var = float_var * float_var - float_var * float_var;
+                float_var = float_var * float_var + float_var * float_var;
+                *(float *)(long_var_ + 0x18 + long_var_ * 8) = float_var + float_var;
+                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 0x1c + long_var_ * 8) = float_var + float_var;
                 long_var_ = long_var_ + 4;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + uint_var_ * 8) = float_var - fVar20;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + uint_var_ * 8) = float_var - fVar21;
+                *(float *)(*(longlong *)(handleIdentifier + 0x218) + uint_var_ * 8) = float_var - float_var;
+                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + uint_var_ * 8) = float_var - float_var;
                 uint_var_ = uint_var_ + 4;
               } while (long_var_ < long_var_ + -3);
             }
@@ -59412,17 +59412,17 @@ uint64_t ProcessFunction797e0(longlong handleIdentifier,uint resourceIdentifier)
               do {
                 uint_var_ = (ulonglong)uint_var_;
                 long_var_ = *(longlong *)(handleIdentifier + 0x218);
-                fVar21 = *(float *)(long_var_ + uint_var_ * 8);
+                float_var = *(float *)(long_var_ + uint_var_ * 8);
                 float_var = *(float *)(long_var_ + 4 + uint_var_ * 8);
                 float_var = *(float *)(long_var_ + long_var_ * 8);
                 float_var = *(float *)(long_var_ + 4 + long_var_ * 8);
-                fVar20 = fVar21 * fVar22 - float_var * fVar19;
-                fVar21 = float_var * fVar22 + fVar21 * fVar19;
-                *(float *)(long_var_ + long_var_ * 8) = fVar20 + float_var;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + long_var_ * 8) = fVar21 + float_var;
+                float_var = float_var * float_var - float_var * float_var;
+                float_var = float_var * float_var + float_var * float_var;
+                *(float *)(long_var_ + long_var_ * 8) = float_var + float_var;
+                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + long_var_ * 8) = float_var + float_var;
                 long_var_ = long_var_ + 1;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + uint_var_ * 8) = float_var - fVar20;
-                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + uint_var_ * 8) = float_var - fVar21;
+                *(float *)(*(longlong *)(handleIdentifier + 0x218) + uint_var_ * 8) = float_var - float_var;
+                *(float *)(*(longlong *)(handleIdentifier + 0x218) + 4 + uint_var_ * 8) = float_var - float_var;
                 uint_var_ = uint_var_ + 1;
               } while (long_var_ < long_var_);
             }
@@ -59461,10 +59461,10 @@ uint64_t ProcessFunction79832(uint64_t handleIdentifier,uint64_t resourceIdentif
   uint system_R13D;
   uint system_R14D;
   ulonglong uint_var_;
-  float fVar17;
-  float fVar18;
-  float fVar19;
-  float fVar20;
+  float float_var;
+  float float_var;
+  float float_var;
+  float float_var;
   float system_XMM10_Da;
   uint in_stack_000000a8;
 
@@ -59493,19 +59493,19 @@ uint64_t ProcessFunction79832(uint64_t handleIdentifier,uint64_t resourceIdentif
         uint_var_ = (ulonglong)uint_var_;
         uint_var_ = uint_var_ >> 0xd;
         if (uint_var_ >> 0xd == 0) {
-          fVar20 = *(float *)(in_R11 + 0x4cc + uint_var_ * 4);
+          float_var = *(float *)(in_R11 + 0x4cc + uint_var_ * 4);
         }
         else if (uint_var_ == 1) {
-          fVar20 = -*(float *)(in_R11 + (0x4132 - (ulonglong)uint_var_) * 4);
+          float_var = -*(float *)(in_R11 + (0x4132 - (ulonglong)uint_var_) * 4);
         }
         else if (uint_var_ == 2) {
-          fVar20 = -*(float *)(in_R11 + -0xfb34 + uint_var_ * 4);
+          float_var = -*(float *)(in_R11 + -0xfb34 + uint_var_ * 4);
         }
         else if (uint_var_ == 3) {
-          fVar20 = *(float *)(in_R11 + (0x8132 - uint_var_) * 4);
+          float_var = *(float *)(in_R11 + (0x8132 - uint_var_) * 4);
         }
         else {
-          fVar20 = 0.0;
+          float_var = 0.0;
         }
         uint_var_ = (uint)(((float)(int)uint_var_ * system_XMM10_Da - 0.25) * 32768.0);
         if ((int)uint_var_ < 0) {
@@ -59515,23 +59515,23 @@ uint64_t ProcessFunction79832(uint64_t handleIdentifier,uint64_t resourceIdentif
         uint_var_ = (ulonglong)uint_var_;
         uint_var_ = uint_var_ >> 0xd;
         if (uint_var_ >> 0xd == 0) {
-          fVar19 = *(float *)(in_R11 + 0x4cc + uint_var_ * 4);
+          float_var = *(float *)(in_R11 + 0x4cc + uint_var_ * 4);
         }
         else if (uint_var_ == 1) {
-          fVar19 = -*(float *)(in_R11 + (0x4132 - (ulonglong)uint_var_) * 4);
+          float_var = -*(float *)(in_R11 + (0x4132 - (ulonglong)uint_var_) * 4);
         }
         else if (uint_var_ == 2) {
-          fVar19 = -*(float *)(in_R11 + -0xfb34 + uint_var_ * 4);
+          float_var = -*(float *)(in_R11 + -0xfb34 + uint_var_ * 4);
         }
         else if (uint_var_ == 3) {
-          fVar19 = *(float *)(in_R11 + (0x8132 - uint_var_) * 4);
+          float_var = *(float *)(in_R11 + (0x8132 - uint_var_) * 4);
         }
         else {
-          fVar19 = 0.0;
+          float_var = 0.0;
         }
         long_var_ = (longlong)int_var_;
         long_var_ = (longlong)(int)(int_var_ + system_R14D);
-        fVar19 = -fVar19;
+        float_var = -float_var;
         if (long_var_ < long_var_) {
           int_var_ = int_var_;
           if (3 < long_var_ - long_var_) {
@@ -59543,50 +59543,50 @@ uint64_t ProcessFunction79832(uint64_t handleIdentifier,uint64_t resourceIdentif
               uint_var_ = (ulonglong)(uint_var_ - 1);
               uint_var_ = (ulonglong)(uint_var_ - 2);
               uint_var_ = uint_var_ - 3;
-              fVar18 = *(float *)(long_var_ + 4 + (ulonglong)uint_var_ * 8);
+              float_var = *(float *)(long_var_ + 4 + (ulonglong)uint_var_ * 8);
               float_var = *(float *)(long_var_ + (ulonglong)uint_var_ * 8);
               float_var = *(float *)(long_var_ + long_var_ * 8);
               float_var = *(float *)(long_var_ + 4 + long_var_ * 8);
-              fVar17 = float_var * fVar20 - fVar18 * fVar19;
-              fVar18 = fVar18 * fVar20 + float_var * fVar19;
-              *(float *)(long_var_ + long_var_ * 8) = fVar17 + float_var;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + long_var_ * 8) = fVar18 + float_var;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + (ulonglong)uint_var_ * 8) = float_var - fVar17;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + (ulonglong)uint_var_ * 8) = float_var - fVar18;
+              float_var = float_var * float_var - float_var * float_var;
+              float_var = float_var * float_var + float_var * float_var;
+              *(float *)(long_var_ + long_var_ * 8) = float_var + float_var;
+              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + long_var_ * 8) = float_var + float_var;
+              *(float *)(*(longlong *)(in_R11 + 0x218) + (ulonglong)uint_var_ * 8) = float_var - float_var;
+              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + (ulonglong)uint_var_ * 8) = float_var - float_var;
               long_var_ = *(longlong *)(in_R11 + 0x218);
-              fVar18 = *(float *)(long_var_ + 4 + uint_var_ * 8);
+              float_var = *(float *)(long_var_ + 4 + uint_var_ * 8);
               float_var = *(float *)(long_var_ + uint_var_ * 8);
               float_var = *(float *)(long_var_ + 8 + long_var_ * 8);
               float_var = *(float *)(long_var_ + 0xc + long_var_ * 8);
-              fVar17 = float_var * fVar20 - fVar18 * fVar19;
-              fVar18 = fVar18 * fVar20 + float_var * fVar19;
-              *(float *)(long_var_ + 8 + long_var_ * 8) = fVar17 + float_var;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + 0xc + long_var_ * 8) = fVar18 + float_var;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + uint_var_ * 8) = float_var - fVar17;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + uint_var_ * 8) = float_var - fVar18;
+              float_var = float_var * float_var - float_var * float_var;
+              float_var = float_var * float_var + float_var * float_var;
+              *(float *)(long_var_ + 8 + long_var_ * 8) = float_var + float_var;
+              *(float *)(*(longlong *)(in_R11 + 0x218) + 0xc + long_var_ * 8) = float_var + float_var;
+              *(float *)(*(longlong *)(in_R11 + 0x218) + uint_var_ * 8) = float_var - float_var;
+              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + uint_var_ * 8) = float_var - float_var;
               long_var_ = *(longlong *)(in_R11 + 0x218);
-              fVar18 = *(float *)(long_var_ + uint_var_ * 8);
+              float_var = *(float *)(long_var_ + uint_var_ * 8);
               float_var = *(float *)(long_var_ + 4 + uint_var_ * 8);
               float_var = *(float *)(long_var_ + SYSTEM_DATA_COMPARE_SIZE + long_var_ * 8);
               float_var = *(float *)(long_var_ + 0x14 + long_var_ * 8);
-              fVar17 = fVar18 * fVar20 - float_var * fVar19;
-              fVar18 = float_var * fVar20 + fVar18 * fVar19;
-              *(float *)(long_var_ + SYSTEM_DATA_COMPARE_SIZE + long_var_ * 8) = fVar17 + float_var;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + 0x14 + long_var_ * 8) = fVar18 + float_var;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + uint_var_ * 8) = float_var - fVar17;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + uint_var_ * 8) = float_var - fVar18;
+              float_var = float_var * float_var - float_var * float_var;
+              float_var = float_var * float_var + float_var * float_var;
+              *(float *)(long_var_ + SYSTEM_DATA_COMPARE_SIZE + long_var_ * 8) = float_var + float_var;
+              *(float *)(*(longlong *)(in_R11 + 0x218) + 0x14 + long_var_ * 8) = float_var + float_var;
+              *(float *)(*(longlong *)(in_R11 + 0x218) + uint_var_ * 8) = float_var - float_var;
+              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + uint_var_ * 8) = float_var - float_var;
               long_var_ = *(longlong *)(in_R11 + 0x218);
-              fVar18 = *(float *)(long_var_ + uint_var_ * 8);
+              float_var = *(float *)(long_var_ + uint_var_ * 8);
               float_var = *(float *)(long_var_ + 4 + uint_var_ * 8);
               float_var = *(float *)(long_var_ + 0x18 + long_var_ * 8);
               float_var = *(float *)(long_var_ + 0x1c + long_var_ * 8);
-              fVar17 = fVar18 * fVar20 - float_var * fVar19;
-              fVar18 = float_var * fVar20 + fVar18 * fVar19;
-              *(float *)(long_var_ + 0x18 + long_var_ * 8) = fVar17 + float_var;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + 0x1c + long_var_ * 8) = fVar18 + float_var;
+              float_var = float_var * float_var - float_var * float_var;
+              float_var = float_var * float_var + float_var * float_var;
+              *(float *)(long_var_ + 0x18 + long_var_ * 8) = float_var + float_var;
+              *(float *)(*(longlong *)(in_R11 + 0x218) + 0x1c + long_var_ * 8) = float_var + float_var;
               long_var_ = long_var_ + 4;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + uint_var_ * 8) = float_var - fVar17;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + uint_var_ * 8) = float_var - fVar18;
+              *(float *)(*(longlong *)(in_R11 + 0x218) + uint_var_ * 8) = float_var - float_var;
+              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + uint_var_ * 8) = float_var - float_var;
               uint_var_ = uint_var_ + 4;
             } while (long_var_ < long_var_ + -3);
           }
@@ -59595,17 +59595,17 @@ uint64_t ProcessFunction79832(uint64_t handleIdentifier,uint64_t resourceIdentif
             do {
               uint_var_ = (ulonglong)uint_var_;
               long_var_ = *(longlong *)(in_R11 + 0x218);
-              fVar18 = *(float *)(long_var_ + uint_var_ * 8);
+              float_var = *(float *)(long_var_ + uint_var_ * 8);
               float_var = *(float *)(long_var_ + 4 + uint_var_ * 8);
               float_var = *(float *)(long_var_ + long_var_ * 8);
               float_var = *(float *)(long_var_ + 4 + long_var_ * 8);
-              fVar17 = fVar18 * fVar20 - float_var * fVar19;
-              fVar18 = float_var * fVar20 + fVar18 * fVar19;
-              *(float *)(long_var_ + long_var_ * 8) = fVar17 + float_var;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + long_var_ * 8) = fVar18 + float_var;
+              float_var = float_var * float_var - float_var * float_var;
+              float_var = float_var * float_var + float_var * float_var;
+              *(float *)(long_var_ + long_var_ * 8) = float_var + float_var;
+              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + long_var_ * 8) = float_var + float_var;
               long_var_ = long_var_ + 1;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + uint_var_ * 8) = float_var - fVar17;
-              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + uint_var_ * 8) = float_var - fVar18;
+              *(float *)(*(longlong *)(in_R11 + 0x218) + uint_var_ * 8) = float_var - float_var;
+              *(float *)(*(longlong *)(in_R11 + 0x218) + 4 + uint_var_ * 8) = float_var - float_var;
               uint_var_ = uint_var_ + 1;
             } while (long_var_ < long_var_);
           }
