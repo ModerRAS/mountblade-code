@@ -200,6 +200,8 @@
 #define UTILITY_WORKING_BUFFER_SIZE 512
 #define UTILITY_MIN_ARRAY_SIZE 8
 #define UTILITY_POINTER_SIZE 8
+#define UTILITY_POINTER_INCREMENT 8
+#define UTILITY_INDEX_INCREMENT 1
 
 // 新增语义化宏定义 - 替换临时栈变量
 #define UTILITY_TEMP_STACK_BUFFER_SIZE 2
@@ -3034,8 +3036,8 @@ void ProcessMemoryAllocation(longlong resource_handle_identifier,longlong resour
                     // WARNING: Subroutine does not return
             utility_free_memory(utility_memory_block_handle,1); # 内存块释放函数
           }
-          utility_processed_count = utility_processed_count + 1;
-          utility_iteration_counter = utility_iteration_counter + 8;
+          utility_processed_count = utility_processed_count + UTILITY_INDEX_INCREMENT;
+          utility_iteration_counter = utility_iteration_counter + UTILITY_POINTER_INCREMENT;
         } while (utility_processed_count < utility_allocation_count);
       }
       free_memory_buffer(&utility_allocated_memory_ptr);
@@ -3186,9 +3188,9 @@ uint64 validate_resource_handle_identifier(longlong resource_handle_identifier) 
               }
               break;
             }
-            utility_operation_status = (ulonglong)((int)utility_operation_status + 1);
-            utility_iteration_index = utility_iteration_index + 1;
-            utility_resource_array_ptr = utility_resource_array_ptr + 1;
+            utility_operation_status = (ulonglong)((int)utility_operation_status + UTILITY_INDEX_INCREMENT);
+            utility_iteration_index = utility_iteration_index + UTILITY_INDEX_INCREMENT;
+            utility_resource_array_ptr = utility_resource_array_ptr + UTILITY_INDEX_INCREMENT;
           } while ((longlong)utility_iteration_index < (longlong)resource_count);
         }
         resource_count = resource_count + 1;
