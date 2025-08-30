@@ -49042,7 +49042,7 @@ void SystemFunction_88_4(void)
     system_pointer_var = &init_stack_uint_170;
     long_result = *(longlong *)(init_input_stack_178 + 0x28);
   }
-  InitializeSystemModule1(long_result + 0x3388,system_pointer_var,&stack0x00000040);
+  InitializeSystemModule1(long_result + 0x3388,system_pointer_var,&init_stack_uint_40);
   ptr_float_var = init_input_stack_180;
   if ((*(uint *)(system_RBX + SYSTEM_DATA_COMPARE_SIZE0) & 0x4000000) != 0) {
     float_result = *init_input_stack_180;
@@ -49302,7 +49302,7 @@ void InitializeSystemLogger(void)
     system_pointer_var = &init_stack_uint_170;
     long_result = *(longlong *)(init_input_stack_178 + 0x28);
   }
-  InitializeSystemModule1(long_result + 0x3388,system_pointer_var,&stack0x00000040);
+  InitializeSystemModule1(long_result + 0x3388,system_pointer_var,&init_stack_uint_40);
   ptr_float_var = init_input_stack_180;
   if ((*(uint *)(system_RBX + SYSTEM_DATA_COMPARE_SIZE0) & 0x4000000) != 0) {
     float_result = *init_input_stack_180;
