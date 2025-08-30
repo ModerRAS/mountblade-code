@@ -89,14 +89,14 @@
 #define UTILITY_MASK_0XC000 0xc000
 #define UTILITY_LOOP_MAX_COUNT 0x20214
 #define UTILITY_SYSTEM_END_FLAG 0xffffff
-#define UTILITY_SYSTEM_END_FLAG_EXTENDED UTILITY_SYSTEM_END_FLAG_EXTENDED
+#define UTILITY_SYSTEM_END_FLAG_EXTENDED 0xfffffffffffffffe
 
 // 新增语义化宏定义 - 替换十六进制常量
 #define UTILITY_SYSTEM_TABLE_BASE 0x213438
 #define UTILITY_RESOURCE_TABLE_OFFSET 0x121c0
 #define UTILITY_RESOURCE_DATA_OFFSET 0x121e0
-#define UTILITY_MEMORY_MASK_HIGH UTILITY_MEMORY_MASK_HIGH
-#define UTILITY_HANDLE_CHECK_VALUE UTILITY_HANDLE_CHECK_VALUE
+#define UTILITY_MEMORY_MASK_HIGH 0xffffffff00000000
+#define UTILITY_HANDLE_CHECK_VALUE 0x50414e53
 #define UTILITY_RESOURCE_MASK_OFFSET UTILITY_RESOURCE_MASK_OFFSET
 #define UTILITY_MEMORY_OFFSET_790 0x790
 #define UTILITY_MEMORY_OFFSET_1C8 0x1C8
@@ -899,6 +899,32 @@
 #define UTILITY_BUFFER_SIZE_MEDIUM 0x278
 #define UTILITY_INDEX_SIZE_MEDIUM 0x508
 #define UTILITY_ACCESS_SIZE_MEDIUM 0x130
+
+// 新增语义化宏定义 - 替换比较阈值常量
+#define UTILITY_ITERATION_THRESHOLD_PRIMARY 0x6d
+#define UTILITY_ITERATION_THRESHOLD_SECONDARY 0x6a
+#define UTILITY_ITERATION_THRESHOLD_TERTIARY 0x7f
+#define UTILITY_ITERATION_THRESHOLD_QUATERNARY 0x7c
+#define UTILITY_ITERATION_THRESHOLD_QUINARY 0x81
+#define UTILITY_ITERATION_THRESHOLD_SENARY 0x8b
+#define UTILITY_ITERATION_THRESHOLD_SEPTENARY 0x5a
+#define UTILITY_ITERATION_THRESHOLD_OCTONARY 0x6e
+#define UTILITY_ITERATION_THRESHOLD_NONARY 0x6b
+#define UTILITY_ITERATION_THRESHOLD_DENARY 0x53
+#define UTILITY_ITERATION_THRESHOLD_UNDENARY 0x55
+#define UTILITY_ITERATION_THRESHOLD_DUODENARY 0x7d
+#define UTILITY_ITERATION_THRESHOLD_TREDECENARY 0x82
+#define UTILITY_ITERATION_THRESHOLD_QUATTUORDECENARY 0x3d
+#define UTILITY_ITERATION_THRESHOLD_QUINDECENARY 0x8c
+
+// 新增语义化宏定义 - 替换栈偏移量常量
+#define UTILITY_STACK_OFFSET_NEG_19 -0x19
+#define UTILITY_STACK_OFFSET_NEG_15 -0x15
+#define UTILITY_STACK_OFFSET_NEG_13 -0x13
+
+// 新增语义化宏定义 - 替换栈操作常量
+#define UTILITY_STACK_WRITE_SIZE_4 4
+#define UTILITY_STACK_WRITE_SIZE_2 2
 
 // 新增语义化宏定义 - 替换临时变量名
 #define UTILITY_TEMP_MEMORY_PTR utility_temp_memory_pointer
@@ -18544,13 +18570,13 @@ uint64 * ProcessValidationRequest(void)
   iteration_counter = utility_operation_result_secondary[1];
   iteration_counter = utility_operation_result_secondary[2];
   system_status_code = utility_operation_result_secondary[3];
-  *(uint32 *)(stack_frame_pointer + -0x19) = currentUnsignedSize;
-  *(uint32 *)(stack_frame_pointer + -0x15) = iteration_counter;
+  *(uint32 *)(stack_frame_pointer + UTILITY_STACK_OFFSET_NEG_19) = currentUnsignedSize;
+  *(uint32 *)(stack_frame_pointer + UTILITY_STACK_OFFSET_NEG_15) = iteration_counter;
   *(uint32 *)(stack_frame_pointer + -access_flag) = iteration_counter;
   *(uint32 *)(stack_frame_pointer  + UTILITY_STACK_NEG_D_OFFSET) = system_status_code;
   utility_iteration_index = 0;
   utility_operation_result3 = function_result_data_first;
-  if (iteration_counter < 0x6d) {
+  if (iteration_counter < UTILITY_ITERATION_THRESHOLD_PRIMARY) {
     if (*(int *)(utility_cpu_context[1] + RESOURCE_HANDLE_OFFSET) == 0) {
       utility_operation_status = *utility_cpu_context;
       utility_operation_result3 = (uint64 *)writeResourceData(utility_operation_status,stack_frame_pointer + -0x19,4);
@@ -18791,13 +18817,13 @@ uint64 * HandleValidationCallback(void)
   iteration_counter = function_result_data_first[1];
   iteration_counter = function_result_data_first[2];
   system_status_code = function_result_data_first[3];
-  *(uint32 *)(stack_frame_pointer + -0x19) = currentUnsignedSize;
-  *(uint32 *)(stack_frame_pointer + -0x15) = iteration_counter;
+  *(uint32 *)(stack_frame_pointer + UTILITY_STACK_OFFSET_NEG_19) = currentUnsignedSize;
+  *(uint32 *)(stack_frame_pointer + UTILITY_STACK_OFFSET_NEG_15) = iteration_counter;
   *(uint32 *)(stack_frame_pointer + -access_flag) = iteration_counter;
   *(uint32 *)(stack_frame_pointer  + UTILITY_STACK_NEG_D_OFFSET) = system_status_code;
   utility_iteration_index = 0;
   utility_operation_result_secondary = utility_operation_result3;
-  if (iteration_counter < 0x6d) {
+  if (iteration_counter < UTILITY_ITERATION_THRESHOLD_PRIMARY) {
     if (*(int *)(utility_cpu_context[1] + RESOURCE_HANDLE_OFFSET) == 0) {
       utility_operation_status = *utility_cpu_context;
       utility_operation_result_secondary = (uint64 *)writeResourceData(utility_operation_status,stack_frame_pointer + -0x19,4);
@@ -19041,7 +19067,7 @@ ulonglong ValidateDataIntegrity(uint64 resource_handle_identifier)
     }
     goto UTILITY_LABEL_CONTINUE_PROCESSING;
   }
-  if (cpu_register_eax < 0x6a) {
+  if (cpu_register_eax < UTILITY_ITERATION_THRESHOLD_SECONDARY) {
     *(uint64 **)(stack_frame_pointer + -byte_offset) = utility_register_r12;
     *(uint64 **)(stack_frame_pointer + -0x21) = utility_register_r12;
     iteration_counter = GetTaskStatus2(resource_handle_identifier,stack_frame_pointer + -byte_offset,0);
@@ -22940,10 +22966,10 @@ ulonglong InitializeSystemOperator(void)
   iteration_counter = uint32_pointer_variable_value[2];
   system_status_code = uint32_pointer_variable_value[3];
   *(uint32 *)(stack_frame_pointer + -0x19) = utility_operation_result_var;
-  *(uint32 *)(stack_frame_pointer + -0x15) = iteration_counter;
+  *(uint32 *)(stack_frame_pointer + UTILITY_STACK_OFFSET_NEG_15) = iteration_counter;
   *(uint32 *)(stack_frame_pointer + -access_flag) = iteration_counter;
   *(uint32 *)(stack_frame_pointer  + UTILITY_STACK_NEG_D_OFFSET) = system_status_code;
-  if (validation_flag < 0x6d) {
+  if (validation_flag < UTILITY_ITERATION_THRESHOLD_PRIMARY) {
     if (*(int *)(utility_cpu_context[1] + RESOURCE_HANDLE_OFFSET) == 0) {
       utility_operation_status = *utility_cpu_context;
       utility_iteration_index = writeResourceData(utility_operation_status,stack_frame_pointer + -0x19,4);
@@ -24001,7 +24027,7 @@ LAB_UNSIGNED_PROCESS_COMPLETE:
   *(uint32 *)(utility_cpu_context + UTILITY_STRUCTURE_SIZE_OFFSET) = cpu_register_r12_data;
   cpu_register_eax = *(uint *)(utility_cpu_context + 8);
 LAB_MAX_ITERATION_REACHED:
-  if (cpu_register_eax < 0x7f) {
+  if (cpu_register_eax < UTILITY_ITERATION_THRESHOLD_TERTIARY) {
     validation_flag = resourceOperationFlags & INVALID_HANDLE;
   }
   else if (*(int *)(utility_cpu_context[1] + RESOURCE_HANDLE_OFFSET) == 0) {
