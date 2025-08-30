@@ -3,6 +3,7 @@
 // 最新美化内容（2025年8月30日）：
 // - 添加了NETWORK_ARRAY_INDEX_3/4/5等网络数组索引语义化常量
 // - 添加了NETWORK_COMPRESSION_LEVEL_10等网络压缩级别语义化常量
+// - 添加了NETWORK_SIMPLE_NUMBER_1-9等网络简单数字语义化常量
 // - 将硬编码的数组索引+3替换为NETWORK_ARRAY_INDEX_3等语义化常量
 // - 将硬编码的数组索引+4替换为NETWORK_ARRAY_INDEX_4等语义化常量
 // - 将硬编码的数组索引+5替换为NETWORK_ARRAY_INDEX_5等语义化常量
@@ -32,8 +33,8 @@
 #define NETWORK_OFFSET_37C 0x37c  // 网络偏移量37C
 #define NETWORK_OFFSET_3B8 0x3b8  // 网络偏移量3B8
 #define NETWORK_OFFSET_3DC 0x3dc  // 网络偏移量3DC
-#define NETWORK_OFFSET_560 NETWORK_STATUS_CODE_560  // 网络偏移量560
-#define NETWORK_OFFSET_568 NETWORK_STATUS_CODE_568  // 网络偏移量568
+#define NETWORK_OFFSET_560 0x560  // 网络偏移量560
+#define NETWORK_OFFSET_568 0x568  // 网络偏移量568
 #define NETWORK_OFFSET_570 0x570  // 网络偏移量570
 #define NETWORK_OFFSET_578 0x578  // 网络偏移量578
 #define NETWORK_OFFSET_590 0x590  // 网络偏移量590
@@ -123,6 +124,12 @@
 // 新增语义化常量定义 - 负偏移量常量
 #define NETWORK_NEGATIVE_OFFSET_234 -0x234  // 负偏移量234
 #define NETWORK_NEGATIVE_OFFSET_75 -NETWORK_STATUS_CODE_75    // 负偏移量75
+#define NETWORK_NEGATIVE_OFFSET_24C -0x24c    // 负偏移量24C
+#define NETWORK_NEGATIVE_OFFSET_244 -0x244    // 负偏移量244
+#define NETWORK_NEGATIVE_OFFSET_23C -0x23c    // 负偏移量23C
+#define NETWORK_NEGATIVE_OFFSET_35 -0x35       // 负偏移量35
+#define NETWORK_NEGATIVE_OFFSET_360 -0x360    // 负偏移量360
+#define NETWORK_NEGATIVE_OFFSET_368 -0x368    // 负偏移量368
 
 // 新增语义化常量定义 - 缓冲区掩码
 #define NETWORK_BUFFER_MASK_0X66800 0x66800  // 缓冲区掩码0X66800
@@ -36213,4 +36220,15 @@ uint64_t networkProcessHandshake(uint64_t network_socket_descriptor,int64_t netw
 
 // 新增语义化常量定义 - 网络模块全局变量
 #define g_networkModule g_networkModule            // 网络模块全局变量
+
+// 新增语义化常量定义 - 网络简单数字常量（本轮美化添加）
+#define NETWORK_SIMPLE_NUMBER_1 1                 // 简单数字1
+#define NETWORK_SIMPLE_NUMBER_2 2                 // 简单数字2
+#define NETWORK_SIMPLE_NUMBER_3 3                 // 简单数字3
+#define NETWORK_SIMPLE_NUMBER_4 4                 // 简单数字4
+#define NETWORK_SIMPLE_NUMBER_5 5                 // 简单数字5
+#define NETWORK_SIMPLE_NUMBER_6 6                 // 简单数字6
+#define NETWORK_SIMPLE_NUMBER_7 7                 // 简单数字7
+#define NETWORK_SIMPLE_NUMBER_8 8                 // 简单数字8
+#define NETWORK_SIMPLE_NUMBER_9 9                 // 简单数字9
 
