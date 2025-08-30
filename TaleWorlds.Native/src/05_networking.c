@@ -21316,7 +21316,7 @@ uint64_t networkResetConnection4(int64_t *network_socket_descriptor_value)
      (network_status_return_code_code = NetworkCheckStreamUpdate(network_socket_descriptor_value,NETWORK_OPERATION_FAILURE), (int)network_status_return_code_code == NETWORK_OPERATION_FAILURE)) {
 uint64_t networkResetConnection5(uint32_t network_socket_descriptor_value,int64_t network_buffer_ptr)
 {
-    uint32_t in_ECX;
+    uint32_t network_register_ecx;
     networkAddress = network_buffer_ptr * NETWORK_ERROR_INVALID_OFFSET + SESSION_STRUCT_SIZE + *network_socket_register_value_value;
       *(uint32_t *)(networkAddress + -SESSION_STRUCT_SIZE) = network_socket_descriptor_value;
       *(uint32_t *)(networkAddress + -MODULE_STATUS_OFFSET) = network_status_return_code_code;
@@ -21325,8 +21325,8 @@ uint64_t networkResetConnection5(uint32_t network_socket_descriptor_value,int64_
       *(uint64_t *)(networkAddress + -4) = network_socket_register_value_value;
       *(char *)(networkAddress + 4) = (char)network_socket_register_value_value;
       networkAddress = networkAddress + NETWORK_ERROR_INVALID_OFFSET;
-    in_ECX = *(uint32_t *)((longlong)network_socket_register_value_value + NETWORK_SOCKET_BUFFER_OFFSET);
-  if ((NETWORK_OPERATION_FAILURE < (int)((in_ECX ^ (int)in_ECX >> BIT_SHIFT_MASK) - ((int)in_ECX >> BIT_SHIFT_MASK))) &&
+    network_register_ecx = *(uint32_t *)((longlong)network_socket_register_value_value + NETWORK_SOCKET_BUFFER_OFFSET);
+  if ((NETWORK_OPERATION_FAILURE < (int)((network_register_ecx ^ (int)network_register_ecx >> BIT_SHIFT_MASK) - ((int)network_register_ecx >> BIT_SHIFT_MASK))) &&
      (network_connection_processor_index_value = NetworkCheckStreamUpdate(network_socket_descriptor_value,NETWORK_OPERATION_FAILURE), (int)network_connection_processor_index_value != NETWORK_OPERATION_FAILURE)) {
 uint64_t networkResetConnection6(uint32_t network_socket_descriptor_value)
      (network_status_return_code_code = NetworkCheckStreamUpdate(), (int)network_status_return_code_code != NETWORK_OPERATION_FAILURE)) {
@@ -33736,10 +33736,10 @@ uint64_t network_socket_descriptor_value(uint64_t *network_socket_descriptor_val
 // 函数: void network_socket_descriptor_value(int64_t network_socket_descriptor_value,int32_t *network_buffer_ptr)
 void network_socket_descriptor_value(int64_t network_socket_descriptor_value,int32_t *network_buffer_ptr)
 {
-    char in_CF;
+    char network_register_cf;
   int32_t *network_stack_int_pointer;
   network_status_return_code_code = (uint32_t)((uint)inputRegister >> NETWORK_PACKET_HEADER_SIZE);
-  network_character_flag = (char)inputRegister + -NETWORK_SOCKET_SESSION_OFFSET + in_CF;
+  network_character_flag = (char)inputRegister + -NETWORK_SOCKET_SESSION_OFFSET + network_register_cf;
   network_data_ptr_ptr = CONCAT31(network_status_return_code_code,network_character_flag);
   *(uint32_t *)CONCAT44(in_register_00000004,network_data_ptr_ptr) = network_data_ptr_ptr;
   *(uint32_t *)(network_socket_descriptor_value + -NETWORK_SOCKET_OFFSET_MASK) = *(uint32_t *)(network_socket_descriptor_value + -NETWORK_SOCKET_OFFSET_MASK) & network_socket_register_value_value;
@@ -33927,12 +33927,12 @@ int32_t network_socket_descriptor_value(void)
            (network_data_ptr_ptr = networkSignData5(*network_buffer_ptr,network_socket_descriptor_value + SOCKET_CHECKSUM_OFFSET,4), network_data_ptr_ptr == NETWORK_OPERATION_FAILURE)) {
           network_configuration_varureTimeout(network_buffer_ptr,network_temp_validation_buffer);
       return (ulonglong)network_data_ptr_ptr;
-  bool in_CF;
+  bool network_register_cf;
   uint8_t network_encryption_array [4];
   uint8_t network_stack_addr_varrray_24 [NETWORK_BUFFER_SIZE_MEDIUM];
   uint8_t network_stack_addr_varrray_26 [NETWORK_BUFFER_SIZE_MEDIUM];
   network_buffer_size_byte_value_byte_value = inputRegister + NETWORK_ERROR_INVALID_OFFSET;
-  if (in_CF) {
+  if (network_register_cf) {
       network_status_return_code_code = *network_socket_register_value_value;
       network_packet_size_ptr_value = networkSignData5(network_status_return_code_code,network_encryption_array,4);
       if ((((int)network_packet_size_ptr_value == NETWORK_OPERATION_FAILURE) && (network_packet_size_ptr_value = networkSignData5(network_status_return_code_code,network_stack_addr_varrray_24,NETWORK_BUFFER_SIZE_MEDIUM), (int)network_packet_size_ptr_value == NETWORK_OPERATION_FAILURE)) &&
