@@ -459,6 +459,17 @@
 #define SYSTEM_INIT_FLOAT_VALUE_0_75           0.75       // 0.75值
 #define SYSTEM_INIT_FLOAT_VALUE_ONE            1.0        // 1.0值
 #define SYSTEM_INIT_FLOAT_VALUE_RECIPROCAL    1.0        // 倒数基础值
+
+// 系统初始化特殊浮点数常量（2025年8月30日最终批次最新美化）
+#define SYSTEM_INIT_FLOAT_COEFFICIENT_BASE_1   1.6750001  // 基础系数1 - 用于计算system_offset_value
+#define SYSTEM_INIT_FLOAT_COEFFICIENT_BASE_2   2.4750001  // 基础系数2 - 用于计算system_offset_value
+#define SYSTEM_INIT_FLOAT_COEFFICIENT_TRANSFORM_1  4.4666667  // 变换系数1 - 用于计算system_float_transform_b
+#define SYSTEM_INIT_FLOAT_COEFFICIENT_TRANSFORM_2  3.3500001  // 变换系数2 - 用于计算system_scaling_factor
+#define SYSTEM_INIT_FLOAT_COEFFICIENT_TRANSFORM_3  4.9500003  // 变换系数3 - 用于计算system_scaling_factor
+#define SYSTEM_INIT_FLOAT_COEFFICIENT_SCALING_1   13.400001  // 缩放系数1 - 用于计算system_float_transform_a
+#define SYSTEM_INIT_FLOAT_COEFFICIENT_SCALING_2   19.800001  // 缩放系数2 - 用于计算system_float_transform_a
+#define SYSTEM_INIT_FLOAT_COEFFICIENT_SCALING_3   17.866667  // 缩放系数3 - 用于计算system_float_transform_b
+#define SYSTEM_INIT_FLOAT_COEFFICIENT_SCALING_4   26.400002  // 缩放系数4 - 用于计算system_float_transform_b
 #define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_2     0x66726570 // 预制体魔法cookie 2
 #define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_3     0x616d726f // 预制体魔法cookie 3
 #define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_4     0x5f65636e // 预制体魔法cookie 4

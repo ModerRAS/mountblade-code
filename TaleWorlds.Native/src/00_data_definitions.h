@@ -5946,7 +5946,7 @@ system_processor_initialize(unsigned long long *handle_param,long long system_th
   system_maximum_stack_size = SYSTEM_THREE_VALUE;
   system_multi_level_stack_root = &system_multi_level_stack_root;
   system_sextuple_stack_root = &system_multi_level_stack_root;
-  system_multi_level_stack_pointer_second = (unsigned long long *******)0x0;
+  system_multi_level_stack_pointer_second = (unsigned long long *******)SYSTEM_NULL_MULTI_LEVEL_PTR;
   system_maximum_stack_size = SYSTEM_ZERO_VALUE;
   system_maximum_stack_size = SYSTEM_ZERO_VALUE;
   system_maximum_stack_size = SYSTEM_ZERO_VALUE;
@@ -6259,7 +6259,7 @@ section_processing_jump_label_33:
   }
   system_multi_level_stack_root = &system_multi_level_stack_root;
   system_sextuple_stack_root = &system_multi_level_stack_root;
-  system_multi_level_stack_pointer_second = (unsigned long long *******)0x0;
+  system_multi_level_stack_pointer_second = (unsigned long long *******)SYSTEM_NULL_MULTI_LEVEL_PTR;
   system_maximum_stack_size = system_maximum_stack_size & INVALID_HANDLE_VALUEffffff00;
   system_maximum_stack_size = SYSTEM_ZERO_VALUE;
   system_buffer_allocation_result = system_execution_function(system_global_data_pointer_variable,SYSTEM_OFFSET_RESOURCE_HANDLE,SYSTEM_OFFSET_RESOURCE_SIZE,SYSTEM_OFFSET_RESOURCE_PARAM);
