@@ -1398,11 +1398,11 @@ dataValue videoDecoderData;
 
 // 函数: dataValueValue systemInitializePlugins;
 dataValue systemInitializePlugins;
-dataValue systemVar9238;
-dataValue systemVar9250;
-dataValue systemVar9248;
-dataValue systemVar9240;
-dataValue systemVar9258;
+dataValue system_plugin_data;
+dataValue system_extension_data;
+dataValue system_library_data;
+dataValue system_module_data;
+dataValue system_config_data;
 dataValue systemThreadPriority;
 dataValue videoStreamBuffer;
 
@@ -1497,11 +1497,11 @@ dataValue resourceManagerCache;
 
 // 函数: dataValueValue systemInitializeComponents;
 dataValue systemInitializeComponents;
-dataValue systemVar9648;
-dataValue systemVar9640;
-dataValue systemVar9650;
+dataValue system_memory_data;
+dataValue system_buffer_data;
+dataValue system_pool_data;
 dataValue systemConfigSettings;
-dataValue systemVar9638;
+dataValue system_heap_data;
 dataValue systemConfigCache;
 dataValue resourceManagerBuffer;
 dataValue resourceManagerPool;
@@ -1538,7 +1538,7 @@ dataValue g_system_driver_handler;
 dataValue g_system_hardware_handler;
 dataValue g_system_device_handler;
 dataValue g_system_interrupt_handler;
-dataValue eventSystemVar6830;
+dataValue event_system_queue_data;
 dataValue g_system_timer_handler;
 dataValue g_system_clock_handler;
 dataValue g_system_scheduler_handler;
@@ -1587,7 +1587,7 @@ dataValue systemMainThreadId;
 
 // 函数: dataValueValue systemInitializeQueues;
 dataValue systemInitializeQueues;
-dataValue systemVar9990;
+dataValue system_extension_data;
 dataValue systemThreadStackSize;
 dataValue systemThreadStackBase;
 dataValue systemThreadStackLimit;
@@ -1616,7 +1616,7 @@ dataValue physicsWorldData;
 
 // 函数: dataValueValue resourceVerifyHash;
 dataValue resourceVerifyHash;
-dataValue eventSystemVar1038;
+dataValue eventSystemSignal;
 dataValue physicsSceneData;
 dataValue physicsBodyData;
 dataValue physicsColliderData;
@@ -1662,7 +1662,7 @@ dataValue fileCacheState;
 uint32 softBodyVertices;
 uint32 softBodyIndices;
 dataValue softBodyConstraints;
-dataValue systemVarecd4;
+dataValue systemMemoryDeallocator;
 dataValue networkManagerState;
 dataValue softBodyDamping;
 dataValue softBodyBuffer1;
@@ -1676,7 +1676,7 @@ dataValue resourceCacheFlush;
 // 函数: dataValueValue resourceBatchProcess;
 dataValue resourceBatchProcess;
 dataValue aiSystemVarde40;
-byte systemVar9e30;
+byte systemMemoryStatus;
 dataValue fluidSimulationData;
 dataValue fluidParticleData;
 dataValue fluidGridData;
@@ -1687,7 +1687,7 @@ dataValue fluidForceData;
 dataValue resourceControlAccess;
 dataValue fluidViscosityData;
 dataValue clothSimulationData;
-dataValue eventSystemVar6128;
+dataValue eventSystemTimer;
 dataValue clothMeshData;
 dataValue eventSystemVar612c;
 dataValue eventSystemVar6410;
@@ -80692,14 +80692,14 @@ void systemInitializeExtensions(void)
 void systemInitializeComponents(void)
 
 {
-  _systemVar9638 = &threadLocalStorageData;
-  if (_systemVar9640 != 0) {
+  _system_heap_data = &threadLocalStorageData;
+  if (_system_buffer_data != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  _systemVar9640 = 0;
-  _systemVar9650 = 0;
-  _systemVar9638 = &threadLocalStorageCleanup;
+  _system_buffer_data = 0;
+  _system_pool_data = 0;
+  _system_heap_data = &threadLocalStorageCleanup;
   return;
 }
 
