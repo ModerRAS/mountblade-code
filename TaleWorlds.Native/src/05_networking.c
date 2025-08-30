@@ -8611,7 +8611,7 @@ void NetworkProcessResponse(uint64_t *network_socket_handle, uint64_t *network_b
       network_encryption_result_secondary = (uint)network_operation_status_code_temporary_variable._field_second_byte_;
       network_encryption_result_primary = (uint)(byte)network_operation_status_code_temporary_variable;
       network_stack_operation_context_buffer_primary = (uint64_t *)CONCAT44(network_stack_operation_context_buffer_primary._field_high_dword_, (uint)network_operation_status_code._field_third_word_);
-      network_session_context_pointer_primary = (int64_t *)CONCAT44(network_session_context_pointer_primary._field_high_dword_, (uint)network_operation_status_code._4_2_);
+      network_session_context_pointer_primary = (int64_t *)CONCAT44(network_session_context_pointer_primary._field_high_dword_, (uint)network_operation_status_code._bit_field_middle_four_bits_);
       SendNetworkPacket(network_validation_temporary_bufferfer, NETWORK_PACKET_HEADER_SIZE, &networkPacketHeader, (ulonglong)network_operation_status_code & NETWORK_MAX_SIZE);
     network_socket_handle[NETWORK_PACKET_HEADER_SIZE] = network_server_address;
   network_operation_result = NetworkProcessSocketData(network_socket_handle, network_buffer_pointer);
