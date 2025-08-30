@@ -20635,18 +20635,18 @@ void InitializeInputSystem(longlong handleIdentifier,longlong resourceIdentifier
   longlong system_long_result_temp;
   longlong system_long_result_temp;
   uint8_t system_local_buffer_thread_context [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-  uint64_t init_stack_uint_param_f8_hex;
+  uint64_t init_stack_uint_param_thread_config;
   void *system_buffer_ptr_thread_param;
   uint8_t *system_buffer_ptr_thread_buffer;
-  uint32_t init_stack_uint_param_d8_hex;
+  uint32_t init_stack_uint_param_buffer_size;
   uint8_t system_local_buffer_thread_buffer [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   ulonglong init_stack_system_handle;
 
-  init_stack_uint_param_f8_hex = INVALID_HANDLE_VALUE;
+  init_stack_uint_param_thread_config = INVALID_HANDLE_VALUE;
   init_stack_system_handle = system_configuration_data ^ (ulonglong)system_local_buffer_thread_context;
   system_buffer_ptr_thread_param = &g_thread_parameter_ptr;
   system_buffer_ptr_thread_buffer = system_local_buffer_thread_buffer;
-  init_stack_uint_param_d8_hex = 0;
+  init_stack_uint_param_buffer_size = 0;
   system_local_buffer_thread_buffer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0;
   system_long_result_temp = strstr(*(uint64_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_STRING_BUFFER));
   if (system_long_result != SYSTEM_COMPARISON_ZERO) {
