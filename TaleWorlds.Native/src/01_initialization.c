@@ -1241,6 +1241,8 @@
 #define SYSTEM_FLOAT_OFFSET_FACTOR_19_800 19.800001
 #define SYSTEM_FLOAT_SCALE_FACTOR_17_866 17.866667
 #define SYSTEM_FLOAT_OFFSET_FACTOR_26_400 26.400002
+#define SYSTEM_FLOAT_RSQRT_FACTOR_3_0 3.0
+#define SYSTEM_FLOAT_NORMALIZATION_FACTOR_255_0 255.0
 #define SYSTEM_MUTEX_TIMEOUT_INFINITE 0xFFFFFFFF
 #define SYSTEM_STRING_PROCESS_INFO 0x69676e65
 #define SYSTEM_STRING_ENGINE_CONFIG_2 0x635f656e
@@ -55697,7 +55699,7 @@ INIT_LABEL_SYSTEM_7a5ac:
                 system_temp_float_value = system_float_result_value * system_float_result_value + system_float_result_value * system_float_result_value + system_float_result_value * system_temp_float_value;
                 system_float_union = rsqrtss(ZEXT416((uint)system_float_result_value),ZEXT416((uint)system_float_result_value));
                 system_temp_float_value = system_float_union._0_4_;
-                system_temp_float_value = system_float_result_value * SYSTEM_FLOAT_VALUE_HALF * (3.0 - system_float_result_value * system_float_result_value * system_float_result_value);
+                system_temp_float_value = system_float_result_value * SYSTEM_FLOAT_VALUE_HALF * (SYSTEM_FLOAT_RSQRT_FACTOR_3_0 - system_float_result_value * system_float_result_value * system_float_result_value);
                 *(float *)(system_long_result + SYSTEM_OFFSET_4) = system_float_result_value * system_temp_float_value;
                 *(float *)(system_long_result + SYSTEM_OFFSET_8) = system_float_result_value * system_temp_float_value;
                 *(float *)(system_long_result + SYSTEM_CONFIG_SIZE_C) = system_float_result_value * system_temp_float_value;
@@ -55707,7 +55709,7 @@ INIT_LABEL_SYSTEM_7a5ac:
                 system_temp_float_value = system_float_result_value * system_float_result_value + system_float_result_value * system_float_result_value + system_float_result_value * system_temp_float_value;
                 system_float_union = rsqrtss(ZEXT416((uint)system_float_result_value),ZEXT416((uint)system_float_result_value));
                 system_temp_float_value = system_float_union._0_4_;
-                system_temp_float_value = system_float_result_value * SYSTEM_FLOAT_VALUE_HALF * (3.0 - system_float_result_value * system_float_result_value * system_float_result_value);
+                system_temp_float_value = system_float_result_value * SYSTEM_FLOAT_VALUE_HALF * (SYSTEM_FLOAT_RSQRT_FACTOR_3_0 - system_float_result_value * system_float_result_value * system_float_result_value);
                 *(float *)(system_long_result + SYSTEM_HANDLE_OFFSET_ALLOC_SIZE) = system_float_result_value * system_temp_float_value;
                 *(float *)(system_long_result + SYSTEM_OBJECT_OFFSET_38) = system_float_result_value * system_temp_float_value;
                 *(float *)(system_long_result + SYSTEM_DATA_OFFSET_3C) = system_float_result_value * system_temp_float_value;
@@ -55728,7 +55730,7 @@ INIT_LABEL_SYSTEM_7a5ac:
                 system_temp_float_value = system_float_result_value * system_float_result_value + system_float_result_value * system_float_result_value + system_float_result_value * system_temp_float_value;
                 system_float_union = rsqrtss(ZEXT416((uint)system_float_result_value),ZEXT416((uint)system_float_result_value));
                 system_temp_float_value = system_float_union._0_4_;
-                system_temp_float_value = system_float_result_value * SYSTEM_FLOAT_VALUE_HALF * (3.0 - system_float_result_value * system_float_result_value * system_float_result_value);
+                system_temp_float_value = system_float_result_value * SYSTEM_FLOAT_VALUE_HALF * (SYSTEM_FLOAT_RSQRT_FACTOR_3_0 - system_float_result_value * system_float_result_value * system_float_result_value);
                 *init_float_pointer_temp = system_float_result_value * system_temp_float_value;
                 init_float_pointer_temp[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = system_float_result_value * system_temp_float_value;
                 init_float_pointer_temp[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = system_float_result_value * system_temp_float_value;
@@ -55934,7 +55936,7 @@ INIT_LABEL_SYSTEM_7ac04:
               else {
                 system_float_union = rsqrtss(ZEXT416((uint)system_float_result_value),ZEXT416((uint)system_float_result_value));
                 system_temp_float_value = system_float_union._0_4_;
-                system_temp_float_value = system_float_result_value * SYSTEM_FLOAT_VALUE_HALF * (3.0 - system_float_result_value * system_float_result_value * system_float_result_value);
+                system_temp_float_value = system_float_result_value * SYSTEM_FLOAT_VALUE_HALF * (SYSTEM_FLOAT_RSQRT_FACTOR_3_0 - system_float_result_value * system_float_result_value * system_float_result_value);
                 *(float *)(system_long_result + SYSTEM_OFFSET_4 + system_long_result) = system_float_result_value * system_temp_float_value;
                 *(float *)(system_long_result + SYSTEM_OFFSET_8 + system_long_result) = system_float_result_value * system_temp_float_value;
                 *(float *)(system_long_result + SYSTEM_BUFFER_OFFSET_C + system_long_result) = system_float_result_value * system_temp_float_value;
@@ -57957,12 +57959,12 @@ code_r0x00018007db1b:
         system_long_result_temp = *(longlong *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_68);
         *(char *)init_float_pointer_temp =
              (char)(int)(*(float *)(*(longlong *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_STATUS0) +
-                                   (longlong)*(int *)(system_long_result + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) * 255.0);
+                                   (longlong)*(int *)(system_long_result + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) * SYSTEM_FLOAT_NORMALIZATION_FACTOR_255_0);
         *(char *)((longlong)init_float_pointer_temp + 1) =
              (char)(int)(*(float *)(*(longlong *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_STATUS0) + SYSTEM_OFFSET_4 +
-                                   (longlong)*(int *)(system_long_result + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) * 255.0);
+                                   (longlong)*(int *)(system_long_result + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) * SYSTEM_FLOAT_NORMALIZATION_FACTOR_255_0);
         system_result_operation = (uint)(*(float *)(*(longlong *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_STATUS0) + SYSTEM_OFFSET_8 +
-                                 (longlong)*(int *)(system_long_result + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) * 255.0);
+                                 (longlong)*(int *)(system_long_result + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) * SYSTEM_FLOAT_NORMALIZATION_FACTOR_255_0);
         *(char *)((longlong)init_float_pointer_temp + 2) = (char)system_integer_unsigned_temp;
         system_temp_float_value = (float)((system_counter_temp & SYSTEM_OFFSET_Ff) + (uint)*(byte *)((longlong)init_float_pointer_temp + 1) +
                         (uint)*(byte *)init_float_pointer_temp);
@@ -57978,12 +57980,12 @@ code_r0x00018007db1b:
         init_temp_byte_ptr = (byte *)((longlong)init_float_pointer_temp + system_long_result);
         system_long_result_temp = *(longlong *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_68);
         *init_temp_byte_ptr = (byte)(int)(*(float *)(*(longlong *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_STATUS0) +
-                                         (longlong)*(int *)(system_long_result + SYSTEM_DATA_OFFSET_5C + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) * 255.0);
+                                         (longlong)*(int *)(system_long_result + SYSTEM_DATA_OFFSET_5C + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) * SYSTEM_FLOAT_NORMALIZATION_FACTOR_255_0);
         init_temp_byte_ptr[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = (byte)(int)(*(float *)(*(longlong *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_STATUS0) + SYSTEM_OFFSET_4 +
                                            (longlong)*(int *)(system_long_result + SYSTEM_DATA_OFFSET_5C + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) * 255.0
                                 );
         system_result_operation = (uint)(*(float *)(*(longlong *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_STATUS0) + SYSTEM_OFFSET_8 +
-                                 (longlong)*(int *)(system_long_result + SYSTEM_DATA_OFFSET_5C + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) * 255.0);
+                                 (longlong)*(int *)(system_long_result + SYSTEM_DATA_OFFSET_5C + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) * SYSTEM_FLOAT_NORMALIZATION_FACTOR_255_0);
         init_temp_byte_ptr[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = (byte)system_integer_unsigned_temp;
         system_temp_float_value = (float)((system_counter_temp & SYSTEM_OFFSET_Ff) + (uint)init_temp_byte_ptr[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] + (uint)*init_temp_byte_ptr);
         if (SYSTEM_FLOAT_VALUE_ZERO <= system_float_result_value) {
@@ -57998,12 +58000,12 @@ code_r0x00018007db1b:
         init_temp_byte_ptr = init_temp_byte_ptr + system_long_result_temp;
         system_long_result_temp = *(longlong *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_68);
         *init_temp_byte_ptr = (byte)(int)(*(float *)(*(longlong *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_STATUS0) +
-                                         (longlong)*(int *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_B8 + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) * 255.0);
+                                         (longlong)*(int *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_B8 + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) * SYSTEM_FLOAT_NORMALIZATION_FACTOR_255_0);
         init_temp_byte_ptr[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = (byte)(int)(*(float *)(*(longlong *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_STATUS0) + SYSTEM_OFFSET_4 +
                                            (longlong)*(int *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_B8 + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) * 255.0
                                 );
         system_result_operation = (uint)(*(float *)(*(longlong *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_STATUS0) + SYSTEM_OFFSET_8 +
-                                 (longlong)*(int *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_B8 + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) * 255.0);
+                                 (longlong)*(int *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_B8 + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) * SYSTEM_FLOAT_NORMALIZATION_FACTOR_255_0);
         init_temp_byte_ptr[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = (byte)system_integer_unsigned_temp;
         system_temp_float_value = (float)((system_counter_temp & SYSTEM_OFFSET_Ff) + (uint)init_temp_byte_ptr[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] + (uint)*init_temp_byte_ptr);
         if (SYSTEM_FLOAT_VALUE_ZERO <= system_float_result_value) {
@@ -58024,7 +58026,7 @@ code_r0x00018007db1b:
                                            (longlong)*(int *)(system_long_result + SYSTEM_CONFIG_SIZE_FINAL4 + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) *
                                 255.0);
         system_result_operation = (uint)(*(float *)(*(longlong *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_STATUS0) + SYSTEM_OFFSET_8 +
-                                 (longlong)*(int *)(system_long_result + SYSTEM_CONFIG_SIZE_FINAL4 + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) * 255.0);
+                                 (longlong)*(int *)(system_long_result + SYSTEM_CONFIG_SIZE_FINAL4 + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) * SYSTEM_FLOAT_NORMALIZATION_FACTOR_255_0);
         init_temp_byte_ptr[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = (byte)system_integer_unsigned_temp;
         system_temp_float_value = (float)((system_counter_temp & SYSTEM_OFFSET_Ff) + (uint)init_temp_byte_ptr[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] + (uint)*init_temp_byte_ptr);
         if (SYSTEM_FLOAT_VALUE_ZERO <= system_float_result_value) {
@@ -58048,13 +58050,13 @@ code_r0x00018007db1b:
       do {
         system_long_result_temp = *(longlong *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_68);
         system_result_operation = (uint)(*(float *)(*(longlong *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_STATUS0) +
-                                  (longlong)*(int *)(system_long_result + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) * 255.0);
+                                  (longlong)*(int *)(system_long_result + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) * SYSTEM_FLOAT_NORMALIZATION_FACTOR_255_0);
         system_pointer_temp[-2] = (char)system_integer_unsigned_temp;
         system_result_operation = (uint)(*(float *)(*(longlong *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_STATUS0) + SYSTEM_OFFSET_4 +
-                                  (longlong)*(int *)(system_long_result + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) * 255.0);
+                                  (longlong)*(int *)(system_long_result + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) * SYSTEM_FLOAT_NORMALIZATION_FACTOR_255_0);
         system_pointer_temp[-1] = (char)system_integer_unsigned_temp;
         system_result_operation = (uint)(*(float *)(*(longlong *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_STATUS0) + SYSTEM_OFFSET_8 +
-                                 (longlong)*(int *)(system_long_result + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) * 255.0);
+                                 (longlong)*(int *)(system_long_result + system_long_result) * SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) * SYSTEM_FLOAT_NORMALIZATION_FACTOR_255_0);
         *system_pointer_value = (char)system_integer_unsigned_temp;
         system_temp_float_value = (float)((system_counter_temp & SYSTEM_OFFSET_Ff) + (system_counter_temp & SYSTEM_OFFSET_Ff) + (system_counter_temp & SYSTEM_OFFSET_Ff));
         if (SYSTEM_FLOAT_VALUE_ZERO <= system_float_result_value) {
