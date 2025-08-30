@@ -1,5 +1,37 @@
 #include "TaleWorlds.Native.Split.h"
 
+// 新增语义化常量定义 - 套接字结构偏移量
+#define NETWORK_SOCKET_HEADER_OFFSET_6F 0x6F  // 套接字头部偏移量6F
+#define NETWORK_SOCKET_HEADER_OFFSET_73 0x73  // 套接字头部偏移量73
+#define NETWORK_SOCKET_HEADER_OFFSET_76 0x76  // 套接字头部偏移量76
+#define NETWORK_SOCKET_HEADER_OFFSET_78 0x78  // 套接字头部偏移量78
+#define NETWORK_SOCKET_HEADER_OFFSET_7B 0x7B  // 套接字头部偏移量7B
+#define NETWORK_SOCKET_HEADER_OFFSET_7D 0x7D  // 套接字头部偏移量7D
+#define NETWORK_SOCKET_HEADER_OFFSET_7E 0x7E  // 套接字头部偏移量7E
+#define NETWORK_SOCKET_HEADER_OFFSET_8B 0x8B  // 套接字头部偏移量8B
+#define NETWORK_SOCKET_HEADER_OFFSET_8E 0x8E  // 套接字头部偏移量8E
+#define NETWORK_SOCKET_HEADER_OFFSET_92 0x92  // 套接字头部偏移量92
+#define NETWORK_SOCKET_HEADER_OFFSET_9E 0x9E  // 套接字头部偏移量9E
+#define NETWORK_SOCKET_HEADER_OFFSET_A1 0xA1  // 套接字头部偏移量A1
+#define NETWORK_SOCKET_HEADER_OFFSET_A2 0xA2  // 套接字头部偏移量A2
+#define NETWORK_SOCKET_HEADER_OFFSET_A3 0xA3  // 套接字头部偏移量A3
+#define NETWORK_SOCKET_HEADER_OFFSET_A4 0xA4  // 套接字头部偏移量A4
+#define NETWORK_SOCKET_HEADER_OFFSET_A6 0xA6  // 套接字头部偏移量A6
+#define NETWORK_SOCKET_HEADER_OFFSET_A7 0xA7  // 套接字头部偏移量A7
+#define NETWORK_SOCKET_HEADER_OFFSET_A9 0xA9  // 套接字头部偏移量A9
+#define NETWORK_SOCKET_HEADER_OFFSET_AA 0xAA  // 套接字头部偏移量AA
+#define NETWORK_SOCKET_HEADER_OFFSET_AB 0xAB  // 套接字头部偏移量AB
+#define NETWORK_SOCKET_HEADER_OFFSET_AE 0xAE  // 套接字头部偏移量AE
+#define NETWORK_SOCKET_HEADER_OFFSET_AF 0xAF  // 套接字头部偏移量AF
+#define NETWORK_SOCKET_HEADER_OFFSET_C1 0xC1  // 套接字头部偏移量C1
+#define NETWORK_SOCKET_HEADER_OFFSET_C2 0xC2  // 套接字头部偏移量C2
+#define NETWORK_SOCKET_HEADER_OFFSET_C4 0xC4  // 套接字头部偏移量C4
+#define NETWORK_SOCKET_HEADER_OFFSET_C5 0xC5  // 套接字头部偏移量C5
+#define NETWORK_SOCKET_HEADER_OFFSET_CA 0xCA  // 套接字头部偏移量CA
+#define NETWORK_SOCKET_HEADER_OFFSET_CD 0xCD  // 套接字头部偏移量CD
+#define NETWORK_SOCKET_HEADER_OFFSET_CE 0xCE  // 套接字头部偏移量CE
+
+
 // 网络系统语义化常量定义
 #define NETWORK_CONNECTION_TABLE_OFFSET 0x248  // 连接表偏移量
 #define NETWORK_SOCKET_RESOURCE_OFFSET 0x328  // 套接字资源偏移量
@@ -1210,6 +1242,36 @@ NetworkInitializeSystemFunc NetworkInitializeSystem;
 #define NETWORK_SOCKET_OFFSET_87 0x87        // 套接字偏移量87 - 连接超时配置
 #define NETWORK_SOCKET_OFFSET_8B 0x8b        // 套接字偏移量8B - 连接超时配置
 #define NETWORK_SOCKET_OFFSET_6F 0x6f        // 套接字偏移量6F - 套接字大小配置
+#define NETWORK_SOCKET_OFFSET_71 0x71        // 套接字偏移量71 - 套接字状态清理
+#define NETWORK_SOCKET_OFFSET_79 0x79        // 套接字偏移量79 - 套接字状态清理
+#define NETWORK_SOCKET_OFFSET_7E 0x7e        // 套接字偏移量7E - 套接字状态清理
+#define NETWORK_SOCKET_OFFSET_82 0x82        // 套接字偏移量82 - 套接字状态清理
+#define NETWORK_SOCKET_OFFSET_83 0x83        // 套接字偏移量83 - 套接字状态清理
+#define NETWORK_SOCKET_OFFSET_84 0x84        // 套接字偏移量84 - 套接字状态清理
+#define NETWORK_SOCKET_OFFSET_85 0x85        // 套接字偏移量85 - 套接字状态清理
+#define NETWORK_SOCKET_OFFSET_8A 0x8a        // 套接字偏移量8A - 套接字状态清理
+#define NETWORK_SOCKET_OFFSET_8E 0x8e        // 套接字偏移量8E - 套接字状态清理
+#define NETWORK_SOCKET_OFFSET_92 0x92        // 套接字偏移量92 - 套接字状态清理
+#define NETWORK_SOCKET_OFFSET_94 0x94        // 套接字偏移量94 - 套接字状态清理
+#define NETWORK_SOCKET_OFFSET_9E 0x9e        // 套接字偏移量9E - 套接字状态清理
+#define NETWORK_SOCKET_OFFSET_A1 0xa1        // 套接字偏移量A1 - 套接字状态清理
+#define NETWORK_SOCKET_OFFSET_A2 0xa2        // 套接字偏移量A2 - 套接字状态清理
+#define NETWORK_SOCKET_OFFSET_A3 0xa3        // 套接字偏移量A3 - 套接字状态清理
+#define NETWORK_SOCKET_OFFSET_A4 0xa4        // 套接字偏移量A4 - 套接字状态清理
+#define NETWORK_SOCKET_OFFSET_A6 0xa6        // 套接字偏移量A6 - 套接字状态清理
+#define NETWORK_SOCKET_OFFSET_A7 0xa7        // 套接字偏移量A7 - 套接字状态清理
+#define NETWORK_SOCKET_OFFSET_A9 0xa9        // 套接字偏移量A9 - 套接字状态清理
+#define NETWORK_SOCKET_OFFSET_AA 0xaa        // 套接字偏移量AA - 套接字状态清理
+#define NETWORK_SOCKET_OFFSET_AE 0xae        // 套接字偏移量AE - 套接字状态清理
+#define NETWORK_SOCKET_OFFSET_AF 0xaf        // 套接字偏移量AF - 套接字状态清理
+#define NETWORK_SOCKET_OFFSET_C1 0xc1        // 套接字偏移量C1 - 套接字状态清理
+#define NETWORK_SOCKET_OFFSET_C2 0xc2        // 套接字偏移量C2 - 套接字状态清理
+#define NETWORK_SOCKET_OFFSET_C4 0xc4        // 套接字偏移量C4 - 套接字状态清理
+#define NETWORK_SOCKET_OFFSET_C5 0xc5        // 套接字偏移量C5 - 套接字状态清理
+#define NETWORK_SOCKET_OFFSET_CA 0xca        // 套接字偏移量CA - 套接字状态清理
+#define NETWORK_SOCKET_OFFSET_CC 0xcc        // 套接字偏移量CC - 套接字状态清理
+#define NETWORK_SOCKET_OFFSET_CD 0xcd        // 套接字偏移量CD - 套接字状态清理
+#define NETWORK_SOCKET_OFFSET_CE 0xce        // 套接字偏移量CE - 套接字状态清理
 
 void* g_network_session_identifier;
 void* g_network_client_identifier;
@@ -20156,7 +20218,7 @@ NetworkEstablishConnectionBasic(uint64_t *network_socket_descriptor,uint64_t net
   *(uint32_t *)(network_socket_descriptor + NETWORK_SOCKET_CONFIG_OFFSET_6F) = NETWORK_MAX_SIZE;
   *(uint32_t *)((longlong)network_socket_descriptor + NETWORK_SOCKET_EXTENDED_OFFSET_37C) = 0;
   network_socket_descriptor[NETWORK_SOCKET_STATUS_OFFSET] = 0;
-  network_socket_descriptor[0x71] = 0;
+  network_socket_descriptor[NETWORK_SOCKET_OFFSET_71] = 0;
   network_socket_descriptor[NETWORK_SOCKET_DATA_OFFSET_72] = 0;
   network_socket_descriptor[0x73] = 0;
   network_socket_descriptor[NETWORK_SOCKET_STATE_OFFSET] = 0;
@@ -20489,12 +20551,12 @@ uint64_t networkEstablishConnection9(int64_t *network_socket_descriptor)
     *(uint32_t *)((longlong)network_socket_descriptor + 0x3e4) = 0;
   NetworkValidateConnectionSlot(network_socket_descriptor + NETWORK_SOCKET_DATA_OFFSET_7A);
   GetConnectionTimeout(network_socket_descriptor + SOCKET_HANDLE_OFFSET);
-  network_operation_progress = GetConnectionTimeout(network_socket_descriptor + 0x73);
+  network_operation_progress = GetConnectionTimeout(network_socket_descriptor + NETWORK_SOCKET_HEADER_OFFSET_73);
   if ((network_operation_progress == 0) && (network_operation_progress = NetworkValidateConnectionSlot(network_socket_descriptor + NETWORK_SOCKET_HOSTNAME_OFFSET), network_operation_progress == 0)) {
     *(uint32_t *)(network_socket_descriptor + NETWORK_SOCKET_DATA_OFFSET_77) = NETWORK_MAX_SIZE;
     *(uint32_t *)((longlong)network_socket_descriptor + 0x3bc) = 0;
   NetworkValidateConnectionSlot(network_socket_descriptor + NETWORK_SOCKET_HOSTNAME_OFFSET);
-  GetConnectionTimeout(network_socket_descriptor + 0x73);
+  GetConnectionTimeout(network_socket_descriptor + NETWORK_SOCKET_HEADER_OFFSET_73);
   network_operation_progress = GetConnectionTimeout(network_socket_descriptor + NETWORK_SOCKET_DATA_OFFSET_6E);
   if ((network_operation_progress == 0) && (network_operation_progress = NetworkValidateConnectionSlot(network_socket_descriptor + NETWORK_SOCKET_STATUS_OFFSET), network_operation_progress == 0)) {
     *(uint32_t *)(network_socket_descriptor + NETWORK_SOCKET_DATA_OFFSET_72) = NETWORK_MAX_SIZE;
