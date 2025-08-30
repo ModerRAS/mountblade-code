@@ -19891,14 +19891,14 @@ void initialize_system_module_thirty_one(uint64_t handleIdentifier,uint64_t reso
       if (stack_char_ptr != (char *)SYSTEM_NULL_POINTER) {
         system_init_flag_ptr_secondary = stack_char_ptr;
       }
-      InitializeSystemModule(system_pointer_temp,&g_global_config_4,system_init_flag_ptr_secondary);
+      InitializeSystemModule(system_pointer_temp,&g_global_config_QUATERNARY,system_init_flag_ptr_secondary);
       system_temp_double_value = *(double *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_A0 + system_counter_temp);
       system_temp_double_value = (double)*(uint *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_B0 + system_counter_temp);
       if (system_temp_double_value != SYSTEM_COMPARISON_ZERO.0) {
-        InitializeSystemModule(system_pointer_temp,&g_global_config_6,&g_global_config_5,system_temp_double_value);
+        InitializeSystemModule(system_pointer_temp,&g_global_config_SENARY,&g_global_config_QUINARY,system_temp_double_value);
       }
       if (system_temp_double_value != SYSTEM_COMPARISON_ZERO.0) {
-        InitializeSystemModule(system_pointer_temp,&g_global_config_6,&g_global_config_7,system_temp_double_value);
+        InitializeSystemModule(system_pointer_temp,&g_global_config_SENARY,&g_global_config_SEPTENARY,system_temp_double_value);
       }
       system_temp_double_value = *(double *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_B8 + system_counter_temp);
       system_temp_double_value = (double)*(uint *)(system_long_result + SYSTEM_OFFSET_200 + system_counter_temp);
