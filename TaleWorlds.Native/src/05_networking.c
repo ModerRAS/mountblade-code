@@ -33067,10 +33067,10 @@ void network_socket_handle(int64_t *network_socket_handle, uint64_t network_buff
        ((network_packet_size_temporary = network_socket_handle(), (int)network_packet_size_temporary == NETWORK_OPERATION_FAILURE &&
         (network_packet_size_temporary = (**(code **)(*network_socket_context_pointer + NETWORK_PACKET_HEADER_SIZE))(), (int)network_packet_size_temporary == NETWORK_OPERATION_FAILURE)))) {
       if (((*(uint32_t *)(network_socket_context_pointer + NETWORK_DATA_OFFSET_3) & NETWORK_BUFFER_SIZE_MEDIUM) == NETWORK_OPERATION_FAILURE) && (network_packet_size_temporary = network_socket_handle(), (int)network_packet_size_temporary != NETWORK_OPERATION_FAILURE)) {
-  bool network_is_available0;
+  bool network_is_available_primary;
   float network_float_stack_buffer_large [NETWORK_BUFFER_SIZE_MEDIUM];
   int64_t *network_stack_context_pointer_config;
-  int64_t *apnetwork_stack_context_330 [NETWORK_BUFFER_SIZE_MEDIUM];
+  int64_t *network_stack_array_context_pointer [NETWORK_BUFFER_SIZE_MEDIUM];
   int64_t network_stack_context_connection;
   float network_float_stack_release [NETWORK_BUFFER_SIZE_MEDIUM];
   int64_t network_array_stack_config [NETWORK_BUFFER_SIZE_MEDIUM];
