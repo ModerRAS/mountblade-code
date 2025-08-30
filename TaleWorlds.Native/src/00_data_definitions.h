@@ -1896,8 +1896,8 @@ void WotsMainNativeCoreCLR(unsigned long long handle)
   thread_stack_var_70 = 3;
   function_(&thread_stack_var_88,&thread_stack_var_68);
   function_(&thread_stack_var_88,thread_stack_array_a8);
-  if (0x1fff < thread_stack_var_98) {
-    thread_stack_var_98 = 0x1fff;
+  if (MAX_THREAD_STACK_SIZE < thread_stack_var_98) {
+    thread_stack_var_98 = MAX_THREAD_STACK_SIZE;
   }
   thread_name_ptr = &data_18098bc73;
   if (thread_stack_ptr_a0 != (undefined *)0x0) {
@@ -1913,8 +1913,8 @@ void WotsMainNativeCoreCLR(unsigned long long handle)
     long_var_ = long_var_ + 1;
   } while (*(char *)(handle + long_var_) != '\0');
   uint_var_ = (uint)long_var_;
-  if (0x1fff < uint_var_) {
-    uint_var_ = 0x1fff;
+  if (MAX_THREAD_STACK_SIZE < uint_var_) {
+    uint_var_ = MAX_THREAD_STACK_SIZE;
   }
   memcpy(&data_180c84870,handle,(long long)(int)uint_var_);
 }
@@ -10346,8 +10346,8 @@ unsigned int validate_resource_handle(int handle)
     long_var_ = long_var_ + 1;
   } while (*(char *)(handle + long_var_) != '\0');
   uint_var_ = (uint)long_var_;
-  if (0x1fff < uint_var_) {
-    uint_var_ = 0x1fff;
+  if (MAX_THREAD_STACK_SIZE < uint_var_) {
+    uint_var_ = MAX_THREAD_STACK_SIZE;
   }
   memcpy(&data_180c8f020,handle,(long long)(int)uint_var_);
 }
