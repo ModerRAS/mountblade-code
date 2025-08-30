@@ -1996,6 +1996,7 @@ void NetworkSendDataWithTimeout(uint64_t network_socket_descriptor,uint64_t netw
       *(uint32_t *)(network_socket_register_value + 1) = 3;
       network_socket_register_value[2] = network_connection_index_ptr;
 uint32_t NetworkClearConnection(void)
+{
   uint64_t *network_socket_register_ptr;
   if (network_socket_register_ptr != (uint64_t *)ZERO_OFFSET) {
     *network_socket_register_ptr = 0;
@@ -2004,10 +2005,12 @@ uint32_t NetworkClearConnection(void)
   return network_socket_register_value;
 // 函数: void network_error_exit_handler(void)
 void network_error_exit_handler(void)
+{
   uint8_t network_encryption_array [8];
   network_error_exit(network_encryption_array);
 // 函数: void NetworkSendPacketWithTimeout(uint64_t network_socket_descriptor,int64_t network_buffer_ptr,int64_t network_buffer_size_byte_value,int32_t *network_timeout_value)
 void NetworkSendPacketWithTimeout(uint64_t network_socket_descriptor,int64_t network_buffer_ptr,int64_t network_buffer_size_byte_value,int32_t *network_timeout_value)
+{
   int64_t network_timeout_value;
   uint64_t network_data_ptr;
   int32_t *network_operation_result_ptr;
@@ -2063,6 +2066,7 @@ network_socket_check_label:
         } while (network_operation_progress < *(int32_t *)(network_buffer_ptr + CONNECTION_BUFFER_SIZE));
   network_encrypt_content(network_encryption_response ^ (ulonglong)network_validation_buffer_medium);
 uint64_t NetworkCheckSocketData(uint64_t *network_socket_descriptor,int32_t *network_buffer_ptr,int32_t *network_buffer_size_byte_value)
+{
   uint64_t network_status_return_code;
   int32_t *network_operation_progress_pointer;
   int64_t network_buffer_ptr;
@@ -2085,6 +2089,7 @@ network_data_compare_label:
   return network_status_return_code;
 // 函数: void NetworkSendToSocket(int64_t network_socket_descriptor,int64_t network_buffer_ptr,int32_t *network_buffer_size_byte_value)
 void NetworkSendToSocket(int64_t network_socket_descriptor,int64_t network_buffer_ptr,int32_t *network_buffer_size_byte_value)
+{
   bool isConnected;
   int32_t network_error_detail_code;
   uint8_t network_validation_buffer_small [32];
