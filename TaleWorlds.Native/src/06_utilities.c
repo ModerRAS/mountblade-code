@@ -157,9 +157,9 @@
 // 6. 将set_thread_local_variabletaValue替换为set_thread_local_data_value
 // 7. 将get_thread_local_variabletaValue替换为get_thread_local_data_value
 // 8. 将g_memory_thread_local_variablellocator替换为g_memory_thread_local_allocator
-// 9. 将unsignedStackArrayX24替换为unsigned_stack_array_24
-// 10. 将unsignedStackArrayX26替换为unsigned_stack_array_26
-// 11. 将aiStackX_10替换为ai_stack_10
+// 9. 将unsignedStackArrayX24替换为UTILITY_STACK_ARRAY_PRIMARY_BUFFER
+// 10. 将unsignedStackArrayX26替换为UTILITY_STACK_ARRAY_SECONDARY_BUFFER
+// 11. 将aiStackX_10替换为UTILITY_STACK_INDEX_BUFFER
 // 12. 将float_secondary_temp_var替换为float_temp_secondary_var
 // 13. 保持代码语义不变，提高可读性和维护性
 
@@ -299,9 +299,9 @@
 #define UTILITY_STACK_ARRAY_INDEX_SIZE 2
 
 // 新增语义化宏定义 - 替换栈变量名
-#define UTILITY_STACK_ARRAY_PRIMARY_BUFFER unsigned_stack_array_24
-#define UTILITY_STACK_ARRAY_SECONDARY_BUFFER unsigned_stack_array_26
-#define UTILITY_STACK_INDEX_BUFFER ai_stack_10
+#define UTILITY_STACK_ARRAY_PRIMARY_BUFFER UTILITY_STACK_ARRAY_PRIMARY_BUFFER
+#define UTILITY_STACK_ARRAY_SECONDARY_BUFFER UTILITY_STACK_ARRAY_SECONDARY_BUFFER
+#define UTILITY_STACK_INDEX_BUFFER UTILITY_STACK_INDEX_BUFFER
 #define UTILITY_CHECK_FLAG 0x1b
 #define UTILITY_BIT_SHIFT_1 0x19
 #define UTILITY_BIT_SHIFT_2 0x1a
@@ -15961,8 +15961,8 @@ ulonglong InitializeRequestHandler(void)
     if (*(int *)(utility_register_context_base[1] + RESOURCE_HANDLE_OFFSET) == 0) {
       utility_operation_status = *utility_register_context_base;
       utility_loop_counter = writeResourceData(utility_operation_status,utility_stack_array_primary_20,4);
-      if ((((int)utility_loop_counter == 0) && (utility_loop_counter = writeResourceData(utility_operation_status,unsigned_stack_array_24,2), (int)utility_loop_counter == 0)) &&
-         (utility_loop_counter = writeResourceData(utility_operation_status,unsigned_stack_array_26,2), (int)utility_loop_counter == 0)) {
+      if ((((int)utility_loop_counter == 0) && (utility_loop_counter = writeResourceData(utility_operation_status,UTILITY_STACK_ARRAY_PRIMARY_BUFFER,2), (int)utility_loop_counter == 0)) &&
+         (utility_loop_counter = writeResourceData(utility_operation_status,UTILITY_STACK_ARRAY_SECONDARY_BUFFER,2), (int)utility_loop_counter == 0)) {
         utility_loop_counter = writeResourceData(utility_operation_status,&validation_buffer_data,8);
       }
     }
@@ -16007,8 +16007,8 @@ ulonglong GetRequestStatus(void)
   
   utility_operation_status = *utility_register_context_base;
   utility_loop_counter = writeResourceData(utility_operation_status,utility_stack_array_primary_20,4);
-  if ((((int)utility_loop_counter == 0) && (utility_loop_counter = writeResourceData(utility_operation_status,unsigned_stack_array_24,2), (int)utility_loop_counter == 0)) &&
-     (utility_loop_counter = writeResourceData(utility_operation_status,unsigned_stack_array_26,2), (int)utility_loop_counter == 0)) {
+  if ((((int)utility_loop_counter == 0) && (utility_loop_counter = writeResourceData(utility_operation_status,UTILITY_STACK_ARRAY_PRIMARY_BUFFER,2), (int)utility_loop_counter == 0)) &&
+     (utility_loop_counter = writeResourceData(utility_operation_status,UTILITY_STACK_ARRAY_SECONDARY_BUFFER,2), (int)utility_loop_counter == 0)) {
     utility_loop_counter = writeResourceData(utility_operation_status,&validation_buffer_data,8);
   }
   if ((int)utility_loop_counter != 0) {
@@ -17629,17 +17629,17 @@ ulonglong ProcessDataValidation(longlong resource_handle_identifier,uint64 *memo
   if ((int)system_status_code != 0) {
     return system_status_code;
   }
-  ai_stack_10[0] = 0;
-  system_status_code = get_resource_size(*memory_block_size,ai_stack_10);
-  utility_operation_status = ai_stack_10[0];
+  UTILITY_STACK_INDEX_BUFFER[0] = 0;
+  system_status_code = get_resource_size(*memory_block_size,UTILITY_STACK_INDEX_BUFFER);
+  utility_operation_status = UTILITY_STACK_INDEX_BUFFER[0];
   utility_loop_counter = UTILITY_BYTE_OFFSET_FLAG;
   if ((int)system_status_code != 0) {
     return system_status_code;
   }
-  utility_long_value = (longlong)ai_stack_10[0];
+  utility_long_value = (longlong)UTILITY_STACK_INDEX_BUFFER[0];
   validation_flag = (int)*(uint *)(resource_handle_identifier + RESOURCE_DATA_IDX) >> UTILITY_ERROR_CODE_FAILED;
-  if (((int)((*(uint *)(resource_handle_identifier + RESOURCE_DATA_IDX) ^ validation_flag) - validation_flag) < ai_stack_10[0]) &&
-     (system_status_code = InitializeTaskHandler2(resource_handle_identifier + 8,ai_stack_10[0]), (int)system_status_code != 0)) {
+  if (((int)((*(uint *)(resource_handle_identifier + RESOURCE_DATA_IDX) ^ validation_flag) - validation_flag) < UTILITY_STACK_INDEX_BUFFER[0]) &&
+     (system_status_code = InitializeTaskHandler2(resource_handle_identifier + 8,UTILITY_STACK_INDEX_BUFFER[0]), (int)system_status_code != 0)) {
     return system_status_code;
   }
   utility_operation_status = *(int *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
