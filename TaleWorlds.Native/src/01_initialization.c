@@ -23111,7 +23111,7 @@ void ConfigureGraphicsShader(void)
   system_temp_long_result = systemCoreData;
   system_temp_long_result = system_configuration_data;
   system_buffer_ptr_graphics_config = &g_system_data_node_primary_config;
-  system_buffer_ptr_160 = system_local_buffer_150;
+  system_buffer_ptr_graphics_data = system_local_buffer_150;
   system_local_buffer_150[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0;
   init_stack_data_size_158 = SYSTEM_CONFIG_SIZE_STATUS;
   strcpy_s(system_local_buffer_150,SYSTEM_DATA_COMPARE_SIZE,&g_global_system_config);
@@ -32758,7 +32758,7 @@ void HandleSystemOperation92(void)
   InitializeSystemModule39(device_pointer_array,system_long_result);
   system_operation_result = AllocateSystemMemory(systemMemoryPool,SYSTEM_NODE_HEADER_SIZE8,8,3);
   system_operation_result = 0;
-  system_buffer_ptr_160 = &g_system_data_node_primary_config;
+  system_buffer_ptr_graphics_data = &g_system_data_node_primary_config;
   system_buffer_ptr_158 = system_local_buffer_148;
   system_local_buffer_148[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0;
   init_stack_data_size_150 = 4;
@@ -32768,7 +32768,7 @@ void HandleSystemOperation92(void)
   longStack_188 = system_long_result + SYSTEM_OBJECT_OFFSET_68;
   system_operation_result = ProcessSystemRequest(system_status_flag,&system_buffer_ptr_160,0,0);
   *(uint64_t *)*device_pointer_array = system_temp_integer_unsigned;
-  system_buffer_ptr_160 = &globalSystemPointerData;
+  system_buffer_ptr_graphics_data = &globalSystemPointerData;
   system_ptr_value = (uint64_t *)AllocateSystemMemory(systemMemoryPool,SYSTEM_NODE_HEADER_SIZE8,8,3);
   system_buffer_ptr_resource_pool = &g_system_data_node_primary_config;
   system_buffer_ptr_130 = system_local_buffer_120;
@@ -32788,7 +32788,7 @@ void HandleSystemOperation92(void)
   if (2 < system_long_result) {
     system_temp_long_result = 2;
     do {
-      system_buffer_ptr_160 = &g_system_data_node_primary_config;
+      system_buffer_ptr_graphics_data = &g_system_data_node_primary_config;
       system_buffer_ptr_158 = system_local_buffer_148;
       system_local_buffer_148[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0;
       init_stack_data_size_150 = 7;
@@ -32811,7 +32811,7 @@ void HandleSystemOperation92(void)
       longStack_198 = longStack_178 + SYSTEM_INIT_DATA_OFFSET_78;
       system_operation_result = ProcessSystemRequest(system_status_flag,&system_buffer_ptr_160,2,system_temp_integer_temp);
       *(uint64_t *)((longlong)*device_pointer_array + system_long_result * 8) = system_temp_integer_unsigned;
-      system_buffer_ptr_160 = &globalSystemPointerData;
+      system_buffer_ptr_graphics_data = &globalSystemPointerData;
       system_temp_integer = system_temp_integer_temp + SYSTEM_OFFSET_1;
       system_temp_long_result = system_long_result + SYSTEM_OFFSET_1;
     } while (system_long_result < system_long_result);
@@ -32829,7 +32829,7 @@ void HandleSystemOperation92(void)
     system_operation_result = system_temp_integer_unsigned;
     system_operation_result = system_temp_integer_unsigned;
     do {
-      system_buffer_ptr_160 = &g_system_data_node_primary_config;
+      system_buffer_ptr_graphics_data = &g_system_data_node_primary_config;
       system_buffer_ptr_158 = system_local_buffer_148;
       system_local_buffer_148[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0;
       init_stack_data_size_150 = 10;
@@ -32851,7 +32851,7 @@ void HandleSystemOperation92(void)
       InitializeGraphicsSystem(system_temp_pointer,&system_buffer_ptr_160,4,longStack_178 + SYSTEM_DATA_OFFSET_2E0);
       *system_ptr_value = &g_system_global_config;
       *(uint64_t **)(*system_memory_ptr + system_temp_counter * 8) = system_ptr_value;
-      system_buffer_ptr_160 = &globalSystemPointerData;
+      system_buffer_ptr_graphics_data = &globalSystemPointerData;
       system_operation_result = (ulonglong)((int)system_temp_counter + 1);
       system_operation_result = system_temp_counter + SYSTEM_OFFSET_1;
       device_pointer_array = psystem_buffer_ptr_170;
@@ -37675,7 +37675,7 @@ void InitializeFontSystem(uint64_t handleIdentifier)
   system_buffer_ptr_system_info = (uint64_t *)SYSTEM_NULL_POINTER;
   uinit_stack_nano_seconds_210 = 0;
   init_stack_uint_parameter_208 = 3;
-  system_buffer_ptr_160 = (uint64_t *)SYSTEM_NULL_POINTER;
+  system_buffer_ptr_graphics_data = (uint64_t *)SYSTEM_NULL_POINTER;
   system_buffer_ptr_158 = (uint64_t *)SYSTEM_NULL_POINTER;
   init_stack_data_size_150 = 0;
   initialization_stack_float_register_148 = 3;
@@ -39894,7 +39894,7 @@ void InitializeMutexInitNode(longlong handleIdentifier,longlong resourceIdentifi
   init_stack_parameter_handle = INVALID_HANDLE_VALUE;
   init_stack_system_handle = system_configuration_data ^ (ulonglong)system_local_buffer_198;
   system_buffer_ptr_graphics_config = &g_system_global_config;
-  system_buffer_ptr_160 = system_local_buffer_150;
+  system_buffer_ptr_graphics_data = system_local_buffer_150;
   init_stack_data_size_158 = 0;
   system_local_buffer_150[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0;
   system_temp_long_result = strstr(*(uint64_t *)(handleIdentifier + 8));
@@ -44870,7 +44870,7 @@ INIT_LABEL_SYSTEM_7113f:
            (g_graphics_initialized_flag == SYSTEM_CHAR_NULL_TERMINATOR)) break;
         if (*(char *)(g_system_context_1 + SYSTEM_OFFSET_18) != SYSTEM_CHAR_NULL_TERMINATOR) {
           system_buffer_ptr_graphics_config = &g_system_global_config;
-          system_buffer_ptr_160 = system_ptr_value;
+          system_buffer_ptr_graphics_data = system_ptr_value;
           system_buffer_ptr_158 = system_ptr_value;
           InitializeEventSystem(g_system_context_1,3,SYSTEM_HIGH_32BIT_MASK,SYSTEM_CONFIG_SIZE_STATUS);
         }
@@ -44907,7 +44907,7 @@ INIT_LABEL_SYSTEM_7113f:
           MessageBoxA(0,system_temp_pointer,&g_system_global_config,SYSTEM_FLAG_BIT_41010);
         }
         else if (*(char *)(g_system_context_1 + SYSTEM_OFFSET_18) != SYSTEM_CHAR_NULL_TERMINATOR) {
-          system_buffer_ptr_160 = &g_system_global_config;
+          system_buffer_ptr_graphics_data = &g_system_global_config;
           system_buffer_ptr_graphics_config = &g_system_global_config;
           system_buffer_ptr_158 = system_ptr_value;
           InitializeEventSystem(g_system_context_1,3,SYSTEM_HIGH_32BIT_MASK,SYSTEM_CONFIG_SIZE_STATUS);

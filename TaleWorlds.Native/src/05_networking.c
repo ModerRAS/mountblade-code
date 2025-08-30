@@ -733,6 +733,10 @@
 #define NetworkThreadManager9        network_thread_manager_reset
 
 // 网络连接处理函数名语义化替换
+#define networkReleaseConnection1    network_release_connection_initial
+#define networkReleaseConnection2    network_release_connection_primary
+#define networkReleaseConnection3    network_release_connection_secondary
+#define networkReleaseConnection4    network_release_connection_tertiary
 #define networkReleaseConnection5    network_release_connection_extended
 #define networkReleaseConnection6    network_release_connection_with_buffer
 #define networkReleaseConnection7    network_release_connection_simple
