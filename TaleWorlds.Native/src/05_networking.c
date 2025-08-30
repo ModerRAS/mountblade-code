@@ -3879,9 +3879,9 @@ void* g_networkPendingDataObject;
 // 网络活跃连接数
 void* g_networkActiveConnectionCount;
 // 网络连接池
-void* g_networkConnectionPool;
+void* g_network_connection_pool;
 // 网络带宽信息指针
-void* g_network_bandwidth_info_ptr;
+void* g_network_bandwidth_info;
 // 网络延迟测量值
 uint32 g_network_latency_measurement;
 // 网络丢包率（美化后）
@@ -4349,7 +4349,7 @@ void network_send_data_chunk(uint64_t network_socket_handle, uint64_t network_bu
   int64_t network_send_buffer_pointer;   // 网络发送缓冲区指针
   uint64_t network_global_buf;           // 网络全局缓冲区
   network_operation_result = network_initialize_socket(NETWORK_STATUS_FAILURE, &network_ctx_array_ptr, network_buffer_size, network_timeout, NETWORK_STATUS_FAILURE);
-  if (((network_operation_result == NETWORK_STATUS_FAILURE) && (network_operation_result = network_init_connection(&network_global_buffer, network_ctx_array_ptr), network_operation_result == NETWORK_STATUS_FAILURE)) &&
+  if (((network_operation_result == NETWORK_STATUS_FAILURE) && (network_operation_result = network_init_connection(&network_global_buf, network_ctx_array_ptr), network_operation_result == NETWORK_STATUS_FAILURE)) &&
      (network_operation_result = network_validate_socket(network_socket_id, &network_processor_handler), network_operation_result == NETWORK_STATUS_FAILURE)) {
     network_processor_handler = *(int64_t *)(network_processor_handler + NETWORK_STRUCTURE_NEXT_FIELD_OFFSET);
     if ((-NETWORK_STATUS_SUCCESS < (int)network_data_index) && ((int)network_data_index < *(int32_t *)(network_processor_handler + SOCKET_CONFIG_OFFSET))) {
