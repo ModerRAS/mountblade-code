@@ -906,8 +906,8 @@
 // - 将 data_180c69e20 替换为 system_processing_flag
 // - 将 data_180bf0080 替换为 string_termination_flag
 // - 将 data_180c69ef8 替换为 thread_initialization_flag
-// - 将 data_180c6a14c 替换为 thread_result_flag
-// - 将 data_180c6a14d 替换为 thread_validation_flag
+// - 将 data_180c6a14c 替换为 system_thread_result_flag
+// - 将 data_180c6a14d 替换为 system_thread_validation_flag
 // - 将 data_180bf0082 替换为 string_concatenation_flag
 // - 将 data_180c91d50 替换为 system_cleanup_flag
 // - 新增美化内容：将函数调用中的十六进制地址替换为语义化名称
@@ -1010,8 +1010,8 @@
 // - 将 data_180c69e20 替换为 system_processing_flag
 // - 将 data_180bf0080 替换为 string_termination_flag
 // - 将 data_180c69ef8 替换为 thread_initialization_flag
-// - 将 data_180c6a14c 替换为 thread_result_flag
-// - 将 data_180c6a14d 替换为 thread_validation_flag
+// - 将 data_180c6a14c 替换为 system_thread_result_flag
+// - 将 data_180c6a14d 替换为 system_thread_validation_flag
 // - 将 data_180bf0082 替换为 string_concatenation_flag
 // - 将 data_180c91d50 替换为 system_cleanup_flag
 // - 添加了系统操作码常量定义，如 SYSTEM_OPCODE_MEMORY_ALLOC、SYSTEM_OPCODE_NETWORK_INIT 等
@@ -11254,7 +11254,7 @@ long long process_system_configuration(long long handle_param,long long system_t
   unsigned long long *system_string_input_pointer;
   char *system_character_scan_pointer;
   char *system_character_scan_pointer;
-  bool byte_validation_result_secondary;
+  bool system_byte_validation_status;
   unsigned int system_buffer_allocation_result;
   unsigned long long system_buffer_allocation_result;
   void *system_thread_stack_pointer_variable;
@@ -11368,7 +11368,7 @@ goto section_processing_jump_label_496;
     if (system_thread_priority_level == SYSTEM_ZERO_VALUE) {
 section_processing_jump_label_139:
 goto section_processing_jump_label_497;
-      byte_validation_result_secondary = true;
+      system_byte_validation_status = true;
     }
     else {
       system_character_scan_pointer = pcStack_48;
@@ -11378,15 +11378,15 @@ goto section_processing_jump_label_497;
         if (system_char_variable != system_char_variable) break;
         system_character_scan_pointer = system_character_scan_pointer + 1;
       } while (system_char_variable != '\0');
-      byte_validation_result_secondary = system_char_variable == system_char_variable;
+      system_byte_validation_status = system_char_variable == system_char_variable;
     }
   }
   else {
 goto section_processing_jump_label_498;
 section_processing_jump_label_140:
-    byte_validation_result_secondary = false;
+    system_byte_validation_status = false;
   }
-  if (byte_validation_result_secondary) {
+  if (system_byte_validation_status) {
     system_thread_stack_pointer_variable = &system_global_thread_string_2;
     system_maximum_stack_size = SYSTEM_ZERO_VALUE;
     system_thread_stack_base_address = SYSTEM_ZERO_VALUE;
@@ -12805,7 +12805,7 @@ section_processing_jump_label_150:
     *psystem_thread_operation_flags = (uint)system_unaffected_register;
     system_unaffected_register = SYSTEM_ZERO_VALUE;
 section_processing_jump_label_151:
-    if (system_system_unaffected_register_b != '\0') {
+    if (system_unaffected_register_b != '\0') {
       system_thread_result_status = *(int *)(*(long long *)(system_base_register + 8) + SYSTEM_CONFIG_OFFSET_INIT_FLAG);
       if (system_thread_result_status != SYSTEM_THREAD_RESULT_INVALID) {
         *(int *)(*(long long *)(system_base_register + 8) + SYSTEM_CONFIG_OFFSET_INIT_FLAG) = system_thread_result_status - *(int *)(system_base_register + SYSTEM_OFFSET_MODULE_SECONDARY);
@@ -13431,11 +13431,11 @@ goto section_processing_jump_label_523;
 section_processing_jump_label_155:
   system_execute_crypto_operation(system_maximum_stack_size ^ (ulong long)system_debug_stack_buffer);
 }
-          thread_result_flag = system_thread_result_status == SYSTEM_ONE_VALUE;
+          system_thread_result_flag = system_thread_result_status == SYSTEM_ONE_VALUE;
           SetConsoleTitleA(&system_console_title_1);
         }
       }
-      thread_validation_flag = thread_result_flag == '\0';
+      system_thread_validation_flag = system_thread_result_flag == '\0';
       if (system_global_data_pointer_variable == SYSTEM_ZERO_VALUE) {
         system_string_length_counter = _wfsopen(handle_param,&system_file_function_1,SYSTEM_CONFIG_BUFFER_SIZE);
         if (system_string_length_counter == SYSTEM_ZERO_VALUE) {
@@ -13506,7 +13506,7 @@ section_processing_jump_label_157:
       return system_system_byte_check_status;
     }
   }
-  thread_validation_flag = thread_result_flag == '\0';
+  system_thread_validation_flag = system_thread_result_flag == '\0';
   return true;
 }
 bool check_system_availability(void)
@@ -13525,9 +13525,9 @@ bool check_system_availability(void)
   short system_short_char_value_zero;
   long long system_unaffected_register;
   void *system_string_input_pointer;
-  bool byte_validation_result_secondary;
-  uint in_stack_parameter_primary;
-  uint in_stack_parameter_secondary;
+  bool system_byte_validation_status;
+  uint system_stack_parameter_primary;
+  uint system_stack_parameter_secondary;
   if (system_destination_index_register != 0) {
     system_string_length_counter = SYSTEM_STRING_LENGTH_INVALID;
     do {
@@ -13540,23 +13540,23 @@ bool check_system_availability(void)
         system_string_input_pointer = &system_debug_string_3;
       }
       system_global_data_pointer_variable = _wfsopen();
-      if ((1 < system_global_data_pointer_variable) && ((uint)system_unaffected_register < in_stack_parameter_primary)) {
+      if ((1 < system_global_data_pointer_variable) && ((uint)system_unaffected_register < system_stack_parameter_primary)) {
         system_buffer_allocation_result = GetConsoleWindow();
-        in_stack_parameter_secondary = (uint)system_unaffected_register;
+        system_stack_parameter_secondary = (uint)system_unaffected_register;
         GetWindowThreadProcessId(system_buffer_allocation_result,&system_stack_buffer_98);
         system_buffer_allocation_result = GetCurrentProcessId();
-        if (system_buffer_allocation_result != in_stack_parameter_secondary) {
+        if (system_buffer_allocation_result != system_stack_parameter_secondary) {
           system_thread_result_status = AllocConsole();
-          thread_result_flag = system_thread_result_status == SYSTEM_ONE_VALUE;
+          system_thread_result_flag = system_thread_result_status == SYSTEM_ONE_VALUE;
           SetConsoleTitleA(&system_console_title_1);
         }
       }
-      thread_validation_flag = thread_result_flag == (char)system_unaffected_register;
+      system_thread_validation_flag = system_thread_result_flag == (char)system_unaffected_register;
       if (system_global_data_pointer_variable == system_unaffected_register) {
         system_string_length_counter = _wfsopen();
         if (system_string_length_counter == SYSTEM_ZERO_VALUE) {
           system_execution_function(&system_string_buffer_5,0xc1,&system_string_buffer_6,&system_string_function_4);
-          byte_validation_result_secondary = false;
+          system_byte_validation_status = false;
         }
         else {
           fclose(system_string_length_counter);
@@ -13611,17 +13611,17 @@ section_processing_jump_label_159:
             free(system_string_length_counter);
             free(system_string_length_counter);
           }
-          byte_validation_result_secondary = system_global_data_pointer_variable != system_unaffected_register;
+          system_byte_validation_status = system_global_data_pointer_variable != system_unaffected_register;
         }
       }
       else {
         system_execution_function(&system_string_buffer_5,0xb4,&system_string_buffer_6,&system_string_function_6);
-        byte_validation_result_secondary = true;
+        system_byte_validation_status = true;
       }
-      return byte_validation_result_secondary;
+      return system_byte_validation_status;
     }
   }
-  thread_validation_flag = thread_result_flag == (char)system_unaffected_register;
+  system_thread_validation_flag = system_thread_result_flag == (char)system_unaffected_register;
   return true;
 }
 bool validate_system_resources(void)
@@ -13691,7 +13691,7 @@ section_processing_jump_label_161:
   }
   return system_global_data_pointer_variable != system_unaffected_register;
 }
-  thread_validation_flag = thread_result_flag == system_system_unaffected_register_b;
+  system_thread_validation_flag = system_thread_result_flag == system_unaffected_register_b;
   return 1;
 }
     string_concatenation_flag = '\x01';

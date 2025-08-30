@@ -242,7 +242,7 @@ undefined g_rendering_system;
 undefined g_networking_system;
 undefined g_database_system;
 undefined g_cache_system;
-undefined UNK_180277350;
+undefined g_system_heap;
 
 // 函数: undefined InitializeSystemCore;
 undefined InitializeSystemCore;
@@ -282,10 +282,10 @@ char system_char_flag;
 undefined g_audio_context;
 undefined g_audio_device;
 undefined system_config_data;
-undefined UNK_180a06dc8;
-undefined UNK_180a071e8;
-undefined UNK_180a071c8;
-undefined UNK_180a071d8;
+undefined g_audio_buffer;
+undefined g_graphics_buffer;
+undefined g_network_buffer;
+undefined g_resource_buffer;
 undefined system_resource_data_1;
 undefined system_resource_data_2;
 undefined system_resource_data_3;
@@ -310,67 +310,67 @@ undefined g_network_sending;
 undefined g_network_receiving;
 undefined g_graphics_device;
 
-// 函数: undefined FUN_180049b30;
-undefined FUN_180049b30;
+// 函数: undefined InitializeGraphicsSystem;
+undefined InitializeGraphicsSystem;
 
-// 函数: undefined FUN_18004ca00;
-undefined FUN_18004ca00;
-undefined UNK_180a08fd0;
-undefined UNK_180a09008;
-undefined UNK_180a09048;
-undefined UNK_180a09078;
-undefined UNK_180a090c0;
-undefined UNK_180a090e8;
-undefined UNK_180a09118;
-undefined UNK_180a09140;
-undefined UNK_180a094b0;
-undefined UNK_180a094e8;
-undefined UNK_180a09520;
-undefined UNK_180a09548;
-undefined UNK_180a09578;
-undefined UNK_180a095b0;
-undefined UNK_180a095d0;
-undefined UNK_180a095f0;
-undefined UNK_180a09198;
-undefined UNK_180a09220;
-undefined UNK_180a09158;
-undefined UNK_180a091c8;
-undefined UNK_180a091f0;
-undefined UNK_180a09280;
-undefined UNK_180a09248;
-undefined UNK_180a193d8;
-undefined UNK_180a19458;
-undefined UNK_180a09420;
-undefined UNK_180946958;
-undefined DAT_180a089b0;
-undefined UNK_1800830b0;
-undefined UNK_1800830c0;
-undefined UNK_180083130;
+// 函数: undefined InitializeAudioSystem;
+undefined InitializeAudioSystem;
+undefined g_shader_manager;
+undefined g_texture_manager;
+undefined g_mesh_manager;
+undefined g_material_manager;
+undefined g_light_manager;
+undefined g_camera_manager;
+undefined g_render_target;
+undefined g_depth_buffer;
+undefined g_stencil_buffer;
+undefined g_frame_buffer;
+undefined g_swap_chain;
+undefined g_vertex_buffer;
+undefined g_index_buffer;
+undefined g_constant_buffer;
+undefined g_structured_buffer;
+undefined g_raytracing_buffer;
+undefined g_sound_manager;
+undefined g_music_manager;
+undefined g_voice_manager;
+undefined g_effect_manager;
+undefined g_audio_stream;
+undefined g_audio_mixer;
+undefined g_audio_compressor;
+undefined g_network_socket;
+undefined g_network_connection;
+undefined g_network_protocol;
+undefined g_network_security;
+undefined g_network_online;
+undefined g_input_device;
+undefined g_input_handler;
+undefined g_input_mapper;
 
-// 函数: undefined FUN_18004a130;
-undefined FUN_18004a130;
-undefined UNK_180a0c9a0;
-undefined UNK_180a0cb40;
-undefined UNK_180a0c808;
-undefined UNK_180a0c9b0;
-undefined UNK_180a0c7d8;
-undefined UNK_180a0c7f0;
-undefined UNK_180a0c508;
+// 函数: undefined InitializeInputSystem;
+undefined InitializeInputSystem;
+undefined g_keyboard_device;
+undefined g_mouse_device;
+undefined g_gamepad_device;
+undefined g_touch_device;
+undefined g_motion_device;
+undefined g_gesture_device;
+undefined g_vibration_device;
 
-// 函数: undefined FUN_180049cd0;
-undefined FUN_180049cd0;
+// 函数: undefined InitializeUISystem;
+undefined InitializeUISystem;
 
-// 函数: undefined FUN_180049970;
-undefined FUN_180049970;
+// 函数: undefined CreateUIManager;
+undefined CreateUIManager;
 
-// 函数: undefined FUN_1800586e0;
-undefined FUN_1800586e0;
+// 函数: undefined SetupUIComponents;
+undefined SetupUIComponents;
 
-// 函数: undefined FUN_180046480;
-undefined FUN_180046480;
-undefined UNK_180a13ad0;
-undefined DAT_180a0ba58;
-undefined DAT_180a0d580;
+// 函数: undefined InitializePhysicsSystem;
+undefined InitializePhysicsSystem;
+undefined g_physics_world;
+undefined g_physics_enabled;
+undefined g_physics_debug;
 undefined UNK_180a13aa8;
 undefined UNK_180a13ab8;
 undefined UNK_180a13ae8;
@@ -17074,7 +17074,7 @@ void FUN_180046444(undefined1 *param_1)
 
 
 
-undefined8 * FUN_180046480(undefined8 *param_1)
+undefined8 * InitializePhysicsSystem(undefined8 *param_1)
 
 {
   *param_1 = &UNK_18098bcb0;
@@ -17855,7 +17855,7 @@ FUN_180047d40(undefined8 *param_1,undefined8 *param_2,undefined8 param_3,undefin
 {
   *param_1 = *param_2;
   *(undefined4 *)(param_1 + 1) = *(undefined4 *)(param_2 + 1);
-  FUN_180049b30(param_1 + 2,param_2 + 2,param_3,param_4,0xfffffffffffffffe);
+  InitializeGraphicsSystem(param_1 + 2,param_2 + 2,param_3,param_4,0xfffffffffffffffe);
   *(undefined4 *)(param_1 + 0x15) = *(undefined4 *)(param_2 + 0x15);
   *(undefined4 *)((longlong)param_1 + 0xac) = *(undefined4 *)((longlong)param_2 + 0xac);
   param_1[0x16] = param_2[0x16];
@@ -19138,7 +19138,7 @@ void FUN_180049956(undefined1 *param_1)
 
 
 
-undefined8 * FUN_180049970(undefined8 *param_1)
+undefined8 * CreateUIManager(undefined8 *param_1)
 
 {
   *param_1 = &UNK_18098bcb0;
@@ -19198,7 +19198,7 @@ void FUN_1800499c0(longlong param_1,longlong param_2,longlong param_3)
 
 
 undefined8 *
-FUN_180049b30(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+InitializeGraphicsSystem(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined *puVar1;
@@ -19306,7 +19306,7 @@ void FUN_180049cb4(undefined1 *param_1)
 
 
 
-undefined8 * FUN_180049cd0(undefined8 *param_1)
+undefined8 * InitializeUISystem(undefined8 *param_1)
 
 {
   *param_1 = &UNK_18098bcb0;
@@ -19482,8 +19482,8 @@ void FUN_18004a100(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_18004a130(undefined8 *param_1)
-void FUN_18004a130(undefined8 *param_1)
+// 函数: void InitializeInputSystem(undefined8 *param_1)
+void InitializeInputSystem(undefined8 *param_1)
 
 {
   *param_1 = &UNK_180a3c3e0;
@@ -21436,8 +21436,8 @@ LAB_18004c7ef:
 
 
 
-// 函数: void FUN_18004ca00(longlong *param_1)
-void FUN_18004ca00(longlong *param_1)
+// 函数: void InitializeAudioSystem(longlong *param_1)
+void InitializeAudioSystem(longlong *param_1)
 
 {
   if ((longlong *)*param_1 != (longlong *)0x0) {
@@ -27699,8 +27699,8 @@ LAB_18005856a:
 
 
 
-// 函数: void FUN_1800586e0(longlong param_1)
-void FUN_1800586e0(longlong param_1)
+// 函数: void SetupUIComponents(longlong param_1)
+void SetupUIComponents(longlong param_1)
 
 {
   if (*(longlong **)(param_1 + 0x10) != (longlong *)0x0) {
@@ -49038,7 +49038,7 @@ void FUN_180075630(longlong param_1,undefined8 *param_2)
   *(undefined4 *)(param_1 + 0x158) = uVar5;
   *(undefined4 *)(param_1 + 0x15c) = uVar6;
   if (plVar2 != (longlong *)0x0) {
-    if (*(code **)(*plVar2 + 0x160) == (code *)&UNK_180277350) {
+    if (*(code **)(*plVar2 + 0x160) == (code *)&g_system_heap) {
       puVar1 = (undefined8 *)((longlong)plVar2 + 0x214);
       *(undefined4 *)((longlong)plVar2 + 0x244) = 0;
       if (plVar2[8] - plVar2[7] >> 4 == 0) {
