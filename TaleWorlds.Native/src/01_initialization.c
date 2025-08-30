@@ -26080,13 +26080,13 @@ void InitializeSystemModule14(longlong handleIdentifier)
     ConfigureSystemParameters(&system_buffer_ptr_98system_buffer_pointer_primary,system_unsigned_integer_result_temp + SYSTEM_OBJECT_OFFSET_2B);
     system_ptr_value = (uint32_t *)(system_buffer_ptr_small_buffer + init_stack_thread_count);
     *system_ptr_value = SYSTEM_STRING_DEV_MESSAGE_PART1;
-    system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x65706f6c;
-    system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x6e692072;
-    system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x76726574;
-    system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x69746e65;
-    system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x73206e6f;
-    system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x65676775;
-    system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x64657473;
+    system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_STRING_POLICE_MESSAGE_PART1;
+    system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_STRING_POLICE_MESSAGE_PART2;
+    system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_STRING_POLICE_MESSAGE_PART3;
+    system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_STRING_POLICE_MESSAGE_PART4;
+    system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_STRING_POLICE_MESSAGE_PART5;
+    system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_STRING_POLICE_MESSAGE_PART6;
+    system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_STRING_POLICE_MESSAGE_PART7;
     *(uint16_t *)(system_pointer_var + 8) = SYSTEM_FILE_EXTENSION_2E;
     system_ptr_value = &g_system_data_variable3;
     if (system_buffer_ptr_small_buffer != (void *)SYSTEM_NULL_POINTER) {
@@ -28773,7 +28773,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
   uintStack_338 = 3;
   pppppsystem_buffer_ptr_shader_data = &pppppsystem_buffer_ptr_shader_data;
   pppppsystem_buffer_ptr_358 = &pppppsystem_buffer_ptr_shader_data;
-  pppppsystem_buffer_ptr_350 = (uint64_t *******)0x0;
+  pppppsystem_buffer_ptr_350 = (uint64_t *******)SYSTEM_NULL_POINTER;
   uintStack_348 = 0;
   uintStack_340 = 0;
   longStack_2b8 = *g_system_base_1;
@@ -28921,7 +28921,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
           uintStack_320 = 0;
           system_pointer_chain4 = &pppppsystem_buffer_ptr_shader_data;
           for (system_pointer_chain = (uint64_t *******)pppppsystem_buffer_ptr_350;
-              system_pointer_chain != (uint64_t *******)0x0;
+              system_pointer_chain != (uint64_t *******)SYSTEM_NULL_POINTER;
               system_pointer_chain = (uint64_t *******)system_pointer_chain[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER]) {
             system_pointer_chain4 = system_pointer_chain;
           }
