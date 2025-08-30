@@ -78,7 +78,7 @@
 // - 将system_control_parameter替换为system_control_parameter（系统控制参数）
 // - 将system_input_stack_parameter替换为system_input_stack_parameter（系统输入栈参数）
 // - 将system_input_stack_flag替换为system_input_stack_flag（系统输入栈标志）
-// - 将pplStack_68替换为system_parallel_stack_buffer（系统并行栈缓冲区）
+// - 将system_parallel_stack_buffer替换为system_parallel_stack_buffer（系统并行栈缓冲区）
 // - 将system_memory_stack_backup替换为system_memory_stack_backup_ptr（系统内存栈备份指针）
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
@@ -5669,7 +5669,7 @@ unsigned long long allocate_system_memory(long long handle_param,long long *thre
   long long *system_memory_stack_primary;
   long long *plStack_78;
   unsigned long long stack_size_max;
-  long long **pplStack_68;
+  long long **system_parallel_stack_buffer;
   long long *system_memory_stack_backup;
   unsigned char auStack_58 [32];
   stack_size_max = DEFAULT_THREAD_POOL_FLAG;
@@ -5693,16 +5693,16 @@ unsigned long long allocate_system_memory(long long handle_param,long long *thre
     }
     buffer_alloc_result = system_execution_function(system_global_data_pointer,0x298,8,3);
     system_memory_buffer_ptr = (long long *)system_memory_001(buffer_alloc_result);
-    pplStack_68 = (long long **)merge_32bit_values(pplStack_68._4_4_,system_temp_stack_array[0]);
+    system_parallel_stack_buffer = (long long **)merge_32bit_values(system_parallel_stack_buffer._4_4_,system_temp_stack_array[0]);
     system_memory_stack_backup = system_memory_buffer_ptr;
-    system_memory_manager_006(handle_param + 0x3a8,auStack_58,&pplStack_68);
+    system_memory_manager_006(handle_param + 0x3a8,auStack_58,&system_parallel_stack_buffer);
     thread_result_index = _Mtx_unlock(psystem_initialization_result);
     if (thread_result_index != 0) {
       __Throw_C_error_std__YAXH_Z(thread_result_index);
     }
     *thread_op_flags = (long long)system_memory_buffer_ptr;
     buffer_alloc_result = *(unsigned long long *)(handle_param + 0x2d8);
-    pplStack_68 = &system_memory_stack_primary;
+    system_parallel_stack_buffer = &system_memory_stack_primary;
     system_memory_stack_primary = system_memory_buffer_ptr;
     if (system_memory_buffer_ptr != (long long *)0x0) {
       (**(code **)(*system_memory_buffer_ptr + 0x28))(system_memory_buffer_ptr);
