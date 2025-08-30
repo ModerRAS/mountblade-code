@@ -873,8 +873,8 @@
 // - 添加了NETWORK_BUFFER_PTR_INDEX_STATUS等缓冲区指针索引语义化常量
 // - 将硬编码的network_socket_handle[NETWORK_PERFORMANCE_THRESHOLD_99]替换为network_socket_handle[NETWORK_SOCKET_HANDLE_INDEX_EXTENDED_99]等语义化索引
 // - 将硬编码的network_socket_handle[NETWORK_CONFIG_PARAM_LARGE]替换为network_socket_handle[NETWORK_SOCKET_HANDLE_INDEX_EXTENDED_100]等语义化索引
-// - 将硬编码的network_socket_handle[199]替换为network_socket_handle[NETWORK_SOCKET_HANDLE_INDEX_EXTENDED_199]等语义化索引
-// - 将硬编码的network_socket_handle[NETWORK_OFFSET_TWO_HUNDRED]替换为network_socket_handle[NETWORK_SOCKET_HANDLE_INDEX_EXTENDED_200]等语义化索引
+// - 将硬编码的network_socket_handle[199]替换为network_socket_handle[NETWORK_SOCKET_HANDLE_INDEX_STANDARD]等语义化索引
+// - 将硬编码的network_socket_handle[NETWORK_OFFSET_TWO_HUNDRED]替换为network_socket_handle[NETWORK_SOCKET_HANDLE_INDEX_LARGE]等语义化索引
 // - 将硬编码的network_socket_handle[299]替换为network_socket_handle[NETWORK_SOCKET_HANDLE_INDEX_EXTENDED_299]等语义化索引
 // - 将硬编码的network_socket_handle[300]替换为network_socket_handle[NETWORK_SOCKET_HANDLE_INDEX_EXTENDED_300]等语义化索引
 // - 将硬编码的network_buffer_ptr[NETWORK_CONFIG_PARAM_LARGE]替换为network_buffer_ptr[NETWORK_BUFFER_PTR_INDEX_STATUS]等语义化索引
@@ -1119,15 +1119,15 @@
 #define NETWORK_SOCKET_MAGIC_OFFSETfffff     NETWORK_SOCKET_MAGIC_OFFSET_MASK      // 偏移量掩码魔数
 
 // 网络系统数组大小语义化常量（本次美化内容）
-#define NETWORK_BUFFER_SIZE_16      16
+#define NETWORK_BUFFER_SIZE_SMALL      16
 #define NETWORK_BUFFER_SIZE_WORD      NETWORK_BUFFER_SIZE_WORD
-#define NETWORK_BUFFER_SIZE_33      33
-#define NETWORK_BUFFER_SIZE_34      34
-#define NETWORK_BUFFER_SIZE_40      40
-#define NETWORK_BUFFER_SIZE_48      48
+#define NETWORK_BUFFER_SIZE_STANDARD      33
+#define NETWORK_BUFFER_SIZE_LARGE      34
+#define NETWORK_BUFFER_SIZE_EXTRA_LARGE      40
+#define NETWORK_BUFFER_SIZE_HUGE      48
 #define NETWORK_BUFFER_SIZE_5       NETWORK_OFFSET_PENTA
-#define NETWORK_BUFFER_SIZE_64      64
-#define NETWORK_BUFFER_SIZE_96      96
+#define NETWORK_BUFFER_SIZE_EXTENDED      64
+#define NETWORK_BUFFER_SIZE_MAXIMUM      96
 #define NETWORK_BUFFER_SIZE_MEDIUM     560
 #define NETWORK_BUFFER_SIZE_LARGE     624
 
@@ -1308,14 +1308,14 @@
 // 网络系统套接字句柄扩展索引语义化常量（本次美化内容）
 
 // 网络系统扩展索引语义化常量（本次美化内容）
-#define NETWORK_EXTENDED_INDEX_99     NETWORK_PERFORMANCE_THRESHOLD_99    // 扩展索引99
-#define NETWORK_EXTENDED_INDEX_100    NETWORK_CONFIG_PARAM_LARGE   // 扩展索引100
+#define NETWORK_EXTENDED_INDEX_STANDARD     NETWORK_PERFORMANCE_THRESHOLD_99    // 扩展索引99
+#define NETWORK_EXTENDED_INDEX_LARGE    NETWORK_CONFIG_PARAM_LARGE   // 扩展索引100
 #define NETWORK_EXTENDED_INDEX_STANDARD    199   // 扩展索引199
-#define NETWORK_EXTENDED_INDEX_200    NETWORK_OFFSET_TWO_HUNDRED   // 扩展索引200
+#define NETWORK_EXTENDED_INDEX_MAXIMUM    NETWORK_OFFSET_TWO_HUNDRED   // 扩展索引200
 #define NETWORK_EXTENDED_INDEX_EXTENDED    299   // 扩展索引299
 #define NETWORK_EXTENDED_INDEX_MAXIMUM    300   // 扩展索引300
-#define NETWORK_SOCKET_HANDLE_INDEX_EXTENDED_199 199   // 扩展套接字句柄索引199
-#define NETWORK_SOCKET_HANDLE_INDEX_EXTENDED_200 NETWORK_OFFSET_TWO_HUNDRED   // 扩展套接字句柄索引200
+#define NETWORK_SOCKET_HANDLE_INDEX_STANDARD 199   // 扩展套接字句柄索引199
+#define NETWORK_SOCKET_HANDLE_INDEX_LARGE NETWORK_OFFSET_TWO_HUNDRED   // 扩展套接字句柄索引200
 #define NETWORK_SOCKET_HANDLE_INDEX_EXTENDED_299 299   // 扩展套接字句柄索引299
 #define NETWORK_SOCKET_HANDLE_INDEX_EXTENDED_300 300   // 扩展套接字句柄索引300
 
@@ -1329,8 +1329,8 @@
 #define NETWORK_NEGATIVE_OFFSET_9         -NETWORK_OFFSET_NONA     // 负偏移量9
 
 // 网络系统缓冲区大小语义化常量（本次美化内容）
-#define NETWORK_BUFFER_SIZE_64           64     // 缓冲区大小64字节
-#define NETWORK_BUFFER_SIZE_96           96     // 缓冲区大小96字节
+#define NETWORK_BUFFER_SIZE_EXTENDED           64     // 缓冲区大小64字节
+#define NETWORK_BUFFER_SIZE_MAXIMUM           96     // 缓冲区大小96字节
 #define NETWORK_BUFFER_SIZE_SMALL          128    // 缓冲区大小128字节
 #define NETWORK_BUFFER_SIZE_COMPACT       520    // 缓冲区大小520字节
 #define NETWORK_BUFFER_SIZE_MEDIUM          560    // 缓冲区大小560字节
@@ -1905,7 +1905,7 @@
 #define NETWORK_PROCESSOR_DATA_INDEX_MAXIMUM NETWORK_PERFORMANCE_THRESHOLD_DECA // 处理器数据最大索引
 #define NETWORK_DATA_SIZE_32 0x32  // 网络数据大小32字节
 #define NETWORK_DATA_SIZE_7D NETWORK_MIN_PACKET_SIZE_ALT  // 网络数据大小7D字节
-#define NETWORK_BUFFER_SIZE_40 40  // 网络缓冲区大小40字节
+#define NETWORK_BUFFER_SIZE_EXTRA_LARGE 40  // 网络缓冲区大小40字节
 
 // 新增语义化常量定义 - 网络包大小相关索引（2025年8月30日）
 #define NETWORK_PACKET_SIZE_INDEX_STATUS NETWORK_OFFSET_TRIPLE      // 包大小状态索引
@@ -2253,7 +2253,7 @@
 // 美化网络缓冲区大小常量名 - 将硬编码十六进制值替换为语义化常量
 #define NETWORK_BUFFER_SIZE_4K NETWORK_BUFFER_SIZE_4KB       // 4KB缓冲区大小
 #define NETWORK_BUFFER_SIZE_8K NETWORK_BUFFER_SIZE_8KB       // 8KB缓冲区大小
-#define NETWORK_BUFFER_SIZE_16K NETWORK_BUFFER_SIZE_16KB     // 16KB缓冲区大小
+#define NETWORK_BUFFER_SIZE_SMALLK NETWORK_BUFFER_SIZE_SMALLKB     // 16KB缓冲区大小
 #define NETWORK_BUFFER_SIZE_WORDK NETWORK_BUFFER_SIZE_WORDKB     // 32KB缓冲区大小
 
 // 新增语义化常量定义 - 网络超时值（2025年8月30日最终批次）
@@ -2513,7 +2513,7 @@
 #define NETWORK_INVALID_HEADER_MAGIC NETWORK_MAGIC_INVALID_HEADER  // 无效头部魔术数字
 #define NETWORK_LOG_MESSAGE_SIZE_MAX NETWORK_BUFFER_SIZE_100  // 最大日志消息大小
 #define NETWORK_LOG_MESSAGE_SIZE_MEDIUM NETWORK_BUFFER_SIZE_80  // 中等日志消息大小
-#define NETWORK_LOG_MESSAGE_SIZE_SMALL NETWORK_BUFFER_SIZE_40  // 小日志消息大小
+#define NETWORK_LOG_MESSAGE_SIZE_SMALL NETWORK_BUFFER_SIZE_EXTRA_LARGE  // 小日志消息大小
 #define NETWORK_MAGIC_DEADFOOD NETWORK_MAGIC_DEADFOOD  // 死亡食物魔术数字
 #define NETWORK_MAGIC_SIZE_41 NETWORK_BUFFER_SIZE_THRESHOLD_0X41
 #define NETWORK_MAGIC_SIZE_41200000 NETWORK_BUFFER_SIZE_THRESHOLD_0X41200000
@@ -4161,7 +4161,7 @@ void network_send_data(uint32_t network_socket_handle, int32_t network_buffer_pt
   int64_t network_ctx_array_ptr;
   int64_t network_data_pos_offset;
   int64_t network_secondary_conn_info;
-  uint8_t network_send_buf [NETWORK_BUFFER_SIZE_40];
+  uint8_t network_send_buf [NETWORK_BUFFER_SIZE_EXTRA_LARGE];
   uint64_t network_encryption_xor_value;
   network_encryption_xor_value = network_encryption_xor_global_value ^ (NETWORK_ULONG_LONG)encryption_temp_buf;
   if (network_buffer_size == NETWORK_STATUS_FAILURE) {
@@ -4336,7 +4336,7 @@ void NetworkSendPacketWithTimeout(uint64_t network_socket_handle, int64_t networ
   int64_t network_session_data_offsetset;
   uint8_t network_encryption_temp_buf [NETWORK_BUFFER_SIZE_WORD];
   uint64_t network_checksum_value;
-  uint8_t network_compression_data_buffer [NETWORK_BUFFER_SIZE_16];
+  uint8_t network_compression_data_buffer [NETWORK_BUFFER_SIZE_SMALL];
   uint64_t network_encryption_key_main;
   network_encryption_key_main = network_encryption_xor_global_value ^ (NETWORK_ULONG_LONG)network_encryption_key_main_medium;
   if (network_buffer_size != NETWORK_STATUS_FAILURE) {
@@ -5110,11 +5110,11 @@ void NetworkValidateDataIntegrity(uint64_t network_socket_handle, uint32_t *netw
     *network_buffer_ptr = *network_buffer_capacity / NETWORK_PACKET_DATA_PAYLOAD_OFFSET;
 // 函数: void NetworkProcessDataQueue(uint32_t network_socket_handle, uint32_t *network_buffer_ptr, uint32_t *network_buffer_size)
 void NetworkProcessDataQueue(uint32_t network_socket_handle, uint32_t *network_buffer_ptr, uint32_t *network_buffer_size)
-  uint8_t network_validation_temp_buf [NETWORK_BUFFER_SIZE_48];
+  uint8_t network_validation_temp_buf [NETWORK_BUFFER_SIZE_HUGE];
   uint64_t network_status_handle_primary;
   uint64_t network_config_secondary_value;
   int64_t network_context_pointer_quinary;
-  int64_t network_socket_ctx_array_standard [NETWORK_BUFFER_SIZE_33];
+  int64_t network_socket_ctx_array_standard [NETWORK_BUFFER_SIZE_STANDARD];
   if (network_buffer_size != (uint32_t *)MEMORY_MEMORY_ZERO_OFFSET) {
     *network_buffer_size = NETWORK_STATUS_FAILURE;
   network_context_pointer_quinary = NETWORK_STATUS_FAILURE;
@@ -5474,7 +5474,7 @@ void NetworkManageSecurity(int64_t network_socket_handle, int64_t *network_buffe
   undefined *network_stack_cleanup_main_data_buffer;
   uint16_t network_encryption_status_flag;
   int64_t *network_data_pointer_pointer_primary;
-  uint8_t network_validation_temp_buf [NETWORK_BUFFER_SIZE_40];
+  uint8_t network_validation_temp_buf [NETWORK_BUFFER_SIZE_EXTRA_LARGE];
   if ((*(uint32_t *)(network_buffer_ptr + NETWORK_DATA_OFFSET_STANDARD) >> NETWORK_OFFSET_SEVEN & NETWORK_STATUS_SUCCESS) == NETWORK_STATUS_FAILURE) {
     isEncrypted = ~(byte)(*(uint32_t *)(network_socket_handle + NETWORK_VALIDATION_OFFSET) >> NETWORK_STATUS_SUCCESS) & NETWORK_STATUS_SUCCESS;
     if (isEncrypted != NETWORK_STATUS_FAILURE) {
@@ -5518,7 +5518,7 @@ bool Networknetwork_validate_socket_handle(uint64_t network_socket_handle)
   return network_op_status == NETWORK_STATUS_FAILURE;
 // 函数: void NetworkMonitorSecurity(uint64_t network_socket_handle)
 void NetworkMonitorSecurity(uint64_t network_socket_handle)
-  uint8_t network_validation_large_buffer [NETWORK_BUFFER_SIZE_48];
+  uint8_t network_validation_large_buffer [NETWORK_BUFFER_SIZE_HUGE];
   uint64_t *network_context_global_data [NETWORK_ARRAY_SIZE_LARGE];
   network_context_global_data_array[NETWORK_STATUS_SUCCESS] = NETWORK_STATUS_FAILURE;
     if ((*(uint32_t *)(network_context_global_data_array[NETWORK_STATUS_FAILURE] + SOCKET_FLAG_OFFSET) >> NETWORK_STATUS_SUCCESS & NETWORK_STATUS_SUCCESS) == NETWORK_STATUS_FAILURE) goto check_socket_readiness;
@@ -22795,8 +22795,8 @@ NetworkEstablishConnectionBasic(uint64_t *network_socket_handle, uint64_t networ
   network_socket_handle[NETWORK_SOCKET_OFFSET_C4] = NETWORK_STATUS_FAILURE;
   network_socket_handle[NETWORK_SOCKET_OFFSET_C5] = NETWORK_STATUS_FAILURE;
   network_socket_handle[NETWORK_LOG_TYPE_ERROR] = NETWORK_STATUS_FAILURE;
-  network_socket_handle[NETWORK_SOCKET_HANDLE_INDEX_EXTENDED_199] = NETWORK_STATUS_FAILURE;
-  network_socket_handle[NETWORK_SOCKET_HANDLE_INDEX_EXTENDED_200] = NETWORK_STATUS_FAILURE;
+  network_socket_handle[NETWORK_SOCKET_HANDLE_INDEX_STANDARD] = NETWORK_STATUS_FAILURE;
+  network_socket_handle[NETWORK_SOCKET_HANDLE_INDEX_LARGE] = NETWORK_STATUS_FAILURE;
   *(uint32_t *)(network_socket_handle + NETWORK_SOCKET_CONFIG_OFFSET_C9) = NETWORK_MAX_SIZE;
   *(uint32_t *)((longlong)network_socket_handle + NETWORK_SOCKET_EXTENDED_OFFSET_64C) = NETWORK_STATUS_FAILURE;
   network_socket_handle[NETWORK_SOCKET_OFFSET_CA] = NETWORK_STATUS_FAILURE;
@@ -38349,7 +38349,7 @@ uint64_t networkProcessHandshake(uint64_t network_socket_handle, int64_t network
 #define NETWORK_ENCRYPTION_OFFSET_PRIMARY      0x10
 #define NETWORK_ENCRYPTION_OFFSET_SECONDARY    NETWORK_MIN_PACKET_SIZE
 #define NETWORK_ENCRYPTION_OFFSET_TERTIARY     0x30
-#define NETWORK_VALIDATION_OFFSET_PRIMARY      NETWORK_BUFFER_SIZE_64
+#define NETWORK_VALIDATION_OFFSET_PRIMARY      NETWORK_BUFFER_SIZE_EXTENDED
 #define NETWORK_VALIDATION_OFFSET_SECONDARY    NETWORK_PORT_HTTP
 #define NETWORK_ENCRYPTION_OFFSET_8 0x8  // 网络加密偏移量8
 
@@ -38595,7 +38595,7 @@ uint64_t networkProcessHandshake(uint64_t network_socket_handle, int64_t network
 // 新增语义化常量定义 - 网络缓冲区大小
 #define NETWORK_BUFFER_SIZE_4KB 0x1000       // 4KB缓冲区大小
 #define NETWORK_BUFFER_SIZE_8KB 0x2000       // 8KB缓冲区大小
-#define NETWORK_BUFFER_SIZE_16KB 0x4000      // 16KB缓冲区大小
+#define NETWORK_BUFFER_SIZE_SMALLKB 0x4000      // 16KB缓冲区大小
 #define NETWORK_BUFFER_SIZE_WORDKB 0x8000      // 32KB缓冲区大小
 
 // 新增语义化常量定义 - 网络超时值
@@ -38742,10 +38742,10 @@ uint64_t networkProcessHandshake(uint64_t network_socket_handle, int64_t network
 #define NETWORK_VALIDATION_OFFSET_60 0x60  // 网络验证偏移量60
 
 // 新增语义化常量定义 - 网络缓冲区大小
-#define NETWORK_BUFFER_SIZE_1000 NETWORK_BUFFER_SIZE_4096  // 网络缓冲区大小1000
+#define NETWORK_BUFFER_SIZE_1000 NETWORK_BUFFER_SIZE_EXTRA_LARGE96  // 网络缓冲区大小1000
 #define NETWORK_BUFFER_SIZE_100 NETWORK_BUFFER_SIZE_256  // 网络缓冲区大小100
 #define NETWORK_BUFFER_SIZE_80 NETWORK_BUFFER_SIZE_128  // 网络缓冲区大小80
-#define NETWORK_BUFFER_SIZE_40 NETWORK_BUFFER_SIZE_64  // 网络缓冲区大小40
+#define NETWORK_BUFFER_SIZE_EXTRA_LARGE NETWORK_BUFFER_SIZE_EXTENDED  // 网络缓冲区大小40
 
 // 新增语义化常量定义 - 网络套接字配置
 #define SOCKET_CONFIG_MASK_FF NETWORK_SOCKET_CONFIG_MASK  // 套接字配置掩码FF
@@ -38827,7 +38827,7 @@ uint64_t networkProcessHandshake(uint64_t network_socket_handle, int64_t network
 // - 将硬编码的NETWORK_BUFFER_SIZE_1000替换为NETWORK_BUFFER_SIZE_1000网络缓冲区大小
 // - 将硬编码的NETWORK_BUFFER_SIZE_100替换为NETWORK_BUFFER_SIZE_100网络缓冲区大小
 // - 将硬编码的NETWORK_BUFFER_SIZE_80替换为NETWORK_BUFFER_SIZE_80网络缓冲区大小
-// - 将硬编码的NETWORK_BUFFER_SIZE_40替换为NETWORK_BUFFER_SIZE_40网络缓冲区大小
+// - 将硬编码的NETWORK_BUFFER_SIZE_EXTRA_LARGE替换为NETWORK_BUFFER_SIZE_EXTRA_LARGE网络缓冲区大小
 // - 将硬编码的SOCKET_CONFIG_MASK_FF替换为SOCKET_CONFIG_MASK_FF套接字配置掩码
 // - 添加了NETWORK_STATUS_SUCCESS等网络操作成功码语义化常量
 // - 添加了NETWORK_CONNECTION_ACTIVE等网络连接状态语义化常量
