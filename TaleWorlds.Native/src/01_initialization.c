@@ -3493,6 +3493,7 @@ void InitializeSystemData(void)
   int system_memory_comparison_result;
   longlong *system_data_pointer;
   longlong system_node_allocation_size;
+  longlong system_node_total_allocation_size;
   uint64_t *system_node_current;
   uint64_t *system_node_previous;
   uint64_t *system_next_node;
@@ -3520,7 +3521,7 @@ void InitializeSystemData(void)
   }
   if ((system_node_previous == system_node_root) || (system_memory_comparison_result = memcmp(&gameDataDefaultPattern,system_node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), system_memory_comparison_result < SYSTEM_COMPARE_RESULT_EQUAL)) {
     system_node_allocation_size = AllocateNodeMemory(system_data_pointer);
-    InsertSystemNode(system_data_pointer,&system_new_node,system_node_previous,system_node_allocation_size_total + SYSTEM_NODE_HEADER_SIZE,system_node_allocation_size);
+    InsertSystemNode(system_data_pointer,&system_new_node,system_node_previous,system_node_total_allocation_size + SYSTEM_NODE_HEADER_SIZE,system_node_allocation_size);
     system_node_previous = system_new_node;
   }
   system_node_previous[SYSTEM_NODE_INDEX_SIGNATURE_PRIMARY] = dataNodeSignaturePrimary;
