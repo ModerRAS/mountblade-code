@@ -4654,7 +4654,7 @@ uint64 utility_query_resource_handle(longlong resource_handle_identifier) # иµДж
     return utility_iteration_counter;
   }
   if (utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] != UTILITY_NULL_RESULT) {
-    utility_stack_buffer_array[0] = utility_stack_buffer_array[0] + -8;
+    utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] = utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] + UTILITY_POINTER_DECREMENT;
   }
   resource_buffer = *(longlong *)(utility_stack_buffer_array[0] + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   if (resource_buffer != UTILITY_NULL_RESULT) {
@@ -84716,4 +84716,5 @@ void CleanupThreadResources(uint64 resource_handle_identifier,uint64 resource_bu
 #define UTILITY_INDEX_INCREMENT 1
 #define UTILITY_INDEX_DECREMENT -1
 #define UTILITY_POINTER_INCREMENT 8
+#define UTILITY_POINTER_DECREMENT -8
 
