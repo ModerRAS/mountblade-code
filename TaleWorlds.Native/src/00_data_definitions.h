@@ -3234,13 +3234,13 @@ label_:
     global_data_ptr = (long long *)*string_input_ptr;
     system_initializer_003(&systemConfigData1,0,0);
     system_config_001(&systemConfigData2);
-    stack_size_max = SYSTEM_CONFIG_BUFFER_SIZE_ZERO00000;
+    stack_size_max = SYSTEM_CONFIG_BUFFER_SIZE_ZERO;
     stack_buffer_2c8[0] = FLOAT_ONE;
     stack_size_max = path_buffer_size000;
     thread_stack_ptr = &systemConfigBufferPtr;
     pplStack_328 = (long long **)&stack_size_max;
     system_config_002(&systemConfigData3,4,global_data_ptr + 0x167c,stack_buffer_2c8);
-    plStack_2f8 = (long long *)merge_32bit_values(plStack_2f8._4_4_, SYSTEM_CONFIG_BUFFER_SIZE_ZERO00000);
+    plStack_2f8 = (long long *)merge_32bit_values(plStack_2f8._4_4_, SYSTEM_CONFIG_BUFFER_SIZE_ZERO);
     stack_size_max = (long long *)merge_32bit_values(stack_size_max._4_4_,FLOAT_ONE);
     stack_size_max = path_buffer_size000;
     thread_stack_ptr = &systemConfigBufferPtr;
@@ -3263,7 +3263,7 @@ label_:
     plStack_2c0 = global_data_ptr;
     global_data_ptr = (long long *)*string_input_ptr;
     system_initializer_003(&systemConfigData6,0,0);
-    stack_size_max = (long long *)merge_32bit_values(stack_size_max._4_4_, SYSTEM_CONFIG_BUFFER_SIZE_ZERO00000);
+    stack_size_max = (long long *)merge_32bit_values(stack_size_max._4_4_, SYSTEM_CONFIG_BUFFER_SIZE_ZERO);
     plStack_2f8 = (long long *)merge_32bit_values(plStack_2f8._4_4_,FLOAT_ONE);
     stack_size_max = path_buffer_size000;
     thread_stack_ptr = &systemConfigBufferPtr;
@@ -3286,7 +3286,7 @@ label_:
     plStack_2c0 = global_data_ptr;
     global_data_ptr = (long long *)*string_input_ptr;
     system_initializer_003(&systemConfigData7,0,0);
-    stack_size_max = (long long *)merge_32bit_values(stack_size_max._4_4_, SYSTEM_CONFIG_BUFFER_SIZE_ZERO00000);
+    stack_size_max = (long long *)merge_32bit_values(stack_size_max._4_4_, SYSTEM_CONFIG_BUFFER_SIZE_ZERO);
     plStack_2f8 = (long long *)merge_32bit_values(plStack_2f8._4_4_,FLOAT_ONE);
     stack_size_max = path_buffer_size000;
     thread_stack_ptr = &systemConfigBufferPtr;
@@ -5584,7 +5584,7 @@ unsigned long long allocate_system_memory(long long handle_param,long long *thre
       (**(code **)(*plStack_80 + 0x38))();
     }
     system_resource_003(pstack_long_var,&plStack_78);
-    *(uint *)(pstack_long_var + path_buffer_size) = *(uint *)(pstack_long_var + path_buffer_size) | SYSTEM_CONFIG_BUFFER_SIZE_ZERO00000;
+    *(uint *)(pstack_long_var + path_buffer_size) = *(uint *)(pstack_long_var + path_buffer_size) | SYSTEM_CONFIG_BUFFER_SIZE_ZERO;
     temp_stack_array[0] = *mutex_attr;
     psystem_init_result = (long long *)(handle_param + 0x3d8);
     plStack_80 = psystem_init_result;
@@ -6213,7 +6213,7 @@ system_finalizer_007(unsigned long long handle_param,unsigned long long thread_o
   system_execution_function(0x180c95de0);
   input_system_initialized = 1;
   global_data_ptr = 3;
-  global_data_ptr = SYSTEM_CONFIG_BUFFER_SIZE_ZERO00000;
+  global_data_ptr = SYSTEM_CONFIG_BUFFER_SIZE_ZERO;
   global_data_ptr = 0x3f800000;
   global_data_ptr = 0;
   global_data_ptr = 1;
@@ -6227,7 +6227,7 @@ system_finalizer_007(unsigned long long handle_param,unsigned long long thread_o
   global_data_ptr = 0;
   ui_system_initialized = 1;
   global_data_ptr = 3;
-  global_data_ptr = SYSTEM_CONFIG_BUFFER_SIZE_ZERO00000;
+  global_data_ptr = SYSTEM_CONFIG_BUFFER_SIZE_ZERO;
   global_data_ptr = 0x3f800000;
   global_data_ptr = 0;
   global_data_ptr = 1;
@@ -6262,7 +6262,7 @@ system_finalizer_007(unsigned long long handle_param,unsigned long long thread_o
   global_data_ptr = 0;
   global_data_ptr = 0;
   global_data_ptr = 4;
-  global_data_ptr = SYSTEM_CONFIG_BUFFER_SIZE_ZERO00000;
+  global_data_ptr = SYSTEM_CONFIG_BUFFER_SIZE_ZERO;
   global_data_ptr = 0x3f800000;
   global_data_ptr = 0;
   global_data_ptr = 1;

@@ -1810,9 +1810,9 @@ int InitializeEngineBaseStructures(void)
   g_reserved_memory_1 = 0;
   g_render_context_state = 3;
   g_audio_context_state = 0;
-  g_system_state_1 = 0;
+  g_system_audio_initialization_flag = 0;
   g_reserved_memory_2 = 0;
-  g_system_state_2 = 3;
+  g_system_render_initialization_flag = 3;
   g_resource_pool_pointer = &resourcePoolPointer;
   g_resource_pool_size = 0;
   g_memory_pool_state = 0;
@@ -4178,7 +4178,7 @@ void InitializeObserverNode(void)
   system_system_local_buffer_primary[0] = 0;
   module_type_id = MODULE_TYPE_STRING_MANAGER_INIT;
   strcpy_s(system_system_local_buffer_primary,0x80,&g_init_string_input,system_parameter,INVALID_HANDLE_VALUE);
-  g_system_object_1 = create_system_object(&thread_parameter_ptr); // 原始名称: systemCoreData
+  g_system_core_data_object = create_system_object(&thread_parameter_ptr); // 原始名称: systemCoreData
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
@@ -4724,7 +4724,7 @@ void InitializeSystemObject12(void)
   system_system_local_buffer_primary[0] = 0;
   module_type_id = MODULE_TYPE_NETWORK_INIT;
   strcpy_s(system_system_local_buffer_primary,0x80,&g_init_string_4,system_parameter,INVALID_HANDLE_VALUE);
-  g_system_object_2 = create_system_object(&thread_parameter_ptr); // 原始名称: system_statusData
+  g_system_status_data_object = create_system_object(&thread_parameter_ptr); // 原始名称: system_statusData
   return;
 }
 // void InitializeThreadConfig2(void)
