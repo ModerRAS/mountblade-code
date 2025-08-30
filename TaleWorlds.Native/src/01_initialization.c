@@ -15602,10 +15602,9 @@ void InitializeSystemModule45(longlong handleIdentifier)
   longlong system_long_value;
   longlong *system_memory_pointer;
   char system_init_flag;
-  longlong *stack_system_memory_pointer;
-  longlong **pstack_system_memory_pointer;
-  longlong *stack_system_memory_pointer;
-  longlong *stack_system_memory_pointer;
+  longlong *system_stack_memory_pointer;
+  longlong **system_stack_memory_ptr_ptr;
+  longlong *system_stack_memory_ptr_aux;
   uint64_t system_status_code;
 
   system_status_code = INVALID_HANDLE_VALUE;
@@ -15622,11 +15621,11 @@ void InitializeSystemModule45(longlong handleIdentifier)
     if (system_init_flag == '\0') goto INIT_LABEL_CHECK_SYSTEM_FLAG;
   }
   system_memory_pointer = (longlong *)AllocateSystemMemory(systemMemoryPool,0xc0,8,3,system_operation_status); // 原始名称: systemMemoryPool
-  stack_system_memory_pointer = system_memory_pointer;
+  system_stack_memory_pointer = system_memory_pointer;
   ConfigureSystemHandles(system_memory_pointer);
   *system_memory_pointer = (longlong)&g_global_system_config;
   system_memory_pointer[3] = -4;
-  pstack_system_memory_pointer = (longlong **)system_memory_pointer;
+  system_stack_memory_ptr_ptr = (longlong **)system_memory_pointer;
   (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
   pstack_system_memory_pointer = (longlong **)systemInitializationObject; // 原始名称: systemInitializationObject
   if (systemInitializationObject != (longlong *)0x0) {
@@ -15664,11 +15663,11 @@ INIT_LABEL_CHECK_SYSTEM_FLAG:
     system_memory_pointer[3] = -1;
     *system_memory_pointer = (longlong)&globalSystemInputData;
     system_memory_pointer[4] = 0x180c91060;
-    stack_system_memory_pointer = system_memory_pointer;
+    system_stack_memory_pointer = system_memory_pointer;
     (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
     system_status_code = system_configuration_data;
     pstack_system_memory_pointer = &stack_system_memory_pointer;
-    stack_system_memory_pointer = system_memory_pointer;
+    system_stack_memory_pointer = system_memory_pointer;
     (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
     InitializeSystemDataNode29(system_operation_status,&stack_system_memory_pointer);
     (**(code **)(*system_memory_pointer + 0x38))(system_memory_pointer);
@@ -15754,7 +15753,7 @@ void UtilityModule231(void)
     system_long_value = g_system_context_1;
     system_status_code = AllocateSystemMemory(systemMemoryPool,0x70,8,3);
     system_memory_pointer = (longlong *)InitializeSystemModule41(system_operation_status,8,system_long_result);
-    stack_system_memory_pointer = system_memory_pointer;
+    system_stack_memory_pointer = system_memory_pointer;
     if (system_memory_pointer != (longlong *)0x0) {
       (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
     }
@@ -15762,7 +15761,7 @@ void UtilityModule231(void)
     system_ptr_value = *(uint64_t **)(system_long_result + 400);
     ptr_system_init_flag = *(code **)*system_ptr_value;
     apstack_system_memory_pointer[0] = &stack_system_memory_pointer;
-    stack_system_memory_pointer = system_memory_pointer;
+    system_stack_memory_pointer = system_memory_pointer;
     (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
     (*ptr_system_init_flag)(system_pointer_var,&stack_system_memory_pointer);
     (**(code **)(*system_memory_pointer + 0x38))(system_memory_pointer);
@@ -15897,7 +15896,7 @@ void InitializeFontSystem(uint64_t handleIdentifier,longlong resourceIdentifier)
   InitializeInputSystem();
   system_memory_pointer = (longlong *)AllocateSystemMemory(systemMemoryPool,0x68,8,3);
   system_memory_handle_ptr = (longlong **)(system_memory_pointer + 1);
-  stack_system_memory_pointer = system_memory_pointer;
+  system_stack_memory_pointer = system_memory_pointer;
   pstack_system_memory_pointer = system_memory_handle_ptr;
   _Mtx_init_in_situ(system_memory_handle_ptr,2);
   system_memory_pointer[0xb] = 0;
@@ -17059,15 +17058,15 @@ void InitializeSystemModule23(longlong *handleIdentifier,uint64_t *resourceIdent
   node_new = resourceIdentifier;
   InitializeSystemModule31();
   system_memory_pointer = (longlong *)AllocateSystemMemory(systemMemoryPool,200,8,3,system_operation_status,usystem_int_result);
-  stack_system_memory_pointer = system_memory_pointer;
+  system_stack_memory_pointer = system_memory_pointer;
   ConfigureSystemHandles(system_memory_pointer);
   *system_memory_pointer = (longlong)&g_global_system_config;
   system_memory_pointer[0x18] = (longlong)&g_system_func_2;
-  stack_system_memory_pointer = system_memory_pointer;
+  system_stack_memory_pointer = system_memory_pointer;
   (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
   system_status_code = system_configuration_data;
   pstack_system_memory_pointer = &stack_system_memory_pointer;
-  stack_system_memory_pointer = system_memory_pointer;
+  system_stack_memory_pointer = system_memory_pointer;
   (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
   InitializeSystemDataNode29(system_operation_status,&stack_system_memory_pointer);
   (**(code **)(*system_memory_pointer + 0x38))(system_memory_pointer);
@@ -32438,7 +32437,7 @@ INIT_LABEL_SYSTEM_5f30a:
         resourceIdentifier = (longlong *)*resourceIdentifier;
         *system_memory_pointer = (longlong)resourceIdentifier;
         if (resourceIdentifier != (longlong *)0x0) {
-          stack_system_memory_pointer = system_memory_pointer;
+          system_stack_memory_pointer = system_memory_pointer;
           (**(code **)(*resourceIdentifier + 0x28))();
         }
         *(longlong **)(flag_initialized + 8) = system_memory_pointer;
@@ -33689,7 +33688,7 @@ uint64_t InitializeVideoSystem(longlong handleIdentifier,char resourceIdentifier
       }
     }
   }
-  stack_system_memory_pointer = system_memory_pointer;
+  system_stack_memory_pointer = system_memory_pointer;
   system_status_code = 0;
 INIT_LABEL_SYSTEM_60993:
   if (stack_system_memory_pointer != (longlong *)0x0) {
@@ -34333,14 +34332,14 @@ void InitializeEventSystem(longlong *handleIdentifier)
   (*ptr_system_init_flag)(system_pointer_var,&stack_system_memory_pointer);
   system_status_code = AllocateSystemMemory(systemMemoryPool,0x70,8,3);
   system_memory_pointer = (longlong *)InitializeSystemModule41(system_operation_status,4,system_long_result);
-  stack_system_memory_pointer = system_memory_pointer;
+  system_stack_memory_pointer = system_memory_pointer;
   if (system_memory_pointer != (longlong *)0x0) {
     (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
   }
   system_ptr_value = *(uint64_t **)(system_long_result + 400);
   ptr_system_init_flag = *(code **)*system_ptr_value;
   pstack_system_memory_pointer = &stack_system_memory_pointer;
-  stack_system_memory_pointer = system_memory_pointer;
+  system_stack_memory_pointer = system_memory_pointer;
   if (system_memory_pointer != (longlong *)0x0) {
     (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
   }
@@ -34348,10 +34347,10 @@ void InitializeEventSystem(longlong *handleIdentifier)
   system_status_code = AllocateSystemMemory(systemMemoryPool,0x70,8,3);
   system_memory_pointer = (longlong *)InitializeSystemModule41(system_operation_status,0,system_long_result);
   if (system_memory_pointer != (longlong *)0x0) {
-    pstack_system_memory_pointer = (longlong **)system_memory_pointer;
+    system_stack_memory_ptr_ptr = (longlong **)system_memory_pointer;
     (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
   }
-  stack_system_memory_pointer = system_memory_pointer;
+  system_stack_memory_pointer = system_memory_pointer;
   if (pallocation_size != (longlong *)0x0) {
     pstack_system_memory_pointer = (longlong **)pallocation_size;
     (**(code **)(*pallocation_size + 0x38))(pallocation_size);
@@ -34359,7 +34358,7 @@ void InitializeEventSystem(longlong *handleIdentifier)
   system_ptr_value = *(uint64_t **)(system_long_result + 400);
   ptr_system_init_flag = *(code **)*system_ptr_value;
   pstack_system_memory_pointer = &stack_system_memory_pointer;
-  stack_system_memory_pointer = system_memory_pointer;
+  system_stack_memory_pointer = system_memory_pointer;
   if (system_memory_pointer != (longlong *)0x0) {
     (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
   }
@@ -34408,14 +34407,14 @@ void InitializeSystemDataNode32(longlong *handleIdentifier)
   (*ptr_system_init_flag)(system_pointer_var,&stack_system_memory_pointer);
   system_status_code = AllocateSystemMemory(systemMemoryPool,0x70,8,3);
   system_memory_pointer = (longlong *)InitializeSystemModule41(system_operation_status,3,system_long_result);
-  stack_system_memory_pointer = system_memory_pointer;
+  system_stack_memory_pointer = system_memory_pointer;
   if (system_memory_pointer != (longlong *)0x0) {
     (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
   }
   system_ptr_value = *(uint64_t **)(system_long_result + 400);
   ptr_system_init_flag = *(code **)*system_ptr_value;
   pstack_system_memory_pointer = &stack_system_memory_pointer;
-  stack_system_memory_pointer = system_memory_pointer;
+  system_stack_memory_pointer = system_memory_pointer;
   if (system_memory_pointer != (longlong *)0x0) {
     (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
   }
@@ -34423,10 +34422,10 @@ void InitializeSystemDataNode32(longlong *handleIdentifier)
   system_status_code = AllocateSystemMemory(systemMemoryPool,0x70,8,3);
   system_memory_pointer = (longlong *)InitializeSystemModule41(system_operation_status,0,system_long_result);
   if (system_memory_pointer != (longlong *)0x0) {
-    pstack_system_memory_pointer = (longlong **)system_memory_pointer;
+    system_stack_memory_ptr_ptr = (longlong **)system_memory_pointer;
     (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
   }
-  stack_system_memory_pointer = system_memory_pointer;
+  system_stack_memory_pointer = system_memory_pointer;
   if (pallocation_size != (longlong *)0x0) {
     pstack_system_memory_pointer = (longlong **)pallocation_size;
     (**(code **)(*pallocation_size + 0x38))(pallocation_size);
@@ -34434,7 +34433,7 @@ void InitializeSystemDataNode32(longlong *handleIdentifier)
   system_ptr_value = *(uint64_t **)(system_long_result + 400);
   ptr_system_init_flag = *(code **)*system_ptr_value;
   pstack_system_memory_pointer = &stack_system_memory_pointer;
-  stack_system_memory_pointer = system_memory_pointer;
+  system_stack_memory_pointer = system_memory_pointer;
   if (system_memory_pointer != (longlong *)0x0) {
     (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
   }
@@ -37274,7 +37273,7 @@ void InitializeSystemModule30(longlong handleIdentifier)
           (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
         }
         system_status_code = system_configuration_data;
-        stack_system_memory_pointer = system_memory_pointer;
+        system_stack_memory_pointer = system_memory_pointer;
         if (*(char *)(system_long_result + 0x368) == '\0') {
           system_memory_pointer[3] = -4;
           (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
@@ -47492,7 +47491,7 @@ void InitializeSystemModule26(longlong *handleIdentifier)
         stack_system_memory_pointer = (longlong *)0x0;
         system_local_buffer_138[0] = 0;
         init_stack_uint_parameter_128 = 0;
-        stack_system_memory_pointer = system_memory_pointer;
+        system_stack_memory_pointer = system_memory_pointer;
         InitializeSystemModule33(system_local_buffer_138);
         system_memory_pointer = stack_system_memory_pointer + 0x16;
         system_status_code = *(ushort *)(stack_system_memory_pointer + 0x18);
@@ -47551,7 +47550,7 @@ void InitializeSystemModule26(longlong *handleIdentifier)
       }
       else {
         init_stack_ulong_parameter_110 = 0;
-        stack_system_memory_pointer = system_memory_pointer;
+        system_stack_memory_pointer = system_memory_pointer;
         InitializeThreadManagerSystem(&stack_system_memory_pointer);
         system_long_value = longStack_108 + 0xb0;
         system_status_code = *(ushort *)(longStack_108 + 0xc0);
@@ -47790,7 +47789,7 @@ longlong * InitializeResourceSystem(longlong *handleIdentifier,longlong *resourc
   system_long_value = *resourceIdentifier;
   system_memory_pointer = (longlong *)handleIdentifier[0x4d];
   if (system_memory_pointer != (longlong *)0x0) {
-    stack_system_memory_pointer = system_memory_pointer;
+    system_stack_memory_pointer = system_memory_pointer;
     (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer,system_operation_status,(int)system_long_result,(int)system_long_result,usystem_int_result);
   }
   stack_system_memory_pointer = *(longlong **)(system_long_result + 0x268);
@@ -50713,7 +50712,7 @@ void InitializeSystemModule41(uint64_t *handleIdentifier,longlong resourceIdenti
   do {
     system_memory_pointer = (longlong *)EngineFunctionfd480(resourceIdentifier,system_int_result);
     if (system_memory_pointer != (longlong *)0x0) {
-      stack_system_memory_pointer = system_memory_pointer;
+      system_stack_memory_pointer = system_memory_pointer;
       (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
     }
     stack_system_memory_pointer = (longlong *)*system_memory_pointer;
@@ -54449,7 +54448,7 @@ INIT_LABEL_SYSTEM_7b454:
   }
   system_status_code = AllocateSystemMemory(systemMemoryPool,0xa0,8,SYSTEM_NODE_HEADER_SIZE);
   system_memory_pointer = (longlong *)InitializeSystemModule17(system_operation_status);
-  stack_system_memory_pointer = system_memory_pointer;
+  system_stack_memory_pointer = system_memory_pointer;
   if (system_memory_pointer != (longlong *)0x0) {
     (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
   }
@@ -54474,7 +54473,7 @@ INIT_LABEL_SYSTEM_7b454:
   system_memory_pointer[4] = 0;
   system_memory_pointer[2] = 0;
   *(byte *)(system_memory_pointer + 5) = *(byte *)(system_memory_pointer + 5) | 1;
-  stack_system_memory_pointer = system_memory_pointer;
+  system_stack_memory_pointer = system_memory_pointer;
   (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
   system_boolean_flag = *(byte *)(handleIdentifier + 0xfd) & SYSTEM_NODE_HEADER_SIZE;
   system_long_value = handleIdentifier;
@@ -54510,8 +54509,8 @@ INIT_LABEL_SYSTEM_7b454:
       stack_system_memory_pointer[3] = (longlong)system_memory_pointer;
       astack_system_memory_pointer[0] = stack_system_memory_pointer;
       system_memory_pointer = (longlong *)InitializeInputMutex(system_operation_status,astack_system_memory_pointer);
-      stack_system_memory_pointer = system_memory_pointer;
-      stack_system_memory_pointer = system_memory_pointer;
+      system_stack_memory_pointer = system_memory_pointer;
+      system_stack_memory_pointer = system_memory_pointer;
       system_status_code = system_configuration_data;
       if (system_memory_pointer != (longlong *)0x0) {
         (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
@@ -54526,14 +54525,14 @@ INIT_LABEL_SYSTEM_7b8dc:
       }
     }
     else {
-      stack_system_memory_pointer = system_memory_pointer;
+      system_stack_memory_pointer = system_memory_pointer;
       (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
-      stack_system_memory_pointer = system_memory_pointer;
+      system_stack_memory_pointer = system_memory_pointer;
       (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
       InitializeInputSystem(handleIdentifier,system_configuration,&stack_system_memory_pointer,&stack_system_memory_pointer);
-      stack_system_memory_pointer = system_memory_pointer;
+      system_stack_memory_pointer = system_memory_pointer;
       (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
-      stack_system_memory_pointer = system_memory_pointer;
+      system_stack_memory_pointer = system_memory_pointer;
       (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
       ConfigureSystemModule17(handleIdentifier,system_configuration,&stack_system_memory_pointer,&stack_system_memory_pointer);
       InitializeSystemDataNode30(&init_stack_long_param_90);
@@ -54559,9 +54558,9 @@ INIT_LABEL_SYSTEM_7b8dc:
     }
   }
   else {
-    stack_system_memory_pointer = system_memory_pointer;
+    system_stack_memory_pointer = system_memory_pointer;
     (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
-    stack_system_memory_pointer = system_memory_pointer;
+    system_stack_memory_pointer = system_memory_pointer;
     (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
     InitializeResourceSystem(handleIdentifier,system_configuration,&stack_system_memory_pointer,&stack_system_memory_pointer,systemFlags);
   }
@@ -55124,11 +55123,11 @@ void InitializeResourceSystem(longlong *handleIdentifier,byte resourceIdentifier
     uintStack_f4 = uintStack_d4;
     stack_system_memory_pointer = handleIdentifier;
     bStack_a8 = resourceIdentifier;
-    stack_system_memory_pointer = system_memory_pointer;
+    system_stack_memory_pointer = system_memory_pointer;
     if (system_memory_pointer != (longlong *)0x0) {
       (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
     }
-    stack_system_memory_pointer = system_memory_pointer;
+    system_stack_memory_pointer = system_memory_pointer;
     if (system_memory_pointer != (longlong *)0x0) {
       (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
     }
@@ -55147,11 +55146,11 @@ void InitializeResourceSystem(longlong *handleIdentifier,byte resourceIdentifier
     pstack_system_memory_pointer = &stack_system_memory_pointer;
     stack_system_memory_pointer = handleIdentifier;
     bStack_c8 = resourceIdentifier;
-    stack_system_memory_pointer = system_memory_pointer;
+    system_stack_memory_pointer = system_memory_pointer;
     if (system_memory_pointer != (longlong *)0x0) {
       (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
     }
-    stack_system_memory_pointer = system_memory_pointer;
+    system_stack_memory_pointer = system_memory_pointer;
     if (system_memory_pointer != (longlong *)0x0) {
       (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
     }
@@ -55356,12 +55355,12 @@ void ConfigureSystemModule17(longlong handleIdentifier,byte resourceIdentifier,l
       (**(code **)(*stack_system_memory_pointer + 0x38))();
     }
     system_memory_pointer = (longlong *)InitializeInputSystem(system_operation_status,astack_system_memory_pointer);
-    stack_system_memory_pointer = system_memory_pointer;
+    system_stack_memory_pointer = system_memory_pointer;
     if (system_memory_pointer != (longlong *)0x0) {
       (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
     }
     pstack_system_memory_pointer = &stack_system_memory_pointer;
-    stack_system_memory_pointer = system_memory_pointer;
+    system_stack_memory_pointer = system_memory_pointer;
     if (system_memory_pointer != (longlong *)0x0) {
       (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
     }
@@ -58728,7 +58727,7 @@ void InitializeSystemResources(uint64_t handleIdentifier,longlong resourceIdenti
   system_memory_pointer = (longlong *)InitializeSystemModule35(handleIdentifier,astack_system_memory_pointer,system_int_result);
   system_memory_pointer = (longlong *)*system_memory_pointer;
   if (system_memory_pointer != (longlong *)0x0) {
-    stack_system_memory_pointer = system_memory_pointer;
+    system_stack_memory_pointer = system_memory_pointer;
     (**(code **)(*system_memory_pointer + 0x28))(system_memory_pointer);
   }
   stack_system_memory_pointer = *(longlong **)(resourceIdentifier + SYSTEM_NODE_HEADER_SIZE);

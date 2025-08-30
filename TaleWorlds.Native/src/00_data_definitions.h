@@ -79,6 +79,26 @@
 #define SYSTEM_CONFIG_BUFFER_SIZE_FOUR 4
 #define SYSTEM_CONFIG_BUFFER_SIZE_EIGHT 8
 
+// 资源类型常量定义
+#define RESOURCE_TYPE_BASE 0x0
+#define RESOURCE_TYPE_TEXTURE 0xd
+#define RESOURCE_TYPE_SHADER 0x17
+#define RESOURCE_TYPE_AUDIO 0xd
+#define RESOURCE_TYPE_FONT 0xc
+#define RESOURCE_TYPE_MODEL 0x1f
+#define RESOURCE_TYPE_ANIMATION 0x17
+#define RESOURCE_TYPE_PARTICLE 0x13
+#define RESOURCE_TYPE_CONFIG 0x14
+#define RESOURCE_TYPE_SAVE_GAME 0x1b
+#define RESOURCE_TYPE_STRING_MANAGER 0x19
+#define RESOURCE_TYPE_PHYSICS 0x12
+#define RESOURCE_TYPE_AI 0x19
+#define RESOURCE_TYPE_UI 0x11
+#define RESOURCE_TYPE_SCRIPT 0x18
+#define RESOURCE_TYPE_NETWORK 0x13
+#define RESOURCE_TYPE_SECURITY 0x16
+#define RESOURCE_TYPE_AUTH 0xf
+
 // 资源标志常量定义
 #define FLAG_INITIALIZED 0x13
 #define FLAG_TEXTURE_RESOURCE 0xd
@@ -534,36 +554,36 @@ int initialize_texture_resource_manager(void)
 int initialize_primary_shader_resource_manager(void)
 {
   long long system_init_result;
-  unsigned long long str_length;
+  unsigned long long shader_resource_string_length;
   void* resource_buffer_ptr = &g_resource_data_buffer;
   void* resource_value_ptr = &resource_buffer_2;
   resource_buffer_2 = 0;
   resource_type_2 = RESOURCE_TYPE_SHADER;
-  strcpy_s(&resource_buffer_2, RESOURCE_BUFFER_SIZE, &shader_resource_string, str_length, DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&resource_buffer_2, RESOURCE_BUFFER_SIZE, &shader_resource_string, shader_resource_string_length, DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(shader_resource_manager_1_init_function);
   return (system_init_result != 0) - 1;
 }
 int initialize_secondary_shader_resource_manager(void)
 {
   long long system_init_result;
-  unsigned long long str_length;
+  unsigned long long audio_resource_string_length;
   void* resource_buffer_ptr = &g_resource_data_buffer;
   void* resource_value_ptr = &resource_buffer_3;
   resource_buffer_3 = 0;
   resource_type_3 = RESOURCE_TYPE_SHADER;
-  strcpy_s(&resource_buffer_3, RESOURCE_BUFFER_SIZE, &audio_resource_string, str_length, DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&resource_buffer_3, RESOURCE_BUFFER_SIZE, &audio_resource_string, audio_resource_string_length, DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(shader_resource_manager_2_init_function);
   return (system_init_result != 0) - 1;
 }
 int initialize_audio_resource_manager(void)
 {
   long long initialization_result;
-  unsigned long long string_length;
+  unsigned long long font_resource_string_length;
   void* resource_buffer_ptr = &g_resource_data_buffer;
   void* resource_buffer_pointer = &resource_buffer_4;
   resource_buffer_4 = 0;
   resource_type_4 = RESOURCE_TYPE_AUDIO;
-  strcpy_s(&resource_buffer_4, RESOURCE_BUFFER_SIZE, &font_resource_string, string_length_parameter, DEFAULT_THREAD_POOL_FLAG);
+  strcpy_s(&resource_buffer_4, RESOURCE_BUFFER_SIZE, &font_resource_string, font_resource_string_length, DEFAULT_THREAD_POOL_FLAG);
   initialization_result = system_execution_function(audio_resource_manager_init_function);
   return (initialization_result != 0) - 1;
 }
