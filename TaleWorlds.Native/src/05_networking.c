@@ -8,6 +8,8 @@
 // - 将in_XMM1_Dc/in_XMM1_Dd替换为network_xmm_register_data_primary/secondary
 // - 将in_AL替换为network_register_al（AL寄存器变量）
 // - 将in_CL替换为network_register_cl（CL寄存器变量）
+// - 将in_register_00000004替换为network_input_register_value（网络输入寄存器值）
+// - 保持代码语义不变，这是简化实现，主要处理了网络系统中寄存器变量名的语义化替换
 // - 将in_ECX替换为network_register_ecx（ECX寄存器变量）
 // - 将in_CF替换为network_register_cf（CF标志寄存器变量）
 // - 保持代码语义不变，这是简化实现，主要处理了网络系统中寄存器变量名的语义化替换
