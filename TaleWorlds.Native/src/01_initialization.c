@@ -341,6 +341,10 @@
 // 新增内存大小语义化常量
 #define SYSTEM_MEMORY_SIZE_270 0x270
 
+// 新增系统引擎类型语义化常量
+#define SYSTEM_ENGINE_TYPE_RENDER 4
+#define SYSTEM_ENGINE_TYPE_DEFAULT 0
+
 // 系统标识符语义化常量
 #define SYSTEM_IDENTIFIER_NECS 0x6e656373
 #define SYSTEM_IDENTIFIER_ECSF 0x6563732f
