@@ -36540,7 +36540,7 @@ initialize_system_module_resource_cleanup(uint64_t *handleIdentifier,ulonglong r
   _Mtx_destroy_in_situ();
   ExecuteGraphicsCommand(handleIdentifier);
   if ((resourceIdentifier & 1) != SYSTEM_COMPARISON_ZERO) {
-    free(handleIdentifier,0xb8,system_configuration,systemFlags,system_counter_temp);
+    free(handleIdentifier,SYSTEM_MEMORY_FREE_SIZE_BASIC,system_configuration,systemFlags,system_counter_temp);
   }
   return handleIdentifier;
 }
@@ -50531,7 +50531,7 @@ ulonglong InitializeAudioDataNode_secondary(longlong handleIdentifier)
   longlong system_long_result_temp;
 
   if (*(longlong *)(handleIdentifier + SYSTEM_CONFIG_SIZE_INPUT8) != SYSTEM_COMPARISON_ZERO) {
-    system_long_result_temp = 0xb8;
+    system_long_result_temp = SYSTEM_MEMORY_FREE_SIZE_BASIC;
     system_node_allocation_size = g_system_base_1;
     do {
       system_long_result_temp = *(longlong *)(system_long_result + *(longlong *)(handleIdentifier + SYSTEM_CONFIG_SIZE_INPUT8));
@@ -50748,7 +50748,7 @@ uint64_t InitializeNetworkSystem(longlong handleIdentifier,longlong resourceIden
       }
       system_boolean_flag = false;
       if ((*(byte *)(handleIdentifier + SYSTEM_OFFSET_Fd) & SYSTEM_OFFSET_8) != SYSTEM_COMPARISON_ZERO) {
-        system_long_result_temp = 0xb8;
+        system_long_result_temp = SYSTEM_MEMORY_FREE_SIZE_BASIC;
         pis_initialized5 = (code *)&g_system_call_7;
         do {
           system_long_result_temp = *(longlong *)(system_long_result + *(longlong *)(handleIdentifier + SYSTEM_CONFIG_SIZE_INPUT8));
