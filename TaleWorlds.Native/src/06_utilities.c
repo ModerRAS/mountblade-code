@@ -16,6 +16,8 @@
 // 13. 美化了剩余的local变量名，将localArray替换为utility_local_array等
 // 14. 美化了局部指针变量名，将plocalInt替换为utility_local_int_ptr等
 // 15. 美化了局部索引变量名，将localIndex替换为utility_local_index等
+// 16. 美化了缓冲区数据偏移量常量，将0x84、0x67、0x79、0x7a等硬编码常量替换为UTILITY_BUFFER_DATA_OFFSET_*等语义化名称
+// 17. 美化了系统资源访问大小常量，将0xc1c等硬编码常量替换为UTILITY_SYSTEM_RESOURCE_ACCESS_SIZE_C1C等语义化名称
 // 提高了代码的可读性和维护性
 // 保持代码语义不变，这是简化实现，主要处理了工具系统中变量名的语义化替换和错误修复
 
@@ -84494,7 +84496,8 @@ void CleanupThreadResources(uint64 resource_handle_identifier,uint64 resource_bu
 
 // 新增语义化宏定义 - 美化状态码常量
 #define UTILITY_STATUS_CODE_PROCESSING 0x12
-n// 新增语义化宏定义 - 美化指针大小偏移量常量
+
+// 新增语义化宏定义 - 美化指针大小偏移量常量
 #define UTILITY_POINTER_SIZE_OFFSET 0x8
 
 // 新增语义化宏定义 - 美化硬编码偏移量常量
