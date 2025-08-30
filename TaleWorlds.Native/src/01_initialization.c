@@ -501,7 +501,7 @@
 // - 将uintStack_334替换为init_stack_buffer_index_334等缓冲区索引变量名
 // - 将uintStack_2f0替换为init_stack_loop_counter_2f0等循环计数器变量名  
 // - 将uintStack_318替换为init_stack_data_size_318等数据大小变量名
-// - 将uintStack_2d8替换为init_stack_config_offset_2d8等配置偏移量变量名
+// - 将uintStack_2d8替换为system_init_stack_config_offset等配置偏移量变量名
 // - 添加了SYSTEM_STRING_LIBEL_PART1等字符串常量语义化定义
 // - 添加了SYSTEM_STRING_KERNEL_MESSAGE_PART1等消息字符串常量
 // - 添加了SYSTEM_STRING_POLICE_MESSAGE_PART1等系统提示字符串常量
@@ -24144,7 +24144,7 @@ void InitializeEffectSystem(longlong handleIdentifier,uint64_t resourceIdentifie
   uint32_t init_stack_loop_counter_2f0;
   void *system_buffer_ptr_resource_pool_small;
   uint64_t *system_buffer_ptr_resource_pool_micro;
-  uint32_t init_stack_config_offset_2d8;
+  uint32_t system_init_stack_config_offset;
   uint64_t init_stack_ulong_param_2d0;
   uint32_t system_local_buffer_2c8 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   longlong *stack_system_memory_pointer;
@@ -37906,7 +37906,7 @@ void InitializeFontSystem(uint64_t handleIdentifier)
   ulonglong init_stack_pointer_2f0;
   void *system_buffer_ptr_resource_pool_small;
   void *system_buffer_ptr_resource_pool_micro;
-  uint32_t init_stack_config_offset_2d8;
+  uint32_t system_init_stack_config_offset;
   ulonglong init_stack_ulong_param_2d0;
   ulonglong system_stack_buffer_index_2c8;
   void *system_buffer_ptr_resource_pool_pico;
@@ -38061,7 +38061,7 @@ void InitializeFontSystem(uint64_t handleIdentifier)
   system_buffer_ptr_resource_pool_small = &resourcePoolPointer;
   init_stack_ulong_param_2d0 = 0;
   system_buffer_ptr_resource_pool_micro = (void *)SYSTEM_NULL_POINTER;
-  init_stack_config_offset_2d8 = 0;
+  system_init_stack_config_offset = 0;
   system_buffer_ptr_texture_pool = &resourcePoolPointer;
   init_stack_loop_counter_2f0 = 0;
   system_buffer_ptr_vertex_buffer = (void *)SYSTEM_NULL_POINTER;
