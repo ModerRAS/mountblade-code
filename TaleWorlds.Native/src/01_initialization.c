@@ -251,10 +251,10 @@
 #define SYSTEM_INIT_SIZE_POINTER               0x8     // 指针大小
 
 // 魔法数字常量（用于系统标识）
-#define SYSTEM_INIT_MAGIC_COOKIE_1             fc124d23d41985f // 系统魔法cookie 1
-#define SYSTEM_INIT_MAGIC_COOKIE_2              // 系统魔法cookie 2
-#define SYSTEM_INIT_MAGIC_COOKIE_3             fbb1df897 // 系统魔法cookie 3
-#define SYSTEM_INIT_MAGIC_COOKIE_4             f249e43f66f2ab // 系统魔法cookie 4
+#define SYSTEM_INIT_MAGIC_COOKIE_1             0xfc124d23d41985f // 系统魔法cookie 1
+#define SYSTEM_INIT_MAGIC_COOKIE_2             0x0 // 系统魔法cookie 2（待定义）
+#define SYSTEM_INIT_MAGIC_COOKIE_3             0xfbb1df897 // 系统魔法cookie 3
+#define SYSTEM_INIT_MAGIC_COOKIE_4             0xf249e43f66f2ab // 系统魔法cookie 4
 #define SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_3      0x6ecbd4daf41613e // 系统活动魔法cookie 3
 
 // 系统标志位常量
@@ -294,7 +294,7 @@
 
 // 补充魔法数字常量（2025年8月30日最终批次补充美化）
 #define SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_1     0x666df49b97e0f10 // 系统活动魔法cookie 1
-#define SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_2      // 系统活动魔法cookie 2
+#define SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_2     0x0 // 系统活动魔法cookie 2（待定义）
 
 // 系统初始化硬编码值语义化常量（2025年8月30日最终批次）
 #define SYSTEM_INIT_MAGIC_COOKIE_AUDIO_1        0x415544494f5f3131 // 音频系统魔法cookie 1
@@ -372,6 +372,12 @@
 #define SYSTEM_INIT_VALUE_CHAR_0X33           0x33    // 字符值0x33
 #define SYSTEM_INIT_VALUE_CHAR_0X3A           0x3a    // 字符值0x3a
 
+// 系统字符串魔法cookie常量（2025年8月30日最终批次补充美化）
+#define SYSTEM_INIT_MAGIC_COOKIE_STRING_RARO     0x7261726f // 字符串"raro"的十六进制表示
+#define SYSTEM_INIT_MAGIC_COOKIE_STRING_SERE     0x73655265 // 字符串"seRe"的十六进制表示
+#define SYSTEM_INIT_MAGIC_COOKIE_STRING_CRUO     0x6372756f // 字符串"cruo"的十六进制表示
+#define SYSTEM_INIT_MAGIC_COOKIE_STRING_SELDOM_ 0x53454c444f4d5f // 字符串"SELDOM_"的十六进制表示
+
 // 新增硬编码值语义化常量（2025年8月30日最终批次）：
 #define SYSTEM_INIT_VALUE_STRING_RARO_1     SYSTEM_INIT_MAGIC_COOKIE_STRING_RARO  // 字符串"raro"的十六进制表示
 #define SYSTEM_INIT_VALUE_STRING_SERE_1     SYSTEM_INIT_MAGIC_COOKIE_STRING_SERE  // 字符串"seRe"的十六进制表示
@@ -448,7 +454,11 @@
 #define SYSTEM_INIT_VALUE_STRING_TERMINATOR   0x5f    // 字符串终止符SYSTEM_INIT_VALUE_STRING_TERMINATOR
 // 偏移量常量（已移除）
 // #define SYSTEM_INIT_OFFSET_REMOVED
-#define SYSTEM_INIT_SIZE_0X50                     // 大小
+#define SYSTEM_INIT_SIZE_0X50                  0x50    // 大小常量
+#define SYSTEM_INIT_OFFSET_STACK_5C            0x5c    // 栈偏移量5C
+#define SYSTEM_INIT_OFFSET_GLOBAL_3F000000    0x3f000000 // 全局偏移量3F000000
+#define SYSTEM_INIT_OFFSET_STACK_7D            0x7d    // 栈偏移量7D
+#define SYSTEM_INIT_OFFSET_STACK_54            0x54    // 栈偏移量54
 #define SYSTEM_INIT_VALUE_CHAR_NULL           0x0     // 空字符SYSTEM_INIT_VALUE_CHAR_NULL
 // 偏移量常量（已移除）
 // #define SYSTEM_INIT_OFFSET_REMOVED
@@ -498,13 +508,13 @@
 #define SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_2       0x53595354454d5f32 // 系统魔法cookie 2
 #define SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_3       0x53595354454d5f33 // 系统魔法cookie 3
 #define SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_1     0x5245534f55524345 // 资源系统魔法cookie 1
-#define SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_2      // 资源系统魔法cookie 2
+#define SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_2     0x0 // 资源系统魔法cookie 2（待定义）
 #define SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_3     0x9C552acd3ed5548d // 资源系统魔法cookie 3
 #define SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_4     0xa9191d34ad910696 // 资源系统魔法cookie 4
-#define SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5      // 资源系统魔法cookie 5
+#define SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_5     0x0 // 资源系统魔法cookie 5（待定义）
 #define SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_6     0x92a15d52fe2679bd // 资源系统魔法cookie 6
-#define SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_7     eced9bb5517ad // 资源系统魔法cookie 7
-#define SYSTEM_INIT_MAGIC_COOKIE_CUSTOM_1       a29a844ce399  // 自定义魔法cookie 1
+#define SYSTEM_INIT_MAGIC_COOKIE_RESOURCE_7     0x0eced9bb5517ad // 资源系统魔法cookie 7
+#define SYSTEM_INIT_MAGIC_COOKIE_CUSTOM_1       0x0a29a844ce399 // 自定义魔法cookie 1
 #define SYSTEM_INIT_MAGIC_COOKIE_CUSTOM_2       0x727b256e3af32585 // 自定义魔法cookie 2
 
 // 系统上下文参数索引语义化常量定义（2025年8月30日最终批次补充）
