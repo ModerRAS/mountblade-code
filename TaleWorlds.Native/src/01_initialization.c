@@ -49806,7 +49806,7 @@ float * InitializeSystemCore(float *system_context_param)
     system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_Z] = -1e+08;
     system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_W] = 3.4028235e+38;
     system_init_flag_audio = SYSTEM_INIT_VALUE_ZERO;
-    system_context_param[0xa9] = 0.0;
+    system_context_param[SYSTEM_INIT_CONTEXT_INDEX_RADIUS] = 0.0;
     system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_X] = 0.0;
     system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_Y] = 0.0;
     system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_Z] = 0.0;
@@ -49892,7 +49892,7 @@ float * InitializeSystemCore(float *system_context_param)
     }
     system_float_pointer_4 = pfStack_98;
     if (system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_X] < *psystem_float_var_1) {
-      system_context_param[0xa9] = 0.0;
+      system_context_param[SYSTEM_INIT_CONTEXT_INDEX_RADIUS] = 0.0;
       psystem_float_var_1[SYSTEM_ARRAY_INDEX_FIRST] = 0.0;
       psystem_float_var_1[SYSTEM_ARRAY_INDEX_SECOND] = 0.0;
       system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MIN_Y] = 0.0;
@@ -49928,7 +49928,7 @@ float * InitializeSystemCore(float *system_context_param)
           system_float_var_11 = system_float_var_10;
         } while (system_init_flag_network != 0);
       }
-      system_context_param[0xa9] = SQRT(system_float_var_10);
+      system_context_param[SYSTEM_INIT_CONTEXT_INDEX_RADIUS] = SQRT(system_float_var_10);
     }
     if (pfStack_98 != (float *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       while( system_true ) {
@@ -55588,7 +55588,7 @@ float * InitializeSystemCore(float *system_context_param)
     system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_Z] = -1e+08;
     system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_W] = 3.4028235e+38;
     system_init_flag_network = SYSTEM_INIT_VALUE_ZERO;
-    system_context_param[0xa9] = 0.0;
+    system_context_param[SYSTEM_INIT_CONTEXT_INDEX_RADIUS] = 0.0;
     system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_X] = 0.0;
     system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_Y] = 0.0;
     system_context_param[SYSTEM_INIT_CONTEXT_INDEX_CENTER_Z] = 0.0;
@@ -55671,7 +55671,7 @@ float * InitializeSystemCore(float *system_context_param)
     }
     system_float_pointer_4 = pfStack_98;
     if (system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_X] < *psystem_float_var_1) {
-      system_context_param[0xa9] = 0.0;
+      system_context_param[SYSTEM_INIT_CONTEXT_INDEX_RADIUS] = 0.0;
       psystem_float_var_1[SYSTEM_ARRAY_INDEX_FIRST] = 0.0;
       psystem_float_var_1[SYSTEM_ARRAY_INDEX_SECOND] = 0.0;
       system_context_param[SYSTEM_INIT_CONTEXT_INDEX_BOUND_MIN_Y] = 0.0;
@@ -55707,7 +55707,7 @@ float * InitializeSystemCore(float *system_context_param)
           system_float_var_11 = system_float_var_6;
         } while (system_init_flag_graphics != 0);
       }
-      system_context_param[0xa9] = SQRT(system_float_var_6);
+      system_context_param[SYSTEM_INIT_CONTEXT_INDEX_RADIUS] = SQRT(system_float_var_6);
     }
     if (pfStack_98 != (float *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       while( system_true ) {
