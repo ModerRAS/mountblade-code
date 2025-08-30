@@ -18435,7 +18435,7 @@ uint32_t get_game_initialization_status(void)
     (*(code *)(*init_system_memory_quad_ptr)[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER])(init_system_memory_quad_ptr);
   }
   system_memory_pointer_chain_four = systemCoreData;
-  *(uint8_t *)(systemCoreData[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] + SYSTEM_OFFSET_80) = 1;
+  *(uint8_t *)(systemCoreData[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] + SYSTEM_OFFSET_80) = SYSTEM_STATUS_SUCCESS;
   while( true ) {
     system_memory_handle_ptr = *system_memory_config_ptr[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
     if (system_memory_handle_ptr == (longlong **)&g_system_global_config) {
@@ -62397,3 +62397,17 @@ longlong *g_global_system_flags;
 // 系统操作码常量
 #define SYSTEM_OPCODE_INITIALIZE 1
 #define SYSTEM_OPCODE_CONFIGURE 2
+
+// 系统状态码常量
+#define SYSTEM_STATUS_SUCCESS 1
+#define SYSTEM_STATUS_ERROR_DEFAULT 2
+#define SYSTEM_STATUS_INITIALIZING 3
+
+// 系统句柄类型常量
+#define SYSTEM_HANDLE_TYPE_DEFAULT 3
+
+// 系统初始化参数常量
+#define SYSTEM_INIT_PARAM_BASIC 3
+#define SYSTEM_INIT_PARAM_THREAD 5
+#define SYSTEM_INIT_PARAM_CONFIG 6
+
