@@ -57,18 +57,18 @@
 #define UTILITY_WORD_MASK 0xffff
 #define UTILITY_FLOAT_INFINITY_MASK 0x7f800000
 #define UTILITY_FLOAT_INFINITY 3.4028235e+38
-#define UTILITY_LONG_LONG_MIN -UTILITY_LOOP_THRESHOLD000000000000
+#define UTILITY_LONG_LONG_MIN -0x8000000000000000
 #define UTILITY_MAX_UNSIGNED_VALUE 0x3fffffff
 #define UTILITY_FLAG_MASK_CLEAR 0xfdffffff
-#define UTILITY_FLAG_SET_BIT RESOURCE_PROP_OFFSET000000
+#define UTILITY_FLAG_SET_BIT 0x4000000
 #define UTILITY_FLAG_MASK_CLEAR_2 0xfbffffff
 #define UTILITY_FLAG_SET_BIT_2 0x6000000
 #define UTILITY_ENCRYPTION_KEY_SIZE 0xdd
-#define RESOURCE_PROP_OFFSET RESOURCE_PROP_OFFSET
-#define RESOURCE_UTILITY_HANDLE_DATA_OFFSET RESOURCE_UTILITY_HANDLE_DATA_OFFSET
+#define RESOURCE_PROP_OFFSET 0x100
+#define RESOURCE_UTILITY_HANDLE_DATA_OFFSET 0x200
 #define UTILITY_DATA_OFFSET_START 0x288
 #define POINTER_DATA_OFFSET 0x288
-#define BYTE_OFFSET_FLAG BYTE_OFFSET_FLAG
+#define BYTE_OFFSET_FLAG 0x1
 #define ERROR_CODE_2 BYTE_OFFSET_FLAG
 
 // 新增语义化宏定义 - 替换文件中的十六进制常量
@@ -9537,7 +9537,7 @@ ulonglong validate_memory_address(longlong resource_handle_identifier)
                     }
                   }
                 }
-                utility_unsigned_variable = utility_unsigned_variable & UTILITY_WORD_MASKffff00000000;
+                utility_unsigned_variable = utility_unsigned_variable & 0xffffffff00000000;
                 if ((int)loop_counter < 0) {
                   loop_counter = -loop_counter;
                 }
@@ -9587,7 +9587,7 @@ process_validation_result_flag:
     memory_offset_data = (longlong)(local_status_validation + -1);
     if (-1 < local_status_validation + -1) {
       do {
-        utility_unsigned_variable = utility_unsigned_variable & UTILITY_WORD_MASKffff00000000;
+        utility_unsigned_variable = utility_unsigned_variable & 0xffffffff00000000;
         pointer_local_stack_texture = (longlong *)&g_systemDataStackBuffer;
         array_local_int[0] = *(int *)(validation_result_flag + memory_offset_data * UTILITY_WORD_SIZE);
         lock_file(&pointer_local_stack_texture,*(uint64 *)(resource_handle_identifier + UTILITY_SYS_STATUS_OFFSET));
@@ -9619,7 +9619,7 @@ process_validation_result_flag:
         }
       }
     }
-    utility_unsigned_variable = utility_unsigned_variable & UTILITY_WORD_MASKffff00000000;
+    utility_unsigned_variable = utility_unsigned_variable & 0xffffffff00000000;
     if (utility_iteration_counter < 0) {
       utility_iteration_counter = -utility_iteration_counter;
     }
@@ -11866,7 +11866,7 @@ void ProcessResourceRequest(longlong *resource_handle_identifier)
       }
       integer_var = *(int *)(resource_data_valueuffer_data + second_byte_offset);
       if (integer_var != 1) {
-        utility_unsigned_variable = utility_unsigned_variable & UTILITY_WORD_MASKffff00000000;
+        utility_unsigned_variable = utility_unsigned_variable & 0xffffffff00000000;
         local_stack_pointer_value = (longlong *)&g_system_data_stack_manager;
         array_stack_variable_value[0] = (longlong *)CONCAT44(array_stack_variable_value[0]._4_4_,integer_var);
         resourceCounter = validate_resource_access(resource_handle_identifier,&local_stack_pointer_value);
@@ -11959,7 +11959,7 @@ void ProcessResourceRequest(longlong *resource_handle_identifier)
                       (ulonglong)*(uint *)((longlong)resource_handle_identifier + byte_offset_flag);
               threadContextData = resource_handle_identifier[2];
               local_stack_pointer_value = (longlong *)&g_system_data_io_manager;
-              utility_unsigned_variable = utility_unsigned_variable & UTILITY_WORD_MASKffff00000000;
+              utility_unsigned_variable = utility_unsigned_variable & 0xffffffff00000000;
               resource_handle_identifier[2] = loop_counter;
               array_stack_variable_value[0] = resource_data_valueuffer_sixth;
               if (threadContextData != 0) {
@@ -17599,7 +17599,7 @@ LAB_VALIDATION_FAILED:
           loop_counter = utility_unsigned_variable._4_4_;
         }
       }
-      utility_unsigned_variable = utility_unsigned_variable & UTILITY_WORD_MASKffff00000000;
+      utility_unsigned_variable = utility_unsigned_variable & 0xffffffff00000000;
       if ((int)loop_counter < 0) {
         loop_counter = -loop_counter;
       }
@@ -17671,7 +17671,7 @@ LAB_VALIDATION_FAILED:
         loop_counter = utility_unsigned_variable._4_4_;
       }
     }
-    utility_unsigned_variable = utility_unsigned_variable & UTILITY_WORD_MASKffff00000000;
+    utility_unsigned_variable = utility_unsigned_variable & 0xffffffff00000000;
     if ((int)loop_counter < 0) {
       loop_counter = -loop_counter;
     }
