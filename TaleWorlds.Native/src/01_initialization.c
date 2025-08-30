@@ -1,6 +1,8 @@
 // 01_initialization.c - 初始化系统模块
 
 // 最新美化内容（2025年8月30日最终批次最新完成）：
+// - 清理重复的"偏移量常量（已移除）"注释，提高代码可读性
+// - 删除冗余的注释行，保持代码整洁
 // - 美化系统配置数据指针索引，将硬编码的[10]替换为SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN等语义化常量
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了初始化系统中硬编码数组索引的语义化替换
@@ -441,74 +443,18 @@
 #define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_3     0x616d726f // 预制体魔法cookie 3
 #define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_4     0x5f65636e // 预制体魔法cookie 4
 #define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_5     0x747874 // 预制体魔法cookie 5
-// 偏移量常量（已移除）
-// #define SYSTEM_INIT_OFFSET_REMOVED
-// 偏移量常量（已移除）
-// #define SYSTEM_INIT_OFFSET_REMOVED
-// 偏移量常量（已移除）
-// #define SYSTEM_INIT_OFFSET_REMOVED
-// 偏移量常量（已移除）
-// #define SYSTEM_INIT_OFFSET_REMOVED
-// 偏移量常量（已移除）
-// #define SYSTEM_INIT_OFFSET_REMOVED
-// 偏移量常量（已移除）
-// #define SYSTEM_INIT_OFFSET_REMOVED
-// 偏移量常量（已移除）
-// #define SYSTEM_INIT_OFFSET_REMOVED
-// 偏移量常量（已移除）
-// #define SYSTEM_INIT_OFFSET_REMOVED
-// 偏移量常量（已移除）
-// #define SYSTEM_INIT_OFFSET_REMOVED
 #define SYSTEM_INIT_VALUE_STRING_TERMINATOR   0x5f    // 字符串终止符SYSTEM_INIT_VALUE_STRING_TERMINATOR
-// 偏移量常量（已移除）
-// #define SYSTEM_INIT_OFFSET_REMOVED
 #define SYSTEM_INIT_SIZE_0X50                  0x50    // 大小常量
 #define SYSTEM_INIT_OFFSET_STACK_5C            0x5c    // 栈偏移量5C
 #define SYSTEM_INIT_OFFSET_GLOBAL_3F000000    0x3f000000 // 全局偏移量3F000000
 #define SYSTEM_INIT_OFFSET_STACK_7D            0x7d    // 栈偏移量7D
 #define SYSTEM_INIT_OFFSET_STACK_54            0x54    // 栈偏移量54
 #define SYSTEM_INIT_VALUE_CHAR_NULL           0x0     // 空字符SYSTEM_INIT_VALUE_CHAR_NULL
-// 偏移量常量（已移除）
-// #define SYSTEM_INIT_OFFSET_REMOVED
-// 偏移量常量（已移除）
-// #define SYSTEM_INIT_OFFSET_REMOVED
-// 偏移量常量（已移除）
-// #define SYSTEM_INIT_OFFSET_REMOVED
-// 偏移量常量（已移除）
-// #define SYSTEM_INIT_OFFSET_REMOVED
-// 偏移量常量（已移除）
-// #define SYSTEM_INIT_OFFSET_REMOVED
 #define SYSTEM_INIT_MAGIC_COOKIE_REVERSE_1    0x72657472617453 // 反向魔法cookie 1SYSTEM_INIT_MAGIC_COOKIE_REVERSE_1
-// 偏移量常量（已移除）
-// #define SYSTEM_INIT_OFFSET_REMOVED
-// 偏移量常量（已移除）
-// #define SYSTEM_INIT_OFFSET_REMOVED
-// 偏移量常量（已移除）
-// #define SYSTEM_INIT_OFFSET_REMOVED
 #define SYSTEM_INIT_OFFSET_STRUCT_0X30_REPLACEMENT    0x30    // 偏移量
 #define SYSTEM_INIT_VALUE_SPECIAL_BB80073_FIX     0xbb80073     // 特殊值BB80073修复
-// 偏移量常量（已移除）
-// #define SYSTEM_INIT_OFFSET_REMOVED
-// 偏移量常量（已移除）
-// #define SYSTEM_INIT_OFFSET_REMOVED
-// 偏移量常量（已移除）
-// #define SYSTEM_INIT_OFFSET_REMOVED
-// 偏移量常量（已移除）
-// #define SYSTEM_INIT_OFFSET_REMOVED
-// 偏移量常量（已移除）
-// #define SYSTEM_INIT_OFFSET_REMOVED
-// 偏移量常量（已移除）
-// #define SYSTEM_INIT_OFFSET_REMOVED
 #define SYSTEM_INIT_OFFSET_STRUCT_0X60_REPLACEMENT    0x60    // 偏移量
-// 偏移量常量（已移除）
-// #define SYSTEM_INIT_OFFSET_REMOVED
-// 偏移量常量（已移除）
-// #define SYSTEM_INIT_OFFSET_REMOVED
 #define SYSTEM_INIT_OFFSET_STRUCT_0X50_REPLACEMENT    0x50    // 偏移量
-// 偏移量常量（已移除）
-// #define SYSTEM_INIT_OFFSET_REMOVED
-// 偏移量常量（已移除）
-// #define SYSTEM_INIT_OFFSET_REMOVED
 #define SYSTEM_INIT_OFFSET_STRUCT_0X30_REPLACEMENT2    0x30    // 偏移量
 #define SYSTEM_INIT_SIZE_0X38_REPLACEMENT    0x38    // 偏移量SYSTEM_INIT_SIZE_0X38SYSTEM_INIT_SIZE_0X38
 
