@@ -6623,7 +6623,7 @@ system_finalizer_tertiary(unsigned long long handle_param,unsigned long long thr
   input_system_initialized = 1;
   system_global_data_pointer = 3;
   system_global_data_pointer = SYSTEM_CONFIG_BUFFER_SIZE_ZERO;
-  system_global_data_pointer = 0x3f800000;
+  system_global_data_pointer = FLOAT_ONE;
   system_global_data_pointer = 0;
   system_global_data_pointer = 1;
   system_global_data_pointer = &system_data_buffer_secondary;
@@ -6637,7 +6637,7 @@ system_finalizer_tertiary(unsigned long long handle_param,unsigned long long thr
   ui_system_initialized = 1;
   system_global_data_pointer = 3;
   system_global_data_pointer = SYSTEM_CONFIG_BUFFER_SIZE_ZERO;
-  system_global_data_pointer = 0x3f800000;
+  system_global_data_pointer = FLOAT_ONE;
   system_global_data_pointer = 0;
   system_global_data_pointer = 1;
   system_global_data_pointer = &system_data_buffer_secondary;
@@ -6672,7 +6672,7 @@ system_finalizer_tertiary(unsigned long long handle_param,unsigned long long thr
   system_global_data_pointer = 0;
   system_global_data_pointer = 4;
   system_global_data_pointer = SYSTEM_CONFIG_BUFFER_SIZE_ZERO;
-  system_global_data_pointer = 0x3f800000;
+  system_global_data_pointer = FLOAT_ONE;
   system_global_data_pointer = 0;
   system_global_data_pointer = 1;
   system_global_data_pointer = &system_data_buffer_secondary;
