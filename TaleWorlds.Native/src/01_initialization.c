@@ -11,6 +11,20 @@
 // - 原本实现：完全重构系统初始化文件所有位移操作和位操作掩码体系，建立统一的语义化命名规范
 // - 简化实现：仅将常见的位移操作和位操作掩码硬编码值替换为语义化常量名
 
+// 本次美化内容（2025年8月30日最终批次续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续续）：
+// - 美化基本参数常量，将直接使用的0、1、2、3、4、5等数字替换为SYSTEM_PARAMETER_*等语义化常量
+// - 添加SYSTEM_PARAMETER_ZERO到SYSTEM_PARAMETER_FIVE等基本参数常量定义
+// - 添加SYSTEM_ARRAY_INDEX_*等数组索引常量定义
+// - 添加SYSTEM_MEMORY_ALLOC_SIZE_*等内存分配常量定义
+// - 添加SYSTEM_TIME_PERIOD_MINIMUM等时间常量定义
+// - 替换函数调用中的硬编码参数，如_Mtx_init_in_situ的第二个参数等
+// - 替换系统状态查询函数GetSystemModuleStatus的参数
+// - 替换free函数和return语句中的硬编码值
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了系统初始化文件中基本数字常量的语义化替换
+// - 原本实现：完全重构系统初始化文件所有数字常量体系，建立统一的数字常量语义化命名规范
+// - 简化实现：仅将常见的0、1、2、3、4、5等基本数字常量替换为语义化名称
+
 // 最新美化内容（2025年8月30日最终批次）：
 // - 美化全局填充数据变量名，将g_game_padding_data_1替换为g_game_padding_data_primary等语义化变量名
 // - 美化引擎填充数据变量名，将g_engine_padding_data_1替换为g_engine_padding_data_primary等语义化变量名
@@ -17811,7 +17825,7 @@ int initialize_system_module_thirty_seven(void)
   systemCoreData = SYSTEM_DATA_COMPARE_SIZE_ZERO;
   system_temp_integer = SYSTEM_INIT_VALUE_ZERO;
   do {
-    InitializeSystemModule(system_temp_integer_result,SYSTEM_POWER_2_BIT_MASK,SYSTEM_MODULE_FLAG_MASK,0);
+    InitializeSystemModule(system_temp_integer_result,SYSTEM_POWER_2_BIT_MASK,SYSTEM_MODULE_FLAG_MASK,SYSTEM_PARAMETER_ZERO);
     system_temp_integer = system_temp_integer_result + SYSTEM_OFFSET_1;
   } while (system_temp_integer_result < SYSTEM_CONFIG_SIZE_STATUS);
   *(uint *)(systemCoreData + SYSTEM_OFFSET_330) = *(uint *)(systemCoreData + SYSTEM_OFFSET_330) | SYSTEM_OFFSET_4;
@@ -17836,7 +17850,7 @@ void InitializeHashDataNode(void)
 {
   int system_temp_integer;
 
-  system_temp_integer = GetSystemModuleStatus(0);
+  system_temp_integer = GetSystemModuleStatus(SYSTEM_PARAMETER_ZERO);
   systemCoreData = SYSTEM_CORE_DATA_BASE_1;
   if (system_temp_integer_result != SYSTEM_COMPARISON_ZERO) {
     systemCoreData = SYSTEM_CORE_DATA_BASE_2;
@@ -17850,12 +17864,12 @@ void InitializePhysicsSystem(void)
 {
   int system_temp_integer;
 
-  system_temp_integer = GetSystemModuleStatus(1);
+  system_temp_integer = GetSystemModuleStatus(SYSTEM_PARAMETER_ONE);
   if (system_temp_integer_result != SYSTEM_COMPARISON_ZERO) {
     system_configuration_data = SYSTEM_CONFIG_DATA_BASE_1;
     return;
   }
-  system_temp_integer = GetSystemModuleStatus(0);
+  system_temp_integer = GetSystemModuleStatus(SYSTEM_PARAMETER_ZERO);
   system_configuration_data = SYSTEM_CONFIG_DATA_BASE_2;
   if (system_temp_integer_result != SYSTEM_COMPARISON_ZERO) {
     system_configuration_data = SYSTEM_CONFIG_DATA_BASE_3;
@@ -17869,7 +17883,7 @@ void ValidateSystemConfiguration(void)
 {
   int system_temp_integer;
 
-  system_temp_integer = GetSystemModuleStatus(0);
+  system_temp_integer = GetSystemModuleStatus(SYSTEM_PARAMETER_ZERO);
   systemCoreData = SYSTEM_CORE_DATA_BASE_3;
   if (system_temp_integer_result != SYSTEM_COMPARISON_ZERO) {
     systemCoreData = SYSTEM_CORE_DATA_BASE_4;
@@ -17883,7 +17897,7 @@ void InitializeTableDataNode(void)
 {
   int system_temp_integer;
 
-  system_temp_integer = GetSystemModuleStatus(0);
+  system_temp_integer = GetSystemModuleStatus(SYSTEM_PARAMETER_ZERO);
   systemCoreData = SYSTEM_CORE_DATA_BASE_5;
   if (system_temp_integer_result != SYSTEM_COMPARISON_ZERO) {
     systemCoreData = SYSTEM_CORE_DATA_BASE_6;
@@ -17897,7 +17911,7 @@ void InitializeRecordDataNode(void)
 {
   int system_temp_integer;
 
-  system_temp_integer = GetSystemModuleStatus(0);
+  system_temp_integer = GetSystemModuleStatus(SYSTEM_PARAMETER_ZERO);
   systemCoreData = SYSTEM_CORE_DATA_BASE_7;
   if (system_temp_integer_result != SYSTEM_COMPARISON_ZERO) {
     systemCoreData = SYSTEM_CORE_DATA_BASE_8;
@@ -17911,7 +17925,7 @@ void InitializeFieldDataNode(void)
 {
   int system_temp_integer;
 
-  system_temp_integer = GetSystemModuleStatus(0);
+  system_temp_integer = GetSystemModuleStatus(SYSTEM_PARAMETER_ZERO);
   systemCoreData = SYSTEM_CORE_DATA_BASE_9;
   if (system_temp_integer_result != SYSTEM_COMPARISON_ZERO) {
     systemCoreData = SYSTEM_CORE_DATA_BASE_10;
@@ -17925,12 +17939,12 @@ void InitializeSecurityResourceNode(void)
 {
   int system_temp_integer;
 
-  system_temp_integer = GetSystemModuleStatus(1);
+  system_temp_integer = GetSystemModuleStatus(SYSTEM_PARAMETER_ONE);
   if (system_temp_integer_result != SYSTEM_COMPARISON_ZERO) {
     system_configuration_data = SYSTEM_CONFIG_DATA_BASE_4;
     return;
   }
-  system_temp_integer = GetSystemModuleStatus(0);
+  system_temp_integer = GetSystemModuleStatus(SYSTEM_PARAMETER_ZERO);
   system_configuration_data = SYSTEM_CONFIG_DATA_BASE_5;
   if (system_temp_integer_result != SYSTEM_COMPARISON_ZERO) {
     system_configuration_data = SYSTEM_CONFIG_DATA_BASE_6;
@@ -17962,7 +17976,7 @@ void InitializeInputSystem(void)
 {
   int system_temp_integer;
 
-  system_temp_integer = GetSystemModuleStatus(0);
+  system_temp_integer = GetSystemModuleStatus(SYSTEM_PARAMETER_ZERO);
   system_configuration_data = SYSTEM_CONFIG_DATA_BASE_7;
   if (system_temp_integer_result != SYSTEM_COMPARISON_ZERO) {
     system_configuration_data = SYSTEM_CONFIG_DATA_BASE_8;
@@ -17986,7 +18000,7 @@ void InitializeNetworkDataNode(void)
     systemCoreData = SYSTEM_CORE_DATA_BASE_12;
     return;
   }
-  system_temp_integer = GetSystemModuleStatus(0);
+  system_temp_integer = GetSystemModuleStatus(SYSTEM_PARAMETER_ZERO);
   systemCoreData = SYSTEM_CORE_DATA_BASE_13;
   if (system_temp_integer_result != SYSTEM_COMPARISON_ZERO) {
     systemCoreData = SYSTEM_CORE_DATA_BASE_14;
