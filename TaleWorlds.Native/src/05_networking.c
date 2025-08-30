@@ -8992,7 +8992,7 @@ int32_t NetworkProcessReceiveQueue(void)
 {
     uint64_t network_operation_status_code_third_calc;
   uint32_t network_operation_status_code_third_performance;
-  bool isConnected9;
+  bool is_connected_secondary;
   network_timeout_ptr_ptr = (uint32_t *)ConfigureSocketOptions();
   network_character_flag = '\NETWORK_OPERATION_FAILURE';
   *(uint32_t *)(network_socket_context_pointer + MODULE_STATUS_OFFSETc) = *network_timeout_ptr_ptr;
@@ -9027,7 +9027,7 @@ int32_t NetworkProcessReceiveQueue(void)
   *(char *)(network_socket_context_pointer + NETWORK_SOCKET_NEG_OFFSET_71) = network_character_flag;
   if (((*(char *)(network_socket_context_pointer + NETWORK_SOCKET_STATE_OFFSET) != '\NETWORK_OPERATION_FAILURE') &&
       (*(char *)(network_socket_context_pointer + NETWORK_SOCKET_FLAG_OFFSET_NEGATIVE_71) = network_character_flag, network_character_flag != '\NETWORK_OPERATION_FAILURE')) &&
-     (isConnected9 = *(int32_t *)(network_socket_context_pointer + NETWORK_SOCKET_NEG_OFFSET_55) != NETWORK_OPERATION_SUCCESS, *(bool *)(network_socket_context_pointer + NETWORK_SOCKET_NEG_OFFSET_71) = isConnected9, isConnected9)) {
+     (is_connected_secondary = *(int32_t *)(network_socket_context_pointer + NETWORK_SOCKET_NEG_OFFSET_55) != NETWORK_OPERATION_SUCCESS, *(bool *)(network_socket_context_pointer + NETWORK_SOCKET_NEG_OFFSET_71) = is_connected_secondary, is_connected_secondary)) {
     network_buffer_size_var = *(uint32_t *)(*(int64_t *)(network_socket_context_pointer + NETWORK_CONNECTION_EXTENDED_OFFSET8) + NETWORK_SOCKET_PROCESSOR_OFFSET);
     if (network_operation_status_code < network_operation_status_code_temp_var) {
       network_operation_status_code_third_calc = (ulonglong)(network_operation_status_code_temp_var - network_operation_status_code);

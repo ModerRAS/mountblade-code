@@ -27,6 +27,7 @@
 #define SYSTEM_STATUS_CODE_B 0xb
 #define SYSTEM_STATUS_CODE_C 0xc
 #define SYSTEM_STATUS_CODE_11 0x11
+#define SYSTEM_STATUS_CODE_19 0x13
 
 // 系统字符常量
 #define SYSTEM_CHAR_DOT 0x2e
@@ -69,6 +70,23 @@
 #define SYSTEM_BUFFER_ALLOC_RESULT_EXCEPTION 0x17
 #define SYSTEM_BUFFER_ALLOC_RESULT_RESOURCE 0xb
 #define SYSTEM_BUFFER_ALLOC_RESULT_DELAY_LOAD 0x12
+#define SYSTEM_BUFFER_ALLOC_RESULT_TLS 0xf
+#define SYSTEM_BUFFER_ALLOC_RESULT_CONFIG 0x1a
+#define SYSTEM_BUFFER_ALLOC_RESULT_MEMORY 0x18
+#define SYSTEM_BUFFER_ALLOC_RESULT_STACK 0x14
+
+// 系统字符串模式常量
+#define SYSTEM_STRING_PATTERN_1 0x666e6f63  // "conf"
+#define SYSTEM_STRING_PATTERN_2 0x3a6769    // "ig:"
+
+// 系统偏移量常量
+#define SYSTEM_OFFSET_THREAD_CONFIG 0x90
+#define SYSTEM_OFFSET_STRING_BUFFER_SIZE 0xb8
+#define SYSTEM_OFFSET_BUFFER_POINTER 0x28
+#define SYSTEM_OFFSET_SYSTEM_FLAG_1 0x22
+#define SYSTEM_OFFSET_SYSTEM_FLAG_2 0x21
+#define SYSTEM_OFFSET_STACK_SIZE 0x18
+#define SYSTEM_OFFSET_HANDLE_POINTER 0xbd0
 
 // 系统资源类型常量
 #define SYSTEM_RESOURCE_TYPE_DEFAULT 5
@@ -3502,7 +3520,7 @@ section_processing_jump_label_:
                       stack_size_max = SYSTEM_ZERO_VALUE;
                       thread_stack_ptr = (unsigned int *)0x0;
                       stack_size_max = SYSTEM_ZERO_VALUE;
-                      string_input_ptr = (unsigned int *)system_execution_function(system_global_data_pointer,STRING_BUFFER_SIZE,0x13);
+                      string_input_ptr = (unsigned int *)system_execution_function(system_global_data_pointer,STRING_BUFFER_SIZE,SYSTEM_STATUS_CODE_19);
                       *(unsigned char *)string_input_ptr = SYSTEM_ZERO_VALUE;
                       thread_stack_ptr = string_input_ptr;
                       buffer_alloc_result = allocate_temporary_buffer(string_input_ptr);
@@ -3517,7 +3535,7 @@ section_processing_jump_label_:
                       if (0 < (int)(buffer_alloc_result - 0xe)) goto section_processing_jump_label_;
                       goto section_processing_jump_label_;
                     }
-                    if (buffer_alloc_result == 0xf) {
+                    if (buffer_alloc_result == SYSTEM_BUFFER_ALLOC_RESULT_TLS) {
                       thread_result_index = strcmp(string_input_ptr);
                       if (thread_result_index == SYSTEM_ZERO_VALUE) {
                         cStack_338 = '\x01';
@@ -3537,7 +3555,7 @@ section_processing_jump_label_:
                         }
                         goto section_processing_jump_label_;
                       }
-                      if (buffer_alloc_result == 0x1a) {
+                      if (buffer_alloc_result == SYSTEM_BUFFER_ALLOC_RESULT_CONFIG) {
                         thread_result_index = strcmp(string_input_ptr);
                         if (thread_result_index == SYSTEM_ZERO_VALUE) {
                           *(unsigned char *)(system_global_data_pointer + 0x21) = 1;
@@ -3553,7 +3571,7 @@ section_processing_jump_label_:
                         }
                         goto section_processing_jump_label_;
                       }
-                      if (buffer_alloc_result == 0x18) {
+                      if (buffer_alloc_result == SYSTEM_BUFFER_ALLOC_RESULT_MEMORY) {
                         thread_result_index = strcmp(string_input_ptr);
                         if (thread_result_index == SYSTEM_ZERO_VALUE) {
                           system_crash_handle_paramr_flag = 1;
@@ -3561,7 +3579,7 @@ section_processing_jump_label_:
                         }
                         goto section_processing_jump_label_;
                       }
-                      if (buffer_alloc_result != 0x14) goto section_processing_jump_label_;
+                      if (buffer_alloc_result != SYSTEM_BUFFER_ALLOC_RESULT_STACK) goto section_processing_jump_label_;
                       thread_result_index = strcmp(string_input_ptr);
                       string_match_found = thread_result_index == SYSTEM_ZERO_VALUE;
                     }
