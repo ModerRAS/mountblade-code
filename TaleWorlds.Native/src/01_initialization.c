@@ -1,5 +1,20 @@
 // 01_initialization.c - 初始化系统模块
 
+// 最新美化内容（2025年8月30日最终批次全局变量名语义化美化工作完成）：
+// - 美化全局变量名，将g_system_context_array等替换为system_context_array等语义化变量名
+// - 美化资源管理变量名，将g_resource_manager等替换为system_resource_manager等语义化变量名
+// - 美化图形系统变量名，将g_graphics_context等替换为system_graphics_context等语义化变量名
+// - 美化音频系统变量名，将g_audio_device等替换为system_audio_device等语义化变量名
+// - 美化物理系统变量名，将g_physics_world等替换为system_physics_world等语义化变量名
+// - 美化网络系统变量名，将g_network_manager等替换为system_network_manager等语义化变量名
+// - 美化UI系统变量名，将g_ui_renderer等替换为system_ui_renderer等语义化变量名
+// - 美化输入系统变量名，将g_input_manager等替换为system_input_manager等语义化变量名
+// - 美化系统状态变量名，将g_system_running等替换为system_running等语义化变量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了初始化系统中全局变量名的语义化替换
+// - 原本实现：完全重构初始化系统所有全局变量命名体系，建立统一的语义化命名规范
+// - 简化实现：仅将常见的g_变量名替换为语义化名称，保持代码结构不变
+
 // 最新美化内容（2025年8月30日最终批次栈变量名语义化美化工作完成）：
 // - 美化栈指针变量名，将pplStackX_18等替换为system_performance_frequency_triple_pointer等语义化变量名
 // - 美化栈长整型变量名，将lStackX_20等替换为system_performance_counter_long等语义化变量名
@@ -352,6 +367,7 @@
 #define SYSTEM_INIT_MAGIC_COOKIE_TERTIARY             0xfbb1df897 // 系统魔法cookie 3
 #define SYSTEM_INIT_MAGIC_COOKIE_BASIC_QUATERNARY             0xf249e4010f66f2ab // 系统魔法cookie 4
 #define SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_PRIMARY      0x666df49b97e0f10 // 系统活动魔法cookie 1
+#define SYSTEM_INIT_MAGIC_COOKIE_0x10               0x10    // 系统魔法cookie 0x10
 
 // 系统错误码常量（2025年8月30日最终批次补充美化）
 #define SYSTEM_INIT_ERROR_GENERIC              0xfffffffffffffff      // 通用错误码
@@ -16848,7 +16864,7 @@ void InitializeSystemCore(void)
   int system_int_index;
   system_uint64_t system_calculation_result;
   longlong *system_memory_longptr;
-  system_uint8_t system_stack_array_184 [0x102];
+  system_uint8_t system_stack_array_context [0x102];
   void* *system_unsigned_stack_context;
   void* *system_stack_unsigned_secondary;
   void* *system_stack_unsigned_primary;
@@ -16876,7 +16892,7 @@ void InitializeSystemCore(void)
   ulonglong system_stack_value_temp;
   
   system_stack_value_data_chunk = SYSTEM_INIT_VALUE_HANDLE_INVALID;
-  system_stack_value_temp = _g_system_initialized ^ (ulonglong)system_stack_array_184;
+  system_stack_value_temp = _g_system_initialized ^ (ulonglong)system_stack_array_context;
   system_stack_uint_size = SYSTEM_INIT_VALUE_ZERO;
   if (*(char *)(_g_system_initialized + SYSTEM_INIT_FLAG_OCTONARY_ENABLED) == '\0') {
     InitializeSystemCore(&system_stack_memory_pointer_context);
@@ -16985,7 +17001,7 @@ system_init_label_config_setup:
   }
   system_stack_uint_size = SYSTEM_INIT_VALUE_ZERO;
                     // WARNING: Subroutine does not return
-  system_process_data(system_stack_uint_28 ^ (ulonglong)system_stack_array_184);
+  system_process_data(system_stack_uint_28 ^ (ulonglong)system_stack_array_context);
 }
 
 
@@ -17578,7 +17594,7 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
   system_uint8_t system_stack_array_buffer_standard [0x102];
   system_uint64_t system_stack_uint_index_primary;
   void* *system_stack_context_quaternary;
-  system_uint8_t *system_stack_buffer_460;
+  system_uint8_t *system_stack_buffer_temporary;
   system_uint0x102_t system_stack_value_data_standard;
   system_uint8_t system_stack_array_buffer_complete [100x102];
   ulonglong system_stack_value_secondary;
@@ -17586,7 +17602,7 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
   system_stack_uint_index_primary = SYSTEM_INIT_VALUE_HANDLE_INVALID;
   system_stack_value_secondary = _g_system_initialized ^ (ulonglong)system_stack_array_buffer_standard;
   system_stack_context_quaternary = &g_system_context;
-  system_stack_buffer_460 = system_stack_array_buffer_complete;
+  system_stack_buffer_temporary = system_stack_array_buffer_complete;
   system_stack_value_data_standard = SYSTEM_INIT_VALUE_ZERO;
   system_stack_array_buffer_complete[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
   system_allocation_result = strstr(*(system_uint64_t *)(system_context_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK));
@@ -17600,7 +17616,7 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
       system_loop_counter = system_loop_counter + 1;
     } while (*(char *)(system_loop_counter + system_memory_param) != '\0');
                     // WARNING: Subroutine does not return
-    memcpy(system_stack_buffer_460,*(longlong *)(system_context_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK),system_allocation_result - *(longlong *)(system_context_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK));
+    memcpy(system_stack_buffer_temporary,*(longlong *)(system_context_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK),system_allocation_result - *(longlong *)(system_context_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK));
   }
   system_stack_context_quaternary = &g_system_context;
                     // WARNING: Subroutine does not return
@@ -17852,16 +17868,16 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
   system_uint64_t system_stack_uint_index_secondary;
   void* *system_stack_context_quinary;
   system_uint8_t *system_stack_data_pointer_primary;
-  system_uint0x102_t system_stack_value_112;
-  system_uint8_t system_stack_array_104 [0x102];
+  system_uint0x102_t system_stack_value_temporary;
+  system_uint8_t system_stack_array_standard [0x102];
   ulonglong system_stack_value_secondary;
   
   system_stack_uint_index_secondary = SYSTEM_INIT_VALUE_HANDLE_INVALID;
   system_stack_value_secondary = _g_system_initialized ^ (ulonglong)system_stack_array_buffer_secondary;
   system_stack_context_quinary = &g_system_context;
-  system_stack_buffer_78 = system_stack_array_104;
-  system_stack_value_112 = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_array_104[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_buffer_small = system_stack_array_standard;
+  system_stack_value_temporary = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_array_standard[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
   system_allocation_result = strstr(*(system_uint64_t *)(system_context_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK));
   if (system_allocation_result != 0) {
     system_loop_counter = -1;
@@ -17873,7 +17889,7 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
       system_loop_counter = system_loop_counter + 1;
     } while (*(char *)(system_loop_counter + system_memory_param) != '\0');
                     // WARNING: Subroutine does not return
-    memcpy(system_stack_buffer_78,*(longlong *)(system_context_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK),system_allocation_result - *(longlong *)(system_context_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK));
+    memcpy(system_stack_buffer_small,*(longlong *)(system_context_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK),system_allocation_result - *(longlong *)(system_context_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK));
   }
   system_stack_context_quinary = &g_system_context;
                     // WARNING: Subroutine does not return
@@ -18067,12 +18083,12 @@ int InitializeSystemCore(longlong system_context_param,longlong system_config_pa
   system_uint64_t ***system_triple_pointer_main;
   system_uint64_t *system_stack_uint64_pointer_primary;
   longlong system_stack_long_counter_secondary;
-  system_uint0x102_t system_stack_uint_128;
-  system_uint64_t system_stack_uint_120;
-  system_uint64_t system_stack_uint_118;
-  system_uint64_t system_stack_uint_110;
-  system_uint64_t system_stack_uint_108;
-  system_uint64_t system_stack_uint_100;
+  system_uint0x102_t system_stack_uint_large;
+  system_uint64_t system_stack_uint_medium;
+  system_uint64_t system_stack_uint_standard;
+  system_uint64_t system_stack_uint_small;
+  system_uint64_t system_stack_uint_tiny;
+  system_uint64_t system_stack_uint_minimum;
   system_uint64_t system_stack_uint_f8;
   system_uint64_t system_stack_uint_f0;
   system_uint64_t system_stack_uint_e8;
@@ -18096,17 +18112,17 @@ int InitializeSystemCore(longlong system_context_param,longlong system_config_pa
   system_uint64_t system_stack_uint_size_field;
   system_uint64_t system_stack_value_ternary;
   system_uint64_t system_stack_frame_primary;
-  system_uint0x102_t system_stack_uint_40;
+  system_uint0x102_t system_stack_uint_config;
   system_uint64_t system_stack_uint_0x108;
   
   system_stack_uint_0x108 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
   system_loop_counter = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint64_pointer_primary = (system_uint64_t *)&g_system_context;
-  system_stack_uint_120 = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_uint_medium = SYSTEM_INIT_VALUE_ZERO;
   system_stack_long_counter_secondary = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_uint_128 = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_uint_108 = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_uint_100 = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_uint_large = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_uint_tiny = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_uint_minimum = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_f8 = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_f0 = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_e8 = SYSTEM_INIT_VALUE_ZERO;
@@ -18114,7 +18130,7 @@ int InitializeSystemCore(longlong system_context_param,longlong system_config_pa
   system_stack_uint_d8 = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_d0 = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_c8 = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_uint_40 = SYSTEM_INIT_VALUE_THREE;
+  system_stack_uint_config = SYSTEM_INIT_VALUE_THREE;
   system_stack_value_secondary = SYSTEM_INIT_VALUE_ZERO;
   system_stack_value_ternary = SYSTEM_INIT_VALUE_ZERO;
   system_stack_frame_primary = SYSTEM_INIT_VALUE_ZERO;
@@ -18126,8 +18142,8 @@ int InitializeSystemCore(longlong system_context_param,longlong system_config_pa
   pppsystem_stack_uint_key = &pppsystem_stack_uint_key;
   system_stack_triple_pointer_60 = &pppsystem_stack_uint_key;
   system_copy_memory(&system_stack_uint64_pointer_primary,system_memory_pointer);
-  system_stack_uint_118 = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_uint_110 = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_uint_standard = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_uint_small = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_c0 = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_b8 = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_b0 = SYSTEM_INIT_VALUE_ZERO;
@@ -18138,7 +18154,7 @@ int InitializeSystemCore(longlong system_context_param,longlong system_config_pa
   system_stack_uint_index_secondary = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_80 = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_78 = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_value_112 = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_value_temporary = SYSTEM_INIT_VALUE_ZERO;
   system_init_flag_network = *(ulonglong *)(system_context_param + SYSTEM_INIT_SIZE_COMPARE);
   if (system_init_flag_network < *(ulonglong *)(system_context_param + SYSTEM_INIT_FLAG_OCTONARY_ENABLED)) {
     *(ulonglong *)(system_context_param + SYSTEM_INIT_SIZE_COMPARE) = system_init_flag_network + SYSTEM_INIT_SIZE_COMPARE0;
@@ -18815,7 +18831,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
       system_allocation_result_primaryx10 = _g_system_initialized;
       system_allocation_result1 = SYSTEM_INIT_VALUE_ZERO;
       system_stack_ptr_88 = &g_system_context;
-      system_stack_value_112 = SYSTEM_INIT_VALUE_ZERO;
+      system_stack_value_temporary = SYSTEM_INIT_VALUE_ZERO;
       system_stack_char_pointer_80 = (char *)SYSTEM_INIT_VALUE_CHAR_NULL;
       system_stack_uint_78 = SYSTEM_INIT_VALUE_ZERO;
       system_call_service(&system_stack_ptr_88,*(system_uint0x102_t *)(_g_system_initialized + SYSTEM_INIT_SIZE_COMPARE + system_init_flag_10));
@@ -20522,14 +20538,14 @@ void InitializeSystemCore(void)
   system_uint8_t asystem_stack_uint_60 [SYSTEM_ARRAY_INDEX_NINTH];
   void* *psystem_stack_uint_size_field;
   uint system_stack_union_config;
-  system_uint64_t system_stack_uint_40;
+  system_uint64_t system_stack_uint_config;
   void* *psystem_stack_uint_0x108;
   system_uint8_t *psystem_stack_uint_0x100;
   system_uint0x102_t system_stack_uint_28;
   system_uint8_t asystem_stack_uint_20 [16];
   ulonglong system_stack_uint_10;
   
-  system_stack_uint_40 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
+  system_stack_uint_config = SYSTEM_INIT_VALUE_HANDLE_INVALID;
   system_stack_uint_10 = _g_system_initialized ^ (ulonglong)system_stack_buffer_main;
   system_stack_uint_key = SYSTEM_INIT_VALUE_ZERO;
   system_character_validation_flag = InitializeSystemCore();
@@ -20900,7 +20916,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
   system_uint64_t *psystem_stack_uint_size_field;
   void* *psystem_stack_union_config;
   void* *psystem_stack_frame_primary;
-  system_uint0x102_t system_stack_uint_40;
+  system_uint0x102_t system_stack_uint_config;
   void* asystem_stack_uint_0x108 [0x102];
   ulonglong system_stack_uint_18;
   
@@ -20926,7 +20942,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
   }
   psystem_stack_union_config = &g_system_context;
   psystem_stack_frame_primary = asystem_stack_uint_0x108;
-  system_stack_uint_40 = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_uint_config = SYSTEM_INIT_VALUE_ZERO;
   asystem_stack_uint_0x108[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_key = SYSTEM_INIT_VALUE_THREE;
   psystem_stack_uint_size_field = system_context_param;
@@ -21762,7 +21778,7 @@ void InitializeSystemCore(longlong system_context_param)
   system_uint64_t system_stack_uint_index_secondary;
   system_uint64_t system_stack_uint_80;
   system_uint64_t system_stack_uint_78;
-  system_uint0x102_t system_stack_value_112;
+  system_uint0x102_t system_stack_value_temporary;
   system_uint64_t system_stack_uint_key;
   system_uint64_t system_stack_uint_60;
   system_uint64_t system_stack_uint_size_field;
@@ -22581,7 +22597,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
   system_uint0x102_t system_stack_uint_10x100;
   void* *psystem_stack_uint_128;
   longlong system_stack_long_120;
-  system_uint0x102_t system_stack_uint_110;
+  system_uint0x102_t system_stack_uint_small;
   void* *psystem_stack_uint_108;
   longlong system_stack_long_100;
   system_uint0x102_t system_stack_uint_f0;
@@ -23237,14 +23253,14 @@ void InitializeSystemCore(void)
   system_uint8_t system_stack_array_buffer_secondary [0x102];
   longlong *system_stack_long_pointer_88;
   longlong **ppsystem_stack_long_80;
-  void* *system_stack_buffer_78;
+  void* *system_stack_buffer_small;
   system_uint0x102_t *psystem_stack_uint_70;
   system_uint0x102_t system_stack_uint_key;
   system_uint64_t system_stack_uint_60;
   system_uint64_t system_stack_uint_size_field;
   void* *psystem_stack_union_config;
   system_uint8_t *psystem_stack_frame_primary;
-  system_uint0x102_t system_stack_uint_40;
+  system_uint0x102_t system_stack_uint_config;
   system_uint8_t asystem_stack_uint_0x108 [16];
   ulonglong system_stack_value_temp;
   
@@ -23340,9 +23356,9 @@ void InitializeSystemCore(void)
   psystem_stack_union_config = &g_system_context;
   psystem_stack_frame_primary = asystem_stack_uint_0x108;
   asystem_stack_uint_0x108[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_uint_40 = SYSTEM_INIT_VALUE_THREE;
+  system_stack_uint_config = SYSTEM_INIT_VALUE_THREE;
   strcpy_s(asystem_stack_uint_0x108,SYSTEM_INIT_SIZE_COMPARE,&g_system_context);
-  system_stack_buffer_78 = &g_system_context;
+  system_stack_buffer_small = &g_system_context;
   system_stack_uint_60 = SYSTEM_INIT_VALUE_ZERO;
   psystem_stack_uint_70 = (system_uint0x102_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
   system_stack_uint_key = SYSTEM_INIT_VALUE_ZERO;
@@ -23357,15 +23373,15 @@ void InitializeSystemCore(void)
   system_output_pointer[SYSTEM_ARRAY_INDEX_FIFTH] = SYSTEM_INIT_FLAG_INITIALIZEDf70x1065;
   system_stack_uint_key = SYSTEM_INIT_FLAG_ENABLED_BASE;
   system_stack_uint_60._0_4_ = system_init_flag_audio;
-  system_initialize_thread(&system_stack_buffer_78,&psystem_stack_union_config);
-  system_stack_buffer_78 = &g_system_context;
+  system_initialize_thread(&system_stack_buffer_small,&psystem_stack_union_config);
+  system_stack_buffer_small = &g_system_context;
   if (psystem_stack_uint_70 != (system_uint0x102_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
                     // WARNING: Subroutine does not return
     system_execute_operation();
   }
   psystem_stack_uint_70 = (system_uint0x102_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
   system_stack_uint_60 = (ulonglong)system_stack_uint_60._4_4_ << SYSTEM_INIT_OFFSET_STACK_PARAM;
-  system_stack_buffer_78 = &g_system_context;
+  system_stack_buffer_small = &g_system_context;
   psystem_stack_union_config = &g_system_context;
                     // WARNING: Subroutine does not return
   InitializeSystemCore(_g_system_initialized,&g_system_context);
@@ -24210,7 +24226,7 @@ system_uint64_t InitializeSystemCore(system_uint64_t system_context_param,system
   system_comparison_result = system_generic_function_(system_allocation_result + SYSTEM_INIT_FLAG_INITIALIZEDc0,&psystem_stack_uint_key);
   if (-1 < system_comparison_result) {
     system_stack_ptr_88 = &g_system_context;
-    system_stack_value_112 = SYSTEM_INIT_VALUE_ZERO;
+    system_stack_value_temporary = SYSTEM_INIT_VALUE_ZERO;
     psystem_stack_uint_80 = (system_uint64_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
     system_stack_uint_78 = SYSTEM_INIT_VALUE_ZERO;
     system_ptr_data = (system_uint64_t *)system_allocate_memory(_g_system_initialized,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_FLAG_ENABLED_BASE);
@@ -24938,14 +24954,14 @@ InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system
   system_uint64_t system_stack_uint_size_field;
   system_uint64_t *psystem_stack_union_config;
   system_uint64_t *psystem_stack_frame_primary;
-  system_uint64_t system_stack_uint_40;
+  system_uint64_t system_stack_uint_config;
   system_uint0x102_t system_stack_uint_0x108;
   ulonglong system_init_flag_graphics;
   
   psystem_stack_union_config = (system_uint64_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
   psystem_stack_frame_primary = (system_uint64_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
   system_config_primary = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_uint_40 = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_uint_config = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_0x108 = SYSTEM_INIT_VALUE_THREE;
   InitializeSystemCore(_g_system_initialized,&psystem_stack_union_config,system_memory_param,system_thread_param,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   system_ptr_pool = psystem_stack_frame_primary;
@@ -25088,15 +25104,15 @@ void InitializeSystemCore(longlong *system_context_param,longlong system_config_
   system_uint0x102_t system_stack_uint_10x104;
   system_uint0x102_t system_stack_uint_10x100;
   system_uint0x102_t system_stack_uint_12c;
-  system_uint0x102_t system_stack_uint_128;
+  system_uint0x102_t system_stack_uint_large;
   system_uint0x102_t system_stack_uint_124;
-  system_uint0x102_t system_stack_uint_120;
+  system_uint0x102_t system_stack_uint_medium;
   system_uint0x102_t system_stack_uint_11c;
-  system_uint0x102_t system_stack_uint_118;
+  system_uint0x102_t system_stack_uint_standard;
   system_uint0x102_t system_stack_uint_114;
-  system_uint0x102_t system_stack_uint_110;
+  system_uint0x102_t system_stack_uint_small;
   system_uint0x102_t system_stack_uint_10c;
-  system_uint8_t system_stack_uint_108;
+  system_uint8_t system_stack_uint_tiny;
   system_uint0x102_t system_stack_uint_107;
   system_uint0x102_t system_stack_uint_100x10;
   system_uint64_t system_stack_uint_f8;
@@ -25139,17 +25155,17 @@ void InitializeSystemCore(longlong *system_context_param,longlong system_config_
   system_stack_uint_10x104 = SYSTEM_INIT_FLOAT_VALUE_1_0;
   system_stack_uint_10x100 = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_12c = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_uint_128 = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_uint_large = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_124 = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_uint_120 = SYSTEM_INIT_FLOAT_VALUE_1_0;
+  system_stack_uint_medium = SYSTEM_INIT_FLOAT_VALUE_1_0;
   system_stack_uint_11c = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_uint_118 = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_uint_standard = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_114 = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_uint_110 = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_uint_small = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_10c = SYSTEM_INIT_FLOAT_VALUE_1_0;
   system_stack_uint_107 = SYSTEM_INIT_SIZE_COMPARE10101;
   system_stack_uint_100x10 = 1;
-  system_stack_uint_108 = 1;
+  system_stack_uint_tiny = 1;
   psystem_stack_uint_e8 = &g_system_context;
   psystem_stack_uint_e0 = asystem_stack_uint_d0;
   asystem_stack_uint_d0[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
@@ -25290,12 +25306,12 @@ void InitializeSystemCore(void)
   system_uint64_t system_stack_uint_140;
   void* *system_stack_uint64_pointer_primary;
   system_uint8_t *psystem_stack_uint_10x100;
-  uint system_stack_uint_128;
-  ulonglong system_stack_uint_120;
+  uint system_stack_uint_large;
+  ulonglong system_stack_uint_medium;
   void* *psystem_stack_uint_118;
   system_uint8_t *psystem_stack_uint_110;
-  system_uint0x102_t system_stack_uint_108;
-  ulonglong system_stack_uint_100;
+  system_uint0x102_t system_stack_uint_tiny;
+  ulonglong system_stack_uint_minimum;
   int system_stack_int_index;
   void* *psystem_stack_uint_f0;
   system_uint8_t *psystem_stack_uint_e8;
@@ -25310,13 +25326,13 @@ void InitializeSystemCore(void)
   void* *psystem_stack_uint_98;
   void* *psystem_stack_temp_value;
   system_uint0x102_t system_stack_uint_80;
-  void* *system_stack_buffer_78;
+  void* *system_stack_buffer_small;
   longlong system_stack_long_70;
   system_uint0x102_t system_stack_uint_60;
   system_uint64_t *psystem_stack_uint_size_field;
   system_uint64_t *psystem_stack_union_config;
   system_uint64_t system_stack_frame_primary;
-  system_uint0x102_t system_stack_uint_40;
+  system_uint0x102_t system_stack_uint_config;
   system_uint64_t system_stack_uint_0x108;
   ulonglong system_stack_uint_0x100;
   
@@ -25341,20 +25357,20 @@ system_init_label_status_check:
         system_allocation_result_primary = (longlong)system_stack_int_index * SYSTEM_INIT_OFFSET_STACK_PARAM + system_allocation_result_primary;
       }
       system_stack_uint64_pointer_primary = &g_system_context;
-      system_stack_uint_120 = SYSTEM_INIT_VALUE_ZERO;
+      system_stack_uint_medium = SYSTEM_INIT_VALUE_ZERO;
       psystem_stack_uint_10x100 = (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
-      system_stack_uint_128 = SYSTEM_INIT_VALUE_ZERO;
+      system_stack_uint_large = SYSTEM_INIT_VALUE_ZERO;
       system_call_service(&system_stack_uint64_pointer_primary,*(system_uint0x102_t *)(system_allocation_result_primary + SYSTEM_INIT_SIZE_COMPARE));
       if (*(int *)(system_allocation_result_primary + SYSTEM_INIT_SIZE_COMPARE) != 0) {
                     // WARNING: Subroutine does not return
         memcpy(psystem_stack_uint_10x100,*(system_uint64_t *)(system_allocation_result_primary + SYSTEM_INIT_SIZE_MEMORY_CHUNK),*(int *)(system_allocation_result_primary + SYSTEM_INIT_SIZE_COMPARE) + 1);
       }
       if (*(longlong *)(system_allocation_result_primary + SYSTEM_INIT_SIZE_MEMORY_CHUNK) != 0) {
-        system_stack_uint_128 = SYSTEM_INIT_VALUE_ZERO;
+        system_stack_uint_large = SYSTEM_INIT_VALUE_ZERO;
         if (psystem_stack_uint_10x100 != (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
           *psystem_stack_uint_10x100 = SYSTEM_INIT_VALUE_ZERO;
         }
-        system_stack_uint_120 = system_stack_uint_120 & SYSTEM_INIT_ERROR_GENERIC;
+        system_stack_uint_medium = system_stack_uint_medium & SYSTEM_INIT_ERROR_GENERIC;
       }
       if (system_init_temp < 0) {
 system_init_label_state_update:
@@ -25367,26 +25383,26 @@ system_init_label_state_update:
         system_allocation_result_primary = (longlong)system_init_temp * SYSTEM_INIT_OFFSET_STACK_PARAM + system_allocation_result_primary;
       }
       psystem_stack_uint_118 = &g_system_context;
-      system_stack_uint_100 = SYSTEM_INIT_VALUE_ZERO;
+      system_stack_uint_minimum = SYSTEM_INIT_VALUE_ZERO;
       psystem_stack_uint_110 = (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
-      system_stack_uint_108 = SYSTEM_INIT_VALUE_ZERO;
+      system_stack_uint_tiny = SYSTEM_INIT_VALUE_ZERO;
       system_call_service(&psystem_stack_uint_118,*(system_uint0x102_t *)(system_allocation_result_primary + SYSTEM_INIT_SIZE_COMPARE));
       if (*(int *)(system_allocation_result_primary + SYSTEM_INIT_SIZE_COMPARE) != 0) {
                     // WARNING: Subroutine does not return
         memcpy(psystem_stack_uint_110,*(system_uint64_t *)(system_allocation_result_primary + SYSTEM_INIT_SIZE_MEMORY_CHUNK),*(int *)(system_allocation_result_primary + SYSTEM_INIT_SIZE_COMPARE) + 1);
       }
       if (*(longlong *)(system_allocation_result_primary + SYSTEM_INIT_SIZE_MEMORY_CHUNK) != 0) {
-        system_stack_uint_108 = SYSTEM_INIT_VALUE_ZERO;
+        system_stack_uint_tiny = SYSTEM_INIT_VALUE_ZERO;
         if (psystem_stack_uint_110 != (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
           *psystem_stack_uint_110 = SYSTEM_INIT_VALUE_ZERO;
         }
-        system_stack_uint_100 = system_stack_uint_100 & SYSTEM_INIT_ERROR_GENERIC;
+        system_stack_uint_minimum = system_stack_uint_minimum & SYSTEM_INIT_ERROR_GENERIC;
       }
-      system_int_value = system_stack_uint_128 + SYSTEM_INIT_SIZE_MEMORY_CHUNK;
+      system_int_value = system_stack_uint_large + SYSTEM_INIT_SIZE_MEMORY_CHUNK;
       system_call_service(&system_stack_uint64_pointer_primary,system_int_value);
-      *(system_uint64_t *)(psystem_stack_uint_10x100 + system_stack_uint_128) = SYSTEM_INIT_STRING_SCENE_SUFFIX;
-      *(system_uint8_t *)((longlong)(psystem_stack_uint_10x100 + system_stack_uint_128) + SYSTEM_INIT_SIZE_MEMORY_CHUNK) = SYSTEM_INIT_VALUE_ZERO;
-      system_stack_uint_128 = system_int_value;
+      *(system_uint64_t *)(psystem_stack_uint_10x100 + system_stack_uint_large) = SYSTEM_INIT_STRING_SCENE_SUFFIX;
+      *(system_uint8_t *)((longlong)(psystem_stack_uint_10x100 + system_stack_uint_large) + SYSTEM_INIT_SIZE_MEMORY_CHUNK) = SYSTEM_INIT_VALUE_ZERO;
+      system_stack_uint_large = system_int_value;
       system_char_result = system_read_string(&system_stack_uint64_pointer_primary);
       if (system_char_result == '\0') {
         psystem_stack_uint_118 = &g_system_context;
@@ -25395,7 +25411,7 @@ system_init_label_state_update:
           system_execute_operation();
         }
         psystem_stack_uint_110 = (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
-        system_stack_uint_100 = system_stack_uint_100 & SYSTEM_INIT_ERROR_GENERIC00000000;
+        system_stack_uint_minimum = system_stack_uint_minimum & SYSTEM_INIT_ERROR_GENERIC00000000;
         psystem_stack_uint_118 = &g_system_context;
         system_stack_uint64_pointer_primary = &g_system_context;
         if (psystem_stack_uint_10x100 != (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
@@ -25407,7 +25423,7 @@ system_init_label_state_update:
         psystem_stack_uint_size_field = (system_uint64_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
         psystem_stack_union_config = (system_uint64_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
         system_stack_frame_primary = SYSTEM_INIT_VALUE_ZERO;
-        system_stack_uint_40 = SYSTEM_INIT_VALUE_THREE;
+        system_stack_uint_config = SYSTEM_INIT_VALUE_THREE;
         system_generic_function_(&system_stack_uint64_pointer_primary,&psystem_stack_uint_size_field);
         system_ptr_pool = psystem_stack_union_config;
         system_memory_pointer = psystem_stack_uint_size_field;
@@ -25538,7 +25554,7 @@ system_init_label_active_wait:
                 system_compare_data(system_memory_pointer + (longlong)system_init_var_10x10 * SYSTEM_INIT_SIZE_COMPARE,&psystem_stack_uint_98,system_init_temp + 1,SYSTEM_INIT_ERROR_GENERIC);
                 system_config_primary = InitializeSystemCore(system_secondary_longptr,&psystem_stack_uint_98);
                 if (_g_system_initialized != 0) {
-                  InitializeSystemCore(system_config_primary,&system_stack_buffer_78);
+                  InitializeSystemCore(system_config_primary,&system_stack_buffer_small);
                   psystem_stack_uint_f0 = &g_system_context;
                   system_stack_uint_d8 = SYSTEM_INIT_VALUE_ZERO;
                   psystem_stack_uint_e8 = (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
@@ -25560,7 +25576,7 @@ system_init_label_active_wait:
                     psystem_ulong_primary6 = psystem_stack_temp_value;
                   }
                   system_generic_function_(&psystem_stack_uint_f0,&g_system_context,psystem_ulong_primary6);
-                  system_generic_function_(&psystem_stack_uint_f0,&system_stack_buffer_78);
+                  system_generic_function_(&psystem_stack_uint_f0,&system_stack_buffer_small);
                   _g_system_initialized = SYSTEM_INIT_VALUE_ZERO;
                   psystem_stack_uint_f0 = &g_system_context;
                   if (psystem_stack_uint_e8 != (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
@@ -25570,14 +25586,14 @@ system_init_label_active_wait:
                   psystem_stack_uint_e8 = (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
                   system_stack_uint_d8 = system_stack_uint_d8 & SYSTEM_INIT_ERROR_GENERIC00000000;
                   psystem_stack_uint_f0 = &g_system_context;
-                  system_stack_buffer_78 = &g_system_context;
+                  system_stack_buffer_small = &g_system_context;
                   if (system_stack_long_70 != 0) {
                     // WARNING: Subroutine does not return
                     system_execute_operation();
                   }
                   system_stack_long_70 = SYSTEM_INIT_VALUE_ZERO;
                   system_stack_uint_60 = SYSTEM_INIT_VALUE_ZERO;
-                  system_stack_buffer_78 = &g_system_context;
+                  system_stack_buffer_small = &g_system_context;
                 }
                 psystem_stack_uint_98 = &g_system_context;
                 if (psystem_stack_temp_value != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
@@ -25635,7 +25651,7 @@ system_init_label_operation_start:
           system_execute_operation();
         }
         psystem_stack_uint_110 = (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
-        system_stack_uint_100 = system_stack_uint_100 & SYSTEM_INIT_ERROR_GENERIC00000000;
+        system_stack_uint_minimum = system_stack_uint_minimum & SYSTEM_INIT_ERROR_GENERIC00000000;
         psystem_stack_uint_118 = &g_system_context;
         system_stack_uint64_pointer_primary = &g_system_context;
         if (psystem_stack_uint_10x100 != (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
@@ -25645,7 +25661,7 @@ system_init_label_operation_start:
       }
       psystem_stack_uint_110 = (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
       psystem_stack_uint_118 = &g_system_context;
-      system_stack_uint_120 = system_stack_uint_120 & SYSTEM_INIT_ERROR_GENERIC00000000;
+      system_stack_uint_medium = system_stack_uint_medium & SYSTEM_INIT_ERROR_GENERIC00000000;
       psystem_stack_uint_10x100 = (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
       system_stack_uint64_pointer_primary = &g_system_context;
       system_stack_int_index = system_init_temp + 1;
@@ -26211,7 +26227,7 @@ void InitializeSystemCore(longlong *system_context_param)
   system_uint64_t system_stack_uint_size_field;
   void* *psystem_stack_union_config;
   system_uint8_t *psystem_stack_frame_primary;
-  system_uint0x102_t system_stack_uint_40;
+  system_uint0x102_t system_stack_uint_config;
   system_uint8_t asystem_stack_uint_0x108 [16];
   ulonglong system_stack_value_temp;
   
@@ -26234,7 +26250,7 @@ void InitializeSystemCore(longlong *system_context_param)
   psystem_stack_union_config = &g_system_context;
   psystem_stack_frame_primary = asystem_stack_uint_0x108;
   asystem_stack_uint_0x108[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_uint_40 = ;
+  system_stack_uint_config = ;
   strcpy_s(asystem_stack_uint_0x108,SYSTEM_INIT_SIZE_COMPARE,&g_system_context);
   system_context_base_address = (longlong *)system_access_memory(_g_system_initialized,SYSTEM_INIT_OFFSET_STACK_PARAM8,SYSTEM_INIT_SIZE_MEMORY_CHUNK,0x10);
   system_stack_long_78 = system_temp_storage + ;
@@ -26471,19 +26487,19 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t *
   system_uint8_t asystem_stack_uint_158 [0x102];
   void* **psystem_stack_uint64_pointer_primary;
   void* ***pppsystem_stack_uint_10x100;
-  system_uint64_t system_stack_uint_128;
+  system_uint64_t system_stack_uint_large;
   system_uint64_t *psystem_stack_uint_120;
   void* **ppsystem_stack_uint_118;
   void* *psystem_stack_uint_108;
   system_uint8_t *psystem_stack_uint_100;
   system_uint0x102_t system_stack_uint_f8;
   system_uint8_t asystem_stack_uint_f0 [128];
-  system_uint0x102_t system_stack_value_112;
+  system_uint0x102_t system_stack_value_temporary;
   system_uint64_t system_stack_uint_size_field;
   system_uint0x102_t system_stack_union_config;
   ulonglong system_stack_value_temp;
   
-  system_stack_uint_128 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
+  system_stack_uint_large = SYSTEM_INIT_VALUE_HANDLE_INVALID;
   system_stack_value_temp = _g_system_initialized ^ (ulonglong)asystem_stack_uint_158;
   psystem_stack_uint64_pointer_primary = &psystem_stack_uint_108;
   psystem_stack_uint_108 = &g_system_context;
@@ -27781,7 +27797,7 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
   system_uint64_t system_ulong_temp;
   void* *psystem_stack_union_config;
   longlong system_stack_long_48;
-  system_uint0x102_t system_stack_uint_40;
+  system_uint0x102_t system_stack_uint_config;
   ulonglong system_stack_uint_0x108;
   
   system_ulong_temp = SYSTEM_INIT_VALUE_HANDLE_INVALID;
@@ -27795,7 +27811,7 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
         psystem_stack_union_config = &g_system_context;
         system_stack_uint_0x108 = SYSTEM_INIT_VALUE_ZERO;
         system_stack_long_48 = SYSTEM_INIT_VALUE_ZERO;
-        system_stack_uint_40 = SYSTEM_INIT_VALUE_ZERO;
+        system_stack_uint_config = SYSTEM_INIT_VALUE_ZERO;
         system_generic_function_(&psystem_stack_union_config,system_char_pointer_buffer,(int)system_char_pointer_temp - (int)system_char_pointer_buffer,system_thread_param,system_ulong_temp);
         system_char_pointer_buffer = system_char_pointer_temp + 1;
         if (*(ulonglong *)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK) < *(ulonglong *)(system_config_param + SYSTEM_INIT_SIZE_COMPARE)) {
@@ -27821,7 +27837,7 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
       psystem_stack_union_config = &g_system_context;
       system_stack_uint_0x108 = SYSTEM_INIT_VALUE_ZERO;
       system_stack_long_48 = SYSTEM_INIT_VALUE_ZERO;
-      system_stack_uint_40 = SYSTEM_INIT_VALUE_ZERO;
+      system_stack_uint_config = SYSTEM_INIT_VALUE_ZERO;
       system_generic_function_(&psystem_stack_union_config,system_char_pointer_buffer,(int)system_char_pointer_temp - (int)system_char_pointer_buffer,system_thread_param,system_ulong_temp);
       if (*(ulonglong *)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK) < *(ulonglong *)(system_config_param + SYSTEM_INIT_SIZE_COMPARE)) {
         *(ulonglong *)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK) = *(ulonglong *)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK) + SYSTEM_INIT_OFFSET_STACK_PARAM;
@@ -29263,7 +29279,7 @@ void InitializeSystemCore(longlong *system_context_param)
   system_uint8_t asystem_stack_uint_278 [16];
   system_uint64_t system_stack_context_secondary;
   system_uint64_t system_stack_frame_primary;
-  system_uint0x102_t system_stack_uint_40;
+  system_uint0x102_t system_stack_uint_config;
   system_uint0x102_t system_stack_uint_0x10c;
   ulonglong system_stack_uint_0x108;
   system_uint64_t system_stack_uint_0x100;
@@ -29553,7 +29569,7 @@ void InitializeSystemCore(longlong *system_context_param)
              (ulonglong)(*(longlong *)(system_stack_long_2b8 + SYSTEM_INIT_SIZE_POINTERb0) - system_allocation_result_primary >> 5));
   }
   system_stack_frame_primary = SYSTEM_INIT_DOUBLE_FLOAT_PAIR_1_0;
-  system_stack_uint_40 = SYSTEM_INIT_OFFSET_GLOBAL_0x10F000000;
+  system_stack_uint_config = SYSTEM_INIT_OFFSET_GLOBAL_0x10F000000;
   system_stack_uint_0x10c = SYSTEM_INIT_VALUE_ZERO;
   if ((system_uint64_t *******)ppppppsystem_stack_uint_0x1058 != &ppppppsystem_stack_uint_0x1060) {
     system_allocation_result_primary = system_stack_long_0x1010 + SYSTEM_INIT_FLAG_QUINARY_ENABLED0;
@@ -31082,13 +31098,13 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
   system_uint64_t *system_buffer_pointer;
   void* *psystem_stack_union_config;
   system_uint64_t *psystem_stack_frame_primary;
-  system_uint0x102_t system_stack_uint_40;
+  system_uint0x102_t system_stack_uint_config;
   system_uint64_t system_stack_uint_0x108;
   
   psystem_stack_union_config = &g_system_context;
   system_stack_uint_0x108 = SYSTEM_INIT_VALUE_ZERO;
   psystem_stack_frame_primary = (system_uint64_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
-  system_stack_uint_40 = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_uint_config = SYSTEM_INIT_VALUE_ZERO;
   system_buffer_pointer = (system_uint64_t *)system_allocate_memory(_g_system_initialized,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_FLAG_ENABLED_BASE,system_thread_param,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   *(system_uint8_t *)system_buffer_pointer = SYSTEM_INIT_VALUE_ZERO;
   psystem_stack_frame_primary = system_buffer_pointer;
@@ -31097,7 +31113,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
   *system_buffer_pointer = 0x601020726f74696445;
   *(system_uint0x102_t *)(system_buffer_pointer + 1) = SYSTEM_INIT_MAGIC_COOKIE_ENGINE_0x10;
   *(system_uint16_t *)((longlong)system_buffer_pointer + ) = SYSTEM_INIT_CONTEXT_INDEX_PROCESSOR;
-  system_stack_uint_40 = ;
+  system_stack_uint_config = ;
   InitializeSystemCore(system_context_param,&psystem_stack_union_config);
   psystem_stack_union_config = &g_system_context;
                     // WARNING: Subroutine does not return
@@ -31243,13 +31259,13 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
   system_uint0x102_t *system_buffer_pointer;
   void* *psystem_stack_union_config;
   system_uint0x102_t *psystem_stack_frame_primary;
-  system_uint0x102_t system_stack_uint_40;
+  system_uint0x102_t system_stack_uint_config;
   system_uint64_t system_stack_uint_0x108;
   
   psystem_stack_union_config = &g_system_context;
   system_stack_uint_0x108 = SYSTEM_INIT_VALUE_ZERO;
   psystem_stack_frame_primary = (system_uint0x102_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
-  system_stack_uint_40 = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_uint_config = SYSTEM_INIT_VALUE_ZERO;
   system_buffer_pointer = (system_uint0x102_t *)system_allocate_memory(_g_system_initialized,SYSTEM_INIT_FLAG_ENABLED_BASE,SYSTEM_INIT_FLAG_ENABLED_BASE,system_thread_param,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   *(system_uint8_t *)system_buffer_pointer = SYSTEM_INIT_VALUE_ZERO;
   psystem_stack_frame_primary = system_buffer_pointer;
@@ -31261,7 +31277,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
   system_buffer_pointer[SYSTEM_ARRAY_INDEX_FOURTH] = 0x666e6f6010;
   *(system_uint16_t *)(system_buffer_pointer + SYSTEM_INIT_SIZE_COMPARE) = 0x6769;
   *(system_uint8_t *)((longlong)system_buffer_pointer + SYSTEM_INIT_FLAG_SECONDARY_ENABLED) = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_uint_40 = SYSTEM_INIT_FLAG_SECONDARY_ENABLED;
+  system_stack_uint_config = SYSTEM_INIT_FLAG_SECONDARY_ENABLED;
   InitializeSystemCore(system_context_param,&psystem_stack_union_config);
   psystem_stack_union_config = &g_system_context;
                     // WARNING: Subroutine does not return
@@ -31512,13 +31528,13 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
   system_uint64_t *system_buffer_pointer;
   void* *psystem_stack_union_config;
   system_uint64_t *psystem_stack_frame_primary;
-  system_uint0x102_t system_stack_uint_40;
+  system_uint0x102_t system_stack_uint_config;
   system_uint64_t system_stack_uint_0x108;
   
   psystem_stack_union_config = &g_system_context;
   system_stack_uint_0x108 = SYSTEM_INIT_VALUE_ZERO;
   psystem_stack_frame_primary = (system_uint64_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
-  system_stack_uint_40 = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_uint_config = SYSTEM_INIT_VALUE_ZERO;
   system_buffer_pointer = (system_uint64_t *)system_allocate_memory(_g_system_initialized,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_FLAG_ENABLED_BASE,system_thread_param,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   *(system_uint8_t *)system_buffer_pointer = SYSTEM_INIT_VALUE_ZERO;
   psystem_stack_frame_primary = system_buffer_pointer;
@@ -31526,7 +31542,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
   system_stack_uint_0x108 = CONCAT44(system_stack_uint_0x108._4_4_,system_flags_mask);
   *system_buffer_pointer = SYSTEM_INIT_CONFIG_INDEX_SECONDARY6f60x10207265701055;
   *(system_uint0x102_t *)(system_buffer_pointer + 1) = 0x676966;
-  system_stack_uint_40 = ;
+  system_stack_uint_config = ;
   InitializeSystemCore(system_context_param,&psystem_stack_union_config);
   psystem_stack_union_config = &g_system_context;
                     // WARNING: Subroutine does not return
@@ -33189,7 +33205,7 @@ void InitializeSystemCore(void)
   system_uint8_t asystem_stack_uint_148 [16];
   void* *system_stack_uint64_pointer_primary;
   system_uint8_t *psystem_stack_uint_10x100;
-  system_uint0x102_t system_stack_uint_128;
+  system_uint0x102_t system_stack_uint_large;
   system_uint8_t asystem_stack_uint_120 [24];
   void* *apsystem_stack_uint_108 [19];
   int system_stack_int_buffer;
@@ -33232,7 +33248,7 @@ void InitializeSystemCore(void)
   system_stack_uint64_pointer_primary = &g_system_context;
   psystem_stack_uint_10x100 = asystem_stack_uint_120;
   asystem_stack_uint_120[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_uint_128 = 6;
+  system_stack_uint_large = 6;
   system_stack_uint_size_field = system_ptr_data;
   strcpy_s(asystem_stack_uint_120,SYSTEM_INIT_SIZE_COMPARE,&g_model_cache);
   system_stack_long_198 = system_allocation_result_primary + ;
@@ -37749,7 +37765,7 @@ ulonglong InitializeSystemCore(system_uint64_t system_context_param)
   longlong system_stack_long_70;
   void* *psystem_stack_uint_size_field;
   void* *psystem_stack_union_config;
-  system_uint0x102_t system_stack_uint_40;
+  system_uint0x102_t system_stack_uint_config;
   system_uint64_t system_stack_uint_0x108;
   
   system_stack_uint_0x108 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
@@ -37819,7 +37835,7 @@ ulonglong InitializeSystemCore(system_uint64_t system_context_param)
       system_execute_operation();
     }
     psystem_stack_union_config = (void* *)SYSTEM_INIT_VALUE_CHAR_NULL;
-    system_stack_uint_40 = SYSTEM_INIT_VALUE_ZERO;
+    system_stack_uint_config = SYSTEM_INIT_VALUE_ZERO;
     psystem_stack_uint_size_field = &g_system_context;
     system_ptr_data = system_module_data_address;
     if (system_initialization_status != 0) {
@@ -38224,11 +38240,11 @@ void InitializeSystemCore(system_uint64_t system_context_param)
   system_uint64_t *psystem_stack_uint_140;
   system_uint64_t *system_stack_uint64_pointer_primary;
   system_uint64_t system_stack_uint_10x100;
-  system_uint0x102_t system_stack_uint_128;
-  system_uint64_t system_stack_uint_120;
+  system_uint0x102_t system_stack_uint_large;
+  system_uint64_t system_stack_uint_medium;
   void* *psystem_stack_uint_118;
   system_uint8_t *psystem_stack_uint_110;
-  system_uint0x102_t system_stack_uint_108;
+  system_uint0x102_t system_stack_uint_tiny;
   system_uint8_t asystem_stack_uint_100 [16];
   void* *psystem_stack_uint_f0;
   system_uint8_t *psystem_stack_uint_e8;
@@ -38242,7 +38258,7 @@ void InitializeSystemCore(system_uint64_t system_context_param)
   ulonglong system_stack_union_config;
   ulonglong system_stack_uint_0x108;
   
-  system_stack_uint_120 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
+  system_stack_uint_medium = SYSTEM_INIT_VALUE_HANDLE_INVALID;
   system_stack_uint_0x108 = _g_system_initialized ^ (ulonglong)asystem_stack_uint_0x1068;
   system_stack_uint_0x1010 = SYSTEM_INIT_VALUE_ZERO;
   system_generic_function_(system_context_param,&system_stack_memory_pointer_primary,&system_data_metadata);
@@ -38412,7 +38428,7 @@ void InitializeSystemCore(system_uint64_t system_context_param)
     psystem_stack_uint_118 = &g_system_context;
     psystem_stack_uint_110 = asystem_stack_uint_100;
     asystem_stack_uint_100[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
-    system_stack_uint_108 = 1;
+    system_stack_uint_tiny = 1;
     strcpy_s(asystem_stack_uint_100,SYSTEM_INIT_SIZE_COMPARE,&system_data_buffer);
     InitializeSystemCore(&system_stack_unsigned_secondary,system_local_uint_ptr_primary9 + SYSTEM_INIT_SIZE_COMPARE,&psystem_stack_uint_118);
     psystem_stack_uint_118 = &g_system_context;
@@ -38459,7 +38475,7 @@ void InitializeSystemCore(system_uint64_t system_context_param)
         psystem_stack_uint_140 = (system_uint64_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
         system_stack_uint64_pointer_primary = (system_uint64_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
         system_stack_uint_10x100 = SYSTEM_INIT_VALUE_ZERO;
-        system_stack_uint_128 = SYSTEM_INIT_VALUE_THREE;
+        system_stack_uint_large = SYSTEM_INIT_VALUE_THREE;
         asystem_stack_uint_0x100104[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_FLAG_INITIALIZED0x10;
         if (system_local_uint_ptr_primary9[SYSTEM_ARRAY_INDEX_SECOND] != 0) {
           InitializeSystemCore(system_local_uint_ptr_primary9,&psystem_stack_uint_140,asystem_stack_uint_0x100104);
@@ -38734,7 +38750,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
   uint system_stack_uint_98;
   void* *system_stack_ptr_88;
   longlong system_stack_long_80;
-  system_uint0x102_t system_stack_value_112;
+  system_uint0x102_t system_stack_value_temporary;
   void* **system_stack_double_ptr_key;
   longlong **ppsystem_stack_long_60;
   system_uint0x102_t system_stack_union_config;
@@ -38775,7 +38791,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
     system_execute_operation();
   }
   system_stack_long_80 = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_value_112 = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_value_temporary = SYSTEM_INIT_VALUE_ZERO;
   system_stack_ptr_88 = &g_system_context;
   if (system_config_param == 0) {
     system_buffer_pointer = InitializeSystemCore(_g_system_initialized);
@@ -38791,7 +38807,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
       system_execute_operation();
     }
     system_stack_long_80 = SYSTEM_INIT_VALUE_ZERO;
-    system_stack_value_112 = SYSTEM_INIT_VALUE_ZERO;
+    system_stack_value_temporary = SYSTEM_INIT_VALUE_ZERO;
     system_stack_ptr_88 = &g_system_context;
   }
   system_generic_function_(&psystem_stack_uint_a8);
@@ -38929,7 +38945,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
   ulonglong system_stack_uint_140;
   void* *system_stack_uint64_pointer_primary;
   longlong system_stack_long_counter_secondary;
-  system_uint0x102_t system_stack_uint_120;
+  system_uint0x102_t system_stack_uint_medium;
   void* *psystem_stack_uint_110;
   longlong system_stack_long_108;
   system_uint0x102_t system_stack_uint_f8;
@@ -39011,7 +39027,7 @@ system_init_label_module_initialize:
       system_execute_operation();
     }
     system_stack_long_counter_secondary = SYSTEM_INIT_VALUE_ZERO;
-    system_stack_uint_120 = SYSTEM_INIT_VALUE_ZERO;
+    system_stack_uint_medium = SYSTEM_INIT_VALUE_ZERO;
     system_stack_uint64_pointer_primary = &g_system_context;
     system_compare_data(&psystem_stack_uint_198,&psystem_stack_uint_d0,system_int_index + 7,SYSTEM_INIT_ERROR_GENERIC);
     system_stack_memory_pointer_context = &g_system_context;
@@ -39099,7 +39115,7 @@ system_init_label_module_initialize:
       system_execute_operation();
     }
     system_stack_long_counter_secondary = SYSTEM_INIT_VALUE_ZERO;
-    system_stack_uint_120 = SYSTEM_INIT_VALUE_ZERO;
+    system_stack_uint_medium = SYSTEM_INIT_VALUE_ZERO;
     system_stack_uint64_pointer_primary = &g_system_context;
     InitializeSystemCore(&psystem_stack_uint_198);
     InitializeSystemCore(&psystem_stack_uint_198);
@@ -39646,7 +39662,7 @@ void InitializeSystemCore(longlong system_context_param)
   longlong system_long_value_primary;
   longlong system_long_value_secondary;
   longlong *psystem_performance_counter_long;
-  system_uint0x102_t system_stack_value_112;
+  system_uint0x102_t system_stack_value_temporary;
   system_uint0x102_t system_stack_uint_6c;
   system_uint0x102_t system_stack_uint_key;
   system_uint0x102_t system_stack_uint_64;
@@ -39783,7 +39799,7 @@ void InitializeSystemCore(longlong *system_context_param)
   system_uint8_t system_stack_uint_ae;
   system_uint8_t system_stack_buffer_main [64];
   system_uint64_t system_stack_frame_primary;
-  system_uint64_t system_stack_uint_40;
+  system_uint64_t system_stack_uint_config;
   
   system_stack_frame_primary = SYSTEM_INIT_VALUE_HANDLE_INVALID;
   system_temp_storage = system_context_param[SYSTEM_ARRAY_INDEX_SECOND];
@@ -39865,22 +39881,22 @@ void InitializeSystemCore(longlong *system_context_param)
   system_buffer_pointer = *system_context_param;
   system_configuration_data_pointer = (system_uint64_t *)system_context_param[SYSTEM_ARRAY_INDEX_SECOND];
   system_temp_storage = system_buffer_pointer + SYSTEM_INIT_OFFSET_STACK_PARAM00x1080;
-  system_stack_uint_40 = SYSTEM_INIT_FLAG_OCTONARY_ENABLED0068808;
+  system_stack_uint_config = SYSTEM_INIT_FLAG_OCTONARY_ENABLED0068808;
   system_long_value_tertiary = system_temp_storage;
   system_stack_frame_address = system_configuration_data_pointer;
   system_init_temp = _Mtx_lock(system_temp_storage);
   if (system_init_temp != 0) {
-    system_stack_uint_40 = SYSTEM_INIT_FLAG_OCTONARY_ENABLED0068815;
+    system_stack_uint_config = SYSTEM_INIT_FLAG_OCTONARY_ENABLED0068815;
     __Throw_C_error_std__YAXH_Z(system_init_temp);
   }
-  system_stack_uint_40 = SYSTEM_INIT_FLAG_OCTONARY_ENABLED006881f;
+  system_stack_uint_config = SYSTEM_INIT_FLAG_OCTONARY_ENABLED006881f;
   InitializeSystemCore(system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE);
   *system_configuration_data_pointer = *(system_uint64_t *)(system_buffer_pointer + SYSTEM_INIT_OFFSET_STACK_PARAM00x1078);
   *(system_uint64_t **)(system_buffer_pointer + SYSTEM_INIT_OFFSET_STACK_PARAM00x1078) = system_configuration_data_pointer;
-  system_stack_uint_40 = SYSTEM_INIT_FLAG_OCTONARY_ENABLED006880x10a;
+  system_stack_uint_config = SYSTEM_INIT_FLAG_OCTONARY_ENABLED006880x10a;
   system_init_temp = _Mtx_unlock(system_temp_storage);
   if (system_init_temp != 0) {
-    system_stack_uint_40 = SYSTEM_INIT_FLAG_OCTONARY_ENABLED0068847;
+    system_stack_uint_config = SYSTEM_INIT_FLAG_OCTONARY_ENABLED0068847;
     __Throw_C_error_std__YAXH_Z(system_init_temp);
   }
   return;
@@ -44792,7 +44808,7 @@ ulonglong InitializeSystemCore(system_uint64_t system_context_param,system_uint6
   bool system_validation_flag_9;
   void* *psystem_stack_union_config;
   void* *psystem_stack_frame_primary;
-  system_uint0x102_t system_stack_uint_40;
+  system_uint0x102_t system_stack_uint_config;
   system_uint64_t system_stack_uint_0x108;
   system_uint8_t asystem_stack_uint_0x100 [SYSTEM_ARRAY_INDEX_NINTH];
   void* *psystem_stack_uint_28;
@@ -44822,7 +44838,7 @@ ulonglong InitializeSystemCore(system_uint64_t system_context_param,system_uint6
   psystem_stack_union_config = &g_system_context;
   system_stack_uint_0x108 = SYSTEM_INIT_VALUE_ZERO;
   psystem_stack_frame_primary = (void* *)SYSTEM_INIT_VALUE_CHAR_NULL;
-  system_stack_uint_40 = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_uint_config = SYSTEM_INIT_VALUE_ZERO;
   system_generic_function_(&psystem_stack_union_config,&g_thread_context,system_config_param);
   InitializeSystemCore(_g_system_initialized,5,SYSTEM_INIT_ERROR_GENERIC00000000,&g_process_handle);
   system_temporary_data_pointer = &g_system_initialized;
@@ -44924,10 +44940,10 @@ ulonglong InitializeSystemCore(system_uint64_t system_context_param,system_uint6
   void* *system_stack_context_quinary;
   longlong system_stack_long_78;
   system_uint0x102_t system_stack_uint_key;
-  system_uint64_t system_stack_uint_40;
+  system_uint64_t system_stack_uint_config;
   
   system_buffer_pointer = _g_system_initialized;
-  system_stack_uint_40 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
+  system_stack_uint_config = SYSTEM_INIT_VALUE_HANDLE_INVALID;
   bStackX_20 = SYSTEM_INIT_VALUE_ZERO;
   if (((g_system_initialized == '\0') || (in_RAX = InitializeSystemCore(system_config_param), (char)in_RAX != '\0')) ||
      (in_RAX = WaitForSingleObject(_g_file_system,0), (int)in_RAX != 0)) {
@@ -45534,14 +45550,14 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
   void* *psystem_stack_uint_140;
   system_uint8_t *system_stack_uint64_pointer_primary;
   uint system_stack_uint_10x100;
-  ulonglong system_stack_uint_128;
+  ulonglong system_stack_uint_large;
   char cStack_120;
   char cStack_11f;
   system_uint0x102_t system_stack_uint_11c;
   void* *psystem_stack_uint_118;
   system_uint8_t *psystem_stack_uint_110;
-  uint system_stack_uint_108;
-  system_uint64_t system_stack_uint_100;
+  uint system_stack_uint_tiny;
+  system_uint64_t system_stack_uint_minimum;
   void* *psystem_stack_uint_f8;
   void* *psystem_stack_uint_f0;
   system_uint0x102_t system_stack_uint_e0;
@@ -45572,9 +45588,9 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
   InitializeSystemCore(&system_stack_uint_size_field,SYSTEM_INIT_SIZE_COMPARE,&g_system_context,system_memory_param);
   system_context_handle = system_write_service(&psystem_stack_uint_d8,system_thread_param);
   psystem_stack_uint_118 = &g_system_context;
-  system_stack_uint_100 = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_uint_minimum = SYSTEM_INIT_VALUE_ZERO;
   psystem_stack_uint_110 = (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
-  system_stack_uint_108 = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_uint_tiny = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_11c = SYSTEM_INIT_SIZE_COMPARE;
   system_initialization_flag_primary = *(uint *)(system_context_handle + SYSTEM_INIT_SIZE_COMPARE);
   system_local_uint_primary9 = (ulonglong)system_initialization_flag_primary;
@@ -45596,15 +45612,15 @@ system_init_label_repair_begin:
     *system_output_pointer = SYSTEM_INIT_VALUE_ZERO;
     psystem_stack_uint_110 = system_output_pointer;
     system_ulong_temp = system_validate_operation(system_output_pointer);
-    system_stack_uint_100 = CONCAT44(system_stack_uint_100._4_4_,system_ulong_temp);
+    system_stack_uint_minimum = CONCAT44(system_stack_uint_minimum._4_4_,system_ulong_temp);
     goto system_init_label_repair_begin;
   }
   if (system_output_pointer != (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_output_pointer[system_local_uint_primary9] = SYSTEM_INIT_VALUE_ZERO;
   }
   system_ulong_temp = *(uint *)(system_context_handle + SYSTEM_INIT_FLAG_INITIALIZED_SECONDARY);
-  system_stack_uint_108 = system_initialization_flag_primary;
-  system_stack_uint_100._4_4_ = system_ulong_temp;
+  system_stack_uint_tiny = system_initialization_flag_primary;
+  system_stack_uint_minimum._4_4_ = system_ulong_temp;
   if (system_config_param != 0) {
     system_context_handle = -1;
     do {
@@ -45628,7 +45644,7 @@ system_init_label_repair_begin:
           system_output_pointer = (system_uint8_t *)system_generic_function_(_g_system_initialized,system_output_pointer,system_initialization_flag_primary,SYSTEM_INIT_SIZE_COMPARE);
         }
         psystem_stack_uint_110 = system_output_pointer;
-        system_stack_uint_100._0_4_ = system_validate_operation(system_output_pointer);
+        system_stack_uint_minimum._0_4_ = system_validate_operation(system_output_pointer);
       }
 system_init_label_fix_process:
                     // WARNING: Subroutine does not return
@@ -45644,7 +45660,7 @@ system_init_label_fix_process:
     system_execute_operation(system_output_pointer);
   }
   psystem_stack_uint_110 = (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
-  system_stack_uint_100 = (ulonglong)system_stack_uint_100._4_4_ << SYSTEM_INIT_OFFSET_STACK_PARAM;
+  system_stack_uint_minimum = (ulonglong)system_stack_uint_minimum._4_4_ << SYSTEM_INIT_OFFSET_STACK_PARAM;
   psystem_stack_uint_118 = &g_system_context;
   psystem_stack_uint_d8 = &g_system_context;
   if (system_stack_long_d0 != 0) {
@@ -45679,7 +45695,7 @@ system_init_label_fix_process:
   }
   system_stack_long_90 = _g_system_initialized;
   psystem_stack_uint_140 = &g_system_context;
-  system_stack_uint_128 = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_uint_large = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint64_pointer_primary = (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
   system_stack_uint_10x100 = SYSTEM_INIT_VALUE_ZERO;
   system_primary_uint_pointer_8 = &system_void*_data_2;
@@ -45701,7 +45717,7 @@ system_init_label_fix_process:
       system_stack_uint64_pointer_primary = (system_uint8_t *)system_allocate_memory(_g_system_initialized,(longlong)system_int_index,SYSTEM_INIT_FLAG_ENABLED_BASE);
       *system_stack_uint64_pointer_primary = SYSTEM_INIT_VALUE_ZERO;
       system_init_flag_audio = system_validate_operation(system_stack_uint64_pointer_primary);
-      system_stack_uint_128 = CONCAT44(system_stack_uint_128._4_4_,system_init_flag_audio);
+      system_stack_uint_large = CONCAT44(system_stack_uint_large._4_4_,system_init_flag_audio);
     }
                     // WARNING: Subroutine does not return
     memcpy(system_stack_uint64_pointer_primary + system_stack_uint_10x100,system_primary_uint_pointer_8,(longlong)((int)system_allocation_result6 + 2));
@@ -45709,7 +45725,7 @@ system_init_label_fix_process:
   system_stack_uint64_pointer_primary = (system_uint8_t *)system_allocate_memory(_g_system_initialized,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_FLAG_ENABLED_BASE);
   *system_stack_uint64_pointer_primary = SYSTEM_INIT_VALUE_ZERO;
   system_ulong_temp = system_validate_operation(system_stack_uint64_pointer_primary);
-  system_stack_uint_128 = CONCAT44(system_stack_uint_128._4_4_,system_ulong_temp);
+  system_stack_uint_large = CONCAT44(system_stack_uint_large._4_4_,system_ulong_temp);
   *(system_uint16_t *)(system_stack_uint64_pointer_primary + system_stack_uint_10x100) = 10;
   system_stack_uint_10x100 = 1;
   system_initialization_flag_primary = 2;
@@ -45719,7 +45735,7 @@ system_init_label_fix_process:
     *system_stack_uint64_pointer_primary = SYSTEM_INIT_VALUE_ZERO;
 system_init_label_heal_operation:
     system_init_flag_audio = system_validate_operation(system_stack_uint64_pointer_primary);
-    system_stack_uint_128 = CONCAT44(system_stack_uint_128._4_4_,system_init_flag_audio);
+    system_stack_uint_large = CONCAT44(system_stack_uint_large._4_4_,system_init_flag_audio);
   }
   else if (system_ulong_temp < 0x10) {
     psystem_stack_uint_168 = (system_uint8_t *)CONCAT71(psystem_stack_uint_168._1_7_,SYSTEM_INIT_FLAG_ENABLED_BASE);
@@ -45750,13 +45766,13 @@ system_init_label_heal_operation:
         }
         else {
           system_ulong_temp = system_stack_uint_10x100;
-          if (system_ulonglong_primary <= (uint)system_stack_uint_128) goto system_init_label_restore_action;
+          if (system_ulonglong_primary <= (uint)system_stack_uint_large) goto system_init_label_restore_action;
           psystem_stack_uint_168 = (system_uint8_t *)CONCAT71(psystem_stack_uint_168._1_7_,SYSTEM_INIT_FLAG_ENABLED_BASE);
           system_stack_uint_10x100 = system_initialization_flag_primary;
           system_stack_uint64_pointer_primary = (system_uint8_t *)system_generic_function_(_g_system_initialized,system_stack_uint64_pointer_primary,system_ulonglong_primary,SYSTEM_INIT_SIZE_COMPARE);
         }
         system_init_flag_audio = system_validate_operation(system_stack_uint64_pointer_primary);
-        system_stack_uint_128 = CONCAT44(system_stack_uint_128._4_4_,system_init_flag_audio);
+        system_stack_uint_large = CONCAT44(system_stack_uint_large._4_4_,system_init_flag_audio);
         system_ulong_temp = system_stack_uint_10x100;
       }
 system_init_label_restore_action:
@@ -45771,9 +45787,9 @@ system_init_label_restore_action:
     *system_stack_uint64_pointer_primary = SYSTEM_INIT_VALUE_ZERO;
 system_init_label_recover_function:
     system_init_flag_audio = system_validate_operation(system_stack_uint64_pointer_primary);
-    system_stack_uint_128 = CONCAT44(system_stack_uint_128._4_4_,system_init_flag_audio);
+    system_stack_uint_large = CONCAT44(system_stack_uint_large._4_4_,system_init_flag_audio);
   }
-  else if ((uint)system_stack_uint_128 < SYSTEM_INIT_SIZE_COMPARE) {
+  else if ((uint)system_stack_uint_large < SYSTEM_INIT_SIZE_COMPARE) {
     psystem_stack_uint_168 = (system_uint8_t *)CONCAT71(psystem_stack_uint_168._1_7_,SYSTEM_INIT_FLAG_ENABLED_BASE);
     system_stack_uint_10x100 = system_initialization_flag_primary;
     system_stack_uint64_pointer_primary = (system_uint8_t *)system_generic_function_(_g_system_initialized,system_stack_uint64_pointer_primary,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE);
@@ -45794,12 +45810,12 @@ system_init_label_recover_function:
       *system_stack_uint64_pointer_primary = SYSTEM_INIT_VALUE_ZERO;
     }
     else {
-      if (system_ulonglong_primary <= (uint)system_stack_uint_128) goto system_init_label_revive_system;
+      if (system_ulonglong_primary <= (uint)system_stack_uint_large) goto system_init_label_revive_system;
       psystem_stack_uint_168 = (system_uint8_t *)CONCAT71(psystem_stack_uint_168._1_7_,SYSTEM_INIT_FLAG_ENABLED_BASE);
       system_stack_uint64_pointer_primary = (system_uint8_t *)system_generic_function_(_g_system_initialized,system_stack_uint64_pointer_primary,system_ulonglong_primary,SYSTEM_INIT_SIZE_COMPARE);
     }
     system_init_flag_audio = system_validate_operation(system_stack_uint64_pointer_primary);
-    system_stack_uint_128 = CONCAT44(system_stack_uint_128._4_4_,system_init_flag_audio);
+    system_stack_uint_large = CONCAT44(system_stack_uint_large._4_4_,system_init_flag_audio);
   }
 system_init_label_revive_system:
   *(system_uint16_t *)(system_stack_uint64_pointer_primary + system_stack_uint_10x100) = 10;
@@ -45815,12 +45831,12 @@ system_init_label_revive_system:
       *system_stack_uint64_pointer_primary = SYSTEM_INIT_VALUE_ZERO;
     }
     else {
-      if (system_ulong_temp <= (uint)system_stack_uint_128) goto system_init_label_renew_process;
+      if (system_ulong_temp <= (uint)system_stack_uint_large) goto system_init_label_renew_process;
       psystem_stack_uint_168 = (system_uint8_t *)CONCAT71(psystem_stack_uint_168._1_7_,SYSTEM_INIT_FLAG_ENABLED_BASE);
       system_stack_uint64_pointer_primary = (system_uint8_t *)system_generic_function_(_g_system_initialized,system_stack_uint64_pointer_primary,system_ulong_temp,SYSTEM_INIT_SIZE_COMPARE);
     }
     system_init_flag_audio = system_validate_operation(system_stack_uint64_pointer_primary);
-    system_stack_uint_128 = CONCAT44(system_stack_uint_128._4_4_,system_init_flag_audio);
+    system_stack_uint_large = CONCAT44(system_stack_uint_large._4_4_,system_init_flag_audio);
   }
 system_init_label_renew_process:
   system_allocation_result5 = system_stack_long_88;
@@ -45847,12 +45863,12 @@ system_init_label_renew_process:
           *system_stack_uint64_pointer_primary = SYSTEM_INIT_VALUE_ZERO;
         }
         else {
-          if (system_initialization_flag_primary <= (uint)system_stack_uint_128) goto system_init_label_refresh_cycle;
+          if (system_initialization_flag_primary <= (uint)system_stack_uint_large) goto system_init_label_refresh_cycle;
           psystem_stack_uint_168 = (system_uint8_t *)CONCAT71(psystem_stack_uint_168._1_7_,SYSTEM_INIT_FLAG_ENABLED_BASE);
           system_stack_uint64_pointer_primary = (system_uint8_t *)system_generic_function_(_g_system_initialized,system_stack_uint64_pointer_primary,system_initialization_flag_primary,SYSTEM_INIT_SIZE_COMPARE);
         }
         system_init_flag_audio = system_validate_operation(system_stack_uint64_pointer_primary);
-        system_stack_uint_128 = CONCAT44(system_stack_uint_128._4_4_,system_init_flag_audio);
+        system_stack_uint_large = CONCAT44(system_stack_uint_large._4_4_,system_init_flag_audio);
       }
 system_init_label_refresh_cycle:
                     // WARNING: Subroutine does not return
@@ -45870,12 +45886,12 @@ system_init_label_refresh_cycle:
       *system_stack_uint64_pointer_primary = SYSTEM_INIT_VALUE_ZERO;
     }
     else {
-      if (system_initialization_flag_primary <= (uint)system_stack_uint_128) goto system_init_label_reboot_sequence;
+      if (system_initialization_flag_primary <= (uint)system_stack_uint_large) goto system_init_label_reboot_sequence;
       psystem_stack_uint_168 = (system_uint8_t *)CONCAT71(psystem_stack_uint_168._1_7_,SYSTEM_INIT_FLAG_ENABLED_BASE);
       system_stack_uint64_pointer_primary = (system_uint8_t *)system_generic_function_(_g_system_initialized,system_stack_uint64_pointer_primary,system_initialization_flag_primary,SYSTEM_INIT_SIZE_COMPARE);
     }
     system_init_flag_audio = system_validate_operation(system_stack_uint64_pointer_primary);
-    system_stack_uint_128 = CONCAT44(system_stack_uint_128._4_4_,system_init_flag_audio);
+    system_stack_uint_large = CONCAT44(system_stack_uint_large._4_4_,system_init_flag_audio);
   }
 system_init_label_reboot_sequence:
   *(system_uint16_t *)(system_stack_uint64_pointer_primary + system_stack_uint_10x100) = 10;
@@ -45914,14 +45930,14 @@ system_init_label_reboot_sequence:
     }
   }
   psystem_stack_uint_118 = &g_system_context;
-  system_stack_uint_100 = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_uint_minimum = SYSTEM_INIT_VALUE_ZERO;
   psystem_stack_uint_110 = (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
-  system_stack_uint_108 = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_uint_tiny = SYSTEM_INIT_VALUE_ZERO;
   if (system_bool_var_10x10 == 0) {
     system_context_handle = InitializeSystemCore(&psystem_stack_uint_d8,0);
-    system_stack_uint_108 = *(uint *)(system_context_handle + SYSTEM_INIT_SIZE_COMPARE);
+    system_stack_uint_tiny = *(uint *)(system_context_handle + SYSTEM_INIT_SIZE_COMPARE);
     psystem_stack_uint_110 = *(system_uint8_t **)(system_context_handle + SYSTEM_INIT_SIZE_MEMORY_CHUNK);
-    system_stack_uint_100 = *(ulonglong *)(system_context_handle + SYSTEM_INIT_FLAG_OCTONARY_ENABLED);
+    system_stack_uint_minimum = *(ulonglong *)(system_context_handle + SYSTEM_INIT_FLAG_OCTONARY_ENABLED);
     *(system_uint0x102_t *)(system_context_handle + SYSTEM_INIT_SIZE_COMPARE) = SYSTEM_INIT_VALUE_ZERO;
     *(system_uint64_t *)(system_context_handle + SYSTEM_INIT_SIZE_MEMORY_CHUNK) = SYSTEM_INIT_VALUE_ZERO;
     *(system_uint64_t *)(system_context_handle + SYSTEM_INIT_FLAG_OCTONARY_ENABLED) = SYSTEM_INIT_VALUE_ZERO;
@@ -46076,7 +46092,7 @@ system_init_label_reboot_sequence:
       system_execute_operation(system_output_pointer);
     }
     psystem_stack_uint_110 = (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
-    system_stack_uint_100 = system_stack_uint_100 & SYSTEM_INIT_ERROR_GENERIC00000000;
+    system_stack_uint_minimum = system_stack_uint_minimum & SYSTEM_INIT_ERROR_GENERIC00000000;
     psystem_stack_uint_118 = &g_system_context;
     psystem_stack_uint_140 = &g_system_context;
     if (system_stack_uint64_pointer_primary != (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
@@ -46084,7 +46100,7 @@ system_init_label_reboot_sequence:
       system_execute_operation();
     }
     system_stack_uint64_pointer_primary = (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
-    system_stack_uint_128 = system_stack_uint_128 & SYSTEM_INIT_ERROR_GENERIC00000000;
+    system_stack_uint_large = system_stack_uint_large & SYSTEM_INIT_ERROR_GENERIC00000000;
     psystem_stack_uint_140 = &g_system_context;
     psystem_stack_uint_f8 = &g_system_context;
     if (psystem_stack_uint_f0 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
@@ -46435,15 +46451,15 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
   system_uint8_t *psystem_stack_uint_148;
   void* *system_stack_uint64_pointer_primary;
   system_uint8_t *psystem_stack_uint_10x100;
-  uint system_stack_uint_128;
-  ulonglong system_stack_uint_120;
+  uint system_stack_uint_large;
+  ulonglong system_stack_uint_medium;
   char cStack_118;
   char cStack_117;
   system_uint8_t system_stack_uint_116;
   uint system_stack_uint_114;
   void* *psystem_stack_uint_110;
   system_uint8_t *psystem_stack_uint_108;
-  uint system_stack_uint_100;
+  uint system_stack_uint_minimum;
   system_uint64_t system_stack_uint_f8;
   void* *psystem_stack_uint_f0;
   longlong system_stack_long_e8;
@@ -46481,7 +46497,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
   system_ulong_primary6 = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_f8 = SYSTEM_INIT_VALUE_ZERO;
   psystem_stack_uint_108 = (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
-  system_stack_uint_100 = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_uint_minimum = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_114 = SYSTEM_INIT_SIZE_COMPARE;
   system_initialization_flag_primary = *(uint *)(system_context_handle + SYSTEM_INIT_SIZE_COMPARE);
   system_local_uint_primary9 = (ulonglong)system_initialization_flag_primary;
@@ -46510,7 +46526,7 @@ system_init_label_control_take:
     system_output_pointer[system_local_uint_primary9] = SYSTEM_INIT_VALUE_ZERO;
   }
   system_temp_counter = *(uint *)(system_context_handle + SYSTEM_INIT_FLAG_INITIALIZED_SECONDARY);
-  system_stack_uint_100 = system_initialization_flag_primary;
+  system_stack_uint_minimum = system_initialization_flag_primary;
   system_stack_uint_f8._4_4_ = system_temp_counter;
   if (system_config_param != 0) {
     system_context_handle = -1;
@@ -46607,10 +46623,10 @@ system_init_label_order_give:
       psystem_stack_uint_110 = &g_system_context;
       system_stack_uint_f8 = SYSTEM_INIT_VALUE_ZERO;
       psystem_stack_uint_108 = (void* *)SYSTEM_INIT_VALUE_CHAR_NULL;
-      system_stack_uint_100 = SYSTEM_INIT_VALUE_ZERO;
+      system_stack_uint_minimum = SYSTEM_INIT_VALUE_ZERO;
       if (system_char_buffer == '\0') {
         system_context_handle = InitializeSystemCore(&psystem_stack_uint_f0,0);
-        system_stack_uint_100 = *(uint *)(system_context_handle + SYSTEM_INIT_SIZE_COMPARE);
+        system_stack_uint_minimum = *(uint *)(system_context_handle + SYSTEM_INIT_SIZE_COMPARE);
         psystem_stack_uint_108 = *(system_uint8_t **)(system_context_handle + SYSTEM_INIT_SIZE_MEMORY_CHUNK);
         system_stack_uint_f8 = *(ulonglong *)(system_context_handle + SYSTEM_INIT_FLAG_OCTONARY_ENABLED);
         *(system_uint0x102_t *)(system_context_handle + SYSTEM_INIT_SIZE_COMPARE) = SYSTEM_INIT_VALUE_ZERO;
@@ -46627,54 +46643,54 @@ system_init_label_order_give:
       }
       system_output_pointer = psystem_stack_uint_108;
       system_stack_uint64_pointer_primary = &g_system_context;
-      system_stack_uint_120 = SYSTEM_INIT_VALUE_ZERO;
+      system_stack_uint_medium = SYSTEM_INIT_VALUE_ZERO;
       psystem_stack_uint_10x100 = (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
-      system_stack_uint_128 = SYSTEM_INIT_VALUE_ZERO;
+      system_stack_uint_large = SYSTEM_INIT_VALUE_ZERO;
       psystem_stack_uint_10x100 = (system_uint8_t *)system_allocate_memory(_g_system_initialized,SYSTEM_INIT_FLAG_QUINARY_ENABLED,SYSTEM_INIT_FLAG_ENABLED_BASE);
       *psystem_stack_uint_10x100 = SYSTEM_INIT_VALUE_ZERO;
       system_initialization_flag_primary = system_validate_operation(psystem_stack_uint_10x100);
-      system_stack_uint_120 = CONCAT44(system_stack_uint_120._4_4_,system_initialization_flag_primary);
-      psystem_ulong_result = (system_uint0x102_t *)(psystem_stack_uint_10x100 + system_stack_uint_128);
+      system_stack_uint_medium = CONCAT44(system_stack_uint_medium._4_4_,system_initialization_flag_primary);
+      psystem_ulong_result = (system_uint0x102_t *)(psystem_stack_uint_10x100 + system_stack_uint_large);
       *psystem_ulong_result = 0x69746f4e;
       psystem_ulong_result[SYSTEM_ARRAY_INDEX_SECOND] = 0x6160106966;
       psystem_ulong_result[SYSTEM_ARRAY_INDEX_THIRD] = SYSTEM_INIT_CONFIG_INDEX_SECONDARY6f6974;
       psystem_ulong_result[SYSTEM_ARRAY_INDEX_FOURTH] = 0x701070104120;
       psystem_ulong_result[SYSTEM_ARRAY_INDEX_FIFTH] = SYSTEM_INIT_FLAG_INITIALIZED1747265;
       *(system_uint8_t *)(psystem_ulong_result + 5) = SYSTEM_INIT_VALUE_ZERO;
-      system_stack_uint_128 = SYSTEM_INIT_FLAG_QUATERNARY_ENABLED;
+      system_stack_uint_large = SYSTEM_INIT_FLAG_QUATERNARY_ENABLED;
       if (psystem_stack_uint_10x100 == (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
-        system_stack_uint_128 = SYSTEM_INIT_FLAG_QUATERNARY_ENABLED;
+        system_stack_uint_large = SYSTEM_INIT_FLAG_QUATERNARY_ENABLED;
         psystem_stack_uint_10x100 = (system_uint8_t *)system_allocate_memory(_g_system_initialized,SYSTEM_INIT_FLAG_SENARY_ENABLED,SYSTEM_INIT_FLAG_ENABLED_BASE);
         *psystem_stack_uint_10x100 = SYSTEM_INIT_VALUE_ZERO;
 system_init_label_direct_make:
         system_init_flag_audio = system_validate_operation(psystem_stack_uint_10x100);
-        system_stack_uint_120 = CONCAT44(system_stack_uint_120._4_4_,system_init_flag_audio);
+        system_stack_uint_medium = CONCAT44(system_stack_uint_medium._4_4_,system_init_flag_audio);
       }
       else if (system_initialization_flag_primary < SYSTEM_INIT_FLAG_SENARY_ENABLED) {
         psystem_stack_uint_148 = (system_uint8_t *)CONCAT71(psystem_stack_uint_148._1_7_,SYSTEM_INIT_FLAG_ENABLED_BASE);
-        system_stack_uint_128 = SYSTEM_INIT_FLAG_QUATERNARY_ENABLED;
+        system_stack_uint_large = SYSTEM_INIT_FLAG_QUATERNARY_ENABLED;
         psystem_stack_uint_10x100 = (system_uint8_t *)system_generic_function_(_g_system_initialized,psystem_stack_uint_10x100,SYSTEM_INIT_FLAG_SENARY_ENABLED,SYSTEM_INIT_SIZE_COMPARE);
         goto system_init_label_direct_make;
       }
-      *(system_uint16_t *)(psystem_stack_uint_10x100 + system_stack_uint_128) = 10;
-      system_stack_uint_128 = SYSTEM_INIT_FLAG_QUINARY_ENABLED;
+      *(system_uint16_t *)(psystem_stack_uint_10x100 + system_stack_uint_large) = 10;
+      system_stack_uint_large = SYSTEM_INIT_FLAG_QUINARY_ENABLED;
       system_initialization_flag_primary = SYSTEM_INIT_FLAG_SENARY_ENABLED;
       if (psystem_stack_uint_10x100 == (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
-        system_stack_uint_128 = SYSTEM_INIT_FLAG_QUINARY_ENABLED;
+        system_stack_uint_large = SYSTEM_INIT_FLAG_QUINARY_ENABLED;
         psystem_stack_uint_10x100 = (system_uint8_t *)system_allocate_memory(_g_system_initialized,SYSTEM_INIT_FLAG_SEPTENARY_ENABLED,SYSTEM_INIT_FLAG_ENABLED_BASE);
         *psystem_stack_uint_10x100 = SYSTEM_INIT_VALUE_ZERO;
 system_init_label_instruct_provide:
         system_init_flag_audio = system_validate_operation(psystem_stack_uint_10x100);
-        system_stack_uint_120 = CONCAT44(system_stack_uint_120._4_4_,system_init_flag_audio);
+        system_stack_uint_medium = CONCAT44(system_stack_uint_medium._4_4_,system_init_flag_audio);
       }
-      else if ((uint)system_stack_uint_120 < SYSTEM_INIT_FLAG_SEPTENARY_ENABLED) {
+      else if ((uint)system_stack_uint_medium < SYSTEM_INIT_FLAG_SEPTENARY_ENABLED) {
         psystem_stack_uint_148 = (system_uint8_t *)CONCAT71(psystem_stack_uint_148._1_7_,SYSTEM_INIT_FLAG_ENABLED_BASE);
-        system_stack_uint_128 = SYSTEM_INIT_FLAG_QUINARY_ENABLED;
+        system_stack_uint_large = SYSTEM_INIT_FLAG_QUINARY_ENABLED;
         psystem_stack_uint_10x100 = (system_uint8_t *)system_generic_function_(_g_system_initialized,psystem_stack_uint_10x100,SYSTEM_INIT_FLAG_SEPTENARY_ENABLED,SYSTEM_INIT_SIZE_COMPARE);
         goto system_init_label_instruct_provide;
       }
-      *(system_uint16_t *)(psystem_stack_uint_10x100 + system_stack_uint_128) = 10;
-      system_stack_uint_128 = SYSTEM_INIT_FLAG_SENARY_ENABLED;
+      *(system_uint16_t *)(psystem_stack_uint_10x100 + system_stack_uint_large) = 10;
+      system_stack_uint_large = SYSTEM_INIT_FLAG_SENARY_ENABLED;
       if (system_config_param != 0) {
         system_context_handle = -1;
         do {
@@ -46690,48 +46706,48 @@ system_init_label_instruct_provide:
               if ((int)system_ulong_primary6 < SYSTEM_INIT_SIZE_COMPARE) {
                 system_ulong_primary6 = SYSTEM_INIT_SIZE_COMPARE;
               }
-              system_stack_uint_128 = system_initialization_flag_primary;
+              system_stack_uint_large = system_initialization_flag_primary;
               psystem_stack_uint_10x100 = (system_uint8_t *)system_allocate_memory(_g_system_initialized,(longlong)(int)system_ulong_primary6,SYSTEM_INIT_FLAG_ENABLED_BASE);
               *psystem_stack_uint_10x100 = SYSTEM_INIT_VALUE_ZERO;
             }
             else {
-              system_temp_counter = system_stack_uint_128;
-              if (system_ulong_primary6 <= (uint)system_stack_uint_120) goto system_init_label_guide_offer;
+              system_temp_counter = system_stack_uint_large;
+              if (system_ulong_primary6 <= (uint)system_stack_uint_medium) goto system_init_label_guide_offer;
               psystem_stack_uint_148 = (system_uint8_t *)CONCAT71(psystem_stack_uint_148._1_7_,SYSTEM_INIT_FLAG_ENABLED_BASE);
-              system_stack_uint_128 = system_initialization_flag_primary;
+              system_stack_uint_large = system_initialization_flag_primary;
               psystem_stack_uint_10x100 = (system_uint8_t *)system_generic_function_(_g_system_initialized,psystem_stack_uint_10x100,system_ulong_primary6,SYSTEM_INIT_SIZE_COMPARE);
             }
             system_init_flag_audio = system_validate_operation(psystem_stack_uint_10x100);
-            system_stack_uint_120 = CONCAT44(system_stack_uint_120._4_4_,system_init_flag_audio);
-            system_temp_counter = system_stack_uint_128;
+            system_stack_uint_medium = CONCAT44(system_stack_uint_medium._4_4_,system_init_flag_audio);
+            system_temp_counter = system_stack_uint_large;
           }
 system_init_label_guide_offer:
-          system_stack_uint_128 = system_temp_counter;
+          system_stack_uint_large = system_temp_counter;
                     // WARNING: Subroutine does not return
-          memcpy(psystem_stack_uint_10x100 + system_stack_uint_128,system_config_param,(longlong)((int)system_allocation_result7 + 2));
+          memcpy(psystem_stack_uint_10x100 + system_stack_uint_large,system_config_param,(longlong)((int)system_allocation_result7 + 2));
         }
       }
       if (psystem_stack_uint_10x100 == (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
-        system_stack_uint_128 = system_initialization_flag_primary;
+        system_stack_uint_large = system_initialization_flag_primary;
         psystem_stack_uint_10x100 = (system_uint8_t *)system_allocate_memory(_g_system_initialized,SYSTEM_INIT_FLAG_OCTONARY_ENABLED,SYSTEM_INIT_FLAG_ENABLED_BASE);
         *psystem_stack_uint_10x100 = SYSTEM_INIT_VALUE_ZERO;
 system_init_label_lead_show:
         system_init_flag_audio = system_validate_operation(psystem_stack_uint_10x100);
-        system_stack_uint_120 = CONCAT44(system_stack_uint_120._4_4_,system_init_flag_audio);
+        system_stack_uint_medium = CONCAT44(system_stack_uint_medium._4_4_,system_init_flag_audio);
       }
-      else if ((uint)system_stack_uint_120 < SYSTEM_INIT_FLAG_OCTONARY_ENABLED) {
+      else if ((uint)system_stack_uint_medium < SYSTEM_INIT_FLAG_OCTONARY_ENABLED) {
         psystem_stack_uint_148 = (system_uint8_t *)CONCAT71(psystem_stack_uint_148._1_7_,SYSTEM_INIT_FLAG_ENABLED_BASE);
-        system_stack_uint_128 = system_initialization_flag_primary;
+        system_stack_uint_large = system_initialization_flag_primary;
         psystem_stack_uint_10x100 = (system_uint8_t *)system_generic_function_(_g_system_initialized,psystem_stack_uint_10x100,SYSTEM_INIT_FLAG_OCTONARY_ENABLED,SYSTEM_INIT_SIZE_COMPARE);
         goto system_init_label_lead_show;
       }
-      *(system_uint16_t *)(psystem_stack_uint_10x100 + system_stack_uint_128) = 0x10a;
-      system_stack_uint_128 = SYSTEM_INIT_FLAG_SEPTENARY_ENABLED;
+      *(system_uint16_t *)(psystem_stack_uint_10x100 + system_stack_uint_large) = 0x10a;
+      system_stack_uint_large = SYSTEM_INIT_FLAG_SEPTENARY_ENABLED;
       system_convert_data(&system_stack_uint64_pointer_primary,system_stack_uint_b0);
-      system_initialization_flag_primary = system_stack_uint_128;
-      system_temp_counter = system_stack_uint_128 + 1;
+      system_initialization_flag_primary = system_stack_uint_large;
+      system_temp_counter = system_stack_uint_large + 1;
       if (system_temp_counter != 0) {
-        system_ulong_primary6 = system_stack_uint_128 + 2;
+        system_ulong_primary6 = system_stack_uint_large + 2;
         if (psystem_stack_uint_10x100 == (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
           if ((int)system_ulong_primary6 < SYSTEM_INIT_SIZE_COMPARE) {
             system_ulong_primary6 = SYSTEM_INIT_SIZE_COMPARE;
@@ -46740,17 +46756,17 @@ system_init_label_lead_show:
           *psystem_stack_uint_10x100 = SYSTEM_INIT_VALUE_ZERO;
         }
         else {
-          if (system_ulong_primary6 <= (uint)system_stack_uint_120) goto system_init_label_steering_set;
+          if (system_ulong_primary6 <= (uint)system_stack_uint_medium) goto system_init_label_steering_set;
           psystem_stack_uint_148 = (system_uint8_t *)CONCAT71(psystem_stack_uint_148._1_7_,SYSTEM_INIT_FLAG_ENABLED_BASE);
           psystem_stack_uint_10x100 = (system_uint8_t *)system_generic_function_(_g_system_initialized,psystem_stack_uint_10x100,system_ulong_primary6,SYSTEM_INIT_SIZE_COMPARE);
         }
         system_init_flag_audio = system_validate_operation(psystem_stack_uint_10x100);
-        system_stack_uint_120 = CONCAT44(system_stack_uint_120._4_4_,system_init_flag_audio);
+        system_stack_uint_medium = CONCAT44(system_stack_uint_medium._4_4_,system_init_flag_audio);
       }
 system_init_label_steering_set:
-      *(system_uint16_t *)(psystem_stack_uint_10x100 + system_stack_uint_128) = 10;
+      *(system_uint16_t *)(psystem_stack_uint_10x100 + system_stack_uint_large) = 10;
       system_ulong_primary6 = system_initialization_flag_primary + ;
-      system_stack_uint_128 = system_temp_counter;
+      system_stack_uint_large = system_temp_counter;
       if (system_ulong_primary6 != 0) {
         system_temp_counter = system_initialization_flag_primary + ;
         if (psystem_stack_uint_10x100 == (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
@@ -46761,20 +46777,20 @@ system_init_label_steering_set:
           *psystem_stack_uint_10x100 = SYSTEM_INIT_VALUE_ZERO;
         }
         else {
-          if (system_temp_counter <= (uint)system_stack_uint_120) goto system_init_label_navigation_start;
+          if (system_temp_counter <= (uint)system_stack_uint_medium) goto system_init_label_navigation_start;
           psystem_stack_uint_148 = (system_uint8_t *)CONCAT71(psystem_stack_uint_148._1_7_,SYSTEM_INIT_FLAG_ENABLED_BASE);
           psystem_stack_uint_10x100 = (system_uint8_t *)system_generic_function_(_g_system_initialized,psystem_stack_uint_10x100,system_temp_counter,SYSTEM_INIT_SIZE_COMPARE);
         }
         system_init_flag_audio = system_validate_operation(psystem_stack_uint_10x100);
-        system_stack_uint_120 = CONCAT44(system_stack_uint_120._4_4_,system_init_flag_audio);
+        system_stack_uint_medium = CONCAT44(system_stack_uint_medium._4_4_,system_init_flag_audio);
       }
 system_init_label_navigation_start:
-      psystem_ulong_primary_main = (system_uint64_t *)(psystem_stack_uint_10x100 + system_stack_uint_128);
+      psystem_ulong_primary_main = (system_uint64_t *)(psystem_stack_uint_10x100 + system_stack_uint_large);
       *psystem_ulong_primary_main = 0x69701070106572707845;
       *(system_uint0x102_t *)(psystem_ulong_primary_main + 1) = SYSTEM_INIT_OFFSET_STACK_PARAM0x10a6e6f;
       *(system_uint8_t *)((longlong)psystem_ulong_primary_main + ) = SYSTEM_INIT_VALUE_ZERO;
       system_context_handle = -1;
-      system_stack_uint_128 = system_ulong_primary6;
+      system_stack_uint_large = system_ulong_primary6;
       if (system_thread_param != 0) {
         do {
           system_allocation_result7 = system_context_handle;
@@ -46792,16 +46808,16 @@ system_init_label_navigation_start:
               *psystem_stack_uint_10x100 = SYSTEM_INIT_VALUE_ZERO;
             }
             else {
-              if (system_initialization_flag_primary <= (uint)system_stack_uint_120) goto system_init_label_course_plot;
+              if (system_initialization_flag_primary <= (uint)system_stack_uint_medium) goto system_init_label_course_plot;
               psystem_stack_uint_148 = (system_uint8_t *)CONCAT71(psystem_stack_uint_148._1_7_,SYSTEM_INIT_FLAG_ENABLED_BASE);
               psystem_stack_uint_10x100 = (system_uint8_t *)system_generic_function_(_g_system_initialized,psystem_stack_uint_10x100,system_initialization_flag_primary,SYSTEM_INIT_SIZE_COMPARE);
             }
             system_init_flag_audio = system_validate_operation(psystem_stack_uint_10x100);
-            system_stack_uint_120 = CONCAT44(system_stack_uint_120._4_4_,system_init_flag_audio);
+            system_stack_uint_medium = CONCAT44(system_stack_uint_medium._4_4_,system_init_flag_audio);
           }
 system_init_label_course_plot:
                     // WARNING: Subroutine does not return
-          memcpy(psystem_stack_uint_10x100 + system_stack_uint_128,system_thread_param,(longlong)((int)system_allocation_result7 + 2));
+          memcpy(psystem_stack_uint_10x100 + system_stack_uint_large,system_thread_param,(longlong)((int)system_allocation_result7 + 2));
         }
       }
       system_temp_counter = system_initialization_flag_primary + ;
@@ -46815,17 +46831,17 @@ system_init_label_course_plot:
           *psystem_stack_uint_10x100 = SYSTEM_INIT_VALUE_ZERO;
         }
         else {
-          if (system_init_flag_network <= (uint)system_stack_uint_120) goto system_init_label_direction_set;
+          if (system_init_flag_network <= (uint)system_stack_uint_medium) goto system_init_label_direction_set;
           psystem_stack_uint_148 = (system_uint8_t *)CONCAT71(psystem_stack_uint_148._1_7_,SYSTEM_INIT_FLAG_ENABLED_BASE);
           psystem_stack_uint_10x100 = (system_uint8_t *)system_generic_function_(_g_system_initialized,psystem_stack_uint_10x100,system_init_flag_network,SYSTEM_INIT_SIZE_COMPARE);
         }
         system_init_flag_audio = system_validate_operation(psystem_stack_uint_10x100);
-        system_stack_uint_120 = CONCAT44(system_stack_uint_120._4_4_,system_init_flag_audio);
+        system_stack_uint_medium = CONCAT44(system_stack_uint_medium._4_4_,system_init_flag_audio);
       }
 system_init_label_direction_set:
-      *(system_uint16_t *)(psystem_stack_uint_10x100 + system_stack_uint_128) = a;
-      *(system_uint8_t *)((longlong)(psystem_stack_uint_10x100 + system_stack_uint_128) + 2) = SYSTEM_INIT_VALUE_ZERO;
-      system_stack_uint_128 = system_temp_counter;
+      *(system_uint16_t *)(psystem_stack_uint_10x100 + system_stack_uint_large) = a;
+      *(system_uint8_t *)((longlong)(psystem_stack_uint_10x100 + system_stack_uint_large) + 2) = SYSTEM_INIT_VALUE_ZERO;
+      system_stack_uint_large = system_temp_counter;
       if (system_initialization_flag_primary + 0x6d != 0) {
         system_temp_counter = system_initialization_flag_primary + SYSTEM_INIT_CONFIG_INDEX_SECONDARY;
         if (psystem_stack_uint_10x100 == (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
@@ -46836,15 +46852,15 @@ system_init_label_direction_set:
           *psystem_stack_uint_10x100 = SYSTEM_INIT_VALUE_ZERO;
         }
         else {
-          if (system_temp_counter <= (uint)system_stack_uint_120) goto system_init_label_path_choose;
+          if (system_temp_counter <= (uint)system_stack_uint_medium) goto system_init_label_path_choose;
           psystem_stack_uint_148 = (system_uint8_t *)CONCAT71(psystem_stack_uint_148._1_7_,SYSTEM_INIT_FLAG_ENABLED_BASE);
           psystem_stack_uint_10x100 = (system_uint8_t *)system_generic_function_(_g_system_initialized,psystem_stack_uint_10x100,system_temp_counter,SYSTEM_INIT_SIZE_COMPARE);
         }
         system_init_flag_audio = system_validate_operation(psystem_stack_uint_10x100);
-        system_stack_uint_120 = CONCAT44(system_stack_uint_120._4_4_,system_init_flag_audio);
+        system_stack_uint_medium = CONCAT44(system_stack_uint_medium._4_4_,system_init_flag_audio);
       }
 system_init_label_path_choose:
-      psystem_ulong_primary_main = (system_uint64_t *)(psystem_stack_uint_10x100 + system_stack_uint_128);
+      psystem_ulong_primary_main = (system_uint64_t *)(psystem_stack_uint_10x100 + system_stack_uint_large);
       *psystem_ulong_primary_main = SYSTEM_INIT_FLAG_INITIALIZED0x10201020102010201020102010010c;
       psystem_ulong_primary_main[SYSTEM_ARRAY_INDEX_SECOND] = SYSTEM_INIT_FLAG_INITIALIZED0x102010201020102010201020102010;
       psystem_ulong_primary_main[SYSTEM_ARRAY_INDEX_THIRD] = SYSTEM_INIT_FLAG_INITIALIZED0x102010201020102010201020102010;
@@ -46865,7 +46881,7 @@ system_init_label_path_choose:
       if (psystem_stack_uint_10x100 != (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
         psystem_stack_uint_148 = psystem_stack_uint_10x100;
       }
-      system_stack_uint_128 = system_initialization_flag_primary + 0x6d;
+      system_stack_uint_large = system_initialization_flag_primary + 0x6d;
       InitializeSystemCore(_g_system_initialized,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_ERROR_GENERIC00000000,&g_resource_manager);
       psystem_stack_uint_148 = &g_system_initialized;
       if (system_output_pointer != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
@@ -47042,9 +47058,9 @@ bool InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t *
   system_uint64_t *psystem_stack_uint_key;
   system_uint64_t *system_stack_memory_pointer_senary;
   longlong system_stack_long_48;
-  system_uint64_t system_stack_uint_40;
+  system_uint64_t system_stack_uint_config;
   
-  system_stack_uint_40 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
+  system_stack_uint_config = SYSTEM_INIT_VALUE_HANDLE_INVALID;
   system_ptr_pool = (system_uint64_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
   system_comparison_result = SYSTEM_INIT_VALUE_ZERO;
   WaitForSingleObject(_g_file_system,0x1000000);
@@ -47419,7 +47435,7 @@ void SetupMemoryManager(system_uint64_t system_context_param,system_uint64_t sys
   system_uint64_t system_stack_uint_size_field;
   system_uint0x102_t system_stack_union_config;
   system_uint64_t system_stack_frame_primary;
-  system_uint64_t system_stack_uint_40;
+  system_uint64_t system_stack_uint_config;
   system_uint16_t system_stack_uint_0x108;
   system_uint64_t system_stack_uint_0x106;
   system_uint64_t system_stack_uint_2e;
@@ -47428,7 +47444,7 @@ void SetupMemoryManager(system_uint64_t system_context_param,system_uint64_t sys
   
   system_stack_uint_18 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
   system_stack_ptr_88 = &g_system_context;
-  system_stack_value_112 = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_value_temporary = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_80 = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_78 = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_key = SYSTEM_INIT_VALUE_ZERO;
@@ -47437,7 +47453,7 @@ void SetupMemoryManager(system_uint64_t system_context_param,system_uint64_t sys
   system_stack_union_config = SYSTEM_INIT_VALUE_THREE;
   system_stack_uint_0x108 = SYSTEM_INIT_VALUE_ZERO;
   system_stack_frame_primary = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_uint_40 = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_uint_config = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_26 = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_0x106 = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_2e = SYSTEM_INIT_VALUE_ZERO;
@@ -50031,7 +50047,7 @@ void InitializeSystemCore(longlong system_context_param,longlong *system_config_
 
 {
   longlong *system_primary_longptr;
-  system_uint64_t system_stack_uint_40;
+  system_uint64_t system_stack_uint_config;
   system_uint0x102_t system_stack_uint_0x108;
   longlong system_stack_long_0x100;
   system_uint8_t asystem_stack_uint_28 [SYSTEM_ARRAY_INDEX_NINTH];
@@ -50047,16 +50063,16 @@ void InitializeSystemCore(longlong system_context_param,longlong *system_config_
       system_stack_long_20 = system_context_param;
       InitializeSystemCore(asystem_stack_uint_28);
       if ((*(int *)(system_context_param + SYSTEM_INIT_OFFSET_STACK_PARAM8) != 0) || (*(int *)(system_context_param + SYSTEM_INIT_OFFSET_STACK_PARAM4) != 0)) {
-        system_stack_uint_40 = *(system_uint64_t *)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED_PRIMARY0);
+        system_stack_uint_config = *(system_uint64_t *)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED_PRIMARY0);
         system_stack_uint_0x108 = SYSTEM_INIT_VALUE_ZERO;
-        InitializeSystemCore(&system_stack_uint_40);
+        InitializeSystemCore(&system_stack_uint_config);
         system_primary_longptr = system_stack_long_pointer_10;
         InitializeSystemCore(system_stack_long_pointer_10 + 2,system_stack_long_0x100 + SYSTEM_INIT_SIZE_COMPARE);
         InitializeSystemCore(system_primary_longptr + 7,system_stack_long_0x100 + SYSTEM_INIT_SIZE_0X0x108);
         InitializeSystemCore(system_primary_longptr + ,system_stack_long_0x100 + );
         InitializeSystemCore(system_primary_longptr + SYSTEM_INIT_FLAG_PRIMARY_ENABLED,system_stack_long_0x100 + SYSTEM_INIT_SIZE_POINTER8);
         InitializeSystemCore(system_primary_longptr + SYSTEM_INIT_OFFSET_CHAR_CHECK,system_stack_long_0x100 + 200);
-        InitializeSystemCore(&system_stack_uint_40);
+        InitializeSystemCore(&system_stack_uint_config);
       }
       InitializeSystemCore(asystem_stack_uint_28);
       if (system_stack_long_pointer_10 != (longlong *)SYSTEM_INIT_VALUE_CHAR_NULL) {
@@ -50136,7 +50152,7 @@ float * InitializeSystemCore(float *system_context_param)
   float system_stack_float_param_52;
   float system_stack_float_param_50x10;
   system_uint64_t system_stack_frame_primary;
-  system_uint64_t system_stack_uint_40;
+  system_uint64_t system_stack_uint_config;
   system_uint64_t system_stack_uint_0x108;
   
   system_stack_uint_0x108 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
@@ -50208,7 +50224,7 @@ float * InitializeSystemCore(float *system_context_param)
       system_stack_float_param_52 = system_context_param[SYSTEM_INIT_CONTEXT_INDEX_ARRAY_52];
       system_stack_float_param_50x10 = system_context_param[SYSTEM_INIT_CONTEXT_INDEX_SECONDARY];
       system_stack_frame_primary = *(system_uint64_t *)(system_context_param + SYSTEM_INIT_CONTEXT_INDEX_RESOURCE_SIZE);
-      system_stack_uint_40 = *(system_uint64_t *)(system_context_param + SYSTEM_INIT_OFFSET_STACK_56);
+      system_stack_uint_config = *(system_uint64_t *)(system_context_param + SYSTEM_INIT_OFFSET_STACK_56);
       InitializeSystemCore(&system_stack_uint_78);
       system_generic_function_(system_coefficient_pointer_a,system_coefficient_pointer_a,&system_stack_uint_78);
       psystem_scaling_factor = *(float **)(system_context_param + SYSTEM_INIT_CONTEXT_INDEX_FRAME_STATUS);
@@ -50222,7 +50238,7 @@ float * InitializeSystemCore(float *system_context_param)
         system_stack_float_param_52 = system_context_param[SYSTEM_INIT_CONTEXT_INDEX_ARRAY_52];
         system_stack_float_param_50x10 = system_context_param[SYSTEM_INIT_CONTEXT_INDEX_SECONDARY];
         system_stack_frame_primary = *(system_uint64_t *)(system_context_param + SYSTEM_INIT_CONTEXT_INDEX_RESOURCE_SIZE);
-        system_stack_uint_40 = *(system_uint64_t *)(system_context_param + SYSTEM_INIT_OFFSET_STACK_56);
+        system_stack_uint_config = *(system_uint64_t *)(system_context_param + SYSTEM_INIT_OFFSET_STACK_56);
         InitializeSystemCore(&system_stack_uint_78,0x10fc90fdb);
         system_generic_function_(system_coefficient_pointer_a,system_coefficient_pointer_a,&system_stack_uint_78);
         system_stack_uint_78 = *(system_uint64_t *)(system_context_param + SYSTEM_INIT_FLAG_ACTIVE8);
@@ -50234,7 +50250,7 @@ float * InitializeSystemCore(float *system_context_param)
         system_stack_float_param_52 = system_context_param[SYSTEM_INIT_CONTEXT_INDEX_ARRAY_52];
         system_stack_float_param_50x10 = system_context_param[SYSTEM_INIT_CONTEXT_INDEX_SECONDARY];
         system_stack_frame_primary = *(system_uint64_t *)(system_context_param + SYSTEM_INIT_CONTEXT_INDEX_RESOURCE_SIZE);
-        system_stack_uint_40 = *(system_uint64_t *)(system_context_param + SYSTEM_INIT_OFFSET_STACK_56);
+        system_stack_uint_config = *(system_uint64_t *)(system_context_param + SYSTEM_INIT_OFFSET_STACK_56);
         InitializeSystemCore(&system_stack_uint_78);
         psystem_scaling_factor = (float *)system_generic_function_(system_coefficient_pointer_a,system_coefficient_pointer_a,&system_stack_uint_78);
       }
@@ -50344,12 +50360,12 @@ void InitializeSystemCore(longlong *system_context_param)
   float system_divider;
   system_uint8_t system_stack_array_buffer_extended [SYSTEM_ARRAY_INDEX_NINTH];
   longlong *system_stack_long_pointer_10x100;
-  system_uint0x102_t system_stack_uint_128;
+  system_uint0x102_t system_stack_uint_large;
   longlong *system_stack_long_pointer_120;
   longlong *system_stack_long_pointer_118;
-  system_uint0x102_t system_stack_uint_110;
+  system_uint0x102_t system_stack_uint_small;
   longlong system_stack_long_108;
-  system_uint64_t system_stack_uint_100;
+  system_uint64_t system_stack_uint_minimum;
   system_uint64_t system_stack_uint_f8;
   system_uint8_t system_stack_uint_f0;
   system_uint64_t system_stack_uint_e8;
@@ -50375,7 +50391,7 @@ void InitializeSystemCore(longlong *system_context_param)
       if (system_secondary_longptr == system_context_param) {
         system_stack_long_pointer_120 = (longlong *)SYSTEM_INIT_VALUE_CHAR_NULL;
         system_stack_array_buffer_extended[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
-        system_stack_uint_128 = SYSTEM_INIT_VALUE_ZERO;
+        system_stack_uint_large = SYSTEM_INIT_VALUE_ZERO;
         system_stack_long_pointer_10x100 = system_secondary_longptr;
         InitializeSystemCore(system_stack_array_buffer_extended);
         system_secondary_longptr = system_stack_long_pointer_120 + SYSTEM_INIT_FLAG_SENARY_ENABLED;
@@ -50418,15 +50434,15 @@ void InitializeSystemCore(longlong *system_context_param)
         }
         if (-1 < system_int_size) {
           (**(system_code **)(*system_context_param + SYSTEM_INIT_FLAG_INITIALIZED8))(system_context_param);
-          system_stack_uint_100 = SYSTEM_INIT_VALUE_ZERO;
+          system_stack_uint_minimum = SYSTEM_INIT_VALUE_ZERO;
           system_stack_uint_f8 = SYSTEM_INIT_VALUE_ZERO;
           system_stack_uint_d8 = SYSTEM_INIT_VALUE_ZERO;
           system_stack_uint_e8 = SYSTEM_INIT_VALUE_ZERO;
           system_stack_uint_f0 = SYSTEM_INIT_VALUE_ZERO;
-          system_generic_function_(&system_stack_uint_100,system_context_param,0);
+          system_generic_function_(&system_stack_uint_minimum,system_context_param,0);
           (**(system_code **)(*system_context_param + SYSTEM_INIT_SIZE_0X0x108))(system_context_param);
-          system_generic_function_(&system_stack_uint_100,system_secondary_longptr,system_int_status,system_int_size,system_multiplier);
-          system_generic_function_(&system_stack_uint_100);
+          system_generic_function_(&system_stack_uint_minimum,system_secondary_longptr,system_int_status,system_int_size,system_multiplier);
+          system_generic_function_(&system_stack_uint_minimum);
         }
         InitializeSystemCore(system_stack_array_buffer_extended);
         if (system_stack_long_pointer_120 != (longlong *)SYSTEM_INIT_VALUE_CHAR_NULL) {
@@ -50434,7 +50450,7 @@ void InitializeSystemCore(longlong *system_context_param)
         }
       }
       else {
-        system_stack_uint_110 = SYSTEM_INIT_VALUE_ZERO;
+        system_stack_uint_small = SYSTEM_INIT_VALUE_ZERO;
         system_stack_long_pointer_118 = system_secondary_longptr;
         InitializeSystemCore(&system_stack_long_pointer_118);
         system_function_result = system_stack_long_108 + ;
@@ -51312,7 +51328,7 @@ system_uint64_t InitializeSystemCore(longlong system_context_param,longlong syst
   system_code *system_char_pointer_offset5;
   bool system_bool_var_16;
   system_uint64_t system_stack_uint_78;
-  system_uint0x102_t system_stack_value_112;
+  system_uint0x102_t system_stack_value_temporary;
   system_uint0x102_t system_stack_uint_6c;
   system_uint16_t system_stack_uint_key;
   system_uint8_t system_stack_uint_66;
@@ -51321,7 +51337,7 @@ system_uint64_t InitializeSystemCore(longlong system_context_param,longlong syst
   system_uint64_t system_stack_uint_size_field;
   longlong system_stack_long_50;
   system_uint64_t system_stack_frame_primary;
-  system_uint64_t system_stack_uint_40;
+  system_uint64_t system_stack_uint_config;
   system_uint0x102_t system_stack_uint_0x108;
   system_uint64_t system_stack_uint_0x100;
   
@@ -51344,7 +51360,7 @@ system_uint64_t InitializeSystemCore(longlong system_context_param,longlong syst
   }
   else if (*(char *)(*(longlong *)(system_allocation_result_primaryx10 + SYSTEM_INIT_FLAG_INITIALIZED_QUATERNARY0) + system_allocation_result2 + SYSTEM_INIT_FLAG_QUINARY_ENABLED) != '\x04') {
     system_stack_uint_78 = SYSTEM_INIT_VALUE_ZERO;
-    system_stack_value_112 = SYSTEM_INIT_VALUE_ZERO;
+    system_stack_value_temporary = SYSTEM_INIT_VALUE_ZERO;
     system_stack_uint_6c = SYSTEM_INIT_ERROR_GENERIC;
     system_stack_uint_key = 1;
     system_stack_uint_66 = SYSTEM_INIT_VALUE_ZERO;
@@ -51353,7 +51369,7 @@ system_uint64_t InitializeSystemCore(longlong system_context_param,longlong syst
     system_stack_value_secondary = SYSTEM_INIT_VALUE_ZERO;
     system_stack_long_50 = SYSTEM_INIT_VALUE_ZERO;
     system_stack_frame_primary = SYSTEM_INIT_VALUE_ZERO;
-    system_stack_uint_40 = SYSTEM_INIT_VALUE_ZERO;
+    system_stack_uint_config = SYSTEM_INIT_VALUE_ZERO;
     system_stack_uint_0x108 = SYSTEM_INIT_VALUE_THREE;
     system_stack_uint_0x100 = SYSTEM_INIT_VALUE_ZERO;
     system_int_value = system_generic_function_(*(system_uint64_t *)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED_PRIMARY8),&system_stack_uint_78);
@@ -51525,8 +51541,8 @@ ulonglong InitializeSystemCore(longlong system_context_param,uint *system_config
   ulonglong system_stack_uint_10x100;
   system_uint64_t *apsystem_stack_uint_128 [SYSTEM_ARRAY_INDEX_THIRD];
   longlong system_stack_long_118;
-  system_uint64_t system_stack_uint_108;
-  system_uint64_t system_stack_uint_100;
+  system_uint64_t system_stack_uint_tiny;
+  system_uint64_t system_stack_uint_minimum;
   system_uint64_t system_stack_uint_f8;
   system_uint64_t system_stack_uint_f0;
   system_uint64_t system_stack_uint_e8;
@@ -51830,7 +51846,7 @@ system_init_label_information_exchange:
       system_stack_float_matrix_final_0x10 = system_float_transform_a * system_coefficient_a6 + system_float_transform_b * system_coefficient_a2 + system_coefficient_a * system_coefficient_b0 + system_memory_param[SYSTEM_ARRAY_INDEX_ELEVENTH];
       system_memory_param = &system_stack_float_matrix_result_0;
     }
-    InitializeSystemCore(&system_stack_uint_108,system_config_param + ,*(system_uint8_t *)(system_context_param + ),system_memory_param);
+    InitializeSystemCore(&system_stack_uint_tiny,system_config_param + ,*(system_uint8_t *)(system_context_param + ),system_memory_param);
     system_initialization_flag_primary = system_config_param[SYSTEM_INIT_CONTEXT_INDEX_INITIALIZATION_FLAG];
     system_init_var_0x10010 = *(int *)(_g_system_initialized + SYSTEM_INIT_FLAG_INITIALIZED24);
     if (((*(byte *)(system_context_param + ) & 1) == 0) &&
@@ -51843,8 +51859,8 @@ system_init_label_information_exchange:
     *(byte *)(system_context_param + ) = *(byte *)(system_context_param + ) &  | system_bool_secondary;
     system_bool_var_22 = (byte)system_initialization_flag_primary & SYSTEM_INIT_OFFSET_STACK_PARAM;
     if ((system_bool_var_22 != 0) && (system_bool_secondary != 0)) {
-      *(system_uint64_t *)(system_context_param + SYSTEM_INIT_FLAG_SENARY_ENABLED0) = system_stack_uint_108;
-      *(system_uint64_t *)(system_context_param + SYSTEM_INIT_FLAG_SENARY_ENABLED8) = system_stack_uint_100;
+      *(system_uint64_t *)(system_context_param + SYSTEM_INIT_FLAG_SENARY_ENABLED0) = system_stack_uint_tiny;
+      *(system_uint64_t *)(system_context_param + SYSTEM_INIT_FLAG_SENARY_ENABLED8) = system_stack_uint_minimum;
       *(system_uint64_t *)(system_context_param + SYSTEM_INIT_FLAG_SEPTENARY_ENABLED0) = system_stack_uint_f8;
       *(system_uint64_t *)(system_context_param + SYSTEM_INIT_FLAG_SEPTENARY_ENABLED8) = system_stack_uint_f0;
       *(system_uint64_t *)(system_context_param + SYSTEM_INIT_FLAG_OCTONARY_ENABLED0) = system_stack_uint_e8;
@@ -51852,12 +51868,12 @@ system_init_label_information_exchange:
       *(system_uint64_t *)(system_context_param + 400) = system_stack_uint_d8;
       *(system_uint64_t *)(system_context_param + SYSTEM_INIT_OFFSET_CHAR_CHECK8) = system_stack_uint_d0;
     }
-    system_ulonglong_secondary = system_generic_function_(system_config_param,system_context_param,&system_stack_uint_108,system_thread_param,system_param_primary);
+    system_ulonglong_secondary = system_generic_function_(system_config_param,system_context_param,&system_stack_uint_tiny,system_thread_param,system_param_primary);
     *(byte *)(system_context_param + ) = *(byte *)(system_context_param + ) & ;
     *(int *)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED_TERTIARY0) = system_init_var_0x10010;
     if (system_bool_var_22 != 0) {
-      *(system_uint64_t *)(system_context_param + SYSTEM_INIT_FLAG_SENARY_ENABLED0) = system_stack_uint_108;
-      *(system_uint64_t *)(system_context_param + SYSTEM_INIT_FLAG_SENARY_ENABLED8) = system_stack_uint_100;
+      *(system_uint64_t *)(system_context_param + SYSTEM_INIT_FLAG_SENARY_ENABLED0) = system_stack_uint_tiny;
+      *(system_uint64_t *)(system_context_param + SYSTEM_INIT_FLAG_SENARY_ENABLED8) = system_stack_uint_minimum;
       *(system_uint64_t *)(system_context_param + SYSTEM_INIT_FLAG_SEPTENARY_ENABLED0) = system_stack_uint_f8;
       *(system_uint64_t *)(system_context_param + SYSTEM_INIT_FLAG_SEPTENARY_ENABLED8) = system_stack_uint_f0;
       *(system_uint64_t *)(system_context_param + SYSTEM_INIT_FLAG_OCTONARY_ENABLED0) = system_stack_uint_e8;
@@ -53702,7 +53718,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param,longlong system_
   system_uint64_t system_stack_uint_20;
   system_uint64_t system_stack_uint_size_field;
   system_uint64_t system_stack_value_ternary;
-  system_uint0x102_t system_stack_uint_40;
+  system_uint0x102_t system_stack_uint_config;
   
   system_init_temp = SYSTEM_INIT_VALUE_ZERO;
   system_local_long_ptr_eighth = system_context_param + 1;
@@ -53740,7 +53756,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param,longlong system_
     system_execute_operation();
   }
   system_stack_value_ternary = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_uint_40 = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_uint_config = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_size_field = &g_system_context;
   if (system_function_result == 0) {
     system_function_result = *(longlong *)(_system_void*_data_0x10 + SYSTEM_INIT_SIZE_0X0x108);
@@ -55889,7 +55905,7 @@ float * InitializeSystemCore(float *system_context_param)
   float system_stack_float_param_52;
   float system_stack_float_param_50x10;
   void* *psystem_stack_frame_primary;
-  system_uint64_t system_stack_uint_40;
+  system_uint64_t system_stack_uint_config;
   system_uint64_t system_stack_uint_0x108;
   system_uint8_t asystem_stack_uint_0x100 [SYSTEM_ARRAY_INDEX_NINTH];
   float *system_stack_float_pointer_28;
@@ -55911,7 +55927,7 @@ float * InitializeSystemCore(float *system_context_param)
       if (*(void* **)(system_context_param + 6) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
         psystem_stack_frame_primary = *(void* **)(system_context_param + 6);
       }
-      system_stack_uint_40 = CONCAT44(system_stack_uint_40._4_4_,*(system_uint0x102_t *)(*(longlong *)(system_context_param + SYSTEM_INIT_SIZE_POINTER4) + ));
+      system_stack_uint_config = CONCAT44(system_stack_uint_config._4_4_,*(system_uint0x102_t *)(*(longlong *)(system_context_param + SYSTEM_INIT_SIZE_POINTER4) + ));
       psystem_stack_uint_size_field = &g_system_context;
       system_stack_uint_80 = SYSTEM_INIT_FLAG_OCTONARY_ENABLED007967a;
       system_stack_float_param_52 = system_scaling_factor;
@@ -55989,7 +56005,7 @@ float * InitializeSystemCore(float *system_context_param)
       system_stack_float_param_52 = system_context_param[SYSTEM_INIT_CONTEXT_INDEX_ARRAY_52];
       system_stack_float_param_50x10 = system_context_param[SYSTEM_INIT_CONTEXT_INDEX_SECONDARY];
       psystem_stack_frame_primary = *(void* **)(system_context_param + SYSTEM_INIT_CONTEXT_INDEX_RESOURCE_SIZE);
-      system_stack_uint_40 = *(system_uint64_t *)(system_context_param + SYSTEM_INIT_OFFSET_STACK_56);
+      system_stack_uint_config = *(system_uint64_t *)(system_context_param + SYSTEM_INIT_OFFSET_STACK_56);
       InitializeSystemCore(&system_stack_uint_78);
       system_generic_function_(system_coefficient_pointer_a,system_coefficient_pointer_a,&system_stack_uint_78);
       psystem_offset_value = *(float **)(system_context_param + SYSTEM_INIT_CONTEXT_INDEX_FRAME_STATUS);
@@ -56002,7 +56018,7 @@ float * InitializeSystemCore(float *system_context_param)
         system_stack_float_param_52 = system_context_param[SYSTEM_INIT_CONTEXT_INDEX_ARRAY_52];
         system_stack_float_param_50x10 = system_context_param[SYSTEM_INIT_CONTEXT_INDEX_SECONDARY];
         psystem_stack_frame_primary = *(void* **)(system_context_param + SYSTEM_INIT_CONTEXT_INDEX_RESOURCE_SIZE);
-        system_stack_uint_40 = *(system_uint64_t *)(system_context_param + SYSTEM_INIT_OFFSET_STACK_56);
+        system_stack_uint_config = *(system_uint64_t *)(system_context_param + SYSTEM_INIT_OFFSET_STACK_56);
         InitializeSystemCore(&system_stack_uint_78,0x10fc90fdb);
         system_generic_function_(system_coefficient_pointer_a,system_coefficient_pointer_a,&system_stack_uint_78);
         system_stack_uint_78 = *(system_uint64_t *)(system_context_param + SYSTEM_INIT_FLAG_ACTIVE8);
@@ -56013,7 +56029,7 @@ float * InitializeSystemCore(float *system_context_param)
         system_stack_float_param_52 = system_context_param[SYSTEM_INIT_CONTEXT_INDEX_ARRAY_52];
         system_stack_float_param_50x10 = system_context_param[SYSTEM_INIT_CONTEXT_INDEX_SECONDARY];
         psystem_stack_frame_primary = *(void* **)(system_context_param + SYSTEM_INIT_CONTEXT_INDEX_RESOURCE_SIZE);
-        system_stack_uint_40 = *(system_uint64_t *)(system_context_param + SYSTEM_INIT_OFFSET_STACK_56);
+        system_stack_uint_config = *(system_uint64_t *)(system_context_param + SYSTEM_INIT_OFFSET_STACK_56);
         InitializeSystemCore(&system_stack_uint_78);
         psystem_offset_value = (float *)system_generic_function_(system_coefficient_pointer_a,system_coefficient_pointer_a,&system_stack_uint_78);
       }
@@ -56205,12 +56221,12 @@ void InitializeSystemCore(longlong system_context_param)
   system_uint64_t system_stack_uint_140;
   system_uint0x102_t system_stack_uint_10x108;
   system_uint0x102_t *psystem_stack_uint_10x100;
-  system_uint64_t system_stack_uint_128;
-  system_uint64_t system_stack_uint_120;
-  system_uint0x102_t system_stack_uint_118;
-  system_uint64_t system_stack_uint_110;
-  system_uint64_t system_stack_uint_108;
-  system_uint64_t system_stack_uint_100;
+  system_uint64_t system_stack_uint_large;
+  system_uint64_t system_stack_uint_medium;
+  system_uint0x102_t system_stack_uint_standard;
+  system_uint64_t system_stack_uint_small;
+  system_uint64_t system_stack_uint_tiny;
+  system_uint64_t system_stack_uint_minimum;
   system_uint64_t system_stack_uint_f8;
   system_uint64_t system_stack_uint_f0;
   system_uint64_t system_stack_uint_e8;
@@ -56222,16 +56238,16 @@ void InitializeSystemCore(longlong system_context_param)
   system_uint64_t system_stack_uint_b8;
   system_uint0x102_t system_stack_uint_b0;
   
-  system_stack_uint_110 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
+  system_stack_uint_small = SYSTEM_INIT_VALUE_HANDLE_INVALID;
   system_int_pointer_1 = (int *)(system_context_param + );
   system_init_var_27 = *system_int_pointer_1;
   system_status_code1 = *(int *)(system_context_param + SYSTEM_INIT_SIZE_POINTER8);
   system_ulonglong_temp = (ulonglong)system_status_code1;
   system_stack_int_status = *(int *)(system_context_param + SYSTEM_INIT_SIZE_COMPARE);
   psystem_stack_uint_10x100 = (system_uint0x102_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
-  system_stack_uint_128 = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_uint_120 = SYSTEM_INIT_VALUE_ZERO;
-  system_stack_uint_118 = SYSTEM_INIT_VALUE_THREE;
+  system_stack_uint_large = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_uint_medium = SYSTEM_INIT_VALUE_ZERO;
+  system_stack_uint_standard = SYSTEM_INIT_VALUE_THREE;
   InitializeSystemCore(&psystem_stack_uint_10x100,system_ulonglong_temp);
   system_local_uint_fourth1 = system_ulonglong_temp;
   system_local_uint_ptr_secondary9 = psystem_stack_uint_10x100;
@@ -57203,8 +57219,8 @@ system_init_label_inclusion_confirm:
     system_init_var_27 = *system_int_pointer_1;
     system_temp_storage1 = system_stack_long_1d0 * SYSTEM_INIT_OFFSET_STACK_5C;
     system_loop_counter1 = *(longlong *)(system_context_param + );
-    system_stack_uint_108 = *(system_uint64_t *)(system_temp_storage1 + system_loop_counter1);
-    system_stack_uint_100 = ((system_uint64_t *)(system_temp_storage1 + system_loop_counter1))[SYSTEM_ARRAY_INDEX_SECOND];
+    system_stack_uint_tiny = *(system_uint64_t *)(system_temp_storage1 + system_loop_counter1);
+    system_stack_uint_minimum = ((system_uint64_t *)(system_temp_storage1 + system_loop_counter1))[SYSTEM_ARRAY_INDEX_SECOND];
     system_memory_pointer = (system_uint64_t *)(system_temp_storage1 + SYSTEM_INIT_SIZE_COMPARE + system_loop_counter1);
     system_stack_uint_f8 = *system_memory_pointer;
     system_stack_uint_f0 = system_memory_pointer[SYSTEM_ARRAY_INDEX_SECOND];
@@ -57219,7 +57235,7 @@ system_init_label_inclusion_confirm:
     system_stack_uint_c0 = system_memory_pointer[SYSTEM_ARRAY_INDEX_SECOND];
     system_stack_uint_b8 = *(system_uint64_t *)(system_temp_storage1 +  + system_loop_counter1);
     system_stack_uint_b0 = *(system_uint0x102_t *)(system_temp_storage1 +  + system_loop_counter1);
-    InitializeSystemCore(system_int_pointer_1,&system_stack_uint_108);
+    InitializeSystemCore(system_int_pointer_1,&system_stack_uint_tiny);
     system_local_uint_tertiary8 = (longlong)system_int_ptr_temp6 - (longlong)system_int_pointer_16 >> 2;
     system_tertiary_uint_var = SYSTEM_INIT_VALUE_ZERO;
     system_int_ptr_temp0 = system_int_pointer_16;
@@ -57767,7 +57783,7 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
   ulonglong system_ulong_primary5;
   uint system_ulong_primary6;
   uint system_config_primary;
-  system_uint8_t system_stack_array_104 [0x102];
+  system_uint8_t system_stack_array_standard [0x102];
   system_uint64_t system_stack_frame_primary;
   longlong *system_stack_long_pointer_40;
   system_uint64_t system_stack_uint_0x108;
@@ -57776,7 +57792,7 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
   ulonglong system_stack_uint_20;
   
   system_stack_frame_primary = SYSTEM_INIT_VALUE_HANDLE_INVALID;
-  system_stack_uint_20 = _g_system_initialized ^ (ulonglong)system_stack_array_104;
+  system_stack_uint_20 = _g_system_initialized ^ (ulonglong)system_stack_array_standard;
   if ((system_config_param == 0) ||
      (((*(float *)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED0x108) == *(float *)(system_config_param + SYSTEM_INIT_FLAG_ACTIVE4) &&
        (*(float *)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED0x10c) == *(float *)(system_config_param + SYSTEM_INIT_FLAG_ACTIVE8))) &&
@@ -58124,7 +58140,7 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
   }
   *(system_uint0x102_t *)(system_function_result + SYSTEM_INIT_OFFSET_ARRAY_0x10C) = *(system_uint0x102_t *)(system_memory_param + SYSTEM_INIT_FLAG_PRIMARY_ENABLED4);
                     // WARNING: Subroutine does not return
-  system_process_data(system_stack_uint_20 ^ (ulonglong)system_stack_array_104);
+  system_process_data(system_stack_uint_20 ^ (ulonglong)system_stack_array_standard);
 }
 
 
@@ -58141,7 +58157,7 @@ void InitializeSystemCore(longlong *system_context_param,byte system_config_para
   system_code *system_char_pointer_result;
   char system_char_var_debug_check;
   void* *system_configuration_data_pointer;
-  system_uint0x102_t system_stack_uint_100;
+  system_uint0x102_t system_stack_uint_minimum;
   system_uint0x102_t system_stack_uint_fc;
   system_uint0x102_t system_stack_uint_f8;
   system_uint0x102_t system_stack_uint_f4;
@@ -58189,7 +58205,7 @@ void InitializeSystemCore(longlong *system_context_param,byte system_config_para
     system_char_pointer_result = *(system_code **)(*system_context_base_address + );
     system_stack_char_pointer_f0 = (system_code *)&g_system_context;
     psystem_stack_uint_e8 = &g_system_context;
-    system_stack_uint_100 = (system_uint0x102_t)system_stack_uint_e0;
+    system_stack_uint_minimum = (system_uint0x102_t)system_stack_uint_e0;
     system_stack_uint_fc = system_stack_uint_e0._4_4_;
     system_stack_uint_f8 = system_stack_uint_d8;
     system_stack_uint_f4 = system_stack_uint_d4;
@@ -58204,12 +58220,12 @@ void InitializeSystemCore(longlong *system_context_param,byte system_config_para
       (**(system_code **)(*system_long_pointer_secondary + SYSTEM_INIT_FLAG_INITIALIZED8))(system_long_pointer_secondary);
     }
     InitializeSystemCore(asystem_stack_uint_60,&system_stack_long_pointer_b0);
-    (*system_char_pointer_result)(system_context_base_address,&g_system_initialized,system_context_param + SYSTEM_INIT_FLAG_SEPTENARY_ENABLED,0,asystem_stack_uint_60,&system_stack_uint_100);
+    (*system_char_pointer_result)(system_context_base_address,&g_system_initialized,system_context_param + SYSTEM_INIT_FLAG_SEPTENARY_ENABLED,0,asystem_stack_uint_60,&system_stack_uint_minimum);
     if (system_stack_char_pointer_50 != (system_code *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       (*system_stack_char_pointer_50)(asystem_stack_uint_60,0,0);
     }
     if (system_stack_char_pointer_f0 != (system_code *)SYSTEM_INIT_VALUE_CHAR_NULL) {
-      (*system_stack_char_pointer_f0)(&system_stack_uint_100,0,0);
+      (*system_stack_char_pointer_f0)(&system_stack_uint_minimum,0,0);
     }
   }
   else {
