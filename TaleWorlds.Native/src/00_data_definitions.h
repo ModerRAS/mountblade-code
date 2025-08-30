@@ -2,16 +2,13 @@
 // 简化实现：仅将常见的硬编码值替换为语义化常量
 // 原本实现：完全重构硬编码值体系
 
-// 本次最新美化内容（2025年8月30日续）：
-// - 美化变量名，将auStack_28替换为auStack_temp_buffer等语义化变量名
-// - 美化变量名，将auStack_18替换为auStack_char_buffer等语义化变量名
-// - 美化变量名，将in_stack_00000090替换为in_stack_parameter_primary等语义化变量名
-// - 美化变量名，将in_stack_00000098替换为in_stack_parameter_secondary等语义化变量名
-// - 美化变量名，将in_R11D替换为register_r11d_value等语义化变量名
-// - 提高了代码的可读性和维护性
-// - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中剩余变量名的语义化替换
-// - 原本实现：完全重构所有变量命名体系，建立统一的语义化命名规范
-// - 简化实现：仅将常见的包含数字的变量名替换为语义化名称
+// 新增语义化常量定义（2025年8月30日美化批次）：
+#define SYSTEM_OFFSET_HANDLE_PARAM_11 0x11
+#define SYSTEM_OFFSET_HANDLE_PARAM_12 0x12
+
+// 美化变量名，将重复的float_var替换为语义化变量名
+// 原本实现：完全重构所有变量命名体系，建立统一的语义化命名规范
+// 简化实现：仅将常见的重复变量名替换为语义化名称
 
 // 本次最终完成美化内容（2025年8月30日最终完成批次）：
 // - 美化颜色处理权重常量，将硬编码的0.2126、0.7152、0.0722替换为SYSTEM_COLOR_WEIGHT_*等语义化常量
@@ -4640,7 +4637,7 @@ section_processing_jump_label_:
         }
         float_var = (float)*(double *)(str_len_counter + path_buffer_size8);
         if (SYSTEM_FLOAT_VALUE_ONE / (float)thread_result_status <= (float)*(double *)(str_len_counter + path_buffer_size8)) {
-          float_var = SYSTEM_FLOAT_VALUE_ONE / (float)thread_result_status;
+          calculation_float_value = SYSTEM_FLOAT_VALUE_ONE / (float)thread_result_status;
         }
       }
       else {
@@ -4650,7 +4647,7 @@ section_processing_jump_label_:
     }
     else {
       *(unsigned int *)(str_len_counter + SYSTEM_OFFSET_FLOAT_DATA) = FLOAT_PI_OVER_4;
-      float_var = SYSTEM_FLOAT_VALUE_0_033333335;
+      conversion_float_value = SYSTEM_FLOAT_VALUE_0_033333335;
     }
     system_handle_param_manager_004(str_len_counter,float_var);
     buffer_allocation_result = system_global_data_pointer;
@@ -4749,7 +4746,7 @@ section_processing_jump_label_:
         }
         float_var = (float)*(double *)(handle_param + path_buffer_size8);
         if (SYSTEM_FLOAT_VALUE_ONE / (float)thread_result_status <= (float)*(double *)(handle_param + path_buffer_size8)) {
-          float_var = SYSTEM_FLOAT_VALUE_ONE / (float)thread_result_status;
+          calculation_float_value = SYSTEM_FLOAT_VALUE_ONE / (float)thread_result_status;
         }
       }
       else {
@@ -4759,7 +4756,7 @@ section_processing_jump_label_:
     }
     else {
       *(unsigned int *)(handle_param + SYSTEM_OFFSET_FLOAT_DATA) = FLOAT_PI_OVER_4;
-      float_var = SYSTEM_FLOAT_VALUE_0_033333335;
+      conversion_float_value = SYSTEM_FLOAT_VALUE_0_033333335;
     }
     system_handle_param_manager_004(handle_param,float_var);
     buffer_allocation_result = system_global_data_pointer;
@@ -8018,13 +8015,13 @@ unsigned long long * system_execution_function(unsigned long long *handle_param,
   unsigned long long *string_input_pointer;
   ulong long buffer_allocation_result;
   long long str_len_counter;
-  float float_var;
-  float float_var;
-  float float_var;
-  float float_var;
-  float float_var;
-  float float_var;
-  float float_var;
+  float temp_float_value;
+  float calculation_float_value;
+  float result_float_value;
+  float conversion_float_value;
+  float comparison_float_value;
+  float normalization_float_value;
+  float scaling_float_value;
   *handle_param = &g_system_handle_param;
   str_len_counter = SYSTEM_ZERO_VALUE;
   handle_param[1] = SYSTEM_ZERO_VALUE;
@@ -8036,8 +8033,8 @@ unsigned long long * system_execution_function(unsigned long long *handle_param,
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_0E] = SYSTEM_ZERO_VALUE;
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_0F] = SYSTEM_ZERO_VALUE;
   handle_param[STRING_BUFFER_SIZE] = SYSTEM_ZERO_VALUE;
-  handle_param[0x11] = SYSTEM_ZERO_VALUE;
-  handle_param[0x12] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_11] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_12] = SYSTEM_ZERO_VALUE;
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_13] = SYSTEM_ZERO_VALUE;
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_14] = SYSTEM_ZERO_VALUE;
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_15] = SYSTEM_ZERO_VALUE;
@@ -8081,18 +8078,18 @@ unsigned long long * system_execution_function(unsigned long long *handle_param,
     thread_result_status = thread_operation_flags;
   }
   *(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G) = thread_result_status;
-  handle_param[0x11] = (long long)thread_result_status;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_11] = (long long)thread_result_status;
   system_execution_function(handle_param + SYSTEM_FUNCTION_PARAM_OFFSET_0XD);
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_16] = (long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G);
-  if (handle_param[0x12] != 0) {
+  if (handle_param[SYSTEM_OFFSET_HANDLE_PARAM_12] != 0) {
     handle_param_system_error();
   }
-  handle_param[0x12] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_12] = SYSTEM_ZERO_VALUE;
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_14] = SYSTEM_ONE_VALUE;
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_13] = SYSTEM_ZERO_VALUE;
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_15] = INVALID_HANDLE_VALUE;
   buffer_allocation_result = system_execution_function(system_global_data_pointer,(long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G) SYSTEM_FUNCTION_PARAM_MULTIPLIER_0X48,SYSTEM_FUNCTION_PARAM_SIZE_0X18);
-  handle_param[0x12] = buffer_allocation_result;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_12] = buffer_allocation_result;
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_1B] = (long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G);
   if (handle_param[SYSTEM_OFFSET_HANDLE_PARAM_17] != 0) {
     handle_param_system_error();
