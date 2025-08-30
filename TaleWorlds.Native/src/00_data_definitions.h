@@ -52,7 +52,7 @@
 #define SYSTEM_STATUS_SUCCESS 0
 #define SYSTEM_STATUS_FAILURE -1
 
-// 地址常量定义
+// 线程池互斥锁地址定义
 #define MAIN_THREAD_POOL_MUTEX_ADDR 0x180c91970
 #define RENDER_THREAD_POOL_MUTEX_ADDR 0x180c91970
 #define NETWORK_THREAD_POOL_MUTEX_ADDR 0x180c91970
@@ -62,9 +62,15 @@
 #define THREAD_STACK_SIZE 0x1fff
 #define NETWORK_BUFFER_SIZE 0xe8
 #define SYSTEM_CONFIG_BUFFER_SIZE 0x238
+#define SYSTEM_CONFIG_BUFFER_SIZE_0 0
+#define SYSTEM_CONFIG_BUFFER_SIZE_4 4
+#define SYSTEM_CONFIG_BUFFER_SIZE_8 8
+#define SYSTEM_CONFIG_BUFFER_SIZE_C 0xc
+#define SYSTEM_CONFIG_BUFFER_SIZE_000000 0x000000
+#define SYSTEM_CONFIG_BUFFER_SIZE_00 0x00
 #define MAX_THREAD_STACK_SIZE 0x1fff
 
-// 标志常量定义
+// 资源标志常量定义
 #define FLAG_INITIALIZED 0x13
 #define FLAG_TEXTURE_RESOURCE 0xd
 #define FLAG_SHADER_RESOURCE 0x17
@@ -107,18 +113,18 @@
 #define FLAG_LOAD_BALANCING_RESOURCE 0xd
 #define FLAG_EXTENSION_RESOURCE 0x13
 
-// 浮点数常量
+// 浮点数常量定义
 #define FLOAT_ONE 0x3f800000
 #define FLOAT_MAX_NORMAL 0x7f7fffff
 #define FLOAT_PI_DIV_4 0x3d088889
 
-// 整数常量
+// 整数常量定义
 #define UINT32_MAX 0xffffffff
 #define UINT64_MAX 0xffffffffffffffff
 #define INT32_MASK 0xffffffff
 #define INT64_MASK 0xffffffff00000000
 
-// 系统函数地址常量
+// 系统互斥锁和条件变量地址
 #define MAIN_MUTEX_ADDR 0x180c91970
 #define CONDITION_VARIABLE_ADDR 0x180c91240
 #define CLEANUP_FUNCTION_ADDR 0x180c911a0
@@ -126,7 +132,7 @@
 #define THIRD_MUTEX_ADDR 0x180c91ff0
 #define STRING_OFFSET_ADDR 0x180c82871
 
-// 函数地址常量
+// 核心系统函数地址
 #define RENDER_ENGINE_FUNCTION 0x00018005c480
 #define SYSTEM_INIT_FUNCTION 0x00018024f7f0
 #define FLAG_HANDLER_FUNCTION 0x0001800e2850
@@ -138,7 +144,7 @@
 #define DATA_HANDLER_FUNCTION 0x0001804ca2d0
 #define SYSTEM_VALIDATE_FUNCTION 0x0001800a1eb0
 
-// 内存管理地址
+// 内存管理相关地址
 #define MEMORY_POOL_ADDR_1 0x180d496e0
 #define MEMORY_POOL_ADDR_2 0x180d497e0
 #define MODULE_DATA_ADDR 0x180c95bf8
@@ -146,7 +152,7 @@
 #define MODULE_HANDLER_ADDR 0x180c95de0
 #define MODULE_CONFIG_ADDR 0x180c95fc8
 
-// 系统模块类型常量
+// 系统模块类型定义
 #define MODULE_TYPE_AUDIO 0xb
 #define MODULE_TYPE_VIDEO 0xc
 #define MODULE_TYPE_INPUT 0xd
@@ -513,7 +519,7 @@ int initialize_data_buffer_system(void)
   global_data_ = &data_180bf6978;
   data_180bf6978 = 0;
   global_data_ = STRING_BUFFER_SIZE;
-  strcpy_s(&data_180bf6978,系统配置缓冲区大小,&g_resourceString6);
+  strcpy_s(&data_180bf6978, SYSTEM_CONFIG_BUFFER_SIZE, &g_resourceString6);
   global_data_ = &g_defaultDataTemplate;
   global_data_ = &data_180bf69d0;
   data_180bf69d0 = 0;
@@ -6015,7 +6021,7 @@ system_finalizer_007(unsigned long long handle,unsigned long long flags,unsigned
   function_(0x180c95de0);
   data_180c96210 = 1;
   global_data_ = 3;
-  global_data_ = 系统配置缓冲区大小000000;
+  global_data_ = SYSTEM_CONFIG_BUFFER_SIZE_000000;
   global_data_ = 0x3f800000;
   global_data_ = 0;
   global_data_ = 1;
@@ -6029,7 +6035,7 @@ system_finalizer_007(unsigned long long handle,unsigned long long flags,unsigned
   global_data_ = 0;
   data_180c961a0 = 1;
   global_data_ = 3;
-  global_data_ = 系统配置缓冲区大小000000;
+  global_data_ = SYSTEM_CONFIG_BUFFER_SIZE_000000;
   global_data_ = 0x3f800000;
   global_data_ = 0;
   global_data_ = 1;
@@ -6064,7 +6070,7 @@ system_finalizer_007(unsigned long long handle,unsigned long long flags,unsigned
   global_data_ = 0;
   global_data_ = 0;
   global_data_ = 4;
-  global_data_ = 系统配置缓冲区大小000000;
+  global_data_ = SYSTEM_CONFIG_BUFFER_SIZE_000000;
   global_data_ = 0x3f800000;
   global_data_ = 0;
   global_data_ = 1;
@@ -6179,7 +6185,7 @@ unsigned long long * function_(unsigned long long *handle,int flags)
   ptr_var_ = handle + 0x35;
   long_var_ = 8;
   function_(ptr_var_,0x28,8,&unknown_1804ce1a0,function_);
-  _Mtx_init_in_situ(handle + 0x5d,字符串缓冲区大小2);
+  _Mtx_init_in_situ(handle + 0x5d, STRING_BUFFER_SIZE_2);
   int_var_ = func_0x0001804ca2d0(&data_180c95fc8);
   if (flags < int_var_) {
     int_var_ = flags;
@@ -6323,10 +6329,10 @@ unsigned long long initialize_graphics_context(unsigned long long handle,ulong l
   stack_var_ = ptr_var_[1];
   stack_var_ = ptr_var_[2];
   stack_var_ = ptr_var_[3];
-  fVar4 = *(float *)(flags + 系统配置缓冲区大小0);
-  fVar5 = *(float *)(flags + 系统配置缓冲区大小4);
-  fVar6 = *(float *)(flags + 系统配置缓冲区大小8);
-  stack_var_ = *(unsigned int *)(flags + 系统配置缓冲区大小c);
+  fVar4 = *(float *)(flags + SYSTEM_CONFIG_BUFFER_SIZE_0);
+  fVar5 = *(float *)(flags + SYSTEM_CONFIG_BUFFER_SIZE_4);
+  fVar6 = *(float *)(flags + SYSTEM_CONFIG_BUFFER_SIZE_8);
+  stack_var_ = *(unsigned int *)(flags + SYSTEM_CONFIG_BUFFER_SIZE_C);
   fVar18 = 1e+08;
   fVar13 = 1e+08;
   fStack_180 = 1e+08;
@@ -6360,7 +6366,7 @@ unsigned long long initialize_graphics_context(unsigned long long handle,ulong l
       stack_var_ = ptr_var_[1];
       stack_var_ = ptr_var_[2];
       stack_var_ = ptr_var_[3];
-      pfVar9 = (float *)(flags + ((long long)cVar1 + 系统配置缓冲区大小) * STRING_BUFFER_SIZE);
+      pfVar9 = (float *)(flags + ((long long)cVar1 + SYSTEM_CONFIG_BUFFER_SIZE) * STRING_BUFFER_SIZE);
       fVar18 = *pfVar9;
       fVar13 = pfVar9[1];
       fVar14 = pfVar9[2];
@@ -6669,7 +6675,7 @@ unsigned long long initialize_graphics_context(unsigned long long handle,ulong l
 }
         data_180d49f98 = 0;
         global_data_ = 8;
-        strcpy_s(&data_180d49f98,系统配置缓冲区大小,&unknown_180a353b8);
+        strcpy_s(&data_180d49f98, SYSTEM_CONFIG_BUFFER_SIZE, &unknown_180a353b8);
         system_crypto_002(function_);
         system_crypto_003(&data_180d49f70);
       }
@@ -6691,7 +6697,7 @@ unsigned long long initialize_graphics_context(unsigned long long handle,ulong l
       global_data_ = &data_180d49ff8;
       data_180d49ff8 = 0;
       global_data_ = 0;
-      strcpy_s(&data_180d49ff8,系统配置缓冲区大小,&data_18098bc73);
+      strcpy_s(&data_180d49ff8, SYSTEM_CONFIG_BUFFER_SIZE, &data_18098bc73);
       system_crypto_002(function_);
       system_crypto_003(&data_180d49fd8);
     }
@@ -6709,7 +6715,7 @@ int validate_config_parameters(unsigned long long handle,unsigned long long flag
   undefined *stack_ptr_;
   long long stack_long_;
   int stack_int_;
-  create_thread_context(&stack_ptr_,handle,mutex_attr,mutex_type,线程池默认标志);
+  create_thread_context(&stack_ptr_,handle,mutex_attr,mutex_type,THREAD_POOL_DEFAULT_FLAG);
   long_var_ = stack_long_;
   if (stack_int_ == STRING_BUFFER_SIZE) {
     int_var_ = strcmp(stack_long_,&g_empty_string_const);
@@ -6857,7 +6863,7 @@ label_:
       }
       int_var_ = strcmp(long_var_,&unknown_180a38e38);
       if (int_var_ == 0) {
-        int_var_ = 系统配置缓冲区大小;
+        int_var_ = SYSTEM_CONFIG_BUFFER_SIZE;
         goto label_;
       }
       goto label_;
@@ -7098,7 +7104,7 @@ function_(unsigned long long handle,unsigned long long flags,unsigned char mutex
   unsigned long long uint_var_;
   unsigned char auStack_50 [32];
   unsigned char auStack_30 [40];
-  create_thread_context(auStack_30,handle,mutex_attr,mutex_type,线程池默认标志);
+  create_thread_context(auStack_30,handle,mutex_attr,mutex_type,THREAD_POOL_DEFAULT_FLAG);
   create_thread_context(auStack_50,flags);
   cVar1 = validate_handle_parameters(auStack_30,&unknown_180a389d8g_config_path_string,1);
   if (cVar1 == '\0') {
@@ -8038,7 +8044,7 @@ label_:
                           cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39fb0);
                           if (cVar1 != '\0') {
 label_:
-                            uint_var_ = 系统配置缓冲区大小;
+                            uint_var_ = SYSTEM_CONFIG_BUFFER_SIZE;
                             goto label_;
                           }
                           cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39f98);
@@ -8862,7 +8868,7 @@ unsigned long long * setup_thread_parameters(long long handle,unsigned long long
   if (int_var_ - mutex_attr < int_var_) {
     int_var_ = int_var_ - mutex_attr;
   }
-  system_thread_manager_001(flags,int_var_ + 1,mutex_attr,mutex_type,1,线程池默认标志);
+  system_thread_manager_001(flags,int_var_ + 1,mutex_attr,mutex_type,1,THREAD_POOL_DEFAULT_FLAG);
   for (uint_var_ = uint_var_;
       ((long long)uint_var_ < (long long)int_var_ && ((uint)uint_var_ < *(uint *)(handle + STRING_BUFFER_SIZE)));
       uint_var_ = (ulong long)((uint)uint_var_ + 1)) {
@@ -10008,7 +10014,7 @@ long long initialize_thread_pool_resources(unsigned long long handle,unsigned lo
   long long long_var_;
   undefined *stack_ptr_;
   char *pcStack_28;
-  init_result = function_(handle,&unknown_180a0696c,mutex_attr,mutex_type,线程池默认标志);
+  init_result = function_(handle,&unknown_180a0696c,mutex_attr,mutex_type,THREAD_POOL_DEFAULT_FLAG);
   if (init_result == 0) {
     return 0;
   }
@@ -10413,7 +10419,7 @@ long long process_context_handle(long long *handle)
     else {
       long_var_ = func_0x00018064e870(uint_var_,CONCAT71(0xff000000,
                                                  *(void ***)(uint_var_ + 0x70) == &ExceptionList),
-                                  handle,uint_var_,线程池默认标志);
+                                  handle,uint_var_,THREAD_POOL_DEFAULT_FLAG);
     }
   }
   return long_var_;
@@ -10646,7 +10652,7 @@ unsigned long long allocate_resource_memory(int handle)
     uint_var_ = 0;
     init_result5 = *pinit_result4;
     uint_var_ = STRING_BUFFER_SIZE >> ((byte)int_var_ & 0x1f);
-    uint_var_ = 系统配置缓冲区大小 >> ((byte)int_var_ & 0x1f);
+    uint_var_ = SYSTEM_CONFIG_BUFFER_SIZE >> ((byte)int_var_ & 0x1f);
     uint_var_ = uint_var_;
     uint_var_ = uint_var_;
     if ((uint_var_ != 0) && (uint_var_ = 0, 3 < uint_var_)) {
@@ -10850,7 +10856,7 @@ unsigned long long allocate_resource_memory(int handle)
     pfVar7 = (float *)(long_var_ + (long long)pfVar7);
     int_var_ = int_var_ + 8;
     piVar12 = piVar12 + 8;
-  } while (int_var_ < 字符串缓冲区大小2);
+  } while (int_var_ < STRING_BUFFER_SIZE_2);
   if ((int)uint_var_ < CONFIG_PATH_BUFFER_SIZE0) {
     if (3 < (int)(CONFIG_PATH_BUFFER_SIZE0 - uint_var_)) {
       uint_var_ = uint_var_ + 10;
@@ -11011,7 +11017,7 @@ unsigned long long allocate_resource_memory(int handle)
         *(unsigned int *)(unaff_RBX + 0x1c4) = 0x480;
       }
       uint_var_ = iStack0000000000000030 + 5U & 0xfffffffe;
-      if (((unaff_R12D & 系统配置缓冲区大小00) == 0) ||
+      if (((unaff_R12D & SYSTEM_CONFIG_BUFFER_SIZE_00) == 0) ||
          ((*(uint *)(*(long long *)(unaff_RBX + 0x170) + 0x194) & 1) == 0)) {
         long_var_ = *(long long *)(unaff_RBX + 8);
         if (*(int *)(long_var_ + 0x14) == -1) {
@@ -11084,7 +11090,7 @@ label_:
         *(int *)(*(long long *)(unaff_RBX + 8) + 0x14) = int_var_ - *(int *)(unaff_RBX + 0x110);
       }
     }
-    if ((*(long long *)(unaff_RBX + 0x1d0) != 0) && ((unaff_R12D & 系统配置缓冲区大小00) == 0)) {
+    if ((*(long long *)(unaff_RBX + 0x1d0) != 0) && ((unaff_R12D & SYSTEM_CONFIG_BUFFER_SIZE_00) == 0)) {
       function_(*(unsigned long long *)(global_data_ + 0x1a0),*(long long *)(unaff_RBX + 0x1d0),
                     &unknown_18097c490,0x282,1);
     }
@@ -11710,7 +11716,7 @@ label_:
       }
       data_180c6a14d = data_180c6a14c == '\0';
       if (global_data_ == 0) {
-        long_var_ = _wfsopen(handle,&unknown_18098b51c,系统配置缓冲区大小);
+        long_var_ = _wfsopen(handle,&unknown_18098b51c,SYSTEM_CONFIG_BUFFER_SIZE);
         if (long_var_ == 0) {
           function_(&unknown_18098b490,0xc1,&unknown_18098b470,&unknown_18098b520,handle);
           bVar10 = false;
@@ -12015,8 +12021,8 @@ unsigned long long allocate_system_buffer(uint handle)
     }
     int_var_ = func_0x0001808fd8d4();
     if ((int_var_ == 0) || (handle != 0)) {
-      bVar2 = 系统配置缓冲区大小 - ((byte)global_data_ & 0x3f) & 0x3f;
-      global_data_ = (0xffffffffffffffffU >> bVar2 | -1L << 系统配置缓冲区大小 - bVar2) ^ global_data_;
+      bVar2 = SYSTEM_CONFIG_BUFFER_SIZE - ((byte)global_data_ & 0x3f) & 0x3f;
+      global_data_ = (0xffffffffffffffffU >> bVar2 | -1L << SYSTEM_CONFIG_BUFFER_SIZE - bVar2) ^ global_data_;
       uRam0000000180c821e8 = global_data_;
       global_data_ = global_data_;
       global_data_ = global_data_;
