@@ -84574,3 +84574,35 @@ void CleanupThreadResources(uint64 resource_handle_identifier,uint64 resource_bu
 #define UTILITY_BYTE_SIZE_4 4
 
 
+
+// 新增语义化宏定义 - 美化资源管理常量
+#define UTILITY_RESOURCE_HANDLE_PRIMARY system_resource_handle_primary
+#define UTILITY_RESOURCE_HANDLE_SECONDARY system_resource_handle_secondary
+#define UTILITY_VALIDATION_FLAG_PRIMARY validation_flag_primary
+#define UTILITY_VALIDATION_FLAG_SECONDARY validation_flag_secondary
+#define UTILITY_ALLOCATION_BUFFER_DATA allocation_buffer_data
+#define UTILITY_THREAD_STACK_OFFSET utility_thread_stack_offset
+
+// 新增语义化宏定义 - 美化操作状态常量
+#define UTILITY_OPERATION_SUCCESS 0
+#define UTILITY_OPERATION_FAILURE 1
+#define UTILITY_OPERATION_PENDING 2
+#define UTILITY_OPERATION_TIMEOUT 3
+#define UTILITY_OPERATION_INVALID_PARAM 4
+#define UTILITY_OPERATION_OUT_OF_MEMORY 5
+
+// 新增语义化宏定义 - 美化内存管理常量
+#define UTILITY_MEMORY_BLOCK_SIZE_SMALL 64
+#define UTILITY_MEMORY_BLOCK_SIZE_MEDIUM 256
+#define UTILITY_MEMORY_BLOCK_SIZE_LARGE 1024
+#define UTILITY_MEMORY_BLOCK_SIZE_EXTRA_LARGE 4096
+
+// 新增语义化宏定义 - 美化系统状态常量
+#define UTILITY_SYSTEM_STATUS_OK 0
+#define UTILITY_SYSTEM_STATUS_ERROR 1
+#define UTILITY_SYSTEM_STATUS_BUSY 2
+#define UTILITY_SYSTEM_STATUS_IDLE 3
+#define UTILITY_SYSTEM_STATUS_INITIALIZING 4
+#define UTILITY_SYSTEM_STATUS_RUNNING 5
+#define UTILITY_SYSTEM_STATUS_SHUTTING_DOWN 6
+
