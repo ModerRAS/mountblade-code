@@ -185,6 +185,10 @@
 #define SYSTEM_ARRAY_INDEX_HANDLE_ID_A9 0xa9
 #define SYSTEM_ARRAY_INDEX_STATUS_CODE_23 0x23
 #define SYSTEM_ARRAY_INDEX_RESOURCE_STATUS_6F6 0x6f6
+// 系统偏移量语义化常量
+#define SYSTEM_HANDLE_OFFSET_9F 0x9f
+#define SYSTEM_HANDLE_OFFSET_A1 0xa1
+#define SYSTEM_HANDLE_OFFSET_A3 0xa3
 
 // 本次美化内容：
 // - 添加了SYSTEM_ARRAY_INDEX_SYSTEM_FLAGS_23等系统数组索引语义化常量
@@ -16664,31 +16668,31 @@ void InitializeDatabaseResourceNode(void)
   void *system_buffer_ptr_data_config;
   void *system_buffer_ptr_system_info;
   longlong *stack_system_memory_pointer;
-  uint32_t init_stack_parameter_200;
+  uint32_t init_stack_buffer_size_200;
   void *system_buffer_ptr_network_context;
   void *system_buffer_ptr_network_data;
-  uint32_t init_stack_parameter_1e8;
-  ulonglong init_stack_parameter_1e0;
+  uint32_t init_stack_data_size_1e8;
+  ulonglong init_stack_memory_offset_1e0;
   void *system_buffer_ptr_audio_context;
   void *system_buffer_ptr_audio_data;
-  uint32_t init_stack_parameter_1c8;
-  ulonglong init_stack_parameter_1c0;
+  uint32_t init_stack_config_size_1c8;
+  ulonglong init_stack_handle_value_1c0;
   void *system_buffer_ptr_graphics_context;
-  longlong init_stack_parameter_1b0;
-  uint32_t init_stack_parameter_1a0;
-  uint64_t init_stack_parameter_198;
+  longlong init_stack_system_param_1b0;
+  uint32_t init_stack_status_flag_1a0;
+  uint64_t init_stack_thread_id_198;
   longlong *stack_system_memory_pointer;
   void *system_buffer_ptr_graphics_data;
   void *system_buffer_ptr_graphics_buffer;
-  uint32_t init_stack_parameter_178;
+  uint32_t init_stack_resource_count_178;
   undefined system_local_buffer_graphics [SYSTEM_ARRAY_INDEX_GRAPHICS_BUFFER];
   longlong **apstack_system_memory_pointer [SYSTEM_ARRAY_INDEX_MEMORY_VALUE];
   uint8_t system_local_buffer_username [SYSTEM_ARRAY_INDEX_USERNAME_LENGTH];
-  ulonglong init_stack_parameter_28;
+  ulonglong init_stack_security_key_28;
 
-  init_stack_parameter_198 = INVALID_HANDLE_VALUE;
-  init_stack_parameter_28 = system_configuration_data ^ (ulonglong)system_local_buffer_key;
-  init_stack_parameter_200 = 0;
+  init_stack_thread_id_198 = INVALID_HANDLE_VALUE;
+  init_stack_security_key_28 = system_configuration_data ^ (ulonglong)system_local_buffer_key;
+  init_stack_buffer_size_200 = 0;
   if (*(char *)(g_system_context_1 + SYSTEM_OFFSET_18) == '\0') {
     ProcessSystemData(&system_buffer_ptr_graphics_context);
     (**(code **)(**(longlong **)(g_system_base_1 + SYSTEM_OFFSET_2B0) + SYSTEM_OFFSET_98))
