@@ -5098,7 +5098,7 @@ int32_t NetworkFormatPacketHeader(int64_t network_ctx_array_ptr, void* network_b
   protocol_header = *(uint32_t *)(network_ctx_array_ptr + SESSION_CONFIG_SIZE);
   packet_size_field = *(uint32_t *)(network_ctx_array_ptr + MODULE_STATUS_OFFSET);
   // 写入协议标识符
-  header_length = NetworkWriteString(network_buffer_ptr, buffer_size, &g_networkProtocolObjectHeader);
+  header_length = NetworkWriteString(network_buffer_ptr, buffer_size, &g_network_protocol_header);
   network_data_pos_offset = header_length;
   // 写入空终止符
   terminator_length = NetworkWriteString(network_buffer_ptr + network_data_pos_offset, buffer_size - network_data_pos_offset, &g_networkNullTerminator);
@@ -15440,7 +15440,7 @@ SendNetworkData(int64_t network_socket_handle, int64_t network_buffer_ptr, uint3
     socket_descriptor = network_parse_address(*(uint64_t *)(network_socket_handle + NETWORK_SOCKET_HANDLE_OFFSET), network_buffer_ptr + NETWORK_SOCKET_DESCRIPTOR_RESPONSE_OFFSET);
     if (socket_descriptor != NETWORK_STATUS_FAILURE) {
       primary_conn_info_ptr = (int64_t *)
-               ExecuteNetworkOperation(*(uint64_t *)(g_network_module + NETWORK_MODULE_OFFSET), SESSION_CONFIG_SIZE, &g_networkConnectionPoolManagerObject, SOCKET_COMPRESSION_OFFSETe, NETWORK_STATUS_FAILURE, NETWORK_STATUS_FAILURE, NETWORK_STATUS_SUCCESS
+               ExecuteNetworkOperation(*(uint64_t *)(g_network_module + NETWORK_MODULE_OFFSET), SESSION_CONFIG_SIZE, &g_network_conn_pool_mgr, SOCKET_COMPRESSION_OFFSETe, NETWORK_STATUS_FAILURE, NETWORK_STATUS_FAILURE, NETWORK_STATUS_SUCCESS
                             );
         return ERROR_CODE_INVALID_MAGIC;
       *primary_conn_info_ptr = network_buffer_ptr;
