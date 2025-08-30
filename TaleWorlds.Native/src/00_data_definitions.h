@@ -14320,27 +14320,30 @@ void system_data_initialization_cleanup(void)
 // 简化实现：仅将常见的数字比较替换为语义化常量
 // 原本实现：完全重构所有数字比较体系
 
-#define SYSTEM_COMPARISON_ZERO 0
-#define SYSTEM_COMPARISON_ONE 1
-#define SYSTEM_COMPARISON_TWO 2
-#define SYSTEM_COMPARISON_THREE 3
-#define SYSTEM_COMPARISON_FOUR 4
-#define SYSTEM_COMPARISON_FIVE 5
-#define SYSTEM_COMPARISON_SIX 6
-#define SYSTEM_COMPARISON_SEVEN 7
-#define SYSTEM_COMPARISON_EIGHT 8
-#define SYSTEM_COMPARISON_NINE 9
-#define SYSTEM_COMPARISON_TEN 10
+// 系统比较值常量（2025年8月30日最终批次美化）
+#define SYSTEM_COMPARISON_VALUE_ZERO 0
+#define SYSTEM_COMPARISON_VALUE_ONE 1
+#define SYSTEM_COMPARISON_VALUE_TWO 2
+#define SYSTEM_COMPARISON_VALUE_THREE 3
+#define SYSTEM_COMPARISON_VALUE_FOUR 4
+#define SYSTEM_COMPARISON_VALUE_FIVE 5
+#define SYSTEM_COMPARISON_VALUE_SIX 6
+#define SYSTEM_COMPARISON_VALUE_SEVEN 7
+#define SYSTEM_COMPARISON_VALUE_EIGHT 8
+#define SYSTEM_COMPARISON_VALUE_NINE 9
+#define SYSTEM_COMPARISON_VALUE_TEN 10
 
-#define SYSTEM_FLAG_NONE 0
-#define SYSTEM_FLAG_SUCCESS 1
-#define SYSTEM_FLAG_FAILURE 0
+// 系统标志常量（2025年8月30日最终批次美化）
+#define SYSTEM_FLAG_VALUE_NONE 0
+#define SYSTEM_FLAG_VALUE_SUCCESS 1
+#define SYSTEM_FLAG_VALUE_FAILURE 0
 
-#define SYSTEM_ARRAY_INDEX_ZERO 0
-#define SYSTEM_ARRAY_INDEX_FIRST 1
-#define SYSTEM_ARRAY_INDEX_SECOND 2
-#define SYSTEM_ARRAY_INDEX_THIRD 3
-#define SYSTEM_ARRAY_INDEX_FOURTH 4
+// 系统数组索引常量（2025年8月30日最终批次美化）
+#define SYSTEM_ARRAY_INDEX_VALUE_ZERO 0
+#define SYSTEM_ARRAY_INDEX_VALUE_FIRST 1
+#define SYSTEM_ARRAY_INDEX_VALUE_SECOND 2
+#define SYSTEM_ARRAY_INDEX_VALUE_THIRD 3
+#define SYSTEM_ARRAY_INDEX_VALUE_FOURTH 4
 
 // 颜色处理常量
 #define SYSTEM_FLOAT_COLOR_LUMINANCE_RED 0.2126
@@ -14791,17 +14794,17 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_POINTER_OFFSET_2C 0x2c                             // 缓冲区指针偏移量
 #define SYSTEM_POINTER_OFFSET_1A 0x1a                             // 函数指针偏移量
 #define SYSTEM_POINTER_OFFSET_16 0x16                             // 系统指针偏移量
-#define SYSTEM_POINTER_OFFSET_9F8 0x9f8                           // 指针9F8偏移量
-#define SYSTEM_POINTER_OFFSET_118 0x118                           // 指针118偏移量
-#define SYSTEM_POINTER_OFFSET_98C8 0x98c8                         // 指针98C8偏移量
-#define SYSTEM_POINTER_OFFSET_4C 0x4c                             // 指针4C偏移量
-#define SYSTEM_POINTER_OFFSET_FA 0xfa                             // 指针FA偏移量
-#define SYSTEM_POINTER_OFFSET_1D0 0x1d0                           // 指针1D0偏移量
-#define SYSTEM_POINTER_OFFSET_330 0x330                           // 指针330偏移量
-#define SYSTEM_POINTER_OFFSET_4AB0 0x4ab0                         // 指针4AB0偏移量
-#define SYSTEM_POINTER_OFFSET_BC 0xbc                             // 指针BC偏移量
-#define SYSTEM_POINTER_OFFSET_4D 0x4d                             // 指针4D偏移量
-#define SYSTEM_POINTER_OFFSET_1E 0x1e                             // 指针1E偏移量
+#define SYSTEM_POINTER_OFFSET_9F8 0x9f8                           // 回调指针偏移量
+#define SYSTEM_POINTER_OFFSET_118 0x118                           // 参数指针偏移量
+#define SYSTEM_POINTER_OFFSET_98C8 0x98c8                         // 大内存指针偏移量
+#define SYSTEM_POINTER_OFFSET_4C 0x4c                             // 线程指针偏移量
+#define SYSTEM_POINTER_OFFSET_FA 0xfa                             // 验证指针偏移量
+#define SYSTEM_POINTER_OFFSET_1D0 0x1d0                           // 初始化指针偏移量
+#define SYSTEM_POINTER_OFFSET_330 0x330                           // 字符串指针偏移量
+#define SYSTEM_POINTER_OFFSET_4AB0 0x4ab0                         // 超大内存指针偏移量
+#define SYSTEM_POINTER_OFFSET_BC 0xbc                             // 上下文指针偏移量
+#define SYSTEM_POINTER_OFFSET_4D 0x4d                             // 数据结构指针偏移量
+#define SYSTEM_POINTER_OFFSET_1E 0x1e                             // 错误处理指针偏移量
 
 // 系统控制值常量定义（2025年8月30日最终批次）
 
