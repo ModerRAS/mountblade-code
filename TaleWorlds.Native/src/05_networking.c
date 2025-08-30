@@ -5155,7 +5155,8 @@ void NetworkConfigureConnectionSettings(uint64_t network_socket_handle, uint32_t
 network_cleanup_connection_label:
   network_encrypt_data(network_session_config_size ^ (NETWORK_ULONG_LONG)network_validation_max);
 // 函数: void NetworkFlushConnectionBuffers(void)
-void NetworkFlushConnectionBuffers(void)
+// 功能: 刷新网络连接缓冲区，确保所有数据都被发送
+void NetworkFlushConnectionBuffers(void) {
   network_op_status = network_send_buf(&networkBuffer, NETWORK_ERROR_BUFFER_SIZE);
   network_operation_result = networkCopyData(&networkBuffer + network_op_status, NETWORK_ERROR_BUFFER_SIZE - network_op_status, &g_networkNullTerminator);
   network_send_buf(&networkBuffer + (network_op_status + network_operation_result), NETWORK_ERROR_BUFFER_SIZE - (network_op_status + network_operation_result));
