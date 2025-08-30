@@ -80,8 +80,8 @@
 #define SYSTEM_CHAR_CARET 0x5e
 #define SYSTEM_CHAR_UNDERSCORE 0x5f
 #define SYSTEM_CHAR_BACKTICK 0x60
-#define SYSTEM_CHAR_LOWERCASE_A SYSTEM_CHAR_LOWERCASE_A
-#define SYSTEM_CHAR_LOWERCASE_B SYSTEM_CHAR_LOWERCASE_B
+#define SYSTEM_CHAR_LOWERCASE_A 0x61
+#define SYSTEM_CHAR_LOWERCASE_B 0x62
 #define SYSTEM_CHAR_LOWERCASE_C SYSTEM_CHAR_LOWERCASE_C
 #define SYSTEM_CHAR_LOWERCASE_D SYSTEM_CHAR_LOWERCASE_D
 #define SYSTEM_CHAR_LOWERCASE_E SYSTEM_CHAR_LOWERCASE_E
@@ -9979,7 +9979,7 @@ section_processing_jump_label_:
               system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_15,1);
               if (system_char_variable != '\0') {
 section_processing_jump_label_:
-                buffer_allocation_result = 7;
+                buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_VALIDATION_SEVEN;
                 goto section_processing_jump_label_;
               }
               system_char_variable = validate_handle_param_parameters(auStack_50,&system_validation_param_16,1);
