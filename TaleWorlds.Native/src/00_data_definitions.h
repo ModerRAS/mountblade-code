@@ -2167,7 +2167,7 @@ label_:
                     char_ptr_var_ = char_ptr_var_ + 1;
                   } while (flags6 < stack_var_);
                 }
-                flags8 = 无符号32位整数最大值;
+                flags8 = UINT32_MAX;
 label_:
                 if ((int)flags1 != -1) {
                   setup_thread_parameters(&stack_ptr_,&stack_ptr_,uint_var_,flags8);
@@ -2194,12 +2194,12 @@ label_:
                   do {
                     long_var_ = long_var_ + 1;
                   } while (ptr_var_[long_var_] != '\0');
-                  if ((int)long_var_ < 系统配置缓冲区大小0) {
+                  if ((int)long_var_ < SYSTEM_CONFIG_BUFFER_SIZE) {
                     input_offset_value = (int)long_var_;
-                    strcpy_s(input_buffer_pointer,系统配置缓冲区大小0);
+                    strcpy_s(input_buffer_pointer,SYSTEM_CONFIG_BUFFER_SIZE);
                   }
                   else {
-                    system_thread_003(&g_systemDataString29,系统配置缓冲区大小0);
+                    system_thread_003(&g_systemDataString29,SYSTEM_CONFIG_BUFFER_SIZE);
                     input_offset_value = 0;
                     *input_buffer_pointer = 0;
                   }
@@ -2275,7 +2275,7 @@ label_:
                       char_ptr_var_ = char_ptr_var_ + 1;
                     } while (flags6 < stack_var_);
                   }
-                  flags8 = 无符号32位整数最大值;
+                  flags8 = UINT32_MAX;
 label_:
                   if ((int)flags1 != -1) {
                     setup_thread_parameters(&stack_ptr_,&stack_ptr_,uint_var_,flags8);
