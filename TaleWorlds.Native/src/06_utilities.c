@@ -59677,7 +59677,7 @@ void UtilityUtilityUnwind_18090c490(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -59900,7 +59900,7 @@ void UtilityUtilityUnwind_18090c540(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -59946,7 +59946,7 @@ void UtilityUtilityUnwind_18090c550(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -60022,7 +60022,7 @@ void UtilityUtilityUnwind_18090c590(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -60048,7 +60048,7 @@ void UtilityUtilityUnwind_18090c590(uint64 resource_handle_identifier,longlong r
 void UtilityUtilityUnwind_18090c5a0(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  *(data_value **)(resource_buffer + 0x3b0) = &thread_local_storage_cleanup;
+  *(data_value **)(resource_buffer + UTILITY_RESOURCE_HANDLE_OFFSET_3B0) = &thread_local_storage_cleanup;
   return;
 }
 
@@ -60089,7 +60089,7 @@ void UtilityUtilityUnwind_18090c5c0(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -60135,7 +60135,7 @@ void UtilityUtilityUnwind_18090c5d0(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -60193,7 +60193,7 @@ void UtilityUtilityUnwind_18090c5f0(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -60239,7 +60239,7 @@ void UtilityUtilityUnwind_18090c600(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -60355,7 +60355,7 @@ void UtilityUtilityUnwind_18090c640(uint64 resource_handle_identifier,longlong r
 void UtilityUtilityUnwind_18090c650(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  *(data_value **)(resource_buffer + 0x3b0) = &thread_local_storage_cleanup;
+  *(data_value **)(resource_buffer + UTILITY_RESOURCE_HANDLE_OFFSET_3B0) = &thread_local_storage_cleanup;
   return;
 }
 
@@ -60928,7 +60928,7 @@ void UtilityUtilityUnwind_18090ca20(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -60986,7 +60986,7 @@ void UtilityUtilityUnwind_18090ca40(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -61056,7 +61056,7 @@ void UtilityUtilityUnwind_18090ca70(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -61123,7 +61123,7 @@ void UtilityUtilityUnwind_18090caa0(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -61190,7 +61190,7 @@ void UtilityUtilityUnwind_18090cad0(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -61257,7 +61257,7 @@ void UtilityUtilityUnwind_18090cb00(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -61312,7 +61312,7 @@ void UtilityUtilityUnwind_18090cb20(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -61367,7 +61367,7 @@ void UtilityUtilityUnwind_18090cb40(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -61425,7 +61425,7 @@ void UtilityUtilityUnwind_18090cb60(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -61480,7 +61480,7 @@ void UtilityUtilityUnwind_18090cb80(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -61571,7 +61571,7 @@ void UtilityUtilityUnwind_18090cbd0(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -61638,7 +61638,7 @@ void UtilityUtilityUnwind_18090cc00(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -61804,7 +61804,7 @@ void UtilityUtilityUnwind_18090cce0(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -67077,7 +67077,7 @@ void UtilityUtilityUnwind_18090e760(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -67135,7 +67135,7 @@ void UtilityUtilityUnwind_18090e7a0(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -67181,7 +67181,7 @@ void UtilityUtilityUnwind_18090e7b0(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -67227,7 +67227,7 @@ void UtilityUtilityUnwind_18090e7c0(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -67273,7 +67273,7 @@ void UtilityUtilityUnwind_18090e7d0(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -67319,7 +67319,7 @@ void UtilityUtilityUnwind_18090e7e0(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -67365,7 +67365,7 @@ void UtilityUtilityUnwind_18090e7f0(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -67411,7 +67411,7 @@ void UtilityUtilityUnwind_18090e800(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -67469,7 +67469,7 @@ void UtilityUtilityUnwind_18090e820(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -67527,7 +67527,7 @@ void UtilityUtilityUnwind_18090e840(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -67585,7 +67585,7 @@ void UtilityUtilityUnwind_18090e860(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
@@ -68024,7 +68024,7 @@ void UtilityUtilityUnwind_18090eb00(uint64 resource_handle_identifier,longlong r
         *(longlong *)(memory_offset_data + UTILITY_MEMORY_OFFSET_80B0 + (longlong)*(int *)(memory_offset_data + UTILITY_MEMORY_OFFSET_8088) * UTILITY_DOUBLE_WORD_SIZE) = resource_buffer;
       }
       utility_array_index = (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET;
-      resource_buffer = *(longlong *)(utility_array_index + 200 + memory_offset_data + 0x7f20);
+      resource_buffer = *(longlong *)(utility_array_index + UTILITY_DATA_OFFSET_200 + memory_offset_data + UTILITY_MEMORY_OFFSET_7F20);
       utility_operation_status = (int)(*(longlong *)(utility_array_index + UTILITY_STRUCT_OFFSET_1 + memory_offset_data + 0x7f20) - resource_buffer >> 3) + -1;
       if (-1 < utility_operation_status) {
         memory_offset_data = (longlong)utility_operation_status;
