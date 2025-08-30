@@ -49692,8 +49692,8 @@ void SystemFunction_98_8(void)
     comparison_result_flag = 1;
   }
   *(byte *)(system_RBX + 0xfd) = *(byte *)(system_RBX + 0xfd) & 0xfe | comparison_result_flag;
-  bVar11 = bVar11 & SYSTEM_NODE_HEADER_SIZE;
-  if ((bVar11 != 0) && (comparison_result_flag != 0)) {
+  system_comparison_flag = system_comparison_flag & SYSTEM_NODE_HEADER_SIZE;
+  if ((system_comparison_flag != 0) && (comparison_result_flag != 0)) {
     *(uint64_t *)(system_RBX + 0x160) = init_input_stack_60;
     *(uint64_t *)(system_RBX + 0x168) = init_input_stack_68;
     *(uint64_t *)(system_RBX + 0x170) = init_input_stack_70;
@@ -49706,7 +49706,7 @@ void SystemFunction_98_8(void)
   SystemFunction4a290();
   *(byte *)(system_RBX + 0xfd) = *(byte *)(system_RBX + 0xfd) & 0xfe;
   *(int *)(system_RBX + 0x1d0) = int_result;
-  if (bVar11 != 0) {
+  if (system_comparison_flag != 0) {
     *(uint64_t *)(system_RBX + 0x160) = uint_result;
     *(uint64_t *)(system_RBX + 0x168) = uint_result;
     *(uint64_t *)(system_RBX + 0x170) = uint_result;
@@ -49766,14 +49766,14 @@ ulonglong SystemFunction_29_6(longlong handleIdentifier,uint64_t resourceIdentif
 
   long_result = *(longlong *)(handleIdentifier + 0x1b8);
   if (long_result != 0) {
-    bVar23 = *(byte *)(handleIdentifier + 0xfd) & SYSTEM_NODE_HEADER_SIZE;
+    operation_byte_flag = *(byte *)(handleIdentifier + 0xfd) & SYSTEM_NODE_HEADER_SIZE;
     long_result = handleIdentifier;
-    if (bVar23 == 0) {
+    if (operation_byte_flag == 0) {
       long_result = SystemFunction085de0(*(uint64_t *)(handleIdentifier + 0x1b0));
     }
     if (*(int *)(long_result + SYSTEM_NODE_HEADER_SIZE0) != 0) {
       long_result = handleIdentifier;
-      if (bVar23 == 0) {
+      if (operation_byte_flag == 0) {
         long_result = SystemFunction085de0(*(uint64_t *)(handleIdentifier + 0x1b0));
       }
       if (*(int *)(long_result + 0x1fc) * 3 != 0) goto LAB_180077fcf;
@@ -54182,12 +54182,12 @@ ulonglong SystemFunction_38_4(longlong handleIdentifier,longlong *resourceIdenti
     }
   }
   LOCK();
-  bVar15 = *(char *)((longlong)long_ptr + 0x15) == '\0';
-  if (bVar15) {
+  system_initialization_check = *(char *)((longlong)long_ptr + 0x15) == '\0';
+  if (system_initialization_check) {
     *(char *)((longlong)long_ptr + 0x15) = '\x01';
   }
   UNLOCK();
-  if (!bVar15) goto LAB_18007b8fd;
+  if (!system_initialization_check) goto LAB_18007b8fd;
   long_result = handleIdentifier;
   if ((*(byte *)(handleIdentifier + 0xfd) & SYSTEM_NODE_HEADER_SIZE) == 0) {
     long_result = SystemFunction085de0(*(uint64_t *)(handleIdentifier + 0x1b0));
