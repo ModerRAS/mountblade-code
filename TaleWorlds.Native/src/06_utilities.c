@@ -155,7 +155,7 @@
 // 80. 将utility_stack_resource_context_18替换为utility_stack_resource_buffer_primary等资源缓冲区变量名
 // 81. 将utility_stack_context_int_30替换为utility_stack_context_buffer_size等上下文缓冲区大小变量名
 // 82. 添加了UTILITY_BIT_CONCAT_4_4等位操作函数宏定义，替换CONCAT44等通用函数名
-// 83. 添加了UTILITY_TEMP_STACK_BUFFER等临时变量宏定义，替换aUTILITY_STACK_MEMORY_OFFSET_18等临时变量名
+// 83. 添加了UTILITY_TEMP_STACK_BUFFER等临时变量宏定义，替换utility_temp_stack_buffer等临时变量名
 // 84. 添加了UTILITY_TEMP_RESOURCE_HANDLE宏定义，替换utility_stack_resource_handle_70等资源句柄变量名
 // 提高了代码的可读性和维护性
 // 保持代码语义不变
@@ -247,10 +247,10 @@
 
 // 新增资源类型签名常量 - 美化十六进制字符串编码
 #define UTILITY_RESOURCE_SIGNATURE_PANIC UTILITY_RESOURCE_SIGNATURE_PANIC  // "PANS"
-#define UTILITY_RESOURCE_SIGNATURE_WAIT 0x54494157   // "TIOW"
-#define UTILITY_RESOURCE_SIGNATURE_TSIL 0x5453494c  // "TSIL"
-#define UTILITY_RESOURCE_SIGNATURE_VRUC 0x56525543  // "VRUC"
-#define UTILITY_RESOURCE_SIGNATURE_TIFE 0x54494645  // "TIFE"
+#define UTILITY_RESOURCE_SIGNATURE_WAIT UTILITY_RESOURCE_SIGNATURE_WAIT   // "TIOW"
+#define UTILITY_RESOURCE_SIGNATURE_TSIL UTILITY_RESOURCE_SIGNATURE_TSIL  // "TSIL"
+#define UTILITY_RESOURCE_SIGNATURE_VRUC UTILITY_RESOURCE_SIGNATURE_VRUC  // "VRUC"
+#define UTILITY_RESOURCE_SIGNATURE_TIFE UTILITY_RESOURCE_SIGNATURE_TIFE  // "TIFE"
 #define UTILITY_RESOURCE_SIGNATURE_TNVE 0x544e5645  // "TNVE"
 #define UTILITY_FLOAT_TO_INT_SCALE 1000.0
 #define UTILITY_LONG_LONG_MIN -0x8000000000000000
@@ -437,7 +437,7 @@
 #define UTILITY_BIT_CONCAT_1_1 CONCAT11
 
 // 新增语义化变量名 - 替换临时变量
-#define UTILITY_TEMP_STACK_BUFFER aUTILITY_STACK_MEMORY_OFFSET_18
+#define UTILITY_TEMP_STACK_BUFFER utility_temp_stack_buffer
 #define UTILITY_TEMP_RESOURCE_HANDLE utility_stack_resource_handle_70
 #define UTILITY_EXCEPTION_CHECK_MASK 0xff000000
 #define UTILITY_EXCEPTION_LIST_PTR_OFFSET UTILITY_MEMORY_DATA_OFFSET
@@ -3552,18 +3552,18 @@ uint64 resource_handle_identifier_resource_operation(longlong resource_handle_id
 {
   uint64 utility_operation_status;
   longlong utility_stack_buffer_array [2];
-  longlong aUTILITY_STACK_MEMORY_OFFSET_18 [2];
+  longlong utility_temp_stack_buffer [2];
   
-  utility_operation_status = system_memory_operation(*(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),aUTILITY_STACK_MEMORY_OFFSET_18);
+  utility_operation_status = system_memory_operation(*(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),utility_temp_stack_buffer);
   if ((int)utility_operation_status == 0) {
-    if (aUTILITY_STACK_MEMORY_OFFSET_18[0] == 0) {
-      aUTILITY_STACK_MEMORY_OFFSET_18[0] = 0;
+    if (utility_temp_stack_buffer[0] == 0) {
+      utility_temp_stack_buffer[0] = 0;
     }
     else {
-      aUTILITY_STACK_MEMORY_OFFSET_18[0] = aUTILITY_STACK_MEMORY_OFFSET_18[0] + -8;
+      utility_temp_stack_buffer[0] = utility_temp_stack_buffer[0] + -8;
     }
     utility_stack_buffer_array[0] = 0;
-    utility_operation_status = utilityProcessResourceData(aUTILITY_STACK_MEMORY_OFFSET_18[0],resource_handle_identifier + RESOURCE_HANDLE_OFFSET,utility_stack_buffer_array);
+    utility_operation_status = utilityProcessResourceData(utility_temp_stack_buffer[0],resource_handle_identifier + RESOURCE_HANDLE_OFFSET,utility_stack_buffer_array);
     if ((int)utility_operation_status == 0) {
       if (utility_stack_buffer_array[0] != 0) {
         if (*(longlong *)(utility_stack_buffer_array[0] + 8) == 0) {
@@ -3588,18 +3588,18 @@ uint64 manage_resource_resource_handle_identifier(longlong resource_handle_ident
 {
   uint64 utility_operation_status;
   longlong utility_stack_buffer_array [2];
-  longlong aUTILITY_STACK_MEMORY_OFFSET_18 [2];
+  longlong utility_temp_stack_buffer [2];
   
-  utility_operation_status = system_memory_operation(*(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),aUTILITY_STACK_MEMORY_OFFSET_18);
+  utility_operation_status = system_memory_operation(*(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),utility_temp_stack_buffer);
   if ((int)utility_operation_status == 0) {
-    if (aUTILITY_STACK_MEMORY_OFFSET_18[0] == 0) {
-      aUTILITY_STACK_MEMORY_OFFSET_18[0] = 0;
+    if (utility_temp_stack_buffer[0] == 0) {
+      utility_temp_stack_buffer[0] = 0;
     }
     else {
-      aUTILITY_STACK_MEMORY_OFFSET_18[0] = aUTILITY_STACK_MEMORY_OFFSET_18[0] + -8;
+      utility_temp_stack_buffer[0] = utility_temp_stack_buffer[0] + -8;
     }
     utility_stack_buffer_array[0] = 0;
-    utility_operation_status = utilityProcessResourceData(aUTILITY_STACK_MEMORY_OFFSET_18[0],resource_handle_identifier + POINTER_DATA_OFFSET,utility_stack_buffer_array);
+    utility_operation_status = utilityProcessResourceData(utility_temp_stack_buffer[0],resource_handle_identifier + POINTER_DATA_OFFSET,utility_stack_buffer_array);
     if ((int)utility_operation_status == 0) {
       if (utility_stack_buffer_array[0] != 0) {
         if (*(longlong *)(utility_stack_buffer_array[0] + 8) == 0) {
@@ -6053,22 +6053,22 @@ uint64 utilityHandleResourceResponse(longlong resource_handle_identifier,longlon
   uint64 utility_loop_counter;
   float utility_float_secondary_value;
   longlong system_resource_handle_primary;
-  longlong aUTILITY_STACK_MEMORY_OFFSET_18 [2];
+  longlong utility_temp_stack_buffer [2];
   
   system_resource_handle_primary = CONCAT44(system_resource_handle_primary._4_4_,*(uint *)(resource_handle_identifier + POINTER_DATA_OFFSET));
   if ((*(uint *)(resource_handle_identifier + POINTER_DATA_OFFSET) & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
     return ERROR_CODE_5;
   }
-  utility_loop_counter = system_memory_operation(*(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),aUTILITY_STACK_MEMORY_OFFSET_18);
+  utility_loop_counter = system_memory_operation(*(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),utility_temp_stack_buffer);
   if ((int)utility_loop_counter == 0) {
-    if (aUTILITY_STACK_MEMORY_OFFSET_18[0] == 0) {
-      aUTILITY_STACK_MEMORY_OFFSET_18[0] = 0;
+    if (utility_temp_stack_buffer[0] == 0) {
+      utility_temp_stack_buffer[0] = 0;
     }
     else {
-      aUTILITY_STACK_MEMORY_OFFSET_18[0] = aUTILITY_STACK_MEMORY_OFFSET_18[0] + -8;
+      utility_temp_stack_buffer[0] = utility_temp_stack_buffer[0] + -8;
     }
     system_resource_handle_primary = 0;
-    utility_loop_counter = utilityProcessResourceData(aUTILITY_STACK_MEMORY_OFFSET_18[0],resource_handle_identifier + RESOURCE_HANDLE_OFFSET,&utility_system_resource_handle);
+    utility_loop_counter = utilityProcessResourceData(utility_temp_stack_buffer[0],resource_handle_identifier + RESOURCE_HANDLE_OFFSET,&utility_system_resource_handle);
     if ((int)utility_loop_counter == 0) {
       if (system_resource_handle_primary == 0) {
         return ERROR_CODE_INVALID;
@@ -6104,18 +6104,18 @@ uint64 utilityProcessResourceResult(longlong resource_handle_identifier,longlong
   longlong process_buffer;
   uint64 utility_loop_counter;
   longlong system_resource_handle_primary;
-  longlong aUTILITY_STACK_MEMORY_OFFSET_18 [2];
+  longlong utility_temp_stack_buffer [2];
   
-  utility_loop_counter = system_memory_operation(*(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),aUTILITY_STACK_MEMORY_OFFSET_18);
+  utility_loop_counter = system_memory_operation(*(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),utility_temp_stack_buffer);
   if ((int)utility_loop_counter == 0) {
-    if (aUTILITY_STACK_MEMORY_OFFSET_18[0] == 0) {
-      aUTILITY_STACK_MEMORY_OFFSET_18[0] = 0;
+    if (utility_temp_stack_buffer[0] == 0) {
+      utility_temp_stack_buffer[0] = 0;
     }
     else {
-      aUTILITY_STACK_MEMORY_OFFSET_18[0] = aUTILITY_STACK_MEMORY_OFFSET_18[0] + -8;
+      utility_temp_stack_buffer[0] = utility_temp_stack_buffer[0] + -8;
     }
     system_resource_handle_primary = 0;
-    utility_loop_counter = utilityProcessResourceData(aUTILITY_STACK_MEMORY_OFFSET_18[0],resource_handle_identifier + RESOURCE_HANDLE_OFFSET,&utility_system_resource_handle);
+    utility_loop_counter = utilityProcessResourceData(utility_temp_stack_buffer[0],resource_handle_identifier + RESOURCE_HANDLE_OFFSET,&utility_system_resource_handle);
     if ((int)utility_loop_counter == 0) {
       if (system_resource_handle_primary == 0) {
         return ERROR_CODE_INVALID;
@@ -12497,16 +12497,16 @@ uint64 ValidateResourceBuffer(longlong *resource_handle_identifier,char resource
   ulonglong utility_loop_counter;
   ulonglong system_status_code;
   uint64 utility_stack_resource_buffer;
-  longlong aUTILITY_STACK_MEMORY_OFFSET_18 [2];
+  longlong utility_temp_stack_buffer [2];
   data_value *local_pointer;
   uint32 utility_loop_temp_counter;
   ulonglong utility_buffer_temp_size;
   
   *(byte *)(resource_handle_identifier + 4) = 1;
   utility_loop_counter = allocateMemory(*(uint64 *)(resource_handle_identifier[1] + UTILITY_HANDLE_DATA_OFFSET),&utility_stack_resource_buffer);
-  if ((((int)utility_loop_counter == 0) && (utility_loop_counter = processResourceHandle(utility_stack_resource_buffer,aUTILITY_STACK_MEMORY_OFFSET_18,0), (int)utility_loop_counter == 0)) &&
+  if ((((int)utility_loop_counter == 0) && (utility_loop_counter = processResourceHandle(utility_stack_resource_buffer,utility_temp_stack_buffer,0), (int)utility_loop_counter == 0)) &&
      (utility_loop_counter = (**(code **)(*resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET))(resource_handle_identifier), (int)utility_loop_counter == 0)) {
-    utility_loop_counter = (ulonglong)(aUTILITY_STACK_MEMORY_OFFSET_18[0] * UTILITY_WORD_SIZE8000) / (ulonglong)*(uint *)((longlong)resource_handle_identifier + UTILITY_BYTE_OFFSET_FLAG);
+    utility_loop_counter = (ulonglong)(utility_temp_stack_buffer[0] * UTILITY_WORD_SIZE8000) / (ulonglong)*(uint *)((longlong)resource_handle_identifier + UTILITY_BYTE_OFFSET_FLAG);
     resource_buffer = resource_handle_identifier[2];
     system_status_code = utility_loop_counter - resource_buffer;
     if (((resource_buffer != '\0') || (resource_buffer == 0)) || (47999 < system_status_code)) {
@@ -23603,7 +23603,7 @@ uint64 ValidateCheckData(longlong resource_handle_identifier,uint64 *memory_bloc
   byte UTILITY_LOCAL_SECURITY_BUFFER [32];
   byte UTILITY_LOCAL_SECURITY_BUFFER [32];
   
-  utility_loop_counter = createResourceBuffer(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,1,0x54494157);
+  utility_loop_counter = createResourceBuffer(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,1,UTILITY_RESOURCE_SIGNATURE_WAIT);
   if (((((int)utility_loop_counter == 0) &&
        (utility_loop_counter = createResourceBuffer(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,0,RESOURCE_PROP_OFFSET2494157), (int)utility_loop_counter == 0)) &&
       (utility_loop_counter = assessUtilityQuality(resource_buffer,resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET), (int)utility_loop_counter == 0)) &&
@@ -23768,7 +23768,7 @@ uint64 InitializeIntegrityOperator(longlong resource_handle_identifier,longlong 
   byte UTILITY_LOCAL_PROCESS_BUFFER [64];
   byte UTILITY_LOCAL_SECURITY_BUFFER [32];
   
-  utility_operation_status = ValidateOperationHandle2(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,1,0x5453494c,RESOURCE_PROP_OFFSET6464542);
+  utility_operation_status = ValidateOperationHandle2(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,1,UTILITY_RESOURCE_SIGNATURE_TSIL,RESOURCE_PROP_OFFSET6464542);
   if (((int)utility_operation_status == 0) &&
      (utility_operation_status = ValidateOperationHandle2(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,0,RESOURCE_PROP_OFFSET2464542,0), (int)utility_operation_status == 0)) {
     if (*(int *)(resource_buffer[1] + RESOURCE_HANDLE_OFFSET) == 0) {
@@ -24155,7 +24155,7 @@ ulonglong ProcessSystemTask(longlong resource_handle_identifier,uint64 *memory_b
   byte UTILITY_LOCAL_PROCESS_BUFFER [64];
   byte utility_encryption_buffer [40];
   
-  utility_loop_counter = ValidateOperationHandle2(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,1,0x5453494c,resourceOperationFlags);
+  utility_loop_counter = ValidateOperationHandle2(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,1,UTILITY_RESOURCE_SIGNATURE_TSIL,resourceOperationFlags);
   if (((int)utility_loop_counter == 0) && (utility_loop_counter = ValidateOperationHandle2(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,0,resourceCallbackFunction,0), (int)utility_loop_counter == 0))
   {
     if (*(int *)(resource_buffer[1] + RESOURCE_HANDLE_OFFSET) == 0) {
@@ -24224,7 +24224,7 @@ uint64 ProcessTaskOperation(longlong resource_handle_identifier,longlong *memory
   byte UTILITY_LOCAL_SECURITY_BUFFER [32];
   byte UTILITY_LOCAL_SECURITY_BUFFER [32];
   
-  utility_operation_status = ValidateOperationHandle2(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,1,0x5453494c,RESOURCE_PROP_OFFSET9444d43);
+  utility_operation_status = ValidateOperationHandle2(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,1,UTILITY_RESOURCE_SIGNATURE_TSIL,RESOURCE_PROP_OFFSET9444d43);
   if (((int)utility_operation_status == 0) &&
      (utility_operation_status = ValidateOperationHandle2(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,0,RESOURCE_PROP_OFFSET2444d43,0), (int)utility_operation_status == 0)) {
     if (*(int *)(resource_buffer[1] + RESOURCE_HANDLE_OFFSET) != 0) {
@@ -24633,7 +24633,7 @@ uint64 initializeResourceMemory(longlong resource_handle_identifier,uint64 *memo
   uint64 utility_operation_status;
   byte UTILITY_LOCAL_SECURITY_BUFFER [32];
   
-  utility_operation_status = ValidateOperationHandle2(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,0,0x56525543,0);
+  utility_operation_status = ValidateOperationHandle2(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,0,UTILITY_RESOURCE_SIGNATURE_VRUC,0);
   if ((int)utility_operation_status == 0) {
     if (*(int *)(resource_buffer[1] + RESOURCE_HANDLE_OFFSET) != 0) {
       return UTILITY_BYTE_OFFSET_FLAG;
@@ -24663,7 +24663,7 @@ uint64 validateResourceMemory(longlong resource_handle_identifier,uint64 *memory
   byte UTILITY_LOCAL_SECURITY_BUFFER [32];
   byte UTILITY_LOCAL_SECURITY_BUFFER [32];
   
-  utility_operation_status = ValidateOperationHandle2(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,1,0x5453494c,0x54494645);
+  utility_operation_status = ValidateOperationHandle2(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,1,UTILITY_RESOURCE_SIGNATURE_TSIL,UTILITY_RESOURCE_SIGNATURE_TIFE);
   if (((int)utility_operation_status == 0) &&
      (utility_operation_status = ValidateOperationHandle2(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,0,RESOURCE_PROP_OFFSET2494645,0), (int)utility_operation_status == 0)) {
     if (*(int *)(resource_buffer[1] + RESOURCE_HANDLE_OFFSET) != 0) {
@@ -24773,7 +24773,7 @@ uint64 resizeResourceMemory(longlong resource_handle_identifier,uint64 *memory_b
   byte UTILITY_LOCAL_SECURITY_BUFFER [32];
   byte UTILITY_LOCAL_SECURITY_BUFFER [32];
   
-  utility_operation_status = ValidateOperationHandle2(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,1,0x5453494c,UTILITY_RESOURCE_SIGNATURE_ACTIVE);
+  utility_operation_status = ValidateOperationHandle2(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,1,UTILITY_RESOURCE_SIGNATURE_TSIL,UTILITY_RESOURCE_SIGNATURE_ACTIVE);
   if (((int)utility_operation_status == 0) &&
      (utility_operation_status = ValidateOperationHandle2(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,0,RESOURCE_PROP_OFFSET2495645,0), (int)utility_operation_status == 0)) {
     if (*(int *)(resource_buffer[1] + RESOURCE_HANDLE_OFFSET) != 0) {
@@ -24810,7 +24810,7 @@ uint64 processMemoryAllocation(uint64 resource_handle_identifier,longlong resour
     }
   }
   else {
-    utility_operation_status = ValidateOperationHandle2(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,1,0x5453494c,0x544e5645);
+    utility_operation_status = ValidateOperationHandle2(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,1,UTILITY_RESOURCE_SIGNATURE_TSIL,0x544e5645);
     if ((int)utility_operation_status == 0) {
       utility_operation_status = allocateMemoryWithType(resource_handle_identifier,resource_buffer,RESOURCE_PROP_OFFSET2545645);
       if ((int)utility_operation_status == 0) {
