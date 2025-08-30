@@ -16346,7 +16346,7 @@ uint64 ProcessOperationRequest(longlong resource_handle_identifier,longlong *mem
        (utility_loop_counter = writeResourceData(resource_buffer,resource_handle_identifier + UTILITY_STACK_DATA_OFFSET_2,2), (int)utility_loop_counter == 0)) {
       utility_loop_counter = writeResourceData(resource_buffer,resource_handle_identifier + UTILITY_LIST_HANDLE_OFFSET,8);
     }
-    utility_stack_param = unaff_BPL;
+    utility_stack_param = UTILITY_REGISTER_BPL;
     if ((int)utility_loop_counter != 0) {
       return utility_loop_counter;
     }
@@ -16523,7 +16523,7 @@ uint64 GetOperationStatus(void)
   }
 LAB_PROCESS_RESOURCE_DATA:
   if ((int)utility_loop_counter == 0) {
-    *(bool *)(utility_cpu_context + 0x7c) = unaff_BPL != (char)utility_loop_counter;
+    *(bool *)(utility_cpu_context + 0x7c) = UTILITY_REGISTER_BPL != (char)utility_loop_counter;
   }
   return utility_loop_counter;
 }
@@ -24145,7 +24145,7 @@ void ValidateIntegrityData2(void)
     if (utility_operation_status != 0) {
       return;
     }
-    utility_operation_status = unaff_EBP;
+    utility_operation_status = UTILITY_REGISTER_EBP;
     if (*(int *)(utility_register_context_base[1] + RESOURCE_HANDLE_OFFSET) == 0) {
       resourceSecurityParam = 6;
       utility_operation_status = (**(code **)**(uint64 **)(*utility_register_context_base + 8))
@@ -24163,7 +24163,7 @@ void ValidateIntegrityData2(void)
       utility_operation_status = resource_size_limit + 1;
     } while (resource_size_limit < 6);
     if (*(uint *)(utility_register_context_base + 8) < 0x6e) {
-      unaff_EBP = 0;
+      UTILITY_REGISTER_EBP = 0;
     }
     else if (*(int *)(utility_register_context_base[1] + RESOURCE_HANDLE_OFFSET) == 0) {
       resourceSecurityParam = CONCAT_BYTES(resourceSecurityParam._1_3_,*(byte *)(utility_cpu_context + UTILITY_RESOURCE_DATA_OFFSET));
