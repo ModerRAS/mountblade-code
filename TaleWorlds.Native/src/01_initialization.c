@@ -1000,13 +1000,13 @@ void* g_global_data_180a25b00;
 
 void* g_global_system_data_1;
 
-void* g_global_data_180a25ac8;
+void* g_global_system_data_2;
 
-void* g_global_data_180a25b10;
+void* g_global_system_data_3;
 
-void* g_global_data_180a25b20;
+void* g_global_system_data_4;
 
-void* g_global_data_180a25b30;
+void* g_global_system_data_5;
 
 void* g_global_data_180a25b40;
 
