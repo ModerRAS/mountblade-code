@@ -38,6 +38,11 @@
 #define SYSTEM_TEXTURE_FORMAT_CHECK_52 0x52
 #define SYSTEM_TEXTURE_FORMAT_CHECK_51 0x51
 
+// 系统标签语义化定义
+#define SYSTEM_LABEL_INIT_CHECK_LOOP 0x00018005430b
+#define SYSTEM_LABEL_CONFIG_VALIDATION 0x00018005f6ef
+#define SYSTEM_LABEL_INITIALIZATION_COMPLETE 0x00018005fdcd
+
 // 系统偏移量语义化常量
 #define SYSTEM_BUFFER_OFFSET_C SYSTEM_CONFIG_SIZE_C
 #define SYSTEM_RESULT_OFFSET_B 0xb
@@ -17397,7 +17402,7 @@ void ProcessResourceIdentifier(longlong handleIdentifier,longlong resourceIdenti
 
   if (resourceIdentifier == 0) {
     *(uint32_t *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) = 0;
-    **(uint8_t **)(handleIdentifier + 8) = 0;
+    **(uint8_t **)(handleIdentifier + SYSTEM_DATA_OFFSET_8) = 0;
     return;
   }
   system_long_value = -1;
@@ -17408,12 +17413,12 @@ void ProcessResourceIdentifier(longlong handleIdentifier,longlong resourceIdenti
     *(int *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) = (int)system_long_value;
                     // WARNING: Could not recover jumptable at 0x000180045b59. Too many branches
                     // WARNING: Treating indirect jump as call
-    strcpy_s(*(uint64_t *)(handleIdentifier + 8),SYSTEM_DATA_COMPARE_SIZE00);
+    strcpy_s(*(uint64_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_8),SYSTEM_DATA_COMPARE_SIZE00);
     return;
   }
   ProcessSystemDataHeader(&g_system_data_header,SYSTEM_DATA_COMPARE_SIZE00,resourceIdentifier);
   *(uint32_t *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) = 0;
-  **(uint8_t **)(handleIdentifier + 8) = 0;
+  **(uint8_t **)(handleIdentifier + SYSTEM_DATA_OFFSET_8) = 0;
   return;
 }
 // void InitializeSystemModule18(longlong handleIdentifier,uint64_t resourceIdentifier,int system_configuration)
@@ -17423,9 +17428,9 @@ void InitializeSystemModule18(longlong handleIdentifier,uint64_t resourceIdentif
 {
   if (system_configuration + 1 < SYSTEM_DATA_COMPARE_SIZE00) {
                     // WARNING: Subroutine does not return
-    memcpy(*(uint8_t **)(handleIdentifier + 8),resourceIdentifier,(longlong)system_configuration);
+    memcpy(*(uint8_t **)(handleIdentifier + SYSTEM_DATA_OFFSET_8),resourceIdentifier,(longlong)system_configuration);
   }
-  **(uint8_t **)(handleIdentifier + 8) = 0;
+  **(uint8_t **)(handleIdentifier + SYSTEM_DATA_OFFSET_8) = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) = 0;
   return;
 }
@@ -24631,7 +24636,7 @@ InitializeEventSystem(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint
   if (system_operation_status == 0) {
 INIT_LABEL_SYSTEM_54302:
     system_status_code = 0;
-joined_r0x00018005430b:
+system_label_init_check_loop:
     for (; system_pointer_var != system_ptr_value; system_ptr_value = system_pointer_var + 4) {
       (**(code **)*system_pointer_var)(system_pointer_var,0);
     }
@@ -24695,7 +24700,7 @@ INIT_LABEL_SYSTEM_5419d:
       init_stack_handle_id = (ulonglong)init_stack_handle_id._4_4_ << SYSTEM_NODE_HEADER_SIZE;
       system_buffer_ptr_config_data = &globalSystemPointerData;
       system_status_code = 1;
-      goto joined_r0x00018005430b;
+      goto system_label_init_check_loop;
     }
   } while( true );
   system_buffer_ptr_config_data = &resourcePoolPointer;
@@ -33852,9 +33857,9 @@ ulonglong ConfigureGraphicsParameters(longlong handleIdentifier,longlong *resour
       system_status_code = system_integer_result_unsigned;
       if ((*(longlong *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE) == 0) ||
          (system_status_code = *(ulonglong *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE) + SYSTEM_DATA_COMPARE_SIZE0), system_status_code = system_operation_status,
-         system_operation_status == system_int_result_unsigned)) goto joined_r0x00018005f6ef;
+         system_operation_status == system_int_result_unsigned)) goto system_label_config_validation;
       do {
-        if (*(char *)(system_int_result_unsigned + SYSTEM_CONFIG_SIZE_FINAL0 + system_int_result_unsigned) == '\0') goto joined_r0x00018005f6ef;
+        if (*(char *)(system_int_result_unsigned + SYSTEM_CONFIG_SIZE_FINAL0 + system_int_result_unsigned) == '\0') goto system_label_config_validation;
         system_status_code = system_int_result_unsigned + 1;
       } while (system_int_result_unsigned < SYSTEM_NODE_HEADER_SIZE);
       init_stack_uint_param_data = init_stack_uint_param_data + SYSTEM_NODE_HEADER_SIZE;
@@ -33918,7 +33923,7 @@ INIT_LABEL_SYSTEM_5f6a2:
   }
   *(ulonglong *)(handleIdentifier + SYSTEM_NODE_HEADER_SIZE) = system_integer_result_unsigned;
   return CONCAT71((int7)(system_int_result_unsigned >> 8),1);
-joined_r0x00018005f6ef:
+system_label_config_validation:
   if (system_long_result == 0) goto INIT_LABEL_SYSTEM_5f6a2;
   system_long_value = system_long_result + -SYSTEM_NODE_HEADER_SIZE;
   init_stack_uint_param_data = init_stack_uint_param_data + SYSTEM_NODE_HEADER_SIZE;
@@ -34093,7 +34098,7 @@ INIT_LABEL_SYSTEM_5f92b:
   system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = *(ulonglong *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE);
   *(ulonglong *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_70) = *(longlong *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_70) + 1U & *pallocation_size - 1U;
   system_status_code = system_integer_result_unsigned;
-  goto joined_r0x00018005f6ef;
+  goto system_label_config_validation;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
@@ -34166,7 +34171,7 @@ ulonglong InitializeSystemModule36(longlong handleIdentifier,longlong *resourceI
     system_status_code = system_integer_result_unsigned;
     if (((*(longlong *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_28) - system_int_result_unsigned) - SYSTEM_NODE_HEADER_SIZE < SYSTEM_OFFSET_8000000000000001) ||
        (pallocation_size = *(longlong **)(handleIdentifier + SYSTEM_OBJECT_OFFSET_60), pallocation_size == (longlong *)SYSTEM_NULL_POINTER))
-    goto joined_r0x00018005fdcd;
+    goto system_label_initialization_complete;
     system_status_code = *pallocation_size - 1U & pallocation_size[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] + 1U;
     node_root0 = *(ulonglong **)(pallocation_size[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] + system_int_result_unsigned * 8);
     if ((*node_root0 == 1) || (node_root0[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] == 0)) {
@@ -34280,7 +34285,7 @@ INIT_LABEL_SYSTEM_5fda6:
   pallocation_size = *(longlong **)(handleIdentifier + SYSTEM_OBJECT_OFFSET_60);
   pallocation_size[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = pallocation_size[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] - 1U & *pallocation_size - 1U;
   node_root0[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0;
-joined_r0x00018005fdcd:
+system_label_initialization_complete:
   for (; system_int_result_unsigned != 0; system_status_code = *(ulonglong *)(system_int_result_unsigned + SYSTEM_DATA_COMPARE_SIZE0)) {
     system_status_code = system_int_result_unsigned + SYSTEM_NODE_HEADER_SIZE;
     pallocation_size = *(longlong **)(handleIdentifier + SYSTEM_OBJECT_OFFSET_60);
