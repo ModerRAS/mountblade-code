@@ -36,6 +36,21 @@
 // - 保持代码语义不变，这是简化实现，主要处理了网络系统中临时变量名和栈变量名的语义化替换
 // - 原本实现：完全重构临时变量命名体系和栈变量命名体系
 // - 简化实现：仅将常见的临时变量名和栈变量名替换为语义化名称
+
+// 最新美化内容（2025年8月30日）：
+// - 将network_stack_socket_handle_array替换为network_socket_handle_stack_array（网络套接字句柄栈数组）
+// - 将g_network_auth_data替换为network_global_auth_data_primary（网络全局认证数据主）
+// - 将g_network_auth_data_primary替换为network_global_auth_data_secondary（网络全局认证数据次）
+// - 将g_network_auth_data_secondary替换为network_global_auth_data_tertiary（网络全局认证数据第三）
+// - 将g_network_auth_data_quaternary替换为network_global_auth_data_quaternary（网络全局认证数据第四）
+// - 将g_network_integrity_check_primary替换为network_integrity_check_global_primary（网络完整性检查全局主）
+// - 将g_network_integrity_check_secondary替换为network_integrity_check_global_secondary（网络完整性检查全局次）
+// - 将network_packet_size_temp替换为network_packet_size_temporary（网络包大小临时值）
+// - 将network_stack_connection_buffer_array替换为network_connection_buffer_stack_array（网络连接缓冲区栈数组）
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了网络系统中全局变量和栈变量名的语义化替换
+// - 原本实现：完全重构网络系统全局变量命名体系和栈变量命名体系
+// - 简化实现：仅将常见的全局变量名和栈变量名替换为语义化名称
 #define NETWORK_SOCKET_EXTENDED_OFFSET    100
 #define NETWORK_CONNECTION_TIMEOUT_OFFSET 200
 #define NETWORK_SOCKET_DESCRIPTORS_OFFSET 600
