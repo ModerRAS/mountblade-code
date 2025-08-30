@@ -1,4 +1,4 @@
-// 系统数据定义文件 - 美化硬编码值（2025年8月30日最终批次+补充批次+最终完成批次+续+最新完成批次+变量名美化批次+语义化常量替换批次+负偏移量语义化批次+结构体偏移量语义化批次）
+// 系统数据定义文件 - 美化硬编码值（2025年8月30日最终批次+补充批次+最终完成批次+续+最新完成批次+变量名美化批次+语义化常量替换批次+负偏移量语义化批次+结构体偏移量语义化批次+参数语义化批次）
 // 简化实现：仅将常见的硬编码值替换为语义化常量
 // 原本实现：完全重构硬编码值体系
 
@@ -3873,7 +3873,7 @@ section_processing_jump_label_9:
                     maximum_stack_size = maximum_stack_size - thread_result_status;
                     system_thread_stack_pointer[maximum_stack_size] = SYSTEM_ZERO_VALUE;
                   }
-                  system_thread_manager_validate(&system_thread_stack_pointer,1);
+                  system_thread_manager_validate(&system_thread_stack_pointer,SYSTEM_PARAM_SINGLE_VALIDATE);
                   string_input_pointer = &default_resource_config_string;
                   if (system_thread_stack_pointer != (void *)SYSTEM_NULL_POINTER) {
                     string_input_pointer = system_thread_stack_pointer;
@@ -3967,7 +3967,7 @@ goto section_processing_jump_label_14;
 section_processing_jump_label_12:
                   if ((int)thread_operation_flags != -1) {
                     setup_thread_parameters(&system_thread_stack_pointer,&system_thread_stack_pointer,buffer_allocation_result,thread_operation_flags);
-                    system_thread_manager_validate(&system_thread_stack_pointer,1);
+                    system_thread_manager_validate(&system_thread_stack_pointer,SYSTEM_PARAM_SINGLE_VALIDATE);
                     buffer_allocation_result = maximum_stack_size;
                     thread_operation_flags = (ulong long)maximum_stack_size;
                     if (thread_stack_base_address != 0) {
@@ -5020,7 +5020,7 @@ system_execution_function(unsigned long long *handle_param,ulong long thread_ope
 }
       crypto_module_enabled = '\x01';
       do {
-        thread_result_status = ReleaseSemaphore(system_global_data_pointer,1);
+        thread_result_status = ReleaseSemaphore(system_global_data_pointer,SYSTEM_PARAM_SINGLE_VALIDATE);
       } while (thread_result_status == 0);
       system_thread_stack_pointer = &system_global_thread_string_2;
       if (system_thread_stack_pointer != (unsigned char *)SYSTEM_NULL_POINTER) {
@@ -5077,7 +5077,7 @@ uint validate_system_mutex_lock(void)
   return &crypto_return_buffer;
 }
     thread_pool_active = '\x01';
-    system_thread_manager_validate(handle_param,CONCAT_BYTES_TO_64BIT((int7)((ulong long)string_input_pointer >> 8),1));
+    system_thread_manager_validate(handle_param,CONCAT_BYTES_TO_64BIT((int7)((ulong long)string_input_pointer >> 8),SYSTEM_PARAM_SINGLE_VALIDATE));
   }
   system_execute_crypto_operation(maximum_stack_size ^ (ulong long)system_crypto_stack_buffer_medium);
 }
@@ -5148,7 +5148,7 @@ section_processing_jump_label_30:
     system_path_stack_buffer[0] = SYSTEM_ZERO_VALUE;
     maximum_stack_size = SYSTEM_STACK_SIZE_LARGE;
     thread_operation_flags = strcpy_s(system_path_stack_buffer, SYSTEM_CONFIG_BUFFER_SIZE, &systemConfigStringBuffer2);
-    system_ui_001(thread_operation_flags,&system_thread_stack_pointer,buffer_allocation_result,1);
+    system_ui_001(thread_operation_flags,&system_thread_stack_pointer,buffer_allocation_result,SYSTEM_PARAM_SINGLE_VALIDATE);
     system_thread_stack_pointer = &system_global_thread_string_4;
   }
   if (*(int *)(system_global_data_pointer + SYSTEM_OFFSET_FUNCTION_HANDLER) == 1) {
@@ -6481,7 +6481,7 @@ system_handle_paramr_001:
 goto section_processing_jump_label_39;
     }
     buffer_allocation_result = system_execution_function(&system_thread_stack_pointer,handle_param);
-    system_thread_manager_validate(buffer_allocation_result,1);
+    system_thread_manager_validate(buffer_allocation_result,SYSTEM_PARAM_SINGLE_VALIDATE);
     system_thread_stack_pointer = &system_global_thread_string_2;
     if (system_thread_stack_pointer != (void *)SYSTEM_NULL_POINTER) {
       handle_param_system_error();
@@ -6642,7 +6642,7 @@ unsigned long long process_system_request(unsigned long long *handle_param)
         byte_string_input_pointer = byte_string_input_pointer + SYSTEM_OFFSET_HANDLE_PARAM;
         buffer_allocation_result = buffer_allocation_result - 1;
       } while (buffer_allocation_result != 0);
-      return CONCAT_BYTES_TO_64BIT((uint7)(uint3)((uint)thread_result_status >> 8),1);
+      return CONCAT_BYTES_TO_64BIT((uint7)(uint3)((uint)thread_result_status >> 8),SYSTEM_PARAM_SINGLE_VALIDATE);
     }
     break;
   default:
@@ -6667,7 +6667,7 @@ unsigned long long process_system_request(unsigned long long *handle_param)
         string_input_pointer = string_input_pointer + SYSTEM_OFFSET_HANDLE_PARAM;
         buffer_allocation_result = buffer_allocation_result - 1;
       } while (buffer_allocation_result != 0);
-      return CONCAT_BYTES_TO_64BIT((uint7)(uint3)((uint)thread_result_status >> 8),1);
+      return CONCAT_BYTES_TO_64BIT((uint7)(uint3)((uint)thread_result_status >> 8),SYSTEM_PARAM_SINGLE_VALIDATE);
     }
     break;
   case SYSTEM_CONSTANT_2:
@@ -6688,7 +6688,7 @@ unsigned long long process_system_request(unsigned long long *handle_param)
         float_vector_buffer_ptr = float_vector_buffer_ptr + 3;
         buffer_allocation_result = buffer_allocation_result - 1;
       } while (buffer_allocation_result != 0);
-      return CONCAT_BYTES_TO_64BIT((int7)((ulong long)float_vector_buffer_ptr >> 8),1);
+      return CONCAT_BYTES_TO_64BIT((int7)((ulong long)float_vector_buffer_ptr >> 8),SYSTEM_PARAM_SINGLE_VALIDATE);
     }
     break;
   case path_buffer_size:
@@ -6711,7 +6711,7 @@ unsigned long long process_system_request(unsigned long long *handle_param)
         float_conversion_array_ptr = float_conversion_array_ptr + SYSTEM_OFFSET_HANDLE_PARAM;
         buffer_allocation_result = buffer_allocation_result - 1;
       } while (buffer_allocation_result != 0);
-      return CONCAT_BYTES_TO_64BIT((uint7)(buffer_allocation_result >> 0xc),1);
+      return CONCAT_BYTES_TO_64BIT((uint7)(buffer_allocation_result >> 0xc),SYSTEM_PARAM_SINGLE_VALIDATE);
     }
     break;
   case 0x26:
@@ -6737,7 +6737,7 @@ unsigned long long process_system_request(unsigned long long *handle_param)
         string_input_pointer = string_input_pointer + 3;
         buffer_allocation_result = buffer_allocation_result - 1;
       } while (buffer_allocation_result != 0);
-      return CONCAT_BYTES_TO_64BIT((uint7)(uint3)((uint)thread_result_status >> 8),1);
+      return CONCAT_BYTES_TO_64BIT((uint7)(uint3)((uint)thread_result_status >> 8),SYSTEM_PARAM_SINGLE_VALIDATE);
     }
     break;
   case 0x27:
@@ -6767,7 +6767,7 @@ unsigned long long process_system_request(unsigned long long *handle_param)
       } while (buffer_allocation_result != 0);
     }
   }
-  return CONCAT_BYTES_TO_64BIT((int7)((ulong long)semantic_float_ptr >> 8),1);
+  return CONCAT_BYTES_TO_64BIT((int7)((ulong long)semantic_float_ptr >> 8),SYSTEM_PARAM_SINGLE_VALIDATE);
 }
 unsigned long long handle_param_system_callback(unsigned long long *handle_param)
 {
@@ -7067,7 +7067,7 @@ unsigned long long allocate_system_memory(long long handle_param,long long *thre
   buffer_allocation_result = SYSTEM_ZERO_VALUE;
   byte_flag_value = *(byte *)(mutex_attr + 2);
   if ((mutex_type >> 1 & 1) != 0) {
-    system_ui_003(system_global_data_pointer,&system_pointer_stack_78,mutex_attr + SYSTEM_CONFIG_OFFSET_INIT_FLAG,1);
+    system_ui_003(system_global_data_pointer,&system_pointer_stack_78,mutex_attr + SYSTEM_CONFIG_OFFSET_INIT_FLAG,SYSTEM_PARAM_SINGLE_VALIDATE);
     string_input_pointer = (unsigned long long *)system_ui_006();
     system_resource_002(*string_input_pointer,&pstack_long_var);
     if (system_memory_stack_primary != (long long *)SYSTEM_NULL_POINTER) {
@@ -7570,7 +7570,7 @@ system_finalizer_primary(unsigned long long handle_param,unsigned long long thre
   character_scan_pointer = *(code **)(*system_global_data_pointer + SYSTEM_CHAR_LOWERCASE_P);
   // Original name: system_180a02fc8
       buffer_allocation_result = system_ui_005(&system_thread_stack_pointer, &g_ui_mutex_property_address_180a02fc8, mutex_attr, mutex_type, 0, default_thread_pool_flag);
-  thread_operation_flags = (*character_scan_pointer)(system_global_data_pointer,buffer_allocation_result,mutex_attr,mutex_type,1);
+  thread_operation_flags = (*character_scan_pointer)(system_global_data_pointer,buffer_allocation_result,mutex_attr,mutex_type,SYSTEM_PARAM_SINGLE_VALIDATE);
   system_thread_stack_pointer = &system_global_thread_string_2;
   if (thread_stack_base_address != 0) {
     handle_param_system_error();
@@ -7588,7 +7588,7 @@ system_finalizer_secondary(unsigned long long handle_param,unsigned long long th
   character_scan_pointer = *(code **)(*system_global_data_pointer + SYSTEM_CHAR_LOWERCASE_P);
   // Original name: system_180a02fa0
       buffer_allocation_result = system_ui_005(&system_thread_stack_pointer, &g_ui_mutex_type_address_180a02fa0, mutex_attr, mutex_type, 0, default_thread_pool_flag);
-  thread_operation_flags = (*character_scan_pointer)(system_global_data_pointer,buffer_allocation_result,mutex_attr,mutex_type,1);
+  thread_operation_flags = (*character_scan_pointer)(system_global_data_pointer,buffer_allocation_result,mutex_attr,mutex_type,SYSTEM_PARAM_SINGLE_VALIDATE);
   system_thread_stack_pointer = &system_global_thread_string_2;
   if (thread_stack_base_address != 0) {
     handle_param_system_error();
@@ -8788,21 +8788,21 @@ system_execution_function(unsigned long long handle_param,unsigned long long thr
   unsigned char system_auxiliary_stack_secondary [40];
   create_thread_context(system_auxiliary_stack_secondary,handle_param,mutex_attr,mutex_type,default_thread_pool_flag);
   create_thread_context(system_auxiliary_stack_primary,thread_operation_flags);
-  system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_secondary,&g_config_path_string,1);
+  system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_secondary,&g_config_path_string,SYSTEM_PARAM_SINGLE_VALIDATE);
   if (system_char_variable == '\0') {
-    system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_secondary,&g_config_path_string_backup,1);
+    system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_secondary,&g_config_path_string_backup,SYSTEM_PARAM_SINGLE_VALIDATE);
     if (system_char_variable == '\0') {
-      system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_secondary,&g_log_path_string,1);
+      system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_secondary,&g_log_path_string,SYSTEM_PARAM_SINGLE_VALIDATE);
       if (system_char_variable == '\0') {
-        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_secondary,&g_save_path_string,1);
+        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_secondary,&g_save_path_string,SYSTEM_PARAM_SINGLE_VALIDATE);
         if (system_char_variable == '\0') {
-          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_secondary,&g_save_path_string_backup,1);
+          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_secondary,&g_save_path_string_backup,SYSTEM_PARAM_SINGLE_VALIDATE);
           if (system_char_variable == '\0') {
-            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_secondary,&g_system_path_string,1);
+            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_secondary,&g_system_path_string,SYSTEM_PARAM_SINGLE_VALIDATE);
             if (system_char_variable == '\0') {
-              system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_secondary,&g_data_path_string,1);
+              system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_secondary,&g_data_path_string,SYSTEM_PARAM_SINGLE_VALIDATE);
               if (system_char_variable == '\0') {
-                system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_secondary,&g_temp_path_string,1);
+                system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_secondary,&g_temp_path_string,SYSTEM_PARAM_SINGLE_VALIDATE);
                 if (system_char_variable == '\0') {
                   system_char_variable = string_system_processor(system_auxiliary_stack_secondary,&g_system_string_version);
                   if (system_char_variable == '\0') {
@@ -9902,7 +9902,7 @@ goto section_processing_jump_label_359;
                   }
                 }
                 else {
-                  system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&g_system_handle_pointer,1);
+                  system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
                   if (system_char_variable == '\0') {
                     system_char_variable = string_system_processor(system_auxiliary_stack_primary,&g_system_handle_offset);
                     if (system_char_variable != '\0') {
@@ -10031,34 +10031,34 @@ goto section_processing_jump_label_401;
                 }
               }
               else {
-                system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&g_system_validate_main,1);
+                system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
                 if (system_char_variable == '\0') {
-                  system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&g_system_validate_backup,1);
+                  system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
                   if (system_char_variable != '\0') {
 section_processing_jump_label_114:
                     buffer_allocation_result = STRING_BUFFER_SIZE;
 goto section_processing_jump_label_402;
                   }
-                  system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&g_system_validate_temp,1);
+                  system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
                   if (system_char_variable != '\0') {
 section_processing_jump_label_115:
                     buffer_allocation_result = path_buffer_size;
 goto section_processing_jump_label_403;
                   }
-                  system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_1,1);
+                  system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_404;
-                  system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_2,1);
+                  system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
                   if (system_char_variable != '\0') {
 section_processing_jump_label_116:
                     buffer_allocation_result = SYSTEM_CONTROL_VALUE_30;
 goto section_processing_jump_label_405;
                   }
-                  system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_3,1);
+                  system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
                   if (system_char_variable != '\0') {
                     buffer_allocation_result = SYSTEM_CONTROL_VALUE_31;
 goto section_processing_jump_label_406;
                   }
-                  system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_4,1);
+                  system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
                   if (system_char_variable != '\0') {
                     buffer_allocation_result = SYSTEM_CONTROL_VALUE_32;
 goto section_processing_jump_label_407;
@@ -10067,168 +10067,168 @@ goto section_processing_jump_label_407;
               }
             }
             else {
-              system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_5,1);
+              system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
               if (system_char_variable == '\0') {
-                system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_6,1);
+                system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_408;
-                system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_7,1);
+                system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_409;
-                system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_8,1);
+                system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_410;
-                system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_9,1);
+                system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_411;
-                system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_10,1);
+                system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_412;
-                system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_11,1);
+                system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_413;
-                system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_4,1);
+                system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
                 if (system_char_variable != '\0') {
 section_processing_jump_label_117:
                   buffer_allocation_result = SYSTEM_CONTROL_VALUE_19;
 goto section_processing_jump_label_414;
                 }
-                system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_12,1);
+                system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
                 if (system_char_variable != '\0') {
                   buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_SECTION_CODE;
 goto section_processing_jump_label_415;
                 }
-                system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_13,1);
+                system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_416;
               }
             }
           }
           else {
-            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_14,1);
+            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
             if (system_char_variable == '\0') {
-              system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_15,1);
+              system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
               if (system_char_variable != '\0') {
 section_processing_jump_label_118:
                 buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_VALIDATION_SEVEN;
 goto section_processing_jump_label_417;
               }
-              system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_16,1);
+              system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_418;
-              system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_17,1);
+              system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_419;
-              system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_18,1);
+              system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
               if (system_char_variable != '\0') {
 section_processing_jump_label_119:
                 buffer_allocation_result = SYSTEM_TEN_VALUE;
 goto section_processing_jump_label_420;
               }
-              system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_19,1);
+              system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_421;
-              system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_20,1);
+              system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_422;
-              system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_21,1);
+              system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
               if (system_char_variable != '\0') {
                 buffer_allocation_result = 0xd;
 goto section_processing_jump_label_423;
               }
-              system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_22,1);
+              system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
               if (system_char_variable != '\0') {
                 buffer_allocation_result = 0xe;
 goto section_processing_jump_label_424;
               }
-              system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_23,1);
+              system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
               if (system_char_variable != '\0') {
                 buffer_allocation_result = 0xf;
 goto section_processing_jump_label_425;
               }
-              system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_24,1);
+              system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_426;
-              system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_25,1);
+              system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_427;
             }
           }
         }
         else {
-          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_26,1);
+          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
           if (system_char_variable == '\0') {
-            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_27,1);
+            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_428;
-            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_28,1);
+            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
             if (system_char_variable != '\0') {
 section_processing_jump_label_120:
               buffer_allocation_result = SYSTEM_NINE_VALUE;
 goto section_processing_jump_label_429;
             }
-            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_29,1);
+            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_430;
-            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_30,1);
+            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_431;
-            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_31,1);
+            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
             if (system_char_variable != '\0') {
 section_processing_jump_label_121:
               buffer_allocation_result = 0x17;
 goto section_processing_jump_label_432;
             }
-            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_32,1);
+            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_433;
-            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_33,1);
+            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_434;
-            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_34,1);
+            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
             if (system_char_variable != '\0') {
               buffer_allocation_result = 0x21;
 goto section_processing_jump_label_435;
             }
-            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_35,1);
+            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
             if (system_char_variable != '\0') {
               buffer_allocation_result = 0x22;
 goto section_processing_jump_label_436;
             }
-            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_36,1);
+            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
             if (system_char_variable != '\0') {
               buffer_allocation_result = 0x23;
 goto section_processing_jump_label_437;
             }
-            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_37,1);
+            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_438;
-            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_38,1);
+            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
             if (system_char_variable != '\0') {
               buffer_allocation_result = 0x25;
 goto section_processing_jump_label_439;
             }
-            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_39,1);
+            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
             if (system_char_variable != '\0') {
               buffer_allocation_result = 0x26;
 goto section_processing_jump_label_440;
             }
-            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_40,1);
+            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
             if (system_char_variable != '\0') {
               buffer_allocation_result = 0x27;
 goto section_processing_jump_label_441;
             }
-            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_41,1);
+            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_442;
-            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_42,1);
+            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
             if (system_char_variable != '\0') {
               buffer_allocation_result = 0x29;
 goto section_processing_jump_label_443;
             }
-            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_43,1);
+            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
             if (system_char_variable != '\0') {
               buffer_allocation_result = 0x2a;
 goto section_processing_jump_label_444;
             }
-            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_44,1);
+            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
             if (system_char_variable != '\0') {
               buffer_allocation_result = 0x2b;
 goto section_processing_jump_label_445;
             }
-            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_45,1);
+            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_446;
-            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_46,1);
+            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
             if (system_char_variable != '\0') {
               buffer_allocation_result = 0x2d;
 goto section_processing_jump_label_447;
             }
-            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_47,1);
+            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
             if (system_char_variable != '\0') {
               buffer_allocation_result = 0x2e;
 goto section_processing_jump_label_448;
             }
-            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_48,1);
+            system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
             if (system_char_variable != '\0') {
               buffer_allocation_result = SYSTEM_CHAR_SLASH;
 goto section_processing_jump_label_449;
@@ -10237,59 +10237,59 @@ goto section_processing_jump_label_449;
         }
       }
       else {
-        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_49,1);
+        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
         if (system_char_variable == '\0') {
-          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_50,1);
+          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
           if (system_char_variable != '\0') {
 section_processing_jump_label_122:
             buffer_allocation_result = 0xb;
 goto section_processing_jump_label_450;
           }
-          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_51,1);
+          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_451;
-          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_52,1);
+          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_452;
-          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_53,1);
+          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
           if (system_char_variable != '\0') {
 section_processing_jump_label_123:
             buffer_allocation_result = 0x11;
 goto section_processing_jump_label_453;
           }
-          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_54,1);
+          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
           if (system_char_variable != '\0') {
             buffer_allocation_result = 0x12;
 goto section_processing_jump_label_454;
           }
-          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_55,1);
+          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
           if (system_char_variable != '\0') {
             buffer_allocation_result = 0x13;
 goto section_processing_jump_label_455;
           }
-          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_56,1);
+          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_456;
-          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_57,1);
+          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
           if (system_char_variable != '\0') {
             buffer_allocation_result = 0x15;
 goto section_processing_jump_label_457;
           }
-          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_58,1);
+          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
           if (system_char_variable != '\0') {
             buffer_allocation_result = 0x16;
 goto section_processing_jump_label_458;
           }
-          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_59,1);
+          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_459;
-          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_60,1);
+          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_460;
-          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_61,1);
+          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_461;
-          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_62,1);
+          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
           if (system_char_variable != '\0') {
 section_processing_jump_label_124:
             buffer_allocation_result = 0x1a;
 goto section_processing_jump_label_462;
           }
-          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_63,1);
+          system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
           if (system_char_variable != '\0') {
             buffer_allocation_result = 0x1b;
 goto section_processing_jump_label_463;
@@ -10298,70 +10298,70 @@ goto section_processing_jump_label_463;
       }
     }
     else {
-      system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_64,1);
+      system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
       if (system_char_variable == '\0') {
-        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_65,1);
+        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_464;
-        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&g_buffer_backup,1);
+        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_465;
-        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_66,1);
+        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_466;
-        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_67,1);
+        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_467;
-        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_68,1);
+        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_468;
-        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_69,1);
+        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_469;
-        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_70,1);
+        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_470;
-        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_71,1);
+        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_471;
-        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_72,1);
+        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_472;
-        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_73,1);
+        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_473;
-        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_74,1);
+        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_474;
-        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_75,1);
+        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_475;
-        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_76,1);
+        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_476;
-        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_77,1);
+        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_477;
-        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_78,1);
+        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
         if (system_char_variable != '\0') {
           buffer_allocation_result = 0x54;
 goto section_processing_jump_label_478;
         }
-        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_79,1);
+        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_479;
-        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_80,1);
+        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_480;
-        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_81,1);
+        system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_481;
       }
     }
   }
   else {
-    system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_82,1);
+    system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
     if (system_char_variable == '\0') {
-      system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_83,1);
+      system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
       if (system_char_variable != '\0') {
 section_processing_jump_label_125:
         buffer_allocation_result = SYSTEM_EIGHT_VALUE;
 goto section_processing_jump_label_482;
       }
-      system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_84,1);
+      system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_483;
-      system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_85,1);
+      system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
       if (system_char_variable != '\0') {
 section_processing_jump_label_126:
         buffer_allocation_result = 0x18;
 goto section_processing_jump_label_484;
       }
-      system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_86,1);
+      system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_485;
-      system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&system_validation_param_87,1);
+      system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
       if (system_char_variable != '\0') {
 section_processing_jump_label_127:
         buffer_allocation_result = 0x28;
@@ -11997,7 +11997,7 @@ unsigned long long get_thread_handle_param(unsigned long long handle_param)
   FlsFree(system_global_data_pointer);
   system_execution_function(*(unsigned long long *)
                  (*(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8) +
-                 STRING_BUFFER_SIZE),1);
+                 STRING_BUFFER_SIZE),SYSTEM_PARAM_SINGLE_VALIDATE);
   if (system_global_data_pointer == SYSTEM_ZERO_VALUE) {
     system_execution_function(&string_buffer_primary);
   }
@@ -12140,7 +12140,7 @@ long long process_context_handle_param(long long *handle_param)
           maximum_stack_size = SYSTEM_ZERO_VALUE;
           maximum_stack_size = merge_32bit_values(system_float_variable,system_float_variable);
           maximum_stack_size = merge_32bit_values(system_float_variable,system_float_variable);
-          maximum_stack_size = CONCAT31(maximum_stack_size_bitfield1_3_,1);
+          maximum_stack_size = CONCAT31(maximum_stack_size_bitfield1_3_,SYSTEM_PARAM_SINGLE_VALIDATE);
           maximum_stack_size = SYSTEM_ZERO_VALUE;
           system_execution_function(thread_operation_flags,&maximum_stack_size,0,auStack_358);
           system_float_variable = fStack_328;
@@ -12204,7 +12204,7 @@ long long process_context_handle_param(long long *handle_param)
           maximum_stack_size = SYSTEM_ZERO_VALUE;
           maximum_stack_size = *(unsigned long long *)(semantic_float_ptr + -2);
           maximum_stack_size = *(unsigned long long *)semantic_float_ptr;
-          maximum_stack_size = CONCAT31(maximum_stack_size_bitfield1_3_,1);
+          maximum_stack_size = CONCAT31(maximum_stack_size_bitfield1_3_,SYSTEM_PARAM_SINGLE_VALIDATE);
           maximum_stack_size = SYSTEM_ZERO_VALUE;
           system_execution_function(thread_operation_flags,&maximum_stack_size,0,auStack_358);
           system_float_variable = fStack_328;
@@ -12686,7 +12686,7 @@ goto section_processing_jump_label_509;
     thread_result_status = system_execution_function();
     if (thread_result_status == SYSTEM_ZERO_VALUE) {
       *(int *)(unregister_bx + SYSTEM_OFFSET_MODULE_SECONDARY) = *(int *)(unregister_bx + SYSTEM_OFFSET_MODULE_SECONDARY) + iStack0000000000000030 + SYSTEM_OFFSET_HANDLE_PARAM;
-      thread_result_status = system_execution_function(*(unsigned long long *)(unregister_bx + SYSTEM_MODULE_OFFSET_1),SYSTEM_MODULE_DATA_ADDR,1);
+      thread_result_status = system_execution_function(*(unsigned long long *)(unregister_bx + SYSTEM_MODULE_OFFSET_1),SYSTEM_MODULE_DATA_ADDR,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto section_processing_jump_label_510;
     }
     buffer_allocation_result = *(unsigned int *)(*(long long *)(unregister_bx + 8) + 8);
@@ -12749,11 +12749,11 @@ goto section_processing_jump_label_516;
       system_system_string_length_counter_ptr = (int *)(*(long long *)(unregister_bx + 8) + SYSTEM_OFFSET_GLOBAL_DATA_PTR);
       *system_system_string_length_counter_ptr = *system_system_string_length_counter_ptr + thread_result_status;
       buffer_allocation_result = buffer_allocation_result + SYSTEM_OFFSET_HANDLE_PARAM + stack_input_param_40_low_half_;
-      thread_result_status = system_execution_function(*(unsigned long long *)(unregister_bx + SYSTEM_MODULE_OFFSET_1),stack_input_param_40_low_half_,1);
+      thread_result_status = system_execution_function(*(unsigned long long *)(unregister_bx + SYSTEM_MODULE_OFFSET_1),stack_input_param_40_low_half_,SYSTEM_PARAM_SINGLE_VALIDATE);
       if (thread_result_status != 0) break;
     }
     else {
-      system_execution_function(*(unsigned long long *)(unregister_bx + SYSTEM_MODULE_OFFSET_1),SYSTEM_EXECUTION_PARAM_SPECIAL,1);
+      system_execution_function(*(unsigned long long *)(unregister_bx + SYSTEM_MODULE_OFFSET_1),SYSTEM_EXECUTION_PARAM_SPECIAL,SYSTEM_PARAM_SINGLE_VALIDATE);
     }
     if (*(uint *)(*(long long *)(unregister_bx + 8) + SYSTEM_CONFIG_OFFSET_INIT_FLAG) <= buffer_allocation_result) break;
 section_processing_jump_label_149:
@@ -12774,7 +12774,7 @@ section_processing_jump_label_151:
     }
     if ((*(long long *)(unregister_bx + SYSTEM_POINTER_OFFSET_1D0) != 0) && ((unaffected_register_d & SYSTEM_CONFIG_BUFFER_SIZE_ZERO0) == 0)) {
       system_execution_function(*(unsigned long long *)(system_global_data_pointer + SYSTEM_POINTER_OFFSET_1A0),*(long long *)(unregister_bx + SYSTEM_POINTER_OFFSET_1D0),
-                    &system_validation_function_2,SYSTEM_OFFSET_282,1);
+                    &system_validation_function_2,SYSTEM_OFFSET_282,SYSTEM_PARAM_SINGLE_VALIDATE);
     }
     *(ulong long *)(unregister_bx + SYSTEM_OFFSET_STRING_COUNTER) = unaffected_register;
     *(unsigned int *)(*(long long *)(unregister_bx + 8) + 8) = SYSTEM_TWO_VALUE;
@@ -12877,7 +12877,7 @@ goto section_processing_jump_label_518;
     buffer_allocation_result = SYSTEM_ZERO_VALUE;
   }
 section_processing_jump_label_154:
-  buffer_allocation_result = system_execution_function(handle_param,thread_operation_flags,thread_operation_flags + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG,&maximum_stack_size,&uStackX_10,buffer_allocation_result,1);
+  buffer_allocation_result = system_execution_function(handle_param,thread_operation_flags,thread_operation_flags + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG,&maximum_stack_size,&uStackX_10,buffer_allocation_result,SYSTEM_PARAM_SINGLE_VALIDATE);
   if ((int)buffer_allocation_result == SYSTEM_ZERO_VALUE) {
     *(int *)(thread_operation_flags + SYSTEM_OFFSET_GLOBAL_DATA_PTR) = *(int *)(thread_operation_flags + SYSTEM_OFFSET_GLOBAL_DATA_PTR) + 1;
     return 0;
