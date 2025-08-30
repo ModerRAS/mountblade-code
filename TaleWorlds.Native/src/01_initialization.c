@@ -16571,9 +16571,9 @@ void InitializeDatabaseResourceNode(void)
   void *system_buffer_ptr_graphics_data;
   void *system_buffer_ptr_graphics_buffer;
   uint32_t init_stack_parameter_178;
-  undefined system_local_buffer_graphics [32];
+  undefined system_local_buffer_graphics [SYSTEM_ARRAY_INDEX_GRAPHICS_BUFFER];
   longlong **apstack_system_memory_pointer [3];
-  uint8_t system_local_buffer_username [272];
+  uint8_t system_local_buffer_username [SYSTEM_ARRAY_INDEX_USERNAME_LENGTH];
   ulonglong init_stack_parameter_28;
 
   init_stack_parameter_198 = INVALID_HANDLE_VALUE;
