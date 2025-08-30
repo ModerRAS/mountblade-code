@@ -25430,7 +25430,7 @@ InitializeEventSystem(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint
   system_result_operation = (longlong)system_buffer_ptr_thread_data - (longlong)system_buffer_ptr_thread_context >> 5;
   system_pointer_value = system_pointer_value;
   if (system_flag_status == SYSTEM_COMPARISON_ZERO) {
-INIT_LABEL_SYSTEM_54302:
+INIT_LABEL_THREAD_CONTEXT_CHECK:
     system_result_operation = 0;
 system_label_init_check_loop:
     for (; system_pointer_temp != system_pointer_value; system_pointer_value = system_pointer_temp + 4) {
@@ -25510,7 +25510,7 @@ INIT_LABEL_EVENT_QUEUE_SETUP:
   system_result_operation = (int)system_counter_temp + 1;
   system_result_operation = (ulonglong)system_integer_unsigned_temp;
   init_int_pointer_temp = init_int_pointer_temp + 8;
-  if (system_counter_temp <= (ulonglong)(longlong)(int)system_counter_temp) goto INIT_LABEL_SYSTEM_54302;
+  if (system_counter_temp <= (ulonglong)(longlong)(int)system_counter_temp) goto INIT_LABEL_THREAD_CONTEXT_CHECK;
   goto INIT_LABEL_SYSTEM_5419d;
 }
 // WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
@@ -26430,8 +26430,8 @@ void InitializeTestingSystem(longlong handleIdentifier)
           system_memory_comparison_result = *(int *)(*(longlong *)(system_counter_temp + system_long_result) + SYSTEM_DATA_COMPARE_SIZE);
           if (system_temp_integer_primary == system_memory_comparison_result) {
             if (system_temp_integer_primary == SYSTEM_COMPARISON_ZERO) {
-INIT_LABEL_SYSTEM_56220:
-              if (system_memory_comparison_result != SYSTEM_COMPARISON_ZERO) goto INIT_LABEL_SYSTEM_56228;
+INIT_LABEL_MEMORY_ALLOCATION:
+              if (system_memory_comparison_result != SYSTEM_COMPARISON_ZERO) goto INIT_LABEL_RESOURCE_SETUP;
               module_initialization_flag = true;
             }
             else {
@@ -26447,8 +26447,8 @@ INIT_LABEL_SYSTEM_56220:
             }
           }
           else {
-            if (system_temp_integer_primary == SYSTEM_COMPARISON_ZERO) goto INIT_LABEL_SYSTEM_56220;
-INIT_LABEL_SYSTEM_56228:
+            if (system_temp_integer_primary == SYSTEM_COMPARISON_ZERO) goto INIT_LABEL_MEMORY_ALLOCATION;
+INIT_LABEL_RESOURCE_SETUP:
             module_initialization_flag = false;
           }
           system_temp_integer = system_temp_integer;
@@ -28416,7 +28416,7 @@ INIT_LABEL_SYSTEM_580f9:
     } while (node_next != (uint64_t *)SYSTEM_NULL_POINTER);
     if (system_pointer_temp != handleIdentifier) {
       if (*(int *)(system_pointer_temp + 6) == SYSTEM_COMPARISON_ZERO) {
-INIT_LABEL_SYSTEM_58138:
+INIT_LABEL_COMPONENT_INIT:
         *resourceIdentifier = system_pointer_value;
         return resourceIdentifier;
       }
@@ -28429,7 +28429,7 @@ INIT_LABEL_SYSTEM_58138:
           if (system_boolean_result != system_counter_temp) break;
           init_temp_byte_ptr = init_temp_byte_ptr + 1;
         } while (system_counter_temp != SYSTEM_COMPARISON_ZERO);
-        if ((int)(system_boolean_result - system_counter_temp) < SYSTEM_COMPARISON_ONE) goto INIT_LABEL_SYSTEM_58138;
+        if ((int)(system_boolean_result - system_counter_temp) < SYSTEM_COMPARISON_ONE) goto INIT_LABEL_COMPONENT_INIT;
       }
     }
   }
@@ -30301,13 +30301,13 @@ void InitializeUISystem(longlong *handleIdentifier,uint64_t resourceIdentifier)
     system_long_result_temp = system_long_result * 2;
     if (system_long_result == SYSTEM_COMPARISON_ZERO) {
       system_long_result_temp = 0;
-      goto INIT_LABEL_SYSTEM_59885;
+      goto INIT_LABEL_ENGINE_STARTUP;
     }
   }
   system_long_result_temp = AllocateSystemResource(systemMemoryPool,system_long_result << 5,(char)handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER]);
   system_long_result_temp = handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   system_long_result_temp = *handleIdentifier;
-INIT_LABEL_SYSTEM_59885:
+INIT_LABEL_ENGINE_STARTUP:
   system_long_result_temp = InitializeNetworkInitNode(system_long_result,system_long_result,system_long_result);
   ProcessResourceData(system_long_result,resourceIdentifier);
   system_pointer_value = (uint64_t *)handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
@@ -35129,7 +35129,7 @@ INIT_LABEL_SYSTEM_5ff87:
   do {
     system_long_result_temp = system_temp_long;
     if (system_long_result == SYSTEM_COMPARISON_ZERO) {
-INIT_LABEL_SYSTEM_60026:
+INIT_LABEL_FRAMEWORK_READY:
       system_long_result_temp = AllocateSystemResource(systemMemoryPool,SYSTEM_CONFIG_SIZE_NETWORK_BUFFER8,10);
       if (system_long_result == SYSTEM_COMPARISON_ZERO) {
         return 0;
@@ -35144,7 +35144,7 @@ INIT_LABEL_SYSTEM_60026:
     system_node_root = (uint *)(system_long_result + SYSTEM_CONFIG_SIZE_PHYSICS0);
     system_result_operation = *system_node_root;
     if ((system_counter_temp & SYSTEM_SEMAPHORE_MAX_COUNT_7FFFFFFF) == SYSTEM_COMPARISON_ZERO) {
-INIT_LABEL_SYSTEM_60007:
+INIT_LABEL_SYSTEM_COMPLETE:
       system_long_result_temp = *(longlong *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_28);
       goto INIT_LABEL_SYSTEM_5ff87;
     }
@@ -35154,7 +35154,7 @@ INIT_LABEL_SYSTEM_60007:
       *system_node_root = system_counter_temp + 1;
     }
     UNLOCK();
-    if (system_counter_temp != system_counter_temp) goto INIT_LABEL_SYSTEM_60007;
+    if (system_counter_temp != system_counter_temp) goto INIT_LABEL_SYSTEM_COMPLETE;
     LOCK();
     system_long_result_temp = *(longlong *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_28);
     comparison_result_flag = system_long_result == system_temp_long;
@@ -35170,7 +35170,7 @@ INIT_LABEL_SYSTEM_60007:
       if (system_long_result != SYSTEM_COMPARISON_ZERO) {
         return system_temp_long;
       }
-      goto INIT_LABEL_SYSTEM_60026;
+      goto INIT_LABEL_FRAMEWORK_READY;
     }
     LOCK();
     system_result_operation = *system_node_root;
@@ -35663,13 +35663,13 @@ uint64_t InitializeVideoSystem(longlong handleIdentifier,char resourceIdentifier
         *(int *)(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER0) = *(int *)(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER0) + -1;
         UNLOCK();
         system_result_operation = SYSTEM_HANDLE_STATUS_VALID;
-        goto INIT_LABEL_SYSTEM_60993;
+        goto INIT_LABEL_INITIALIZATION_DONE;
       }
     }
   }
   system_stack_memory_pointer = system_memory_pointer;
   system_result_operation = 0;
-INIT_LABEL_SYSTEM_60993:
+INIT_LABEL_INITIALIZATION_DONE:
   if (stack_system_memory_pointer != (longlong *)SYSTEM_NULL_POINTER) {
     (**(code **)(*stack_system_memory_pointer + SYSTEM_OBJECT_OFFSET_38))(stack_system_memory_pointer);
   }
@@ -37651,7 +37651,7 @@ void initialize_system_module_sixty_seven(longlong *handleIdentifier,longlong re
   init_stack_ulong_param_audio = SYSTEM_OFFSET_F;
   init_stack_uint_param_68 = init_stack_uint_param_68 & SYSTEM_OFFSET_Ffffff00;
   init_stack_uint_param_buffer = system_integer_unsigned_temp;
-  if (system_flag_status == SYSTEM_COMPARISON_ZERO) goto INIT_LABEL_SYSTEM_65009;
+  if (system_flag_status == SYSTEM_COMPARISON_ZERO) goto INIT_LABEL_RUNTIME_START;
   system_long_result_temp = 0;
   system_buffer_ptr_context_main = &resourcePoolPointer;
   init_stack_uint_param_f0_hex = 0;
@@ -37749,7 +37749,7 @@ INIT_LABEL_SYSTEM_64eed:
   system_buffer_ptr_data_primary = (uint8_t *)SYSTEM_NULL_POINTER;
   init_stack_uint_param_f0_hex = init_stack_uint_param_f0_hex & SYSTEM_HIGH_32BIT_MASK;
   system_buffer_ptr_context_main = &globalSystemPointerData;
-INIT_LABEL_SYSTEM_65009:
+INIT_LABEL_RUNTIME_START:
   system_pointer_value = (uint64_t *)(system_long_result + (longlong)system_pointer_temp);
   if (system_buffer_ptr_input_context < (uint64_t *)(system_long_result + (longlong)system_pointer_temp)) {
     system_pointer_value = system_buffer_ptr_input_context;
@@ -38571,13 +38571,13 @@ void InitializeSystemModule_save_system(uint64_t handleIdentifier,uint64_t resou
     init_stack_parameter_1b0 = 0;
     init_stack_parameter_1a0 = (ulonglong)init_stack_parameter_1a0._4_4_ << SYSTEM_NODE_HEADER_SIZE;
     system_buffer_ptr_graphics_context = &globalSystemPointerData;
-    goto INIT_LABEL_SYSTEM_66971;
+    goto INIT_LABEL_APPLICATION_READY;
   }
   if (((g_system_flag_initialization != SYSTEM_CHAR_NULL_TERMINATOR) || (g_engine_ready_flag != SYSTEM_CHAR_NULL_TERMINATOR)) ||
      (*(int *)(systemCoreData + SYSTEM_DATA_COMPARE_SIZEe0) == SYSTEM_COMPARISON_ONE)) {
     ConfigureSystemParameters(g_system_context_1,5,3,&g_system_global_config);
     InitializeGraphicsMemory();
-    goto INIT_LABEL_SYSTEM_66971;
+    goto INIT_LABEL_APPLICATION_READY;
   }
   if ((system_configuration == SYSTEM_CHAR_NULL_TERMINATOR) && (g_system_data_variable1 == SYSTEM_CHAR_NULL_TERMINATOR)) {
     if (((g_system_string_buffer == SYSTEM_CHAR_NULL_TERMINATOR) || (system_temp_integer = IsDebuggerPresent(), system_temp_integer_primary != SYSTEM_COMPARISON_ZERO)) &&
@@ -38752,7 +38752,7 @@ INIT_LABEL_SYSTEM_6650a:
     init_stack_buffer_size_180 = 0;
     system_buffer_ptr_operation_handle = &globalSystemPointerData;
   }
-INIT_LABEL_SYSTEM_66971:
+INIT_LABEL_APPLICATION_READY:
                     // WARNING: Subroutine does not return
   InitializeSystemStack(init_stack_system_handle ^ (ulonglong)system_local_buffer_1f8);
 }
