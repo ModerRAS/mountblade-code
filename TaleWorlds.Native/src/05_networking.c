@@ -4,6 +4,32 @@
 // 原本实现：包含复杂的网络连接管理、数据传输、错误处理等功能
 // 简化实现：主要处理硬编码值的语义化替换和变量名改善，保持核心功能不变
 
+// 新增语义化常量定义 - 网络超时和延迟常量
+#define NETWORK_TIMEOUT_THRESHOLD_3999 3999  // 网络超时阈值3999
+#define NETWORK_TIMEOUT_THRESHOLD_999 999    // 网络超时阈值999
+#define NETWORK_OPERATION_SUCCESS 1         // 网络操作成功
+#define NETWORK_OPERATION_FAILURE 0         // 网络操作失败
+
+// 新增语义化常量定义 - 网络缓冲区大小常量
+#define NETWORK_BUFFER_SIZE_SMALL 1         // 网络缓冲区小尺寸
+#define NETWORK_BUFFER_SIZE_MEDIUM 2       // 网络缓冲区中等尺寸
+#define NETWORK_BUFFER_SIZE_LARGE 6         // 网络缓冲区大尺寸
+
+// 新增语义化常量定义 - 网络状态常量
+#define NETWORK_STATUS_DISCONNECTED 0       // 网络状态：已断开
+#define NETWORK_STATUS_CONNECTED 1          // 网络状态：已连接
+#define NETWORK_STATUS_ERROR -1             // 网络状态：错误
+
+// 新增语义化常量定义 - 网络加密常量
+#define NETWORK_ENCRYPTION_DISABLED 0       // 网络加密：禁用
+#define NETWORK_ENCRYPTION_ENABLED 1        // 网络加密：启用
+#define NETWORK_ENCRYPTION_MULTI_MODE 2     // 网络加密：多模式
+
+// 新增语义化常量定义 - 网络数据包大小
+#define NETWORK_PACKET_HEADER_SIZE 8         // 网络数据包头部大小
+#define NETWORK_PACKET_DATA_OFFSET 8         // 网络数据包数据偏移量
+#define NETWORK_PACKET_OPERATION_COUNT 6     // 网络数据包操作计数
+
 // 新增语义化常量定义 - 套接字结构偏移量
 #define NETWORK_SOCKET_HEADER_OFFSET_6F 0x6F  // 套接字头部偏移量6F
 #define NETWORK_SOCKET_HEADER_OFFSET_73 0x73  // 套接字头部偏移量73
@@ -22380,7 +22406,7 @@ void networkSendDataPacket3(void)
   network_encrypt_content(network_socket_register_value[NETWORK_SOCKET_HANDLE_OFFSET] ^ (ulonglong)&network_buffer_primary);
   network_status_code_calc = network_socket_register_value[NETWORK_ARRAY_INDEX_HANDSHAKE_TYPE];
     if ((network_status_code_calc < (ulonglong)network_socket_register_value[NETWORK_ARRAY_INDEX_HANDSHAKE_TYPE]) ||
-       ((ulonglong)((longlong)*(int32_t *)(network_socket_register_value + 0x56) * MODULE_STATUS_OFFSET + network_socket_register_value[NETWORK_ARRAY_INDEX_HANDSHAKE_TYPE]) <= network_status_code_calc))
+       ((ulonglong)((longlong)*(int32_t *)(network_socket_register_value + NETWORK_MODULE_STATUS_OFFSET) * MODULE_STATUS_OFFSET + network_socket_register_value[NETWORK_ARRAY_INDEX_HANDSHAKE_TYPE]) <= network_status_code_calc))
       network_operation_result = networkQueryStatus(network_packet_size_value,network_status_code_calc,1);
       if (network_operation_result != 0) break;
       network_index_counter_value = (**(code **)(*connection_info_ptr + SOCKET_DATA_POINTER_OFFSET))(connection_info_ptr,network_status_code_calc,1);
@@ -28736,7 +28762,7 @@ void NetworkProcessConnectionResponse(uint64_t *network_socket_descriptor)
   if (network_socket_descriptor[SOCKET_PRIORITY_OFFSET] != 0) {
     network_status_return_code = NetworkServerOperation0(network_socket_descriptor[SOCKET_PRIORITY_OFFSET],0);
     network_socket_descriptor[SOCKET_PRIORITY_OFFSET] = 0;
-  if (network_socket_descriptor[0x45] != 0) {
+  if (network_socket_descriptor[NETWORK_SOCKET_ENDPOINT_OFFSET] != 0) {
     network_status_return_code = NetworkServerOperation0();
       network_socket_descriptor[NETWORK_SOCKET_ENDPOINT_OFFSET] = 0;
   networkScaleConnections2(network_socket_descriptor + NETWORK_CONFIG_DATA_OFFSET2);
@@ -33474,7 +33500,7 @@ void networkValidateConnectionState(int64_t network_socket_descriptor,uint32_t *
                     if (network_operation_progress == 0) {
                       network_connection_handle_main._0_4_ = network_buffer_ptr[NETWORK_SPECIAL_OFFSET_AUDIO_CONFIG];
                       if (network_operation_progress == 0) {
-                        network_connection_handle_main = CONCAT44(network_connection_handle_main._4_4_,network_buffer_ptr[0x6f]);
+                        network_connection_handle_main = CONCAT44(network_connection_handle_main._4_4_,network_buffer_ptr[NETWORK_SOCKET_CONFIG_OFFSET_6F]);
                         network_operation_progress = (**(code **)**(uint64_t **)(network_socket_descriptor + 8))
                                           (*(uint64_t **)(network_socket_descriptor + 8),&network_connection_handle_main,4);
                         if (network_operation_progress == 0) {
