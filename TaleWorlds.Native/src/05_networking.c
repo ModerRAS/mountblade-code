@@ -3887,13 +3887,13 @@ uint32 g_network_latency_measurement;
 // 网络丢包率（美化后）
 float g_network_packet_loss_rate;
 // 网络统计信息
-NetworkStatistics* g_networkStatistics;
+NetworkStatistics* g_network_statistics;
 // 网络性能指标
-NetworkPerformance* g_networkPerformance;
+NetworkPerformance* g_network_performance;
 // 网络度量数据
-NetworkMetrics* g_networkMetrics;
+NetworkMetrics* g_network_metrics;
 // 网络诊断信息
-NetworkDiagnostics* g_networkDiagnostics;
+NetworkDiagnostics* g_network_diagnostics;
 // 网络发送数据缓冲区指针
 void* g_network_send_buffer_ptr;
 // 网络接收数据缓冲区指针

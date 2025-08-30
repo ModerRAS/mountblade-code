@@ -18950,7 +18950,7 @@ uint64_t * InitializeInputMutex(uint64_t *handleIdentifier)
   *handleIdentifier = &g_system_data_main;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = handleIdentifier + SYSTEM_OFFSET_3;
   *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
-  *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = 0;
+  *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = SYSTEM_UINT8_ZERO_VALUE;
   return handleIdentifier;
 }
 // WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
@@ -20874,7 +20874,7 @@ uint64_t * ConfigureGraphicsShader(uint64_t *handleIdentifier)
   *handleIdentifier = &g_thread_parameter_ptr;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = handleIdentifier + SYSTEM_OFFSET_3;
   *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
-  *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = 0;
+  *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = SYSTEM_UINT8_ZERO_VALUE;
   return handleIdentifier;
 }
 // WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
@@ -20929,7 +20929,7 @@ InitializeInputMutex(uint64_t *handleIdentifier,longlong resourceIdentifier,uint
   *handleIdentifier = &g_thread_parameter_ptr;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = handleIdentifier + SYSTEM_OFFSET_3;
   *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
-  *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = 0;
+  *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = SYSTEM_UINT8_ZERO_VALUE;
   *(uint32_t *)(handleIdentifier + 2) = *(uint32_t *)(resourceIdentifier + SYSTEM_DATA_COMPARE_SIZE);
   system_pointer_value = &g_system_data_variable3;
   if (*(void **)(resourceIdentifier + SYSTEM_OFFSET_8) != (void *)SYSTEM_NULL_POINTER) {
@@ -21019,7 +21019,7 @@ uint64_t * InitializeResourceSystem(uint64_t *handleIdentifier)
   *handleIdentifier = &g_system_core_data_ptr;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = handleIdentifier + SYSTEM_OFFSET_3;
   *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
-  *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = 0;
+  *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = SYSTEM_UINT8_ZERO_VALUE;
   return handleIdentifier;
 }
 // WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
@@ -21074,7 +21074,7 @@ InitializeSecuritySystem(uint64_t *handleIdentifier,longlong resourceIdentifier,
   *handleIdentifier = &g_system_core_data_ptr;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = handleIdentifier + SYSTEM_OFFSET_3;
   *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
-  *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = 0;
+  *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = SYSTEM_UINT8_ZERO_VALUE;
   if (resourceIdentifier != SYSTEM_COMPARISON_ZERO) {
     system_long_result_temp = -1;
     do {
@@ -21786,7 +21786,7 @@ void initialize_system_module_twenty_four(uint64_t *handleIdentifier)
   *handleIdentifier = &g_system_data_main;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = handleIdentifier + SYSTEM_OFFSET_3;
   *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
-  *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = 0;
+  *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = SYSTEM_UINT8_ZERO_VALUE;
   system_result_operation = *(uint *)(handleIdentifier + 2);
   system_result_operation = system_counter_temp + 7;
   if (system_counter_temp < SYSTEM_MAX_CONFIG_SIZE) {
@@ -21870,7 +21870,7 @@ InitializeStringManager(uint64_t *handleIdentifier,longlong resourceIdentifier,u
   *handleIdentifier = &g_system_data_main;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = handleIdentifier + SYSTEM_OFFSET_3;
   *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
-  *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = 0;
+  *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = SYSTEM_UINT8_ZERO_VALUE;
   *(uint32_t *)(handleIdentifier + 2) = *(uint32_t *)(resourceIdentifier + SYSTEM_DATA_COMPARE_SIZE);
   system_pointer_value = &g_system_data_variable3;
   if (*(void **)(resourceIdentifier + SYSTEM_OFFSET_8) != (void *)SYSTEM_NULL_POINTER) {
@@ -22200,7 +22200,7 @@ uint64_t * InitializeTextureSystem(uint64_t *handleIdentifier)
   *handleIdentifier = &g_system_core_data_ptr;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = handleIdentifier + SYSTEM_OFFSET_3;
   *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
-  *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = 0;
+  *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = SYSTEM_UINT8_ZERO_VALUE;
   ValidateResourceHandle(handleIdentifier + SYSTEM_NODE_STRIDE_SMALL);
   handleIdentifier[SYSTEM_DATA_BLOCK_SIZE_74] = 0;
   handleIdentifier[SYSTEM_DATA_BLOCK_SIZE_MEDIUM] = 0;
@@ -27460,7 +27460,7 @@ initialize_system_module_forty_six(uint64_t *handleIdentifier,longlong resourceI
   *handleIdentifier = &g_system_data_node_primary_config;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = handleIdentifier + SYSTEM_OFFSET_3;
   *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
-  *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = 0;
+  *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = SYSTEM_UINT8_ZERO_VALUE;
   if (resourceIdentifier != SYSTEM_COMPARISON_ZERO) {
     system_long_result_temp = -1;
     do {
@@ -40473,7 +40473,7 @@ initialize_system_module_thirteen(uint64_t *handleIdentifier,longlong resourceId
   *handleIdentifier = &g_system_global_config;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = handleIdentifier + SYSTEM_OFFSET_3;
   *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
-  *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = 0;
+  *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = SYSTEM_UINT8_ZERO_VALUE;
   *(uint32_t *)(handleIdentifier + 2) = *(uint32_t *)(resourceIdentifier + SYSTEM_DATA_COMPARE_SIZE);
   system_pointer_value = &g_system_data_variable3;
   if (*(void **)(resourceIdentifier + SYSTEM_OFFSET_8) != (void *)SYSTEM_NULL_POINTER) {
@@ -40492,7 +40492,7 @@ uint64_t * InitializeShaderSystem(uint64_t *handleIdentifier)
   *handleIdentifier = &g_system_global_config;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = handleIdentifier + SYSTEM_OFFSET_3;
   *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_2) = SYSTEM_UINT32_ZERO_VALUE;
-  *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = 0;
+  *(uint8_t *)(handleIdentifier + SYSTEM_ARRAY_OFFSET_THIRD) = SYSTEM_UINT8_ZERO_VALUE;
   handleIdentifier[SYSTEM_OBJECT_OFFSET_2B] = 0;
   handleIdentifier[SYSTEM_HANDLE_INDEX_2C] = _guard_check_icall;
   handleIdentifier[SYSTEM_HANDLE_INDEX_2F] = 0;
