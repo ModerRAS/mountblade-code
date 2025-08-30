@@ -409,14 +409,14 @@
 // 系统初始化浮点系数常量（2025年8月30日最终批次补充）
 #define SYSTEM_INIT_FLOAT_COEFFICIENT_1        1.6750001  // 系统初始化浮点系数1 - 用于计算system_offset_value
 #define SYSTEM_INIT_FLOAT_COEFFICIENT_2        2.4750001  // 系统初始化浮点系数2 - 用于计算system_offset_value
-#define SYSTEM_INIT_FLOAT_COEFFICIENT_3        4.4666667  // 系统初始化浮点系数3 - 用于计算system_float_5
-#define SYSTEM_INIT_FLOAT_COEFFICIENT_4        6.6000004  // 系统初始化浮点系数4 - 用于计算system_float_5
+#define SYSTEM_INIT_FLOAT_COEFFICIENT_3        4.4666667  // 系统初始化浮点系数3 - 用于计算system_float_transform_b
+#define SYSTEM_INIT_FLOAT_COEFFICIENT_4        6.6000004  // 系统初始化浮点系数4 - 用于计算system_float_transform_b
 #define SYSTEM_INIT_FLOAT_COEFFICIENT_5        3.3500001  // 系统初始化浮点系数5 - 用于计算system_scaling_factor
 #define SYSTEM_INIT_FLOAT_COEFFICIENT_6        4.9500003  // 系统初始化浮点系数6 - 用于计算system_scaling_factor
-#define SYSTEM_INIT_FLOAT_COEFFICIENT_7        13.400001  // 系统初始化浮点系数7 - 用于计算system_float_4
-#define SYSTEM_INIT_FLOAT_COEFFICIENT_8        19.800001  // 系统初始化浮点系数8 - 用于计算system_float_4
-#define SYSTEM_INIT_FLOAT_COEFFICIENT_9        17.866667  // 系统初始化浮点系数9 - 用于计算system_float_5
-#define SYSTEM_INIT_FLOAT_COEFFICIENT_10       26.400002  // 系统初始化浮点系数10 - 用于计算system_float_5
+#define SYSTEM_INIT_FLOAT_COEFFICIENT_7        13.400001  // 系统初始化浮点系数7 - 用于计算system_float_transform_a
+#define SYSTEM_INIT_FLOAT_COEFFICIENT_8        19.800001  // 系统初始化浮点系数8 - 用于计算system_float_transform_a
+#define SYSTEM_INIT_FLOAT_COEFFICIENT_9        17.866667  // 系统初始化浮点系数9 - 用于计算system_float_transform_b
+#define SYSTEM_INIT_FLOAT_COEFFICIENT_10       26.400002  // 系统初始化浮点系数10 - 用于计算system_float_transform_b
 
 // 系统初始化浮点数值语义化常量（2025年8月30日最终批次补充美化）
 #define SYSTEM_INIT_FLOAT_VALUE_ZERO           0.0        // 零值
