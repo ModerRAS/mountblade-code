@@ -9335,7 +9335,7 @@ void initialize_memory_manager(longlong resource_handle_identifier,uint64 resour
   uint64 validation_flag;
   longlong utility_long_value;
   int cpu_register_ebx;
-  uint32 cpu_register_1c;
+  uint32 utility_cpu_register_primary;
   longlong stack_frame_pointer;
   longlong utility_cpu_context;
   char cpu_register_r11_byte;
