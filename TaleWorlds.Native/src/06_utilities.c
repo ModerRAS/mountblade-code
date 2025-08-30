@@ -3616,8 +3616,8 @@ uint64 manage_resource_memoryBlock(longlong resource_handle_identifier,longlong 
     return iteration_counter;
   }
   *(int *)(utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] + ERROR_CODE_INVALID_HANDLE) = *(int *)(utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] + ERROR_CODE_INVALID_HANDLE) + 1;
-  if (*(int *)(utility_stack_buffer_array[0] + UTILITY_SYS_STATUS_OFFSET) + *(int *)(utility_stack_buffer_array[0] + UTILITY_SYSTEM_STATUS_OFFSET_2) +
-      *(int *)(utility_stack_buffer_array[0] + ERROR_CODE_INVALID_HANDLE) == 1) {
+  if (*(int *)(utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] + UTILITY_SYS_STATUS_OFFSET) + *(int *)(utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] + UTILITY_SYSTEM_STATUS_OFFSET_2) +
+      *(int *)(utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] + ERROR_CODE_INVALID_HANDLE) == 1) {
     utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] = 0;
     utility_operation_status = utility_initialize_resource(utility_stack_buffer_array);
     if (utility_operation_status == 0) {
