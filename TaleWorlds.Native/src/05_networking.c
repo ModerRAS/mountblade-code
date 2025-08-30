@@ -467,6 +467,9 @@
 // 网络系统超时指针数组索引语义化常量（本次美化内容）
 #define NETWORK_TIMEOUT_PTR_INDEX_STATUS       3
 
+// 网络系统超时值数组索引语义化常量（本次美化内容）
+#define NETWORK_TIMEOUT_VALUE_INDEX_STATUS     3
+
 // 网络系统处理器索引指针数组索引语义化常量（本次美化内容）
 #define NETWORK_PROCESSOR_INDEX_PTR_STATUS     3
 
@@ -529,6 +532,31 @@
 
 // 网络系统缓冲区指针索引语义化常量（本次美化内容）
 #define NETWORK_BUFFER_PTR_INDEX_STATUS    100   // 缓冲区指针状态索引
+
+// 网络系统负偏移量语义化常量（本次美化内容）
+#define NETWORK_NEGATIVE_OFFSET_3         -3     // 负偏移量3
+#define NETWORK_NEGATIVE_OFFSET_5         -5     // 负偏移量5
+#define NETWORK_NEGATIVE_OFFSET_7         -7     // 负偏移量7
+#define NETWORK_NEGATIVE_OFFSET_9         -9     // 负偏移量9
+
+// 网络系统缓冲区大小语义化常量（本次美化内容）
+#define NETWORK_BUFFER_SIZE_64           64     // 缓冲区大小64字节
+#define NETWORK_BUFFER_SIZE_96           96     // 缓冲区大小96字节
+#define NETWORK_BUFFER_SIZE_128          128    // 缓冲区大小128字节
+#define NETWORK_BUFFER_SIZE_520          520    // 缓冲区大小520字节
+#define NETWORK_BUFFER_SIZE_560          560    // 缓冲区大小560字节
+#define NETWORK_BUFFER_SIZE_624          624    // 缓冲区大小624字节
+#define NETWORK_BUFFER_SIZE_784          784    // 缓冲区大小784字节
+#define NETWORK_BUFFER_SIZE_1128         1128   // 缓冲区大小1128字节
+#define NETWORK_BUFFER_SIZE_1536         1536   // 缓冲区大小1536字节
+
+// 网络系统数组索引语义化常量（本次美化内容）
+#define NETWORK_ARRAY_INDEX_9           9      // 数组索引9
+#define NETWORK_ARRAY_INDEX_10          10     // 数组索引10
+#define NETWORK_ARRAY_INDEX_11          11     // 数组索引11
+#define NETWORK_ARRAY_INDEX_12          12     // 数组索引12
+#define NETWORK_ARRAY_INDEX_13          13     // 数组索引13
+#define NETWORK_ARRAY_INDEX_15          15     // 数组索引15
 
 #define NETWORK_HARD_CODED_VALUES
 #define STRUCT_FIELD_BYTE_0    _byte_0_
@@ -11053,7 +11081,7 @@ NetworkInitializeTimeoutSystem(int64_t network_socket_handle, uint32_t *network_
     *network_timeout_value = network_data_pointer_offsetset_tertiary;
     network_timeout_value[NETWORK_OPERATION_SUCCESS] = network_connection_processor_data_primary;
     network_timeout_value[NETWORK_BUFFER_CAPACITY_MEDIUM] = (uint)network_packet_count;
-    network_timeout_value[3] = network_packet_count._field_high_dword_;
+    network_timeout_value[NETWORK_TIMEOUT_VALUE_INDEX_STATUS] = network_packet_count._field_high_dword_;
     network_timeout_value[NETWORK_ARRAY_SIZE_4] = network_timeout_value;
     network_timeout_value[NETWORK_TIMEOUT_CONFIG_INDEX_EXTENDED_5] = network_operation_status_code_temporary_variable;
     network_timeout_value[NETWORK_BUFFER_SIZE_LARGE] = network_timeout_tertiary_value;
