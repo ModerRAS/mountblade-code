@@ -19834,7 +19834,7 @@ void initialize_system_module_thirty_one(uint64_t handleIdentifier,uint64_t reso
       system_pointer_value = *(void **)(system_configuration_data + SYSTEM_OFFSET_8 + system_long_result);
       system_pointer_value = &g_system_data_variable3;
       if (system_pointer_temp != (void *)SYSTEM_NULL_POINTER) {
-        system_pointer_value = system_pointer_value;
+        // 空条件块，保留结构
       }
       InitializeSystemModule(system_pointer_temp,&g_global_config_6,system_pointer_temp,*(uint64_t *)(system_configuration_data + SYSTEM_NODE_HEADER_SIZE + system_long_result));
       system_temp_integer = system_temp_integer_result + SYSTEM_OFFSET_1;
