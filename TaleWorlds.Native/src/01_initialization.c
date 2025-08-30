@@ -63011,7 +63011,7 @@ longlong *system_memory_pool_pointer;
 
 // 系统初始化硬编码值语义化常量（2025年8月30日最终批次最新补充）
 // 内存布局偏移量常量
-#define SYSTEM_INIT_OFFSET_GLOBAL_7AB8        SYSTEM_INIT_OFFSET_GLOBAL_7AB8   // 全局偏移量7AB8
+#define SYSTEM_INIT_OFFSET_GLOBAL_7AB8        0x7ab8   // 全局偏移量7AB8
 #define SYSTEM_INIT_OFFSET_GLOBAL_560         SYSTEM_INIT_OFFSET_GLOBAL_560    // 全局偏移量560
 #define SYSTEM_INIT_OFFSET_GLOBAL_544         SYSTEM_INIT_OFFSET_GLOBAL_544    // 全局偏移量544
 #define SYSTEM_INIT_OFFSET_GLOBAL_3F4         SYSTEM_INIT_OFFSET_GLOBAL_3F4    // 全局偏移量3F4
