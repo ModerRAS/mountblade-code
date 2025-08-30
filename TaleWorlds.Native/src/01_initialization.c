@@ -755,7 +755,7 @@
 #define LAB_18007f89f system_init_label_function_complete
 
 // 函数: void SystemCoreInitializer;
-void SystemCoreInitializer;
+void* SystemCoreInitializer;
 uint8_t system_initialization_status_array[27];// 系统初始化状态数组（27个元素）
 void* g_system_context_array[148];// 系统上下文指针数组（148个元素）
 void* g_memory_pool_base;
@@ -773,7 +773,7 @@ intSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT2_t network_socket_handle;
 void* system_data_ninth;
 
 // 函数: void MemoryManagerSetup;
-void MemoryManagerSetup;
+void* MemoryManagerSetup;
 void* g_physics_simulator;
 void* g_network_manager;
 void* g_ui_renderer;
@@ -783,15 +783,15 @@ void* g_ui_system;
 void* g_script_engine;
 
 // 函数: void InitializeGraphicsSystem;
-void InitializeGraphicsSystem;
+void* InitializeGraphicsSystem;
 void* g_graphics_device;
 
 // 函数: void InitializeAudioSystem;
-void InitializeAudioSystem;
+void* InitializeAudioSystem;
 void* g_audio_context;
 
 // 函数: void InitializeInputSystem;
-void InitializeInputSystem;
+void* InitializeInputSystem;
 void* g_file_system;
 
 // 系统内部变量语义化定义（2025年8月SYSTEM_INIT_VALUE_MUTEX_ALIGNMENT0日最终批次最新完成）
@@ -804,7 +804,7 @@ void* system_internal_config_data;          // 内部配置数据指针
 void* system_internal_system_initialized;   // 内部系统初始化状态指针
 
 // 函数: void InitializeNetworkSystem;
-void InitializeNetworkSystem;
+void* InitializeNetworkSystem;
 void* g_config_data;
 intSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT2_t system_error_code;
 uintSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT2_t system_operation_flags;
@@ -813,7 +813,7 @@ uintSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT2_t system_debug_flags;
 uintSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT2_t system_log_level;
 uint64_t system_memory_usage;
 float system_cpu_usage;
-void ValidateInitialization;
+void* ValidateInitialization;
 void system_input_processing_context;
 void system_network_init_data;
 void* system_network_init_pointer;
@@ -823,7 +823,7 @@ float system_render_time;
 float system_physics_time;
 
 // 函数: void InitializePhysicsSystem;
-void InitializePhysicsSystem;
+void* InitializePhysicsSystem;
 void* g_physics_scene;
 
 // 函数: void InitializeUISystem;
@@ -1013,7 +1013,7 @@ void g_cache_system;
 void g_system_heap;
 
 // 函数: void SystemCoreInitializer;
-void SystemCoreInitializer;
+void* SystemCoreInitializer;
 void g_system_registry;
 void g_service_locator;
 void g_dependency_injector;
@@ -1024,7 +1024,7 @@ void g_lifecycle_manager;
 void g_system_persistent_data;
 
 // 函数: void MemoryManagerSetup;
-void MemoryManagerSetup;
+void* MemoryManagerSetup;
 void g_memory_pool;
 
 // 函数: void InitializeThreadSystem;
@@ -1084,10 +1084,10 @@ void g_network_receiving;
 void* g_graphics_device;
 
 // 函数: void InitializeGraphicsSystem;
-void InitializeGraphicsSystem;
+void* InitializeGraphicsSystem;
 
 // 函数: void InitializeAudioSystem;
-void InitializeAudioSystem;
+void* InitializeAudioSystem;
 void g_shader_manager;
 void g_texture_manager;
 void g_mesh_manager;
@@ -1121,7 +1121,7 @@ void g_input_handler;
 void g_input_mapper;
 
 // 函数: void InitializeInputSystem;
-void InitializeInputSystem;
+void* InitializeInputSystem;
 void g_keyboard_device;
 void g_mouse_device;
 void g_gamepad_device;
@@ -1140,7 +1140,7 @@ void CreateUIManager;
 void SetupUIComponents;
 
 // 函数: void InitializePhysicsSystem;
-void InitializePhysicsSystem;
+void* InitializePhysicsSystem;
 void* g_physics_world;
 void g_physics_enabled;
 void g_physics_debug;
@@ -1187,10 +1187,10 @@ char g_system_initialized_array[2];// 系统初始化标志数组（2个元素�
 char g_system_initialized;
 
 // 函数: void SystemCoreInitializer;
-void SystemCoreInitializer;
+void* SystemCoreInitializer;
 
 // 函数: void SystemCoreInitializer;
-void SystemCoreInitializer;
+void* SystemCoreInitializer;
 
 // 函数: void InitializeSystemCore(void)
 void InitializeSystemCore(void)
@@ -22414,11 +22414,11 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
   system_uintSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT2_t system_stack_uint_mask2;
   void* *system_stack_pointer_296;
   void* *psystem_stack_uint_1b0;
-  int iStack_1a8;
+  int system_stack_int_flag;
   system_uintSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT2_t system_stack_value_296;
   void* *psystem_stack_uint_198;
   void* *psystem_stack_uint_190;
-  int iStack_188;
+  int system_stack_int_offset;
   system_uintSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT2_t system_stack_uint_180;
   void* *psystem_stack_uint_178;
   longlong system_stack_long_170;
@@ -24418,11 +24418,11 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
   system_uint64_t system_stack_uint_flag;
   void* *psystem_stack_uint_198;
   system_uint64_t system_stack_uint_190;
-  int iStack_188;
+  int system_stack_int_offset;
   system_uint8_t asystem_stack_uint_e8 [16];
   void* *psystem_stack_uint_d8;
   system_uint64_t system_stack_uint_d0;
-  int iStack_c8;
+  int system_stack_int_size;
   ulonglong system_stack_uint_18;
   
   system_stack_uint_flag = SYSTEM_INIT_VALUE_HANDLE_INVALID;
@@ -24923,7 +24923,7 @@ void InitializeSystemCore(longlong *system_context_param,longlong system_config_
   system_uintSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT2_t system_stack_uint_194;
   void* *psystem_stack_uint_190;
   longlong system_stack_long_188;
-  int iStack_180;
+  int system_stack_int_count;
   system_uintSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT2_t system_stack_value_SYSTEM_INIT_VALUE_MUTEX_ALIGNMENT12;
   void* **ppsystem_stack_uint_170;
   void* *psystem_stack_uint_168;
@@ -33041,7 +33041,7 @@ void InitializeSystemCore(void)
   system_uintSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT2_t system_stack_uint_128;
   system_uint8_t asystem_stack_uint_120 [24];
   void* *apsystem_stack_uint_108 [19];
-  int iStack_70;
+  int system_stack_int_buffer;
   system_uint64_t system_stack_uint_58;
   char acStack_48 [16];
   ulonglong system_stack_uint_SYSTEM_INIT_VALUE_MUTEX_ALIGNMENT8;
@@ -61861,16 +61861,16 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
 
 
 // 函数: void SystemCoreInitializer;
-void SystemCoreInitializer;
+void* SystemCoreInitializer;
 
 // 函数: void SystemCoreInitializer;
-void SystemCoreInitializer;
+void* SystemCoreInitializer;
 
 // 函数: void SystemCoreInitializer;
-void SystemCoreInitializer;
+void* SystemCoreInitializer;
 
 // 函数: void SystemCoreInitializer;
-void SystemCoreInitializer;
+void* SystemCoreInitializer;
 system_uintSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT2_t g_system_context;
 
 system_uint64_t system_generic_function_(void)
@@ -62958,10 +62958,10 @@ system_uint64_t system_generic_function_(void)
 
 
 // 函数: void SystemCoreInitializer;
-void SystemCoreInitializer;
+void* SystemCoreInitializer;
 
 // 函数: void SystemCoreInitializer;
-void SystemCoreInitializer;
+void* SystemCoreInitializer;
 system_uint64_t g_system_context;
 system_uintSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT2_t g_system_context;
 void* *g_system_context;
