@@ -1,5 +1,20 @@
 #include "TaleWorlds.Native.Split.h"
 
+// 字符串常量语义化定义
+#define SYSTEM_STRING_EXEC 0x65637378
+#define SYSTEM_STRING_DEV 0x65766544
+#define SYSTEM_STRING_NOCS 0x69666e6f
+#define SYSTEM_STRING_POS 0x706f7320
+#define SYSTEM_STRING_KERNEL 0x6e65726b
+#define SYSTEM_STRING_CONSOLE 0x636f6e736f6c65
+#define SYSTEM_STRING_DEVICE 0x646576696365
+#define SYSTEM_STRING_INVERT 0x696e76657274
+#define SYSTEM_STRING_DESIGN 0x64657369676e
+#define SYSTEM_STRING_INFO 0x696e666f
+#define SYSTEM_STRING_CONFIG 0x636f6e666967
+
+// 浮点常量语义化定义
+#define SYSTEM_FLOAT_VALUE_1_0F 0x3f000000
 
 // 系统初始化检查偏移量语义化常量
 #define SYSTEM_INIT_CHECK_OFFSET_9F 0x9f
@@ -36,12 +51,18 @@
 // - 添加了SYSTEM_BIT_SHIFT_7等系统位操作语义化常量
 // - 添加了SYSTEM_FLOAT_MAX_VALUE等浮点数语义化常量
 // - 添加了SYSTEM_STRING_ENGINE_ROOT等系统字符串语义化常量
+// - 添加了SYSTEM_STRING_EXEC等字符串常量语义化定义
+// - 添加了SYSTEM_FLOAT_VALUE_1_0F等浮点常量语义化定义
 // - 将硬编码的0xa4替换为SYSTEM_MUTEX_OFFSET_A4等互斥锁偏移量常量
 // - 将硬编码的0x9f0替换为SYSTEM_MUTEX_OFFSET_9F0等互斥锁常量
 // - 将硬编码的3.4028235e+38替换为SYSTEM_FLOAT_MAX_VALUE等浮点数常量
 // - 将硬编码的-1e+08替换为SYSTEM_FLOAT_MIN_VALUE等浮点数常量
 // - 将硬编码的数组索引[0x50]替换为[SYSTEM_AUDIO_DATA_OFFSET_50]等音频数据索引常量
 // - 将硬编码的0x374替换为SYSTEM_RENDER_DATA_OFFSET_374等渲染数据常量
+// - 将硬编码的0x65637378替换为SYSTEM_STRING_EXEC等字符串常量
+// - 将硬编码的0x69666e6f替换为SYSTEM_STRING_NOCS等字符串常量
+// - 将硬编码的0x65766544替换为SYSTEM_STRING_DEV等字符串常量
+// - 将硬编码的0x3f000000替换为SYSTEM_FLOAT_VALUE_1_0F等浮点常量
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了硬编码十六进制值的语义化替换
 // - 原本实现：完全重构硬编码常量体系
@@ -25114,7 +25135,7 @@ INIT_LABEL_SYSTEM_54912:
                 *node_previous = SYSTEM_IDENTIFIER_ECSF;
                 node_previous[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_INIT_DATA_OFFSET_782e656e;
                 node_previous[SYSTEM_ARRAY_INDEX_PREVIOUS] = SYSTEM_CONFIG_SIZE_2E6f6373;
-                node_previous[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x65637378;
+                node_previous[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_STRING_EXEC;
                 *(uint16_t *)(node_previous + 4) = SYSTEM_STRING_SUFFIX_EN;
                 *(uint8_t *)((longlong)node_previous + SYSTEM_CONFIG_SIZE_RENDER) = 0;
                 uintStack_148 = SYSTEM_CONFIG_SIZE_RENDER;
@@ -25890,7 +25911,7 @@ void InitializeSystemModule14(longlong handleIdentifier)
     init_stack_thread_count = 0;
     ConfigureSystemParameters(&system_buffer_ptr_98system_buffer_pointer_primary,SYSTEM_CONFIG_SIZE_NETWORK);
     system_ptr_value = (uint32_t *)(system_buffer_ptr_small_buffer + init_stack_thread_count);
-    *system_ptr_value = 0x73736f50;
+    *system_ptr_value = SYSTEM_STRING_POS;
     system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x656c6269;
     system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x61656420;
     system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x636f6c64;
@@ -28890,7 +28911,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
              (ulonglong)(*(longlong *)(longStack_2b8 + SYSTEM_DATA_OFFSET_8B0) - system_long_result >> 5));
   }
   init_stack_system_handle = SYSTEM_FLOAT_CONSTANT_1;
-  init_stack_uint_param_40 = 0x3f000000;
+  init_stack_uint_param_40 = SYSTEM_FLOAT_VALUE_1_0F;
   uintStack_3c = 0;
   if ((uint64_t *******)pppppsystem_buffer_ptr_358 != &pppppsystem_buffer_ptr_shader_data) {
     system_long_value = longStack_310 + SYSTEM_CONFIG_SIZE_AUTH0;
@@ -30307,7 +30328,7 @@ void HandleSystemOperation92(uint64_t handleIdentifier,uint64_t resourceIdentifi
   system_status_code = ValidateResourceAllocation(node_root);
   init_stack_config_handle = CONCAT44(init_stack_config_handle._4_4_,system_int_result_unsigned);
   *node_root = SYSTEM_STRING_IDENTIFIER_DIR_ROOT;
-  *(uint32_t *)(node_root + 1) = 0x69666e6f;
+  *(uint32_t *)(node_root + 1) = SYSTEM_STRING_NOCS;
   *(uint16_t *)((longlong)node_root + SYSTEM_OFFSET_C) = SYSTEM_OFFSET_67;
   init_stack_uint_param_40 = SYSTEM_CONFIG_SIZE_STATUS;
   InitializeSystemModule1(handleIdentifier,&system_buffer_ptr_50);
@@ -30448,7 +30469,7 @@ void InitializeAudioSystem(uint64_t handleIdentifier,uint64_t resourceIdentifier
   system_buffer_ptr_48 = node_root;
   system_status_code = ValidateResourceAllocation(node_root);
   init_stack_config_handle = CONCAT44(init_stack_config_handle._4_4_,system_int_result_unsigned);
-  *node_root = 0x65766544;
+  *node_root = SYSTEM_STRING_DEV;
   node_root[SYSTEM_NODE_INDEX_ROOT_NEXT] = 0x6d706f6c;
   node_root[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NODE_HEADER_SIZE746e65;
   node_root[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x666e6f63;
