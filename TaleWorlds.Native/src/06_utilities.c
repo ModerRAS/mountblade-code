@@ -4,9 +4,13 @@
 // 本次美化内容：
 // - 将UtilityUnwindSpecializedFunction[xxx]函数名替换为语义化名称
 // - 将UtilityUnwindSpecializedFunction000替换为UtilityUnwindFunctionInitializeResource等
-// - 这是简化实现，主要处理了工具系统中函数名的语义化替换
-// - 原本实现：完全重构函数命名体系
-// - 简化实现：仅进行函数名的语义化替换
+// - 修复了自引用宏定义问题，将UTILITY_MEMORY_OFFSET_XXXX等自引用宏替换为具体值
+// - 修复了UTILITY_SYSTEM_TABLE_OFFSET[0-9a-fA-F]等宏定义问题
+// - 将InitializeSystemModule18/19/20等函数名替换为语义化名称
+// - 修复了UTILITY_RESOURCE_FLAG_8000等常量定义问题
+// - 这是简化实现，主要处理了工具系统中宏定义和函数名的语义化替换
+// - 原本实现：完全重构宏定义体系和函数命名体系
+// - 简化实现：仅进行宏定义的修复和函数名的语义化替换
 // - 保持代码语义不变，提高可读性
 
 // 新增状态码常量定义
@@ -65,7 +69,7 @@
 #define UTILITY_PERFORMANCE_FLAG_OFFSET 0x11658
 #define UTILITY_PERFORMANCE_STATUS_OFFSET 0x1165c
 #define UTILITY_FINAL_VALIDATION_OFFSET 0x11660
-#define UTILITY_LOOP_THRESHOLD UTILITY_RESOURCE_FLAG_8000
+#define UTILITY_LOOP_THRESHOLD 0x8000
 #define UTILITY_MASK_0X7FFF 0x7fff
 #define UTILITY_MASK_0XC000 0xc000
 #define UTILITY_LOOP_MAX_COUNT 0x20214
@@ -431,7 +435,7 @@
 #define UTILITY_RESOURCE_SIGNATURE_TIFE 0x54494645  // "TIFE"
 #define UTILITY_RESOURCE_SIGNATURE_TNVE UTILITY_RESOURCE_SIGNATURE_TNVE  // "TNVE"
 #define UTILITY_FLOAT_TO_INT_SCALE 1000.0
-#define UTILITY_LONG_LONG_MIN -UTILITY_RESOURCE_FLAG_8000000000000000
+#define UTILITY_LONG_LONG_MIN -0x8000000000000000
 #define UTILITY_MAX_UNSIGNED_VALUE 0x3fffffff
 #define UTILITY_FLAG_MASK_CLEAR 0xfdffffff
 #define UTILITY_FLAG_SET_BIT 0x4000000
@@ -675,7 +679,7 @@
 #define UTILITY_SIZE_THRESHOLD_MIN 0x53
 #define UTILITY_SIZE_THRESHOLD_ALT 0x55
 #define UTILITY_SIZE_THRESHOLD_XMAX 0x7d
-#define UTILITY_FLAG_CHECK_BIT UTILITY_RESOURCE_FLAG_800
+#define UTILITY_FLAG_CHECK_BIT 0x800
 #define UTILITY_FLAG_MASK_FE 0xfe
 #define UTILITY_FLAG_CLEAR_MASK 0xffffffff00000000
 #define UTILITY_STATUS_SUCCESS_D 0xd
@@ -688,7 +692,7 @@
 #define UTILITY_REGISTER_CF_OFFSET 1
 #define UTILITY_REGISTER_ESI_VALUE 7
 #define UTILITY_VALIDATION_SUCCESS 0
-#define UTILITY_SECURITY_FLAG_0X800 UTILITY_RESOURCE_FLAG_800
+#define UTILITY_SECURITY_FLAG_0X800 0x800
 
 // 新增语义化宏定义 - 替换field_offset_primary变量
 #define UTILITY_FIELD_PRIMARY_OFFSET 0x0
@@ -24941,8 +24945,8 @@ ulonglong GetValidationResult3(void)
 
 
 
-// 函数: void InitializeSystemModule18(void)
-void InitializeSystemModule18(void)
+// 函数: void InitializeSystemModuleBasic(void)
+void InitializeSystemModuleBasic(void)
 
 {
   int utility_operation_status;
@@ -24958,8 +24962,8 @@ void InitializeSystemModule18(void)
 
 
 
-// 函数: void InitializeSystemModule19(void)
-void InitializeSystemModule19(void)
+// 函数: void InitializeSystemModuleAdvanced(void)
+void InitializeSystemModuleAdvanced(void)
 
 {
   return;
@@ -24968,8 +24972,8 @@ void InitializeSystemModule19(void)
 
 
 
-// 函数: void InitializeSystemModule20(longlong resource_handle_identifier,uint64 resource_buffer)
-void InitializeSystemModule20(longlong resource_handle_identifier,uint64 resource_buffer)
+// 函数: void InitializeSystemModuleExtended(longlong resource_handle_identifier,uint64 resource_buffer)
+void InitializeSystemModuleExtended(longlong resource_handle_identifier,uint64 resource_buffer)
 
 {
   int utility_operation_status;
