@@ -8818,7 +8818,7 @@ section_processing_jump_label_:
         if (thread_priority_level == 0x26) {
           thread_result_status = strcmp(thread_stack_base_address,&g_system_string_category);
           if (thread_result_status == SYSTEM_ZERO_VALUE) {
-            thread_result_status = 0xa8;
+            thread_result_status = SYSTEM_THREAD_STATUS_PAUSED;
             goto section_processing_jump_label_;
           }
         }
@@ -8931,7 +8931,7 @@ section_processing_jump_label_:
                 if (thread_result_status == 0) goto section_processing_jump_label_;
                 thread_result_status = strcmp(str_len_counter,&g_system_string_offset);
                 if (thread_result_status == SYSTEM_ZERO_VALUE) {
-                  thread_result_status = 0xa0;
+                  thread_result_status = SYSTEM_THREAD_STATUS_BLOCKED;
                   goto section_processing_jump_label_;
                 }
                 string_input_pointer = &g_system_string_result;
@@ -14319,6 +14319,20 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_STRING_LENGTH_COUNTER_INITIAL 0x17
 #define SYSTEM_STRING_POINTER_TAG_1 0x2e6b4f
 #define SYSTEM_STRING_POINTER_TAG_2 0x2e6f6373
+
+// 线程状态扩展常量定义（2025年8月30日最新美化批次）
+#define SYSTEM_THREAD_STATUS_TRANSITION 0x50
+
+// 缓冲区分配结果常量定义（2025年8月30日最新美化批次）
+#define SYSTEM_BUFFER_ALLOC_RESULT_BASE_1 0x41d
+#define SYSTEM_BUFFER_ALLOC_RESULT_BASE_2 0x420
+#define SYSTEM_BUFFER_ALLOC_RESULT_BASE_3 0x424
+#define SYSTEM_BUFFER_ALLOC_RESULT_BASE_4 0x428
+#define SYSTEM_BUFFER_ALLOC_RESULT_BASE_5 0x430
+#define SYSTEM_BUFFER_ALLOC_RESULT_BASE_6 0x438
+#define SYSTEM_BUFFER_ALLOC_RESULT_BASE_7 0x439
+#define SYSTEM_BUFFER_ALLOC_RESULT_BASE_8 0x43c
+#define SYSTEM_BUFFER_ALLOC_RESULT_BASE_9 0x440
 
 #define SYSTEM_OFFSET_FLOAT_ARRAY_EXTENDED 0x354
 #define SYSTEM_OFFSET_FLOAT_ARRAY_BASE 0x33c
