@@ -10490,7 +10490,7 @@ void NetworkProcessQueueItem(int64_t network_socket_handle, uint64_t *network_bu
   int32_t network_operation_status_primary;
   int64_t *socket_descriptor_var_secondary;
   int32_t *network_operation_status_secondary_ptr;
-  int64_t *socket_descriptor_var_secondary3;
+  int64_t *socket_descriptor_var_secondary_backup;
   int32_t network_operation_status4;
   uint8_t network_stack_main_data_buffer [32];
   uint64_t network_stack_uint_quaternary_b;
