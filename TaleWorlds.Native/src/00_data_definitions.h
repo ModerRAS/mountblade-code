@@ -1265,7 +1265,6 @@
 #define HANDLE_MANAGER_ADDRESS 0x180a1b368
 #define MEMORY_MANAGER_ADDRESS 0x180a1b3f0
 #define UI_MUTEX_ATTRIBUTE_ADDR 0x180a02fc8
-#define UI_MUTEX_TYPE_ADDR 0x180a02fa0
 #define STACK_DATA_PRIMARY_ADDR 0x18045f210
 
 // 线程池互斥锁地址常量
@@ -1409,15 +1408,7 @@
 #define BUFFER_SIZE_MAXIMUM 0xffffffff
 
 // 新增语义化常量定义 - 美化硬编码十六进制常量
-#define SYSTEM_FLOAT_ARRAY_ADDR_2 0x180c8ed80
 #define SYSTEM_FLOAT_ARRAY_ADDR_3 0x180c8ed90
-#define SYSTEM_GLOBAL_DATA_ADDR 0x180a1b368
-#define STRING_BUFFER_OFFSET_1 0x48
-#define STRING_BUFFER_OFFSET_2 0x50
-#define STRING_BUFFER_OFFSET_3 0x58
-#define STRING_BUFFER_OFFSET_4 0x60
-#define STRING_BUFFER_OFFSET_5 SYSTEM_CHAR_LOWERCASE_H
-#define THREAD_CLEANUP_FUNCTION_1 0x18064ffc0
 #define THREAD_CLEANUP_FUNCTION_2 0x18064ffd0
 // 系统常量定义（美化硬编码数值）
 #define SYSTEM_CONSTANT_1 1
@@ -1434,11 +1425,6 @@
 #define SYSTEM_CONSTANT_786 SYSTEM_CHAR_LOWERCASE_X6
 
 #define FLOAT_CONVERSION_FACTOR 0xaaaaaaaaaaaaaaab
-#define SYSTEM_BASE_ADDRESS 0x180000000
-#define SYSTEM_MODULE_OFFSET_1 0x1000
-#define SYSTEM_OFFSET_MODULE_SECONDARY SYSTEM_CHAR_SPACE00
-#define SYSTEM_MODULE_OFFSET_3 0x3000
-#define SYSTEM_POINTER_OFFSET 0x8
 
 // 系统内存地址常量
 #define SYSTEM_AUDIO_BUFFER_ADDR 0x180a1b420
@@ -1447,363 +1433,52 @@
 #define SYSTEM_STRING_LENGTH_COUNTER_ADDR 0x180c58840
 #define SYSTEM_STRING_LENGTH_COUNTER_ALT_ADDR 0x180c58850
 #define SYSTEM_PERFORMANCE_COUNTER_ADDR 0x180c69e20
-#define SYSTEM_MODULE_DATA_ADDR 0x180a1b400
 
 // 特殊浮点常量
-#define FLOAT_SQRT_2 SYSTEM_CONSTANT_3800000
-#define FLOAT_MAX_VALUE 0x7f7fffff
-#define FLOAT_ARRAY_CONSTANT 0x4cbebc20
 
 // 字符串常量
-#define STRING_MESSAGE_1 0x4f6d654d20555047
-#define STRING_MESSAGE_2 0x4567617375207972
-#define STRING_MESSAGE_3 0x4163697469636174
-#define STRING_ERROR_1 0x4d6d6f43204c4752
-#define STRING_ERROR_2 0x456e696c20646e61
-#define STRING_ERROR_3 0x456c6f736e6f6320
-#define STRING_PREPARE_MSG 0x52657206573726150
-#define STRING_COLON_MSG 0x3a726f72
-#define STRING_CANT_MSG 0x4e696c2074612027
-#define STRING_OBJECT_MSG 0x45746f626a656374
-#define STRING_RUTEX_MSG 0x5275746578
-#define STRING_OBSCURE_MSG 0x4f626a656374
-#define STRING_BEFORE_MSG 0x4265666f7265
-#define STRING_UNDO_MSG 0x556e646f
-#define STRING_AUDIO_FORMAT_MSG 0x436f6e666967
-#define STRING_CONFIG_GI_MSG 0x3a6769
-#define STRING_SESSION_MSG 0x4a6f626a65637453
-#define STRING_SENCE_MSG 0x53656e73652f
-#define STRING_XENEC_MSG 0x58656e6563732f
-#define STRING_FILE_PATH_MSG 0x456e656373782e
 
 // 系统操作返回码
-#define SYSTEM_RETURN_SUCCESS 0x200ff
-#define SYSTEM_RETURN_ERROR_1 0x20005
-#define SYSTEM_RETURN_ERROR_2 0x20001
-#define SYSTEM_RETURN_ERROR_3 0x20004
-#define SYSTEM_RETURN_ERROR_4 0x20003
-#define SYSTEM_RETURN_SPECIAL_1 0x001002d
 
 // 系统错误码
-#define SYSTEM_ERROR_CODE_1 -0x7f6dfffb
-#define SYSTEM_ERROR_CODE_2 -0x7f6dffff
-#define SYSTEM_ERROR_CODE_3 -0x7f6dff01
-#define SYSTEM_ERROR_CODE_4 -0x7f6dfffd
-#define SYSTEM_ERROR_CODE_5 -0x7f6dfffa
 
 // 系统掩码常量
-#define SYSTEM_MASK_32BIT 0xffffffff
-#define SYSTEM_MASK_64BIT 0xffffffffffffffff
-#define SYSTEM_MASK_ADDRESS 0xfffffffe
-#define SYSTEM_MASK_MEMORY 0xffffffffffffffe0U
-#define SYSTEM_MASK_FLOAT 0xffffff00
-#define SYSTEM_MASK_THREAD 0x00000001
-#define SYSTEM_MASK_BUFFER_3BIT 0xfffffffc
-#define SYSTEM_MASK_BUFFER_5BIT 0xffffffe0
-#define SYSTEM_MASK_BUFFER_6BIT 0xffffffc0
-#define SYSTEM_MASK_BUFFER_32BIT 0xffffff20
-#define SYSTEM_MASK_SPECIAL 0xffdefffe
 
 // 系统偏移量常量定义
-#define SYSTEM_OFFSET_GLOBAL_DATA_PRIMARY 0x7b4
-#define SYSTEM_OFFSET_GLOBAL_DATA_SECONDARY 0x18
-#define SYSTEM_OFFSET_THREAD_STACK 0x18
-#define SYSTEM_OFFSET_THREAD_DATA 0x19
-#define SYSTEM_OFFSET_THREAD_FLAGS 0x1a
-#define SYSTEM_OFFSET_THREAD_CONTROL 0x1b
-#define SYSTEM_OFFSET_THREAD_CONFIG 0x1c
-#define SYSTEM_OFFSET_THREAD_CALLBACK 0x28
-#define SYSTEM_OFFSET_THREAD_SYSTEM 0x38
-#define SYSTEM_OFFSET_THREAD_HANDLER SYSTEM_CHAR_LOWERCASE_H
-#define SYSTEM_OFFSET_INITIALIZATION_FLAG SYSTEM_CONSTANT_20
-#define SYSTEM_OFFSET_STRING_LENGTH 0x24
-#define SYSTEM_OFFSET_STRING_BUFFER 0x28
-#define SYSTEM_OFFSET_STRING_SIZE 0x180
-#define SYSTEM_OFFSET_STRING_MAX 0x18c
 
 // 系统标志常量定义
-#define SYSTEM_FLAG_AUDIO_FORMAT 0x436f6e666967
-#define SYSTEM_FLAG_CONFIG_GI 0x3a6769
 
 // 系统状态常量定义
-#define SYSTEM_STATUS_AUDIO_CONFIG 0x11
-#define SYSTEM_STATUS_NETWORK_CONFIG 0xc
-#define SYSTEM_STATUS_PHYSICS_CONFIG 0xd
 
 // 缓冲区大小常量 - 美化硬编码缓冲区大小常量
-#define PRIMARY_STRING_BUFFER_SIZE SYSTEM_POINTER_OFFSET0
-#define STRING_BUFFER_SIZE_SECONDARY SYSTEM_POINTER_OFFSET0
-#define THREAD_STACK_SIZE_DEFAULT SYSTEM_CONSTANT_2ff
-#define NETWORK_BUFFER_SIZE_STANDARD 0xe8
-#define SYSTEM_CONFIG_BUFFER_SIZE_LARGE 0x238
-#define SYSTEM_CONFIG_BUFFER_SIZE_SMALL 0xc
-#define SYSTEM_CONFIG_BUFFER_SIZE_MINIMUM 0x000000
-#define SYSTEM_CONFIG_BUFFER_SIZE_EMPTY 0x00
-#define SYSTEM_CONFIG_BUFFER_SIZE_MEDIUM 0xd0
-#define MAX_THREAD_STACK_SIZE SYSTEM_CONSTANT_2ff
-#define SYSTEM_STATUS_FAILURE -1
 
 // 缓冲区大小常量扩展 - 美化硬编码缓冲区大小常量
-#define SYSTEM_CONFIG_BUFFER_SIZE_ZERO 0
-#define SYSTEM_CONFIG_BUFFER_SIZE_FOUR_BYTES 4
-#define SYSTEM_CONFIG_BUFFER_SIZE_EIGHT_BYTES 8
 
 // 系统数据结构偏移量常量
-#define SYSTEM_STRUCTURE_OFFSET_B0 0xb0
-#define SYSTEM_STRUCTURE_OFFSET_C0 0xc0
-#define SYSTEM_STRUCTURE_OFFSET_138 0x138
-#define SYSTEM_STRUCTURE_OFFSET_140 0x140
-#define SYSTEM_STRUCTURE_OFFSET_160 0x160
-#define SYSTEM_STRUCTURE_OFFSET_228 0x228
-#define SYSTEM_STRUCTURE_OFFSET_2B0 0x2b0
-#define SYSTEM_STRUCTURE_OFFSET_2C0 0x2c0
-#define SYSTEM_STRUCTURE_OFFSET_2D0 0x2d0
-#define SYSTEM_STRUCTURE_OFFSET_2E0 0x2e0
-#define SYSTEM_STRUCTURE_OFFSET_2F0 SYSTEM_CHAR_SLASH0
-#define SYSTEM_STRUCTURE_OFFSET_2B8 0x2b8
-#define SYSTEM_STRUCTURE_OFFSET_228 0x228
-#define SYSTEM_STRUCTURE_OFFSET_12D0 0x12d0
-#define SYSTEM_STRUCTURE_OFFSET_12D8 0x12d8
-#define SYSTEM_STRUCTURE_OFFSET_12E0 0x12e0
-#define SYSTEM_STRUCTURE_OFFSET_12E8 0x12e8
-#define SYSTEM_STRUCTURE_OFFSET_12F0 0x12f0
-#define SYSTEM_STRUCTURE_OFFSET_12F8 0x12f8
-#define SYSTEM_STRUCTURE_OFFSET_1300 0x1300
-#define SYSTEM_STRUCTURE_OFFSET_1308 0x1308
-#define SYSTEM_STRUCTURE_OFFSET_1310 0x1310
-#define SYSTEM_STRUCTURE_OFFSET_1318 0x1318
-#define SYSTEM_STRUCTURE_OFFSET_1320 0x1320
-#define SYSTEM_STRUCTURE_OFFSET_1328 0x1328
-#define SYSTEM_STRUCTURE_OFFSET_1330 0x1330
-#define SYSTEM_STRUCTURE_OFFSET_1338 0x1338
-#define SYSTEM_STRUCTURE_OFFSET_1340 0x1340
-#define SYSTEM_STRUCTURE_OFFSET_1348 0x1348
-#define SYSTEM_STRUCTURE_OFFSET_1350 0x1350
-#define SYSTEM_STRUCTURE_OFFSET_1358 0x1358
-#define SYSTEM_STRUCTURE_OFFSET_1360 0x1360
-#define SYSTEM_STRUCTURE_OFFSET_1368 0x1368
-#define SYSTEM_STRUCTURE_OFFSET_1370 0x1370
-#define SYSTEM_STRUCTURE_OFFSET_1378 0x1378
 
 // 资源类型常量定义（使用SYSTEM_RESOURCE_ID_*常量）
-#define RESOURCE_TYPE_BASE SYSTEM_RESOURCE_ID_BASE
-#define RESOURCE_TYPE_TEXTURE SYSTEM_RESOURCE_ID_TEXTURE
-#define RESOURCE_TYPE_SHADER SYSTEM_RESOURCE_ID_SHADER
-#define RESOURCE_TYPE_AUDIO SYSTEM_RESOURCE_ID_AUDIO
-#define RESOURCE_TYPE_FONT SYSTEM_RESOURCE_ID_FONT
-#define RESOURCE_TYPE_MODEL SYSTEM_RESOURCE_ID_MODEL
-#define RESOURCE_TYPE_ANIMATION SYSTEM_RESOURCE_ID_ANIMATION
-#define RESOURCE_TYPE_PARTICLE SYSTEM_RESOURCE_ID_PARTICLE
-#define RESOURCE_TYPE_CONFIG SYSTEM_RESOURCE_ID_CONFIG
-#define RESOURCE_TYPE_SAVE_GAME SYSTEM_RESOURCE_ID_SAVE_GAME
-#define RESOURCE_TYPE_STRING_MANAGER SYSTEM_RESOURCE_ID_STRING_MANAGER
-#define RESOURCE_TYPE_PHYSICS SYSTEM_RESOURCE_ID_PHYSICS
-#define RESOURCE_TYPE_AI SYSTEM_RESOURCE_ID_AI
-#define RESOURCE_TYPE_UI SYSTEM_RESOURCE_ID_UI
-#define RESOURCE_TYPE_SCRIPT SYSTEM_RESOURCE_ID_SCRIPT
-#define RESOURCE_TYPE_NETWORK SYSTEM_RESOURCE_ID_NETWORK
-#define RESOURCE_TYPE_SECURITY SYSTEM_RESOURCE_ID_SECURITY
-#define RESOURCE_TYPE_AUTH SYSTEM_RESOURCE_ID_AUTH
 
 // 资源标志常量定义
-#define FLAG_INITIALIZED 0x13
-#define FLAG_TEXTURE_RESOURCE 0xd
-#define FLAG_SHADER_RESOURCE 0x17
-#define FLAG_AUDIO_RESOURCE 0xd
-#define FLAG_FONT_RESOURCE 0xc
-#define FLAG_MODEL_RESOURCE SYSTEM_CONSTANT_2
-#define FLAG_ANIMATION_RESOURCE 0x17
-#define FLAG_PARTICLE_RESOURCE 0x13
-#define FLAG_CONFIG_RESOURCE 0x14
-#define FLAG_SAVE_GAME_RESOURCE 0x1b
-#define FLAG_STRING_MANAGER_RESOURCE 0x19
-#define FLAG_PHYSICS_RESOURCE 0x12
-#define FLAG_AI_RESOURCE 0x19
-#define FLAG_UI_RESOURCE 0x11
-#define FLAG_SCRIPT_RESOURCE 0x18
-#define FLAG_NETWORK_RESOURCE 0x13
-#define FLAG_SECURITY_RESOURCE 0x16
-#define FLAG_AUTH_RESOURCE 0xf
-#define FLAG_PERMISSION_RESOURCE 0x14
-#define FLAG_SESSION_RESOURCE 0x16
-#define FLAG_USER_CONFIG_RESOURCE 0xf
-#define FLAG_SAVE_RESOURCE 0xb
-#define FLAG_ACHIEVEMENT_RESOURCE 0x13
-#define FLAG_STATISTICS_RESOURCE 0xd
-#define FLAG_ANALYTICS_RESOURCE 0x17
-#define FLAG_DEBUG_RESOURCE 0xd
-#define FLAG_PERFORMANCE_ANALYSIS_RESOURCE 0xc
-#define FLAG_CRASH_HANDLER_RESOURCE 0x16
-#define FLAG_ERROR_REPORT_RESOURCE 0x13
-#define FLAG_UPDATE_RESOURCE 0xf
-#define FLAG_PATCH_RESOURCE 0xb
-#define FLAG_DIAGNOSTICS_RESOURCE 0x1b
-#define FLAG_MONITORING_RESOURCE 0x19
-#define FLAG_HEALTH_CHECK_RESOURCE SYSTEM_CONSTANT_2
-#define FLAG_BACKUP_RESOURCE 0x1b
-#define FLAG_RECOVERY_RESOURCE 0x13
-#define FLAG_MAINTENANCE_RESOURCE 0xe
-#define FLAG_OPTIMIZATION_RESOURCE 0xe
-#define FLAG_PERFORMANCE_MONITOR_RESOURCE 0xf
-#define FLAG_LOAD_BALANCING_RESOURCE 0xd
-#define FLAG_EXTENSION_RESOURCE 0x13
 
 // 浮点数常量定义
-#define FLOAT_ONE SYSTEM_CONSTANT_3800000
-#define STRING_TERMINATOR_PATTERN_1 0x526f662f
-#define STRING_TERMINATOR_PATTERN_2 0x5f646563
-#define STRING_TERMINATOR_PATTERN_3 0x466f6e63
-#define INVALID_HANDLE_VALUE 0xffffffff
-#define STACK_ALIGNMENT_MASK 0xfffffffe
-#define MEMORY_ALIGNMENT_MASK 0xffffffffffffffe0U
-#define FLOAT_MAX_NORMAL 0x7f7fffff
-#define FLOAT_PI_DIV_4 0x3d088889
 
 // 整数常量定义
-#define UINT32_MAX 0xffffffff
-#define UINT64_MAX 0xffffffffffffffff
-#define INT32_MASK 0xffffffff
-#define INT64_MASK 0xffffffff00000000
 
 // 系统偏移量常量扩展 - 美化剩余的硬编码偏移量
-#define SYSTEM_OFFSET_PERFORMANCE_TIMEOUT 0x218  // 性能超时偏移量
-#define SYSTEM_OFFSET_CRYPTO_OPERATION_218 0x218   // 加密操作218偏移量
-#define SYSTEM_OFFSET_INITIALIZATION_CHECK 0xe    // 初始化检查偏移量
-#define SYSTEM_OFFSET_THREAD_PARAMETER_SETUP 0xf  // 线程参数设置偏移量
-#define SYSTEM_OFFSET_EXCEPTION_HANDLER 0xcc     // 异常处理程序偏移量
-#define SYSTEM_OFFSET_THREAD_STATUS 0xd8        // 线程状态偏移量
-#define SYSTEM_OFFSET_THREAD_CLEANUP_FLAG 0xdc   // 线程清理标志偏移量
-#define SYSTEM_OFFSET_THREAD_INIT 0xe8          // 线程初始化偏移量
-#define SYSTEM_OFFSET_RENDER_MODE 0x5e          // 渲染模式偏移量
-#define SYSTEM_OFFSET_MUTEX_LOCK 0x2c          // 互斥锁偏移量
-#define SYSTEM_OFFSET_MUTEX_DATA 0x3c          // 互斥锁数据偏移量
-#define SYSTEM_OFFSET_MUTEX_EXTRA 0x44          // 互斥锁额外数据偏移量
-#define SYSTEM_OFFSET_MUTEX_FLAG 0x4c          // 互斥锁标志偏移量
-#define SYSTEM_OFFSET_FLOAT_INCREMENT_B 0xb     // 浮点数增量B偏移量
-#define SYSTEM_OFFSET_FLOAT_INCREMENT_C 0xc     // 浮点数增量C偏移量
-#define SYSTEM_OFFSET_FLOAT_INCREMENT_D 0xd     // 浮点数增量D偏移量
-#define SYSTEM_OFFSET_FLOAT_INCREMENT_E 0xe     // 浮点数增量E偏移量
-#define SYSTEM_OFFSET_INITIALIZATION_FLAG_4C 0x4c // 初始化标志4C偏移量
-#define SYSTEM_OFFSET_CRYPTO_BUFFER_SECONDARY 0x58 // 加密缓冲区次要偏移量
-#define SYSTEM_OFFSET_EXCEPTION_FLAG 0xdd       // 异常标志偏移量
-#define SYSTEM_OFFSET_MODULE_CLEANUP 0x330      // 模块清理偏移量
-#define SYSTEM_OFFSET_SYSTEM_INITIALIZATION_D 0xd // 系统初始化D偏移量
-#define SYSTEM_OFFSET_STRING_LENGTH_G 0x47      // 字符串长度G偏移量
-#define SYSTEM_OFFSET_THREAD_LOCAL_STORAGE_G 0x47 // 线程本地存储G偏移量
-#define SYSTEM_OFFSET_MEMORY_ALLOCATION_LARGE 0x121 // 内存分配大偏移量
-#define SYSTEM_OFFSET_MODULE_BASE 0x7f7         // 模块基础偏移量
-#define SYSTEM_OFFSET_RESOURCE_ARRAY 0xb5b       // 资源数组偏移量
-#define SYSTEM_OFFSET_CRYPTO_OPERATION 0x4ab0  // 加密操作偏移量
-#define SYSTEM_OFFSET_EXCEPTION_HANDLER_BC 0xbc // 异常处理程序BC偏移量
-#define SYSTEM_OFFSET_SYSTEM_STATUS_BYTE 0x1a  // 系统状态字节偏移量
-#define SYSTEM_OFFSET_SYSTEM_INIT_BYTE 0xd      // 系统初始化字节偏移量
-#define SYSTEM_OFFSET_THREAD_HANDLE_EXTENDED 0x3e // 线程句柄扩展偏移量
-#define SYSTEM_OFFSET_MEMORY_NEGATIVE_EFC -0xefc // 内存负数EFC偏移量
-#define SYSTEM_OFFSET_MEMORY_NEGATIVE_1EF8 -0x1ef8 // 内存负数1EF8偏移量
-#define SYSTEM_OFFSET_VALIDATION_FLAG 0xfffffffe // 验证标志偏移量
-#define SYSTEM_OFFSET_SYSTEM_RESOURCE_1A0 0x1a0 // 系统资源1A0偏移量
-#define SYSTEM_OFFSET_SYSTEM_RESOURCE_1D0 0x1d0 // 系统资源1D0偏移量
-#define SYSTEM_OFFSET_EXCEPTION_HANDLER_7FF -0x7ffeffff // 异常处理程序7FF偏移量
-#define SYSTEM_OFFSET_STACK_LONG_VAR_4C 0x4c    // 栈长变量4C偏移量
-#define SYSTEM_OFFSET_STACK_OPERATION_SIZE 0x3088 // 栈操作大小偏移量
-#define SYSTEM_OFFSET_STRING_HEADER_EXTENDED 0x22 // 字符串头扩展偏移量
-#define SYSTEM_OFFSET_STRING_LENGTH_EXTENDED 0x16 // 字符串长度扩展偏移量
-#define SYSTEM_OFFSET_EXCEPTION_FLAG_15 -0x15    // 异常标志15偏移量
-#define SYSTEM_OFFSET_EXCEPTION_FLAG_18 -0x18    // 异常标志18偏移量
-#define SYSTEM_OFFSET_THREAD_OPERATION_EXTENDED 0x18 // 线程操作扩展偏移量
-#define SYSTEM_OFFSET_EXCEPTION_HANDLER_F -0xf    // 异常处理程序F偏移量
-#define SYSTEM_OFFSET_EXCEPTION_HANDLER_14 -0x14  // 异常处理程序14偏移量
-#define SYSTEM_OFFSET_STRING_BUFFER_EXTENDED 0x50 // 字符串缓冲区扩展偏移量
-#define SYSTEM_OFFSET_EXCEPTION_LIST 0xe         // 异常列表偏移量
-#define SYSTEM_OFFSET_CRYPTO_OPERATION_2908 0x2908 // 加密操作2908偏移量
-#define SYSTEM_OFFSET_MUTEX_FLAG_2908 0x2908     // 互斥锁标志2908偏移量
-#define SYSTEM_OFFSET_SYSTEM_TIMER_1A0 0x1a0     // 系统计时器1A0偏移量
-#define SYSTEM_OFFSET_MEMORY_ALLOCATION_48D0 0x48d0 // 内存分配48D0偏移量
-#define SYSTEM_OFFSET_SYSTEM_NEGATIVE_12 -0x12    // 系统负数12偏移量
-#define SYSTEM_OFFSET_MODULE_CLEANUP_2C0 0x2c0   // 模块清理2C0偏移量
-#define SYSTEM_OFFSET_THREAD_MANAGER_CREATE_D 0xd // 线程管理器创建D偏移量
-#define SYSTEM_OFFSET_THREAD_RESULT_EXTENDED 0xd // 线程结果扩展偏移量
-#define SYSTEM_OFFSET_HARDWARE_INIT_E8 0xe8      // 硬件初始化E8偏移量
-#define SYSTEM_OFFSET_RENDER_COUNTER_D8 0xd8     // 渲染计数器D8偏移量
-#define SYSTEM_OFFSET_RENDER_MODE_5E 0x5e        // 渲染模式5E偏移量
-#define SYSTEM_OFFSET_FLOAT_CALCULATION_354 SYSTEM_OFFSET_FLOAT_ARRAY_EXTENDED // 浮点计算354偏移量
-#define SYSTEM_OFFSET_RENDER_FLAG_33C SYSTEM_OFFSET_FLOAT_ARRAY_BASE     // 渲染标志33C偏移量
-#define SYSTEM_OFFSET_SYSTEM_DATA_260 SYSTEM_OFFSET_CRYPTO_MODULE_DATA      // 系统数据260偏移量
-#define SYSTEM_OFFSET_MEMORY_ALLOCATION_30 0x30 // 内存分配30偏移量
-#define SYSTEM_OFFSET_CHARACTER_SCAN_2C 0x2c     // 字符扫描2C偏移量
-#define SYSTEM_OFFSET_MEMORY_ALLOCATION_C0 0xc0  // 内存分配C0偏移量
-#define SYSTEM_OFFSET_FLOAT_ARRAY_21C 0x21c      // 浮点数组21C偏移量
-#define SYSTEM_OFFSET_STRING_HEADER_E 0xe         // 字符串头E偏移量
-#define SYSTEM_OFFSET_EXCEPTION_FLAG_F -0xf       // 异常标志F偏移量
-#define SYSTEM_OFFSET_STRING_BUFFER_SECONDARY 0x16 // 字符串缓冲区次要偏移量
-#define SYSTEM_OFFSET_SYSTEM_CONFIG_POINTER_A8 0xa8 // 系统配置指针A8偏移量
-#define SYSTEM_OFFSET_MEMORY_ALLOCATION_58 0x58  // 内存分配58偏移量
-#define SYSTEM_OFFSET_VALIDATION_MASK 0xfffffffe // 验证掩码偏移量
-#define SYSTEM_OFFSET_MEMORY_MULTIPLIER_3088 0x3088 // 内存乘数3088偏移量
-#define SYSTEM_OFFSET_STRING_EXTENDED_22 0x22    // 字符串扩展22偏移量
-#define SYSTEM_OFFSET_SYSTEM_EXTENDED_18 0x18     // 系统扩展18偏移量
-#define SYSTEM_OFFSET_STRING_BUFFER_EXTENDED_50 0x50 // 字符串缓冲区扩展50偏移量
-#define SYSTEM_OFFSET_EXCEPTION_LIST_E 0xe        // 异常列表E偏移量
-#define SYSTEM_OFFSET_SYSTEM_CRYPTO_2908 0x2908    // 系统加密2908偏移量
-#define SYSTEM_OFFSET_MEMORY_MULTIPLIER_48D0 0x48d0 // 内存乘数48D0偏移量
 
 // 系统互斥锁和条件变量地址
-#define MAIN_MUTEX_ADDR 0x180c91970
-#define SYSTEM_CONDITION_VARIABLE_ADDR 0x180c919a0
-#define SYSTEM_CLEANUP_FUNCTION_ADDR 0x18064ffc0
-#define SECONDARY_MUTEX_ADDR 0x180c91980
-#define TERTIARY_MUTEX_ADDR 0x180c91990
-#define STRING_OFFSET_ADDR 0x180c919b0
 
 // 核心系统函数地址
-#define RENDER_ENGINE_MAIN_FUNCTION 0x00018005c480
-#define SYSTEM_INITIALIZATION_FUNCTION 0x00018013d940
-#define FLAG_HANDLER_FUNCTION 0x0001804ca2d0
-#define MEMORY_ALLOCATION_FUNCTION 0x0001800a1eb0
-#define FLOAT_CONVERSION_FUNCTION 0x000180329ed1
-#define MUTEX_SET_FUNCTION 0x00018064e870
-#define THREAD_HANDLER_FUNCTION 0x00018076a7d0
-#define MODULE_LOAD_FUNCTION 0x000180856540
-#define DATA_HANDLER_FUNCTION 0x0001808cf230
-#define SYSTEM_VALIDATION_FUNCTION 0x0001808f62c0
 
 // 内存管理相关地址
-#define PRIMARY_MEMORY_POOL_ADDR 0x180d496e0
-#define SECONDARY_MEMORY_POOL_ADDR 0x180d49700
-#define MODULE_DATA_ADDR 0x180a1b400
-#define MODULE_MUTEX_ADDR 0x180a1b410
 
 // 系统数据缓冲区地址
-#define SYSTEM_CONFIG_BUFFER_ADDR 0x180c91d08
-#define CRYPTO_MODULE_BUFFER_ADDR 0x180c4f4e0
-#define CRYPTO_STRING_BUFFER_ADDR 0x180c4f4f0
-#define AUTHENTICATION_BUFFER_ADDR 0x180bf6fa0
-#define NETWORK_DATA_BUFFER_ADDR 0x180a06a40
-#define RENDER_DATA_BUFFER_ADDR 0x180a0ba50
-#define MUTEX_ATTR_BUFFER_ADDR 0x180a02fa0
-#define SYSTEM_MUTEX_BUFFER_ADDR 0x180a02fb0
-#define PATH_BUFFER_ADDR 0x180a04ee0
-#define STRING_HANDLE_BUFFER_ADDR 0x180a12e00
-#define THREAD_DATA_BUFFER_ADDR 0x180a03a80
-#define CONFIG_DATA_BUFFER_ADDR 0x180c95fe0
-#define CONSTANT_STRING_BUFFER_ADDR 0x180c8ece0
-#define THREAD_DATA_BUFFER_ADDR_0 0x180c8f000
-#define SYSTEM_STRING_BUFFER_ADDR 0x180c8ed80
-#define SYSTEM_DATA_BUFFER_ADDR_0 0x180329eb0
-#define RESOURCE_DATA_BUFFER_ADDR 0x180d49130
-#define DEFAULT_RESOURCE_STRING_ADDR 0x180d49131
-#define SYSTEM_RESERVED_ADDR_0 0x180bfbd80
-#define SYSTEM_RESERVED_ADDR_1 0x180bfbd98
 #define THREAD_POOL_DATA_BUFFER_ADDR 0x180c8f010
 #define THREAD_OPERATION_FLAGS_ADDR 0x180c8f020
 #define THREAD_OPERATION_FLAGS_ADDR_0 0x180c8f030
 #define SYSTEM_CONTROL_FLAG_BUFFER_ADDR 0x180c8f040
 #define SYSTEM_INIT_FLAG_BUFFER_ADDR 0x180c8f050
-#define CHARACTER_SCAN_BUFFER_ADDR 0x180a04ee0
-#define SYSTEM_STRING_BUFFER_ADDR_0 0x180bfbd80
-#define SYSTEM_CONFIG_BUFFER_ADDR_0 0x180c91d08
 #define PTHREAD_OPERATION_FLAGS_ADDR 0x180c8f060
-#define MODULE_HANDLE_BUFFER_ADDR 0x180a1b368
 #define SYSTEM_DATA_FLAG_BUFFER_ADDR 0x180c8f070
 #define SYSTEM_FLAG_BUFFER_ADDR 0x180c8f080
 #define MODULE_FINALIZER_BUFFER_ADDR 0x180a1b378
@@ -11540,7 +11215,7 @@ long long process_system_configuration(long long handle_param,long long thread_o
   unsigned long long *string_input_pointer;
   char *character_scan_pointer;
   char *character_scan_pointer;
-  bool byte_check_result2;
+  bool byte_validation_result_secondary;
   unsigned int buffer_allocation_result;
   unsigned long long buffer_allocation_result;
   void *system_thread_stack_pointer;
@@ -11654,7 +11329,7 @@ section_processing_jump_label_:
     if (thread_priority_level == SYSTEM_ZERO_VALUE) {
 section_processing_jump_label_:
       if (*(int *)(handle_param + SYSTEM_OFFSET_STRING_BUFFER_SIZE) != 0) goto section_processing_jump_label_;
-      byte_check_result2 = true;
+      byte_validation_result_secondary = true;
     }
     else {
       character_scan_pointer = pcStack_48;
@@ -11664,15 +11339,15 @@ section_processing_jump_label_:
         if (system_char_variable != system_char_variable) break;
         character_scan_pointer = character_scan_pointer + 1;
       } while (system_char_variable != '\0');
-      byte_check_result2 = system_char_variable == system_char_variable;
+      byte_validation_result_secondary = system_char_variable == system_char_variable;
     }
   }
   else {
     if (thread_priority_level == 0) goto section_processing_jump_label_;
 section_processing_jump_label_:
-    byte_check_result2 = false;
+    byte_validation_result_secondary = false;
   }
-  if (byte_check_result2) {
+  if (byte_validation_result_secondary) {
     system_thread_stack_pointer = &system_global_thread_string_2;
     maximum_stack_size = SYSTEM_ZERO_VALUE;
     thread_stack_base_address = SYSTEM_ZERO_VALUE;
@@ -13811,7 +13486,7 @@ bool check_system_availability(void)
   short system_short_char_value0;
   long long unaffected_register;
   void *string_input_pointer;
-  bool byte_check_result2;
+  bool byte_validation_result_secondary;
   uint in_stack_parameter_primary;
   uint in_stack_parameter_secondary;
   if (unaffected_register_dI != 0) {
@@ -13842,7 +13517,7 @@ bool check_system_availability(void)
         str_len_counter = _wfsopen();
         if (str_len_counter == SYSTEM_ZERO_VALUE) {
           system_execution_function(&system_string_buffer_5,0xc1,&system_string_buffer_6,&system_string_function_4);
-          byte_check_result2 = false;
+          byte_validation_result_secondary = false;
         }
         else {
           fclose(str_len_counter);
@@ -13897,14 +13572,14 @@ section_processing_jump_label_:
             free(str_len_counter);
             free(str_len_counter);
           }
-          byte_check_result2 = system_global_data_pointer != unaffected_register;
+          byte_validation_result_secondary = system_global_data_pointer != unaffected_register;
         }
       }
       else {
         system_execution_function(&system_string_buffer_5,0xb4,&system_string_buffer_6,&system_string_function_6);
-        byte_check_result2 = true;
+        byte_validation_result_secondary = true;
       }
-      return byte_check_result2;
+      return byte_validation_result_secondary;
     }
   }
   thread_validation_flag = thread_result_flag == (char)unaffected_register;
