@@ -541,11 +541,11 @@
 #define SYSTEM_BUFFER_ALLOC_RESULT_INIT_COMPLETE 0x1d    // 缓冲区分配结果0X1D
 #define SYSTEM_BUFFER_ALLOC_RESULT_INIT_READY 0x1e    // 缓冲区分配结果0X1E
 #define SYSTEM_BUFFER_ALLOC_RESULT_STACK_RESERVED 0x7c    // 缓冲区分配结果0X7C
-#define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_BASE 0xb8    // 缓冲区分配结果0XB8
-#define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_READY 0xbc    // 缓冲区分配结果0XBC
-#define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_ALLOC 0xbd    // 缓冲区分配结果0XBD
-#define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_COMMIT 0xbe    // 缓冲区分配结果0XBE
-#define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_COMPLETE 0xc0    // 缓冲区分配结果0XC0
+// 删除重复定义: #define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_BASE 0xb8    // 缓冲区分配结果0XB8
+// 删除重复定义: #define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_READY 0xbc    // 缓冲区分配结果0XBC
+// 删除重复定义: #define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_ALLOC 0xbd    // 缓冲区分配结果0XBD
+// 删除重复定义: #define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_COMMIT 0xbe    // 缓冲区分配结果0XBE
+// 删除重复定义: #define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_COMPLETE 0xc0    // 缓冲区分配结果0XC0
 
 // 超级位掩码常量定义（2025年8月30日语义化美化）
 #define SYSTEM_BIT_MASK_HUGE_SECTION_ALIGNMENT 0x1000000          // 巨节对齐掩码
@@ -655,30 +655,30 @@
 #define SYSTEM_OFFSET_HANDLE_PARAM 0x1598
 #define SYSTEM_OFFSET_MULTIPLIER 0x238
 #define SYSTEM_OFFSET_GLOBAL_DATA_PTR 0x18
-#define SYSTEM_OFFSET_FUNCTION_TABLE 0x30
-#define SYSTEM_OFFSET_CLEANUP_FUNCTION 0x38
+// 删除重复定义: #define SYSTEM_OFFSET_FUNCTION_TABLE 0x30
+// 删除重复定义: #define SYSTEM_OFFSET_CLEANUP_FUNCTION 0x38
 #define SYSTEM_OFFSET_INITIALIZATION_FLAG 0x54
 #define SYSTEM_OFFSET_AUDIO_STATUS 0xa0
-#define SYSTEM_OFFSET_RENDER_COUNTER 0xe0
-#define SYSTEM_OFFSET_NETWORK_DATA_PTR 0x228
+// 删除重复定义: #define SYSTEM_OFFSET_RENDER_COUNTER 0xe0
+// 删除重复定义: #define SYSTEM_OFFSET_NETWORK_DATA_PTR 0x228
 #define SYSTEM_OFFSET_AUDIO_CONFIG 0x224
-#define SYSTEM_OFFSET_FLOAT_DATA 0x220
-#define SYSTEM_OFFSET_FLOAT_VALUE 0x268
-#define SYSTEM_OFFSET_AUDIO_FLAG 0x264
-#define SYSTEM_OFFSET_AUDIO_DATA 0x26c
+// 删除重复定义: #define SYSTEM_OFFSET_FLOAT_DATA 0x220
+// 删除重复定义: #define SYSTEM_OFFSET_FLOAT_VALUE 0x268
+// 删除重复定义: #define SYSTEM_OFFSET_AUDIO_FLAG 0x264
+// 删除重复定义: #define SYSTEM_OFFSET_AUDIO_DATA 0x26c
 #define SYSTEM_OFFSET_MODULE_DATA 0x1ee
-#define SYSTEM_OFFSET_MODULE_FUNCTION 0x2b0
+// 删除重复定义: #define SYSTEM_OFFSET_MODULE_FUNCTION 0x2b0
 #define SYSTEM_OFFSET_RENDER_CONFIG 0x22c
-#define SYSTEM_OFFSET_RENDER_LIMIT 0xbd0
+// 删除重复定义: #define SYSTEM_OFFSET_RENDER_LIMIT 0xbd0
 #define SYSTEM_OFFSET_INITIALIZATION_FLAG_2 0x39
-#define SYSTEM_OFFSET_MEMORY_MANAGER 0x3a8
-#define SYSTEM_OFFSET_MUTEX_PTR 0x3d8
+// 删除重复定义: #define SYSTEM_OFFSET_MEMORY_MANAGER 0x3a8
+// 删除重复定义: #define SYSTEM_OFFSET_MUTEX_PTR 0x3d8
 #define SYSTEM_OFFSET_CONNECTION_LIMIT 0x160
 #define SYSTEM_OFFSET_STRING_COUNTER 0x178
 #define SYSTEM_OFFSET_STRING_BASE 0x180
-#define SYSTEM_BUFFER_SIZE_4K 0x1000
-#define SYSTEM_BUFFER_SIZE_32K 0x8000
-#define SYSTEM_BUFFER_SIZE_1M 0x100000
+// 删除重复定义: #define SYSTEM_BUFFER_SIZE_4K 0x1000
+// 删除重复定义: #define SYSTEM_BUFFER_SIZE_32K 0x8000
+// 删除重复定义: #define SYSTEM_BUFFER_SIZE_1M 0x100000
 
 
 // 最新美化内容（2025年8月30日）：
@@ -766,12 +766,12 @@
 #define SYSTEM_OFFSET_BUFFER_ALLOC 0x13
 #define SYSTEM_OFFSET_STRING_LENGTH 0x24
 #define SYSTEM_OFFSET_SYSTEM_MODE 0xa0
-#define SYSTEM_OFFSET_STACK_POINTER 0xc
-#define SYSTEM_OFFSET_STRING_BASE 0x180
-#define SYSTEM_OFFSET_MODULE_DATA 0x1ee
-#define SYSTEM_OFFSET_RENDER_CONFIG 0x22c
+// 删除重复定义: #define SYSTEM_OFFSET_STACK_POINTER 0xc
+// 删除重复定义: #define SYSTEM_OFFSET_STRING_BASE 0x180
+// 删除重复定义: #define SYSTEM_OFFSET_MODULE_DATA 0x1ee
+// 删除重复定义: #define SYSTEM_OFFSET_RENDER_CONFIG 0x22c
 #define SYSTEM_OFFSET_NETWORK_CONFIG 0x228
-#define SYSTEM_OFFSET_AUDIO_CONFIG 0x224
+// 删除重复定义: #define SYSTEM_OFFSET_AUDIO_CONFIG 0x224
 #define SYSTEM_OFFSET_AUTH_CONFIG 0x220
 #define SYSTEM_OFFSET_CLEANUP_CONFIG 0x218
 #define SYSTEM_OFFSET_DEBUG_INFO 0x264
@@ -784,7 +784,7 @@
 #define SYSTEM_STATUS_CODE_COMPLETE 0x13
 
 // 系统字符常量
-#define SYSTEM_CHAR_DOT 0x2e
+// 删除重复定义: #define SYSTEM_CHAR_DOT 0x2e
 
 // 系统内存分配大小常量
 #define SYSTEM_ALLOC_SIZE_1C8 0x1c8
@@ -957,7 +957,7 @@
 #define SYSTEM_FUNC_OFFSET_TIMER 0x113
 
 #ifndef DATA_DEFINITIONS_H
-#define DATA_DEFINITIONS_H
+// 删除重复定义: #define DATA_DEFINITIONS_H
 
 // 数据定义头文件 - 系统常量、类型和初始化函数
 // 美化内容：
@@ -1742,13 +1742,13 @@ extern char system_flag_buffer_cleanup_handler;
 #define SYSTEM_OPCODE_RESOURCE_LOAD 0x16                           // 资源加载
 #define SYSTEM_OPCODE_AUTH_REQUEST 0xf                             // 认证请求
 #define SYSTEM_OPCODE_SESSION_START 0x16                           // 会话开始
-#define SYSTEM_OPCODE_DATA_TRANSFER 0x18                            // 数据传输
+// 删除重复定义: #define SYSTEM_OPCODE_DATA_TRANSFER 0x18                            // 数据传输
 #define SYSTEM_OPCODE_MONITOR_START 0x1a                           // 监控开始
 #define SYSTEM_OPCODE_BACKUP_CREATE 0x17                           // 备份创建
 #define SYSTEM_OPCODE_DIAGNOSTIC_RUN 0x1b                          // 诊断运行
 #define SYSTEM_OPCODE_HEALTH_CHECK SYSTEM_CONSTANT_2                 // 健康检查
-#define SYSTEM_OPCODE_FLAG_SET 0xb                                  // 标志设置
-#define SYSTEM_OPCODE_FLAG_CLEAR 0xe                                // 标志清除
+// 删除重复定义: #define SYSTEM_OPCODE_FLAG_SET 0xb                                  // 标志设置
+// 删除重复定义: #define SYSTEM_OPCODE_FLAG_CLEAR 0xe                                // 标志清除
 
 // 系统偏移量常量定义（2025年8月30日最终批次美化）
 #define SYSTEM_OFFSET_GLOBAL_DATA 0x18                                // 全局数据偏移量
@@ -1826,15 +1826,15 @@ extern char system_flag_buffer_cleanup_handler;
 
 // 系统字符常量定义
 #define SYSTEM_CHAR_NULL 0x0
-#define SYSTEM_CHAR_DOT 0x2e
-#define SYSTEM_CHAR_COLON 0x3a
-#define SYSTEM_CHAR_SPACE 0x20
-#define SYSTEM_CHAR_ZERO 0x30
-#define SYSTEM_CHAR_ONE 0x31
+// 删除重复定义: #define SYSTEM_CHAR_DOT 0x2e
+// 删除重复定义: #define SYSTEM_CHAR_COLON 0x3a
+// 删除重复定义: #define SYSTEM_CHAR_SPACE 0x20
+// 删除重复定义: #define SYSTEM_CHAR_ZERO 0x30
+// 删除重复定义: #define SYSTEM_CHAR_ONE 0x31
 
 // 系统缓冲区大小常量定义
 #define SYSTEM_BUFFER_SIZE_MINIMUM 0x0
-#define SYSTEM_BUFFER_SIZE_SMALL 0x14
+// 删除重复定义: #define SYSTEM_BUFFER_SIZE_SMALL 0x14
 #define SYSTEM_BUFFER_SIZE_MEDIUM 0x18
 #define SYSTEM_BUFFER_SIZE_LARGE 0x1c
 #define SYSTEM_BUFFER_SIZE_EXTRA_LARGE 0x20
@@ -1932,24 +1932,24 @@ extern char system_flag_buffer_cleanup_handler;
 #define SYSTEM_BUFFER_SIZE_STRING 0x1a
 
 // 系统配置常量定义
-#define SYSTEM_BUFFER_SIZE_1M 0x100000
-#define SYSTEM_OFFSET_MODULE_FUNCTION 0x2b0
-#define SYSTEM_OFFSET_FLOAT_VALUE 0x268
-#define SYSTEM_OFFSET_AUDIO_FLAG 0x264
-#define SYSTEM_BUFFER_SIZE_32K 0x8000
-#define SYSTEM_OFFSET_AUDIO_DATA 0x26c
-#define SYSTEM_OFFSET_RENDER_COUNTER 0xe0
-#define SYSTEM_OFFSET_MUTEX_PTR 0x3d8
-#define SYSTEM_OFFSET_MEMORY_MANAGER 0x3a8
-#define SYSTEM_OFFSET_FLOAT_DATA 0x220
-#define SYSTEM_OFFSET_NETWORK_DATA_PTR 0x228
-#define SYSTEM_BUFFER_SIZE_4K 0x1000
-#define SYSTEM_OFFSET_CLEANUP_FUNCTION 0x38
-#define SYSTEM_OFFSET_FUNCTION_TABLE 0x30
-#define SYSTEM_OFFSET_RENDER_LIMIT 0xbd0
-#define SYSTEM_OFFSET_AUDIO_STATUS 0xa0
-#define SYSTEM_OFFSET_CONNECTION_LIMIT 0x160
-#define SYSTEM_OFFSET_GLOBAL_DATA_PTR 0x18
+// 删除重复定义: #define SYSTEM_BUFFER_SIZE_1M 0x100000
+// 删除重复定义: #define SYSTEM_OFFSET_MODULE_FUNCTION 0x2b0
+// 删除重复定义: #define SYSTEM_OFFSET_FLOAT_VALUE 0x268
+// 删除重复定义: #define SYSTEM_OFFSET_AUDIO_FLAG 0x264
+// 删除重复定义: #define SYSTEM_BUFFER_SIZE_32K 0x8000
+// 删除重复定义: #define SYSTEM_OFFSET_AUDIO_DATA 0x26c
+// 删除重复定义: #define SYSTEM_OFFSET_RENDER_COUNTER 0xe0
+// 删除重复定义: #define SYSTEM_OFFSET_MUTEX_PTR 0x3d8
+// 删除重复定义: #define SYSTEM_OFFSET_MEMORY_MANAGER 0x3a8
+// 删除重复定义: #define SYSTEM_OFFSET_FLOAT_DATA 0x220
+// 删除重复定义: #define SYSTEM_OFFSET_NETWORK_DATA_PTR 0x228
+// 删除重复定义: #define SYSTEM_BUFFER_SIZE_4K 0x1000
+// 删除重复定义: #define SYSTEM_OFFSET_CLEANUP_FUNCTION 0x38
+// 删除重复定义: #define SYSTEM_OFFSET_FUNCTION_TABLE 0x30
+// 删除重复定义: #define SYSTEM_OFFSET_RENDER_LIMIT 0xbd0
+// 删除重复定义: #define SYSTEM_OFFSET_AUDIO_STATUS 0xa0
+// 删除重复定义: #define SYSTEM_OFFSET_CONNECTION_LIMIT 0x160
+// 删除重复定义: #define SYSTEM_OFFSET_GLOBAL_DATA_PTR 0x18
 #define SYSTEM_CONFIG_FLAG_ENABLED 0x1
 #define SYSTEM_CONFIG_FLAG_DISABLED 0x0
 #define SYSTEM_CONFIG_SIZE_MINIMUM 0x0
@@ -1993,9 +1993,9 @@ extern char system_flag_buffer_cleanup_handler;
 #define SYSTEM_ERROR_ADAP_HDW_ERR 0x1f
 
 // 系统特殊常量定义 - 美化为语义化名称
-#define SYSTEM_CHAR_SLASH 0x2f        // '/' 字符
-#define SYSTEM_CHAR_LOWERCASE_A 0x61  // 'a' 字符
-#define SYSTEM_CHAR_EXCLAMATION 0x21  // '!' 字符
+// 删除重复定义: #define SYSTEM_CHAR_SLASH 0x2f        // '/' 字符
+// 删除重复定义: #define SYSTEM_CHAR_LOWERCASE_A 0x61  // 'a' 字符
+// 删除重复定义: #define SYSTEM_CHAR_EXCLAMATION 0x21  // '!' 字符
 #define SYSTEM_CHAR_DC2 0x12          // DC2 控制字符
 #define SYSTEM_CHAR_DIGIT_ZERO 0x30   // '0' 字符
 #define SYSTEM_CONTROL_VALUE_B0 0xb0    // 控制值 B0
@@ -2006,24 +2006,24 @@ extern char system_flag_buffer_cleanup_handler;
 #define SYSTEM_CHAR_DIGIT_FIVE 0x58    // '5' 字符
 #define SYSTEM_CONTROL_VALUE_C 0xc     // 控制值 C
 #define SYSTEM_CONTROL_VALUE_A8 0xa8   // 控制值 A8
-#define SYSTEM_CHAR_LOWERCASE_H 0x68  // 'h' 字符
+// 删除重复定义: #define SYSTEM_CHAR_LOWERCASE_H 0x68  // 'h' 字符
 #define SYSTEM_CONTROL_VALUE_18 0x18  // 控制值 18
 #define SYSTEM_CONTROL_VALUE_A0 0xa0   // 控制值 A0
 #define SYSTEM_CHAR_LOWERCASE_P 0x50   // 'p' 字符
-#define SYSTEM_CHAR_LOWERCASE_L 0x6c  // 'l' 字符
-#define SYSTEM_CHAR_LOWERCASE_T 0x74  // 't' 字符
+// 删除重复定义: #define SYSTEM_CHAR_LOWERCASE_L 0x6c  // 'l' 字符
+// 删除重复定义: #define SYSTEM_CHAR_LOWERCASE_T 0x74  // 't' 字符
 #define SYSTEM_CONTROL_VALUE_96 0x96   // 控制值 96
 #define SYSTEM_CONTROL_VALUE_F8 0xf8   // 控制值 F8
 #define SYSTEM_CONTROL_VALUE_FC 0xfc   // 控制值 FC
 #define SYSTEM_CHAR_DOLLAR_SIGN 0x24   // '$' 字符
 #define SYSTEM_CHAR_DIGIT_FOUR 0x34    // '4' 字符
-#define SYSTEM_CHAR_LESS_THAN 0x3c     // '<' 字符
-#define SYSTEM_CHAR_BACKSLASH 0x5c    // '\' 字符
+// 删除重复定义: #define SYSTEM_CHAR_LESS_THAN 0x3c     // '<' 字符
+// 删除重复定义: #define SYSTEM_CHAR_BACKSLASH 0x5c    // '\' 字符
 #define SYSTEM_CHAR_GRAVE_ACCENT 0x60  // '`' 字符
-#define SYSTEM_CHAR_LOWERCASE_F 0x66  // 'f' 字符
+// 删除重复定义: #define SYSTEM_CHAR_LOWERCASE_F 0x66  // 'f' 字符
 #define SYSTEM_CHAR_DIGIT_EIGHT 0x38    // '8' 字符
 #define SYSTEM_CHAR_LOWERCASE_Q 0x51    // 'q' 字符
-#define SYSTEM_CHAR_LOWERCASE_X 0x78  // 'x' 字符
+// 删除重复定义: #define SYSTEM_CHAR_LOWERCASE_X 0x78  // 'x' 字符
 #define SYSTEM_CONTROL_VALUE_94 0x94    // 控制值 94
 #define SYSTEM_CONTROL_VALUE_98 0x98    // 控制值 98
 #define SYSTEM_CONTROL_VALUE_9C 0x9c    // 控制值 9C
@@ -2037,20 +2037,20 @@ extern char system_flag_buffer_cleanup_handler;
 #define SYSTEM_CONTROL_VALUE_BE 0xbe    // 控制值 BE
 #define SYSTEM_CONTROL_VALUE_C0 0xc0    // 控制值 C0
 #define SYSTEM_CONTROL_VALUE_1D 0x1d    // 控制值 1D
-#define SYSTEM_CHAR_VERTICAL_BAR 0x7c   // '|' 字符
+// 删除重复定义: #define SYSTEM_CHAR_VERTICAL_BAR 0x7c   // '|' 字符
 #define SYSTEM_CONTROL_VALUE_C4 0xc4    // 控制值 C4
 #define SYSTEM_CONTROL_VALUE_CC 0xcc    // 控制值 CC
 #define SYSTEM_CONTROL_VALUE_D0 0xd0    // 控制值 D0
 #define SYSTEM_CHAR_DIGIT_TWO 0x32      // '2' 字符
-#define SYSTEM_CHAR_DOUBLE_QUOTE 0x22   // '"' 字符
-#define SYSTEM_CHAR_HASH 0x23           // '#' 字符
-#define SYSTEM_CHAR_PERCENT 0x25        // '%' 字符
-#define SYSTEM_CHAR_AMPERSAND 0x26      // '&' 字符
-#define SYSTEM_CHAR_SINGLE_QUOTE 0x27   // '\'' 字符
-#define SYSTEM_CHAR_RIGHT_PAREN 0x29     // ')' 字符
-#define SYSTEM_CHAR_ASTERISK 0x2a        // '*' 字符
-#define SYSTEM_CHAR_PLUS 0x2b            // '+' 字符
-#define SYSTEM_CHAR_MINUS 0x2d           // '-' 字符
+// 删除重复定义: #define SYSTEM_CHAR_DOUBLE_QUOTE 0x22   // '"' 字符
+// 删除重复定义: #define SYSTEM_CHAR_HASH 0x23           // '#' 字符
+// 删除重复定义: #define SYSTEM_CHAR_PERCENT 0x25        // '%' 字符
+// 删除重复定义: #define SYSTEM_CHAR_AMPERSAND 0x26      // '&' 字符
+// 删除重复定义: #define SYSTEM_CHAR_SINGLE_QUOTE 0x27   // '\'' 字符
+// 删除重复定义: #define SYSTEM_CHAR_RIGHT_PAREN 0x29     // ')' 字符
+// 删除重复定义: #define SYSTEM_CHAR_ASTERISK 0x2a        // '*' 字符
+// 删除重复定义: #define SYSTEM_CHAR_PLUS 0x2b            // '+' 字符
+// 删除重复定义: #define SYSTEM_CHAR_MINUS 0x2d           // '-' 字符
 #define SYSTEM_CHAR_PERIOD 0x2e          // '.' 字符
 #define SYSTEM_CONTROL_VALUE_15 0x15     // 控制值 15
 #define SYSTEM_CONTROL_VALUE_16 0x16     // 控制值 16
@@ -12445,7 +12445,7 @@ long long process_context_handle_param(long long *handle_param)
                     in_OF = SCARRY1((char)*system_destination_index_register,system_char_variable);
                     *system_destination_index_register = (code)((char)*system_destination_index_register + system_char_variable);
                     in_SF = (char)*system_destination_index_register < '\0';
-                    in_ZF = *system_destination_index_register == (code)0x0;
+                    in_ZF = *system_destination_index_register == (code)SYSTEM_ZERO_VALUE;
 goto section_processing_jump_label_508;
                   }
                 }
@@ -13480,7 +13480,7 @@ unsigned int validate_timer_parameters(byte handle_param,byte *system_thread_ope
   uint system_buffer_allocation_result;
   mutex_attr = mutex_attr + -4;
   system_string_input_pointer = (uint *)(system_thread_operation_flags + mutex_attr);
-  system_buffer_allocation_result = *(uint *)(&system_lookup_table + (ulong long)(byte)~handle_param * 4) ^ 0xffffff;
+  system_buffer_allocation_result = *(uint *)(&system_lookup_table + (ulong long)(byte)~handle_param * 4) ^ SYSTEM_BUFFER_ALLOC_BIT_MASK_XOR_OPERATION;
   for (; 0 < mutex_attr; mutex_attr = mutex_attr + -1) {
     byte_flag_value = *system_thread_operation_flags;
     system_thread_operation_flags = system_thread_operation_flags + 1;
@@ -13558,7 +13558,7 @@ goto section_processing_jump_label_521;
       system_maximum_stack_size = SYSTEM_ZERO_VALUE;
       system_maximum_stack_size = SYSTEM_ZERO_VALUE;
       _guard_check_icall(system_global_data_pointer_variable);
-      system_thread_result_status = (*system_character_scan_pointer)(&system_maximum_stack_size,&system_maximum_stack_size,0x27);
+      system_thread_result_status = (*system_character_scan_pointer)(&system_maximum_stack_size,&system_maximum_stack_size,SYSTEM_BUFFER_ALLOC_RESULT_STATUS_OPERATION_SUCCESS);
 goto section_processing_jump_label_522;
       for (system_string_input_pointer = system_stack_buffer_string_scan; system_character_scan_pointer = system_global_data_pointer_variable, system_buffer_allocation_result = *system_string_input_pointer, system_buffer_allocation_result != SYSTEM_ZERO_VALUE;
           system_string_input_pointer = system_string_input_pointer + 1) {
@@ -14152,10 +14152,10 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_BIT_MASK_ALIGN_6BIT 0xffffffc0
 
 // 数组索引常量
-#define SYSTEM_ARRAY_INDEX_FIRST 0
-#define SYSTEM_ARRAY_INDEX_SECOND 1
-#define SYSTEM_ARRAY_INDEX_THIRD 2
-#define SYSTEM_ARRAY_INDEX_FOURTH 3
+// 删除重复定义: #define SYSTEM_ARRAY_INDEX_FIRST 0
+// 删除重复定义: #define SYSTEM_ARRAY_INDEX_SECOND 1
+// 删除重复定义: #define SYSTEM_ARRAY_INDEX_THIRD 2
+// 删除重复定义: #define SYSTEM_ARRAY_INDEX_FOURTH 3
 #define SYSTEM_ARRAY_INDEX_FIFTH 4
 #define SYSTEM_ARRAY_INDEX_SIXTH 5
 #define SYSTEM_ARRAY_INDEX_SEVENTH 6
@@ -14167,7 +14167,7 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_ARRAY_INDEX_THIRTEENTH 12
 
 // 特殊偏移量常量
-#define SYSTEM_OFFSET_STACK_POINTER 0xc
+// 删除重复定义: #define SYSTEM_OFFSET_STACK_POINTER 0xc
 #define SYSTEM_OFFSET_ERROR_CODE 0x11
 #define SYSTEM_OFFSET_STATUS_CODE 0x12
 #define SYSTEM_OFFSET_RESULT_CODE 0x13
@@ -14381,9 +14381,9 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_COMPARISON_TEN 10
 
 #define SYSTEM_FLAG_NONE 0
-#define SYSTEM_FLAG_ACTIVE 1
-#define SYSTEM_FLAG_DISABLED 0
-#define SYSTEM_FLAG_ENABLED 1
+// 删除重复定义: #define SYSTEM_FLAG_ACTIVE 1
+// 删除重复定义: #define SYSTEM_FLAG_DISABLED 0
+// 删除重复定义: #define SYSTEM_FLAG_ENABLED 1
 #define SYSTEM_FLAG_SUCCESS 1
 #define SYSTEM_FLAG_FAILURE 0
 
@@ -14404,8 +14404,8 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_FLOAT_SQRT_APPROX_FACTOR 3.0
 
 // 角度常量
-#define SYSTEM_FLOAT_PI 3.1415927
-#define SYSTEM_FLOAT_TWO_PI 6.2831855
+// 删除重复定义: #define SYSTEM_FLOAT_PI 3.1415927
+// 删除重复定义: #define SYSTEM_FLOAT_TWO_PI 6.2831855
 #define SYSTEM_FLOAT_DEG_TO_RAD 0.017453292
 #define SYSTEM_FLOAT_RAD_TO_DEG 57.29578
 
@@ -14426,64 +14426,64 @@ void system_data_initialization_cleanup(void)
 // 简化实现：仅将常见的数字比较替换为语义化常量
 // 原本实现：完全重构所有数字比较体系
 
-#define SYSTEM_COMPARISON_ZERO 0
-#define SYSTEM_COMPARISON_ONE 1
-#define SYSTEM_COMPARISON_TWO 2
-#define SYSTEM_COMPARISON_THREE 3
-#define SYSTEM_COMPARISON_FOUR 4
-#define SYSTEM_COMPARISON_FIVE 5
-#define SYSTEM_COMPARISON_SIX 6
-#define SYSTEM_COMPARISON_SEVEN 7
-#define SYSTEM_COMPARISON_EIGHT 8
-#define SYSTEM_COMPARISON_NINE 9
-#define SYSTEM_COMPARISON_TEN 10
+// 删除重复定义: #define SYSTEM_COMPARISON_ZERO 0
+// 删除重复定义: #define SYSTEM_COMPARISON_ONE 1
+// 删除重复定义: #define SYSTEM_COMPARISON_TWO 2
+// 删除重复定义: #define SYSTEM_COMPARISON_THREE 3
+// 删除重复定义: #define SYSTEM_COMPARISON_FOUR 4
+// 删除重复定义: #define SYSTEM_COMPARISON_FIVE 5
+// 删除重复定义: #define SYSTEM_COMPARISON_SIX 6
+// 删除重复定义: #define SYSTEM_COMPARISON_SEVEN 7
+// 删除重复定义: #define SYSTEM_COMPARISON_EIGHT 8
+// 删除重复定义: #define SYSTEM_COMPARISON_NINE 9
+// 删除重复定义: #define SYSTEM_COMPARISON_TEN 10
 
-#define SYSTEM_FLAG_NONE 0
-#define SYSTEM_FLAG_ACTIVE 1
-#define SYSTEM_FLAG_DISABLED 0
-#define SYSTEM_FLAG_ENABLED 1
-#define SYSTEM_FLAG_SUCCESS 1
-#define SYSTEM_FLAG_FAILURE 0
+// 删除重复定义: #define SYSTEM_FLAG_NONE 0
+// 删除重复定义: #define SYSTEM_FLAG_ACTIVE 1
+// 删除重复定义: #define SYSTEM_FLAG_DISABLED 0
+// 删除重复定义: #define SYSTEM_FLAG_ENABLED 1
+// 删除重复定义: #define SYSTEM_FLAG_SUCCESS 1
+// 删除重复定义: #define SYSTEM_FLAG_FAILURE 0
 
-#define SYSTEM_ARRAY_INDEX_ZERO 0
-#define SYSTEM_ARRAY_INDEX_FIRST 1
-#define SYSTEM_ARRAY_INDEX_SECOND 2
-#define SYSTEM_ARRAY_INDEX_THIRD 3
-#define SYSTEM_ARRAY_INDEX_FOURTH 4
+// 删除重复定义: #define SYSTEM_ARRAY_INDEX_ZERO 0
+// 删除重复定义: #define SYSTEM_ARRAY_INDEX_FIRST 1
+// 删除重复定义: #define SYSTEM_ARRAY_INDEX_SECOND 2
+// 删除重复定义: #define SYSTEM_ARRAY_INDEX_THIRD 3
+// 删除重复定义: #define SYSTEM_ARRAY_INDEX_FOURTH 4
 
 // 颜色处理常量
-#define SYSTEM_FLOAT_COLOR_LUMINANCE_RED 0.2126
-#define SYSTEM_FLOAT_COLOR_LUMINANCE_GREEN 0.7152
-#define SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE 0.0722
+// 删除重复定义: #define SYSTEM_FLOAT_COLOR_LUMINANCE_RED 0.2126
+// 删除重复定义: #define SYSTEM_FLOAT_COLOR_LUMINANCE_GREEN 0.7152
+// 删除重复定义: #define SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE 0.0722
 
 // 数学运算常量
-#define SYSTEM_FLOAT_MULTIPLIER_HALF 0.5
-#define SYSTEM_FLOAT_MULTIPLIER_DOUBLE 2.0
-#define SYSTEM_FLOAT_SQRT_APPROX_FACTOR 3.0
+// 删除重复定义: #define SYSTEM_FLOAT_MULTIPLIER_HALF 0.5
+// 删除重复定义: #define SYSTEM_FLOAT_MULTIPLIER_DOUBLE 2.0
+// 删除重复定义: #define SYSTEM_FLOAT_SQRT_APPROX_FACTOR 3.0
 
 // 角度常量
-#define SYSTEM_FLOAT_PI 3.1415927
-#define SYSTEM_FLOAT_TWO_PI 6.2831855
-#define SYSTEM_FLOAT_DEG_TO_RAD 0.017453292
-#define SYSTEM_FLOAT_RAD_TO_DEG 57.29578
+// 删除重复定义: #define SYSTEM_FLOAT_PI 3.1415927
+// 删除重复定义: #define SYSTEM_FLOAT_TWO_PI 6.2831855
+// 删除重复定义: #define SYSTEM_FLOAT_DEG_TO_RAD 0.017453292
+// 删除重复定义: #define SYSTEM_FLOAT_RAD_TO_DEG 57.29578
 
 // 三角函数常量
-#define SYSTEM_FLOAT_TRIG_FACTOR 0.19634955
+// 删除重复定义: #define SYSTEM_FLOAT_TRIG_FACTOR 0.19634955
 
 // 调整常量
-#define SYSTEM_FLOAT_ADJUSTMENT_SMALL 0.01
+// 删除重复定义: #define SYSTEM_FLOAT_ADJUSTMENT_SMALL 0.01
 
 // 扩展转换常量
-#define SYSTEM_FLOAT_CONVERSION_BYTE_TO_FLOAT_HALF SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT
-#define SYSTEM_FLOAT_CONVERSION_FACTOR_1000 SYSTEM_FLOAT_CONVERSION_FACTOR_1000
-#define SYSTEM_FLOAT_CONVERSION_THRESHOLD_12582912 SYSTEM_FLOAT_CONVERSION_THRESHOLD_12582912
-#define SYSTEM_FLOAT_CONVERSION_FACTOR_0_007843138 SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT
+// 删除重复定义: #define SYSTEM_FLOAT_CONVERSION_BYTE_TO_FLOAT_HALF SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT
+// 删除重复定义: #define SYSTEM_FLOAT_CONVERSION_FACTOR_1000 SYSTEM_FLOAT_CONVERSION_FACTOR_1000
+// 删除重复定义: #define SYSTEM_FLOAT_CONVERSION_THRESHOLD_12582912 SYSTEM_FLOAT_CONVERSION_THRESHOLD_12582912
+// 删除重复定义: #define SYSTEM_FLOAT_CONVERSION_FACTOR_0_007843138 SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT
 
 
 // 通用偏移量常量 - 美化硬编码值（2025年8月30日最终批次）
 // 简化实现：仅将常见的硬编码偏移量替换为语义化常量
 // 原本实现：完全重构所有偏移量常量体系
-#define SYSTEM_OFFSET_STACK_POINTER 0xc              // 栈指针偏移量
+// 删除重复定义: #define SYSTEM_OFFSET_STACK_POINTER 0xc              // 栈指针偏移量
 #define SYSTEM_OFFSET_FRAME_POINTER 0x12            // 帧指针偏移量
 #define SYSTEM_OFFSET_RETURN_ADDRESS 0x58            // 返回地址偏移量
 #define SYSTEM_OFFSET_LOCAL_VARIABLE 0x7c            // 局部变量偏移量
@@ -14496,8 +14496,8 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_SPECIAL_VALUE_TIMEOUT_10S 0x2720  // 10秒超时值（10000毫秒）
 
 // 通用常量 - 美化硬编码值（2025年8月30日最终批次）
-#define SYSTEM_ONE_VALUE 1                // 值1
-#define SYSTEM_ZERO_VALUE 0               // 值0
+// 删除重复定义: #define SYSTEM_ONE_VALUE 1                // 值1
+// 删除重复定义: #define SYSTEM_ZERO_VALUE 0               // 值0
 
 // 额外美化常量 - 美化硬编码值（2025年8月30日最终批次）
 #define SYSTEM_ELEVEN_VALUE 11            // 值11
@@ -14560,9 +14560,9 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_THREAD_DATA_INDEX_CHAR_CHECK 2                 // 字符检查索引
 
 // 颜色处理权重常量 - 美化硬编码浮点数（2025年8月30日最终批次）
-#define SYSTEM_COLOR_WEIGHT_RED 0.2126                         // 红色权重
-#define SYSTEM_COLOR_WEIGHT_GREEN 0.7152                       // 绿色权重  
-#define SYSTEM_COLOR_WEIGHT_BLUE 0.0722                        // 蓝色权重
+// 删除重复定义: #define SYSTEM_COLOR_WEIGHT_RED 0.2126                         // 红色权重
+// 删除重复定义: #define SYSTEM_COLOR_WEIGHT_GREEN 0.7152                       // 绿色权重  
+// 删除重复定义: #define SYSTEM_COLOR_WEIGHT_BLUE 0.0722                        // 蓝色权重
 
 
 // 新增浮点数值常量 - 美化硬编码浮点数（2025年8月30日最终批次续）
@@ -14637,7 +14637,7 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_OFFSET_GLOBAL_DATA_15A8 0x15a8                   // 全局数据偏移量15A8
 #define SYSTEM_OFFSET_GLOBAL_DATA_1710 0x1710                   // 全局数据偏移量1710
 #define SYSTEM_OFFSET_VALIDATION_TYPE_EXTENDED 0x11             // 扩展验证类型偏移量
-#define SYSTEM_NULL_POINTER 0x0                                 // 空指针常量
+// 删除重复定义: #define SYSTEM_NULL_POINTER 0x0                                 // 空指针常量
 #define SYSTEM_OFFSET_CLEANUP_FUNCTION_E 0x0e                   // 清理函数E偏移量
 #define SYSTEM_OFFSET_VALIDATION_TYPE_C 0x0c                     // 验证类型C偏移量
 #define SYSTEM_OFFSET_VALIDATION_TYPE_D 0x0d                     // 验证类型D偏移量
@@ -14703,8 +14703,8 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_STATUS_ERROR 4                                     // 错误状态
 
 // 系统标志常量
-#define SYSTEM_FLAG_DISABLED 0                                     // 禁用标志
-#define SYSTEM_FLAG_ENABLED 1                                      // 启用标志
+// 删除重复定义: #define SYSTEM_FLAG_DISABLED 0                                     // 禁用标志
+// 删除重复定义: #define SYSTEM_FLAG_ENABLED 1                                      // 启用标志
 #define SYSTEM_FLAG_READONLY 2                                      // 只读标志
 #define SYSTEM_FLAG_WRITEABLE 4                                    // 可写标志
 #define SYSTEM_FLAG_EXECUTABLE 8                                   // 可执行标志
@@ -14795,7 +14795,7 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_INITIALIZATION_OFFSET_SECONDARY 0x1308             // 初始化次偏移量
 
 // 系统特殊数值常量定义（2025年8月30日美化批次）
-#define SYSTEM_FLOAT_MAX_VALUE 0x7f7fffff                          // 浮点数最大值
+// 删除重复定义: #define SYSTEM_FLOAT_MAX_VALUE 0x7f7fffff                          // 浮点数最大值
 #define SYSTEM_FLOAT_PI_DIV_4 0x3d088889                          // π/4值
 #define SYSTEM_FLOAT_ARRAY_MULTIPLIER 0x4cbebc20                 // 浮点数组乘数
 #define SYSTEM_FLOAT_INITIALIZED_VALUE 0x41200000                 // 浮点初始化值
@@ -14803,40 +14803,40 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_FLOAT_SPECIAL_CONSTANT 0xccbebc20                  // 特殊浮点常量
 
 // 系统字符串模式常量定义
-#define SYSTEM_STRING_PATTERN_COLON_MSG 0x3a726f72               // 冒号消息模式
-#define SYSTEM_STRING_PATTERN_OBJECT_MSG 0x2220656d               // 对象消息模式
+// 删除重复定义: #define SYSTEM_STRING_PATTERN_COLON_MSG 0x3a726f72               // 冒号消息模式
+// 删除重复定义: #define SYSTEM_STRING_PATTERN_OBJECT_MSG 0x2220656d               // 对象消息模式
 #define SYSTEM_STRING_PATTERN_TERMINATOR_CHAR_1 0x526f662f             // 终止符模式1
-#define SYSTEM_STRING_PATTERN_TERMINATOR_CHAR_2 0x5f646563             // 终止符模式2
+// 删除重复定义: #define SYSTEM_STRING_PATTERN_TERMINATOR_CHAR_2 0x5f646563             // 终止符模式2
 #define SYSTEM_STRING_PATTERN_TERMINATOR_CHAR_3 0x466f6e63             // 终止符模式3
-#define SYSTEM_STRING_POINTER_TAG_2 0x2e6f6373                    // 字符串指针标签2
+// 删除重复定义: #define SYSTEM_STRING_POINTER_TAG_2 0x2e6f6373                    // 字符串指针标签2
 
 // 基础位掩码常量定义（2025年8月30日语义化美化）
-#define SYSTEM_BIT_MASK_FLOAT_UPPER 0xffffff00                    // 浮点数上位掩码
-#define SYSTEM_BIT_MASK_ADDRESS_ALIGN 0xfffffffe                  // 地址对齐掩码
-#define SYSTEM_BIT_MASK_MEMORY_ALIGN 0xffffffffffffffe0U         // 内存对齐掩码
-#define SYSTEM_BIT_MASK_SPECIAL_1 0xffdefffe                      // 特殊掩码1
-#define SYSTEM_BIT_MASK_REGISTER_ALIGN 0xffffff20                 // 寄存器对齐掩码
-#define SYSTEM_BIT_MASK_ALIGN_2BIT 0xfffffffc                     // 2位对齐掩码
-#define SYSTEM_BIT_MASK_ALIGN_5BIT 0xffffffe0                     // 5位对齐掩码
-#define SYSTEM_BIT_MASK_ALIGN_6BIT 0xffffffc0                     // 6位对齐掩码
+// 删除重复定义: #define SYSTEM_BIT_MASK_FLOAT_UPPER 0xffffff00                    // 浮点数上位掩码
+// 删除重复定义: #define SYSTEM_BIT_MASK_ADDRESS_ALIGN 0xfffffffe                  // 地址对齐掩码
+// 删除重复定义: #define SYSTEM_BIT_MASK_MEMORY_ALIGN 0xffffffffffffffe0U         // 内存对齐掩码
+// 删除重复定义: #define SYSTEM_BIT_MASK_SPECIAL_1 0xffdefffe                      // 特殊掩码1
+// 删除重复定义: #define SYSTEM_BIT_MASK_REGISTER_ALIGN 0xffffff20                 // 寄存器对齐掩码
+// 删除重复定义: #define SYSTEM_BIT_MASK_ALIGN_2BIT 0xfffffffc                     // 2位对齐掩码
+// 删除重复定义: #define SYSTEM_BIT_MASK_ALIGN_5BIT 0xffffffe0                     // 5位对齐掩码
+// 删除重复定义: #define SYSTEM_BIT_MASK_ALIGN_6BIT 0xffffffc0                     // 6位对齐掩码
 
 // 系统错误码常量定义
-#define SYSTEM_ERROR_CODE_SPECIAL_1 -0x7f6dfffb                   // 特殊错误码1
-#define SYSTEM_ERROR_CODE_SPECIAL_2 -0x7f6dffff                   // 特殊错误码2
-#define SYSTEM_ERROR_CODE_SPECIAL_3 -0x7f6dff01                   // 特殊错误码3
-#define SYSTEM_ERROR_CODE_SPECIAL_4 -0x7f6dfffd                   // 特殊错误码4
-#define SYSTEM_ERROR_CODE_SPECIAL_5 -0x7f6dfffa                   // 特殊错误码5
-#define SYSTEM_ERROR_CODE_TIMEOUT -0x7ffeffff                     // 超时错误码
+// 删除重复定义: #define SYSTEM_ERROR_CODE_SPECIAL_1 -0x7f6dfffb                   // 特殊错误码1
+// 删除重复定义: #define SYSTEM_ERROR_CODE_SPECIAL_2 -0x7f6dffff                   // 特殊错误码2
+// 删除重复定义: #define SYSTEM_ERROR_CODE_SPECIAL_3 -0x7f6dff01                   // 特殊错误码3
+// 删除重复定义: #define SYSTEM_ERROR_CODE_SPECIAL_4 -0x7f6dfffd                   // 特殊错误码4
+// 删除重复定义: #define SYSTEM_ERROR_CODE_SPECIAL_5 -0x7f6dfffa                   // 特殊错误码5
+// 删除重复定义: #define SYSTEM_ERROR_CODE_TIMEOUT -0x7ffeffff                     // 超时错误码
 
 // 系统最大值常量定义（2025年8月30日最终批次美化）
-#define SYSTEM_MAX_VALUE_32BIT 0xffffffff                         // 32位无符号整数最大值
-#define SYSTEM_MAX_VALUE_64BIT 0xffffffffffffffff                 // 64位无符号整数最大值
-#define SYSTEM_MAX_VALUE_FLOAT 0x7f7fffff                         // 32位浮点数最大值
-#define SYSTEM_MAX_VALUE_STACK 0x7f7fffff3f800000                // 栈空间最大值
+// 删除重复定义: #define SYSTEM_MAX_VALUE_32BIT 0xffffffff                         // 32位无符号整数最大值
+// 删除重复定义: #define SYSTEM_MAX_VALUE_64BIT 0xffffffffffffffff                 // 64位无符号整数最大值
+// 删除重复定义: #define SYSTEM_MAX_VALUE_FLOAT 0x7f7fffff                         // 32位浮点数最大值
+// 删除重复定义: #define SYSTEM_MAX_VALUE_STACK 0x7f7fffff3f800000                // 栈空间最大值
 
 // 系统地址偏移常量定义（2025年8月30日最终批次美化）
-#define SYSTEM_ADDRESS_OFFSET_SPECIAL_1 0x1c0042ed               // 特殊地址偏移量1
-#define SYSTEM_ADDRESS_OFFSET_MEMORY_BOUNDARY 0x17ffffff          // 内存边界地址偏移量
+// 删除重复定义: #define SYSTEM_ADDRESS_OFFSET_SPECIAL_1 0x1c0042ed               // 特殊地址偏移量1
+// 删除重复定义: #define SYSTEM_ADDRESS_OFFSET_MEMORY_BOUNDARY 0x17ffffff          // 内存边界地址偏移量
 
 // 系统执行参数常量定义（2025年8月30日最终批次美化）
 #define SYSTEM_EXECUTION_PARAM_SPECIAL 0xfffffffd               // 特殊执行参数值
@@ -14880,7 +14880,7 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_FUNCTION_OFFSET_CALLBACK_A3A 0xa3a                // 函数回调A3A偏移量
 
 // 系统控制值常量定义（2025年8月30日语义化常量替换批次）
-#define SYSTEM_CONTROL_VALUE_98 0x98                            // 控制值98
+// 删除重复定义: #define SYSTEM_CONTROL_VALUE_98 0x98                            // 控制值98
 #define SYSTEM_CONTROL_VALUE_1614 0x1614                        // 控制值1614
 #define SYSTEM_CONTROL_VALUE_COUNTER_MODULO 0x1614                // 控制计数器模数值
 
@@ -14909,7 +14909,7 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_POINTER_OFFSET_B5B 0xb5b                          // 指针B5B偏移量
 #define SYSTEM_POINTER_OFFSET_5E 0x5e                             // 指针5E偏移量
 #define SYSTEM_POINTER_OFFSET_B 0xb                               // 指针B偏移量
-#define SYSTEM_POINTER_OFFSET_C 0xc                               // 指针C偏移量
+// 删除重复定义: #define SYSTEM_POINTER_OFFSET_C 0xc                               // 指针C偏移量
 #define SYSTEM_POINTER_OFFSET_D 0xd                               // 指针D偏移量
 #define SYSTEM_POINTER_OFFSET_E 0xe                               // 指针E偏移量
 #define SYSTEM_POINTER_OFFSET_12 0x12                             // 指针12偏移量
@@ -14931,9 +14931,9 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_POINTER_OFFSET_1E 0x1e                             // 指针1E偏移量
 
 // 系统控制值常量定义（2025年8月30日最终批次）
-#define SYSTEM_CONTROL_VALUE_C4 0xc4                             // 控制值C4
-#define SYSTEM_CONTROL_VALUE_CC 0xcc                             // 控制值CC
-#define SYSTEM_CONTROL_VALUE_D0 0xd0                             // 控制值D0
+// 删除重复定义: #define SYSTEM_CONTROL_VALUE_C4 0xc4                             // 控制值C4
+// 删除重复定义: #define SYSTEM_CONTROL_VALUE_CC 0xcc                             // 控制值CC
+// 删除重复定义: #define SYSTEM_CONTROL_VALUE_D0 0xd0                             // 控制值D0
 
 // 系统字符串常量定义（2025年8月30日最终批次）
 #define SYSTEM_STRING_CONSTANT_N696C2074612027 0x696c2074612027   // 字符串常量"nlic ta '"
@@ -14953,7 +14953,7 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_BUFFER_SIZE_330 0x330                             // 缓冲区大小330
 
 // 系统偏移量常量定义（2025年8月30日最终批次）
-#define SYSTEM_OFFSET_STACK_POINTER 0xc                             // 栈指针偏移量
+// 删除重复定义: #define SYSTEM_OFFSET_STACK_POINTER 0xc                             // 栈指针偏移量
 #define SYSTEM_OFFSET_MEMORY_SCALE 0x3088                             // 内存缩放偏移量
 #define SYSTEM_OFFSET_STRING_LENGTH 0x113                            // 字符串长度偏移量
 #define SYSTEM_OFFSET_DATA_ALIGNMENT 0x282                           // 数据对齐偏移量
@@ -14973,17 +14973,17 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_CONTROL_VALUE_END_MEDIUM 0x19                      // END_OF_MEDIUM控制字符
 
 // 系统数组索引常量定义（2025年8月30日美化批次）
-#define SYSTEM_ARRAY_INDEX_FIRST 0                                 // 数组第一个索引
-#define SYSTEM_ARRAY_INDEX_SECOND 1                                 // 数组第二个索引
-#define SYSTEM_ARRAY_INDEX_THIRD 2                                 // 数组第三个索引
-#define SYSTEM_ARRAY_INDEX_FOURTH 3                                 // 数组第四个索引
-#define SYSTEM_ARRAY_INDEX_FIFTH 4                                 // 数组第五个索引
-#define SYSTEM_ARRAY_INDEX_SIXTH 5                                 // 数组第六个索引
-#define SYSTEM_ARRAY_INDEX_SEVENTH 6                               // 数组第七个索引
-#define SYSTEM_ARRAY_INDEX_EIGHTH 7                               // 数组第八个索引
-#define SYSTEM_ARRAY_INDEX_NINTH 8                                // 数组第九个索引
-#define SYSTEM_ARRAY_INDEX_TENTH 9                                // 数组第十个索引
-#define SYSTEM_ARRAY_INDEX_ELEVENTH 10                             // 数组第十一个索引
+// 删除重复定义: #define SYSTEM_ARRAY_INDEX_FIRST 0                                 // 数组第一个索引
+// 删除重复定义: #define SYSTEM_ARRAY_INDEX_SECOND 1                                 // 数组第二个索引
+// 删除重复定义: #define SYSTEM_ARRAY_INDEX_THIRD 2                                 // 数组第三个索引
+// 删除重复定义: #define SYSTEM_ARRAY_INDEX_FOURTH 3                                 // 数组第四个索引
+// 删除重复定义: #define SYSTEM_ARRAY_INDEX_FIFTH 4                                 // 数组第五个索引
+// 删除重复定义: #define SYSTEM_ARRAY_INDEX_SIXTH 5                                 // 数组第六个索引
+// 删除重复定义: #define SYSTEM_ARRAY_INDEX_SEVENTH 6                               // 数组第七个索引
+// 删除重复定义: #define SYSTEM_ARRAY_INDEX_EIGHTH 7                               // 数组第八个索引
+// 删除重复定义: #define SYSTEM_ARRAY_INDEX_NINTH 8                                // 数组第九个索引
+// 删除重复定义: #define SYSTEM_ARRAY_INDEX_TENTH 9                                // 数组第十个索引
+// 删除重复定义: #define SYSTEM_ARRAY_INDEX_ELEVENTH 10                             // 数组第十一个索引
 #define SYSTEM_ARRAY_INDEX_TWELFTH 0xb                            // 数组第十二个索引 (十六进制)
 #define SYSTEM_ARRAY_INDEX_THIRTEENTH 0xc                         // 数组第十三个索引 (十六进制)
 #define SYSTEM_ARRAY_INDEX_FOURTEENTH 0xd                         // 数组第十四个索引 (十六进制)
