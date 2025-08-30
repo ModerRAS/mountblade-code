@@ -62479,3 +62479,20 @@ longlong *g_global_system_flags;
 #define SYSTEM_INDEX_SECONDARY 1
 #define SYSTEM_INDEX_TERTIARY 2
 
+// 本次补充美化内容（2025年8月30日最终批次补充）：
+// - 添加系统基本数值常量，包括1、2、3、4、5、6、7、8、9、10等基本整数值
+// - 提高代码可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要补充系统基本数值常量定义
+
+// 系统基本数值常量
+#define SYSTEM_BASIC_VALUE_ONE 1
+#define SYSTEM_BASIC_VALUE_TWO 2
+#define SYSTEM_BASIC_VALUE_THREE 3
+#define SYSTEM_BASIC_VALUE_FOUR 4
+#define SYSTEM_BASIC_VALUE_FIVE 5
+#define SYSTEM_BASIC_VALUE_SIX 6
+#define SYSTEM_BASIC_VALUE_SEVEN 7
+#define SYSTEM_BASIC_VALUE_EIGHT 8
+#define SYSTEM_BASIC_VALUE_NINE 9
+#define SYSTEM_BASIC_VALUE_TEN 10
+
