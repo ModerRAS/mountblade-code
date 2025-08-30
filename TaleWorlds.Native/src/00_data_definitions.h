@@ -4553,8 +4553,8 @@ section_processing_jump_label_:
           thread_result_status = *(int *)(system_global_data_pointer + SYSTEM_OFFSET_RENDER_LIMIT);
         }
         float_var = (float)*(double *)(str_len_counter + path_buffer_size8);
-        if (1.0 / (float)thread_result_status <= (float)*(double *)(str_len_counter + path_buffer_size8)) {
-          float_var = 1.0 / (float)thread_result_status;
+        if (SYSTEM_FLOAT_VALUE_ONE / (float)thread_result_status <= (float)*(double *)(str_len_counter + path_buffer_size8)) {
+          float_var = SYSTEM_FLOAT_VALUE_ONE / (float)thread_result_status;
         }
       }
       else {
@@ -4662,8 +4662,8 @@ section_processing_jump_label_:
           thread_result_status = *(int *)(system_global_data_pointer + SYSTEM_OFFSET_RENDER_LIMIT);
         }
         float_var = (float)*(double *)(handle_param + path_buffer_size8);
-        if (1.0 / (float)thread_result_status <= (float)*(double *)(handle_param + path_buffer_size8)) {
-          float_var = 1.0 / (float)thread_result_status;
+        if (SYSTEM_FLOAT_VALUE_ONE / (float)thread_result_status <= (float)*(double *)(handle_param + path_buffer_size8)) {
+          float_var = SYSTEM_FLOAT_VALUE_ONE / (float)thread_result_status;
         }
       }
       else {
