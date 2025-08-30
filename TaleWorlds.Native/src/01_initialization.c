@@ -49047,7 +49047,7 @@ void initialize_system_data_node_thirty_two(longlong handleIdentifier,uint64_t *
         else {
           initialize_system_module_forty_three(system_pointer_temp);
           system_memory_pointer = (longlong *)system_memory_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-          system_temp_float_value = 0.0;
+          system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
           if (system_memory_pointer < (longlong *)system_memory_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER]) {
             do {
               system_long_result_temp = *system_memory_pointer;
@@ -49097,7 +49097,7 @@ void initialize_system_data_node_thirty_two(longlong handleIdentifier,uint64_t *
                        system_float_result_value * system_float_result_value + system_float_result_value * system_temp_float_value;
               system_temp_float_value = system_float_result_value - system_temp_float_value;
               if (system_float_result_value <= 0.0) {
-                system_temp_float_value = 0.0;
+                system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
               }
               if (system_float_result_value * system_float_result_value < system_float_result_value) {
                 system_temp_float_value = SQRT(system_float_result_value) + system_temp_float_value;
@@ -49458,14 +49458,14 @@ float * HandleSystemOperation_resource_management(float *handleIdentifier)
       handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A5] = 0.0;
       handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A6] = 0.0;
       handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A7] = 0.0;
-      handleIdentifier[SYSTEM_MEMORY_POOL_SIZE_MEDIUM] = 0.0;
+      handleIdentifier[SYSTEM_MEMORY_POOL_SIZE_MEDIUM] = SYSTEM_FLOAT_VALUE_ZERO;
     }
     else {
-      handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A5] = (handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A1] + *init_float_pointer_temp) * 0.5;
-      handleIdentifier[0xa6] = (handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A2] + handleIdentifier[SYSTEM_AUDIO_DATA_OFFSET_9E]) * 0.5;
-      handleIdentifier[0xa7] = (handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A3] + handleIdentifier[0x9f]) * 0.5;
+      handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A5] = (handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A1] + *init_float_pointer_temp) * SYSTEM_FLOAT_VALUE_POINT_ZERO_FIVE;
+      handleIdentifier[0xa6] = (handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A2] + handleIdentifier[SYSTEM_AUDIO_DATA_OFFSET_9E]) * SYSTEM_FLOAT_VALUE_POINT_ZERO_FIVE;
+      handleIdentifier[0xa7] = (handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A3] + handleIdentifier[0x9f]) * SYSTEM_FLOAT_VALUE_POINT_ZERO_FIVE;
       handleIdentifier[SYSTEM_MEMORY_POOL_SIZE_MEDIUM] = SYSTEM_FLOAT_MAX_VALUE;
-      system_temp_float_value = 0.0;
+      system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
       system_result_operation = (ulonglong)*(uint *)(init_stack_string_ptr_88 + SYSTEM_DATA_COMPARE_SIZE);
       if (0 < (int)*(uint *)(init_stack_string_ptr_88 + SYSTEM_DATA_COMPARE_SIZE)) {
         init_float_pointer_temp = *(float **)(init_stack_string_ptr_88 + SYSTEM_OFFSET_18);
@@ -49592,7 +49592,7 @@ void initialize_system_module_twenty_six(longlong *handleIdentifier)
         system_result_operation = (uint)system_integer_unsigned_temp;
         if (system_counter_temp < SYSTEM_COMPARISON_TWO) {
           system_temp_integer = system_counter_temp - 1;
-          system_temp_float_value = 0.0;
+          system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
           system_temp_integer = system_temp_integer;
         }
         else {
@@ -49615,7 +49615,7 @@ void initialize_system_module_twenty_six(longlong *handleIdentifier)
             }
           }
           else {
-            system_temp_float_value = 0.0;
+            system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
           }
         }
         if (-1 < system_temp_integer_result) {
@@ -49651,7 +49651,7 @@ void initialize_system_module_twenty_six(longlong *handleIdentifier)
         system_result_operation = (uint)system_integer_unsigned_temp;
         if (system_counter_temp < SYSTEM_COMPARISON_TWO) {
           system_temp_integer = system_counter_temp - 1;
-          system_temp_float_value = 0.0;
+          system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
           system_temp_integer = system_temp_integer;
         }
         else {
@@ -49675,7 +49675,7 @@ void initialize_system_module_twenty_six(longlong *handleIdentifier)
             }
           }
           else {
-            system_temp_float_value = 0.0;
+            system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
           }
         }
         if (-1 < system_temp_integer_result) {
@@ -55076,14 +55076,14 @@ float * InitializeResourceSystem(float *handleIdentifier)
       handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A5] = 0.0;
       handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A6] = 0.0;
       handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A7] = 0.0;
-      handleIdentifier[SYSTEM_MEMORY_POOL_SIZE_MEDIUM] = 0.0;
+      handleIdentifier[SYSTEM_MEMORY_POOL_SIZE_MEDIUM] = SYSTEM_FLOAT_VALUE_ZERO;
     }
     else {
-      handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A5] = (handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A1] + *init_float_pointer_temp) * 0.5;
-      handleIdentifier[0xa6] = (handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A2] + handleIdentifier[SYSTEM_AUDIO_DATA_OFFSET_9E]) * 0.5;
-      handleIdentifier[0xa7] = (handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A3] + handleIdentifier[0x9f]) * 0.5;
+      handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A5] = (handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A1] + *init_float_pointer_temp) * SYSTEM_FLOAT_VALUE_POINT_ZERO_FIVE;
+      handleIdentifier[0xa6] = (handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A2] + handleIdentifier[SYSTEM_AUDIO_DATA_OFFSET_9E]) * SYSTEM_FLOAT_VALUE_POINT_ZERO_FIVE;
+      handleIdentifier[0xa7] = (handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A3] + handleIdentifier[0x9f]) * SYSTEM_FLOAT_VALUE_POINT_ZERO_FIVE;
       handleIdentifier[SYSTEM_MEMORY_POOL_SIZE_MEDIUM] = SYSTEM_FLOAT_MAX_VALUE;
-      system_temp_float_value = 0.0;
+      system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
       system_result_operation = (ulonglong)*(uint *)(init_stack_string_ptr_88 + SYSTEM_DATA_COMPARE_SIZE);
       if (0 < (int)*(uint *)(init_stack_string_ptr_88 + SYSTEM_DATA_COMPARE_SIZE)) {
         init_float_pointer_temp = *(float **)(init_stack_string_ptr_88 + SYSTEM_OFFSET_18);
@@ -55398,8 +55398,8 @@ void InitializeTextureSystem(longlong handleIdentifier)
         system_temp_float_value = system_float_result_value * (system_float_result_value - system_float_result_value) - system_float_result_value * (system_float_result_value - system_float_result_value);
         init_float_stack_174 = SQRT(system_float_result_value * system_float_result_value + system_float_result_value * system_float_result_value + system_float_result_value * system_float_result_value);
         if (init_float_stack_174 <= 0.0) {
-          system_temp_float_value = 0.0;
-          system_temp_float_value = 0.0;
+          system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+          system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
           init_float_stack_178 = 1.0;
           init_float_stack_174 = 1.0;
         }
@@ -57868,7 +57868,7 @@ code_r0x00018007db1b:
           }
         }
         else {
-          system_temp_float_value = 0.0;
+          system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
         }
         *(char *)((longlong)init_float_pointer_temp + 3) = (char)(int)(1.0 - system_float_result_value);
         init_temp_byte_ptr = (byte *)((longlong)init_float_pointer_temp + system_long_result);
@@ -57888,7 +57888,7 @@ code_r0x00018007db1b:
           }
         }
         else {
-          system_temp_float_value = 0.0;
+          system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
         }
         init_temp_byte_ptr[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = (byte)(int)(1.0 - system_float_result_value);
         init_temp_byte_ptr = init_temp_byte_ptr + system_long_result_temp;
@@ -57908,7 +57908,7 @@ code_r0x00018007db1b:
           }
         }
         else {
-          system_temp_float_value = 0.0;
+          system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
         }
         init_temp_byte_ptr[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = (byte)(int)(1.0 - system_float_result_value);
         init_temp_byte_ptr = init_temp_byte_ptr + system_long_result_temp;
@@ -57929,7 +57929,7 @@ code_r0x00018007db1b:
           }
         }
         else {
-          system_temp_float_value = 0.0;
+          system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
         }
         init_temp_byte_ptr[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = (byte)(int)(1.0 - system_float_result_value);
         init_float_pointer_temp = (float *)(init_temp_byte_ptr + system_long_result);
@@ -57959,7 +57959,7 @@ code_r0x00018007db1b:
           }
         }
         else {
-          system_temp_float_value = 0.0;
+          system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
         }
         system_pointer_temp[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = (char)(int)(1.0 - system_float_result_value);
         system_pointer_value = system_pointer_temp + system_temp_integer;
@@ -58007,7 +58007,7 @@ code_r0x00018007db1b:
           }
         }
         else {
-          system_temp_float_value = 0.0;
+          system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
         }
         if (-0.5 <= system_float_result_value) {
           if (SYSTEM_FLOAT_VALUE_ONE <= system_float_result_value) {
@@ -58015,7 +58015,7 @@ code_r0x00018007db1b:
           }
         }
         else {
-          system_temp_float_value = 0.0;
+          system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
         }
         if (-0.5 <= system_float_result_value) {
           if (SYSTEM_FLOAT_VALUE_ONE <= system_float_result_value) {
@@ -58023,7 +58023,7 @@ code_r0x00018007db1b:
           }
         }
         else {
-          system_temp_float_value = 0.0;
+          system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
         }
         *init_float_pointer_temp = (float)(((uint)(longlong)(system_float_result_value * 2047.0) & 0x7ff |
                            (int)(longlong)(system_float_result_value * 2047.0) << SYSTEM_COMPARISON_ZEROxb) << SYSTEM_COMPARISON_ONE0 |
@@ -58080,7 +58080,7 @@ code_r0x00018007db1b:
           }
         }
         else {
-          system_temp_float_value = 0.0;
+          system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
         }
         if (-0.5 <= system_float_result_value * 0.5) {
           if (SYSTEM_FLOAT_VALUE_ONE <= system_float_result_value) {
@@ -58088,7 +58088,7 @@ code_r0x00018007db1b:
           }
         }
         else {
-          system_temp_float_value = 0.0;
+          system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
         }
         if (-0.5 <= system_float_result_value * 0.5) {
           if (SYSTEM_FLOAT_VALUE_ONE <= system_float_result_value) {
@@ -58096,7 +58096,7 @@ code_r0x00018007db1b:
           }
         }
         else {
-          system_temp_float_value = 0.0;
+          system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
         }
         system_result_operation = 0;
         if ((system_float_result_value * *(float *)(system_long_result + SYSTEM_BUFFER_OFFSET_C + system_long_result) - system_float_result_value * system_float_result_value) *
@@ -60946,26 +60946,26 @@ uint64_t ProcessFunction_memory_allocation(void)
         audio_data_buffer_math._8_4_ = (float)system_math_union._8_4_;
         audio_data_buffer_math._12_4_ = (float)system_math_union._12_4_;
         system_math_union = rcpps(system_math_union,audio_data_buffer_math);
-        system_temp_float_value = 0.0;
-        system_temp_float_value = 0.0;
-        system_temp_float_value = 0.0;
-        system_temp_float_value = 0.0;
+        system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+        system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+        system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+        system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
         system_temp_float_value = system_math_union._0_4_;
         system_temp_float_value = system_math_union._4_4_;
         system_temp_float_value = system_math_union._8_4_;
         system_temp_float_value = system_math_union._12_4_;
-        system_temp_float_value = 0.0;
-        system_temp_float_value = 0.0;
-        system_temp_float_value = 0.0;
-        system_temp_float_value = 0.0;
-        system_temp_float_value = 0.0;
-        system_temp_float_value = 0.0;
-        system_temp_float_value = 0.0;
-        system_temp_float_value = 0.0;
-        system_temp_float_value = 0.0;
-        system_temp_float_value = 0.0;
-        system_temp_float_value = 0.0;
-        system_temp_float_value = 0.0;
+        system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+        system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+        system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+        system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+        system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+        system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+        system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+        system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+        system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+        system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+        system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+        system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
         system_temp_float_value = (system_float_result_value + system_float_result_value) - system_float_result_value * system_float_result_value * audio_data_buffer_math._0_4_;
         system_temp_float_value = (system_float_result_value + system_float_result_value) - system_float_result_value * system_float_result_value * audio_data_buffer_math._4_4_;
         system_temp_float_value = (system_float_result_value + system_float_result_value) - system_float_result_value * system_float_result_value * audio_data_buffer_math._8_4_;
@@ -61149,26 +61149,26 @@ uint64_t ProcessFunction_thread_management(void)
       audio_data_buffer_vector._8_4_ = (float)system_vector_union._8_4_;
       audio_data_buffer_vector._12_4_ = (float)system_vector_union._12_4_;
       system_vector_union = rcpps(system_vector_union,audio_data_buffer_vector);
-      system_temp_float_value = 0.0;
-      system_temp_float_value = 0.0;
-      system_temp_float_value = 0.0;
-      system_temp_float_value = 0.0;
+      system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+      system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+      system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+      system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
       system_temp_float_value = system_vector_union._0_4_;
       system_temp_float_value = system_vector_union._4_4_;
       system_temp_float_value = system_vector_union._8_4_;
       system_temp_float_value = system_vector_union._12_4_;
-      system_temp_float_value = 0.0;
-      system_temp_float_value = 0.0;
-      system_temp_float_value = 0.0;
-      system_temp_float_value = 0.0;
-      system_temp_float_value = 0.0;
-      system_temp_float_value = 0.0;
-      system_temp_float_value = 0.0;
-      system_temp_float_value = 0.0;
-      system_temp_float_value = 0.0;
-      system_temp_float_value = 0.0;
-      system_temp_float_value = 0.0;
-      system_temp_float_value = 0.0;
+      system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+      system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+      system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+      system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+      system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+      system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+      system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+      system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+      system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+      system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+      system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+      system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
       system_temp_float_value = (system_float_result_value + system_float_result_value) - system_float_result_value * system_float_result_value * audio_data_buffer_vector._0_4_;
       system_temp_float_value = (system_float_result_value + system_float_result_value) - system_float_result_value * system_float_result_value * audio_data_buffer_vector._4_4_;
       system_temp_float_value = (system_float_result_value + system_float_result_value) - system_float_result_value * system_float_result_value * audio_data_buffer_vector._8_4_;
@@ -61344,26 +61344,26 @@ uint64_t ProcessFunction_resource_tracking(int handleIdentifier,uint64_t resourc
   audio_data_buffer_temp._8_4_ = (float)audio_data_buffer_calc._8_4_;
   audio_data_buffer_temp._12_4_ = (float)audio_data_buffer_calc._12_4_;
   audio_data_buffer_calc = rcpps(audio_data_buffer_calc,audio_data_buffer_temp);
-  system_temp_float_value = 0.0;
-  system_temp_float_value = 0.0;
-  system_temp_float_value = 0.0;
-  system_temp_float_value = 0.0;
+  system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+  system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+  system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+  system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
   system_temp_float_value = audio_data_buffer_calc._0_4_;
   system_temp_float_value = audio_data_buffer_calc._4_4_;
   system_temp_float_value = audio_data_buffer_calc._8_4_;
   system_temp_float_value = audio_data_buffer_calc._12_4_;
-  system_temp_float_value = 0.0;
-  system_temp_float_value = 0.0;
-  system_temp_float_value = 0.0;
-  system_temp_float_value = 0.0;
-  system_temp_float_value = 0.0;
-  system_temp_float_value = 0.0;
-  system_temp_float_value = 0.0;
-  system_temp_float_value = 0.0;
-  system_temp_float_value = 0.0;
-  system_temp_float_value = 0.0;
-  system_temp_float_value = 0.0;
-  system_temp_float_value = 0.0;
+  system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+  system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+  system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+  system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+  system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+  system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+  system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+  system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+  system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+  system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+  system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
+  system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
   system_temp_float_value = (system_float_result_value + system_float_result_value) - system_float_result_value * system_float_result_value * audio_data_buffer_temp._0_4_;
   system_temp_float_value = (system_float_result_value + system_float_result_value) - system_float_result_value * system_float_result_value * audio_data_buffer_temp._4_4_;
   system_temp_float_value = (system_float_result_value + system_float_result_value) - system_float_result_value * system_float_result_value * audio_data_buffer_temp._8_4_;
@@ -61611,7 +61611,7 @@ uint64_t ProcessFunction_data_processing(longlong handleIdentifier,uint resource
             system_temp_float_value = *(float *)(handleIdentifier + (0x8132 - system_counter_temp) * SYSTEM_OFFSET_4);
           }
           else {
-            system_temp_float_value = 0.0;
+            system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
           }
           system_result_operation = (uint)((system_float_result_value - 0.25) * 32768.0);
           if ((int)system_counter_temp < SYSTEM_COMPARISON_ZERO) {
@@ -61633,7 +61633,7 @@ uint64_t ProcessFunction_data_processing(longlong handleIdentifier,uint resource
             system_temp_float_value = *(float *)(handleIdentifier + (0x8132 - system_counter_temp) * SYSTEM_OFFSET_4);
           }
           else {
-            system_temp_float_value = 0.0;
+            system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
           }
           system_long_result_temp = (longlong)system_temp_integer;
           system_long_result_temp = (longlong)(int)(system_temp_integer_result + system_counter_temp);
@@ -61793,7 +61793,7 @@ uint64_t ProcessFunction_system_cleanup(uint64_t handleIdentifier,uint64_t resou
           system_temp_float_value = *(float *)(system_register_r11 + (0x8132 - system_counter_temp) * SYSTEM_OFFSET_4);
         }
         else {
-          system_temp_float_value = 0.0;
+          system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
         }
         system_result_operation = (uint)(((float)(int)system_counter_temp * system_xmm10_da_value - 0.25) * 32768.0);
         if ((int)system_counter_temp < SYSTEM_COMPARISON_ZERO) {
@@ -61815,7 +61815,7 @@ uint64_t ProcessFunction_system_cleanup(uint64_t handleIdentifier,uint64_t resou
           system_temp_float_value = *(float *)(system_register_r11 + (0x8132 - system_counter_temp) * SYSTEM_OFFSET_4);
         }
         else {
-          system_temp_float_value = 0.0;
+          system_temp_float_value = SYSTEM_FLOAT_VALUE_ZERO;
         }
         system_long_result_temp = (longlong)system_temp_integer;
         system_long_result_temp = (longlong)(int)(system_temp_integer_result + system_reg_r14d_value);
