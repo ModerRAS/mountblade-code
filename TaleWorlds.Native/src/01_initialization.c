@@ -24765,8 +24765,8 @@ void InitializeAudioMutex(longlong handleIdentifier,float resourceIdentifier,uin
         g_system_data_variablec = system_temp_float_value;
         MarkSystemInitialized(&g_system_configuration_data_ptr);
       }
-      g_system_data_variablec = (1.0 - system_float_result_value) * g_system_data_variablec + system_float_result_value * system_temp_float_value;
-      system_temp_float_value = ((float)(int)((system_statusData / g_system_data_variablec) / system_float_result_value) * system_float_result_value - 1.0) * system_float_result_value *
+      g_system_data_variablec = (SYSTEM_FLOAT_VALUE_ONE - system_float_result_value) * g_system_data_variablec + system_float_result_value * system_temp_float_value;
+      system_temp_float_value = ((float)(int)((system_statusData / g_system_data_variablec) / system_float_result_value) * system_float_result_value - SYSTEM_FLOAT_VALUE_ONE) * system_float_result_value *
                system_float_result_value + system_temp_float_value;
       if (system_float_result_value <= system_float_result_value) {
         system_temp_float_value = system_temp_float_value;
