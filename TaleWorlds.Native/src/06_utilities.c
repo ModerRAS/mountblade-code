@@ -80479,7 +80479,8 @@ void InitializeResourcePool(void)
 void g_initialize_memory_pool(void)
 
 {
-  render_system_tls_cleanup_5320 = &thread_local_storage_cleanup;
+  // 美化：将十六进制变量名替换为语义化名称
+  system_tls_cleanup_render_system = &thread_local_storage_cleanup;
   return;
 }
 
