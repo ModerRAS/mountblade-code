@@ -62,6 +62,7 @@
 // - 简化实现：仅将常见的硬编码值替换为语义化常量
 
 #define NETWORK_BASIC_UNSIGNED_VALUE 4U     // 基本无符号值4
+#define NETWORK_CHAR_NULL '\0'               // 网络字符空值
 
 // 最新美化内容（2025年8月30日最终批次最终完成续续）：
 // - 美化网络系统数组大小常量名，将NETWORK_ARRAY_SIZE_16替换为NETWORK_ARRAY_SIZE_SMALL等语义化常量名
@@ -10088,7 +10089,7 @@ network_process_buffer_pointer_label:
   goto complete_network_operation;
 network_handle_network_data_ptr_label:
   network_char_status = NetworkCheckSocketReady(network_socket_handle + MODULE_STATUS_OFFSET, network_socket_handle[NETWORK_HEADER_SIZE_DEFAULT] + NETWORK_STATUS_READY_MASK);
-  if ((network_char_status == '\NETWORK_STATUS_FAILURE') || (network_char_status = NetworkCheckSocketReady(network_socket_handle + NETWORK_SOCKET_REGISTER_OFFSET, network_socket_handle[NETWORK_HEADER_SIZE_DEFAULT] + SOCKET_STATUS_OFFSET), network_char_status == '\NETWORK_STATUS_FAILURE')) {
+  if ((network_char_status == NETWORK_CHAR_NULL) || (network_char_status = NetworkCheckSocketReady(network_socket_handle + NETWORK_SOCKET_REGISTER_OFFSET, network_socket_handle[NETWORK_HEADER_SIZE_DEFAULT] + SOCKET_STATUS_OFFSET), network_char_status == NETWORK_CHAR_NULL)) {
     network_operation_result = RequestNetworkResource(network_socket_handle, NETWORK_STATUS_FAILURE);
     network_timeout_tertiary_value = NETWORK_STATUS_FAILURE;
     network_op_status = (uint64_t *)MEMORY_MEMORY_ZERO_OFFSET;

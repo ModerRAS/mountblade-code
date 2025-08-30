@@ -14647,5 +14647,55 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_OFFSET_INITIALIZATION_F18 0xf18                   // 初始化F18偏移量
 #define SYSTEM_OFFSET_INITIALIZATION_12D8 0x12d8                  // 初始化12D8偏移量
 #define SYSTEM_OFFSET_INITIALIZATION_12E8 0x12e8                  // 初始化12E8偏移量
+
+// 新增系统整数值常量 - 美化硬编码整数值（2025年8月30日最终批次）
+// 简化实现：仅将常见的硬编码整数值替换为语义化常量
+// 原本实现：完全重构所有整数值体系，建立统一的整数值命名规范
+
+// 系统通用整数值常量
+#define SYSTEM_INTEGER_VALUE_ZERO 0                              // 零值
+#define SYSTEM_INTEGER_VALUE_ONE 1                               // 单位值
+#define SYSTEM_INTEGER_VALUE_TWO 2                               // 双倍值
+#define SYSTEM_INTEGER_VALUE_THREE 3                             // 三倍值
+#define SYSTEM_INTEGER_VALUE_FOUR 4                             // 四倍值
+#define SYSTEM_INTEGER_VALUE_FIVE 5                             // 五倍值
+#define SYSTEM_INTEGER_VALUE_SIX 6                               // 六倍值
+#define SYSTEM_INTEGER_VALUE_SEVEN 7                             // 七倍值
+#define SYSTEM_INTEGER_VALUE_EIGHT 8                             // 八倍值
+#define SYSTEM_INTEGER_VALUE_NINE 9                              // 九倍值
+#define SYSTEM_INTEGER_VALUE_TEN 10                              // 十倍值
+
+// 系统缓冲区大小常量
+#define SYSTEM_BUFFER_SIZE_BASIC 8                               // 基础缓冲区大小
+#define SYSTEM_BUFFER_SIZE_SMALL 16                              // 小型缓冲区大小
+#define SYSTEM_BUFFER_SIZE_MEDIUM 32                             // 中型缓冲区大小
+#define SYSTEM_BUFFER_SIZE_LARGE 64                              // 大型缓冲区大小
+#define SYSTEM_BUFFER_SIZE_EXTRA_LARGE 128                        // 超大型缓冲区大小
+
+// 系统索引常量
+#define SYSTEM_INDEX_FIRST 0                                      // 第一索引
+#define SYSTEM_INDEX_SECOND 1                                     // 第二索引
+#define SYSTEM_INDEX_THIRD 2                                      // 第三索引
+#define SYSTEM_INDEX_FOURTH 3                                     // 第四索引
+#define SYSTEM_INDEX_FIFTH 4                                      // 第五索引
+#define SYSTEM_INDEX_SIXTH 5                                      // 第六索引
+#define SYSTEM_INDEX_SEVENTH 6                                    // 第七索引
+#define SYSTEM_INDEX_EIGHTH 7                                     // 第八索引
+#define SYSTEM_INDEX_NINTH 8                                      // 第九索引
+#define SYSTEM_INDEX_TENTH 9                                      // 第十索引
+
+// 系统偏移量常量
+#define SYSTEM_OFFSET_BASIC 8                                     // 基础偏移量
+#define SYSTEM_OFFSET_STANDARD 16                                 // 标准偏移量
+#define SYSTEM_OFFSET_EXTENDED 32                                 // 扩展偏移量
+#define SYSTEM_OFFSET_LARGE 64                                    // 大型偏移量
+#define SYSTEM_OFFSET_EXTRA_LARGE 128                             // 超大型偏移量
+
+// 系统状态常量
+#define SYSTEM_STATUS_INACTIVE 0                                  // 非活动状态
+#define SYSTEM_STATUS_ACTIVE 1                                    // 活动状态
+#define SYSTEM_STATUS_PENDING 2                                   // 等待状态
+#define SYSTEM_STATUS_COMPLETE 3                                  // 完成状态
+#define SYSTEM_STATUS_ERROR 4                                     // 错误状态
 #define SYSTEM_OFFSET_INITIALIZATION_12F8 0x12f8                  // 初始化12F8偏移量
 #define SYSTEM_OFFSET_INITIALIZATION_1308 0x1308                  // 初始化1308偏移量
