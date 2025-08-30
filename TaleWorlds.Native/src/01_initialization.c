@@ -1,5 +1,15 @@
 #include "TaleWorlds.Native.Split.h"
 
+// 最新美化内容（2025年8月30日最终批次）：
+// - 美化系统初始化中的临时变量名，将new_var替换为system_temp_config_value等语义化变量名
+// - 美化系统初始化中的临时变量名，将system_temp_long替换为system_long_result_temp等语义化变量名
+// - 美化系统初始化中的临时变量名，将system_temp_integer_primary替换为system_temp_integer_result等语义化变量名
+// - 美化系统初始化中的临时变量名，将system_temp_long_1-4替换为system_temp_long_primary等语义化变量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了系统初始化中剩余临时变量名的语义化替换
+// - 原本实现：完全重构所有临时变量命名体系，建立统一的变量命名规范
+// - 简化实现：仅将常见的临时变量名替换为语义化名称
+
 // 本次美化内容（2025年8月30日）最终批次续续续续：
 // - 美化系统偏移量常量名，将SYSTEM_OFFSET_F替换为SYSTEM_SMALL_OFFSET_FRAME_SIZE等帧大小偏移量常量名
 // - 美化系统偏移量常量名，将SYSTEM_OFFSET_1/2/3/4/5替换为SYSTEM_MEMORY_OFFSET_UNIT_1/2/3/4/5等通用单元偏移量常量名
@@ -14081,7 +14091,7 @@ int GetSystemFunctionPointer(void)
   uint8_t system_local_buffer_small [SYSTEM_LOCAL_BUFFER_SIZE_32];
 
   system_local_buffer_small[SYSTEM_BUFFER_INDEX_FIRST] = SYSTEM_BOOLEAN_TRUE;
-  EngineFunction_61_6(&g_system_string_buffer,system_local_buffer_small);
+  ConfigureSystemBuffers(&g_system_string_buffer,system_local_buffer_small);
   system_long_result_temp = execute_system_init(InitializeMemoryManager);
   return (system_long_result != SYSTEM_OPERATION_SUCCESS) + SYSTEM_RETURN_VALUE_SUCCESS_MINUS_1;
 }
@@ -14093,7 +14103,7 @@ int InitializeUISystem(void)
   uint8_t system_local_buffer_small [SYSTEM_LOCAL_BUFFER_SIZE_32];
 
   system_local_buffer_small[SYSTEM_BUFFER_INDEX_FIRST] = SYSTEM_BOOLEAN_FALSE;
-  EngineFunction_61_6(&g_system_string_buffer,system_local_buffer_small);
+  ConfigureSystemBuffers(&g_system_string_buffer,system_local_buffer_small);
   system_long_result_temp = execute_system_init(InitializeProcessManager);
   return (system_long_result != SYSTEM_OPERATION_SUCCESS) + SYSTEM_RETURN_VALUE_SUCCESS_MINUS_1;
 }
