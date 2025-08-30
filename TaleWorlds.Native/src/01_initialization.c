@@ -22489,7 +22489,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
   system_uint8_t asystem_stack_uint_0x1068 [0x102];
   system_uint8_t system_stack_uint_0x1048;
   char system_stack_char_primary;
-  char cStack_0x100107;
+  char system_stack_char_secondary;
   char acStack_0x100106 [SYSTEM_ARRAY_INDEX_THIRD];
   uint system_stack_uint_0x100104;
   void* *psystem_stack_uint_0x100100;
@@ -22612,8 +22612,8 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
         system_loop_counter0 = system_loop_counter4 + SYSTEM_INIT_FLAG_INITIALIZEDe0;
         system_context_handle = system_allocate_memory(_g_system_initialized,SYSTEM_INIT_OFFSET_HEADER,*(system_uint8_t *)(system_loop_counter4 + ));
         system_return_result(system_context_handle + SYSTEM_INIT_OFFSET_STACK_PARAM,&psystem_stack_uint_0x1010);
-        system_allocation_result0 = InitializeSystemCore(system_loop_counter0,&cStack_0x100107,system_context_handle + SYSTEM_INIT_OFFSET_STACK_PARAM);
-        if (cStack_0x100107 != '\0') {
+        system_allocation_result0 = InitializeSystemCore(system_loop_counter0,&system_stack_char_secondary,system_context_handle + SYSTEM_INIT_OFFSET_STACK_PARAM);
+        if (system_stack_char_secondary != '\0') {
           if (system_allocation_result0 == system_loop_counter0) goto system_init_label_resource_next;
           if (*(int *)(system_allocation_result0 + ) == 0) goto LAB_18004d1b9;
           if (*(int *)(system_context_handle + ) == 0) goto system_init_label_resource_next;
