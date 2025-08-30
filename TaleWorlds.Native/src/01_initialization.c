@@ -63111,15 +63111,23 @@ longlong *system_memory_pool_pointer;
 #define SYSTEM_INIT_MAGIC_COOKIE_STRING_DEV_3     0x666e6f63  // 字符串"fnoc"的十六进制表示
 #define SYSTEM_INIT_MAGIC_COOKIE_STRING_DEV_4     0x6e  // 字符串"n"的十六进制表示
 
-// 特殊值常量
-#define SYSTEM_INIT_SPECIAL_VALUE_3FFFFFF         0x3ffffff  // 特殊值3FFFFFF
+// 特殊值常量语义化定义（2025年8月30日最终批次最新完成）
+#define SYSTEM_INIT_SPECIAL_VALUE_3FFFFFF         SYSTEM_INIT_VALUE_3FFFFFF         // 特殊值3FFFFFF
 #define SYSTEM_INIT_SPECIAL_VALUE_548             SYSTEM_INIT_OFFSET_STACK_548      // 特殊值548
 #define SYSTEM_INIT_SPECIAL_VALUE_3D072B02        SYSTEM_INIT_OFFSET_STACK_3D072b02 // 特殊值3D072B02
-#define SYSTEM_INIT_SPECIAL_VALUE_SIZE_COMPARE0   0x10       // 大小比较值0
+#define SYSTEM_INIT_SPECIAL_VALUE_SIZE_COMPARE0   SYSTEM_INIT_SIZE_COMPARE       // 大小比较值0
 
 // 浮点数常量
 #define SYSTEM_INIT_FLOAT_VALUE_0_5_HEX          SYSTEM_INIT_OFFSET_GLOBAL_3F000000  // 浮点数0.5的十六进制表示
 #define SYSTEM_INIT_FLOAT_VALUE_MAX_FLOAT         0x7f7fffff  // 最大浮点数的十六进制表示
 
-// 上下文索引常量
-#define SYSTEM_INIT_CONTEXT_INDEX_RESOURCE_BASE8   0x3a       // 资源基础索引8
+// 上下文索引常量语义化定义（2025年8月30日最终批次最新完成）
+#define SYSTEM_INIT_CONTEXT_INDEX_RESOURCE_BASE8   SYSTEM_INIT_VALUE_CONTEXT_INDEX_RESOURCE_BASE8       // 资源基础索引8
+
+// 新增语义化常量定义（2025年8月30日最终批次最新完成）
+#define SYSTEM_INIT_VALUE_MUTEX_ALIGNMENT             2       // 互斥体对齐值
+#define SYSTEM_INIT_VALUE_MEMORY_CHUNK_SIZE           8       // 内存块大小值
+#define SYSTEM_INIT_VALUE_DATA_OFFSET_INDEX           4       // 数据偏移量数组索引值
+#define SYSTEM_INIT_VALUE_FUNCTION_POINTER_INDEX      10      // 函数指针数组索引值
+#define SYSTEM_INIT_VALUE_3FFFFFF                     0x3ffffff  // 特殊值3FFFFFF
+#define SYSTEM_INIT_VALUE_CONTEXT_INDEX_RESOURCE_BASE8 0x3a   // 资源基础索引8值
