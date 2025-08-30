@@ -19489,9 +19489,9 @@ void ValidateSystemConfiguration(uint64_t handleIdentifier,uint64_t *resourceIde
   }
   return;
 }
-// void SystemFunction_15_4(uint64_t handleIdentifier)
+// void ValidateSystemHandle(uint64_t handleIdentifier)
 
-void SystemFunction_15_4(uint64_t handleIdentifier)
+void ValidateSystemHandle(uint64_t handleIdentifier)
 
 {
   uint64_t *system_RBX;
@@ -19500,9 +19500,9 @@ void SystemFunction_15_4(uint64_t handleIdentifier)
                     // WARNING: Subroutine does not return
   ProcessSystemOperation();
 }
-// void SystemFunction_21_4(void)
+// void InitializeSystemNull(void)
 
-void SystemFunction_21_4(void)
+void InitializeSystemNull(void)
 
 {
   return;
@@ -20132,9 +20132,9 @@ void InitializeSystemModule36(longlong handleIdentifier)
   longlong long_result;
 
   if (handleIdentifier == 0) {
-// void SystemFunction_0_4(longlong handleIdentifier)
+// void CopySystemStringData(longlong handleIdentifier)
 
-void SystemFunction_0_4(longlong handleIdentifier)
+void CopySystemStringData(longlong handleIdentifier)
 
 {
   uint uint_result;
@@ -20151,9 +20151,9 @@ void SystemFunction_0_4(longlong handleIdentifier)
                     // WARNING: Subroutine does not return
   memcpy(&g_system_data_variable0,handleIdentifier,(longlong)(int)uint_result);
 }
-// void SystemFunction_9_5(void)
+// void ValidateSystemIntegrityAndInitialize(void)
 
-void SystemFunction_9_5(void)
+void ValidateSystemIntegrityAndInitialize(void)
 
 {
   code *pis_initialized;
@@ -22078,8 +22078,8 @@ uint64_t * InitializeSystemDataNode15(uint64_t *handleIdentifier,uint64_t *resou
   return handleIdentifier;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void SystemFunction_33_2(longlong handleIdentifier)
-void SystemFunction_33_2(longlong handleIdentifier)
+// void ProcessSystemAllocation(longlong handleIdentifier)
+void ProcessSystemAllocation(longlong handleIdentifier)
 
 {
   longlong long_result;
@@ -22142,8 +22142,8 @@ void SystemFunction_33_2(longlong handleIdentifier)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void SystemFunction_37_9(void)
-void SystemFunction_37_9(void)
+// void InitializeSystemModule37(void)
+void InitializeSystemModule37(void)
 
 {
   longlong long_result;
@@ -22173,9 +22173,9 @@ void SystemFunction_37_9(void)
   system_RDI[2] = long_result;
   return;
 }
-// void SystemFunction_47_6(longlong handleIdentifier)
+// void HandleSystemResource47(longlong handleIdentifier)
 
-void SystemFunction_47_6(longlong handleIdentifier)
+void HandleSystemResource47(longlong handleIdentifier)
 
 {
   longlong long_result;
@@ -22209,9 +22209,9 @@ void SystemFunction_47_6(longlong handleIdentifier)
   }
   return;
 }
-// void SystemFunction_59_9(void)
+// void ProcessSystemOperation59(void)
 
-void SystemFunction_59_9(void)
+void ProcessSystemOperation59(void)
 
 {
   return;
@@ -24948,9 +24948,9 @@ void InitializeSystemModule36(longlong *handleIdentifier)
   handleIdentifier[2] = (longlong)(handleIdentifier + 0x603);
   return;
 }
-// void SystemFunction_39_3(longlong handleIdentifier)
+// void HandleSystemData39(longlong handleIdentifier)
 
-void SystemFunction_39_3(longlong handleIdentifier)
+void HandleSystemData39(longlong handleIdentifier)
 
 {
   longlong system_RSI;
@@ -24971,9 +24971,9 @@ void SystemFunction_39_3(longlong handleIdentifier)
   system_RDI[2] = (longlong)(system_RDI + 0x603);
   return;
 }
-// void SystemFunction_45_0(void)
+// void InitializeSystemModule45(void)
 
-void SystemFunction_45_0(void)
+void InitializeSystemModule45(void)
 
 {
   longlong system_RSI;
@@ -25115,18 +25115,18 @@ void InitializeResourceSystem(longlong handleIdentifier)
   *(longlong *)(handleIdentifier + 8) = handleIdentifier;
   return;
 }
-// void SystemFunction_9_4(void)
+// void ProcessSystemData9(void)
 
-void SystemFunction_9_4(void)
+void ProcessSystemData9(void)
 
 {
   ValidateSystemConfiguration();
                     // WARNING: Subroutine does not return
   ProcessSystemOperation();
 }
-// void SystemFunction_14_0(void)
+// void HandleSystemOperation14(void)
 
-void SystemFunction_14_0(void)
+void HandleSystemOperation14(void)
 
 {
   longlong system_RBX;
@@ -25199,8 +25199,8 @@ void InitializeSystemModule39(longlong *handleIdentifier,ulonglong resourceIdent
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void SystemFunction_22_7(longlong handleIdentifier,ulonglong resourceIdentifier,uint64_t systemConfig,longlong systemFlags)
-void SystemFunction_22_7(longlong handleIdentifier,ulonglong resourceIdentifier,uint64_t systemConfig,longlong systemFlags)
+// void ProcessSystemResource22(longlong handleIdentifier,ulonglong resourceIdentifier,uint64_t systemConfig,longlong systemFlags)
+void ProcessSystemResource22(longlong handleIdentifier,ulonglong resourceIdentifier,uint64_t systemConfig,longlong systemFlags)
 
 {
   longlong in_RAX;
@@ -25251,9 +25251,9 @@ void SystemFunction_22_7(longlong handleIdentifier,ulonglong resourceIdentifier,
   system_RBX[1] = long_result;
   return;
 }
-// void SystemFunction_44_6(void)
+// void InitializeSystemModule44(void)
 
-void SystemFunction_44_6(void)
+void InitializeSystemModule44(void)
 
 {
   longlong system_RBX;
@@ -25267,9 +25267,9 @@ void SystemFunction_44_6(void)
   *(uint64_t *)(system_RBX + 8) = system_RDI;
   return;
 }
-// void SystemFunction_49_7(uint64_t handleIdentifier,longlong resourceIdentifier,uint64_t systemConfig,longlong systemFlags)
+// void HandleSystemConfiguration49(uint64_t handleIdentifier,longlong resourceIdentifier,uint64_t systemConfig,longlong systemFlags)
 
-void SystemFunction_49_7(uint64_t handleIdentifier,longlong resourceIdentifier,uint64_t systemConfig,longlong systemFlags)
+void HandleSystemConfiguration49(uint64_t handleIdentifier,longlong resourceIdentifier,uint64_t systemConfig,longlong systemFlags)
 
 {
   longlong system_RBX;
@@ -25371,9 +25371,9 @@ void InitializeProfilingSystem(longlong handleIdentifier)
   }
   return;
 }
-// void SystemFunction_71_8(longlong handleIdentifier)
+// void ProcessSystemData71(longlong handleIdentifier)
 
-void SystemFunction_71_8(longlong handleIdentifier)
+void ProcessSystemData71(longlong handleIdentifier)
 
 {
   int *ptr_int_var;
@@ -25473,9 +25473,9 @@ void InitializeNetworkSystem(void)
   }
   return;
 }
-// void SystemFunction_81_4(void)
+// void InitializeSystemModule81(void)
 
-void SystemFunction_81_4(void)
+void InitializeSystemModule81(void)
 
 {
   int *ptr_int_var;
@@ -25511,9 +25511,9 @@ void SystemFunction_81_4(void)
   }
   return;
 }
-// void SystemFunction_84_4(void)
+// void HandleSystemOperation84(void)
 
-void SystemFunction_84_4(void)
+void HandleSystemOperation84(void)
 
 {
   int *ptr_int_var;
@@ -25680,9 +25680,9 @@ void InitializeResourceSystem(longlong handleIdentifier)
   }
   return;
 }
-// void SystemFunction_29_4(longlong handleIdentifier)
+// void ProcessSystemResource29(longlong handleIdentifier)
 
-void SystemFunction_29_4(longlong handleIdentifier)
+void ProcessSystemResource29(longlong handleIdentifier)
 
 {
   int *ptr_int_var;
@@ -25782,9 +25782,9 @@ void InitializePhysicsSystem(void)
   }
   return;
 }
-// void SystemFunction_39_0(void)
+// void InitializeSystemModule39(void)
 
-void SystemFunction_39_0(void)
+void InitializeSystemModule39(void)
 
 {
   int *ptr_int_var;
@@ -25820,9 +25820,9 @@ void SystemFunction_39_0(void)
   }
   return;
 }
-// void SystemFunction_42_0(void)
+// void HandleSystemOperation42(void)
 
-void SystemFunction_42_0(void)
+void HandleSystemOperation42(void)
 
 {
   int *ptr_int_var;
@@ -26598,9 +26598,9 @@ void InitializeFontSystem(uint64_t handleIdentifier,uint64_t *resourceIdentifier
   }
   return;
 }
-// void SystemFunction_46_6(uint64_t handleIdentifier)
+// void ValidateSystemHandle46(uint64_t handleIdentifier)
 
-void SystemFunction_46_6(uint64_t handleIdentifier)
+void ValidateSystemHandle46(uint64_t handleIdentifier)
 
 {
   uint64_t *system_RBX;
@@ -26610,9 +26610,9 @@ void SystemFunction_46_6(uint64_t handleIdentifier)
                     // WARNING: Subroutine does not return
   ProcessSystemOperation();
 }
-// void SystemFunction_53_4(void)
+// void InitializeSystemModule53(void)
 
-void SystemFunction_53_4(void)
+void InitializeSystemModule53(void)
 
 {
   return;
@@ -26706,8 +26706,8 @@ void ValidateSystemConfiguration(longlong *handleIdentifier,longlong resourceIde
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void SystemFunction_74_8(longlong handleIdentifier)
-void SystemFunction_74_8(longlong handleIdentifier)
+// void ProcessSystemData74(longlong handleIdentifier)
+void ProcessSystemData74(longlong handleIdentifier)
 
 {
   uint64_t *system_pointer_var;
@@ -26751,9 +26751,9 @@ void SystemFunction_74_8(longlong handleIdentifier)
                     // WARNING: Subroutine does not return
   ProcessSystemOperation(system_pointer_var);
 }
-// void SystemFunction_79_5(void)
+// void HandleSystemOperation79(void)
 
-void SystemFunction_79_5(void)
+void HandleSystemOperation79(void)
 
 {
   uint64_t *system_pointer_var;
@@ -26789,9 +26789,9 @@ void SystemFunction_79_5(void)
   system_RDI[1] = long_result;
   return;
 }
-// void SystemFunction_84_2(void)
+// void ProcessSystemResource84(void)
 
-void SystemFunction_84_2(void)
+void ProcessSystemResource84(void)
 
 {
   longlong long_result;
@@ -26820,9 +26820,9 @@ void SystemFunction_84_2(void)
   system_RDI[1] = long_result;
   return;
 }
-// void SystemFunction_91_5(longlong handleIdentifier,uint64_t resourceIdentifier,longlong systemConfig)
+// void HandleSystemConfiguration91(longlong handleIdentifier,uint64_t resourceIdentifier,longlong systemConfig)
 
-void SystemFunction_91_5(longlong handleIdentifier,uint64_t resourceIdentifier,longlong systemConfig)
+void HandleSystemConfiguration91(longlong handleIdentifier,uint64_t resourceIdentifier,longlong systemConfig)
 
 {
   uint64_t *system_pointer_var;
@@ -26913,8 +26913,8 @@ void InitializeSystemModule59(longlong *handleIdentifier,longlong resourceIdenti
   memmove(resourceIdentifier + (uint_result - (long_result - systemConfig >> 3)) * 8,systemConfig,long_result - systemConfig);
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void SystemFunction_5_7(longlong *handleIdentifier,longlong resourceIdentifier,longlong systemConfig,longlong systemFlags)
-void SystemFunction_5_7(longlong *handleIdentifier,longlong resourceIdentifier,longlong systemConfig,longlong systemFlags)
+// void ProcessSystemOperation5(longlong *handleIdentifier,longlong resourceIdentifier,longlong systemConfig,longlong systemFlags)
+void ProcessSystemOperation5(longlong *handleIdentifier,longlong resourceIdentifier,longlong systemConfig,longlong systemFlags)
 
 {
   uint64_t uint_result;
@@ -26972,8 +26972,8 @@ void SystemFunction_5_7(longlong *handleIdentifier,longlong resourceIdentifier,l
   memmove(resourceIdentifier + (uint_result - (long_result - systemConfig >> 3)) * 8,systemConfig,long_result - systemConfig);
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void SystemFunction_32_6(longlong handleIdentifier,longlong resourceIdentifier)
-void SystemFunction_32_6(longlong handleIdentifier,longlong resourceIdentifier)
+// void HandleSystemResource32(longlong handleIdentifier,longlong resourceIdentifier)
+void HandleSystemResource32(longlong handleIdentifier,longlong resourceIdentifier)
 
 {
   uint64_t uint_result;
@@ -27004,16 +27004,16 @@ void SystemFunction_32_6(longlong handleIdentifier,longlong resourceIdentifier)
                     // WARNING: Subroutine does not return
   memmove(uint_result);
 }
-// void SystemFunction_51_4(void)
+// void InitializeSystemModule51(void)
 
-void SystemFunction_51_4(void)
+void InitializeSystemModule51(void)
 
 {
   return;
 }
-// void SystemFunction_54_2(void)
+// void HandleSystemOperation54(void)
 
-void SystemFunction_54_2(void)
+void HandleSystemOperation54(void)
 
 {
   return;
@@ -27942,9 +27942,9 @@ longlong SystemFunction_16_4(longlong handleIdentifier,uint64_t resourceIdentifi
   } while (0 < system_RBP);
   return system_RSI;
 }
-// void SystemFunction_28_4(void)
+// void ProcessSystemData28(void)
 
-void SystemFunction_28_4(void)
+void ProcessSystemData28(void)
 
 {
   return;
@@ -27962,9 +27962,9 @@ longlong InitializeSystemModule26(longlong handleIdentifier,longlong resourceIde
   }
   return systemConfig;
 }
-// void SystemFunction_39_2(longlong handleIdentifier,longlong resourceIdentifier,uint64_t systemConfig)
+// void HandleSystemResource39(longlong handleIdentifier,longlong resourceIdentifier,uint64_t systemConfig)
 
-void SystemFunction_39_2(longlong handleIdentifier,longlong resourceIdentifier,uint64_t systemConfig)
+void HandleSystemResource39(longlong handleIdentifier,longlong resourceIdentifier,uint64_t systemConfig)
 
 {
   if (handleIdentifier != resourceIdentifier) {
@@ -28268,17 +28268,17 @@ void InitializeSystemModule59(longlong handleIdentifier,uint64_t resourceIdentif
   *(uint32_t *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) = 0;
   return;
 }
-// void SystemFunction_7_1(void)
+// void InitializeSystemModule7(void)
 
-void SystemFunction_7_1(void)
+void InitializeSystemModule7(void)
 
 {
                     // WARNING: Subroutine does not return
   memcpy();
 }
-// void SystemFunction_10_8(uint8_t *handleIdentifier)
+// void ValidateSystemHandle10(uint8_t *handleIdentifier)
 
-void SystemFunction_10_8(uint8_t *handleIdentifier)
+void ValidateSystemHandle10(uint8_t *handleIdentifier)
 
 {
   longlong system_RDI;
@@ -28535,9 +28535,9 @@ void InitializeEventSystem(longlong *handleIdentifier)
   }
   return;
 }
-// void SystemFunction_35_6(longlong *handleIdentifier)
+// void ProcessSystemOperation35(longlong *handleIdentifier)
 
-void SystemFunction_35_6(longlong *handleIdentifier)
+void ProcessSystemOperation35(longlong *handleIdentifier)
 
 {
   int *ptr_int_var;
@@ -28593,9 +28593,9 @@ void SystemFunction_35_6(longlong *handleIdentifier)
   }
   return;
 }
-// void SystemFunction_37_7(void)
+// void HandleSystemConfiguration37(void)
 
-void SystemFunction_37_7(void)
+void HandleSystemConfiguration37(void)
 
 {
   uint64_t *system_RBX;
@@ -28607,9 +28607,9 @@ void SystemFunction_37_7(void)
                     // WARNING: Subroutine does not return
   ProcessSystemOperation();
 }
-// void SystemFunction_46_3(void)
+// void ProcessSystemData46(void)
 
-void SystemFunction_46_3(void)
+void ProcessSystemData46(void)
 
 {
   int *ptr_int_var;
@@ -30856,9 +30856,9 @@ void InitializeSystemModule34(longlong handleIdentifier)
   }
   return;
 }
-// void SystemFunction_71_0(void)
+// void InitializeSystemModule71(void)
 
-void SystemFunction_71_0(void)
+void InitializeSystemModule71(void)
 
 {
   longlong long_result;
@@ -30877,9 +30877,9 @@ void SystemFunction_71_0(void)
   } while (long_result < system_RDI);
   return;
 }
-// void SystemFunction_76_9(void)
+// void HandleSystemOperation76(void)
 
-void SystemFunction_76_9(void)
+void HandleSystemOperation76(void)
 
 {
   return;
@@ -30908,9 +30908,9 @@ void InitializeSystemDataNode29(longlong handleIdentifier)
   }
   return;
 }
-// void SystemFunction_83_8(void)
+// void ProcessSystemResource83(void)
 
-void SystemFunction_83_8(void)
+void ProcessSystemResource83(void)
 
 {
   longlong long_result;
@@ -30929,9 +30929,9 @@ void SystemFunction_83_8(void)
   } while (long_result < system_RDI);
   return;
 }
-// void SystemFunction_89_7(void)
+// void HandleSystemConfiguration89(void)
 
-void SystemFunction_89_7(void)
+void HandleSystemConfiguration89(void)
 
 {
   return;
@@ -31377,9 +31377,9 @@ void InitializeSystemModule47(longlong handleIdentifier,longlong *resourceIdenti
   }
   return;
 }
-// void SystemFunction_42_6(longlong handleIdentifier,longlong *resourceIdentifier)
+// void ValidateSystemHandle42(longlong handleIdentifier,longlong *resourceIdentifier)
 
-void SystemFunction_42_6(longlong handleIdentifier,longlong *resourceIdentifier)
+void ValidateSystemHandle42(longlong handleIdentifier,longlong *resourceIdentifier)
 
 {
   longlong *system_memory_pointer;
@@ -31421,9 +31421,9 @@ void SystemFunction_42_6(longlong handleIdentifier,longlong *resourceIdentifier)
   }
   return;
 }
-// void SystemFunction_55_9(void)
+// void InitializeSystemModule55(void)
 
-void SystemFunction_55_9(void)
+void InitializeSystemModule55(void)
 
 {
   longlong long_result;
@@ -32483,9 +32483,9 @@ uint64_t InitializeResourceSystem(void)
   *(longlong *)(system_RSI + 0x58) = *(longlong *)(system_RSI + 0x58) << 1;
   return CONCAT71((int7)(system_RBP - 1U >> 8),1);
 }
-// void SystemFunction_47_6(void)
+// void HandleSystemResource47(void)
 
-void SystemFunction_47_6(void)
+void HandleSystemResource47(void)
 
 {
   return;
@@ -37027,9 +37027,9 @@ void InitializeSystemModule14(uint64_t *handleIdentifier,uint64_t resourceIdenti
   (*ptr_system_init_flag)();
   return;
 }
-// void SystemFunction_41_1(ulonglong handleIdentifier)
+// void ValidateSystemHandle41(ulonglong handleIdentifier)
 
-void SystemFunction_41_1(ulonglong handleIdentifier)
+void ValidateSystemHandle41(ulonglong handleIdentifier)
 
 {
   ulonglong uint_result;
@@ -37050,9 +37050,9 @@ void SystemFunction_41_1(ulonglong handleIdentifier)
                     // WARNING: Subroutine does not return
   memcpy(uint_result);
 }
-// void SystemFunction_55_4(void)
+// void ProcessSystemOperation55(void)
 
-void SystemFunction_55_4(void)
+void ProcessSystemOperation55(void)
 
 {
   return;
@@ -37065,9 +37065,9 @@ void ProcessSystemData(void)
                     // WARNING: Subroutine does not return
   _invalid_parameter_noinfo_noreturn();
 }
-// void SystemFunction_58_3(void)
+// void HandleSystemResource58(void)
 
-void SystemFunction_58_3(void)
+void HandleSystemResource58(void)
 
 {
   code *pis_initialized;
@@ -38094,17 +38094,17 @@ void InitializeUISystem(longlong handleIdentifier,uint64_t resourceIdentifier,in
   *(uint32_t *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) = 0;
   return;
 }
-// void SystemFunction_65_7(void)
+// void InitializeSystemModule65(void)
 
-void SystemFunction_65_7(void)
+void InitializeSystemModule65(void)
 
 {
                     // WARNING: Subroutine does not return
   memcpy();
 }
-// void SystemFunction_69_4(uint8_t *handleIdentifier)
+// void ValidateSystemHandle69(uint8_t *handleIdentifier)
 
-void SystemFunction_69_4(uint8_t *handleIdentifier)
+void ValidateSystemHandle69(uint8_t *handleIdentifier)
 
 {
   longlong system_RDI;
@@ -39926,8 +39926,8 @@ LAB_18006ccef:
   return uint_result;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void SystemFunction_58_1(uint64_t handleIdentifier,uint64_t resourceIdentifier,longlong systemConfig)
-void SystemFunction_58_1(uint64_t handleIdentifier,uint64_t resourceIdentifier,longlong systemConfig)
+// void ProcessSystemData58(uint64_t handleIdentifier,uint64_t resourceIdentifier,longlong systemConfig)
+void ProcessSystemData58(uint64_t handleIdentifier,uint64_t resourceIdentifier,longlong systemConfig)
 
 {
   longlong long_result;
@@ -39977,9 +39977,9 @@ LAB_18006ccef:
   system_RDI[2] = long_result * 0x1a8 + long_result;
   return;
 }
-// void SystemFunction_76_3(void)
+// void HandleSystemOperation76(void)
 
-void SystemFunction_76_3(void)
+void HandleSystemOperation76(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -41160,9 +41160,9 @@ void InitializeSystemDataNode23(longlong *handleIdentifier)
   }
   return;
 }
-// void SystemFunction_74_8(longlong *handleIdentifier)
+// void ProcessSystemData74(longlong *handleIdentifier)
 
-void SystemFunction_74_8(longlong *handleIdentifier)
+void ProcessSystemData74(longlong *handleIdentifier)
 
 {
   int *ptr_int_var;
@@ -41218,9 +41218,9 @@ void SystemFunction_74_8(longlong *handleIdentifier)
   }
   return;
 }
-// void SystemFunction_76_9(void)
+// void HandleSystemOperation76(void)
 
-void SystemFunction_76_9(void)
+void HandleSystemOperation76(void)
 
 {
   uint64_t *system_RBX;
@@ -41833,9 +41833,9 @@ void InitializeInputMutex(uint64_t *handleIdentifier)
   }
   return;
 }
-// void SystemFunction_88_5(void)
+// void InitializeSystemModule88(void)
 
-void SystemFunction_88_5(void)
+void InitializeSystemModule88(void)
 
 {
   longlong long_result;
@@ -41849,9 +41849,9 @@ void SystemFunction_88_5(void)
   }
   return;
 }
-// void SystemFunction_93_2(void)
+// void HandleSystemConfiguration93(void)
 
-void SystemFunction_93_2(void)
+void HandleSystemConfiguration93(void)
 
 {
   return;
@@ -44785,9 +44785,9 @@ void InitializeSystemModule35(longlong handleIdentifier,longlong *resourceIdenti
                     // WARNING: Subroutine does not return
   memcpy(long_result,uint_result,uint_result);
 }
-// void SystemFunction_82_0(longlong handleIdentifier)
+// void ValidateSystemHandle82(longlong handleIdentifier)
 
-void SystemFunction_82_0(longlong handleIdentifier)
+void ValidateSystemHandle82(longlong handleIdentifier)
 
 {
   ushort uint_result;
@@ -44954,9 +44954,9 @@ void SystemFunction_82_0(longlong handleIdentifier)
                     // WARNING: Subroutine does not return
   memcpy(long_result,uint_result,uint_result);
 }
-// void SystemFunction_95_6(uint *handleIdentifier)
+// void ProcessSystemOperation95(uint *handleIdentifier)
 
-void SystemFunction_95_6(uint *handleIdentifier)
+void ProcessSystemOperation95(uint *handleIdentifier)
 
 {
   ushort uint_result;
@@ -45107,9 +45107,9 @@ void SystemFunction_95_6(uint *handleIdentifier)
   }
   return;
 }
-// void SystemFunction_63_5(uint32_t *handleIdentifier)
+// void HandleSystemResource63(uint32_t *handleIdentifier)
 
-void SystemFunction_63_5(uint32_t *handleIdentifier)
+void HandleSystemResource63(uint32_t *handleIdentifier)
 
 {
   ushort uint_result;
@@ -45188,9 +45188,9 @@ void SystemFunction_63_5(uint32_t *handleIdentifier)
   }
   return;
 }
-// void SystemFunction_65_9(void)
+// void InitializeSystemModule65(void)
 
-void SystemFunction_65_9(void)
+void InitializeSystemModule65(void)
 
 {
   ushort uint_result;
@@ -45477,8 +45477,8 @@ void InitializeSystemModule41(longlong *handleIdentifier,longlong resourceIdenti
   ProcessSystemOperation();
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void SystemFunction_29_8(longlong *handleIdentifier)
-void SystemFunction_29_8(longlong *handleIdentifier)
+// void ProcessSystemData29(longlong *handleIdentifier)
+void ProcessSystemData29(longlong *handleIdentifier)
 
 {
   longlong *system_memory_pointer;
@@ -45653,8 +45653,8 @@ void SystemFunction_29_8(longlong *handleIdentifier)
   ProcessSystemOperation();
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void SystemFunction_38_1(longlong handleIdentifier)
-void SystemFunction_38_1(longlong handleIdentifier)
+// void ValidateSystemHandle38(longlong handleIdentifier)
+void ValidateSystemHandle38(longlong handleIdentifier)
 
 {
   int int_result;
@@ -45808,8 +45808,8 @@ void SystemFunction_38_1(longlong handleIdentifier)
   ProcessSystemOperation();
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void SystemFunction_88_2(longlong handleIdentifier)
-void SystemFunction_88_2(longlong handleIdentifier)
+// void HandleSystemOperation88(longlong handleIdentifier)
+void HandleSystemOperation88(longlong handleIdentifier)
 
 {
   int int_result;
@@ -45885,8 +45885,8 @@ void SystemFunction_88_2(longlong handleIdentifier)
   ProcessSystemOperation();
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void SystemFunction_91_3(void)
-void SystemFunction_91_3(void)
+// void ProcessSystemResource91(void)
+void ProcessSystemResource91(void)
 
 {
   uint64_t uint_result;
@@ -46117,9 +46117,9 @@ void InitializeVideoSystem(longlong handleIdentifier)
   }
   return;
 }
-// void SystemFunction_39_2(longlong handleIdentifier,longlong *resourceIdentifier)
+// void HandleSystemResource39(longlong handleIdentifier,longlong *resourceIdentifier)
 
-void SystemFunction_39_2(longlong handleIdentifier,longlong *resourceIdentifier)
+void HandleSystemResource39(longlong handleIdentifier,longlong *resourceIdentifier)
 
 {
   uint8_t uint_result;
@@ -48811,8 +48811,8 @@ LAB_180077879:
   return uint_result;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void SystemFunction_88_4(void)
-void SystemFunction_88_4(void)
+// void InitializeSystemModule88(void)
+void InitializeSystemModule88(void)
 
 {
   uint uint_result;
@@ -49397,8 +49397,8 @@ void InitializeSystemLogger(void)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void SystemFunction_64_6(void)
-void SystemFunction_64_6(void)
+// void HandleSystemConfiguration64(void)
+void HandleSystemConfiguration64(void)
 
 {
   float float_result;
@@ -49546,8 +49546,8 @@ void SystemFunction_64_6(void)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void SystemFunction_95_0(void)
-void SystemFunction_95_0(void)
+// void ProcessSystemOperation95(void)
+void ProcessSystemOperation95(void)
 
 {
   float float_result;
@@ -49713,8 +49713,8 @@ void SystemFunction_95_0(void)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void SystemFunction_98_8(void)
-void SystemFunction_98_8(void)
+// void HandleSystemResource98(void)
+void HandleSystemResource98(void)
 
 {
   int int_result;
@@ -49918,9 +49918,9 @@ LAB_180077fcf:
   }
   return in_RAX & 0xffffffffffffff00;
 }
-// void SystemFunction_60_1(uint64_t handleIdentifier,uint64_t resourceIdentifier,float systemConfig,float systemFlags)
+// void ValidateSystemHandle60(uint64_t handleIdentifier,uint64_t resourceIdentifier,float systemConfig,float systemFlags)
 
-void SystemFunction_60_1(uint64_t handleIdentifier,uint64_t resourceIdentifier,float systemConfig,float systemFlags)
+void ValidateSystemHandle60(uint64_t handleIdentifier,uint64_t resourceIdentifier,float systemConfig,float systemFlags)
 
 {
   float float_result;
@@ -49996,9 +49996,9 @@ void SystemFunction_60_1(uint64_t handleIdentifier,uint64_t resourceIdentifier,f
   ConfigureSystemParameters(0x3f800000,float_result * float_result,system_R14D,&stack0x00000030,init_input_stack_e0);
   return;
 }
-// void SystemFunction_84_3(void)
+// void InitializeSystemModule84(void)
 
-void SystemFunction_84_3(void)
+void InitializeSystemModule84(void)
 
 {
   uint64_t *system_RDI;
@@ -50130,8 +50130,8 @@ LAB_1800782e0:
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void SystemFunction_2_0(longlong handleIdentifier)
-void SystemFunction_2_0(longlong handleIdentifier)
+// void ProcessSystemData2(longlong handleIdentifier)
+void ProcessSystemData2(longlong handleIdentifier)
 
 {
   longlong long_result;
@@ -50227,8 +50227,8 @@ LAB_1800782e0:
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void SystemFunction_8_9(float handleIdentifier,float resourceIdentifier,float systemConfig,float systemFlags)
-void SystemFunction_8_9(float handleIdentifier,float resourceIdentifier,float systemConfig,float systemFlags)
+// void HandleSystemOperation8(float handleIdentifier,float resourceIdentifier,float systemConfig,float systemFlags)
+void HandleSystemOperation8(float handleIdentifier,float resourceIdentifier,float systemConfig,float systemFlags)
 
 {
   longlong long_result;
@@ -51789,8 +51789,8 @@ void InitializeSystemModule55(longlong handleIdentifier)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void SystemFunction_36_2(void)
-void SystemFunction_36_2(void)
+// void ProcessSystemResource36(void)
+void ProcessSystemResource36(void)
 
 {
   longlong *system_memory_pointer;
@@ -52077,8 +52077,8 @@ void SystemFunction_36_2(void)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void SystemFunction_39_3(longlong handleIdentifier,uint resourceIdentifier,uint64_t systemConfig,float *systemFlags)
-void SystemFunction_39_3(longlong handleIdentifier,uint resourceIdentifier,uint64_t systemConfig,float *systemFlags)
+// void HandleSystemData39(longlong handleIdentifier,uint resourceIdentifier,uint64_t systemConfig,float *systemFlags)
+void HandleSystemData39(longlong handleIdentifier,uint resourceIdentifier,uint64_t systemConfig,float *systemFlags)
 
 {
   longlong *system_memory_pointer;
@@ -52361,8 +52361,8 @@ void SystemFunction_39_3(longlong handleIdentifier,uint resourceIdentifier,uint6
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void SystemFunction_65_4(void)
-void SystemFunction_65_4(void)
+// void ValidateSystemHandle65(void)
+void ValidateSystemHandle65(void)
 
 {
   longlong *system_memory_pointer;
@@ -52639,9 +52639,9 @@ uint8_t SystemFunction_95_8(void)
   } while (int_result < SYSTEM_DATA_COMPARE_SIZE);
   return uint_result;
 }
-// void SystemFunction_5_4(void)
+// void InitializeSystemModule5(void)
 
-void SystemFunction_5_4(void)
+void InitializeSystemModule5(void)
 
 {
   return;
@@ -56312,9 +56312,9 @@ void InitializeFontSystem(longlong handleIdentifier)
   }
   return;
 }
-// void SystemFunction_49_5(void)
+// void ProcessSystemData49(void)
 
-void SystemFunction_49_5(void)
+void ProcessSystemData49(void)
 
 {
   uint64_t uint_result;
@@ -56616,8 +56616,8 @@ void InitializeSystemDataNode29(longlong handleIdentifier)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void SystemFunction_84_1(longlong handleIdentifier,int resourceIdentifier,int systemConfig)
-void SystemFunction_84_1(longlong handleIdentifier,int resourceIdentifier,int systemConfig)
+// void HandleSystemResource84(longlong handleIdentifier,int resourceIdentifier,int systemConfig)
+void HandleSystemResource84(longlong handleIdentifier,int resourceIdentifier,int systemConfig)
 
 {
   uint uint_result;
@@ -56717,9 +56717,9 @@ void SystemFunction_84_1(longlong handleIdentifier,int resourceIdentifier,int sy
   }
   return;
 }
-// void SystemFunction_9_0(longlong handleIdentifier,longlong resourceIdentifier)
+// void ValidateSystemHandle9(longlong handleIdentifier,longlong resourceIdentifier)
 
-void SystemFunction_9_0(longlong handleIdentifier,longlong resourceIdentifier)
+void ValidateSystemHandle9(longlong handleIdentifier,longlong resourceIdentifier)
 
 {
   uint uint_result;
@@ -56780,23 +56780,23 @@ void SystemFunction_9_0(longlong handleIdentifier,longlong resourceIdentifier)
   }
   return;
 }
-// void SystemFunction_37_3(void)
+// void InitializeSystemModule37(void)
 
-void SystemFunction_37_3(void)
-
-{
-  return;
-}
-// void SystemFunction_38_3(void)
-
-void SystemFunction_38_3(void)
+void InitializeSystemModule37(void)
 
 {
   return;
 }
-// void SystemFunction_39_4(longlong handleIdentifier)
+// void ProcessSystemOperation38(void)
 
-void SystemFunction_39_4(longlong handleIdentifier)
+void ProcessSystemOperation38(void)
+
+{
+  return;
+}
+// void HandleSystemConfiguration39(longlong handleIdentifier)
+
+void HandleSystemConfiguration39(longlong handleIdentifier)
 
 {
   *(uint32_t *)(handleIdentifier + 0x14) = 0;
@@ -56875,8 +56875,8 @@ void InitializeSystemModule47(longlong handleIdentifier,longlong resourceIdentif
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void SystemFunction_47_9(void)
-void SystemFunction_47_9(void)
+// void ProcessSystemResource47(void)
+void ProcessSystemResource47(void)
 
 {
   int *ptr_int_var;
@@ -56939,9 +56939,9 @@ void SystemFunction_47_9(void)
   *(int *)(*(longlong *)(system_RDI + 0x2d0) + 8) = (int)system_R14;
   return;
 }
-// void SystemFunction_56_6(void)
+// void ValidateSystemHandle56(void)
 
-void SystemFunction_56_6(void)
+void ValidateSystemHandle56(void)
 
 {
   int *ptr_int_var;
@@ -56981,9 +56981,9 @@ void SystemFunction_56_6(void)
   *(int *)(*(longlong *)(system_RDI + 0x2d0) + 8) = (int)system_R14;
   return;
 }
-// void SystemFunction_82_6(void)
+// void InitializeSystemModule82(void)
 
-void SystemFunction_82_6(void)
+void InitializeSystemModule82(void)
 
 {
   longlong system_RBX;
@@ -57003,9 +57003,9 @@ void SystemFunction_82_6(void)
   *(int *)(*(longlong *)(system_RDI + 0x2d0) + 8) = (int)system_R14;
   return;
 }
-// void SystemFunction_91_1(void)
+// void HandleSystemOperation91(void)
 
-void SystemFunction_91_1(void)
+void HandleSystemOperation91(void)
 
 {
   longlong system_RDI;
@@ -57603,8 +57603,8 @@ void InitializeNetworkSystem(longlong handleIdentifier)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void SystemFunction_51_1(uint32_t handleIdentifier)
-void SystemFunction_51_1(uint32_t handleIdentifier)
+// void ProcessSystemData51(uint32_t handleIdentifier)
+void ProcessSystemData51(uint32_t handleIdentifier)
 
 {
   longlong *system_memory_pointer;
@@ -57803,8 +57803,8 @@ void SystemFunction_51_1(uint32_t handleIdentifier)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void SystemFunction_54_7(uint64_t handleIdentifier,longlong resourceIdentifier)
-void SystemFunction_54_7(uint64_t handleIdentifier,longlong resourceIdentifier)
+// void HandleSystemResource54(uint64_t handleIdentifier,longlong resourceIdentifier)
+void HandleSystemResource54(uint64_t handleIdentifier,longlong resourceIdentifier)
 
 {
   longlong *system_memory_pointer;
@@ -57998,8 +57998,8 @@ void SystemFunction_54_7(uint64_t handleIdentifier,longlong resourceIdentifier)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void SystemFunction_61_4(void)
-void SystemFunction_61_4(void)
+// void ValidateSystemHandle61(void)
+void ValidateSystemHandle61(void)
 
 {
   longlong *system_memory_pointer;
@@ -58176,8 +58176,8 @@ void SystemFunction_61_4(void)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void SystemFunction_62_7(void)
-void SystemFunction_62_7(void)
+// void InitializeSystemModule62(void)
+void InitializeSystemModule62(void)
 
 {
   longlong *system_memory_pointer;
@@ -58355,8 +58355,8 @@ void SystemFunction_62_7(void)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void SystemFunction_10_3(void)
-void SystemFunction_10_3(void)
+// void ProcessSystemOperation10(void)
+void ProcessSystemOperation10(void)
 
 {
   uint32_t uint_result;
@@ -58443,9 +58443,9 @@ void SystemFunction_10_3(void)
   memcpy(*(longlong *)(system_RBP + (ulonglong)uint_result * 2 + 2) +
          (ulonglong)(uint_result + uint_result * -0x800) * 4,node_current,(ulonglong)system_R12D << 2);
 }
-// void SystemFunction_28_9(void)
+// void HandleSystemConfiguration28(void)
 
-void SystemFunction_28_9(void)
+void HandleSystemConfiguration28(void)
 
 {
   uint32_t uint_result;
@@ -58480,9 +58480,9 @@ void SystemFunction_28_9(void)
   memcpy(*(longlong *)(system_RBP + 8 + (ulonglong)uint_result * 8) +
          (ulonglong)(system_ESI + uint_result * -0x800) * 4,system_pointer_var,(ulonglong)system_R12D << 2);
 }
-// void SystemFunction_31_7(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t systemConfig,uint64_t systemFlags)
+// void ProcessSystemResource31(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t systemConfig,uint64_t systemFlags)
 
-void SystemFunction_31_7(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t systemConfig,uint64_t systemFlags)
+void ProcessSystemResource31(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t systemConfig,uint64_t systemFlags)
 
 {
   longlong system_RBP;
@@ -58494,9 +58494,9 @@ void SystemFunction_31_7(longlong handleIdentifier,uint64_t resourceIdentifier,u
          (ulonglong)(uint)(system_ESI + (int)handleIdentifier * -0x800) * 4,systemFlags,(ulonglong)system_R12D << 2
         );
 }
-// void SystemFunction_36_3(void)
+// void ValidateSystemHandle36(void)
 
-void SystemFunction_36_3(void)
+void ValidateSystemHandle36(void)
 
 {
   return;
@@ -58508,16 +58508,16 @@ void InitializeSystemModule36(void)
 {
   return;
 }
-// void SystemFunction_37_3(void)
+// void InitializeSystemModule37(void)
 
-void SystemFunction_37_3(void)
+void InitializeSystemModule37(void)
 
 {
   return;
 }
-// void SystemFunction_37_9(void)
+// void InitializeSystemModule37(void)
 
-void SystemFunction_37_9(void)
+void InitializeSystemModule37(void)
 
 {
   uint32_t uint_result;
