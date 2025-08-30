@@ -2464,7 +2464,7 @@ void HandleResourceCleanup(void)
   byte *stackParameter1;
   int stackParameter2;
   uint32 stackParameter3;
-  ulonglong securityParameter;
+  ulonglong stackParameter4;
   
   if (*(longlong *)(inputRegister + 8) != 0) {
     stackParameter1 = &stackLocalBuffer;
@@ -2494,7 +2494,7 @@ void HandleResourceCleanup(void)
     }
   }
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(securityParameter ^ (ulonglong)&securityCheckStackBase);
+  ExecuteSecurityCheck(stackParameter4 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -2504,10 +2504,10 @@ void HandleResourceCleanup(void)
 void system_initialization_helper(void)          // 系统初始化辅助函数
 
 {
-  ulonglong securityParameter;
+  ulonglong stackParameter4;
   
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(securityParameter ^ (ulonglong)&securityCheckStackBase);
+  ExecuteSecurityCheck(stackParameter4 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -2518,7 +2518,7 @@ void memoryBlock_pool_initializer(void)          // 内存池初始化函数
 
 {
   longlong baseRegister;
-  ulonglong securityParameter;
+  ulonglong stackParameter4;
   
   if ((*(uint *)(baseRegister + POINTER_OFFSET_CHECKSUM) >> 7 & 1) != 0) {
                     // WARNING: Subroutine does not return
@@ -2526,7 +2526,7 @@ void memoryBlock_pool_initializer(void)          // 内存池初始化函数
   }
   FreeMemoryBuffer(&stackBuffer30stackBuffer30);
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(securityParameter ^ (ulonglong)&securityCheckStackBase);
+  ExecuteSecurityCheck(stackParameter4 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -3354,7 +3354,7 @@ uint64 release_system_resources(void)
   longlong inputRegister;
   uint64 functionResult;
   int *poperationStatus;
-  longlong framePointer;
+  longlong unaff_RBP;
   uint32 *pointerVar3;
   uint validationResult1;
   ulonglong unsignedVar6;
@@ -3366,13 +3366,13 @@ uint64 release_system_resources(void)
   if (inputRegister == 0) {
     unsignedVar6 = validationResult2;
   }
-  pointerVar3 = (uint32 *)(framePointer + POINTER_OFFSET_DATA + (longlong)*(int *)(framePointer + RESOURCE_OFFSET_HANDLE) * 8);
-  poperationStatus = (int *)(framePointer + POINTER_OFFSET_DATA);
-  if (0 < *(int *)(framePointer + RESOURCE_OFFSET_HANDLE)) {
+  pointerVar3 = (uint32 *)(unaff_RBP + POINTER_OFFSET_DATA + (longlong)*(int *)(unaff_RBP + RESOURCE_OFFSET_HANDLE) * 8);
+  poperationStatus = (int *)(unaff_RBP + POINTER_OFFSET_DATA);
+  if (0 < *(int *)(unaff_RBP + RESOURCE_OFFSET_HANDLE)) {
     do {
       if ((*poperationStatus != g_securityTokenValue1) || (poperationStatus[1] != g_securityTokenValue2)) {
         longStack50 = 0;
-        functionResult = utilityProcessResourceData(unsignedVar6,(int *)(framePointer + POINTER_OFFSET_DATA) + (longlong)(int)validationResult2 * 2,
+        functionResult = utilityProcessResourceData(unsignedVar6,(int *)(unaff_RBP + POINTER_OFFSET_DATA) + (longlong)(int)validationResult2 * 2,
                               &stackBuffer50stackBuffer50);
         if ((int)functionResult != 0) {
           return functionResult;
@@ -3381,7 +3381,7 @@ uint64 release_system_resources(void)
           return BYTE_OFFSET_FLAG;
         }
         functionResult = utilityHandleResourceOperation(*(longlong *)(longStack50 + 8),*pointerVar3,
-                              *(byte *)(framePointer + BYTE_OFFSET_FLAG));
+                              *(byte *)(unaff_RBP + BYTE_OFFSET_FLAG));
         if ((int)functionResult != 0) {
           return functionResult;
         }
@@ -3390,7 +3390,7 @@ uint64 release_system_resources(void)
       validationResult2 = (ulonglong)validationResult1;
       pointerVar3 = pointerVar3 + 1;
       poperationStatus = poperationStatus + 2;
-    } while ((int)validationResult1 < *(int *)(framePointer + RESOURCE_OFFSET_HANDLE));
+    } while ((int)validationResult1 < *(int *)(unaff_RBP + RESOURCE_OFFSET_HANDLE));
   }
   return 0;
 }
@@ -4720,7 +4720,7 @@ void decrypt_file(uint64 resourceHandle,uint64 memoryBlockSize)
   longlong arrayIndex;
   longlong longVar4;
   uint validationResult2;
-  longlong framePointer;
+  longlong unaff_RBP;
   longlong unaff_R14;
   longlong in_stack_00000060;
   longlong in_stack_00000070;
@@ -4734,7 +4734,7 @@ void decrypt_file(uint64 resourceHandle,uint64 memoryBlockSize)
   if (in_stack_00000060 == 0) {
     longVar4 = arrayIndex;
   }
-  operationStatus = validate_resource_resourceHandle(longVar4,framePointer + RESOURCE_OFFSET_HANDLE);
+  operationStatus = validate_resource_resourceHandle(longVar4,unaff_RBP + RESOURCE_OFFSET_HANDLE);
   if (operationStatus != 0) {
     return;
   }
@@ -4970,7 +4970,7 @@ void utilityHandleResourceCallback(void)
 
 {
   int operationStatus;
-  longlong framePointer;
+  longlong unaff_RBP;
   longlong unaff_RSI;
   uint64 stackParameter1;
   
@@ -4991,7 +4991,7 @@ void utilityHandleResourceCallback(void)
       }
     }
   }
-  utilityAcquireResourceHandle(*(uint64 *)(framePointer + RESOURCE_HANDLE_OFFSET));
+  utilityAcquireResourceHandle(*(uint64 *)(unaff_RBP + RESOURCE_HANDLE_OFFSET));
   return;
 }
 
@@ -5188,12 +5188,12 @@ uint64 utilityRetrieveResourceData(void)
   ulonglong unsignedVar9;
   longlong unaff_R13;
   longlong unaff_R14;
-  longlong threadSecurityParam;
+  longlong in_stack_00000050;
   
   unsignedVar6 = 0;
   iterationIndex = unsignedVar6;
-  if (threadSecurityParam != 0) {
-    iterationIndex = threadSecurityParam - 8;
+  if (in_stack_00000050 != 0) {
+    iterationIndex = in_stack_00000050 - 8;
   }
   unsignedVar9 = unsignedVar6;
   if (0 < *(int *)(iterationIndex + BYTE_OFFSET_2)) {
@@ -5356,7 +5356,7 @@ void utilityHandleResourceAllocation(longlong *resourceHandle,longlong memoryBlo
   longlong resourceDataBuffer;
   longlong *pdataBuffer;
   longlong unaff_RDI;
-  ulonglong threadSecurityParam;
+  ulonglong in_stack_00000050;
   
   resourceDataBuffer = (**(code **)(*resourceHandle + 0x2f0))(resourceHandle,memoryBlockSize + FIELD_OFFSET_1);
   if (resourceDataBuffer == 0) {
@@ -5366,7 +5366,7 @@ void utilityHandleResourceAllocation(longlong *resourceHandle,longlong memoryBlo
   pdataBuffer = (longlong *)(resourceDataBuffer + SYSTEM_OFFSET_STATUS1);
   if (((longlong *)*pdataBuffer == pdataBuffer) && (*(longlong **)(resourceDataBuffer + DATA_OFFSET_START) == pdataBuffer)) {
                     // WARNING: Subroutine does not return
-    ExecuteSecurityCheck(threadSecurityParam ^ (ulonglong)&securityCheckStackBase);
+    ExecuteSecurityCheck(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
   }
                     // WARNING: Subroutine does not return
   utilityReleaseResourceHandle(*(uint64 *)(unaff_RDI + RESOURCE_HANDLE_OFFSET));
@@ -5379,10 +5379,10 @@ void utilityHandleResourceAllocation(longlong *resourceHandle,longlong memoryBlo
 void utilityFinalizeResourceOperation(void)
 
 {
-  ulonglong threadSecurityParam;
+  ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(threadSecurityParam ^ (ulonglong)&securityCheckStackBase);
+  ExecuteSecurityCheck(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -5655,7 +5655,7 @@ uint64 utilityExtractResourceOutput(void)
   float floatVar1;
   longlong tempDataBuffer;
   uint64 unsignedVar3;
-  longlong framePointer;
+  longlong unaff_RBP;
   longlong unaff_RDI;
   longlong in_stack_00000040;
   
@@ -5674,7 +5674,7 @@ uint64 utilityExtractResourceOutput(void)
     floatVar1 = *(float *)(unaff_RDI + POINTER_OFFSET_DATA);
     if ((*(float *)(tempDataBuffer + STRUCT_OFFSET_SIZE) <= floatVar1) &&
        (floatVar1 < *(float *)(tempDataBuffer + RESOURCE_PROPERTY_OFFSET) || floatVar1 == *(float *)(tempDataBuffer + RESOURCE_PROPERTY_OFFSET))) {
-      unsignedVar3 = *(uint64 *)(framePointer + RESOURCE_HANDLE_OFFSET);
+      unsignedVar3 = *(uint64 *)(unaff_RBP + RESOURCE_HANDLE_OFFSET);
       *(float *)(in_stack_00000040 + 4) = floatVar1;
                     // WARNING: Subroutine does not return
       utilityReleaseResourceHandle(unsignedVar3);
@@ -5693,7 +5693,7 @@ uint64 utilityFormatResourceData(void)
   longlong tempDataBuffer;
   uint64 unsignedVar3;
   longlong baseRegister;
-  longlong framePointer;
+  longlong unaff_RBP;
   longlong unaff_RDI;
   longlong in_stack_00000040;
   
@@ -5709,7 +5709,7 @@ uint64 utilityFormatResourceData(void)
     floatVar1 = *(float *)(unaff_RDI + POINTER_OFFSET_DATA);
     if ((*(float *)(tempDataBuffer + STRUCT_OFFSET_SIZE) <= floatVar1) &&
        (floatVar1 < *(float *)(tempDataBuffer + RESOURCE_PROPERTY_OFFSET) || floatVar1 == *(float *)(tempDataBuffer + RESOURCE_PROPERTY_OFFSET))) {
-      unsignedVar3 = *(uint64 *)(framePointer + RESOURCE_HANDLE_OFFSET);
+      unsignedVar3 = *(uint64 *)(unaff_RBP + RESOURCE_HANDLE_OFFSET);
       *(float *)(in_stack_00000040 + 4) = floatVar1;
                     // WARNING: Subroutine does not return
       utilityReleaseResourceHandle(unsignedVar3);
@@ -5727,7 +5727,7 @@ uint64 utilityValidateResourceOutput(uint32 resourceHandle)
   float floatVar1;
   uint64 unsignedCounter;
   longlong baseRegister;
-  longlong framePointer;
+  longlong unaff_RBP;
   longlong unaff_RDI;
   longlong in_stack_00000040;
   
@@ -5739,7 +5739,7 @@ uint64 utilityValidateResourceOutput(uint32 resourceHandle)
     floatVar1 = *(float *)(unaff_RDI + POINTER_OFFSET_DATA);
     if ((*(float *)(baseRegister + STRUCT_OFFSET_SIZE) <= floatVar1) &&
        (floatVar1 < *(float *)(baseRegister + RESOURCE_PROPERTY_OFFSET) || floatVar1 == *(float *)(baseRegister + RESOURCE_PROPERTY_OFFSET))) {
-      unsignedCounter = *(uint64 *)(framePointer + RESOURCE_HANDLE_OFFSET);
+      unsignedCounter = *(uint64 *)(unaff_RBP + RESOURCE_HANDLE_OFFSET);
       *(float *)(in_stack_00000040 + 4) = floatVar1;
                     // WARNING: Subroutine does not return
       utilityReleaseResourceHandle(unsignedCounter);
@@ -5757,7 +5757,7 @@ uint64 utilityConfirmResourceOperation(uint32 resourceHandle)
   float floatVar1;
   uint64 unsignedCounter;
   longlong baseRegister;
-  longlong framePointer;
+  longlong unaff_RBP;
   longlong unaff_RDI;
   longlong in_stack_00000040;
   
@@ -5766,7 +5766,7 @@ uint64 utilityConfirmResourceOperation(uint32 resourceHandle)
     floatVar1 = *(float *)(unaff_RDI + POINTER_OFFSET_DATA);
     if ((*(float *)(baseRegister + STRUCT_OFFSET_SIZE) <= floatVar1) &&
        (floatVar1 < *(float *)(baseRegister + RESOURCE_PROPERTY_OFFSET) || floatVar1 == *(float *)(baseRegister + RESOURCE_PROPERTY_OFFSET))) {
-      unsignedCounter = *(uint64 *)(framePointer + RESOURCE_HANDLE_OFFSET);
+      unsignedCounter = *(uint64 *)(unaff_RBP + RESOURCE_HANDLE_OFFSET);
       *(float *)(in_stack_00000040 + 4) = floatVar1;
                     // WARNING: Subroutine does not return
       utilityReleaseResourceHandle(unsignedCounter);
@@ -7220,7 +7220,7 @@ uint64 get_ssl_certificate(void)
   uint64 *puVar4;
   longlong unaff_RDI;
   longlong unaff_R14;
-  uint32 threadSecurityParam;
+  uint32 in_stack_00000050;
   
   tempDataBuffer = memoryAllocateFunction();
   if ((*(uint *)(tempDataBuffer + FIELD_OFFSET_2) >> 4 & 1) != 0) {
@@ -7234,10 +7234,10 @@ uint64 get_ssl_certificate(void)
       unsignedVar3 = BYTE_OFFSET_FLAG;
     }
     else {
-      unsignedVar3 = memoryConfigureFunction(unaff_R14 + DATA_OFFSET_START,threadSecurityParam);
+      unsignedVar3 = memoryConfigureFunction(unaff_R14 + DATA_OFFSET_START,in_stack_00000050);
       if ((int)unsignedVar3 == 0) {
         puVar4 = (uint64 *)
-                 memoryInitializeFunction(unaff_R14 + DATA_OFFSET_START,&stackLocalBuffer,threadSecurityParam);
+                 memoryInitializeFunction(unaff_R14 + DATA_OFFSET_START,&stackLocalBuffer,in_stack_00000050);
         *(uint64 *)(unaff_RDI + RESOURCE_OFFSET_HANDLE) = *puVar4;
                     // WARNING: Subroutine does not return
         utilityReleaseResourceHandle(*(uint64 *)(unaff_R14 + RESOURCE_HANDLE_OFFSET));
@@ -7258,7 +7258,7 @@ uint64 verify_ssl_certificate(void)
   longlong baseRegister;
   longlong unaff_RDI;
   longlong unaff_R14;
-  uint32 threadSecurityParam;
+  uint32 in_stack_00000050;
   
   unsignedCounter = utilityAccessResourceAttribute();
   if ((int)unsignedCounter == 0) {
@@ -7268,10 +7268,10 @@ uint64 verify_ssl_certificate(void)
       unsignedCounter = BYTE_OFFSET_FLAG;
     }
     else {
-      unsignedCounter = memoryConfigureFunction(unaff_R14 + DATA_OFFSET_START,threadSecurityParam);
+      unsignedCounter = memoryConfigureFunction(unaff_R14 + DATA_OFFSET_START,in_stack_00000050);
       if ((int)unsignedCounter == 0) {
         pointerVar3 = (uint64 *)
-                 memoryInitializeFunction(unaff_R14 + DATA_OFFSET_START,&stackLocalBuffer,threadSecurityParam);
+                 memoryInitializeFunction(unaff_R14 + DATA_OFFSET_START,&stackLocalBuffer,in_stack_00000050);
         *(uint64 *)(unaff_RDI + RESOURCE_OFFSET_HANDLE) = *pointerVar3;
                     // WARNING: Subroutine does not return
         utilityReleaseResourceHandle(*(uint64 *)(unaff_R14 + RESOURCE_HANDLE_OFFSET));
@@ -7553,10 +7553,10 @@ void initialize_thread_local_storage(void)
 void cleanup_thread_local_storage(void)
 
 {
-  ulonglong resourceSecurityParam;
+  ulonglong in_stack_000000b0;
   
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(resourceSecurityParam ^ (ulonglong)&securityCheckStackBase);
+  ExecuteSecurityCheck(in_stack_000000b0 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -7632,15 +7632,15 @@ void set_thread_local_dataValue(ulonglong resourceHandle)
   longlong tempDataBuffer;
   longlong *unaff_RSI;
   longlong unaff_RDI;
-  ulonglong securityValidationMask;
-  ulonglong threadLocalSecurityParam;
+  ulonglong uStack0000000000000070;
+  ulonglong in_stack_000000a8;
   
-  securityValidationMask = resourceHandle;
+  uStack0000000000000070 = resourceHandle;
   tempDataBuffer = (**(code **)(inputRegister + 0x288))();
   if (tempDataBuffer == 0) {
                     // WARNING: Subroutine does not return
-    initializeBufferStructure(&threadLocalBuffer,0x27,&unknown_180958180,securityValidationMask & INVALID_HANDLE,
-                  securityValidationMask._4_2_);
+    initializeBufferStructure(&stack0x00000080,0x27,&unknown_180958180,uStack0000000000000070 & INVALID_HANDLE,
+                  uStack0000000000000070._4_2_);
   }
   if (**(int **)(tempDataBuffer + STRUCT_OFFSET_1) == 0) {
     operationStatus = validate_resource_resourceHandle(*(uint32 *)(unaff_RDI + RESOURCE_OFFSET_HANDLE));
@@ -7649,7 +7649,7 @@ void set_thread_local_dataValue(ulonglong resourceHandle)
   *unaff_RSI = tempDataBuffer;
 handle_resource_error:
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(threadLocalSecurityParam ^ (ulonglong)&securityCheckStackBase);
+  ExecuteSecurityCheck(in_stack_000000a8 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -7659,10 +7659,10 @@ handle_resource_error:
 void get_thread_local_dataValue(void)
 
 {
-  ulonglong threadLocalSecurityParam;
+  ulonglong in_stack_000000a8;
   
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(threadLocalSecurityParam ^ (ulonglong)&securityCheckStackBase);
+  ExecuteSecurityCheck(in_stack_000000a8 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -7749,14 +7749,14 @@ void allocate_from_pool(void)
   longlong inputRegister;
   longlong *unaff_RDI;
   longlong lStack0000000000000080;
-  ulonglong resourceSecurityParam;
+  ulonglong in_stack_000000b0;
   
   lStack0000000000000080 = *(longlong *)(inputRegister + BUFFER_OFFSET_DATA);
   if ((lStack0000000000000080 != 0) || (operationStatus = allocate_resource_memoryBlock(), localStatus == 0)) {
     *unaff_RDI = lStack0000000000000080;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(resourceSecurityParam ^ (ulonglong)&securityCheckStackBase);
+  ExecuteSecurityCheck(in_stack_000000b0 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -8417,7 +8417,7 @@ void initialize_memory_manager(longlong resourceHandle,uint64 memoryBlockSize,in
   longlong longVar7;
   int unaff_EBX;
   uint32 unaff_0000001c;
-  longlong framePointer;
+  longlong unaff_RBP;
   longlong unaff_RDI;
   char in_R11B;
   byte *unaff_R13;
@@ -8430,7 +8430,7 @@ void initialize_memory_manager(longlong resourceHandle,uint64 memoryBlockSize,in
   longVar5 = CONCAT44(unaff_0000001c,unaff_EBX) + CONCAT44(unaff_0000001c,unaff_EBX) * 2;
   longVar8 = (longlong)*(int *)(inputRegister + longVar5 * 4) + *(longlong *)(resourceHandle + 8);
   charVar2 = *(char *)(inputRegister + 8 + longVar5 * 4);
-  *(longlong *)(framePointer + -BUFFER_OFFSET_TEMP) = longVar5;
+  *(longlong *)(unaff_RBP + -BUFFER_OFFSET_TEMP) = longVar5;
   if (charVar2 == in_R11B) {
     iterationCounter = *(int *)(resourceHandle + 0xb0);
     if (unaff_EBX < iterationCounter) {
@@ -8480,7 +8480,7 @@ void initialize_memory_manager(longlong resourceHandle,uint64 memoryBlockSize,in
     {
 process_character_data:
                     // WARNING: Subroutine does not return
-      memcpy(framePointer + -RESOURCE_HANDLE_OFFSET,longVar8,(longlong)*(int *)(longVar8 + 8));
+      memcpy(unaff_RBP + -RESOURCE_HANDLE_OFFSET,longVar8,(longlong)*(int *)(longVar8 + 8));
     }
   }
   else {
@@ -8506,15 +8506,15 @@ process_character_data:
       in_stack_00000040._4_4_ = *(uint32 *)(longVar8 + POINTER_OFFSET_DATA);
       iterationCounter = perform_system_operation(resourceHandle,unaff_EBX,(longlong)&stackLocalBuffer + 4);
       if (iterationCounter != 0) goto validate_character_data;
-      iterationCounter = SystemMemoryFunction(in_stack_00000040._4_4_,framePointer + -HANDLE_OFFSET_DATA);
-      if ((iterationCounter != 0) || (*(int *)(*(longlong *)(framePointer + -HANDLE_OFFSET_DATA) + FIELD_OFFSET_1) != 2))
+      iterationCounter = SystemMemoryFunction(in_stack_00000040._4_4_,unaff_RBP + -HANDLE_OFFSET_DATA);
+      if ((iterationCounter != 0) || (*(int *)(*(longlong *)(unaff_RBP + -HANDLE_OFFSET_DATA) + FIELD_OFFSET_1) != 2))
       goto process_character_data;
     }
   }
   *unaff_R13 = 0;
 validate_character_data:
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(ulonglong *)(framePointer + 0x5f0) ^ (ulonglong)&securityCheckStackBase);
+  ExecuteSecurityCheck(*(ulonglong *)(unaff_RBP + 0x5f0) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -8524,10 +8524,10 @@ validate_character_data:
 void ExecuteSecurityValidation(void)
 
 {
-  longlong framePointer;
+  longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(ulonglong *)(framePointer + 0x5f0) ^ (ulonglong)&securityCheckStackBase);
+  ExecuteSecurityCheck(*(ulonglong *)(unaff_RBP + 0x5f0) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -8939,7 +8939,7 @@ uint64 allocate_memory_region(longlong resourceHandle,uint64 memoryBlockSize,lon
 
 // 资源分配函数 - 分配并初始化资源
 uint64
-allocateResource(int resourceHandle, int memoryBlockSize, uint64 operationFlags, uint64 callbackFunction, uint64 additionalResourceParam)
+allocateResource(int resourceHandle, int memoryBlockSize, uint64 operationFlags, uint64 callbackFunction, uint64 param_5)
 
 {
   uint64 allocationResult;
@@ -8957,7 +8957,7 @@ allocateResource(int resourceHandle, int memoryBlockSize, uint64 operationFlags,
     resourceDataPtr = (uint64 *)
              ((longlong)*(int *)(resourceManagerPtr + RESOURCE_OFFSET_HANDLE) * RESOURCE_HANDLE_OFFSET + *(longlong *)(resourceManagerPtr + RESOURCE_HANDLE_OFFSET));
     *resourceDataPtr = stackValue;
-    resourceDataPtr[1] = additionalResourceParam;
+    resourceDataPtr[1] = param_5;
     *(int *)(resourceManagerPtr + RESOURCE_OFFSET_HANDLE) = *(int *)(resourceManagerPtr + RESOURCE_OFFSET_HANDLE) + 1;
     *baseRegister = registerValue;
     *(int *)(resourceManagerPtr + FIELD_OFFSET_3) = *(int *)(resourceManagerPtr + FIELD_OFFSET_3) + 1;
@@ -10104,7 +10104,7 @@ void ProcessResourceQueue(void)
   int integerVar8;
   int newCapacity;
   uint32 unaff_EBX;
-  longlong framePointer;
+  longlong unaff_RBP;
   int unaff_R12D;
   longlong unaff_R13;
   char unaff_R15B;
@@ -10137,17 +10137,17 @@ void ProcessResourceQueue(void)
         validationResult1 = *(uint32 *)(resourceDataBuffer + RESOURCE_DATA_OFFSET);
         validationResult2 = *(uint32 *)(resourceDataBuffer + RESOURCE_OFFSET_HANDLE);
         unsignedVar6 = *(uint32 *)(resourceDataBuffer + BYTE_OFFSET_FLAG);
-        *(uint32 *)(framePointer + -HANDLE_OFFSET_DATA) = 0;
-        *(int *)(framePointer + -0x68) = unaff_R12D;
-        *(dataValueValue **)(framePointer + -BUFFER_OFFSET_TEMP) = &unknown_1809830b8;
+        *(uint32 *)(unaff_RBP + -HANDLE_OFFSET_DATA) = 0;
+        *(int *)(unaff_RBP + -0x68) = unaff_R12D;
+        *(dataValueValue **)(unaff_RBP + -BUFFER_OFFSET_TEMP) = &unknown_1809830b8;
         unaff_R12D = unaff_R12D + 1;
-        *(uint32 *)(framePointer + -SYSTEM_OFFSET_STATUS2) = uStackX_20;
-        *(uint32 *)(framePointer + -0x70) = unaff_EBX;
-        *(uint32 *)(framePointer + -100) = unsignedVar3;
-        *(uint32 *)(framePointer + -DATA_OFFSET_START) = validationResult1;
-        *(uint32 *)(framePointer + -0x5c) = validationResult2;
-        *(uint32 *)(framePointer + -SYSTEM_OFFSET_STATUS1) = unsignedVar6;
-        integerVar8 = ValidateResourceAccess(unsignedVar3,framePointer + -BUFFER_OFFSET_TEMP);
+        *(uint32 *)(unaff_RBP + -SYSTEM_OFFSET_STATUS2) = uStackX_20;
+        *(uint32 *)(unaff_RBP + -0x70) = unaff_EBX;
+        *(uint32 *)(unaff_RBP + -100) = unsignedVar3;
+        *(uint32 *)(unaff_RBP + -DATA_OFFSET_START) = validationResult1;
+        *(uint32 *)(unaff_RBP + -0x5c) = validationResult2;
+        *(uint32 *)(unaff_RBP + -SYSTEM_OFFSET_STATUS1) = unsignedVar6;
+        integerVar8 = ValidateResourceAccess(unsignedVar3,unaff_RBP + -BUFFER_OFFSET_TEMP);
         if ((integerVar8 != 0) || (integerVar8 = checkResourceAvailability(tempDataBuffer,&fStackX_24), integerVar8 != 0))
         goto handle_resource_iteration;
         floatVar10 = fStackX_24;
@@ -10190,17 +10190,17 @@ void ProcessResourceQueue(void)
         validationResult1 = *(uint32 *)(resourceDataBuffer + RESOURCE_DATA_OFFSET);
         validationResult2 = *(uint32 *)(resourceDataBuffer + RESOURCE_OFFSET_HANDLE);
         unsignedVar6 = *(uint32 *)(resourceDataBuffer + BYTE_OFFSET_FLAG);
-        *(uint32 *)(framePointer + -HANDLE_OFFSET_DATA) = 0;
-        *(int *)(framePointer + -0x68) = unaff_R12D;
-        *(dataValueValue **)(framePointer + -BUFFER_OFFSET_TEMP) = &unknown_1809830b8;
+        *(uint32 *)(unaff_RBP + -HANDLE_OFFSET_DATA) = 0;
+        *(int *)(unaff_RBP + -0x68) = unaff_R12D;
+        *(dataValueValue **)(unaff_RBP + -BUFFER_OFFSET_TEMP) = &unknown_1809830b8;
         unaff_R12D = unaff_R12D + 1;
-        *(uint32 *)(framePointer + -SYSTEM_OFFSET_STATUS2) = uStackX_20;
-        *(uint32 *)(framePointer + -0x70) = unaff_EBX;
-        *(uint32 *)(framePointer + -100) = unsignedVar3;
-        *(uint32 *)(framePointer + -DATA_OFFSET_START) = validationResult1;
-        *(uint32 *)(framePointer + -0x5c) = validationResult2;
-        *(uint32 *)(framePointer + -SYSTEM_OFFSET_STATUS1) = unsignedVar6;
-        integerVar8 = ValidateResourceAccess(unsignedVar3,framePointer + -BUFFER_OFFSET_TEMP);
+        *(uint32 *)(unaff_RBP + -SYSTEM_OFFSET_STATUS2) = uStackX_20;
+        *(uint32 *)(unaff_RBP + -0x70) = unaff_EBX;
+        *(uint32 *)(unaff_RBP + -100) = unsignedVar3;
+        *(uint32 *)(unaff_RBP + -DATA_OFFSET_START) = validationResult1;
+        *(uint32 *)(unaff_RBP + -0x5c) = validationResult2;
+        *(uint32 *)(unaff_RBP + -SYSTEM_OFFSET_STATUS1) = unsignedVar6;
+        integerVar8 = ValidateResourceAccess(unsignedVar3,unaff_RBP + -BUFFER_OFFSET_TEMP);
         if ((integerVar8 != 0) || (integerVar8 = checkResourceAvailability(tempDataBuffer,&fStackX_24), integerVar8 != 0))
         goto handle_resource_iteration;
         floatVar10 = fStackX_24;
@@ -10243,17 +10243,17 @@ void ProcessResourceQueue(void)
         validationResult1 = *(uint32 *)(resourceDataBuffer + RESOURCE_DATA_OFFSET);
         validationResult2 = *(uint32 *)(resourceDataBuffer + RESOURCE_OFFSET_HANDLE);
         unsignedVar6 = *(uint32 *)(resourceDataBuffer + BYTE_OFFSET_FLAG);
-        *(uint32 *)(framePointer + -HANDLE_OFFSET_DATA) = 0;
-        *(int *)(framePointer + -0x68) = unaff_R12D;
-        *(dataValueValue **)(framePointer + -BUFFER_OFFSET_TEMP) = &unknown_1809830b8;
+        *(uint32 *)(unaff_RBP + -HANDLE_OFFSET_DATA) = 0;
+        *(int *)(unaff_RBP + -0x68) = unaff_R12D;
+        *(dataValueValue **)(unaff_RBP + -BUFFER_OFFSET_TEMP) = &unknown_1809830b8;
         unaff_R12D = unaff_R12D + 1;
-        *(uint32 *)(framePointer + -SYSTEM_OFFSET_STATUS2) = uStackX_20;
-        *(uint32 *)(framePointer + -0x70) = unaff_EBX;
-        *(uint32 *)(framePointer + -100) = unsignedVar3;
-        *(uint32 *)(framePointer + -DATA_OFFSET_START) = validationResult1;
-        *(uint32 *)(framePointer + -0x5c) = validationResult2;
-        *(uint32 *)(framePointer + -SYSTEM_OFFSET_STATUS1) = unsignedVar6;
-        integerVar8 = ValidateResourceAccess(unsignedVar3,framePointer + -BUFFER_OFFSET_TEMP);
+        *(uint32 *)(unaff_RBP + -SYSTEM_OFFSET_STATUS2) = uStackX_20;
+        *(uint32 *)(unaff_RBP + -0x70) = unaff_EBX;
+        *(uint32 *)(unaff_RBP + -100) = unsignedVar3;
+        *(uint32 *)(unaff_RBP + -DATA_OFFSET_START) = validationResult1;
+        *(uint32 *)(unaff_RBP + -0x5c) = validationResult2;
+        *(uint32 *)(unaff_RBP + -SYSTEM_OFFSET_STATUS1) = unsignedVar6;
+        integerVar8 = ValidateResourceAccess(unsignedVar3,unaff_RBP + -BUFFER_OFFSET_TEMP);
         if ((integerVar8 != 0) || (integerVar8 = checkResourceAvailability(tempDataBuffer,&fStackX_24), integerVar8 != 0))
         goto handle_resource_iteration;
         floatVar10 = fStackX_24;
@@ -10296,17 +10296,17 @@ void ProcessResourceQueue(void)
         validationResult1 = *(uint32 *)(resourceDataBuffer + RESOURCE_DATA_OFFSET);
         validationResult2 = *(uint32 *)(resourceDataBuffer + RESOURCE_OFFSET_HANDLE);
         unsignedVar6 = *(uint32 *)(resourceDataBuffer + BYTE_OFFSET_FLAG);
-        *(uint32 *)(framePointer + -HANDLE_OFFSET_DATA) = 0;
-        *(int *)(framePointer + -0x68) = unaff_R12D;
-        *(dataValueValue **)(framePointer + -BUFFER_OFFSET_TEMP) = &unknown_1809830b8;
+        *(uint32 *)(unaff_RBP + -HANDLE_OFFSET_DATA) = 0;
+        *(int *)(unaff_RBP + -0x68) = unaff_R12D;
+        *(dataValueValue **)(unaff_RBP + -BUFFER_OFFSET_TEMP) = &unknown_1809830b8;
         unaff_R12D = unaff_R12D + 1;
-        *(uint32 *)(framePointer + -SYSTEM_OFFSET_STATUS2) = uStackX_20;
-        *(uint32 *)(framePointer + -0x70) = unaff_EBX;
-        *(uint32 *)(framePointer + -100) = unsignedVar3;
-        *(uint32 *)(framePointer + -DATA_OFFSET_START) = validationResult1;
-        *(uint32 *)(framePointer + -0x5c) = validationResult2;
-        *(uint32 *)(framePointer + -SYSTEM_OFFSET_STATUS1) = unsignedVar6;
-        integerVar8 = ValidateResourceAccess(unsignedVar3,framePointer + -BUFFER_OFFSET_TEMP);
+        *(uint32 *)(unaff_RBP + -SYSTEM_OFFSET_STATUS2) = uStackX_20;
+        *(uint32 *)(unaff_RBP + -0x70) = unaff_EBX;
+        *(uint32 *)(unaff_RBP + -100) = unsignedVar3;
+        *(uint32 *)(unaff_RBP + -DATA_OFFSET_START) = validationResult1;
+        *(uint32 *)(unaff_RBP + -0x5c) = validationResult2;
+        *(uint32 *)(unaff_RBP + -SYSTEM_OFFSET_STATUS1) = unsignedVar6;
+        integerVar8 = ValidateResourceAccess(unsignedVar3,unaff_RBP + -BUFFER_OFFSET_TEMP);
         if ((integerVar8 != 0) || (integerVar8 = checkResourceAvailability(tempDataBuffer,&fStackX_24), integerVar8 != 0))
         goto handle_resource_iteration;
         floatVar10 = fStackX_24;
@@ -10352,17 +10352,17 @@ void ProcessResourceQueue(void)
         validationResult1 = *(uint32 *)(resourceDataBuffer + RESOURCE_DATA_OFFSET);
         validationResult2 = *(uint32 *)(resourceDataBuffer + RESOURCE_OFFSET_HANDLE);
         unsignedVar6 = *(uint32 *)(resourceDataBuffer + BYTE_OFFSET_FLAG);
-        *(uint32 *)(framePointer + -HANDLE_OFFSET_DATA) = 0;
-        *(int *)(framePointer + -0x68) = integerVar8;
-        *(dataValueValue **)(framePointer + -BUFFER_OFFSET_TEMP) = &unknown_180983238;
+        *(uint32 *)(unaff_RBP + -HANDLE_OFFSET_DATA) = 0;
+        *(int *)(unaff_RBP + -0x68) = integerVar8;
+        *(dataValueValue **)(unaff_RBP + -BUFFER_OFFSET_TEMP) = &unknown_180983238;
         integerVar8 = integerVar8 + 1;
-        *(uint32 *)(framePointer + -SYSTEM_OFFSET_STATUS2) = uStackX_20;
-        *(uint32 *)(framePointer + -0x70) = unaff_EBX;
-        *(uint32 *)(framePointer + -100) = unsignedVar3;
-        *(uint32 *)(framePointer + -DATA_OFFSET_START) = validationResult1;
-        *(uint32 *)(framePointer + -0x5c) = validationResult2;
-        *(uint32 *)(framePointer + -SYSTEM_OFFSET_STATUS1) = unsignedVar6;
-        newCapacity = ValidateResourceAccess(unsignedVar3,framePointer + -BUFFER_OFFSET_TEMP);
+        *(uint32 *)(unaff_RBP + -SYSTEM_OFFSET_STATUS2) = uStackX_20;
+        *(uint32 *)(unaff_RBP + -0x70) = unaff_EBX;
+        *(uint32 *)(unaff_RBP + -100) = unsignedVar3;
+        *(uint32 *)(unaff_RBP + -DATA_OFFSET_START) = validationResult1;
+        *(uint32 *)(unaff_RBP + -0x5c) = validationResult2;
+        *(uint32 *)(unaff_RBP + -SYSTEM_OFFSET_STATUS1) = unsignedVar6;
+        newCapacity = ValidateResourceAccess(unsignedVar3,unaff_RBP + -BUFFER_OFFSET_TEMP);
         if ((newCapacity != 0) || (newCapacity = validateResourceAccess(tempDataBuffer,&fStackX_24,0), newCapacity != 0)) break;
         if (fStackX_24 != 1.0) {
           in_stack_00000048 = fStackX_24;
@@ -10378,7 +10378,7 @@ void ProcessResourceQueue(void)
   }
 handle_resource_iteration:
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(ulonglong *)(framePointer + 0x1d0) ^ (ulonglong)&securityCheckStackBase);
+  ExecuteSecurityCheck(*(ulonglong *)(unaff_RBP + 0x1d0) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -10388,10 +10388,10 @@ handle_resource_iteration:
 void HandleResourceError(void)
 
 {
-  longlong framePointer;
+  longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(ulonglong *)(framePointer + 0x1d0) ^ (ulonglong)&securityCheckStackBase);
+  ExecuteSecurityCheck(*(ulonglong *)(unaff_RBP + 0x1d0) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -10446,7 +10446,7 @@ void CleanupResourceHandle(void)
     *(byte *)(unaff_RDI + 4) = 0;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(in_stack_00000220 ^ (ulonglong)&securityCheckStackBase);
+  ExecuteSecurityCheck(in_stack_00000220 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -10465,7 +10465,7 @@ void ResetResourceState(void)
     *(byte *)(unaff_RDI + 4) = 0;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(in_stack_00000220 ^ (ulonglong)&securityCheckStackBase);
+  ExecuteSecurityCheck(in_stack_00000220 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -10744,7 +10744,7 @@ void ExecuteResourceCommand(void)
   float floatVar19;
   ulonglong currentUnsignedSize;
   float *pfVar21;
-  uint64 *framePointer;
+  uint64 *unaff_RBP;
   longlong unaff_RSI;
   uint64 *plocalUInt22;
   float unaff_R13D;
@@ -10773,7 +10773,7 @@ void ExecuteResourceCommand(void)
   float fStack0000000000000044;
   float fStack0000000000000048;
   float fStack000000000000004c;
-  float threadSecurityParam;
+  float in_stack_00000050;
   uint64 *puStack0000000000000058;
   longlong in_stack_00000060;
   longlong in_stack_00000068;
@@ -10789,8 +10789,8 @@ void ExecuteResourceCommand(void)
   localStatus3 = validate_resource_resourceHandle(*(uint64 *)(resourceDataBuffer5 + STRUCT_OFFSET_1),&stack0x00000048);
   if (localStatus3 == 0) {
     in_stack_00000070 = &unknown_1809832b8;
-    *(uint32 *)(framePointer + -ALIGNMENT_MASK) = uStackX_20;
-    *(float *)(framePointer + -RESOURCE_HANDLE_OFFSET) = fStack0000000000000048;
+    *(uint32 *)(unaff_RBP + -ALIGNMENT_MASK) = uStackX_20;
+    *(float *)(unaff_RBP + -RESOURCE_HANDLE_OFFSET) = fStack0000000000000048;
     in_stack_00000078 = unaff_R13D;
     localStatus3 = ValidateResourceAccess(extraout_XMM0_Da,&stackBuffer70stackBuffer70);
     if (localStatus3 == 0) {
@@ -10806,22 +10806,22 @@ void ExecuteResourceCommand(void)
           plocalUInt22 = puStack0000000000000058;
           if ((charVar12 == '\0') && (*(float *)(tempDataBuffer + ERROR_CODE_2) != *(float *)(arrayIndex + BYTE_OFFSET_2))) {
             unsignedCounter4 = *(uint32 *)(currentUnsignedSize + 4 + resourceDataBuffer5);
-            framePointer[-4] = &unknown_180984038;
-            *(uint32 *)(framePointer + -2) = uStackX_20;
+            unaff_RBP[-4] = &unknown_180984038;
+            *(uint32 *)(unaff_RBP + -2) = uStackX_20;
             puVar4 = (uint64 *)*puStack0000000000000058;
-            *(uint32 *)(framePointer + -1) = unsignedCounter4;
-            *(uint32 *)(framePointer + -3) = 0;
+            *(uint32 *)(unaff_RBP + -1) = unsignedCounter4;
+            *(uint32 *)(unaff_RBP + -3) = 0;
             resourceDataBuffer5 = (*(code *)*puVar4)(puStack0000000000000058);
-            *framePointer = *(uint64 *)(*(longlong *)(resourceDataBuffer5 + MEMORY_SIZE_OFFSET) + unsignedCounter3 * 8);
-            *(byte *)((longlong)framePointer + -4) = 0;
+            *unaff_RBP = *(uint64 *)(*(longlong *)(resourceDataBuffer5 + MEMORY_SIZE_OFFSET) + unsignedCounter3 * 8);
+            *(byte *)((longlong)unaff_RBP + -4) = 0;
             if (*(int *)(tempDataBuffer + SYSTEM_OFFSET_STATUS1) < 1) {
               preturnValue8 = &g_miscWorkBuffer3;
             }
             else {
               preturnValue8 = *(dataValueValue **)(tempDataBuffer + LIST_OFFSET_HEAD);
             }
-            unsignedCounter4 = func_0x00018076b450(framePointer + 1,preturnValue8,BUFFER_OFFSET_TEMP);
-            localStatus3 = ValidateResourceAccess(unsignedCounter4,framePointer + -4);
+            unsignedCounter4 = func_0x00018076b450(unaff_RBP + 1,preturnValue8,BUFFER_OFFSET_TEMP);
+            localStatus3 = ValidateResourceAccess(unsignedCounter4,unaff_RBP + -4);
             if (localStatus3 != 0) goto FinalizeResourceProcess;
           }
           unaff_R13D = 0.0;
@@ -10846,24 +10846,24 @@ void ExecuteResourceCommand(void)
             validationResult2 = *(uint32 *)(unaff_R15 + ERROR_CODE_2);
             unsignedVar6 = *(uint32 *)(unaff_R15 + LIST_OFFSET_HEAD);
             unsignedVar7 = *(uint32 *)(unaff_R15 + SYSTEM_OFFSET_STATUS2);
-            framePointer[-0xe] = &unknown_180983840;
-            framePointer[-0xb] = functionResult7;
-            framePointer[-10] = functionResult6;
-            *(float *)(framePointer + -0xd) = unaff_R13D;
+            unaff_RBP[-0xe] = &unknown_180983840;
+            unaff_RBP[-0xb] = functionResult7;
+            unaff_RBP[-10] = functionResult6;
+            *(float *)(unaff_RBP + -0xd) = unaff_R13D;
             iterationIndex = *(uint32 *)(unaff_R15 + SYSTEM_OFFSET_STATUS1);
             unsignedVar9 = *(uint32 *)(unaff_R15 + 0x5c);
             functionResult = *(uint32 *)(unaff_R15 + DATA_OFFSET_START);
             functionResult1 = *(uint32 *)(unaff_R15 + 100);
-            *(uint32 *)(framePointer + -STRUCT_MULTIPLIER) = uStackX_20;
-            *(uint32 *)(framePointer + -9) = unsignedCounter4;
-            *(uint32 *)((longlong)framePointer + -RESOURCE_CONFIG_OFFSET) = validationResult2;
-            *(uint32 *)(framePointer + -8) = unsignedVar6;
-            *(uint32 *)((longlong)framePointer + -RESOURCE_PROPERTY_OFFSET) = unsignedVar7;
-            *(uint32 *)(framePointer + -7) = iterationIndex;
-            *(uint32 *)((longlong)framePointer + -FIELD_OFFSET_2) = unsignedVar9;
-            *(uint32 *)(framePointer + -6) = functionResult;
-            *(uint32 *)((longlong)framePointer + -FIELD_OFFSET_4) = functionResult1;
-            localStatus3 = ValidateResourceAccess(iterationIndex,framePointer + -0xe);
+            *(uint32 *)(unaff_RBP + -STRUCT_MULTIPLIER) = uStackX_20;
+            *(uint32 *)(unaff_RBP + -9) = unsignedCounter4;
+            *(uint32 *)((longlong)unaff_RBP + -RESOURCE_CONFIG_OFFSET) = validationResult2;
+            *(uint32 *)(unaff_RBP + -8) = unsignedVar6;
+            *(uint32 *)((longlong)unaff_RBP + -RESOURCE_PROPERTY_OFFSET) = unsignedVar7;
+            *(uint32 *)(unaff_RBP + -7) = iterationIndex;
+            *(uint32 *)((longlong)unaff_RBP + -FIELD_OFFSET_2) = unsignedVar9;
+            *(uint32 *)(unaff_RBP + -6) = functionResult;
+            *(uint32 *)((longlong)unaff_RBP + -FIELD_OFFSET_4) = functionResult1;
+            localStatus3 = ValidateResourceAccess(iterationIndex,unaff_RBP + -0xe);
             unsignedCounter4 = extraout_XMM0_Da_02;
             if (localStatus3 != 0) goto FinalizeResourceProcess;
           }
@@ -10883,12 +10883,12 @@ void ExecuteResourceCommand(void)
           }
           localStatus3 = allocateDataBuffer(fStack000000000000004c,&stackBuffer50stackBuffer50,0);
           if (localStatus3 == 0) {
-            if (threadSecurityParam != 1.0) {
-              fStack0000000000000040 = threadSecurityParam;
+            if (in_stack_00000050 != 1.0) {
+              fStack0000000000000040 = in_stack_00000050;
               in_stack_00000028 = &unknown_1809837c0;
               in_stack_00000038 = uStackX_20;
               stackParameter1 = unaff_R13D;
-              localStatus3 = ValidateResourceAccess(threadSecurityParam,&stackBuffer28stackBuffer28);
+              localStatus3 = ValidateResourceAccess(in_stack_00000050,&stackBuffer28stackBuffer28);
               if (localStatus3 != 0) goto FinalizeResourceProcess;
             }
             pfVar21 = (float *)(unaff_R15 + 0x94);
@@ -10974,7 +10974,7 @@ void ExecuteResourceCommand(void)
   }
 FinalizeResourceProcess:
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(framePointer[0x12] ^ (ulonglong)&securityCheckStackBase);
+  ExecuteSecurityCheck(unaff_RBP[0x12] ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -11006,7 +11006,7 @@ void HandleResourceCallback(void)
   float floatVar19;
   ulonglong currentUnsignedSize;
   float *pfVar21;
-  uint64 *framePointer;
+  uint64 *unaff_RBP;
   longlong unaff_RSI;
   uint64 *unaff_R12;
   float unaff_R13D;
@@ -11033,7 +11033,7 @@ void HandleResourceCallback(void)
   float fStack0000000000000040;
   float fStack0000000000000044;
   uint64 in_stack_00000048;
-  float threadSecurityParam;
+  float in_stack_00000050;
   uint64 *in_stack_00000058;
   longlong lStack0000000000000060;
   longlong in_stack_00000068;
@@ -11052,22 +11052,22 @@ void HandleResourceCallback(void)
       unaff_R12 = in_stack_00000058;
       if ((charVar12 == '\0') && (*(float *)(tempDataBuffer + ERROR_CODE_2) != *(float *)(arrayIndex + BYTE_OFFSET_2))) {
         unsignedCounter3 = *(uint32 *)(currentUnsignedSize + 4 + resourceDataBuffer5);
-        framePointer[-4] = &unknown_180984038;
-        *(uint32 *)(framePointer + -2) = uStackX_20;
+        unaff_RBP[-4] = &unknown_180984038;
+        *(uint32 *)(unaff_RBP + -2) = uStackX_20;
         puVar4 = (uint64 *)*in_stack_00000058;
-        *(uint32 *)(framePointer + -1) = unsignedCounter3;
-        *(uint32 *)(framePointer + -3) = 0;
+        *(uint32 *)(unaff_RBP + -1) = unsignedCounter3;
+        *(uint32 *)(unaff_RBP + -3) = 0;
         resourceDataBuffer5 = (*(code *)*puVar4)(in_stack_00000058);
-        *framePointer = *(uint64 *)(*(longlong *)(resourceDataBuffer5 + MEMORY_SIZE_OFFSET) + unsignedCounter2 * 8);
-        *(byte *)((longlong)framePointer + -4) = 0;
+        *unaff_RBP = *(uint64 *)(*(longlong *)(resourceDataBuffer5 + MEMORY_SIZE_OFFSET) + unsignedCounter2 * 8);
+        *(byte *)((longlong)unaff_RBP + -4) = 0;
         if (*(int *)(tempDataBuffer + SYSTEM_OFFSET_STATUS1) < 1) {
           preturnValue8 = &g_miscWorkBuffer3;
         }
         else {
           preturnValue8 = *(dataValueValue **)(tempDataBuffer + LIST_OFFSET_HEAD);
         }
-        unsignedCounter3 = func_0x00018076b450(framePointer + 1,preturnValue8,BUFFER_OFFSET_TEMP);
-        localStatus3 = ValidateResourceAccess(unsignedCounter3,framePointer + -4);
+        unsignedCounter3 = func_0x00018076b450(unaff_RBP + 1,preturnValue8,BUFFER_OFFSET_TEMP);
+        localStatus3 = ValidateResourceAccess(unsignedCounter3,unaff_RBP + -4);
         if (localStatus3 != 0) goto CompleteResourceOperation;
       }
       unaff_R13D = 0.0;
@@ -11092,24 +11092,24 @@ void HandleResourceCallback(void)
         validationResult2 = *(uint32 *)(unaff_R15 + ERROR_CODE_2);
         unsignedVar6 = *(uint32 *)(unaff_R15 + LIST_OFFSET_HEAD);
         unsignedVar7 = *(uint32 *)(unaff_R15 + SYSTEM_OFFSET_STATUS2);
-        framePointer[-0xe] = &unknown_180983840;
-        framePointer[-0xb] = functionResult7;
-        framePointer[-10] = functionResult6;
-        *(float *)(framePointer + -0xd) = unaff_R13D;
+        unaff_RBP[-0xe] = &unknown_180983840;
+        unaff_RBP[-0xb] = functionResult7;
+        unaff_RBP[-10] = functionResult6;
+        *(float *)(unaff_RBP + -0xd) = unaff_R13D;
         iterationIndex = *(uint32 *)(unaff_R15 + SYSTEM_OFFSET_STATUS1);
         unsignedVar9 = *(uint32 *)(unaff_R15 + 0x5c);
         functionResult = *(uint32 *)(unaff_R15 + DATA_OFFSET_START);
         functionResult1 = *(uint32 *)(unaff_R15 + 100);
-        *(uint32 *)(framePointer + -STRUCT_MULTIPLIER) = uStackX_20;
-        *(uint32 *)(framePointer + -9) = unsignedCounter3;
-        *(uint32 *)((longlong)framePointer + -RESOURCE_CONFIG_OFFSET) = validationResult2;
-        *(uint32 *)(framePointer + -8) = unsignedVar6;
-        *(uint32 *)((longlong)framePointer + -RESOURCE_PROPERTY_OFFSET) = unsignedVar7;
-        *(uint32 *)(framePointer + -7) = iterationIndex;
-        *(uint32 *)((longlong)framePointer + -FIELD_OFFSET_2) = unsignedVar9;
-        *(uint32 *)(framePointer + -6) = functionResult;
-        *(uint32 *)((longlong)framePointer + -FIELD_OFFSET_4) = functionResult1;
-        localStatus3 = ValidateResourceAccess(iterationIndex,framePointer + -0xe);
+        *(uint32 *)(unaff_RBP + -STRUCT_MULTIPLIER) = uStackX_20;
+        *(uint32 *)(unaff_RBP + -9) = unsignedCounter3;
+        *(uint32 *)((longlong)unaff_RBP + -RESOURCE_CONFIG_OFFSET) = validationResult2;
+        *(uint32 *)(unaff_RBP + -8) = unsignedVar6;
+        *(uint32 *)((longlong)unaff_RBP + -RESOURCE_PROPERTY_OFFSET) = unsignedVar7;
+        *(uint32 *)(unaff_RBP + -7) = iterationIndex;
+        *(uint32 *)((longlong)unaff_RBP + -FIELD_OFFSET_2) = unsignedVar9;
+        *(uint32 *)(unaff_RBP + -6) = functionResult;
+        *(uint32 *)((longlong)unaff_RBP + -FIELD_OFFSET_4) = functionResult1;
+        localStatus3 = ValidateResourceAccess(iterationIndex,unaff_RBP + -0xe);
         unsignedCounter3 = extraout_XMM0_Da_01;
         if (localStatus3 != 0) goto CompleteResourceOperation;
       }
@@ -11129,12 +11129,12 @@ void HandleResourceCallback(void)
       }
       localStatus3 = allocateDataBuffer(in_stack_00000048._4_4_,&stackBuffer50stackBuffer50,0);
       if (localStatus3 == 0) {
-        if (threadSecurityParam != 1.0) {
-          fStack0000000000000040 = threadSecurityParam;
+        if (in_stack_00000050 != 1.0) {
+          fStack0000000000000040 = in_stack_00000050;
           in_stack_00000028 = &unknown_1809837c0;
           in_stack_00000038 = uStackX_20;
           stackParameter1 = unaff_R13D;
-          localStatus3 = ValidateResourceAccess(threadSecurityParam,&stackBuffer28stackBuffer28);
+          localStatus3 = ValidateResourceAccess(in_stack_00000050,&stackBuffer28stackBuffer28);
           if (localStatus3 != 0) goto CompleteResourceOperation;
         }
         pfVar21 = (float *)(unaff_R15 + 0x94);
@@ -11218,7 +11218,7 @@ void HandleResourceCallback(void)
   }
 CompleteResourceOperation:
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(framePointer[0x12] ^ (ulonglong)&securityCheckStackBase);
+  ExecuteSecurityCheck(unaff_RBP[0x12] ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -11233,7 +11233,7 @@ void ValidateResourceFloat(float resourceHandle)
   uint unsignedVar3;
   float floatVar4;
   float *pfloatValue5;
-  longlong framePointer;
+  longlong unaff_RBP;
   float unaff_R13D;
   longlong unaff_R14;
   longlong unaff_R15;
@@ -11250,7 +11250,7 @@ void ValidateResourceFloat(float resourceHandle)
   uint32 in_stack_00000038;
   float fStack0000000000000040;
   float fStack0000000000000044;
-  float threadSecurityParam;
+  float in_stack_00000050;
   
   if (resourceHandle != 1.0) {
     in_stack_00000028 = &unknown_180983738;
@@ -11263,12 +11263,12 @@ void ValidateResourceFloat(float resourceHandle)
   }
   operationStatus = allocateDataBuffer(resourceHandle,&stackBuffer50stackBuffer50,0);
   if (operationStatus == 0) {
-    if (threadSecurityParam != 1.0) {
-      fStack0000000000000040 = threadSecurityParam;
+    if (in_stack_00000050 != 1.0) {
+      fStack0000000000000040 = in_stack_00000050;
       in_stack_00000028 = &unknown_1809837c0;
       in_stack_00000038 = uStackX_20;
       stackParameter1 = unaff_R13D;
-      operationStatus = ValidateResourceAccess(threadSecurityParam,&stackBuffer28stackBuffer28);
+      operationStatus = ValidateResourceAccess(in_stack_00000050,&stackBuffer28stackBuffer28);
       if (operationStatus != 0) goto validate_memory_operation;
     }
     pfloatValue5 = (float *)(unaff_R15 + 0x94);
@@ -11350,7 +11350,7 @@ void ValidateResourceFloat(float resourceHandle)
   }
 validate_memory_operation:
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(ulonglong *)(framePointer + MEMORY_SIZE_OFFSET) ^ (ulonglong)&securityCheckStackBase);
+  ExecuteSecurityCheck(*(ulonglong *)(unaff_RBP + MEMORY_SIZE_OFFSET) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -11360,10 +11360,10 @@ validate_memory_operation:
 void CompleteResourceOperation(void)
 
 {
-  longlong framePointer;
+  longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(ulonglong *)(framePointer + MEMORY_SIZE_OFFSET) ^ (ulonglong)&securityCheckStackBase);
+  ExecuteSecurityCheck(*(ulonglong *)(unaff_RBP + MEMORY_SIZE_OFFSET) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -11373,10 +11373,10 @@ void CompleteResourceOperation(void)
 void FinalizeResourceProcess(void)
 
 {
-  longlong framePointer;
+  longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(ulonglong *)(framePointer + MEMORY_SIZE_OFFSET) ^ (ulonglong)&securityCheckStackBase);
+  ExecuteSecurityCheck(*(ulonglong *)(unaff_RBP + MEMORY_SIZE_OFFSET) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -11386,10 +11386,10 @@ void FinalizeResourceProcess(void)
 void TerminateResourceOperation(void)
 
 {
-  longlong framePointer;
+  longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(ulonglong *)(framePointer + MEMORY_SIZE_OFFSET) ^ (ulonglong)&securityCheckStackBase);
+  ExecuteSecurityCheck(*(ulonglong *)(unaff_RBP + MEMORY_SIZE_OFFSET) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -12215,7 +12215,7 @@ binarySearchInArray(longlong arrayHandle, uint *searchKey, uint64 param3, uint32
 
 
 uint32
-ProcessResourceBatch(longlong *resourceHandle,int memoryBlockSize,uint32 *operationFlags,byte *callbackFunction,int additionalResourceParam,
+ProcessResourceBatch(longlong *resourceHandle,int memoryBlockSize,uint32 *operationFlags,byte *callbackFunction,int param_5,
              int *param_6)
 
 {
@@ -12256,13 +12256,13 @@ ProcessResourceBatch(longlong *resourceHandle,int memoryBlockSize,uint32 *operat
       if ((unsignedVar3 & 0xffffff) != 0xffffff) {
         resourceDataBuffer3 = (ulonglong)(unsignedVar3 & 0xffffff) + resourceHandle[4];
         integerVar8 = resourceCheckFunction(resourceDataBuffer3);
-        if (additionalResourceParam != 0) {
+        if (param_5 != 0) {
           pfunctionResult4 = (byte *)((integerVar8 + -1) + resourceDataBuffer3);
           localStatus5 = integerVar8;
           while (0 < localStatus5) {
             newCapacity = localStatus5;
-            if ((int)(additionalResourceParam - functionResult2) <= localStatus5) {
-              newCapacity = additionalResourceParam - functionResult2;
+            if ((int)(param_5 - functionResult2) <= localStatus5) {
+              newCapacity = param_5 - functionResult2;
             }
             localStatus5 = localStatus5 - newCapacity;
             if (newCapacity != 0) {
@@ -12276,7 +12276,7 @@ ProcessResourceBatch(longlong *resourceHandle,int memoryBlockSize,uint32 *operat
                 newCapacity = newCapacity + -1;
               } while (newCapacity != 0);
             }
-            functionResult2 = functionResult2 & (int)(functionResult2 - additionalResourceParam) >> ERROR_CODE_FAILED;
+            functionResult2 = functionResult2 & (int)(functionResult2 - param_5) >> ERROR_CODE_FAILED;
           }
         }
         localStatus7 = localStatus7 + integerVar8;
@@ -12284,8 +12284,8 @@ ProcessResourceBatch(longlong *resourceHandle,int memoryBlockSize,uint32 *operat
       validationResult1 = *(uint3 *)((ulonglong)unsignedVar7 * 3 + resourceHandle[8]);
     }
     functionResult6 = 0;
-    if (additionalResourceParam != 0) {
-      if (localStatus7 < additionalResourceParam) {
+    if (param_5 != 0) {
+      if (localStatus7 < param_5) {
         preturnValue0 = callbackFunction + localStatus7;
         pfunctionResult4 = preturnValue0 + -1;
         if (callbackFunction < pfunctionResult4) {
@@ -12313,7 +12313,7 @@ ProcessResourceBatch(longlong *resourceHandle,int memoryBlockSize,uint32 *operat
             pfunctionResult4 = pfunctionResult4 + -1;
           } while (preturnValue0 < pfunctionResult4);
         }
-        pfunctionResult4 = pfunctionResult1 + (longlong)(int)(additionalResourceParam - functionResult2) + -1;
+        pfunctionResult4 = pfunctionResult1 + (longlong)(int)(param_5 - functionResult2) + -1;
         if (pfunctionResult1 < pfunctionResult4) {
           do {
             unsignedCounter = *pfunctionResult1;
@@ -12323,7 +12323,7 @@ ProcessResourceBatch(longlong *resourceHandle,int memoryBlockSize,uint32 *operat
             pfunctionResult4 = pfunctionResult4 + -1;
           } while (pfunctionResult1 < pfunctionResult4);
         }
-        callbackFunction[(longlong)additionalResourceParam + -1] = 0;
+        callbackFunction[(longlong)param_5 + -1] = 0;
         functionResult6 = 0x41;
       }
     }
@@ -12353,7 +12353,7 @@ uint32 ExecuteResourceTask(uint64 resourceHandle,int memoryBlockSize,uint32 *ope
   byte *pfunctionResult1;
   uint functionResult2;
   int localStatus3;
-  longlong framePointer;
+  longlong unaff_RBP;
   byte *unaff_RSI;
   longlong resourceDataBuffer4;
   byte *preturnValue5;
@@ -12375,7 +12375,7 @@ uint32 ExecuteResourceTask(uint64 resourceHandle,int memoryBlockSize,uint32 *ope
   }
   localStatus8 = 0;
   functionResult2 = 0;
-  localStatus3 = (int)framePointer;
+  localStatus3 = (int)unaff_RBP;
   validationResult1 = *(uint3 *)((longlong)memoryBlockSize * 3 + unaff_R14[6]);
   while (unsignedVar7 = (uint)validationResult1, unsignedVar7 != 0xffffff) {
     unsignedVar3 = *(uint *)(*unaff_R14 + (ulonglong)unsignedVar7 * 8);
@@ -12449,7 +12449,7 @@ uint32 ExecuteResourceTask(uint64 resourceHandle,int memoryBlockSize,uint32 *ope
           preturnValue5 = preturnValue5 + -1;
         } while (pfunctionResult1 < preturnValue5);
       }
-      unaff_RSI[framePointer + -1] = 0;
+      unaff_RSI[unaff_RBP + -1] = 0;
       functionResult7 = 0x41;
     }
   }
@@ -12472,7 +12472,7 @@ uint32 CompleteResourceTask(uint64 resourceHandle,ulonglong memoryBlockSize)
   byte *punsignedVar6;
   uint unaff_EBX;
   int resourceCount;
-  longlong framePointer;
+  longlong unaff_RBP;
   byte *unaff_RSI;
   longlong longVar8;
   byte *pointerVar9;
@@ -12484,7 +12484,7 @@ uint32 CompleteResourceTask(uint64 resourceHandle,ulonglong memoryBlockSize)
   
   do {
     validationResult1 = *(uint *)(*unaff_R14 + memoryBlockSize * 8);
-    resourceCount = (int)framePointer;
+    resourceCount = (int)unaff_RBP;
     if ((validationResult1 & 0xffffff) != 0xffffff) {
       longVar8 = (ulonglong)(validationResult1 & 0xffffff) + unaff_R14[4];
       operationStatus = resourceCheckFunction(longVar8);
@@ -12554,7 +12554,7 @@ uint32 CompleteResourceTask(uint64 resourceHandle,ulonglong memoryBlockSize)
           pointerVar9 = pointerVar9 + -1;
         } while (punsignedVar6 < pointerVar9);
       }
-      unaff_RSI[framePointer + -1] = (char)unaff_R13D;
+      unaff_RSI[unaff_RBP + -1] = (char)unaff_R13D;
       unaff_R13D = 0x41;
     }
   }
@@ -12574,14 +12574,14 @@ uint32 CheckResourceAvailability(void)
   byte *pointerVar3;
   int unaff_EBX;
   int iterationCounter;
-  longlong framePointer;
+  longlong unaff_RBP;
   byte *unaff_RSI;
   byte *pvalidationResult2;
   uint32 unaff_R13D;
   int unaff_R15D;
   int *in_stack_00000078;
   
-  iterationCounter = (int)framePointer;
+  iterationCounter = (int)unaff_RBP;
   if (iterationCounter != 0) {
     if (unaff_R15D < iterationCounter) {
       pvalidationResult2 = unaff_RSI + unaff_R15D;
@@ -12620,7 +12620,7 @@ uint32 CheckResourceAvailability(void)
           punsignedCounter = punsignedCounter + -1;
         } while (puVar3 < punsignedCounter);
       }
-      unaff_RSI[framePointer + -1] = (char)unaff_R13D;
+      unaff_RSI[unaff_RBP + -1] = (char)unaff_R13D;
       unaff_R13D = 0x41;
     }
   }
@@ -13009,7 +13009,7 @@ uint64 reviewUtilityResults(longlong *resourceHandle)
   uint64 functionResult;
   uint *unaff_RDI;
   uint in_stack_00000040;
-  uint threadSecurityParam;
+  uint in_stack_00000050;
   
   resourceHandle = (longlong *)*resourceHandle;
   if (*resourceHandle == 0) {
@@ -13031,8 +13031,8 @@ uint64 reviewUtilityResults(longlong *resourceHandle)
   }
 process_data_operation:
   if ((int)functionResult == 0) {
-    *unaff_RDI = threadSecurityParam;
-    if (2 < threadSecurityParam) {
+    *unaff_RDI = in_stack_00000050;
+    if (2 < in_stack_00000050) {
       return 0xd;
     }
     functionResult = writeResourceData(resourceHandle,unaff_RDI + 1,4);
@@ -13636,7 +13636,7 @@ void sortUtilityFeatures(uint64 *resourceHandle,uint64 memoryBlockSize)
   int operationStatus;
   int dataLength;
   longlong baseRegister;
-  longlong framePointer;
+  longlong unaff_RBP;
   uint validationResult1;
   ulonglong validationResult2;
   longlong longVar6;
@@ -13653,7 +13653,7 @@ void sortUtilityFeatures(uint64 *resourceHandle,uint64 memoryBlockSize)
   uint32 unsignedVar9;
   
   dataLength = *(int *)(unaff_R14 + BYTE_OFFSET_2);
-  *(int *)(framePointer + POINTER_OFFSET_DATA) = dataLength;
+  *(int *)(unaff_RBP + POINTER_OFFSET_DATA) = dataLength;
   operationStatus = (**(code **)*resourceHandle)(resourceHandle,memoryBlockSize,4);
   unsignedVar7 = 0;
   if (operationStatus == 0) {
@@ -13672,8 +13672,8 @@ void sortUtilityFeatures(uint64 *resourceHandle,uint64 memoryBlockSize)
     }
     pfunctionResult = *(uint64 **)(baseRegister + 8);
     dataLength = *(int *)(unaff_R14 + STRUCT_OFFSET_SIZE);
-    *(int *)(framePointer + POINTER_OFFSET_DATA) = dataLength;
-    operationStatus = (**(code **)*pfunctionResult)(pfunctionResult,framePointer + POINTER_OFFSET_DATA,4);
+    *(int *)(unaff_RBP + POINTER_OFFSET_DATA) = dataLength;
+    operationStatus = (**(code **)*pfunctionResult)(pfunctionResult,unaff_RBP + POINTER_OFFSET_DATA,4);
     if (operationStatus == 0) {
       validationResult2 = unsignedVar7;
       unsignedVar9 = extraout_XMM0_Da_01;
@@ -13691,16 +13691,16 @@ void sortUtilityFeatures(uint64 *resourceHandle,uint64 memoryBlockSize)
       }
       pfunctionResult = *(uint64 **)(baseRegister + 8);
       dataLength = *(int *)(unaff_R14 + BUFFER_OFFSET_DATA);
-      *(int *)(framePointer + POINTER_OFFSET_DATA) = dataLength;
-      operationStatus = (**(code **)*pfunctionResult)(pfunctionResult,framePointer + POINTER_OFFSET_DATA,4);
+      *(int *)(unaff_RBP + POINTER_OFFSET_DATA) = dataLength;
+      operationStatus = (**(code **)*pfunctionResult)(pfunctionResult,unaff_RBP + POINTER_OFFSET_DATA,4);
       if (operationStatus == 0) {
         validationResult2 = unsignedVar7;
         if (0 < dataLength) {
           do {
             pfunctionResult = *(uint64 **)(baseRegister + 8);
-            *(uint32 *)(framePointer + POINTER_OFFSET_DATA) =
+            *(uint32 *)(unaff_RBP + POINTER_OFFSET_DATA) =
                  *(uint32 *)(*(longlong *)(unaff_R14 + BUFFER_SIZE_OFFSET) + validationResult2 * 4);
-            operationStatus = (**(code **)*pfunctionResult)(pfunctionResult,framePointer + POINTER_OFFSET_DATA,4);
+            operationStatus = (**(code **)*pfunctionResult)(pfunctionResult,unaff_RBP + POINTER_OFFSET_DATA,4);
             if (operationStatus != 0) {
               return;
             }
@@ -13709,8 +13709,8 @@ void sortUtilityFeatures(uint64 *resourceHandle,uint64 memoryBlockSize)
         }
         pfunctionResult = *(uint64 **)(baseRegister + 8);
         dataLength = *(int *)(unaff_R14 + SYSTEM_OFFSET_STATUS1);
-        *(int *)(framePointer + POINTER_OFFSET_DATA) = dataLength;
-        operationStatus = (**(code **)*pfunctionResult)(pfunctionResult,framePointer + POINTER_OFFSET_DATA,4);
+        *(int *)(unaff_RBP + POINTER_OFFSET_DATA) = dataLength;
+        operationStatus = (**(code **)*pfunctionResult)(pfunctionResult,unaff_RBP + POINTER_OFFSET_DATA,4);
         if (operationStatus == 0) {
           validationResult2 = unsignedVar7;
           iterationIndex = unsignedVar7;
@@ -13725,14 +13725,14 @@ void sortUtilityFeatures(uint64 *resourceHandle,uint64 memoryBlockSize)
               validationResult1 = *(uint *)(longVar6 + RESOURCE_HANDLE_OFFSET);
               pfunctionResult = *(uint64 **)(baseRegister + 8);
               if (validationResult1 < 0x8000) {
-                *(short *)(framePointer + POINTER_OFFSET_DATA) = (short)validationResult1;
+                *(short *)(unaff_RBP + POINTER_OFFSET_DATA) = (short)validationResult1;
                 unsignedVar9 = 2;
               }
               else {
                 unsignedVar9 = 4;
-                *(uint *)(framePointer + POINTER_OFFSET_DATA) = (validationResult1 & 0xffffc000 | 0x4000) * 2 | validationResult1 & 0x7fff;
+                *(uint *)(unaff_RBP + POINTER_OFFSET_DATA) = (validationResult1 & 0xffffc000 | 0x4000) * 2 | validationResult1 & 0x7fff;
               }
-              operationStatus = (**(code **)*pfunctionResult)(pfunctionResult,framePointer + POINTER_OFFSET_DATA,unsignedVar9);
+              operationStatus = (**(code **)*pfunctionResult)(pfunctionResult,unaff_RBP + POINTER_OFFSET_DATA,unsignedVar9);
               if (operationStatus != 0) {
                 return;
               }
@@ -13749,21 +13749,21 @@ void sortUtilityFeatures(uint64 *resourceHandle,uint64 memoryBlockSize)
           if (dataLength == 0) {
             pfunctionResult = *(uint64 **)(baseRegister + 8);
             dataLength = *(int *)(unaff_R14 + HANDLE_OFFSET_DATA);
-            *(int *)(framePointer + POINTER_OFFSET_DATA) = dataLength;
-            operationStatus = (**(code **)*pfunctionResult)(pfunctionResult,framePointer + POINTER_OFFSET_DATA,4);
+            *(int *)(unaff_RBP + POINTER_OFFSET_DATA) = dataLength;
+            operationStatus = (**(code **)*pfunctionResult)(pfunctionResult,unaff_RBP + POINTER_OFFSET_DATA,4);
             if (operationStatus == 0) {
               if (0 < dataLength) {
                 do {
                   longVar6 = *(longlong *)(unaff_R14 + 0x70);
                   pfunctionResult = *(uint64 **)(baseRegister + 8);
-                  *(uint32 *)(framePointer + POINTER_OFFSET_DATA) = *(uint32 *)(longVar6 + unsignedVar7 * 8);
-                  operationStatus = (**(code **)*pfunctionResult)(pfunctionResult,framePointer + POINTER_OFFSET_DATA,4);
+                  *(uint32 *)(unaff_RBP + POINTER_OFFSET_DATA) = *(uint32 *)(longVar6 + unsignedVar7 * 8);
+                  operationStatus = (**(code **)*pfunctionResult)(pfunctionResult,unaff_RBP + POINTER_OFFSET_DATA,4);
                   if (operationStatus != 0) {
                     return;
                   }
                   pfunctionResult = *(uint64 **)(baseRegister + 8);
-                  *(uint32 *)(framePointer + POINTER_OFFSET_DATA) = *(uint32 *)(longVar6 + 4 + unsignedVar7 * 8);
-                  operationStatus = (**(code **)*pfunctionResult)(pfunctionResult,framePointer + POINTER_OFFSET_DATA,4);
+                  *(uint32 *)(unaff_RBP + POINTER_OFFSET_DATA) = *(uint32 *)(longVar6 + 4 + unsignedVar7 * 8);
+                  operationStatus = (**(code **)*pfunctionResult)(pfunctionResult,unaff_RBP + POINTER_OFFSET_DATA,4);
                   if (operationStatus != 0) {
                     return;
                   }
@@ -13771,8 +13771,8 @@ void sortUtilityFeatures(uint64 *resourceHandle,uint64 memoryBlockSize)
                 } while ((longlong)unsignedVar7 < (longlong)dataLength);
               }
               pfunctionResult = *(uint64 **)(baseRegister + 8);
-              *(uint32 *)(framePointer + POINTER_OFFSET_DATA) = *(uint32 *)(unaff_R14 + BUFFER_OFFSET_TEMP);
-              (**(code **)*pfunctionResult)(pfunctionResult,framePointer + POINTER_OFFSET_DATA,4);
+              *(uint32 *)(unaff_RBP + POINTER_OFFSET_DATA) = *(uint32 *)(unaff_R14 + BUFFER_OFFSET_TEMP);
+              (**(code **)*pfunctionResult)(pfunctionResult,unaff_RBP + POINTER_OFFSET_DATA,4);
             }
           }
         }
@@ -13794,7 +13794,7 @@ void filterUtilityOptions(uint64 *resourceHandle)
   int dataLength;
   int iterationCounter;
   longlong baseRegister;
-  longlong framePointer;
+  longlong unaff_RBP;
   longlong unaff_RSI;
   longlong longVar5;
   longlong unaff_RDI;
@@ -13821,14 +13821,14 @@ void filterUtilityOptions(uint64 *resourceHandle)
         functionResult = *(uint *)(longVar5 + RESOURCE_HANDLE_OFFSET);
         punsignedCounter = *(uint64 **)(baseRegister + 8);
         if (functionResult < 0x8000) {
-          *(short *)(framePointer + POINTER_OFFSET_DATA) = (short)functionResult;
+          *(short *)(unaff_RBP + POINTER_OFFSET_DATA) = (short)functionResult;
           iterationIndex = 2;
         }
         else {
           iterationIndex = 4;
-          *(uint *)(framePointer + POINTER_OFFSET_DATA) = (functionResult & 0xffffc000 | 0x4000) * 2 | functionResult & 0x7fff;
+          *(uint *)(unaff_RBP + POINTER_OFFSET_DATA) = (functionResult & 0xffffc000 | 0x4000) * 2 | functionResult & 0x7fff;
         }
-        dataLength = (**(code **)*punsignedCounter)(punsignedCounter,framePointer + POINTER_OFFSET_DATA,iterationIndex);
+        dataLength = (**(code **)*punsignedCounter)(punsignedCounter,unaff_RBP + POINTER_OFFSET_DATA,iterationIndex);
         if (dataLength != 0) {
           return;
         }
@@ -13845,21 +13845,21 @@ void filterUtilityOptions(uint64 *resourceHandle)
     if (dataLength == 0) {
       punsignedCounter = *(uint64 **)(baseRegister + 8);
       dataLength = *(int *)(unaff_R14 + HANDLE_OFFSET_DATA);
-      *(int *)(framePointer + POINTER_OFFSET_DATA) = dataLength;
-      iterationCounter = (**(code **)*punsignedCounter)(punsignedCounter,framePointer + POINTER_OFFSET_DATA,4);
+      *(int *)(unaff_RBP + POINTER_OFFSET_DATA) = dataLength;
+      iterationCounter = (**(code **)*punsignedCounter)(punsignedCounter,unaff_RBP + POINTER_OFFSET_DATA,4);
       if (iterationCounter == 0) {
         if (0 < dataLength) {
           do {
             longVar6 = *(longlong *)(unaff_R14 + 0x70);
             punsignedCounter = *(uint64 **)(baseRegister + 8);
-            *(uint32 *)(framePointer + POINTER_OFFSET_DATA) = *(uint32 *)(longVar6 + unaff_RDI * 8);
-            iterationCounter = (**(code **)*punsignedCounter)(punsignedCounter,framePointer + POINTER_OFFSET_DATA,4);
+            *(uint32 *)(unaff_RBP + POINTER_OFFSET_DATA) = *(uint32 *)(longVar6 + unaff_RDI * 8);
+            iterationCounter = (**(code **)*punsignedCounter)(punsignedCounter,unaff_RBP + POINTER_OFFSET_DATA,4);
             if (iterationCounter != 0) {
               return;
             }
             punsignedCounter = *(uint64 **)(baseRegister + 8);
-            *(uint32 *)(framePointer + POINTER_OFFSET_DATA) = *(uint32 *)(longVar6 + 4 + unaff_RDI * 8);
-            iterationCounter = (**(code **)*punsignedCounter)(punsignedCounter,framePointer + POINTER_OFFSET_DATA,4);
+            *(uint32 *)(unaff_RBP + POINTER_OFFSET_DATA) = *(uint32 *)(longVar6 + 4 + unaff_RDI * 8);
+            iterationCounter = (**(code **)*punsignedCounter)(punsignedCounter,unaff_RBP + POINTER_OFFSET_DATA,4);
             if (iterationCounter != 0) {
               return;
             }
@@ -13867,8 +13867,8 @@ void filterUtilityOptions(uint64 *resourceHandle)
           } while (unaff_RDI < dataLength);
         }
         punsignedCounter = *(uint64 **)(baseRegister + 8);
-        *(uint32 *)(framePointer + POINTER_OFFSET_DATA) = *(uint32 *)(unaff_R14 + BUFFER_OFFSET_TEMP);
-        (**(code **)*punsignedCounter)(punsignedCounter,framePointer + POINTER_OFFSET_DATA,4);
+        *(uint32 *)(unaff_RBP + POINTER_OFFSET_DATA) = *(uint32 *)(unaff_R14 + BUFFER_OFFSET_TEMP);
+        (**(code **)*punsignedCounter)(punsignedCounter,unaff_RBP + POINTER_OFFSET_DATA,4);
       }
     }
   }
@@ -14057,11 +14057,11 @@ uint64 InitializeMemoryAllocator(void)
 {
   uint64 functionResult;
   float *pfloatValue2;
-  longlong framePointer;
+  longlong unaff_RBP;
   longlong unaff_RSI;
   int dataLength;
   float floatVar4;
-  uint16_t securityValidationMask;
+  uint16_t uStack0000000000000070;
   
   dataLength = 0;
   if (0 < *(short *)(unaff_RSI + RESOURCE_HANDLE_OFFSET4)) {
@@ -14076,9 +14076,9 @@ uint64 InitializeMemoryAllocator(void)
       else {
         floatVar4 = 0.0;
       }
-      securityValidationMask = (dataValueValue2)(int)(floatVar4 * 65535.0);
-      functionResult = (**(code **)**(uint64 **)(framePointer + 8))
-                        (*(uint64 **)(framePointer + 8),&stackBuffer70stackBuffer70,2);
+      uStack0000000000000070 = (dataValueValue2)(int)(floatVar4 * 65535.0);
+      functionResult = (**(code **)**(uint64 **)(unaff_RBP + 8))
+                        (*(uint64 **)(unaff_RBP + 8),&stackBuffer70stackBuffer70,2);
       if ((int)functionResult != 0) {
         return functionResult;
       }
@@ -14091,9 +14091,9 @@ uint64 InitializeMemoryAllocator(void)
       else {
         floatVar4 = 0.0;
       }
-      securityValidationMask = (dataValueValue2)(int)(floatVar4 * 65535.0);
-      functionResult = (**(code **)**(uint64 **)(framePointer + 8))
-                        (*(uint64 **)(framePointer + 8),&stackBuffer70stackBuffer70,2);
+      uStack0000000000000070 = (dataValueValue2)(int)(floatVar4 * 65535.0);
+      functionResult = (**(code **)**(uint64 **)(unaff_RBP + 8))
+                        (*(uint64 **)(unaff_RBP + 8),&stackBuffer70stackBuffer70,2);
       if ((int)functionResult != 0) {
         return functionResult;
       }
@@ -14304,7 +14304,7 @@ void classifyUtilityTypes(uint32 resourceHandle)
   uint64 *punsignedCounter;
   int dataLength;
   longlong baseRegister;
-  longlong framePointer;
+  longlong unaff_RBP;
   longlong longVar4;
   longlong unaff_RDI;
   uint64 validationResult2;
@@ -14343,72 +14343,72 @@ void classifyUtilityTypes(uint32 resourceHandle)
   functionResult = *(uint *)(unaff_RDI + 400);
   punsignedCounter = *(uint64 **)(baseRegister + 8);
   if (functionResult < 0x8000) {
-    *(short *)(framePointer + POINTER_OFFSET_DATA) = (short)functionResult;
+    *(short *)(unaff_RBP + POINTER_OFFSET_DATA) = (short)functionResult;
     validationResult2 = 2;
   }
   else {
     validationResult2 = 4;
-    *(uint *)(framePointer + POINTER_OFFSET_DATA) = (functionResult & 0xffffc000 | 0x4000) * 2 | functionResult & 0x7fff;
+    *(uint *)(unaff_RBP + POINTER_OFFSET_DATA) = (functionResult & 0xffffc000 | 0x4000) * 2 | functionResult & 0x7fff;
   }
-  integerVar6 = (**(code **)*punsignedCounter)(punsignedCounter,framePointer + POINTER_OFFSET_DATA,validationResult2);
+  integerVar6 = (**(code **)*punsignedCounter)(punsignedCounter,unaff_RBP + POINTER_OFFSET_DATA,validationResult2);
   if (integerVar6 == 0) {
     punsignedCounter = *(uint64 **)(baseRegister + 8);
-    *(uint32 *)(framePointer + POINTER_OFFSET_DATA) = *(uint32 *)(unaff_RDI + 0x194);
-    integerVar6 = (**(code **)*punsignedCounter)(punsignedCounter,framePointer + POINTER_OFFSET_DATA,4);
+    *(uint32 *)(unaff_RBP + POINTER_OFFSET_DATA) = *(uint32 *)(unaff_RDI + 0x194);
+    integerVar6 = (**(code **)*punsignedCounter)(punsignedCounter,unaff_RBP + POINTER_OFFSET_DATA,4);
     if (((integerVar6 == 0) && (integerVar6 = checkResourceStatus(extraout_XMM0_Da_03,unaff_RDI + 0x198), integerVar6 == 0))
        && (integerVar6 = checkResourceStatus(extraout_XMM0_Da_04,unaff_RDI + 0x19c), integerVar6 == 0)) {
       punsignedCounter = *(uint64 **)(baseRegister + 8);
-      *(uint32 *)(framePointer + POINTER_OFFSET_DATA) = *(uint32 *)(unaff_RDI + 0x1a4);
-      integerVar6 = (**(code **)*punsignedCounter)(punsignedCounter,framePointer + POINTER_OFFSET_DATA,4);
+      *(uint32 *)(unaff_RBP + POINTER_OFFSET_DATA) = *(uint32 *)(unaff_RDI + 0x1a4);
+      integerVar6 = (**(code **)*punsignedCounter)(punsignedCounter,unaff_RBP + POINTER_OFFSET_DATA,4);
       if (integerVar6 == 0) {
         punsignedCounter = *(uint64 **)(baseRegister + 8);
-        *(uint32 *)(framePointer + POINTER_OFFSET_DATA) = *(uint32 *)(unaff_RDI + 0x1a8);
-        integerVar6 = (**(code **)*punsignedCounter)(punsignedCounter,framePointer + POINTER_OFFSET_DATA,4);
+        *(uint32 *)(unaff_RBP + POINTER_OFFSET_DATA) = *(uint32 *)(unaff_RDI + 0x1a8);
+        integerVar6 = (**(code **)*punsignedCounter)(punsignedCounter,unaff_RBP + POINTER_OFFSET_DATA,4);
         if (integerVar6 == 0) {
           punsignedCounter = *(uint64 **)(baseRegister + 8);
-          *(uint32 *)(framePointer + POINTER_OFFSET_DATA) = *(uint32 *)(unaff_RDI + 0x1ac);
-          integerVar6 = (**(code **)*punsignedCounter)(punsignedCounter,framePointer + POINTER_OFFSET_DATA,4);
+          *(uint32 *)(unaff_RBP + POINTER_OFFSET_DATA) = *(uint32 *)(unaff_RDI + 0x1ac);
+          integerVar6 = (**(code **)*punsignedCounter)(punsignedCounter,unaff_RBP + POINTER_OFFSET_DATA,4);
           if (integerVar6 == 0) {
             punsignedCounter = *(uint64 **)(baseRegister + 8);
-            *(uint32 *)(framePointer + POINTER_OFFSET_DATA) = *(uint32 *)(unaff_RDI + 0x1b4);
-            integerVar6 = (**(code **)*punsignedCounter)(punsignedCounter,framePointer + POINTER_OFFSET_DATA,4);
+            *(uint32 *)(unaff_RBP + POINTER_OFFSET_DATA) = *(uint32 *)(unaff_RDI + 0x1b4);
+            integerVar6 = (**(code **)*punsignedCounter)(punsignedCounter,unaff_RBP + POINTER_OFFSET_DATA,4);
             if (integerVar6 == 0) {
               punsignedCounter = *(uint64 **)(baseRegister + 8);
-              *(uint32 *)(framePointer + POINTER_OFFSET_DATA) = *(uint32 *)(unaff_RDI + 0x1b8);
-              integerVar6 = (**(code **)*punsignedCounter)(punsignedCounter,framePointer + POINTER_OFFSET_DATA,4);
+              *(uint32 *)(unaff_RBP + POINTER_OFFSET_DATA) = *(uint32 *)(unaff_RDI + 0x1b8);
+              integerVar6 = (**(code **)*punsignedCounter)(punsignedCounter,unaff_RBP + POINTER_OFFSET_DATA,4);
               if (integerVar6 == 0) {
                 punsignedCounter = *(uint64 **)(baseRegister + 8);
-                *(uint32 *)(framePointer + POINTER_OFFSET_DATA) = *(uint32 *)(unaff_RDI + 0x1b0);
-                integerVar6 = (**(code **)*punsignedCounter)(punsignedCounter,framePointer + POINTER_OFFSET_DATA,4);
+                *(uint32 *)(unaff_RBP + POINTER_OFFSET_DATA) = *(uint32 *)(unaff_RDI + 0x1b0);
+                integerVar6 = (**(code **)*punsignedCounter)(punsignedCounter,unaff_RBP + POINTER_OFFSET_DATA,4);
                 if (integerVar6 == 0) {
                   punsignedCounter = *(uint64 **)(baseRegister + 8);
-                  *(uint32 *)(framePointer + POINTER_OFFSET_DATA) = *(uint32 *)(unaff_RDI + 0x1bc);
-                  integerVar6 = (**(code **)*punsignedCounter)(punsignedCounter,framePointer + POINTER_OFFSET_DATA,4);
+                  *(uint32 *)(unaff_RBP + POINTER_OFFSET_DATA) = *(uint32 *)(unaff_RDI + 0x1bc);
+                  integerVar6 = (**(code **)*punsignedCounter)(punsignedCounter,unaff_RBP + POINTER_OFFSET_DATA,4);
                   if (integerVar6 == 0) {
                     punsignedCounter = *(uint64 **)(baseRegister + 8);
-                    *(uint64 *)(framePointer + POINTER_OFFSET_DATA) = *(uint64 *)(unaff_RDI + 0x1c0);
-                    integerVar6 = (**(code **)*punsignedCounter)(punsignedCounter,framePointer + POINTER_OFFSET_DATA,8);
+                    *(uint64 *)(unaff_RBP + POINTER_OFFSET_DATA) = *(uint64 *)(unaff_RDI + 0x1c0);
+                    integerVar6 = (**(code **)*punsignedCounter)(punsignedCounter,unaff_RBP + POINTER_OFFSET_DATA,8);
                     if (integerVar6 == 0) {
                       punsignedCounter = *(uint64 **)(baseRegister + 8);
-                      *(uint64 *)(framePointer + POINTER_OFFSET_DATA) = *(uint64 *)(unaff_RDI + 0x1c8);
-                      integerVar6 = (**(code **)*punsignedCounter)(punsignedCounter,framePointer + POINTER_OFFSET_DATA,8);
+                      *(uint64 *)(unaff_RBP + POINTER_OFFSET_DATA) = *(uint64 *)(unaff_RDI + 0x1c8);
+                      integerVar6 = (**(code **)*punsignedCounter)(punsignedCounter,unaff_RBP + POINTER_OFFSET_DATA,8);
                       if (integerVar6 == 0) {
                         punsignedCounter = *(uint64 **)(baseRegister + 8);
-                        *(uint64 *)(framePointer + POINTER_OFFSET_DATA) = *(uint64 *)(unaff_RDI + 0x1d0);
-                        integerVar6 = (**(code **)*punsignedCounter)(punsignedCounter,framePointer + POINTER_OFFSET_DATA,8);
+                        *(uint64 *)(unaff_RBP + POINTER_OFFSET_DATA) = *(uint64 *)(unaff_RDI + 0x1d0);
+                        integerVar6 = (**(code **)*punsignedCounter)(punsignedCounter,unaff_RBP + POINTER_OFFSET_DATA,8);
                         if (integerVar6 == 0) {
                           punsignedCounter = *(uint64 **)(baseRegister + 8);
-                          *(uint32 *)(framePointer + POINTER_OFFSET_DATA) = *(uint32 *)(unaff_RDI + 0x1dc);
-                          integerVar6 = (**(code **)*punsignedCounter)(punsignedCounter,framePointer + POINTER_OFFSET_DATA,4);
+                          *(uint32 *)(unaff_RBP + POINTER_OFFSET_DATA) = *(uint32 *)(unaff_RDI + 0x1dc);
+                          integerVar6 = (**(code **)*punsignedCounter)(punsignedCounter,unaff_RBP + POINTER_OFFSET_DATA,4);
                           if (integerVar6 == 0) {
                             punsignedCounter = *(uint64 **)(baseRegister + 8);
-                            *(uint32 *)(framePointer + POINTER_OFFSET_DATA) = *(uint32 *)(unaff_RDI + 0x1d8);
-                            integerVar6 = (**(code **)*punsignedCounter)(punsignedCounter,framePointer + POINTER_OFFSET_DATA,4);
+                            *(uint32 *)(unaff_RBP + POINTER_OFFSET_DATA) = *(uint32 *)(unaff_RDI + 0x1d8);
+                            integerVar6 = (**(code **)*punsignedCounter)(punsignedCounter,unaff_RBP + POINTER_OFFSET_DATA,4);
                             if (integerVar6 == 0) {
                               punsignedCounter = *(uint64 **)(baseRegister + 8);
-                              *(uint32 *)(framePointer + POINTER_OFFSET_DATA) = *(uint32 *)(unaff_RDI + SYSTEM_DATA_OFFSET)
+                              *(uint32 *)(unaff_RBP + POINTER_OFFSET_DATA) = *(uint32 *)(unaff_RDI + SYSTEM_DATA_OFFSET)
                               ;
-                              (**(code **)*punsignedCounter)(punsignedCounter,framePointer + POINTER_OFFSET_DATA,4);
+                              (**(code **)*punsignedCounter)(punsignedCounter,unaff_RBP + POINTER_OFFSET_DATA,4);
                             }
                           }
                         }
@@ -15228,7 +15228,7 @@ uint64 GetCallbackStatus(void)
   uint64 unsignedCounter;
   uint64 *pointerVar3;
   longlong baseRegister;
-  uint64 framePointer;
+  uint64 unaff_RBP;
   longlong unaff_RDI;
   
   if (in_EAX == 0x1b) {
@@ -15239,7 +15239,7 @@ uint64 GetCallbackStatus(void)
       }
       if (*(int *)(unaff_RDI + LIST_OFFSET_HEAD) == RESOURCE_DATA_OFFSET) {
         pointerVar3 = (uint64 *)**(longlong **)(unaff_RDI + BUFFER_OFFSET_DATA);
-        if (*(int *)(puVar3 + 2) == (int)framePointer) {
+        if (*(int *)(puVar3 + 2) == (int)unaff_RBP) {
           floatVar1 = *(float *)(puVar3 + 3);
           if (puVar3 != (uint64 *)0x0) {
             (**(code **)*pointerVar3)(puVar3,0);
@@ -15251,10 +15251,10 @@ uint64 GetCallbackStatus(void)
           if (puVar3 == (uint64 *)0x0) {
             return 0x26;
           }
-          pointerVar3[1] = framePointer;
+          pointerVar3[1] = unaff_RBP;
           *pointerVar3 = &unknown_180986940;
           *(uint32 *)(puVar3 + 2) = 1;
-          *(int *)(puVar3 + 3) = (int)framePointer;
+          *(int *)(puVar3 + 3) = (int)unaff_RBP;
           **(uint64 **)(unaff_RDI + BUFFER_OFFSET_DATA) = puVar3;
           *(int *)(puVar3 + 3) = (int)floatVar1;
           goto process_resource_count;
@@ -15314,7 +15314,7 @@ void utilitySpringTarget(void)
 
 // 函数: void ProcessAsyncOperation(longlong resourceHandle,uint64 memoryBlockSize,uint32 operationFlags,uint32 callbackFunction,
 void ProcessAsyncOperation(longlong resourceHandle,uint64 memoryBlockSize,uint32 operationFlags,uint32 callbackFunction,
-                  char additionalResourceParam)
+                  char param_5)
 
 {
   int operationStatus;
@@ -15324,7 +15324,7 @@ void ProcessAsyncOperation(longlong resourceHandle,uint64 memoryBlockSize,uint32
   operationStatus = createResourceBuffer(memoryBlockSize,localBuffer,1,operationFlags);
   if (((localStatus == 0) && (operationStatus = createResourceBuffer(memoryBlockSize,localBuffer,0,callbackFunction), localStatus == 0)) &&
      (operationStatus = assessUtilityQuality(memoryBlockSize,resourceHandle + RESOURCE_HANDLE_OFFSET), localStatus == 0)) {
-    if ((additionalResourceParam != '\0') && (operationStatus = processBufferData(resourceHandle + BUFFER_OFFSET_DATA,memoryBlockSize), localStatus != 0)) {
+    if ((param_5 != '\0') && (operationStatus = processBufferData(resourceHandle + BUFFER_OFFSET_DATA,memoryBlockSize), localStatus != 0)) {
       return;
     }
                     // WARNING: Subroutine does not return
@@ -15345,7 +15345,7 @@ ulonglong InitializeAsyncSystem(void)
   ulonglong validationResult1;
   ulonglong validationResult2;
   longlong *baseRegister;
-  longlong framePointer;
+  longlong unaff_RBP;
   uint unaff_ESI;
   uint unaff_EDI;
   uint unsignedVar6;
@@ -15386,13 +15386,13 @@ process_resource_iteration:
     if (unsignedVar3 != 0) {
       return (ulonglong)unsignedVar3;
     }
-    *(uint *)(framePointer + 0xc4) = (*(uint *)(framePointer + 0xc4) | unsignedVar6) & ~unsignedCounter;
+    *(uint *)(unaff_RBP + 0xc4) = (*(uint *)(unaff_RBP + 0xc4) | unsignedVar6) & ~unsignedCounter;
     in_EAX = *(uint *)(baseRegister + 8);
   }
   validationResult1 = validationResult2;
   if (0x8b < in_EAX) {
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-      validationResult1 = writeResourceData(*baseRegister,framePointer + 0xc4,4);
+      validationResult1 = writeResourceData(*baseRegister,unaff_RBP + 0xc4,4);
     }
     else {
       validationResult1 = (ulonglong)unaff_EDI;
@@ -15420,7 +15420,7 @@ process_resource_iteration:
   validationResult1 = validationResult2;
   if (0x41 < *(uint *)(baseRegister + 8)) {
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-      validationResult1 = writeResourceData(*baseRegister,framePointer + 0xcc,4);
+      validationResult1 = writeResourceData(*baseRegister,unaff_RBP + 0xcc,4);
     }
     else {
       validationResult1 = (ulonglong)unaff_EDI;
@@ -15432,7 +15432,7 @@ process_resource_iteration:
   validationResult1 = validationResult2;
   if (0x41 < *(uint *)(baseRegister + 8)) {
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-      validationResult1 = writeResourceData(*baseRegister,framePointer + STRUCT_OFFSET_1,4);
+      validationResult1 = writeResourceData(*baseRegister,unaff_RBP + STRUCT_OFFSET_1,4);
     }
     else {
       validationResult1 = (ulonglong)unaff_EDI;
@@ -15453,7 +15453,7 @@ process_resource_iteration:
   }
   if (0x6e < *(uint *)(baseRegister + 8)) {
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-      validationResult2 = writeResourceData(*baseRegister,framePointer + 200,4);
+      validationResult2 = writeResourceData(*baseRegister,unaff_RBP + 200,4);
     }
     else {
       validationResult2 = (ulonglong)unaff_EDI;
@@ -15507,7 +15507,7 @@ process_data_iteration:
       unsignedVar6 = 0xd;
       goto validate_data_iteration;
     }
-    *(uint *)(framePointer + 0xd4) = unaff_ESI;
+    *(uint *)(unaff_RBP + 0xd4) = unaff_ESI;
     unsignedVar6 = unsignedVar7;
   }
 validate_data_iteration:
@@ -15524,10 +15524,10 @@ handle_data_iteration:
 int CheckSystemStatus(void)
 
 {
-  longlong framePointer;
+  longlong unaff_RBP;
   int unaff_R15D;
   
-  *(uint32 *)(framePointer + 0xd4) = 7;
+  *(uint32 *)(unaff_RBP + 0xd4) = 7;
   if (unaff_R15D != 0) {
     return unaff_R15D;
   }
@@ -15540,11 +15540,11 @@ int CheckSystemStatus(void)
 int ValidateSystemState(void)
 
 {
-  longlong framePointer;
+  longlong unaff_RBP;
   uint32 unaff_ESI;
   int unaff_R15D;
   
-  *(uint32 *)(framePointer + 0xd4) = unaff_ESI;
+  *(uint32 *)(unaff_RBP + 0xd4) = unaff_ESI;
   if (unaff_R15D != 0) {
     return unaff_R15D;
   }
@@ -15629,7 +15629,7 @@ ulonglong InitializeRequestHandler(void)
   int in_EAX;
   ulonglong unsignedCounter;
   uint64 *baseRegister;
-  longlong framePointer;
+  longlong unaff_RBP;
   uint unsignedVar3;
   bool in_CF;
   byte unsignedStackArrayX20 [4];
@@ -15657,12 +15657,12 @@ ulonglong InitializeRequestHandler(void)
     return unsignedCounter;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-    unsignedCounter = ConfigureResourceBuffer(*baseRegister,framePointer + FIELD_OFFSET_1);
+    unsignedCounter = ConfigureResourceBuffer(*baseRegister,unaff_RBP + FIELD_OFFSET_1);
     if ((int)unsignedCounter != 0) {
       return unsignedCounter;
     }
     if ((*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) &&
-       (unsignedVar3 = writeResourceData(*baseRegister,framePointer + BUFFER_SIZE_OFFSET,4), unsignedVar3 == 0)) {
+       (unsignedVar3 = writeResourceData(*baseRegister,unaff_RBP + BUFFER_SIZE_OFFSET,4), unsignedVar3 == 0)) {
                     // WARNING: Subroutine does not return
       freeResourceBuffer();
     }
@@ -15679,7 +15679,7 @@ ulonglong GetRequestStatus(void)
   uint unsignedCounter;
   ulonglong unsignedVar3;
   uint64 *baseRegister;
-  longlong framePointer;
+  longlong unaff_RBP;
   ulonglong unaff_RDI;
   byte unsignedStackArrayX20 [4];
   byte unsignedStackArrayX24 [2];
@@ -15695,12 +15695,12 @@ ulonglong GetRequestStatus(void)
     return unsignedVar3;
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-    unsignedVar3 = ConfigureResourceBuffer(*baseRegister,framePointer + FIELD_OFFSET_1);
+    unsignedVar3 = ConfigureResourceBuffer(*baseRegister,unaff_RBP + FIELD_OFFSET_1);
     if ((int)unsignedVar3 != 0) {
       return unsignedVar3;
     }
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-      unsignedCounter = writeResourceData(*baseRegister,framePointer + BUFFER_SIZE_OFFSET,4);
+      unsignedCounter = writeResourceData(*baseRegister,unaff_RBP + BUFFER_SIZE_OFFSET,4);
       unaff_RDI = (ulonglong)unsignedCounter;
       if (unsignedCounter == 0) {
                     // WARNING: Subroutine does not return
@@ -15719,16 +15719,16 @@ ulonglong HandleSystemOperation(void)
   uint functionResult;
   ulonglong unsignedCounter;
   uint64 *baseRegister;
-  longlong framePointer;
+  longlong unaff_RBP;
   ulonglong unaff_RDI;
   
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-    unsignedCounter = ConfigureResourceBuffer(*baseRegister,framePointer + FIELD_OFFSET_1);
+    unsignedCounter = ConfigureResourceBuffer(*baseRegister,unaff_RBP + FIELD_OFFSET_1);
     if ((int)unsignedCounter != 0) {
       return unsignedCounter;
     }
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-      functionResult = writeResourceData(*baseRegister,framePointer + BUFFER_SIZE_OFFSET,4);
+      functionResult = writeResourceData(*baseRegister,unaff_RBP + BUFFER_SIZE_OFFSET,4);
       unaff_RDI = (ulonglong)functionResult;
       if (functionResult == 0) {
                     // WARNING: Subroutine does not return
@@ -15901,7 +15901,7 @@ uint64 InitializeOperationSystem(void)
   longlong inputRegister;
   uint64 unsignedVar3;
   longlong *baseRegister;
-  uint64 framePointer;
+  uint64 unaff_RBP;
   longlong unaff_RDI;
   bool in_CF;
   char charStack30;
@@ -15912,7 +15912,7 @@ uint64 InitializeOperationSystem(void)
       return BYTE_OFFSET_FLAG;
     }
     resourceDataBuffer = *baseRegister;
-    _charStack30 = framePointer;
+    _charStack30 = unaff_RBP;
     unsignedVar3 = writeResourceData(resourceDataBuffer,unaff_RDI + DATA_OFFSET_START,4);
     if ((((int)unsignedVar3 == 0) && (unsignedVar3 = writeResourceData(resourceDataBuffer,unaff_RDI + 100,2), (int)unsignedVar3 == 0)) &&
        (unsignedVar3 = writeResourceData(resourceDataBuffer,unaff_RDI + 0x66,2), (int)unsignedVar3 == 0)) {
@@ -17185,7 +17185,7 @@ void bridgeUtilityGaps(void)
   longlong longVar5;
   int unaff_R12D;
   longlong unaff_R15;
-  uint threadSecurityParam;
+  uint in_stack_00000050;
   uint uStack0000000000000068;
   
   uStack0000000000000068 = in_EAX;
@@ -17206,7 +17206,7 @@ void bridgeUtilityGaps(void)
            (longlong)(int)(validationResult1 - localStatus) << 4);
   }
   *(uint *)(unaff_R15 + RESOURCE_OFFSET_HANDLE) = validationResult1;
-  threadSecurityParam = 0;
+  in_stack_00000050 = 0;
   operationStatus = 0;
   if (uStack0000000000000068 >> 1 != 0) {
     do {
@@ -17228,19 +17228,19 @@ void bridgeUtilityGaps(void)
         return;
       }
       operationStatus = localStatus + 1;
-      threadSecurityParam = threadSecurityParam & -(uStack0000000000000068 & 1);
+      in_stack_00000050 = in_stack_00000050 & -(uStack0000000000000068 & 1);
     } while (localStatus < (int)validationResult1);
   }
-  threadSecurityParam = 0;
+  in_stack_00000050 = 0;
   operationStatus = getResourceSize(*baseRegister,&stackBuffer50stackBuffer50);
-  operationStatus = threadSecurityParam;
+  operationStatus = in_stack_00000050;
   if (operationStatus != 0) {
     return;
   }
-  longVar5 = (longlong)(int)threadSecurityParam;
+  longVar5 = (longlong)(int)in_stack_00000050;
   unsignedVar3 = (int)*(uint *)(unaff_R15 + FIELD_OFFSET_4) >> ERROR_CODE_FAILED;
-  if (((int)((*(uint *)(unaff_R15 + FIELD_OFFSET_4) ^ unsignedVar3) - unsignedVar3) < (int)threadSecurityParam) &&
-     (operationStatus = process_system_request(unaff_R15 + POINTER_OFFSET_DATA,threadSecurityParam), operationStatus != 0)) {
+  if (((int)((*(uint *)(unaff_R15 + FIELD_OFFSET_4) ^ unsignedVar3) - unsignedVar3) < (int)in_stack_00000050) &&
+     (operationStatus = process_system_request(unaff_R15 + POINTER_OFFSET_DATA,in_stack_00000050), operationStatus != 0)) {
     return;
   }
   operationStatus = *(int *)(unaff_R15 + BYTE_OFFSET_2);
@@ -17629,7 +17629,7 @@ uint64 * ProcessValidationRequest(void)
   ulonglong functionResult5;
   uint64 *preturnValue6;
   longlong resourceDataBuffer7;
-  longlong framePointer;
+  longlong unaff_RBP;
   longlong unaff_RSI;
   uint64 *unaff_RDI;
   longlong resourceDataBuffer8;
@@ -17657,28 +17657,28 @@ uint64 * ProcessValidationRequest(void)
   unsignedCounter = pfunctionResult2[1];
   unsignedVar3 = pfunctionResult2[2];
   validationResult1 = pfunctionResult2[3];
-  *(uint32 *)(framePointer + -0x19) = currentUnsignedSize;
-  *(uint32 *)(framePointer + -0x15) = unsignedCounter;
-  *(uint32 *)(framePointer + -ACCESS_FLAG) = unsignedVar3;
-  *(uint32 *)(framePointer + -0xd) = validationResult1;
+  *(uint32 *)(unaff_RBP + -0x19) = currentUnsignedSize;
+  *(uint32 *)(unaff_RBP + -0x15) = unsignedCounter;
+  *(uint32 *)(unaff_RBP + -ACCESS_FLAG) = unsignedVar3;
+  *(uint32 *)(unaff_RBP + -0xd) = validationResult1;
   iterationIndex = 0;
   pfunctionResult3 = pfunctionResult1;
   if (unsignedVar9 < 0x6d) {
     if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
       functionResult = *unaff_RDI;
-      pfunctionResult3 = (uint64 *)writeResourceData(functionResult,framePointer + -0x19,4);
+      pfunctionResult3 = (uint64 *)writeResourceData(functionResult,unaff_RBP + -0x19,4);
       if ((int)pfunctionResult3 != 0) {
         return pfunctionResult3;
       }
-      pfunctionResult3 = (uint64 *)writeResourceData(functionResult,framePointer + -0x15,2);
+      pfunctionResult3 = (uint64 *)writeResourceData(functionResult,unaff_RBP + -0x15,2);
       if ((int)pfunctionResult3 != 0) {
         return pfunctionResult3;
       }
-      pfunctionResult3 = (uint64 *)writeResourceData(functionResult,framePointer + -0x13,2);
+      pfunctionResult3 = (uint64 *)writeResourceData(functionResult,unaff_RBP + -0x13,2);
       if ((int)pfunctionResult3 != 0) {
         return pfunctionResult3;
       }
-      pfunctionResult3 = (uint64 *)writeResourceData(functionResult,framePointer + -ACCESS_FLAG,8);
+      pfunctionResult3 = (uint64 *)writeResourceData(functionResult,unaff_RBP + -ACCESS_FLAG,8);
       currentUnsignedSize = extraout_XMM0_Da;
     }
     else {
@@ -17697,33 +17697,33 @@ uint64 * ProcessValidationRequest(void)
     goto LAB_18089c300;
   }
   if (*(uint *)(unaff_RDI + 8) < 0x6a) {
-    *(uint64 *)(framePointer + -BYTE_OFFSET_1) = 0;
-    *(uint64 *)(framePointer + -0x21) = 0;
-    unsignedVar9 = GetTaskStatus2(currentUnsignedSize,framePointer + -BYTE_OFFSET_1,0);
+    *(uint64 *)(unaff_RBP + -BYTE_OFFSET_1) = 0;
+    *(uint64 *)(unaff_RBP + -0x21) = 0;
+    unsignedVar9 = GetTaskStatus2(currentUnsignedSize,unaff_RBP + -BYTE_OFFSET_1,0);
     pfunctionResult3 = (uint64 *)(ulonglong)unsignedVar9;
     if (unsignedVar9 != 0) {
 LAB_18089c40a:
-      unsignedVar9 = *(uint *)(framePointer + -ERROR_CODE_5);
+      unsignedVar9 = *(uint *)(unaff_RBP + -ERROR_CODE_5);
       functionResult = unsignedVar9;
       if ((int)unsignedVar9 < 0) {
         functionResult = -unsignedVar9;
       }
-      localStatus9 = *(int *)(framePointer + -0x21);
+      localStatus9 = *(int *)(unaff_RBP + -0x21);
       if ((int)functionResult < 0) {
         if (0 < localStatus9) {
           return pfunctionResult3;
         }
-        if ((0 < (int)unsignedVar9) && (*(longlong *)(framePointer + -BYTE_OFFSET_1) != 0)) {
+        if ((0 < (int)unsignedVar9) && (*(longlong *)(unaff_RBP + -BYTE_OFFSET_1) != 0)) {
                     // WARNING: Subroutine does not return
-          utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),*(longlong *)(framePointer + -BYTE_OFFSET_1),
+          utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),*(longlong *)(unaff_RBP + -BYTE_OFFSET_1),
                         &utilityMemoryDataBuffer,RESOURCE_HANDLE_OFFSET0,1);
         }
-        *(uint64 *)(framePointer + -BYTE_OFFSET_1) = 0;
-        *(uint32 *)(framePointer + -ERROR_CODE_5) = 0;
+        *(uint64 *)(unaff_RBP + -BYTE_OFFSET_1) = 0;
+        *(uint32 *)(unaff_RBP + -ERROR_CODE_5) = 0;
         unsignedVar9 = iterationIndex;
       }
       else {
-        pfunctionResult1 = *(uint64 **)(framePointer + -BYTE_OFFSET_1);
+        pfunctionResult1 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
       }
       if (localStatus9 < 0) {
         resourceDataBuffer8 = (longlong)-localStatus9;
@@ -17742,23 +17742,23 @@ LAB_18089c40a:
             resourceDataBuffer8 = resourceDataBuffer8 + -1;
             resourceDataBuffer7 = resourceDataBuffer7 + RESOURCE_OFFSET_HANDLE;
           } while (resourceDataBuffer8 != 0);
-          unsignedVar9 = *(uint *)(framePointer + -ERROR_CODE_5);
+          unsignedVar9 = *(uint *)(unaff_RBP + -ERROR_CODE_5);
         }
       }
-      *(uint32 *)(framePointer + -0x21) = 0;
+      *(uint32 *)(unaff_RBP + -0x21) = 0;
       if ((int)unsignedVar9 < 0) {
         unsignedVar9 = -unsignedVar9;
       }
       if (unsignedVar9 == 0) {
         return pfunctionResult3;
       }
-      ExecuteResourceTask2(framePointer + -BYTE_OFFSET_1,0);
+      ExecuteResourceTask2(unaff_RBP + -BYTE_OFFSET_1,0);
       return pfunctionResult3;
     }
-    localStatus9 = *(int *)(framePointer + -0x21);
+    localStatus9 = *(int *)(unaff_RBP + -0x21);
     floatVar21 = extraout_XMM0_Da_03;
     if (localStatus9 == 0) {
-      pfunctionResult3 = *(uint64 **)(framePointer + -BYTE_OFFSET_1);
+      pfunctionResult3 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
     }
     else {
       unsignedVar9 = (int)*(uint *)(unaff_RSI + SYSTEM_OFFSET_STATUS2) >> ERROR_CODE_FAILED;
@@ -17766,29 +17766,29 @@ LAB_18089c40a:
         unsignedVar9 = ValidateResourceSize2(unaff_RSI + BUFFER_OFFSET_DATA,localStatus9);
         pfunctionResult3 = (uint64 *)(ulonglong)unsignedVar9;
         if (unsignedVar9 != 0) goto LAB_18089c40a;
-        localStatus9 = *(int *)(framePointer + -0x21);
+        localStatus9 = *(int *)(unaff_RBP + -0x21);
         floatVar21 = extraout_XMM0_Da_04;
       }
-      pfunctionResult3 = *(uint64 **)(framePointer + -BYTE_OFFSET_1);
+      pfunctionResult3 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
       for (preturnValue6 = pfunctionResult3; (pfunctionResult3 <= preturnValue6 && (preturnValue6 < pfunctionResult3 + (longlong)localStatus9 * 3));
           preturnValue6 = preturnValue6 + 3) {
-        *(uint64 *)(framePointer + 0x77) = 0;
-        unsignedVar9 = ProcessResourceRequest2(unaff_RSI + BUFFER_OFFSET_DATA,framePointer + 0x77);
+        *(uint64 *)(unaff_RBP + 0x77) = 0;
+        unsignedVar9 = ProcessResourceRequest2(unaff_RSI + BUFFER_OFFSET_DATA,unaff_RBP + 0x77);
         pfunctionResult3 = (uint64 *)(ulonglong)unsignedVar9;
         if (unsignedVar9 != 0) goto LAB_18089c40a;
         functionResult = preturnValue6[1];
-        pfunctionResult3 = *(uint64 **)(framePointer + 0x77);
+        pfunctionResult3 = *(uint64 **)(unaff_RBP + 0x77);
         *pfunctionResult3 = *preturnValue6;
         pfunctionResult3[1] = functionResult;
         *(uint32 *)(pfunctionResult3 + 2) = *(uint32 *)(preturnValue6 + 2);
         floatVar21 = *(float *)((longlong)preturnValue6 + RESOURCE_DATA_OFFSET) + *(float *)(preturnValue6 + 2);
         *(float *)((longlong)pfunctionResult3 + RESOURCE_DATA_OFFSET) = floatVar21;
         *(byte *)(pfunctionResult3 + 3) = 1;
-        localStatus9 = *(int *)(framePointer + -0x21);
-        pfunctionResult3 = *(uint64 **)(framePointer + -BYTE_OFFSET_1);
+        localStatus9 = *(int *)(unaff_RBP + -0x21);
+        pfunctionResult3 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
       }
     }
-    unsignedVar9 = *(uint *)(framePointer + -ERROR_CODE_5);
+    unsignedVar9 = *(uint *)(unaff_RBP + -ERROR_CODE_5);
     functionResult = unsignedVar9;
     if ((int)unsignedVar9 < 0) {
       functionResult = -unsignedVar9;
@@ -17799,8 +17799,8 @@ LAB_18089c40a:
                     // WARNING: Subroutine does not return
         utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),pfunctionResult3,&utilityMemoryDataBuffer,RESOURCE_HANDLE_OFFSET0,1);
       }
-      *(uint64 *)(framePointer + -BYTE_OFFSET_1) = 0;
-      *(uint32 *)(framePointer + -ERROR_CODE_5) = 0;
+      *(uint64 *)(unaff_RBP + -BYTE_OFFSET_1) = 0;
+      *(uint32 *)(unaff_RBP + -ERROR_CODE_5) = 0;
       pfunctionResult3 = pfunctionResult1;
       unsignedVar9 = iterationIndex;
     }
@@ -17822,15 +17822,15 @@ LAB_18089c40a:
           resourceDataBuffer8 = resourceDataBuffer8 + -1;
           resourceDataBuffer7 = resourceDataBuffer7 + RESOURCE_OFFSET_HANDLE;
         } while (resourceDataBuffer8 != 0);
-        unsignedVar9 = *(uint *)(framePointer + -ERROR_CODE_5);
+        unsignedVar9 = *(uint *)(unaff_RBP + -ERROR_CODE_5);
       }
     }
-    *(uint32 *)(framePointer + -0x21) = 0;
+    *(uint32 *)(unaff_RBP + -0x21) = 0;
     if ((int)unsignedVar9 < 0) {
       unsignedVar9 = -unsignedVar9;
     }
     if (unsignedVar9 != 0) {
-      floatVar21 = (float)ExecuteResourceTask2(framePointer + -BYTE_OFFSET_1,0);
+      floatVar21 = (float)ExecuteResourceTask2(unaff_RBP + -BYTE_OFFSET_1,0);
     }
   }
   else {
@@ -17856,7 +17856,7 @@ LAB_18089c300:
     return (uint64 *)(ulonglong)iterationIndex;
   }
                     // WARNING: Subroutine does not return
-  freeResourceBuffer(floatVar21,framePointer + -9);
+  freeResourceBuffer(floatVar21,unaff_RBP + -9);
 }
 
 
@@ -17883,7 +17883,7 @@ uint64 * HandleValidationCallback(void)
   ulonglong functionResult5;
   uint64 *preturnValue6;
   longlong resourceDataBuffer7;
-  longlong framePointer;
+  longlong unaff_RBP;
   longlong unaff_RSI;
   uint64 *unaff_RDI;
   longlong resourceDataBuffer8;
@@ -17904,28 +17904,28 @@ uint64 * HandleValidationCallback(void)
   unsignedCounter = pfunctionResult1[1];
   unsignedVar3 = pfunctionResult1[2];
   validationResult1 = pfunctionResult1[3];
-  *(uint32 *)(framePointer + -0x19) = currentUnsignedSize;
-  *(uint32 *)(framePointer + -0x15) = unsignedCounter;
-  *(uint32 *)(framePointer + -ACCESS_FLAG) = unsignedVar3;
-  *(uint32 *)(framePointer + -0xd) = validationResult1;
+  *(uint32 *)(unaff_RBP + -0x19) = currentUnsignedSize;
+  *(uint32 *)(unaff_RBP + -0x15) = unsignedCounter;
+  *(uint32 *)(unaff_RBP + -ACCESS_FLAG) = unsignedVar3;
+  *(uint32 *)(unaff_RBP + -0xd) = validationResult1;
   iterationIndex = 0;
   pfunctionResult2 = pfunctionResult3;
   if (unsignedVar9 < 0x6d) {
     if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
       functionResult = *unaff_RDI;
-      pfunctionResult2 = (uint64 *)writeResourceData(functionResult,framePointer + -0x19,4);
+      pfunctionResult2 = (uint64 *)writeResourceData(functionResult,unaff_RBP + -0x19,4);
       if ((int)pfunctionResult2 != 0) {
         return pfunctionResult2;
       }
-      pfunctionResult2 = (uint64 *)writeResourceData(functionResult,framePointer + -0x15,2);
+      pfunctionResult2 = (uint64 *)writeResourceData(functionResult,unaff_RBP + -0x15,2);
       if ((int)pfunctionResult2 != 0) {
         return pfunctionResult2;
       }
-      pfunctionResult2 = (uint64 *)writeResourceData(functionResult,framePointer + -0x13,2);
+      pfunctionResult2 = (uint64 *)writeResourceData(functionResult,unaff_RBP + -0x13,2);
       if ((int)pfunctionResult2 != 0) {
         return pfunctionResult2;
       }
-      pfunctionResult2 = (uint64 *)writeResourceData(functionResult,framePointer + -ACCESS_FLAG,8);
+      pfunctionResult2 = (uint64 *)writeResourceData(functionResult,unaff_RBP + -ACCESS_FLAG,8);
       currentUnsignedSize = extraout_XMM0_Da;
     }
     else {
@@ -17944,33 +17944,33 @@ uint64 * HandleValidationCallback(void)
     goto LAB_18089c300;
   }
   if (*(uint *)(unaff_RDI + 8) < 0x6a) {
-    *(uint64 *)(framePointer + -BYTE_OFFSET_1) = 0;
-    *(uint64 *)(framePointer + -0x21) = 0;
-    unsignedVar9 = GetTaskStatus2(currentUnsignedSize,framePointer + -BYTE_OFFSET_1,0);
+    *(uint64 *)(unaff_RBP + -BYTE_OFFSET_1) = 0;
+    *(uint64 *)(unaff_RBP + -0x21) = 0;
+    unsignedVar9 = GetTaskStatus2(currentUnsignedSize,unaff_RBP + -BYTE_OFFSET_1,0);
     pfunctionResult2 = (uint64 *)(ulonglong)unsignedVar9;
     if (unsignedVar9 != 0) {
 LAB_18089c40a:
-      unsignedVar9 = *(uint *)(framePointer + -ERROR_CODE_5);
+      unsignedVar9 = *(uint *)(unaff_RBP + -ERROR_CODE_5);
       functionResult = unsignedVar9;
       if ((int)unsignedVar9 < 0) {
         functionResult = -unsignedVar9;
       }
-      localStatus9 = *(int *)(framePointer + -0x21);
+      localStatus9 = *(int *)(unaff_RBP + -0x21);
       if ((int)functionResult < 0) {
         if (0 < localStatus9) {
           return pfunctionResult2;
         }
-        if ((0 < (int)unsignedVar9) && (*(longlong *)(framePointer + -BYTE_OFFSET_1) != 0)) {
+        if ((0 < (int)unsignedVar9) && (*(longlong *)(unaff_RBP + -BYTE_OFFSET_1) != 0)) {
                     // WARNING: Subroutine does not return
-          utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),*(longlong *)(framePointer + -BYTE_OFFSET_1),
+          utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),*(longlong *)(unaff_RBP + -BYTE_OFFSET_1),
                         &utilityMemoryDataBuffer,RESOURCE_HANDLE_OFFSET0,1);
         }
-        *(uint64 *)(framePointer + -BYTE_OFFSET_1) = 0;
-        *(uint32 *)(framePointer + -ERROR_CODE_5) = 0;
+        *(uint64 *)(unaff_RBP + -BYTE_OFFSET_1) = 0;
+        *(uint32 *)(unaff_RBP + -ERROR_CODE_5) = 0;
         unsignedVar9 = iterationIndex;
       }
       else {
-        pfunctionResult3 = *(uint64 **)(framePointer + -BYTE_OFFSET_1);
+        pfunctionResult3 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
       }
       if (localStatus9 < 0) {
         resourceDataBuffer8 = (longlong)-localStatus9;
@@ -17989,23 +17989,23 @@ LAB_18089c40a:
             resourceDataBuffer8 = resourceDataBuffer8 + -1;
             resourceDataBuffer7 = resourceDataBuffer7 + RESOURCE_OFFSET_HANDLE;
           } while (resourceDataBuffer8 != 0);
-          unsignedVar9 = *(uint *)(framePointer + -ERROR_CODE_5);
+          unsignedVar9 = *(uint *)(unaff_RBP + -ERROR_CODE_5);
         }
       }
-      *(uint32 *)(framePointer + -0x21) = 0;
+      *(uint32 *)(unaff_RBP + -0x21) = 0;
       if ((int)unsignedVar9 < 0) {
         unsignedVar9 = -unsignedVar9;
       }
       if (unsignedVar9 == 0) {
         return pfunctionResult2;
       }
-      ExecuteResourceTask2(framePointer + -BYTE_OFFSET_1,0);
+      ExecuteResourceTask2(unaff_RBP + -BYTE_OFFSET_1,0);
       return pfunctionResult2;
     }
-    localStatus9 = *(int *)(framePointer + -0x21);
+    localStatus9 = *(int *)(unaff_RBP + -0x21);
     floatVar21 = extraout_XMM0_Da_03;
     if (localStatus9 == 0) {
-      pfunctionResult2 = *(uint64 **)(framePointer + -BYTE_OFFSET_1);
+      pfunctionResult2 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
     }
     else {
       unsignedVar9 = (int)*(uint *)(unaff_RSI + SYSTEM_OFFSET_STATUS2) >> ERROR_CODE_FAILED;
@@ -18013,29 +18013,29 @@ LAB_18089c40a:
         unsignedVar9 = ValidateResourceSize2(unaff_RSI + BUFFER_OFFSET_DATA,localStatus9);
         pfunctionResult2 = (uint64 *)(ulonglong)unsignedVar9;
         if (unsignedVar9 != 0) goto LAB_18089c40a;
-        localStatus9 = *(int *)(framePointer + -0x21);
+        localStatus9 = *(int *)(unaff_RBP + -0x21);
         floatVar21 = extraout_XMM0_Da_04;
       }
-      pfunctionResult2 = *(uint64 **)(framePointer + -BYTE_OFFSET_1);
+      pfunctionResult2 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
       for (preturnValue6 = pfunctionResult2; (pfunctionResult2 <= preturnValue6 && (preturnValue6 < pfunctionResult2 + (longlong)localStatus9 * 3));
           preturnValue6 = preturnValue6 + 3) {
-        *(uint64 *)(framePointer + 0x77) = 0;
-        unsignedVar9 = ProcessResourceRequest2(unaff_RSI + BUFFER_OFFSET_DATA,framePointer + 0x77);
+        *(uint64 *)(unaff_RBP + 0x77) = 0;
+        unsignedVar9 = ProcessResourceRequest2(unaff_RSI + BUFFER_OFFSET_DATA,unaff_RBP + 0x77);
         pfunctionResult2 = (uint64 *)(ulonglong)unsignedVar9;
         if (unsignedVar9 != 0) goto LAB_18089c40a;
         functionResult = preturnValue6[1];
-        pfunctionResult2 = *(uint64 **)(framePointer + 0x77);
+        pfunctionResult2 = *(uint64 **)(unaff_RBP + 0x77);
         *pfunctionResult2 = *preturnValue6;
         pfunctionResult2[1] = functionResult;
         *(uint32 *)(pfunctionResult2 + 2) = *(uint32 *)(preturnValue6 + 2);
         floatVar21 = *(float *)((longlong)preturnValue6 + RESOURCE_DATA_OFFSET) + *(float *)(preturnValue6 + 2);
         *(float *)((longlong)pfunctionResult2 + RESOURCE_DATA_OFFSET) = floatVar21;
         *(byte *)(pfunctionResult2 + 3) = 1;
-        localStatus9 = *(int *)(framePointer + -0x21);
-        pfunctionResult2 = *(uint64 **)(framePointer + -BYTE_OFFSET_1);
+        localStatus9 = *(int *)(unaff_RBP + -0x21);
+        pfunctionResult2 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
       }
     }
-    unsignedVar9 = *(uint *)(framePointer + -ERROR_CODE_5);
+    unsignedVar9 = *(uint *)(unaff_RBP + -ERROR_CODE_5);
     functionResult = unsignedVar9;
     if ((int)unsignedVar9 < 0) {
       functionResult = -unsignedVar9;
@@ -18046,8 +18046,8 @@ LAB_18089c40a:
                     // WARNING: Subroutine does not return
         utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),pfunctionResult2,&utilityMemoryDataBuffer,RESOURCE_HANDLE_OFFSET0,1);
       }
-      *(uint64 *)(framePointer + -BYTE_OFFSET_1) = 0;
-      *(uint32 *)(framePointer + -ERROR_CODE_5) = 0;
+      *(uint64 *)(unaff_RBP + -BYTE_OFFSET_1) = 0;
+      *(uint32 *)(unaff_RBP + -ERROR_CODE_5) = 0;
       pfunctionResult2 = pfunctionResult3;
       unsignedVar9 = iterationIndex;
     }
@@ -18069,15 +18069,15 @@ LAB_18089c40a:
           resourceDataBuffer8 = resourceDataBuffer8 + -1;
           resourceDataBuffer7 = resourceDataBuffer7 + RESOURCE_OFFSET_HANDLE;
         } while (resourceDataBuffer8 != 0);
-        unsignedVar9 = *(uint *)(framePointer + -ERROR_CODE_5);
+        unsignedVar9 = *(uint *)(unaff_RBP + -ERROR_CODE_5);
       }
     }
-    *(uint32 *)(framePointer + -0x21) = 0;
+    *(uint32 *)(unaff_RBP + -0x21) = 0;
     if ((int)unsignedVar9 < 0) {
       unsignedVar9 = -unsignedVar9;
     }
     if (unsignedVar9 != 0) {
-      floatVar21 = (float)ExecuteResourceTask2(framePointer + -BYTE_OFFSET_1,0);
+      floatVar21 = (float)ExecuteResourceTask2(unaff_RBP + -BYTE_OFFSET_1,0);
     }
   }
   else {
@@ -18103,7 +18103,7 @@ LAB_18089c300:
     return (uint64 *)(ulonglong)iterationIndex;
   }
                     // WARNING: Subroutine does not return
-  freeResourceBuffer(floatVar21,framePointer + -9);
+  freeResourceBuffer(floatVar21,unaff_RBP + -9);
 }
 
 
@@ -18130,7 +18130,7 @@ ulonglong ValidateDataIntegrity(uint64 resourceHandle)
   uint64 *pfunctionResult4;
   uint64 *preturnValue5;
   longlong resourceDataBuffer6;
-  longlong framePointer;
+  longlong unaff_RBP;
   longlong unaff_RSI;
   uint64 *unaff_RDI;
   longlong resourceDataBuffer7;
@@ -18155,34 +18155,34 @@ ulonglong ValidateDataIntegrity(uint64 resourceHandle)
     goto LAB_18089c300;
   }
   if (in_EAX < 0x6a) {
-    *(uint64 **)(framePointer + -BYTE_OFFSET_1) = unaff_R12;
-    *(uint64 **)(framePointer + -0x21) = unaff_R12;
-    unsignedVar9 = GetTaskStatus2(resourceHandle,framePointer + -BYTE_OFFSET_1,0);
+    *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1) = unaff_R12;
+    *(uint64 **)(unaff_RBP + -0x21) = unaff_R12;
+    unsignedVar9 = GetTaskStatus2(resourceHandle,unaff_RBP + -BYTE_OFFSET_1,0);
     functionResult1 = (ulonglong)unsignedVar9;
     if (unsignedVar9 != 0) {
 LAB_18089c40a:
-      unsignedVar9 = *(uint *)(framePointer + -ERROR_CODE_5);
+      unsignedVar9 = *(uint *)(unaff_RBP + -ERROR_CODE_5);
       functionResult = unsignedVar9;
       if ((int)unsignedVar9 < 0) {
         functionResult = -unsignedVar9;
       }
-      localStatus8 = *(int *)(framePointer + -0x21);
+      localStatus8 = *(int *)(unaff_RBP + -0x21);
       if ((int)functionResult < 0) {
         if (0 < localStatus8) {
           return functionResult1;
         }
-        if ((0 < (int)unsignedVar9) && (*(longlong *)(framePointer + -BYTE_OFFSET_1) != 0)) {
+        if ((0 < (int)unsignedVar9) && (*(longlong *)(unaff_RBP + -BYTE_OFFSET_1) != 0)) {
                     // WARNING: Subroutine does not return
-          utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),*(longlong *)(framePointer + -BYTE_OFFSET_1),
+          utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),*(longlong *)(unaff_RBP + -BYTE_OFFSET_1),
                         &utilityMemoryDataBuffer,RESOURCE_HANDLE_OFFSET0,1);
         }
-        *(uint64 **)(framePointer + -BYTE_OFFSET_1) = unaff_R12;
-        *(uint *)(framePointer + -ERROR_CODE_5) = iterationIndex;
+        *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1) = unaff_R12;
+        *(uint *)(unaff_RBP + -ERROR_CODE_5) = iterationIndex;
         pfunctionResult4 = unaff_R12;
         unsignedVar9 = iterationIndex;
       }
       else {
-        pfunctionResult4 = *(uint64 **)(framePointer + -BYTE_OFFSET_1);
+        pfunctionResult4 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
       }
       if (localStatus8 < 0) {
         resourceDataBuffer7 = (longlong)-localStatus8;
@@ -18201,23 +18201,23 @@ LAB_18089c40a:
             resourceDataBuffer7 = resourceDataBuffer7 + -1;
             resourceDataBuffer6 = resourceDataBuffer6 + RESOURCE_OFFSET_HANDLE;
           } while (resourceDataBuffer7 != 0);
-          unsignedVar9 = *(uint *)(framePointer + -ERROR_CODE_5);
+          unsignedVar9 = *(uint *)(unaff_RBP + -ERROR_CODE_5);
         }
       }
-      *(uint *)(framePointer + -0x21) = iterationIndex;
+      *(uint *)(unaff_RBP + -0x21) = iterationIndex;
       if ((int)unsignedVar9 < 0) {
         unsignedVar9 = -unsignedVar9;
       }
       if (unsignedVar9 == 0) {
         return functionResult1;
       }
-      ExecuteResourceTask2(framePointer + -BYTE_OFFSET_1,0);
+      ExecuteResourceTask2(unaff_RBP + -BYTE_OFFSET_1,0);
       return functionResult1;
     }
-    localStatus8 = *(int *)(framePointer + -0x21);
+    localStatus8 = *(int *)(unaff_RBP + -0x21);
     floatVar20 = extraout_XMM0_Da_02;
     if (localStatus8 == 0) {
-      pfunctionResult4 = *(uint64 **)(framePointer + -BYTE_OFFSET_1);
+      pfunctionResult4 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
     }
     else {
       unsignedVar9 = (int)*(uint *)(unaff_RSI + SYSTEM_OFFSET_STATUS2) >> ERROR_CODE_FAILED;
@@ -18225,29 +18225,29 @@ LAB_18089c40a:
         unsignedVar9 = ValidateResourceSize2(unaff_RSI + BUFFER_OFFSET_DATA,localStatus8);
         functionResult1 = (ulonglong)unsignedVar9;
         if (unsignedVar9 != 0) goto LAB_18089c40a;
-        localStatus8 = *(int *)(framePointer + -0x21);
+        localStatus8 = *(int *)(unaff_RBP + -0x21);
         floatVar20 = extraout_XMM0_Da_03;
       }
-      pfunctionResult4 = *(uint64 **)(framePointer + -BYTE_OFFSET_1);
+      pfunctionResult4 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
       for (preturnValue5 = pfunctionResult4; (pfunctionResult4 <= preturnValue5 && (preturnValue5 < pfunctionResult4 + (longlong)localStatus8 * 3));
           preturnValue5 = preturnValue5 + 3) {
-        *(uint64 **)(framePointer + 0x77) = unaff_R12;
-        unsignedVar9 = ProcessResourceRequest2(unaff_RSI + BUFFER_OFFSET_DATA,framePointer + 0x77);
+        *(uint64 **)(unaff_RBP + 0x77) = unaff_R12;
+        unsignedVar9 = ProcessResourceRequest2(unaff_RSI + BUFFER_OFFSET_DATA,unaff_RBP + 0x77);
         functionResult1 = (ulonglong)unsignedVar9;
         if (unsignedVar9 != 0) goto LAB_18089c40a;
         unsignedVar7 = preturnValue5[1];
-        pfunctionResult4 = *(uint64 **)(framePointer + 0x77);
+        pfunctionResult4 = *(uint64 **)(unaff_RBP + 0x77);
         *pfunctionResult4 = *preturnValue5;
         pfunctionResult4[1] = unsignedVar7;
         *(uint32 *)(pfunctionResult4 + 2) = *(uint32 *)(preturnValue5 + 2);
         floatVar20 = *(float *)((longlong)preturnValue5 + RESOURCE_DATA_OFFSET) + *(float *)(preturnValue5 + 2);
         *(float *)((longlong)pfunctionResult4 + RESOURCE_DATA_OFFSET) = floatVar20;
         *(byte *)(pfunctionResult4 + 3) = 1;
-        localStatus8 = *(int *)(framePointer + -0x21);
-        pfunctionResult4 = *(uint64 **)(framePointer + -BYTE_OFFSET_1);
+        localStatus8 = *(int *)(unaff_RBP + -0x21);
+        pfunctionResult4 = *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1);
       }
     }
-    unsignedVar9 = *(uint *)(framePointer + -ERROR_CODE_5);
+    unsignedVar9 = *(uint *)(unaff_RBP + -ERROR_CODE_5);
     functionResult = unsignedVar9;
     if ((int)unsignedVar9 < 0) {
       functionResult = -unsignedVar9;
@@ -18258,8 +18258,8 @@ LAB_18089c40a:
                     // WARNING: Subroutine does not return
         utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),pfunctionResult4,&utilityMemoryDataBuffer,RESOURCE_HANDLE_OFFSET0,1);
       }
-      *(uint64 **)(framePointer + -BYTE_OFFSET_1) = unaff_R12;
-      *(uint *)(framePointer + -ERROR_CODE_5) = iterationIndex;
+      *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1) = unaff_R12;
+      *(uint *)(unaff_RBP + -ERROR_CODE_5) = iterationIndex;
       pfunctionResult4 = unaff_R12;
       unsignedVar9 = iterationIndex;
     }
@@ -18281,15 +18281,15 @@ LAB_18089c40a:
           resourceDataBuffer7 = resourceDataBuffer7 + -1;
           resourceDataBuffer6 = resourceDataBuffer6 + RESOURCE_OFFSET_HANDLE;
         } while (resourceDataBuffer7 != 0);
-        unsignedVar9 = *(uint *)(framePointer + -ERROR_CODE_5);
+        unsignedVar9 = *(uint *)(unaff_RBP + -ERROR_CODE_5);
       }
     }
-    *(uint *)(framePointer + -0x21) = iterationIndex;
+    *(uint *)(unaff_RBP + -0x21) = iterationIndex;
     if ((int)unsignedVar9 < 0) {
       unsignedVar9 = -unsignedVar9;
     }
     if (unsignedVar9 != 0) {
-      floatVar20 = (float)ExecuteResourceTask2(framePointer + -BYTE_OFFSET_1,0);
+      floatVar20 = (float)ExecuteResourceTask2(unaff_RBP + -BYTE_OFFSET_1,0);
     }
   }
   else {
@@ -18316,7 +18316,7 @@ LAB_18089c300:
     return (ulonglong)iterationIndex;
   }
                     // WARNING: Subroutine does not return
-  freeResourceBuffer(floatVar20,framePointer + -9);
+  freeResourceBuffer(floatVar20,unaff_RBP + -9);
 }
 
 
@@ -18712,7 +18712,7 @@ ulonglong InitializeIntegritySystem(void)
   uint unsignedVar3;
   ulonglong validationResult1;
   longlong *baseRegister;
-  longlong framePointer;
+  longlong unaff_RBP;
   uint validationResult2;
   uint unsignedVar6;
   uint iterationIndex;
@@ -18761,24 +18761,24 @@ ulonglong InitializeIntegritySystem(void)
     }
     else if (presourceDataBuffer[2] == 0) {
 LAB_18089c743:
-      iterationIndex = readResourceData(*presourceDataBuffer,framePointer + 0x77,unaff_R14D,unaff_R14D,0);
+      iterationIndex = readResourceData(*presourceDataBuffer,unaff_RBP + 0x77,unaff_R14D,unaff_R14D,0);
     }
     else {
-      *(uint32 *)(framePointer + 0x7f) = 0;
-      iterationIndex = dataProcessFunction(tempDataBuffer,framePointer + 0x7f);
+      *(uint32 *)(unaff_RBP + 0x7f) = 0;
+      iterationIndex = dataProcessFunction(tempDataBuffer,unaff_RBP + 0x7f);
       if (iterationIndex == 0) {
-        if ((ulonglong)*(uint *)(framePointer + 0x7f) + 1 <= (ulonglong)presourceDataBuffer[2]) goto LAB_18089c743;
+        if ((ulonglong)*(uint *)(unaff_RBP + 0x7f) + 1 <= (ulonglong)presourceDataBuffer[2]) goto LAB_18089c743;
         iterationIndex = ACCESS_FLAG;
       }
     }
     if (iterationIndex == 0) {
-      *(uint *)(framePointer + 0x7f) = (uint)(*(char *)(framePointer + 0x77) != '\0');
-      *(uint *)(framePointer + -BYTE_OFFSET_1) = (uint)(*(char *)(framePointer + 0x77) == '\0');
+      *(uint *)(unaff_RBP + 0x7f) = (uint)(*(char *)(unaff_RBP + 0x77) != '\0');
+      *(uint *)(unaff_RBP + -BYTE_OFFSET_1) = (uint)(*(char *)(unaff_RBP + 0x77) == '\0');
       iterationIndex = 0;
     }
     else {
-      *(uint32 *)(framePointer + 0x7f) = 0;
-      *(uint *)(framePointer + -BYTE_OFFSET_1) = unaff_R14D;
+      *(uint32 *)(unaff_RBP + 0x7f) = 0;
+      *(uint *)(unaff_RBP + -BYTE_OFFSET_1) = unaff_R14D;
       if (iterationIndex == 0) {
         iterationIndex = unsignedVar6;
       }
@@ -18786,8 +18786,8 @@ LAB_18089c743:
   }
   else {
 LAB_18089c78f:
-    *(uint *)(framePointer + -BYTE_OFFSET_1) = unaff_R14D;
-    *(uint32 *)(framePointer + 0x7f) = 0;
+    *(uint *)(unaff_RBP + -BYTE_OFFSET_1) = unaff_R14D;
+    *(uint32 *)(unaff_RBP + 0x7f) = 0;
   }
   if (iterationIndex != 0) {
     return (ulonglong)iterationIndex;
@@ -18802,23 +18802,23 @@ LAB_18089c78f:
   }
   else {
     if (presourceDataBuffer[2] != 0) {
-      *(uint32 *)(framePointer + 0x77) = 0;
-      validationResult1 = dataProcessFunction(tempDataBuffer,framePointer + 0x77);
+      *(uint32 *)(unaff_RBP + 0x77) = 0;
+      validationResult1 = dataProcessFunction(tempDataBuffer,unaff_RBP + 0x77);
       if ((int)validationResult1 != 0) {
         return validationResult1;
       }
-      if ((ulonglong)presourceDataBuffer[2] < (ulonglong)*(uint *)(framePointer + 0x77) + (ulonglong)validationResult2) {
+      if ((ulonglong)presourceDataBuffer[2] < (ulonglong)*(uint *)(unaff_RBP + 0x77) + (ulonglong)validationResult2) {
         validationResult1 = ACCESS_FLAG;
         goto LAB_18089c808;
       }
     }
-    validationResult1 = readResourceData(*presourceDataBuffer,framePointer + -0x25,unaff_R14D,validationResult2,0);
+    validationResult1 = readResourceData(*presourceDataBuffer,unaff_RBP + -0x25,unaff_R14D,validationResult2,0);
   }
 LAB_18089c808:
   if ((int)validationResult1 != 0) {
     return validationResult1;
   }
-  switch(*(uint32 *)(framePointer + -0x25)) {
+  switch(*(uint32 *)(unaff_RBP + -0x25)) {
   case 0:
     validationResult2 = 0;
     break;
@@ -18913,15 +18913,15 @@ LAB_18089c878:
       }
       else if (presourceDataBuffer[2] == 0) {
 LAB_18089c9a8:
-        unsignedVar3 = readResourceData(*presourceDataBuffer,framePointer + 0x77,unaff_R14D,unaff_R14D,0);
+        unsignedVar3 = readResourceData(*presourceDataBuffer,unaff_RBP + 0x77,unaff_R14D,unaff_R14D,0);
         floatVar9 = extraout_XMM0_Da_01;
       }
       else {
-        *(uint32 *)(framePointer + -0x25) = 0;
-        unsignedVar3 = dataProcessFunction(tempDataBuffer,framePointer + -0x25);
+        *(uint32 *)(unaff_RBP + -0x25) = 0;
+        unsignedVar3 = dataProcessFunction(tempDataBuffer,unaff_RBP + -0x25);
         floatVar9 = extraout_XMM0_Da_00;
         if (unsignedVar3 == 0) {
-          if ((ulonglong)*(uint *)(framePointer + -0x25) + 1 <= (ulonglong)presourceDataBuffer[2])
+          if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)presourceDataBuffer[2])
           goto LAB_18089c9a8;
           unsignedVar3 = ACCESS_FLAG;
         }
@@ -18929,8 +18929,8 @@ LAB_18089c9a8:
       validationResult2 = 0;
       if (unsignedVar3 == 0) {
         validationResult1 = 0;
-        validationResult2 = (uint)(*(char *)(framePointer + 0x77) != '\0');
-        iterationIndex = (uint)(*(char *)(framePointer + 0x77) == '\0');
+        validationResult2 = (uint)(*(char *)(unaff_RBP + 0x77) != '\0');
+        iterationIndex = (uint)(*(char *)(unaff_RBP + 0x77) == '\0');
       }
       else {
         validationResult1 = (ulonglong)unsignedVar3;
@@ -18976,22 +18976,22 @@ LAB_18089c9a8:
   }
   else if (presourceDataBuffer[2] == 0) {
 LAB_18089ca9c:
-    unsignedVar3 = readResourceData(*presourceDataBuffer,framePointer + 0x77,unaff_R14D,unaff_R14D,0);
+    unsignedVar3 = readResourceData(*presourceDataBuffer,unaff_RBP + 0x77,unaff_R14D,unaff_R14D,0);
     floatVar9 = extraout_XMM0_Da_05;
   }
   else {
-    *(uint32 *)(framePointer + -0x25) = 0;
-    unsignedVar3 = dataProcessFunction(tempDataBuffer,framePointer + -0x25);
+    *(uint32 *)(unaff_RBP + -0x25) = 0;
+    unsignedVar3 = dataProcessFunction(tempDataBuffer,unaff_RBP + -0x25);
     floatVar9 = extraout_XMM0_Da_04;
     if (unsignedVar3 == 0) {
-      if ((ulonglong)*(uint *)(framePointer + -0x25) + 1 <= (ulonglong)presourceDataBuffer[2]) goto LAB_18089ca9c;
+      if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)presourceDataBuffer[2]) goto LAB_18089ca9c;
       unsignedVar3 = ACCESS_FLAG;
     }
   }
   unsignedVar6 = 0;
   if (unsignedVar3 == 0) {
-    unsignedVar6 = (uint)(*(char *)(framePointer + 0x77) != '\0');
-    unaff_R14D = (uint)(*(char *)(framePointer + 0x77) == '\0');
+    unsignedVar6 = (uint)(*(char *)(unaff_RBP + 0x77) != '\0');
+    unaff_R14D = (uint)(*(char *)(unaff_RBP + 0x77) == '\0');
   }
   validationResult1 = (ulonglong)unsignedVar3;
   if (unsignedVar3 == 0) {
@@ -19004,8 +19004,8 @@ LAB_18089cad8:
   unsignedVar3 = *(uint *)(baseRegister + 8);
   if (unsignedVar3 < 0x70) {
     *(uint *)(unaff_R13 + FIELD_OFFSET_2) =
-         (((*(uint *)(framePointer + 0x7f) | *(uint *)(unaff_R13 + FIELD_OFFSET_2)) &
-           ~*(uint *)(framePointer + -BYTE_OFFSET_1) | validationResult2 * 2) & ~(iterationIndex * 2) | unsignedVar6 * 4) &
+         (((*(uint *)(unaff_RBP + 0x7f) | *(uint *)(unaff_R13 + FIELD_OFFSET_2)) &
+           ~*(uint *)(unaff_RBP + -BYTE_OFFSET_1) | validationResult2 * 2) & ~(iterationIndex * 2) | unsignedVar6 * 4) &
          ~(unaff_R14D * 4);
     unsignedVar3 = *(uint *)(baseRegister + 8);
   }
@@ -19016,17 +19016,17 @@ LAB_18089cad8:
   }
   if (0x8a < unsignedVar3) {
     tempDataBuffer = *baseRegister;
-    *(uint32 *)(framePointer + 0x7f) = 0;
-    validationResult1 = getResourceSize(tempDataBuffer,framePointer + 0x7f);
+    *(uint32 *)(unaff_RBP + 0x7f) = 0;
+    validationResult1 = getResourceSize(tempDataBuffer,unaff_RBP + 0x7f);
     if ((int)validationResult1 != 0) {
       return validationResult1;
     }
-    validationResult2 = *(uint *)(framePointer + 0x7f);
+    validationResult2 = *(uint *)(unaff_RBP + 0x7f);
     validationResult1 = InitializeRequestHandler2(unaff_R13 + DATA_OFFSET_START,validationResult2 >> 1);
     if ((int)validationResult1 != 0) {
       return validationResult1;
     }
-    *(uint32 *)(framePointer + 0x77) = 0;
+    *(uint32 *)(unaff_RBP + 0x77) = 0;
     validationResult1 = unsignedVar7;
     floatVar9 = extraout_XMM0_Da_06;
     if (validationResult2 >> 1 != 0) {
@@ -19047,21 +19047,21 @@ LAB_18089cad8:
         if ((int)validationResult1 != 0) {
           return validationResult1;
         }
-        validationResult1 = ExecuteSystemTask(functionResult,framePointer + 0x77);
+        validationResult1 = ExecuteSystemTask(functionResult,unaff_RBP + 0x77);
         if ((int)validationResult1 != 0) {
           return validationResult1;
         }
         unsignedVar6 = (int)unsignedVar7 + 1;
         unsignedVar7 = (ulonglong)unsignedVar6;
-        iterationIndex = *(uint *)(framePointer + 0x77) & -(validationResult2 & 1);
+        iterationIndex = *(uint *)(unaff_RBP + 0x77) & -(validationResult2 & 1);
         validationResult1 = (ulonglong)iterationIndex;
-        *(uint *)(framePointer + 0x77) = iterationIndex;
+        *(uint *)(unaff_RBP + 0x77) = iterationIndex;
         floatVar9 = extraout_XMM0_Da_09;
       } while ((int)unsignedVar6 < (int)(validationResult2 >> 1));
     }
   }
                     // WARNING: Subroutine does not return
-  freeResourceBuffer(floatVar9,framePointer + -0x21);
+  freeResourceBuffer(floatVar9,unaff_RBP + -0x21);
 }
 
 
@@ -19077,7 +19077,7 @@ ulonglong GetIntegrityStatus(void)
   ulonglong unsignedVar6;
   int resourceCount;
   longlong *baseRegister;
-  longlong framePointer;
+  longlong unaff_RBP;
   uint iterationIndex;
   uint unsignedVar9;
   ulonglong unaff_RDI;
@@ -19159,23 +19159,23 @@ ulonglong GetIntegrityStatus(void)
       }
       else if (presourceDataBuffer[2] == unaff_RDI) {
 LAB_18089c9a8:
-        validationResult1 = readResourceData(*presourceDataBuffer,framePointer + 0x77,unaff_R14D,unaff_R14D);
+        validationResult1 = readResourceData(*presourceDataBuffer,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
         floatVar12 = extraout_XMM0_Da_01;
       }
       else {
-        *(uint32 *)(framePointer + -0x25) = 0;
-        validationResult1 = dataProcessFunction(tempDataBuffer,framePointer + -0x25);
+        *(uint32 *)(unaff_RBP + -0x25) = 0;
+        validationResult1 = dataProcessFunction(tempDataBuffer,unaff_RBP + -0x25);
         floatVar12 = extraout_XMM0_Da_00;
         if (validationResult1 == 0) {
-          if ((ulonglong)*(uint *)(framePointer + -0x25) + 1 <= (ulonglong)presourceDataBuffer[2])
+          if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)presourceDataBuffer[2])
           goto LAB_18089c9a8;
           validationResult1 = ACCESS_FLAG;
         }
       }
       if (validationResult1 == 0) {
         validationResult2 = unaff_RDI & INVALID_HANDLE;
-        localStatus1 = (int)CONCAT71(unsignedVar3,*(char *)(framePointer + 0x77) != '\0');
-        localStatus0 = (int)CONCAT71(unsignedVar3,*(char *)(framePointer + 0x77) == '\0');
+        localStatus1 = (int)CONCAT71(unsignedVar3,*(char *)(unaff_RBP + 0x77) != '\0');
+        localStatus0 = (int)CONCAT71(unsignedVar3,*(char *)(unaff_RBP + 0x77) == '\0');
       }
       else {
         validationResult2 = (ulonglong)validationResult1;
@@ -19226,21 +19226,21 @@ LAB_18089c9a8:
   }
   else if (presourceDataBuffer[2] == unaff_RDI) {
 LAB_18089ca9c:
-    validationResult1 = readResourceData(*presourceDataBuffer,framePointer + 0x77,unaff_R14D,unaff_R14D);
+    validationResult1 = readResourceData(*presourceDataBuffer,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
     floatVar12 = extraout_XMM0_Da_05;
   }
   else {
-    *(uint32 *)(framePointer + -0x25) = 0;
-    validationResult1 = dataProcessFunction(tempDataBuffer,framePointer + -0x25);
+    *(uint32 *)(unaff_RBP + -0x25) = 0;
+    validationResult1 = dataProcessFunction(tempDataBuffer,unaff_RBP + -0x25);
     floatVar12 = extraout_XMM0_Da_04;
     if (validationResult1 == 0) {
-      if ((ulonglong)*(uint *)(framePointer + -0x25) + 1 <= (ulonglong)presourceDataBuffer[2]) goto LAB_18089ca9c;
+      if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)presourceDataBuffer[2]) goto LAB_18089ca9c;
       validationResult1 = ACCESS_FLAG;
     }
   }
   if (validationResult1 == 0) {
-    resourceCount = (int)CONCAT71(unsignedVar3,*(char *)(framePointer + 0x77) != '\0');
-    unaff_R14D = (int)CONCAT71(unsignedVar3,*(char *)(framePointer + 0x77) == '\0');
+    resourceCount = (int)CONCAT71(unsignedVar3,*(char *)(unaff_RBP + 0x77) != '\0');
+    unaff_R14D = (int)CONCAT71(unsignedVar3,*(char *)(unaff_RBP + 0x77) == '\0');
   }
   validationResult2 = (ulonglong)validationResult1;
   if (validationResult1 == 0) {
@@ -19253,8 +19253,8 @@ LAB_18089cad8:
   validationResult1 = *(uint *)(baseRegister + 8);
   if (validationResult1 < 0x70) {
     *(uint *)(unaff_R13 + FIELD_OFFSET_2) =
-         (((*(uint *)(framePointer + 0x7f) | *(uint *)(unaff_R13 + FIELD_OFFSET_2)) &
-           ~*(uint *)(framePointer + -BYTE_OFFSET_1) | localStatus1 * 2) & ~(localStatus0 * 2) | resourceCount * 4) &
+         (((*(uint *)(unaff_RBP + 0x7f) | *(uint *)(unaff_R13 + FIELD_OFFSET_2)) &
+           ~*(uint *)(unaff_RBP + -BYTE_OFFSET_1) | localStatus1 * 2) & ~(localStatus0 * 2) | resourceCount * 4) &
          ~(unaff_R14D * 4);
     validationResult1 = *(uint *)(baseRegister + 8);
   }
@@ -19265,17 +19265,17 @@ LAB_18089cad8:
   }
   if (0x8a < validationResult1) {
     tempDataBuffer = *baseRegister;
-    *(uint32 *)(framePointer + 0x7f) = 0;
-    validationResult2 = getResourceSize(tempDataBuffer,framePointer + 0x7f);
+    *(uint32 *)(unaff_RBP + 0x7f) = 0;
+    validationResult2 = getResourceSize(tempDataBuffer,unaff_RBP + 0x7f);
     if ((int)validationResult2 != 0) {
       return validationResult2;
     }
-    validationResult1 = *(uint *)(framePointer + 0x7f);
+    validationResult1 = *(uint *)(unaff_RBP + 0x7f);
     validationResult2 = InitializeRequestHandler2(unaff_R13 + DATA_OFFSET_START,validationResult1 >> 1);
     if ((int)validationResult2 != 0) {
       return validationResult2;
     }
-    *(uint32 *)(framePointer + 0x77) = 0;
+    *(uint32 *)(unaff_RBP + 0x77) = 0;
     validationResult2 = unaff_RDI & INVALID_HANDLE;
     floatVar12 = extraout_XMM0_Da_06;
     if (validationResult1 >> 1 != 0) {
@@ -19296,21 +19296,21 @@ LAB_18089cad8:
         if ((int)unsignedVar6 != 0) {
           return unsignedVar6;
         }
-        unsignedVar6 = ExecuteSystemTask(functionResult3,framePointer + 0x77);
+        unsignedVar6 = ExecuteSystemTask(functionResult3,unaff_RBP + 0x77);
         if ((int)unsignedVar6 != 0) {
           return unsignedVar6;
         }
         iterationIndex = (int)validationResult2 + 1;
         validationResult2 = (ulonglong)iterationIndex;
-        unsignedVar9 = *(uint *)(framePointer + 0x77) & -(validationResult1 & 1);
+        unsignedVar9 = *(uint *)(unaff_RBP + 0x77) & -(validationResult1 & 1);
         unaff_RDI = (ulonglong)unsignedVar9;
-        *(uint *)(framePointer + 0x77) = unsignedVar9;
+        *(uint *)(unaff_RBP + 0x77) = unsignedVar9;
         floatVar12 = extraout_XMM0_Da_09;
       } while ((int)iterationIndex < (int)(validationResult1 >> 1));
     }
   }
                     // WARNING: Subroutine does not return
-  freeResourceBuffer(floatVar12,framePointer + -0x21);
+  freeResourceBuffer(floatVar12,unaff_RBP + -0x21);
 }
 
 
@@ -19326,7 +19326,7 @@ ulonglong ValidateIntegrityData(void)
   ulonglong unsignedVar6;
   int resourceCount;
   longlong *baseRegister;
-  longlong framePointer;
+  longlong unaff_RBP;
   uint32 unaff_ESI;
   uint iterationIndex;
   uint unsignedVar9;
@@ -19409,23 +19409,23 @@ ulonglong ValidateIntegrityData(void)
       }
       else if (presourceDataBuffer[2] == unaff_RDI) {
 LAB_18089c9a8:
-        validationResult1 = readResourceData(*presourceDataBuffer,framePointer + 0x77,unaff_R14D,unaff_R14D);
+        validationResult1 = readResourceData(*presourceDataBuffer,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
         floatVar12 = extraout_XMM0_Da_01;
       }
       else {
-        *(uint32 *)(framePointer + -0x25) = 0;
-        validationResult1 = dataProcessFunction(tempDataBuffer,framePointer + -0x25);
+        *(uint32 *)(unaff_RBP + -0x25) = 0;
+        validationResult1 = dataProcessFunction(tempDataBuffer,unaff_RBP + -0x25);
         floatVar12 = extraout_XMM0_Da_00;
         if (validationResult1 == 0) {
-          if ((ulonglong)*(uint *)(framePointer + -0x25) + 1 <= (ulonglong)presourceDataBuffer[2])
+          if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)presourceDataBuffer[2])
           goto LAB_18089c9a8;
           validationResult1 = ACCESS_FLAG;
         }
       }
       if (validationResult1 == 0) {
         validationResult2 = unaff_RDI & INVALID_HANDLE;
-        localStatus1 = (int)CONCAT71(unsignedVar3,*(char *)(framePointer + 0x77) != '\0');
-        localStatus0 = (int)CONCAT71(unsignedVar3,*(char *)(framePointer + 0x77) == '\0');
+        localStatus1 = (int)CONCAT71(unsignedVar3,*(char *)(unaff_RBP + 0x77) != '\0');
+        localStatus0 = (int)CONCAT71(unsignedVar3,*(char *)(unaff_RBP + 0x77) == '\0');
       }
       else {
         validationResult2 = (ulonglong)validationResult1;
@@ -19476,21 +19476,21 @@ LAB_18089c9a8:
   }
   else if (presourceDataBuffer[2] == unaff_RDI) {
 LAB_18089ca9c:
-    validationResult1 = readResourceData(*presourceDataBuffer,framePointer + 0x77,unaff_R14D,unaff_R14D);
+    validationResult1 = readResourceData(*presourceDataBuffer,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
     floatVar12 = extraout_XMM0_Da_05;
   }
   else {
-    *(uint32 *)(framePointer + -0x25) = 0;
-    validationResult1 = dataProcessFunction(tempDataBuffer,framePointer + -0x25);
+    *(uint32 *)(unaff_RBP + -0x25) = 0;
+    validationResult1 = dataProcessFunction(tempDataBuffer,unaff_RBP + -0x25);
     floatVar12 = extraout_XMM0_Da_04;
     if (validationResult1 == 0) {
-      if ((ulonglong)*(uint *)(framePointer + -0x25) + 1 <= (ulonglong)presourceDataBuffer[2]) goto LAB_18089ca9c;
+      if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)presourceDataBuffer[2]) goto LAB_18089ca9c;
       validationResult1 = ACCESS_FLAG;
     }
   }
   if (validationResult1 == 0) {
-    resourceCount = (int)CONCAT71(unsignedVar3,*(char *)(framePointer + 0x77) != '\0');
-    unaff_R14D = (int)CONCAT71(unsignedVar3,*(char *)(framePointer + 0x77) == '\0');
+    resourceCount = (int)CONCAT71(unsignedVar3,*(char *)(unaff_RBP + 0x77) != '\0');
+    unaff_R14D = (int)CONCAT71(unsignedVar3,*(char *)(unaff_RBP + 0x77) == '\0');
   }
   validationResult2 = (ulonglong)validationResult1;
   if (validationResult1 == 0) {
@@ -19503,8 +19503,8 @@ LAB_18089cad8:
   validationResult1 = *(uint *)(baseRegister + 8);
   if (validationResult1 < 0x70) {
     *(uint *)(unaff_R13 + FIELD_OFFSET_2) =
-         (((*(uint *)(framePointer + 0x7f) | *(uint *)(unaff_R13 + FIELD_OFFSET_2)) &
-           ~*(uint *)(framePointer + -BYTE_OFFSET_1) | localStatus1 * 2) & ~(localStatus0 * 2) | resourceCount * 4) &
+         (((*(uint *)(unaff_RBP + 0x7f) | *(uint *)(unaff_R13 + FIELD_OFFSET_2)) &
+           ~*(uint *)(unaff_RBP + -BYTE_OFFSET_1) | localStatus1 * 2) & ~(localStatus0 * 2) | resourceCount * 4) &
          ~(unaff_R14D * 4);
     validationResult1 = *(uint *)(baseRegister + 8);
   }
@@ -19515,17 +19515,17 @@ LAB_18089cad8:
   }
   if (0x8a < validationResult1) {
     tempDataBuffer = *baseRegister;
-    *(uint32 *)(framePointer + 0x7f) = 0;
-    validationResult2 = getResourceSize(tempDataBuffer,framePointer + 0x7f);
+    *(uint32 *)(unaff_RBP + 0x7f) = 0;
+    validationResult2 = getResourceSize(tempDataBuffer,unaff_RBP + 0x7f);
     if ((int)validationResult2 != 0) {
       return validationResult2;
     }
-    validationResult1 = *(uint *)(framePointer + 0x7f);
+    validationResult1 = *(uint *)(unaff_RBP + 0x7f);
     validationResult2 = InitializeRequestHandler2(unaff_R13 + DATA_OFFSET_START,validationResult1 >> 1);
     if ((int)validationResult2 != 0) {
       return validationResult2;
     }
-    *(uint32 *)(framePointer + 0x77) = 0;
+    *(uint32 *)(unaff_RBP + 0x77) = 0;
     validationResult2 = unaff_RDI & INVALID_HANDLE;
     floatVar12 = extraout_XMM0_Da_06;
     if (validationResult1 >> 1 != 0) {
@@ -19546,21 +19546,21 @@ LAB_18089cad8:
         if ((int)unsignedVar6 != 0) {
           return unsignedVar6;
         }
-        unsignedVar6 = ExecuteSystemTask(functionResult3,framePointer + 0x77);
+        unsignedVar6 = ExecuteSystemTask(functionResult3,unaff_RBP + 0x77);
         if ((int)unsignedVar6 != 0) {
           return unsignedVar6;
         }
         iterationIndex = (int)validationResult2 + 1;
         validationResult2 = (ulonglong)iterationIndex;
-        unsignedVar9 = *(uint *)(framePointer + 0x77) & -(validationResult1 & 1);
+        unsignedVar9 = *(uint *)(unaff_RBP + 0x77) & -(validationResult1 & 1);
         unaff_RDI = (ulonglong)unsignedVar9;
-        *(uint *)(framePointer + 0x77) = unsignedVar9;
+        *(uint *)(unaff_RBP + 0x77) = unsignedVar9;
         floatVar12 = extraout_XMM0_Da_09;
       } while ((int)iterationIndex < (int)(validationResult1 >> 1));
     }
   }
                     // WARNING: Subroutine does not return
-  freeResourceBuffer(floatVar12,framePointer + -0x21);
+  freeResourceBuffer(floatVar12,unaff_RBP + -0x21);
 }
 
 
@@ -19576,7 +19576,7 @@ ulonglong ProcessIntegrityRequest(float resourceHandle)
   ulonglong unsignedVar6;
   int resourceCount;
   longlong *baseRegister;
-  longlong framePointer;
+  longlong unaff_RBP;
   uint iterationIndex;
   int newCapacity;
   uint functionResult;
@@ -19612,23 +19612,23 @@ ulonglong ProcessIntegrityRequest(float resourceHandle)
       }
       else if (presourceDataBuffer[2] == unaff_RDI) {
 LAB_18089c9a8:
-        validationResult1 = readResourceData(*presourceDataBuffer,framePointer + 0x77,unaff_R14D,unaff_R14D);
+        validationResult1 = readResourceData(*presourceDataBuffer,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
         resourceHandle = extraout_XMM0_Da_00;
       }
       else {
-        *(int *)(framePointer + -0x25) = newCapacity;
-        validationResult1 = dataProcessFunction(tempDataBuffer,framePointer + -0x25);
+        *(int *)(unaff_RBP + -0x25) = newCapacity;
+        validationResult1 = dataProcessFunction(tempDataBuffer,unaff_RBP + -0x25);
         resourceHandle = extraout_XMM0_Da;
         if (validationResult1 == 0) {
-          if ((ulonglong)*(uint *)(framePointer + -0x25) + 1 <= (ulonglong)presourceDataBuffer[2])
+          if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)presourceDataBuffer[2])
           goto LAB_18089c9a8;
           validationResult1 = ACCESS_FLAG;
         }
       }
       if (validationResult1 == 0) {
         unsignedVar6 = unaff_RDI & INVALID_HANDLE;
-        localStatus2 = (int)CONCAT71(unsignedVar3,*(char *)(framePointer + 0x77) != '\0');
-        localStatus1 = (int)CONCAT71(unsignedVar3,*(char *)(framePointer + 0x77) == '\0');
+        localStatus2 = (int)CONCAT71(unsignedVar3,*(char *)(unaff_RBP + 0x77) != '\0');
+        localStatus1 = (int)CONCAT71(unsignedVar3,*(char *)(unaff_RBP + 0x77) == '\0');
       }
       else {
         unsignedVar6 = (ulonglong)validationResult1;
@@ -19674,22 +19674,22 @@ LAB_18089c9a8:
       }
       else if (presourceDataBuffer[2] == unaff_RDI) {
 LAB_18089ca9c:
-        validationResult1 = readResourceData(*presourceDataBuffer,framePointer + 0x77,unaff_R14D,unaff_R14D);
+        validationResult1 = readResourceData(*presourceDataBuffer,unaff_RBP + 0x77,unaff_R14D,unaff_R14D);
         resourceHandle = extraout_XMM0_Da_04;
       }
       else {
-        *(int *)(framePointer + -0x25) = newCapacity;
-        validationResult1 = dataProcessFunction(tempDataBuffer,framePointer + -0x25);
+        *(int *)(unaff_RBP + -0x25) = newCapacity;
+        validationResult1 = dataProcessFunction(tempDataBuffer,unaff_RBP + -0x25);
         resourceHandle = extraout_XMM0_Da_03;
         if (validationResult1 == 0) {
-          if ((ulonglong)*(uint *)(framePointer + -0x25) + 1 <= (ulonglong)presourceDataBuffer[2])
+          if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)presourceDataBuffer[2])
           goto LAB_18089ca9c;
           validationResult1 = ACCESS_FLAG;
         }
       }
       if (validationResult1 == 0) {
-        resourceCount = (int)CONCAT71(unsignedVar3,*(char *)(framePointer + 0x77) != '\0');
-        unaff_R14D = (int)CONCAT71(unsignedVar3,*(char *)(framePointer + 0x77) == '\0');
+        resourceCount = (int)CONCAT71(unsignedVar3,*(char *)(unaff_RBP + 0x77) != '\0');
+        unaff_R14D = (int)CONCAT71(unsignedVar3,*(char *)(unaff_RBP + 0x77) == '\0');
       }
       unsignedVar6 = (ulonglong)validationResult1;
       if (validationResult1 == 0) {
@@ -19707,8 +19707,8 @@ LAB_18089ca9c:
     validationResult1 = *(uint *)(baseRegister + 8);
     if (validationResult1 < 0x70) {
       *(uint *)(unaff_R13 + FIELD_OFFSET_2) =
-           (((*(uint *)(framePointer + 0x7f) | *(uint *)(unaff_R13 + FIELD_OFFSET_2)) &
-             ~*(uint *)(framePointer + -BYTE_OFFSET_1) | localStatus2 * 2) & ~(localStatus1 * 2) | resourceCount * 4) &
+           (((*(uint *)(unaff_RBP + 0x7f) | *(uint *)(unaff_R13 + FIELD_OFFSET_2)) &
+             ~*(uint *)(unaff_RBP + -BYTE_OFFSET_1) | localStatus2 * 2) & ~(localStatus1 * 2) | resourceCount * 4) &
            ~(unaff_R14D * 4);
       validationResult1 = *(uint *)(baseRegister + 8);
     }
@@ -19720,16 +19720,16 @@ LAB_18089ca9c:
     if (validationResult1 < 0x8b) {
 LAB_18089cbf6:
                     // WARNING: Subroutine does not return
-      freeResourceBuffer(resourceHandle,framePointer + -0x21);
+      freeResourceBuffer(resourceHandle,unaff_RBP + -0x21);
     }
     tempDataBuffer = *baseRegister;
-    *(int *)(framePointer + 0x7f) = newCapacity;
-    unsignedVar6 = getResourceSize(tempDataBuffer,framePointer + 0x7f);
+    *(int *)(unaff_RBP + 0x7f) = newCapacity;
+    unsignedVar6 = getResourceSize(tempDataBuffer,unaff_RBP + 0x7f);
     if ((int)unsignedVar6 == 0) {
-      validationResult1 = *(uint *)(framePointer + 0x7f);
+      validationResult1 = *(uint *)(unaff_RBP + 0x7f);
       unsignedVar6 = InitializeRequestHandler2(unaff_R13 + DATA_OFFSET_START,validationResult1 >> 1);
       if ((int)unsignedVar6 == 0) {
-        *(int *)(framePointer + 0x77) = newCapacity;
+        *(int *)(unaff_RBP + 0x77) = newCapacity;
         unsignedVar6 = unaff_RDI & INVALID_HANDLE;
         resourceHandle = extraout_XMM0_Da_05;
         floatVar13 = extraout_XMM0_Da_05;
@@ -19751,15 +19751,15 @@ LAB_18089cbf6:
             if ((int)validationResult2 != 0) {
               return validationResult2;
             }
-            validationResult2 = ExecuteSystemTask(functionResult4,framePointer + 0x77);
+            validationResult2 = ExecuteSystemTask(functionResult4,unaff_RBP + 0x77);
             if ((int)validationResult2 != 0) {
               return validationResult2;
             }
             iterationIndex = (int)unsignedVar6 + 1;
             unsignedVar6 = (ulonglong)iterationIndex;
-            functionResult = *(uint *)(framePointer + 0x77) & -(validationResult1 & 1);
+            functionResult = *(uint *)(unaff_RBP + 0x77) & -(validationResult1 & 1);
             unaff_RDI = (ulonglong)functionResult;
-            *(uint *)(framePointer + 0x77) = functionResult;
+            *(uint *)(unaff_RBP + 0x77) = functionResult;
             resourceHandle = extraout_XMM0_Da_08;
             floatVar13 = extraout_XMM0_Da_08;
           } while ((int)iterationIndex < (int)(validationResult1 >> 1));
@@ -19889,7 +19889,7 @@ ulonglong InitializeIntegrityHandler(void)
   longlong inputRegister;
   ulonglong unsignedVar3;
   int iterationCounter;
-  longlong framePointer;
+  longlong unaff_RBP;
   longlong *unaff_RSI;
   uint in_stack_00000080;
   uint in_stack_00000088;
@@ -19912,7 +19912,7 @@ ulonglong InitializeIntegrityHandler(void)
           goto LAB_18089cd46;
         }
       }
-      unsignedVar3 = readResourceData(*presourceDataBuffer,&threadLocalBuffer,1,4,0);
+      unsignedVar3 = readResourceData(*presourceDataBuffer,&stack0x00000080,1,4,0);
     }
 LAB_18089cd46:
     if ((int)unsignedVar3 != 0) {
@@ -19921,7 +19921,7 @@ LAB_18089cd46:
     if (0x3ff < in_stack_00000080) {
       return 0xd;
     }
-    unsignedVar3 = ProcessTaskOperation2(framePointer + BUFFER_OFFSET_DATA);
+    unsignedVar3 = ProcessTaskOperation2(unaff_RBP + BUFFER_OFFSET_DATA);
     if ((int)unsignedVar3 == 0) goto LAB_18089cd76;
   }
   else {
@@ -19945,7 +19945,7 @@ LAB_18089cd76:
     unsignedCounter = 0;
   }
   else if (*(int *)(unaff_RSI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-    unsignedCounter = parseResourceData(*unaff_RSI,framePointer + 0x5c);
+    unsignedCounter = parseResourceData(*unaff_RSI,unaff_RBP + 0x5c);
   }
   if (unsignedCounter != 0) {
     return (ulonglong)unsignedCounter;
@@ -21618,7 +21618,7 @@ ulonglong InitializeResourceOperator(void)
   uint validationResult2;
   uint unsignedVar6;
   ulonglong unsignedVar7;
-  uint resourceSecurityParam;
+  uint in_stack_000000b0;
   uint in_stack_000000b8;
   
   if (*(int *)(inputRegister + RESOURCE_OFFSET_HANDLE) != 0) {
@@ -21634,7 +21634,7 @@ ulonglong InitializeResourceOperator(void)
   if ((int)unsignedCounter != 0) {
     return unsignedCounter;
   }
-  resourceSecurityParam = 0;
+  in_stack_000000b0 = 0;
   validationResult1 = in_stack_000000b8 & 1;
   unsignedVar6 = in_stack_000000b8 >> 1;
   unsignedCounter = unsignedVar7;
@@ -21654,7 +21654,7 @@ ulonglong InitializeResourceOperator(void)
       }
       validationResult2 = (int)unsignedCounter + 1;
       unsignedCounter = (ulonglong)validationResult2;
-      resourceSecurityParam = resourceSecurityParam & -validationResult1;
+      in_stack_000000b0 = in_stack_000000b0 & -validationResult1;
     } while ((int)validationResult2 < (int)unsignedVar6);
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
@@ -21673,12 +21673,12 @@ ulonglong InitializeResourceOperator(void)
   }
   else {
     if (presourceDataBuffer[2] != 0) {
-      resourceSecurityParam = 0;
+      in_stack_000000b0 = 0;
       unsignedCounter = dataProcessFunction(*presourceDataBuffer,&stack0x000000b0);
       if ((int)unsignedCounter != 0) {
         return unsignedCounter;
       }
-      if ((ulonglong)presourceDataBuffer[2] < (ulonglong)resourceSecurityParam + 4) {
+      if ((ulonglong)presourceDataBuffer[2] < (ulonglong)in_stack_000000b0 + 4) {
         unsignedCounter = ACCESS_FLAG;
         goto LAB_18089e447;
       }
@@ -21721,7 +21721,7 @@ ulonglong GetOperationResult2(void)
   uint validationResult2;
   uint unsignedVar6;
   ulonglong unsignedVar7;
-  uint resourceSecurityParam;
+  uint in_stack_000000b0;
   uint in_stack_000000b8;
   
   unsignedCounter = writeResourceData(*baseRegister,unaff_RSI + RESOURCE_CONFIG_OFFSET,4);
@@ -21734,7 +21734,7 @@ ulonglong GetOperationResult2(void)
   if ((int)unsignedCounter != 0) {
     return unsignedCounter;
   }
-  resourceSecurityParam = 0;
+  in_stack_000000b0 = 0;
   validationResult1 = in_stack_000000b8 & 1;
   unsignedVar6 = in_stack_000000b8 >> 1;
   unsignedCounter = unsignedVar7;
@@ -21754,7 +21754,7 @@ ulonglong GetOperationResult2(void)
       }
       validationResult2 = (int)unsignedCounter + 1;
       unsignedCounter = (ulonglong)validationResult2;
-      resourceSecurityParam = resourceSecurityParam & -validationResult1;
+      in_stack_000000b0 = in_stack_000000b0 & -validationResult1;
     } while ((int)validationResult2 < (int)unsignedVar6);
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
@@ -21773,12 +21773,12 @@ ulonglong GetOperationResult2(void)
   }
   else {
     if (presourceDataBuffer[2] != 0) {
-      resourceSecurityParam = 0;
+      in_stack_000000b0 = 0;
       unsignedCounter = dataProcessFunction(*presourceDataBuffer,&stack0x000000b0);
       if ((int)unsignedCounter != 0) {
         return unsignedCounter;
       }
-      if ((ulonglong)presourceDataBuffer[2] < (ulonglong)resourceSecurityParam + 4) {
+      if ((ulonglong)presourceDataBuffer[2] < (ulonglong)in_stack_000000b0 + 4) {
         unsignedCounter = ACCESS_FLAG;
         goto LAB_18089e447;
       }
@@ -21821,7 +21821,7 @@ ulonglong ValidateOperationData2(void)
   uint validationResult2;
   uint unsignedVar6;
   ulonglong unsignedVar7;
-  uint resourceSecurityParam;
+  uint in_stack_000000b0;
   uint uStack00000000000000b8;
   
   unsignedVar7 = 0;
@@ -21830,7 +21830,7 @@ ulonglong ValidateOperationData2(void)
   if ((int)unsignedCounter != 0) {
     return unsignedCounter;
   }
-  resourceSecurityParam = 0;
+  in_stack_000000b0 = 0;
   validationResult1 = uStack00000000000000b8 & 1;
   unsignedVar6 = uStack00000000000000b8 >> 1;
   unsignedCounter = unsignedVar7;
@@ -21850,7 +21850,7 @@ ulonglong ValidateOperationData2(void)
       }
       validationResult2 = (int)unsignedCounter + 1;
       unsignedCounter = (ulonglong)validationResult2;
-      resourceSecurityParam = resourceSecurityParam & -validationResult1;
+      in_stack_000000b0 = in_stack_000000b0 & -validationResult1;
     } while ((int)validationResult2 < (int)unsignedVar6);
   }
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
@@ -21869,12 +21869,12 @@ ulonglong ValidateOperationData2(void)
   }
   else {
     if (presourceDataBuffer[2] != 0) {
-      resourceSecurityParam = 0;
+      in_stack_000000b0 = 0;
       unsignedCounter = dataProcessFunction(*presourceDataBuffer,&stack0x000000b0);
       if ((int)unsignedCounter != 0) {
         return unsignedCounter;
       }
-      if ((ulonglong)presourceDataBuffer[2] < (ulonglong)resourceSecurityParam + 4) {
+      if ((ulonglong)presourceDataBuffer[2] < (ulonglong)in_stack_000000b0 + 4) {
         unsignedCounter = ACCESS_FLAG;
         goto LAB_18089e447;
       }
@@ -22033,7 +22033,7 @@ ulonglong InitializeSystemOperator(void)
   uint32 *pointerVar7;
   ulonglong iterationIndex;
   longlong longVar9;
-  longlong framePointer;
+  longlong unaff_RBP;
   uint32 *preturnValue0;
   uint64 *unaff_RDI;
   longlong unaff_R15;
@@ -22052,26 +22052,26 @@ ulonglong InitializeSystemOperator(void)
   unsignedCounter = pointerVar7[1];
   unsignedVar3 = pointerVar7[2];
   validationResult1 = pointerVar7[3];
-  *(uint32 *)(framePointer + -0x19) = functionResult1;
-  *(uint32 *)(framePointer + -0x15) = unsignedCounter;
-  *(uint32 *)(framePointer + -ACCESS_FLAG) = unsignedVar3;
-  *(uint32 *)(framePointer + -0xd) = validationResult1;
+  *(uint32 *)(unaff_RBP + -0x19) = functionResult1;
+  *(uint32 *)(unaff_RBP + -0x15) = unsignedCounter;
+  *(uint32 *)(unaff_RBP + -ACCESS_FLAG) = unsignedVar3;
+  *(uint32 *)(unaff_RBP + -0xd) = validationResult1;
   if (validationResult2 < 0x6d) {
     if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
       functionResult = *unaff_RDI;
-      iterationIndex = writeResourceData(functionResult,framePointer + -0x19,4);
+      iterationIndex = writeResourceData(functionResult,unaff_RBP + -0x19,4);
       if ((int)iterationIndex != 0) {
         return iterationIndex;
       }
-      iterationIndex = writeResourceData(functionResult,framePointer + -0x15,2);
+      iterationIndex = writeResourceData(functionResult,unaff_RBP + -0x15,2);
       if ((int)iterationIndex != 0) {
         return iterationIndex;
       }
-      iterationIndex = writeResourceData(functionResult,framePointer + -0x13,2);
+      iterationIndex = writeResourceData(functionResult,unaff_RBP + -0x13,2);
       if ((int)iterationIndex != 0) {
         return iterationIndex;
       }
-      iterationIndex = writeResourceData(functionResult,framePointer + -ACCESS_FLAG,8);
+      iterationIndex = writeResourceData(functionResult,unaff_RBP + -ACCESS_FLAG,8);
       functionResult1 = extraout_XMM0_Da;
     }
     else {
@@ -22081,18 +22081,18 @@ ulonglong InitializeSystemOperator(void)
   if ((((int)iterationIndex == 0) && (iterationIndex = ProcessDataValidation3(functionResult1,unaff_R15 + STRUCT_OFFSET_SIZE,0), (int)iterationIndex == 0)) &&
      (iterationIndex = ProcessDataValidation3(extraout_XMM0_Da_00,unaff_R15 + BUFFER_OFFSET_DATA,0), (int)iterationIndex == 0)) {
     if (*(uint *)(unaff_RDI + 8) < 0x84) {
-      *(uint64 *)(framePointer + -BYTE_OFFSET_1) = 0;
-      *(uint64 *)(framePointer + -0x21) = 0;
-      validationResult2 = configureResourceMemory(extraout_XMM0_Da_01,framePointer + -BYTE_OFFSET_1,0);
+      *(uint64 *)(unaff_RBP + -BYTE_OFFSET_1) = 0;
+      *(uint64 *)(unaff_RBP + -0x21) = 0;
+      validationResult2 = configureResourceMemory(extraout_XMM0_Da_01,unaff_RBP + -BYTE_OFFSET_1,0);
       iterationIndex = (ulonglong)validationResult2;
       if (validationResult2 != 0) {
 LAB_18089e70b:
-        InitializeDataValidator3(framePointer + -BYTE_OFFSET_1);
+        InitializeDataValidator3(unaff_RBP + -BYTE_OFFSET_1);
         return iterationIndex;
       }
-      integerVar6 = *(int *)(framePointer + -0x21);
+      integerVar6 = *(int *)(unaff_RBP + -0x21);
       if (integerVar6 != 0) {
-        pointerVar7 = *(uint32 **)(framePointer + -BYTE_OFFSET_1);
+        pointerVar7 = *(uint32 **)(unaff_RBP + -BYTE_OFFSET_1);
         for (preturnValue0 = pointerVar7; (pointerVar7 <= preturnValue0 && (preturnValue0 < pointerVar7 + integerVar6));
             preturnValue0 = preturnValue0 + 1) {
           longVar9 = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),BYTE_OFFSET_2,&unknown_180986e70,0xc1c,0)
@@ -22110,11 +22110,11 @@ LAB_18089e70b:
           validationResult2 = systemControlFunction2(unaff_R15 + SYSTEM_OFFSET_STATUS1,longVar9);
           iterationIndex = (ulonglong)validationResult2;
           if (validationResult2 != 0) goto LAB_18089e70b;
-          integerVar6 = *(int *)(framePointer + -0x21);
-          pointerVar7 = *(uint32 **)(framePointer + -BYTE_OFFSET_1);
+          integerVar6 = *(int *)(unaff_RBP + -0x21);
+          pointerVar7 = *(uint32 **)(unaff_RBP + -BYTE_OFFSET_1);
         }
       }
-      functionResult1 = InitializeDataValidator3(framePointer + -BYTE_OFFSET_1);
+      functionResult1 = InitializeDataValidator3(unaff_RBP + -BYTE_OFFSET_1);
     }
     else {
       iterationIndex = ProcessValidationRequest2(extraout_XMM0_Da_01,unaff_R15 + SYSTEM_OFFSET_STATUS1);
@@ -22127,7 +22127,7 @@ LAB_18089e70b:
     if (((int)iterationIndex == 0) &&
        (iterationIndex = ValidateDataIntegrity2(extraout_XMM0_Da_03,unaff_R15 + 0x88,0), (int)iterationIndex == 0)) {
                     // WARNING: Subroutine does not return
-      freeResourceBuffer(extraout_XMM0_Da_04,framePointer + 7);
+      freeResourceBuffer(extraout_XMM0_Da_04,unaff_RBP + 7);
     }
   }
   return iterationIndex;
@@ -22147,24 +22147,24 @@ ulonglong GetSystemStatus(void)
   longlong longVar5;
   uint32 *punsignedVar6;
   uint64 baseRegister;
-  longlong framePointer;
+  longlong unaff_RBP;
   uint32 *pointerVar7;
   longlong unaff_RDI;
   longlong unaff_R15;
   
   if (*(uint *)(unaff_RDI + BUFFER_SIZE_OFFSET) < 0x84) {
-    *(uint64 *)(framePointer + -BYTE_OFFSET_1) = baseRegister;
-    *(uint64 *)(framePointer + -0x21) = baseRegister;
+    *(uint64 *)(unaff_RBP + -BYTE_OFFSET_1) = baseRegister;
+    *(uint64 *)(unaff_RBP + -0x21) = baseRegister;
     unsignedCounter = configureResourceMemory();
     validationResult1 = (ulonglong)unsignedCounter;
     if (unsignedCounter != 0) {
 LAB_18089e70b:
-      InitializeDataValidator3(framePointer + -BYTE_OFFSET_1);
+      InitializeDataValidator3(unaff_RBP + -BYTE_OFFSET_1);
       return validationResult1;
     }
-    dataLength = *(int *)(framePointer + -0x21);
+    dataLength = *(int *)(unaff_RBP + -0x21);
     if (dataLength != 0) {
-      punsignedVar6 = *(uint32 **)(framePointer + -BYTE_OFFSET_1);
+      punsignedVar6 = *(uint32 **)(unaff_RBP + -BYTE_OFFSET_1);
       for (pointerVar7 = punsignedVar6; (punsignedVar6 <= pointerVar7 && (pointerVar7 < punsignedVar6 + dataLength)); pointerVar7 = pointerVar7 + 1) {
         longVar5 = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),BYTE_OFFSET_2,&unknown_180986e70,0xc1c);
         if (longVar5 == 0) {
@@ -22180,11 +22180,11 @@ LAB_18089e70b:
         unsignedCounter = systemControlFunction2(unaff_R15 + SYSTEM_OFFSET_STATUS1,longVar5);
         validationResult1 = (ulonglong)unsignedCounter;
         if (unsignedCounter != 0) goto LAB_18089e70b;
-        dataLength = *(int *)(framePointer + -0x21);
-        punsignedVar6 = *(uint32 **)(framePointer + -BYTE_OFFSET_1);
+        dataLength = *(int *)(unaff_RBP + -0x21);
+        punsignedVar6 = *(uint32 **)(unaff_RBP + -BYTE_OFFSET_1);
       }
     }
-    InitializeDataValidator3(framePointer + -BYTE_OFFSET_1);
+    InitializeDataValidator3(unaff_RBP + -BYTE_OFFSET_1);
   }
   else {
     validationResult1 = ProcessValidationRequest2();
@@ -22538,7 +22538,7 @@ ulonglong GetCheckResult(void)
   longlong inputRegister;
   ulonglong validationResult1;
   ulonglong validationResult2;
-  longlong framePointer;
+  longlong unaff_RBP;
   longlong *unaff_RDI;
   int unaff_R12D;
   longlong unaff_R15;
@@ -22612,13 +22612,13 @@ ulonglong GetCheckResult(void)
   }
   else if (pdataBuffer[2] == 0) {
 LAB_18089ea0f:
-    validationResult1 = readResourceData(*pdataBuffer,framePointer + -0x41,unaff_R12D,4,0);
+    validationResult1 = readResourceData(*pdataBuffer,unaff_RBP + -0x41,unaff_R12D,4,0);
   }
   else {
-    *(uint32 *)(framePointer + 0x77) = 0;
-    validationResult1 = dataProcessFunction(resourceDataBuffer,framePointer + 0x77);
+    *(uint32 *)(unaff_RBP + 0x77) = 0;
+    validationResult1 = dataProcessFunction(resourceDataBuffer,unaff_RBP + 0x77);
     if ((int)validationResult1 == 0) {
-      if ((ulonglong)*(uint *)(framePointer + 0x77) + 4 <= (ulonglong)pdataBuffer[2]) goto LAB_18089ea0f;
+      if ((ulonglong)*(uint *)(unaff_RBP + 0x77) + 4 <= (ulonglong)pdataBuffer[2]) goto LAB_18089ea0f;
       validationResult1 = ACCESS_FLAG;
     }
   }
@@ -22627,8 +22627,8 @@ LAB_18089ea0f:
     return validationResult1;
   }
   boolVar6 = *(uint *)(unaff_RDI + 8) < FIELD_OFFSET_2;
-  *(char *)(framePointer + 0x77) = (char)validationResult1;
-  *(char *)(framePointer + 0x7f) = (char)validationResult1;
+  *(char *)(unaff_RBP + 0x77) = (char)validationResult1;
+  *(char *)(unaff_RBP + 0x7f) = (char)validationResult1;
   boolongVar8 = false;
   if (0x37 < *(uint *)(unaff_RDI + 8)) {
     if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
@@ -22639,21 +22639,21 @@ LAB_18089ea0f:
 LAB_18089eaae:
         boolVar7 = unsignedVar3 == 0;
         if (boolVar7) {
-          boolVar6 = *(char *)(framePointer + -0x49) != '\0';
+          boolVar6 = *(char *)(unaff_RBP + -0x49) != '\0';
           boolVar7 = true;
         }
       }
       else {
         if (pdataBuffer[2] == 0) {
 LAB_18089ea93:
-          unsignedVar3 = readResourceData(*pdataBuffer,framePointer + -0x49,unaff_R12D,unaff_R12D,0);
+          unsignedVar3 = readResourceData(*pdataBuffer,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,0);
           goto LAB_18089eaae;
         }
-        *(uint32 *)(framePointer + -0x45) = 0;
-        unsignedVar3 = dataProcessFunction(resourceDataBuffer,framePointer + -0x45);
+        *(uint32 *)(unaff_RBP + -0x45) = 0;
+        unsignedVar3 = dataProcessFunction(resourceDataBuffer,unaff_RBP + -0x45);
         boolVar7 = unsignedVar3 == 0;
         if (boolVar7) {
-          if ((ulonglong)pdataBuffer[2] < (ulonglong)*(uint *)(framePointer + -0x45) + 1) {
+          if ((ulonglong)pdataBuffer[2] < (ulonglong)*(uint *)(unaff_RBP + -0x45) + 1) {
             unsignedVar3 = ACCESS_FLAG;
             goto LAB_18089eaae;
           }
@@ -22682,19 +22682,19 @@ LAB_18089ea93:
       }
       else if (pdataBuffer[2] == 0) {
 LAB_18089eb22:
-        unsignedVar3 = readResourceData(*pdataBuffer,framePointer + -0x49,unaff_R12D,unaff_R12D,0);
+        unsignedVar3 = readResourceData(*pdataBuffer,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,0);
       }
       else {
-        *(uint32 *)(framePointer + -0x45) = 0;
-        unsignedVar3 = dataProcessFunction(resourceDataBuffer,framePointer + -0x45);
+        *(uint32 *)(unaff_RBP + -0x45) = 0;
+        unsignedVar3 = dataProcessFunction(resourceDataBuffer,unaff_RBP + -0x45);
         if (unsignedVar3 == 0) {
-          if ((ulonglong)*(uint *)(framePointer + -0x45) + 1 <= (ulonglong)pdataBuffer[2])
+          if ((ulonglong)*(uint *)(unaff_RBP + -0x45) + 1 <= (ulonglong)pdataBuffer[2])
           goto LAB_18089eb22;
           unsignedVar3 = ACCESS_FLAG;
         }
       }
       if (unsignedVar3 == 0) {
-        *(bool *)(framePointer + 0x77) = *(char *)(framePointer + -0x49) != '\0';
+        *(bool *)(unaff_RBP + 0x77) = *(char *)(unaff_RBP + -0x49) != '\0';
       }
       validationResult1 = (ulonglong)unsignedVar3;
       if (unsignedVar3 == 0) {
@@ -22718,19 +22718,19 @@ LAB_18089eb22:
       }
       else if (pdataBuffer[2] == 0) {
 LAB_18089ebaa:
-        unsignedVar3 = readResourceData(*pdataBuffer,framePointer + -0x49,unaff_R12D,unaff_R12D,0);
+        unsignedVar3 = readResourceData(*pdataBuffer,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,0);
       }
       else {
-        *(uint32 *)(framePointer + -0x45) = 0;
-        unsignedVar3 = dataProcessFunction(resourceDataBuffer,framePointer + -0x45);
+        *(uint32 *)(unaff_RBP + -0x45) = 0;
+        unsignedVar3 = dataProcessFunction(resourceDataBuffer,unaff_RBP + -0x45);
         if (unsignedVar3 == 0) {
-          if ((ulonglong)*(uint *)(framePointer + -0x45) + 1 <= (ulonglong)pdataBuffer[2])
+          if ((ulonglong)*(uint *)(unaff_RBP + -0x45) + 1 <= (ulonglong)pdataBuffer[2])
           goto LAB_18089ebaa;
           unsignedVar3 = ACCESS_FLAG;
         }
       }
       if (unsignedVar3 == 0) {
-        *(bool *)(framePointer + 0x7f) = *(char *)(framePointer + -0x49) != '\0';
+        *(bool *)(unaff_RBP + 0x7f) = *(char *)(unaff_RBP + -0x49) != '\0';
       }
       validationResult1 = (ulonglong)unsignedVar3;
       if (unsignedVar3 == 0) {
@@ -22754,19 +22754,19 @@ LAB_18089ebaa:
       }
       else if (pdataBuffer[2] == 0) {
 LAB_18089ec32:
-        unsignedVar3 = readResourceData(*pdataBuffer,framePointer + -0x49,unaff_R12D,unaff_R12D,0);
+        unsignedVar3 = readResourceData(*pdataBuffer,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,0);
       }
       else {
-        *(uint32 *)(framePointer + -0x45) = 0;
-        unsignedVar3 = dataProcessFunction(resourceDataBuffer,framePointer + -0x45);
+        *(uint32 *)(unaff_RBP + -0x45) = 0;
+        unsignedVar3 = dataProcessFunction(resourceDataBuffer,unaff_RBP + -0x45);
         if (unsignedVar3 == 0) {
-          if ((ulonglong)*(uint *)(framePointer + -0x45) + 1 <= (ulonglong)pdataBuffer[2])
+          if ((ulonglong)*(uint *)(unaff_RBP + -0x45) + 1 <= (ulonglong)pdataBuffer[2])
           goto LAB_18089ec32;
           unsignedVar3 = ACCESS_FLAG;
         }
       }
       if (unsignedVar3 == 0) {
-        boolongVar8 = *(char *)(framePointer + -0x49) != '\0';
+        boolongVar8 = *(char *)(unaff_RBP + -0x49) != '\0';
       }
       validationResult1 = (ulonglong)unsignedVar3;
       if (unsignedVar3 == 0) {
@@ -22790,19 +22790,19 @@ LAB_18089ec32:
       }
       else if (pdataBuffer[2] == 0) {
 LAB_18089ecba:
-        unsignedVar3 = readResourceData(*pdataBuffer,framePointer + -0x49,unaff_R12D,unaff_R12D,0);
+        unsignedVar3 = readResourceData(*pdataBuffer,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,0);
       }
       else {
-        *(uint32 *)(framePointer + -0x45) = 0;
-        unsignedVar3 = dataProcessFunction(resourceDataBuffer,framePointer + -0x45);
+        *(uint32 *)(unaff_RBP + -0x45) = 0;
+        unsignedVar3 = dataProcessFunction(resourceDataBuffer,unaff_RBP + -0x45);
         if (unsignedVar3 == 0) {
-          if ((ulonglong)*(uint *)(framePointer + -0x45) + 1 <= (ulonglong)pdataBuffer[2])
+          if ((ulonglong)*(uint *)(unaff_RBP + -0x45) + 1 <= (ulonglong)pdataBuffer[2])
           goto LAB_18089ecba;
           unsignedVar3 = ACCESS_FLAG;
         }
       }
       if (unsignedVar3 == 0) {
-        boolongVar8 = *(char *)(framePointer + -0x49) != '\0';
+        boolongVar8 = *(char *)(unaff_RBP + -0x49) != '\0';
       }
       validationResult1 = (ulonglong)unsignedVar3;
       if (unsignedVar3 == 0) {
@@ -22816,7 +22816,7 @@ LAB_18089ecba:
   if ((int)validationResult1 != 0) {
     return validationResult1;
   }
-  if ((((!boolVar6) && (*(char *)(framePointer + 0x77) == '\0')) && (*(char *)(framePointer + 0x7f) == '\0'))
+  if ((((!boolVar6) && (*(char *)(unaff_RBP + 0x77) == '\0')) && (*(char *)(unaff_RBP + 0x7f) == '\0'))
      && (!boolongVar8)) {
     unaff_R12D = 0;
   }
@@ -22846,7 +22846,7 @@ ulonglong ProcessCheckOperation(uint64 resourceHandle,uint64 memoryBlockSize,ulo
   uint unsignedVar3;
   ulonglong validationResult1;
   ulonglong validationResult2;
-  longlong framePointer;
+  longlong unaff_RBP;
   longlong *unaff_RDI;
   uint32 unaff_R12D;
   longlong unaff_R15;
@@ -22867,14 +22867,14 @@ ulonglong ProcessCheckOperation(uint64 resourceHandle,uint64 memoryBlockSize,ulo
   else {
     if (presourceDataBuffer[2] == operationFlags) {
 LAB_18089ea0f:
-      validationResult1 = readResourceData(*presourceDataBuffer,framePointer + -0x41,unaff_R12D,4,operationFlags);
+      validationResult1 = readResourceData(*presourceDataBuffer,unaff_RBP + -0x41,unaff_R12D,4,operationFlags);
     }
     else {
-      *(int *)(framePointer + 0x77) = (int)operationFlags;
-      validationResult1 = dataProcessFunction(tempDataBuffer,framePointer + 0x77);
+      *(int *)(unaff_RBP + 0x77) = (int)operationFlags;
+      validationResult1 = dataProcessFunction(tempDataBuffer,unaff_RBP + 0x77);
       if ((int)validationResult1 == 0) {
         operationFlags = 0;
-        if ((ulonglong)presourceDataBuffer[2] < (ulonglong)*(uint *)(framePointer + 0x77) + 4) {
+        if ((ulonglong)presourceDataBuffer[2] < (ulonglong)*(uint *)(unaff_RBP + 0x77) + 4) {
           validationResult1 = ACCESS_FLAG;
           goto LAB_18089ea2c;
         }
@@ -22888,8 +22888,8 @@ LAB_18089ea2c:
     return validationResult1;
   }
   boolVar6 = *(uint *)(unaff_RDI + 8) < FIELD_OFFSET_2;
-  *(char *)(framePointer + 0x77) = (char)validationResult1;
-  *(char *)(framePointer + 0x7f) = (char)validationResult1;
+  *(char *)(unaff_RBP + 0x77) = (char)validationResult1;
+  *(char *)(unaff_RBP + 0x7f) = (char)validationResult1;
   boolongVar8 = false;
   if (*(uint *)(unaff_RDI + 8) < STRUCT_OFFSET_SIZE) {
     validationResult1 = operationFlags & INVALID_HANDLE;
@@ -22902,21 +22902,21 @@ LAB_18089ea2c:
 LAB_18089eaae:
       boolVar7 = unsignedVar3 == 0;
       if (boolVar7) {
-        boolVar6 = *(char *)(framePointer + -0x49) != '\0';
+        boolVar6 = *(char *)(unaff_RBP + -0x49) != '\0';
         boolVar7 = true;
       }
     }
     else {
       if (presourceDataBuffer[2] == 0) {
 LAB_18089ea93:
-        unsignedVar3 = readResourceData(*presourceDataBuffer,framePointer + -0x49,unaff_R12D,unaff_R12D,0);
+        unsignedVar3 = readResourceData(*presourceDataBuffer,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,0);
         goto LAB_18089eaae;
       }
-      *(int *)(framePointer + -0x45) = (int)operationFlags;
-      unsignedVar3 = dataProcessFunction(tempDataBuffer,framePointer + -0x45);
+      *(int *)(unaff_RBP + -0x45) = (int)operationFlags;
+      unsignedVar3 = dataProcessFunction(tempDataBuffer,unaff_RBP + -0x45);
       boolVar7 = unsignedVar3 == 0;
       if (boolVar7) {
-        if ((ulonglong)presourceDataBuffer[2] < (ulonglong)*(uint *)(framePointer + -0x45) + 1) {
+        if ((ulonglong)presourceDataBuffer[2] < (ulonglong)*(uint *)(unaff_RBP + -0x45) + 1) {
           unsignedVar3 = ACCESS_FLAG;
           goto LAB_18089eaae;
         }
@@ -22947,14 +22947,14 @@ LAB_18089ea93:
     else {
       if (presourceDataBuffer[2] == 0) {
 LAB_18089eb22:
-        unsignedVar3 = readResourceData(*presourceDataBuffer,framePointer + -0x49,unaff_R12D,unaff_R12D,operationFlags);
+        unsignedVar3 = readResourceData(*presourceDataBuffer,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,operationFlags);
       }
       else {
-        *(int *)(framePointer + -0x45) = (int)operationFlags;
-        unsignedVar3 = dataProcessFunction(tempDataBuffer,framePointer + -0x45);
+        *(int *)(unaff_RBP + -0x45) = (int)operationFlags;
+        unsignedVar3 = dataProcessFunction(tempDataBuffer,unaff_RBP + -0x45);
         if (unsignedVar3 == 0) {
           operationFlags = 0;
-          if ((ulonglong)presourceDataBuffer[2] < (ulonglong)*(uint *)(framePointer + -0x45) + 1) {
+          if ((ulonglong)presourceDataBuffer[2] < (ulonglong)*(uint *)(unaff_RBP + -0x45) + 1) {
             unsignedVar3 = ACCESS_FLAG;
             goto LAB_18089eb3c;
           }
@@ -22965,7 +22965,7 @@ LAB_18089eb22:
     }
 LAB_18089eb3c:
     if (unsignedVar3 == 0) {
-      *(bool *)(framePointer + 0x77) = *(char *)(framePointer + -0x49) != '\0';
+      *(bool *)(unaff_RBP + 0x77) = *(char *)(unaff_RBP + -0x49) != '\0';
     }
     validationResult1 = (ulonglong)unsignedVar3;
     if (unsignedVar3 == 0) {
@@ -22990,14 +22990,14 @@ LAB_18089eb3c:
     else {
       if (presourceDataBuffer[2] == 0) {
 LAB_18089ebaa:
-        unsignedVar3 = readResourceData(*presourceDataBuffer,framePointer + -0x49,unaff_R12D,unaff_R12D,operationFlags);
+        unsignedVar3 = readResourceData(*presourceDataBuffer,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,operationFlags);
       }
       else {
-        *(int *)(framePointer + -0x45) = (int)operationFlags;
-        unsignedVar3 = dataProcessFunction(tempDataBuffer,framePointer + -0x45);
+        *(int *)(unaff_RBP + -0x45) = (int)operationFlags;
+        unsignedVar3 = dataProcessFunction(tempDataBuffer,unaff_RBP + -0x45);
         if (unsignedVar3 == 0) {
           operationFlags = 0;
-          if ((ulonglong)presourceDataBuffer[2] < (ulonglong)*(uint *)(framePointer + -0x45) + 1) {
+          if ((ulonglong)presourceDataBuffer[2] < (ulonglong)*(uint *)(unaff_RBP + -0x45) + 1) {
             unsignedVar3 = ACCESS_FLAG;
             goto LAB_18089ebc4;
           }
@@ -23008,7 +23008,7 @@ LAB_18089ebaa:
     }
 LAB_18089ebc4:
     if (unsignedVar3 == 0) {
-      *(bool *)(framePointer + 0x7f) = *(char *)(framePointer + -0x49) != '\0';
+      *(bool *)(unaff_RBP + 0x7f) = *(char *)(unaff_RBP + -0x49) != '\0';
     }
     validationResult1 = (ulonglong)unsignedVar3;
     if (unsignedVar3 == 0) {
@@ -23033,14 +23033,14 @@ LAB_18089ebc4:
     else {
       if (presourceDataBuffer[2] == 0) {
 LAB_18089ec32:
-        unsignedVar3 = readResourceData(*presourceDataBuffer,framePointer + -0x49,unaff_R12D,unaff_R12D,operationFlags);
+        unsignedVar3 = readResourceData(*presourceDataBuffer,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,operationFlags);
       }
       else {
-        *(int *)(framePointer + -0x45) = (int)operationFlags;
-        unsignedVar3 = dataProcessFunction(tempDataBuffer,framePointer + -0x45);
+        *(int *)(unaff_RBP + -0x45) = (int)operationFlags;
+        unsignedVar3 = dataProcessFunction(tempDataBuffer,unaff_RBP + -0x45);
         if (unsignedVar3 == 0) {
           operationFlags = 0;
-          if ((ulonglong)presourceDataBuffer[2] < (ulonglong)*(uint *)(framePointer + -0x45) + 1) {
+          if ((ulonglong)presourceDataBuffer[2] < (ulonglong)*(uint *)(unaff_RBP + -0x45) + 1) {
             unsignedVar3 = ACCESS_FLAG;
             goto LAB_18089ec4c;
           }
@@ -23051,7 +23051,7 @@ LAB_18089ec32:
     }
 LAB_18089ec4c:
     if (unsignedVar3 == 0) {
-      boolongVar8 = *(char *)(framePointer + -0x49) != '\0';
+      boolongVar8 = *(char *)(unaff_RBP + -0x49) != '\0';
     }
     validationResult1 = (ulonglong)unsignedVar3;
     if (unsignedVar3 == 0) {
@@ -23076,14 +23076,14 @@ LAB_18089ec4c:
     else {
       if (presourceDataBuffer[2] == 0) {
 LAB_18089ecba:
-        unsignedVar3 = readResourceData(*presourceDataBuffer,framePointer + -0x49,unaff_R12D,unaff_R12D,operationFlags);
+        unsignedVar3 = readResourceData(*presourceDataBuffer,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,operationFlags);
       }
       else {
-        *(int *)(framePointer + -0x45) = (int)operationFlags;
-        unsignedVar3 = dataProcessFunction(tempDataBuffer,framePointer + -0x45);
+        *(int *)(unaff_RBP + -0x45) = (int)operationFlags;
+        unsignedVar3 = dataProcessFunction(tempDataBuffer,unaff_RBP + -0x45);
         if (unsignedVar3 == 0) {
           operationFlags = 0;
-          if ((ulonglong)presourceDataBuffer[2] < (ulonglong)*(uint *)(framePointer + -0x45) + 1) {
+          if ((ulonglong)presourceDataBuffer[2] < (ulonglong)*(uint *)(unaff_RBP + -0x45) + 1) {
             unsignedVar3 = ACCESS_FLAG;
             goto LAB_18089ecd4;
           }
@@ -23094,7 +23094,7 @@ LAB_18089ecba:
     }
 LAB_18089ecd4:
     if (unsignedVar3 == 0) {
-      boolongVar8 = *(char *)(framePointer + -0x49) != '\0';
+      boolongVar8 = *(char *)(unaff_RBP + -0x49) != '\0';
     }
     validationResult1 = (ulonglong)unsignedVar3;
     if (unsignedVar3 == 0) {
@@ -23107,7 +23107,7 @@ LAB_18089ecd4:
   if ((int)validationResult1 != 0) {
     return validationResult1;
   }
-  if ((((!boolVar6) && (*(char *)(framePointer + 0x77) == '\0')) && (*(char *)(framePointer + 0x7f) == '\0'))
+  if ((((!boolVar6) && (*(char *)(unaff_RBP + 0x77) == '\0')) && (*(char *)(unaff_RBP + 0x7f) == '\0'))
      && (!boolongVar8)) {
     unaff_R12D = (uint32)operationFlags;
   }
@@ -23473,7 +23473,7 @@ uint64 GetIntegrityResult2(void)
   uint64 functionResult;
   longlong *baseRegister;
   longlong unaff_RSI;
-  uint32 resourceSecurityParam;
+  uint32 in_stack_000000b0;
   
   if (*(int *)(inputRegister + RESOURCE_OFFSET_HANDLE) == 0) {
     functionResult = discoverUtilityComponents(*baseRegister,unaff_RSI + RESOURCE_HANDLE_OFFSET);
@@ -23482,115 +23482,115 @@ uint64 GetIntegrityResult2(void)
       if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
         switch(*(uint32 *)(unaff_RSI + DATA_OFFSET_START)) {
         default:
-          resourceSecurityParam = 0;
+          in_stack_000000b0 = 0;
           break;
         case 1:
-          resourceSecurityParam = 1;
+          in_stack_000000b0 = 1;
           break;
         case 2:
-          resourceSecurityParam = 2;
+          in_stack_000000b0 = 2;
           break;
         case 3:
-          resourceSecurityParam = 3;
+          in_stack_000000b0 = 3;
           break;
         case 4:
-          resourceSecurityParam = 4;
+          in_stack_000000b0 = 4;
           break;
         case 5:
-          resourceSecurityParam = 5;
+          in_stack_000000b0 = 5;
           break;
         case 6:
-          resourceSecurityParam = 6;
+          in_stack_000000b0 = 6;
           break;
         case 7:
-          resourceSecurityParam = 7;
+          in_stack_000000b0 = 7;
           break;
         case 8:
-          resourceSecurityParam = 8;
+          in_stack_000000b0 = 8;
           break;
         case 9:
-          resourceSecurityParam = 9;
+          in_stack_000000b0 = 9;
           break;
         case 10:
-          resourceSecurityParam = 10;
+          in_stack_000000b0 = 10;
           break;
         case 0xb:
-          resourceSecurityParam = 0xb;
+          in_stack_000000b0 = 0xb;
           break;
         case STRUCT_MULTIPLIER:
-          resourceSecurityParam = STRUCT_MULTIPLIER;
+          in_stack_000000b0 = STRUCT_MULTIPLIER;
           break;
         case 0xd:
-          resourceSecurityParam = 0xd;
+          in_stack_000000b0 = 0xd;
           break;
         case 0xe:
-          resourceSecurityParam = 0xe;
+          in_stack_000000b0 = 0xe;
           break;
         case ALIGNMENT_MASK:
-          resourceSecurityParam = ALIGNMENT_MASK;
+          in_stack_000000b0 = ALIGNMENT_MASK;
           break;
         case RESOURCE_HANDLE_OFFSET:
-          resourceSecurityParam = RESOURCE_HANDLE_OFFSET;
+          in_stack_000000b0 = RESOURCE_HANDLE_OFFSET;
           break;
         case ACCESS_FLAG:
-          resourceSecurityParam = ACCESS_FLAG;
+          in_stack_000000b0 = ACCESS_FLAG;
           break;
         case 0x12:
-          resourceSecurityParam = 0x12;
+          in_stack_000000b0 = 0x12;
           break;
         case 0x13:
-          resourceSecurityParam = 0x13;
+          in_stack_000000b0 = 0x13;
           break;
         case RESOURCE_DATA_OFFSET:
-          resourceSecurityParam = RESOURCE_DATA_OFFSET;
+          in_stack_000000b0 = RESOURCE_DATA_OFFSET;
           break;
         case 0x15:
-          resourceSecurityParam = 0x15;
+          in_stack_000000b0 = 0x15;
           break;
         case 0x16:
-          resourceSecurityParam = 0x16;
+          in_stack_000000b0 = 0x16;
           break;
         case 0x17:
-          resourceSecurityParam = 0x17;
+          in_stack_000000b0 = 0x17;
           break;
         case RESOURCE_OFFSET_HANDLE:
-          resourceSecurityParam = RESOURCE_OFFSET_HANDLE;
+          in_stack_000000b0 = RESOURCE_OFFSET_HANDLE;
           break;
         case 0x19:
-          resourceSecurityParam = 0x19;
+          in_stack_000000b0 = 0x19;
           break;
         case 0x1a:
-          resourceSecurityParam = 0x1a;
+          in_stack_000000b0 = 0x1a;
           break;
         case 0x1b:
-          resourceSecurityParam = 0x1b;
+          in_stack_000000b0 = 0x1b;
           break;
         case BYTE_OFFSET_FLAG:
-          resourceSecurityParam = BYTE_OFFSET_FLAG;
+          in_stack_000000b0 = BYTE_OFFSET_FLAG;
           break;
         case ERROR_CODE_5:
-          resourceSecurityParam = ERROR_CODE_5;
+          in_stack_000000b0 = ERROR_CODE_5;
           break;
         case SUCCESS_CODE:
-          resourceSecurityParam = SUCCESS_CODE;
+          in_stack_000000b0 = SUCCESS_CODE;
           break;
         case ERROR_CODE_FAILED:
-          resourceSecurityParam = ERROR_CODE_FAILED;
+          in_stack_000000b0 = ERROR_CODE_FAILED;
           break;
         case POINTER_OFFSET_DATA:
-          resourceSecurityParam = POINTER_OFFSET_DATA;
+          in_stack_000000b0 = POINTER_OFFSET_DATA;
           break;
         case 0x21:
-          resourceSecurityParam = 0x21;
+          in_stack_000000b0 = 0x21;
           break;
         case 0x22:
-          resourceSecurityParam = 0x22;
+          in_stack_000000b0 = 0x22;
           break;
         case 0x23:
-          resourceSecurityParam = 0x23;
+          in_stack_000000b0 = 0x23;
           break;
         case FIELD_OFFSET_3:
-          resourceSecurityParam = FIELD_OFFSET_3;
+          in_stack_000000b0 = FIELD_OFFSET_3;
         }
         functionResult = (**(code **)**(uint64 **)(*baseRegister + 8))
                           (*(uint64 **)(*baseRegister + 8),&stack0x000000b0,4);
@@ -23623,7 +23623,7 @@ void ValidateIntegrityData2(void)
   longlong *baseRegister;
   int unaff_EBP;
   longlong unaff_RSI;
-  uint32 resourceSecurityParam;
+  uint32 in_stack_000000b0;
   
   if (in_EAX == 0x1b) {
     if (*(uint *)(baseRegister + 8) < 0x3b) {
@@ -23641,7 +23641,7 @@ void ValidateIntegrityData2(void)
     }
     operationStatus = unaff_EBP;
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-      resourceSecurityParam = 6;
+      in_stack_000000b0 = 6;
       operationStatus = (**(code **)**(uint64 **)(*baseRegister + 8))
                         (*(uint64 **)(*baseRegister + 8),&stack0x000000b0,4);
     }
@@ -23660,7 +23660,7 @@ void ValidateIntegrityData2(void)
       unaff_EBP = 0;
     }
     else if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-      resourceSecurityParam = CONCAT31(resourceSecurityParam._1_3_,*(byte *)(unaff_RSI + 0x5c));
+      in_stack_000000b0 = CONCAT31(in_stack_000000b0._1_3_,*(byte *)(unaff_RSI + 0x5c));
       unaff_EBP = (**(code **)**(uint64 **)(*baseRegister + 8))
                             (*(uint64 **)(*baseRegister + 8),&stack0x000000b0,1);
     }
@@ -23702,7 +23702,7 @@ void InitializeDataOperator(void)
 
 
 ulonglong ProcessSystemTask(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize,uint32 operationFlags,uint32 callbackFunction,
-                       char additionalResourceParam)
+                       char param_5)
 
 {
   uint functionResult;
@@ -23717,7 +23717,7 @@ ulonglong ProcessSystemTask(longlong resourceHandle,uint64 *memoryBlockBlockBloc
       functionResult = discoverUtilityComponents(*memoryBlockBlockBlockSize,resourceHandle + RESOURCE_HANDLE_OFFSET);
       unsignedCounter = (ulonglong)functionResult;
       if ((functionResult == 0) &&
-         ((additionalResourceParam == '\0' || (unsignedCounter = HandleSystemOperation3(resourceHandle + BUFFER_OFFSET_DATA,memoryBlockSize), (int)unsignedCounter == 0)))) {
+         ((param_5 == '\0' || (unsignedCounter = HandleSystemOperation3(resourceHandle + BUFFER_OFFSET_DATA,memoryBlockSize), (int)unsignedCounter == 0)))) {
                     // WARNING: Subroutine does not return
         ProcessCallbackRequest2(memoryBlockSize,localBuffer);
       }
@@ -23737,16 +23737,16 @@ ulonglong InitializeTaskHandler(void)
   uint functionResult;
   ulonglong unsignedCounter;
   uint64 *baseRegister;
-  longlong framePointer;
+  longlong unaff_RBP;
   char in_stack_000000d0;
   
   unsignedCounter = ValidateOperationHandle2();
   if ((int)unsignedCounter == 0) {
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-      functionResult = discoverUtilityComponents(*baseRegister,framePointer + RESOURCE_HANDLE_OFFSET);
+      functionResult = discoverUtilityComponents(*baseRegister,unaff_RBP + RESOURCE_HANDLE_OFFSET);
       unsignedCounter = (ulonglong)functionResult;
       if ((functionResult == 0) &&
-         ((in_stack_000000d0 == '\0' || (unsignedCounter = HandleSystemOperation3(framePointer + BUFFER_OFFSET_DATA), (int)unsignedCounter == 0)))
+         ((in_stack_000000d0 == '\0' || (unsignedCounter = HandleSystemOperation3(unaff_RBP + BUFFER_OFFSET_DATA), (int)unsignedCounter == 0)))
          ) {
                     // WARNING: Subroutine does not return
         ProcessCallbackRequest2();
@@ -23899,7 +23899,7 @@ ulonglong GetOperationResult3(void)
   uint unsignedCounter;
   longlong inputRegister;
   ulonglong unsignedVar3;
-  longlong framePointer;
+  longlong unaff_RBP;
   uint unaff_ESI;
   longlong *unaff_RDI;
   uint32 stackParameter1;
@@ -23907,18 +23907,18 @@ ulonglong GetOperationResult3(void)
   uint16_t stackParameter3;
   uint16_t uStack000000000000003e;
   uint16_t in_stack_000000a0;
-  uint16_t threadLocalSecurityParam;
+  uint16_t in_stack_000000a8;
   
   if (*(uint *)(inputRegister + RESOURCE_OFFSET_HANDLE) != unaff_ESI) {
     return BYTE_OFFSET_FLAG;
   }
-  unsignedCounter = discoverUtilityComponents(*unaff_RDI,framePointer + RESOURCE_HANDLE_OFFSET);
+  unsignedCounter = discoverUtilityComponents(*unaff_RDI,unaff_RBP + RESOURCE_HANDLE_OFFSET);
   unsignedVar3 = (ulonglong)unsignedCounter;
   if (unsignedCounter == 0) {
     if (*(uint *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) != unaff_ESI) {
       return BYTE_OFFSET_FLAG;
     }
-    unsignedCounter = discoverUtilityComponents(*unaff_RDI,framePointer + POINTER_OFFSET_DATA);
+    unsignedCounter = discoverUtilityComponents(*unaff_RDI,unaff_RBP + POINTER_OFFSET_DATA);
     unsignedVar3 = (ulonglong)unsignedCounter;
     if (unsignedCounter == 0) {
       unsignedVar3 = BYTE_OFFSET_FLAG;
@@ -23934,7 +23934,7 @@ ulonglong GetOperationResult3(void)
           unsignedCounter = (**(code **)**(uint64 **)(resourceDataBuffer + 8))
                             (*(uint64 **)(resourceDataBuffer + 8),&stack0x000000a0,2);
           if (unsignedCounter == 0) {
-            threadLocalSecurityParam = uStack000000000000003e;
+            in_stack_000000a8 = uStack000000000000003e;
             unsignedCounter = (**(code **)**(uint64 **)(resourceDataBuffer + 8))
                               (*(uint64 **)(resourceDataBuffer + 8),&stack0x000000a8,2);
             if (unsignedCounter == 0) {
@@ -23948,7 +23948,7 @@ ulonglong GetOperationResult3(void)
         return (ulonglong)unsignedCounter;
       }
       if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-        unsignedCounter = discoverUtilityComponents(*unaff_RDI,framePointer + FIELD_OFFSET_1);
+        unsignedCounter = discoverUtilityComponents(*unaff_RDI,unaff_RBP + FIELD_OFFSET_1);
         unsignedVar3 = (ulonglong)unsignedCounter;
         if (unsignedCounter == 0) {
           unsignedVar3 = GetResourceCapacity();
@@ -23972,7 +23972,7 @@ ulonglong ValidateOperationData3(void)
   longlong resourceDataBuffer;
   uint unsignedCounter;
   ulonglong unsignedVar3;
-  longlong framePointer;
+  longlong unaff_RBP;
   uint unaff_ESI;
   longlong *unaff_RDI;
   uint32 stackParameter1;
@@ -23980,9 +23980,9 @@ ulonglong ValidateOperationData3(void)
   uint16_t stackParameter3;
   uint16_t uStack000000000000003e;
   uint16_t in_stack_000000a0;
-  uint16_t threadLocalSecurityParam;
+  uint16_t in_stack_000000a8;
   
-  unsignedCounter = discoverUtilityComponents(*unaff_RDI,framePointer + POINTER_OFFSET_DATA);
+  unsignedCounter = discoverUtilityComponents(*unaff_RDI,unaff_RBP + POINTER_OFFSET_DATA);
   unsignedVar3 = (ulonglong)unsignedCounter;
   if (unsignedCounter == 0) {
     unsignedVar3 = BYTE_OFFSET_FLAG;
@@ -23998,7 +23998,7 @@ ulonglong ValidateOperationData3(void)
         unsignedCounter = (**(code **)**(uint64 **)(resourceDataBuffer + 8))
                           (*(uint64 **)(resourceDataBuffer + 8),&stack0x000000a0,2);
         if (unsignedCounter == 0) {
-          threadLocalSecurityParam = uStack000000000000003e;
+          in_stack_000000a8 = uStack000000000000003e;
           unsignedCounter = (**(code **)**(uint64 **)(resourceDataBuffer + 8))
                             (*(uint64 **)(resourceDataBuffer + 8),&stack0x000000a8,2);
           if (unsignedCounter == 0) {
@@ -24012,7 +24012,7 @@ ulonglong ValidateOperationData3(void)
       return (ulonglong)unsignedCounter;
     }
     if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-      unsignedCounter = discoverUtilityComponents(*unaff_RDI,framePointer + FIELD_OFFSET_1);
+      unsignedCounter = discoverUtilityComponents(*unaff_RDI,unaff_RBP + FIELD_OFFSET_1);
       unsignedVar3 = (ulonglong)unsignedCounter;
       if (unsignedCounter == 0) {
         unsignedVar3 = GetResourceCapacity();
@@ -24036,11 +24036,11 @@ ulonglong ProcessDataValidation2(void)
   uint unsignedCounter;
   ulonglong unsignedVar3;
   ulonglong baseRegister;
-  longlong framePointer;
+  longlong unaff_RBP;
   longlong *unaff_RDI;
   uint64 in_stack_00000038;
   uint16_t in_stack_000000a0;
-  uint16_t threadLocalSecurityParam;
+  uint16_t in_stack_000000a8;
   
   resourceDataBuffer = *unaff_RDI;
   unsignedCounter = (**(code **)**(uint64 **)(resourceDataBuffer + 8))();
@@ -24049,7 +24049,7 @@ ulonglong ProcessDataValidation2(void)
     unsignedCounter = (**(code **)**(uint64 **)(resourceDataBuffer + 8))
                       (*(uint64 **)(resourceDataBuffer + 8),&stack0x000000a0,2);
     if (unsignedCounter == 0) {
-      threadLocalSecurityParam = in_stack_00000038._6_2_;
+      in_stack_000000a8 = in_stack_00000038._6_2_;
       unsignedCounter = (**(code **)**(uint64 **)(resourceDataBuffer + 8))
                         (*(uint64 **)(resourceDataBuffer + 8),&stack0x000000a8,2);
       if (unsignedCounter == 0) {
@@ -24062,7 +24062,7 @@ ulonglong ProcessDataValidation2(void)
     return (ulonglong)unsignedCounter;
   }
   if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-    unsignedCounter = discoverUtilityComponents(*unaff_RDI,framePointer + FIELD_OFFSET_1);
+    unsignedCounter = discoverUtilityComponents(*unaff_RDI,unaff_RBP + FIELD_OFFSET_1);
     baseRegister = (ulonglong)unsignedCounter;
     if (unsignedCounter == 0) {
       unsignedVar3 = GetResourceCapacity();
@@ -24084,7 +24084,7 @@ ulonglong InitializeDataValidator2(void)
   uint functionResult;
   ulonglong unsignedCounter;
   ulonglong baseRegister;
-  longlong framePointer;
+  longlong unaff_RBP;
   uint unaff_ESI;
   uint64 *unaff_RDI;
   
@@ -24092,7 +24092,7 @@ ulonglong InitializeDataValidator2(void)
     return (ulonglong)unaff_ESI;
   }
   if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-    functionResult = discoverUtilityComponents(*unaff_RDI,framePointer + FIELD_OFFSET_1);
+    functionResult = discoverUtilityComponents(*unaff_RDI,unaff_RBP + FIELD_OFFSET_1);
     baseRegister = (ulonglong)functionResult;
     if (functionResult == 0) {
       unsignedCounter = GetResourceCapacity();
@@ -24114,11 +24114,11 @@ ulonglong GetValidationResult3(void)
   uint functionResult;
   ulonglong unsignedCounter;
   ulonglong baseRegister;
-  longlong framePointer;
+  longlong unaff_RBP;
   uint64 *unaff_RDI;
   
   if (*(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-    functionResult = discoverUtilityComponents(*unaff_RDI,framePointer + FIELD_OFFSET_1);
+    functionResult = discoverUtilityComponents(*unaff_RDI,unaff_RBP + FIELD_OFFSET_1);
     baseRegister = (ulonglong)functionResult;
     if (functionResult == 0) {
       unsignedCounter = GetResourceCapacity();
@@ -24171,7 +24171,7 @@ void InitializeSystemModule20(longlong resourceHandle,uint64 memoryBlockSize)
   
   operationStatus = ValidateOperationHandle2(memoryBlockSize,localBuffer,0,0x4f525443,0);
   if (operationStatus == 0) {
-    operationStatus = allocateMemoryBlock(memoryBlockSize,resourceHandle + 8);
+    operationStatus = FUN_1808a7b00(memoryBlockSize,resourceHandle + 8);
     if (operationStatus == 0) {
                     // WARNING: Subroutine does not return
       ProcessCallbackRequest2(memoryBlockSize,localBuffer);
@@ -24182,7 +24182,7 @@ void InitializeSystemModule20(longlong resourceHandle,uint64 memoryBlockSize)
 
 
 
-uint64 initializeResourceMemory(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
+uint64 FUN_18089fba0(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
 
 {
   uint64 functionResult;
@@ -24199,7 +24199,7 @@ uint64 initializeResourceMemory(longlong resourceHandle,uint64 *memoryBlockBlock
         return BYTE_OFFSET_FLAG;
       }
       functionResult = discoverUtilityComponents(*memoryBlockBlockBlockSize,resourceHandle + POINTER_OFFSET_DATA);
-      if (((int)functionResult == 0) && (functionResult = allocateResourceMemory(memoryBlockSize,resourceHandle + FIELD_OFFSET_1,1,0), (int)functionResult == 0))
+      if (((int)functionResult == 0) && (functionResult = FUN_1808a4fb0(memoryBlockSize,resourceHandle + FIELD_OFFSET_1,1,0), (int)functionResult == 0))
       {
                     // WARNING: Subroutine does not return
         ProcessCallbackRequest2(memoryBlockSize,localBuffer);
@@ -24211,7 +24211,7 @@ uint64 initializeResourceMemory(longlong resourceHandle,uint64 *memoryBlockBlock
 
 
 
-uint64 validateResourceMemory(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
+uint64 FUN_18089fc50(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
 
 {
   uint64 functionResult;
@@ -24241,7 +24241,7 @@ uint64 validateResourceMemory(longlong resourceHandle,uint64 *memoryBlockBlockBl
 
 
 
-uint64 cleanupResourceMemory(longlong resourceHandle,longlong *memoryBlockBlockBlockSize)
+uint64 FUN_18089fd30(longlong resourceHandle,longlong *memoryBlockBlockBlockSize)
 
 {
   uint64 functionResult;
@@ -24321,7 +24321,7 @@ uint64 cleanupResourceMemory(longlong resourceHandle,longlong *memoryBlockBlockB
 
 
 
-uint64 resizeResourceMemory(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
+uint64 FUN_18089fed0(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
 
 {
   uint64 functionResult;
@@ -24341,7 +24341,7 @@ uint64 resizeResourceMemory(longlong resourceHandle,uint64 *memoryBlockBlockBloc
       }
       functionResult = discoverUtilityComponents(*memoryBlockBlockBlockSize,resourceHandle + 0xd8);
       if ((((int)functionResult == 0) && (functionResult = CheckResourceCapacity(memoryBlockSize,resourceHandle + SYSTEM_OFFSET_FLAGS), (int)functionResult == 0)) &&
-         (functionResult = allocateLargeMemoryBlock(memoryBlockSize,resourceHandle + 0xe8,1,resourceHandle), (int)functionResult == 0)) {
+         (functionResult = FUN_1808a6e50(memoryBlockSize,resourceHandle + 0xe8,1,resourceHandle), (int)functionResult == 0)) {
                     // WARNING: Subroutine does not return
         ProcessCallbackRequest2(memoryBlockSize,localBuffer);
       }
@@ -24352,14 +24352,14 @@ uint64 resizeResourceMemory(longlong resourceHandle,uint64 *memoryBlockBlockBloc
 
 
 
-uint64 processMemoryAllocation(uint64 resourceHandle,longlong memoryBlockSize)
+uint64 FUN_18089ffe0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
   uint64 functionResult;
   byte localBuffer [32];
   
   if (*(uint *)(memoryBlockSize + BUFFER_SIZE_OFFSET) < 0x31) {
-    functionResult = allocateMemoryWithType(resourceHandle,memoryBlockSize,0x544e5645);
+    functionResult = FUN_1808a3d50(resourceHandle,memoryBlockSize,0x544e5645);
     if ((int)functionResult == 0) {
       functionResult = 0;
     }
@@ -24367,7 +24367,7 @@ uint64 processMemoryAllocation(uint64 resourceHandle,longlong memoryBlockSize)
   else {
     functionResult = ValidateOperationHandle2(memoryBlockSize,localBuffer,1,0x5453494c,0x544e5645);
     if ((int)functionResult == 0) {
-      functionResult = allocateMemoryWithType(resourceHandle,memoryBlockSize,0x42545645);
+      functionResult = FUN_1808a3d50(resourceHandle,memoryBlockSize,0x42545645);
       if ((int)functionResult == 0) {
         functionResult = FUN_1808a1610(resourceHandle,memoryBlockSize);
         if ((int)functionResult == 0) {
