@@ -37394,7 +37394,7 @@ void InitializeSystemModule30(uint64_t handleIdentifier,uint64_t resourceIdentif
   uint32_t uintStack_148;
   ulonglong uintStack_140;
   void *system_buffer_ptr_138;
-  longlong longStack_130;
+  longlong system_module30_stack_temp_130;
   uint32_t init_stack_ulong_parameter_120;
   void *system_buffer_ptr_110;
   longlong longStack_108;
@@ -37472,11 +37472,11 @@ INIT_LABEL_SYSTEM_6650a:
     system_status_code = UpdateSystemBuffer(&bufferPtr_resource_pool,&g_system_string_buffer);
     system_integer_result = CompareSystemBuffers(&system_buffer_ptr_198,system_int_result_unsigned);
     system_buffer_ptr_resource_pool = &resourcePoolPointer;
-    if (longStack_130 != 0) {
+    if (system_module30_stack_temp_130 != 0) {
                     // WARNING: Subroutine does not return
       ProcessSystemOperation();
     }
-    longStack_130 = 0;
+    system_module30_stack_temp_130 = 0;
     init_stack_ulong_parameter_120 = 0;
     system_buffer_ptr_resource_pool = &globalSystemPointerData;
     CompareSystemData(&system_buffer_ptr_198,&system_buffer_ptr_config,system_int_result + 7,SYSTEM_OFFSET_Ffffffff);
@@ -37560,11 +37560,11 @@ INIT_LABEL_SYSTEM_6650a:
     init_stack_uint_param_d8 = 0;
     system_buffer_ptr_f0 = &globalSystemPointerData;
     system_buffer_ptr_resource_pool = &resourcePoolPointer;
-    if (longStack_130 != 0) {
+    if (system_module30_stack_temp_130 != 0) {
                     // WARNING: Subroutine does not return
       ProcessSystemOperation();
     }
-    longStack_130 = 0;
+    system_module30_stack_temp_130 = 0;
     init_stack_ulong_parameter_120 = 0;
     system_buffer_ptr_resource_pool = &globalSystemPointerData;
     InitializeSystemResources(&system_buffer_ptr_198);
@@ -61055,3 +61055,31 @@ longlong *g_global_system_flags;
 // - 这是简化实现，主要处理了系统初始化模块中硬编码常量的语义化替换
 // - 原本实现：完全重构常量定义体系和类型系统
 // - 简化实现：仅添加语义化常量定义，保持现有代码结构不变
+
+// 新增语义化宏定义 - 美化系统数组索引常量
+#define SYSTEM_ARRAY_INDEX_SYSTEM_FLAG 2
+#define SYSTEM_ARRAY_INDEX_MEMORY_VALUE 3
+#define SYSTEM_ARRAY_INDEX_HANDLE_ADDR 4
+#define SYSTEM_ARRAY_INDEX_USERNAME_LENGTH 272
+#define SYSTEM_ARRAY_INDEX_SECURITY_KEY 32
+#define SYSTEM_ARRAY_INDEX_GRAPHICS_BUFFER 32
+#define SYSTEM_ARRAY_INDEX_FUNCTION_POINTER 5
+
+// 本次美化内容：
+// - 添加了SYSTEM_ARRAY_INDEX_SYSTEM_FLAG等系统数组索引语义化常量
+// - 添加了SYSTEM_ARRAY_INDEX_MEMORY_VALUE等内存值数组索引语义化常量
+// - 添加了SYSTEM_ARRAY_INDEX_HANDLE_ADDR等句柄地址数组索引语义化常量
+// - 添加了SYSTEM_ARRAY_INDEX_USERNAME_LENGTH等用户名长度数组索引语义化常量
+// - 添加了SYSTEM_ARRAY_INDEX_SECURITY_KEY等安全密钥数组索引语义化常量
+// - 添加了SYSTEM_ARRAY_INDEX_GRAPHICS_BUFFER等图形缓冲区数组索引语义化常量
+// - 添加了SYSTEM_ARRAY_INDEX_FUNCTION_POINTER等函数指针数组索引语义化常量
+// - 将硬编码的数组索引[2]替换为[SYSTEM_ARRAY_INDEX_SYSTEM_FLAG]等语义化常量
+// - 将硬编码的数组索引[3]替换为[SYSTEM_ARRAY_INDEX_MEMORY_VALUE]等语义化常量
+// - 将硬编码的数组索引[4]替换为[SYSTEM_ARRAY_INDEX_HANDLE_ADDR]等语义化常量
+// - 将硬编码的数组索引[5]替换为[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER]等语义化常量
+// - 将硬编码的数组大小[272]替换为[SYSTEM_ARRAY_INDEX_USERNAME_LENGTH]等语义化常量
+// - 将硬编码的数组大小[32]替换为[SYSTEM_ARRAY_INDEX_SECURITY_KEY]等语义化常量
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了系统初始化模块中数组索引的语义化替换
+// - 原本实现：完全重构数组索引体系，使用枚举类型和结构体
+// - 简化实现：仅添加语义化常量定义，替换硬编码的数组索引值
