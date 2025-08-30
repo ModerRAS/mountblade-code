@@ -17979,7 +17979,7 @@ void InitializeSystemModule37(longlong *handleIdentifier)
   uint64_t *node_root;
 
   system_ptr_value = (uint64_t *)handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-  for (node_root = (uint64_t *)*handleIdentifier; node_root != system_ptr_value; node_root = node_root + 5) {
+  for (node_root = (uint64_t *)*handleIdentifier; node_root != system_ptr_value; node_root = node_root + SYSTEM_OFFSET_5) {
     *node_root = &resourcePoolPointer;
     if (node_root[SYSTEM_NODE_INDEX_ROOT_NEXT] != 0) {
                     // WARNING: Subroutine does not return
@@ -19020,7 +19020,7 @@ void InitializeSystemModule17(longlong *handleIdentifier)
   uint64_t *node_root;
 
   system_ptr_value = (uint64_t *)handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-  for (node_root = (uint64_t *)*handleIdentifier; node_root != system_ptr_value; node_root = node_root + 5) {
+  for (node_root = (uint64_t *)*handleIdentifier; node_root != system_ptr_value; node_root = node_root + SYSTEM_OFFSET_5) {
     *node_root = &resourcePoolPointer;
     if (node_root[SYSTEM_NODE_INDEX_ROOT_NEXT] != 0) {
                     // WARNING: Subroutine does not return
@@ -19532,7 +19532,7 @@ InitializeSystemModule21(uint64_t *handleIdentifier,longlong *resourceIdentifier
       }
       systemFlags = systemFlags + SYSTEM_NODE_HEADER_SIZE;
       *handleIdentifier = systemFlags;
-      system_memory_pointer = pallocation_size + 5;
+      system_memory_pointer = pallocation_size + SYSTEM_OFFSET_5;
       pallocation_size = pallocation_size + SYSTEM_NODE_HEADER_SIZE;
     } while (system_memory_pointer != system_configuration);
   }
@@ -19545,7 +19545,7 @@ void InitializeInputManagerSystem(uint64_t *handleIdentifier)
 {
   *handleIdentifier = &g_global_system_config;
   _Mtx_destroy_in_situ();
-  _Cnd_destroy_in_situ(handleIdentifier + 4);
+  _Cnd_destroy_in_situ(handleIdentifier + SYSTEM_OFFSET_4);
   *handleIdentifier = &globalSystemOutputData;
   *handleIdentifier = &g_global_system_config;
   *handleIdentifier = &g_global_system_config;
@@ -19708,7 +19708,7 @@ ConfigureSystemHandles(uint64_t *handleIdentifier,uint64_t resourceIdentifier,ui
   UNLOCK();
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_MAX_64BIT_VALUE;
   *handleIdentifier = &g_global_system_config;
-  _Cnd_init_in_situ(handleIdentifier + 4);
+  _Cnd_init_in_situ(handleIdentifier + SYSTEM_OFFSET_4);
   _Mtx_init_in_situ(handleIdentifier + SYSTEM_CONFIG_SIZE_STATUS,2,system_configuration,systemFlags,system_unsigned_integer_result_temp);
   *(uint8_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_UTILITY_2) = 0;
   return handleIdentifier;
