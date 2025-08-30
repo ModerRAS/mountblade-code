@@ -108,6 +108,14 @@
 // - 美化栈操作偏移量常量，将UTILITY_OPERATION_OFFSET_STACK_STANDARD等替换为UTILITY_OPERATION_OFFSET_STACK_STANDARD等语义化常量
 // - 美化掩码常量，将UTILITY_MASK_HIGH_BYTE等替换为UTILITY_MASK_HIGH_BYTE等语义化常量
 // - 保持代码语义不变，这是简化实现，主要处理了工具系统中硬编码十六进制值的语义化替换
+// 新增最终硬编码十六进制值语义化美化（2025年8月30日最终批次最新完成）：
+// - 美化内存地址偏移量变量名，将utility_memory_address_offset_extended_8000替换为UTILITY_MEMORY_ADDRESS_OFFSET_EXTENDED_CRITICAL_FLAG等语义化常量
+// - 美化线程本地存储偏移量变量名，将utility_thread_local_storage_offset_extended_extended_1F38等替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_EXTENDED_*等语义化常量
+// - 美化资源数据缓冲区偏移量变量名，将utility_resource_data_buffer_offset_extended_extended_secondary8替换为UTILITY_RESOURCE_DATA_BUFFER_OFFSET_EXTENDED_EXTENDED_SECONDARY8等语义化常量
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了工具系统中剩余的硬编码十六进制值的语义化替换
+// - 原本实现：完全重构工具系统所有硬编码值命名体系，建立统一的语义化命名规范
+// - 简化实现：仅将剩余的硬编码十六进制值替换为语义化常量，保持代码结构不变
 // 新增工具模块函数名语义化美化（2025年8月30日最终批次最新完成）：
 // - 美化工具模块函数名，将utility_module_1替换为utility_module_data_processor等语义化函数名
 // - 美化工具模块函数名，将utility_module_8替换为utility_module_memory_handler等语义化函数名
