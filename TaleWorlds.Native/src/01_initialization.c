@@ -25422,8 +25422,8 @@ INIT_LABEL_SYSTEM_535b0:
   if (system_node_previous != (uint8_t *)SYSTEM_NULL_POINTER) {
     system_node_previous[system_counter_temp] = 0;
   }
-  uintStack_1f4 = *(uint32_t *)(system_configuration + SYSTEM_CONFIG_SIZE_NETWORK);
-  init_stack_parameter_198 = CONCAT44(uintStack_1f4,(uint32_t)init_stack_parameter_198);
+  uint_stack_network_size = *(uint32_t *)(system_configuration + SYSTEM_CONFIG_SIZE_NETWORK);
+  init_stack_parameter_198 = CONCAT44(uint_stack_network_size,(uint32_t)init_stack_parameter_198);
   init_stack_parameter_1a0 = system_integer_unsigned_temp;
   if (system_counter_temp != SYSTEM_OFFSET_Fffffffa) {
     system_result_operation = system_counter_temp + 7;
@@ -25586,7 +25586,7 @@ void InitializeAuthenticationSystem(longlong *handleIdentifier,longlong resource
   longlong system_long_result_temp;
   ulonglong system_result_operation;
   uint8_t system_local_buffer_temp_data_238 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-  uint32_t uintStack_218;
+  uint32_t uint_stack_resource_handle;
   void *system_buffer_ptr_render_context;
   longlong init_stack_mutex_handle_200;
   uint uint_stack_system_aux;
@@ -25747,7 +25747,7 @@ void InitializeAuthenticationSystem(longlong *handleIdentifier,longlong resource
   init_stack_mutex_handle_200 = 0;
   initialization_stack_unsigned_register_1f0 = 0;
   system_buffer_ptr_render_context = &globalSystemPointerData;
-  uintStack_218 = SYSTEM_OFFSET_Ffffffff;
+  uint_stack_resource_handle = SYSTEM_OFFSET_Ffffffff;
   uint_stack_graphics_aux = system_integer_unsigned_temp;
   initialization_stack_parameter_high_dword = *(uint *)(system_long_result + SYSTEM_CONFIG_SIZE_NETWORK);
   ProcessSystemConfiguration(ptr_data,system_configuration_data,&system_buffer_ptr_shader_context,&initialization_stack_float_register_148);
@@ -41552,7 +41552,7 @@ void InitializeNetworkSystem(longlong handleIdentifier)
   longlong longStack_238;
   longlong init_stack_memory_offset_230;
   uint8_t init_stack_uint_param_228;
-  uint64_t uintStack_218;
+  uint64_t uint_stack_resource_handle;
   int init_stack_nano_seconds_210;
   uint32_t init_stack_uint_parameter_20c;
   uint64_t init_stack_uint_parameter_208;
@@ -41625,10 +41625,10 @@ void InitializeNetworkSystem(longlong handleIdentifier)
         system_long_result_temp = system_long_result / 1000000000;
         init_stack_temp_int_48 = (int)system_temp_long;
         init_stack_nano_seconds_210 = (int)system_long_result + init_stack_temp_int_48 * -1000000000;
-        uintStack_218._4_4_ = (uint32_t)((ulonglong)system_long_result >> SYSTEM_NODE_HEADER_SIZE);
-        uintStack_44 = uintStack_218._4_4_;
+        uint_stack_resource_handle._4_4_ = (uint32_t)((ulonglong)system_long_result >> SYSTEM_NODE_HEADER_SIZE);
+        uintStack_44 = uint_stack_resource_handle._4_4_;
         init_stack_texture_result_3c = init_stack_uint_parameter_20c;
-        uintStack_218 = system_temp_long;
+        uint_stack_resource_handle = system_temp_long;
         intStack_40 = init_stack_nano_seconds_210;
         system_temp_integer = _Mtx_current_owns(system_long_result);
         if (system_temp_integer_primary == SYSTEM_COMPARISON_ZERO) {

@@ -12277,7 +12277,7 @@ long long process_context_handle_param(long long *handle_param)
             float_var = SYSTEM_FLOAT_VALUE_ZERO;
           }
         }
-        *(float *)((long long)&maximum_stack_size + str_len_counter) = float_var + 0.01;
+        *(float *)((long long)&maximum_stack_size + str_len_counter) = float_var + SYSTEM_FLOAT_ADJUSTMENT_SMALL;
       }
       pfloat_var = pfloat_var + SYSTEM_OFFSET_HANDLE_PARAM;
       str_len_counter = str_len_counter + SYSTEM_OFFSET_STRING_BUFFER_SIZE;
@@ -12341,7 +12341,7 @@ long long process_context_handle_param(long long *handle_param)
             float_var = SYSTEM_FLOAT_VALUE_ZERO;
           }
         }
-        *pfloat_var = float_var + 0.01;
+        *pfloat_var = float_var + SYSTEM_FLOAT_ADJUSTMENT_SMALL;
         pfloat_var = pfloat_var + SYSTEM_OFFSET_HANDLE_PARAM;
         pfloat_var = pfloat_var + SYSTEM_OFFSET_HANDLE_PARAM;
         str_len_counter = str_len_counter + -1;
@@ -12486,10 +12486,10 @@ unsigned long long allocate_resource_memory(int handle_param)
       unassigned_xmm_register_six_fourth_float_ = (float_var + float_var) - float_var * float_var * athread_operation_flags_first_float_;
       do {
         thread_operation_flags = GetSystemFlags();
-        athread_operation_flags_first_float_ = (float)thread_operation_flags * 2.0;
-        athread_operation_flags_low_half_ = (float)((ulong long)thread_operation_flags >> path_buffer_size) * 2.0;
-        athread_operation_flags_third_float_ = (float)extra_output_xmm_register_zero * 2.0;
-        athread_operation_flags_fourth_float_ = (float)((ulong long)extra_output_xmm_register_zero >> path_buffer_size) * 2.0;
+        athread_operation_flags_first_float_ = (float)thread_operation_flags * SYSTEM_FLOAT_ARITHMETIC_MULTIPLY;
+        athread_operation_flags_low_half_ = (float)((ulong long)thread_operation_flags >> path_buffer_size) * SYSTEM_FLOAT_ARITHMETIC_MULTIPLY;
+        athread_operation_flags_third_float_ = (float)extra_output_xmm_register_zero * SYSTEM_FLOAT_ARITHMETIC_MULTIPLY;
+        athread_operation_flags_fourth_float_ = (float)((ulong long)extra_output_xmm_register_zero >> path_buffer_size) * SYSTEM_FLOAT_ARITHMETIC_MULTIPLY;
         buffer_allocation_result = (int)buffer_allocation_result + SYSTEM_OFFSET_HANDLE_PARAM;
         buffer_allocation_result = (ulong long)buffer_allocation_result;
         athread_operation_flags = rcpps(in_XMM2,athread_operation_flags);
