@@ -24726,7 +24726,7 @@ void InitializeAudioMutex(longlong handleIdentifier,float resourceIdentifier,uin
       system_result_operation = (longlong)(int)(((int)system_counter_temp / (int)system_counter_temp) * system_counter_temp) / (longlong)system_temp_integer;
       system_result_operation = (uint)system_integer_unsigned_temp;
       if (((system_counter_temp & 1) == SYSTEM_COMPARISON_ZERO) && ((system_counter_temp & 1) == SYSTEM_COMPARISON_ZERO)) goto INIT_LABEL_SYSTEM_52ce3;
-      system_float_value = system_float_result_value + 0.01;
+      system_float_value = system_float_result_value + SYSTEM_FLOAT_MULTIPLIER_POINT_ZERO_ONE;
       *(float *)(handleIdentifier + SYSTEM_MEMORY_OFFSET_234) = system_float_value;
     } while (system_float_result_value <= 1.0);
     *(uint32_t *)(handleIdentifier + SYSTEM_MEMORY_OFFSET_234) = SYSTEM_FLOAT_1_0;
@@ -24761,7 +24761,7 @@ INIT_LABEL_SYSTEM_52ce3:
       }
       system_result_operation = (longlong)(int)(((int)system_counter_temp / (int)system_counter_temp) * system_counter_temp) / (longlong)system_temp_integer;
       if (((system_counter_temp & 1) == SYSTEM_COMPARISON_ZERO) && ((system_counter_temp & 1) == SYSTEM_COMPARISON_ZERO)) goto INIT_LABEL_SYSTEM_52de5;
-      system_float_value = system_float_result_value + 0.01;
+      system_float_value = system_float_result_value + SYSTEM_FLOAT_MULTIPLIER_POINT_ZERO_ONE;
       *(float *)(handleIdentifier + SYSTEM_MEMORY_OFFSET_238) = system_float_value;
     } while (system_float_result_value <= 1.0);
     *(uint32_t *)(handleIdentifier + SYSTEM_MEMORY_OFFSET_238) = SYSTEM_FLOAT_1_0;
