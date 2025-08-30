@@ -1146,6 +1146,26 @@
 #define SYSTEM_MODULE_STATUS_TEN 10
 #define SYSTEM_MEMORY_FREE_ZERO 0
 
+// 系统临时变量语义化常量（2025年8月30日最终批次续）
+#define SYSTEM_TEMP_RESULT system_temp_result
+#define SYSTEM_TEMP_ITERATOR system_temp_iterator
+#define SYSTEM_TEMP_COUNTER system_temp_counter
+#define SYSTEM_TEMP_INDEX system_temp_index
+#define SYSTEM_TEMP_OFFSET system_temp_offset
+#define SYSTEM_TEMP_SIZE system_temp_size
+#define SYSTEM_TEMP_FLAG system_temp_flag
+#define SYSTEM_TEMP_STATUS system_temp_status
+
+// 系统临时变量简化名称定义（2025年8月30日最终批次续）
+#define system_temp_result system_temp_integer_result
+#define system_temp_iterator system_temp_iterator_result
+#define system_temp_counter system_temp_counter_result
+#define system_temp_index system_temp_index_result
+#define system_temp_offset system_temp_offset_result
+#define system_temp_size system_temp_size_result
+#define system_temp_flag system_temp_flag_result
+#define system_temp_status system_temp_status_result
+
 // 之前的美化内容：
 // - 添加了SYSTEM_TEMP_VARIABLE_CONFIG_SIZE等临时变量语义化常量
 // - 添加了SYSTEM_OPERATION_SUCCESS等操作状态语义化常量
