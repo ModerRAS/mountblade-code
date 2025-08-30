@@ -4026,16 +4026,16 @@ uint32_t g_network_connection_processor_mode;
 uint32_t g_network_protocol_version_current;
 // 网络加密XOR全局值（美化后）
 uint64_t g_network_encryption_xor_global;
-// 网络服务器信息
-ServerInfo* g_networkServerInfo;
-// 网络客户端信息
-ClientInfo* g_networkClientInfo;
-// 网络游戏会话
-GameSession* g_networkGameSession;
-// 网络玩家数据
-PlayerData* g_networkPlayerData;
-// 网络游戏状态
-GameState* g_networkGameState;
+// 网络服务器信息（美化后）
+ServerInfo* g_network_server_info;
+// 网络客户端信息（美化后）
+ClientInfo* g_network_client_info;
+// 网络游戏会话（美化后）
+GameSession* g_network_game_session;
+// 网络玩家数据（美化后）
+PlayerData* g_network_player_data;
+// 网络游戏状态（美化后）
+GameState* g_network_game_state;
 // 网络同步数据
 SyncData* g_networkSyncData;
 // 网络大厅数据
@@ -38625,12 +38625,15 @@ uint64_t networkProcessHandshake(uint64_t network_socket_handle, int64_t network
 #define NETWORK_STATUS_OFFSET_39C 0x39c  // 网络状态偏移量39C
 
 // 新增语义化常量定义 - 网络加密相关偏移量
-#define NETWORK_ENCRYPTION_OFFSET_PRIMARY      0x10
+#define NETWORK_ENCRYPTION_OFFSET_PRIMARY_HEX_10 0x10    // 网络加密主偏移量（十六进制）
+#define NETWORK_ENCRYPTION_OFFSET_PRIMARY NETWORK_ENCRYPTION_OFFSET_PRIMARY_HEX_10  // 简化的网络加密主偏移量
 #define NETWORK_ENCRYPTION_OFFSET_SECONDARY    NETWORK_MIN_PACKET_SIZE
-#define NETWORK_ENCRYPTION_OFFSET_TERTIARY     0x30
+#define NETWORK_ENCRYPTION_OFFSET_TERTIARY_HEX_30 0x30   // 网络加密第三偏移量（十六进制）
+#define NETWORK_ENCRYPTION_OFFSET_TERTIARY NETWORK_ENCRYPTION_OFFSET_TERTIARY_HEX_30  // 简化的网络加密第三偏移量
 #define NETWORK_VALIDATION_OFFSET_PRIMARY      NETWORK_BUFFER_SIZE_EXTENDED
 #define NETWORK_VALIDATION_OFFSET_SECONDARY    NETWORK_PORT_HTTP
-#define NETWORK_ENCRYPTION_OFFSET_8 0x8  // 网络加密偏移量8
+#define NETWORK_ENCRYPTION_OFFSET_8_HEX_8 0x8  // 网络加密偏移量8（十六进制）
+#define NETWORK_ENCRYPTION_OFFSET_8 NETWORK_ENCRYPTION_OFFSET_8_HEX_8  // 简化的网络加密偏移量8
 
 // 新增语义化常量定义 - 网络缓冲区大小
 #define NETWORK_BUFFER_INDEX_CAPACITY NETWORK_MIN_PACKET_SIZE  // 网络缓冲区中等大小
