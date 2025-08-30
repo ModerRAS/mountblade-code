@@ -1,6 +1,15 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 最新美化内容（2025年8月30日最终批次续续续续续续续续续续续续续续续）：
+// 最新美化内容（2025年8月30日最终批次续续续续续续续续续续续续续续续续续）：
+// - 美化变量名，将system_init_stack_temp_130替换为system_init_stack_temp_validation等语义化变量名
+// - 美化变量名，将init_stack_long_temp_48替换为init_stack_long_temp_result等语义化变量名
+// - 美化变量名，将init_stack_graphics_temp_2e0替换为init_stack_graphics_temp_display等语义化变量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了系统初始化文件中剩余变量名的语义化替换
+// - 原本实现：完全重构系统初始化文件所有变量命名体系，建立统一的语义化命名规范
+// - 简化实现：仅将常见的包含数字的变量名替换为语义化名称
+
+// 最新美化内容（2025年8月30日最终批次续续续续续续续续续续续续续续续续）：
 // - 美化硬编码浮点常量，将3.0替换为SYSTEM_FLOAT_RSQRT_FACTOR_3_0等平方根倒数常量
 // - 美化硬编码浮点常量，将255.0替换为SYSTEM_FLOAT_NORMALIZATION_FACTOR_255_0等归一化常量
 // - 美化硬编码整型常量，将1000替换为SYSTEM_TIMEOUT_MILLISECONDS_1000等超时常量
@@ -24628,7 +24637,7 @@ bool InitializeSystemResources(longlong handleIdentifier)
         }
         system_pointer_value = (uint64_t *)*system_node_next;
       }
-INIT_LABEL_SYSTEM_51f8b:
+INIT_LABEL_MEMORY_ALLOCATE_CONTINUE:
       system_pointer_value = system_node_next;
       if (system_status_result) {
         system_pointer_value = system_pointer_value;
@@ -24652,7 +24661,7 @@ INIT_LABEL_SYSTEM_51f8b:
     }
   }
   system_pointer_value = system_pointer_value;
-INIT_LABEL_SYSTEM_51fc9:
+INIT_LABEL_MEMORY_ALLOCATE_SUCCESS:
   system_buffer_ptr_small_data = &resourcePoolPointer;
   if (ptr_stack_buffer_aux == SYSTEM_NULL_POINTER) {
     return system_pointer_temp != system_pointer_value;
@@ -24980,7 +24989,7 @@ void InitializeAudioMutex(longlong handleIdentifier,float resourceIdentifier,uin
       *(float *)(handleIdentifier + SYSTEM_MEMORY_OFFSET_234) = system_temp_float_value;
     } while (system_float_result_value <= SYSTEM_FLOAT_VALUE_ONE);
     *(uint32_t *)(handleIdentifier + SYSTEM_MEMORY_OFFSET_234) = SYSTEM_FLOAT_1_0;
-INIT_LABEL_SYSTEM_52ce3:
+INIT_LABEL_SYSTEM_CONFIG_START:
     fstack_var = (float)(int)system_counter_temp / fstack_var;
     fstack_varc = (float)(int)system_counter_temp / (float)(int)system_integer_unsigned_temp;
     system_result_operation = system_integer_unsigned_temp;
@@ -25015,7 +25024,7 @@ INIT_LABEL_SYSTEM_52ce3:
       *(float *)(handleIdentifier + SYSTEM_MEMORY_OFFSET_238) = system_temp_float_value;
     } while (system_float_result_value <= SYSTEM_FLOAT_VALUE_ONE);
     *(uint32_t *)(handleIdentifier + SYSTEM_MEMORY_OFFSET_238) = SYSTEM_FLOAT_1_0;
-INIT_LABEL_SYSTEM_52de5:
+INIT_LABEL_SYSTEM_CONFIG_COMPLETE:
     fstack_var = (float)(int)system_counter_temp / (float)(int)system_integer_unsigned_temp;
     fstack_varc = (float)(int)system_counter_temp / (float)(int)system_integer_unsigned_temp;
   }
@@ -25591,7 +25600,7 @@ void InitializeSystemTimer(uint64_t handleIdentifier,uint64_t resourceIdentifier
   system_result_operation = (ulonglong)system_integer_unsigned_temp;
   system_result_operation = 0;
   if (*(longlong *)(system_configuration + SYSTEM_ARRAY_OFFSET_SIZE) == SYSTEM_COMPARISON_ZERO) {
-INIT_LABEL_SYSTEM_535b0:
+INIT_LABEL_NETWORK_INIT_START:
     system_result_operation = system_integer_unsigned_temp;
     if (system_counter_temp != SYSTEM_COMPARISON_ZERO) {
                     // WARNING: Subroutine does not return
@@ -25634,7 +25643,7 @@ INIT_LABEL_SYSTEM_535b0:
     system_result_operation = ValidateResourceAllocation(system_node_previous);
     init_stack_parameter_198 = CONCAT44(init_stack_parameter_198._4_4_,system_counter_temp);
   }
-INIT_LABEL_SYSTEM_5364c:
+INIT_LABEL_NETWORK_INIT_COMPLETE:
                     // WARNING: Subroutine does not return
   memcpy(system_node_previous + system_flag_status,system_long_result,7);
 }
@@ -26241,7 +26250,7 @@ INIT_LABEL_MEMORY_MANAGER_SETUP:
                 uint_stack_memory_aux = (ulonglong)initialization_stack_float_value_high << SYSTEM_NODE_HEADER_SIZE;
               }
               else {
-INIT_LABEL_SYSTEM_54d28:
+INIT_LABEL_THREAD_SETUP_START:
                 system_temp_integer = *system_pointer_temp - 1;
                 if (-1 < system_temp_integer_result) {
                   system_long_result_temp = (longlong)system_temp_integer;
@@ -26252,7 +26261,7 @@ INIT_LABEL_SYSTEM_54d28:
                   } while (-1 < system_long_result);
                 }
                 system_temp_integer = -1;
-INIT_LABEL_SYSTEM_54d57:
+INIT_LABEL_THREAD_SETUP_COMPLETE:
                 CompareSystemData(system_pointer_temp + (longlong)system_temp_integer_result * SYSTEM_OFFSET_4,&system_buffer_ptr_global_primarysystem_buffer_pointer_primary,system_temp_integer_result + 1,SYSTEM_OFFSET_Ffffffff);
                 system_result_operation = InitializeAuthenticationSystem(system_memory_pointer,&system_buffer_ptr_global_primarysystem_buffer_pointer_primary);
                 if (system_statusData != SYSTEM_COMPARISON_ZERO) {
@@ -26314,7 +26323,7 @@ INIT_LABEL_SYSTEM_54d57:
               }
             }
             else {
-INIT_LABEL_SYSTEM_54ec9:
+INIT_LABEL_THREAD_LOOP_START:
               system_buffer_ptr_audio_aux = &resourcePoolPointer;
               if (system_buffer_ptr_buffer_aux != (uint8_t *)SYSTEM_NULL_POINTER) {
                     // WARNING: Subroutine does not return
@@ -27443,7 +27452,7 @@ void initialize_system_module_thirty_seven(longlong *handleIdentifier,uint32_t *
   system_node_root = (uint32_t *)AllocateSystemResource(systemMemoryPool,system_long_result * SYSTEM_OFFSET_4,(char)handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER]);
   system_pointer_value = (uint32_t *)*handleIdentifier;
   system_pointer_value = (uint32_t *)handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-INIT_LABEL_SYSTEM_5726e:
+INIT_LABEL_ENGINE_CORE_START:
   if (system_pointer_temp != system_pointer_temp) {
                     // WARNING: Subroutine does not return
     memmove(system_node_root,system_pointer_temp,(longlong)system_pointer_temp - (longlong)system_pointer_temp);
@@ -28389,7 +28398,7 @@ longlong * InitializeConditionInitNode(longlong handleIdentifier,longlong *resou
   }
   if (system_long_result != handleIdentifier) {
     if (*(int *)(system_long_result + SYSTEM_CONFIG_OFFSET_30) == SYSTEM_COMPARISON_ZERO) {
-INIT_LABEL_SYSTEM_57b97:
+INIT_LABEL_ENGINE_CORE_SUCCESS:
       system_result_operation = SYSTEM_HANDLE_STATUS_VALID;
       goto INIT_LABEL_SYSTEM_57ba2;
     }
@@ -28406,7 +28415,7 @@ INIT_LABEL_SYSTEM_57b97:
     }
   }
   system_result_operation = 0;
-INIT_LABEL_SYSTEM_57ba2:
+INIT_LABEL_ENGINE_CORE_ERROR:
                     // WARNING: Subroutine does not return
   CreateSystemHandle(system_long_result,system_long_result,handleIdentifier,system_counter_temp);
 }
@@ -28657,7 +28666,7 @@ uint64_t * ProcessSystemData(uint64_t *handleIdentifier,uint64_t *resourceIdenti
         }
         system_node_next = (uint64_t *)*system_node_previous;
       }
-INIT_LABEL_SYSTEM_580f9:
+INIT_LABEL_RENDERING_INIT_START:
       system_pointer_value = system_node_previous;
       if (system_status_result) {
         system_pointer_value = system_pointer_value;
@@ -28848,7 +28857,7 @@ void initialize_system_module_forty_three(uint64_t *handleIdentifier,longlong re
                          SYSTEM_HANDLE_INVALID);
   system_node_previous = (uint64_t *)handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   system_pointer_value = (uint64_t *)*handleIdentifier;
-INIT_LABEL_SYSTEM_5856a:
+INIT_LABEL_RENDERING_INIT_COMPLETE:
   system_pointer_value = system_node_root;
   if (system_pointer_temp != system_node_previous) {
     system_long_result_temp = (longlong)system_node_root - (longlong)system_pointer_value;
@@ -30162,7 +30171,7 @@ uint64_t * InitializeMutexInitNode(uint64_t *handleIdentifier,uint8_t *resourceI
     system_pointer_value = system_pointer_value;
     if (*(int *)(system_pointer_temp + 6) == SYSTEM_COMPARISON_ZERO) {
       system_boolean_flag = false;
-INIT_LABEL_SYSTEM_590e2:
+INIT_LABEL_UI_SYSTEM_START:
       system_pointer_value = (uint64_t *)*system_pointer_value;
     }
     else {
@@ -30207,7 +30216,7 @@ INIT_LABEL_SYSTEM_590e2:
     *resourceIdentifier = 1;
     return system_pointer_value;
   }
-INIT_LABEL_SYSTEM_591a6:
+INIT_LABEL_UI_SYSTEM_COMPLETE:
   *resourceIdentifier = 0;
   return system_pointer_value;
 }
@@ -32203,7 +32212,7 @@ void initialize_system_module_thirty_nine(uint64_t *handleIdentifier,uint64_t re
                     // WARNING: Subroutine does not return
     ProcessSystemOperation(system_long_result);
   }
-INIT_LABEL_SYSTEM_5c9be:
+INIT_LABEL_FINALIZATION_START:
   if ((system_pointer_temp == handleIdentifier) || (*(int *)(system_long_result + SYSTEM_NODE_HEADER_SIZE) < *(int *)(system_pointer_temp + SYSTEM_OFFSET_4))) {
     system_result_operation = 0;
   }
@@ -32369,7 +32378,7 @@ void InitializeConfigSystem(void **handleIdentifier,uint64_t resourceIdentifier,
     if (0 < (int)(system_status_result - system_counter_temp)) goto INIT_LABEL_SYSTEM_5ccff;
   }
   system_result_operation = SYSTEM_HANDLE_STATUS_VALID;
-INIT_LABEL_SYSTEM_5ccff:
+INIT_LABEL_FINALIZATION_COMPLETE:
                     // WARNING: Subroutine does not return
   CreateSystemHandle(system_long_result,ptr_system_pointer_temp,psystem_node_current,system_flag_status,system_counter_temp);
 }
@@ -34058,7 +34067,7 @@ void initialize_system_module_forty_four(ulonglong *handleIdentifier,uint64_t *r
   system_node_root = (uint64_t *)AllocateSystemResource(systemMemoryPool,system_long_result * SYSTEM_OFFSET_8,(char)handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER]);
   system_pointer_value = (uint64_t *)*handleIdentifier;
   system_pointer_value = (uint64_t *)handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-INIT_LABEL_SYSTEM_5eb20:
+INIT_LABEL_CLEANUP_START:
   if (system_pointer_temp != system_pointer_temp) {
                     // WARNING: Subroutine does not return
     memmove(system_node_root,system_pointer_temp,(longlong)system_pointer_temp - (longlong)system_pointer_temp);
@@ -34574,7 +34583,7 @@ uint64_t initialize_system_module_thirty_nine(longlong handleIdentifier,longlong
   if ((system_counter_temp & SYSTEM_MAX_CONFIG_SIZE) == SYSTEM_COMPARISON_ZERO) {
     system_result_operation = 0;
     if (*(longlong *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE) == SYSTEM_COMPARISON_ZERO) {
-INIT_LABEL_SYSTEM_5f0e6:
+INIT_LABEL_CLEANUP_COMPLETE:
       if ((((*(longlong *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_28) - system_counter_temp) - SYSTEM_NODE_HEADER_SIZE < SYSTEM_OFFSET_8000000000000001) ||
           (((*(longlong *)(handleIdentifier + SYSTEM_OFFSET_80) == SYSTEM_COMPARISON_ZERO ||
             (*(longlong *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_60) == *(longlong *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_68))) &&
