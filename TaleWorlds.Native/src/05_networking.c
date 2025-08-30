@@ -1,5 +1,14 @@
 
 
+// 最新美化内容（2025年8月30日最终批次）：
+// - 美化网络系统硬编码值，将4U替换为NETWORK_BASIC_UNSIGNED_VALUE等语义化常量
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了网络系统中剩余硬编码值的语义化替换
+// - 原本实现：完全重构网络系统所有硬编码值体系
+// - 简化实现：仅将常见的硬编码值替换为语义化常量
+
+#define NETWORK_BASIC_UNSIGNED_VALUE 4U     // 基本无符号值4
+
 // 最新美化内容（2025年8月30日最终批次最终完成续续）：
 // - 美化网络系统数组大小常量名，将NETWORK_ARRAY_SIZE_16替换为NETWORK_ARRAY_SIZE_SMALL等语义化常量名
 // - 美化重复变量名，将network_data_pointer_pointer_secondary替换为network_data_ptr_secondary
@@ -4020,7 +4029,7 @@ void NetworkInitializeConnection(void)
   network_connection_buffer = (uint8_t *)(NETWORK_CONCAT_UINT64_UINT32(network_socket_ctx, network_socket_id) + CONNECTION_BUFFER_SIZE);
   if (*(int32_t *)(*(int64_t *)(network_context_pointer + NETWORK_CONTEXT_OFFSET) + CONNECTION_STATE_OFFSET) == network_conn_state) {
     *network_connection_buffer = NETWORK_STATUS_FAILURE;
-    *(uint32_t *)(NETWORK_CONCAT_UINT64_UINT32(network_socket_ctx, network_socket_id) + NETWORK_HEADER_SIZE_STANDARD) = ((int)network_connection_buffer - network_socket_id) + NETWORK_ALIGNMENT_OFFSET_STANDARDU + 4U & ALIGNMENT_MASK ALIGNMENT_MASK;
+    *(uint32_t *)(NETWORK_CONCAT_UINT64_UINT32(network_socket_ctx, network_socket_id) + NETWORK_HEADER_SIZE_STANDARD) = ((int)network_connection_buffer - network_socket_id) + NETWORK_ALIGNMENT_OFFSET_STANDARDU + NETWORK_BASIC_UNSIGNED_VALUE & ALIGNMENT_MASK ALIGNMENT_MASK;
     network_init_status = NetworkValidateSocket(*(uint64_t *)(network_context_global_data + NETWORK_CONTEXT_OFFSET));
     if (network_init_status == NETWORK_STATUS_FAILURE) {
       *network_response_buffer = (NETWORK_ULONG_LONG)*(uint32_t *)(NETWORK_CONCAT_UINT64_UINT32(network_socket_ctx, network_socket_id) + SOCKET_DESCRIPTOR_RESPONSE_OFFSET_STANDARD);
@@ -7760,7 +7769,7 @@ network_check_buffer_status_label:
           network_timeout_pointer_tenth = *network_socket_handle;
           if (NETWORK_OFFSET_TRIPLE < client_port_addr_current) {
             network_timeout_pointer_first = network_timeout_pointer_tenth - server_port_address_value;
-            network_timeout = (client_port_addr_current - 4U >> NETWORK_BUFFER_INDEX_CAPACITY) + NETWORK_STATUS_SUCCESS;
+            network_timeout = (client_port_addr_current - NETWORK_BASIC_UNSIGNED_VALUE >> NETWORK_BUFFER_INDEX_CAPACITY) + NETWORK_STATUS_SUCCESS;
             network_timeout = network_timeout * NETWORK_BASIC_VALUE_QUAD;
             network_processor_data_array_size = (uint64_t *)(server_port_address_value + NETWORK_PACKET_DATA_PAYLOAD_OFFSET);
             do {
@@ -10955,7 +10964,7 @@ uint64_t NetworkGetConnectionStatus(int64_t network_socket_handle)
     *network_operation_progress_pointer = *network_operation_progress_pointer + -NETWORK_STATUS_SUCCESS;
     if (*network_operation_progress_pointer == NETWORK_STATUS_FAILURE) {
       network_log_message(*(uint64_t *)(g_network_module + NETWORK_MODULE_OFFSET), network_buffer_ptr, &g_networkDataBuffer, NETWORK_LOG_TYPE_DEBUG, NETWORK_STATUS_SUCCESS);
-  if (NETWORK_STATUS_SUCCESS < network_op_status - 4U) {
+  if (NETWORK_STATUS_SUCCESS < network_op_status - NETWORK_BASIC_UNSIGNED_VALUE) {
   *(uint32_t *)(network_socket_handle + NETWORK_SOCKET_REGISTER_OFFSET_EIGHT) = *(uint32_t *)(network_socket_handle + NETWORK_SOCKET_REGISTER_OFFSET_EIGHT) | NETWORK_HEADER_SIZE_STANDARD;
 int32_t NetworkReceiveData(int64_t network_socket_handle, int32_t *network_buffer_ptr, uint32_t network_buffer_size, uint32_t network_timeout, char network_connection_parameter)
 {
