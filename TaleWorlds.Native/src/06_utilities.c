@@ -8673,7 +8673,7 @@ uint64 close_network_socket(longlong resource_handle_identifier,longlong resourc
   utility_iteration_counter = processResourceData(resource_buffer + utility_data_offset_start,resource_handle_identifier + UTILITY_RESOURCE_UTILITY_HANDLE_DATA_OFFSET,utility_stack_resource_data);
   if ((int)utility_iteration_counter == UTILITY_NULL_RESULT) {
     utility_data_array_index = memoryAllocateFunction(resource_buffer + utility_data_offset_start,utility_stack_resource_data[0]);
-    if ((*(uint *)(utility_data_array_index + UTILITY_FIELD_SIZE_OFFSET) >> 4 & 1 UTILITY_BIT_MASK_1) != UTILITY_NULL_RESULT) {
+    if ((*(uint *)(utility_data_array_index + UTILITY_FIELD_SIZE_OFFSET) >> UTILITY_BIT_SHIFT_FOUR & UTILITY_SINGLE_UNIT UTILITY_BIT_MASK_1) != UTILITY_NULL_RESULT) {
       return UTILITY_ERROR_CODE_FAILED;
     }
     utility_temp_float_value = *(float *)(resource_handle_identifier + RESOURCE_HANDLE_OFFSET);
@@ -8709,7 +8709,7 @@ uint64 shutdown_network_socket(uint64 resource_handle_identifier,uint64 resource
   utility_iteration_counter = processResourceData(utility_cpu_context + utility_data_offset_start,resource_buffer,&utility_stack_buffer_local);
   if ((int)utility_iteration_counter == UTILITY_NULL_RESULT) {
     utility_data_array_index = memoryAllocateFunction(utility_cpu_context + utility_data_offset_start,utility_thread_stack_primary_offset);
-    if ((*(uint *)(utility_data_array_index + UTILITY_FIELD_SIZE_OFFSET) >> 4 & 1 UTILITY_BIT_MASK_1) != UTILITY_NULL_RESULT) {
+    if ((*(uint *)(utility_data_array_index + UTILITY_FIELD_SIZE_OFFSET) >> UTILITY_BIT_SHIFT_FOUR & UTILITY_SINGLE_UNIT UTILITY_BIT_MASK_1) != UTILITY_NULL_RESULT) {
       return UTILITY_ERROR_CODE_FAILED;
     }
     utility_temp_float_value = *(float *)(utility_register_context_base + RESOURCE_HANDLE_OFFSET);
@@ -8773,7 +8773,7 @@ uint64 get_network_address(longlong resource_handle_identifier,longlong resource
   utility_iteration_counter = processResourceData(resource_buffer + utility_data_offset_start,resource_handle_identifier + UTILITY_RESOURCE_UTILITY_HANDLE_DATA_OFFSET,utility_stack_unsigned_data);
   if ((int)utility_iteration_counter == UTILITY_NULL_RESULT) {
     utility_data_array_index = memoryAllocateFunction(resource_buffer + utility_data_offset_start,utility_stack_unsigned_data[0]);
-    if ((*(uint *)(utility_data_array_index + UTILITY_FIELD_SIZE_OFFSET) >> 4 & 1 UTILITY_BIT_MASK_1) != UTILITY_NULL_RESULT) {
+    if ((*(uint *)(utility_data_array_index + UTILITY_FIELD_SIZE_OFFSET) >> UTILITY_BIT_SHIFT_FOUR & UTILITY_SINGLE_UNIT UTILITY_BIT_MASK_1) != UTILITY_NULL_RESULT) {
       return UTILITY_ERROR_CODE_FAILED;
     }
     utility_iteration_counter = utilityAccessResourceAttribute(utility_data_array_index,resource_handle_identifier + UTILITY_ERROR_CODE_TIMEOUT,resource_handle_identifier + RESOURCE_HANDLE_OFFSET);
@@ -8808,7 +8808,7 @@ uint64 resolve_hostname(void)
   uint32 utility_stack_float_secondary;
   
   operation_buffer = memoryAllocateFunction();
-  if ((*(uint *)(operation_buffer + UTILITY_FIELD_SIZE_OFFSET) >> 4 & 1 UTILITY_BIT_MASK_1) != UTILITY_NULL_RESULT) {
+  if ((*(uint *)(operation_buffer + UTILITY_FIELD_SIZE_OFFSET) >> UTILITY_BIT_SHIFT_FOUR & UTILITY_SINGLE_UNIT UTILITY_BIT_MASK_1) != UTILITY_NULL_RESULT) {
     return UTILITY_ERROR_CODE_FAILED;
   }
   utility_iteration_counter = utilityAccessResourceAttribute(operation_buffer,utility_cpu_context + UTILITY_ERROR_CODE_TIMEOUT,utility_cpu_context + RESOURCE_HANDLE_OFFSET);
@@ -8890,7 +8890,7 @@ uint64 create_network_connection(longlong resource_handle_identifier,longlong re
   utility_iteration_counter = resource_handle_identifierFileOperation(resource_buffer,resource_handle_identifier + POINTER_DATA_OFFSET,utility_stack_resource_data);
   if ((int)utility_iteration_counter == UTILITY_NULL_RESULT) {
     utility_data_array_index = memoryAllocateFunction(resource_buffer + utility_data_offset_start,utility_stack_resource_data[0]);
-    if ((*(uint *)(utility_data_array_index + UTILITY_FIELD_SIZE_OFFSET) >> 4 & 1 UTILITY_BIT_MASK_1) != UTILITY_NULL_RESULT) {
+    if ((*(uint *)(utility_data_array_index + UTILITY_FIELD_SIZE_OFFSET) >> UTILITY_BIT_SHIFT_FOUR & UTILITY_SINGLE_UNIT UTILITY_BIT_MASK_1) != UTILITY_NULL_RESULT) {
       return UTILITY_ERROR_CODE_FAILED;
     }
     utility_temp_float_value = *(float *)(resource_handle_identifier + UTILITY_RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
@@ -8926,7 +8926,7 @@ uint64 get_network_statistics(void)
   uint32 utility_stack_uint_context;
   
   operation_buffer = memoryAllocateFunction();
-  if ((*(uint *)(operation_buffer + UTILITY_FIELD_SIZE_OFFSET) >> 4 & 1 UTILITY_BIT_MASK_1) != UTILITY_NULL_RESULT) {
+  if ((*(uint *)(operation_buffer + UTILITY_FIELD_SIZE_OFFSET) >> UTILITY_BIT_SHIFT_FOUR & UTILITY_SINGLE_UNIT UTILITY_BIT_MASK_1) != UTILITY_NULL_RESULT) {
     return UTILITY_ERROR_CODE_FAILED;
   }
   utility_temp_float_value = *(float *)(utility_register_context_base + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
@@ -9006,7 +9006,7 @@ uint64 create_ssl_connection(longlong resource_handle_identifier,longlong resour
   utility_iteration_counter = resource_handle_identifierFileOperation(resource_buffer,resource_handle_identifier + POINTER_DATA_OFFSET,utility_stack_resource_data);
   if ((int)utility_iteration_counter == UTILITY_NULL_RESULT) {
     utility_data_array_index = memoryAllocateFunction(resource_buffer + utility_data_offset_start,utility_stack_resource_data[0]);
-    if ((*(uint *)(utility_data_array_index + UTILITY_FIELD_SIZE_OFFSET) >> 4 & 1 UTILITY_BIT_MASK_1) != UTILITY_NULL_RESULT) {
+    if ((*(uint *)(utility_data_array_index + UTILITY_FIELD_SIZE_OFFSET) >> UTILITY_BIT_SHIFT_FOUR & UTILITY_SINGLE_UNIT UTILITY_BIT_MASK_1) != UTILITY_NULL_RESULT) {
       return UTILITY_ERROR_CODE_FAILED;
     }
     utility_iteration_counter = utilityAccessResourceAttribute(utility_data_array_index,resource_handle_identifier + UTILITY_RESOURCE_ACCESS_ID,resource_handle_identifier + UTILITY_RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
@@ -9044,7 +9044,7 @@ uint64 get_ssl_certificate(void)
   uint32 security_parameter_context;
   
   operation_buffer = memoryAllocateFunction();
-  if ((*(uint *)(operation_buffer + UTILITY_FIELD_SIZE_OFFSET) >> 4 & 1 UTILITY_BIT_MASK_1) != UTILITY_NULL_RESULT) {
+  if ((*(uint *)(operation_buffer + UTILITY_FIELD_SIZE_OFFSET) >> UTILITY_BIT_SHIFT_FOUR & UTILITY_SINGLE_UNIT UTILITY_BIT_MASK_1) != UTILITY_NULL_RESULT) {
     return UTILITY_ERROR_CODE_FAILED;
   }
   utility_iteration_counter = utilityAccessResourceAttribute(operation_buffer,utility_cpu_context + UTILITY_RESOURCE_ACCESS_ID,utility_cpu_context + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
