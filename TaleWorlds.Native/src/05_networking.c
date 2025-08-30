@@ -8,10 +8,10 @@
 // 注意：此为简化实现，主要处理网络系统中剩余的UNK_和DAT_变量名的语义化替换
 // 
 // 本次美化工作（2025年8月30日）：
-// - 美化网络系统连接上下文变量名，将UNK_180985578等替换为network_connection_context_primary等语义化变量名
-// - 美化网络系统缓冲区变量名，将UNK_180986218等替换为network_buffer_primary等语义化变量名
+// - 美化网络系统连接上下文变量名，将network_connection_pool_extended等替换为network_connection_context_primary等语义化变量名
+// - 美化网络系统缓冲区变量名，将network_buffer_extended_primary等替换为network_buffer_primary等语义化变量名
 // - 美化网络系统静态缓冲区变量名，将network_connection_primary_state等替换为network_buffer_static_primary等语义化变量名
-// - 美化网络系统配置寄存器变量名，将UNK_180c4eafc等替换为network_config_register_primary等语义化变量名
+// - 美化网络系统配置寄存器变量名，将network_config_register_extended等替换为network_config_register_primary等语义化变量名
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了网络系统中剩余UNK_变量名的语义化替换
 
@@ -204,7 +204,7 @@ undefined network_buffer_management_tertiary;
 undefined network_buffer_management_quaternary;
 undefined network_packet_extended_primary;
 undefined network_packet_extended_secondary;
-undefined UNK_180986948;
+undefined network_connection_context_extended;
 undefined network_packet_extended_tertiary;
 undefined network_packet_extended_quaternary;
 undefined network_connection_pool_primary;
@@ -340,7 +340,7 @@ void network_buffer_initialize(undefined8 param_1)
         (iVar2 = network_data_transfer_validate(alStackX_10 + 1), iVar2 == 0)))) && (iVar1 == 0)) &&
      (iVar1 = network_memory_allocate_buffer(*(undefined8 *)(alStackX_10[0] + NETWORK_OFFSET_MEMORY_EXTENDED),&puStackX_20,0x18), iVar1 == 0))
   {
-    *puStackX_20 = &UNK_180982dc0;
+    *puStackX_20 = &network_data_buffer_context;
     *(undefined4 *)(puStackX_20 + 1) = 0x18;
     *(int *)(puStackX_20 + 2) = (int)param_1;
     NETWORK_ADDRESS_FUNCTION_PRIMARY(*(undefined8 *)(alStackX_10[0] + NETWORK_OFFSET_MEMORY_EXTENDED));
@@ -95187,7 +95187,7 @@ LAB_1808962af:
     if (-1 < iVar16 + -1) {
       do {
         uStack_100 = uStack_100 & 0xffffffff00000000;
-        plStack_108 = (longlong *)&UNK_180982dc0;
+        plStack_108 = (longlong *)&network_data_buffer_context;
         aiStack_f8[0] = *(int *)(uVar6 + lVar5 * 4);
         FUN_180891af0(&plStack_108,*(undefined8 *)(param_1 + 0x58));
         lVar5 = lVar5 + -1;

@@ -1,5 +1,10 @@
 // 01_initialization.c - 初始化系统模块
 
+// 硬编码数组索引语义化常量定义
+#define SYSTEM_INIT_CONTEXT_INDEX_PROCESSOR 0x67
+#define SYSTEM_INIT_CONTEXT_INDEX_COUNTER 0x65
+#define SYSTEM_INIT_CONTEXT_INDEX_INITIALIZATION_FLAG 0x6f6
+
 // 最新美化内容（2025年8月SYSTEM_INIT_VALUE_MUTEX_ALIGNMENT0日最终批次硬编码字符串常量语义化美化工作完成）：
 // - 添加了SYSTEM_INIT_FLOAT_MAX_VALUE等浮点数值语义化常量
 
@@ -42168,7 +42173,7 @@ void InitializeSystemCore(longlong system_context_param)
           system_local_uint_primary9 = (ulonglong)system_ulong_primary6;
         } while ((int)system_ulong_primary6 < iStack_1e8);
       }
-      system_local_long_ptr_primary8 = (longlong *)system_local_long_ptr_fourthSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT[0x67];
+      system_local_long_ptr_primary8 = (longlong *)system_local_long_ptr_fourthSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT[SYSTEM_INIT_CONTEXT_INDEX_PROCESSOR];
       for (system_allocation_resultSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT = system_local_long_ptr_primary8[system_ulonglong_secondary % (ulonglong)*(uint *)(system_local_long_ptr_fourthSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT + )]; system_allocation_resultSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT != 0;
           system_allocation_resultSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT = *(longlong *)(system_allocation_resultSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT + SYSTEM_INIT_FLAG_SECONDARY_ENABLED0)) {
         system_status_code7 = *(int *)(system_allocation_resultSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT + SYSTEM_INIT_SIZE_COMPARE);
@@ -42253,7 +42258,7 @@ LAB_18006ca44:
         }
         goto LAB_18006ca95;
       }
-      if (*(int *)((longlong)system_local_long_ptr_fourthSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT + 0xSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT2c) < (int)system_local_long_ptr_fourthSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT[0x65]) {
+      if (*(int *)((longlong)system_local_long_ptr_fourthSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT + 0xSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT2c) < (int)system_local_long_ptr_fourthSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT[SYSTEM_INIT_CONTEXT_INDEX_COUNTER]) {
         system_local_uint_ptr_secondary0 = (system_uint64_t *)*system_local_long_ptr_primary8;
         system_primary_longptr_5 = system_local_long_ptr_primary8;
         if (system_local_uint_ptr_secondary0 == (system_uint64_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
@@ -42271,7 +42276,7 @@ LAB_18006ca44:
           do {
             if (*(int *)(system_local_uint_ptr_secondary0[SYSTEM_INIT_FLAG_INITIALIZEDSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT] + SYSTEM_INIT_FLAG_SECONDARY_ENABLED0) == 0) {
               system_temp_counter = system_local_uint_ptr_secondary0[SYSTEM_INIT_FLAG_INITIALIZEDSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT];
-              *(int *)(system_local_long_ptr_fourthSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT + 0x65) = (int)system_local_long_ptr_fourthSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT[0x65] + -1;
+              *(int *)(system_local_long_ptr_fourthSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT + 0x65) = (int)system_local_long_ptr_fourthSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT[SYSTEM_INIT_CONTEXT_INDEX_COUNTER] + -1;
               (**(system_code **)(*system_local_long_ptr_fourthSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT + SYSTEM_INIT_SIZE_COMPARE))(system_local_long_ptr_fourthSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT,system_temp_counter);
               system_allocation_resultSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT = system_local_uint_ptr_secondary0[SYSTEM_INIT_FLAG_INITIALIZED4];
               system_local_long_ptr_fourthSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT = system_primary_longptr_5;
@@ -42300,13 +42305,13 @@ LAB_18006ca44:
               system_primary_longptr_5 = system_primary_longptr_5 + 1;
               system_local_uint_ptr_secondary0 = (system_uint64_t *)*system_primary_longptr_5;
             }
-          } while (system_local_uint_ptr_secondary0 != *(system_uint64_t **)(system_local_long_ptr_fourthSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT[0x67] + system_local_long_ptr_fourthSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT[] * 8));
+          } while (system_local_uint_ptr_secondary0 != *(system_uint64_t **)(system_local_long_ptr_fourthSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT[SYSTEM_INIT_CONTEXT_INDEX_PROCESSOR] + system_local_long_ptr_fourthSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT[] * 8));
         }
       }
       system_local_long_ptr_primary8 = (longlong *)(system_context_param + SYSTEM_INIT_OFFSET_ARRAY_SYSTEM_INIT_VALUE_MUTEX_ALIGNMENTC8);
       system_allocation_resultSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT = SYSTEM_INIT_VALUE_ZERO;
       system_local_long_ptr_fourthSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT = *(longlong **)(system_context_param + );
-      if (*(int *)((longlong)system_local_long_ptr_fourthSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT + 0xSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT2c) < (int)system_local_long_ptr_fourthSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT[0x65]) {
+      if (*(int *)((longlong)system_local_long_ptr_fourthSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT + 0xSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT2c) < (int)system_local_long_ptr_fourthSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT[SYSTEM_INIT_CONTEXT_INDEX_COUNTER]) {
         system_local_uint_primary9 = *(ulonglong *)(system_context_param + SYSTEM_INIT_OFFSET_STACK_SYSTEM_INIT_VALUE_MUTEX_ALIGNMENTD0);
         if (system_local_uint_primary9 < *(ulonglong *)(system_context_param + SYSTEM_INIT_CONTEXT_INDEX_PRIMARY8)) {
           *(ulonglong *)(system_context_param + SYSTEM_INIT_OFFSET_STACK_SYSTEM_INIT_VALUE_MUTEX_ALIGNMENTD0) = system_local_uint_primary9 + SYSTEM_INIT_FLAG_INITIALIZED_CONFIG8;
@@ -42347,7 +42352,7 @@ LAB_18006c9ac:
         *(longlong *)(system_context_param + SYSTEM_INIT_CONTEXT_INDEX_PRIMARY8) = system_allocation_result4 * SYSTEM_INIT_FLAG_INITIALIZED_CONFIG8 + system_allocation_resultSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT;
         goto LAB_18006ca44;
       }
-      *(int *)(system_local_long_ptr_fourthSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT + 0x65) = (int)system_local_long_ptr_fourthSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT[0x65] + 1;
+      *(int *)(system_local_long_ptr_fourthSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT + 0x65) = (int)system_local_long_ptr_fourthSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT[SYSTEM_INIT_CONTEXT_INDEX_COUNTER] + 1;
       system_allocation_resultSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT = (**(system_code **)(*system_local_long_ptr_fourthSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT + 8))(system_local_long_ptr_fourthSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT,&system_stack_pointer_array);
       if (system_allocation_resultSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT != 0) goto LAB_18006c852;
       (*system_stack_char_pointer_78)(asystem_stack_temp_value);
@@ -51675,7 +51680,7 @@ LAB_180077879:
       system_memory_param = &system_stack_float_matrix_result_0;
     }
     InitializeSystemCore(&system_stack_uint_108,system_config_param + ,*(system_uint8_t *)(system_context_param + ),system_memory_param);
-    system_initialization_flag_primary = system_config_param[0x6f6];
+    system_initialization_flag_primary = system_config_param[SYSTEM_INIT_CONTEXT_INDEX_INITIALIZATION_FLAG];
     system_init_var_SYSTEM_INIT_VALUE_MUTEX_ALIGNMENTSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT = *(int *)(_g_system_initialized + SYSTEM_INIT_FLAG_INITIALIZED24);
     if (((*(byte *)(system_context_param + ) & 1) == 0) &&
        ((*(int *)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED_TERTIARY0) == system_init_var_SYSTEM_INIT_VALUE_MUTEX_ALIGNMENTSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT || (*(int *)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED_TERTIARY0) == system_init_var_SYSTEM_INIT_VALUE_MUTEX_ALIGNMENTSYSTEM_INIT_VALUE_MUTEX_ALIGNMENT + -1)))) {
