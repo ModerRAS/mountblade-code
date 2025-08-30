@@ -5161,7 +5161,8 @@ void NetworkFlushConnectionBuffers(void) {
   network_operation_result = networkCopyData(&networkBuffer + network_op_status, NETWORK_ERROR_BUFFER_SIZE - network_op_status, &g_networkNullTerminator);
   network_send_buf(&networkBuffer + (network_op_status + network_operation_result), NETWORK_ERROR_BUFFER_SIZE - (network_op_status + network_operation_result));
 // 函数: void NetworkMonitorConnectionHealth(void)
-void NetworkMonitorConnectionHealth(void)
+// 功能: 监控网络连接健康状态，检查连接是否正常
+void NetworkMonitorConnectionHealth(void) {
 // 函数: void NetworkSetConnectionTimeout(uint64_t network_socket_handle, uint64_t *network_buffer_ptr)
 void NetworkSetConnectionTimeout(uint64_t network_socket_handle, uint64_t *network_buffer_ptr)
   uint64_t *network_context_global_data_array [NETWORK_BUFFER_INDEX_CAPACITY];
@@ -15049,7 +15050,7 @@ CreateNetworkSocket(int64_t network_socket_handle, uint32_t network_buffer_ptr, 
   network_stack_small_char_secondary = network_timeout;
   if (*(int32_t *)(network_timeout + NETWORK_CONNECTION_STATE_CHECK_OFFSET) < SYSTEM_COMPARISON_THREE) {
     *(uint32_t *)(network_socket_handle + NETWORK_SOCKET_DESCRIPTOR_RESPONSE_OFFSET) = network_buffer_ptr;
-    if (network_timeout != '\NETWORK_STATUS_FAILURE') {
+    if (network_timeout != NETWORK_CHAR_NULL) {
       network_packet_count_total = *(uint64_t *)(*(int64_t *)(network_timeout + NETWORK_CONFIG_OFFSET) + NETWORK_PACKET_DATA_PAYLOAD_OFFSET);
       network_stack_unsigned_parameter = NETWORK_STATUS_FAILURE;
       network_max_value_primary = NETWORK_STATUS_FAILURE;
@@ -15075,7 +15076,7 @@ CreateNetworkSocket(int64_t network_socket_handle, uint32_t network_buffer_ptr, 
     network_socket_index = GetNetworkStatistics();
     network_op_code_tertiary_perf = (longlong)network_socket_index + network_status_pointer;
     network_buffer_size = network_op_code_tertiary_perf;
-    if (network_buffer_size != '\NETWORK_STATUS_FAILURE') {
+    if (network_buffer_size != NETWORK_CHAR_NULL) {
       network_timeout_config_ptr = (int64_t *)(network_socket_handle + NETWORK_SOCKET_STATUS_OFFSET);
       if (((int64_t *)*network_timeout_config_ptr == network_timeout_config_ptr) && (*(int64_t **)(network_socket_handle + SOCKET_HANDLE_OFFSET) == network_timeout_config_ptr)) {
         network_buffer_size = *(uint64_t *)(network_socket_handle + NETWORK_CONNECTION_BUFFER_CURRENT);
