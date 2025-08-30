@@ -9,24 +9,24 @@
 // 原本实现：完全重构函数命名体系，建立统一的语义化命名规范
 
 // 系统初始化模块函数声明
-// extern void system_initialization_module_main();
+// extern void system_initialization_module_entry_point();
 
 // 核心引擎模块函数声明  
-// extern void core_engine_module_main();
+// extern void core_engine_module_entry_point();
 
 // 渲染系统模块函数声明
-// extern void rendering_system_module_main();
+// extern void rendering_system_module_entry_point();
 
 // 用户界面系统模块函数声明
-// extern void user_interface_system_module_main();
+// extern void user_interface_system_module_entry_point();
 
 // 网络通信系统模块函数声明
-// extern void network_communication_system_module_main();
+// extern void network_communication_system_module_entry_point();
 
 // 工具函数系统模块函数声明
-// extern void utility_functions_system_module_main();
+// extern void utility_functions_system_module_entry_point();
 
 // 未匹配功能函数模块声明
-// extern void unmatched_functions_module_main();
+// extern void unmatched_functions_module_entry_point();
 
 #endif // TALEWORLDS_NATIVE_SPLIT_H
