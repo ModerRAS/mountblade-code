@@ -82142,10 +82142,10 @@ void resourceCachePrefetch(void)
     uRam0000000180d49d70 = 0;
     lRam0000000180d49d78 = 0;
   }
-  InitializeResourceManagerData0(&uRam0000000180d49d58);
+  InitializeResourceManagerData0(&resourceManagerData58);
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
-  free(uRam0000000180d49d58,bufferSizeDataOffset);
+  free(resourceManagerData58,bufferSizeDataOffset);
   return;
 }
 
@@ -82159,21 +82159,21 @@ void resourceCacheEvict(void)
   longlong resourceDataBuffer;
   ulonglong loopCounter;
   
-  if (lRam0000000180d49d90 != 0) {
-    InitializeEventSystem0(lRam0000000180d49d90,uRam0000000180d49d98);
-    loopCounter = lRam0000000180d49da0 - lRam0000000180d49d90 & 0xfffffffffffffff0;
-    resourceDataBuffer = lRam0000000180d49d90;
+  if (resourceManagerData90 != 0) {
+    InitializeEventSystem0(resourceManagerData90,resourceManagerData98);
+    loopCounter = resourceManagerDataA0 - resourceManagerData90 & 0xfffffffffffffff0;
+    resourceDataBuffer = resourceManagerData90;
     if (0xfff < loopCounter) {
-      resourceDataBuffer = *(longlong *)(lRam0000000180d49d90 + -8);
-      if (ERROR_CODE_FAILED < (lRam0000000180d49d90 - resourceDataBuffer) - 8U) {
+      resourceDataBuffer = *(longlong *)(resourceManagerData90 + -8);
+      if (ERROR_CODE_FAILED < (resourceManagerData90 - resourceDataBuffer) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(lRam0000000180d49d90 - resourceDataBuffer,loopCounter + 0x27);
+        _invalid_parameter_noinfo_noreturn(resourceManagerData90 - resourceDataBuffer,loopCounter + 0x27);
       }
     }
     free(resourceDataBuffer);
-    lRam0000000180d49d90 = 0;
-    uRam0000000180d49d98 = 0;
-    lRam0000000180d49da0 = 0;
+    resourceManagerData90 = 0;
+    resourceManagerData98 = 0;
+    resourceManagerDataA0 = 0;
   }
   return;
 }
