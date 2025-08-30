@@ -512,16 +512,16 @@
 #define SYSTEM_BIT_MASK_LEAST_SIGNIFICANT_BIT 0x01                                    // 位掩码位0
 #define SYSTEM_BIT_MASK_SECOND_BIT 0x02                                    // 位掩码位1
 #define SYSTEM_BIT_MASK_THIRD_BIT 0x04                                    // 位掩码位2
-#define SYSTEM_BIT_MASK_FOURTH_BIT 0x08                                    // 位掩码位3
-#define SYSTEM_BIT_MASK_FIFTH_BIT 0x10                                    // 位掩码位4
-#define SYSTEM_BIT_MASK_SIXTH_BIT 0x20                                    // 位掩码位5
-#define SYSTEM_BIT_MASK_SEVENTH_BIT 0x40                                    // 位掩码位6
-#define SYSTEM_BIT_MASK_MOST_SIGNIFICANT_BIT 0x80                                    // 位掩码位7
+#define SYSTEM_BIT_MASK_FOURTH_BIT 0x08                                    // 第四位掩码
+#define SYSTEM_BIT_MASK_FIFTH_BIT 0x10                                    // 第五位掩码
+#define SYSTEM_BIT_MASK_SIXTH_BIT 0x20                                    // 第六位掩码
+#define SYSTEM_BIT_MASK_SEVENTH_BIT 0x40                                    // 第七位掩码
+#define SYSTEM_BIT_MASK_MOST_SIGNIFICANT_BIT 0x80                                    // 最高有效位掩码
 // 字节级位掩码常量定义（2025年8月30日语义化美化）
-#define SYSTEM_BIT_MASK_BYTE_LEAST_SIGNIFICANT 0x100                               // 字节位0掩码
-#define SYSTEM_BIT_MASK_BYTE_SECOND 0x200                               // 字节位1掩码
-#define SYSTEM_BIT_MASK_BYTE_THIRD 0x400                               // 字节位2掩码
-#define SYSTEM_BIT_MASK_BYTE_MOST_SIGNIFICANT 0x800                               // 字节位3掩码
+#define SYSTEM_BIT_MASK_BYTE_LEAST_SIGNIFICANT 0x100                               // 字节最低有效位掩码
+#define SYSTEM_BIT_MASK_BYTE_SECOND 0x200                               // 字节第二位掩码
+#define SYSTEM_BIT_MASK_BYTE_THIRD 0x400                               // 字节第三位掩码
+#define SYSTEM_BIT_MASK_BYTE_MOST_SIGNIFICANT 0x800                               // 字节最高有效位掩码
 #define SYSTEM_BIT_MASK_WORD_LEAST_SIGNIFICANT 0x1000                              // 字位0掩码
 #define SYSTEM_BIT_MASK_WORD_SECOND 0x2000                              // 字位1掩码
 #define SYSTEM_BIT_MASK_WORD_THIRD 0x4000                              // 字位2掩码
