@@ -21625,7 +21625,7 @@ void ConfigureGraphicsShader(uint64_t handleIdentifier,longlong resourceIdentifi
   system_buffer_ptr_268 = system_ptr_value;
   uintStack_150 = system_integer_result_unsigned;
   (**(code **)(*(longlong *)(g_system_base_1 + SYSTEM_OFFSET_2c0) + SYSTEM_DATA_COMPARE_SIZE))
-            ((longlong *)(g_system_base_1 + 0x2c0),system_pointer_var);
+            ((longlong *)(g_system_base_1 + SYSTEM_OFFSET_2c0),system_pointer_var);
   uintStack_2f0 = 0;
   system_ptr_value = system_ptr_value;
   if (system_int_result_unsigned != 0) {
@@ -22076,7 +22076,7 @@ void ConfigureGraphicsShader(void)
   system_status_code = log2f();
   *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_24c) = system_integer_result_unsigned;
   system_status_code = log2f(*(float *)(systemCoreData + SYSTEM_DATA_OFFSET_2220) * 0.01);
-  *(uint32_t *)(system_long_result + 0x23c) = system_integer_result_unsigned;
+  *(uint32_t *)(system_long_result + SYSTEM_OFFSET_23c) = system_integer_result_unsigned;
   *(uint64_t *)(system_long_result + SYSTEM_HANDLE_OFFSET_EXT_DATA_1) = SYSTEM_FLOAT_CONSTANT_1;
   longStack_1d8 = SYSTEM_FLOAT_CONSTANT_1;
   *(uint64_t *)(system_long_result + SYSTEM_HANDLE_OFFSET_EXT_DATA_2) = SYSTEM_FLOAT_CONSTANT_1;
@@ -22971,7 +22971,7 @@ bool InitializeSystemResources(longlong handleIdentifier)
 
   system_ptr_value = (uint64_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_2E0);
   PrepareSystemBuffer(&system_buffer_ptr_30);
-  node_next = *(uint64_t **)(handleIdentifier + 0x2f0);
+  node_next = *(uint64_t **)(handleIdentifier + SYSTEM_OFFSET_2f0);
   system_ptr_value = system_ptr_value;
   if (node_next != (uint64_t *)0x0) {
     do {
@@ -23037,7 +23037,7 @@ uint64_t
 InitializeConfigSystem(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
-  ProcessResourceData(resourceIdentifier,g_system_base_1 + 0x2c0,system_configuration,systemFlags,0,INVALID_HANDLE_VALUE);
+  ProcessResourceData(resourceIdentifier,g_system_base_1 + SYSTEM_OFFSET_2c0,system_configuration,systemFlags,0,INVALID_HANDLE_VALUE);
   return resourceIdentifier;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
@@ -23263,8 +23263,8 @@ void InitializeAudioMutex(longlong handleIdentifier,float resourceIdentifier,uin
       system_float_value = (float)exp2f();
       system_statusData = (1.0 - system_result_float) * system_statusData + system_result_float * resourceIdentifier;
       system_float_value = (float)*(int *)(systemCoreData + SYSTEM_DATA_OFFSET_21b0);
-      if (*(float *)(g_system_base_1 + 0x1f8) <= (float)*(int *)(systemCoreData + SYSTEM_DATA_OFFSET_21b0)) {
-        system_float_value = *(float *)(g_system_base_1 + 0x1f8);
+      if (*(float *)(g_system_base_1 + SYSTEM_OFFSET_1f8) <= (float)*(int *)(systemCoreData + SYSTEM_DATA_OFFSET_21b0)) {
+        system_float_value = *(float *)(g_system_base_1 + SYSTEM_OFFSET_1f8);
       }
       system_float_value = *(float *)(systemCoreData + SYSTEM_OFFSET_1E30);
       if (0 < *(int *)(systemCoreData + 0x1f80)) {
@@ -35209,7 +35209,7 @@ void InitializeDataEngineNode(int *handleIdentifier)
   longStack_160 = 0;
   uintStack_158 = 0;
   uintStack_150 = 3;
-  system_long_value = ProcessResourceData(&system_buffer_ptr_graphics_data,g_system_base_1 + 0x2c0);
+  system_long_value = ProcessResourceData(&system_buffer_ptr_graphics_data,g_system_base_1 + SYSTEM_OFFSET_2c0);
   uintStack_190 = 1;
   system_local_buffer_1b8[0] = SYSTEM_NODE_HEADER_SIZE;
   if (*(longlong *)(system_long_result + 8) != 0) {
