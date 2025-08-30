@@ -5851,11 +5851,11 @@ long long process_memory_with_thread_operation_flags(unsigned long long handle_p
   maximum_stack_size = (long long *)merge_32bit_values(maximum_stack_size_low_half_extended,(unsigned int)maximum_stack_size);
   if (*(int *)(*(long long *)(astack_long_var[0] + SYSTEM_OFFSET_MODULE_DATA_3580) + SYSTEM_OFFSET_MODULE_SECONDARY) != 0) {
     maximum_stack_size = (long long *)merge_32bit_values(maximum_stack_size_low_half_extended,(unsigned int)maximum_stack_size);
-    if ((((*(byte *)(astack_long_var[0] + 0x1bd8) & path_buffer_size) != 0) &&
+    if ((((*(byte *)(astack_long_var[0] + SYSTEM_FUNCTION_OFFSET_STACK_1BD8) & path_buffer_size) != 0) &&
         (maximum_stack_size = (long long *)merge_32bit_values(maximum_stack_size_low_half_extended,(unsigned int)maximum_stack_size),
         *(char *)(system_global_data_pointer + SYSTEM_OFFSET_SYSTEM_FLAG) != '\0')) &&
        (maximum_stack_size = (long long *)merge_32bit_values(maximum_stack_size_low_half_extended,(unsigned int)maximum_stack_size),
-       6 < *(int *)(reg_rcx + 0x4f8))) {
+       6 < *(int *)(reg_rcx + SYSTEM_FUNCTION_OFFSET_REGISTER_4F8))) {
       buffer_allocation_result = system_execution_function(system_global_data_pointer,SYSTEM_OFFSET_CRYPTO_HANDLE,SYSTEM_OFFSET_CRYPTO_SIZE,SYSTEM_OFFSET_CRYPTO_PARAM);
       pppstack_long_var = (long long ***)&maximum_stack_size;
       plStack_68 = astack_long_var;
@@ -5949,7 +5949,7 @@ long long process_memory_with_thread_operation_flags(unsigned long long handle_p
        (system_initialization_result0 = *(long long *)(*(long long *)(astack_long_var[0] + SYSTEM_OFFSET_MODULE_DATA_3580) + SYSTEM_OFFSET_MODULE_DATA_530), system_initialization_result0 != 0)) {
       *(unsigned int *)(system_initialization_result0 + SYSTEM_CONFIG_BUFFER_SIZE) = SYSTEM_FLOAT_VALUE_INITIALIZED;
     }
-    if (*(int *)(reg_rcx + 0xa3a) != 0) {
+    if (*(int *)(reg_rcx + SYSTEM_FUNCTION_OFFSET_REGISTER_A3A) != 0) {
       buffer_allocation_result = *(unsigned int *)(reg_rcx + 0xa3a);
       pppppsystem_initialization_result7 = reg_rcx + (long long)*(int *)(reg_rcx + 0xa39) + SYSTEM_OFFSET_MODULE_MULTIPLIER + SYSTEM_OFFSET_MODULE_BASE_EXTENDED;
       LOCK();
