@@ -475,6 +475,163 @@
 #define STRUCT_FIELD_DWORD_12  _dword_12_
 #define STRUCT_FIELD_WORD_14   _word_14_
 
+// 网络系统函数名语义化常量定义（本次美化内容）
+// 原本实现：完全重构网络系统函数命名体系
+// 简化实现：仅将常见的包含数字的函数名替换为语义化名称
+
+// 网络线程管理函数名语义化替换
+#define NetworkThreadManager0        network_thread_manager_initialize
+#define NetworkThreadManager1        network_thread_manager_process
+#define NetworkThreadManager2        network_thread_manager_cleanup
+#define NetworkThreadManager3        network_thread_manager_validate
+#define NetworkThreadManager4        network_thread_manager_configure
+#define NetworkThreadManager5        network_thread_manager_monitor
+#define NetworkThreadManager6        network_thread_manager_optimize
+#define NetworkThreadManager7        network_thread_manager_schedule
+#define NetworkThreadManager8        network_thread_manager_finalize
+#define NetworkThreadManager9        network_thread_manager_reset
+
+// 网络连接处理函数名语义化替换
+#define networkReleaseConnection6    network_release_connection_with_cleanup
+#define networkSendDataPacket1       network_send_data_packet_primary
+#define networkMonitorConnections1   network_monitor_connections_active
+
+// 网络流数据处理函数名语义化替换
+#define NetworkProcessStreamData1    network_process_stream_data_initial
+#define NetworkProcessStreamData2    network_process_stream_data_secondary
+#define NetworkProcessStreamData3    network_process_stream_data_tertiary
+#define NetworkProcessStreamData4    network_process_stream_data_quaternary
+#define NetworkProcessStreamData5    network_process_stream_data_quinary
+#define NetworkProcessStreamData6    network_process_stream_data_senary
+#define NetworkProcessStreamData7    network_process_stream_data_septenary
+#define NetworkProcessStreamData11   network_process_stream_data_extended
+
+// 网络句柄获取函数名语义化替换
+#define GetNetworkHandle0            get_network_handle_default
+#define GetNetworkHandle1            get_network_handle_with_socket
+#define GetNetworkHandle2            get_network_handle_with_buffer
+#define GetNetworkHandle3            get_network_handle_initialize
+#define GetNetworkHandle4            get_network_handle_alternate
+#define GetNetworkHandle5            get_network_handle_with_validation
+#define GetNetworkHandle6            get_network_handle_with_context
+#define GetNetworkHandle7            get_network_handle_cleanup
+#define GetNetworkHandle8            get_network_handle_final
+#define GetNetworkHandle9            get_network_handle_with_auth
+
+// 网络系统变量名语义化常量定义（本次美化内容）
+// 原本实现：完全重构网络系统变量命名体系
+// 简化实现：仅将常见的包含数字的变量名替换为语义化名称
+
+// 网络连接处理器变量名语义化替换
+#define network_connection_processor_timeout0   network_connection_processor_timeout_initial
+#define network_connection_processor_timeout1   network_connection_processor_timeout_secondary
+#define network_connection_processor_timeout2   network_connection_processor_timeout_tertiary
+
+// 网络保活间隔变量名语义化替换
+#define network_keepalive_interval8            network_keepalive_interval_extended
+#define network_keepalive_interval0            network_keepalive_interval_base
+
+// 网络安全标志变量名语义化替换
+#define network_security_flag_primary8         network_security_flag_primary_extended
+#define network_security_flag_primary0         network_security_flag_primary_base
+
+// 网络栈上下文指针变量名语义化替换
+#define network_stack_context_pointer_ptr_978  network_stack_context_pointer_standard
+#define network_stack_context_pointer_ptr_998  network_stack_context_pointer_extended
+#define network_stack_context_pointer_extended0 network_stack_context_pointer_primary
+
+// 超时配置指针变量名语义化替换
+#define timeout_config_ptr_ptr_pointer_7       timeout_config_ptr_ptr_standard
+#define timeout_config_ptr_ptr_pointer_4       timeout_config_ptr_ptr_extended
+
+// 网络栈安全缓冲区变量名语义化替换
+#define network_stack_security_buffer_138      network_stack_security_buffer_large
+
+// 网络信号强度变量名语义化替换
+#define network_signal_strength0               network_signal_strength_primary
+#define network_signal_strength1               network_signal_strength_secondary
+
+// 网络频率计算变量名语义化替换
+#define network_calculated_frequency0          network_calculated_frequency_base
+#define network_calculated_frequency8          network_calculated_frequency_octonary
+#define network_frequency_calculated_novenary   network_calculated_frequency_novenary
+
+// 网络可用性标志变量名语义化替换
+#define network_is_available0                  network_is_available_primary
+#define network_is_available3                  network_is_available_tertiary
+
+// 网络操作状态变量名语义化替换
+#define network_operation_status4              network_operation_status_quaternary
+#define network_operation_status2              network_operation_status_secondary
+
+// 网络缓冲区容量变量名语义化替换
+#define network_buffer_main_capacity2         network_buffer_main_capacity_secondary
+
+// 网络加密密钥变量名语义化替换
+#define network_encryption_key_main_primary8  network_encryption_key_main_primary_secondary
+#define network_encryption_key_main_primary0  network_encryption_key_main_primary_zero
+
+// 网络临时验证缓冲区变量名语义化替换
+#define network_temp_validation_buffere8      network_temp_validation_buffer_small
+
+// 网络数据包偏移量变量名语义化替换
+#define network_packet_offset_header8          network_packet_offset_header_small
+
+// 网络浮点栈变量名语义化替换
+#define network_float_stack__11c              network_float_stack_buffer_neg_extra_large
+#define network_float_stack_buffer_38          network_float_stack_buffer_large
+#define network_float_stack_buffer_28          network_float_stack_buffer_small
+
+// 网络浮点数值变量名语义化替换
+#define network_float_value_6                  network_calculated_float_primary
+#define network_float_value_7                  network_calculated_float_secondary
+
+// 网络栈安全字符数组变量名语义化替换
+#define anetwork_stack_status_char4           network_stack_security_char_array
+
+// 网络时间计算缓冲区变量名语义化替换
+#define network_double_time_calculation_buffer_38 network_time_calculation_buffer_quad
+
+// 网络栈变量名语义化替换
+#define network_stack_int_var                 network_stack_integer_parameter
+#define network_stack_long_temp_value         network_stack_long_temporary
+#define network_stack_unsigned_counter_max    network_stack_unsigned_max_counter
+#define network_stack_int_connection_array    network_stack_connection_array
+#define pnetwork_long_stack_primary           network_stack_long_primary_ptr
+#define network_temp_value                    network_temporary_value
+#define network_validation_temporary_buffer   network_validation_temp_buffer
+
+// 网络地址变量名语义化替换
+#define networkAddress                        network_server_address
+#define server_port                           server_port_address
+#define pserver_port_address                  server_port_address_ptr
+#define client_port                           client_port_address
+
+// 网络连接信息变量名语义化替换
+#define network_primary_connection_buffer     network_primary_connection_data
+#define network_connection_info               network_connection_info_data
+#define network_extended_context              network_stack_extended_context_data
+
+// 网络加密密钥变量名语义化替换
+#define network_encryption_key_tertiary        network_encryption_key_third
+
+// 网络栈数组上下文变量名语义化替换
+#define network_stack_array_context           network_stack_array_context_pointer
+
+// 网络操作状态指针变量名语义化替换
+#define pnetwork_operation_status2            pnetwork_operation_status_secondary
+
+// 网络栈变量名语义化替换
+#define network_stack_uint_tertiary_a         network_stack_unsigned_tertiary_alpha
+#define network_stack_uint_tertiary_b         network_stack_unsigned_tertiary_beta
+#define network_stack_uint_tertiary_d         network_stack_unsigned_tertiary_delta
+#define network_stack_uint_tertiary_e         network_stack_unsigned_tertiary_epsilon
+#define network_stack_uint_quaternary_a       network_stack_unsigned_quaternary_alpha
+#define network_stack_context_large           network_stack_context_extended
+
+// 网络数据变量名语义化替换
+#define network_buffer_size_var_byte_value_value_primary network_buffer_size_byte_value_primary
+
 // 最新美化内容（2025年8月30日）：
 // - 完成网络系统硬编码浮点数极值的语义化美化工作
 // - 添加了NETWORK_FLOAT_MAX_VALUE等浮点数极值语义化常量
@@ -29779,20 +29936,20 @@ void networkScaleConnections7(int64_t network_socket_handle)
 // 函数: void networkScaleConnections8(void)
 void networkScaleConnections8(void)
 {
-    int32_t network_stack_int0000000000000068;
-  int32_t network_stack_int000000000000006c;
+    int32_t network_stack_pointer_tertiary;
+  int32_t network_stack_pointer_quinary;
   network_operation_status_code = network_socket_context;
     network_operation_result = networkHandleConnectionTimeout6(*(uint64_t *)(*(int64_t *)(network_socket_context + NETWORK_SOCKET_DATA_OFFSETe8) + (longlong)network_operation_status_code * NETWORK_PACKET_HEADER_SIZE));
     if (network_operation_result != NETWORK_OPERATION_STATUS_FAILURE) break;
     if ((*(uint32_t *)(*(int64_t *)(*(int64_t *)(network_socket_context + NETWORK_SOCKET_DATA_OFFSETe8) + (longlong)network_operation_status_code * NETWORK_PACKET_HEADER_SIZE) + NETWORK_SPECIAL_OFFSET_AUDIO_CONFIG) >>
          NETWORK_SOCKET_DATA_OFFSETb & NETWORK_OPERATION_SUCCESS) != NETWORK_OPERATION_STATUS_FAILURE) {
-      network_operation_result = network_stack_int0000000000000068 + NETWORK_OPERATION_SUCCESS;
-      network_operation_status_code = network_stack_int000000000000006c;
-      if (network_stack_int000000000000006c < NETWORK_OPERATION_STATUS_FAILURE) {
-        network_operation_status_code = -network_stack_int000000000000006c;
-        network_operation_status_code = network_stack_int000000000000006c;
-        if (network_stack_int000000000000006c < NETWORK_OPERATION_STATUS_FAILURE) {
-          network_operation_status_code = -network_stack_int000000000000006c;
+      network_operation_result = network_stack_pointer_tertiary + NETWORK_OPERATION_SUCCESS;
+      network_operation_status_code = network_stack_pointer_quinary;
+      if (network_stack_pointer_quinary < NETWORK_OPERATION_STATUS_FAILURE) {
+        network_operation_status_code = -network_stack_pointer_quinary;
+        network_operation_status_code = network_stack_pointer_quinary;
+        if (network_stack_pointer_quinary < NETWORK_OPERATION_STATUS_FAILURE) {
+          network_operation_status_code = -network_stack_pointer_quinary;
         network_processor_count = (int)((float)network_operation_status_code * NETWORK_FLOAT_HALF);
         if (network_operation_result <= network_processor_count) {
           network_operation_status_code = network_processor_count;
@@ -29801,8 +29958,8 @@ void networkScaleConnections8(void)
           network_processor_count = network_operation_result;
         network_operation_result = network_process_packet_handshake(&network_global_buffer, network_processor_count);
         if (network_operation_result != NETWORK_OPERATION_STATUS_FAILURE) break;
-      *(int32_t *)(network_config_parameter_ptr + (longlong)network_stack_int0000000000000068 * 4) = network_connection_state;
-      network_stack_int0000000000000068 = network_stack_int0000000000000068 + NETWORK_OPERATION_SUCCESS;
+      *(int32_t *)(network_config_parameter_ptr + (longlong)network_stack_pointer_tertiary * 4) = network_connection_state;
+      network_stack_pointer_tertiary = network_stack_pointer_tertiary + NETWORK_OPERATION_SUCCESS;
       network_operation_result = network_socket_context;
     network_operation_status_code = network_connection_state + NETWORK_OPERATION_SUCCESS;
     network_connection_state = network_operation_status_code;
@@ -29810,7 +29967,7 @@ void networkScaleConnections8(void)
   *(int32_t *)(network_socket_context + NETWORK_SOCKET_DATA_OFFSET80) = *(int32_t *)(network_socket_context + NETWORK_SOCKET_DATA_OFFSET80) + -NETWORK_OPERATION_SUCCESS;
     networkScaleConnections1(&network_global_buffer);
     network_exit_on_error(&network_global_buffer);
-  if (network_stack_int0000000000000068 + -NETWORK_OPERATION_SUCCESS < NETWORK_OPERATION_STATUS_FAILURE) {
+  if (network_stack_pointer_tertiary + -NETWORK_OPERATION_SUCCESS < NETWORK_OPERATION_STATUS_FAILURE) {
   network_operation_status_code = *(uint64_t *)
            (*(int64_t *)(network_socket_context + NETWORK_SOCKET_DATA_OFFSETe8) +
            (longlong)*(int32_t *)(network_config_parameter_ptr + (longlong)(network_stack_int0000000000000068 + -NETWORK_OPERATION_SUCCESS) * 4) * NETWORK_PACKET_HEADER_SIZE);
@@ -32445,17 +32602,17 @@ uint64_t networkFilterPacket9(int64_t network_socket_handle, int32_t network_buf
       *network_buffer_size_var = connection_handle_primary;
 uint64_t networkEstablishSecureConnection0(int64_t network_socket_handle, uint64_t network_buffer_ptr, int64_t network_buffer_size_var, uint32_t network_timeout_value)
 {
-    int32_t network_stack_int0000000000000044;
+    int32_t network_stack_pointer_quaternary;
   if (((!network_zero_flag) && (*(int32_t *)(network_socket_handle + SOCKET_HANDLE_OFFSET) != NETWORK_OPERATION_STATUS_FAILURE)) &&
      (network_processor_count = *(int32_t *)(*(int64_t *)(network_register_pointer + NETWORK_SOCKET_STATUS_OFFSET) +
                       (longlong)(int)(*(int32_t *)(network_socket_handle + SOCKET_HANDLE_OFFSET) - 1U & network_timeout_value) * 4), network_processor_count != -NETWORK_OPERATION_SUCCESS)) {
     network_timeout_value = *(int64_t *)(network_register_pointer + NETWORK_STATUS_READY_MASK);
       socket_descriptor_value = (longlong)network_processor_count;
       if (*(uint32_t *)(network_timeout_value + socket_descriptor_value * MODULE_STATUS_OFFSET) == network_timeout_value) {
-        network_stack_int0000000000000044 = (int)((ulonglong)*(uint64_t *)(network_timeout_value + NETWORK_PACKET_HEADER_SIZE + socket_descriptor_value * MODULE_STATUS_OFFSET) >> SOCKET_DESCRIPTOR_RESPONSE_OFFSET)
+        network_stack_pointer_quaternary = (int)((ulonglong)*(uint64_t *)(network_timeout_value + NETWORK_PACKET_HEADER_SIZE + socket_descriptor_value * MODULE_STATUS_OFFSET) >> SOCKET_DESCRIPTOR_RESPONSE_OFFSET)
         ;
-        if (network_stack_int0000000000000044 != NETWORK_OPERATION_STATUS_FAILURE) {
-          *network_socket_context = network_stack_int0000000000000044;
+        if (network_stack_pointer_quaternary != NETWORK_OPERATION_STATUS_FAILURE) {
+          *network_socket_context = network_stack_pointer_quaternary;
       network_processor_count = *(int32_t *)(network_timeout_value + 4 + socket_descriptor_value * MODULE_STATUS_OFFSET);
   network_stack_int0000000000000044 = NETWORK_OPERATION_STATUS_FAILURE;
   network_buffer_capacity = (uint64_t *)
