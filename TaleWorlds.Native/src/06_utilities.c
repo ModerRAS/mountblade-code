@@ -5669,7 +5669,7 @@ uint32 get_system_time(void)
     return UTILITY_BYTE_OFFSET_FLAG;
   }
                     // WARNING: Subroutine does not return
-  utility_free_memory(*(longlong *)(utility_stack_uint_context + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),1); # 内存块释放函数
+  utility_free_memory(*(longlong *)(utility_stack_uint_context + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),UTILITY_MEMORY_RELEASE_IMMEDIATE); # 内存块释放函数
 }
 
 
@@ -5740,7 +5740,7 @@ uint32 close_file_resource_handle_identifier(void)
     return UTILITY_BYTE_OFFSET_FLAG;
   }
                     // WARNING: Subroutine does not return
-  utility_free_memory(*(longlong *)(utility_stack_uint_context + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),1); # 内存块释放函数
+  utility_free_memory(*(longlong *)(utility_stack_uint_context + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),UTILITY_MEMORY_RELEASE_IMMEDIATE); # 内存块释放函数
 }
 
 
