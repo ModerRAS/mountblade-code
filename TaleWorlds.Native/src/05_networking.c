@@ -10,6 +10,9 @@
 // - 将硬编码的压缩级别10替换为NETWORK_COMPRESSION_LEVEL_10等语义化常量
 // - 修复了NETWORK_OFFSET_560和NETWORK_OFFSET_568的错误定义，将其从不存在的常量引用改为正确的十六进制值
 // - 添加了NETWORK_NEGATIVE_OFFSET_24C/244/23C等负偏移量语义化常量
+// - 添加了NETWORK_DATA_PTR_OFFSET_360/368等网络数据指针偏移量语义化常量
+// - 将硬编码的0x24c/0x244/0x23c负偏移量替换为NETWORK_NEGATIVE_OFFSET_24C/244/23C等语义化常量
+// - 将硬编码的0x360/0x368数据指针偏移量替换为NETWORK_DATA_PTR_OFFSET_360/368等语义化常量
 // - 删除了重复的常量定义，提高代码的一致性和可维护性
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了网络系统中硬编码数值的语义化替换和错误修复
@@ -24374,10 +24377,10 @@ int64_t networkExtractProtocolData5(int64_t network_socket_descriptor,uint32_t *
         long_ptr_primary = (int64_t *)((longlong)network_status_third * SOCKET_RESPONSE_OFFSET + *(int64_t *)(network_timeout_value_ptr_tenth + NETWORK_DATA_PTR_OFFSET_368));
 int64_t networkExtractProtocolData6(int64_t network_socket_descriptor,uint64_t network_buffer_pointer,char network_buffer_size)
   network_timeout_ms = *(int64_t *)(network_socket_context_ptr + NETWORK_ENCRYPTION_OFFSET0);
-  if ((*(int32_t *)(network_socket_context_ptr + NETWORK_OFFSET_37C) != NETWORK_OPERATION_FAILURE) && (*(int32_t *)(network_socket_context_ptr + 0x360) != NETWORK_OPERATION_FAILURE)) {
+  if ((*(int32_t *)(network_socket_context_ptr + NETWORK_OFFSET_37C) != NETWORK_OPERATION_FAILURE) && (*(int32_t *)(network_socket_context_ptr + NETWORK_DATA_PTR_OFFSET_360) != NETWORK_OPERATION_FAILURE)) {
     network_connection_processor_count_value = *(int32_t *)(*(int64_t *)(network_socket_context_ptr + NETWORK_CONNECTION_EXTENDED_OFFSET_358) +
-                          threadStackLong28._4_4_) & *(int32_t *)(network_socket_context_ptr + 0x360) - 1U) * 4);
-        pprimary_connection_info = (int64_t *)((longlong)network_connection_processor_count_value * SOCKET_RESPONSE_OFFSET + *(int64_t *)(network_socket_context_ptr + 0x368));
+                          threadStackLong28._4_4_) & *(int32_t *)(network_socket_context_ptr + NETWORK_DATA_PTR_OFFSET_360) - 1U) * 4);
+        pprimary_connection_info = (int64_t *)((longlong)network_connection_processor_count_value * SOCKET_RESPONSE_OFFSET + *(int64_t *)(network_socket_context_ptr + NETWORK_DATA_PTR_OFFSET_368));
 // 函数: void networkExtractProtocolData7(void)
 void networkExtractProtocolData7(void)
 uint64_t networkExtractProtocolData8(void)
