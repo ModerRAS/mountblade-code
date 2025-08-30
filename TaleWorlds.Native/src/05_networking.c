@@ -40,7 +40,7 @@
 // 最新美化内容（2025年8月30日）：
 // - 将network_socket_handle_stack_array替换为network_socket_handle_stack_array（网络套接字句柄栈数组）
 // - 将network_global_auth_data_primary替换为network_global_auth_data_primary（网络全局认证数据主）
-// - 将network_global_auth_data_primary_primary替换为network_global_auth_data_secondary（网络全局认证数据次）
+// - 将network_global_auth_data_primary替换为network_global_auth_data_secondary（网络全局认证数据次）
 // - 将network_global_auth_data_primary_secondary替换为network_global_auth_data_tertiary（网络全局认证数据第三）
 // - 将network_global_auth_data_primary_quaternary替换为network_global_auth_data_quaternary（网络全局认证数据第四）
 // - 将network_integrity_check_global_primary替换为network_integrity_check_global_primary（网络完整性检查全局主）
@@ -29856,7 +29856,7 @@ uint32_t networkDeallocateBuffer9(uint8_t *network_socket_handle, int32_t networ
     network_packet_size_temporary = network_packet_size_temporary + NETWORK_OPERATION_SUCCESS;
 uint64_t SendNetworkPacket(uint64_t network_socket_handle, uint64_t network_buffer_ptr)
   network_packet_size_temporary = EncryptNetworkData(network_socket_handle, network_socket_handle_stack_array);
-    network_operation_status_code = HandleNetworkAuthentication(network_socket_handle_stack_array[NETWORK_OPERATION_FAILURE], &network_global_auth_data_primary_primary, network_buffer_ptr);
+    network_operation_status_code = HandleNetworkAuthentication(network_socket_handle_stack_array[NETWORK_OPERATION_FAILURE], &network_global_auth_data_primary, network_buffer_ptr);
     if (network_operation_status_code != NETWORK_OPERATION_SUCCESS) {
       network_packet_size_temporary = NETWORK_SOCKET_DATA_OFFSET3;
 uint64_t ValidateNetworkConnection(uint64_t network_socket_handle, uint64_t network_buffer_ptr)
@@ -30059,12 +30059,12 @@ uint64_t networkOptimizeBuffer2(uint64_t network_socket_handle, int64_t network_
     if (NETWORK_OPERATION_FAILURE < network_buffer_size_var) {
         network_packet_size_temporary = EncryptNetworkData(network_encryption_array, network_validation_temp_buffer);
         if ((int)network_packet_size_temporary != NETWORK_OPERATION_FAILURE) {
-        network_operation_status_code = HandleNetworkAuthentication(network_validation_temp_buffer[NETWORK_OPERATION_FAILURE], &network_global_auth_data_primary_primary, network_buffer_ptr + (longlong)network_operation_status_code * 4);
+        network_operation_status_code = HandleNetworkAuthentication(network_validation_temp_buffer[NETWORK_OPERATION_FAILURE], &network_global_auth_data_primary, network_buffer_ptr + (longlong)network_operation_status_code * 4);
       } while (network_operation_status_code < network_buffer_size_var);
 uint64_t networkOptimizeBuffer3(void)
   if (NETWORK_OPERATION_FAILURE < network_socket_context_pointer) {
       network_packet_size_temporary = EncryptNetworkData(&network_global_buffer, &network_connection_handle);
-      network_operation_status_code = HandleNetworkAuthentication(network_connection_handle, &network_global_auth_data_primary_primary, network_socket_context_pointer + (longlong)network_operation_status_code * 4);
+      network_operation_status_code = HandleNetworkAuthentication(network_connection_handle, &network_global_auth_data_primary, network_socket_context_pointer + (longlong)network_operation_status_code * 4);
     } while (network_operation_status_code < network_socket_context_pointer);
 // 函数: void networkOptimizeBuffer4(void)
 void networkOptimizeBuffer4(void)

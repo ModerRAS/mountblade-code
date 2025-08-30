@@ -118,6 +118,8 @@
 #define SYSTEM_STACK_OFFSET_THREAD_CONFIG 0x6c
 #define SYSTEM_STACK_OFFSET_STRING_LENGTH 0x24
 #define SYSTEM_STACK_OFFSET_SYSTEM_FLAG 0x48
+#define SYSTEM_STACK_OFFSET_STRING_BUFFER 0x30
+#define SYSTEM_STACK_OFFSET_STRING_HANDLE 0x38
 
 // 系统字符串模式常量
 #define SYSTEM_STRING_PATTERN_1 0x666e6f63  // "conf"
@@ -3728,7 +3730,7 @@ section_processing_jump_label_:
                     }
                     else if (cStack_338 == '\0') {
                       thread_op_flags = system_thread_manager_get_status();
-                      string_input_ptr = (unsigned char *)0x0;
+                      string_input_ptr = (unsigned char *)SYSTEM_NULL_POINTER;
                       thread_stack_ptr = &g_threadString2;
                       stack_size_max = SYSTEM_ZERO_VALUE;
                       thread_stack_ptr = (unsigned char *)SYSTEM_NULL_POINTER;
@@ -3826,7 +3828,7 @@ section_processing_jump_label_:
           }
         }
 section_processing_jump_label_:
-        string_input_ptr = (unsigned char *)0x0;
+        string_input_ptr = (unsigned char *)SYSTEM_NULL_POINTER;
         stack_size_max = SYSTEM_ZERO_VALUE;
         str_len_counter = thread_stack_base_address;
         if (string_input_ptr != (unsigned char *)SYSTEM_NULL_POINTER) {
@@ -10502,7 +10504,7 @@ section_processing_jump_label_:
               memcpy(string_input_ptr + 5,mutex_attr,(long long)(thread_result_index + 2));
             }
           }
-          string_input_ptr = (unsigned char *)0x0;
+          string_input_ptr = (unsigned char *)SYSTEM_NULL_POINTER;
           thread_stack_ptr = &g_threadString2;
           stack_size_max = SYSTEM_ZERO_VALUE;
           thread_stack_ptr = (unsigned int *)SYSTEM_NULL_POINTER;
