@@ -157,6 +157,23 @@
 
 // 本次美化内容：
 
+// 新增美化内容：将多级栈指针变量名替换为语义化名称
+// - 将multi_level_stack_pointer_188替换为system_multi_level_stack_root（多级栈根指针）
+// - 将multi_level_stack_pointer_178替换为system_multi_level_stack_secondary（多级栈次级指针）
+// - 将multi_level_stack_pointer_138替换为system_multi_level_stack_primary（多级栈主指针）
+// - 将multi_level_stack_pointer_128替换为system_multi_level_stack_tertiary（多级栈第三级指针）
+// - 将multi_level_stack_pointer_d8替换为system_multi_level_stack_data（多级栈数据指针）
+// - 将multi_level_stack_x_18替换为system_multi_level_stack_temp（多级栈临时指针）
+// - 将pppppppuStack_180替换为system_sextuple_stack_root（六重栈根指针）
+// - 将ppppppuStack_130替换为system_sextuple_stack_primary（六重栈主指针）
+// - 将pppppuStack_d0替换为system_quintuple_stack_data（五重栈数据指针）
+// - 将pppppuStack_c8替换为system_quintuple_stack_control（五重栈控制指针）
+// - 将pppppuStack_a0替换为system_quintuple_stack_temp（五重栈临时指针）
+// - 将ppppppplStack_f8替换为system_sextuple_long_stack（六重长整型栈）
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+// - 这是简化实现，主要处理了数据定义文件中多级栈指针变量名的语义化替换
+
 // 新增美化内容：将硬编码十六进制常量替换为语义化宏定义
 // - 添加了SYSTEM_THREAD_LOCAL_STORAGE_OFFSET（线程本地存储偏移量）常量定义
 // - 添加了SYSTEM_STRING_BUFFER_BASE_ADDR（字符串缓冲区基地址）常量定义
@@ -4808,29 +4825,29 @@ section_processing_jump_label_:
         pppppthread_op_flags = system_quintuple_stack_control;
         pppppthread_op_flags = system_quintuple_stack_data;
         system_initialization_result9 = (long long)system_quintuple_stack_control - (long long)system_quintuple_stack_data;
-        multi_level_pointer_array_6_element = (unsigned long long ******)system_execution_function(system_global_data_pointer,path_buffer_size,8,3);
-        system_multi_level_stack_data = multi_level_pointer_array_6_element;
-        *multi_level_pointer_array_6_element = (unsigned long long *****)0x0;
-        multi_level_pointer_array_6_element[1] = (unsigned long long *****)0x0;
-        multi_level_pointer_array_6_element[2] = (unsigned long long *****)0x0;
-        *(unsigned int *)(multi_level_pointer_array_6_element + 3) = 3;
-        multi_level_pointer_array_6 = &system_multi_level_stack_root;
+        system_multi_level_pointer_array_index_element = (unsigned long long ******)system_execution_function(system_global_data_pointer,path_buffer_size,8,3);
+        system_multi_level_stack_data = system_multi_level_pointer_array_index_element;
+        *system_multi_level_pointer_array_index_element = (unsigned long long *****)0x0;
+        system_multi_level_pointer_array_index_element[1] = (unsigned long long *****)0x0;
+        system_multi_level_pointer_array_index_element[2] = (unsigned long long *****)0x0;
+        *(unsigned int *)(system_multi_level_pointer_array_index_element + 3) = 3;
+        system_multi_level_pointer_array_index = &system_multi_level_stack_root;
         multi_level_ptr_array_9 = system_multi_level_stack_secondary;
         while (multi_level_ptr_array_9 != (unsigned long long *******)0x0) {
           if (*(int *)(multi_level_ptr_array_9 + 4) < thread_result_index) {
             multi_level_ptr_array_9 = (unsigned long long *******)*multi_level_ptr_array_9;
           }
           else {
-            multi_level_pointer_array_6 = multi_level_ptr_array_9;
+            system_multi_level_pointer_array_index = multi_level_ptr_array_9;
             multi_level_ptr_array_9 = (unsigned long long *******)multi_level_ptr_array_9[1];
           }
         }
-        if (((unsigned long long ********)multi_level_pointer_array_6 == &system_multi_level_stack_root) ||
-           (thread_result_index < *(int *)(multi_level_pointer_array_6 + 4))) {
+        if (((unsigned long long ********)system_multi_level_pointer_array_index == &system_multi_level_stack_root) ||
+           (thread_result_index < *(int *)(system_multi_level_pointer_array_index + 4))) {
           string_input_ptr = (unsigned long long *)system_execution_function(&system_multi_level_stack_root,auStack_90);
-          multi_level_pointer_array_6 = (unsigned long long *******)*string_input_ptr;
+          system_multi_level_pointer_array_index = (unsigned long long *******)*string_input_ptr;
         }
-        multi_level_pointer_array_6[5] = multi_level_pointer_array_6_element;
+        system_multi_level_pointer_array_index[5] = system_multi_level_pointer_array_index_element;
         thread_result_index = (int)(system_initialization_result9 >> 5);
         system_initialization_result9 = (long long)thread_result_index;
         pppppthread_op_flags = pppppthread_op_flags;
@@ -4897,26 +4914,26 @@ section_processing_jump_label_:
             }
             else {
 section_processing_jump_label_:
-              multi_level_pointer_array_6 = &system_multi_level_stack_root;
+              system_multi_level_pointer_array_index = &system_multi_level_stack_root;
               multi_level_ptr_array_9 = system_multi_level_stack_secondary;
               while (multi_level_ptr_array_9 != (unsigned long long *******)0x0) {
                 if (*(int *)(multi_level_ptr_array_9 + 4) < thread_result_index) {
                   multi_level_ptr_array_9 = (unsigned long long *******)*multi_level_ptr_array_9;
                 }
                 else {
-                  multi_level_pointer_array_6 = multi_level_ptr_array_9;
+                  system_multi_level_pointer_array_index = multi_level_ptr_array_9;
                   multi_level_ptr_array_9 = (unsigned long long *******)multi_level_ptr_array_9[1];
                 }
               }
-              if (((unsigned long long ********)multi_level_pointer_array_6 == &system_multi_level_stack_root) ||
-                 (thread_result_index < *(int *)(multi_level_pointer_array_6 + 4))) {
+              if (((unsigned long long ********)system_multi_level_pointer_array_index == &system_multi_level_stack_root) ||
+                 (thread_result_index < *(int *)(system_multi_level_pointer_array_index + 4))) {
                 string_input_ptr = (unsigned long long *)system_execution_function(&system_multi_level_stack_root,&psystem_quintuple_stack_temp);
-                multi_level_pointer_array_6 = (unsigned long long *******)*string_input_ptr;
+                system_multi_level_pointer_array_index = (unsigned long long *******)*string_input_ptr;
               }
-              multi_level_pointer_array_6_element = multi_level_pointer_array_6[5];
-              multi_level_thread_op_flags = (unsigned long long ******)multi_level_pointer_array_6_element[1];
-              if (multi_level_thread_op_flags < multi_level_pointer_array_6_element[2]) {
-                multi_level_pointer_array_6_element[1] = multi_level_thread_op_flags + 4;
+              system_multi_level_pointer_array_index_element = system_multi_level_pointer_array_index[5];
+              multi_level_thread_op_flags = (unsigned long long ******)system_multi_level_pointer_array_index_element[1];
+              if (multi_level_thread_op_flags < system_multi_level_pointer_array_index_element[2]) {
+                system_multi_level_pointer_array_index_element[1] = multi_level_thread_op_flags + 4;
                 *multi_level_thread_op_flags = (unsigned long long *****)&g_threadString4;
                 multi_level_thread_op_flags[1] = (unsigned long long *****)0x0;
                 *(unsigned int *)(multi_level_thread_op_flags + 2) = 0;
@@ -4938,7 +4955,7 @@ section_processing_jump_label_:
                 }
               }
               else {
-                system_event_handle_paramr_006(multi_level_pointer_array_6_element,&thread_stack_ptr);
+                system_event_handle_paramr_006(system_multi_level_pointer_array_index_element,&thread_stack_ptr);
               }
               thread_stack_ptr = &g_threadString2;
               if (thread_stack_ptr != (unsigned char *)0x0) {
@@ -4987,72 +5004,72 @@ section_processing_jump_label_:
   multi_level_ptr_array_9 = system_sextuple_stack_root;
   if ((unsigned long long ********)system_sextuple_stack_root != &system_multi_level_stack_root) {
     do {
-      multi_level_pointer_temp2 = (unsigned long long *******)multi_level_ptr_array_9[5];
-      multi_level_pointer_array_6 = multi_level_ptr_array_9 + 4;
-      multi_level_pointer_current = &system_multi_level_stack_primary;
+      system_multi_level_pointer_temp2 = (unsigned long long *******)multi_level_ptr_array_9[5];
+      system_multi_level_pointer_array_index = multi_level_ptr_array_9 + 4;
+      system_multi_level_pointer_current = &system_multi_level_stack_primary;
       if (system_multi_level_stack_tertiary != (unsigned long long *******)0x0) {
-        multi_level_pointer_temp1 = system_multi_level_stack_tertiary;
+        system_multi_level_pointer_temp1 = system_multi_level_stack_tertiary;
         do {
-          if (*(int *)(multi_level_pointer_temp1 + 4) < *(int *)multi_level_pointer_array_6) {
-            multi_level_pointer_temp1 = (unsigned long long *******)*multi_level_pointer_temp1;
+          if (*(int *)(system_multi_level_pointer_temp1 + 4) < *(int *)system_multi_level_pointer_array_index) {
+            system_multi_level_pointer_temp1 = (unsigned long long *******)*system_multi_level_pointer_temp1;
           }
           else {
-            multi_level_pointer_current = multi_level_pointer_temp1;
-            multi_level_pointer_temp1 = (unsigned long long *******)multi_level_pointer_temp1[1];
+            system_multi_level_pointer_current = system_multi_level_pointer_temp1;
+            system_multi_level_pointer_temp1 = (unsigned long long *******)system_multi_level_pointer_temp1[1];
           }
-        } while (multi_level_pointer_temp1 != (unsigned long long *******)0x0);
+        } while (system_multi_level_pointer_temp1 != (unsigned long long *******)0x0);
       }
-      if (((unsigned long long ********)multi_level_pointer_current == &system_multi_level_stack_primary) ||
-         (*(int *)multi_level_pointer_array_6 < *(int *)(multi_level_pointer_current + 4))) {
+      if (((unsigned long long ********)system_multi_level_pointer_current == &system_multi_level_stack_primary) ||
+         (*(int *)system_multi_level_pointer_array_index < *(int *)(system_multi_level_pointer_current + 4))) {
         string_input_ptr = (unsigned long long *)system_execution_function(&system_multi_level_stack_primary,&system_multi_level_stack_temp);
-        multi_level_pointer_current = (unsigned long long *******)*string_input_ptr;
+        system_multi_level_pointer_current = (unsigned long long *******)*string_input_ptr;
       }
-      if (multi_level_pointer_current + 5 != multi_level_pointer_temp2) {
-        system_event_handle_paramr_004(multi_level_pointer_current + 5,*multi_level_pointer_temp2,multi_level_pointer_temp2[1]);
+      if (system_multi_level_pointer_current + 5 != system_multi_level_pointer_temp2) {
+        system_event_handle_paramr_004(system_multi_level_pointer_current + 5,*system_multi_level_pointer_temp2,system_multi_level_pointer_temp2[1]);
       }
-      multi_level_pointer_current = &system_multi_level_stack_root;
+      system_multi_level_pointer_current = &system_multi_level_stack_root;
       if (system_multi_level_stack_secondary != (unsigned long long *******)0x0) {
-        multi_level_pointer_temp2 = system_multi_level_stack_secondary;
+        system_multi_level_pointer_temp2 = system_multi_level_stack_secondary;
         do {
-          if (*(int *)(multi_level_pointer_temp2 + 4) < *(int *)multi_level_pointer_array_6) {
-            multi_level_pointer_temp2 = (unsigned long long *******)*multi_level_pointer_temp2;
+          if (*(int *)(system_multi_level_pointer_temp2 + 4) < *(int *)system_multi_level_pointer_array_index) {
+            system_multi_level_pointer_temp2 = (unsigned long long *******)*system_multi_level_pointer_temp2;
           }
           else {
-            multi_level_pointer_current = multi_level_pointer_temp2;
-            multi_level_pointer_temp2 = (unsigned long long *******)multi_level_pointer_temp2[1];
+            system_multi_level_pointer_current = system_multi_level_pointer_temp2;
+            system_multi_level_pointer_temp2 = (unsigned long long *******)system_multi_level_pointer_temp2[1];
           }
-        } while (multi_level_pointer_temp2 != (unsigned long long *******)0x0);
+        } while (system_multi_level_pointer_temp2 != (unsigned long long *******)0x0);
       }
-      if (((unsigned long long ********)multi_level_pointer_current == &system_multi_level_stack_root) ||
-         (*(int *)multi_level_pointer_array_6 < *(int *)(multi_level_pointer_current + 4))) {
+      if (((unsigned long long ********)system_multi_level_pointer_current == &system_multi_level_stack_root) ||
+         (*(int *)system_multi_level_pointer_array_index < *(int *)(system_multi_level_pointer_current + 4))) {
         string_input_ptr = (unsigned long long *)system_execution_function(&system_multi_level_stack_root,&multi_level_stack_long_variable);
-        multi_level_pointer_current = (unsigned long long *******)*string_input_ptr;
+        system_multi_level_pointer_current = (unsigned long long *******)*string_input_ptr;
       }
-      multi_level_pointer_array_6_element = multi_level_pointer_current[5];
-      psystem_quintuple_stack_temp = multi_level_pointer_array_6_element;
-      if (multi_level_pointer_array_6_element != (unsigned long long ******)0x0) {
-        system_event_handle_paramr_010(multi_level_pointer_array_6_element);
-        handle_param_system_error(multi_level_pointer_array_6_element);
+      system_multi_level_pointer_array_index_element = system_multi_level_pointer_current[5];
+      psystem_quintuple_stack_temp = system_multi_level_pointer_array_index_element;
+      if (system_multi_level_pointer_array_index_element != (unsigned long long ******)0x0) {
+        system_event_handle_paramr_010(system_multi_level_pointer_array_index_element);
+        handle_param_system_error(system_multi_level_pointer_array_index_element);
       }
-      multi_level_pointer_current = &system_multi_level_stack_root;
+      system_multi_level_pointer_current = &system_multi_level_stack_root;
       if (system_multi_level_stack_secondary != (unsigned long long *******)0x0) {
-        multi_level_pointer_temp2 = system_multi_level_stack_secondary;
+        system_multi_level_pointer_temp2 = system_multi_level_stack_secondary;
         do {
-          if (*(int *)(multi_level_pointer_temp2 + 4) < *(int *)multi_level_pointer_array_6) {
-            multi_level_pointer_temp2 = (unsigned long long *******)*multi_level_pointer_temp2;
+          if (*(int *)(system_multi_level_pointer_temp2 + 4) < *(int *)system_multi_level_pointer_array_index) {
+            system_multi_level_pointer_temp2 = (unsigned long long *******)*system_multi_level_pointer_temp2;
           }
           else {
-            multi_level_pointer_current = multi_level_pointer_temp2;
-            multi_level_pointer_temp2 = (unsigned long long *******)multi_level_pointer_temp2[1];
+            system_multi_level_pointer_current = system_multi_level_pointer_temp2;
+            system_multi_level_pointer_temp2 = (unsigned long long *******)system_multi_level_pointer_temp2[1];
           }
-        } while (multi_level_pointer_temp2 != (unsigned long long *******)0x0);
+        } while (system_multi_level_pointer_temp2 != (unsigned long long *******)0x0);
       }
-      if (((unsigned long long ********)multi_level_pointer_current == &system_multi_level_stack_root) ||
-         (*(int *)multi_level_pointer_array_6 < *(int *)(multi_level_pointer_current + 4))) {
+      if (((unsigned long long ********)system_multi_level_pointer_current == &system_multi_level_stack_root) ||
+         (*(int *)system_multi_level_pointer_array_index < *(int *)(system_multi_level_pointer_current + 4))) {
         string_input_ptr = (unsigned long long *)system_execution_function(&system_multi_level_stack_root,&system_multi_level_stack_data);
-        multi_level_pointer_current = (unsigned long long *******)*string_input_ptr;
+        system_multi_level_pointer_current = (unsigned long long *******)*string_input_ptr;
       }
-      multi_level_pointer_current[5] = (unsigned long long ******)0x0;
+      system_multi_level_pointer_current[5] = (unsigned long long ******)0x0;
       multi_level_ptr_array_9 = (unsigned long long *******)memory_alloc_function(multi_level_ptr_array_9);
     } while ((unsigned long long ********)multi_level_ptr_array_9 != &system_multi_level_stack_root);
   }
@@ -5096,14 +5113,14 @@ section_processing_jump_label_:
     }
     stack_size_max = stack_size_max;
   }
-  multi_level_pointer_array_6_element = (unsigned long long ******)
+  system_multi_level_pointer_array_index_element = (unsigned long long ******)
                  system_processor_010(buffer_alloc_result,&psystem_chain_node_backup_1,buffer_alloc_result,pppppppuStackX_10,mutex_attr);
-  if (multi_level_pointer_array_6_element != (unsigned long long ******)0x0) {
-    system_multi_level_stack_temp = (unsigned long long *******)multi_level_pointer_array_6_element;
-    (*(code *)(*multi_level_pointer_array_6_element)[5])(multi_level_pointer_array_6_element);
+  if (system_multi_level_pointer_array_index_element != (unsigned long long ******)0x0) {
+    system_multi_level_stack_temp = (unsigned long long *******)system_multi_level_pointer_array_index_element;
+    (*(code *)(*system_multi_level_pointer_array_index_element)[5])(system_multi_level_pointer_array_index_element);
   }
   system_multi_level_stack_temp = *(unsigned long long ********)(system_initialization_result9 + SYSTEM_CONFIG_BUFFER_SIZE);
-  *(unsigned long long *******)(system_initialization_result9 + SYSTEM_CONFIG_BUFFER_SIZE) = multi_level_pointer_array_6_element;
+  *(unsigned long long *******)(system_initialization_result9 + SYSTEM_CONFIG_BUFFER_SIZE) = system_multi_level_pointer_array_index_element;
   if (system_multi_level_stack_temp != (unsigned long long *******)0x0) {
     (*(code *)(*system_multi_level_stack_temp)[7])();
   }
@@ -5114,7 +5131,7 @@ section_processing_jump_label_:
     (*(code *)(*system_multi_level_stack_temp)[5])();
   }
   system_event_handle_paramr_013(buffer_alloc_result,&system_multi_level_stack_temp);
-  multi_level_pointer_array_6 = system_multi_level_stack_tertiary;
+  system_multi_level_pointer_array_index = system_multi_level_stack_tertiary;
   multi_level_ptr_array_9 = system_multi_level_stack_secondary;
   system_multi_level_stack_temp = system_multi_level_stack_tertiary;
   if (system_multi_level_stack_tertiary == (unsigned long long *******)0x0) {
@@ -5129,10 +5146,10 @@ section_processing_jump_label_:
     handle_param_system_error();
   }
   system_processor_011(&system_multi_level_stack_primary,*system_multi_level_stack_tertiary);
-  pppppppuStackX_10 = multi_level_pointer_array_6 + 4;
-  multi_level_stack_long_variable = multi_level_pointer_array_6 + 5;
+  pppppppuStackX_10 = system_multi_level_pointer_array_index + 4;
+  multi_level_stack_long_variable = system_multi_level_pointer_array_index + 5;
   system_event_handle_paramr_010();
-  handle_param_system_error(multi_level_pointer_array_6);
+  handle_param_system_error(system_multi_level_pointer_array_index);
 }
         g_data_buffer_status = 0;
         return ptr_var_7;
