@@ -1100,6 +1100,14 @@
 // - 保持代码语义不变
 // - 这是简化实现，主要处理了硬编码数组索引的语义化替换
 
+// 本次美化内容（2025年8月30日最终批次续）：
+// - 美化初始化栈参数变量名，将init_stack_uint_param_f8_hex替换为init_stack_uint_param_thread_config等线程配置变量名
+// - 美化初始化栈参数变量名，将init_stack_uint_param_d8_hex替换为init_stack_uint_param_buffer_size等缓冲区大小变量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了系统初始化中剩余栈参数变量名的语义化替换
+// - 原本实现：完全重构所有栈参数变量命名体系，建立统一的命名规范
+// - 简化实现：仅将常见的栈参数变量名替换为语义化名称
+
 // 系统常量语义化定义
 #define SYSTEM_INVALID_HANDLE_VALUE 0xFFFFFFFFFFFFFFFF
 #define SYSTEM_MAX_UINT32_VALUE 0xFFFFFFFF
