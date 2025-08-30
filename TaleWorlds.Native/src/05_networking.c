@@ -2956,8 +2956,8 @@ void NetworkSendDataChunk(uint64_t network_socket_handle, uint64_t network_buffe
 // 函数: void NetworkSendDataBuffer(uint64_t network_socket_handle, uint64_t network_buffer_pointer, uint64_t network_buffer_size_var, uint64_t network_timeout_value, 
 void NetworkSendDataBuffer(uint64_t network_socket_handle, uint64_t network_buffer_pointer, uint64_t network_buffer_size_var, uint64_t network_timeout_value, 
   int64_t network_global_buffer;
-  int64_t network_register_xmm0_temporary;
-  network_processor_handler = network_register_xmm0_temporary;
+  int64_t network_register_xmm0_temp_value;
+  network_processor_handler = network_register_xmm0_temp_value;
   network_operation_result = network_initialize_socket();
       network_primary_connection_data = (**(code **)(*network_timeout_config_pointer + CONNECTION_INFO_OFFSET))(network_timeout_config_pointer, network_send_buffer_pointer, NETWORK_OPERATION_SUCCESS, network_timeout_value, network_socket_handle);
       if (network_primary_connection_data == NETWORK_OPERATION_STATUS_FAILURE) {
@@ -4788,7 +4788,7 @@ network_check_connection_status_label:
 void NetworkProcessPacketBuffer(uint64_t network_socket_handle, uint64_t network_buffer_pointer)
   if ((((network_operation_status_code != NETWORK_OPERATION_STATUS_FAILURE) || (network_operation_status_code = InitializeNetworkContext(network_validation_temporary_bufferfer[NETWORK_OPERATION_STATUS_FAILURE], network_buffer_pointer), network_operation_status_code != NETWORK_OPERATION_STATUS_FAILURE)) && (network_operation_status_code != NETWORK_OPERATION_STATUS_FAILURE)
       ) && ((*(uint8_t *)(g_network_module + MODULE_STATUS_OFFSET) & NETWORK_STATUS_READY_MASK) != NETWORK_OPERATION_STATUS_FAILURE)) {
-    networkSendControlPacket(network_operation_status_code, NETWORK_CONTROL_PACKET_TYPE_HANDSHAKE, network_socket_handle, &g_network_buffer_pointer_secondary08);
+    networkSendControlPacket(network_operation_status_code, NETWORK_CONTROL_PACKET_TYPE_HANDSHAKE, network_socket_handle, &g_network_buffer_pointer_secondary_standard);
 // 函数: void NetworkProcessPacketWithCapacity(uint32_t network_socket_handle, int64_t network_buffer_pointer, uint32_t network_buffer_size_var)
 void NetworkProcessPacketWithCapacity(uint32_t network_socket_handle, int64_t network_buffer_pointer, uint32_t network_buffer_size_var)
   network_operation_result = network_initialize_socket(NETWORK_OPERATION_STATUS_FAILURE, &network_config_secondary_value);
