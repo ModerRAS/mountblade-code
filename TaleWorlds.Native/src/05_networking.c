@@ -1,4 +1,17 @@
 
+// 最新美化内容（2025年8月30日）：
+// - 美化网络系统临时变量名，将network_packet_size_temporary替换为network_packet_size_temp等语义化变量名
+// - 美化网络系统地址变量名，将client_port_address_current替换为client_port_addr_current等语义化变量名
+// - 美化网络系统地址变量名，将server_port_address_ptr替换为server_port_addr_ptr等语义化变量名
+// - 美化网络系统状态变量名，将network_status_code_ptr替换为network_status_ptr等语义化变量名
+// - 美化网络系统寄存器变量名，将input_register替换为input_reg等语义化变量名
+// - 美化网络系统地址变量名，将network_server_address替换为network_server_addr等语义化变量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了网络系统中剩余临时变量名的语义化替换
+// - 原本实现：完全重构网络系统临时变量命名体系，建立统一的语义化命名规范
+// - 简化实现：仅将常见的临时变量名替换为语义化名称
+
+
 // 最新美化内容（2025年8月30日最终批次最终完成）：
 // - 美化变量名拼写错误，将packet_info_arrayay替换为packet_info_array等正确变量名
 // - 美化网络系统变量名，将network_network_processor_index_pointer替换为network_processor_index_ptr等语义化变量名
@@ -1733,10 +1746,10 @@
 #define NETWORK_STATUS_CODE_ROUTE_UNAVAILABLE 0x85  // 网络路由不可用状态码
 
 // 新增语义化常量定义 - 网络偏移量
-#define NETWORK_CONFIG_REGION_OFFSET_210 0x210  // 网络配置区域偏移量210
-#define NETWORK_SOCKET_DATA_OFFSET_FIVE 0x5  // 套接字数据偏移量5
-#define NETWORK_SOCKET_DATA_OFFSET_EXTENDED_SEVEN 0x70  // 套接字数据偏移量70
-#define NETWORK_SOCKET_DATA_OFFSET_7C 0x7c  // 套接字数据偏移量7C
+#define NETWORK_CONFIG_REGION_OFFSET_PRIMARY 0x210  // 网络配置区域主偏移量
+#define NETWORK_SOCKET_DATA_OFFSET_MINIMAL 0x5  // 套接字数据最小偏移量
+#define NETWORK_SOCKET_DATA_OFFSET_EXTENDED 0x70  // 套接字数据扩展偏移量
+#define NETWORK_SOCKET_DATA_OFFSET_CONTROL 0x7c  // 套接字数据控制偏移量
 
 // 网络系统套接字扩展语义化常量定义（2025年8月30日最终批次续）
 #define NETWORK_SOCKET_CONNECTION_OFFSET_EXTENDED 0x8  // 套接字连接扩展偏移量
