@@ -881,18 +881,18 @@ dataValue renderScissorRect;
 
 // 函数: dataValueValue renderStateInitialize;
 dataValue renderStateInitialize;
-dataValue renderStateBuffer1;
-dataValue renderStateBuffer2;
-dataValue renderStateBuffer3;
-dataValue renderStateBuffer4;
+dataValue renderStateBufferRasterization;
+dataValue renderStateBufferMultisample;
+dataValue renderStateBufferDepthStencil;
+dataValue renderStateBufferColorBlend;
 dataValue framebufferColorAttachment;
 
 // 函数: dataValueValue renderQueueInitialize;
 dataValue renderQueueInitialize;
-dataValue renderQueueBuffer1;
-dataValue renderQueueBuffer2;
-dataValue renderQueueBuffer3;
-dataValue renderQueueBuffer4;
+dataValue renderQueueBufferGraphics;
+dataValue renderQueueBufferCompute;
+dataValue renderQueueBufferTransfer;
+dataValue renderQueueBufferSparse;
 dataValue framebufferDepthAttachment;
 
 // 函数: dataValueValue renderBufferInitialize;
