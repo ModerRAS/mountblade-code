@@ -25053,7 +25053,7 @@ void networkReceiveDataBasic(int64_t *network_socket_handle)
                     // WARNING: Could not recover jumptable at NETWORK_MEMORY_MEMORY_ZERO_OFFSET00180879c3f. Too many branches
   (**(code **)(*network_socket_handle + NETWORK_SOCKET_DATA_OFFSETe0))(network_socket_handle, network_operation_status_code, NETWORK_OPERATION_SUCCESS);
 // 函数: void networkReceiveData1(int64_t *network_socket_handle)
-void networkReceiveData1(int64_t *network_socket_handle)
+void networkReceiveDataPrimary(int64_t *network_socket_handle)
                     // WARNING: Could not recover jumptable at NETWORK_MEMORY_MEMORY_ZERO_OFFSET00180879c6f. Too many branches
   (**(code **)(*network_socket_handle + NETWORK_CONNECTION_TABLE_OFFSET))(network_socket_handle, network_operation_status_code, NETWORK_OPERATION_SUCCESS);
 // 函数: void networkReceiveData2(int64_t *network_socket_handle)
