@@ -146,6 +146,27 @@
 #define UTILITY_REGISTER_EBP unaff_EBP
 #define UTILITY_REGISTER_BPL unaff_BPL
 
+// 新增数组索引语义化宏定义
+#define UTILITY_ARRAY_INDEX_PRIMARY 0
+#define UTILITY_ARRAY_INDEX_SECONDARY 1
+#define UTILITY_ARRAY_INDEX_TERTIARY 2
+#define UTILITY_ARRAY_INDEX_QUATERNARY 3
+#define UTILITY_ARRAY_INDEX_QUINARY 4
+#define UTILITY_ARRAY_INDEX_SENARY 5
+
+// 新增十六进制偏移量语义化宏定义
+#define UTILITY_OFFSET_RESOURCE_HANDLE 0x6f
+#define UTILITY_OFFSET_STATUS_CODE 0x100
+#define UTILITY_OFFSET_ERROR_COUNTER 0x8
+#define UTILITY_OFFSET_SYSTEM_STATUS 0x10
+#define UTILITY_OFFSET_SECONDARY_BYTE 0x14
+#define UTILITY_OFFSET_RESOURCE_INFO 0x18
+
+// 新增常量语义化宏定义
+#define UTILITY_HARDWARE_REGISTER_VALUE 0x508
+#define UTILITY_BYTE_FLAG_CLEAR 0xfe
+#define UTILITY_SUCCESS_FLAG 1
+
 
 // 06_utilities.c - 473 个函数
 // 美化内容：
@@ -3590,11 +3611,11 @@ uint64 manage_resource_memoryBlock(longlong resource_handle_identifier,longlong 
   longlong utility_stack_buffer_array [UTILITY_STACK_BUFFER_SIZE_2];
   
   iteration_counter = system_memory_operation(*(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),utility_stack_buffer_array);
-  resource_buffer = utility_stack_buffer_array[0];
+  resource_buffer = utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY];
   if ((int)iteration_counter != 0) {
     return iteration_counter;
   }
-  *(int *)(utility_stack_buffer_array[0] + ERROR_CODE_INVALID_HANDLE) = *(int *)(utility_stack_buffer_array[0] + ERROR_CODE_INVALID_HANDLE) + 1;
+  *(int *)(utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] + ERROR_CODE_INVALID_HANDLE) = *(int *)(utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] + ERROR_CODE_INVALID_HANDLE) + 1;
   if (*(int *)(utility_stack_buffer_array[0] + UTILITY_SYS_STATUS_OFFSET) + *(int *)(utility_stack_buffer_array[0] + UTILITY_SYSTEM_STATUS_OFFSET_2) +
       *(int *)(utility_stack_buffer_array[0] + ERROR_CODE_INVALID_HANDLE) == 1) {
     utility_stack_buffer_array[0] = 0;
@@ -3653,7 +3674,7 @@ uint64 validate_memory_dataSize(longlong resource_handle_identifier,uint64 resou
   longlong utility_stack_buffer_array [UTILITY_STACK_BUFFER_SIZE_2];
   
   iteration_counter = system_memory_operation(*(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),utility_stack_buffer_array);
-  resource_buffer = utility_stack_buffer_array[0];
+  resource_buffer = utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY];
   if ((int)iteration_counter != 0) {
     return iteration_counter;
   }
