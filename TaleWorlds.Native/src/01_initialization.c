@@ -318,8 +318,8 @@
 #define SYSTEM_INIT_LABEL_INITIALIZATION_CHECK   system_init_label_connection_retry  // 初始化检查标签
 #define SYSTEM_INIT_LABEL_LOOP_CONTINUE          system_init_label_data_prepare  // 循环继续标签
 #define SYSTEM_INIT_LABEL_LOOP_CONDITION        system_init_label_loop_condition  // 循环条件标签
-#define SYSTEM_INIT_LABEL_LOOP_END              LAB_180046c90  // 循环结束标签
-#define SYSTEM_INIT_LABEL_DATA_PROCESS          LAB_180047f2c  // 数据处理标签
+#define SYSTEM_INIT_LABEL_LOOP_END              system_init_label_loop_end  // 循环结束标签
+#define SYSTEM_INIT_LABEL_DATA_PROCESS          system_init_label_data_process  // 数据处理标签
 #define SYSTEM_INIT_LABEL_ARRAY_CHECK           LAB_180047f90x10  // 数组检查标签
 #define SYSTEM_INIT_LABEL_VALIDATION_COMPLETE   LAB_180048dd7  // 验证完成标签
 #define SYSTEM_INIT_LABEL_CLEANUP_START         LAB_180048db7  // 清理开始标签
