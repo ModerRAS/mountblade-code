@@ -2,8 +2,9 @@
 
 // 01_initialization.c - 初始化系统代码（已美化变量名和函数名）
 // 美化内容：
-// - 将SystemFunctionxxxxx函数替换为语义化名称如SystemMemoryCopyFunction、EngineInitializeFunction等
-// - 将func_0x开头的函数替换为SystemFunction等语义化名称
+// - 将SystemFunctionxxxxx函数替换为语义化名称如InitializeAudioSystem、InitializeVideoSystem等
+// - 将通用变量名如auVar1、bVar31等替换为语义化名称如audio_data_buffer、system_initialization_flag等
+// - 将指针变量名如pppppppuVar1替换为语义化名称如system_pointer_chain等
 // - 保持代码语义不变，仅提高可读性和维护性
 // void InitializeGameData(void)
 
