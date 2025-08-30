@@ -27,6 +27,21 @@
 #define UTILITY_RESOURCE_ACCESS_OFFSET 0x150
 #define UTILITY_DATA_PROCESS_OFFSET 0x288
 #define UTILITY_WORD_MASK 0xffff
+#define UTILITY_FLOAT_INFINITY_MASK 0x7f800000
+#define UTILITY_FLOAT_INFINITY 3.4028235e+38
+#define UTILITY_LONG_LONG_MIN -0x8000000000000000
+#define UTILITY_MAX_UNSIGNED_VALUE 0x3fffffff
+#define UTILITY_FLAG_MASK_CLEAR 0xfdffffff
+#define UTILITY_FLAG_SET_BIT 0x4000000
+#define UTILITY_FLAG_MASK_CLEAR_2 0xfbffffff
+#define UTILITY_FLAG_SET_BIT_2 0x6000000
+#define UTILITY_ENCRYPTION_KEY_SIZE 0xdd
+#define RESOURCE_PROP_OFFSET 0x4
+#define RESOURCE_UTILITY_HANDLE_DATA_OFFSET 0x5c
+#define UTILITY_DATA_OFFSET_START 0x288
+#define POINTER_DATA_OFFSET 0x288
+#define BYTE_OFFSET_FLAG 0xc4
+#define ERROR_CODE_2 0xc4
 
 // 函数: int processBufferData(longlong utility_temp_buffer_handle)
 // 缓冲区数据处理函数
@@ -1322,9 +1337,9 @@ dataValue system_error_data;
 dataValue system_status_data;
 dataValue system_config_data;
 dataValue system_thread_data;
-dataValue utility_temp_buffer_control_data_1;
-dataValue utility_temp_buffer_control_data_2;
-dataValue utility_temp_buffer_control_data_3;
+dataValue utility_temp_buffer_control_primary;
+dataValue utility_temp_buffer_control_secondary;
+dataValue utility_temp_buffer_control_tertiary;
 dataValue threadSyncObject;
 dataValue threadContextData;
 dataValue threadSystemData;
@@ -1349,11 +1364,11 @@ dataValue system_memory_data;
 dataValue system_pool_data;
 dataValue system_manager_data;
 dataValue threadManagerState;
-dataValue threadControlFlag1;
-dataValue threadControlFlag2;
-dataValue threadControlFlag3;
-dataValue threadControlFlag4;
-dataValue threadControlFlag5;
+dataValue thread_control_flag_primary;
+dataValue thread_control_flag_secondary;
+dataValue thread_control_flag_tertiary;
+dataValue thread_control_flag_quaternary;
+dataValue thread_control_flag_quinary;
 dataValue config_system_manager_data;
 dataValue allocatorState;
 char system_pool_flag;
@@ -1363,9 +1378,9 @@ void *ExceptionList;
 dataValue dataValuebaseSchemaData;
 dataValue allocatorMemoryPool;
 dataValue system_heap_data;
-dataValue allocatorChunk1;
-dataValue allocatorChunk2;
-dataValue allocatorChunk3;
+dataValue allocator_chunk_primary;
+dataValue allocator_chunk_secondary;
+dataValue allocator_chunk_tertiary;
 dataValue system_encryption_data;
 dataValue encryptionKeyData;
 dataValue encryptionAlgorithm;
@@ -1373,7 +1388,7 @@ dataValue allocatorHeapBase;
 dataValue allocatorHeapSize;
 dataValue allocatorHeapFlags;
 dataValue system_chunk_data;
-dataValue allocatorChunk4;
+dataValue allocator_chunk_quaternary;
 
 // 函数: dataValueValue systemInitializeCore;
 dataValue systemInitializeCore;
@@ -1459,24 +1474,24 @@ dataValue cameraBufferPoolVelocity;
 dataValue cameraBufferPoolLighting;
 dataValue cameraBufferPoolShadow;
 dataValue cameraBufferPoolReflection;
-dataValue cameraBufferPoolDepth0;
-dataValue cameraBufferPoolDepth1;
-dataValue cameraBufferPoolDepth2;
-dataValue cameraBufferPoolDepth3;
-dataValue cameraBufferPoolDepth4;
-dataValue cameraBufferPoolDepth5;
-dataValue cameraBufferPoolDepth6;
-dataValue cameraBufferPoolDepth7;
-dataValue cameraBufferPoolDepth8;
-dataValue cameraBufferPoolDepth9;
-dataValue cameraBufferPoolColor0;
-dataValue cameraBufferPoolColor1;
-dataValue cameraBufferPoolColor2;
-dataValue cameraBufferPoolColor3;
-dataValue cameraBufferPoolColor4;
-dataValue cameraBufferPoolColor5;
-dataValue cameraBufferPoolColor6;
-dataValue cameraBufferPoolColor7;
+dataValue camera_buffer_pool_depth_zero;
+dataValue camera_buffer_pool_depth_one;
+dataValue camera_buffer_pool_depth_two;
+dataValue camera_buffer_pool_depth_three;
+dataValue camera_buffer_pool_depth_four;
+dataValue camera_buffer_pool_depth_five;
+dataValue camera_buffer_pool_depth_six;
+dataValue camera_buffer_pool_depth_seven;
+dataValue camera_buffer_pool_depth_eight;
+dataValue camera_buffer_pool_depth_nine;
+dataValue camera_buffer_pool_color_zero;
+dataValue camera_buffer_pool_color_one;
+dataValue camera_buffer_pool_color_two;
+dataValue camera_buffer_pool_color_three;
+dataValue camera_buffer_pool_color_four;
+dataValue camera_buffer_pool_color_five;
+dataValue camera_buffer_pool_color_six;
+dataValue camera_buffer_pool_color_seven;
 dataValue cameraBufferPoolColor8;
 dataValue cameraBufferPoolColor9;
 dataValue cameraBufferPoolStencil0;
@@ -6264,7 +6279,7 @@ uint64 utilityExecuteResourceCycleTask(longlong resource_handle_identifier,longl
   if (((uint)float_temp_value & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
     return ERROR_CODE_5;
   }
-  if ((float_temp_value < ZERO_FLOAT) || (3.4028235e+38 <= float_temp_value)) {
+  if ((float_temp_value < ZERO_FLOAT) || (UTILITY_FLOAT_INFINITY <= float_temp_value)) {
     return ERROR_CODE_FAILED;
   }
   loop_counter = SystemMemoryFunction(*(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),&utility_system_resource_handle);
@@ -9548,7 +9563,7 @@ process_system_status:
       }
       else {
         *(uint64 *)(resource_handle_identifier + RESOURCE_CONFIG_ID) = 0;
-        *(uint *)(resource_handle_identifier + UTILITY_RESOURCE_FLAG_OFFSET) = *(uint *)(resource_handle_identifier + UTILITY_RESOURCE_FLAG_OFFSET) | 0x6000000;
+        *(uint *)(resource_handle_identifier + UTILITY_RESOURCE_FLAG_OFFSET) = *(uint *)(resource_handle_identifier + UTILITY_RESOURCE_FLAG_OFFSET) | UTILITY_FLAG_SET_BIT_2;
         *(uint64 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET) = 0;
         *(uint64 *)(resource_handle_identifier + UTILITY_RESOURCE_ACCESS_ID) = 0;
       }
@@ -80338,10 +80353,10 @@ void InitializeResourcePool(void)
   if (render_system_init_flag_complete == 0) {
     UtilityModule6();
     resource_buffer_ptr = render_system_resource_buffer_ptr_5250;
-    for (utility_temp_buffer_processing = _allocatorChunk3; utility_temp_buffer_processing != resource_buffer_ptr; utility_temp_buffer_processing = utility_temp_buffer_processing + resource_handle_data_offset_zero) {
+    for (utility_temp_buffer_processing = _allocator_chunk_tertiary; utility_temp_buffer_processing != resource_buffer_ptr; utility_temp_buffer_processing = utility_temp_buffer_processing + resource_handle_data_offset_zero) {
       UtilityModule4(utility_temp_buffer_processing);
     }
-    if (_allocatorChunk3 == 0) {
+    if (_allocator_chunk_tertiary == 0) {
       return;
     }
                     // WARNING: Subroutine does not return
