@@ -2770,7 +2770,7 @@ void HandleResourceCleanup(void)
   longlong utility_input_register_value;
   longlong utility_base_register_pointer;
   longlong utility_array_handle_pointer;
-  int utility_iteration_counter;
+  int utility_counter_1;
   byte *utility_stack_buffer_ptr;
   int utility_stack_buffer_secondary;
   uint32 utility_stack_buffer_tertiary;
@@ -2846,7 +2846,7 @@ uint64 validate_resource_handle_identifier(longlong resource_handle_identifier) 
 {
   longlong resource_buffer;
   longlong processing_buffer;
-  int utility_array_index_context;
+  int utility_index_1;
   uint64 system_status_code;
   uint64 validation_result_flag;
   longlong *resourcePointer;
@@ -2944,7 +2944,7 @@ ulonglong calculate_memory_allocation(longlong resource_handle_identifier,longlo
   longlong *utility_resource_data_pointer;
   longlong *data_buffer;
   longlong *array_handle_pointer;
-  int utility_iteration_counter;
+  int utility_counter_1;
   uint validation_result_flag;
   ulonglong validation_result_flag;
   longlong *memory_block_pointer;
@@ -3097,7 +3097,7 @@ uint64 validate_memory_dataSize(longlong resource_handle_identifier,uint64 resou
 {
   longlong resource_buffer;
   uint64 loop_counter;
-  int utility_array_index_context;
+  int utility_index_1;
   longlong utility_stack_buffer_array [2];
   
   loop_counter = system_memory_function(*(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),utility_stack_buffer_array);
@@ -4413,7 +4413,7 @@ ulonglong create_directory(longlong resource_handle_identifier,uint64 resource_b
   uint64 UTILITY_REGISTER_R8;
   uint32 local_resource_buffer [2];
   longlong utility_local_stack_temp_offset;
-  int utility_local_signed_var;
+  int utility_signed_var_1;
   
   loop_counter = system_memory_function(*(uint32 *)(resource_handle_identifier + FIELD_OFFSET_3),&UTILITY_REGISTER_R8);
   if ((int)loop_counter == 0) {
@@ -4551,7 +4551,7 @@ uint64 get_file_attributes(longlong resource_handle_identifier,longlong resource
   uint64 utility_resource_operation_result;
   int *utility_operation_result_pointer;
   uint32 *generic_data_pointer;
-  int utility_iteration_counter;
+  int utility_counter_1;
   
   utility_iteration_counter = 0;
   generic_data_pointer = (uint32 *)(resource_handle_identifier + RESOURCE_HANDLE_OFFSET + (longlong)*(int *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET) * UTILITY_DOUBLE_WORD_SIZE);
@@ -5629,7 +5629,7 @@ void utilityExecuteResourceCommand(longlong resource_handle_identifier,longlong 
   byte local_security_buffer [32];
   longlong utility_local_stack_data_offset;
   byte utility_encryption_buffer [40];
-  ulonglong utility_unsigned_variable;
+  ulonglong utility_temp_var_2;
   
   utility_unsigned_variable = g_security_token_mask ^ (ulonglong)local_security_buffer;
   utility_operation_result = system_memory_function(*(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),&utility_local_stack_data_offset);
@@ -6374,7 +6374,7 @@ uint64 utilityCompleteResourceCycle(void)
 {
   float float_temp_value;
   int utility_operation_result;
-  int utility_array_index_context;
+  int utility_index_1;
   longlong utility_input_register_value;
   float *source_float_ptr;
   longlong utility_base_register_pointer;
@@ -6475,8 +6475,8 @@ void utilityProcessResourceCycle(longlong resource_handle_identifier,uint64 reso
   bool booleanResult;
   longlong localArray [3];
   longlong local_stack_variable_value;
-  uint64 utility_unsigned_variable;
-  ulonglong utility_unsigned_variable;
+  uint64 utility_temp_var_1;
+  ulonglong utility_temp_var_2;
   
   utility_unsigned_variable = g_security_token_mask ^ (ulonglong)localArray;
   utility_unsigned_variable = resource_buffer;
@@ -6814,10 +6814,10 @@ uint64 utilityMonitorResourceCycle(longlong resource_handle_identifier,longlong 
 {
   longlong resource_buffer;
   uint64 loop_counter;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
   
   utility_unsigned_variable = *(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   utility_unsigned_variable = *(uint32 *)(resource_handle_identifier + RESOURCE_DATA_IDX);
@@ -6845,10 +6845,10 @@ uint64 utilityReportResourceCycle(longlong resource_handle_identifier,longlong r
 {
   longlong resource_buffer;
   uint64 loop_counter;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
   
   utility_unsigned_variable = *(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   utility_unsigned_variable = *(uint32 *)(resource_handle_identifier + RESOURCE_DATA_IDX);
@@ -7445,7 +7445,7 @@ void initialize_ssl_context(void)
   float float_temp_value;
   uint64 *loop_counter_pointer;
   uint32 cpu_register_eax;
-  int utility_array_index_context;
+  int utility_index_1;
   uint32 utility_input_register_value_var;
   longlong utility_base_register_pointer;
   longlong utility_cpu_register_context;
@@ -7614,7 +7614,7 @@ void execute_database_query(longlong resource_handle_identifier,longlong resourc
   longlong utility_local_stack_resource_offset;
   longlong utility_local_stack_temp_offset;
   longlong local_stack_variable_value;
-  ulonglong utility_unsigned_variable;
+  ulonglong utility_temp_var_2;
   
   utility_unsigned_variable = g_security_token_mask ^ (ulonglong)local_security_buffer;
   utility_local_stack_resource_offset = resource_buffer + utility_data_offset_start;
@@ -7795,23 +7795,23 @@ void utilityExtractResourceInfo(longlong resource_handle_identifier,uint32 *memo
   int utility_operation_result;
   longlong utility_array_handle_pointer;
   byte local_security_buffer [32];
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
+  uint32 utility_temp_var_3;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
   longlong utility_local_stack_data_offset;
   byte utility_encryption_buffer [40];
-  ulonglong utility_unsigned_variable;
+  ulonglong utility_temp_var_2;
   
   utility_unsigned_variable = g_security_token_mask ^ (ulonglong)local_security_buffer;
   utility_resource_data_pointer = *(longlong **)(resource_handle_identifier + RESOURCE_BUFFER_SIZE);
@@ -7882,22 +7882,22 @@ void utilityAnalyzeResourceData(longlong resource_handle_identifier,uint32 *memo
   int utility_operation_result;
   longlong utility_array_handle_pointer;
   byte local_security_buffer [32];
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
+  uint32 utility_temp_var_3;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
   byte utility_encryption_buffer [40];
-  ulonglong utility_unsigned_variable;
+  ulonglong utility_temp_var_2;
   
   utility_unsigned_variable = g_security_token_mask ^ (ulonglong)local_security_buffer;
   utility_resource_data_pointer = *(longlong **)(resource_handle_identifier + RESOURCE_BUFFER_SIZE);
@@ -7988,23 +7988,23 @@ void utilityGenerateResourceReport(longlong resource_handle_identifier,uint32 *m
   int utility_operation_result;
   longlong utility_array_handle_pointer;
   byte local_security_buffer [32];
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
+  uint32 utility_temp_var_3;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
   longlong utility_local_stack_data_offset;
   byte utility_encryption_buffer [40];
-  ulonglong utility_unsigned_variable;
+  ulonglong utility_temp_var_2;
   
   utility_unsigned_variable = g_security_token_mask ^ (ulonglong)local_security_buffer;
   utility_resource_data_pointer = *(longlong **)(resource_handle_identifier + RESOURCE_BUFFER_SIZE);
@@ -8195,9 +8195,9 @@ uint32 utilityReadMemoryData(longlong resource_handle_identifier,uint64 resource
 {
   longlong *utility_resource_data_pointer;
   uint loop_counter;
-  int utility_array_index_context;
+  int utility_index_1;
   longlong *long_pointer_buffer;
-  int utility_iteration_counter;
+  int utility_counter_1;
   uint validation_result_flag;
   uint64 utility_stack_validation_uint;
   uint64 local_processing_buffer [2];
@@ -8597,7 +8597,7 @@ void log_debug_message(longlong resource_handle_identifier,byte *memory_block_si
   byte boolean_result_flag;
   longlong processing_buffer;
   char char_value;
-  int utility_iteration_counter;
+  int utility_counter_1;
   uint64 validation_result_flag;
   longlong utility_long_value;
   longlong utility_long_value;
@@ -8606,13 +8606,13 @@ void log_debug_message(longlong resource_handle_identifier,byte *memory_block_si
   float temp_variable_float;
   float float_value;
   byte local_processing_buffer [68];
-  uint32 utility_unsigned_variable;
+  uint32 utility_temp_var_3;
   int *plocalInt;
   longlong local_stack_offset_buffer;
   longlong local_stack_offset_multiplier;
   longlong localArray [13];
   byte local_processing_buffer [1536];
-  ulonglong utility_unsigned_variable;
+  ulonglong utility_temp_var_2;
   
   utility_unsigned_variable = g_security_token_mask ^ (ulonglong)local_security_buffer;
   utility_iteration_counter = *(int *)(resource_handle_identifier + 0xac);
@@ -8719,8 +8719,8 @@ void initialize_memory_manager(longlong resource_handle_identifier,uint64 resour
 {
   longlong resource_buffer;
   char char_value;
-  int utility_array_index_context;
-  int utility_iteration_counter;
+  int utility_index_1;
+  int utility_counter_1;
   longlong utility_input_register_value;
   longlong memory_offset_data;
   uint64 validation_result_flag;
@@ -8851,7 +8851,7 @@ void setup_memory_allocator(longlong resource_handle_identifier,int resource_buf
   int *utility_operation_result_pointer;
   longlong utility_array_handle_pointer;
   longlong threadContextData;
-  int utility_iteration_counter;
+  int utility_counter_1;
   
   *resourceOperationFlags = 0;
   resourceOperationFlags[1] = 0;
@@ -8893,7 +8893,7 @@ uint64 perform_system_operation(longlong resource_handle_identifier,int resource
   longlong processing_buffer;
   longlong utility_array_handle_pointer;
   uint64 *unsigned_pointer_buffer;
-  int utility_iteration_counter;
+  int utility_counter_1;
   uint32 resource_stack_buffer_data;
   
   if (resourceOperationFlags != (uint *)zero_float) {
@@ -8940,7 +8940,7 @@ uint64 FindCallbackFunction(longlong resource_handle_identifier,uint64 resource_
   longlong resource_buffer;
   longlong processing_buffer;
   uint64 *generic_data_pointer;
-  int utility_iteration_counter;
+  int utility_counter_1;
   int *utility_cpu_register_context;
   longlong in_R10;
   bool in_ZF;
@@ -9020,7 +9020,7 @@ uint64 SetupResourceParameters(longlong *resource_handle_identifier,uint *memory
 {
   uint utility_resource_operation_result;
   int utility_operation_result;
-  int utility_array_index_context;
+  int utility_index_1;
   uint64 system_status_code;
   uint64 validation_result_flag;
   uint64 *validation_result_array;
@@ -9104,7 +9104,7 @@ uint64 allocate_memory_block(uint64 resource_handle_identifier,int resource_buff
   longlong resource_buffer;
   int registerEAX;
   int utility_operation_result;
-  int utility_array_index_context;
+  int utility_index_1;
   uint64 system_status_code;
   uint64 *validation_result_array;
   int integer_var;
@@ -9181,7 +9181,7 @@ uint64 allocate_memory_chunk(uint64 resource_handle_identifier,uint32 resource_b
   int utility_operation_result;
   uint64 loop_counter;
   uint64 *generic_data_pointer;
-  int utility_iteration_counter;
+  int utility_counter_1;
   uint32 *validation_result_array;
   uint validation_result_flag;
   int resourceCounter;
@@ -9501,7 +9501,7 @@ ulonglong validate_memory_address(longlong resource_handle_identifier)
   byte *pbooleanFlag;
   uint32 loop_counter;
   uint64 loop_counter;
-  int utility_iteration_counter;
+  int utility_counter_1;
   longlong memory_offset_data;
   ulonglong validation_result_flag;
   int resourceCounter;
@@ -9519,25 +9519,25 @@ ulonglong validate_memory_address(longlong resource_handle_identifier)
   uint unsigned_stack_array_primary_10 [2];
   uint64 resource_stack_buffer_validation;
   byte utility_stack_array_primary_20 [8];
-  ulonglong utility_unsigned_variable;
-  uint64 utility_unsigned_variable;
+  ulonglong utility_temp_var_2;
+  uint64 utility_temp_var_1;
   longlong *pointer_local_stack_texture;
-  ulonglong utility_unsigned_variable;
+  ulonglong utility_temp_var_2;
   int array_local_int [2];
   data_value *local_pointer;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
   data_value *local_pointer;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
   data_value *local_pointer;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint utility_unsigned_variable;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint utility_temp_var_4;
   data_value *local_pointer;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
   byte utility_unsigned_variable;
   byte local_processing_buffer [8];
   byte local_processing_buffer [8];
@@ -9896,7 +9896,7 @@ uint64 validate_memory_system(longlong resource_handle_identifier)
   longlong processing_buffer;
   int *plocalIndex;
   uint64 system_status_code;
-  int utility_iteration_counter;
+  int utility_counter_1;
   
   if ((*(longlong *)(resource_handle_identifier + 8) != 0) && (utility_iteration_counter = *(int *)(resource_handle_identifier + field_offset_primary), 0 < utility_iteration_counter)) {
     resource_buffer = *(longlong *)(resource_handle_identifier + UTILITY_SECONDARY_BYTE_OFFSET);
@@ -9938,7 +9938,7 @@ int process_memory_operation(longlong resource_handle_identifier,longlong resour
 {
   uint32 utility_resource_operation_result;
   int utility_operation_result;
-  int utility_array_index_context;
+  int utility_index_1;
   
   utility_resource_operation_result = *(uint32 *)(resource_handle_identifier + RESOURCE_DATA_IDX);
   utility_operation_result = systemControlFunction(resource_buffer,resourceOperationFlags,*(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET));
@@ -9955,7 +9955,7 @@ int execute_memory_command(longlong resource_handle_identifier,longlong resource
 {
   uint64 utility_resource_operation_result;
   int utility_operation_result;
-  int utility_array_index_context;
+  int utility_index_1;
   
   utility_resource_operation_result = *(uint64 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
   utility_operation_result = executeSystemCommand(resource_buffer,resourceOperationFlags,&g_systemDataCommandBuffer);
@@ -9972,8 +9972,8 @@ int resource_handle_identifier_memory_event(longlong resource_handle_identifier,
 {
   uint32 utility_resource_operation_result;
   uint32 loop_counter;
-  int utility_array_index_context;
-  int utility_iteration_counter;
+  int utility_index_1;
+  int utility_counter_1;
   
   utility_resource_operation_result = *(uint32 *)(resource_handle_identifier + RESOURCE_DATA_IDX);
   loop_counter = *(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET);
@@ -10021,41 +10021,41 @@ void setup_memory_configuration(uint64 resource_handle_identifier,longlong resou
   temporaryLongValue = *(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET);
   if (temporaryLongValue != 0) {
   longlong processing_buffer;
-  int utility_array_index_context;
-  int utility_iteration_counter;
-  int utility_iteration_counter;
+  int utility_index_1;
+  int utility_counter_1;
+  int utility_counter_1;
   data_value **pvalidation_result_array;
   int resourceCounter;
   byte local_security_buffer [32];
-  uint32 utility_unsigned_variable;
+  uint32 utility_temp_var_3;
   float float_array_stack_processing [3];
   data_value *local_pointer;
-  int utility_local_signed_var;
-  uint64 utility_unsigned_variable;
-  ulonglong utility_unsigned_variable;
+  int utility_signed_var_1;
+  uint64 utility_temp_var_1;
+  ulonglong utility_temp_var_2;
   longlong local_stack_offset_flags;
-  uint64 utility_unsigned_variable;
-  uint64 utility_unsigned_variable;
-  uint64 utility_unsigned_variable;
-  uint64 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint utility_unsigned_variable;
+  uint64 utility_temp_var_1;
+  uint64 utility_temp_var_1;
+  uint64 utility_temp_var_1;
+  uint64 utility_temp_var_1;
+  uint32 utility_temp_var_3;
+  uint utility_temp_var_4;
   data_value *local_pointer;
-  int utility_local_signed_var;
-  uint utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  int utility_local_signed_var;
-  uint32 utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
+  int utility_signed_var_1;
+  uint utility_temp_var_4;
+  uint32 utility_temp_var_3;
+  int utility_signed_var_1;
+  uint32 utility_temp_var_3;
+  uint utility_temp_var_4;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
   data_value *local_pointer;
-  uint32 utility_unsigned_variable;
-  uint utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
+  uint32 utility_temp_var_3;
+  uint utility_temp_var_4;
+  uint32 utility_temp_var_3;
   byte local_processing_buffer [520];
-  ulonglong utility_unsigned_variable;
+  ulonglong utility_temp_var_2;
   
   utility_unsigned_variable = g_security_token_mask ^ (ulonglong)local_security_buffer;
   utility_iteration_counter = 0;
@@ -10687,7 +10687,7 @@ void validate_resource_access(longlong *resource_handle_identifier,longlong *mem
   int utility_operation_result;
   byte local_security_buffer [32];
   byte local_processing_buffer [512];
-  ulonglong utility_unsigned_variable;
+  ulonglong utility_temp_var_2;
   
   utility_unsigned_variable = g_security_token_mask ^ (ulonglong)local_security_buffer;
   resource_buffer = resource_handle_identifier[4];
@@ -10774,44 +10774,44 @@ void ProcessResourceOperation(longlong resource_handle_identifier,longlong resou
   float *float_ptr_value_15;
   uint64 *preturnValue6;
   byte local_security_buffer [32];
-  uint32 utility_unsigned_variable;
+  uint32 utility_temp_var_3;
   char stackCharArray1c4 [4];
   data_value *local_pointer;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
   float float_stack_buffer_data;
   float float_stack_buffer_data;
-  uint32 utility_unsigned_variable;
+  uint32 utility_temp_var_3;
   float float_stack_buffer_data;
   float float_array_stack_198 [2];
   uint64 *local_pointer;
   longlong local_stack_offset_188;
   longlong local_stack_offset_180;
   data_value *local_pointer;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
   data_value *local_pointer;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint64 utility_unsigned_variable;
-  uint64 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint64 utility_temp_var_1;
+  uint64 utility_temp_var_1;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
   data_value *local_pointer;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
   byte utility_unsigned_variable;
-  uint64 utility_unsigned_variable;
+  uint64 utility_temp_var_1;
   byte local_processing_buffer [136];
-  ulonglong utility_unsigned_variable;
+  ulonglong utility_temp_var_2;
   
   utility_unsigned_variable = g_security_token_mask ^ (ulonglong)local_security_buffer;
   processing_buffer = *(longlong *)(resource_buffer + utility_buffer_offset);
@@ -11687,27 +11687,27 @@ void CreateResourceInstance(longlong *resource_handle_identifier,longlong resour
   temporaryLongValue = *(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET);
   if (temporaryLongValue != 0) {
   longlong processing_buffer;
-  int utility_array_index_context;
-  int utility_iteration_counter;
-  int utility_iteration_counter;
+  int utility_index_1;
+  int utility_counter_1;
+  int utility_counter_1;
   int integer_var;
   int resourceCounter;
   byte local_security_buffer [32];
   uint32 local_resource_buffer [2];
   data_value *local_pointer;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
   data_value *local_pointer;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  int utility_local_signed_var;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  int utility_signed_var_1;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
   uint64 local_processing_buffer [64];
-  ulonglong utility_unsigned_variable;
+  ulonglong utility_temp_var_2;
   
   utility_unsigned_variable = g_security_token_mask ^ (ulonglong)local_security_buffer;
   utility_iteration_counter = 0;
@@ -11781,7 +11781,7 @@ void InitializeResourceData(longlong *resource_handle_identifier,uint64 resource
   uint64 utility_stack_validation_uint;
   byte local_security_buffer [32];
   byte local_processing_buffer [1024];
-  ulonglong utility_unsigned_variable;
+  ulonglong utility_temp_var_2;
   
   utility_unsigned_variable = g_security_token_mask ^ (ulonglong)local_security_buffer;
   resource_stack_buffer_validation = resourceOperationFlags;
@@ -11806,9 +11806,9 @@ uint64 GetResourceInfo(longlong *resource_handle_identifier)
   uint32 systemFlagsData;
   uint32 utility_iteration_index_var;
   data_value *local_pointer;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
   
   utility_unsigned_variable = 0;
   local_pointer = &g_system_data_thread_manager;
@@ -11952,33 +11952,33 @@ void ProcessResourceRequest(longlong *resource_handle_identifier)
   byte local_security_buffer [32];
   float float_array_stack_348 [2];
   longlong *local_stack_pointer_value;
-  ulonglong utility_unsigned_variable;
+  ulonglong utility_temp_var_2;
   longlong *array_stack_variable_value [2];
   longlong local_stack_variable_value;
   longlong *local_stack_pointer_value;
-  uint64 utility_unsigned_variable;
+  uint64 utility_temp_var_1;
   float float_array_stack_308 [2];
   longlong localArray [2];
   byte local_processing_buffer [8];
   uint64 local_processing_buffer [2];
   data_value *local_pointer;
-  uint32 utility_unsigned_variable;
+  uint32 utility_temp_var_3;
   float float_stack_buffer_data;
-  uint utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint64 utility_unsigned_variable;
-  uint64 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
+  uint utility_temp_var_4;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint64 utility_temp_var_1;
+  uint64 utility_temp_var_1;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
   longlong local_stack_variable_value;
-  uint utility_unsigned_variable;
+  uint utility_temp_var_4;
   byte utility_unsigned_variable;
   byte local_processing_buffer [512];
-  ulonglong utility_unsigned_variable;
+  ulonglong utility_temp_var_2;
   
   utility_unsigned_variable = g_security_token_mask ^ (ulonglong)local_security_buffer;
   resource_data_buffer_sixth = (longlong *)zero_float;
@@ -12238,8 +12238,8 @@ void SetupResourceMemory(longlong resource_handle_identifier,uint64 resource_buf
 {
   int utility_operation_result;
   int utility_operation_result;
-  int utility_array_index_context;
-  int utility_iteration_counter;
+  int utility_index_1;
+  int utility_counter_1;
   uint validation_result_flag;
   int integer_var;
   
@@ -12312,8 +12312,8 @@ uint64 ValidateResourceBuffer(longlong *resource_handle_identifier,char resource
   uint64 resource_stack_buffer_data;
   longlong aUTILITY_STACK_MEMORY_OFFSET_18 [2];
   data_value *local_pointer;
-  uint32 utility_unsigned_variable;
-  ulonglong utility_unsigned_variable;
+  uint32 utility_temp_var_3;
+  ulonglong utility_temp_var_2;
   
   *(byte *)(resource_handle_identifier + 4) = 1;
   loop_counter = allocateMemory(*(uint64 *)(resource_handle_identifier[1] + UTILITY_HANDLE_DATA_OFFSET),&resource_stack_buffer_data);
@@ -12737,7 +12737,7 @@ uint32 CompleteResourceTask(uint64 resource_handle_identifier,ulonglong resource
 {
   byte utility_resource_operation_result;
   int utility_operation_result;
-  int utility_array_index_context;
+  int utility_index_1;
   uint system_status_code;
   byte *validation_result_array;
   byte *validation_result_array;
@@ -12844,7 +12844,7 @@ uint32 CheckResourceAvailability(void)
   byte *loop_counter_pointer;
   byte *generic_data_pointer;
   int cpu_register_ebx;
-  int utility_iteration_counter;
+  int utility_counter_1;
   longlong stack_frame_pointer;
   byte *utility_cpu_register_context;
   byte *validation_result_array;
@@ -13624,7 +13624,7 @@ uint64 ValidateMemoryBlock(uint64 resource_handle_identifier,longlong *memory_bl
   uint64 loop_counter;
   uint loop_counter;
   longlong threadContextData;
-  int utility_iteration_counter;
+  int utility_counter_1;
   int ai_stack_18 [2];
   
   ai_stack_18[0] = 0;
@@ -13667,7 +13667,7 @@ uint64 InitializeMemoryValidator(void)
   uint64 loop_counter;
   uint loop_counter;
   longlong *utility_base_register_pointer;
-  int utility_iteration_counter;
+  int utility_counter_1;
   int utility_stack_uint_context;
   
   if (utility_stack_uint_context == 0) {
@@ -13905,7 +13905,7 @@ void sortUtilityFeatures(uint64 *resource_handle_identifier,uint64 resource_buff
 {
   uint64 *utility_resource_operation_resultData;
   int utility_operation_result;
-  int utility_array_index_context;
+  int utility_index_1;
   longlong utility_base_register_pointer;
   longlong stack_frame_pointer;
   uint system_status_code;
@@ -14062,8 +14062,8 @@ void filterUtilityOptions(uint64 *resource_handle_identifier)
 {
   uint utility_resource_operation_result;
   uint64 *loop_counter_pointer;
-  int utility_array_index_context;
-  int utility_iteration_counter;
+  int utility_index_1;
+  int utility_counter_1;
   longlong utility_base_register_pointer;
   longlong stack_frame_pointer;
   longlong utility_cpu_register_context;
@@ -14271,7 +14271,7 @@ uint64 allocate_resource_memory(longlong resource_handle_identifier,longlong res
 {
   uint64 utility_resource_operation_result;
   float *float_ptr2;
-  int utility_array_index_context;
+  int utility_index_1;
   float float_temp_secondary_var;
   uint16_t array_unsigned_stack_primary_8 [4];
   
@@ -14330,7 +14330,7 @@ uint64 InitializeMemoryAllocator(void)
   float *float_ptr2;
   longlong stack_frame_pointer;
   longlong utility_cpu_register_context;
-  int utility_array_index_context;
+  int utility_index_1;
   float float_temp_secondary_var;
   uint16_t security_validation_mask;
   
@@ -14440,7 +14440,7 @@ void recognizeUtilityPieces(longlong resource_handle_identifier,uint32 *memory_b
 {
   uint utility_resource_operation_result;
   int utility_operation_result;
-  int utility_array_index_context;
+  int utility_index_1;
   uint64 system_status_code;
   uint64 resource_stack_buffer_data;
   
@@ -14573,7 +14573,7 @@ void classifyUtilityTypes(uint32 resource_handle_identifier)
 {
   uint utility_resource_operation_result;
   uint64 *loop_counter_pointer;
-  int utility_array_index_context;
+  int utility_index_1;
   longlong utility_base_register_pointer;
   longlong stack_frame_pointer;
   longlong threadContextData;
@@ -14899,7 +14899,7 @@ uint64 ProcessDataBlock(longlong resource_handle_identifier,uint32 *memory_block
 {
   int utility_operation_result;
   uint64 loop_counter;
-  int utility_array_index_context;
+  int utility_index_1;
   uint64 resource_stack_buffer_data;
   
   resource_stack_buffer_data = CONCAT44(resource_stack_buffer_data._4_4_,*memory_block_size);
@@ -14937,7 +14937,7 @@ uint64 InitializeDataProcessor(uint64 *resource_handle_identifier,uint64 resourc
 {
   int utility_operation_result;
   uint64 loop_counter;
-  int utility_array_index_context;
+  int utility_index_1;
   longlong utility_cpu_register_context;
   int utility_stack_context_int_30;
   
@@ -15045,8 +15045,8 @@ ulonglong ExecuteResourceTask(longlong resource_handle_identifier,uint64 *memory
   temporaryLongValue = *(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET);
   if (temporaryLongValue != 0) {
   longlong processing_buffer;
-  int utility_array_index_context;
-  int utility_iteration_counter;
+  int utility_index_1;
+  int utility_counter_1;
   uint *validation_result_array;
   int ai_stack_context_primary_8 [2];
   uint unsigned_stack_array_primary_10 [2];
@@ -15146,7 +15146,7 @@ ulonglong GetResourceStatus(void)
   temporaryLongValue = *(longlong *)(resource_buffer + UTILITY_BUFFER_DATA_OFFSET);
   if (temporaryLongValue != 0) {
   longlong processing_buffer;
-  int utility_array_index_context;
+  int utility_index_1;
   int cpu_register_ebx;
   longlong utility_cpu_register_context;
   uint *utility_cpu_register_context;
@@ -15262,7 +15262,7 @@ void orderUtilityLists(longlong resource_handle_identifier,int *memory_block_siz
   char char_value;
   uint32 cpu_register_eax;
   uint32_t validation_result_flag;
-  int utility_iteration_counter;
+  int utility_counter_1;
   uint32 utility_input_register_value_var;
   uint unaff_EBP;
   char in_CF;
@@ -15829,10 +15829,10 @@ ulonglong ProcessSystemRequest(longlong resource_handle_identifier,uint64 *memor
   uint32 *loop_counter_pointer;
   ulonglong loop_counter;
   uint system_status_code;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
   byte local_security_buffer [32];
   
   loop_counter_pointer = (uint32 *)allocate_memory_block();
@@ -17158,8 +17158,8 @@ void joinUtilityProcesses(longlong resource_handle_identifier,uint64 *memory_blo
   longlong resource_buffer;
   uint64 loop_counter;
   uint loop_counter;
-  int utility_iteration_counter;
-  int utility_iteration_counter;
+  int utility_counter_1;
+  int utility_counter_1;
   uint validation_result_flag;
   uint systemFlagsData;
   uint utility_stack_resource_context_18 [2];
@@ -17225,8 +17225,8 @@ void utilityTripTarget(void)
   longlong resource_buffer;
   uint64 loop_counter;
   uint loop_counter;
-  int utility_iteration_counter;
-  int utility_iteration_counter;
+  int utility_counter_1;
+  int utility_counter_1;
   longlong utility_base_register_pointer;
   uint64 *utility_cpu_register_context;
   uint validation_result_flag;
@@ -17324,7 +17324,7 @@ void linkUtilityResources(longlong resource_handle_identifier,uint64 *memory_blo
 {
   uint utility_resource_operation_result;
   int utility_operation_result;
-  int utility_array_index_context;
+  int utility_index_1;
   uint system_status_code;
   uint validation_result_flag;
   longlong utility_long_value;
@@ -17648,11 +17648,11 @@ ulonglong InitializeDataValidator(longlong resource_handle_identifier,uint64 *me
   int utility_operation_result;
   uint64 *presource_stack_buffer_validation;
   uint64 *local_pointer;
-  uint64 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
+  uint64 utility_temp_var_1;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
   byte local_security_buffer [32];
   byte local_security_buffer [32];
   
@@ -18622,8 +18622,8 @@ ulonglong ProcessIntegrityCheck(longlong resource_handle_identifier,longlong *me
   uint loop_counter;
   uint utility_stack_resource_context_18 [2];
   uint utility_stack_array_primary_20 [2];
-  uint utility_unsigned_variable;
-  uint utility_unsigned_variable;
+  uint utility_temp_var_4;
+  uint utility_temp_var_4;
   byte local_security_buffer [32];
   byte utility_encryption_buffer [40];
   ulonglong validation_result_flag;
@@ -20067,7 +20067,7 @@ ulonglong getAvailableResourceCount(longlong resource_handle_identifier,longlong
   longlong *utility_resource_data_pointer;
   uint loop_counter;
   ulonglong loop_counter;
-  int utility_iteration_counter;
+  int utility_counter_1;
   uint utility_stack_resource_context_18 [2];
   uint utility_stack_array_primary_20 [2];
   byte local_security_buffer [32];
@@ -20146,7 +20146,7 @@ ulonglong InitializeIntegrityHandler(void)
   uint loop_counter;
   longlong utility_input_register_value;
   ulonglong loop_counter;
-  int utility_iteration_counter;
+  int utility_counter_1;
   longlong stack_frame_pointer;
   longlong *utility_cpu_register_context;
   uint stack_size_parameter;
@@ -22185,11 +22185,11 @@ ulonglong ProcessSystemOperation2(longlong resource_handle_identifier,uint64 *me
   uint32 *validation_result_array;
   longlong utility_long_value;
   uint32 *local_pointer;
-  uint64 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
+  uint64 utility_temp_var_1;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
   byte local_security_buffer [32];
   byte local_security_buffer [32];
   
@@ -22400,7 +22400,7 @@ ulonglong GetSystemStatus(void)
 {
   uint32 utility_resource_operation_result;
   uint loop_counter;
-  int utility_array_index_context;
+  int utility_index_1;
   ulonglong system_status_code;
   longlong memory_offset_data;
   uint32 *validation_result_array;
@@ -22495,7 +22495,7 @@ ulonglong InitializeSystemChecker(longlong resource_handle_identifier,longlong *
   uint utility_stack_resource_context_18 [2];
   char char_stack_temp_20;
   char stack_char_array_8[4];
-  uint utility_unsigned_variable;
+  uint utility_temp_var_4;
   byte utility_encryption_buffer [40];
   byte local_security_buffer [32];
   byte local_security_buffer [32];
@@ -24079,10 +24079,10 @@ ulonglong InitializeTaskOperator(longlong resource_handle_identifier,longlong *m
   uint16_t utility_stack_resource_context_18 [4];
   uint16_t utility_stack_array_primary_20 [4];
   uint32 local_resource_buffer [2];
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
-  uint32 utility_unsigned_variable;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
+  uint32 utility_temp_var_3;
   byte utility_encryption_buffer [40];
   
   generic_data_pointer = (uint32 *)allocate_memory_block();
@@ -40408,7 +40408,7 @@ void UtilityUnwind_180905e40(uint64 resource_handle_identifier,longlong resource
   longlong *utility_resource_data_pointer;
   int *utility_operation_result_pointer;
   longlong *array_handle_pointer;
-  int utility_iteration_counter;
+  int utility_counter_1;
   longlong memory_offset_data;
   longlong utility_long_value;
   longlong utility_long_value;
@@ -82200,7 +82200,7 @@ void resourceCreateBackup(void)
 {
   longlong *utility_resource_data_pointer;
   int *utility_operation_result_pointer;
-  int utility_array_index_context;
+  int utility_index_1;
   longlong threadContextData;
   longlong *long_pointer_temp;
   
@@ -82235,7 +82235,7 @@ void resourceRestoreBackup(void)
 {
   longlong *utility_resource_data_pointer;
   int *utility_operation_result_pointer;
-  int utility_array_index_context;
+  int utility_index_1;
   longlong threadContextData;
   longlong *utility_base_register_pointer;
   
@@ -82279,7 +82279,7 @@ void resourceOptimizeStorage(void)
 {
   longlong *utility_resource_data_pointer;
   int *utility_operation_result_pointer;
-  int utility_array_index_context;
+  int utility_index_1;
   longlong threadContextData;
   longlong *long_pointer_temp;
   
@@ -82314,7 +82314,7 @@ void resourceDefragmentMemory(void)
 {
   longlong *utility_resource_data_pointer;
   int *utility_operation_result_pointer;
-  int utility_array_index_context;
+  int utility_index_1;
   longlong threadContextData;
   longlong *utility_base_register_pointer;
   
@@ -82358,7 +82358,7 @@ void resourceUpdateReferences(void)
 {
   longlong *utility_resource_data_pointer;
   int *utility_operation_result_pointer;
-  int utility_array_index_context;
+  int utility_index_1;
   longlong threadContextData;
   longlong *long_pointer_temp;
   
@@ -82393,7 +82393,7 @@ void resourceValidateIntegrity(void)
 {
   longlong *utility_resource_data_pointer;
   int *utility_operation_result_pointer;
-  int utility_array_index_context;
+  int utility_index_1;
   longlong threadContextData;
   longlong *utility_base_register_pointer;
   
