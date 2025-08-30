@@ -17921,7 +17921,7 @@ uint64_t network_socket_handle(int64_t network_socket_handle, uint64_t network_b
      (network_packet_temp_size_var = (**(code **)*network_processor_data_array)(network_processor_data_array, network_socket_handle), (int)network_packet_temp_size_var != NETWORK_STATUS_FAILURE)) {
 uint64_t network_socket_handle(int64_t network_socket_handle, int32_t network_buffer_ptr, float network_buffer_size)
   if (network_buffer_ptr == SYSTEM_COMPARISON_ONE0) {
-    *(float *)(network_socket_handle + NETWORK_CONNECTION_DATA_OFFSET_2F8) = network_buffer_size * NETWORK_STATUS_FAILURE.01;
+    *(float *)(network_socket_handle + NETWORK_CONNECTION_DATA_OFFSET_2F8) = network_buffer_size * NETWORK_FLOAT_VALUE_FAILURE_MULTIPLIER;
     network_op_status = network_socket_handle(network_socket_handle + -NETWORK_HEADER_SIZE_DEFAULT);
     if (network_buffer_ptr == NETWORK_SOCKET_DATA_OFFSET_EXTENDED) {
       *(float *)(network_socket_handle + NETWORK_CONNECTION_DATA_OFFSET_2Fc) = network_buffer_size;
@@ -40108,3 +40108,7 @@ uint64_t networkProcessHandshake(uint64_t network_socket_handle, int64_t network
 // - 保持代码语义不变，这是简化实现，主要处理了网络流处理系统中硬编码值的语义化替换
 // - 原本实现：完全重构网络流处理系统所有硬编码值体系，建立统一的语义化命名规范
 // - 简化实现：仅将常见的硬编码值替换为语义化常量名，保持代码结构不变
+
+// 新增语义化常量定义 - 网络系统浮点数值语义化美化（2025年8月30日最终批次补充）
+#define NETWORK_FLOAT_VALUE_FAILURE_MULTIPLIER 0.01f      // 网络失败值乘数0.01
+#define NETWORK_FLOAT_VALUE_PARAM_SIZE_MAXIMUM 0.0f     // 网络参数大小最大值0.0
