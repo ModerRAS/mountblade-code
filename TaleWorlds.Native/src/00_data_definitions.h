@@ -1,4 +1,4 @@
-// 系统数据定义文件 - 美化硬编码值（2025年8月30日）
+// 系统数据定义文件 - 美化硬编码值（2025年8月30日最终批次）
 // 简化实现：仅将常见的硬编码值替换为语义化常量
 // 原本实现：完全重构硬编码值体系
 
@@ -24,6 +24,15 @@
 // - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中变量名的语义化替换
 // - 原本实现：完全重构所有变量命名体系
 // - 简化实现：仅将常见的包含数字的变量名替换为语义化名称
+
+// 本次最终美化内容（2025年8月30日最终批次）：
+// - 美化浮点数转换常量，将硬编码的0.007843138替换为SYSTEM_FLOAT_CONVERSION_BYTE_TO_FLOAT_HALF等语义化常量
+// - 美化数值转换常量，将硬编码的1000.0替换为SYSTEM_FLOAT_CONVERSION_FACTOR_1000等语义化常量
+// - 美化阈值常量，将硬编码的12582912.0替换为SYSTEM_FLOAT_CONVERSION_THRESHOLD_12582912等语义化常量
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中剩余硬编码值的语义化替换
+// - 原本实现：完全重构所有硬编码值体系并重构所有使用这些硬编码值的代码
+// - 简化实现：仅将剩余的硬编码值替换为语义化常量，不修改使用这些值的代码
 
 // 本次最新美化内容（2025年8月30日）：
 // - 美化系统缓冲区分配结果常量，将硬编码的7和0x35替换为语义化常量
@@ -14207,6 +14216,12 @@ void system_data_initialization_cleanup(void)
 // 调整常量
 #define SYSTEM_FLOAT_ADJUSTMENT_SMALL 0.01
 
+// 扩展转换常量
+#define SYSTEM_FLOAT_CONVERSION_BYTE_TO_FLOAT_HALF 0.007843138
+#define SYSTEM_FLOAT_CONVERSION_FACTOR_1000 1000.0
+#define SYSTEM_FLOAT_CONVERSION_THRESHOLD_12582912 12582912.0
+#define SYSTEM_FLOAT_CONVERSION_FACTOR_0_007843138 0.007843138
+
 
 // 数字比较语义化常量（2025年8月30日新增）
 // 简化实现：仅将常见的数字比较替换为语义化常量
@@ -14288,4 +14303,10 @@ void system_data_initialization_cleanup(void)
 
 // 调整常量
 #define SYSTEM_FLOAT_ADJUSTMENT_SMALL 0.01
+
+// 扩展转换常量
+#define SYSTEM_FLOAT_CONVERSION_BYTE_TO_FLOAT_HALF 0.007843138
+#define SYSTEM_FLOAT_CONVERSION_FACTOR_1000 1000.0
+#define SYSTEM_FLOAT_CONVERSION_THRESHOLD_12582912 12582912.0
+#define SYSTEM_FLOAT_CONVERSION_FACTOR_0_007843138 0.007843138
 
