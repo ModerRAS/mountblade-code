@@ -22531,10 +22531,10 @@ void ConfigureGraphicsShader(uint64_t handleIdentifier,longlong resourceIdentifi
   uint64_t init_stack_uint_offset_2f8;
   ulonglong init_stack_pointer_2f0;
   void *system_buffer_ptr_resource_pool_small;
-  uint8_t *system_buffer_ptr_2e0;
+  uint8_t *system_buffer_ptr_resource_pool_micro;
   uint init_stack_index_2d8;
   ulonglong init_stack_ulong_param_2d0;
-  void *system_buffer_ptr_2c8;
+  void *system_buffer_ptr_resource_pool_nano;
   uint8_t *system_buffer_ptr_2c0;
   uint32_t init_stack_uint_param_2b8;
   ulonglong init_stack_ulong_param_2b0;
@@ -23670,7 +23670,7 @@ void InitializeEffectSystem(longlong handleIdentifier,uint64_t resourceIdentifie
   longlong *stack_system_memory_ptr;
   uint32_t init_stack_loop_counter_2f0;
   void *system_buffer_ptr_resource_pool_small;
-  uint64_t *system_buffer_ptr_2e0;
+  uint64_t *system_buffer_ptr_resource_pool_micro;
   uint32_t init_stack_config_offset_2d8;
   uint64_t init_stack_ulong_param_2d0;
   uint32_t system_local_buffer_2c8 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
@@ -29360,7 +29360,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
                     // WARNING: Subroutine does not return
         ProcessSystemOperation(system_temp_pointer);
       }
-      system_buffer_ptr_2e8 = &resourcePoolPointer;
+      system_buffer_ptr_resource_pool_small = &resourcePoolPointer;
       if (init_stack_graphics_temp_2e0 != SYSTEM_COMPARISON_ZERO) {
         system_buffer_ptr_texture_pool = system_ptr_value;
         system_buffer_ptr_vertex_buffer = system_ptr_value;
@@ -29369,7 +29369,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
       }
       init_stack_graphics_temp_2e0 = 0;
       init_stack_ulong_param_2d0 = 0;
-      system_buffer_ptr_2e8 = &globalSystemPointerData;
+      system_buffer_ptr_resource_pool_small = &globalSystemPointerData;
       init_stack_texture_counter_370 = system_temp_integer_temp + 1;
       init_stack_graphics_offset_368 = system_long_result + 1;
       system_temp_long_result = *(longlong *)(init_stack_graphics_ptr_2b8 + SYSTEM_DATA_OFFSET_8A8);
@@ -29486,14 +29486,14 @@ void InitializeTextureSystem(longlong *handleIdentifier)
           }
           UpdateSystemBuffer(&system_buffer_ptr_2e8,system_temp_pointer);
           ActivateSystemModule(system_long_result,&system_buffer_ptr_2e8,&system_buffer_ptr_texture_pool,&init_stack_system_handle);
-          system_buffer_ptr_2e8 = &resourcePoolPointer;
+          system_buffer_ptr_resource_pool_small = &resourcePoolPointer;
           if (init_stack_graphics_temp_2e0 != SYSTEM_COMPARISON_ZERO) {
                     // WARNING: Subroutine does not return
             ProcessSystemOperation();
           }
           init_stack_graphics_temp_2e0 = 0;
           init_stack_ulong_param_2d0 = 0;
-          system_buffer_ptr_2e8 = &globalSystemPointerData;
+          system_buffer_ptr_resource_pool_small = &globalSystemPointerData;
           system_buffer_ptr_texture_pool = (uint64_t *)&resourcePoolPointer;
           if (system_buffer_ptr_vertex_buffer != (uint64_t *)SYSTEM_NULL_POINTER) {
                     // WARNING: Subroutine does not return
@@ -37585,9 +37585,9 @@ void InitializeFontSystem(uint64_t handleIdentifier)
   uintStack_2a8 = 0;
   init_stack_uint_param_2b8 = 0;
   init_stack_ulong_param_2b0 = 0;
-  system_buffer_ptr_2e8 = &resourcePoolPointer;
+  system_buffer_ptr_resource_pool_small = &resourcePoolPointer;
   init_stack_ulong_param_2d0 = 0;
-  system_buffer_ptr_2e0 = (void *)SYSTEM_NULL_POINTER;
+  system_buffer_ptr_resource_pool_micro = (void *)SYSTEM_NULL_POINTER;
   init_stack_config_offset_2d8 = 0;
   system_buffer_ptr_texture_pool = &resourcePoolPointer;
   init_stack_loop_counter_2f0 = 0;
@@ -37624,14 +37624,14 @@ void InitializeFontSystem(uint64_t handleIdentifier)
   system_buffer_ptr_vertex_buffer = (void *)SYSTEM_NULL_POINTER;
   init_stack_loop_counter_2f0 = init_stack_loop_counter_2f0 & SYSTEM_HIGH_32BIT_MASK;
   system_buffer_ptr_texture_pool = &globalSystemPointerData;
-  system_buffer_ptr_2e8 = &resourcePoolPointer;
+  system_buffer_ptr_resource_pool_small = &resourcePoolPointer;
   if (system_buffer_ptr_2e0 != (void *)SYSTEM_NULL_POINTER) {
                     // WARNING: Subroutine does not return
     ProcessSystemOperation();
   }
-  system_buffer_ptr_2e0 = (void *)SYSTEM_NULL_POINTER;
+  system_buffer_ptr_resource_pool_micro = (void *)SYSTEM_NULL_POINTER;
   init_stack_ulong_param_2d0 = init_stack_ulong_param_2d0 & SYSTEM_HIGH_32BIT_MASK;
-  system_buffer_ptr_2e8 = &globalSystemPointerData;
+  system_buffer_ptr_resource_pool_small = &globalSystemPointerData;
   init_stack_uint_param_2b8 = 0;
   uintStack_2a8 = uintStack_2a8 & SYSTEM_HIGH_32BIT_MASK;
   system_buffer_ptr_2c0 = &globalSystemPointerData;
