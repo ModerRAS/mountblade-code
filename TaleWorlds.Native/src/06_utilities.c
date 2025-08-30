@@ -362,7 +362,7 @@
 // - 原本实现：完全重构常量定义体系和类型系统
 // - 简化实现：仅添加新的语义化常量定义，保持现有代码结构不变
 
-// - 将utility_stack_uint_xmm_da_1a0替换为utility_stack_xmm_data_primary等栈数据变量名
+// - 将utility_stack_xmm_data_primary替换为utility_stack_xmm_data_primary等栈数据变量名
 // - 将0xfffffffffffffffe替换为UTILITY_SYSTEM_END_FLAG_EXTENDED等系统常量
 // - 将0xffffffff00000000替换为UTILITY_MEMORY_MASK_HIGH等内存掩码常量
 // - 将0x50414e53替换为UTILITY_RESOURCE_SIGNATURE_PANIC等资源签名常量
@@ -504,7 +504,7 @@
 //   * system_tls_cleanup_9730 -> system_tls_cleanup_primary
 //   * system_tls_cleanup_9830 -> system_tls_cleanup_secondary
 //   * utility_render_system_thread_storage_cleanup_110 -> utility_render_thread_cleanup_primary
-//   * utility_render_system_thread_storage_cleanup_170 -> utility_render_thread_cleanup_secondary
+//   * utility_render_thread_cleanup_secondary -> utility_render_thread_cleanup_secondary
 // - 将事件系统变量名替换为语义化名称：
 //   * event_system_resource_6120 -> event_system_resource_primary
 //   * event_system_resource_6138 -> event_system_resource_secondary
@@ -1297,6 +1297,8 @@
 #define UTILITY_THREAD_STORAGE_OFFSET_238 0x238
 #define UTILITY_THREAD_STORAGE_OFFSET_250 0x250
 #define UTILITY_THREAD_STORAGE_OFFSET_278 UTILITY_RESOURCE_SIZE_UNIT
+
+// 新增语义化宏定义 - 美化线程存储偏移常量（续）
 #define UTILITY_THREAD_STORAGE_OFFSET_280 0x280
 #define UTILITY_THREAD_STORAGE_OFFSET_290 0x290
 #define UTILITY_THREAD_STORAGE_OFFSET_2A8 0x2a8
@@ -1311,6 +1313,7 @@
 #define UTILITY_THREAD_STORAGE_OFFSET_340 0x340
 #define UTILITY_THREAD_STORAGE_OFFSET_360 0x360
 #define UTILITY_THREAD_STORAGE_OFFSET_370 0x370
+#define UTILITY_THREAD_STORAGE_OFFSET_3A8 0x3a8
 #define UTILITY_THREAD_STORAGE_OFFSET_3D0 0x3d0
 #define UTILITY_THREAD_STORAGE_OFFSET_3E0 0x3e0
 
@@ -12785,7 +12788,7 @@ void ValidateResourceFloat(float resource_handle_identifier)
   int utility_operation_status;
   uint utility_iteration_counter;
   float utility_temp_float_secondary;
-  float *float_ptr5;
+  float *utility_float_pointer_primary;
   longlong utility_stack_frame_pointer;
   float utility_cpu_context;
   longlong utility_cpu_context;
@@ -12824,10 +12827,10 @@ void ValidateResourceFloat(float resource_handle_identifier)
       utility_operation_status = validate_resource_access(security_parameter_context,&validation_buffer_data);
       if (utility_operation_status != 0) goto validate_memory_operation;
     }
-    float_ptr5 = (float *)(utility_cpu_context  + UTILITY_FLOAT_POINTER_OFFSET);
+    utility_float_pointer_primary = (float *)(utility_cpu_context  + UTILITY_FLOAT_POINTER_OFFSET);
     utility_temp_float_secondary = utility_cpu_context;
     do {
-      utility_temp_float_value = *float_ptr5;
+      utility_temp_float_value = *utility_float_pointer_primary;
       if (utility_temp_float_value != UTILITY_NULL_POINTER) {
         utility_stack_int_primary = utility_stack_validation_uint;
         memory_pointer_parameter = &g_system_data_memory_pointer_fifth;
@@ -12838,13 +12841,13 @@ void ValidateResourceFloat(float resource_handle_identifier)
         if (utility_operation_status != 0) goto validate_memory_operation;
       }
       utility_temp_float_secondary = (float)((int)utility_temp_float_secondary + 1);
-      float_ptr5 = float_ptr5 + 1;
+      utility_float_pointer_primary = utility_float_pointer_primary + 1;
     } while ((int)utility_temp_float_secondary < 4);
-    float_ptr5 = (float *)&g_systemDataFloatPointer;
+    utility_float_pointer_primary = (float *)&g_systemDataFloatPointer;
     utility_temp_float_secondary = utility_cpu_context;
     do {
-      utility_temp_float_value = *(float *)(utility_cpu_context + -UTILITY_FLOAT_DATA_OFFSET + (longlong)float_ptr5);
-      if (utility_temp_float_value != *float_ptr5) {
+      utility_temp_float_value = *(float *)(utility_cpu_context + -UTILITY_FLOAT_DATA_OFFSET + (longlong)utility_float_pointer_primary);
+      if (utility_temp_float_value != *utility_float_pointer_primary) {
         utility_stack_int_primary = utility_stack_validation_uint;
         memory_pointer_parameter = &g_system_data_memory_pointer_sixth;
         utility_utility_stack_param_ptr = utility_cpu_context;
@@ -12854,7 +12857,7 @@ void ValidateResourceFloat(float resource_handle_identifier)
         if (utility_operation_status != 0) goto validate_memory_operation;
       }
       utility_temp_float_secondary = (float)((int)utility_temp_float_secondary + 1);
-      float_ptr5 = float_ptr5 + 1;
+      utility_float_pointer_primary = utility_float_pointer_primary + 1;
     } while ((int)utility_temp_float_secondary < 6);
     utility_iteration_counter = buffer_datareate_function(utility_cpu_context + 200);
     validation_flag = utility_float_param_primary;
@@ -17575,7 +17578,7 @@ uint64 ValidateOperationHandle(int resource_handle_identifier)
   char utility_utility_stack_param_ptr;
   uint64 utility_stack_int_primary;
   uint utility_thread_stack_primary_offset;
-  uint32 utility_stack_context_uint_44;
+  uint32 utility_stack_context_primary_uint;
   
   if (resource_handle_identifier != 0) {
     return UTILITY_BYTE_OFFSET_FLAG;
@@ -17598,7 +17601,7 @@ uint64 ValidateOperationHandle(int resource_handle_identifier)
     return UTILITY_BYTE_OFFSET_FLAG;
   }
   resource_data_pointer = (longlong *)*utility_register_context_base;
-  utility_stack_int_primary = UTILITY_BIT_CONCAT_4_4(utility_stack_context_uint_44,utility_thread_stack_primary_offset);
+  utility_stack_int_primary = UTILITY_BIT_CONCAT_4_4(utility_stack_context_primary_uint,utility_thread_stack_primary_offset);
   if (*resource_data_pointer == 0) {
     utility_iteration_counter = UTILITY_BYTE_OFFSET_FLAG;
   }
@@ -83072,7 +83075,7 @@ void renderStencilInitialize(void)
 void renderViewportInitialize(void)
 
 {
-  utility_render_system_thread_storage_cleanup_0b0 = &thread_local_storage_cleanup;
+  utility_render_thread_cleanup_primary = &thread_local_storage_cleanup;
   return;
 }
 
@@ -83154,16 +83157,16 @@ void updateRenderState(uint64 resource_handle_identifier,uint64 resource_buffer,
   uint64 *utility_iteration_pointer;
   uint64 utility_iteration_counter;
   
-  utility_operation_result = utility_render_system_operation_data_2f0;
+  utility_operation_result = utility_render_operation_data_primary;
   utility_iteration_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
-  utility_iteration_pointer = utility_render_system_loop_counter_2e8;
-  if (utility_render_system_loop_counter_2e8 != utility_render_system_operation_data_2f0) {
+  utility_iteration_pointer = utility_render_loop_counter_primary;
+  if (utility_render_loop_counter_primary != utility_render_operation_data_primary) {
     do {
       (**(code **)*utility_iteration_pointer)(iteration_pointer,0,resourceOperationFlags,resourceCallbackFunction,utility_iteration_counter);
       utility_iteration_pointer = iteration_pointer  + UTILITY_BOOLEAN_FLAG_OFFSET;
     } while (iteration_pointer != utility_operation_result);
   }
-  if (utility_render_system_loop_counter_2e8 == (uint64 *)UTILITY_NULL_POINTER) {
+  if (utility_render_loop_counter_primary == (uint64 *)UTILITY_NULL_POINTER) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -83183,16 +83186,16 @@ void resourceReleaseHandle(uint64 resource_handle_identifier,uint64 resource_buf
   uint64 *utility_iteration_pointer;
   uint64 utility_iteration_counter;
   
-  utility_operation_result = utility_render_system_operation_data_310;
+  utility_operation_result = utility_render_operation_data_secondary;
   utility_iteration_counter = UTILITY_SYSTEM_END_FLAG_EXTENDED;
-  utility_iteration_pointer = utility_render_system_loop_counter_308;
-  if (utility_render_system_loop_counter_308 != utility_render_system_operation_data_310) {
+  utility_iteration_pointer = utility_render_loop_counter_secondary;
+  if (utility_render_loop_counter_secondary != utility_render_operation_data_secondary) {
     do {
       (**(code **)*utility_iteration_pointer)(iteration_pointer,0,resourceOperationFlags,resourceCallbackFunction,utility_iteration_counter);
       utility_iteration_pointer = iteration_pointer  + UTILITY_BOOLEAN_FLAG_OFFSET;
     } while (iteration_pointer != utility_operation_result);
   }
-  if (utility_render_system_loop_counter_308 == (uint64 *)UTILITY_NULL_POINTER) {
+  if (utility_render_loop_counter_secondary == (uint64 *)UTILITY_NULL_POINTER) {
     return;
   }
                     // WARNING: Subroutine does not return
