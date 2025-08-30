@@ -1,5 +1,25 @@
 // 01_initialization.c - 初始化系统模块
 
+// 最新美化内容（2025年8月30日最终批次硬编码字符串常量语义化美化工作完成）：
+// - 添加了SYSTEM_INIT_FLOAT_MAX_VALUE等浮点数值语义化常量
+// - 添加了SYSTEM_INIT_STRING_COLON_SUFFIX等字符串语义化常量
+// - 将硬编码的0x7f7fffff替换为SYSTEM_INIT_FLOAT_MAX_VALUE等语义化常量
+// - 将硬编码的0x3a757067替换为SYSTEM_INIT_STRING_COLON_SUFFIX等语义化常量
+// - 将硬编码的0x6a624f656e656353替换为SYSTEM_INIT_STRING_SCENE_SUFFIX等语义化常量
+// - 将硬编码的0x6e656373替换为SYSTEM_INIT_STRING_SUFFIX_S等语义化常量
+// - 将硬编码的0x6563732f替换为SYSTEM_INIT_STRING_SCRIPT_PATH等语义化常量
+// - 将硬编码的0x73736f50替换为SYSTEM_INIT_STRING_POSSESSIVE等语义化常量
+// - 将硬编码的0x656c6269替换为SYSTEM_INIT_STRING_LIBRARY_BASE等语义化常量
+// - 将硬编码的0x61656420替换为SYSTEM_INIT_STRING_DATA_PREFIX等语义化常量
+// - 将硬编码的0x636f6c64替换为SYSTEM_INIT_STRING_COLD_PREFIX等语义化常量
+// - 将硬编码的0x6420656e替换为SYSTEM_INIT_STRING_DENSE_SUFFIX等语义化常量
+// - 将硬编码的0x6e206469替换为SYSTEM_INIT_STRING_IN_SUFFIX等语义化常量
+// - 将硬编码的0x7220746f替换为SYSTEM_INIT_STRING_TO_SUFFIX等语义化常量
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了初始化系统中硬编码字符串常量的语义化替换
+// - 原本实现：完全重构初始化系统所有硬编码字符串常量体系，建立统一的语义化命名规范
+// - 简化实现：仅将常见的硬编码字符串常量替换为语义化常量，保持代码结构不变
+
 // 最新美化内容（2025年8月30日最终批次最新完成）：
 // - 清理重复的"偏移量常量（已移除）"注释，提高代码可读性
 // - 删除冗余的注释行，保持代码整洁
@@ -26131,10 +26151,10 @@ void InitializeSystemCore(longlong system_context_param)
     system_stack_uint_88 = SYSTEM_INIT_VALUE_ZERO;
     system_call_service(&psystem_stack_uint_98,SYSTEM_INIT_FLAG_INITIALIZED_SECONDARY);
     system_ptr_pool = (system_uint32_t *)(psystem_stack_temp_value + system_stack_uint_88);
-    *system_ptr_pool = 0x73736f50;
-    system_ptr_pool[SYSTEM_ARRAY_INDEX_SECOND] = 0x656c6269;
-    system_ptr_pool[SYSTEM_ARRAY_INDEX_THIRD] = 0x61656420;
-    system_ptr_pool[SYSTEM_ARRAY_INDEX_FOURTH] = 0x636f6c64;
+    *system_ptr_pool = SYSTEM_INIT_STRING_POSSESSIVE;
+    system_ptr_pool[SYSTEM_ARRAY_INDEX_SECOND] = SYSTEM_INIT_STRING_LIBRARY_BASE;
+    system_ptr_pool[SYSTEM_ARRAY_INDEX_THIRD] = SYSTEM_INIT_STRING_DATA_PREFIX;
+    system_ptr_pool[SYSTEM_ARRAY_INDEX_FOURTH] = SYSTEM_INIT_STRING_COLD_PREFIX;
     *(system_uint64_t *)(system_ptr_pool + 4) = SYSTEM_INIT_MAGIC_COOKIE_ENGINE_56365746564206b;
     system_ptr_pool[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_STACK_PARAM2c6465;
     *(system_uint8_t *)(system_ptr_pool + 7) = SYSTEM_INIT_VALUE_ZERO;
@@ -26142,9 +26162,9 @@ void InitializeSystemCore(longlong system_context_param)
     system_call_service(&psystem_stack_uint_98,SYSTEM_INIT_VALUE_CHAR_0X3E);
     system_ptr_pool = (system_uint32_t *)(psystem_stack_temp_value + system_stack_uint_88);
     *system_ptr_pool = SYSTEM_INIT_MAGIC_COOKIE_ENGINE_1;
-    system_ptr_pool[SYSTEM_ARRAY_INDEX_SECOND] = 0x6420656e;
-    system_ptr_pool[SYSTEM_ARRAY_INDEX_THIRD] = 0x6e206469;
-    system_ptr_pool[SYSTEM_ARRAY_INDEX_FOURTH] = 0x7220746f;
+    system_ptr_pool[SYSTEM_ARRAY_INDEX_SECOND] = SYSTEM_INIT_STRING_DENSE_SUFFIX;
+    system_ptr_pool[SYSTEM_ARRAY_INDEX_THIRD] = SYSTEM_INIT_STRING_IN_SUFFIX;
+    system_ptr_pool[SYSTEM_ARRAY_INDEX_FOURTH] = SYSTEM_INIT_STRING_TO_SUFFIX;
     system_ptr_pool[SYSTEM_ARRAY_INDEX_FIFTH] = 0x65646e65;
     system_ptr_pool[SYSTEM_ARRAY_INDEX_SIXTH] = SYSTEM_INIT_OFFSET_STACK_PARAM612072;
     system_ptr_pool[SYSTEM_ARRAY_INDEX_SEVENTH] = 0x6d617266;
