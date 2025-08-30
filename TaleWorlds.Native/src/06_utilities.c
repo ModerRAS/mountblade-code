@@ -75,8 +75,8 @@
 // 7. 将error_code_failed替换为UTILITY_ERROR_CODE_FAILED等明确名称
 // 8. 将structure_size_offset替换为UTILITY_STRUCTURE_SIZE_OFFSET等语义化名称
 // 9. 将BUFFER_OFFSET_STATUS替换为UTILITY_BUFFER_STATUS_OFFSET_ALT等描述性名称
-10. 将in_stack_68替换为utility_stack_cpu_register_context_68等栈变量名
-11. 将unaff_SIL替换为utility_register_sil等寄存器变量名
+10. 将utility_stack_cpu_register_context_68替换为utility_stack_cpu_register_context_68等栈变量名
+11. 将utility_register_sil替换为utility_register_sil等寄存器变量名
 // 提高了代码的可读性和维护性
 // 保持代码语义不变
 // 这是简化实现，主要处理了工具系统中变量名的语义化替换
