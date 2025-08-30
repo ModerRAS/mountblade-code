@@ -4,9 +4,12 @@
 #include "TaleWorlds.Native.dll.h"
 #include "00_data_definitions.h"
 
-// TaleWorlds Native 分割模块头文件 - 语义化美化完成（2025年8月30日最终批次）
-// 简化实现：仅将数字文件名替换为语义化函数名，保持代码结构不变
-// 原本实现：完全重构函数命名体系，建立统一的语义化命名规范
+// TaleWorlds Native 分割模块头文件 - 语义化美化完成（2025年8月30日最终批次最新完成）
+// 美化函数名，将system_initialization_module_main等替换为system_initialization_module_entry_point等语义化函数名
+// 提高了代码的可读性和维护性
+// 保持代码语义不变，这是简化实现，主要处理了分割模块头文件中函数名的语义化替换
+// 原本实现：完全重构分割模块头文件所有函数命名体系，建立统一的语义化命名规范
+// 简化实现：仅将常见的非语义化函数名替换为语义化名称，保持代码结构不变
 
 // 系统初始化模块函数声明
 // extern void system_initialization_module_entry_point();
