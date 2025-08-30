@@ -1920,17 +1920,17 @@ extern char system_flag_buffer_cleanup_handler;
 #define SYSTEM_FLOAT_CONSTANT_NEGATIVE_PRECISION_MAX 0xccbebc20  // 负精度浮点数最大值
 
 // 系统内存分配大小常量定义（新增）
-#define SYSTEM_MEMORY_ALLOC_SIZE_SMALL 0xd
-#define SYSTEM_MEMORY_ALLOC_SIZE_MEDIUM 0xe
-#define SYSTEM_MEMORY_ALLOC_SIZE_LARGE 0x10
-#define SYSTEM_MEMORY_ALLOC_SIZE_EXTRA_LARGE 0x11
-#define SYSTEM_BUFFER_SIZE_HUGE 0x12
-#define SYSTEM_BUFFER_SIZE_MAXIMUM 0x13
-#define SYSTEM_BUFFER_SIZE_STANDARD 0x16
-#define SYSTEM_BUFFER_SIZE_CONFIG 0x17
-#define SYSTEM_BUFFER_SIZE_NETWORK 0x18
-#define SYSTEM_BUFFER_SIZE_RESOURCE 0x19
-#define SYSTEM_BUFFER_SIZE_STRING 0x1a
+#define SYSTEM_MEMORY_ALLOC_SIZE_MINIMAL 0xd    // 最小内存分配大小
+#define SYSTEM_MEMORY_ALLOC_SIZE_SMALL 0xe      // 小内存分配大小
+#define SYSTEM_MEMORY_ALLOC_SIZE_MEDIUM 0x10    // 中等内存分配大小
+#define SYSTEM_MEMORY_ALLOC_SIZE_LARGE 0x11     // 大内存分配大小
+#define SYSTEM_BUFFER_SIZE_HUGE 0x12             // 巨大缓冲区大小
+#define SYSTEM_BUFFER_SIZE_MAXIMUM 0x13          // 最大缓冲区大小
+#define SYSTEM_BUFFER_SIZE_STANDARD 0x16         // 标准缓冲区大小
+#define SYSTEM_BUFFER_SIZE_CONFIG 0x17            // 配置缓冲区大小
+#define SYSTEM_BUFFER_SIZE_NETWORK 0x18          // 网络缓冲区大小
+#define SYSTEM_BUFFER_SIZE_RESOURCE 0x19         // 资源缓冲区大小
+#define SYSTEM_BUFFER_SIZE_STRING 0x1a           // 字符串缓冲区大小
 
 // 系统配置常量定义
 // 删除重复定义: #define SYSTEM_BUFFER_SIZE_1M 0x100000
