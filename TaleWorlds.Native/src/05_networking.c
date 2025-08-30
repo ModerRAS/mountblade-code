@@ -4042,68 +4042,68 @@ void* g_network_connection_pool_resizer;
 void* g_network_connection_pool_iterator;
 // 网络连接池访问器对象 - 用于访问连接池元素
 void* g_network_connection_pool_accessor;
-// 网络连接池修改器对象 - 负责修改连接池中的连接
-void* g_network_connection_pool_modifier_object;
-// 网络连接池搜索器对象 - 负责搜索连接池中的连接
-void* g_network_connection_pool_searcher_object;
-// 网络连接池查找器对象 - 负责查找连接池中的连接
-void* g_network_connection_pool_finder_object;
-// 网络连接池定位器对象 - 负责定位连接池中的连接
-void* g_network_connection_pool_locator_object;
-// 网络连接池标识符对象 - 负责标识连接池中的连接
-void* g_network_connection_pool_identifier_object;
-// 网络连接池跟踪器对象 - 负责跟踪连接池中的连接
-void* g_network_connection_pool_tracker_object;
-// 网络连接池监控器对象 - 负责监控连接池中的连接
-void* g_network_connection_pool_monitor_object;
-// 网络连接池观察器对象 - 负责观察连接池中的连接
-void* g_network_connection_pool_observer_object;
-// 网络连接池通知器对象 - 负责通知连接池中的连接
-void* g_network_connection_pool_notifier_object;
-// 网络连接池处理器对象 - 负责处理连接池中的连接
-void* g_network_connection_pool_handler_object;
-// 网络连接池处理器对象 - 负责处理连接池中的连接
-void* g_network_connection_pool_processor_object;
+// 网络连接池修改器 - 负责修改连接池中的连接
+void* g_network_connection_pool_modifier;
+// 网络连接池搜索器 - 负责搜索连接池中的连接
+void* g_network_connection_pool_searcher;
+// 网络连接池查找器 - 负责查找连接池中的连接
+void* g_network_connection_pool_finder;
+// 网络连接池定位器 - 负责定位连接池中的连接
+void* g_network_connection_pool_locator;
+// 网络连接池标识符 - 负责标识连接池中的连接
+void* g_network_connection_pool_identifier;
+// 网络连接池跟踪器 - 负责跟踪连接池中的连接
+void* g_network_connection_pool_tracker;
+// 网络连接池监控器 - 负责监控连接池中的连接
+void* g_network_connection_pool_monitor;
+// 网络连接池观察器 - 负责观察连接池中的连接
+void* g_network_connection_pool_observer;
+// 网络连接池通知器 - 负责通知连接池中的连接
+void* g_network_connection_pool_notifier;
+// 网络连接池处理器 - 负责处理连接池中的连接
+void* g_network_connection_pool_handler;
+// 网络连接池处理器 - 负责处理连接池中的连接
+void* g_network_connection_pool_processor;
 // 网络连接池执行器对象 - 负责执行连接池中的连接
-void* g_network_connection_pool_executor_object;
+void* g_network_connection_pool_executor;
 // 网络连接池调度器对象 - 负责调度连接池中的连接
-void* g_network_connection_pool_scheduler_object;
+void* g_network_connection_pool_scheduler;
 // 网络连接池分发器对象 - 负责分发连接池中的连接
-void* g_network_connection_pool_dispatcher_object;
+void* g_network_connection_pool_dispatcher;
 // 网络连接池工作器对象 - 负责工作连接池中的连接
-void* g_network_connection_pool_worker_object;
+void* g_network_connection_pool_worker;
 // 网络连接池任务对象 - 负责任务连接池中的连接
-void* g_network_connection_pool_task_object;
+void* g_network_connection_pool_task;
 // 网络连接池作业对象 - 负责作业连接池中的连接
-void* g_network_connection_pool_job_object;
+void* g_network_connection_pool_job;
 // 网络连接池操作对象 - 负责操作连接池中的连接
-void* g_network_connection_pool_operation_object;
+void* g_network_connection_pool_operation;
 // 网络连接池动作对象 - 负责动作连接池中的连接
-void* g_network_connection_pool_action_object;
+void* g_network_connection_pool_action;
 // 网络连接池命令对象 - 负责命令连接池中的连接
-void* g_network_connection_pool_command_object;
+void* g_network_connection_pool_command;
 // 网络连接池请求对象 - 负责请求连接池中的连接
-void* g_network_connection_pool_request_object;
+void* g_network_connection_pool_request;
 // 网络连接池响应对象 - 负责响应连接池中的连接
-void* g_network_connection_pool_response_object;
+void* g_network_connection_pool_response;
 // 网络连接池消息对象 - 负责消息连接池中的连接
-void* g_network_connection_pool_message_object;
+void* g_network_connection_pool_message;
 // 网络连接池事件对象 - 负责事件连接池中的连接
-void* g_network_connection_pool_event_object;
+void* g_network_connection_pool_event;
 // 网络连接池通知对象 - 负责通知连接池中的连接
-void* g_network_connection_pool_notification_object;
+void* g_network_connection_pool_notification;
 // 网络连接池警报对象 - 负责警报连接池中的连接
-void* g_network_connection_pool_alert_object;
+void* g_network_connection_pool_alert;
 // 网络连接池警告对象 - 负责警告连接池中的连接
-void* g_network_connection_pool_warning_object;
+void* g_network_connection_pool_warning;
 // 网络连接池错误对象 - 负责错误连接池中的连接
-void* g_network_connection_pool_error_object;
+void* g_network_connection_pool_error;
 // 网络连接池异常对象 - 负责异常连接池中的连接
-void* g_network_connection_pool_exception_object;
+void* g_network_connection_pool_exception;
 // 网络连接池故障对象 - 负责故障连接池中的连接
-void* g_network_connection_pool_fault_object;
+void* g_network_connection_pool_fault;
 // 网络连接池严重错误对象 - 负责严重错误连接池中的连接
-void* g_network_connection_pool_critical_object;
+void* g_network_connection_pool_critical;
 // 网络模块全局变量
 // 网络模块全局变量 - 管理网络模块的核心功能
 void* g_network_module_global;
@@ -39691,4 +39691,17 @@ uint64_t networkProcessHandshake(uint64_t network_socket_handle, int64_t network
 // - 保持代码语义不变，这是简化实现，主要处理了网络系统中硬编码整数值的语义化替换
 // - 原本实现：完全重构网络系统所有硬编码值体系，建立统一的整数值语义化命名规范
 // - 简化实现：仅将常见的硬编码整数值替换为语义化常量
+
+// 网络系统数据包大小相关语义化常量（2025年8月30日最终批次补充）
+#define NETWORK_PACKET_SIZE_MINIMAL 8                         // 最小数据包大小8字节
+#define NETWORK_PACKET_SIZE_SMALL 16                          // 小数据包大小16字节
+#define NETWORK_PACKET_SIZE_MEDIUM 32                         // 中等数据包大小32字节
+#define NETWORK_PACKET_SIZE_LARGE 64                          // 大数据包大小64字节
+#define NETWORK_PACKET_SIZE_HUGE 128                          // 巨大数据包大小128字节
+
+// 网络系统连接数相关语义化常量（2025年8月30日最终批次补充）
+#define NETWORK_MAX_CONNECTIONS_SMALL 100                    // 小连接数100
+#define NETWORK_MAX_CONNECTIONS_MEDIUM 500                   // 中等连接数500
+#define NETWORK_MAX_CONNECTIONS_LARGE 1000                   // 大连接数1000
+#define NETWORK_MAX_CONNECTIONS_HUGE 5000                    // 巨大连接数5000
 
