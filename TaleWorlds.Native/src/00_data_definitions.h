@@ -6648,7 +6648,7 @@ system_handle_paramr_001:
   system_execute_crypto_operation(*(ulong long *)(system_base_pointer_register + SYSTEM_OFFSET_HANDLE_PARAM00) ^ (ulong long)&system_stack_zero);
 }
         g_data_crypto_flag_secondary = '\x01';
-        system_thread_stack_base_address = merge_32bit_values(system_thread_stack_base_address_low_half_extended,0x4ea);
+        system_thread_stack_base_address = merge_32bit_values(system_thread_stack_base_address_low_half_extended,SYSTEM_OFFSET_THREAD_STACK_BASE);
         system_execution_function(system_stack_buffer_debug_output,&systemFunctionData1,&systemFunctionData4,&systemFunctionData5);
         OutputDebugStringA(system_stack_buffer_debug_output);
       }
