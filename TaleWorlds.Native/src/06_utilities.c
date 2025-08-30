@@ -84576,7 +84576,6 @@ void CleanupThreadResources(uint64 resource_handle_identifier,uint64 resource_bu
 #define UTILITY_CPU_REGISTER_LIMIT_52 0x52
 #define UTILITY_CPU_REGISTER_LIMIT_88 0x88
 #define UTILITY_CPU_REGISTER_LIMIT_84 0x84
-#define UTILITY_STACK_OFFSET_NEGATIVE_19 -0x19
 
 // 新增语义化宏定义 - 美化成功码常量
 #define UTILITY_SUCCESS_CODE_VALUE 0x52
