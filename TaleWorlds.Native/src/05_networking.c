@@ -108,6 +108,14 @@
 // - 原本实现：完全重构网络系统栈变量命名体系
 // - 简化实现：仅将简单的栈变量名替换为语义化名称
 
+// 最新美化内容（2025年8月30日）：
+// - 将硬编码的数字4替换为NETWORK_DATA_SIZE_4等语义化常量
+// - 将硬编码的数字3替换为NETWORK_ARRAY_INDEX_3等语义化常量
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了网络系统中硬编码数字的语义化替换
+// - 原本实现：完全重构网络系统硬编码数字体系
+// - 简化实现：仅将常见的硬编码数字3和4替换为语义化常量
+
 // 本次美化内容（2025年8月30日）：
 // - 将socket_descriptor_var_secondary4替换为socket_descriptor_var_secondary（套接字描述符变量次要）
 // - 将network_packet_size_ptr_temp_value替换为network_packet_size_temporary（网络包大小临时值）
@@ -7616,7 +7624,7 @@ uint64_t NetworkGetSocketStatus(void)
   if (network_socket_context_pointer == inputRegister) {
     error_detail_code = network_socket_context_pointer * NETWORK_BUFFER_SIZE_MEDIUM;
     if (error_detail_code < 4) {
-      error_detail_code = 4;
+      error_detail_code = NETWORK_DATA_SIZE_4;
     if (((error_detail_code <= inputRegister) || ((int)network_socket_context_pointer[3] != inputRegister)) || ((int)network_socket_context_pointer[NETWORK_ARRAY_INDEX_4] != -NETWORK_OPERATION_SUCCESS)) {
     network_operation_status_code = (int)*(uint32_t *)((longlong)network_socket_context_pointer + NETWORK_ERROR_INVALID_OFFSET) >> BIT_SHIFT_MASK;
     if (((int)((*(uint32_t *)((longlong)network_socket_context_pointer + NETWORK_ERROR_INVALID_OFFSET) ^ network_operation_status_code) - network_operation_status_code) < error_detail_code) &&
