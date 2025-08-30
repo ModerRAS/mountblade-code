@@ -38100,8 +38100,8 @@ void InitializeFontSystem(uint64_t handleIdentifier)
   uint16_t system_local_buffer_vertex_hash [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   uint16_t system_local_buffer_resource_comment [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   void *system_buffer_ptr_resource_pool_large;
-  longlong longStack_328;
-  int init_stack_temp_counter_320;
+  longlong long_stack_data_buffer;
+  int init_stack_temp_counter;
   ulonglong init_stack_data_size_318;
   uint32_t uintStack_310;
   void *system_buffer_ptr_texture_data;
@@ -38189,7 +38189,7 @@ void InitializeFontSystem(uint64_t handleIdentifier)
   system_buffer_ptr_resource_pool_large = &resourcePoolPointer;
   init_stack_data_size_318 = 0;
   longStack_328 = 0;
-  init_stack_temp_counter_320 = 0;
+  init_stack_temp_counter = 0;
   InitializeConfigSystem(system_flag_status,&system_buffer_ptr_function_primary0);
   if ((system_configuration_data == (longlong *)SYSTEM_NULL_POINTER) ||
      (system_init_status_flag = (**(code **)(*system_configuration_data + SYSTEM_OBJECT_OFFSET_28))(), system_init_status_flag == SYSTEM_CHAR_NULL_TERMINATOR)) {
@@ -38542,7 +38542,7 @@ INIT_LABEL_INIT_65a3e:
     system_buffer_ptr_local_primary = &globalSystemPointerData;
   }
   system_long_result_temp = longStack_278;
-  fwrite(longStack_328,1,(longlong)init_stack_temp_counter_320,longStack_278);
+  fwrite(longStack_328,1,(longlong)init_stack_temp_counter,longStack_278);
   system_pointer_value = system_buffer_ptr_data_config;
   system_pointer_value = system_pointer_value;
   if (system_long_result != SYSTEM_COMPARISON_ZERO) {
