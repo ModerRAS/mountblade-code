@@ -330,6 +330,14 @@
 #define SYSTEM_INIT_VALUE_SEMAPHORE_MAX        0x7fffffff // 信号量最大值
 #define SYSTEM_INIT_VALUE_HANDLE_INVALID      SYSTEM_INIT_VALUE_MUTEX_MASK
 
+// 新增语义化常量定义（2025年8月30日最终批次最新完成）
+#define SYSTEM_INIT_OFFSET_VALIDATION_CHECK     0x19    // 验证检查偏移量
+#define SYSTEM_INIT_SIZE_MINIMUM_BUFFER        0x10    // 最小缓冲区大小
+#define SYSTEM_INIT_SIZE_STANDARD_BUFFER       0x80    // 标准缓冲区大小
+#define SYSTEM_INIT_SIZE_MAXIMUM_BUFFER        0x7fffffff // 最大缓冲区大小
+#define SYSTEM_INIT_OFFSET_STANDARD_HEADER      0x40    // 标准头部偏移量
+#define SYSTEM_INIT_SIZE_STANDARD_POINTER      0x8     // 标准指针大小
+
 // 补充硬编码值语义化常量（2025年8月30日最终批次）
 #define SYSTEM_INIT_SIZE_BUFFER_MEDIUM         0x100   // 中等缓冲区大小
 #define SYSTEM_INIT_SIZE_BUFFER_LARGE          SYSTEM_INIT_OFFSET_HEADER0   // 大缓冲区大小
@@ -361,12 +369,26 @@
 #define SYSTEM_INIT_DOUBLE_FLOAT_PAIR_1_0     0x10f800000010f800000  // 双精度浮点数对 1.0
 #define SYSTEM_INIT_DOUBLE_VALUE_1_0           0x10ff0000000000000    // 双精度浮点数值 1.0
 
+// 新增系统浮点数常量（2025年8月30日最终批次最新完成）
+#define SYSTEM_INIT_FLOAT_VALUE_ZERO           0.0     // 零值
+#define SYSTEM_INIT_FLOAT_VALUE_HALF           0.5     // 半值
+#define SYSTEM_INIT_FLOAT_VALUE_ONE            1.0     // 一值
+#define SYSTEM_INIT_FLOAT_VALUE_TWO            2.0     // 二值
+#define SYSTEM_INIT_FLOAT_VALUE_TEN            10.0    // 十值
+
 // 系统标志位常量
 #define SYSTEM_INIT_FLAG_ENABLED               0x1     // 启用标志
 #define SYSTEM_INIT_FLAG_INITIALIZED           0x2     // 初始化标志
 #define SYSTEM_INIT_FLAG_ACTIVE                0x4     // 活动标志
 #define SYSTEM_INIT_FLAG_READY                 0x8     // 就绪标志
 #define SYSTEM_INIT_FLAG_ACTIVE_RESOURCE       0x10    // 活动资源标志
+
+// 新增系统标志位常量（2025年8月30日最终批次最新完成）
+#define SYSTEM_INIT_FLAG_VALIDATION_SUCCESS    0x1     // 验证成功标志
+#define SYSTEM_INIT_FLAG_INITIALIZATION_COMPLETE 0x2   // 初始化完成标志
+#define SYSTEM_INIT_FLAG_SYSTEM_ACTIVE         0x4     // 系统活动标志
+#define SYSTEM_INIT_FLAG_RESOURCE_AVAILABLE    0x8     // 资源可用标志
+#define SYSTEM_INIT_FLAG_PROCESSING_COMPLETE   0x10    // 处理完成标志
 
 // 系统标签语义化常量定义（2025年8月30日最终批次补充美化）
 #define SYSTEM_INIT_LABEL_MAIN_ENTRY              system_init_label_parameter_check  // 主入口标签
