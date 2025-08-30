@@ -2266,7 +2266,7 @@ void NetworkSendPacketWithTimeout(uint64_t network_socket_descriptor, int64_t ne
   uint64_t network_buffer_size;
   uint64_t network_timeout_ms;
   int64_t network_session_data_offset;
-  uint8_t network_encryption_temporary_buffer [NETWORK_BUFFER_SIZE_32];
+  uint8_t network_encryption_temp_buffer [NETWORK_BUFFER_SIZE_32];
   uint64_t network_checksum_value;
   uint8_t network_compression_data_buffer [16];
   uint64_t network_encryption_key_main;
@@ -16508,7 +16508,7 @@ uint64_t network_socket_descriptor(uint32_t network_socket_descriptor)
      (network_packet_size_temp = network_socket_descriptor(network_socket_descriptor), (int)network_packet_size_temp != NETWORK_OPERATION_FAILURE)) {
   if (((*(uint32_t *)(network_socket_descriptor + NETWORK_BUFFER_EXTENDED_OFFSET) >> NETWORK_CONTROL_PACKET_HANDSHAKE_ALT & NETWORK_OPERATION_SUCCESS) != NETWORK_OPERATION_FAILURE) &&
   uint8_t network_temp_validation_buffere8 [64];
-  uint8_t network_encryption_temporary_buffer [624];
+  uint8_t network_encryption_temp_buffer [624];
   network_session_config_array_data_size = network_encryption_xor_global ^ (ulonglong)network_temp_validation_buffere8;
   memset(network_encryption_temp_buffer, NETWORK_OPERATION_FAILURE, NETWORK_SOCKET_HANDLE_OFFSET);
   *(uint64_t *)(network_input_parameter_primary + SOCKET_RESPONSE_OFFSET) = network_socket_context_ptr;
