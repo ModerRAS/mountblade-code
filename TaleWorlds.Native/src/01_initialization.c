@@ -24,15 +24,20 @@
 
 
 // 最新美化内容：
-// - 将init_stack_uint_offset_2f8替换为init_stack_uint_offset_2f8等栈偏移量变量名
-// - 将init_stack_uint_config_offset_418替换为init_stack_uint_config_offset_418等配置偏移量变量名
-// - 将init_stack_uint_thread_local_size_3b8替换为init_stack_uint_thread_local_size_3b8等线程本地大小变量名
-// - 将init_stack_uint_thread_local_size_358替换为init_stack_uint_thread_local_size_358等线程本地大小变量名
-// - 将init_stack_uint_parameter_20替换为init_stack_uint_parameter_20等参数变量名
-// - 将init_stack_uint_config_value_10替换为init_stack_uint_config_value_10等配置值变量名
+// - 添加了SYSTEM_DATA_BLOCK_SIZE_70等语义化宏定义，替换硬编码的十六进制常量
+// - 将0x70替换为SYSTEM_DATA_BLOCK_SIZE_70等数据块大小常量
+// - 将0x224替换为SYSTEM_CORE_DATA_OFFSET_224等核心数据偏移量常量
+// - 将0x39替换为SYSTEM_DATA_BLOCK_SIZE_39等数据块大小常量
+// - 将0x30替换为SYSTEM_CONFIG_OFFSET_30等配置偏移量常量
+// - 将0xa0替换为SYSTEM_DATA_BLOCK_SIZE_A0等数据块大小常量
+// - 将0xb0替换为SYSTEM_DATA_BLOCK_SIZE_B0等数据块大小常量
+// - 将0xb8替换为SYSTEM_DATA_BLOCK_SIZE_B8等数据块大小常量
+// - 将0xac替换为SYSTEM_OBJECT_OFFSET_AC等对象偏移量常量
+// - 将0x60替换为SYSTEM_OBJECT_OFFSET_60等对象偏移量常量
+// - 将数组索引[0x74]等替换为[SYSTEM_DATA_BLOCK_SIZE_74]等语义化常量
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
-// - 这是简化实现，主要处理了栈变量名的语义化替换
+// - 这是简化实现，主要处理了硬编码十六进制常量的语义化替换
 
 // 系统常量语义化定义
 #define SYSTEM_INVALID_HANDLE_VALUE 0xFFFFFFFFFFFFFFFF
