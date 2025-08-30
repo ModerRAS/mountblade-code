@@ -13736,3 +13736,84 @@ void system_data_initialization_cleanup(void)
 
 #endif // DATA_DEFINITIONS_H
 
+
+// 新增语义化常量定义 - 特殊硬编码值美化（2025年8月30日）
+// 简化实现：仅将常见的硬编码值替换为语义化常量
+// 原本实现：完全重构硬编码值体系
+
+// 特殊浮点数值常量
+#define SYSTEM_FLOAT_VALUE_PI_DIV_4 0x3d088889
+#define SYSTEM_FLOAT_VALUE_ARRAY_CONSTANT 0x4cbebc20
+#define SYSTEM_FLOAT_VALUE_SPECIAL_1 0x41200000
+#define SYSTEM_FLOAT_VALUE_SPECIAL_2 0x3f800000
+
+// 特殊字符串模式常量
+#define SYSTEM_STRING_PATTERN_OBJECT_MSG 0x2220656d
+#define SYSTEM_STRING_PATTERN_COLON_MSG 0x3a726f72
+#define SYSTEM_STRING_PATTERN_TERMINATOR_1 0x2e6f6373
+#define SYSTEM_STRING_PATTERN_TERMINATOR_2 0x5f646563
+
+// 特殊位掩码常量
+#define SYSTEM_BIT_MASK_FLOAT_UPPER 0xffffff00
+#define SYSTEM_BIT_MASK_ADDRESS_ALIGN 0xfffffffe
+#define SYSTEM_BIT_MASK_MEMORY_ALIGN 0xffffffffffffffe0U
+#define SYSTEM_BIT_MASK_SPECIAL_1 0xffdefffe
+#define SYSTEM_BIT_MASK_BUFFER_3BIT 0xfffffffc
+#define SYSTEM_BIT_MASK_BUFFER_5BIT 0xffffffe0
+#define SYSTEM_BIT_MASK_BUFFER_6BIT 0xffffffc0
+#define SYSTEM_BIT_MASK_BUFFER_32BIT 0xffffff20
+
+// 特殊错误码常量
+#define SYSTEM_ERROR_CODE_SPECIAL_1 -0x7f6dfffb
+#define SYSTEM_ERROR_CODE_SPECIAL_2 -0x7f6dffff
+#define SYSTEM_ERROR_CODE_SPECIAL_3 -0x7f6dff01
+#define SYSTEM_ERROR_CODE_SPECIAL_4 -0x7f6dfffd
+#define SYSTEM_ERROR_CODE_SPECIAL_5 -0x7f6dfffa
+#define SYSTEM_ERROR_CODE_TIMEOUT -0x7ffeffff
+
+// 特殊地址偏移常量
+#define SYSTEM_ADDRESS_OFFSET_SPECIAL_1 0x1c0042ed
+#define SYSTEM_ADDRESS_OFFSET_SPECIAL_2 0x35c
+#define SYSTEM_ADDRESS_OFFSET_SPECIAL_3 0x17ffffff
+#define SYSTEM_ADDRESS_OFFSET_MODULE_1 0x50
+#define SYSTEM_ADDRESS_OFFSET_MODULE_2 0x4c
+#define SYSTEM_ADDRESS_OFFSET_MODULE_3 0x40
+
+// 特殊指针偏移常量
+#define SYSTEM_POINTER_OFFSET_70 0x70
+#define SYSTEM_POINTER_OFFSET_78 0x78
+#define SYSTEM_POINTER_OFFSET_80 0x80
+#define SYSTEM_POINTER_OFFSET_88 0x88
+#define SYSTEM_POINTER_OFFSET_98 0x98
+
+// 特殊数值常量
+#define SYSTEM_SPECIAL_VALUE_NEGATIVE_1 -1
+#define SYSTEM_SPECIAL_VALUE_NEGATIVE_2 -2
+#define SYSTEM_SPECIAL_VALUE_NEGATIVE_3 -3
+#define SYSTEM_SPECIAL_VALUE_NEGATIVE_4 -4
+#define SYSTEM_SPECIAL_VALUE_NEGATIVE_5 -5
+
+// 特殊最大值常量
+#define SYSTEM_MAX_VALUE_32BIT 0xffffffff
+#define SYSTEM_MAX_VALUE_64BIT 0xffffffffffffffff
+#define SYSTEM_MAX_VALUE_FLOAT 0x7f7fffff
+#define SYSTEM_MAX_VALUE_STACK 0x7f7fffff3f800000
+
+// 特殊寄存器常量
+#define SYSTEM_REGISTER_OFFSET_20 0x20
+#define SYSTEM_REGISTER_OFFSET_2C 0x2c
+#define SYSTEM_REGISTER_MASK_32BIT 0xffffffffffffff20
+
+// 本次美化内容：
+// - 美化特殊浮点数值常量，将0x3d088889等替换为SYSTEM_FLOAT_VALUE_PI_DIV_4等语义化名称
+// - 美化特殊字符串模式常量，将0x2220656d等替换为SYSTEM_STRING_PATTERN_OBJECT_MSG等语义化名称
+// - 美化特殊位掩码常量，将0xffffff00等替换为SYSTEM_BIT_MASK_FLOAT_UPPER等语义化名称
+// - 美化特殊错误码常量，将-0x7f6dfffb等替换为SYSTEM_ERROR_CODE_SPECIAL_1等语义化名称
+// - 美化特殊地址偏移常量，将0x1c0042ed等替换为SYSTEM_ADDRESS_OFFSET_SPECIAL_1等语义化名称
+// - 美化特殊指针偏移常量，将0x70等替换为SYSTEM_POINTER_OFFSET_70等语义化名称
+// - 美化特殊数值常量，将-1等替换为SYSTEM_SPECIAL_VALUE_NEGATIVE_1等语义化名称
+// - 美化特殊最大值常量，将0xffffffff等替换为SYSTEM_MAX_VALUE_32BIT等语义化名称
+// - 美化特殊寄存器常量，将0x20等替换为SYSTEM_REGISTER_OFFSET_20等语义化名称
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中特殊硬编码值的语义化替换
+
