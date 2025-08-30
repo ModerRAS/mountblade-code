@@ -1,6 +1,27 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 最新美化内容（2025年8月30日）：
+// - 完成网络系统函数内部变量名的语义化美化工作
+// - 将timeout_config_ptr替换为network_timeout_config_ptr（网络超时配置指针）
+// - 将network_primary_conn_data替换为network_primary_connection_data（网络主连接数据）
+// - 将network_data_ptr_buffer_ptr替换为network_data_buffer_ptr（网络数据缓冲区指针）
+// - 将encryption_temporary_buffer替换为encryption_temp_buffer（加密临时缓冲区）
+// - 将network_connection_processor_handler替换为network_processor_handler（网络处理器句柄）
+// - 将network_socket_context_array_pointer替换为network_context_array_ptr（网络上下文数组指针）
+// - 将data_position_offset替换为network_data_position_offset（网络数据位置偏移量）
+// - 将secondary_connection_info替换为network_secondary_connection_info（网络次要连接信息）
+// - 将network_send_data_buffer_data替换为network_send_buffer_ptr（网络发送缓冲区指针）
+// - 将encryption_xor_value替换为network_encryption_xor_value（网络加密异或值）
+// - 将network_connection_processor_info替换为network_processor_info（网络处理器信息）
+// - 将network_socket_identifier替换为network_socket_id（网络套接字标识符）
+// - 将data_index替换为network_data_index（网络数据索引）
+// - 将network_buffer_global替换为network_global_buffer（网络全局缓冲区）
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了网络系统函数内部变量名的语义化替换
+// - 原本实现：完全重构网络系统函数内部变量命名体系
+// - 简化实现：仅将含义不明确的函数内部变量名替换为语义化名称
+
+// 之前的美化内容（2025年8月30日）：
 // - 修复了网络系统中的错误浮点数常量引用，将NETWORK_OPERATION_SUCCESS.1920929e-07等错误写法替换为NETWORK_FLOAT_EPSILON等正确的语义化常量
 // - 添加了NETWORK_FLOAT_HALF、NETWORK_FLOAT_4_4E_06、NETWORK_FLOAT_0_05、NETWORK_FLOAT_1_52E_07等网络浮点数语义化常量
 // - 添加了NETWORK_ARRAY_INDEX_3/4/5等网络数组索引语义化常量

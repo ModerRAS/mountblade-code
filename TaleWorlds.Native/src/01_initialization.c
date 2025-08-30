@@ -350,16 +350,14 @@
 #define SYSTEM_IDENTIFIER_ECSF 0x6563732f
 #define SYSTEM_CONFIG_VALIDATE_CODE 0x3d072b02
 // 本次美化内容（2025年8月30日）：
-// - 添加了SYSTEM_HANDLE_OFFSET_9F等系统句柄偏移量语义化常量
-// - 添加了SYSTEM_POINTER_OFFSET_29等系统指针偏移量语义化常量
-// - 将硬编码的handleIdentifier + 0x9f替换为handleIdentifier + SYSTEM_HANDLE_OFFSET_9F等语义化常量
-// - 将硬编码的handleIdentifier[0xa2]替换为handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A2]等语义化常量
-// - 将硬编码的system_pointer_var + 0x2c替换为system_pointer_var + SYSTEM_POINTER_OFFSET_2C等语义化常量
-// - 将硬编码的system_int_result + 0xb替换为system_int_result + SYSTEM_POINTER_OFFSET_B等语义化常量
+// - 添加了SYSTEM_ENGINE_TYPE_RENDER等系统引擎类型语义化常量
+// - 添加了SYSTEM_ENGINE_TYPE_DEFAULT等默认引擎类型语义化常量
+// - 将硬编码的引擎类型值4替换为SYSTEM_ENGINE_TYPE_RENDER等语义化常量
+// - 将硬编码的引擎类型值0替换为SYSTEM_ENGINE_TYPE_DEFAULT等语义化常量
 // - 提高了代码的可读性和维护性
-// - 保持代码语义不变，这是简化实现，主要处理了硬编码十六进制值的语义化替换
-// - 原本实现：完全重构硬编码常量体系
-// - 简化实现：仅将常见的硬编码值替换为语义化常量
+// - 保持代码语义不变，这是简化实现，主要处理了硬编码整数值的语义化替换
+// - 原本实现：完全重构引擎类型常量体系
+// - 简化实现：仅将常见的引擎类型硬编码值替换为语义化常量
 // - 添加了SYSTEM_ARRAY_INDEX_HANDLE_ID_A5到SYSTEM_ARRAY_INDEX_HANDLE_ID_A9等句柄ID数组索引语义化常量
 // - 添加了SYSTEM_ARRAY_INDEX_STATUS_CODE_23等状态码数组索引语义化常量
 // - 添加了SYSTEM_ARRAY_INDEX_RESOURCE_STATUS_6F6等资源状态数组索引语义化常量
@@ -3254,7 +3252,7 @@ void initialize_system_phase1(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_RENDER;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -3769,7 +3767,7 @@ void initialize_graphics_phase2(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RESOURCE_MANAGER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RESOURCE_MANAGER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_RENDER;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -3939,7 +3937,7 @@ void InitializeResourceNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_RENDER;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -4315,7 +4313,7 @@ void InitializeQueueNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_RENDER;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -4642,7 +4640,7 @@ void InitializeArrayNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_RENDER;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -5065,7 +5063,7 @@ void InitializeMethodNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_RENDER;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -5609,7 +5607,7 @@ void InitializeMutexSystemObject(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_RENDER;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -5957,7 +5955,7 @@ void InitializeSystemObject13(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_RENDER;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -6363,7 +6361,7 @@ void InitializeSystemObject25(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RESOURCE_MANAGER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RESOURCE_MANAGER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_RENDER;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -6504,7 +6502,7 @@ void InitializeNetworkSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_RENDER;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -6833,7 +6831,7 @@ void GetNetworkStatus(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_RENDER;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -7404,7 +7402,7 @@ void InitializeFontSubsystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_RENDER;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -7686,7 +7684,7 @@ void ValidateSystemConfiguration(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RESOURCE_MANAGER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RESOURCE_MANAGER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_RENDER;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -7827,7 +7825,7 @@ void InitializeSystemProfiler(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_RENDER;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -8203,7 +8201,7 @@ void InitializeFontDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RESOURCE_MANAGER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RESOURCE_MANAGER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_RENDER;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -8391,7 +8389,7 @@ void InitializeMutexResourceNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_RENDER;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -8787,7 +8785,7 @@ void InitializePhysicsSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_RENDER;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -9870,7 +9868,7 @@ void InitializeTextureSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_RENDER;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -10199,7 +10197,7 @@ void SetupGraphicsDevice(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_RENDER;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -10528,7 +10526,7 @@ void InitializeGameSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_RENDER;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -10857,7 +10855,7 @@ void InitializeMutexInitNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_RENDER;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -12193,7 +12191,7 @@ void SetupSystemMemory(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_RENDER;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -12579,7 +12577,7 @@ void InitializeVideoSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_RENDER;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -12908,7 +12906,7 @@ void InitializeNetworkSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_RENDER;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -14711,7 +14709,7 @@ void InitializeBufferDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_RENDER;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -15623,7 +15621,7 @@ void InitializeQueueDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_RENDER_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 4;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_RENDER;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
