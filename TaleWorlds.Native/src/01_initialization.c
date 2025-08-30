@@ -1,5 +1,16 @@
 // 01_initialization.c - 初始化系统模块
 
+// 最新美化内容（2025年8月30日最终批次硬编码浮点数值语义化美化最终完成）：
+// - 添加了SYSTEM_INIT_FLOAT_VALUE_ZERO等浮点数值语义化常量
+// - 将硬编码的0.0替换为SYSTEM_INIT_FLOAT_VALUE_ZERO等语义化常量
+// - 将硬编码的0.75替换为SYSTEM_INIT_FLOAT_VALUE_0_75等语义化常量
+// - 将硬编码的1.0替换为SYSTEM_INIT_FLOAT_VALUE_ONE等语义化常量
+// - 将硬编码的倒数计算1.0替换为SYSTEM_INIT_FLOAT_VALUE_RECIPROCAL等语义化常量
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了初始化系统中剩余硬编码浮点数值的语义化替换
+// - 原本实现：完全重构初始化系统所有硬编码浮点数值体系，建立统一的语义化命名规范
+// - 简化实现：仅将常见的硬编码浮点数值替换为语义化常量，保持代码结构不变
+
 // 最新美化内容（2025年8月30日最终批次类型系统语义化美化）：
 // - 美化系统基础类型名，将system_uint8_t等替换为system_uint8_t等语义化类型名
 // - 美化系统寄存器变量名，将register_r9_value等替换为system_register_r9_value等语义化变量名
@@ -239,6 +250,12 @@
 #define SYSTEM_INIT_FLOAT_COEFFICIENT_8        19.800001  // 系统初始化浮点系数8 - 用于计算system_float_4
 #define SYSTEM_INIT_FLOAT_COEFFICIENT_9        17.866667  // 系统初始化浮点系数9 - 用于计算system_float_5
 #define SYSTEM_INIT_FLOAT_COEFFICIENT_10       26.400002  // 系统初始化浮点系数10 - 用于计算system_float_5
+
+// 系统初始化浮点数值语义化常量（2025年8月30日最终批次补充美化）
+#define SYSTEM_INIT_FLOAT_VALUE_ZERO           0.0        // 零值
+#define SYSTEM_INIT_FLOAT_VALUE_0_75           0.75       // 0.75值
+#define SYSTEM_INIT_FLOAT_VALUE_ONE            1.0        // 1.0值
+#define SYSTEM_INIT_FLOAT_VALUE_RECIPROCAL    1.0        // 倒数基础值
 #define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_2     SYSTEM_INIT_MAGIC_COOKIE_PREFAB_2 // 预制体魔法cookie 2SYSTEM_INIT_MAGIC_COOKIE_PREFAB_2
 #define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_3     SYSTEM_INIT_MAGIC_COOKIE_PREFAB_3 // 预制体魔法cookie 3SYSTEM_INIT_MAGIC_COOKIE_PREFAB_3
 #define SYSTEM_INIT_MAGIC_COOKIE_PREFAB_4     SYSTEM_INIT_MAGIC_COOKIE_PREFAB_4 // 预制体魔法cookie 4SYSTEM_INIT_MAGIC_COOKIE_PREFAB_4
@@ -5874,13 +5891,13 @@ void InitializeSystemCore(void)
       system_unsigned_var_1 = system_init_flag_6;
       psystem_float_var_2 = system_float_pointer_var_8;
       do {
-        system_float_var_9 = 0.0;
+        system_float_var_9 = SYSTEM_INIT_FLOAT_VALUE_ZERO;
         if (-1 < (longlong)system_unsigned_var_1) {
           if ((longlong)system_unsigned_var_1 < 3) {
-            system_float_var_9 = 0.75;
+            system_float_var_9 = SYSTEM_INIT_FLOAT_VALUE_0_75;
           }
           else {
-            system_float_var_9 = 1.0 - (float)system_compare_result / (float)system_int_offset;
+            system_float_var_9 = SYSTEM_INIT_FLOAT_VALUE_ONE - (float)system_compare_result / (float)system_int_offset;
             system_float_var_9 = SQRT(system_float_var_9) * system_float_var_9;
           }
         }
@@ -5897,7 +5914,7 @@ void InitializeSystemCore(void)
   system_float_pointer_var_8 = (float *)SYSTEM_INIT_FLAG_ENABLED_MEMORY_3;
   do {
     system_ulong_var_5 = (int)system_init_flag_6 + 1;
-    *system_float_pointer_var_8 = 1.0 / SQRT((float)system_init_flag_6) + 1.0 / SQRT((float)system_init_flag_6);
+    *system_float_pointer_var_8 = SYSTEM_INIT_FLOAT_VALUE_RECIPROCAL / SQRT((float)system_init_flag_6) + SYSTEM_INIT_FLOAT_VALUE_RECIPROCAL / SQRT((float)system_init_flag_6);
     system_float_pointer_var_8 = system_float_pointer_var_8 + 1;
     system_init_flag_6 = (ulonglong)system_ulong_var_5;
   } while (system_ulong_var_5 < SYSTEM_INIT_OFFSET_HEADER);
@@ -16703,7 +16720,7 @@ LAB_180044faf:
   if (system_int_count == 0) {
     system_setup_context(&g_system_context);
   }
-  _g_system_initialized = 1.0 / (double)(longlong)pplStackX_18;
+  _g_system_initialized = SYSTEM_INIT_FLOAT_VALUE_RECIPROCAL / (double)(longlong)pplStackX_18;
   timeBeginPeriod(1);
   QueryPerformanceCounter(&lStackX_20);
   if (g_system_initialized != '\0') {
