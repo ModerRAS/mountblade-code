@@ -7973,50 +7973,50 @@ unsigned long long * system_execution_function(unsigned long long *handle_param,
   handle_param[3] = SYSTEM_ZERO_VALUE;
   *(unsigned int *)(handle_param + SYSTEM_OFFSET_HANDLE_PARAM) = SYSTEM_THREE_VALUE;
   *handle_param = &g_system_handle_param_backup;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_0D] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_0E] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_0F] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_VALIDATION_FLAG] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_AUTHENTICATION_FLAG] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_AUTHORIZATION_FLAG] = SYSTEM_ZERO_VALUE;
   handle_param[STRING_BUFFER_SIZE] = SYSTEM_ZERO_VALUE;
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_11] = SYSTEM_ZERO_VALUE;
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_12] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_13] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_14] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_15] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_16] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_17] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_18] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_19] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_1A] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_1B] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_1C] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_1D] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_1E] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_INITIALIZATION_FLAG] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_STATUS_FLAG] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_HANDLE_VALUE] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_RESULT_STATUS] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_ERROR_FLAG] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_CONTROL_FLAG] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_OPERATION_FLAG] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_DATA_POINTER] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_BUFFER_SIZE] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_MEMORY_OFFSET] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_STACK_POINTER] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_THREAD_ID] = SYSTEM_ZERO_VALUE;
   handle_param[SYSTEM_CONSTANT_PAIR] = SYSTEM_ZERO_VALUE;
   handle_param[path_buffer_size] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_21] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_22] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_23] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_24] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_25] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_26] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_27] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_28] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_29] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_2A] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_2B] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_2C] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_2D] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_2E] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_CONNECTION_HANDLE] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_SOCKET_HANDLE] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_FILE_HANDLE] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_EVENT_HANDLE] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_MUTEX_HANDLE] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_SEMAPHORE_HANDLE] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_THREAD_HANDLE] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_MEMORY_HANDLE] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_REGISTRY_HANDLE] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_SYSTEM_HANDLE] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_USER_HANDLE] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_SECURITY_HANDLE] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_NETWORK_HANDLE] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_DEVICE_HANDLE] = SYSTEM_ZERO_VALUE;
   handle_param[SYSTEM_CHAR_SLASH] = SYSTEM_ZERO_VALUE;
-  psystem_initialization_result = handle_param + SYSTEM_OFFSET_HANDLE_PARAM_31;
+  psystem_initialization_result = handle_param + SYSTEM_OFFSET_HANDLE_PARAM_KERNEL_HANDLE;
   *psystem_initialization_result = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_32] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_33] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_BUFFER_HANDLE] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_STREAM_HANDLE] = SYSTEM_ZERO_VALUE;
   *(unsigned int *)(handle_param + SYSTEM_CONFIG_OFFSET_MODULE_HANDLE) = SYSTEM_THREE_VALUE;
-  system_string_input_pointer = handle_param + SYSTEM_OFFSET_HANDLE_PARAM_35;
+  system_string_input_pointer = handle_param + SYSTEM_OFFSET_HANDLE_PARAM_CONFIG_HANDLE;
   system_string_length_counter = SYSTEM_EIGHT_VALUE;
   system_execution_function(system_string_input_pointer,SYSTEM_FUNCTION_PARAM_SIZE_SMALL_BUFFER,8,&g_system_execution_buffer,system_execution_function);
-  _Mtx_init_in_situ(handle_param + SYSTEM_OFFSET_HANDLE_PARAM_5D, STRING_BUFFER_SIZE_SECONDARY);
+  _Mtx_init_in_situ(handle_param + SYSTEM_OFFSET_HANDLE_PARAM_DEBUG_HANDLE, STRING_BUFFER_SIZE_SECONDARY);
   system_thread_result_status = module_configuration_processor(&module_config_addr);
   if (system_thread_operation_flags < system_thread_result_status) {
     system_thread_result_status = system_thread_operation_flags;
@@ -8024,76 +8024,76 @@ unsigned long long * system_execution_function(unsigned long long *handle_param,
   *(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G) = system_thread_result_status;
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_11] = (long long)system_thread_result_status;
   system_execution_function(handle_param + SYSTEM_FUNCTION_PARAM_OFFSET_STANDARD);
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_16] = (long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G);
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_RESULT_STATUS] = (long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G);
   if (handle_param[SYSTEM_OFFSET_HANDLE_PARAM_12] != 0) {
     handle_param_system_error();
   }
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_12] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_14] = SYSTEM_ONE_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_13] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_15] = INVALID_HANDLE_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_STATUS_FLAG] = SYSTEM_ONE_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_INITIALIZATION_FLAG] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_HANDLE_VALUE] = INVALID_HANDLE_VALUE;
   system_buffer_allocation_result = system_execution_function(system_global_data_pointer_variable,(long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G) SYSTEM_FUNCTION_PARAM_MULTIPLIER_STANDARD,SYSTEM_FUNCTION_PARAM_SIZE_STANDARD);
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_12] = system_buffer_allocation_result;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_1B] = (long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G);
-  if (handle_param[SYSTEM_OFFSET_HANDLE_PARAM_17] != 0) {
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_BUFFER_SIZE] = (long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G);
+  if (handle_param[SYSTEM_OFFSET_HANDLE_PARAM_ERROR_FLAG] != 0) {
     handle_param_system_error();
   }
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_17] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_19] = SYSTEM_ONE_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_18] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_1A] = INVALID_HANDLE_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_ERROR_FLAG] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_OPERATION_FLAG] = SYSTEM_ONE_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_CONTROL_FLAG] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_DATA_POINTER] = INVALID_HANDLE_VALUE;
   system_buffer_allocation_result = system_execution_function(system_global_data_pointer_variable,(long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G) SYSTEM_FUNCTION_PARAM_MULTIPLIER_STANDARD,SYSTEM_FUNCTION_PARAM_SIZE_STANDARD);
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_17] = system_buffer_allocation_result;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_2A] = (long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G);
-  if (handle_param[SYSTEM_OFFSET_HANDLE_PARAM_26] == SYSTEM_ZERO_VALUE) {
-    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_26] = SYSTEM_ZERO_VALUE;
-    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_28] = SYSTEM_ONE_VALUE;
-    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_27] = SYSTEM_ZERO_VALUE;
-    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_29] = INVALID_HANDLE_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_ERROR_FLAG] = system_buffer_allocation_result;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_SYSTEM_HANDLE] = (long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G);
+  if (handle_param[SYSTEM_OFFSET_HANDLE_PARAM_SEMAPHORE_HANDLE] == SYSTEM_ZERO_VALUE) {
+    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_SEMAPHORE_HANDLE] = SYSTEM_ZERO_VALUE;
+    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_MEMORY_HANDLE] = SYSTEM_ONE_VALUE;
+    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_THREAD_HANDLE] = SYSTEM_ZERO_VALUE;
+    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_REGISTRY_HANDLE] = INVALID_HANDLE_VALUE;
     system_buffer_allocation_result = system_execution_function(system_global_data_pointer_variable,(long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G) << SYSTEM_FUNCTION_PARAM_SHIFT_4,SYSTEM_FUNCTION_PARAM_SIZE_STANDARD);
-    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_26] = system_buffer_allocation_result;
+    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_SEMAPHORE_HANDLE] = system_buffer_allocation_result;
     handle_param[path_buffer_size] = (long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G);
     system_execution_function(handle_param + SYSTEM_OFFSET_PATH_SIZE);
     handle_param[SYSTEM_CHAR_SLASH] = (long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G);
-    if (handle_param[SYSTEM_OFFSET_HANDLE_PARAM_2B] != 0) {
+    if (handle_param[SYSTEM_OFFSET_HANDLE_PARAM_USER_HANDLE] != 0) {
       handle_param_system_error();
     }
-    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_2B] = SYSTEM_ZERO_VALUE;
-    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_2D] = SYSTEM_ONE_VALUE;
-    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_2C] = SYSTEM_ZERO_VALUE;
-    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_2E] = INVALID_HANDLE_VALUE;
+    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_USER_HANDLE] = SYSTEM_ZERO_VALUE;
+    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_NETWORK_HANDLE] = SYSTEM_ONE_VALUE;
+    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_SECURITY_HANDLE] = SYSTEM_ZERO_VALUE;
+    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_DEVICE_HANDLE] = INVALID_HANDLE_VALUE;
     system_buffer_allocation_result = system_execution_function(system_global_data_pointer_variable,(long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G) << SYSTEM_FUNCTION_PARAM_SHIFT_4,SYSTEM_FUNCTION_PARAM_SIZE_STANDARD);
-    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_2B] = system_buffer_allocation_result;
+    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_USER_HANDLE] = system_buffer_allocation_result;
     do {
       system_string_input_pointer[4] = (long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G);
       system_execution_function(system_string_input_pointer);
       system_string_input_pointer = system_string_input_pointer + 5;
       system_string_length_counter = system_string_length_counter + SYSTEM_DECREMENT_SINGLE_UNIT;
     } while (system_string_length_counter != 0);
-    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_25] = (long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G);
-    if (handle_param[SYSTEM_OFFSET_HANDLE_PARAM_21] == SYSTEM_ZERO_VALUE) {
-      handle_param[SYSTEM_OFFSET_HANDLE_PARAM_21] = SYSTEM_ZERO_VALUE;
-      handle_param[SYSTEM_OFFSET_HANDLE_PARAM_23] = SYSTEM_ONE_VALUE;
-      handle_param[SYSTEM_OFFSET_HANDLE_PARAM_22] = SYSTEM_ZERO_VALUE;
-      handle_param[SYSTEM_OFFSET_HANDLE_PARAM_24] = INVALID_HANDLE_VALUE;
+    handle_param[SYSTEM_OFFSET_HANDLE_PARAM_MUTEX_HANDLE] = (long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G);
+    if (handle_param[SYSTEM_OFFSET_HANDLE_PARAM_CONNECTION_HANDLE] == SYSTEM_ZERO_VALUE) {
+      handle_param[SYSTEM_OFFSET_HANDLE_PARAM_CONNECTION_HANDLE] = SYSTEM_ZERO_VALUE;
+      handle_param[SYSTEM_OFFSET_HANDLE_PARAM_FILE_HANDLE] = SYSTEM_ONE_VALUE;
+      handle_param[SYSTEM_OFFSET_HANDLE_PARAM_SOCKET_HANDLE] = SYSTEM_ZERO_VALUE;
+      handle_param[SYSTEM_OFFSET_HANDLE_PARAM_EVENT_HANDLE] = INVALID_HANDLE_VALUE;
       system_buffer_allocation_result = system_execution_function(system_global_data_pointer_variable,(long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G) * SYSTEM_POINTER_OFFSET8,SYSTEM_FUNCTION_PARAM_SIZE_STANDARD);
-      handle_param[SYSTEM_OFFSET_HANDLE_PARAM_21] = system_buffer_allocation_result;
+      handle_param[SYSTEM_OFFSET_HANDLE_PARAM_CONNECTION_HANDLE] = system_buffer_allocation_result;
       system_buffer_allocation_result = (ulong long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G);
       system_string_length_counter = *psystem_initialization_result;
-      if ((ulong long)(handle_param[SYSTEM_OFFSET_HANDLE_PARAM_33] - system_string_length_counter >> 3) < system_buffer_allocation_result) {
+      if ((ulong long)(handle_param[SYSTEM_OFFSET_HANDLE_PARAM_STREAM_HANDLE] - system_string_length_counter >> 3) < system_buffer_allocation_result) {
         if (system_buffer_allocation_result != SYSTEM_ZERO_VALUE) {
           system_string_length_counter = system_execution_function(system_global_data_pointer_variable,system_buffer_allocation_result * 8,*(unsigned char *)(handle_param + SYSTEM_CONFIG_OFFSET_MODULE_HANDLE));
           system_string_length_counter = *psystem_initialization_result;
         }
-        if (system_string_length_counter != handle_param[SYSTEM_OFFSET_HANDLE_PARAM_32]) {
-          memmove(system_string_length_counter,system_string_length_counter,handle_param[SYSTEM_OFFSET_HANDLE_PARAM_32] - system_string_length_counter);
+        if (system_string_length_counter != handle_param[SYSTEM_OFFSET_HANDLE_PARAM_BUFFER_HANDLE]) {
+          memmove(system_string_length_counter,system_string_length_counter,handle_param[SYSTEM_OFFSET_HANDLE_PARAM_BUFFER_HANDLE] - system_string_length_counter);
         }
         if (system_string_length_counter != SYSTEM_ZERO_VALUE) {
           handle_param_system_error();
         }
         *psystem_initialization_result = system_string_length_counter;
-        handle_param[SYSTEM_OFFSET_HANDLE_PARAM_32] = system_string_length_counter;
-        handle_param[SYSTEM_OFFSET_HANDLE_PARAM_33] = system_string_length_counter + system_buffer_allocation_result * 8;
+        handle_param[SYSTEM_OFFSET_HANDLE_PARAM_BUFFER_HANDLE] = system_string_length_counter;
+        handle_param[SYSTEM_OFFSET_HANDLE_PARAM_STREAM_HANDLE] = system_string_length_counter + system_buffer_allocation_result * 8;
       }
       system_thread_result_status = *(int *)(system_global_data_pointer_variable + SYSTEM_OFFSET_RENDER_DATA_COUNTER0) + -1;
       system_thread_result_status = SYSTEM_ZERO_VALUE;
@@ -14148,44 +14148,44 @@ void system_data_initialization_cleanup(void)
 // - 简化实现：仅将常见的硬编码值替换为语义化常量
 
 // 地址偏移量常量
-#define SYSTEM_OFFSET_HANDLE_PARAM_32 0x32
-#define SYSTEM_OFFSET_HANDLE_PARAM_33 0x33
-#define SYSTEM_OFFSET_HANDLE_PARAM_13 0x13
-#define SYSTEM_OFFSET_HANDLE_PARAM_14 0x14
-#define SYSTEM_OFFSET_HANDLE_PARAM_15 0x15
-#define SYSTEM_OFFSET_HANDLE_PARAM_16 0x16
-#define SYSTEM_OFFSET_HANDLE_PARAM_17 0x17
-#define SYSTEM_OFFSET_HANDLE_PARAM_18 0x18
-#define SYSTEM_OFFSET_HANDLE_PARAM_19 0x19
-#define SYSTEM_OFFSET_HANDLE_PARAM_1A 0x1a
-#define SYSTEM_OFFSET_HANDLE_PARAM_1B 0x1b
-#define SYSTEM_OFFSET_HANDLE_PARAM_1C 0x1c
-#define SYSTEM_OFFSET_HANDLE_PARAM_1D 0x1d
-#define SYSTEM_OFFSET_HANDLE_PARAM_1E 0x1e
-#define SYSTEM_OFFSET_HANDLE_PARAM_1F 0x1f
-#define SYSTEM_OFFSET_HANDLE_PARAM_20 0x20
-#define SYSTEM_OFFSET_HANDLE_PARAM_21 0x21
-#define SYSTEM_OFFSET_HANDLE_PARAM_22 0x22
-#define SYSTEM_OFFSET_HANDLE_PARAM_23 0x23
-#define SYSTEM_OFFSET_HANDLE_PARAM_24 0x24
-#define SYSTEM_OFFSET_HANDLE_PARAM_25 0x25
-#define SYSTEM_OFFSET_HANDLE_PARAM_26 0x26
-#define SYSTEM_OFFSET_HANDLE_PARAM_27 0x27
-#define SYSTEM_OFFSET_HANDLE_PARAM_28 0x28
-#define SYSTEM_OFFSET_HANDLE_PARAM_29 0x29
-#define SYSTEM_OFFSET_HANDLE_PARAM_2A 0x2a
-#define SYSTEM_OFFSET_HANDLE_PARAM_2B 0x2b
-#define SYSTEM_OFFSET_HANDLE_PARAM_2C 0x2c
-#define SYSTEM_OFFSET_HANDLE_PARAM_2D 0x2d
-#define SYSTEM_OFFSET_HANDLE_PARAM_2E 0x2e
-#define SYSTEM_OFFSET_HANDLE_PARAM_2F 0x2f
-#define SYSTEM_OFFSET_HANDLE_PARAM_30 0x30
-#define SYSTEM_OFFSET_HANDLE_PARAM_31 0x31
-#define SYSTEM_OFFSET_HANDLE_PARAM_0D 0x0d
-#define SYSTEM_OFFSET_HANDLE_PARAM_0E 0x0e
-#define SYSTEM_OFFSET_HANDLE_PARAM_0F 0x0f
-#define SYSTEM_OFFSET_HANDLE_PARAM_35 0x35
-#define SYSTEM_OFFSET_HANDLE_PARAM_5D 0x5d
+#define SYSTEM_OFFSET_HANDLE_PARAM_BUFFER_HANDLE 0x32
+#define SYSTEM_OFFSET_HANDLE_PARAM_STREAM_HANDLE 0x33
+#define SYSTEM_OFFSET_HANDLE_PARAM_INITIALIZATION_FLAG 0x13
+#define SYSTEM_OFFSET_HANDLE_PARAM_STATUS_FLAG 0x14
+#define SYSTEM_OFFSET_HANDLE_PARAM_HANDLE_VALUE 0x15
+#define SYSTEM_OFFSET_HANDLE_PARAM_RESULT_STATUS 0x16
+#define SYSTEM_OFFSET_HANDLE_PARAM_ERROR_FLAG 0x17
+#define SYSTEM_OFFSET_HANDLE_PARAM_CONTROL_FLAG 0x18
+#define SYSTEM_OFFSET_HANDLE_PARAM_OPERATION_FLAG 0x19
+#define SYSTEM_OFFSET_HANDLE_PARAM_DATA_POINTER 0x1a
+#define SYSTEM_OFFSET_HANDLE_PARAM_BUFFER_SIZE 0x1b
+#define SYSTEM_OFFSET_HANDLE_PARAM_MEMORY_OFFSET 0x1c
+#define SYSTEM_OFFSET_HANDLE_PARAM_STACK_POINTER 0x1d
+#define SYSTEM_OFFSET_HANDLE_PARAM_THREAD_ID 0x1e
+#define SYSTEM_OFFSET_HANDLE_PARAM_PROCESS_ID 0x1f
+#define SYSTEM_OFFSET_HANDLE_PARAM_MODULE_HANDLE 0x20
+#define SYSTEM_OFFSET_HANDLE_PARAM_CONNECTION_HANDLE 0x21
+#define SYSTEM_OFFSET_HANDLE_PARAM_SOCKET_HANDLE 0x22
+#define SYSTEM_OFFSET_HANDLE_PARAM_FILE_HANDLE 0x23
+#define SYSTEM_OFFSET_HANDLE_PARAM_EVENT_HANDLE 0x24
+#define SYSTEM_OFFSET_HANDLE_PARAM_MUTEX_HANDLE 0x25
+#define SYSTEM_OFFSET_HANDLE_PARAM_SEMAPHORE_HANDLE 0x26
+#define SYSTEM_OFFSET_HANDLE_PARAM_THREAD_HANDLE 0x27
+#define SYSTEM_OFFSET_HANDLE_PARAM_MEMORY_HANDLE 0x28
+#define SYSTEM_OFFSET_HANDLE_PARAM_REGISTRY_HANDLE 0x29
+#define SYSTEM_OFFSET_HANDLE_PARAM_SYSTEM_HANDLE 0x2a
+#define SYSTEM_OFFSET_HANDLE_PARAM_USER_HANDLE 0x2b
+#define SYSTEM_OFFSET_HANDLE_PARAM_SECURITY_HANDLE 0x2c
+#define SYSTEM_OFFSET_HANDLE_PARAM_NETWORK_HANDLE 0x2d
+#define SYSTEM_OFFSET_HANDLE_PARAM_DEVICE_HANDLE 0x2e
+#define SYSTEM_OFFSET_HANDLE_PARAM_SERVICE_HANDLE 0x2f
+#define SYSTEM_OFFSET_HANDLE_PARAM_DRIVER_HANDLE 0x30
+#define SYSTEM_OFFSET_HANDLE_PARAM_KERNEL_HANDLE 0x31
+#define SYSTEM_OFFSET_HANDLE_PARAM_VALIDATION_FLAG 0x0d
+#define SYSTEM_OFFSET_HANDLE_PARAM_AUTHENTICATION_FLAG 0x0e
+#define SYSTEM_OFFSET_HANDLE_PARAM_AUTHORIZATION_FLAG 0x0f
+#define SYSTEM_OFFSET_HANDLE_PARAM_CONFIG_HANDLE 0x35
+#define SYSTEM_OFFSET_HANDLE_PARAM_DEBUG_HANDLE 0x5d
 
 // 系统函数调用参数常量
 #define SYSTEM_FUNCTION_PARAM_SIZE_LARGE_BUFFER 0x298                 // 大缓冲区大小

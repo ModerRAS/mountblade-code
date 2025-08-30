@@ -22671,11 +22671,11 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
         system_allocation_result_primary = InitializeSystemCore(system_loop_counter_primary,&system_stack_char_secondary,system_context_handle + SYSTEM_INIT_OFFSET_STACK_PARAM);
         if (system_stack_char_secondary != '\0') {
           if (system_allocation_result_primary == system_loop_counter_primary) goto system_init_label_resource_next;
-          if (*(int *)(system_allocation_result_primary + ) == 0) goto LAB_18004d1b9;
-          if (*(int *)(system_context_handle + ) == 0) goto system_init_label_resource_next;
+          if (*(int *)(system_allocation_result_primary + SYSTEM_INIT_OFFSET_DATA_ZERO) == 0) goto system_init_label_resource_skip;
+          if (*(int *)(system_context_handle + SYSTEM_INIT_OFFSET_DATA_ZERO) == 0) goto system_init_label_resource_next;
           system_byte_ptr_primary5 = *(byte **)(system_allocation_result_primary + SYSTEM_INIT_FLAG_INITIALIZED8);
           system_loop_counter4 = *(longlong *)(system_context_handle + SYSTEM_INIT_FLAG_INITIALIZED8) - (longlong)system_byte_ptr_primary5;
-          goto LAB_18004d1a2;
+          goto system_init_label_resource_process;
         }
         InitializeSystemCore(system_register_xmm0_output_primary,system_context_handle);
         if (system_init_flag_network == SYSTEM_INIT_SIZE_MEMORY_CHUNK) {
