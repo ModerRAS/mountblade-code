@@ -3917,7 +3917,7 @@ void NetworkSocketSend(char *network_socket_handle, uint64_t *network_buffer_ptr
   uint32_t network_current_connections;
   uint32_t network_connection_processor_timeout;
   uint32_t network_keepalive_interval;
-  uint8_t *network_char_ptr_array [5];
+  uint8_t *network_char_ptr_array [NETWORK_ARRAY_SIZE_5];
   uint8_t network_packet_count;
   uint8_t network_encryption_iv [NETWORK_PACKET_HEADER_SIZE];
   uint8_t network_flag_initialized;
