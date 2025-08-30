@@ -559,17 +559,17 @@
 #define SYSTEM_BIT_MASK_MEGA_BLOCK_ALIGNMENT 0x400000             // 兆块对齐掩码
 #define SYSTEM_BIT_MASK_GIGA_ALIGNMENT 0x800000                  // 千兆对齐掩码
 // 超级位掩码常量定义（2025年8月30日语义化美化）
-#define SYSTEM_BIT_MASK_MEGABYTE_LEAST_SIGNIFICANT 0x1000000                         // 兆字节位0掩码
-#define SYSTEM_BIT_MASK_MEGABYTE_SECOND 0x2000000                         // 兆字节位1掩码
-#define SYSTEM_BIT_MASK_MEGABYTE_THIRD 0x4000000                         // 兆字节位2掩码
-#define SYSTEM_BIT_MASK_MEGABYTE_MOST_SIGNIFICANT 0x8000000                         // 兆字节位3掩码
+#define SYSTEM_BIT_MASK_MEGABYTE_LEAST_SIGNIFICANT 0x1000000                         // 兆字节最低有效位掩码
+#define SYSTEM_BIT_MASK_MEGABYTE_SECOND 0x2000000                         // 兆字节第二位掩码
+#define SYSTEM_BIT_MASK_MEGABYTE_THIRD 0x4000000                         // 兆字节第三位掩码
+#define SYSTEM_BIT_MASK_MEGABYTE_MOST_SIGNIFICANT 0x8000000                         // 兆字节最高有效位掩码
 
 // 缓冲区分配结果常量定义（2025年8月30日美化批次）
-#define SYSTEM_BUFFER_ALLOC_RESULT_MINIMAL 0x0d    // 缓冲区分配结果0X0D
-#define SYSTEM_BUFFER_ALLOC_RESULT_SMALL 0x0e    // 缓冲区分配结果0X0E
-#define SYSTEM_BUFFER_ALLOC_RESULT_INIT_COMPLETE 0x1d    // 缓冲区分配结果0X1D
-#define SYSTEM_BUFFER_ALLOC_RESULT_INIT_READY 0x1e    // 缓冲区分配结果0X1E
-#define SYSTEM_BUFFER_ALLOC_RESULT_STACK_RESERVED 0x7c    // 缓冲区分配结果0X7C
+#define SYSTEM_BUFFER_ALLOC_RESULT_MINIMAL 0x0d    // 最小缓冲区分配结果
+#define SYSTEM_BUFFER_ALLOC_RESULT_SMALL 0x0e    // 小缓冲区分配结果
+#define SYSTEM_BUFFER_ALLOC_RESULT_INIT_COMPLETE 0x1d    // 初始化完成缓冲区分配结果
+#define SYSTEM_BUFFER_ALLOC_RESULT_INIT_READY 0x1e    // 初始化就绪缓冲区分配结果
+#define SYSTEM_BUFFER_ALLOC_RESULT_STACK_RESERVED 0x7c    // 栈保留缓冲区分配结果
 
 // 超级位掩码常量定义（2025年8月30日语义化美化）
 #define SYSTEM_BIT_MASK_HUGE_SECTION_ALIGNMENT 0x1000000          // 巨节对齐掩码
@@ -14838,37 +14838,37 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_ARRAY_INDEX_BUFFER_SIZE 0x30                       // 缓冲区大小索引 (十六进制)
 
 // 系统线程优先级常量定义（2025年8月30日美化批次）
-#define SYSTEM_THREAD_PRIORITY_LEVEL_STANDARD_HIGH 0x0d                    // 线程优先级0x0D
-#define SYSTEM_THREAD_PRIORITY_LEVEL_STANDARD_MEDIUM 0x0c                    // 线程优先级0x0C
-#define SYSTEM_THREAD_PRIORITY_LEVEL_STANDARD_CRITICAL 0x0f                    // 线程优先级0x0F
-#define SYSTEM_THREAD_PRIORITY_LEVEL_EXTENDED_LOW 0x12                    // 线程优先级0x12
-#define SYSTEM_THREAD_PRIORITY_LEVEL_EXTENDED_MEDIUM 0x13                    // 线程优先级0x13
-#define SYSTEM_THREAD_PRIORITY_LEVEL_EXTENDED_HIGH 0x15                    // 线程优先级0x15
-#define SYSTEM_THREAD_PRIORITY_LEVEL_EXTENDED_CRITICAL 0x16                    // 线程优先级0x16
-#define SYSTEM_THREAD_PRIORITY_LEVEL_REALTIME_LOW 0x17                    // 线程优先级0x17
-#define SYSTEM_THREAD_PRIORITY_LEVEL_REALTIME_MEDIUM 0x18                    // 线程优先级0x18
-#define SYSTEM_THREAD_PRIORITY_LEVEL_REALTIME_HIGH 0x1a                    // 线程优先级0x1A
-#define SYSTEM_THREAD_PRIORITY_LEVEL_REALTIME_CRITICAL 0x1b                    // 线程优先级0x1B
-#define SYSTEM_THREAD_PRIORITY_LEVEL_KERNEL_STANDARD 0x21                    // 线程优先级0x21
-#define SYSTEM_THREAD_PRIORITY_LEVEL_KERNEL_HIGH 0x23                    // 线程优先级0x23
-#define SYSTEM_THREAD_PRIORITY_LEVEL_KERNEL_CRITICAL 0x24                    // 线程优先级0x24
-#define SYSTEM_THREAD_PRIORITY_LEVEL_KERNEL_REALTIME 0x26                    // 线程优先级0x26
-#define SYSTEM_THREAD_PRIORITY_LEVEL_SYSTEM_MAXIMUM 0x34                    // 线程优先级0x34
-#define SYSTEM_THREAD_PRIORITY_LEVEL_SYSTEM_MINIMUM 0x0b                    // 线程优先级0x0B
+#define SYSTEM_THREAD_PRIORITY_LEVEL_STANDARD_HIGH 0x0d                    // 标准高线程优先级
+#define SYSTEM_THREAD_PRIORITY_LEVEL_STANDARD_MEDIUM 0x0c                    // 标准中等线程优先级
+#define SYSTEM_THREAD_PRIORITY_LEVEL_STANDARD_CRITICAL 0x0f                    // 标准关键线程优先级
+#define SYSTEM_THREAD_PRIORITY_LEVEL_EXTENDED_LOW 0x12                    // 扩展低线程优先级
+#define SYSTEM_THREAD_PRIORITY_LEVEL_EXTENDED_MEDIUM 0x13                    // 扩展中等线程优先级
+#define SYSTEM_THREAD_PRIORITY_LEVEL_EXTENDED_HIGH 0x15                    // 扩展高线程优先级
+#define SYSTEM_THREAD_PRIORITY_LEVEL_EXTENDED_CRITICAL 0x16                    // 扩展关键线程优先级
+#define SYSTEM_THREAD_PRIORITY_LEVEL_REALTIME_LOW 0x17                    // 实时低线程优先级
+#define SYSTEM_THREAD_PRIORITY_LEVEL_REALTIME_MEDIUM 0x18                    // 实时中等线程优先级
+#define SYSTEM_THREAD_PRIORITY_LEVEL_REALTIME_HIGH 0x1a                    // 实时高线程优先级
+#define SYSTEM_THREAD_PRIORITY_LEVEL_REALTIME_CRITICAL 0x1b                    // 实时关键线程优先级
+#define SYSTEM_THREAD_PRIORITY_LEVEL_KERNEL_STANDARD 0x21                    // 内核标准线程优先级
+#define SYSTEM_THREAD_PRIORITY_LEVEL_KERNEL_HIGH 0x23                    // 内核高线程优先级
+#define SYSTEM_THREAD_PRIORITY_LEVEL_KERNEL_CRITICAL 0x24                    // 内核关键线程优先级
+#define SYSTEM_THREAD_PRIORITY_LEVEL_KERNEL_REALTIME 0x26                    // 内核实时线程优先级
+#define SYSTEM_THREAD_PRIORITY_LEVEL_SYSTEM_MAXIMUM 0x34                    // 系统最大线程优先级
+#define SYSTEM_THREAD_PRIORITY_LEVEL_SYSTEM_MINIMUM 0x0b                    // 系统最小线程优先级
 
 // 系统状态码常量定义（2025年8月30日美化批次）
-#define SYSTEM_STATUS_CODE_OPERATION_SUCCESS 0x27                             // 状态码0x27
-#define SYSTEM_STATUS_CODE_OPERATION_PENDING 0x28                             // 状态码0x28
-#define SYSTEM_STATUS_CODE_OPERATION_FAILED 0x29                             // 状态码0x29
+#define SYSTEM_STATUS_CODE_OPERATION_SUCCESS 0x27                             // 操作成功状态码
+#define SYSTEM_STATUS_CODE_OPERATION_PENDING 0x28                             // 操作待处理状态码
+#define SYSTEM_STATUS_CODE_OPERATION_FAILED 0x29                             // 操作失败状态码
 
 // 系统初始化标志常量定义（2025年8月30日美化批次）
-#define SYSTEM_INITIALIZATION_FLAG_STANDARD_MODE 0x21                      // 初始化标志0x21
+#define SYSTEM_INITIALIZATION_FLAG_STANDARD_MODE 0x21                      // 标准模式初始化标志
 
 // 系统缓冲区分配结果常量定义（2025年8月30日美化批次）
-#define SYSTEM_BUFFER_ALLOC_RESULT_MEMORY_AVAILABLE 0x38                      // 缓冲区分配结果0x38
-#define SYSTEM_BUFFER_ALLOC_RESULT_MEMORY_RESERVED 0x44                      // 缓冲区分配结果0x44
-#define SYSTEM_BUFFER_ALLOC_RESULT_MEMORY_LOCKED 0x48                      // 缓冲区分配结果0x48
-#define SYSTEM_BUFFER_ALLOC_RESULT_MEMORY_COMMITTED 0x4c                      // 缓冲区分配结果0x4c
+#define SYSTEM_BUFFER_ALLOC_RESULT_MEMORY_AVAILABLE 0x38                      // 内存可用缓冲区分配结果
+#define SYSTEM_BUFFER_ALLOC_RESULT_MEMORY_RESERVED 0x44                      // 内存保留缓冲区分配结果
+#define SYSTEM_BUFFER_ALLOC_RESULT_MEMORY_LOCKED 0x48                      // 内存锁定缓冲区分配结果
+#define SYSTEM_BUFFER_ALLOC_RESULT_MEMORY_COMMITTED 0x4c                      // 内存提交缓冲区分配结果
 #define SYSTEM_BUFFER_ALLOC_RESULT_CACHE_ALLOCATED 0x51                      // 缓冲区分配结果0x51
 #define SYSTEM_BUFFER_ALLOC_RESULT_CACHE_RESERVED 0x58                      // 缓冲区分配结果0x58
 #define SYSTEM_BUFFER_ALLOC_RESULT_PAGE_ALLOCATED 0x90                      // 缓冲区分配结果0x90
