@@ -7977,8 +7977,8 @@ unsigned long long * system_execution_function(unsigned long long *handle_param,
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_AUTHENTICATION_FLAG] = SYSTEM_ZERO_VALUE;
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_AUTHORIZATION_FLAG] = SYSTEM_ZERO_VALUE;
   handle_param[STRING_BUFFER_SIZE] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_11] = SYSTEM_ZERO_VALUE;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_12] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_PRIMARY] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_SECONDARY] = SYSTEM_ZERO_VALUE;
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_INITIALIZATION_FLAG] = SYSTEM_ZERO_VALUE;
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_STATUS_FLAG] = SYSTEM_ZERO_VALUE;
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_HANDLE_VALUE] = SYSTEM_ZERO_VALUE;
@@ -8022,18 +8022,18 @@ unsigned long long * system_execution_function(unsigned long long *handle_param,
     system_thread_result_status = system_thread_operation_flags;
   }
   *(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G) = system_thread_result_status;
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_11] = (long long)system_thread_result_status;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_PRIMARY] = (long long)system_thread_result_status;
   system_execution_function(handle_param + SYSTEM_FUNCTION_PARAM_OFFSET_STANDARD);
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_RESULT_STATUS] = (long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G);
-  if (handle_param[SYSTEM_OFFSET_HANDLE_PARAM_12] != 0) {
+  if (handle_param[SYSTEM_OFFSET_HANDLE_PARAM_SECONDARY] != 0) {
     handle_param_system_error();
   }
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_12] = SYSTEM_ZERO_VALUE;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_SECONDARY] = SYSTEM_ZERO_VALUE;
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_STATUS_FLAG] = SYSTEM_ONE_VALUE;
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_INITIALIZATION_FLAG] = SYSTEM_ZERO_VALUE;
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_HANDLE_VALUE] = INVALID_HANDLE_VALUE;
   system_buffer_allocation_result = system_execution_function(system_global_data_pointer_variable,(long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G) SYSTEM_FUNCTION_PARAM_MULTIPLIER_STANDARD,SYSTEM_FUNCTION_PARAM_SIZE_STANDARD);
-  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_12] = system_buffer_allocation_result;
+  handle_param[SYSTEM_OFFSET_HANDLE_PARAM_SECONDARY] = system_buffer_allocation_result;
   handle_param[SYSTEM_OFFSET_HANDLE_PARAM_BUFFER_SIZE] = (long long)*(int *)(handle_param + SYSTEM_CHAR_LOWERCASE_G);
   if (handle_param[SYSTEM_OFFSET_HANDLE_PARAM_ERROR_FLAG] != 0) {
     handle_param_system_error();
