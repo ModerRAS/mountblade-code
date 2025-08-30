@@ -2257,10 +2257,10 @@ dataValue g_shader_program_config_link;               // 着色器程序配置�
 dataValue g_shader_program_config_uniform;            // 着色器程序配置统一变量
 dataValue g_shader_program_config_attribute;          // 着色器程序配置属性
 dataValue g_shader_program_config_texture;            // 着色器程序配置纹理
-dataValue shaderUniformConfigMatrix;
-dataValue shaderUniformConfigVector;
-dataValue shaderUniformConfigScalar;
-dataValue shaderUniformConfigSampler;
+dataValue g_shader_uniform_config_matrix;             // 着色器统一变量配置矩阵
+dataValue g_shader_uniform_config_vector;             // 着色器统一变量配置向量
+dataValue g_shader_uniform_config_scalar;             // 着色器统一变量配置标量
+dataValue g_shader_uniform_config_sampler;            // 着色器统一变量配置采样器
 dataValue shaderAttributeConfigPosition;
 dataValue shaderAttributeConfigNormal;
 dataValue shaderAttributeConfigTexCoord;

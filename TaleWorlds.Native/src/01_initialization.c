@@ -23572,8 +23572,8 @@ void InitializeNetworkSystem(uint64_t handleIdentifier,longlong resourceIdentifi
   init_stack_parameter_1a0 = INVALID_HANDLE_VALUE;
   init_stack_system_hash = system_configuration_data ^ (ulonglong)system_local_buffer_1c8;
   InitializeSystemModule24(system_local_buffer_e8,
-                (longlong)*(int *)(system_configuration_data + 0x1d40) * SYSTEM_CONFIG_SIZE_STATUS0 +
-                *(longlong *)(system_configuration_data + 0x1d20));
+                (longlong)*(int *)(system_configuration_data + SYSTEM_INIT_OFFSET_1D40) * SYSTEM_CONFIG_SIZE_STATUS0 +
+                *(longlong *)(system_configuration_data + SYSTEM_INIT_OFFSET_1D20));
   CleanupSystemBuffer(&system_buffer_ptr_198);
   system_integer_result = 0;
   *(uint32_t *)(resourceIdentifier + SYSTEM_DATA_COMPARE_SIZE) = 0;
