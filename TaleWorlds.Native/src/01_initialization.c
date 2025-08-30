@@ -618,6 +618,19 @@
 // 系统句柄标识符偏移量语义化常量
 #define SYSTEM_HANDLE_ID_OFFSET_2 2
 
+// 系统特殊句柄偏移量语义化常量
+#define SYSTEM_HANDLE_OFFSET_42687 0x42687
+#define SYSTEM_HANDLE_OFFSET_4267C 0x4267C
+
+// 系统内存大小语义化常量
+#define SYSTEM_MEMORY_SIZE_213458 0x213458
+
+// 系统标志掩码语义化常量
+#define SYSTEM_FLAG_MASK_BB80073 0xBB80073
+
+// 系统数据块大小语义化常量
+#define SYSTEM_DATA_BLOCK_SIZE070 0x70
+
 // 本次美化内容：
 // - 添加了SYSTEM_TEMP_VARIABLE_18等临时变量语义化常量
 // - 添加了SYSTEM_OPERATION_SUCCESS等操作状态语义化常量
@@ -44321,8 +44334,8 @@ INIT_LABEL_SYSTEM_70230:
         *(uint32_t *)((longlong)system_temp_pointer + SYSTEM_NODE_OFFSET_NEXT) = SYSTEM_STRING_CORE;
         *(uint32_t *)(system_temp_pointer + 5) = SYSTEM_STRING_MISS;
         *(uint32_t *)((longlong)system_temp_pointer + SYSTEM_POINTER_OFFSET_2C) = SYSTEM_STRING_FLAG_GOL;
-        *(uint32_t *)(system_temp_pointer + 6) = 0x726564;
-        init_stack_uint_param_80 = 0x33;
+        *(uint32_t *)(system_temp_pointer + 6) = SYSTEM_STRING_DER;
+        init_stack_uint_param_80 = SYSTEM_STRING_TEMP_0x33;
         pnode_next = &system_buffer_ptr_small_buffer;
       }
       else {
@@ -44804,7 +44817,7 @@ INIT_LABEL_SYSTEM_70ee8:
     system_buffer_ptr_resource_pool = (uint8_t *)AllocateGraphicsMemory(systemMemoryPool,new_var,4,SYSTEM_DATA_COMPARE_SIZE);
     goto INIT_LABEL_SYSTEM_70ee8;
   }
-  *(uint16_t *)(system_buffer_ptr_138 + init_stack_buffer_size_one_hundred_thirty) = 0x3a;
+  *(uint16_t *)(system_buffer_ptr_138 + init_stack_buffer_size_one_hundred_thirty) = SYSTEM_STRING_TEMP_0x3a;
   init_stack_buffer_size_one_hundred_thirty = 3;
   ExtractAudioData(&system_buffer_ptr_140,init_stack_uint_param_buffer);
   system_operation_result = init_stack_buffer_size_one_hundred_thirty;
@@ -44850,7 +44863,7 @@ INIT_LABEL_SYSTEM_70f81:
 INIT_LABEL_SYSTEM_71000:
   system_temp_long_result = init_stack_string_ptr_88;
   system_ptr_value = (uint64_t *)(system_buffer_ptr_138 + init_stack_buffer_size_one_hundred_thirty);
-  *system_ptr_value = 0x6973736572707845;
+  *system_ptr_value = SYSTEM_STRING_PROCESS_PATH;
   *(uint32_t *)(system_temp_pointer + 1) = SYSTEM_NODE_HEADER_SIZE3a6e6f;
   *(uint8_t *)((longlong)system_temp_pointer + SYSTEM_OFFSET_C) = 0;
   system_temp_long_result = -1;
@@ -45206,8 +45219,8 @@ void InitializeSystemModule10(uint64_t handleIdentifier,longlong resourceIdentif
   system_operation_result = ValidateResourceAllocation(system_buffer_ptr_data_array);
   init_stack_uint_param_data = CONCAT44(init_stack_uint_param_data._4_4_,system_temp_counter);
   system_current_node = (uint32_t *)(system_buffer_ptr_data_array + init_stack_uint_param_80);
-  *system_current_node = 0x65737341;
-  system_current_node[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x6f697472;
+  *system_current_node = SYSTEM_STRING_ACCESS;
+  system_current_node[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_STRING_TRAIT;
   system_current_node[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x6146206e;
   system_current_node[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x64656c69;
   *(uint16_t *)(system_current_node + 4) = 0x21;
@@ -45793,7 +45806,7 @@ INIT_LABEL_SYSTEM_72780:
       }
 INIT_LABEL_SYSTEM_727ff:
       system_ptr_value = (uint64_t *)(system_buffer_ptr_130 + init_stack_uint_parameter_128);
-      *system_ptr_value = 0x6973736572707845;
+      *system_ptr_value = SYSTEM_STRING_PROCESS_PATH;
       *(uint32_t *)(system_temp_pointer + 1) = SYSTEM_NODE_HEADER_SIZE3a6e6f;
       *(uint8_t *)((longlong)system_temp_pointer + SYSTEM_OFFSET_C) = 0;
       system_temp_long_result = -1;
@@ -45932,7 +45945,7 @@ INIT_LABEL_SYSTEM_729bd:
           *(uint32_t *)((longlong)system_temp_pointer + SYSTEM_NODE_OFFSET_NEXT) = SYSTEM_STRING_CORE;
           *(uint32_t *)(system_temp_pointer + 5) = SYSTEM_STRING_MISS;
           *(uint32_t *)((longlong)system_temp_pointer + SYSTEM_POINTER_OFFSET_2C) = SYSTEM_STRING_FLAG_GOL;
-          *(uint32_t *)(system_temp_pointer + 6) = 0x726564;
+          *(uint32_t *)(system_temp_pointer + 6) = SYSTEM_STRING_DER;
           init_stack_uint_param_c0 = 0x33;
           system_pointer_chain = &system_buffer_ptr_config;
           system_operation_result = 2;
