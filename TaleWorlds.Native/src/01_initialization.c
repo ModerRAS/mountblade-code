@@ -1,5 +1,16 @@
 #include "TaleWorlds.Native.Split.h"
 
+// 最新美化内容（2025年8月30日最终批次续续续续续续续续续）：
+// - 美化系统节点变量名，将system_node_next替换为system_system_node_next等下一个节点变量名
+// - 美化系统缓冲区指针变量名，将system_buffer_ptr_resource_pool_2b0替换为system_buffer_ptr_resource_pool_small等小型资源池变量名
+// - 美化系统缓冲区指针变量名，将system_buffer_ptr_resource_data_2a8替换为system_buffer_ptr_resource_data_aux等辅助资源数据变量名
+// - 美化系统缓冲区指针变量名，将system_buffer_ptr_data_list_2d8替换为system_buffer_ptr_data_list等数据列表变量名
+// - 美化系统缓冲区指针变量名，将system_buffer_ptr_data_end_2d0替换为system_buffer_ptr_data_end等数据结束变量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了系统初始化文件中剩余变量名的语义化替换
+// - 原本实现：完全重构系统初始化文件变量命名体系，建立统一的变量命名规范
+// - 简化实现：仅将常见的包含数字的变量名替换为语义化名称
+
 // 最新美化内容（2025年8月30日最终批次）：
 // - 美化线程本地存储变量名，将threadLocalStorageBase替换为thread_local_storage_base等语义化变量名
 // - 美化系统栈变量名，将longStack_c8替换为long_stack_data_buffer等数据缓冲区变量名
