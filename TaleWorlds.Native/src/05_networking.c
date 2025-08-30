@@ -24,6 +24,23 @@
 #define NETWORK_SOCKET_STATE_7FFFFF    0x7fffff
 #define NETWORK_SOCKET_MAGIC_FFFFFF7   0xffffff7
 #define NETWORK_SOCKET_MAGIC_FFFFF00   0xfffff00
+
+// 网络系统数组大小语义化常量（本次美化内容）
+#define NETWORK_BUFFER_SIZE_16      16
+#define NETWORK_BUFFER_SIZE_32      32
+#define NETWORK_BUFFER_SIZE_33      33
+#define NETWORK_BUFFER_SIZE_34      34
+#define NETWORK_BUFFER_SIZE_40      40
+#define NETWORK_BUFFER_SIZE_48      48
+#define NETWORK_BUFFER_SIZE_5       5
+#define NETWORK_BUFFER_SIZE_4       4
+#define NETWORK_BUFFER_SIZE_10      10
+
+// 网络系统数组索引语义化常量（本次美化内容）
+#define NETWORK_ARRAY_INDEX_3       3
+#define NETWORK_ARRAY_INDEX_4       4
+#define NETWORK_ARRAY_INDEX_5       5
+
 #define NETWORK_HARD_CODED_VALUES
 #define STRUCT_FIELD_BYTE_0    _byte_0_
 #define STRUCT_FIELD_WORD_0    _word_0_
