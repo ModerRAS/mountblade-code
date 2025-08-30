@@ -2298,11 +2298,11 @@
 // 新增语义化常量定义 - 套接字结构偏移量
 
 // 新增语义化常量定义 - 网络系统硬编码数字常量（2025年8月30日最终批次）
-#define NETWORK_OFFSET_TRIPLE NETWORK_OFFSET_TRIPLE     // 硬编码偏移量3
-#define NETWORK_OFFSET_PENTA NETWORK_OFFSET_PENTA     // 硬编码偏移量5
-#define NETWORK_OFFSET_SEVEN NETWORK_OFFSET_SEVEN     // 硬编码偏移量7
-#define NETWORK_OFFSET_NONA NETWORK_OFFSET_NONA     // 硬编码偏移量9
-#define NETWORK_OFFSET_TWO_HUNDRED NETWORK_OFFSET_TWO_HUNDRED   // 硬编码偏移量200
+#define NETWORK_OFFSET_TRIPLE 3     // 硬编码偏移量3
+#define NETWORK_OFFSET_PENTA 5     // 硬编码偏移量5
+#define NETWORK_OFFSET_SEVEN 7     // 硬编码偏移量7
+#define NETWORK_OFFSET_NONA 9     // 硬编码偏移量9
+#define NETWORK_OFFSET_TWO_HUNDRED 200   // 硬编码偏移量200
 
 // 新增语义化常量定义 - 网络系统浮点数比较常量
 #define NETWORK_FLOAT_COMPARISON_ZERO NETWORK_FLOAT_COMPARISON_ZERO   // 网络浮点数比较零值
